@@ -2,24 +2,28 @@
 
 namespace Upsun\Core\Tasks;
 
-use Upsun\Core\AbstractTask;
-use Upsun\Exception\UpsunException;
+use Upsun\Core\TaskBase;
+use OpenAPI\Client\apisgen\OrganizationsApi;
 
-class Organization extends AbstractTask
+class OrganizationTask extends TaskBase
 {
-    public function __construct($client)
-    {
-        parent::__construct($client);
+    public function create(string $name) {
+        $api = new OrganizationsApi($this->client);
+        return $api->createOrg($name);
     }
 
-    public function list()
-    {
-        try {
-            $response = $this->client->get('/organizations');
-            return $response->getBody();
-        } catch (UpsunException $e) {
-            // Handle the exception as needed
-            throw new UpsunException("Failed to retrieve organizations: " . $e->getMessage());
-        }
+    public function delete(string $organizationId) {
+        $api = new OrganizationsApi($this->client);
+        return $api->deleteOrg($organizationId);
+    }
+
+    public function info(string $organizationId) {
+        $api = new OrganizationsApi($this->client);
+        return $api->getOrg($organizationId);
+    }
+
+    public function list() {
+        $api = new OrganizationsApi($this->client);
+        return $api->listUserOrgs($this->client->getUserId());
     }
 }

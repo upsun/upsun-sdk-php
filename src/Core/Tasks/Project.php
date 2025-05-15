@@ -2,23 +2,39 @@
 
 namespace Upsun\Core\Tasks;
 
-use Upsun\Core\AbstractTask;
+use OpenAPI\Client\apisgen\ProjectApi;
+use OpenAPI\Client\apisgen\SubscriptionsApi;
+use Upsun\Core\TaskBase;
 use Upsun\Exception\UpsunException;
 
-class Project extends AbstractTask
+class ProjectTask extends TaskBase
 {
-    public function list($organizationId)
-    {
-        // Implement the logic to retrieve the list of projects for the given organization ID.
-        // This would typically involve making an HTTP request to the external API.
-        
-        // Example of how you might structure the request:
-        $response = $this->client->get("/organizations/{$organizationId}/projects");
 
-        if ($response->getStatusCode() !== 200) {
-            throw new UpsunException("Failed to retrieve projects for organization ID: {$organizationId}");
-        }
+    public function clearBuildCache(string $projectId) {
+        $api = new ProjectApi($this->client);
+        return $api->actionProjectsClearBuildCache($projectId);
+    }
 
-        return $response->getBody(); // Assuming the response body contains the project data.
+    public function create(string $organizationId, string $title) {
+        throw new UpsunException("Not implemented");
+    }
+
+    public function delete(string $projectId) {
+        $api = new ProjectApi($this->client);
+        return $api->deleteProjects($projectId);
+    }
+
+    public function get(string $projectId) {
+        throw new UpsunException("Not implemented");
+    }
+
+    public function info(string $projectId) {
+        $api = new ProjectApi($this->client);
+        return $api->getProjects($projectId);
+    }
+
+    public function list(string $organizationId) {
+        $api = new SubscriptionsApi($this->client);
+        return $api->listOrgSubscriptions($organizationId);
     }
 }
