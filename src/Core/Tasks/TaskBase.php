@@ -10,7 +10,7 @@ abstract class TaskBase
 {
     public function __construct(
         public readonly UpsunClient $client,
-        public $api
+        public OrganizationsApi $api
     )
     {
         $this->api = new OrganizationsApi($this->client->apiClient, $this->client->apiConfig);
