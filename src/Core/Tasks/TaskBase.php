@@ -8,9 +8,11 @@ use Upsun\UpsunClient;
 
 abstract class TaskBase
 {
+    
+    public OrganizationsApi $api;
+    
     public function __construct(
         public readonly UpsunClient $client,
-        public OrganizationsApi $api
     )
     {
         $this->api = new OrganizationsApi($this->client->apiClient, $this->client->apiConfig);
