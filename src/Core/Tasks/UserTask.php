@@ -9,7 +9,7 @@ use Upsun\UpsunClient;
 class UserTask extends TaskBase
 {
 
-    public UsersApi $api;
+    public readonly UsersApi $api;
     
     public function __construct(
         public readonly UpsunClient $client,
