@@ -98,6 +98,7 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,php,linux,macos,windows
 
+.env
 apisgen
 schema
 vendor
