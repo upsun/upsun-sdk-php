@@ -4,7 +4,6 @@ namespace Upsun\Core\Tasks;
 
 use OpenAPI\Client\apisgen\ProjectApi;
 use OpenAPI\Client\apisgen\SubscriptionsApi;
-use Upsun\Core\TaskBase;
 use Upsun\Exception\UpsunException;
 
 class ProjectTask extends TaskBase

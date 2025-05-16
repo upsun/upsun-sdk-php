@@ -2,7 +2,6 @@
 
 namespace Upsun\Core\Tasks;
 
-use Upsun\Core\TaskBase;
 use OpenAPI\Client\apisgen\OrganizationsApi;
 
 class OrganizationTask extends TaskBase
@@ -24,6 +23,6 @@ class OrganizationTask extends TaskBase
 
     public function list() {
         $api = new OrganizationsApi($this->client);
-        return $api->listUserOrgs($this->client->getUserId());
+        return $api->listUserOrgs("1");
     }
 }

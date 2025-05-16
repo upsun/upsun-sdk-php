@@ -1,6 +1,6 @@
 <?php
 
-namespace Upsun\Core;
+namespace Upsun\Core\Tasks;
 
 use GuzzleHttp\Client;
 

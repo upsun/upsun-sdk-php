@@ -10,7 +10,7 @@ $upsun = new UpsunClient($config);
 // // List organizations
 $orgs = $upsun->organization->list();
 
-$proj = $upsun->project->get('qxnhlj2qfqfhg');
+//$proj = $upsun->project->get('qxnhlj2qfqfhg');
 
 // $organizations = $upsun->organization->list();
 
