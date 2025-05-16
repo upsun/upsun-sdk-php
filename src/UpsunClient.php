@@ -27,28 +27,29 @@ class UpsunClient
 {
     public Client $apiClient;
     public Configuration $apiConfig;
+    public ?string $userId = null;
 
-    public $activity;
-    public $application;
-    public $backup;
-    public $certificate;
-    public $domain;
-    public $environment;
-    public $metrics;
-    public $mount;
-    public $operation;
-    public $organization;
-    public $project;
-    public $resource;
-    public $route;
-    public $sourceOperation;
-    public $team;
-    public $user;
-    public $variables;
-    public $worker;
+    public ActivityTask $activity;
+    public ApplicationTask $application;
+    public BackupTask $backup;
+    public CertificateTask $certificate;
+    public DomainTask $domain;
+    public EnvironmentTask $environment;
+    public MetricsTask $metrics;
+    public MountTask $mount;
+    public OperationTask $operation;
+    public OrganizationTask $organization;
+    public ProjectTask $project;
+    public ResourcesTask $resource;
+    public RouteTask $route;
+    public SourceOperationTask $sourceOperation;
+    public TeamTask $team;
+    public UserTask $user;
+    public VariableTask $variables;
+    public WorkerTask $worker;
 
-    public function __construct(private UpsunConfig $upsunConfig)
-    {
+    public function __construct(protected UpsunConfig $upsunConfig) {
+
         $this->upsunConfig = $upsunConfig;
         $this->apiConfig = Configuration::getDefaultConfiguration()
             ->setAccessToken($this->upsunConfig->apiKey)
@@ -56,6 +57,7 @@ class UpsunClient
         
         $this->apiClient = new Client();
 
+        // Initialize the commands tasks.
         $this->activity = new ActivityTask($this);
         $this->application = new ApplicationTask($this);
         $this->backup = new BackupTask($this);
@@ -74,5 +76,13 @@ class UpsunClient
         $this->user = new UserTask($this);
         $this->variables = new VariableTask($this);
         $this->worker = new WorkerTask($this);
+    }
+
+    public function getUserId() {
+        if ($this->userId == null) {
+            $this->userId = $this->user->me()->getId();
+        }
+
+        return $this->userId;
     }
 }
