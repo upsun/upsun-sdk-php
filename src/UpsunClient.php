@@ -4,6 +4,8 @@ namespace Upsun;
 
 use GuzzleHttp\Client;
 use OpenAPI\Client\Configuration;
+
+use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\ActivityTask;
 use Upsun\Core\Tasks\ApplicationTask;
 use Upsun\Core\Tasks\BackupTask;
@@ -27,6 +29,7 @@ class UpsunClient
 {
     public Client $apiClient;
     public Configuration $apiConfig;
+    public OAuthProvider $auth;
     public ?string $userId = null;
 
     public ActivityTask $activity;
@@ -52,10 +55,15 @@ class UpsunClient
 
         $this->upsunConfig = $upsunConfig;
         $this->apiConfig = Configuration::getDefaultConfiguration()
-            ->setAccessToken($this->upsunConfig->apiKey)
             ->setHost($this->upsunConfig->base_url);
         
         $this->apiClient = new Client();
+
+        $this->auth = new OAuthProvider(
+            tokenEndpoint: $this->upsunConfig->auth_url . "/" . $this->upsunConfig->token_endpoint,
+            clientId: $this->upsunConfig->clientId,
+            clientSecret: $this->upsunConfig->apiKey,
+        );
 
         // Initialize the commands tasks.
         $this->activity = new ActivityTask($this);
@@ -84,5 +92,9 @@ class UpsunClient
         }
 
         return $this->userId;
+    }
+
+    public function getToken() {
+        return $this->upsunConfig->apiKey;
     }
 }
