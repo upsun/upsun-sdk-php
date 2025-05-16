@@ -10,7 +10,7 @@ class ProjectTask extends TaskBase
 {
 
     public function clearBuildCache(string $projectId) {
-        $api = new ProjectApi($this->client);
+        $api = new ProjectApi($this->client->apiClient, $this->client->apiConfig);
         return $api->actionProjectsClearBuildCache($projectId);
     }
 
@@ -19,7 +19,7 @@ class ProjectTask extends TaskBase
     }
 
     public function delete(string $projectId) {
-        $api = new ProjectApi($this->client);
+        $api = new ProjectApi($this->client->apiClient, $this->client->apiConfig);
         return $api->deleteProjects($projectId);
     }
 
@@ -28,12 +28,12 @@ class ProjectTask extends TaskBase
     }
 
     public function info(string $projectId) {
-        $api = new ProjectApi($this->client);
+        $api = new ProjectApi($this->client->apiClient, $this->client->apiConfig);
         return $api->getProjects($projectId);
     }
 
     public function list(string $organizationId) {
-        $api = new SubscriptionsApi($this->client);
+        $api = new SubscriptionsApi($this->client->apiClient, $this->client->apiConfig);
         return $api->listOrgSubscriptions($organizationId);
     }
 }
