@@ -2,9 +2,10 @@
 
 namespace Upsun\Core\Tasks;
 
-use GuzzleHttp\Client;
+//use GuzzleHttp\Client;
+use Upsun\UpsunClient;
 
 abstract class TaskBase
 {
-    public function __construct(public readonly Client $client) { }
+    public function __construct(public readonly UpsunClient $client) { }
 }
