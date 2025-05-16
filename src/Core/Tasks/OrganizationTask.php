@@ -23,6 +23,6 @@ class OrganizationTask extends TaskBase
 
     public function list() {
         $api = new OrganizationsApi($this->client->apiClient, $this->client->apiConfig);
-        return $api->listUserOrgs("1");
+        return $api->listUserOrgs($this->client->getUserId());
     }
 }
