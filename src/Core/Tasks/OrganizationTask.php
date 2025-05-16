@@ -3,9 +3,17 @@
 namespace Upsun\Core\Tasks;
 
 use OpenAPI\Client\apisgen\OrganizationsApi;
+use Upsun\UpsunClient;
 
 class OrganizationTask extends TaskBase
 {
+    public OrganizationsApi $api;
+    public function __construct(
+        public readonly UpsunClient $client,
+    )
+    {
+        $this->api = new OrganizationsApi($this->client->apiClient, $this->client->apiConfig);
+    }
     public function create(string $name) {
         $this->refreshToken();
         return $this->api->createOrg($name);

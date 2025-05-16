@@ -11,4 +11,8 @@ class UserTask extends TaskBase
         $api = new UsersApi($this->client->apiClient, $this->client->apiConfig);
         return $api->getCurrentUser();
     }
+    
+    public function getUser(int $id) {
+        
+    }
 }
