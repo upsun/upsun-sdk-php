@@ -15,6 +15,7 @@ class OrganizationTask extends TaskBase
     )
     {
         $this->api = new OrganizationsApi($this->client->apiClient, $this->client->apiConfig);
+        $this->teamApi = new TeamsApi($this->client->apiClient, $this->client->apiConfig);
     }
     public function create(string $name) {
         $this->refreshToken();
