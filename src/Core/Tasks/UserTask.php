@@ -2,7 +2,6 @@
 
 namespace Upsun\Core\Tasks;
 
-use OpenAPI\Client\apisgen\OrganizationsApi;
 use OpenAPI\Client\apisgen\UsersApi;
 use Upsun\UpsunClient;
 
@@ -19,10 +18,18 @@ class UserTask extends TaskBase
     }
     
     public function me() {
+        $this->refreshToken();
         return $this->api->getCurrentUser();
     }
     
     public function getUser(string $id) {
+        $this->refreshToken();
         return $this->api->getUser($id);
     }
+    
+    public function getUserTeams(string $id) {
+        $this->refreshToken();
+        return $this->api->getUser($id);
+    }
+    
 }

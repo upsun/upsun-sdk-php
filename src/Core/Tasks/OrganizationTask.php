@@ -35,6 +35,8 @@ class OrganizationTask extends TaskBase
 
     public function listOrgMembers($organization_id, $filter_permissions = null, $page_size = null, $page_before = null, $page_after = null, $sort = null, string $contentType = '') {
         $this->refreshToken();
-        return $this->api->listOrgMembers($organization_id, $filter_permissions, $page_size, $page_before, $page_after, $sort,  $contentType);
+        return $this->api->list($organization_id, $filter_permissions, $page_size, $page_before, $page_after, $sort,  $contentType);
     }
+    
+    
 }
