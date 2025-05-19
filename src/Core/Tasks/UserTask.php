@@ -26,10 +26,4 @@ class UserTask extends TaskBase
         $this->refreshToken();
         return $this->api->getUser($id);
     }
-    
-    public function getUserTeams(string $id) {
-        $this->refreshToken();
-        return $this->api->getUser($id);
-    }
-    
 }
