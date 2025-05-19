@@ -3,11 +3,13 @@
 namespace Upsun\Core\Tasks;
 
 use OpenAPI\Client\apisgen\OrganizationsApi;
+use OpenAPI\Client\apisgen\TeamsApi;
 use Upsun\UpsunClient;
 
 class OrganizationTask extends TaskBase
 {
     public OrganizationsApi $api;
+    public TeamsApi $teamApi;
     public function __construct(
         public readonly UpsunClient $client,
     )
@@ -36,5 +38,10 @@ class OrganizationTask extends TaskBase
     public function listOrgMembers($organization_id, $filter_permissions = null, $page_size = null, $page_before = null, $page_after = null, $sort = null, string $contentType = '') {
         $this->refreshToken();
         return $this->api->listOrgMembers($organization_id, $filter_permissions, $page_size, $page_before, $page_after, $sort, $contentType);
+    }
+
+    public function listOrgTeams($filter_organization_id = null, $filter_id = null, $filter_updated_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null, string $contentType = '') {
+        $this->refreshToken();
+        return $this->teamApi->listTeams($filter_organization_id, $filter_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort, $contentType);
     }
 }
