@@ -1,5 +1,15 @@
 #!/usr/bin/bash
 
+DEBUG=false
+
+# check arguments
+for arg in "$@"; do
+  if [ "$arg" == "--debug" ]; then
+    DEBUG=true
+    break
+  fi
+done
+
 echo "Clean old build..."
 rm -rf ./schema/*
 rm -rf ./apisgen/*
@@ -17,11 +27,19 @@ PKG="apisgen"
 export GIT_USER_ID=upsun
 export GIT_REPO_ID=upsun-sdk-go
 
-openapi-generator-cli generate \
-  -i ./schema/openapispec-platformsh.json \
-  -g php \
-  -o "$PKG" \
-  --additional-properties=apiPackage="$PKG"
+if $DEBUG; then
+  openapi-generator-cli generate \
+    -i ./schema/openapispec-platformsh.json \
+    -g php \
+    -o "$PKG" \
+    --additional-properties=apiPackage="$PKG"
+else
+  openapi-generator-cli generate \
+    -i ./schema/openapispec-platformsh.json \
+    -g php \
+    -o "$PKG" \
+    --additional-properties=apiPackage="$PKG" &> /dev/null
+fi
 
 echo "Clean up unnecessary files..."
 rm -rf ./$PKG/git_push.sh ./$PKG/.gitignore ./$PKG/.travis.yml ./$PKG/composer.json
