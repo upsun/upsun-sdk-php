@@ -9,7 +9,7 @@
   "autoload": {
     "psr-4": {
       "Upsun\\": "src/",
-      "OpenAPI\\Client\\" : "apisgen/lib/"
+      "OpenAPI\\Client\\apisgen\\": "apisgen/lib/apisgen/"
     }
   },
   "autoload-dev": {
