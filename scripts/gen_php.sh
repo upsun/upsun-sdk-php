@@ -2,6 +2,7 @@
 
 echo "Clean old build..."
 rm -rf ./schema/*
+rm -rf ./apisgen/*
 
 echo "Download last openAPI spec..."
 wget -O ./schema/openapispec-platformsh.json https://api.upsun.com/docs/openapispec-platformsh.json
