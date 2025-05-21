@@ -35,4 +35,11 @@ class UserTask extends TaskBase
     $user = $this->api->getUser($id);
     return trim($user->getFirstName(). ' ' . $user->getLastName());  
   }
+
+  public function getUserEmail(string $id)
+  {
+    $this->refreshToken();
+    $user = $this->api->getUser($id);
+    return trim($user->getEmail());
+  }
 }
