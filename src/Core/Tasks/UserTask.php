@@ -31,21 +31,28 @@ class UserTask extends TaskBase
     return $this->api->getUser($id);
   }
 
-  public function getUserByEmailAddress(string $email, string $contentType = ''): Error|User
-  { 
-    $this->refreshToken();
-    return $this->api->getUserByEmailAddress($email, $contentType);
+  public function getUserByEmailAddress(string $email, string $contentType = ''): ?User
+  {
+    try {
+      $this->refreshToken();
+      return $this->api->getUserByEmailAddress($email, $contentType);
+    } catch (\Exception $e) {
+      // Log something?
+      return null;
+    }
   }
 
-
-  
-  
   /** Custom functions */
-  public function getUserFullName(string $id)
+  public function getUserFullName(string $id): string
   {
-    $this->refreshToken();
-    $user = $this->api->getUser($id);
-    return trim($user->getFirstName(). ' ' . $user->getLastName());  
+    try {
+      $this->refreshToken();
+      $user = $this->api->getUser($id);
+      return trim($user->getFirstName() . ' ' . $user->getLastName());
+    } catch (\Exception $e) {
+      // Log something?
+      return '';
+    }
   }
 
   public function getUserEmail(string $id)
