@@ -37,7 +37,7 @@ class OrganizationTask extends TaskBase
         $this->refreshToken();
         return $this->api->listOrgMembers($organization_id, $filter_permissions, $page_size, $page_before, $page_after, $sort, $contentType);
     }
-
+    
     /**
      * Get Teams of the current organization (for current user)
      * @param $organization_id
