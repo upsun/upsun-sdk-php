@@ -3,19 +3,16 @@
 namespace Upsun\Core\Tasks;
 
 use OpenAPI\Client\apisgen\OrganizationsApi;
-use OpenAPI\Client\apisgen\TeamsApi;
 use Upsun\UpsunClient;
 
 class OrganizationTask extends TaskBase
 {
     public OrganizationsApi $api;
-    public TeamsApi $teamApi;
     public function __construct(
         public readonly UpsunClient $client,
     )
     {
         $this->api = new OrganizationsApi($this->client->apiClient, $this->client->apiConfig);
-        $this->teamApi = new TeamsApi($this->client->apiClient, $this->client->apiConfig);
     }
     public function create(string $name) {
         $this->refreshToken();
@@ -41,8 +38,20 @@ class OrganizationTask extends TaskBase
         return $this->api->listOrgMembers($organization_id, $filter_permissions, $page_size, $page_before, $page_after, $sort, $contentType);
     }
 
-    public function listOrgTeams($filter_organization_id = null, $filter_id = null, $filter_updated_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null, string $contentType = '') {
+    /**
+     * Get Teams of the current organization (for current user)
+     * @param $organization_id
+     * @param $filter_id
+     * @param $filter_updated_at
+     * @param $page_size
+     * @param $page_before
+     * @param $page_after
+     * @param $sort
+     * @param string $contentType
+     * @return mixed
+     */
+    public function getTeams($organization_id, $filter_id = null, $filter_updated_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null, string $contentType = '') {
         $this->refreshToken();
-        return $this->teamApi->listTeams($filter_organization_id, $filter_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort, $contentType);
+        return $this->client->team->listUserTeams($this->client->getUserId(), ['eq' => $organization_id], $filter_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort, $contentType);
     }
 }
