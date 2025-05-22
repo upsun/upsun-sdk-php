@@ -12,6 +12,7 @@ use Upsun\Core\Tasks\BackupTask;
 use Upsun\Core\Tasks\CertificateTask;
 use Upsun\Core\Tasks\DomainTask;
 use Upsun\Core\Tasks\EnvironmentTask;
+use Upsun\Core\Tasks\InvitationTask;
 use Upsun\Core\Tasks\MetricsTask;
 use Upsun\Core\Tasks\MountTask;
 use Upsun\Core\Tasks\OperationTask;
@@ -38,6 +39,7 @@ class UpsunClient
     public CertificateTask $certificate;
     public DomainTask $domain;
     public EnvironmentTask $environment;
+    public InvitationTask $invitations;
     public MetricsTask $metrics;
     public MountTask $mount;
     public OperationTask $operation;
@@ -84,6 +86,7 @@ class UpsunClient
         $this->user = new UserTask($this);
         $this->variables = new VariableTask($this);
         $this->worker = new WorkerTask($this);
+        $this->invitations = new InvitationTask($this);
     }
 
     public function getUserId() {
