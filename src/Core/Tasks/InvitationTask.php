@@ -27,6 +27,7 @@ class InvitationTask extends TaskBase
             'permissions' => $permissions, 
             'force' => $force
         ]);
+        dd($inviteRequest);
         return $this->api->createOrgInvite($organization_id, $inviteRequest);
     }
 
