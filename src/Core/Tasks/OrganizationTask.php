@@ -50,8 +50,8 @@ class OrganizationTask extends TaskBase
      * @param string $contentType
      * @return mixed
      */
-    public function getTeams($organization_id, $filter_id = null, $filter_updated_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null, string $contentType = '') {
+    public function getTeams($organization_id, $filter_updated_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null, string $contentType = '') {
         $this->refreshToken();
-        return $this->client->team->listUserTeams($this->client->getUserId(), ['eq' => $organization_id], $filter_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort, $contentType);
+        return $this->client->team->listUserTeams($this->client->getUserId(), ['eq' => $organization_id], $filter_updated_at, $page_size, $page_before, $page_after, $sort, $contentType);
     }
 }
