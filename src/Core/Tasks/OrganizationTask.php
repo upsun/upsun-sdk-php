@@ -2,10 +2,16 @@
 
 namespace Upsun\Core\Tasks;
 
+use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Psr7\MultipartStream;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\RequestOptions;
 use InvalidArgumentException;
 use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\OrganizationsApi;
 use OpenAPI\Client\Configuration;
+use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\Model\ArrayFilter;
 use OpenAPI\Client\Model\CreateOrgMemberRequest;
 use OpenAPI\Client\Model\CreateOrgRequest;
@@ -19,16 +25,25 @@ use OpenAPI\Client\Model\OrganizationMember;
 use OpenAPI\Client\Model\StringFilter;
 use OpenAPI\Client\Model\UpdateOrgMemberRequest;
 use OpenAPI\Client\Model\UpdateOrgRequest;
+use OpenAPI\Client\ObjectSerializer;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Upsun\UpsunClient;
 
 class OrganizationTask extends TaskBase
 {
     public OrganizationsApi $api;
 
+    /**
+     * @var HeaderSelector
+     */
+    protected $headerSelector;
+
     public function __construct(
         public readonly UpsunClient $client,
     )
     {
+        $this->headerSelector = new HeaderSelector();
         $this->api = new OrganizationsApi($this->client->apiClient, $this->client->apiConfig);
     }
 
@@ -297,5 +312,297 @@ class OrganizationTask extends TaskBase
     {
         $this->refreshToken();
         return $this->client->team->listUserTeams($this->client->getUserId(), ['eq' => $organization_id], $filter_updated_at, $page_size, $page_before, $page_after, $sort, $contentType);
+    }
+
+    public function updateOrgAddons($organization_id)
+    {
+//        upsun api:curl -X PATCH --json '{"user_management":"standard"}' 'api/organizations/ORGANIZATION_ID/addons' | jq
+        $this->refreshToken();
+        $user_management_addons = ['user_management' => "standard"];
+
+        list($response) = $this->updateOrgAddonsWithHttpInfo($organization_id, $user_management_addons);
+        return $response;
+    }
+
+
+    /**
+     * Create http client option
+     * TODO Duplicate from OrganizationApi.php
+     *
+     * @return array of http client options
+     * @throws \RuntimeException on file opening failure
+     */
+    protected function createHttpClientOption()
+    {
+        $options = [];
+        if ($this->client->apiConfig->getDebug()) {
+            $options[RequestOptions::DEBUG] = fopen($this->client->apiConfig->getDebugFile(), 'a');
+            if (!$options[RequestOptions::DEBUG]) {
+                throw new \RuntimeException('Failed to open the debug file: ' . $this->client->apiConfig->getDebugFile());
+            }
+        }
+
+        return $options;
+    }
+
+    /**
+     *
+     * TODO Duplicate from Organizationpi
+     * @param string $dataType
+     * @param RequestInterface $request
+     * @param ResponseInterface $response
+     * @return array
+     * @throws ApiException
+     */
+    private function handleResponseWithDataType(
+        string            $dataType,
+        RequestInterface  $request,
+        ResponseInterface $response
+    ): array
+    {
+        if ($dataType === '\SplFileObject') {
+            $content = $response->getBody(); //stream goes to serializer
+        } else {
+            $content = (string)$response->getBody();
+            if ($dataType !== 'string') {
+                try {
+                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                } catch (\JsonException $exception) {
+                    throw new ApiException(
+                        sprintf(
+                            'Error JSON decoding server response (%s)',
+                            $request->getUri()
+                        ),
+                        $response->getStatusCode(),
+                        $response->getHeaders(),
+                        $content
+                    );
+                }
+            }
+        }
+
+        return [
+            ObjectSerializer::deserialize($content, $dataType, []),
+            $response->getStatusCode(),
+            $response->getHeaders()
+        ];
+    }
+
+    /**
+     * Operation updateOrgAddonsWithHttpInfo
+     *
+     * Update organization addons
+     *
+     * TODO remove when available in the OrganizationAPI
+     *
+     * @param string $organization_id The ID of the organization. (required)
+     * @param array $update_org_request (optional)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['updateOrg'] to see the possible values for this operation
+     *
+     * @return array of \OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @throws \InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function updateOrgAddonsWithHttpInfo($organization_id, $update_org_request = [], string $contentType = OrganizationsApi::contentTypes['updateOrg'][0])
+    {
+        $request = $this->updateOrgAddonsRequest($organization_id, $update_org_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->apiClient->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int)$e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string)$e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int)$e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch ($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\Organization',
+                        $request,
+                        $response,
+                    );
+                case 400:
+                case 403:
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\OpenAPI\Client\Model\Error',
+                        $request,
+                        $response,
+                    );
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string)$request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string)$response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\OpenAPI\Client\Model\Organization',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Organization',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Create request for operation 'updateOrg'
+     *
+     * @param string $organization_id The ID of the organization. (required)
+     * @param array $update_org_request (optional)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['updateOrg'] to see the possible values for this operation
+     *
+     * @return \GuzzleHttp\Psr7\Request
+     * @throws \InvalidArgumentException
+     */
+    public function updateOrgAddonsRequest($organization_id, array $update_org_request = [], string $contentType = OrganizationsApi::contentTypes['updateOrg'][0])
+    {
+        // verify the required parameter 'organization_id' is set
+        if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $organization_id when calling updateOrgAddons'
+            );
+        }
+
+        $resourcePath = '/organizations/{organization_id}/addons';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($organization_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'organization_id' . '}',
+                ObjectSerializer::toPathValue($organization_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'application/problem+json',],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($update_org_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($update_org_request));
+            } else {
+                $httpBody = $update_org_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->api->getConfig()->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->api->getConfig()->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->api->getConfig()->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->api->getConfig()->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->api->getConfig()->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PATCH',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
     }
 }
