@@ -2,7 +2,6 @@
 
 namespace Upsun\Core\Tasks;
 
-use GuzzleHttp\Promise\PromiseInterface;
 use InvalidArgumentException;
 use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\InvitationsApi;
@@ -71,23 +70,6 @@ class InvitationTask extends TaskBase
         $this->api->cancelOrgInvite($organization_id, $invitation_id, $contentType);
     }
 
-    /**
-     * Operation cancelOrgInviteAsync
-     *
-     * Cancel a pending invitation to an organization
-     *
-     * @param string $organization_id The ID of the organization. (required)
-     * @param string $invitation_id The ID of the invitation. (required)
-     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['cancelOrgInvite'] to see the possible values for this operation
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function cancelOrgInviteAsync(string $organization_id, string $invitation_id, string $contentType = ''): PromiseInterface
-    {
-        $this->refreshToken();
-        return $this->api->cancelOrgInviteAsync($organization_id, $invitation_id, $contentType);
-    }
 
     /**
      * Operation cancelProjectInvite
@@ -106,24 +88,6 @@ class InvitationTask extends TaskBase
     {
         $this->refreshToken();
         $this->api->cancelProjectInvite($project_id, $invitation_id, $contentType);
-    }
-
-    /**
-     * Operation cancelProjectInviteAsync
-     *
-     * Cancel a pending invitation to a project
-     *
-     * @param string $project_id The ID of the project. (required)
-     * @param string $invitation_id The ID of the invitation. (required)
-     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['cancelProjectInvite'] to see the possible values for this operation
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function cancelProjectInviteAsync(string $project_id, string $invitation_id, string $contentType = ''): PromiseInterface
-    {
-        $this->refreshToken();
-        return $this->api->cancelProjectInviteAsync($project_id, $invitation_id, $contentType);
     }
 
     /**
@@ -151,24 +115,6 @@ class InvitationTask extends TaskBase
     }
 
     /**
-     * Operation createOrgInviteAsync
-     *
-     * Invite user to an organization by email
-     *
-     * @param string $organization_id The ID of the organization. (required)
-     * @param CreateOrgInviteRequest|null $create_org_invite_request (optional)
-     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['createOrgInvite'] to see the possible values for this operation
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function createOrgInviteAsync(string $organization_id, CreateOrgInviteRequest $create_org_invite_request = null, string $contentType = ''): PromiseInterface
-    {
-        $this->refreshToken();
-        return $this->api->createOrgInviteAsync($organization_id, $create_org_invite_request, $contentType);
-    }
-
-    /**
      * Operation createProjectInvite
      *
      * Invite user to a project by email
@@ -185,24 +131,6 @@ class InvitationTask extends TaskBase
     {
         $this->refreshToken();
         return $this->api->createProjectInvite($project_id, $create_project_invite_request, $contentType);
-    }
-
-    /**
-     * Operation createProjectInviteAsync
-     *
-     * Invite user to a project by email
-     *
-     * @param string $project_id The ID of the project. (required)
-     * @param CreateProjectInviteRequest|null $create_project_invite_request (optional)
-     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['createProjectInvite'] to see the possible values for this operation
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function createProjectInviteAsync(string $project_id, CreateProjectInviteRequest $create_project_invite_request = null, string $contentType = ''): PromiseInterface
-    {
-        $this->refreshToken();
-        return $this->api->createProjectInviteAsync($project_id, $create_project_invite_request, $contentType);
     }
 
     /**
@@ -227,29 +155,7 @@ class InvitationTask extends TaskBase
         $this->refreshToken();
         return $this->api->listOrgInvites($organization_id, $filter_state, $page_size, $page_before, $page_after, $sort, $contentType);
     }
-
-    /**
-     * Operation listOrgInvitesAsync
-     *
-     * List invitations to an organization
-     *
-     * @param string $organization_id The ID of the organization. (required)
-     * @param StringFilter|null $filter_state Allows filtering by &#x60;state&#x60; of the invtations: \&quot;pending\&quot; (default), \&quot;error\&quot;. (optional)
-     * @param int|null $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending. (optional)
-     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['listOrgInvites'] to see the possible values for this operation
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function listOrgInvitesAsync(string $organization_id, $filter_state = null, $page_size = null, $page_before = null, $page_after = null, $sort = null, string $contentType = ''): PromiseInterface
-    {
-        $this->refreshToken();
-        return $this->api->listOrgInvitesAsync($organization_id, $filter_state, $page_size, $page_before, $page_after, $sort, $contentType);
-    }
-
+    
     /**
      * Operation listProjectInvites
      *
@@ -271,27 +177,5 @@ class InvitationTask extends TaskBase
     {
         $this->refreshToken();
         return $this->api->listProjectInvites($project_id, $filter_state, $page_size, $page_before, $page_after, $sort, $contentType);
-    }
-
-    /**
-     * Operation listProjectInvitesAsync
-     *
-     * List invitations to a project
-     *
-     * @param string $project_id The ID of the project. (required)
-     * @param StringFilter|null $filter_state Allows filtering by &#x60;state&#x60; of the invtations: \&quot;pending\&quot; (default), \&quot;error\&quot;. (optional)
-     * @param int|null $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending. (optional)
-     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['listProjectInvites'] to see the possible values for this operation
-     *
-     * @return PromiseInterface
-     * @throws InvalidArgumentException
-     */
-    public function listProjectInvitesAsync(string $project_id, StringFilter $filter_state = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null, string $contentType = ''): PromiseInterface
-    {
-        $this->refreshToken();
-        return $this->api->listProjectInvitesAsync($project_id, $filter_state, $page_size, $page_before, $page_after, $sort, $contentType);
     }
 }

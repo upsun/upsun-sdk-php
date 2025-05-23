@@ -2,7 +2,6 @@
 
 namespace Upsun\Core\Tasks;
 
-use GuzzleHttp\Promise\PromiseInterface;
 use InvalidArgumentException;
 use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\UsersApi;
@@ -41,20 +40,6 @@ class UserTask extends TaskBase
   }
 
   /**
-   * Operation meAsync
-   *
-   * Get the current user Asynchronously
-   *
-   * @return PromiseInterface
-   * @throws InvalidArgumentException
-   */
-  public function meAsync(): PromiseInterface
-  {
-    $this->refreshToken();
-    return $this->api->getCurrentUserAsync();
-  }
-
-  /**
    * Operation getCurrentUserVerificationStatus
    *
    * Check if phone verification is required
@@ -67,21 +52,6 @@ class UserTask extends TaskBase
   {
     $this->refreshToken();
     return $this->api->getCurrentUserVerificationStatus();
-  }
-
-  /**
-   * Operation getCurrentUserVerificationStatusAsync
-   *
-   * Check if phone verification is required
-   *
-   * @return PromiseInterface
-   * @throws InvalidArgumentException
-   * @throws ApiException on non-2xx response or if the response body is not in the expected format
-   */
-  public function getCurrentUserVerificationStatusAsync(): PromiseInterface
-  {
-    $this->refreshToken();
-    return $this->api->getCurrentUserVerificationStatusAsync();
   }
 
   /**
@@ -189,26 +159,6 @@ class UserTask extends TaskBase
     $update_user_request = new UpdateUserRequest();
 //    dd($update_user_data);
     return $this->api->updateUser($user_id, $update_user_request);
-  }
-
-  /**
-   * Operation updateUserAsync
-   *
-   * Update a user
-   *
-   * @param string $user_id The ID of the user. (required)
-   * @param array $update_user_data update_user_request (optional)
-   *
-   * @return PromiseInterface
-   * @throws InvalidArgumentException
-   * @throws ApiException on non-2xx response or if the response body is not in the expected format
-   */
-  public function updateUserAsync(string $user_id, array $update_user_data = []): PromiseInterface
-  {
-    $this->refreshToken();
-    //TODO create UpdateUserRequest here
-    $update_user_request = new UpdateUserRequest();
-    return $this->api->updateUserAsync($user_id, $update_user_request);
   }
 
   /** Custom functions */
