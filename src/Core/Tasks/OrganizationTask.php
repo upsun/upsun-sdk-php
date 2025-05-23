@@ -250,15 +250,16 @@ class OrganizationTask extends TaskBase
      * Update organization
      *
      * @param string $organization_id The ID of the organization. (required)
-     * @param UpdateOrgRequest|null $update_org_request update_org_request (optional)
+     * @param array $update_org_data update_org_request (optional)
      *
      * @return Organization|Error
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateOrg($organization_id, $update_org_request = null): Organization|Error
+    public function updateOrg(string $organization_id, array $update_org_data = []): Organization|Error
     {
         $this->refreshToken();
+        $update_org_request = new UpdateOrgRequest($update_org_data);
         return $this->api->updateOrg($organization_id, $update_org_request);
     }
 
