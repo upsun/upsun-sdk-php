@@ -3,6 +3,8 @@
 namespace Upsun\Core\Tasks;
 
 use GuzzleHttp\Promise\PromiseInterface;
+use InvalidArgumentException;
+use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\InvitationsApi;
 use OpenAPI\Client\Configuration;
 use OpenAPI\Client\Model\CreateOrgInviteRequest;
@@ -23,7 +25,7 @@ class InvitationTask extends TaskBase
     {
         $this->api = new InvitationsApi($this->client->apiClient, $this->client->apiConfig);
     }
-    
+
     public function setHostIndex($hostIndex): void
     {
         $this->refreshToken();
@@ -55,13 +57,13 @@ class InvitationTask extends TaskBase
      *
      * Cancel a pending invitation to an organization
      *
-     * @param  string $organization_id The ID of the organization. (required)
-     * @param  string $invitation_id The ID of the invitation. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelOrgInvite'] to see the possible values for this operation
+     * @param string $organization_id The ID of the organization. (required)
+     * @param string $invitation_id The ID of the invitation. (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['cancelOrgInvite'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function cancelOrgInvite(string $organization_id, string $invitation_id, string $contentType = ''): void
     {
@@ -74,12 +76,12 @@ class InvitationTask extends TaskBase
      *
      * Cancel a pending invitation to an organization
      *
-     * @param  string $organization_id The ID of the organization. (required)
-     * @param  string $invitation_id The ID of the invitation. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelOrgInvite'] to see the possible values for this operation
+     * @param string $organization_id The ID of the organization. (required)
+     * @param string $invitation_id The ID of the invitation. (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['cancelOrgInvite'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
      */
     public function cancelOrgInviteAsync(string $organization_id, string $invitation_id, string $contentType = ''): PromiseInterface
     {
@@ -92,13 +94,13 @@ class InvitationTask extends TaskBase
      *
      * Cancel a pending invitation to a project
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  string $invitation_id The ID of the invitation. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelProjectInvite'] to see the possible values for this operation
+     * @param string $project_id The ID of the project. (required)
+     * @param string $invitation_id The ID of the invitation. (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['cancelProjectInvite'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function cancelProjectInvite(string $project_id, string $invitation_id, string $contentType = ''): void
     {
@@ -111,12 +113,12 @@ class InvitationTask extends TaskBase
      *
      * Cancel a pending invitation to a project
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  string $invitation_id The ID of the invitation. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelProjectInvite'] to see the possible values for this operation
+     * @param string $project_id The ID of the project. (required)
+     * @param string $invitation_id The ID of the invitation. (required)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['cancelProjectInvite'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
      */
     public function cancelProjectInviteAsync(string $project_id, string $invitation_id, string $contentType = ''): PromiseInterface
     {
@@ -128,13 +130,13 @@ class InvitationTask extends TaskBase
      * Operation createOrgInvite
      *
      * Invite user to an organization by email
-     * 
+     *
      * @param string $organization_id
      * @param string $email
      * @param array $permissions
      * @param bool $force
      * @return Error|OrganizationInvitation
-     * @throws \OpenAPI\Client\ApiException
+     * @throws ApiException
      */
     public function createOrgInvite(string $organization_id, string $email, array $permissions, bool $force = true): Error|OrganizationInvitation
     {
@@ -153,12 +155,12 @@ class InvitationTask extends TaskBase
      *
      * Invite user to an organization by email
      *
-     * @param  string $organization_id The ID of the organization. (required)
-     * @param  \OpenAPI\Client\Model\CreateOrgInviteRequest|null $create_org_invite_request (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createOrgInvite'] to see the possible values for this operation
+     * @param string $organization_id The ID of the organization. (required)
+     * @param CreateOrgInviteRequest|null $create_org_invite_request (optional)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['createOrgInvite'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
      */
     public function createOrgInviteAsync(string $organization_id, CreateOrgInviteRequest $create_org_invite_request = null, string $contentType = ''): PromiseInterface
     {
@@ -171,13 +173,13 @@ class InvitationTask extends TaskBase
      *
      * Invite user to a project by email
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  \OpenAPI\Client\Model\CreateProjectInviteRequest|null $create_project_invite_request create_project_invite_request (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProjectInvite'] to see the possible values for this operation
+     * @param string $project_id The ID of the project. (required)
+     * @param CreateProjectInviteRequest|null $create_project_invite_request create_project_invite_request (optional)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['createProjectInvite'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ProjectInvitation|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
+     * @return \OpenAPI\Client\Model\ProjectInvitation|Error|Error|Error|Error|Error
+     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function createProjectInvite(string $project_id, CreateProjectInviteRequest $create_project_invite_request = null, string $contentType = ''): ProjectInvitation|Error
     {
@@ -190,12 +192,12 @@ class InvitationTask extends TaskBase
      *
      * Invite user to a project by email
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  \OpenAPI\Client\Model\CreateProjectInviteRequest|null $create_project_invite_request (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProjectInvite'] to see the possible values for this operation
+     * @param string $project_id The ID of the project. (required)
+     * @param CreateProjectInviteRequest|null $create_project_invite_request (optional)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['createProjectInvite'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
      */
     public function createProjectInviteAsync(string $project_id, CreateProjectInviteRequest $create_project_invite_request = null, string $contentType = ''): PromiseInterface
     {
@@ -208,17 +210,17 @@ class InvitationTask extends TaskBase
      *
      * List invitations to an organization
      *
-     * @param  string $organization_id The ID of the organization. (required)
-     * @param  \OpenAPI\Client\Model\StringFilter|null $filter_state Allows filtering by &#x60;state&#x60; of the invtations: \&quot;pending\&quot; (default), \&quot;error\&quot;. (optional)
-     * @param  int|null $page_size Determines the number of items to show. (optional)
-     * @param  string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listOrgInvites'] to see the possible values for this operation
+     * @param string $organization_id The ID of the organization. (required)
+     * @param StringFilter|null $filter_state Allows filtering by &#x60;state&#x60; of the invtations: \&quot;pending\&quot; (default), \&quot;error\&quot;. (optional)
+     * @param int|null $page_size Determines the number of items to show. (optional)
+     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending. (optional)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['listOrgInvites'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\OrganizationInvitation[]|\OpenAPI\Client\Model\Error
+     * @return OrganizationInvitation[]|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
      */
     public function listOrgInvites(string $organization_id, $filter_state = null, $page_size = null, $page_before = null, $page_after = null, $sort = null, string $contentType = '')
     {
@@ -231,16 +233,16 @@ class InvitationTask extends TaskBase
      *
      * List invitations to an organization
      *
-     * @param  string $organization_id The ID of the organization. (required)
-     * @param  \OpenAPI\Client\Model\StringFilter|null $filter_state Allows filtering by &#x60;state&#x60; of the invtations: \&quot;pending\&quot; (default), \&quot;error\&quot;. (optional)
-     * @param  int|null $page_size Determines the number of items to show. (optional)
-     * @param  string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listOrgInvites'] to see the possible values for this operation
+     * @param string $organization_id The ID of the organization. (required)
+     * @param StringFilter|null $filter_state Allows filtering by &#x60;state&#x60; of the invtations: \&quot;pending\&quot; (default), \&quot;error\&quot;. (optional)
+     * @param int|null $page_size Determines the number of items to show. (optional)
+     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending. (optional)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['listOrgInvites'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
      */
     public function listOrgInvitesAsync(string $organization_id, $filter_state = null, $page_size = null, $page_before = null, $page_after = null, $sort = null, string $contentType = ''): PromiseInterface
     {
@@ -253,22 +255,22 @@ class InvitationTask extends TaskBase
      *
      * List invitations to a project
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  \OpenAPI\Client\Model\StringFilter|null $filter_state Allows filtering by &#x60;state&#x60; of the invtations: \&quot;pending\&quot; (default), \&quot;error\&quot;. (optional)
-     * @param  int|null $page_size Determines the number of items to show. (optional)
-     * @param  string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listProjectInvites'] to see the possible values for this operation
+     * @param string $project_id The ID of the project. (required)
+     * @param StringFilter|null $filter_state Allows filtering by &#x60;state&#x60; of the invtations: \&quot;pending\&quot; (default), \&quot;error\&quot;. (optional)
+     * @param int|null $page_size Determines the number of items to show. (optional)
+     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending. (optional)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['listProjectInvites'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ProjectInvitation[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
+     * @return \OpenAPI\Client\Model\ProjectInvitation[]|Error|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
      */
     public function listProjectInvites(string $project_id, StringFilter $filter_state = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null, string $contentType = '')
     {
         $this->refreshToken();
-        return $this->api->listProjectInvites($project_id, $filter_state, $page_size, $page_before, $page_after, $sort , $contentType);
+        return $this->api->listProjectInvites($project_id, $filter_state, $page_size, $page_before, $page_after, $sort, $contentType);
     }
 
     /**
@@ -276,20 +278,20 @@ class InvitationTask extends TaskBase
      *
      * List invitations to a project
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  \OpenAPI\Client\Model\StringFilter|null $filter_state Allows filtering by &#x60;state&#x60; of the invtations: \&quot;pending\&quot; (default), \&quot;error\&quot;. (optional)
-     * @param  int|null $page_size Determines the number of items to show. (optional)
-     * @param  string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listProjectInvites'] to see the possible values for this operation
+     * @param string $project_id The ID of the project. (required)
+     * @param StringFilter|null $filter_state Allows filtering by &#x60;state&#x60; of the invtations: \&quot;pending\&quot; (default), \&quot;error\&quot;. (optional)
+     * @param int|null $page_size Determines the number of items to show. (optional)
+     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending. (optional)
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['listProjectInvites'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @return PromiseInterface
+     * @throws InvalidArgumentException
      */
     public function listProjectInvitesAsync(string $project_id, StringFilter $filter_state = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null, string $contentType = ''): PromiseInterface
     {
         $this->refreshToken();
-        return $this->api->listProjectInvitesAsync($project_id, $filter_state, $page_size, $page_before, $page_after, $sort , $contentType);
+        return $this->api->listProjectInvitesAsync($project_id, $filter_state, $page_size, $page_before, $page_after, $sort, $contentType);
     }
 }
