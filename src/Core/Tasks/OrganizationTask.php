@@ -68,15 +68,16 @@ class OrganizationTask extends TaskBase
      *
      * Create organization
      *
-     * @param CreateOrgRequest $create_org_request create_org_request (required)
+     * @param array $create_org_request create_org_request (required)
      *
      * @return Organization|Error|Error
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createOrg(CreateOrgRequest $create_org_request)
+    public function createOrg(array $create_org_data)
     {
         $this->refreshToken();
+        $create_org_request = new CreateOrgRequest($create_org_data);
         return $this->api->createOrg($create_org_request);
     }
 
