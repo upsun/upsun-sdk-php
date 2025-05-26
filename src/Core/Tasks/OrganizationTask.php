@@ -116,47 +116,35 @@ class OrganizationTask extends TaskBase
      *
      * List organizations
      *
-     * @param array $filter_id Allows filtering by &#x60;id&#x60; using one or more operators. (optional)
-     * @param array $filter_owner_id Allows filtering by &#x60;owner_id&#x60; using one or more operators. (optional)
-     * @param array $filter_name Allows filtering by &#x60;name&#x60; using one or more operators. (optional)
-     * @param array $filter_label_data Allows filtering by &#x60;label&#x60; using one or more operators. (optional)
-     * @param array $filter_vendor Allows filtering by &#x60;vendor&#x60; using one or more operators. (optional)
-     * @param array $filter_capabilities Allows filtering by &#x60;capabilites&#x60; using one or more operators. (optional)
-     * @param array $filter_status Allows filtering by &#x60;status&#x60; using one or more operators.&lt;br&gt; Defaults to &#x60;filter[status][in]&#x3D;active,restricted,suspended&#x60;. (optional)
-     * @param array $filter_updated_at Allows filtering by &#x60;updated_at&#x60; using one or more operators. (optional)
+     * @param array|null $filter_id Allows filtering by &#x60;id&#x60; using one or more operators. (optional)
+     * @param array|null $filter_owner_id Allows filtering by &#x60;owner_id&#x60; using one or more operators. (optional)
+     * @param array|null $filter_name Allows filtering by &#x60;name&#x60; using one or more operators. (optional)
+     * @param array|null $filter_label
+     * @param array|null $filter_vendor Allows filtering by &#x60;vendor&#x60; using one or more operators. (optional)
+     * @param array|null $filter_capabilities Allows filtering by &#x60;capabilites&#x60; using one or more operators. (optional)
+     * @param array|null $filter_status Allows filtering by &#x60;status&#x60; using one or more operators.&lt;br&gt; Defaults to &#x60;filter[status][in]&#x3D;active,restricted,suspended&#x60;. (optional)
+     * @param array|null $filter_updated_at Allows filtering by &#x60;updated_at&#x60; using one or more operators. (optional)
      * @param int $page_size Determines the number of items to show. (optional)
-     * @param string $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
      * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
      * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;name&#x60;, &#x60;label&#x60;, &#x60;created_at&#x60;, &#x60;updated_at&#x60;. (optional)
      *
      * @return ListOrgs200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listOrgs(array $filter_id= null, array $filter_owner_id= null, array $filter_name= null, array $filter_label= null, array $filter_vendor= null, array $filter_capabilities= null, array $filter_status= null, array $filter_updated_at= null, int $page_size = 100, string $page_before = null, string $page_after = null, string $sort = null): Error|ListOrgs200Response
+    public function listOrgs(array $filter_id = null, array $filter_owner_id = null, array $filter_name = null, array $filter_label = null, array $filter_vendor = null, array $filter_capabilities = null, array $filter_status = null, array $filter_updated_at = null, int $page_size = 100, string $page_before = null, string $page_after = null, string $sort = null): Error|ListOrgs200Response
     {
         $this->refreshToken();
-//        $filter_id = new StringFilter($filter_id);
-//        $filter_owner_id = new StringFilter($filter_owner_id);
-//        $filter_name = new StringFilter($filter_name);
-//        $filter_label = new StringFilter($filter_label_data);
-//        //$filter_label->setContains($filter_label_data['contains']??null);
-//        var_dump($filter_label);
-//        
-//        $filter_vendor = new StringFilter($filter_vendor);
-//        $filter_capabilities = new ArrayFilter($filter_capabilities);
-//        $filter_status = new StringFilter($filter_status);
-//        $filter_updated_at = new DateTimeFilter($filter_updated_at);
-        
         return $this->api->listOrgs($filter_id, $filter_owner_id, $filter_name, $filter_label, $filter_vendor, $filter_capabilities, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
     }
 
     public function listOrgsRequest($filter_id = null, $filter_owner_id = null, $filter_name = null, $filter_label = null, $filter_vendor = null, $filter_capabilities = null, $filter_status = null, $filter_updated_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
     {
         $this->refreshToken();
-        return $this->api->listOrgsRequest($filter_id, $filter_owner_id, $filter_name, $filter_label, $filter_vendor, $filter_capabilities , $filter_status , $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+        return $this->api->listOrgsRequest($filter_id, $filter_owner_id, $filter_name, $filter_label, $filter_vendor, $filter_capabilities, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
     }
 
-        /**
+    /**
      * Operation listUserOrgs
      *
      * User organizations
@@ -193,7 +181,7 @@ class OrganizationTask extends TaskBase
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateOrg(string $organization_id, array $update_org_data= null): Organization|Error
+    public function updateOrg(string $organization_id, array $update_org_data = null): Organization|Error
     {
         $this->refreshToken();
         $update_org_request = new UpdateOrgRequest($update_org_data);
