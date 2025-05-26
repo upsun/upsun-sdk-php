@@ -314,9 +314,16 @@ class OrganizationTask extends TaskBase
         return $this->client->team->listUserTeams($this->client->getUserId(), ['eq' => $organization_id], $filter_updated_at, $page_size, $page_before, $page_after, $sort, $contentType);
     }
 
+    /**
+     * Activate addons userManagement on organization $organizationId
+     * 
+     * Equivalent to upsun api:curl -X PATCH --json '{"user_management":"standard"}' 'api/organizations/ORGANIZATION_ID/addons' | jq
+     * @param $organization_id
+     * @return mixed
+     * @throws ApiException
+     */
     public function updateOrgAddons($organization_id)
     {
-//        upsun api:curl -X PATCH --json '{"user_management":"standard"}' 'api/organizations/ORGANIZATION_ID/addons' | jq
         $this->refreshToken();
         $user_management_addons = ['user_management' => "standard"];
 
@@ -406,7 +413,6 @@ class OrganizationTask extends TaskBase
     private function updateOrgAddonsWithHttpInfo($organization_id, $update_org_request = [], string $contentType = OrganizationsApi::contentTypes['updateOrg'][0])
     {
         $request = $this->updateOrgAddonsRequest($organization_id, $update_org_request, $contentType);
-        var_dump($request);
         try {
             $options = $this->createHttpClientOption();
             try {
