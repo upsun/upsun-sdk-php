@@ -132,20 +132,20 @@ class OrganizationTask extends TaskBase
      * @return ListOrgs200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listOrgs(array $filter_id= null, array $filter_owner_id= null, array $filter_name= null, array $filter_label_data= null, array $filter_vendor= null, array $filter_capabilities= null, array $filter_status= null, array $filter_updated_at= null, int $page_size = 100, string $page_before = null, string $page_after = null, string $sort = null): Error|ListOrgs200Response
+    public function listOrgs(array $filter_id= null, array $filter_owner_id= null, array $filter_name= null, array $filter_label= null, array $filter_vendor= null, array $filter_capabilities= null, array $filter_status= null, array $filter_updated_at= null, int $page_size = 100, string $page_before = null, string $page_after = null, string $sort = null): Error|ListOrgs200Response
     {
         $this->refreshToken();
-        $filter_id = new StringFilter($filter_id);
-        $filter_owner_id = new StringFilter($filter_owner_id);
-        $filter_name = new StringFilter($filter_name);
-        $filter_label = new StringFilter($filter_label_data);
-        //$filter_label->setContains($filter_label_data['contains']??null);
-        var_dump($filter_label);
-        
-        $filter_vendor = new StringFilter($filter_vendor);
-        $filter_capabilities = new ArrayFilter($filter_capabilities);
-        $filter_status = new StringFilter($filter_status);
-        $filter_updated_at = new DateTimeFilter($filter_updated_at);
+//        $filter_id = new StringFilter($filter_id);
+//        $filter_owner_id = new StringFilter($filter_owner_id);
+//        $filter_name = new StringFilter($filter_name);
+//        $filter_label = new StringFilter($filter_label_data);
+//        //$filter_label->setContains($filter_label_data['contains']??null);
+//        var_dump($filter_label);
+//        
+//        $filter_vendor = new StringFilter($filter_vendor);
+//        $filter_capabilities = new ArrayFilter($filter_capabilities);
+//        $filter_status = new StringFilter($filter_status);
+//        $filter_updated_at = new DateTimeFilter($filter_updated_at);
         
         return $this->api->listOrgs($filter_id, $filter_owner_id, $filter_name, $filter_label, $filter_vendor, $filter_capabilities, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
     }
