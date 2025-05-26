@@ -116,7 +116,7 @@ class OrganizationTask extends TaskBase
      *
      * List organizations
      *
-     * @param StringFilter|null $filter_id Allows filtering by &#x60;id&#x60; using one or more operators. (optional)
+     * @param array|null $filter_id Allows filtering by &#x60;id&#x60; using one or more operators. (optional)
      * @param array|null $filter_owner_id Allows filtering by &#x60;owner_id&#x60; using one or more operators. (optional)
      * @param array|null $filter_name Allows filtering by &#x60;name&#x60; using one or more operators. (optional)
      * @param array|null $filter_label Allows filtering by &#x60;label&#x60; using one or more operators. (optional)
@@ -133,9 +133,10 @@ class OrganizationTask extends TaskBase
      * @throws InvalidArgumentException
      * @return ListOrgs200Response|Error
      */
-    public function listOrgs(StringFilter $filter_id = null, array $filter_owner_id = null, array $filter_name = null, array $filter_label = null, array $filter_vendor = null, array $filter_capabilities = null, array $filter_status = null, array $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|ListOrgs200Response
+    public function listOrgs(array $filter_id = null, array $filter_owner_id = null, array $filter_name = null, array $filter_label = null, array $filter_vendor = null, array $filter_capabilities = null, array $filter_status = null, array $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|ListOrgs200Response
     {
         $this->refreshToken();
+        $filter_id = new StringFilter($filter_id);
         $filter_owner_id = new StringFilter($filter_owner_id);
         $filter_name = new StringFilter($filter_name);
         $filter_label = new StringFilter($filter_label);
