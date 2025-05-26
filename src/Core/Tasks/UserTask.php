@@ -4,25 +4,40 @@ namespace Upsun\Core\Tasks;
 
 use InvalidArgumentException;
 use OpenAPI\Client\ApiException;
+use OpenAPI\Client\apisgen\UserProfilesApi;
 use OpenAPI\Client\apisgen\UsersApi;
+use OpenAPI\Client\Model\Address;
+use OpenAPI\Client\Model\CreateProfilePicture200Response;
 use OpenAPI\Client\Model\Error;
+use OpenAPI\Client\Model\GetAddress200Response;
 use OpenAPI\Client\Model\GetCurrentUserVerificationStatus200Response;
+use OpenAPI\Client\Model\GetCurrentUserVerificationStatusFull200Response;
+use OpenAPI\Client\Model\ListProfiles200Response;
+use OpenAPI\Client\Model\Profile;
 use OpenAPI\Client\Model\ResetEmailAddressRequest;
+use OpenAPI\Client\Model\UpdateProfileRequest;
 use OpenAPI\Client\Model\UpdateUserRequest;
 use OpenAPI\Client\Model\User;
+use Upsun\Exception\UpsunException;
 use Upsun\UpsunClient;
 
 class UserTask extends TaskBase
 {
 
   public readonly UsersApi $api;
+  public readonly UserProfilesApi $profilesApi;
 
   public function __construct(
     public readonly UpsunClient $client,
   )
   {
     $this->api = new UsersApi($this->client->apiClient, $this->client->apiConfig);
+    $this->profilesApi = new UserProfilesApi($this->client->apiClient, $this->client->apiConfig);
   }
+
+  /************** ********************/
+  /********* UsersApi ****************/
+  /************** ********************/
 
   /**
    * Operation me
@@ -52,6 +67,21 @@ class UserTask extends TaskBase
   {
     $this->refreshToken();
     return $this->api->getCurrentUserVerificationStatus();
+  }
+
+  /**
+   * Operation getCurrentUserVerificationStatusFull
+   *
+   * Check if verification is required
+   *
+   * @return GetCurrentUserVerificationStatusFull200Response
+   * @throws InvalidArgumentException
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function getCurrentUserVerificationStatusFull(): GetCurrentUserVerificationStatusFull200Response
+  {
+    $this->refreshToken();
+    return $this->api->getCurrentUserVerificationStatusFull();
   }
 
   /**
@@ -155,14 +185,138 @@ class UserTask extends TaskBase
   public function updateUser(string $user_id, array $update_user_data = []): User|Error
   {
     $this->refreshToken();
-    //TODO create UpdateUserRequest here
     $update_user_request = new UpdateUserRequest();
-//    dd($update_user_data);
     return $this->api->updateUser($user_id, $update_user_request);
   }
 
-  /** Custom functions */
-  //fixme Custom function
+  /************** ****************************/
+  /********* UsersProfilesApi ****************/
+  /************** ****************************/
+
+  /**
+   * Operation createProfilePicture
+   *
+   * Create a user profile picture
+   *
+   * @param string $uuid The uuid of the user (required)
+   * @param string $contentType The value for the Content-Type header. Check self::contentTypes['createProfilePicture'] to see the possible values for this operation
+   *
+   * @return CreateProfilePicture200Response
+   * @throws InvalidArgumentException
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function createProfilePicture(string $uuid, string $contentType = UserProfilesApi::contentTypes['createProfilePicture'][0])
+  {
+    throw new UpsunException("Not implemented");
+  }
+
+  /**
+   * Operation deleteProfilePicture
+   *
+   * Delete a user profile picture
+   *
+   * @param string $uuid The uuid of the user (required)
+   *
+   * @return void
+   * @throws InvalidArgumentException
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function deleteProfilePicture(string $uuid): void
+  {
+    $this->refreshToken();
+    $this->profilesApi->deleteProfilePicture($uuid);
+  }
+
+  /**
+   * Operation getAddress
+   *
+   * Get a user address
+   *
+   * @param string $user_id The UUID of the user (required)
+   *
+   * @return GetAddress200Response
+   * @throws InvalidArgumentException
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function getAddress(string $user_id): GetAddress200Response
+  {
+    $this->refreshToken();
+    return $this->profilesApi->getAddress($user_id);
+  }
+
+  /**
+   * Operation getProfile
+   *
+   * Get a single user profile
+   *
+   * @param string $user_id The UUID of the user (required)
+   *
+   * @return Profile
+   * @throws InvalidArgumentException
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function getProfile(string $user_id): Profile
+  {
+    $this->refreshToken();
+    return $this->profilesApi->getProfile($user_id);
+  }
+
+  /**
+   * Operation listProfiles
+   *
+   * List current user profiles
+   *
+   * @return ListProfiles200Response
+   * @throws InvalidArgumentException
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function listProfiles(): ListProfiles200Response
+  {
+    $this->refreshToken();
+    return $this->profilesApi->listProfiles();
+  }
+
+  /**
+   * Operation updateAddress
+   *
+   * Update a user address
+   *
+   * @param string $user_id The UUID of the user (required)
+   * @param Address|null $address address (optional)
+   *
+   * @return GetAddress200Response
+   * @throws InvalidArgumentException
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function updateAddress(string $user_id, Address $address = null): GetAddress200Response
+  {
+    $this->refreshToken();
+    return $this->profilesApi->updateAddress($user_id, $address);
+  }
+
+  /**
+   * Operation updateProfile
+   *
+   * Update a user profile
+   *
+   * @param string $user_id The UUID of the user (required)
+   * @param array $update_profile_data update_profile_request (optional)
+   *
+   * @return Profile
+   * @throws InvalidArgumentException
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function updateProfile(string $user_id, array $update_profile_data = []): Profile
+  {
+    $this->refreshToken();
+    $update_profile_request = new UpdateProfileRequest($update_profile_data);
+    return $this->profilesApi->updateProfile($user_id, $update_profile_request);
+  }
+
+  /************** ***************************/
+  /********* Custom function ****************/
+  /************** ***************************/
+
   /**
    * Get User FullName
    * @param string $id
@@ -183,11 +337,12 @@ class UserTask extends TaskBase
 
   /**
    * Get specific User Email
+   *
    * @param string $id
    * @return string
    * @throws ApiException
    */
-  public function getUserEmail(string $id)
+  public function getUserEmail(string $id): string
   {
     $this->refreshToken();
     $user = $this->api->getUser($id);

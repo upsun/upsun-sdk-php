@@ -22,9 +22,9 @@ class TeamTask extends TaskBase
         return $this->api->getTeam($id);
     }
 
-    public function listUserTeams($user_id, $filter_organization_id = null, $filter_updated_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null, string $contentType = '')
+    public function listUserTeams($user_id, $filter_organization_id = null, $filter_updated_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
     {
         $this->refreshToken();
-        return $this->api->listUserTeams($user_id, $filter_organization_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort, $contentType);
+        return $this->api->listUserTeams($user_id, $filter_organization_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
     }
 }
