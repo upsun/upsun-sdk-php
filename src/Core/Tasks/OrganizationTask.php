@@ -117,13 +117,13 @@ class OrganizationTask extends TaskBase
      * List organizations
      *
      * @param StringFilter|null $filter_id Allows filtering by &#x60;id&#x60; using one or more operators. (optional)
-     * @param StringFilter|null $filter_owner_id Allows filtering by &#x60;owner_id&#x60; using one or more operators. (optional)
-     * @param StringFilter|null $filter_name Allows filtering by &#x60;name&#x60; using one or more operators. (optional)
-     * @param StringFilter|null $filter_label Allows filtering by &#x60;label&#x60; using one or more operators. (optional)
-     * @param StringFilter|null $filter_vendor Allows filtering by &#x60;vendor&#x60; using one or more operators. (optional)
-     * @param ArrayFilter|null $filter_capabilities Allows filtering by &#x60;capabilites&#x60; using one or more operators. (optional)
-     * @param StringFilter|null $filter_status Allows filtering by &#x60;status&#x60; using one or more operators.&lt;br&gt; Defaults to &#x60;filter[status][in]&#x3D;active,restricted,suspended&#x60;. (optional)
-     * @param DateTimeFilter|null $filter_updated_at Allows filtering by &#x60;updated_at&#x60; using one or more operators. (optional)
+     * @param array|null $filter_owner_id Allows filtering by &#x60;owner_id&#x60; using one or more operators. (optional)
+     * @param array|null $filter_name Allows filtering by &#x60;name&#x60; using one or more operators. (optional)
+     * @param array|null $filter_label Allows filtering by &#x60;label&#x60; using one or more operators. (optional)
+     * @param array|null $filter_vendor Allows filtering by &#x60;vendor&#x60; using one or more operators. (optional)
+     * @param array|null $filter_capabilities Allows filtering by &#x60;capabilites&#x60; using one or more operators. (optional)
+     * @param array|null $filter_status Allows filtering by &#x60;status&#x60; using one or more operators.&lt;br&gt; Defaults to &#x60;filter[status][in]&#x3D;active,restricted,suspended&#x60;. (optional)
+     * @param array|null $filter_updated_at Allows filtering by &#x60;updated_at&#x60; using one or more operators. (optional)
      * @param int|null $page_size Determines the number of items to show. (optional)
      * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
      * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
@@ -133,9 +133,17 @@ class OrganizationTask extends TaskBase
      * @throws InvalidArgumentException
      * @return ListOrgs200Response|Error
      */
-    public function listOrgs(StringFilter $filter_id = null, StringFilter $filter_owner_id = null, StringFilter $filter_name = null, StringFilter $filter_label = null, StringFilter $filter_vendor = null, ArrayFilter $filter_capabilities = null, StringFilter $filter_status = null, DateTimeFilter $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|ListOrgs200Response
+    public function listOrgs(StringFilter $filter_id = null, array $filter_owner_id = null, array $filter_name = null, array $filter_label = null, array $filter_vendor = null, array $filter_capabilities = null, array $filter_status = null, array $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|ListOrgs200Response
     {
         $this->refreshToken();
+        $filter_owner_id = new StringFilter($filter_owner_id);
+        $filter_name = new StringFilter($filter_name);
+        $filter_label = new StringFilter($filter_label);
+        $filter_vendor = new StringFilter($filter_vendor);
+        $filter_capabilities = new ArrayFilter($filter_capabilities);
+        $filter_status = new StringFilter($filter_status);
+        $filter_updated_at = new DateTimeFilter($filter_updated_at);
+        
         return $this->api->listOrgs($filter_id, $filter_owner_id, $filter_name, $filter_label, $filter_vendor, $filter_capabilities, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
     }
 
