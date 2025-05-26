@@ -11,7 +11,6 @@ use OpenAPI\Client\Model\CreateProjectInviteRequest;
 use OpenAPI\Client\Model\Error;
 use OpenAPI\Client\Model\OrganizationInvitation;
 use OpenAPI\Client\Model\ProjectInvitation;
-use OpenAPI\Client\Model\StringFilter;
 use Upsun\UpsunClient;
 
 class InvitationTask extends TaskBase
@@ -80,7 +79,7 @@ class InvitationTask extends TaskBase
      * List invitations to an organization
      *
      * @param string $organization_id The ID of the organization. (required)
-     * @param StringFilter|null $filter_state Allows filtering by &#x60;state&#x60; of the invitations: \&quot;pending\&quot; (default), \&quot;error\&quot;. (optional)
+     * @param array|null $filter_state Allows filtering by &#x60;state&#x60; of the invitations: \&quot;pending\&quot; (default), \&quot;error\&quot;. (optional)
      * @param int|null $page_size Determines the number of items to show. (optional)
      * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
      * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
@@ -88,9 +87,8 @@ class InvitationTask extends TaskBase
      *
      * @return OrganizationInvitation[]|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
      */
-    public function listOrgInvites(string $organization_id, StringFilter $filter_state = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|array
+    public function listOrgInvites(string $organization_id, array $filter_state = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|array
     {
         $this->refreshToken();
         return $this->organizationInvitationsApi->listOrgInvites($organization_id, $filter_state, $page_size, $page_before, $page_after, $sort);
@@ -142,7 +140,7 @@ class InvitationTask extends TaskBase
      * List invitations to a project
      *
      * @param string $project_id The ID of the project. (required)
-     * @param StringFilter|null $filter_state Allows filtering by &#x60;state&#x60; of the invtations: \&quot;pending\&quot; (default), \&quot;error\&quot;. (optional)
+     * @param array|null $filter_state Allows filtering by &#x60;state&#x60; of the invtations: \&quot;pending\&quot; (default), \&quot;error\&quot;. (optional)
      * @param int|null $page_size Determines the number of items to show. (optional)
      * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
      * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
@@ -150,9 +148,8 @@ class InvitationTask extends TaskBase
      *
      * @return ProjectInvitation[]|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
      */
-    public function listProjectInvites(string $project_id, StringFilter $filter_state = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|array
+    public function listProjectInvites(string $project_id, array $filter_state = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|array
     {
         $this->refreshToken();
         return $this->projectInvitationsApi->listProjectInvites($project_id, $filter_state, $page_size, $page_before, $page_after, $sort);

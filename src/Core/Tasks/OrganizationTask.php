@@ -14,10 +14,8 @@ use OpenAPI\Client\apisgen\OrganizationMembersApi;
 use OpenAPI\Client\apisgen\OrganizationProjectsApi;
 use OpenAPI\Client\apisgen\OrganizationsApi;
 use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\Model\ArrayFilter;
 use OpenAPI\Client\Model\CreateOrgMemberRequest;
 use OpenAPI\Client\Model\CreateOrgRequest;
-use OpenAPI\Client\Model\DateTimeFilter;
 use OpenAPI\Client\Model\Error;
 use OpenAPI\Client\Model\ListOrgMembers200Response;
 use OpenAPI\Client\Model\ListOrgProjects200Response;
@@ -26,7 +24,6 @@ use OpenAPI\Client\Model\ListUserOrgs200Response;
 use OpenAPI\Client\Model\Organization;
 use OpenAPI\Client\Model\OrganizationMember;
 use OpenAPI\Client\Model\OrganizationProject;
-use OpenAPI\Client\Model\StringFilter;
 use OpenAPI\Client\Model\UpdateOrgMemberRequest;
 use OpenAPI\Client\Model\UpdateOrgRequest;
 use OpenAPI\Client\ObjectSerializer;
@@ -138,22 +135,16 @@ class OrganizationTask extends TaskBase
         return $this->api->listOrgs($filter_id, $filter_owner_id, $filter_name, $filter_label, $filter_vendor, $filter_capabilities, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
     }
 
-    public function listOrgsRequest($filter_id = null, $filter_owner_id = null, $filter_name = null, $filter_label = null, $filter_vendor = null, $filter_capabilities = null, $filter_status = null, $filter_updated_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
-    {
-        $this->refreshToken();
-        return $this->api->listOrgsRequest($filter_id, $filter_owner_id, $filter_name, $filter_label, $filter_vendor, $filter_capabilities, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
-    }
-
     /**
      * Operation listUserOrgs
      *
      * User organizations
      *
      * @param string $user_id The ID of the user. (required)
-     * @param StringFilter|null $filter_id Allows filtering by &#x60;id&#x60; using one or more operators. (optional)
-     * @param StringFilter|null $filter_vendor Allows filtering by &#x60;vendor&#x60; using one or more operators. (optional)
-     * @param StringFilter|null $filter_status Allows filtering by &#x60;status&#x60; using one or more operators.&lt;br&gt; Defaults to &#x60;filter[status][in]&#x3D;active,restricted,suspended&#x60;. (optional)
-     * @param DateTimeFilter|null $filter_updated_at Allows filtering by &#x60;updated_at&#x60; using one or more operators. (optional)
+     * @param array|null $filter_id Allows filtering by &#x60;id&#x60; using one or more operators. (optional)
+     * @param array|null $filter_vendor Allows filtering by &#x60;vendor&#x60; using one or more operators. (optional)
+     * @param array|null $filter_status Allows filtering by &#x60;status&#x60; using one or more operators.&lt;br&gt; Defaults to &#x60;filter[status][in]&#x3D;active,restricted,suspended&#x60;. (optional)
+     * @param array|null $filter_updated_at Allows filtering by &#x60;updated_at&#x60; using one or more operators. (optional)
      * @param int|null $page_size Determines the number of items to show. (optional)
      * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
      * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
@@ -161,9 +152,8 @@ class OrganizationTask extends TaskBase
      *
      * @return ListUserOrgs200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
      */
-    public function listUserOrgs(string $user_id, $filter_id = null, $filter_vendor = null, $filter_status = null, $filter_updated_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null): Error|ListUserOrgs200Response
+    public function listUserOrgs(string $user_id, array $filter_id = null, array $filter_vendor = null, array $filter_status = null, array $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|ListUserOrgs200Response
     {
         $this->refreshToken();
         return $this->api->listUserOrgs($user_id, $filter_id, $filter_vendor, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
@@ -235,11 +225,11 @@ class OrganizationTask extends TaskBase
      * List projects from an organization
      *
      * @param string $organization_id The ID of the organization. (required)
-     * @param StringFilter|null $filter_id Allows filtering by &#x60;id&#x60; using one or more operators. (optional)
-     * @param StringFilter|null $filter_title Allows filtering by &#x60;title&#x60; using one or more operators. (optional)
-     * @param StringFilter|null $filter_status Allows filtering by &#x60;status&#x60; using one or more operators. (optional)
-     * @param DateTimeFilter|null $filter_updated_at Allows filtering by &#x60;updated_at&#x60; using one or more operators. (optional)
-     * @param DateTimeFilter|null $filter_created_at Allows filtering by &#x60;created_at&#x60; using one or more operators. (optional)
+     * @param array|null $filter_id Allows filtering by &#x60;id&#x60; using one or more operators. (optional)
+     * @param array|null $filter_title Allows filtering by &#x60;title&#x60; using one or more operators. (optional)
+     * @param array|null $filter_status Allows filtering by &#x60;status&#x60; using one or more operators. (optional)
+     * @param array|null $filter_updated_at Allows filtering by &#x60;updated_at&#x60; using one or more operators. (optional)
+     * @param array|null $filter_created_at Allows filtering by &#x60;created_at&#x60; using one or more operators. (optional)
      * @param int|null $page_size Determines the number of items to show. (optional)
      * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
      * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
@@ -247,9 +237,8 @@ class OrganizationTask extends TaskBase
      *
      * @return ListOrgProjects200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
      */
-    public function listOrgProjects(string $organization_id, StringFilter $filter_id = null, StringFilter $filter_title = null, StringFilter $filter_status = null, DateTimeFilter $filter_updated_at = null, DateTimeFilter $filter_created_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): ListOrgProjects200Response|Error
+    public function listOrgProjects(string $organization_id, array $filter_id = null, array $filter_title = null, array $filter_status = null, array $filter_updated_at = null, array $filter_created_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): ListOrgProjects200Response|Error
     {
         $this->refreshToken();
         return $this->projectsApi->listOrgProjects($organization_id, $filter_id, $filter_title, $filter_status, $filter_updated_at, $filter_created_at, $page_size, $page_before, $page_after, $sort);
@@ -319,17 +308,16 @@ class OrganizationTask extends TaskBase
      * List organization members
      *
      * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
-     * @param ArrayFilter|null $filter_permissions Allows filtering by &#x60;permissions&#x60; using one or more operators. (optional)
+     * @param array|null $filter_permissions Allows filtering by &#x60;permissions&#x60; using one or more operators. (optional)
      * @param int|null $page_size Determines the number of items to show. (optional)
      * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
      * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
      * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;created_at&#x60;, &#x60;updated_at&#x60;. (optional)
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
      * @return ListOrgMembers200Response|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listOrgMembers(string $organization_id, ArrayFilter $filter_permissions = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): ListOrgMembers200Response|Error
+    public function listOrgMembers(string $organization_id, array $filter_permissions = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): ListOrgMembers200Response|Error
     {
         $this->refreshToken();
         return $this->membersApi->listOrgMembers($organization_id, $filter_permissions, $page_size, $page_before, $page_after, $sort);
