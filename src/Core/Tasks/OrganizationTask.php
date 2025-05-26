@@ -116,24 +116,23 @@ class OrganizationTask extends TaskBase
      *
      * List organizations
      *
-     * @param array|null $filter_id Allows filtering by &#x60;id&#x60; using one or more operators. (optional)
-     * @param array|null $filter_owner_id Allows filtering by &#x60;owner_id&#x60; using one or more operators. (optional)
-     * @param array|null $filter_name Allows filtering by &#x60;name&#x60; using one or more operators. (optional)
-     * @param array|null $filter_label_data Allows filtering by &#x60;label&#x60; using one or more operators. (optional)
-     * @param array|null $filter_vendor Allows filtering by &#x60;vendor&#x60; using one or more operators. (optional)
-     * @param array|null $filter_capabilities Allows filtering by &#x60;capabilites&#x60; using one or more operators. (optional)
-     * @param array|null $filter_status Allows filtering by &#x60;status&#x60; using one or more operators.&lt;br&gt; Defaults to &#x60;filter[status][in]&#x3D;active,restricted,suspended&#x60;. (optional)
-     * @param array|null $filter_updated_at Allows filtering by &#x60;updated_at&#x60; using one or more operators. (optional)
-     * @param int|null $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param array $filter_id Allows filtering by &#x60;id&#x60; using one or more operators. (optional)
+     * @param array $filter_owner_id Allows filtering by &#x60;owner_id&#x60; using one or more operators. (optional)
+     * @param array $filter_name Allows filtering by &#x60;name&#x60; using one or more operators. (optional)
+     * @param array $filter_label_data Allows filtering by &#x60;label&#x60; using one or more operators. (optional)
+     * @param array $filter_vendor Allows filtering by &#x60;vendor&#x60; using one or more operators. (optional)
+     * @param array $filter_capabilities Allows filtering by &#x60;capabilites&#x60; using one or more operators. (optional)
+     * @param array $filter_status Allows filtering by &#x60;status&#x60; using one or more operators.&lt;br&gt; Defaults to &#x60;filter[status][in]&#x3D;active,restricted,suspended&#x60;. (optional)
+     * @param array $filter_updated_at Allows filtering by &#x60;updated_at&#x60; using one or more operators. (optional)
+     * @param int $page_size Determines the number of items to show. (optional)
+     * @param string $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
      * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
      * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;name&#x60;, &#x60;label&#x60;, &#x60;created_at&#x60;, &#x60;updated_at&#x60;. (optional)
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
      * @return ListOrgs200Response|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listOrgs(array $filter_id = null, array $filter_owner_id = null, array $filter_name = null, array $filter_label_data = null, array $filter_vendor = null, array $filter_capabilities = null, array $filter_status = null, array $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|ListOrgs200Response
+    public function listOrgs(array $filter_id = [], array $filter_owner_id = [], array $filter_name= [], array $filter_label_data = [], array $filter_vendor = [], array $filter_capabilities = [], array $filter_status = [], array $filter_updated_at = [], int $page_size = 100, string $page_before = '', string $page_after = null, string $sort = null): Error|ListOrgs200Response
     {
         $this->refreshToken();
         $filter_id = new StringFilter($filter_id);
@@ -141,6 +140,7 @@ class OrganizationTask extends TaskBase
         $filter_name = new StringFilter($filter_name);
         $filter_label = new StringFilter();
         $filter_label->setContains($filter_label_data['contains']);
+        var_dump($filter_label);
         
         $filter_vendor = new StringFilter($filter_vendor);
         $filter_capabilities = new ArrayFilter($filter_capabilities);
