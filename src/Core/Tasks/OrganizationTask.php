@@ -406,7 +406,7 @@ class OrganizationTask extends TaskBase
     private function updateOrgAddonsWithHttpInfo($organization_id, $update_org_request = [], string $contentType = OrganizationsApi::contentTypes['updateOrg'][0])
     {
         $request = $this->updateOrgAddonsRequest($organization_id, $update_org_request, $contentType);
-        dd($request);
+        var_dump($request);
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -597,6 +597,8 @@ class OrganizationTask extends TaskBase
             $headers
         );
 
+        var_dump('httpBody', $httpBody);
+        
         $operationHost = $this->api->getConfig()->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
