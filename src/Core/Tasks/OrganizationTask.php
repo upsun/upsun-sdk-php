@@ -140,7 +140,8 @@ class OrganizationTask extends TaskBase
         $filter_owner_id = new StringFilter($filter_owner_id);
         $filter_name = new StringFilter($filter_name);
         $filter_label = new StringFilter();
-        $filter_label->setContains($filter_label_data[0]);
+        $filter_label->setContains($filter_label_data['contains']);
+        
         $filter_vendor = new StringFilter($filter_vendor);
         $filter_capabilities = new ArrayFilter($filter_capabilities);
         $filter_status = new StringFilter($filter_status);
