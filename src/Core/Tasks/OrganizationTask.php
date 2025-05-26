@@ -150,7 +150,13 @@ class OrganizationTask extends TaskBase
         return $this->api->listOrgs($filter_id, $filter_owner_id, $filter_name, $filter_label, $filter_vendor, $filter_capabilities, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
     }
 
-    /**
+    public function listOrgsRequest($filter_id = null, $filter_owner_id = null, $filter_name = null, $filter_label = null, $filter_vendor = null, $filter_capabilities = null, $filter_status = null, $filter_updated_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
+    {
+        $this->refreshToken();
+        return $this->api->listOrgsRequest($filter_id, $filter_owner_id, $filter_name, $filter_label, $filter_vendor, $filter_capabilities , $filter_status , $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+    }
+
+        /**
      * Operation listUserOrgs
      *
      * User organizations
