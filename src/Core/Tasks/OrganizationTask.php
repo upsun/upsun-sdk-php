@@ -393,7 +393,7 @@ class OrganizationTask extends TaskBase
      *
      * Update organization addons
      *
-     * TODO remove when available in the OrganizationAPI
+     * @TODO duplicate from OrganizationAPI
      *
      * @param string $organization_id The ID of the organization. (required)
      * @param array $update_org_request (optional)
@@ -403,10 +403,10 @@ class OrganizationTask extends TaskBase
      * @throws \InvalidArgumentException
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateOrgAddonsWithHttpInfo($organization_id, $update_org_request = [], string $contentType = OrganizationsApi::contentTypes['updateOrg'][0])
+    private function updateOrgAddonsWithHttpInfo($organization_id, $update_org_request = [], string $contentType = OrganizationsApi::contentTypes['updateOrg'][0])
     {
         $request = $this->updateOrgAddonsRequest($organization_id, $update_org_request, $contentType);
-
+        dd($request);
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -507,7 +507,8 @@ class OrganizationTask extends TaskBase
 
     /**
      * Create request for operation 'updateOrg'
-     *
+     * @TODO duplicate from OrganizationAPI 
+     * 
      * @param string $organization_id The ID of the organization. (required)
      * @param array $update_org_request (optional)
      * @param string $contentType The value for the Content-Type header. Check self::contentTypes['updateOrg'] to see the possible values for this operation
