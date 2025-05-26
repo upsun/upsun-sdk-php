@@ -132,7 +132,7 @@ class OrganizationTask extends TaskBase
      * @return ListOrgs200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listOrgs(array $filter_id= null, array $filter_owner_id= null, array $filter_name= [], array $filter_label_data= null, array $filter_vendor= null, array $filter_capabilities= null, array $filter_status= null, array $filter_updated_at= null, int $page_size = 100, string $page_before = null, string $page_after = null, string $sort = null): Error|ListOrgs200Response
+    public function listOrgs(array $filter_id= null, array $filter_owner_id= null, array $filter_name= null, array $filter_label_data= null, array $filter_vendor= null, array $filter_capabilities= null, array $filter_status= null, array $filter_updated_at= null, int $page_size = 100, string $page_before = null, string $page_after = null, string $sort = null): Error|ListOrgs200Response
     {
         $this->refreshToken();
         $filter_id = new StringFilter($filter_id);
