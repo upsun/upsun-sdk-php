@@ -198,7 +198,7 @@ class ProjectTask extends TaskBase
     public function createProject(string $organization_id, array $project_data, string $contentType = ProjectApi::contentTypes['updateProjects'][0]): Project
     {
         $project_patch = new ProjectInfo($project_data);
-        list($response) = $this->createProjectsWithHttpInfo($organization_id, $project_patch, $contentType);
+        list($response) = $this->createProjectWithHttpInfo($organization_id, $project_patch, $contentType);
         return $response;
     }
 
@@ -215,9 +215,9 @@ class ProjectTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws GuzzleException on non-2xx response or if the response body is not in the expected format
      */
-    public function createProjectsWithHttpInfo(string $organization_id, $project_patch, string $contentType = ProjectApi::contentTypes['updateProjects'][0])
+    public function createProjectWithHttpInfo(string $organization_id, $project_patch, string $contentType = ProjectApi::contentTypes['updateProjects'][0])
     {
-        $request = $this->createProjectsRequest($organization_id, $project_patch, $contentType);
+        $request = $this->createProjectRequest($organization_id, $project_patch, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -326,7 +326,7 @@ class ProjectTask extends TaskBase
      *
      * @return Request
      */
-    private function createProjectsRequest(string $organization_id, $project_patch, string $contentType = ProjectApi::contentTypes['updateProjects'][0])
+    public function createProjectRequest(string $organization_id, $project_patch, string $contentType = ProjectApi::contentTypes['updateProjects'][0])
     {
 
         // verify the required parameter 'organization_id' is set
