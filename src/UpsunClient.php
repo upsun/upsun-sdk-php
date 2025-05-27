@@ -18,6 +18,7 @@ use Upsun\Core\Tasks\MountTask;
 use Upsun\Core\Tasks\OperationTask;
 use Upsun\Core\Tasks\OrganizationTask;
 use Upsun\Core\Tasks\ProjectTask;
+use Upsun\Core\Tasks\RegionTask;
 use Upsun\Core\Tasks\ResourcesTask;
 use Upsun\Core\Tasks\RouteTask;
 use Upsun\Core\Tasks\SourceOperationTask;
@@ -45,6 +46,7 @@ class UpsunClient
     public OperationTask $operation;
     public OrganizationTask $organization;
     public ProjectTask $project;
+    public RegionTask $region;
     public ResourcesTask $resource;
     public RouteTask $route;
     public SourceOperationTask $sourceOperation;
@@ -79,6 +81,7 @@ class UpsunClient
         $this->operation = new OperationTask($this);
         $this->organization = new OrganizationTask($this);
         $this->project = new ProjectTask($this);
+        $this->region = new RegionTask($this);
         $this->resource = new ResourcesTask($this);
         $this->route = new RouteTask($this);
         $this->sourceOperation = new SourceOperationTask($this);
