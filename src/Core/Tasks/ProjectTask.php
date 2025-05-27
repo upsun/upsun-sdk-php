@@ -246,7 +246,7 @@ class ProjectTask extends TaskBase
             switch($statusCode) {
                 case 201:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\Project',
+                        '\OpenAPI\Client\Model\OrganizationProject',
                         $request,
                         $response,
                     );
@@ -274,7 +274,7 @@ class ProjectTask extends TaskBase
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\Project',
+                '\OpenAPI\Client\Model\OrganizationProject',
                 $request,
                 $response,
             );
@@ -283,7 +283,7 @@ class ProjectTask extends TaskBase
                 case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Project',
+                        '\OpenAPI\Client\Model\OrganizationProject',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
