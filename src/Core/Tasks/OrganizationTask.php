@@ -189,7 +189,7 @@ class OrganizationTask extends TaskBase
      */
     public function listCurrentUserOrgs(array $filter_id = null, array $filter_vendor = null, array $filter_status = null, array $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|ListUserOrgs200Response
     {
-        return $this->listUserOrgs($this->client->userId, $filter_id, $filter_vendor, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+        return $this->listUserOrgs($this->client->getUserId(), $filter_id, $filter_vendor, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
     }
     /**
      * Operation updateOrg
