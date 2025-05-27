@@ -19,7 +19,6 @@ use OpenAPI\Client\Model\CanCreateNewOrgSubscription200Response;
 use OpenAPI\Client\Model\CreateOrgMemberRequest;
 use OpenAPI\Client\Model\CreateOrgRequest;
 use OpenAPI\Client\Model\CreateOrgSubscriptionRequest;
-use OpenAPI\Client\Model\DateTimeFilter;
 use OpenAPI\Client\Model\Error;
 use OpenAPI\Client\Model\EstimationObject;
 use OpenAPI\Client\Model\ListOrgMembers200Response;
@@ -30,7 +29,6 @@ use OpenAPI\Client\Model\ListUserOrgs200Response;
 use OpenAPI\Client\Model\Organization;
 use OpenAPI\Client\Model\OrganizationMember;
 use OpenAPI\Client\Model\OrganizationProject;
-use OpenAPI\Client\Model\StringFilter;
 use OpenAPI\Client\Model\Subscription;
 use OpenAPI\Client\Model\SubscriptionCurrentUsageObject;
 use OpenAPI\Client\Model\UpdateOrgMemberRequest;
@@ -44,7 +42,7 @@ use Upsun\UpsunClient;
 class OrganizationTask extends TaskBase
 {
     const DEFAULT_UPSUN_PLAN = 'upsun/flexible';
-    
+
     public OrganizationsApi $api;
     public OrganizationProjectsApi $projectsApi;
 
@@ -86,8 +84,7 @@ class OrganizationTask extends TaskBase
         $create_org_request = new CreateOrgRequest($create_org_data);
         return $this->api->createOrg($create_org_request);
     }
-
-
+    
     /**
      * Operation deleteOrg
      *
@@ -173,6 +170,27 @@ class OrganizationTask extends TaskBase
         return $this->api->listUserOrgs($user_id, $filter_id, $filter_vendor, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
     }
 
+    /**
+     * Operation listCurrentUserOrgs
+     *
+     * User organizations
+     *
+     * @param array|null $filter_id Allows filtering by &#x60;id&#x60; using one or more operators. (optional)
+     * @param array|null $filter_vendor Allows filtering by &#x60;vendor&#x60; using one or more operators. (optional)
+     * @param array|null $filter_status Allows filtering by &#x60;status&#x60; using one or more operators.&lt;br&gt; Defaults to &#x60;filter[status][in]&#x3D;active,restricted,suspended&#x60;. (optional)
+     * @param array|null $filter_updated_at Allows filtering by &#x60;updated_at&#x60; using one or more operators. (optional)
+     * @param int|null $page_size Determines the number of items to show. (optional)
+     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;name&#x60;, &#x60;label&#x60;, &#x60;created_at&#x60;, &#x60;updated_at&#x60;. (optional)
+     *
+     * @return ListUserOrgs200Response|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listCurrentUserOrgs(array $filter_id = null, array $filter_vendor = null, array $filter_status = null, array $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|ListUserOrgs200Response
+    {
+        return $this->listUserOrgs($this->client->userId, $filter_id, $filter_vendor, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+    }
     /**
      * Operation updateOrg
      *
@@ -378,9 +396,25 @@ class OrganizationTask extends TaskBase
     }
 
     /**
+     * Operation canCreateNewOrgProject
+     *
+     * Checks if the user is able to create a new project in the organization.
+     *
+     * @param string $organization_id The ID of the organization. (required)
+     *
+     * @return CanCreateNewOrgSubscription200Response|Error|Error
+     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function canCreateNewOrgProject(string $organization_id): CanCreateNewOrgSubscription200Response|Error
+    {
+        return $this->canCreateNewOrgSubscription($organization_id);
+    }
+
+    /**
      * Operation createOrgSubscription
      *
-     * Create subscription
+     * Create subscription/project
      *
      * @param string $organization_id The ID of the organization. (required)
      * @param array $create_org_subscription_data create_org_subscription_request (required)
@@ -392,6 +426,21 @@ class OrganizationTask extends TaskBase
         $this->refreshToken();
         $create_org_subscription_request = new CreateOrgSubscriptionRequest($create_org_subscription_data);
         return $this->subscriptionsApi->createOrgSubscription($organization_id, $create_org_subscription_request);
+    }
+
+    /**
+     * Operation createOrgProject
+     *
+     * Create project
+     *
+     * @param string $organization_id The ID of the organization. (required)
+     * @param array $create_org_subscription_data create_org_subscription_request (required)
+     * @return Subscription|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function createOrgProject(string $organization_id, array $create_org_subscription_data): Error|Subscription
+    {
+        return $this->createOrgSubscription($organization_id, $create_org_subscription_data);
     }
 
     /**
@@ -410,6 +459,22 @@ class OrganizationTask extends TaskBase
     {
         $this->refreshToken();
         $this->subscriptionsApi->deleteOrgSubscription($organization_id, $subscription_id);
+    }
+
+
+    /**
+     * Operation deleteOrgProject
+     *
+     * Delete project
+     *
+     * @param string $organization_id The ID of the organization. (required)
+     * @param string $project_id
+     * @return void
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function deleteOrgProject(string $organization_id, string $project_id): void
+    {
+        $this->deleteOrgSubscription($organization_id, $project_id);
     }
 
     /**
@@ -451,7 +516,7 @@ class OrganizationTask extends TaskBase
     public function estimateOrgSubscription(string $organization_id, string $subscription_id, int $environments = null, int $storage = null, int $user_licenses = null, string $format = null): EstimationObject|Error
     {
         $this->refreshToken();
-        
+
         return $this->subscriptionsApi->estimateOrgSubscription($organization_id, $subscription_id, self::DEFAULT_UPSUN_PLAN, $environments, $storage, $user_licenses, $format);
     }
 
@@ -536,7 +601,12 @@ class OrganizationTask extends TaskBase
         $update_org_subscription_request = new UpdateOrgSubscriptionRequest($update_org_subscription_data);
         return $this->subscriptionsApi->updateOrgSubscription($organization_id, $subscription_id, $update_org_subscription_request);
     }
-    
+
+    /************** *********************/
+    /********* Project functions ****************/
+    /************** *********************/
+
+
     /************** *********************/
     /********* Override ****************/
     /************** *********************/
