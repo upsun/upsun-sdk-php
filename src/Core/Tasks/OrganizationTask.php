@@ -13,19 +13,29 @@ use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\OrganizationMembersApi;
 use OpenAPI\Client\apisgen\OrganizationProjectsApi;
 use OpenAPI\Client\apisgen\OrganizationsApi;
+use OpenAPI\Client\apisgen\SubscriptionsApi;
 use OpenAPI\Client\HeaderSelector;
+use OpenAPI\Client\Model\CanCreateNewOrgSubscription200Response;
 use OpenAPI\Client\Model\CreateOrgMemberRequest;
 use OpenAPI\Client\Model\CreateOrgRequest;
+use OpenAPI\Client\Model\CreateOrgSubscriptionRequest;
+use OpenAPI\Client\Model\DateTimeFilter;
 use OpenAPI\Client\Model\Error;
+use OpenAPI\Client\Model\EstimationObject;
 use OpenAPI\Client\Model\ListOrgMembers200Response;
 use OpenAPI\Client\Model\ListOrgProjects200Response;
 use OpenAPI\Client\Model\ListOrgs200Response;
+use OpenAPI\Client\Model\ListOrgSubscriptions200Response;
 use OpenAPI\Client\Model\ListUserOrgs200Response;
 use OpenAPI\Client\Model\Organization;
 use OpenAPI\Client\Model\OrganizationMember;
 use OpenAPI\Client\Model\OrganizationProject;
+use OpenAPI\Client\Model\StringFilter;
+use OpenAPI\Client\Model\Subscription;
+use OpenAPI\Client\Model\SubscriptionCurrentUsageObject;
 use OpenAPI\Client\Model\UpdateOrgMemberRequest;
 use OpenAPI\Client\Model\UpdateOrgRequest;
+use OpenAPI\Client\Model\UpdateOrgSubscriptionRequest;
 use OpenAPI\Client\ObjectSerializer;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -33,11 +43,14 @@ use Upsun\UpsunClient;
 
 class OrganizationTask extends TaskBase
 {
+    const DEFAULT_UPSUN_PLAN = 'upsun/flexible';
+    
     public OrganizationsApi $api;
     public OrganizationProjectsApi $projectsApi;
 
     public OrganizationMembersApi $membersApi;
 
+    public SubscriptionsApi $subscriptionsApi;
     protected HeaderSelector $headerSelector;
 
     public function __construct(
@@ -48,11 +61,12 @@ class OrganizationTask extends TaskBase
         $this->api = new OrganizationsApi($this->client->apiClient, $this->client->apiConfig);
         $this->projectsApi = new OrganizationProjectsApi($this->client->apiClient, $this->client->apiConfig);
         $this->membersApi = new OrganizationMembersApi($this->client->apiClient, $this->client->apiConfig);
+        $this->subscriptionsApi = new SubscriptionsApi($this->client->apiClient, $this->client->apiConfig);
     }
 
 
     /************** ***********************************/
-    /********* OrganizationApi ****************/
+    /********* OrganizationApi ************************/
     /************** ***********************************/
 
     /**
@@ -342,6 +356,187 @@ class OrganizationTask extends TaskBase
     }
 
 
+    /************** ************************************/
+    /********* SubscriptionsApi ************************/
+    /************** ************************************/
+
+    /**
+     * Operation canCreateNewOrgSubscription
+     *
+     * Checks if the user is able to create a new project in the organization.
+     *
+     * @param string $organization_id The ID of the organization. (required)
+     *
+     * @return CanCreateNewOrgSubscription200Response|Error|Error
+     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function canCreateNewOrgSubscription(string $organization_id): CanCreateNewOrgSubscription200Response|Error
+    {
+        $this->refreshToken();
+        return $this->subscriptionsApi->canCreateNewOrgSubscription($organization_id);
+    }
+
+    /**
+     * Operation createOrgSubscription
+     *
+     * Create subscription
+     *
+     * @param string $organization_id The ID of the organization. (required)
+     * @param array $create_org_subscription_data create_org_subscription_request (required)
+     * @return Subscription|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function createOrgSubscription(string $organization_id, array $create_org_subscription_data): Error|Subscription
+    {
+        $this->refreshToken();
+        $create_org_subscription_request = new CreateOrgSubscriptionRequest($create_org_subscription_data);
+        return $this->subscriptionsApi->createOrgSubscription($organization_id, $create_org_subscription_request);
+    }
+
+    /**
+     * Operation deleteOrgSubscription
+     *
+     * Delete subscription
+     *
+     * @param string $organization_id The ID of the organization. (required)
+     * @param string $subscription_id The ID of the subscription. (required)
+     *
+     * @return void
+     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function deleteOrgSubscription(string $organization_id, string $subscription_id): void
+    {
+        $this->refreshToken();
+        $this->subscriptionsApi->deleteOrgSubscription($organization_id, $subscription_id);
+    }
+
+    /**
+     * Operation estimateNewOrgSubscription
+     *
+     * Estimate the price of a new subscription
+     *
+     * @param string $organization_id The ID of the organization. (required)
+     * @param int $environments The maximum number of environments which can be provisioned on the project. (required)
+     * @param int $storage The total storage available to each environment, in MiB. (required)
+     * @param int $user_licenses The number of user licenses. (required)
+     * @param string|null $format The format of the estimation output. (optional)
+     *
+     * @return EstimationObject|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function estimateNewOrgSubscription(string $organization_id, int $environments = 3, int $storage = 500, int $user_licenses = 1, string $format = null): EstimationObject|Error
+    {
+        $this->refreshToken();
+        return $this->subscriptionsApi->estimateNewOrgSubscription($organization_id, self::DEFAULT_UPSUN_PLAN, $environments, $storage, $user_licenses, $format);
+    }
+
+    /**
+     * Operation estimateOrgSubscription
+     *
+     * Estimate the price of a subscription
+     *
+     * @param string $organization_id The ID of the organization. (required)
+     * @param string $subscription_id The ID of the subscription. (required)
+     * @param int|null $environments The maximum number of environments which can be provisioned on the project. (optional)
+     * @param int|null $storage The total storage available to each environment, in MiB. (optional)
+     * @param int|null $user_licenses The number of user licenses. (optional)
+     * @param string|null $format The format of the estimation output. (optional)
+     *
+     * @return EstimationObject|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
+     */
+    public function estimateOrgSubscription(string $organization_id, string $subscription_id, int $environments = null, int $storage = null, int $user_licenses = null, string $format = null): EstimationObject|Error
+    {
+        $this->refreshToken();
+        
+        return $this->subscriptionsApi->estimateOrgSubscription($organization_id, $subscription_id, self::DEFAULT_UPSUN_PLAN, $environments, $storage, $user_licenses, $format);
+    }
+
+    /**
+     * Operation getOrgSubscription
+     *
+     * Get subscription
+     *
+     * @param string $organization_id The ID of the organization. (required)
+     * @param string $subscription_id The ID of the subscription. (required)
+     *
+     * @return Subscription|Error
+     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getOrgSubscription(string $organization_id, string $subscription_id): Error|Subscription
+    {
+        $this->refreshToken();
+        return $this->subscriptionsApi->getOrgSubscription($organization_id, $subscription_id);
+    }
+
+    /**
+     * Operation getOrgSubscriptionCurrentUsage
+     *
+     * Get current usage for a subscription
+     *
+     * @param string $organization_id The ID of the organization. (required)
+     * @param string $subscription_id The ID of the subscription. (required)
+     * @param string|null $usage_groups A list of usage groups to retrieve current usage for. (optional)
+     * @param bool|null $include_not_charged Whether to include not charged usage groups. (optional)
+     *
+     * @return SubscriptionCurrentUsageObject|Error
+     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getOrgSubscriptionCurrentUsage(string $organization_id, string $subscription_id, string $usage_groups = null, bool $include_not_charged = null): Error|SubscriptionCurrentUsageObject
+    {
+        $this->refreshToken();
+        return $this->subscriptionsApi->getOrgSubscriptionCurrentUsage($organization_id, $subscription_id, $usage_groups, $include_not_charged);
+    }
+
+    /**
+     * Operation listOrgSubscriptions
+     *
+     * List subscriptions
+     *
+     * @param string $organization_id The ID of the organization. (required)
+     * @param string|null $filter_status The status of the subscription. (optional)
+     * @param string|null $filter_id Machine name of the region. (optional)
+     * @param array|null $filter_project_id Allows filtering by &#x60;project_id&#x60; using one or more operators. (optional)
+     * @param array|null $filter_project_title Allows filtering by &#x60;project_title&#x60; using one or more operators. (optional)
+     * @param array|null $filter_region Allows filtering by &#x60;region&#x60; using one or more operators. (optional)
+     * @param array|null $filter_updated_at Allows filtering by &#x60;updated_at&#x60; using one or more operators. (optional)
+     * @param int|null $page_size Determines the number of items to show. (optional)
+     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;region&#x60;, &#x60;project_title&#x60;, &#x60;type&#x60;, &#x60;plan&#x60;, &#x60;status&#x60;, &#x60;created_at&#x60;, &#x60;updated_at&#x60;. (optional)
+     *
+     * @return ListOrgSubscriptions200Response|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listOrgSubscriptions(string $organization_id, string $filter_status = null, string $filter_id = null, array $filter_project_id = null, array $filter_project_title = null, array $filter_region = null, array $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): ListOrgSubscriptions200Response|Error
+    {
+        $this->refreshToken();
+        return $this->subscriptionsApi->listOrgSubscriptions($organization_id, $filter_status, $filter_id, $filter_project_id, $filter_project_title, $filter_region, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+    }
+
+    /**
+     * Operation updateOrgSubscription
+     *
+     * Update subscription
+     *
+     * @param string $organization_id The ID of the organization. (required)
+     * @param string $subscription_id The ID of the subscription. (required)
+     * @param array|null $update_org_subscription_data
+     * @return Subscription|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function updateOrgSubscription(string $organization_id, string $subscription_id, array $update_org_subscription_data = null): Error|Subscription
+    {
+        $this->refreshToken();
+        $update_org_subscription_request = new UpdateOrgSubscriptionRequest($update_org_subscription_data);
+        return $this->subscriptionsApi->updateOrgSubscription($organization_id, $subscription_id, $update_org_subscription_request);
+    }
+    
     /************** *********************/
     /********* Override ****************/
     /************** *********************/
@@ -353,13 +548,12 @@ class OrganizationTask extends TaskBase
      * Equivalent to upsun api:curl -X PATCH --json '{"user_management":"standard"}' 'api/organizations/ORGANIZATION_ID/addons' | jq
      * @param $organization_id
      * @return mixed
-     * @throws ApiException
+     * @throws ApiException|GuzzleException
      */
     public function updateOrgAddons($organization_id): mixed
     {
         $this->refreshToken();
         $user_management_addons = ['user_management' => "standard"];
-
         list($response) = $this->updateOrgAddonsWithHttpInfo($organization_id, $user_management_addons);
         return $response;
     }
