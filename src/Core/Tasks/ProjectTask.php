@@ -16,6 +16,7 @@ use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\Model\AcceptedResponse;
 use OpenAPI\Client\Model\CreateProjectInviteRequest;
 use OpenAPI\Client\Model\Error;
+use OpenAPI\Client\Model\OrganizationProject;
 use OpenAPI\Client\Model\Project;
 use OpenAPI\Client\Model\ProjectCapabilities;
 use OpenAPI\Client\Model\ProjectInfo;
@@ -191,11 +192,11 @@ class ProjectTask extends TaskBase
      * @param array $project_data
      * @param string $contentType The value for the Content-Type header. Check self::contentTypes['updateProjects'] to see the possible values for this operation
      *
-     * @return Project
+     * @return OrganizationProject
      * @throws ApiException
      * @throws GuzzleException
      */
-    public function createProject(string $organization_id, array $project_data, string $contentType = ProjectApi::contentTypes['updateProjects'][0]): Project
+    public function createProject(string $organization_id, array $project_data, string $contentType = ProjectApi::contentTypes['updateProjects'][0]): OrganizationProject
     {
         $project_patch = new ProjectInfo($project_data);
         list($response) = $this->createProjectWithHttpInfo($organization_id, $project_patch, $contentType);
