@@ -8,11 +8,13 @@ use OpenAPI\Client\apisgen\APITokensApi;
 use OpenAPI\Client\apisgen\ConnectionsApi;
 use OpenAPI\Client\apisgen\GrantsApi;
 use OpenAPI\Client\apisgen\MFAApi;
+use OpenAPI\Client\apisgen\PhoneNumberApi;
 use OpenAPI\Client\apisgen\UserAccessApi;
 use OpenAPI\Client\apisgen\UserProfilesApi;
 use OpenAPI\Client\apisgen\UsersApi;
 use OpenAPI\Client\Model\Address;
 use OpenAPI\Client\Model\APIToken;
+use OpenAPI\Client\Model\ConfirmPhoneNumberRequest;
 use OpenAPI\Client\Model\ConfirmTotpEnrollment200Response;
 use OpenAPI\Client\Model\ConfirmTotpEnrollmentRequest;
 use OpenAPI\Client\Model\Connection;
@@ -36,6 +38,8 @@ use OpenAPI\Client\Model\UpdateProjectUserAccessRequest;
 use OpenAPI\Client\Model\UpdateUserRequest;
 use OpenAPI\Client\Model\User;
 use OpenAPI\Client\Model\UserProjectAccess;
+use OpenAPI\Client\Model\VerifyPhoneNumber200Response;
+use OpenAPI\Client\Model\VerifyPhoneNumberRequest;
 use Upsun\Exception\UpsunException;
 use Upsun\UpsunClient;
 
@@ -49,6 +53,7 @@ class UserTask extends TaskBase
   public readonly ConnectionsApi $connectionsApi;
   public readonly GrantsApi $grantsApi;
   public readonly MFAApi $mfaApi;
+  public readonly PhoneNumberApi $phoneNumberApi;
 
   public function __construct(
     public readonly UpsunClient $client,
@@ -61,6 +66,7 @@ class UserTask extends TaskBase
     $this->connectionsApi = new ConnectionsApi($this->client->apiClient, $this->client->apiConfig);
     $this->grantsApi = new GrantsApi($this->client->apiClient, $this->client->apiConfig);
     $this->mfaApi = new MFAApi($this->client->apiClient, $this->client->apiConfig);
+    $this->phoneNumberApi = new PhoneNumberApi($this->client->apiClient, $this->client->apiConfig);
   }
 
   /************** ********************/
@@ -721,6 +727,45 @@ class UserTask extends TaskBase
   {
     $this->refreshToken();
     $this->mfaApi->withdrawTotpEnrollment($user_id);
+  }
+  
+  /************** **************************/
+  /********* PhoneNumberApi ****************/
+  /************** **************************/
+
+  /**
+   * Operation confirmPhoneNumber
+   *
+   * Confirm phone number
+   *
+   * @param string $sid The session ID obtained from &#x60;POST /users/{user_id}/phonenumber&#x60;. (required)
+   * @param string $user_id The ID of the user. (required)
+   * @param array|null $confirm_phone_number_request confirm_phone_number_request (optional)
+   * @return void
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function confirmPhoneNumber(string $sid, string $user_id, array $confirm_phone_number_request = null): void
+  {
+    $this->refreshToken();
+    $confirm_phone_number_request = new ConfirmPhoneNumberRequest($confirm_phone_number_request);
+    $this->phoneNumberApi->confirmPhoneNumber($sid, $user_id, $confirm_phone_number_request);
+  }
+
+  /**
+   * Operation verifyPhoneNumber
+   *
+   * Verify phone number
+   *
+   * @param string $user_id The ID of the user. (required)
+   * @param array|null $verify_phone_number_request verify_phone_number_request (optional)
+   * @return VerifyPhoneNumber200Response|Error|Error|Error
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function verifyPhoneNumber(string $user_id, array $verify_phone_number_request = null): VerifyPhoneNumber200Response|Error
+  {
+    $this->refreshToken();
+    $verify_phone_number_request = new VerifyPhoneNumberRequest($verify_phone_number_request);
+    return $this->phoneNumberApi->verifyPhoneNumber($user_id, $verify_phone_number_request);
   }
   
   /************** ***************************/
