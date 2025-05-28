@@ -16,8 +16,10 @@ use OpenAPI\Client\apisgen\OrdersApi;
 use OpenAPI\Client\apisgen\OrganizationMembersApi;
 use OpenAPI\Client\apisgen\OrganizationProjectsApi;
 use OpenAPI\Client\apisgen\OrganizationsApi;
+use OpenAPI\Client\apisgen\ProfilesApi;
 use OpenAPI\Client\apisgen\SubscriptionsApi;
 use OpenAPI\Client\HeaderSelector;
+use OpenAPI\Client\Model\Address;
 use OpenAPI\Client\Model\CanCreateNewOrgSubscription200Response;
 use OpenAPI\Client\Model\CreateAuthorizationCredentials200Response;
 use OpenAPI\Client\Model\CreateOrgMemberRequest;
@@ -38,11 +40,13 @@ use OpenAPI\Client\Model\Organization;
 use OpenAPI\Client\Model\OrganizationMember;
 use OpenAPI\Client\Model\OrganizationMFAEnforcement;
 use OpenAPI\Client\Model\OrganizationProject;
+use OpenAPI\Client\Model\Profile;
 use OpenAPI\Client\Model\SendOrgMfaReminders200ResponseValue;
 use OpenAPI\Client\Model\SendOrgMfaRemindersRequest;
 use OpenAPI\Client\Model\Subscription;
 use OpenAPI\Client\Model\SubscriptionCurrentUsageObject;
 use OpenAPI\Client\Model\UpdateOrgMemberRequest;
+use OpenAPI\Client\Model\UpdateOrgProfileRequest;
 use OpenAPI\Client\Model\UpdateOrgRequest;
 use OpenAPI\Client\Model\UpdateOrgSubscriptionRequest;
 use OpenAPI\Client\ObjectSerializer;
@@ -65,6 +69,7 @@ class OrganizationTask extends TaskBase
     public readonly InvoicesApi $invoicesApi;
     public readonly MFAApi $mfaApi;
     public readonly OrdersApi $ordersApi;
+    public readonly ProfilesApi $profilesApi;
 
     public function __construct(
         public readonly UpsunClient $client,
@@ -78,6 +83,7 @@ class OrganizationTask extends TaskBase
         $this->invoicesApi = new InvoicesApi($this->client->apiClient, $this->client->apiConfig);
         $this->mfaApi = new MFAApi($this->client->apiClient, $this->client->apiConfig);
         $this->ordersApi = new OrdersApi($this->client->apiClient, $this->client->apiConfig);
+        $this->profilesApi = new ProfilesApi($this->client->apiClient, $this->client->apiConfig);
     }
 
     /************** ***********************************/
@@ -795,6 +801,73 @@ class OrganizationTask extends TaskBase
     {
         $this->refreshToken();
         return $this->ordersApi->listOrgOrders($organization_id, $filter_status, $filter_total, $page, $mode);
+    }
+
+    /************** *******************************/
+    /********* ProfilesApi ************************/
+    /************** *******************************/
+
+    /**
+     * Operation getOrgAddress
+     *
+     * Get address
+     *
+     * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
+     * @return Address|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getOrgAddress(string $organization_id): Error|Address
+    {
+        $this->refreshToken();
+        return $this->profilesApi->getOrgAddress($organization_id);
+    }
+
+    /**
+     * Operation getOrgProfile
+     *
+     * Get profile
+     *
+     * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
+     * @return Profile|Error|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getOrgProfile(string $organization_id)
+    {
+        $this->refreshToken();
+        return $this->profilesApi->getOrgProfile($organization_id);
+    }
+
+    /**
+     * Operation updateOrgAddress
+     *
+     * Update address
+     *
+     * @param string $organization_id The ID of the organization. (required)
+     * @param array|null $address address (optional)
+     * @return Address|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function updateOrgAddress(string $organization_id, array $address = null): Error|Address
+    {
+        $this->refreshToken();
+        return $this->profilesApi->updateOrgAddress($organization_id, $address);
+    }
+
+    /**
+     * Operation updateOrgProfile
+     *
+     * Update profile
+     *
+     * @param string $organization_id The ID of the organization. (required)
+     * @param array|null $update_org_profile_request update_org_profile_request (optional)
+     * @return Profile|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function updateOrgProfile(string $organization_id, array $update_org_profile_request = null,): Error|Profile
+    {
+        $this->refreshToken();
+        $update_org_profile_request = new UpdateOrgProfileRequest($update_org_profile_request);
+        return $this->profilesApi->updateOrgAddress($organization_id, $update_org_profile_request);
     }
     
     /************** *********************/
