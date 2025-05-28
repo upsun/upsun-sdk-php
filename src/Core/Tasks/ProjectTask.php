@@ -17,6 +17,8 @@ use OpenAPI\Client\Model\CreateProjectInviteRequest;
 use OpenAPI\Client\Model\DeploymentTarget;
 use OpenAPI\Client\Model\DeploymentTargetCreateInput;
 use OpenAPI\Client\Model\DeploymentTargetPatch;
+use OpenAPI\Client\Model\Domain;
+use OpenAPI\Client\Model\DomainPatch;
 use OpenAPI\Client\Model\Environment;
 use OpenAPI\Client\Model\Error;
 use OpenAPI\Client\Model\Project;
@@ -44,6 +46,7 @@ class ProjectTask extends TaskBase
 
     public function __construct(
         public readonly UpsunClient $client,
+        public readonly DomainTask $domainTask
     )
     {
         $this->headerSelector = new HeaderSelector();
@@ -346,9 +349,9 @@ class ProjectTask extends TaskBase
         return $this->activityApi->listProjectsActivities($project_id);
     }
 
-    /************** **********************************/
+    /************** ********************************/
     /********* DeploymentTargetApi  ****************/
-    /************** **********************************/
+    /************** ********************************/
 
     /**
      * Operation createProjectsDeployments
@@ -431,6 +434,87 @@ class ProjectTask extends TaskBase
         $deployment_target_patch = new DeploymentTargetPatch($deployment_target_patch);
         return $this->deploymentTargetApi->updateProjectsDeployments($project_id, $deployment_target_configuration_id, $deployment_target_patch);
     }
+
+    /************** ********************************/
+    /********* DomainTask shortcuts ****************/
+    /************** ********************************/
+
+
+    /**
+     * Operation createProjectsDomains
+     *
+     * Add a project domain
+     *
+     * @param string $project_id project_id (required)
+     * @param array $domain_create_input (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function createProjectsDomains(string $project_id, array $domain_create_input): AcceptedResponse
+    {
+        return $this->domainTask->createProjectsDomains($project_id, $domain_create_input);
+    }
+
+    /**
+     * Operation deleteProjectsDomains
+     *
+     * Delete a project domain
+     *
+     * @param string $project_id project_id (required)
+     * @param string $domain_id domain_id (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function deleteProjectsDomains(string $project_id, string $domain_id): AcceptedResponse
+    {
+        return $this->domainTask->deleteProjectsDomains($project_id, $domain_id);
+    }
+
+    /**
+     * Operation getProjectsDomains
+     *
+     * Get a project domain
+     *
+     * @param string $project_id project_id (required)
+     * @param string $domain_id domain_id (required)
+     * @return Domain
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getProjectsDomains(string $project_id, string $domain_id): Domain
+    {
+        return $this->domainTask->getProjectsDomains($project_id, $domain_id);
+    }
+
+    /**
+     * Operation listProjectsDomains
+     *
+     * Get list of project domains
+     *
+     * @param string $project_id project_id (required)
+     * @return Domain[]
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listProjectsDomains(string $project_id): array
+    {
+        $this->refreshToken();
+        return $this->domainTask->listProjectsDomains($project_id);
+    }
+
+    /**
+     * Operation updateProjectsDomains
+     *
+     * Update a project domain
+     *
+     * @param string $project_id project_id (required)
+     * @param string $domain_id domain_id (required)
+     * @param array $domain_patch (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function updateProjectsDomains(string $project_id, string $domain_id, array $domain_patch): AcceptedResponse
+    {
+        return $this->domainTask->updateProjectsDomains($project_id, $domain_id, $domain_patch);
+    }
     
     /************** ***************************/
     /********* Custom function ****************/
@@ -467,4 +551,6 @@ class ProjectTask extends TaskBase
         $this->refreshToken();
         return $this->client->environment->listProjectsEnvironments($project_id);
     }
+    
+    
 }

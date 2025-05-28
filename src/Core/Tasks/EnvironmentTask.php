@@ -12,6 +12,7 @@ use OpenAPI\Client\apisgen\EnvironmentVariablesApi;
 use OpenAPI\Client\Model\AcceptedResponse;
 use OpenAPI\Client\Model\Activity;
 use OpenAPI\Client\Model\Backup;
+use OpenAPI\Client\Model\Domain;
 use OpenAPI\Client\Model\Environment;
 use OpenAPI\Client\Model\EnvironmentActivateInput;
 use OpenAPI\Client\Model\EnvironmentBackupInput;
@@ -38,11 +39,12 @@ class EnvironmentTask extends TaskBase
     public readonly EnvironmentBackupsApi $backupsApi;
     public readonly EnvironmentTypeApi $typeApi;
     public readonly EnvironmentVariablesApi $variablesApi;
-    
+
 
     public function __construct(
         public readonly UpsunClient $client,
-        public readonly RouteTask $routeTask
+        public readonly RouteTask   $routeTask,
+        public readonly DomainTask  $domainTask
     )
     {
         $this->api = new EnvironmentApi($this->client->apiClient, $this->client->apiConfig);
@@ -55,7 +57,7 @@ class EnvironmentTask extends TaskBase
     /************** **************************/
     /********* EnvironmentApi ****************/
     /************** **************************/
-    
+
     /**
      * Operation activateEnvironment
      *
@@ -369,7 +371,7 @@ class EnvironmentTask extends TaskBase
         $version_patch = new VersionPatch($version_patch);
         return $this->api->updateProjectsEnvironmentsVersions($project_id, $environment_id, $version_id, $version_patch);
     }
-    
+
     /************** **********************************/
     /********* EnvironmentActivityApi ****************/
     /************** **********************************/
@@ -423,7 +425,7 @@ class EnvironmentTask extends TaskBase
         $this->refreshToken();
         return $this->activityApi->listProjectsEnvironmentsActivities($project_id, $environment_id);
     }
-    
+
     /************** *********************************/
     /********* EnvironmentBackupsApi ****************/
     /************** *********************************/
@@ -514,7 +516,7 @@ class EnvironmentTask extends TaskBase
         $environment_restore_input = new EnvironmentRestoreInput($environment_restore_input);
         return $this->backupsApi->restoreBackup($project_id, $environment_id, $backup_id, $environment_restore_input);
     }
-    
+
     /************** *******************************/
     /********* EnvironmentTypesApi ****************/
     /************** *******************************/
@@ -549,7 +551,7 @@ class EnvironmentTask extends TaskBase
         $this->refreshToken();
         return $this->typeApi->listProjectsEnvironmentTypes($project_id);
     }
-    
+
     /************** ***********************************/
     /********* EnvironmentVariablesApi ****************/
     /************** ***********************************/
@@ -640,10 +642,10 @@ class EnvironmentTask extends TaskBase
         $environment_variable_patch = new EnvironmentVariablePatch($environment_variable_patch);
         return $this->variablesApi->updateProjectsEnvironmentsVariables($project_id, $environment_id, $variable_id, $environment_variable_patch);
     }
-    
-    /************** ***********************/
-    /********* RoutingApi  ****************/
-    /************** ***********************/
+
+    /************** **********************************/
+    /********* RoutingTask shortcuts  ****************/
+    /************** **********************************/
 
     /**
      * Operation createProjectsEnvironmentsRoutes
@@ -658,7 +660,6 @@ class EnvironmentTask extends TaskBase
      */
     public function createProjectsEnvironmentsRoutes(string $project_id, string $environment_id, array $route_create_input): AcceptedResponse
     {
-        $this->refreshToken();
         return $this->routeTask->createProjectsEnvironmentsRoutes($project_id, $environment_id, $route_create_input);
     }
 
@@ -675,7 +676,6 @@ class EnvironmentTask extends TaskBase
      */
     public function deleteProjectsEnvironmentsRoutes(string $project_id, string $environment_id, string $route_id): AcceptedResponse
     {
-        $this->refreshToken();
         return $this->routeTask->deleteProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id);
     }
 
@@ -692,7 +692,6 @@ class EnvironmentTask extends TaskBase
      */
     public function getProjectsEnvironmentsRoutes(string $project_id, string $environment_id, string $route_id): Route
     {
-        $this->refreshToken();
         return $this->routeTask->getProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id);
     }
 
@@ -708,7 +707,6 @@ class EnvironmentTask extends TaskBase
      */
     public function listProjectsEnvironmentsRoutes(string $project_id, string $environment_id): array
     {
-        $this->refreshToken();
         return $this->routeTask->listProjectsEnvironmentsRoutes($project_id, $environment_id);
     }
 
@@ -726,13 +724,96 @@ class EnvironmentTask extends TaskBase
      */
     public function updateProjectsEnvironmentsRoutes(string $project_id, string $environment_id, string $route_id, array $route_patch): AcceptedResponse
     {
-        $this->refreshToken();
         return $this->routeTask->updateProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id, $route_patch);
     }
 
+    /************** *********************************/
+    /********* DomainTask shortcuts  ****************/
+    /************** *********************************/
+
+    /**
+     * Operation createProjectsEnvironmentsDomains
+     *
+     * Add an environment domain
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @param array $domain_create_input (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function createProjectsEnvironmentsDomains(string $project_id, string $environment_id, array $domain_create_input): AcceptedResponse
+    {
+        return $this->domainTask->createProjectsEnvironmentsDomains($project_id, $environment_id, $domain_create_input);
+    }
+
+    /**
+     * Operation deleteProjectsEnvironmentsDomains
+     *
+     * Delete an environment domain
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @param string $domain_id domain_id (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function deleteProjectsEnvironmentsDomains(string $project_id, string $environment_id, string $domain_id): AcceptedResponse
+    {
+        return $this->domainTask->deleteProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id);
+    }
+
+    /**
+     * Operation getProjectsEnvironmentsDomains
+     *
+     * Get an environment domain
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @param string $domain_id domain_id (required)
+     * @return Domain
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getProjectsEnvironmentsDomains(string $project_id, string $environment_id, string $domain_id): Domain
+    {
+        return $this->domainTask->getProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id);
+    }
+
+    /**
+     * Operation listProjectsEnvironmentsDomains
+     *
+     * Get a list of environment domains
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @return Domain[]
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listProjectsEnvironmentsDomains(string $project_id, string $environment_id): array
+    {
+        return $this->domainTask->listProjectsEnvironmentsDomains($project_id, $environment_id);
+    }
+
+    /**
+     * Operation updateProjectsEnvironmentsDomains
+     *
+     * Update an environment domain
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @param string $domain_id domain_id (required)
+     * @param array $domain_patch (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function updateProjectsEnvironmentsDomains(string $project_id, string $environment_id, string $domain_id, array $domain_patch): AcceptedResponse
+    {
+        return $this->domainTask->updateProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id, $domain_patch);
+    }
+    
     /************** ****************************/
     /********* Custom function  ****************/
     /************** ****************************/
-    
-    
+
+
 }

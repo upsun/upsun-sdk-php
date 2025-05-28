@@ -70,7 +70,7 @@ class DomainTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteProjectsDomains($project_id, $domain_id): AcceptedResponse
+    public function deleteProjectsDomains(string $project_id, string $domain_id): AcceptedResponse
     {
         $this->refreshToken();
         return $this->api->deleteProjectsDomains($project_id, $domain_id);
@@ -135,7 +135,7 @@ class DomainTask extends TaskBase
      * @return Domain[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectsDomains($project_id): array
+    public function listProjectsDomains(string $project_id): array
     {
         $this->refreshToken();
         return $this->api->listProjectsDomains($project_id);
