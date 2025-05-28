@@ -7,11 +7,14 @@ use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\APITokensApi;
 use OpenAPI\Client\apisgen\ConnectionsApi;
 use OpenAPI\Client\apisgen\GrantsApi;
+use OpenAPI\Client\apisgen\MFAApi;
 use OpenAPI\Client\apisgen\UserAccessApi;
 use OpenAPI\Client\apisgen\UserProfilesApi;
 use OpenAPI\Client\apisgen\UsersApi;
 use OpenAPI\Client\Model\Address;
 use OpenAPI\Client\Model\APIToken;
+use OpenAPI\Client\Model\ConfirmTotpEnrollment200Response;
+use OpenAPI\Client\Model\ConfirmTotpEnrollmentRequest;
 use OpenAPI\Client\Model\Connection;
 use OpenAPI\Client\Model\CreateApiTokenRequest;
 use OpenAPI\Client\Model\CreateProfilePicture200Response;
@@ -20,6 +23,7 @@ use OpenAPI\Client\Model\Error;
 use OpenAPI\Client\Model\GetAddress200Response;
 use OpenAPI\Client\Model\GetCurrentUserVerificationStatus200Response;
 use OpenAPI\Client\Model\GetCurrentUserVerificationStatusFull200Response;
+use OpenAPI\Client\Model\GetTotpEnrollment200Response;
 use OpenAPI\Client\Model\GrantProjectUserAccessRequestInner;
 use OpenAPI\Client\Model\GrantUserProjectAccessRequestInner;
 use OpenAPI\Client\Model\ListProfiles200Response;
@@ -44,6 +48,7 @@ class UserTask extends TaskBase
   public readonly APITokensApi $tokensApi;
   public readonly ConnectionsApi $connectionsApi;
   public readonly GrantsApi $grantsApi;
+  public readonly MFAApi $mfaApi;
 
   public function __construct(
     public readonly UpsunClient $client,
@@ -55,6 +60,7 @@ class UserTask extends TaskBase
     $this->tokensApi = new APITokensApi($this->client->apiClient, $this->client->apiConfig);
     $this->connectionsApi = new ConnectionsApi($this->client->apiClient, $this->client->apiConfig);
     $this->grantsApi = new GrantsApi($this->client->apiClient, $this->client->apiConfig);
+    $this->mfaApi = new MFAApi($this->client->apiClient, $this->client->apiConfig);
   }
 
   /************** ********************/
@@ -623,15 +629,15 @@ class UserTask extends TaskBase
    * @return Connection[]|Error
    * @throws ApiException on non-2xx response or if the response body is not in the expected format
    */
-  public function listLoginConnections($user_id): array|Error
+  public function listLoginConnections(string $user_id): array|Error
   {
     $this->refreshToken();
     return $this->connectionsApi->listLoginConnections($user_id);
   }
 
-  /************** ****************************/
+  /************** *********************/
   /********* GrantsApi ****************/
-  /************** ****************************/
+  /************** *********************/
 
   /**
    * Operation listUserExtendedAccess
@@ -649,6 +655,72 @@ class UserTask extends TaskBase
   {
     $this->refreshToken();
     return $this->grantsApi->listUserExtendedAccess($user_id, $filter_resource_type, $filter_organization_id, $filter_permissions);
+  }
+
+  /************** ******************/
+  /********* MFAApi ****************/
+  /************** ******************/
+
+  /**
+   * Operation confirmTotpEnrollment
+   *
+   * Confirm TOTP enrollment
+   *
+   * @param string $user_id The ID of the user. (required)
+   * @param array|null $confirm_totp_enrollment_request (optional)
+   * @return ConfirmTotpEnrollment200Response|Error
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function confirmTotpEnrollment(string $user_id, array $confirm_totp_enrollment_request = null): ConfirmTotpEnrollment200Response|Error
+  {
+    $this->refreshToken();
+    $confirm_totp_enrollment_request = new ConfirmTotpEnrollmentRequest($confirm_totp_enrollment_request);
+    return $this->mfaApi->confirmTotpEnrollment($user_id, $confirm_totp_enrollment_request);
+  }
+
+  /**
+   * Operation getTotpEnrollment
+   *
+   * Get information about TOTP enrollment
+   *
+   * @param string $user_id The ID of the user. (required)
+   * @return GetTotpEnrollment200Response|Error
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function getTotpEnrollment(string $user_id): GetTotpEnrollment200Response|Error
+  {
+    $this->refreshToken();
+    return $this->mfaApi->getTotpEnrollment($user_id);
+  }
+  
+  /**
+   * Operation recreateRecoveryCodes
+   *
+   * Re-create recovery codes
+   *
+   * @param string $user_id The ID of the user. (required)
+   * @return ConfirmTotpEnrollment200Response|Error
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function recreateRecoveryCodes(string $user_id): ConfirmTotpEnrollment200Response|Error
+  {
+    $this->refreshToken();
+    return $this->mfaApi->recreateRecoveryCodes($user_id);
+  }
+
+  /**
+   * Operation withdrawTotpEnrollment
+   *
+   * Withdraw TOTP enrollment
+   *
+   * @param string $user_id The ID of the user. (required)
+   * @return void
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function withdrawTotpEnrollment(string $user_id): void
+  {
+    $this->refreshToken();
+    $this->mfaApi->withdrawTotpEnrollment($user_id);
   }
   
   /************** ***************************/
