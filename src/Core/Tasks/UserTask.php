@@ -6,6 +6,7 @@ use InvalidArgumentException;
 use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\APITokensApi;
 use OpenAPI\Client\apisgen\ConnectionsApi;
+use OpenAPI\Client\apisgen\GrantsApi;
 use OpenAPI\Client\apisgen\UserAccessApi;
 use OpenAPI\Client\apisgen\UserProfilesApi;
 use OpenAPI\Client\apisgen\UsersApi;
@@ -23,6 +24,7 @@ use OpenAPI\Client\Model\GrantProjectUserAccessRequestInner;
 use OpenAPI\Client\Model\GrantUserProjectAccessRequestInner;
 use OpenAPI\Client\Model\ListProfiles200Response;
 use OpenAPI\Client\Model\ListProjectUserAccess200Response;
+use OpenAPI\Client\Model\ListUserExtendedAccess200Response;
 use OpenAPI\Client\Model\Profile;
 use OpenAPI\Client\Model\ResetEmailAddressRequest;
 use OpenAPI\Client\Model\UpdateProfileRequest;
@@ -41,6 +43,7 @@ class UserTask extends TaskBase
   public readonly UserAccessApi $accessApi;
   public readonly APITokensApi $tokensApi;
   public readonly ConnectionsApi $connectionsApi;
+  public readonly GrantsApi $grantsApi;
 
   public function __construct(
     public readonly UpsunClient $client,
@@ -51,6 +54,7 @@ class UserTask extends TaskBase
     $this->accessApi = new UserAccessApi($this->client->apiClient, $this->client->apiConfig);
     $this->tokensApi = new APITokensApi($this->client->apiClient, $this->client->apiConfig);
     $this->connectionsApi = new ConnectionsApi($this->client->apiClient, $this->client->apiConfig);
+    $this->grantsApi = new GrantsApi($this->client->apiClient, $this->client->apiConfig);
   }
 
   /************** ********************/
@@ -623,6 +627,28 @@ class UserTask extends TaskBase
   {
     $this->refreshToken();
     return $this->connectionsApi->listLoginConnections($user_id);
+  }
+
+  /************** ****************************/
+  /********* GrantsApi ****************/
+  /************** ****************************/
+
+  /**
+   * Operation listUserExtendedAccess
+   *
+   * List extended access of a user
+   *
+   * @param string $user_id The ID of the user. (required)
+   * @param array|null $filter_resource_type Allows filtering by &#x60;resource_type&#x60; (project or organization) using one or more operators. (optional)
+   * @param array|null $filter_organization_id Allows filtering by &#x60;organization_id&#x60; using one or more operators. (optional)
+   * @param array|null $filter_permissions Allows filtering by &#x60;permissions&#x60; using one or more operators. (optional)
+   * @return ListUserExtendedAccess200Response|Error
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function listUserExtendedAccess(string $user_id, array $filter_resource_type = null, array $filter_organization_id = null, array $filter_permissions = null): ListUserExtendedAccess200Response|Error
+  {
+    $this->refreshToken();
+    return $this->grantsApi->listUserExtendedAccess($user_id, $filter_resource_type, $filter_organization_id, $filter_permissions);
   }
   
   /************** ***************************/
