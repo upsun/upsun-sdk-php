@@ -4,11 +4,15 @@ namespace Upsun\Core\Tasks;
 
 use InvalidArgumentException;
 use OpenAPI\Client\ApiException;
+use OpenAPI\Client\apisgen\APITokensApi;
 use OpenAPI\Client\apisgen\UserAccessApi;
 use OpenAPI\Client\apisgen\UserProfilesApi;
 use OpenAPI\Client\apisgen\UsersApi;
 use OpenAPI\Client\Model\Address;
+use OpenAPI\Client\Model\APIToken;
+use OpenAPI\Client\Model\CreateApiTokenRequest;
 use OpenAPI\Client\Model\CreateProfilePicture200Response;
+use OpenAPI\Client\Model\DomainPatch;
 use OpenAPI\Client\Model\Error;
 use OpenAPI\Client\Model\GetAddress200Response;
 use OpenAPI\Client\Model\GetCurrentUserVerificationStatus200Response;
@@ -33,6 +37,7 @@ class UserTask extends TaskBase
   public readonly UsersApi $api;
   public readonly UserProfilesApi $profilesApi;
   public readonly UserAccessApi $accessApi;
+  public readonly APITokensApi $tokensApi;
 
   public function __construct(
     public readonly UpsunClient $client,
@@ -41,6 +46,7 @@ class UserTask extends TaskBase
     $this->api = new UsersApi($this->client->apiClient, $this->client->apiConfig);
     $this->profilesApi = new UserProfilesApi($this->client->apiClient, $this->client->apiConfig);
     $this->accessApi = new UserAccessApi($this->client->apiClient, $this->client->apiConfig);
+    $this->tokensApi = new APITokensApi($this->client->apiClient, $this->client->apiConfig);
   }
 
   /************** ********************/
@@ -496,6 +502,74 @@ class UserTask extends TaskBase
     return $this->profilesApi->updateProfile($user_id, $update_profile_request);
   }
 
+  /************** ****************************/
+  /********* APITokensApi ****************/
+  /************** ****************************/
+
+  /**
+   * Operation createApiToken
+   *
+   * Create an API token
+   *
+   * @param string $user_id The ID of the user. (required)
+   * @param array|null $create_api_token_request create_api_token_request (optional)
+   * @return APIToken|Error
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function createApiToken(string $user_id, array $create_api_token_request = null): Error|APIToken
+  {
+    $this->refreshToken();
+    $create_api_token_request = new CreateApiTokenRequest($create_api_token_request);
+    return $this->tokensApi->createApiToken($user_id, $create_api_token_request); 
+  }
+
+  /**
+   * Operation deleteApiToken
+   *
+   * Delete an API token
+   *
+   * @param string $user_id The ID of the user. (required)
+   * @param string $token_id The ID of the token. (required)
+   * @return void
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function deleteApiToken(string $user_id, string $token_id): void
+  {
+    $this->refreshToken();
+    $this->tokensApi->deleteApiToken($user_id, $token_id);
+  }
+
+  /**
+   * Operation getApiToken
+   *
+   * Get an API token
+   *
+   * @param string $user_id The ID of the user. (required)
+   * @param string $token_id The ID of the token. (required)
+   * @return APIToken|Error
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function getApiToken(string $user_id, string $token_id): Error|APIToken
+  {
+    $this->refreshToken();
+    return $this->tokensApi->getApiToken($user_id, $token_id);
+  }
+
+  /**
+   * Operation listApiTokens
+   *
+   * List a user&#39;s API tokens
+   *
+   * @param string $user_id The ID of the user. (required)
+   * @return APIToken[]|Error
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function listApiTokens(string $user_id): Error|array
+  {
+    $this->refreshToken();
+    return $this->tokensApi->createApiToken($user_id);
+  }
+  
   /************** ***************************/
   /********* Custom function ****************/
   /************** ***************************/
