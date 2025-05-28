@@ -2,31 +2,29 @@
 
 namespace Upsun\Core\Tasks;
 
-use GuzzleHttp\Exception\ConnectException;
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Psr7\MultipartStream;
-use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\RequestOptions;
 use InvalidArgumentException;
 use OpenAPI\Client\ApiException;
+use OpenAPI\Client\apisgen\ProjectActivityApi;
 use OpenAPI\Client\apisgen\ProjectApi;
 use OpenAPI\Client\apisgen\ProjectInvitationsApi;
+use OpenAPI\Client\apisgen\ProjectSettingsApi;
+use OpenAPI\Client\apisgen\ProjectVariablesApi;
 use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\Model\AcceptedResponse;
-use OpenAPI\Client\Model\CreateOrgSubscriptionRequest;
+use OpenAPI\Client\Model\Activity;
 use OpenAPI\Client\Model\CreateProjectInviteRequest;
+use OpenAPI\Client\Model\Environment;
 use OpenAPI\Client\Model\Error;
-use OpenAPI\Client\Model\OrganizationProject;
 use OpenAPI\Client\Model\Project;
 use OpenAPI\Client\Model\ProjectCapabilities;
-use OpenAPI\Client\Model\ProjectInfo;
 use OpenAPI\Client\Model\ProjectInvitation;
 use OpenAPI\Client\Model\ProjectPatch;
+use OpenAPI\Client\Model\ProjectSettings;
+use OpenAPI\Client\Model\ProjectSettingsPatch;
+use OpenAPI\Client\Model\ProjectVariable;
+use OpenAPI\Client\Model\ProjectVariableCreateInput;
+use OpenAPI\Client\Model\ProjectVariablePatch;
 use OpenAPI\Client\Model\Subscription;
-use OpenAPI\Client\ObjectSerializer;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
 use Upsun\UpsunClient;
 
 class ProjectTask extends TaskBase
@@ -35,6 +33,9 @@ class ProjectTask extends TaskBase
 
     public readonly ProjectApi $api;
     public readonly ProjectInvitationsApi $invitationsApi;
+    public readonly ProjectSettingsApi $settingsApi;
+    public readonly ProjectVariablesApi $variablesApi;
+    public readonly ProjectActivityApi $activityApi;
 
     public function __construct(
         public readonly UpsunClient $client,
@@ -43,6 +44,9 @@ class ProjectTask extends TaskBase
         $this->headerSelector = new HeaderSelector();
         $this->api = new ProjectApi($this->client->apiClient, $this->client->apiConfig);
         $this->invitationsApi = new ProjectInvitationsApi($this->client->apiClient, $this->client->apiConfig);
+        $this->settingsApi = new ProjectSettingsApi($this->client->apiClient, $this->client->apiConfig);
+        $this->variablesApi = new ProjectVariablesApi($this->client->apiClient, $this->client->apiConfig);
+        $this->activityApi = new ProjectActivityApi($this->client->apiClient, $this->client->apiConfig);
     }
 
     /************** **********************/
@@ -180,7 +184,163 @@ class ProjectTask extends TaskBase
         return $this->invitationsApi->listProjectInvites($project_id, $filter_state, $page_size, $page_before, $page_after, $sort);
     }
 
+    /************** ******************************/
+    /********* ProjectSettingsApi ****************/
+    /************** ******************************/
 
+    /**
+     * Operation getProjectsSettings
+     *
+     * Get list of project settings
+     *
+     * @param string $project_id project_id (required)
+     * @return ProjectSettings
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getProjectsSettings(string $project_id): ProjectSettings
+    {
+        $this->refreshToken();
+        return $this->settingsApi->getProjectsSettings($project_id);
+    }
+
+    /**
+     * Operation updateProjectsSettings
+     *
+     * Update a project setting
+     *
+     * @param string $project_id project_id (required)
+     * @param array $project_settings_patch (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function updateProjectsSettings(string $project_id, array $project_settings_patch): AcceptedResponse
+    {
+        $this->refreshToken();
+        $project_settings_patch = new ProjectSettingsPatch($project_settings_patch);
+        return $this->settingsApi->updateProjectsSettings($project_id, $project_settings_patch);
+    }
+    
+    /************** ******************************/
+    /********* ProjectVariablesApi ****************/
+    /************** ******************************/
+
+    /**
+     * Operation createProjectsVariables
+     *
+     * Add a project variable
+     *
+     * @param string $project_id project_id (required)
+     * @param array $project_variable_create_input (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function createProjectsVariables(string $project_id, array $project_variable_create_input): AcceptedResponse
+    {
+        $this->refreshToken();
+        $project_variable_create_input = new ProjectVariableCreateInput($project_variable_create_input);
+        return $this->variablesApi->createProjectsVariables($project_id, $project_variable_create_input);
+    }
+
+    /**
+     * Operation deleteProjectsVariables
+     *
+     * Delete a project variable
+     *
+     * @param string $project_id project_id (required)
+     * @param string $project_variable_id project_variable_id (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function deleteProjectsVariables(string $project_id, string $project_variable_id): AcceptedResponse
+    {
+        $this->refreshToken();
+        return $this->variablesApi->deleteProjectsVariables($project_id, $project_variable_id);
+    }
+
+    /**
+     * Operation listProjectsVariables
+     *
+     * Get list of project variables
+     *
+     * @param string $project_id project_id (required)
+     * @return ProjectVariable[]
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listProjectsVariables(string $project_id): array
+    {
+        $this->refreshToken();
+        return $this->variablesApi->listProjectsVariables($project_id);
+    }
+
+    /**
+     * Operation updateProjectsVariables
+     *
+     * Update a project variable
+     *
+     * @param string $project_id project_id (required)
+     * @param string $project_variable_id project_variable_id (required)
+     * @param array $project_variable_patch (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function updateProjectsVariables(string $project_id, string $project_variable_id, array $project_variable_patch): AcceptedResponse
+    {
+        $this->refreshToken();
+        $project_variable_patch = new ProjectVariablePatch($project_variable_patch);
+        return $this->variablesApi->updateProjectsVariables($project_id, $project_variable_id, $project_variable_patch);
+    }
+
+    /************** ******************************/
+    /********* ProjectActivityApi ****************/
+    /************** ******************************/
+
+    /**
+     * Operation actionProjectsActivitiesCancel
+     *
+     * Cancel a project activity
+     *
+     * @param string $project_id project_id (required)
+     * @param string $activity_id activity_id (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function actionProjectsActivitiesCancel(string $project_id, string $activity_id): AcceptedResponse
+    {
+        $this->refreshToken();
+        return $this->activityApi->actionProjectsActivitiesCancel($project_id, $activity_id);
+    }
+
+    /**
+     * Operation getProjectsActivities
+     *
+     * Get a project activity log entry
+     *
+     * @param string $project_id project_id (required)
+     * @param string $activity_id activity_id (required)
+     * @return Activity
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getProjectsActivities(string $project_id, string $activity_id): Activity
+    {
+        $this->refreshToken();
+        return $this->activityApi->getProjectsActivities($project_id, $activity_id);
+    }
+
+    /**
+     * Operation listProjectsActivities
+     *
+     * Get project activity log
+     *
+     * @param string $project_id project_id (required)
+     * @return Activity[]
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listProjectsActivities(string $project_id): array
+    {
+        $this->refreshToken();
+        return $this->activityApi->listProjectsActivities($project_id);
+    }
+    
     /************** ***************************/
     /********* Custom function ****************/
     /************** ***************************/
@@ -195,11 +355,25 @@ class ProjectTask extends TaskBase
      *
      * @return Subscription|Error
      * @throws ApiException
-     * @throws GuzzleException
      */
     public function createProject(string $organization_id, array $project_data): Error|Subscription
     {
         $this->refreshToken();
         return $this->client->organization->createOrgSubscription($organization_id, $project_data);
+    }
+
+    /**
+     * Operation listEnvironment
+     * 
+     * (shortcut to EnvironmentTask.listProjectsEnvironments)
+     * 
+     * @param string $project_id
+     * @return Environment[]
+     * @throws ApiException
+     */
+    public function listEnvironments(string $project_id): array
+    {
+        $this->refreshToken();
+        return $this->client->environment->listProjectsEnvironments($project_id);
     }
 }

@@ -4,15 +4,27 @@ namespace Upsun\Core\Tasks;
 
 use InvalidArgumentException;
 use OpenAPI\Client\ApiException;
+use OpenAPI\Client\apisgen\EnvironmentActivityApi;
 use OpenAPI\Client\apisgen\EnvironmentApi;
+use OpenAPI\Client\apisgen\EnvironmentBackupsApi;
+use OpenAPI\Client\apisgen\EnvironmentTypeApi;
+use OpenAPI\Client\apisgen\EnvironmentVariablesApi;
 use OpenAPI\Client\Model\AcceptedResponse;
+use OpenAPI\Client\Model\Activity;
+use OpenAPI\Client\Model\Backup;
 use OpenAPI\Client\Model\Environment;
 use OpenAPI\Client\Model\EnvironmentActivateInput;
+use OpenAPI\Client\Model\EnvironmentBackupInput;
 use OpenAPI\Client\Model\EnvironmentBranchInput;
 use OpenAPI\Client\Model\EnvironmentInitializeInput;
 use OpenAPI\Client\Model\EnvironmentMergeInput;
 use OpenAPI\Client\Model\EnvironmentPatch;
+use OpenAPI\Client\Model\EnvironmentRestoreInput;
 use OpenAPI\Client\Model\EnvironmentSynchronizeInput;
+use OpenAPI\Client\Model\EnvironmentType;
+use OpenAPI\Client\Model\EnvironmentVariable;
+use OpenAPI\Client\Model\EnvironmentVariableCreateInput;
+use OpenAPI\Client\Model\EnvironmentVariablePatch;
 use OpenAPI\Client\Model\Version;
 use OpenAPI\Client\Model\VersionCreateInput;
 use OpenAPI\Client\Model\VersionPatch;
@@ -20,15 +32,28 @@ use Upsun\UpsunClient;
 
 class EnvironmentTask extends TaskBase
 {
-    public EnvironmentApi $api;
+    public readonly EnvironmentApi $api;
+    public readonly EnvironmentActivityApi $activityApi;
+    public readonly EnvironmentBackupsApi $backupsApi;
+    public readonly EnvironmentTypeApi $typeApi;
+    public readonly EnvironmentVariablesApi $variablesApi;
+    
 
     public function __construct(
         public readonly UpsunClient $client,
     )
     {
         $this->api = new EnvironmentApi($this->client->apiClient, $this->client->apiConfig);
+        $this->activityApi = new EnvironmentActivityApi($this->client->apiClient, $this->client->apiConfig);
+        $this->backupsApi = new EnvironmentBackupsApi($this->client->apiClient, $this->client->apiConfig);
+        $this->typeApi = new EnvironmentTypeApi($this->client->apiClient, $this->client->apiConfig);
+        $this->variablesApi = new EnvironmentVariablesApi($this->client->apiClient, $this->client->apiConfig);
     }
 
+    /************** **************************/
+    /********* EnvironmentApi ****************/
+    /************** **************************/
+    
     /**
      * Operation activateEnvironment
      *
@@ -342,4 +367,277 @@ class EnvironmentTask extends TaskBase
         $version_patch = new VersionPatch($version_patch);
         return $this->api->updateProjectsEnvironmentsVersions($project_id, $environment_id, $version_id, $version_patch);
     }
+    
+    /************** **********************************/
+    /********* EnvironmentActivityApi ****************/
+    /************** **********************************/
+
+    /**
+     * Operation actionProjectsEnvironmentsActivitiesCancel
+     *
+     * Cancel an environment activity
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @param string $activity_id activity_id (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function actionProjectsEnvironmentsActivitiesCancel(string $project_id, string $environment_id, string $activity_id): AcceptedResponse
+    {
+        $this->refreshToken();
+        return $this->activityApi->actionProjectsEnvironmentsActivitiesCancel($project_id, $environment_id, $activity_id);
+    }
+
+    /**
+     * Operation getProjectsEnvironmentsActivities
+     *
+     * Get an environment activity log entry
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @param string $activity_id activity_id (required)
+     * @return Activity
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getProjectsEnvironmentsActivities(string $project_id, string $environment_id, string $activity_id): Activity
+    {
+        $this->refreshToken();
+        return $this->activityApi->getProjectsEnvironmentsActivities($project_id, $environment_id, $activity_id);
+    }
+
+    /**
+     * Operation listProjectsEnvironmentsActivities
+     *
+     * Get environment activity log
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @return Activity[]
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listProjectsEnvironmentsActivities(string $project_id, string $environment_id): array
+    {
+        $this->refreshToken();
+        return $this->activityApi->listProjectsEnvironmentsActivities($project_id, $environment_id);
+    }
+    
+    /************** *********************************/
+    /********* EnvironmentBackupsApi ****************/
+    /************** *********************************/
+
+    /**
+     * Operation backupEnvironment
+     *
+     * Create snapshot of environment
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @param array $environment_backup_input (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function backupEnvironment(string $project_id, string $environment_id, array $environment_backup_input): AcceptedResponse
+    {
+        $this->refreshToken();
+        $environment_backup_input = new EnvironmentBackupInput($environment_backup_input);
+        return $this->backupsApi->backupEnvironment($project_id, $environment_id, $environment_backup_input);
+    }
+
+    /**
+     * Operation deleteProjectsEnvironmentsBackups
+     *
+     * Delete an environment snapshot
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @param string $backup_id backup_id (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function deleteProjectsEnvironmentsBackups(string $project_id, string $environment_id, string $backup_id): AcceptedResponse
+    {
+        $this->refreshToken();
+        return $this->backupsApi->deleteProjectsEnvironmentsBackups($project_id, $environment_id, $backup_id);
+    }
+
+    /**
+     * Operation getProjectsEnvironmentsBackups
+     *
+     * Get an environment snapshot&#39;s info
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @param string $backup_id backup_id (required)
+     * @return Backup
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getProjectsEnvironmentsBackups(string $project_id, string $environment_id, string $backup_id): Backup
+    {
+        $this->refreshToken();
+        return $this->backupsApi->getProjectsEnvironmentsBackups($project_id, $environment_id, $backup_id);
+    }
+
+    /**
+     * Operation listProjectsEnvironmentsBackups
+     *
+     * Get an environment&#39;s snapshot list
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @return Backup[]
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listProjectsEnvironmentsBackups(string $project_id, string $environment_id): array
+    {
+        $this->refreshToken();
+        return $this->backupsApi->listProjectsEnvironmentsBackups($project_id, $environment_id);
+    }
+
+    /**
+     * Operation restoreBackup
+     *
+     * Restore an environment snapshot
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @param string $backup_id backup_id (required)
+     * @param array $environment_restore_input (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function restoreBackup(string $project_id, string $environment_id, string $backup_id, array $environment_restore_input): AcceptedResponse
+    {
+        $this->refreshToken();
+        $environment_restore_input = new EnvironmentRestoreInput($environment_restore_input);
+        return $this->backupsApi->restoreBackup($project_id, $environment_id, $backup_id, $environment_restore_input);
+    }
+    
+    /************** *******************************/
+    /********* EnvironmentTypesApi ****************/
+    /************** *******************************/
+
+    /**
+     * Operation getEnvironmentType
+     *
+     * Get environment type links
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_type_id environment_type_id (required)
+     * @return EnvironmentType
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getEnvironmentType(string $project_id, string $environment_type_id): EnvironmentType
+    {
+        $this->refreshToken();
+        return $this->typeApi->getEnvironmentType($project_id, $environment_type_id);
+    }
+
+    /**
+     * Operation listProjectsEnvironmentTypes
+     *
+     * Get environment types
+     *
+     * @param string $project_id project_id (required)
+     * @return EnvironmentType[]
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listProjectsEnvironmentTypes(string $project_id): array
+    {
+        $this->refreshToken();
+        return $this->typeApi->listProjectsEnvironmentTypes($project_id);
+    }
+    
+    /************** ***********************************/
+    /********* EnvironmentVariablesApi ****************/
+    /************** ***********************************/
+
+    /**
+     * Operation createProjectsEnvironmentsVariables
+     *
+     * Add an environment variable
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @param array $environment_variable_create_input (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function createProjectsEnvironmentsVariables(string $project_id, string $environment_id, array $environment_variable_create_input): AcceptedResponse
+    {
+        $this->refreshToken();
+        $environment_variable_create_input = new EnvironmentVariableCreateInput($environment_variable_create_input);
+        return $this->variablesApi->createProjectsEnvironmentsVariables($project_id, $environment_id, $environment_variable_create_input);
+    }
+
+    /**
+     * Operation deleteProjectsEnvironmentsVariables
+     *
+     * Delete an environment variable
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @param string $variable_id variable_id (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function deleteProjectsEnvironmentsVariables(string $project_id, string $environment_id, string $variable_id): AcceptedResponse
+    {
+        $this->refreshToken();
+        return $this->variablesApi->deleteProjectsEnvironmentsVariables($project_id, $environment_id, $variable_id);
+    }
+
+    /**
+     * Operation getProjectsEnvironmentsVariables
+     *
+     * Get an environment variable
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @param string $variable_id variable_id (required)
+     * @return EnvironmentVariable
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getProjectsEnvironmentsVariables(string $project_id, string $environment_id, string $variable_id): EnvironmentVariable
+    {
+        $this->refreshToken();
+        return $this->variablesApi->getProjectsEnvironmentsVariables($project_id, $environment_id, $variable_id);
+    }
+
+    /**
+     * Operation listProjectsEnvironmentsVariables
+     *
+     * Get list of environment variables
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @return EnvironmentVariable[]
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listProjectsEnvironmentsVariables(string $project_id, string $environment_id): array
+    {
+        $this->refreshToken();
+        return $this->variablesApi->listProjectsEnvironmentsVariables($project_id, $environment_id);
+    }
+
+    /**
+     * Operation updateProjectsEnvironmentsVariables
+     *
+     * Update an environment variable
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @param string $variable_id variable_id (required)
+     * @param array $environment_variable_patch (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function updateProjectsEnvironmentsVariables(string $project_id, string $environment_id, string $variable_id, array $environment_variable_patch): AcceptedResponse
+    {
+        $this->refreshToken();
+        $environment_variable_patch = new EnvironmentVariablePatch($environment_variable_patch);
+        return $this->variablesApi->updateProjectsEnvironmentsVariables($project_id, $environment_id, $variable_id, $environment_variable_patch);
+
+    }
+    
 }
