@@ -10,6 +10,7 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
 use InvalidArgumentException;
 use OpenAPI\Client\ApiException;
+use OpenAPI\Client\apisgen\InvoicesApi;
 use OpenAPI\Client\apisgen\OrganizationMembersApi;
 use OpenAPI\Client\apisgen\OrganizationProjectsApi;
 use OpenAPI\Client\apisgen\OrganizationsApi;
@@ -21,6 +22,8 @@ use OpenAPI\Client\Model\CreateOrgRequest;
 use OpenAPI\Client\Model\CreateOrgSubscriptionRequest;
 use OpenAPI\Client\Model\Error;
 use OpenAPI\Client\Model\EstimationObject;
+use OpenAPI\Client\Model\Invoice;
+use OpenAPI\Client\Model\ListOrgInvoices200Response;
 use OpenAPI\Client\Model\ListOrgMembers200Response;
 use OpenAPI\Client\Model\ListOrgProjects200Response;
 use OpenAPI\Client\Model\ListOrgs200Response;
@@ -51,6 +54,7 @@ class OrganizationTask extends TaskBase
     public SubscriptionsApi $subscriptionsApi;
     protected HeaderSelector $headerSelector;
 
+    public readonly InvoicesApi $invoicesApi;
     public function __construct(
         public readonly UpsunClient $client,
     )
@@ -60,6 +64,7 @@ class OrganizationTask extends TaskBase
         $this->projectsApi = new OrganizationProjectsApi($this->client->apiClient, $this->client->apiConfig);
         $this->membersApi = new OrganizationMembersApi($this->client->apiClient, $this->client->apiConfig);
         $this->subscriptionsApi = new SubscriptionsApi($this->client->apiClient, $this->client->apiConfig);
+        $this->invoicesApi = new InvoicesApi($this->client->apiClient, $this->client->apiConfig);
     }
 
 
@@ -603,11 +608,45 @@ class OrganizationTask extends TaskBase
         return $this->subscriptionsApi->updateOrgSubscription($organization_id, $subscription_id, $update_org_subscription_request);
     }
 
-    /************** *********************/
-    /********* Project functions ****************/
-    /************** *********************/
+    /************** ***********************************/
+    /********* InvoicesApi ************************/
+    /************** ***********************************/
 
+    /**
+     * Operation getOrgInvoice
+     *
+     * Get invoice
+     *
+     * @param string $invoice_id The ID of the invoice. (required)
+     * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
+     * @return Invoice|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getOrgInvoice(string $invoice_id, string $organization_id): Error|Invoice
+    {
+        $this->refreshToken();
+        return $this->invoicesApi->getOrgInvoice($invoice_id, $organization_id);
+    }
 
+    /**
+     * Operation listOrgInvoices
+     *
+     * List invoices
+     *
+     * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
+     * @param string|null $filter_status The status of the invoice. (optional)
+     * @param string|null $filter_type The invoice type. Use invoice for standard invoices, credit_memo for refund/credit invoices. (optional)
+     * @param string|null $filter_order_id The order id of Invoice. (optional)
+     * @param int|null $page Page to be displayed. Defaults to 1. (optional)
+     * @return ListOrgInvoices200Response|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listOrgInvoices($organization_id, string $filter_status = null, string $filter_type = null, string $filter_order_id = null, int $page = null): ListOrgInvoices200Response|Error
+    {
+        $this->refreshToken();
+        return $this->invoicesApi->listOrgInvoices($organization_id, $filter_status, $filter_type, $filter_order_id, $page);
+    }
+    
     /************** *********************/
     /********* Override ****************/
     /************** *********************/
