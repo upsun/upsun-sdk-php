@@ -25,6 +25,9 @@ use OpenAPI\Client\Model\DeploymentTargetPatch;
 use OpenAPI\Client\Model\Domain;
 use OpenAPI\Client\Model\DomainPatch;
 use OpenAPI\Client\Model\Environment;
+use OpenAPI\Client\Model\EnvironmentOperationInput;
+use OpenAPI\Client\Model\EnvironmentSourceOperation;
+use OpenAPI\Client\Model\EnvironmentSourceOperationInput;
 use OpenAPI\Client\Model\Error;
 use OpenAPI\Client\Model\Project;
 use OpenAPI\Client\Model\ProjectCapabilities;
@@ -38,6 +41,7 @@ use OpenAPI\Client\Model\ProjectVariablePatch;
 use OpenAPI\Client\Model\Ref;
 use OpenAPI\Client\Model\Subscription;
 use OpenAPI\Client\Model\Tree;
+use Symfony\Flex\Unpack\Operation;
 use Upsun\UpsunClient;
 
 class ProjectTask extends TaskBase
@@ -53,9 +57,11 @@ class ProjectTask extends TaskBase
     public readonly RepositoryApi $repositoryApi;
 
     public function __construct(
-        public readonly UpsunClient $client,
-        public readonly DomainTask $domainTask,
-        public readonly CertificateTask $certificateTask
+        public readonly UpsunClient         $client,
+        public readonly DomainTask          $domainTask,
+        public readonly CertificateTask     $certificateTask,
+        public readonly OperationTask       $runtimeOperationTask,
+        public readonly SourceOperationTask $sourceOperationTask
     )
     {
         $this->headerSelector = new HeaderSelector();
@@ -238,7 +244,7 @@ class ProjectTask extends TaskBase
         $project_settings_patch = new ProjectSettingsPatch($project_settings_patch);
         return $this->settingsApi->updateProjectsSettings($project_id, $project_settings_patch);
     }
-    
+
     /************** ******************************/
     /********* ProjectVariablesApi ****************/
     /************** ******************************/
@@ -529,7 +535,7 @@ class ProjectTask extends TaskBase
         $this->refreshToken();
         return $this->repositoryApi->listProjectsGitRefs($project_id);
     }
-    
+
     /************** ********************************/
     /********* DomainTask shortcuts ****************/
     /************** ********************************/
@@ -689,7 +695,28 @@ class ProjectTask extends TaskBase
     {
         return $this->certificateTask->updateProjectsCertificates($project_id, $certificate_id, $certificate_patch);
     }
-    
+
+    /************** ***********************************/
+    /********* OperationTask shortcuts ****************/
+    /************** ***********************************/
+
+    /**
+     * Operation runOperation
+     *
+     * Execute a runtime operation
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @param string $deployment_id deployment_id (required)
+     * @param array $environment_operation_input (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function runOperation(string $project_id, string $environment_id, string $deployment_id, array $environment_operation_input): AcceptedResponse
+    {
+        return $this->runtimeOperationTask->runOperation($project_id, $environment_id, $deployment_id, $environment_operation_input);
+    }
+
     /************** ***************************/
     /********* Custom function ****************/
     /************** ***************************/
@@ -713,9 +740,9 @@ class ProjectTask extends TaskBase
 
     /**
      * Operation listEnvironment
-     * 
+     *
      * (shortcut to EnvironmentTask.listProjectsEnvironments)
-     * 
+     *
      * @param string $project_id
      * @return Environment[]
      * @throws ApiException
@@ -725,6 +752,6 @@ class ProjectTask extends TaskBase
         $this->refreshToken();
         return $this->client->environment->listProjectsEnvironments($project_id);
     }
-    
-    
+
+
 }

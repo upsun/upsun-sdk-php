@@ -23,6 +23,7 @@ use OpenAPI\Client\Model\EnvironmentInitializeInput;
 use OpenAPI\Client\Model\EnvironmentMergeInput;
 use OpenAPI\Client\Model\EnvironmentPatch;
 use OpenAPI\Client\Model\EnvironmentRestoreInput;
+use OpenAPI\Client\Model\EnvironmentSourceOperation;
 use OpenAPI\Client\Model\EnvironmentSynchronizeInput;
 use OpenAPI\Client\Model\EnvironmentType;
 use OpenAPI\Client\Model\EnvironmentVariable;
@@ -46,7 +47,8 @@ class EnvironmentTask extends TaskBase
     public function __construct(
         public readonly UpsunClient $client,
         public readonly RouteTask   $routeTask,
-        public readonly DomainTask  $domainTask
+        public readonly DomainTask  $domainTask,
+        public readonly SourceOperationTask $sourceOperationTask
     )
     {
         $this->api = new EnvironmentApi($this->client->apiClient, $this->client->apiConfig);
@@ -849,6 +851,41 @@ class EnvironmentTask extends TaskBase
     {
         $this->refreshToken();
         return $this->deploymentApi->listProjectsEnvironmentsDeployments($project_id, $environment_id);
+    }
+
+    /************** *****************************************/
+    /********* SourceOperationTask shortcuts ****************/
+    /************** *****************************************/
+
+    /**
+     * Operation listProjectsEnvironmentsSourceOperations
+     *
+     * List source operations
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @return EnvironmentSourceOperation[]
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listProjectsEnvironmentsSourceOperations(string $project_id, string $environment_id): array
+    {
+        return $this->sourceOperationTask->listProjectsEnvironmentsSourceOperations($project_id, $environment_id);
+    }
+
+    /**
+     * Operation runSourceOperation
+     *
+     * Trigger a source operation
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @param array $environment_source_operation_input (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function runSourceOperation(string $project_id, string $environment_id, array $environment_source_operation_input): AcceptedResponse
+    {
+        return $this->sourceOperationTask->runSourceOperation($project_id, $environment_id, $environment_source_operation_input);
     }
     
     /************** ****************************/
