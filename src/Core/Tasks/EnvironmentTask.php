@@ -25,6 +25,7 @@ use OpenAPI\Client\Model\EnvironmentType;
 use OpenAPI\Client\Model\EnvironmentVariable;
 use OpenAPI\Client\Model\EnvironmentVariableCreateInput;
 use OpenAPI\Client\Model\EnvironmentVariablePatch;
+use OpenAPI\Client\Model\Route;
 use OpenAPI\Client\Model\Version;
 use OpenAPI\Client\Model\VersionCreateInput;
 use OpenAPI\Client\Model\VersionPatch;
@@ -41,6 +42,7 @@ class EnvironmentTask extends TaskBase
 
     public function __construct(
         public readonly UpsunClient $client,
+        public readonly RouteTask $routeTask
     )
     {
         $this->api = new EnvironmentApi($this->client->apiClient, $this->client->apiConfig);
@@ -639,6 +641,95 @@ class EnvironmentTask extends TaskBase
         return $this->variablesApi->updateProjectsEnvironmentsVariables($project_id, $environment_id, $variable_id, $environment_variable_patch);
     }
     
+    /************** ***********************/
+    /********* RoutingApi  ****************/
+    /************** ***********************/
+
+    /**
+     * Operation createProjectsEnvironmentsRoutes
+     *
+     * Create a new route
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @param array $route_create_input (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function createProjectsEnvironmentsRoutes(string $project_id, string $environment_id, array $route_create_input): AcceptedResponse
+    {
+        $this->refreshToken();
+        return $this->routeTask->createProjectsEnvironmentsRoutes($project_id, $environment_id, $route_create_input);
+    }
+
+    /**
+     * Operation deleteProjectsEnvironmentsRoutes
+     *
+     * Delete a route
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @param string $route_id route_id (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function deleteProjectsEnvironmentsRoutes(string $project_id, string $environment_id, string $route_id): AcceptedResponse
+    {
+        $this->refreshToken();
+        return $this->routeTask->deleteProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id);
+    }
+
+    /**
+     * Operation getProjectsEnvironmentsRoutes
+     *
+     * Get a route&#39;s info
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @param string $route_id route_id (required)
+     * @return Route
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getProjectsEnvironmentsRoutes(string $project_id, string $environment_id, string $route_id): Route
+    {
+        $this->refreshToken();
+        return $this->routeTask->getProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id);
+    }
+
+    /**
+     * Operation listProjectsEnvironmentsRoutes
+     *
+     * Get list of routes
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @return Route[]
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listProjectsEnvironmentsRoutes(string $project_id, string $environment_id): array
+    {
+        $this->refreshToken();
+        return $this->routeTask->listProjectsEnvironmentsRoutes($project_id, $environment_id);
+    }
+
+    /**
+     * Operation updateProjectsEnvironmentsRoutes
+     *
+     * Update a route
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @param string $route_id route_id (required)
+     * @param array $route_patch (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function updateProjectsEnvironmentsRoutes(string $project_id, string $environment_id, string $route_id, array $route_patch): AcceptedResponse
+    {
+        $this->refreshToken();
+        return $this->routeTask->updateProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id, $route_patch);
+    }
+
     /************** ****************************/
     /********* Custom function  ****************/
     /************** ****************************/
