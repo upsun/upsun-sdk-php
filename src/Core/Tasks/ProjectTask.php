@@ -11,10 +11,13 @@ use OpenAPI\Client\apisgen\ProjectApi;
 use OpenAPI\Client\apisgen\ProjectInvitationsApi;
 use OpenAPI\Client\apisgen\ProjectSettingsApi;
 use OpenAPI\Client\apisgen\ProjectVariablesApi;
+use OpenAPI\Client\apisgen\RepositoryApi;
 use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\Model\AcceptedResponse;
 use OpenAPI\Client\Model\Activity;
+use OpenAPI\Client\Model\Blob;
 use OpenAPI\Client\Model\Certificate;
+use OpenAPI\Client\Model\Commit;
 use OpenAPI\Client\Model\CreateProjectInviteRequest;
 use OpenAPI\Client\Model\DeploymentTarget;
 use OpenAPI\Client\Model\DeploymentTargetCreateInput;
@@ -32,7 +35,9 @@ use OpenAPI\Client\Model\ProjectSettingsPatch;
 use OpenAPI\Client\Model\ProjectVariable;
 use OpenAPI\Client\Model\ProjectVariableCreateInput;
 use OpenAPI\Client\Model\ProjectVariablePatch;
+use OpenAPI\Client\Model\Ref;
 use OpenAPI\Client\Model\Subscription;
+use OpenAPI\Client\Model\Tree;
 use Upsun\UpsunClient;
 
 class ProjectTask extends TaskBase
@@ -45,6 +50,7 @@ class ProjectTask extends TaskBase
     public readonly ProjectVariablesApi $variablesApi;
     public readonly ProjectActivityApi $activityApi;
     public readonly DeploymentTargetApi $deploymentTargetApi;
+    public readonly RepositoryApi $repositoryApi;
 
     public function __construct(
         public readonly UpsunClient $client,
@@ -59,6 +65,7 @@ class ProjectTask extends TaskBase
         $this->variablesApi = new ProjectVariablesApi($this->client->apiClient, $this->client->apiConfig);
         $this->activityApi = new ProjectActivityApi($this->client->apiClient, $this->client->apiConfig);
         $this->deploymentTargetApi = new DeploymentTargetApi($this->client->apiClient, $this->client->apiConfig);
+        $this->repositoryApi = new RepositoryApi($this->client->apiClient, $this->client->apiConfig);
     }
 
     /************** **********************/
@@ -438,11 +445,94 @@ class ProjectTask extends TaskBase
         $deployment_target_patch = new DeploymentTargetPatch($deployment_target_patch);
         return $this->deploymentTargetApi->updateProjectsDeployments($project_id, $deployment_target_configuration_id, $deployment_target_patch);
     }
+
+    /************** **************************/
+    /********* RepositoryApi  ****************/
+    /************** **************************/
+
+    /**
+     * Operation getProjectsGitBlobs
+     *
+     * Get a blob object
+     *
+     * @param string $project_id project_id (required)
+     * @param string $repository_blob_id repository_blob_id (required)
+     * @return Blob
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getProjectsGitBlobs(string $project_id, string $repository_blob_id): Blob
+    {
+        $this->refreshToken();
+        return $this->repositoryApi->getProjectsGitBlobs($project_id, $repository_blob_id);
+    }
+
+    /**
+     * Operation getProjectsGitCommits
+     *
+     * Get a commit object
+     *
+     * @param string $project_id project_id (required)
+     * @param string $repository_commit_id repository_commit_id (required)
+     * @return Commit
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getProjectsGitCommits(string $project_id, string $repository_commit_id): Commit
+    {
+        $this->refreshToken();
+        return $this->repositoryApi->getProjectsGitCommits($project_id, $repository_commit_id);
+    }
+
+    /**
+     * Operation getProjectsGitRefs
+     *
+     * Get a ref object
+     *
+     * @param string $project_id project_id (required)
+     * @param string $repository_ref_id repository_ref_id (required)
+     * @return Ref
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getProjectsGitRefs(string $project_id, string $repository_ref_id): Ref
+    {
+        $this->refreshToken();
+        return $this->repositoryApi->getProjectsGitRefs($project_id, $repository_ref_id);
+    }
+
+    /**
+     * Operation getProjectsGitTrees
+     *
+     * Get a tree object
+     *
+     * @param string $project_id project_id (required)
+     * @param string $repository_tree_id repository_tree_id (required)
+     * @return Tree
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getProjectsGitTrees(string $project_id, string $repository_tree_id): Tree
+    {
+        $this->refreshToken();
+        return $this->repositoryApi->getProjectsGitTrees($project_id, $repository_tree_id);
+    }
+
+
+    /**
+     * Operation listProjectsGitRefs
+     *
+     * Get list of repository refs
+     *
+     * @param string $project_id project_id (required)
+     * @return Ref[]
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listProjectsGitRefs($project_id): array
+    {
+        $this->refreshToken();
+        return $this->repositoryApi->listProjectsGitRefs($project_id);
+    }
     
     /************** ********************************/
     /********* DomainTask shortcuts ****************/
     /************** ********************************/
-
 
     /**
      * Operation createProjectsDomains
