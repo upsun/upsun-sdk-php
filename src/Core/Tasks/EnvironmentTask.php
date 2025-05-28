@@ -637,7 +637,11 @@ class EnvironmentTask extends TaskBase
         $this->refreshToken();
         $environment_variable_patch = new EnvironmentVariablePatch($environment_variable_patch);
         return $this->variablesApi->updateProjectsEnvironmentsVariables($project_id, $environment_id, $variable_id, $environment_variable_patch);
-
     }
+    
+    /************** ****************************/
+    /********* Custom function  ****************/
+    /************** ****************************/
+    
     
 }

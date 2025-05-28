@@ -4,6 +4,7 @@ namespace Upsun\Core\Tasks;
 
 use InvalidArgumentException;
 use OpenAPI\Client\ApiException;
+use OpenAPI\Client\apisgen\DeploymentTargetApi;
 use OpenAPI\Client\apisgen\ProjectActivityApi;
 use OpenAPI\Client\apisgen\ProjectApi;
 use OpenAPI\Client\apisgen\ProjectInvitationsApi;
@@ -13,6 +14,9 @@ use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\Model\AcceptedResponse;
 use OpenAPI\Client\Model\Activity;
 use OpenAPI\Client\Model\CreateProjectInviteRequest;
+use OpenAPI\Client\Model\DeploymentTarget;
+use OpenAPI\Client\Model\DeploymentTargetCreateInput;
+use OpenAPI\Client\Model\DeploymentTargetPatch;
 use OpenAPI\Client\Model\Environment;
 use OpenAPI\Client\Model\Error;
 use OpenAPI\Client\Model\Project;
@@ -36,6 +40,7 @@ class ProjectTask extends TaskBase
     public readonly ProjectSettingsApi $settingsApi;
     public readonly ProjectVariablesApi $variablesApi;
     public readonly ProjectActivityApi $activityApi;
+    public readonly DeploymentTargetApi $deploymentTargetApi;
 
     public function __construct(
         public readonly UpsunClient $client,
@@ -339,6 +344,92 @@ class ProjectTask extends TaskBase
     {
         $this->refreshToken();
         return $this->activityApi->listProjectsActivities($project_id);
+    }
+
+    /************** **********************************/
+    /********* DeploymentTargetApi  ****************/
+    /************** **********************************/
+
+    /**
+     * Operation createProjectsDeployments
+     *
+     * Create a project deployment target
+     *
+     * @param string $project_id project_id (required)
+     * @param array $deployment_target_create_input (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function createProjectsDeployments(string $project_id, array $deployment_target_create_input): AcceptedResponse
+    {
+        $this->refreshToken();
+        $deployment_target_create_input = new DeploymentTargetCreateInput($deployment_target_create_input);
+        return $this->deploymentTargetApi->createProjectsDeployments($project_id, $deployment_target_create_input);
+    }
+
+    /**
+     * Operation deleteProjectsDeployments
+     *
+     * Delete a single project deployment target
+     *
+     * @param string $project_id project_id (required)
+     * @param string $deployment_target_configuration_id deployment_target_configuration_id (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function deleteProjectsDeployments(string $project_id, string $deployment_target_configuration_id): AcceptedResponse
+    {
+        $this->refreshToken();
+        return $this->deploymentTargetApi->deleteProjectsDeployments($project_id, $deployment_target_configuration_id);
+    }
+
+    /**
+     * Operation getProjectsDeployments
+     *
+     * Get a single project deployment target
+     *
+     * @param string $project_id project_id (required)
+     * @param string $deployment_target_configuration_id deployment_target_configuration_id (required)
+     * @return DeploymentTarget
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getProjectsDeployments(string $project_id, string $deployment_target_configuration_id): DeploymentTarget
+    {
+        $this->refreshToken();
+        return $this->deploymentTargetApi->getProjectsDeployments($project_id, $deployment_target_configuration_id);
+    }
+
+    /**
+     * Operation listProjectsDeployments
+     *
+     * Get project deployment target info
+     *
+     * @param string $project_id project_id (required)
+     * @return DeploymentTarget[]
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listProjectsDeployments(string $project_id): array
+    {
+        $this->refreshToken();
+        return $this->deploymentTargetApi->listProjectsDeployments($project_id);
+    }
+
+    /**
+     * Operation updateProjectsDeployments
+     *
+     * Update a project deployment
+     *
+     * @param string $project_id project_id (required)
+     * @param string $deployment_target_configuration_id deployment_target_configuration_id (required)
+     * @param array $deployment_target_patch (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function updateProjectsDeployments(string $project_id, string $deployment_target_configuration_id, array $deployment_target_patch): AcceptedResponse
+    {
+        $this->refreshToken();
+        $deployment_target_patch = new DeploymentTargetPatch($deployment_target_patch);
+        return $this->deploymentTargetApi->updateProjectsDeployments($project_id, $deployment_target_configuration_id, $deployment_target_patch);
     }
     
     /************** ***************************/
