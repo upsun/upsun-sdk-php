@@ -5,11 +5,13 @@ namespace Upsun\Core\Tasks;
 use InvalidArgumentException;
 use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\APITokensApi;
+use OpenAPI\Client\apisgen\ConnectionsApi;
 use OpenAPI\Client\apisgen\UserAccessApi;
 use OpenAPI\Client\apisgen\UserProfilesApi;
 use OpenAPI\Client\apisgen\UsersApi;
 use OpenAPI\Client\Model\Address;
 use OpenAPI\Client\Model\APIToken;
+use OpenAPI\Client\Model\Connection;
 use OpenAPI\Client\Model\CreateApiTokenRequest;
 use OpenAPI\Client\Model\CreateProfilePicture200Response;
 use OpenAPI\Client\Model\DomainPatch;
@@ -38,6 +40,7 @@ class UserTask extends TaskBase
   public readonly UserProfilesApi $profilesApi;
   public readonly UserAccessApi $accessApi;
   public readonly APITokensApi $tokensApi;
+  public readonly ConnectionsApi $connectionsApi;
 
   public function __construct(
     public readonly UpsunClient $client,
@@ -47,6 +50,7 @@ class UserTask extends TaskBase
     $this->profilesApi = new UserProfilesApi($this->client->apiClient, $this->client->apiConfig);
     $this->accessApi = new UserAccessApi($this->client->apiClient, $this->client->apiConfig);
     $this->tokensApi = new APITokensApi($this->client->apiClient, $this->client->apiConfig);
+    $this->connectionsApi = new ConnectionsApi($this->client->apiClient, $this->client->apiConfig);
   }
 
   /************** ********************/
@@ -502,9 +506,9 @@ class UserTask extends TaskBase
     return $this->profilesApi->updateProfile($user_id, $update_profile_request);
   }
 
-  /************** ****************************/
+  /************** ************************/
   /********* APITokensApi ****************/
-  /************** ****************************/
+  /************** ************************/
 
   /**
    * Operation createApiToken
@@ -568,6 +572,57 @@ class UserTask extends TaskBase
   {
     $this->refreshToken();
     return $this->tokensApi->createApiToken($user_id);
+  }
+  
+  /************** **************************/
+  /********* ConnectionsApi ****************/
+  /************** **************************/
+
+  /**
+   * Operation deleteLoginConnection
+   *
+   * Delete a federated login connection
+   *
+   * @param string $provider The name of the federation provider. (required)
+   * @param string $user_id The ID of the user. (required)
+   * @return void
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function deleteLoginConnection(string $provider, string $user_id): void
+  {
+    $this->refreshToken();
+    $this->connectionsApi->deleteLoginConnection($provider, $user_id);
+  }
+
+  /**
+   * Operation getLoginConnection
+   *
+   * Get a federated login connection
+   *
+   * @param string $provider The name of the federation provider. (required)
+   * @param string $user_id The ID of the user. (required)
+   * @return Connection|Error
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function getLoginConnection(string $provider, string $user_id): Error|Connection
+  {
+    $this->refreshToken();
+    return $this->connectionsApi->getLoginConnection($provider, $user_id);
+  }
+
+  /**
+   * Operation listLoginConnections
+   *
+   * List federated login connections
+   *
+   * @param string $user_id The ID of the user. (required)
+   * @return Connection[]|Error
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function listLoginConnections($user_id): array|Error
+  {
+    $this->refreshToken();
+    return $this->connectionsApi->listLoginConnections($user_id);
   }
   
   /************** ***************************/
