@@ -12,12 +12,14 @@ use InvalidArgumentException;
 use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\InvoicesApi;
 use OpenAPI\Client\apisgen\MFAApi;
+use OpenAPI\Client\apisgen\OrdersApi;
 use OpenAPI\Client\apisgen\OrganizationMembersApi;
 use OpenAPI\Client\apisgen\OrganizationProjectsApi;
 use OpenAPI\Client\apisgen\OrganizationsApi;
 use OpenAPI\Client\apisgen\SubscriptionsApi;
 use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\Model\CanCreateNewOrgSubscription200Response;
+use OpenAPI\Client\Model\CreateAuthorizationCredentials200Response;
 use OpenAPI\Client\Model\CreateOrgMemberRequest;
 use OpenAPI\Client\Model\CreateOrgRequest;
 use OpenAPI\Client\Model\CreateOrgSubscriptionRequest;
@@ -26,10 +28,12 @@ use OpenAPI\Client\Model\EstimationObject;
 use OpenAPI\Client\Model\Invoice;
 use OpenAPI\Client\Model\ListOrgInvoices200Response;
 use OpenAPI\Client\Model\ListOrgMembers200Response;
+use OpenAPI\Client\Model\ListOrgOrders200Response;
 use OpenAPI\Client\Model\ListOrgProjects200Response;
 use OpenAPI\Client\Model\ListOrgs200Response;
 use OpenAPI\Client\Model\ListOrgSubscriptions200Response;
 use OpenAPI\Client\Model\ListUserOrgs200Response;
+use OpenAPI\Client\Model\Order;
 use OpenAPI\Client\Model\Organization;
 use OpenAPI\Client\Model\OrganizationMember;
 use OpenAPI\Client\Model\OrganizationMFAEnforcement;
@@ -60,6 +64,8 @@ class OrganizationTask extends TaskBase
 
     public readonly InvoicesApi $invoicesApi;
     public readonly MFAApi $mfaApi;
+    public readonly OrdersApi $ordersApi;
+
     public function __construct(
         public readonly UpsunClient $client,
     )
@@ -71,8 +77,9 @@ class OrganizationTask extends TaskBase
         $this->subscriptionsApi = new SubscriptionsApi($this->client->apiClient, $this->client->apiConfig);
         $this->invoicesApi = new InvoicesApi($this->client->apiClient, $this->client->apiConfig);
         $this->mfaApi = new MFAApi($this->client->apiClient, $this->client->apiConfig);
+        $this->ordersApi = new OrdersApi($this->client->apiClient, $this->client->apiConfig);
     }
-    
+
     /************** ***********************************/
     /********* OrganizationApi ************************/
     /************** ***********************************/
@@ -94,7 +101,7 @@ class OrganizationTask extends TaskBase
         $create_org_request = new CreateOrgRequest($create_org_data);
         return $this->api->createOrg($create_org_request);
     }
-    
+
     /**
      * Operation deleteOrg
      *
@@ -202,6 +209,7 @@ class OrganizationTask extends TaskBase
 //        dd($this->client->user->me()->getId());
         return $this->listUserOrgs($this->client->user->me()->getId(), $filter_id, $filter_vendor, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
     }
+
     /**
      * Operation updateOrg
      *
@@ -383,7 +391,6 @@ class OrganizationTask extends TaskBase
         $this->refreshToken();
         $this->membersApi->deleteOrgMember($organization_id, $user_id);
     }
-
 
     /************** ************************************/
     /********* SubscriptionsApi ************************/
@@ -612,7 +619,7 @@ class OrganizationTask extends TaskBase
         $update_org_subscription_request = new UpdateOrgSubscriptionRequest($update_org_subscription_data);
         return $this->subscriptionsApi->updateOrgSubscription($organization_id, $subscription_id, $update_org_subscription_request);
     }
-    
+
     /************** **************************/
     /********* MFAApi ************************/
     /************** **************************/
@@ -656,7 +663,7 @@ class OrganizationTask extends TaskBase
      * @return OrganizationMFAEnforcement|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getOrgMfaEnforcement(string $organization_id)
+    public function getOrgMfaEnforcement(string $organization_id): Error|OrganizationMFAEnforcement
     {
         $this->refreshToken();
         return $this->mfaApi->getOrgMfaEnforcement($organization_id);
@@ -678,8 +685,8 @@ class OrganizationTask extends TaskBase
         $send_org_mfa_reminders_request = new SendOrgMfaRemindersRequest($send_org_mfa_reminders_request);
         return $this->mfaApi->sendOrgMfaReminders($organization_id, $send_org_mfa_reminders_request);
     }
-    
-    
+
+
     /************** *******************************/
     /********* InvoicesApi ************************/
     /************** *******************************/
@@ -713,16 +720,86 @@ class OrganizationTask extends TaskBase
      * @return ListOrgInvoices200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listOrgInvoices($organization_id, string $filter_status = null, string $filter_type = null, string $filter_order_id = null, int $page = null): ListOrgInvoices200Response|Error
+    public function listOrgInvoices(string $organization_id, string $filter_status = null, string $filter_type = null, string $filter_order_id = null, int $page = null): ListOrgInvoices200Response|Error
     {
         $this->refreshToken();
         return $this->invoicesApi->listOrgInvoices($organization_id, $filter_status, $filter_type, $filter_order_id, $page);
     }
     
+    /************** *****************************/
+    /********* OrdersApi ************************/
+    /************** *****************************/
+
+    /**
+     * Operation createAuthorizationCredentials
+     *
+     * Create confirmation credentials for 3D-Secure
+     *
+     * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
+     * @param string $order_id The ID of the order. (required)
+     * @return CreateAuthorizationCredentials200Response|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function createAuthorizationCredentials(string $organization_id, string $order_id): CreateAuthorizationCredentials200Response|Error
+    {
+        $this->refreshToken();
+        return $this->ordersApi->createAuthorizationCredentials($organization_id, $order_id);
+    }
+
+    /**
+     * Operation downloadInvoice
+     *
+     * Download an invoice.
+     *
+     * @param string $token JWT for invoice. (required)
+     * @return void
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function downloadInvoice(string $token): void
+    {
+        $this->refreshToken();
+        $this->ordersApi->downloadInvoice($token);
+    }
+
+    /**
+     * Operation getOrgOrder
+     *
+     * Get order
+     *
+     * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
+     * @param string $order_id The ID of the order. (required)
+     * @param string|null $mode The output mode. (optional)
+     * @return Order|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getOrgOrder(string $organization_id, string $order_id, string $mode = null): Error|Order
+    {
+        $this->refreshToken();
+        return $this->ordersApi->getOrgOrder($organization_id, $order_id, $mode);
+    }
+
+    /**
+     * Operation listOrgOrders
+     *
+     * List orders
+     *
+     * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
+     * @param string|null $filter_status The status of the order. (optional)
+     * @param int|null $filter_total The total of the order. (optional)
+     * @param int|null $page Page to be displayed. Defaults to 1. (optional)
+     * @param string|null $mode The output mode. (optional)
+     * @return ListOrgOrders200Response|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listOrgOrders(string $organization_id, string $filter_status = null, int $filter_total = null, int $page = null, string $mode = null): ListOrgOrders200Response|Error
+    {
+        $this->refreshToken();
+        return $this->ordersApi->listOrgOrders($organization_id, $filter_status, $filter_total, $page, $mode);
+    }
+    
     /************** *********************/
     /********* Override ****************/
     /************** *********************/
-
 
     /**
      * Activate addons userManagement on organization $organizationId
