@@ -13,6 +13,7 @@ use OpenAPI\Client\apisgen\ProjectVariablesApi;
 use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\Model\AcceptedResponse;
 use OpenAPI\Client\Model\Activity;
+use OpenAPI\Client\Model\Certificate;
 use OpenAPI\Client\Model\CreateProjectInviteRequest;
 use OpenAPI\Client\Model\DeploymentTarget;
 use OpenAPI\Client\Model\DeploymentTargetCreateInput;
@@ -46,7 +47,8 @@ class ProjectTask extends TaskBase
 
     public function __construct(
         public readonly UpsunClient $client,
-        public readonly DomainTask $domainTask
+        public readonly DomainTask $domainTask,
+        public readonly CertificateTask $certificateTask
     )
     {
         $this->headerSelector = new HeaderSelector();
@@ -514,6 +516,86 @@ class ProjectTask extends TaskBase
     public function updateProjectsDomains(string $project_id, string $domain_id, array $domain_patch): AcceptedResponse
     {
         return $this->domainTask->updateProjectsDomains($project_id, $domain_id, $domain_patch);
+    }
+
+    /************** *************************************/
+    /********* CertificateTask shortcuts ****************/
+    /************** *************************************/
+
+    /**
+     * Operation createProjectsCertificates
+     *
+     * Add an SSL certificate
+     *
+     * @param string $project_id project_id (required)
+     * @param array $certificate_create_input (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function createProjectsCertificates(string $project_id, array $certificate_create_input): AcceptedResponse
+    {
+        return $this->certificateTask->createProjectsCertificates($project_id, $certificate_create_input);
+    }
+
+
+    /**
+     * Operation deleteProjectsCertificates
+     *
+     * Delete an SSL certificate
+     *
+     * @param string $project_id project_id (required)
+     * @param string $certificate_id certificate_id (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function deleteProjectsCertificates(string $project_id, string $certificate_id): AcceptedResponse
+    {
+        return $this->certificateTask->deleteProjectsCertificates($project_id, $certificate_id);
+    }
+
+    /**
+     * Operation getProjectsCertificates
+     *
+     * Get an SSL certificate
+     *
+     * @param string $project_id project_id (required)
+     * @param string $certificate_id certificate_id (required)
+     * @return Certificate
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getProjectsCertificates(string $project_id, string $certificate_id): Certificate
+    {
+        return $this->certificateTask->getProjectsCertificates($project_id, $certificate_id);
+    }
+
+    /**
+     * Operation listProjectsCertificates
+     *
+     * Get list of SSL certificates
+     *
+     * @param string $project_id project_id (required)
+     * @return Certificate[]
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listProjectsCertificates(string $project_id): array
+    {
+        return $this->certificateTask->listProjectsCertificates($project_id);
+    }
+
+    /**
+     * Operation updateProjectsCertificates
+     *
+     * Update an SSL certificate
+     *
+     * @param string $project_id project_id (required)
+     * @param string $certificate_id certificate_id (required)
+     * @param array $certificate_patch (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function updateProjectsCertificates(string $project_id, string $certificate_id, array $certificate_patch): AcceptedResponse
+    {
+        return $this->certificateTask->updateProjectsCertificates($project_id, $certificate_id, $certificate_patch);
     }
     
     /************** ***************************/
