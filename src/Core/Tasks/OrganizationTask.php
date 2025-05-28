@@ -11,6 +11,7 @@ use GuzzleHttp\RequestOptions;
 use InvalidArgumentException;
 use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\InvoicesApi;
+use OpenAPI\Client\apisgen\MFAApi;
 use OpenAPI\Client\apisgen\OrganizationMembersApi;
 use OpenAPI\Client\apisgen\OrganizationProjectsApi;
 use OpenAPI\Client\apisgen\OrganizationsApi;
@@ -31,7 +32,10 @@ use OpenAPI\Client\Model\ListOrgSubscriptions200Response;
 use OpenAPI\Client\Model\ListUserOrgs200Response;
 use OpenAPI\Client\Model\Organization;
 use OpenAPI\Client\Model\OrganizationMember;
+use OpenAPI\Client\Model\OrganizationMFAEnforcement;
 use OpenAPI\Client\Model\OrganizationProject;
+use OpenAPI\Client\Model\SendOrgMfaReminders200ResponseValue;
+use OpenAPI\Client\Model\SendOrgMfaRemindersRequest;
 use OpenAPI\Client\Model\Subscription;
 use OpenAPI\Client\Model\SubscriptionCurrentUsageObject;
 use OpenAPI\Client\Model\UpdateOrgMemberRequest;
@@ -55,6 +59,7 @@ class OrganizationTask extends TaskBase
     protected HeaderSelector $headerSelector;
 
     public readonly InvoicesApi $invoicesApi;
+    public readonly MFAApi $mfaApi;
     public function __construct(
         public readonly UpsunClient $client,
     )
@@ -65,9 +70,9 @@ class OrganizationTask extends TaskBase
         $this->membersApi = new OrganizationMembersApi($this->client->apiClient, $this->client->apiConfig);
         $this->subscriptionsApi = new SubscriptionsApi($this->client->apiClient, $this->client->apiConfig);
         $this->invoicesApi = new InvoicesApi($this->client->apiClient, $this->client->apiConfig);
+        $this->mfaApi = new MFAApi($this->client->apiClient, $this->client->apiConfig);
     }
-
-
+    
     /************** ***********************************/
     /********* OrganizationApi ************************/
     /************** ***********************************/
@@ -607,10 +612,77 @@ class OrganizationTask extends TaskBase
         $update_org_subscription_request = new UpdateOrgSubscriptionRequest($update_org_subscription_data);
         return $this->subscriptionsApi->updateOrgSubscription($organization_id, $subscription_id, $update_org_subscription_request);
     }
+    
+    /************** **************************/
+    /********* MFAApi ************************/
+    /************** **************************/
 
-    /************** ***********************************/
+    /**
+     * Operation disableOrgMfaEnforcement
+     *
+     * Disable organization MFA enforcement
+     *
+     * @param string $organization_id The ID of the organization. (required)
+     * @return void
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function disableOrgMfaEnforcement(string $organization_id): void
+    {
+        $this->refreshToken();
+        $this->mfaApi->disableOrgMfaEnforcement($organization_id);
+    }
+
+    /**
+     * Operation enableOrgMfaEnforcement
+     *
+     * Enable organization MFA enforcement
+     *
+     * @param string $organization_id The ID of the organization. (required)
+     * @return void
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function enableOrgMfaEnforcement(string $organization_id): void
+    {
+        $this->refreshToken();
+        $this->mfaApi->disableOrgMfaEnforcement($organization_id);
+    }
+
+    /**
+     * Operation getOrgMfaEnforcement
+     *
+     * Get organization MFA settings
+     *
+     * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
+     * @return OrganizationMFAEnforcement|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getOrgMfaEnforcement(string $organization_id)
+    {
+        $this->refreshToken();
+        return $this->mfaApi->getOrgMfaEnforcement($organization_id);
+    }
+
+    /**
+     * Operation sendOrgMfaReminders
+     *
+     * Send MFA reminders to organization members
+     *
+     * @param string $organization_id The ID of the organization. (required)
+     * @param array|null $send_org_mfa_reminders_request send_org_mfa_reminders_request (optional)
+     * @return array<string,SendOrgMfaReminders200ResponseValue>|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function sendOrgMfaReminders(string $organization_id, array $send_org_mfa_reminders_request = null): Error|array
+    {
+        $this->refreshToken();
+        $send_org_mfa_reminders_request = new SendOrgMfaRemindersRequest($send_org_mfa_reminders_request);
+        return $this->mfaApi->sendOrgMfaReminders($organization_id, $send_org_mfa_reminders_request);
+    }
+    
+    
+    /************** *******************************/
     /********* InvoicesApi ************************/
-    /************** ***********************************/
+    /************** *******************************/
 
     /**
      * Operation getOrgInvoice
