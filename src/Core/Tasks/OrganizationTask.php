@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use DateTime;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
@@ -17,6 +18,7 @@ use OpenAPI\Client\apisgen\OrganizationMembersApi;
 use OpenAPI\Client\apisgen\OrganizationProjectsApi;
 use OpenAPI\Client\apisgen\OrganizationsApi;
 use OpenAPI\Client\apisgen\ProfilesApi;
+use OpenAPI\Client\apisgen\RecordsApi;
 use OpenAPI\Client\apisgen\SubscriptionsApi;
 use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\Model\Address;
@@ -31,9 +33,11 @@ use OpenAPI\Client\Model\Invoice;
 use OpenAPI\Client\Model\ListOrgInvoices200Response;
 use OpenAPI\Client\Model\ListOrgMembers200Response;
 use OpenAPI\Client\Model\ListOrgOrders200Response;
+use OpenAPI\Client\Model\ListOrgPlanRecords200Response;
 use OpenAPI\Client\Model\ListOrgProjects200Response;
 use OpenAPI\Client\Model\ListOrgs200Response;
 use OpenAPI\Client\Model\ListOrgSubscriptions200Response;
+use OpenAPI\Client\Model\ListOrgUsageRecords200Response;
 use OpenAPI\Client\Model\ListUserOrgs200Response;
 use OpenAPI\Client\Model\Order;
 use OpenAPI\Client\Model\Organization;
@@ -70,6 +74,7 @@ class OrganizationTask extends TaskBase
     public readonly MFAApi $mfaApi;
     public readonly OrdersApi $ordersApi;
     public readonly ProfilesApi $profilesApi;
+    public readonly RecordsApi	$recordsApi;
 
     public function __construct(
         public readonly UpsunClient $client,
@@ -84,6 +89,7 @@ class OrganizationTask extends TaskBase
         $this->mfaApi = new MFAApi($this->client->apiClient, $this->client->apiConfig);
         $this->ordersApi = new OrdersApi($this->client->apiClient, $this->client->apiConfig);
         $this->profilesApi = new ProfilesApi($this->client->apiClient, $this->client->apiConfig);
+        $this->recordsApi = new RecordsApi($this->client->apiClient, $this->client->apiConfig);
     }
 
     /************** ***********************************/
@@ -868,6 +874,53 @@ class OrganizationTask extends TaskBase
         $this->refreshToken();
         $update_org_profile_request = new UpdateOrgProfileRequest($update_org_profile_request);
         return $this->profilesApi->updateOrgAddress($organization_id, $update_org_profile_request);
+    }
+
+    /************** ******************************/
+    /********* RecordsApi ************************/
+    /************** ******************************/
+
+    /**
+     * Operation listOrgPlanRecords
+     *
+     * List plan records
+     *
+     * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
+     * @param string|null $filter_subscription_id The ID of the subscription (optional)
+     * @param string|null $filter_plan The plan type of the subscription. (optional)
+     * @param DateTime|null $filter_status The status of the plan record. (optional)
+     * @param DateTime|null $filter_start The start of the observation period for the record. E.g. filter[start]&#x3D;2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01 (optional)
+     * @param DateTime|null $filter_end The end of the observation period for the record. E.g. filter[end]&#x3D;2018-01-01 will display all records that were active on (i.e. they started before) 2018-01-01 (optional)
+     * @param DateTime|null $filter_started_at The record&#39;s start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]&#x3D;2020-01-01&amp;filter[started_at][operator]&#x3D;&gt; (optional)
+     * @param DateTime|null $filter_ended_at The record&#39;s end timestamp. You can use this filter to list records ended after, or before a certain time. E.g. filter[ended_at][value]&#x3D;2020-01-01&amp;filter[ended_at][operator]&#x3D;&gt; (optional)
+     * @param int|null $page Page to be displayed. Defaults to 1. (optional)
+     * @return ListOrgPlanRecords200Response|Error|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listOrgPlanRecords(string $organization_id, string $filter_subscription_id = null, string $filter_plan = null, DateTime $filter_status = null, DateTime $filter_start = null, DateTime  $filter_end = null, DateTime $filter_started_at = null, DateTime $filter_ended_at = null, int $page = null): Error|ListOrgPlanRecords200Response
+    {
+        $this->refreshToken();
+        return $this->recordsApi->listOrgPlanRecords($organization_id, $filter_subscription_id, $filter_plan, $filter_status, $filter_start, $filter_end, $filter_started_at, $filter_ended_at, $page);
+    }
+
+    /**
+     * Operation listOrgUsageRecords
+     *
+     * List usage records
+     *
+     * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
+     * @param string|null $filter_subscription_id The ID of the subscription (optional)
+     * @param string|null $filter_usage_group Filter records by the type of usage. (optional)
+     * @param DateTime|null $filter_start The start of the observation period for the record. E.g. filter[start]&#x3D;2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01 (optional)
+     * @param DateTime|null $filter_started_at The record&#39;s start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]&#x3D;2020-01-01&amp;filter[started_at][operator]&#x3D;&gt; (optional)
+     * @param int|null $page Page to be displayed. Defaults to 1. (optional)
+     * @return ListOrgUsageRecords200Response|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listOrgUsageRecords(string $organization_id, string $filter_subscription_id = null, string $filter_usage_group = null, DateTime $filter_start = null, DateTime $filter_started_at = null, int $page = null): Error|ListOrgUsageRecords200Response
+    {
+        $this->refreshToken();
+        return $this->recordsApi->listOrgUsageRecords($organization_id, $filter_subscription_id, $filter_usage_group, $filter_start, $filter_started_at, $page);
     }
     
     /************** *********************/
