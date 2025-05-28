@@ -4,6 +4,7 @@ namespace Upsun\Core\Tasks;
 
 use InvalidArgumentException;
 use OpenAPI\Client\ApiException;
+use OpenAPI\Client\apisgen\DeploymentApi;
 use OpenAPI\Client\apisgen\EnvironmentActivityApi;
 use OpenAPI\Client\apisgen\EnvironmentApi;
 use OpenAPI\Client\apisgen\EnvironmentBackupsApi;
@@ -12,6 +13,7 @@ use OpenAPI\Client\apisgen\EnvironmentVariablesApi;
 use OpenAPI\Client\Model\AcceptedResponse;
 use OpenAPI\Client\Model\Activity;
 use OpenAPI\Client\Model\Backup;
+use OpenAPI\Client\Model\Deployment;
 use OpenAPI\Client\Model\Domain;
 use OpenAPI\Client\Model\Environment;
 use OpenAPI\Client\Model\EnvironmentActivateInput;
@@ -39,7 +41,7 @@ class EnvironmentTask extends TaskBase
     public readonly EnvironmentBackupsApi $backupsApi;
     public readonly EnvironmentTypeApi $typeApi;
     public readonly EnvironmentVariablesApi $variablesApi;
-
+    public readonly DeploymentApi $deploymentApi;
 
     public function __construct(
         public readonly UpsunClient $client,
@@ -52,6 +54,7 @@ class EnvironmentTask extends TaskBase
         $this->backupsApi = new EnvironmentBackupsApi($this->client->apiClient, $this->client->apiConfig);
         $this->typeApi = new EnvironmentTypeApi($this->client->apiClient, $this->client->apiConfig);
         $this->variablesApi = new EnvironmentVariablesApi($this->client->apiClient, $this->client->apiConfig);
+        $this->deploymentApi = new DeploymentApi($this->client->apiClient, $this->client->apiConfig);
     }
 
     /************** **************************/
@@ -809,6 +812,43 @@ class EnvironmentTask extends TaskBase
     public function updateProjectsEnvironmentsDomains(string $project_id, string $environment_id, string $domain_id, array $domain_patch): AcceptedResponse
     {
         return $this->domainTask->updateProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id, $domain_patch);
+    }
+
+    /************** *************************/
+    /********* DeploymentApi ****************/
+    /************** *************************/
+
+    /**
+     * Operation getProjectsEnvironmentsDeployments
+     *
+     * Get a single environment deployment
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @param string $deployment_id deployment_id (required)
+     * @return Deployment
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getProjectsEnvironmentsDeployments(string $project_id, string $environment_id, string $deployment_id): Deployment
+    {
+        $this->refreshToken();
+        return $this->deploymentApi->getProjectsEnvironmentsDeployments($project_id, $environment_id, $deployment_id);
+    }
+
+    /**
+     * Operation listProjectsEnvironmentsDeployments
+     *
+     * Get an environment&#39;s deployment information
+     *
+     * @param string $project_id project_id (required)
+     * @param string $environment_id environment_id (required)
+     * @return Deployment[]
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listProjectsEnvironmentsDeployments(string $project_id, string $environment_id): array
+    {
+        $this->refreshToken();
+        return $this->deploymentApi->listProjectsEnvironmentsDeployments($project_id, $environment_id);
     }
     
     /************** ****************************/

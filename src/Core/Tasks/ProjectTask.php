@@ -4,6 +4,7 @@ namespace Upsun\Core\Tasks;
 
 use InvalidArgumentException;
 use OpenAPI\Client\ApiException;
+use OpenAPI\Client\apisgen\DeploymentApi;
 use OpenAPI\Client\apisgen\DeploymentTargetApi;
 use OpenAPI\Client\apisgen\ProjectActivityApi;
 use OpenAPI\Client\apisgen\ProjectApi;
@@ -57,6 +58,7 @@ class ProjectTask extends TaskBase
         $this->settingsApi = new ProjectSettingsApi($this->client->apiClient, $this->client->apiConfig);
         $this->variablesApi = new ProjectVariablesApi($this->client->apiClient, $this->client->apiConfig);
         $this->activityApi = new ProjectActivityApi($this->client->apiClient, $this->client->apiConfig);
+        $this->deploymentTargetApi = new DeploymentTargetApi($this->client->apiClient, $this->client->apiConfig);
     }
 
     /************** **********************/
@@ -436,7 +438,7 @@ class ProjectTask extends TaskBase
         $deployment_target_patch = new DeploymentTargetPatch($deployment_target_patch);
         return $this->deploymentTargetApi->updateProjectsDeployments($project_id, $deployment_target_configuration_id, $deployment_target_patch);
     }
-
+    
     /************** ********************************/
     /********* DomainTask shortcuts ****************/
     /************** ********************************/
