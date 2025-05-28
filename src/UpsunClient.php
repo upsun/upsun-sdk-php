@@ -22,6 +22,7 @@ use Upsun\Core\Tasks\RegionTask;
 use Upsun\Core\Tasks\ResourcesTask;
 use Upsun\Core\Tasks\RouteTask;
 use Upsun\Core\Tasks\SourceOperationTask;
+use Upsun\Core\Tasks\SupportTicketTask;
 use Upsun\Core\Tasks\TeamTask;
 use Upsun\Core\Tasks\UserTask;
 use Upsun\Core\Tasks\VariableTask;
@@ -51,16 +52,18 @@ class UpsunClient
     public RouteTask $route;
     public SourceOperationTask $sourceOperation;
     public TeamTask $team;
+    public SupportTicketTask $supportTicket;
     public UserTask $user;
     public VariableTask $variables;
     public WorkerTask $worker;
 
-    public function __construct(protected UpsunConfig $upsunConfig) {
+    public function __construct(protected UpsunConfig $upsunConfig)
+    {
 
         $this->upsunConfig = $upsunConfig;
         $this->apiConfig = Configuration::getDefaultConfiguration()
             ->setHost($this->upsunConfig->base_url);
-        
+
         $this->apiClient = new Client();
 
         $this->auth = new OAuthProvider(
@@ -86,13 +89,15 @@ class UpsunClient
         $this->route = new RouteTask($this);
         $this->sourceOperation = new SourceOperationTask($this);
         $this->team = new TeamTask($this);
+        $this->supportTicket = new SupportTicketTask($this);
         $this->user = new UserTask($this);
         $this->variables = new VariableTask($this);
         $this->worker = new WorkerTask($this);
         $this->invitations = new InvitationTask($this);
     }
 
-    public function getUserId() {
+    public function getUserId()
+    {
         if ($this->userId == null) {
             $this->userId = $this->user->me()->getId();
         }
@@ -100,7 +105,8 @@ class UpsunClient
         return $this->userId;
     }
 
-    public function getToken() {
+    public function getToken()
+    {
         return $this->upsunConfig->apiKey;
     }
 }
