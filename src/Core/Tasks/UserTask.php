@@ -4,6 +4,7 @@ namespace Upsun\Core\Tasks;
 
 use InvalidArgumentException;
 use OpenAPI\Client\ApiException;
+use OpenAPI\Client\apisgen\UserAccessApi;
 use OpenAPI\Client\apisgen\UserProfilesApi;
 use OpenAPI\Client\apisgen\UsersApi;
 use OpenAPI\Client\Model\Address;
@@ -12,12 +13,17 @@ use OpenAPI\Client\Model\Error;
 use OpenAPI\Client\Model\GetAddress200Response;
 use OpenAPI\Client\Model\GetCurrentUserVerificationStatus200Response;
 use OpenAPI\Client\Model\GetCurrentUserVerificationStatusFull200Response;
+use OpenAPI\Client\Model\GrantProjectUserAccessRequestInner;
+use OpenAPI\Client\Model\GrantUserProjectAccessRequestInner;
 use OpenAPI\Client\Model\ListProfiles200Response;
+use OpenAPI\Client\Model\ListProjectUserAccess200Response;
 use OpenAPI\Client\Model\Profile;
 use OpenAPI\Client\Model\ResetEmailAddressRequest;
 use OpenAPI\Client\Model\UpdateProfileRequest;
+use OpenAPI\Client\Model\UpdateProjectUserAccessRequest;
 use OpenAPI\Client\Model\UpdateUserRequest;
 use OpenAPI\Client\Model\User;
+use OpenAPI\Client\Model\UserProjectAccess;
 use Upsun\Exception\UpsunException;
 use Upsun\UpsunClient;
 
@@ -26,6 +32,7 @@ class UserTask extends TaskBase
 
   public readonly UsersApi $api;
   public readonly UserProfilesApi $profilesApi;
+  public readonly UserAccessApi $accessApi;
 
   public function __construct(
     public readonly UpsunClient $client,
@@ -33,6 +40,7 @@ class UserTask extends TaskBase
   {
     $this->api = new UsersApi($this->client->apiClient, $this->client->apiConfig);
     $this->profilesApi = new UserProfilesApi($this->client->apiClient, $this->client->apiConfig);
+    $this->accessApi = new UserAccessApi($this->client->apiClient, $this->client->apiConfig);
   }
 
   /************** ********************/
@@ -190,6 +198,181 @@ class UserTask extends TaskBase
   }
 
   /************** ****************************/
+  /********* UsersAccessApi ****************/
+  /************** ****************************/
+
+  /**
+   * Operation getProjectUserAccess
+   *
+   * Get user access for a project
+   *
+   * @param string $project_id The ID of the project. (required)
+   * @param string $user_id The ID of the user. (required)
+   * @return UserProjectAccess|Error
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function getProjectUserAccess(string $project_id, string $user_id): Error|UserProjectAccess
+  {
+    $this->refreshToken();
+    return $this->accessApi->getProjectUserAccess($project_id, $user_id);
+  }
+
+  /**
+   * Operation getUserProjectAccess
+   *
+   * Get project access for a user
+   *
+   * @param string $user_id The ID of the user. (required)
+   * @param string $project_id The ID of the project. (required)
+   * @return UserProjectAccess|Error
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function getUserProjectAccess(string $user_id, string $project_id): Error|UserProjectAccess
+  {
+    $this->refreshToken();
+    return $this->accessApi->getUserProjectAccess($user_id, $project_id);
+  }
+
+  /**
+   * Operation grantProjectUserAccess
+   *
+   * Grant user access to a project
+   *
+   * @param string $project_id The ID of the project. (required)
+   * @param GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner grant_project_user_access_request_inner (required)
+   * @return void
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function grantProjectUserAccess(string $project_id, array $grant_project_user_access_request_inner): void
+  {
+    $this->refreshToken();
+    $this->accessApi->grantProjectUserAccess($project_id, $grant_project_user_access_request_inner);
+  }
+
+  /**
+   * Operation grantUserProjectAccess
+   *
+   * Grant project access to a user
+   *
+   * @param string $user_id The ID of the user. (required)
+   * @param GrantUserProjectAccessRequestInner[] $grant_user_project_access_request_inner grant_user_project_access_request_inner (required)
+   * @return void
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function grantUserProjectAccess(string $user_id, array $grant_user_project_access_request_inner): void
+  {
+    $this->refreshToken();
+    $this->accessApi->grantUserProjectAccess($user_id, $grant_user_project_access_request_inner);
+  }
+
+  /**
+   * Operation listProjectUserAccess
+   *
+   * List user access for a project
+   *
+   * @param string $project_id The ID of the project. (required)
+   * @param int|null $page_size Determines the number of items to show. (optional)
+   * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+   * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+   * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. (optional)
+   * @return ListProjectUserAccess200Response|Error
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function listProjectUserAccess(string $project_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): ListProjectUserAccess200Response|Error
+  {
+    $this->refreshToken();
+    return $this->accessApi->listProjectUserAccess($project_id, $page_size, $page_before, $page_after, $sort);
+  }
+
+  /**
+   * Operation listUserProjectAccess
+   *
+   * List project access for a user
+   *
+   * @param string $user_id The ID of the user. (required)
+   * @param string|null $filter_organization_id Allows filtering by &#x60;organization_id&#x60;. (optional)
+   * @param int|null $page_size Determines the number of items to show. (optional)
+   * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+   * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+   * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;project_title&#x60;, &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. (optional)
+   * @return ListProjectUserAccess200Response|Error
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function listUserProjectAccess(string $user_id, string $filter_organization_id = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): ListProjectUserAccess200Response|Error
+  {
+    $this->refreshToken();
+    return $this->accessApi->listUserProjectAccess($user_id, $filter_organization_id, $page_size, $page_before, $page_after, $sort);
+  }
+
+  /**
+   * Operation removeProjectUserAccess
+   *
+   * Remove user access for a project
+   *
+   * @param string $project_id The ID of the project. (required)
+   * @param string $user_id The ID of the user. (required)
+   * @return void
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function removeProjectUserAccess(string $project_id, string $user_id): void
+  {
+    $this->refreshToken();
+    $this->accessApi->removeProjectUserAccess($project_id, $user_id);
+  }
+
+  /**
+   * Operation removeUserProjectAccess
+   *
+   * Remove project access for a user
+   *
+   * @param string $user_id The ID of the user. (required)
+   * @param string $project_id The ID of the project. (required)
+   * @return void
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function removeUserProjectAccess(string $user_id, string $project_id): void
+  {
+    $this->refreshToken();
+    $this->accessApi->removeUserProjectAccess($user_id, $project_id);
+  }
+
+  /**
+   * Operation updateProjectUserAccess
+   *
+   * Update user access for a project
+   *
+   * @param string $project_id The ID of the project. (required)
+   * @param string $user_id The ID of the user. (required)
+   * @param array|null $update_project_user_access_request update_project_user_access_request (optional)
+   * @return void
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function updateProjectUserAccess(string $project_id, string $user_id, array $update_project_user_access_request = null): void
+  {
+    $this->refreshToken();
+    $update_project_user_access_request = new UpdateProjectUserAccessRequest($update_project_user_access_request);
+    $this->accessApi->updateProjectUserAccess($project_id, $user_id, $update_project_user_access_request);
+  }
+
+  /**
+   * Operation updateUserProjectAccess
+   *
+   * Update project access for a user
+   *
+   * @param string $user_id The ID of the user. (required)
+   * @param string $project_id The ID of the project. (required)
+   * @param array|null $update_project_user_access_request update_project_user_access_request (optional)
+   * @return void
+   * @throws ApiException on non-2xx response or if the response body is not in the expected format
+   */
+  public function updateUserProjectAccess(string $user_id, string $project_id, array $update_project_user_access_request = null): void
+  {
+    $this->refreshToken();
+    $update_project_user_access_request = new UpdateProjectUserAccessRequest($update_project_user_access_request);
+    $this->accessApi->updateUserProjectAccess($project_id, $user_id, $update_project_user_access_request);
+  }
+  
+  /************** ****************************/
   /********* UsersProfilesApi ****************/
   /************** ****************************/
 
@@ -207,7 +390,7 @@ class UserTask extends TaskBase
    */
   public function createProfilePicture(string $uuid, string $contentType = UserProfilesApi::contentTypes['createProfilePicture'][0])
   {
-    throw new UpsunException("Not implemented");
+    throw new UpsunException("Not implemented (missing params on apisgen side");
   }
 
   /**
