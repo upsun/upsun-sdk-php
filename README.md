@@ -25,12 +25,27 @@ $config = new UpsunConfig(apiKey: '');
 $upsun = new Upsun($config);
 
 // List organizations
-$organizations = $upsun->organization->list();
+$organizations = $upsun->organization->listOrgs();
 
 // List projects for a specific organization
 $organizationId = '12345';
-$projects = $upsun->project->list($organizationId);
+$projects = $upsun->organization->listOrgProjects($organizationId);
+
+// Get a specific project
+$projectId = '67890';
+$projects = $upsun->project->getProjects($projectId);
+
+// Update a project
+$projectId = '67890';
+$projectData = [
+  'title' => 'title',
+  'description' => 'description' // see vendor/upsun/upsun-sdk-php/apisgen/lib/Model/Project.php for more info
+];
+$projects = $upsun->project->updateProjects($projectId, $projectData);
 ```
+
+All CRUD operations respect the same structure.
+
 ## Devel
 
 Clone repository:

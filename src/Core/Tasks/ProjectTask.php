@@ -1053,7 +1053,6 @@ class ProjectTask extends TaskBase
     {
         $this->userTask->updateProjectUserAccess($project_id, $user_id, $update_project_user_access_request);
     }
-
     
     /**
      * Operation listProjectUserAccess
