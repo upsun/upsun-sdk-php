@@ -12,6 +12,7 @@ use OpenAPI\Client\apisgen\ProjectInvitationsApi;
 use OpenAPI\Client\apisgen\ProjectSettingsApi;
 use OpenAPI\Client\apisgen\ProjectVariablesApi;
 use OpenAPI\Client\apisgen\RepositoryApi;
+use OpenAPI\Client\apisgen\SystemInformationApi;
 use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\Model\AcceptedResponse;
 use OpenAPI\Client\Model\Activity;
@@ -40,6 +41,7 @@ use OpenAPI\Client\Model\ProjectVariableCreateInput;
 use OpenAPI\Client\Model\ProjectVariablePatch;
 use OpenAPI\Client\Model\Ref;
 use OpenAPI\Client\Model\Subscription;
+use OpenAPI\Client\Model\SystemInformation;
 use OpenAPI\Client\Model\Tree;
 use Symfony\Flex\Unpack\Operation;
 use Upsun\UpsunClient;
@@ -55,6 +57,7 @@ class ProjectTask extends TaskBase
     public readonly ProjectActivityApi $activityApi;
     public readonly DeploymentTargetApi $deploymentTargetApi;
     public readonly RepositoryApi $repositoryApi;
+    public readonly SystemInformationApi $systemInfoApi;
 
     public function __construct(
         public readonly UpsunClient         $client,
@@ -72,6 +75,7 @@ class ProjectTask extends TaskBase
         $this->activityApi = new ProjectActivityApi($this->client->apiClient, $this->client->apiConfig);
         $this->deploymentTargetApi = new DeploymentTargetApi($this->client->apiClient, $this->client->apiConfig);
         $this->repositoryApi = new RepositoryApi($this->client->apiClient, $this->client->apiConfig);
+        $this->systemInfoApi = new SystemInformationApi($this->client->apiClient, $this->client->apiConfig);
     }
 
     /************** **********************/
@@ -530,12 +534,46 @@ class ProjectTask extends TaskBase
      * @return Ref[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectsGitRefs($project_id): array
+    public function listProjectsGitRefs(string $project_id): array
     {
         $this->refreshToken();
         return $this->repositoryApi->listProjectsGitRefs($project_id);
     }
 
+    /************** *********************************/
+    /********* SystemInformationApi  ****************/
+    /************** *********************************/
+
+    /**
+     * Operation actionProjectsSystemRestart
+     *
+     * Restart the Git server
+     *
+     * @param string $project_id project_id (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function actionProjectsSystemRestart(string $project_id): AcceptedResponse
+    {
+        $this->refreshToken();
+        return $this->systemInfoApi->actionProjectsSystemRestart($project_id);
+    }
+
+    /**
+     * Operation getProjectsSystem
+     *
+     * Get information about the Git server.
+     *
+     * @param string $project_id project_id (required)
+     * @return SystemInformation
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getProjectsSystem(string $project_id): SystemInformation
+    {
+        $this->refreshToken();
+        return $this->systemInfoApi->getProjectsSystem($project_id);
+    }
+    
     /************** ********************************/
     /********* DomainTask shortcuts ****************/
     /************** ********************************/
