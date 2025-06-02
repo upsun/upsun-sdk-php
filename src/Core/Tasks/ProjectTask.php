@@ -13,6 +13,7 @@ use OpenAPI\Client\apisgen\ProjectSettingsApi;
 use OpenAPI\Client\apisgen\ProjectVariablesApi;
 use OpenAPI\Client\apisgen\RepositoryApi;
 use OpenAPI\Client\apisgen\SystemInformationApi;
+use OpenAPI\Client\apisgen\ThirdPartyIntegrationsApi;
 use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\Model\AcceptedResponse;
 use OpenAPI\Client\Model\Activity;
@@ -30,6 +31,12 @@ use OpenAPI\Client\Model\EnvironmentOperationInput;
 use OpenAPI\Client\Model\EnvironmentSourceOperation;
 use OpenAPI\Client\Model\EnvironmentSourceOperationInput;
 use OpenAPI\Client\Model\Error;
+use OpenAPI\Client\Model\GrantProjectTeamAccessRequestInner;
+use OpenAPI\Client\Model\GrantTeamProjectAccessRequestInner;
+use OpenAPI\Client\Model\Integration;
+use OpenAPI\Client\Model\IntegrationCreateInput;
+use OpenAPI\Client\Model\IntegrationPatch;
+use OpenAPI\Client\Model\ListTeamProjectAccess200Response;
 use OpenAPI\Client\Model\Project;
 use OpenAPI\Client\Model\ProjectCapabilities;
 use OpenAPI\Client\Model\ProjectInvitation;
@@ -42,6 +49,7 @@ use OpenAPI\Client\Model\ProjectVariablePatch;
 use OpenAPI\Client\Model\Ref;
 use OpenAPI\Client\Model\Subscription;
 use OpenAPI\Client\Model\SystemInformation;
+use OpenAPI\Client\Model\TeamProjectAccess;
 use OpenAPI\Client\Model\Tree;
 use Symfony\Flex\Unpack\Operation;
 use Upsun\UpsunClient;
@@ -58,13 +66,15 @@ class ProjectTask extends TaskBase
     public readonly DeploymentTargetApi $deploymentTargetApi;
     public readonly RepositoryApi $repositoryApi;
     public readonly SystemInformationApi $systemInfoApi;
+    public readonly ThirdPartyIntegrationsApi $thirdPartyIntegrationsApi;
 
     public function __construct(
         public readonly UpsunClient         $client,
         public readonly DomainTask          $domainTask,
         public readonly CertificateTask     $certificateTask,
         public readonly OperationTask       $runtimeOperationTask,
-        public readonly SourceOperationTask $sourceOperationTask
+        public readonly SourceOperationTask $sourceOperationTask,
+        public readonly TeamTask            $teamTask
     )
     {
         $this->headerSelector = new HeaderSelector();
@@ -76,6 +86,7 @@ class ProjectTask extends TaskBase
         $this->deploymentTargetApi = new DeploymentTargetApi($this->client->apiClient, $this->client->apiConfig);
         $this->repositoryApi = new RepositoryApi($this->client->apiClient, $this->client->apiConfig);
         $this->systemInfoApi = new SystemInformationApi($this->client->apiClient, $this->client->apiConfig);
+        $this->thirdPartyIntegrationsApi = new ThirdPartyIntegrationsApi($this->client->apiClient, $this->client->apiConfig);
     }
 
     /************** **********************/
@@ -573,6 +584,92 @@ class ProjectTask extends TaskBase
         $this->refreshToken();
         return $this->systemInfoApi->getProjectsSystem($project_id);
     }
+
+    /************** **************************************/
+    /********* ThirdPartyIntegrationsApi  ****************/
+    /************** **************************************/
+
+    /**
+     * Operation createProjectsIntegrations
+     *
+     * Integrate project with a third-party service
+     *
+     * @param string $project_id project_id (required)
+     * @param array $integration_create_input (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function createProjectsIntegrations(string $project_id, array $integration_create_input): AcceptedResponse
+    {
+        $this->refreshToken();
+        $integration_create_input = new IntegrationCreateInput($integration_create_input);
+        return $this->thirdPartyIntegrationsApi->createProjectsIntegrations($project_id, $integration_create_input);
+    }
+
+    /**
+     * Operation deleteProjectsIntegrations
+     *
+     * Delete an existing third-party integration
+     *
+     * @param string $project_id project_id (required)
+     * @param string $integration_id integration_id (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function deleteProjectsIntegrations(string $project_id, string $integration_id): AcceptedResponse
+    {
+        $this->refreshToken();
+        return $this->thirdPartyIntegrationsApi->deleteProjectsIntegrations($project_id, $integration_id);
+    }
+
+    /**
+     * Operation getProjectsIntegrations
+     *
+     * Get information about an existing third-party integration
+     *
+     * @param string $project_id project_id (required)
+     * @param string $integration_id integration_id (required)
+     * @return Integration
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getProjectsIntegrations(string $project_id, string $integration_id): Integration
+    {
+        $this->refreshToken();
+        return $this->thirdPartyIntegrationsApi->getProjectsIntegrations($project_id, $integration_id);
+    }
+
+    /**
+     * Operation listProjectsIntegrations
+     *
+     * Get list of existing integrations for a project
+     *
+     * @param string $project_id project_id (required)
+     * @return Integration[]
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listProjectsIntegrations(string $project_id): array
+    {
+        $this->refreshToken();
+        return $this->thirdPartyIntegrationsApi->listProjectsIntegrations($project_id);
+    }
+
+    /**
+     * Operation updateProjectsIntegrations
+     *
+     * Update an existing third-party integration
+     *
+     * @param string $project_id project_id (required)
+     * @param string $integration_id integration_id (required)
+     * @param array $integration_patch (required)
+     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function updateProjectsIntegrations(string $project_id, string $integration_id, array $integration_patch): AcceptedResponse
+    {
+        $this->refreshToken();
+        $integration_patch = new IntegrationPatch($integration_patch);
+        return $this->thirdPartyIntegrationsApi->updateProjectsIntegrations($project_id, $integration_id, $integration_patch);
+    }
     
     /************** ********************************/
     /********* DomainTask shortcuts ****************/
@@ -753,6 +850,138 @@ class ProjectTask extends TaskBase
     public function runOperation(string $project_id, string $environment_id, string $deployment_id, array $environment_operation_input): AcceptedResponse
     {
         return $this->runtimeOperationTask->runOperation($project_id, $environment_id, $deployment_id, $environment_operation_input);
+    }
+
+    /************** ******************************/
+    /********* TeamTask shortcuts ****************/
+    /************** ******************************/
+
+
+    /**
+     * Operation getProjectTeamAccess
+     *
+     * Get team access for a project
+     *
+     * @param string $project_id The ID of the project. (required)
+     * @param string $team_id The ID of the team. (required)
+     * @return TeamProjectAccess|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getProjectTeamAccess(string $project_id, string $team_id): Error|TeamProjectAccess
+    {
+        return $this->teamTask->getProjectTeamAccess($project_id, $team_id);
+    }
+
+
+    /**
+     * Operation getTeamProjectAccess
+     *
+     * Get project access for a team
+     *
+     * @param string $team_id The ID of the team. (required)
+     * @param string $project_id The ID of the project. (required)
+     * @return TeamProjectAccess|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getTeamProjectAccess(string $team_id, string $project_id): Error|TeamProjectAccess
+    {
+        return $this->teamTask->getTeamProjectAccess($team_id, $project_id);
+    }
+
+    /**
+     * Operation grantProjectTeamAccess
+     *
+     * Grant team access to a project
+     *
+     * @param string $project_id The ID of the project. (required)
+     * @param GrantProjectTeamAccessRequestInner[] $grant_project_team_access_request_inner grant_project_team_access_request_inner (required)
+     * @return void
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function grantProjectTeamAccess(string $project_id, array $grant_project_team_access_request_inner): void
+    {
+        $this->teamTask->grantProjectTeamAccess($project_id, $grant_project_team_access_request_inner);
+    }
+
+    /**
+     * Operation grantTeamProjectAccess
+     *
+     * Grant project access to a team
+     *
+     * @param string $team_id The ID of the team. (required)
+     * @param GrantTeamProjectAccessRequestInner[] $grant_team_project_access_request_inner grant_team_project_access_request_inner (required)
+     * @return void
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function grantTeamProjectAccess(string $team_id, array $grant_team_project_access_request_inner): void
+    {
+        $this->teamTask->grantTeamProjectAccess($team_id, $grant_team_project_access_request_inner);
+    }
+
+    /**
+     * Operation listProjectTeamAccess
+     *
+     * List team access for a project
+     *
+     * @param string $project_id The ID of the project. (required)
+     * @param int|null $page_size Determines the number of items to show. (optional)
+     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. (optional)
+     * @return ListTeamProjectAccess200Response|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listProjectTeamAccess(string $project_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|ListTeamProjectAccess200Response
+    {
+        return $this->teamTask->listProjectTeamAccess($project_id, $page_size, $page_before, $page_after, $sort);
+    }
+
+    /**
+     * Operation listTeamProjectAccess
+     *
+     * List project access for a team
+     *
+     * @param string $team_id The ID of the team. (required)
+     * @param int|null $page_size Determines the number of items to show. (optional)
+     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;project_title&#x60;, &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. (optional)
+     * @return ListTeamProjectAccess200Response|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listTeamProjectAccess(string $team_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|ListTeamProjectAccess200Response
+    {
+        return $this->teamTask->listTeamProjectAccess($team_id, $page_size, $page_before, $page_after, $sort);
+    }
+
+    /**
+     * Operation removeProjectTeamAccess
+     *
+     * Remove team access for a project
+     *
+     * @param string $project_id The ID of the project. (required)
+     * @param string $team_id The ID of the team. (required)
+     * @return void
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function removeProjectTeamAccess(string $project_id, string $team_id): void
+    {
+        $this->teamTask->removeProjectTeamAccess($project_id, $team_id);
+    }
+
+    /**
+     * Operation removeTeamProjectAccess
+     *
+     * Remove project access for a team
+     *
+     * @param string $team_id The ID of the team. (required)
+     * @param string $project_id The ID of the project. (required)
+     * @return void
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function removeTeamProjectAccess(string $team_id, string $project_id): void
+    {
+        $this->teamTask->removeTeamProjectAccess($team_id, $project_id);
     }
 
     /************** ***************************/
