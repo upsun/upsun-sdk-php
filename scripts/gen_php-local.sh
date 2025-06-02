@@ -18,7 +18,7 @@ echo "Download last openAPI spec..."
 #wget -O ./schema/openapispec-platformsh.json https://api.upsun.com/docs/openapispec-platformsh.json
 cp ./data/openapispec-platformsh.json ./schema/
 echo "Hotfix openAPI spec..."
-sed 's/HTTP access permissions/Http access permissions/g' ./schema/openapispec-platformsh.json &> /dev/null
+sed -i '' 's/HTTP access permissions/Http access permissions/g' ./schema/openapispec-platformsh.json
 
 echo "Generate apis_gen code..."
 npm install @openapitools/openapi-generator-cli -g

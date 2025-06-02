@@ -15692,7 +15692,7 @@
                             "basic_auth"
                         ],
                         "additionalProperties": false,
-                        "title": "Http access permissions"
+                        "title": "HTTP access permissions"
                     },
                     "enable_smtp": {
                         "type": "boolean",
