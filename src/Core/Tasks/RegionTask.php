@@ -4,15 +4,10 @@ namespace Upsun\Core\Tasks;
 
 use InvalidArgumentException;
 use OpenAPI\Client\ApiException;
-use OpenAPI\Client\apisgen\OrganizationMembersApi;
-use OpenAPI\Client\apisgen\OrganizationProjectsApi;
-use OpenAPI\Client\apisgen\OrganizationsApi;
 use OpenAPI\Client\apisgen\RegionsApi;
-use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\Model\Error;
 use OpenAPI\Client\Model\ListRegions200Response;
 use OpenAPI\Client\Model\Region;
-use OpenAPI\Client\Model\StringFilter;
 use Upsun\UpsunClient;
 
 class RegionTask extends TaskBase

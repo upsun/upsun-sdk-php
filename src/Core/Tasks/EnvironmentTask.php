@@ -43,12 +43,12 @@ class EnvironmentTask extends TaskBase
     public readonly EnvironmentTypeApi $typeApi;
     public readonly EnvironmentVariablesApi $variablesApi;
     public readonly DeploymentApi $deploymentApi;
+    public readonly RouteTask   $routeTask;
+    public readonly DomainTask  $domainTask;
+    public readonly SourceOperationTask $sourceOperationTask;
 
     public function __construct(
-        public readonly UpsunClient $client,
-        public readonly RouteTask   $routeTask,
-        public readonly DomainTask  $domainTask,
-        public readonly SourceOperationTask $sourceOperationTask
+        public readonly UpsunClient $client
     )
     {
         $this->api = new EnvironmentApi($this->client->apiClient, $this->client->apiConfig);
@@ -57,6 +57,9 @@ class EnvironmentTask extends TaskBase
         $this->typeApi = new EnvironmentTypeApi($this->client->apiClient, $this->client->apiConfig);
         $this->variablesApi = new EnvironmentVariablesApi($this->client->apiClient, $this->client->apiConfig);
         $this->deploymentApi = new DeploymentApi($this->client->apiClient, $this->client->apiConfig);
+        $this->routeTask = new RouteTask($this->client);
+        $this->domainTask = new DomainTask($this->client);
+        $this->sourceOperationTask = new SourceOperationTask($this->client);
     }
 
     /************** **************************/

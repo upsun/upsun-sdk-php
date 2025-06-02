@@ -25,11 +25,7 @@ use OpenAPI\Client\Model\DeploymentTarget;
 use OpenAPI\Client\Model\DeploymentTargetCreateInput;
 use OpenAPI\Client\Model\DeploymentTargetPatch;
 use OpenAPI\Client\Model\Domain;
-use OpenAPI\Client\Model\DomainPatch;
 use OpenAPI\Client\Model\Environment;
-use OpenAPI\Client\Model\EnvironmentOperationInput;
-use OpenAPI\Client\Model\EnvironmentSourceOperation;
-use OpenAPI\Client\Model\EnvironmentSourceOperationInput;
 use OpenAPI\Client\Model\Error;
 use OpenAPI\Client\Model\GrantProjectTeamAccessRequestInner;
 use OpenAPI\Client\Model\GrantProjectUserAccessRequestInner;
@@ -53,9 +49,7 @@ use OpenAPI\Client\Model\Subscription;
 use OpenAPI\Client\Model\SystemInformation;
 use OpenAPI\Client\Model\TeamProjectAccess;
 use OpenAPI\Client\Model\Tree;
-use OpenAPI\Client\Model\UpdateProjectUserAccessRequest;
 use OpenAPI\Client\Model\UserProjectAccess;
-use Symfony\Flex\Unpack\Operation;
 use Upsun\UpsunClient;
 
 class ProjectTask extends TaskBase
@@ -71,15 +65,15 @@ class ProjectTask extends TaskBase
     public readonly RepositoryApi $repositoryApi;
     public readonly SystemInformationApi $systemInfoApi;
     public readonly ThirdPartyIntegrationsApi $thirdPartyIntegrationsApi;
+    public readonly DomainTask          $domainTask;
+    public readonly CertificateTask     $certificateTask;
+    public readonly OperationTask       $runtimeOperationTask;
+    public readonly SourceOperationTask $sourceOperationTask;
+    public readonly TeamTask            $teamTask;
+    public readonly UserTask            $userTask;
 
     public function __construct(
         public readonly UpsunClient         $client,
-        public readonly DomainTask          $domainTask,
-        public readonly CertificateTask     $certificateTask,
-        public readonly OperationTask       $runtimeOperationTask,
-        public readonly SourceOperationTask $sourceOperationTask,
-        public readonly TeamTask            $teamTask,
-        public readonly UserTask            $userTask
     )
     {
         $this->headerSelector = new HeaderSelector();
@@ -92,6 +86,10 @@ class ProjectTask extends TaskBase
         $this->repositoryApi = new RepositoryApi($this->client->apiClient, $this->client->apiConfig);
         $this->systemInfoApi = new SystemInformationApi($this->client->apiClient, $this->client->apiConfig);
         $this->thirdPartyIntegrationsApi = new ThirdPartyIntegrationsApi($this->client->apiClient, $this->client->apiConfig);
+        $this->domainTask = new DomainTask($this->client);
+        $this->sourceOperationTask = new SourceOperationTask($this->client);
+        $this->teamTask = new TeamTask($this->client);
+        $this->userTask = new UserTask($this->client);
     }
 
     /************** **********************/

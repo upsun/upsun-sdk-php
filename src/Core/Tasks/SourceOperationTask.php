@@ -8,7 +8,6 @@ use OpenAPI\Client\Model\AcceptedResponse;
 use OpenAPI\Client\Model\EnvironmentSourceOperation;
 use OpenAPI\Client\Model\EnvironmentSourceOperationInput;
 use Upsun\UpsunClient;
-
 class SourceOperationTask extends TaskBase
 {
     public readonly SourceOperationsApi $api;
