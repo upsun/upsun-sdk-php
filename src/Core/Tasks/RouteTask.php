@@ -84,10 +84,10 @@ class RouteTask extends TaskBase
      *
      * @param string $project_id project_id (required)
      * @param string $environment_id environment_id (required)
-     * @return Route[]
+     * @return array|null
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectsEnvironmentsRoutes(string $project_id, string $environment_id): array
+    public function listProjectsEnvironmentsRoutes(string $project_id, string $environment_id): ?array
     {
         $this->refreshToken();
         return $this->api->listProjectsEnvironmentsRoutes($project_id, $environment_id);

@@ -34,7 +34,7 @@ class ActivityTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function actionProjectsActivitiesCancel(string $project_id, string $activity_id): AcceptedResponse
+    public function cancel(string $project_id, string $activity_id): AcceptedResponse
     {
         $this->refreshToken();
         return $this->api->actionProjectsActivitiesCancel($project_id, $activity_id);
@@ -50,7 +50,7 @@ class ActivityTask extends TaskBase
      * @return Activity
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectsActivities(string $project_id, string $activity_id): Activity
+    public function get(string $project_id, string $activity_id): Activity
     {
         $this->refreshToken();
         return $this->api->getProjectsActivities($project_id, $activity_id);
@@ -65,7 +65,7 @@ class ActivityTask extends TaskBase
      * @return Activity[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectsActivities(string $project_id): array
+    public function list(string $project_id): array
     {
         $this->refreshToken();
         return $this->api->listProjectsActivities($project_id);
