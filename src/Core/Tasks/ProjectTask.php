@@ -32,10 +32,12 @@ use OpenAPI\Client\Model\EnvironmentSourceOperation;
 use OpenAPI\Client\Model\EnvironmentSourceOperationInput;
 use OpenAPI\Client\Model\Error;
 use OpenAPI\Client\Model\GrantProjectTeamAccessRequestInner;
+use OpenAPI\Client\Model\GrantProjectUserAccessRequestInner;
 use OpenAPI\Client\Model\GrantTeamProjectAccessRequestInner;
 use OpenAPI\Client\Model\Integration;
 use OpenAPI\Client\Model\IntegrationCreateInput;
 use OpenAPI\Client\Model\IntegrationPatch;
+use OpenAPI\Client\Model\ListProjectUserAccess200Response;
 use OpenAPI\Client\Model\ListTeamProjectAccess200Response;
 use OpenAPI\Client\Model\Project;
 use OpenAPI\Client\Model\ProjectCapabilities;
@@ -51,6 +53,8 @@ use OpenAPI\Client\Model\Subscription;
 use OpenAPI\Client\Model\SystemInformation;
 use OpenAPI\Client\Model\TeamProjectAccess;
 use OpenAPI\Client\Model\Tree;
+use OpenAPI\Client\Model\UpdateProjectUserAccessRequest;
+use OpenAPI\Client\Model\UserProjectAccess;
 use Symfony\Flex\Unpack\Operation;
 use Upsun\UpsunClient;
 
@@ -74,7 +78,8 @@ class ProjectTask extends TaskBase
         public readonly CertificateTask     $certificateTask,
         public readonly OperationTask       $runtimeOperationTask,
         public readonly SourceOperationTask $sourceOperationTask,
-        public readonly TeamTask            $teamTask
+        public readonly TeamTask            $teamTask,
+        public readonly UserTask            $userTask
     )
     {
         $this->headerSelector = new HeaderSelector();
@@ -984,6 +989,92 @@ class ProjectTask extends TaskBase
         $this->teamTask->removeTeamProjectAccess($team_id, $project_id);
     }
 
+    /************** ********************************/
+    /********* UserTask shortcuts ****************/
+    /************** ********************************/
+
+    /**
+     * Operation getProjectUserAccess
+     *
+     * Get user access for a project
+     *
+     * @param string $project_id The ID of the project. (required)
+     * @param string $user_id The ID of the user. (required)
+     * @return UserProjectAccess|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getProjectUserAccess(string $project_id, string $user_id): Error|UserProjectAccess
+    {
+        return $this->userTask->getProjectUserAccess($project_id, $user_id);
+    }
+
+    /**
+     * Operation grantProjectUserAccess
+     *
+     * Grant user access to a project
+     *
+     * @param string $project_id The ID of the project. (required)
+     * @param GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner grant_project_user_access_request_inner (required)
+     * @return void
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function grantProjectUserAccess(string $project_id, array $grant_project_user_access_request_inner): void
+    {
+        $this->userTask->grantProjectUserAccess($project_id, $grant_project_user_access_request_inner);
+    }
+
+    /**
+     * Operation removeProjectUserAccess
+     *
+     * Remove user access for a project
+     *
+     * @param string $project_id The ID of the project. (required)
+     * @param string $user_id The ID of the user. (required)
+     * @return void
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function removeProjectUserAccess(string $project_id, string $user_id): void
+    {
+        $this->userTask->removeProjectUserAccess($project_id, $user_id);
+    }
+
+    /**
+     * Operation updateProjectUserAccess
+     *
+     * Update user access for a project
+     *
+     * @param string $project_id The ID of the project. (required)
+     * @param string $user_id The ID of the user. (required)
+     * @param array|null $update_project_user_access_request update_project_user_access_request (optional)
+     * @return void
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function updateProjectUserAccess(string $project_id, string $user_id, array $update_project_user_access_request = null): void
+    {
+        $this->userTask->updateProjectUserAccess($project_id, $user_id, $update_project_user_access_request);
+    }
+
+    
+    /**
+     * Operation listProjectUserAccess
+     *
+     * List user access for a project
+     *
+     * @param string $project_id The ID of the project. (required)
+     * @param int|null $page_size Determines the number of items to show. (optional)
+     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. (optional)
+     * @return ListProjectUserAccess200Response|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listProjectUserAccess(string $project_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): ListProjectUserAccess200Response|Error
+    {
+        return $this->userTask->listProjectUserAccess($project_id, $page_size, $page_before, $page_after, $sort);
+    }
+    
+        
+    
     /************** ***************************/
     /********* Custom function ****************/
     /************** ***************************/

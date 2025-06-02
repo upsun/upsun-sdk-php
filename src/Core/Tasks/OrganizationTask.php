@@ -20,8 +20,10 @@ use OpenAPI\Client\apisgen\OrganizationsApi;
 use OpenAPI\Client\apisgen\ProfilesApi;
 use OpenAPI\Client\apisgen\RecordsApi;
 use OpenAPI\Client\apisgen\SubscriptionsApi;
+use OpenAPI\Client\apisgen\VouchersApi;
 use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\Model\Address;
+use OpenAPI\Client\Model\ApplyOrgVoucherRequest;
 use OpenAPI\Client\Model\CanCreateNewOrgSubscription200Response;
 use OpenAPI\Client\Model\CreateAuthorizationCredentials200Response;
 use OpenAPI\Client\Model\CreateOrgMemberRequest;
@@ -53,6 +55,7 @@ use OpenAPI\Client\Model\UpdateOrgMemberRequest;
 use OpenAPI\Client\Model\UpdateOrgProfileRequest;
 use OpenAPI\Client\Model\UpdateOrgRequest;
 use OpenAPI\Client\Model\UpdateOrgSubscriptionRequest;
+use OpenAPI\Client\Model\Vouchers;
 use OpenAPI\Client\ObjectSerializer;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -74,7 +77,8 @@ class OrganizationTask extends TaskBase
     public readonly MFAApi $mfaApi;
     public readonly OrdersApi $ordersApi;
     public readonly ProfilesApi $profilesApi;
-    public readonly RecordsApi	$recordsApi;
+    public readonly RecordsApi $recordsApi;
+    public readonly VouchersApi $vouchersApi;
 
     public function __construct(
         public readonly UpsunClient $client,
@@ -90,6 +94,7 @@ class OrganizationTask extends TaskBase
         $this->ordersApi = new OrdersApi($this->client->apiClient, $this->client->apiConfig);
         $this->profilesApi = new ProfilesApi($this->client->apiClient, $this->client->apiConfig);
         $this->recordsApi = new RecordsApi($this->client->apiClient, $this->client->apiConfig);
+        $this->vouchersApi = new VouchersApi($this->client->apiClient, $this->client->apiConfig);
     }
 
     /************** ***********************************/
@@ -737,7 +742,7 @@ class OrganizationTask extends TaskBase
         $this->refreshToken();
         return $this->invoicesApi->listOrgInvoices($organization_id, $filter_status, $filter_type, $filter_order_id, $page);
     }
-    
+
     /************** *****************************/
     /********* OrdersApi ************************/
     /************** *****************************/
@@ -897,7 +902,7 @@ class OrganizationTask extends TaskBase
      * @return ListOrgPlanRecords200Response|Error|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listOrgPlanRecords(string $organization_id, string $filter_subscription_id = null, string $filter_plan = null, DateTime $filter_status = null, DateTime $filter_start = null, DateTime  $filter_end = null, DateTime $filter_started_at = null, DateTime $filter_ended_at = null, int $page = null): Error|ListOrgPlanRecords200Response
+    public function listOrgPlanRecords(string $organization_id, string $filter_subscription_id = null, string $filter_plan = null, DateTime $filter_status = null, DateTime $filter_start = null, DateTime $filter_end = null, DateTime $filter_started_at = null, DateTime $filter_ended_at = null, int $page = null): Error|ListOrgPlanRecords200Response
     {
         $this->refreshToken();
         return $this->recordsApi->listOrgPlanRecords($organization_id, $filter_subscription_id, $filter_plan, $filter_status, $filter_start, $filter_end, $filter_started_at, $filter_ended_at, $page);
@@ -921,6 +926,42 @@ class OrganizationTask extends TaskBase
     {
         $this->refreshToken();
         return $this->recordsApi->listOrgUsageRecords($organization_id, $filter_subscription_id, $filter_usage_group, $filter_start, $filter_started_at, $page);
+    }
+
+    /************** *******************************/
+    /********* VouchersApi ************************/
+    /************** *******************************/
+
+    /**
+     * Operation applyOrgVoucher
+     *
+     * Apply voucher
+     *
+     * @param string $organization_id The ID of the organization. (required)
+     * @param array $apply_org_voucher_request apply_org_voucher_request (required)
+     * @return void
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function applyOrgVoucher(string $organization_id, array $apply_org_voucher_request): void
+    {
+        $this->refreshToken();
+        $apply_org_voucher_request = new ApplyOrgVoucherRequest($apply_org_voucher_request);
+        $this->vouchersApi->applyOrgVoucher($organization_id, $apply_org_voucher_request);
+    }
+
+    /**
+     * Operation listOrgVouchers
+     *
+     * List vouchers
+     *
+     * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
+     * @return Vouchers|Error
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listOrgVouchers(string $organization_id): Error|Vouchers
+    {
+        $this->refreshToken();
+        return $this->vouchersApi->listOrgVouchers($organization_id);
     }
     
     /************** *********************/
