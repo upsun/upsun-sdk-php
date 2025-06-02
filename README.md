@@ -31,17 +31,34 @@ $organizations = $upsun->organization->listOrgs();
 $organizationId = '12345';
 $projects = $upsun->organization->listOrgProjects($organizationId);
 
+// Create a project in a specific organization
+$organizationId = '12345';
+$subscription = $upsun->organization->createOrgSubscription(
+  $organizationId,
+  [
+    'owner' => '<upsunUserId>',
+    'project_title' => 'title',
+    'project_region' => 'eu-5.platform.sh',
+    'default_branch' => 'main',
+  ]
+);
+
 // Get a specific project
-$projectId = '67890';
+$projectId = $subscription->getProjectId();
 $projects = $upsun->project->getProjects($projectId);
 
 // Update a project
-$projectId = '67890';
+$projectId = $subscription->getProjectId();
 $projectData = [
   'title' => 'title',
   'description' => 'description' // see vendor/upsun/upsun-sdk-php/apisgen/lib/Model/Project.php for more info
 ];
 $projects = $upsun->project->updateProjects($projectId, $projectData);
+
+// Delete a project
+$organizationId = '12345';
+$projectId = $subscription->getProjectId();
+$projects = $upsun->organization->deleteOrgSubscription($organizationId, $projectId);
 ```
 
 All CRUD operations respect the same structure.
