@@ -100,7 +100,6 @@ $RECYCLE.BIN/
 
 .env
 apisgen
-schema
 vendor
 composer.lock
 composer.phar
