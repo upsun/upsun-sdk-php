@@ -1,0 +1,53 @@
+name: Check OpenAPI Spec Update
+
+on:
+    schedule:
+        -   cron: '*/5 * * * *'  # Toutes les 5 minutes
+    workflow_dispatch:
+        branches: [ main ]
+permissions:
+    contents: write
+env:
+    DEFAULT_BRANCH: "main"
+jobs:
+    check-and-update:
+        runs-on: ubuntu-latest
+        if: ${{ github.repository_owner == 'upsun' }}
+
+        steps:
+            -   name: Checkout repository
+                uses: actions/checkout@v4
+                    
+            -   name: Set up Git
+                run: |
+                    git config --global user.name "github-actions[bot]"
+                    git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+            -   name: Download and patch OpenAPI spec
+                run: |
+                    echo "Download OpenAPI spec..."
+                    wget -O ./schema/openapispec-platformsh.json https://api.upsun.com/docs/openapispec-platformsh.json
+                    
+                    echo "Patch OpenAPI spec..."
+                    sed -i 's/HTTP access permissions/Http access permissions/g' ./schema/openapispec-platformsh.json
+
+            -   name: Create Pull Request if changes
+                uses: peter-evans/create-pull-request@v6
+                with:
+                    token: ${{ secrets.OPENAPI_WORKFLOW_TOKEN }}
+                    commit-message: "Update OpenAPI spec"
+                    body: "This PR updates the OpenAPI spec from the upstream source and applies formatting changes."
+
+                    author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
+                    signoff: false
+                    draft: false
+                    delete-branch: false
+                    branch: update-openapi-spec
+                    title: "[API-BOT] Update OpenAPI spec and regenerate SDK"
+
+                    base: main  # Change si la branche par défaut a un autre nom
+                    labels: |
+                        report
+                        automated pr
+                    add-paths: |
+                        schema/openapispec-platformsh.json
