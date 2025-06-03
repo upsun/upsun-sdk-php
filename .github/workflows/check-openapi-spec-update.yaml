@@ -6,9 +6,6 @@ on:
     workflow_dispatch:
         branches: [ main ]
 env:
-    SLEEP_TIME: 5
-    NUM_TRIES: 30
-    BRANCH_TITLE: cli-commands-doc-page
     DEFAULT_BRANCH: "main"
 jobs:
     check-and-update:
@@ -18,7 +15,10 @@ jobs:
         steps:
             -   name: Checkout repository
                 uses: actions/checkout@v4
-                
+                with:
+                    ref: ${{ env.DEFAULT_BRANCH }}
+                    token: ${{ secrets.GITHUB_TOKEN }}
+                    
             -   name: Set up Git
                 run: |
                     git config --global user.name "github-actions[bot]"
@@ -42,6 +42,7 @@ jobs:
                     author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
                     signoff: false
                     draft: false
+                    delete-branch: false
                     branch: update-openapi-spec
                     title: "[API-BOT] Update OpenAPI spec and regenerate SDK"
 
