@@ -83,15 +83,15 @@ class SupportTicketTask extends TaskBase
      *
      * List support ticket categories
      *
-     * @param string|null $subscription_id The ID of the subscription the ticket should be related to (optional)
+     * @param string|null $project_id The ID of the project the ticket should be related to (optional)
      * @param string|null $organization_id The ID of the organization the ticket should be related to (optional)
      * @return ListTicketCategories200ResponseInner[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listCategories(string $subscription_id = null, string $organization_id = null): array
+    public function listCategories(string $project_id = null, string $organization_id = null): array
     {
         $this->refreshToken();
-        return $this->supportApi->listTicketCategories($subscription_id, $organization_id);
+        return $this->supportApi->listTicketCategories($project_id, $organization_id);
     }
 
     /**
@@ -99,15 +99,15 @@ class SupportTicketTask extends TaskBase
      *
      * List support ticket priorities
      *
-     * @param string|null $subscription_id The ID of the subscription the ticket should be related to (optional)
+     * @param string|null $project_id The ID of the project the ticket should be related to (optional)
      * @param string|null $category The category of the support ticket. (optional)
      * @return ListTicketPriorities200ResponseInner[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listPriorities(string $subscription_id = null, string $category = null): array
+    public function listPriorities(string $project_id = null, string $category = null): array
     {
         $this->refreshToken();
-        return $this->supportApi->listTicketPriorities($subscription_id, $category);
+        return $this->supportApi->listTicketPriorities($project_id, $category);
     }
 
     /**

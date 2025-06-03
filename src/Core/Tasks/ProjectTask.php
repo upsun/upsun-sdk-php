@@ -4,13 +4,9 @@ namespace Upsun\Core\Tasks;
 
 use InvalidArgumentException;
 use OpenAPI\Client\ApiException;
-use OpenAPI\Client\apisgen\DeploymentApi;
 use OpenAPI\Client\apisgen\DeploymentTargetApi;
-use OpenAPI\Client\apisgen\ProjectActivityApi;
 use OpenAPI\Client\apisgen\ProjectApi;
-use OpenAPI\Client\apisgen\ProjectInvitationsApi;
 use OpenAPI\Client\apisgen\ProjectSettingsApi;
-use OpenAPI\Client\apisgen\ProjectVariablesApi;
 use OpenAPI\Client\apisgen\RepositoryApi;
 use OpenAPI\Client\apisgen\SystemInformationApi;
 use OpenAPI\Client\apisgen\ThirdPartyIntegrationsApi;
@@ -42,8 +38,6 @@ use OpenAPI\Client\Model\ProjectPatch;
 use OpenAPI\Client\Model\ProjectSettings;
 use OpenAPI\Client\Model\ProjectSettingsPatch;
 use OpenAPI\Client\Model\ProjectVariable;
-use OpenAPI\Client\Model\ProjectVariableCreateInput;
-use OpenAPI\Client\Model\ProjectVariablePatch;
 use OpenAPI\Client\Model\Ref;
 use OpenAPI\Client\Model\Subscription;
 use OpenAPI\Client\Model\SystemInformation;
@@ -57,25 +51,19 @@ class ProjectTask extends TaskBase
     protected HeaderSelector $headerSelector;
 
     public readonly ProjectApi $api;
-    public readonly ProjectInvitationsApi $invitationsApi;
     public readonly ProjectSettingsApi $settingsApi;
-    public readonly ProjectVariablesApi $variablesApi;
-    public readonly ProjectActivityApi $activityApi;
     public readonly DeploymentTargetApi $deploymentTargetApi;
     public readonly RepositoryApi $repositoryApi;
     public readonly SystemInformationApi $systemInfoApi;
     public readonly ThirdPartyIntegrationsApi $thirdPartyIntegrationsApi;
 
     public function __construct(
-        public readonly UpsunClient         $client,
+        public readonly UpsunClient $client,
     )
     {
         $this->headerSelector = new HeaderSelector();
         $this->api = new ProjectApi($this->client->apiClient, $this->client->apiConfig);
-        $this->invitationsApi = new ProjectInvitationsApi($this->client->apiClient, $this->client->apiConfig);
         $this->settingsApi = new ProjectSettingsApi($this->client->apiClient, $this->client->apiConfig);
-        $this->variablesApi = new ProjectVariablesApi($this->client->apiClient, $this->client->apiConfig);
-        $this->activityApi = new ProjectActivityApi($this->client->apiClient, $this->client->apiConfig);
         $this->deploymentTargetApi = new DeploymentTargetApi($this->client->apiClient, $this->client->apiConfig);
         $this->repositoryApi = new RepositoryApi($this->client->apiClient, $this->client->apiConfig);
         $this->systemInfoApi = new SystemInformationApi($this->client->apiClient, $this->client->apiConfig);
@@ -156,9 +144,9 @@ class ProjectTask extends TaskBase
         return $this->api->updateProjects($project_id, $project_patch);
     }
 
-    /************** *********************************/
-    /********* ProjectInvitationsApi ****************/
-    /************** *********************************/
+    /************** ************************************/
+    /********* InvitationTask shortcuts ****************/
+    /************** ************************************/
 
     /**
      * Operation cancelProjectInvite
@@ -174,8 +162,7 @@ class ProjectTask extends TaskBase
      */
     public function cancelInvite(string $project_id, string $invitation_id): void
     {
-        $this->refreshToken();
-        $this->invitationsApi->cancelProjectInvite($project_id, $invitation_id);
+        $this->client->invitations->cancelProjectInvite($project_id, $invitation_id);
     }
 
     /**
@@ -192,8 +179,7 @@ class ProjectTask extends TaskBase
      */
     public function createInvite(string $project_id, CreateProjectInviteRequest $create_project_invite_request = null): ProjectInvitation|Error
     {
-        $this->refreshToken();
-        return $this->invitationsApi->createProjectInvite($project_id, $create_project_invite_request);
+        return $this->client->invitations->createProjectInvite($project_id, $create_project_invite_request);
     }
 
     /**
@@ -213,8 +199,7 @@ class ProjectTask extends TaskBase
      */
     public function listInvites(string $project_id, array $filter_state = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|array
     {
-        $this->refreshToken();
-        return $this->invitationsApi->listProjectInvites($project_id, $filter_state, $page_size, $page_before, $page_after, $sort);
+        return $this->client->invitations->listProjectInvites($project_id, $filter_state, $page_size, $page_before, $page_after, $sort);
     }
 
     /************** ******************************/
@@ -253,12 +238,12 @@ class ProjectTask extends TaskBase
         return $this->settingsApi->updateProjectsSettings($project_id, $project_settings_patch);
     }
 
-    /************** ******************************/
-    /********* ProjectVariablesApi ****************/
-    /************** ******************************/
+    /************** **********************************/
+    /********* VariableTask shortcuts ****************/
+    /************** **********************************/
 
     /**
-     * Operation createProjectsVariables
+     * Operation createVariable
      *
      * Add a project variable
      *
@@ -267,15 +252,13 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createVariables(string $project_id, array $project_variable_create_input): AcceptedResponse
+    public function createVariable(string $project_id, array $project_variable_create_input): AcceptedResponse
     {
-        $this->refreshToken();
-        $project_variable_create_input = new ProjectVariableCreateInput($project_variable_create_input);
-        return $this->variablesApi->createProjectsVariables($project_id, $project_variable_create_input);
+        return $this->client->variables->createProjectVariable($project_id, $project_variable_create_input);
     }
 
     /**
-     * Operation deleteProjectsVariables
+     * Operation deleteVariable
      *
      * Delete a project variable
      *
@@ -284,14 +267,13 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteVariables(string $project_id, string $project_variable_id): AcceptedResponse
+    public function deleteVariable(string $project_id, string $project_variable_id): AcceptedResponse
     {
-        $this->refreshToken();
-        return $this->variablesApi->deleteProjectsVariables($project_id, $project_variable_id);
+        return $this->client->variables->deleteProjectVariable($project_id, $project_variable_id);
     }
 
     /**
-     * Operation listProjectsVariables
+     * Operation listVariables
      *
      * Get list of project variables
      *
@@ -301,12 +283,11 @@ class ProjectTask extends TaskBase
      */
     public function listVariables(string $project_id): array
     {
-        $this->refreshToken();
-        return $this->variablesApi->listProjectsVariables($project_id);
+        return $this->client->variables->listProjectVariables($project_id);
     }
 
     /**
-     * Operation updateProjectsVariables
+     * Operation updateVariable
      *
      * Update a project variable
      *
@@ -316,16 +297,14 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateVariables(string $project_id, string $project_variable_id, array $project_variable_patch): AcceptedResponse
+    public function updateVariable(string $project_id, string $project_variable_id, array $project_variable_patch): AcceptedResponse
     {
-        $this->refreshToken();
-        $project_variable_patch = new ProjectVariablePatch($project_variable_patch);
-        return $this->variablesApi->updateProjectsVariables($project_id, $project_variable_id, $project_variable_patch);
+        return $this->client->variables->updateProjectVariable($project_id, $project_variable_id, $project_variable_patch);
     }
 
-    /************** ******************************/
-    /********* ProjectActivityApi ****************/
-    /************** ******************************/
+    /************** **********************************/
+    /********* ActivityTask shortcuts ****************/
+    /************** **********************************/
 
     /**
      * Operation cancelActivity
@@ -339,8 +318,7 @@ class ProjectTask extends TaskBase
      */
     public function cancelActivity(string $project_id, string $activity_id): AcceptedResponse
     {
-        $this->refreshToken();
-        return $this->activityApi->actionProjectsActivitiesCancel($project_id, $activity_id);
+        return $this->client->activity->projectCancel($project_id, $activity_id);
     }
 
     /**
@@ -355,8 +333,7 @@ class ProjectTask extends TaskBase
      */
     public function getActivity(string $project_id, string $activity_id): Activity
     {
-        $this->refreshToken();
-        return $this->activityApi->getProjectsActivities($project_id, $activity_id);
+        return $this->client->activity->projectGet($project_id, $activity_id);
     }
 
     /**
@@ -370,8 +347,7 @@ class ProjectTask extends TaskBase
      */
     public function listActivities(string $project_id): array
     {
-        $this->refreshToken();
-        return $this->activityApi->listProjectsActivities($project_id);
+        return $this->client->activity->projectList($project_id);
     }
 
     /************** ********************************/
@@ -663,7 +639,7 @@ class ProjectTask extends TaskBase
         $integration_patch = new IntegrationPatch($integration_patch);
         return $this->thirdPartyIntegrationsApi->updateProjectsIntegrations($project_id, $integration_id, $integration_patch);
     }
-    
+
     /************** ********************************/
     /********* DomainTask shortcuts ****************/
     /************** ********************************/
@@ -760,7 +736,7 @@ class ProjectTask extends TaskBase
      */
     public function createCertificate(string $project_id, array $certificate_create_input): AcceptedResponse
     {
-        return $this->client->certificate->createProjectsCertificates($project_id, $certificate_create_input);
+        return $this->client->certificate->create($project_id, $certificate_create_input);
     }
 
 
@@ -776,7 +752,7 @@ class ProjectTask extends TaskBase
      */
     public function deleteCertificate(string $project_id, string $certificate_id): AcceptedResponse
     {
-        return $this->client->certificate->deleteProjectsCertificates($project_id, $certificate_id);
+        return $this->client->certificate->delete($project_id, $certificate_id);
     }
 
     /**
@@ -791,7 +767,7 @@ class ProjectTask extends TaskBase
      */
     public function getCertificate(string $project_id, string $certificate_id): Certificate
     {
-        return $this->client->certificate->getProjectsCertificates($project_id, $certificate_id);
+        return $this->client->certificate->get($project_id, $certificate_id);
     }
 
     /**
@@ -805,7 +781,7 @@ class ProjectTask extends TaskBase
      */
     public function listCertificates(string $project_id): array
     {
-        return $this->client->certificate->listProjectsCertificates($project_id);
+        return $this->client->certificate->list($project_id);
     }
 
     /**
@@ -821,7 +797,7 @@ class ProjectTask extends TaskBase
      */
     public function updateCertificate(string $project_id, string $certificate_id, array $certificate_patch): AcceptedResponse
     {
-        return $this->client->certificate->updateProjectsCertificates($project_id, $certificate_id, $certificate_patch);
+        return $this->client->certificate->update($project_id, $certificate_id, $certificate_patch);
     }
 
     /************** ***********************************/
@@ -842,7 +818,7 @@ class ProjectTask extends TaskBase
      */
     public function runOperation(string $project_id, string $environment_id, string $deployment_id, array $environment_operation_input): AcceptedResponse
     {
-        return $this->client->operation->runOperation($project_id, $environment_id, $deployment_id, $environment_operation_input);
+        return $this->client->operation->run($project_id, $environment_id, $deployment_id, $environment_operation_input);
     }
 
     /************** ******************************/
@@ -1041,7 +1017,7 @@ class ProjectTask extends TaskBase
     {
         $this->client->user->updateProjectUserAccess($project_id, $user_id, $update_project_user_access_request);
     }
-    
+
     /**
      * Operation listProjectUserAccess
      *
@@ -1059,7 +1035,7 @@ class ProjectTask extends TaskBase
     {
         return $this->client->user->listProjectUserAccess($project_id, $page_size, $page_before, $page_after, $sort);
     }
-    
+
     /************** ***************************/
     /********* Custom function ****************/
     /************** ***************************/
@@ -1078,7 +1054,7 @@ class ProjectTask extends TaskBase
     public function create(string $organization_id, array $project_data): Error|Subscription
     {
         $this->refreshToken();
-        return $this->client->organization->createOrgSubscription($organization_id, $project_data);
+        return $this->client->organization->createProject($organization_id, $project_data);
     }
 
     /**
@@ -1093,7 +1069,7 @@ class ProjectTask extends TaskBase
     public function listEnvironments(string $project_id): array
     {
         $this->refreshToken();
-        return $this->client->environment->listProjectsEnvironments($project_id);
+        return $this->client->environment->list($project_id);
     }
 
 

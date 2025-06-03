@@ -26,7 +26,7 @@ class DomainTask extends TaskBase
     /************** ********************************/
 
     /**
-     * Operation createProjectsDomains
+     * Operation createProjectDomain
      *
      * Add a project domain
      *
@@ -35,7 +35,7 @@ class DomainTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createProjectsDomains(string $project_id, array $domain_create_input): AcceptedResponse
+    public function createProjectDomain(string $project_id, array $domain_create_input): AcceptedResponse
     {
         $this->refreshToken();
         $domain_create_input = new DomainCreateInput($domain_create_input);
@@ -43,7 +43,7 @@ class DomainTask extends TaskBase
     }
 
     /**
-     * Operation createProjectsEnvironmentsDomains
+     * Operation createEnvironmentDomain
      *
      * Add an environment domain
      *
@@ -53,7 +53,7 @@ class DomainTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createEnvironmentsDomains(string $project_id, string $environment_id, array $domain_create_input): AcceptedResponse
+    public function createEnvironmentDomain(string $project_id, string $environment_id, array $domain_create_input): AcceptedResponse
     {
         $this->refreshToken();
         $domain_create_input = new DomainCreateInput($domain_create_input);
@@ -61,7 +61,7 @@ class DomainTask extends TaskBase
     }
 
     /**
-     * Operation deleteProjectsDomains
+     * Operation deleteProjectDomain
      *
      * Delete a project domain
      *
@@ -70,14 +70,14 @@ class DomainTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteProjectsDomains(string $project_id, string $domain_id): AcceptedResponse
+    public function deleteProjectDomain(string $project_id, string $domain_id): AcceptedResponse
     {
         $this->refreshToken();
         return $this->api->deleteProjectsDomains($project_id, $domain_id);
     }
 
     /**
-     * Operation deleteProjectsEnvironmentsDomains
+     * Operation deleteEnvironmentsDomain
      *
      * Delete an environment domain
      *
@@ -87,7 +87,7 @@ class DomainTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteEnvironmentsDomains(string $project_id, string $environment_id, string $domain_id): AcceptedResponse
+    public function deleteEnvironmentDomain(string $project_id, string $environment_id, string $domain_id): AcceptedResponse
     {
         $this->refreshToken();
         return $this->api->deleteProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id);
@@ -103,7 +103,7 @@ class DomainTask extends TaskBase
      * @return Domain
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectsDomains(string $project_id, string $domain_id): Domain
+    public function getProjectDomain(string $project_id, string $domain_id): Domain
     {
         $this->refreshToken();
         return $this->api->getProjectsDomains($project_id, $domain_id);
@@ -120,14 +120,14 @@ class DomainTask extends TaskBase
      * @return Domain
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getEnvironmentsDomains(string $project_id, string $environment_id, string $domain_id): Domain
+    public function getEnvironmentDomain(string $project_id, string $environment_id, string $domain_id): Domain
     {
         $this->refreshToken();
         return $this->api->getProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id);
     }
 
     /**
-     * Operation listProjectsDomains
+     * Operation listProjectDomains
      *
      * Get list of project domains
      *
@@ -135,14 +135,14 @@ class DomainTask extends TaskBase
      * @return Domain[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectsDomains(string $project_id): array
+    public function listProjectDomains(string $project_id): array
     {
         $this->refreshToken();
         return $this->api->listProjectsDomains($project_id);
     }
 
     /**
-     * Operation listProjectsEnvironmentsDomains
+     * Operation listEnvironmentDomains
      *
      * Get a list of environment domains
      *
@@ -151,14 +151,14 @@ class DomainTask extends TaskBase
      * @return Domain[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listEnvironmentsDomains(string $project_id, string $environment_id): array
+    public function listEnvironmentDomains(string $project_id, string $environment_id): array
     {
         $this->refreshToken();
         return $this->api->listProjectsEnvironmentsDomains($project_id, $environment_id);
     }
 
     /**
-     * Operation updateProjectsDomains
+     * Operation updateProjectDomain
      *
      * Update a project domain
      *
@@ -168,7 +168,7 @@ class DomainTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateProjectsDomains(string $project_id, string $domain_id, array $domain_patch): AcceptedResponse
+    public function updateProjectDomain(string $project_id, string $domain_id, array $domain_patch): AcceptedResponse
     {
         $this->refreshToken();
         $domain_patch = new DomainPatch($domain_patch);
@@ -176,7 +176,7 @@ class DomainTask extends TaskBase
     }
 
     /**
-     * Operation updateProjectsEnvironmentsDomains
+     * Operation updateEnvironmentDomain
      *
      * Update an environment domain
      *
@@ -187,7 +187,7 @@ class DomainTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateEnvironmentsDomains(string $project_id, string $environment_id, string $domain_id, array $domain_patch): AcceptedResponse
+    public function updateEnvironmentDomain(string $project_id, string $environment_id, string $domain_id, array $domain_patch): AcceptedResponse
     {
         $this->refreshToken();
         $domain_patch = new DomainPatch($domain_patch);

@@ -10,6 +10,7 @@ use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
 use InvalidArgumentException;
+use JsonException;
 use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\InvoicesApi;
 use OpenAPI\Client\apisgen\MFAApi;
@@ -58,6 +59,7 @@ use OpenAPI\Client\Model\Vouchers;
 use OpenAPI\Client\ObjectSerializer;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use RuntimeException;
 use Upsun\UpsunClient;
 
 class OrganizationTask extends TaskBase
@@ -66,12 +68,9 @@ class OrganizationTask extends TaskBase
 
     public OrganizationsApi $api;
     public OrganizationProjectsApi $projectsApi;
-
     public OrganizationMembersApi $membersApi;
-
     public SubscriptionsApi $subscriptionsApi;
     protected HeaderSelector $headerSelector;
-
     public readonly InvoicesApi $invoicesApi;
     public readonly MFAApi $mfaApi;
     public readonly OrdersApi $ordersApi;
@@ -222,7 +221,6 @@ class OrganizationTask extends TaskBase
      */
     public function listCurrentUserOrgs(array $filter_id = null, array $filter_vendor = null, array $filter_status = null, array $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|ListUserOrgs200Response
     {
-//        dd($this->client->user->me()->getId());
         return $this->listUserOrgs($this->client->user->me()->getId(), $filter_id, $filter_vendor, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
     }
 
@@ -232,10 +230,9 @@ class OrganizationTask extends TaskBase
      * Update organization
      *
      * @param string $organization_id The ID of the organization. (required)
-     * @param array $update_org_data update_org_request (optional)
+     * @param array|null $update_org_data update_org_request (optional)
      *
      * @return Organization|Error
-     * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function update(string $organization_id, array $update_org_data = null): Organization|Error
@@ -878,6 +875,7 @@ class OrganizationTask extends TaskBase
      * Activate addons userManagement on organization $organizationId
      *
      * Equivalent to `upsun api:curl -X PATCH --json '{"user_management":"standard"}' 'api/organizations/ORGANIZATION_ID/addons' | jq`
+     * Missing from the openapi config
      * @param string $organization_id
      * @return mixed
      * @throws ApiException
@@ -894,10 +892,10 @@ class OrganizationTask extends TaskBase
 
     /**
      * Create http client option
-     * TODO Duplicate from OrganizationApi.php
+     * TODO missing from OrganizationApi.php
      *
      * @return array of http client options
-     * @throws \RuntimeException on file opening failure
+     * @throws RuntimeException on file opening failure
      */
     protected function createHttpClientOption(): array
     {
@@ -905,7 +903,7 @@ class OrganizationTask extends TaskBase
         if ($this->client->apiConfig->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->client->apiConfig->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new \RuntimeException('Failed to open the debug file: ' . $this->client->apiConfig->getDebugFile());
+                throw new RuntimeException('Failed to open the debug file: ' . $this->client->apiConfig->getDebugFile());
             }
         }
 
@@ -914,7 +912,7 @@ class OrganizationTask extends TaskBase
 
     /**
      *
-     * TODO Duplicate from Organizationpi
+     * TODO missing from Organizationpi
      * @param string $dataType
      * @param RequestInterface $request
      * @param ResponseInterface $response
@@ -934,7 +932,7 @@ class OrganizationTask extends TaskBase
             if ($dataType !== 'string') {
                 try {
                     $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $exception) {
+                } catch (JsonException $exception) {
                     throw new ApiException(
                         sprintf(
                             'Error JSON decoding server response (%s)',
@@ -960,7 +958,7 @@ class OrganizationTask extends TaskBase
      *
      * Update organization addons
      *
-     * @TODO duplicate from OrganizationAPI
+     * @TODO missing from OrganizationAPI
      *
      * @param string $organization_id The ID of the organization. (required)
      * @param array $update_org_request (optional)
@@ -1073,7 +1071,7 @@ class OrganizationTask extends TaskBase
 
     /**
      * Create request for operation 'updateOrg'
-     * @TODO duplicate from OrganizationAPI
+     * @TODO missing from OrganizationAPI
      *
      * @param string $organization_id The ID of the organization. (required)
      * @param array $update_org_request (optional)
