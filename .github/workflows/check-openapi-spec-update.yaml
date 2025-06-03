@@ -18,22 +18,11 @@ jobs:
         steps:
             -   name: Checkout repository
                 uses: actions/checkout@v4
-                with:
-                    ref: ${{ env.DEFAULT_BRANCH }}
-                    token: ${{ secrets.WORKFLOW_TOKEN }}
+                
             -   name: Set up Git
                 run: |
                     git config --global user.name "github-actions[bot]"
                     git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-            -   name: Install OpenAPI Generator CLI
-                run: |
-                    npm install -g @openapitools/openapi-generator-cli
-
-            -   name: Clean old build
-                run: |
-                    rm -rf ./schema/*
-                    rm -rf ./apisgen/*
 
             -   name: Download and patch OpenAPI spec
                 run: |
@@ -43,37 +32,19 @@ jobs:
                     echo "Patch OpenAPI spec..."
                     sed -i 's/HTTP access permissions/Http access permissions/g' ./schema/openapispec-platformsh.json
 
-            -   name: Generate code (php)
-                run: |
-                    export GIT_USER_ID=upsun
-                    export GIT_REPO_ID=upsun-sdk-php
-                    openapi-generator-cli generate \
-                      -i ./schema/openapispec-platformsh.json \
-                      -g php \
-                      -o apisgen \
-                      --additional-properties=apiPackage=apisgen
-
-            -   name: Cleanup unnecessary files
-                run: |
-                    rm -rf ./apisgen/git_push.sh ./apisgen/.gitignore ./apisgen/.travis.yml ./apisgen/composer.json
-
             -   name: Create Pull Request if changes
                 uses: peter-evans/create-pull-request@v6
                 with:
-                    token: ${{ secrets.WORKFLOW_TOKEN }}
-                    commit-message: "Update OpenAPI spec and regenerate SDK"
-                    committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+                    token: ${{ secrets.GITHUB_TOKEN }}
+                    commit-message: "Update OpenAPI spec"
+                    body: "This PR updates the OpenAPI spec from the upstream source and applies formatting changes."
+
                     author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
                     signoff: false
                     draft: false
                     branch: update/openapi-spec
                     title: "[API-BOT] Update OpenAPI spec and regenerate SDK"
-                    body: |
-                        This PR includes:
-                        - Updated OpenAPI spec from upstream
-                        - Applied `sed` patch
-                        - Regenerated SDK code (php)
-                        - Cleaned auxiliary files
+
                     base: main  # Change si la branche par défaut a un autre nom
                     labels: |
                         report
