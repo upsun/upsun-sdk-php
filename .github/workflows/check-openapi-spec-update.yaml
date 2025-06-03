@@ -17,9 +17,6 @@ jobs:
         steps:
             -   name: Checkout repository
                 uses: actions/checkout@v4
-                with:
-                    ref: ${{ env.DEFAULT_BRANCH }}
-                    token: ${{ secrets.GITHUB_TOKEN }}
                     
             -   name: Set up Git
                 run: |
@@ -37,7 +34,7 @@ jobs:
             -   name: Create Pull Request if changes
                 uses: peter-evans/create-pull-request@v6
                 with:
-                    token: ${{ secrets.GITHUB_TOKEN }}
+                    token: ${{ secrets.OPENAPI_WORKFLOW_TOKEN }}
                     commit-message: "Update OpenAPI spec"
                     body: "This PR updates the OpenAPI spec from the upstream source and applies formatting changes."
 
