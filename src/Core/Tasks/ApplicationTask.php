@@ -27,7 +27,9 @@ class ApplicationTask extends TaskBase
     {
         $deployments = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);
         
-        dd($deployments);
+        
+        
+        dd($deployments, $deployments[0]->getWebapps());
         
         
         $defaultEnv = $this->getDefaultEnv($projectId);
