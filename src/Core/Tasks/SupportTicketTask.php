@@ -32,7 +32,7 @@ class SupportTicketTask extends TaskBase
     /************** **********************/
 
     /**
-     * Operation listTickets
+     * Operation list
      *
      * List support tickets
      *
@@ -52,7 +52,7 @@ class SupportTicketTask extends TaskBase
      * @return ListTickets200Response
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listTickets(int $filter_ticket_id = null, DateTime $filter_created = null, DateTime $filter_updated = null, string $filter_type = null, string $filter_priority = null, string $filter_status = null, string $filter_requester_id = null, string $filter_submitter_id = null, string $filter_assignee_id = null, bool $filter_has_incidents = null, DateTime $filter_due = null, string $search = null, int $page = null): ListTickets200Response
+    public function list(int $filter_ticket_id = null, DateTime $filter_created = null, DateTime $filter_updated = null, string $filter_type = null, string $filter_priority = null, string $filter_status = null, string $filter_requester_id = null, string $filter_submitter_id = null, string $filter_assignee_id = null, bool $filter_has_incidents = null, DateTime $filter_due = null, string $search = null, int $page = null): ListTickets200Response
     {
         $this->refreshToken();
         return $this->api->listTickets($filter_ticket_id, $filter_created, $filter_updated, $filter_type, $filter_priority, $filter_status, $filter_requester_id, $filter_submitter_id, $filter_assignee_id, $filter_has_incidents, $filter_due, $search, $page);
@@ -63,7 +63,7 @@ class SupportTicketTask extends TaskBase
     /************** **********************/
 
     /**
-     * Operation createTicket
+     * Operation create
      *
      * Create a new support ticket
      *
@@ -71,7 +71,7 @@ class SupportTicketTask extends TaskBase
      * @return Ticket
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createTicket(array $create_ticket_request = null): Ticket
+    public function create(array $create_ticket_request = null): Ticket
     {
         $this->refreshToken();
         $create_ticket_request = new CreateTicketRequest($create_ticket_request);
@@ -79,7 +79,7 @@ class SupportTicketTask extends TaskBase
     }
 
     /**
-     * Operation listTicketCategories
+     * Operation listCategories
      *
      * List support ticket categories
      *
@@ -88,14 +88,14 @@ class SupportTicketTask extends TaskBase
      * @return ListTicketCategories200ResponseInner[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listTicketCategories(string $subscription_id = null, string $organization_id = null): array
+    public function listCategories(string $subscription_id = null, string $organization_id = null): array
     {
         $this->refreshToken();
         return $this->supportApi->listTicketCategories($subscription_id, $organization_id);
     }
 
     /**
-     * Operation listTicketPriorities
+     * Operation listPriorities
      *
      * List support ticket priorities
      *
@@ -104,14 +104,14 @@ class SupportTicketTask extends TaskBase
      * @return ListTicketPriorities200ResponseInner[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listTicketPriorities(string $subscription_id = null, string $category = null): array
+    public function listPriorities(string $subscription_id = null, string $category = null): array
     {
         $this->refreshToken();
         return $this->supportApi->listTicketPriorities($subscription_id, $category);
     }
 
     /**
-     * Operation updateTicket
+     * Operation update
      *
      * Update a ticket
      *
@@ -120,7 +120,7 @@ class SupportTicketTask extends TaskBase
      * @return Ticket
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateTicket(string $ticket_id, array $update_ticket_request = null): Ticket
+    public function update(string $ticket_id, array $update_ticket_request = null): Ticket
     {
         $this->refreshToken();
         $update_ticket_request = new UpdateTicketRequest($update_ticket_request);

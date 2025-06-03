@@ -77,7 +77,7 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function activateEnvironment(string $project_id, string $environment_id, array $environment_activate_input): AcceptedResponse
+    public function activate(string $project_id, string $environment_id, array $environment_activate_input): AcceptedResponse
     {
         $this->refreshToken();
         $environment_activate_input = new EnvironmentActivateInput($environment_activate_input);
@@ -96,7 +96,7 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function branchEnvironment(string $project_id, string $environment_id, array $environment_branch_input): AcceptedResponse
+    public function branch(string $project_id, string $environment_id, array $environment_branch_input): AcceptedResponse
     {
         $this->refreshToken();
         $environment_branch_input = new EnvironmentBranchInput($environment_branch_input);
@@ -115,7 +115,7 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createProjectsEnvironmentsVersions(string $project_id, string $environment_id, array $version_create_input): AcceptedResponse
+    public function createVersions(string $project_id, string $environment_id, array $version_create_input): AcceptedResponse
     {
         $this->refreshToken();
         $version_create_input = new VersionCreateInput($version_create_input);
@@ -134,7 +134,7 @@ class EnvironmentTask extends TaskBase
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deactivateEnvironment(string $project_id, string $environment_id): AcceptedResponse
+    public function deactivate(string $project_id, string $environment_id): AcceptedResponse
     {
         $this->refreshToken();
         return $this->api->deactivateEnvironment($project_id, $environment_id);
@@ -150,7 +150,7 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteEnvironment(string $project_id, string $environment_id): AcceptedResponse
+    public function delete(string $project_id, string $environment_id): AcceptedResponse
     {
         $this->refreshToken();
         return $this->api->deleteEnvironment($project_id, $environment_id);
@@ -167,7 +167,7 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteProjectsEnvironmentsVersions(string $project_id, string $environment_id, string $version_id): AcceptedResponse
+    public function deleteVersions(string $project_id, string $environment_id, string $version_id): AcceptedResponse
     {
         $this->refreshToken();
         return $this->api->deleteProjectsEnvironmentsVersions($project_id, $environment_id, $version_id);
@@ -183,7 +183,7 @@ class EnvironmentTask extends TaskBase
      * @return Environment
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getEnvironment(string $project_id, string $environment_id): Environment
+    public function get(string $project_id, string $environment_id): Environment
     {
         $this->refreshToken();
         return $this->api->getEnvironment($project_id, $environment_id);
@@ -200,7 +200,7 @@ class EnvironmentTask extends TaskBase
      * @return Version
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectsEnvironmentsVersions(string $project_id, string $environment_id, string $version_id): Version
+    public function getVersions(string $project_id, string $environment_id, string $version_id): Version
     {
         $this->refreshToken();
         return $this->api->getProjectsEnvironmentsVersions($project_id, $environment_id, $version_id);
@@ -217,7 +217,7 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function initializeEnvironment(string $project_id, string $environment_id, array $environment_initialize_input): AcceptedResponse
+    public function initialize(string $project_id, string $environment_id, array $environment_initialize_input): AcceptedResponse
     {
         $this->refreshToken();
         $environment_initialize_input = new EnvironmentInitializeInput($environment_initialize_input);
@@ -233,7 +233,7 @@ class EnvironmentTask extends TaskBase
      * @return Environment[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectsEnvironments(string $project_id): array
+    public function list(string $project_id): array
     {
         $this->refreshToken();
         return $this->api->listProjectsEnvironments($project_id);
@@ -249,7 +249,7 @@ class EnvironmentTask extends TaskBase
      * @return Version[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectsEnvironmentsVersions(string $project_id, string $environment_id): array
+    public function listVersions(string $project_id, string $environment_id): array
     {
         $this->refreshToken();
         return $this->api->listProjectsEnvironmentsVersions($project_id, $environment_id);
@@ -266,7 +266,7 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function mergeEnvironment(string $project_id, string $environment_id, array $environment_merge_input): AcceptedResponse
+    public function merge(string $project_id, string $environment_id, array $environment_merge_input): AcceptedResponse
     {
         $this->refreshToken();
         $environment_merge_input = new EnvironmentMergeInput($environment_merge_input);
@@ -283,7 +283,7 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function pauseEnvironment(string $project_id, string $environment_id): AcceptedResponse
+    public function pause(string $project_id, string $environment_id): AcceptedResponse
     {
         $this->refreshToken();
         return $this->api->pauseEnvironment($project_id, $environment_id);
@@ -299,7 +299,7 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function redeployEnvironment(string $project_id, string $environment_id): AcceptedResponse
+    public function redeploy(string $project_id, string $environment_id): AcceptedResponse
     {
         $this->refreshToken();
         return $this->api->redeployEnvironment($project_id, $environment_id);
@@ -317,7 +317,7 @@ class EnvironmentTask extends TaskBase
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function resumeEnvironment(string $project_id, string $environment_id): AcceptedResponse
+    public function resume(string $project_id, string $environment_id): AcceptedResponse
     {
         $this->refreshToken();
         return $this->api->resumeEnvironment($project_id, $environment_id);
@@ -334,7 +334,7 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function synchronizeEnvironment(string $project_id, string $environment_id, array $environment_synchronize_input): AcceptedResponse
+    public function synchronize(string $project_id, string $environment_id, array $environment_synchronize_input): AcceptedResponse
     {
         $this->refreshToken();
         $environment_synchronize_input = new EnvironmentSynchronizeInput($environment_synchronize_input);
@@ -353,7 +353,7 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateEnvironment(string $project_id, string $environment_id, array $environment_patch): AcceptedResponse
+    public function update(string $project_id, string $environment_id, array $environment_patch): AcceptedResponse
     {
         $this->refreshToken();
         $environment_patch = new EnvironmentPatch($environment_patch);
@@ -373,7 +373,7 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateProjectsEnvironmentsVersions(string $project_id, string $environment_id, string $version_id, array $version_patch): AcceptedResponse
+    public function updateVersions(string $project_id, string $environment_id, string $version_id, array $version_patch): AcceptedResponse
     {
         $this->refreshToken();
         $version_patch = new VersionPatch($version_patch);
@@ -395,7 +395,7 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function actionProjectsEnvironmentsActivitiesCancel(string $project_id, string $environment_id, string $activity_id): AcceptedResponse
+    public function activitiesCancel(string $project_id, string $environment_id, string $activity_id): AcceptedResponse
     {
         $this->refreshToken();
         return $this->activityApi->actionProjectsEnvironmentsActivitiesCancel($project_id, $environment_id, $activity_id);
@@ -412,7 +412,7 @@ class EnvironmentTask extends TaskBase
      * @return Activity
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectsEnvironmentsActivities(string $project_id, string $environment_id, string $activity_id): Activity
+    public function getActivities(string $project_id, string $environment_id, string $activity_id): Activity
     {
         $this->refreshToken();
         return $this->activityApi->getProjectsEnvironmentsActivities($project_id, $environment_id, $activity_id);
@@ -428,7 +428,7 @@ class EnvironmentTask extends TaskBase
      * @return Activity[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectsEnvironmentsActivities(string $project_id, string $environment_id): array
+    public function listActivities(string $project_id, string $environment_id): array
     {
         $this->refreshToken();
         return $this->activityApi->listProjectsEnvironmentsActivities($project_id, $environment_id);
@@ -449,7 +449,7 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function backupEnvironment(string $project_id, string $environment_id, array $environment_backup_input): AcceptedResponse
+    public function backup(string $project_id, string $environment_id, array $environment_backup_input): AcceptedResponse
     {
         $this->refreshToken();
         $environment_backup_input = new EnvironmentBackupInput($environment_backup_input);
@@ -467,7 +467,7 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteProjectsEnvironmentsBackups(string $project_id, string $environment_id, string $backup_id): AcceptedResponse
+    public function deleteBackups(string $project_id, string $environment_id, string $backup_id): AcceptedResponse
     {
         $this->refreshToken();
         return $this->backupsApi->deleteProjectsEnvironmentsBackups($project_id, $environment_id, $backup_id);
@@ -484,7 +484,7 @@ class EnvironmentTask extends TaskBase
      * @return Backup
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectsEnvironmentsBackups(string $project_id, string $environment_id, string $backup_id): Backup
+    public function getBackups(string $project_id, string $environment_id, string $backup_id): Backup
     {
         $this->refreshToken();
         return $this->backupsApi->getProjectsEnvironmentsBackups($project_id, $environment_id, $backup_id);
@@ -500,7 +500,7 @@ class EnvironmentTask extends TaskBase
      * @return Backup[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectsEnvironmentsBackups(string $project_id, string $environment_id): array
+    public function listBackups(string $project_id, string $environment_id): array
     {
         $this->refreshToken();
         return $this->backupsApi->listProjectsEnvironmentsBackups($project_id, $environment_id);
@@ -539,7 +539,7 @@ class EnvironmentTask extends TaskBase
      * @return EnvironmentType
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getEnvironmentType(string $project_id, string $environment_type_id): EnvironmentType
+    public function getType(string $project_id, string $environment_type_id): EnvironmentType
     {
         $this->refreshToken();
         return $this->typeApi->getEnvironmentType($project_id, $environment_type_id);
@@ -554,7 +554,7 @@ class EnvironmentTask extends TaskBase
      * @return EnvironmentType[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectsEnvironmentTypes(string $project_id): array
+    public function listTypes(string $project_id): array
     {
         $this->refreshToken();
         return $this->typeApi->listProjectsEnvironmentTypes($project_id);
@@ -575,7 +575,7 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createProjectsEnvironmentsVariables(string $project_id, string $environment_id, array $environment_variable_create_input): AcceptedResponse
+    public function createVariables(string $project_id, string $environment_id, array $environment_variable_create_input): AcceptedResponse
     {
         $this->refreshToken();
         $environment_variable_create_input = new EnvironmentVariableCreateInput($environment_variable_create_input);
@@ -593,7 +593,7 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteProjectsEnvironmentsVariables(string $project_id, string $environment_id, string $variable_id): AcceptedResponse
+    public function deleteVariables(string $project_id, string $environment_id, string $variable_id): AcceptedResponse
     {
         $this->refreshToken();
         return $this->variablesApi->deleteProjectsEnvironmentsVariables($project_id, $environment_id, $variable_id);
@@ -610,7 +610,7 @@ class EnvironmentTask extends TaskBase
      * @return EnvironmentVariable
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectsEnvironmentsVariables(string $project_id, string $environment_id, string $variable_id): EnvironmentVariable
+    public function getVariables(string $project_id, string $environment_id, string $variable_id): EnvironmentVariable
     {
         $this->refreshToken();
         return $this->variablesApi->getProjectsEnvironmentsVariables($project_id, $environment_id, $variable_id);
@@ -626,7 +626,7 @@ class EnvironmentTask extends TaskBase
      * @return EnvironmentVariable[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectsEnvironmentsVariables(string $project_id, string $environment_id): array
+    public function listVariables(string $project_id, string $environment_id): array
     {
         $this->refreshToken();
         return $this->variablesApi->listProjectsEnvironmentsVariables($project_id, $environment_id);
@@ -644,7 +644,7 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateProjectsEnvironmentsVariables(string $project_id, string $environment_id, string $variable_id, array $environment_variable_patch): AcceptedResponse
+    public function updateVariables(string $project_id, string $environment_id, string $variable_id, array $environment_variable_patch): AcceptedResponse
     {
         $this->refreshToken();
         $environment_variable_patch = new EnvironmentVariablePatch($environment_variable_patch);
@@ -666,7 +666,7 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createProjectsEnvironmentsRoutes(string $project_id, string $environment_id, array $route_create_input): AcceptedResponse
+    public function createRoutes(string $project_id, string $environment_id, array $route_create_input): AcceptedResponse
     {
         return $this->routeTask->createProjectsEnvironmentsRoutes($project_id, $environment_id, $route_create_input);
     }
@@ -682,7 +682,7 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteProjectsEnvironmentsRoutes(string $project_id, string $environment_id, string $route_id): AcceptedResponse
+    public function deleteRoutes(string $project_id, string $environment_id, string $route_id): AcceptedResponse
     {
         return $this->routeTask->deleteProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id);
     }
@@ -698,7 +698,7 @@ class EnvironmentTask extends TaskBase
      * @return Route
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectsEnvironmentsRoutes(string $project_id, string $environment_id, string $route_id): Route
+    public function getRoutes(string $project_id, string $environment_id, string $route_id): Route
     {
         return $this->routeTask->getProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id);
     }
@@ -713,7 +713,7 @@ class EnvironmentTask extends TaskBase
      * @return Route[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectsEnvironmentsRoutes(string $project_id, string $environment_id): array
+    public function listRoutes(string $project_id, string $environment_id): array
     {
         return $this->routeTask->listProjectsEnvironmentsRoutes($project_id, $environment_id);
     }
@@ -730,7 +730,7 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateProjectsEnvironmentsRoutes(string $project_id, string $environment_id, string $route_id, array $route_patch): AcceptedResponse
+    public function updateRoutes(string $project_id, string $environment_id, string $route_id, array $route_patch): AcceptedResponse
     {
         return $this->routeTask->updateProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id, $route_patch);
     }
@@ -750,7 +750,7 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createProjectsEnvironmentsDomains(string $project_id, string $environment_id, array $domain_create_input): AcceptedResponse
+    public function createDomains(string $project_id, string $environment_id, array $domain_create_input): AcceptedResponse
     {
         return $this->domainTask->createProjectsEnvironmentsDomains($project_id, $environment_id, $domain_create_input);
     }
@@ -766,7 +766,7 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteProjectsEnvironmentsDomains(string $project_id, string $environment_id, string $domain_id): AcceptedResponse
+    public function deleteDomains(string $project_id, string $environment_id, string $domain_id): AcceptedResponse
     {
         return $this->domainTask->deleteProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id);
     }
@@ -782,7 +782,7 @@ class EnvironmentTask extends TaskBase
      * @return Domain
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectsEnvironmentsDomains(string $project_id, string $environment_id, string $domain_id): Domain
+    public function getDomains(string $project_id, string $environment_id, string $domain_id): Domain
     {
         return $this->domainTask->getProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id);
     }
@@ -797,7 +797,7 @@ class EnvironmentTask extends TaskBase
      * @return Domain[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectsEnvironmentsDomains(string $project_id, string $environment_id): array
+    public function listDomains(string $project_id, string $environment_id): array
     {
         return $this->domainTask->listProjectsEnvironmentsDomains($project_id, $environment_id);
     }
@@ -814,7 +814,7 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateProjectsEnvironmentsDomains(string $project_id, string $environment_id, string $domain_id, array $domain_patch): AcceptedResponse
+    public function updateDomains(string $project_id, string $environment_id, string $domain_id, array $domain_patch): AcceptedResponse
     {
         return $this->domainTask->updateProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id, $domain_patch);
     }
@@ -834,7 +834,7 @@ class EnvironmentTask extends TaskBase
      * @return Deployment
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectsEnvironmentsDeployments(string $project_id, string $environment_id, string $deployment_id): Deployment
+    public function getDeployments(string $project_id, string $environment_id, string $deployment_id): Deployment
     {
         $this->refreshToken();
         return $this->deploymentApi->getProjectsEnvironmentsDeployments($project_id, $environment_id, $deployment_id);
@@ -850,7 +850,7 @@ class EnvironmentTask extends TaskBase
      * @return Deployment[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectsEnvironmentsDeployments(string $project_id, string $environment_id): array
+    public function listDeployments(string $project_id, string $environment_id): array
     {
         $this->refreshToken();
         return $this->deploymentApi->listProjectsEnvironmentsDeployments($project_id, $environment_id);
@@ -870,7 +870,7 @@ class EnvironmentTask extends TaskBase
      * @return EnvironmentSourceOperation[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectsEnvironmentsSourceOperations(string $project_id, string $environment_id): array
+    public function listSourceOperations(string $project_id, string $environment_id): array
     {
         return $this->sourceOperationTask->listProjectsEnvironmentsSourceOperations($project_id, $environment_id);
     }

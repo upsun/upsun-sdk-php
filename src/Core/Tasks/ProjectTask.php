@@ -65,12 +65,6 @@ class ProjectTask extends TaskBase
     public readonly RepositoryApi $repositoryApi;
     public readonly SystemInformationApi $systemInfoApi;
     public readonly ThirdPartyIntegrationsApi $thirdPartyIntegrationsApi;
-    public readonly DomainTask          $domainTask;
-    public readonly CertificateTask     $certificateTask;
-    public readonly OperationTask       $runtimeOperationTask;
-    public readonly SourceOperationTask $sourceOperationTask;
-    public readonly TeamTask            $teamTask;
-    public readonly UserTask            $userTask;
 
     public function __construct(
         public readonly UpsunClient         $client,
@@ -86,10 +80,6 @@ class ProjectTask extends TaskBase
         $this->repositoryApi = new RepositoryApi($this->client->apiClient, $this->client->apiConfig);
         $this->systemInfoApi = new SystemInformationApi($this->client->apiClient, $this->client->apiConfig);
         $this->thirdPartyIntegrationsApi = new ThirdPartyIntegrationsApi($this->client->apiClient, $this->client->apiConfig);
-        $this->domainTask = new DomainTask($this->client);
-        $this->sourceOperationTask = new SourceOperationTask($this->client);
-        $this->teamTask = new TeamTask($this->client);
-        $this->userTask = new UserTask($this->client);
     }
 
     /************** **********************/
@@ -107,7 +97,7 @@ class ProjectTask extends TaskBase
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteProjects(string $project_id): AcceptedResponse
+    public function delete(string $project_id): AcceptedResponse
     {
         $this->refreshToken();
         return $this->api->deleteProjects($project_id);
@@ -124,7 +114,7 @@ class ProjectTask extends TaskBase
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjects(string $project_id): Project
+    public function get(string $project_id): Project
     {
         $this->refreshToken();
         return $this->api->getProjects($project_id);
@@ -141,7 +131,7 @@ class ProjectTask extends TaskBase
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectsCapabilities(string $project_id): ProjectCapabilities
+    public function getCapabilities(string $project_id): ProjectCapabilities
     {
         $this->refreshToken();
         return $this->api->getProjectsCapabilities($project_id);
@@ -159,7 +149,7 @@ class ProjectTask extends TaskBase
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateProjects(string $project_id, array $project_data): AcceptedResponse
+    public function update(string $project_id, array $project_data): AcceptedResponse
     {
         $this->refreshToken();
         $project_patch = new ProjectPatch($project_data);
@@ -182,7 +172,7 @@ class ProjectTask extends TaskBase
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function cancelProjectInvite(string $project_id, string $invitation_id): void
+    public function cancelInvite(string $project_id, string $invitation_id): void
     {
         $this->refreshToken();
         $this->invitationsApi->cancelProjectInvite($project_id, $invitation_id);
@@ -200,7 +190,7 @@ class ProjectTask extends TaskBase
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createProjectInvite(string $project_id, CreateProjectInviteRequest $create_project_invite_request = null): ProjectInvitation|Error
+    public function createInvite(string $project_id, CreateProjectInviteRequest $create_project_invite_request = null): ProjectInvitation|Error
     {
         $this->refreshToken();
         return $this->invitationsApi->createProjectInvite($project_id, $create_project_invite_request);
@@ -221,7 +211,7 @@ class ProjectTask extends TaskBase
      * @return ProjectInvitation[]|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectInvites(string $project_id, array $filter_state = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|array
+    public function listInvites(string $project_id, array $filter_state = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|array
     {
         $this->refreshToken();
         return $this->invitationsApi->listProjectInvites($project_id, $filter_state, $page_size, $page_before, $page_after, $sort);
@@ -240,7 +230,7 @@ class ProjectTask extends TaskBase
      * @return ProjectSettings
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectsSettings(string $project_id): ProjectSettings
+    public function getSettings(string $project_id): ProjectSettings
     {
         $this->refreshToken();
         return $this->settingsApi->getProjectsSettings($project_id);
@@ -256,7 +246,7 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateProjectsSettings(string $project_id, array $project_settings_patch): AcceptedResponse
+    public function updateSettings(string $project_id, array $project_settings_patch): AcceptedResponse
     {
         $this->refreshToken();
         $project_settings_patch = new ProjectSettingsPatch($project_settings_patch);
@@ -277,7 +267,7 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createProjectsVariables(string $project_id, array $project_variable_create_input): AcceptedResponse
+    public function createVariables(string $project_id, array $project_variable_create_input): AcceptedResponse
     {
         $this->refreshToken();
         $project_variable_create_input = new ProjectVariableCreateInput($project_variable_create_input);
@@ -294,7 +284,7 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteProjectsVariables(string $project_id, string $project_variable_id): AcceptedResponse
+    public function deleteVariables(string $project_id, string $project_variable_id): AcceptedResponse
     {
         $this->refreshToken();
         return $this->variablesApi->deleteProjectsVariables($project_id, $project_variable_id);
@@ -309,7 +299,7 @@ class ProjectTask extends TaskBase
      * @return ProjectVariable[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectsVariables(string $project_id): array
+    public function listVariables(string $project_id): array
     {
         $this->refreshToken();
         return $this->variablesApi->listProjectsVariables($project_id);
@@ -326,7 +316,7 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateProjectsVariables(string $project_id, string $project_variable_id, array $project_variable_patch): AcceptedResponse
+    public function updateVariables(string $project_id, string $project_variable_id, array $project_variable_patch): AcceptedResponse
     {
         $this->refreshToken();
         $project_variable_patch = new ProjectVariablePatch($project_variable_patch);
@@ -338,7 +328,7 @@ class ProjectTask extends TaskBase
     /************** ******************************/
 
     /**
-     * Operation actionProjectsActivitiesCancel
+     * Operation cancelActivity
      *
      * Cancel a project activity
      *
@@ -347,14 +337,14 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function actionProjectsActivitiesCancel(string $project_id, string $activity_id): AcceptedResponse
+    public function cancelActivity(string $project_id, string $activity_id): AcceptedResponse
     {
         $this->refreshToken();
         return $this->activityApi->actionProjectsActivitiesCancel($project_id, $activity_id);
     }
 
     /**
-     * Operation getProjectsActivities
+     * Operation getActivity
      *
      * Get a project activity log entry
      *
@@ -363,7 +353,7 @@ class ProjectTask extends TaskBase
      * @return Activity
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectsActivities(string $project_id, string $activity_id): Activity
+    public function getActivity(string $project_id, string $activity_id): Activity
     {
         $this->refreshToken();
         return $this->activityApi->getProjectsActivities($project_id, $activity_id);
@@ -378,7 +368,7 @@ class ProjectTask extends TaskBase
      * @return Activity[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectsActivities(string $project_id): array
+    public function listActivities(string $project_id): array
     {
         $this->refreshToken();
         return $this->activityApi->listProjectsActivities($project_id);
@@ -389,7 +379,7 @@ class ProjectTask extends TaskBase
     /************** ********************************/
 
     /**
-     * Operation createProjectsDeployments
+     * Operation createDeployment
      *
      * Create a project deployment target
      *
@@ -398,7 +388,7 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createProjectsDeployments(string $project_id, array $deployment_target_create_input): AcceptedResponse
+    public function createDeployment(string $project_id, array $deployment_target_create_input): AcceptedResponse
     {
         $this->refreshToken();
         $deployment_target_create_input = new DeploymentTargetCreateInput($deployment_target_create_input);
@@ -415,7 +405,7 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteProjectsDeployments(string $project_id, string $deployment_target_configuration_id): AcceptedResponse
+    public function deleteDeployment(string $project_id, string $deployment_target_configuration_id): AcceptedResponse
     {
         $this->refreshToken();
         return $this->deploymentTargetApi->deleteProjectsDeployments($project_id, $deployment_target_configuration_id);
@@ -431,7 +421,7 @@ class ProjectTask extends TaskBase
      * @return DeploymentTarget
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectsDeployments(string $project_id, string $deployment_target_configuration_id): DeploymentTarget
+    public function getDeployment(string $project_id, string $deployment_target_configuration_id): DeploymentTarget
     {
         $this->refreshToken();
         return $this->deploymentTargetApi->getProjectsDeployments($project_id, $deployment_target_configuration_id);
@@ -446,14 +436,14 @@ class ProjectTask extends TaskBase
      * @return DeploymentTarget[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectsDeployments(string $project_id): array
+    public function listDeployments(string $project_id): array
     {
         $this->refreshToken();
         return $this->deploymentTargetApi->listProjectsDeployments($project_id);
     }
 
     /**
-     * Operation updateProjectsDeployments
+     * Operation updateDeployment
      *
      * Update a project deployment
      *
@@ -463,7 +453,7 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateProjectsDeployments(string $project_id, string $deployment_target_configuration_id, array $deployment_target_patch): AcceptedResponse
+    public function updateDeployment(string $project_id, string $deployment_target_configuration_id, array $deployment_target_patch): AcceptedResponse
     {
         $this->refreshToken();
         $deployment_target_patch = new DeploymentTargetPatch($deployment_target_patch);
@@ -475,7 +465,7 @@ class ProjectTask extends TaskBase
     /************** **************************/
 
     /**
-     * Operation getProjectsGitBlobs
+     * Operation getGitBlob
      *
      * Get a blob object
      *
@@ -484,14 +474,14 @@ class ProjectTask extends TaskBase
      * @return Blob
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectsGitBlobs(string $project_id, string $repository_blob_id): Blob
+    public function getGitBlob(string $project_id, string $repository_blob_id): Blob
     {
         $this->refreshToken();
         return $this->repositoryApi->getProjectsGitBlobs($project_id, $repository_blob_id);
     }
 
     /**
-     * Operation getProjectsGitCommits
+     * Operation getGitCommit
      *
      * Get a commit object
      *
@@ -500,14 +490,14 @@ class ProjectTask extends TaskBase
      * @return Commit
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectsGitCommits(string $project_id, string $repository_commit_id): Commit
+    public function getGitCommit(string $project_id, string $repository_commit_id): Commit
     {
         $this->refreshToken();
         return $this->repositoryApi->getProjectsGitCommits($project_id, $repository_commit_id);
     }
 
     /**
-     * Operation getProjectsGitRefs
+     * Operation getGitRef
      *
      * Get a ref object
      *
@@ -516,14 +506,14 @@ class ProjectTask extends TaskBase
      * @return Ref
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectsGitRefs(string $project_id, string $repository_ref_id): Ref
+    public function getGitRef(string $project_id, string $repository_ref_id): Ref
     {
         $this->refreshToken();
         return $this->repositoryApi->getProjectsGitRefs($project_id, $repository_ref_id);
     }
 
     /**
-     * Operation getProjectsGitTrees
+     * Operation getGitTree
      *
      * Get a tree object
      *
@@ -532,7 +522,7 @@ class ProjectTask extends TaskBase
      * @return Tree
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectsGitTrees(string $project_id, string $repository_tree_id): Tree
+    public function getGitTree(string $project_id, string $repository_tree_id): Tree
     {
         $this->refreshToken();
         return $this->repositoryApi->getProjectsGitTrees($project_id, $repository_tree_id);
@@ -540,7 +530,7 @@ class ProjectTask extends TaskBase
 
 
     /**
-     * Operation listProjectsGitRefs
+     * Operation listGitRefs
      *
      * Get list of repository refs
      *
@@ -548,7 +538,7 @@ class ProjectTask extends TaskBase
      * @return Ref[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectsGitRefs(string $project_id): array
+    public function listGitRefs(string $project_id): array
     {
         $this->refreshToken();
         return $this->repositoryApi->listProjectsGitRefs($project_id);
@@ -559,7 +549,7 @@ class ProjectTask extends TaskBase
     /************** *********************************/
 
     /**
-     * Operation actionProjectsSystemRestart
+     * Operation restartGitServer
      *
      * Restart the Git server
      *
@@ -567,14 +557,14 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function actionProjectsSystemRestart(string $project_id): AcceptedResponse
+    public function restartGitServer(string $project_id): AcceptedResponse
     {
         $this->refreshToken();
         return $this->systemInfoApi->actionProjectsSystemRestart($project_id);
     }
 
     /**
-     * Operation getProjectsSystem
+     * Operation getGitInfo
      *
      * Get information about the Git server.
      *
@@ -582,7 +572,7 @@ class ProjectTask extends TaskBase
      * @return SystemInformation
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectsSystem(string $project_id): SystemInformation
+    public function getGitInfo(string $project_id): SystemInformation
     {
         $this->refreshToken();
         return $this->systemInfoApi->getProjectsSystem($project_id);
@@ -593,7 +583,7 @@ class ProjectTask extends TaskBase
     /************** **************************************/
 
     /**
-     * Operation createProjectsIntegrations
+     * Operation createIntegration
      *
      * Integrate project with a third-party service
      *
@@ -602,7 +592,7 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createProjectsIntegrations(string $project_id, array $integration_create_input): AcceptedResponse
+    public function createIntegration(string $project_id, array $integration_create_input): AcceptedResponse
     {
         $this->refreshToken();
         $integration_create_input = new IntegrationCreateInput($integration_create_input);
@@ -610,7 +600,7 @@ class ProjectTask extends TaskBase
     }
 
     /**
-     * Operation deleteProjectsIntegrations
+     * Operation deleteIntegration
      *
      * Delete an existing third-party integration
      *
@@ -619,14 +609,14 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteProjectsIntegrations(string $project_id, string $integration_id): AcceptedResponse
+    public function deleteIntegration(string $project_id, string $integration_id): AcceptedResponse
     {
         $this->refreshToken();
         return $this->thirdPartyIntegrationsApi->deleteProjectsIntegrations($project_id, $integration_id);
     }
 
     /**
-     * Operation getProjectsIntegrations
+     * Operation getIntegration
      *
      * Get information about an existing third-party integration
      *
@@ -635,14 +625,14 @@ class ProjectTask extends TaskBase
      * @return Integration
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectsIntegrations(string $project_id, string $integration_id): Integration
+    public function getIntegration(string $project_id, string $integration_id): Integration
     {
         $this->refreshToken();
         return $this->thirdPartyIntegrationsApi->getProjectsIntegrations($project_id, $integration_id);
     }
 
     /**
-     * Operation listProjectsIntegrations
+     * Operation listIntegrations
      *
      * Get list of existing integrations for a project
      *
@@ -650,14 +640,14 @@ class ProjectTask extends TaskBase
      * @return Integration[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectsIntegrations(string $project_id): array
+    public function listIntegrations(string $project_id): array
     {
         $this->refreshToken();
         return $this->thirdPartyIntegrationsApi->listProjectsIntegrations($project_id);
     }
 
     /**
-     * Operation updateProjectsIntegrations
+     * Operation updateIntegration
      *
      * Update an existing third-party integration
      *
@@ -667,7 +657,7 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateProjectsIntegrations(string $project_id, string $integration_id, array $integration_patch): AcceptedResponse
+    public function updateIntegration(string $project_id, string $integration_id, array $integration_patch): AcceptedResponse
     {
         $this->refreshToken();
         $integration_patch = new IntegrationPatch($integration_patch);
@@ -679,7 +669,7 @@ class ProjectTask extends TaskBase
     /************** ********************************/
 
     /**
-     * Operation createProjectsDomains
+     * Operation createDomain
      *
      * Add a project domain
      *
@@ -688,13 +678,13 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createProjectsDomains(string $project_id, array $domain_create_input): AcceptedResponse
+    public function createDomain(string $project_id, array $domain_create_input): AcceptedResponse
     {
-        return $this->domainTask->createProjectsDomains($project_id, $domain_create_input);
+        return $this->client->domain->createProjectsDomains($project_id, $domain_create_input);
     }
 
     /**
-     * Operation deleteProjectsDomains
+     * Operation deleteDomain
      *
      * Delete a project domain
      *
@@ -703,13 +693,13 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteProjectsDomains(string $project_id, string $domain_id): AcceptedResponse
+    public function deleteDomain(string $project_id, string $domain_id): AcceptedResponse
     {
-        return $this->domainTask->deleteProjectsDomains($project_id, $domain_id);
+        return $this->client->domain->deleteProjectsDomains($project_id, $domain_id);
     }
 
     /**
-     * Operation getProjectsDomains
+     * Operation getDomain
      *
      * Get a project domain
      *
@@ -718,13 +708,13 @@ class ProjectTask extends TaskBase
      * @return Domain
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectsDomains(string $project_id, string $domain_id): Domain
+    public function getDomain(string $project_id, string $domain_id): Domain
     {
-        return $this->domainTask->getProjectsDomains($project_id, $domain_id);
+        return $this->client->domain->getProjectsDomains($project_id, $domain_id);
     }
 
     /**
-     * Operation listProjectsDomains
+     * Operation listDomains
      *
      * Get list of project domains
      *
@@ -732,14 +722,14 @@ class ProjectTask extends TaskBase
      * @return Domain[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectsDomains(string $project_id): array
+    public function listDomains(string $project_id): array
     {
         $this->refreshToken();
-        return $this->domainTask->listProjectsDomains($project_id);
+        return $this->client->domain->listProjectsDomains($project_id);
     }
 
     /**
-     * Operation updateProjectsDomains
+     * Operation updateDomain
      *
      * Update a project domain
      *
@@ -749,9 +739,9 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateProjectsDomains(string $project_id, string $domain_id, array $domain_patch): AcceptedResponse
+    public function updateDomain(string $project_id, string $domain_id, array $domain_patch): AcceptedResponse
     {
-        return $this->domainTask->updateProjectsDomains($project_id, $domain_id, $domain_patch);
+        return $this->client->domain->updateProjectsDomains($project_id, $domain_id, $domain_patch);
     }
 
     /************** *************************************/
@@ -759,7 +749,7 @@ class ProjectTask extends TaskBase
     /************** *************************************/
 
     /**
-     * Operation createProjectsCertificates
+     * Operation createCertificate
      *
      * Add an SSL certificate
      *
@@ -768,14 +758,14 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createProjectsCertificates(string $project_id, array $certificate_create_input): AcceptedResponse
+    public function createCertificate(string $project_id, array $certificate_create_input): AcceptedResponse
     {
-        return $this->certificateTask->createProjectsCertificates($project_id, $certificate_create_input);
+        return $this->client->certificate->createProjectsCertificates($project_id, $certificate_create_input);
     }
 
 
     /**
-     * Operation deleteProjectsCertificates
+     * Operation deleteCertificate
      *
      * Delete an SSL certificate
      *
@@ -784,13 +774,13 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteProjectsCertificates(string $project_id, string $certificate_id): AcceptedResponse
+    public function deleteCertificate(string $project_id, string $certificate_id): AcceptedResponse
     {
-        return $this->certificateTask->deleteProjectsCertificates($project_id, $certificate_id);
+        return $this->client->certificate->deleteProjectsCertificates($project_id, $certificate_id);
     }
 
     /**
-     * Operation getProjectsCertificates
+     * Operation getCertificate
      *
      * Get an SSL certificate
      *
@@ -799,13 +789,13 @@ class ProjectTask extends TaskBase
      * @return Certificate
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectsCertificates(string $project_id, string $certificate_id): Certificate
+    public function getCertificate(string $project_id, string $certificate_id): Certificate
     {
-        return $this->certificateTask->getProjectsCertificates($project_id, $certificate_id);
+        return $this->client->certificate->getProjectsCertificates($project_id, $certificate_id);
     }
 
     /**
-     * Operation listProjectsCertificates
+     * Operation listCertificates
      *
      * Get list of SSL certificates
      *
@@ -813,13 +803,13 @@ class ProjectTask extends TaskBase
      * @return Certificate[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectsCertificates(string $project_id): array
+    public function listCertificates(string $project_id): array
     {
-        return $this->certificateTask->listProjectsCertificates($project_id);
+        return $this->client->certificate->listProjectsCertificates($project_id);
     }
 
     /**
-     * Operation updateProjectsCertificates
+     * Operation updateCertificate
      *
      * Update an SSL certificate
      *
@@ -829,9 +819,9 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateProjectsCertificates(string $project_id, string $certificate_id, array $certificate_patch): AcceptedResponse
+    public function updateCertificate(string $project_id, string $certificate_id, array $certificate_patch): AcceptedResponse
     {
-        return $this->certificateTask->updateProjectsCertificates($project_id, $certificate_id, $certificate_patch);
+        return $this->client->certificate->updateProjectsCertificates($project_id, $certificate_id, $certificate_patch);
     }
 
     /************** ***********************************/
@@ -852,7 +842,7 @@ class ProjectTask extends TaskBase
      */
     public function runOperation(string $project_id, string $environment_id, string $deployment_id, array $environment_operation_input): AcceptedResponse
     {
-        return $this->runtimeOperationTask->runOperation($project_id, $environment_id, $deployment_id, $environment_operation_input);
+        return $this->client->operation->runOperation($project_id, $environment_id, $deployment_id, $environment_operation_input);
     }
 
     /************** ******************************/
@@ -872,7 +862,7 @@ class ProjectTask extends TaskBase
      */
     public function getProjectTeamAccess(string $project_id, string $team_id): Error|TeamProjectAccess
     {
-        return $this->teamTask->getProjectTeamAccess($project_id, $team_id);
+        return $this->client->team->getProjectTeamAccess($project_id, $team_id);
     }
 
 
@@ -888,7 +878,7 @@ class ProjectTask extends TaskBase
      */
     public function getTeamProjectAccess(string $team_id, string $project_id): Error|TeamProjectAccess
     {
-        return $this->teamTask->getTeamProjectAccess($team_id, $project_id);
+        return $this->client->team->getTeamProjectAccess($team_id, $project_id);
     }
 
     /**
@@ -903,7 +893,7 @@ class ProjectTask extends TaskBase
      */
     public function grantProjectTeamAccess(string $project_id, array $grant_project_team_access_request_inner): void
     {
-        $this->teamTask->grantProjectTeamAccess($project_id, $grant_project_team_access_request_inner);
+        $this->client->team->grantProjectTeamAccess($project_id, $grant_project_team_access_request_inner);
     }
 
     /**
@@ -918,7 +908,7 @@ class ProjectTask extends TaskBase
      */
     public function grantTeamProjectAccess(string $team_id, array $grant_team_project_access_request_inner): void
     {
-        $this->teamTask->grantTeamProjectAccess($team_id, $grant_team_project_access_request_inner);
+        $this->client->team->grantTeamProjectAccess($team_id, $grant_team_project_access_request_inner);
     }
 
     /**
@@ -936,7 +926,7 @@ class ProjectTask extends TaskBase
      */
     public function listProjectTeamAccess(string $project_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|ListTeamProjectAccess200Response
     {
-        return $this->teamTask->listProjectTeamAccess($project_id, $page_size, $page_before, $page_after, $sort);
+        return $this->client->team->listProjectTeamAccess($project_id, $page_size, $page_before, $page_after, $sort);
     }
 
     /**
@@ -954,7 +944,7 @@ class ProjectTask extends TaskBase
      */
     public function listTeamProjectAccess(string $team_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|ListTeamProjectAccess200Response
     {
-        return $this->teamTask->listTeamProjectAccess($team_id, $page_size, $page_before, $page_after, $sort);
+        return $this->client->team->listTeamProjectAccess($team_id, $page_size, $page_before, $page_after, $sort);
     }
 
     /**
@@ -969,7 +959,7 @@ class ProjectTask extends TaskBase
      */
     public function removeProjectTeamAccess(string $project_id, string $team_id): void
     {
-        $this->teamTask->removeProjectTeamAccess($project_id, $team_id);
+        $this->client->team->removeProjectTeamAccess($project_id, $team_id);
     }
 
     /**
@@ -984,7 +974,7 @@ class ProjectTask extends TaskBase
      */
     public function removeTeamProjectAccess(string $team_id, string $project_id): void
     {
-        $this->teamTask->removeTeamProjectAccess($team_id, $project_id);
+        $this->client->team->removeTeamProjectAccess($team_id, $project_id);
     }
 
     /************** ********************************/
@@ -1003,7 +993,7 @@ class ProjectTask extends TaskBase
      */
     public function getProjectUserAccess(string $project_id, string $user_id): Error|UserProjectAccess
     {
-        return $this->userTask->getProjectUserAccess($project_id, $user_id);
+        return $this->client->user->getProjectUserAccess($project_id, $user_id);
     }
 
     /**
@@ -1018,7 +1008,7 @@ class ProjectTask extends TaskBase
      */
     public function grantProjectUserAccess(string $project_id, array $grant_project_user_access_request_inner): void
     {
-        $this->userTask->grantProjectUserAccess($project_id, $grant_project_user_access_request_inner);
+        $this->client->user->grantProjectUserAccess($project_id, $grant_project_user_access_request_inner);
     }
 
     /**
@@ -1033,7 +1023,7 @@ class ProjectTask extends TaskBase
      */
     public function removeProjectUserAccess(string $project_id, string $user_id): void
     {
-        $this->userTask->removeProjectUserAccess($project_id, $user_id);
+        $this->client->user->removeProjectUserAccess($project_id, $user_id);
     }
 
     /**
@@ -1049,7 +1039,7 @@ class ProjectTask extends TaskBase
      */
     public function updateProjectUserAccess(string $project_id, string $user_id, array $update_project_user_access_request = null): void
     {
-        $this->userTask->updateProjectUserAccess($project_id, $user_id, $update_project_user_access_request);
+        $this->client->user->updateProjectUserAccess($project_id, $user_id, $update_project_user_access_request);
     }
     
     /**
@@ -1067,10 +1057,8 @@ class ProjectTask extends TaskBase
      */
     public function listProjectUserAccess(string $project_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): ListProjectUserAccess200Response|Error
     {
-        return $this->userTask->listProjectUserAccess($project_id, $page_size, $page_before, $page_after, $sort);
+        return $this->client->user->listProjectUserAccess($project_id, $page_size, $page_before, $page_after, $sort);
     }
-    
-        
     
     /************** ***************************/
     /********* Custom function ****************/
@@ -1087,7 +1075,7 @@ class ProjectTask extends TaskBase
      * @return Subscription|Error
      * @throws ApiException
      */
-    public function createProject(string $organization_id, array $project_data): Error|Subscription
+    public function create(string $organization_id, array $project_data): Error|Subscription
     {
         $this->refreshToken();
         return $this->client->organization->createOrgSubscription($organization_id, $project_data);

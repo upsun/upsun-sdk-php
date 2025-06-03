@@ -22,7 +22,7 @@ class RegionTask extends TaskBase
     }
 
     /**
-     * Operation getRegion
+     * Operation get
      *
      * Get region
      *
@@ -32,14 +32,14 @@ class RegionTask extends TaskBase
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getRegion(string $region_id): Region|Error
+    public function get(string $region_id): Region|Error
     {
         $this->refreshToken();
         return $this->api->getRegion($region_id);
     }
 
     /**
-     * Operation listRegions
+     * Operation list
      *
      * List regions
      *
@@ -54,7 +54,7 @@ class RegionTask extends TaskBase
      * @return ListRegions200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listRegions(array $filter_available = null, array $filter_private = null, array $filter_zone = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): ListRegions200Response|Error
+    public function list(array $filter_available = null, array $filter_private = null, array $filter_zone = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): ListRegions200Response|Error
     {
         $this->refreshToken();
         return $this->api->listRegions($filter_available, $filter_private, $filter_zone, $page_size, $page_before, $page_after, $sort);

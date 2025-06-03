@@ -36,7 +36,7 @@ class TeamTask extends TaskBase
     /************** ********************/
 
     /**
-     * Operation createTeam
+     * Operation create
      *
      * Create team
      *
@@ -44,7 +44,7 @@ class TeamTask extends TaskBase
      * @return Team|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createTeam(array $create_team_request): Team|Error
+    public function create(array $create_team_request): Team|Error
     {
         $this->refreshToken();
         $create_team_request = new CreateTeamRequest($create_team_request);
@@ -52,7 +52,7 @@ class TeamTask extends TaskBase
     }
 
     /**
-     * Operation createTeamMember
+     * Operation createMember
      *
      * Create team member
      *
@@ -61,7 +61,7 @@ class TeamTask extends TaskBase
      * @return TeamMember|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createTeamMember(string $team_id, array $create_team_member_request): Error|TeamMember
+    public function createMember(string $team_id, array $create_team_member_request): Error|TeamMember
     {
         $this->refreshToken();
         $create_team_member_request = new CreateTeamMemberRequest($create_team_member_request);
@@ -77,7 +77,7 @@ class TeamTask extends TaskBase
      * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteTeam(string $team_id): void
+    public function delete(string $team_id): void
     {
         $this->refreshToken();
         $this->api->deleteTeam($team_id);
@@ -93,7 +93,7 @@ class TeamTask extends TaskBase
      * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteTeamMember(string $team_id, string $user_id): void
+    public function deleteMember(string $team_id, string $user_id): void
     {
         $this->refreshToken();
         $this->api->deleteTeamMember($team_id, $user_id);
@@ -108,7 +108,7 @@ class TeamTask extends TaskBase
      * @return Team|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getTeam(string $team_id): Team|Error
+    public function get(string $team_id): Team|Error
     {
         $this->refreshToken();
         return $this->api->getTeam($team_id);
@@ -124,7 +124,7 @@ class TeamTask extends TaskBase
      * @return TeamMember|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getTeamMember(string $team_id, string $user_id): Error|TeamMember
+    public function getMember(string $team_id, string $user_id): Error|TeamMember
     {
         $this->refreshToken();
         return $this->api->getTeamMember($team_id, $user_id);
@@ -142,7 +142,7 @@ class TeamTask extends TaskBase
      * @return ListTeamMembers200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listTeamMembers(string $team_id, string $page_before = null, string $page_after = null, string $sort = null): Error|ListTeamMembers200Response
+    public function listMembers(string $team_id, string $page_before = null, string $page_after = null, string $sort = null): Error|ListTeamMembers200Response
     {
         $this->refreshToken();
         return $this->api->listTeamMembers($team_id, $page_before, $page_after, $sort);
@@ -163,7 +163,7 @@ class TeamTask extends TaskBase
      * @return ListTeams200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listTeams(array $filter_organization_id = null, array $filter_id = null, array $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|ListTeams200Response
+    public function list(array $filter_organization_id = null, array $filter_id = null, array $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|ListTeams200Response
     {
         $this->refreshToken();
         return $this->api->listTeams($filter_organization_id, $filter_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
@@ -200,7 +200,7 @@ class TeamTask extends TaskBase
      * @return Team|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateTeam(string $team_id, array $update_team_request = null): Team|Error
+    public function update(string $team_id, array $update_team_request = null): Team|Error
     {
         $this->refreshToken();
         return $this->api->updateTeam($team_id, $update_team_request);

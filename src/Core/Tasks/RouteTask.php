@@ -26,7 +26,7 @@ class RouteTask extends TaskBase
     /************** ***********************/
 
     /**
-     * Operation createProjectsEnvironmentsRoutes
+     * Operation create
      *
      * Create a new route
      *
@@ -36,7 +36,7 @@ class RouteTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createProjectsEnvironmentsRoutes(string $project_id, string $environment_id, array $route_create_input): AcceptedResponse
+    public function create(string $project_id, string $environment_id, array $route_create_input): AcceptedResponse
     {
         $this->refreshToken();
         $route_create_input = new RouteCreateInput($route_create_input);
@@ -44,7 +44,7 @@ class RouteTask extends TaskBase
     }
 
     /**
-     * Operation deleteProjectsEnvironmentsRoutes
+     * Operation delete
      *
      * Delete a route
      *
@@ -54,16 +54,16 @@ class RouteTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteProjectsEnvironmentsRoutes(string $project_id, string $environment_id, string $route_id): AcceptedResponse
+    public function delete(string $project_id, string $environment_id, string $route_id): AcceptedResponse
     {
         $this->refreshToken();
         return $this->api->deleteProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id);
     }
 
     /**
-     * Operation getProjectsEnvironmentsRoutes
+     * Operation get
      *
-     * Get a route&#39;s info
+     * Get a routes info
      *
      * @param string $project_id project_id (required)
      * @param string $environment_id environment_id (required)
@@ -71,14 +71,14 @@ class RouteTask extends TaskBase
      * @return Route
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectsEnvironmentsRoutes(string $project_id, string $environment_id, string $route_id): Route
+    public function get(string $project_id, string $environment_id, string $route_id): Route
     {
         $this->refreshToken();
         return $this->api->getProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id);
     }
 
     /**
-     * Operation listProjectsEnvironmentsRoutes
+     * Operation list
      *
      * Get list of routes
      *
@@ -87,14 +87,14 @@ class RouteTask extends TaskBase
      * @return array|null
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectsEnvironmentsRoutes(string $project_id, string $environment_id): ?array
+    public function list(string $project_id, string $environment_id): ?array
     {
         $this->refreshToken();
         return $this->api->listProjectsEnvironmentsRoutes($project_id, $environment_id);
     }
 
     /**
-     * Operation updateProjectsEnvironmentsRoutes
+     * Operation update
      *
      * Update a route
      *
@@ -105,7 +105,7 @@ class RouteTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateProjectsEnvironmentsRoutes(string $project_id, string $environment_id, string $route_id, array $route_patch)
+    public function update(string $project_id, string $environment_id, string $route_id, array $route_patch)
     {
         $this->refreshToken();
         $route_patch = new RoutePatch($route_patch);

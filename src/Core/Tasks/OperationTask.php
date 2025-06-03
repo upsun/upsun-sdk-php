@@ -35,7 +35,7 @@ class OperationTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function runOperation(string $project_id, string $environment_id, string $deployment_id, array $environment_operation_input): AcceptedResponse
+    public function run(string $project_id, string $environment_id, string $deployment_id, array $environment_operation_input): AcceptedResponse
     {
         $this->refreshToken();
         $environment_operation_input = new EnvironmentOperationInput($environment_operation_input);

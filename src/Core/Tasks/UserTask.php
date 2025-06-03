@@ -129,7 +129,7 @@ class UserTask extends TaskBase
    * @throws InvalidArgumentException
    * @throws ApiException on non-2xx response or if the response body is not in the expected format
    */
-  public function getUser(string $id): Error|User
+  public function get(string $id): Error|User
   {
     $this->refreshToken();
     return $this->api->getUser($id);
@@ -146,7 +146,7 @@ class UserTask extends TaskBase
    * @throws InvalidArgumentException
    * @return User|Error
    */
-  public function getUserByEmailAddress(string $email): User|Error
+  public function getByEmailAddress(string $email): User|Error
   {
     $this->refreshToken();
     return $this->api->getUserByEmailAddress($email);
@@ -163,7 +163,7 @@ class UserTask extends TaskBase
    * @throws InvalidArgumentException
    * @return User|Error
    */
-  public function getUserByUsername(string $username): User|Error
+  public function getByUsername(string $username): User|Error
   {
     $this->refreshToken();
     return $this->api->getUserByUsername($username);
@@ -216,7 +216,7 @@ class UserTask extends TaskBase
    * @throws InvalidArgumentException
    * @throws ApiException on non-2xx response or if the response body is not in the expected format
    */
-  public function updateUser(string $user_id, array $update_user_data = []): User|Error
+  public function update(string $user_id, array $update_user_data = []): User|Error
   {
     $this->refreshToken();
     $update_user_request = new UpdateUserRequest();
@@ -657,7 +657,7 @@ class UserTask extends TaskBase
    * @return ListUserExtendedAccess200Response|Error
    * @throws ApiException on non-2xx response or if the response body is not in the expected format
    */
-  public function listUserExtendedAccess(string $user_id, array $filter_resource_type = null, array $filter_organization_id = null, array $filter_permissions = null): ListUserExtendedAccess200Response|Error
+  public function listExtendedAccess(string $user_id, array $filter_resource_type = null, array $filter_organization_id = null, array $filter_permissions = null): ListUserExtendedAccess200Response|Error
   {
     $this->refreshToken();
     return $this->grantsApi->listUserExtendedAccess($user_id, $filter_resource_type, $filter_organization_id, $filter_permissions);
@@ -771,36 +771,5 @@ class UserTask extends TaskBase
   /************** ***************************/
   /********* Custom function ****************/
   /************** ***************************/
-
-  /**
-   * Get User FullName
-   * @param string $id
-   * @return string
-   */
-  public function getUserFullName(string $id): string
-  {
-    try {
-      $this->refreshToken();
-      $user = $this->api->getUser($id);
-      return trim($user->getFirstName() . ' ' . $user->getLastName());
-    } catch (\Exception $e) {
-      // Log something?
-      return '';
-    }
-  }
-
-
-  /**
-   * Get specific User Email
-   *
-   * @param string $id
-   * @return string
-   * @throws ApiException
-   */
-  public function getUserEmail(string $id): string
-  {
-    $this->refreshToken();
-    $user = $this->api->getUser($id);
-    return trim($user->getEmail());
-  }
+    
 }

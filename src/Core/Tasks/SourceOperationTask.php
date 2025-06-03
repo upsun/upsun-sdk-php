@@ -24,7 +24,7 @@ class SourceOperationTask extends TaskBase
     /************** ********************************/
 
     /**
-     * Operation listProjectsEnvironmentsSourceOperations
+     * Operation list
      *
      * List source operations
      *
@@ -33,14 +33,14 @@ class SourceOperationTask extends TaskBase
      * @return EnvironmentSourceOperation[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectsEnvironmentsSourceOperations(string $project_id, string $environment_id): array
+    public function list(string $project_id, string $environment_id): array
     {
         $this->refreshToken();
         return $this->api->listProjectsEnvironmentsSourceOperations($project_id, $environment_id);
     }
 
     /**
-     * Operation runSourceOperation
+     * Operation run
      *
      * Trigger a source operation
      *
@@ -50,7 +50,7 @@ class SourceOperationTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function runSourceOperation(string $project_id, string $environment_id, array $environment_source_operation_input): AcceptedResponse
+    public function run(string $project_id, string $environment_id, array $environment_source_operation_input): AcceptedResponse
     {
         $this->refreshToken();
         $environment_source_operation_input = new EnvironmentSourceOperationInput($environment_source_operation_input);

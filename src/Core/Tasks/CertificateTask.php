@@ -35,7 +35,7 @@ class CertificateTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createProjectsCertificates(string $project_id, array $certificate_create_input): AcceptedResponse
+    public function create(string $project_id, array $certificate_create_input): AcceptedResponse
     {
         $this->refreshToken();
         $certificate_create_input = new CertificateCreateInput($certificate_create_input);
@@ -52,7 +52,7 @@ class CertificateTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteProjectsCertificates(string $project_id, string $certificate_id): AcceptedResponse
+    public function delete(string $project_id, string $certificate_id): AcceptedResponse
     {
         $this->refreshToken();
         return $this->api->deleteProjectsCertificates($project_id, $certificate_id);
@@ -68,7 +68,7 @@ class CertificateTask extends TaskBase
      * @return Certificate
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectsCertificates(string $project_id, string $certificate_id): Certificate
+    public function get(string $project_id, string $certificate_id): Certificate
     {
         $this->refreshToken();
         return $this->api->getProjectsCertificates($project_id, $certificate_id);
@@ -83,7 +83,7 @@ class CertificateTask extends TaskBase
      * @return Certificate[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectsCertificates(string $project_id): array
+    public function list(string $project_id): array
     {
         $this->refreshToken();
         return $this->api->listProjectsCertificates($project_id);
@@ -100,7 +100,7 @@ class CertificateTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateProjectsCertificates(string $project_id, string $certificate_id, array $certificate_patch): AcceptedResponse
+    public function update(string $project_id, string $certificate_id, array $certificate_patch): AcceptedResponse
     {
         $this->refreshToken();
         $certificate_patch = new CertificatePatch($certificate_patch);
