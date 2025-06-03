@@ -5,6 +5,8 @@ on:
         -   cron: '*/5 * * * *'  # Toutes les 5 minutes
     workflow_dispatch:
         branches: [ main ]
+permissions:
+    contents: write
 env:
     DEFAULT_BRANCH: "main"
 jobs:
