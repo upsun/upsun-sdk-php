@@ -42,7 +42,7 @@ jobs:
                     author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
                     signoff: false
                     draft: false
-                    branch: update/openapi-spec
+                    branch: update-openapi-spec
                     title: "[API-BOT] Update OpenAPI spec and regenerate SDK"
 
                     base: main  # Change si la branche par défaut a un autre nom
