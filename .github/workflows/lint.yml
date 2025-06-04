@@ -5,7 +5,6 @@ on:
 jobs:
     lint-php:
         name: Run PHP lint
-        needs: fix-php
         runs-on: ubuntu-latest
         
         steps:
