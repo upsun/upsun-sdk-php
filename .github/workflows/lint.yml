@@ -22,9 +22,9 @@ jobs:
 
             -   name: Install Composer dependencies
                 run: composer install --prefer-dist --no-progress --no-suggest
-                
-            -   name: Auto-fix PHP style issues
-                run: composer run fix
+            
+            -   name: Fix PHP lint errors automatically
+                run: composer run fix || true
 
             -   name: Check for changes
                 id: git-check

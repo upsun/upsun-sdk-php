@@ -25,6 +25,6 @@
     "prefer-stable": true,
     "scripts": {
         "lint": "phpcs --standard=PSR12 src/Core/Tasks",
-        "fix": "phpcbf --standard=PSR12 src/Core/Tasks || true"
+        "fix": "phpcbf --standard=PSR12 src/Core/Tasks"
     }
 }
