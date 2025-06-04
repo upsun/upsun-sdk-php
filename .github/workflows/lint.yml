@@ -37,12 +37,12 @@ jobs:
             -   name: Commit and push fixes
                 if: steps.git-check.outputs.changes == 'true'
                 env:
-                    GITHUB_TOKEN: ${{ secrets.OPENAPI_WORKFLOW_TOKEN }}
+                    TOKEN: ${{ secrets.OPENAPI_WORKFLOW_TOKEN }}
                 run: |
                     git config user.name "github-actions[bot]"
                     git config user.email "github-actions[bot]@users.noreply.github.com"
                 
-                    git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
+                    git remote set-url origin https://x-access-token:${TOKEN}@github.com/${{ github.repository }}
                     git add src/Core/Tasks
                     git commit -m "Fix PHP style issues with phpcbf"
                     git push origin HEAD:${{ github.head_ref }}
