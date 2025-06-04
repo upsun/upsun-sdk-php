@@ -14,8 +14,7 @@ class WorkerTask extends TaskBase
 
     public function __construct(
         public readonly UpsunClient $client,
-    )
-    {
+    ) {
         $this->api = new DeploymentApi($this->client->apiClient, $this->client->apiConfig);
     }
 
@@ -32,7 +31,7 @@ class WorkerTask extends TaskBase
         $deployments = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);
         $deployments = reset($deployments);
         /** @var Deployment $deployments */
-        
+
         return !empty($deployments) ? $deployments->getWorkers() : [];
     }
 }

@@ -14,8 +14,7 @@ class ApplicationTask extends TaskBase
 
     public function __construct(
         public readonly UpsunClient $client,
-    )
-    {
+    ) {
         $this->api = new DeploymentApi($this->client->apiClient, $this->client->apiConfig);
     }
 
@@ -51,7 +50,7 @@ class ApplicationTask extends TaskBase
             $deployment = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);
             $deployment = reset($deployment);
             /** @var Deployment $deployment */
-            
+
             return !(empty($deployment->getWebapps())) ? ($deployment->getWebapps())[$app_id] ?? null : null;
         } else {
             return null;

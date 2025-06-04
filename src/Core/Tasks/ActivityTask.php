@@ -16,8 +16,7 @@ class ActivityTask extends TaskBase
 
     public function __construct(
         public readonly UpsunClient $client,
-    )
-    {
+    ) {
         $this->prjApi = new ProjectActivityApi($this->client->apiClient, $this->client->apiConfig);
         $this->envApi = new EnvironmentActivityApi($this->client->apiClient, $this->client->apiConfig);
     }
@@ -43,7 +42,11 @@ class ActivityTask extends TaskBase
         if (!$environment_id) {
             return $this->prjApi->actionProjectsActivitiesCancel($project_id, $activity_id);
         } else {
-            return $this->envApi->actionProjectsEnvironmentsActivitiesCancel($project_id, $environment_id, $environment_id);
+            return $this->envApi->actionProjectsEnvironmentsActivitiesCancel(
+                $project_id,
+                $environment_id,
+                $environment_id
+            );
         }
     }
 

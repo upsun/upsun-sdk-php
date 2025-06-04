@@ -104,8 +104,12 @@ class RouteTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function update(string $project_id, string $environment_id, string $route_id, array $route_patch): AcceptedResponse
-    {
+    public function update(
+        string $project_id,
+        string $environment_id,
+        string $route_id,
+        array $route_patch
+    ): AcceptedResponse {
         $this->refreshToken();
         $route_patch = new RoutePatch($route_patch);
         return $this->api->updateProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id, $route_patch);

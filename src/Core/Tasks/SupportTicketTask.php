@@ -16,13 +16,13 @@ use Upsun\UpsunClient;
 
 class SupportTicketTask extends TaskBase
 {
-    public readonly DefaultApi $api;
+    public readonly DefaultApi $defaultApi;
     public readonly SupportApi $supportApi;
 
     public function __construct(
         public readonly UpsunClient $client,
     ) {
-        $this->api = new DefaultApi($this->client->apiClient, $this->client->apiConfig);
+        $this->defaultApi = new DefaultApi($this->client->apiClient, $this->client->apiConfig);
         $this->supportApi = new SupportApi($this->client->apiClient, $this->client->apiConfig);
     }
 
@@ -69,7 +69,7 @@ class SupportTicketTask extends TaskBase
         int $page = null
     ): ListTickets200Response {
         $this->refreshToken();
-        return $this->api->listTickets(
+        return $this->defaultApi->listTickets(
             $filter_ticket_id,
             $filter_created,
             $filter_updated,

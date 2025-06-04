@@ -20,13 +20,13 @@ use Upsun\UpsunClient;
 
 class TeamTask extends TaskBase
 {
-    public readonly TeamsApi $api;
+    public readonly TeamsApi $teamsApi;
     public readonly TeamAccessApi $accessApi;
 
     public function __construct(
         public readonly UpsunClient $client,
     ) {
-        $this->api = new TeamsApi($this->client->apiClient, $this->client->apiConfig);
+        $this->teamsApi  = new TeamsApi($this->client->apiClient, $this->client->apiConfig);
         $this->accessApi = new TeamAccessApi($this->client->apiClient, $this->client->apiConfig);
     }
 
@@ -47,7 +47,7 @@ class TeamTask extends TaskBase
     {
         $this->refreshToken();
         $create_team_request = new CreateTeamRequest($create_team_request);
-        return $this->api->createTeam($create_team_request);
+        return $this->teamsApi->createTeam($create_team_request);
     }
 
     /**
@@ -64,7 +64,7 @@ class TeamTask extends TaskBase
     {
         $this->refreshToken();
         $create_team_member_request = new CreateTeamMemberRequest($create_team_member_request);
-        return $this->api->createTeamMember($team_id, $create_team_member_request);
+        return $this->teamsApi->createTeamMember($team_id, $create_team_member_request);
     }
 
     /**
@@ -79,7 +79,7 @@ class TeamTask extends TaskBase
     public function delete(string $team_id): void
     {
         $this->refreshToken();
-        $this->api->deleteTeam($team_id);
+        $this->teamsApi->deleteTeam($team_id);
     }
 
     /**
@@ -95,7 +95,7 @@ class TeamTask extends TaskBase
     public function deleteMember(string $team_id, string $user_id): void
     {
         $this->refreshToken();
-        $this->api->deleteTeamMember($team_id, $user_id);
+        $this->teamsApi->deleteTeamMember($team_id, $user_id);
     }
 
     /**
@@ -110,7 +110,7 @@ class TeamTask extends TaskBase
     public function get(string $team_id): Team|Error
     {
         $this->refreshToken();
-        return $this->api->getTeam($team_id);
+        return $this->teamsApi->getTeam($team_id);
     }
 
     /**
@@ -126,7 +126,7 @@ class TeamTask extends TaskBase
     public function getMember(string $team_id, string $user_id): Error|TeamMember
     {
         $this->refreshToken();
-        return $this->api->getTeamMember($team_id, $user_id);
+        return $this->teamsApi->getTeamMember($team_id, $user_id);
     }
 
     /**
@@ -150,7 +150,7 @@ class TeamTask extends TaskBase
         string $sort = null
     ): Error|ListTeamMembers200Response {
         $this->refreshToken();
-        return $this->api->listTeamMembers($team_id, $page_before, $page_after, $sort);
+        return $this->teamsApi->listTeamMembers($team_id, $page_before, $page_after, $sort);
     }
 
     /**
@@ -181,7 +181,7 @@ class TeamTask extends TaskBase
         string $sort = null
     ): Error|ListTeams200Response {
         $this->refreshToken();
-        return $this->api->listTeams(
+        return $this->teamsApi->listTeams(
             $filter_organization_id,
             $filter_id,
             $filter_updated_at,
@@ -222,7 +222,7 @@ class TeamTask extends TaskBase
         string $sort = null
     ): Error|ListTeams200Response {
         $this->refreshToken();
-        return $this->api->listUserTeams(
+        return $this->teamsApi->listUserTeams(
             $user_id,
             $filter_organization_id,
             $filter_updated_at,
@@ -246,7 +246,7 @@ class TeamTask extends TaskBase
     public function update(string $team_id, array $update_team_request = null): Team|Error
     {
         $this->refreshToken();
-        return $this->api->updateTeam($team_id, $update_team_request);
+        return $this->teamsApi->updateTeam($team_id, $update_team_request);
     }
 
     /************** *************************/
