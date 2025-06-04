@@ -5,7 +5,6 @@ namespace Upsun\Core\Tasks;
 use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\DeploymentApi;
 use OpenAPI\Client\Model\Deployment;
-use OpenAPI\Client\Model\Error;
 use OpenAPI\Client\Model\WebApplicationsValue;
 use Upsun\UpsunClient;
 
@@ -37,7 +36,7 @@ class ApplicationTask extends TaskBase
     }
 
     /**
-     * list applications of an environment
+     * get an environment's application
      *
      * @param string $projectId
      * @param string $environmentId

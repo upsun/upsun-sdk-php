@@ -21,108 +21,68 @@ class ActivityTask extends TaskBase
         $this->envApi = new EnvironmentActivityApi($this->client->apiClient, $this->client->apiConfig);
     }
 
-    /************** **************************************/
-    /********* ProjectActivityApi ************************/
-    /************** **************************************/
+    /************** ***************************************************************/
+    /********* ProjectActivityApi + EnvironmentActivityApi ************************/
+    /************** ***************************************************************/
 
     /**
      * Operation actionProjectsActivitiesCancel
      *
-     * Cancel a project activity
+     * Cancel a project (or environment) activity
      *
      * @param string $project_id project_id (required)
      * @param string $activity_id activity_id (required)
+     * @param string|null $environment_id
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function projectCancel(string $project_id, string $activity_id): AcceptedResponse
+    public function cancel(string $project_id, string $activity_id, string $environment_id = null): AcceptedResponse
     {
         $this->refreshToken();
-        return $this->api->actionProjectsActivitiesCancel($project_id, $activity_id);
+        if(!$environment_id) {
+            return $this->api->actionProjectsActivitiesCancel($project_id, $activity_id);
+        } else {
+            return $this->envApi->actionProjectsEnvironmentsActivitiesCancel($project_id, $environment_id, $environment_id);
+        }
     }
 
     /**
      * Operation getProjectsActivities
      *
-     * Get a project activity log entry
+     * Get a project (or environment) activity log entry
      *
      * @param string $project_id project_id (required)
      * @param string $activity_id activity_id (required)
+     * @param string|null $environment_id
      * @return Activity
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function projectGet(string $project_id, string $activity_id): Activity
+    public function get(string $project_id, string $activity_id, string $environment_id = null): Activity
     {
         $this->refreshToken();
-        return $this->api->getProjectsActivities($project_id, $activity_id);
+        if(!$environment_id) {
+            return $this->api->getProjectsActivities($project_id, $activity_id);
+        } else {
+            return $this->envApi->getProjectsEnvironmentsActivities($project_id, $environment_id, $environment_id);
+        }
     }
 
     /**
      * Operation listProjectsActivities
      *
-     * Get project activity log
+     * Get project (or environment) activity log
      *
      * @param string $project_id project_id (required)
      * @return Activity[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function projectList(string $project_id): array
+    public function list(string $project_id, string $environment_id = null): array
     {
         $this->refreshToken();
-        return $this->api->listProjectsActivities($project_id);
-    }
-
-
-    /************** ******************************************/
-    /********* EnvironmentActivityApi ************************/
-    /************** ******************************************/
-
-    /**
-     * Operation environmentCancel
-     *
-     * Cancel an environment activity
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id
-     * @param string $activity_id activity_id (required)
-     * @return AcceptedResponse
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     */
-    public function environmentCancel(string $project_id, string $environment_id, string $activity_id): AcceptedResponse
-    {
-        $this->refreshToken();
-        return $this->envApi->actionProjectsEnvironmentsActivitiesCancel($project_id, $environment_id, $activity_id);
-    }
-
-    /**
-     * Operation environmentGet
-     *
-     * Get an environment activity log entry
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id
-     * @param string $activity_id activity_id (required)
-     * @return Activity
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     */
-    public function environmentGet(string $project_id, string $environment_id, string $activity_id): Activity
-    {
-        $this->refreshToken();
-        return $this->envApi->getProjectsEnvironmentsActivities($project_id, $environment_id, $activity_id);
-    }
-
-    /**
-     * Operation environmentList
-     *
-     * Get environment activity log
-     *
-     * @param string $project_id project_id (required)
-     * @return Activity[]
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     */
-    public function environmentList(string $project_id, string $environment_id): array
-    {
-        $this->refreshToken();
-        return $this->envApi->listProjectsEnvironmentsActivities($project_id, $environment_id);
+        if(!$environment_id) {
+            return $this->api->listProjectsActivities($project_id);
+        } else {
+            return $this->envApi->listProjectsEnvironmentsActivities($project_id, $environment_id);
+        }
     }
 }
