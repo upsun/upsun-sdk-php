@@ -22,7 +22,7 @@ jobs:
 
             -   name: Install Composer dependencies
                 run: composer install --prefer-dist --no-progress --no-suggest
-            
+
             -   name: Fix PHP lint errors automatically
                 run: composer run fix || true
 
@@ -42,7 +42,7 @@ jobs:
                     git config user.email "github-actions[bot]@users.noreply.github.com"
                     git add src/Core/Tasks
                     git commit -m "Fix PHP style issues with phpcbf"
-                    git push
+                    git push origin HEAD:${{ github.head_ref }}
 
             -   name: Run PHP lint (phpcs)
                 run: composer run lint
