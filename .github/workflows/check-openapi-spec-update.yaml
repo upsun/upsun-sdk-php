@@ -44,6 +44,10 @@ jobs:
                       -g php \
                       -o apisgen \
                       --additional-properties=apiPackage=apisgen
+            
+            -   name: Force-add apisgen to Git
+                run: |
+                    git add -f apisgen
                     
             -   name: Create Pull Request if changes
                 uses: peter-evans/create-pull-request@v6
