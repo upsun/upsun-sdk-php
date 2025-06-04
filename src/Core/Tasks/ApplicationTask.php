@@ -31,8 +31,9 @@ class ApplicationTask extends TaskBase
     public function list(string $projectId, string $environmentId): array
     {
         $deployments = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);
+        $deployments = reset($deployments);
 
-        return !empty($deployments[0]) ? $deployments[0]->getWebapps() : [];
+        return !($deployments) ? $deployments->getWebapps() : [];
     }
 
     /**
