@@ -37,6 +37,8 @@ jobs:
 
             -   name: Commit and push fixes
                 if: steps.git-check.outputs.changes == 'true'
+                with:
+                    token: ${{ secrets.OPENAPI_WORKFLOW_TOKEN }}
                 run: |
                     git config user.name "github-actions[bot]"
                     git config user.email "github-actions[bot]@users.noreply.github.com"
