@@ -47,7 +47,7 @@ class ApplicationTask extends TaskBase
     {
         $deployment = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);
         $deployment = reset($deployment);
-
+        dd($deployment);
         return $deployment[$app_id] ?? null;
 
         dd($deployments[0]->getWebapps());
