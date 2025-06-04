@@ -12,7 +12,11 @@ jobs:
                 uses: actions/checkout@v4
                 with:
                     ref: ${{ github.event.pull_request.head.sha }}
-
+            -   name: Set up Git
+                run: |
+                    git config --global user.name "github-actions[bot]"
+                    git config --global user.email "github-actions[bot]@users.noreply.github.com"
+            
             -   name: Set up PHP
                 uses: shivammathur/setup-php@v2
                 with:
@@ -39,10 +43,7 @@ jobs:
                 env:
                     TOKEN: ${{ secrets.OPENAPI_WORKFLOW_TOKEN }}
                 run: |
-                    git config user.name "github-actions[bot]"
-                    git config user.email "github-actions[bot]@users.noreply.github.com"
-                
-                    git remote set-url origin https://x-access-token:${TOKEN}@github.com/${{ github.repository }}
+                    git remote set-url origin https://x-access-token:${TOKEN}@github.com/upsun/upsun-sdk-php
                     git add src/Core/Tasks
                     git commit -m "Fix PHP style issues with phpcbf"
                     git push origin HEAD:${{ github.head_ref }}
