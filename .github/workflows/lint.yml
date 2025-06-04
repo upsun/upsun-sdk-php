@@ -1,4 +1,4 @@
-name: Fixing and Linting
+name: Linting
 on:
     pull_request:
         types: [ labeled, opened, reopened, synchronize ]
