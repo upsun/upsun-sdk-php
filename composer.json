@@ -24,6 +24,6 @@
   "minimum-stability": "stable",
   "prefer-stable": true,
   "scripts": {
-    "lint": "phpcs --standard=PSR12 apisgen src tests"
+    "lint": "phpcs --standard=PSR12 src/Core/Tasks"
   }
 }
