@@ -402,7 +402,7 @@ class EnvironmentTask extends TaskBase
     public function activitiesCancel(string $project_id, string $environment_id, string $activity_id): AcceptedResponse
     {
         $this->refreshToken();
-        return $this->client->activity->environmentCancel($project_id, $environment_id, $activity_id);
+        return $this->client->activity->cancel($project_id, $activity_id, $environment_id);
     }
 
     /**
@@ -419,7 +419,7 @@ class EnvironmentTask extends TaskBase
     public function getActivities(string $project_id, string $environment_id, string $activity_id): Activity
     {
         $this->refreshToken();
-        return $this->client->activity->environmentGet($project_id, $environment_id, $activity_id);
+        return $this->client->activity->get($project_id, $activity_id, $environment_id);
     }
 
     /**
@@ -435,7 +435,7 @@ class EnvironmentTask extends TaskBase
     public function listActivities(string $project_id, string $environment_id): array
     {
         $this->refreshToken();
-        return $this->client->activity->environmentList($project_id, $environment_id);
+        return $this->client->activity->list($project_id, $environment_id);
     }
 
     /************** ********************************/
@@ -772,7 +772,7 @@ class EnvironmentTask extends TaskBase
         string $environment_id,
         array $domain_create_input
     ): AcceptedResponse {
-        return $this->client->domain->createEnvironmentDomain($project_id, $environment_id, $domain_create_input);
+        return $this->client->domain->create($project_id, $domain_create_input, $environment_id);
     }
 
     /**
@@ -788,7 +788,7 @@ class EnvironmentTask extends TaskBase
      */
     public function deleteDomain(string $project_id, string $environment_id, string $domain_id): AcceptedResponse
     {
-        return $this->client->domain->deleteEnvironmentDomain($project_id, $environment_id, $domain_id);
+        return $this->client->domain->delete($project_id, $domain_id, $environment_id);
     }
 
     /**
@@ -804,7 +804,7 @@ class EnvironmentTask extends TaskBase
      */
     public function getDomain(string $project_id, string $environment_id, string $domain_id): Domain
     {
-        return $this->client->domain->getEnvironmentDomain($project_id, $environment_id, $domain_id);
+        return $this->client->domain->get($project_id, $environment_id, $domain_id);
     }
 
     /**
@@ -819,7 +819,7 @@ class EnvironmentTask extends TaskBase
      */
     public function listDomains(string $project_id, string $environment_id): array
     {
-        return $this->client->domain->listEnvironmentDomains($project_id, $environment_id);
+        return $this->client->domain->list($project_id, $environment_id);
     }
 
     /**
@@ -840,7 +840,7 @@ class EnvironmentTask extends TaskBase
         string $domain_id,
         array $domain_patch
     ): AcceptedResponse {
-        return $this->client->domain->updateEnvironmentDomain($project_id, $environment_id, $domain_id, $domain_patch);
+        return $this->client->domain->update($project_id, $domain_id, $domain_patch, $environment_id);
     }
 
     /************** *************************/

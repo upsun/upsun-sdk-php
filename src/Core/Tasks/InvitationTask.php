@@ -36,7 +36,7 @@ class InvitationTask extends TaskBase
     /**
      * Operation cancelOrgInvite
      *
-     * Cancel a pending invitation to an organization
+     * Cancel a pending invitation to an organization (or project)
      *
      * @param string $organization_id The ID of the organization. (required)
      * @param string $invitation_id The ID of the invitation. (required)
@@ -45,7 +45,7 @@ class InvitationTask extends TaskBase
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function cancelOrgInvite(string $organization_id, string $invitation_id): void
+    public function cancel(string $organization_id, string $invitation_id, string $project_id = null): void
     {
         $this->refreshToken();
         $this->organizationInvitationsApi->cancelOrgInvite($organization_id, $invitation_id);
