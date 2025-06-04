@@ -4,6 +4,7 @@ namespace Upsun\Core\Tasks;
 
 use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\DeploymentApi;
+use OpenAPI\Client\Model\Deployment;
 use OpenAPI\Client\Model\Error;
 use OpenAPI\Client\Model\WebApplicationsValue;
 use Upsun\UpsunClient;
@@ -47,11 +48,9 @@ class ApplicationTask extends TaskBase
     {
         $deployment = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);
         $deployment = reset($deployment);
-        dd($deployment);
-        return $deployment[$app_id] ?? null;
-
-        dd($deployments[0]->getWebapps());
-        return $deployments[0]->getWebapps() ?? [];
+        
+        /** @var Deployment $deployment */
+        return ($deployment->getWebapps())[$app_id] ?? null;
     }
 
 
