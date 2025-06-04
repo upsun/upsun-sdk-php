@@ -1,11 +1,11 @@
-name: Linting
+name: Fixing and Linting
 on:
     pull_request:
         branches: [ main ]
         types: [ labeled, opened, reopened, synchronize ]
 jobs:
-    lint-php:
-        name: Lint and Fix PHP
+    fix-php:
+        name: Fix PHP
         runs-on: ubuntu-latest
         
         steps:
@@ -23,28 +23,48 @@ jobs:
             -   name: Install Composer dependencies
                 run: composer install --prefer-dist --no-progress --no-suggest
 
-#            -   name: Fix PHP lint errors automatically
-#                run: composer run fix || true
-#
-#            -   name: Check for changes
-#                id: git-check
-#                run: |
-#                    if [[ -n $(git status -s) ]]; then
-#                      echo "changes=true" >> $GITHUB_OUTPUT
-#                    else
-#                      echo "changes=false" >> $GITHUB_OUTPUT
-#                    fi
-#
-#            -   name: Commit and push fixes
-#                if: steps.git-check.outputs.changes == 'true'
-#                with:
-#                    token: ${{ secrets.OPENAPI_WORKFLOW_TOKEN }}
-#                run: |
-#                    git config user.name "github-actions[bot]"
-#                    git config user.email "github-actions[bot]@users.noreply.github.com"
-#                    git add src/Core/Tasks
-#                    git commit -m "Fix PHP style issues with phpcbf"
-#                    git push origin HEAD:${{ github.head_ref }}
+            -   name: Fix PHP lint errors automatically
+                run: composer run fix || true
 
-            -   name: Run PHP lint (phpcs)
-                run: composer run lint
+            -   name: Check for changes
+                id: git-check
+                run: |
+                    if [[ -n $(git status -s) ]]; then
+                      echo "changes=true" >> $GITHUB_OUTPUT
+                    else
+                      echo "changes=false" >> $GITHUB_OUTPUT
+                    fi
+
+            -   name: Commit and push fixes
+                if: steps.git-check.outputs.changes == 'true'
+                with:
+                    token: ${{ secrets.OPENAPI_WORKFLOW_TOKEN }}
+                run: |
+                    git config user.name "github-actions[bot]"
+                    git config user.email "github-actions[bot]@users.noreply.github.com"
+                    git add src/Core/Tasks
+                    git commit -m "Fix PHP style issues with phpcbf"
+                    git push origin HEAD:${{ github.head_ref }}
+
+    lint-php:
+        name: Run PHP lint
+        needs: fix-php
+        runs-on: ubuntu-latest
+        
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                  ref: ${{ github.event.pull_request.head.sha }}
+
+            - name: Set up PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: '8.2'
+                  tools: composer
+
+            - name: Install Composer dependencies
+              run: composer install --prefer-dist --no-progress --no-suggest
+
+            - name: Run PHP lint (phpcs)
+              run: composer run lint
