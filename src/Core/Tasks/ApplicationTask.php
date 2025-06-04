@@ -39,15 +39,16 @@ class ApplicationTask extends TaskBase
      *
      * @param string $projectId
      * @param string $environmentId
-     * @return WebApplicationsValue|Error
+     * @param string $app_id
+     * @return WebApplicationsValue|null
      * @throws ApiException
      */
-    public function get(string $projectId, string $environmentId, string $app_id): WebApplicationsValue
+    public function get(string $projectId, string $environmentId, string $app_id): WebApplicationsValue|null
     {
         $deployment = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);
         $deployment = reset($deployment);
 
-        return $deployment[$app_id] ?? new Error(['message' => 'Application ' . $app_id . ' does not exist']);
+        return $deployment[$app_id] ?? null;
 
         dd($deployments[0]->getWebapps());
         return $deployments[0]->getWebapps() ?? [];
