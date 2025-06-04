@@ -32,7 +32,7 @@ class ApplicationTask extends TaskBase
     {
         $deployments = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);
 
-        return $deployments[0]->getWebapps() ?? [];
+        return $deployments[0] ? $deployments[0]->getWebapps() : [];
     }
 
     /**
@@ -48,7 +48,7 @@ class ApplicationTask extends TaskBase
     {
         $deployment = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);
         $deployment = reset($deployment);
-        
+
         /** @var Deployment $deployment */
         return ($deployment->getWebapps())[$app_id] ?? null;
     }
