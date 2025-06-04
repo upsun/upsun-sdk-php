@@ -12,8 +12,7 @@ class ApplicationTask extends TaskBase
 
     public function __construct(
         public readonly UpsunClient $client,
-    )
-    {
+    ) {
         $this->api = new DeploymentApi($this->client->apiClient, $this->client->apiConfig);
     }
 
