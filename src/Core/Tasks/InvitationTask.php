@@ -21,7 +21,8 @@ class InvitationTask extends TaskBase
 
     public function __construct(
         public readonly UpsunClient $client,
-    ) {
+    )
+    {
         $this->organizationInvitationsApi = new OrganizationInvitationsApi(
             $this->client->apiClient,
             $this->client->apiConfig
@@ -36,7 +37,7 @@ class InvitationTask extends TaskBase
     /**
      * Operation cancelOrgInvite
      *
-     * Cancel a pending invitation to an organization (or project)
+     * Cancel a pending invitation to an organization
      *
      * @param string $organization_id The ID of the organization. (required)
      * @param string $invitation_id The ID of the invitation. (required)
@@ -45,7 +46,7 @@ class InvitationTask extends TaskBase
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function cancel(string $organization_id, string $invitation_id, string $project_id = null): void
+    public function cancelOrgInvite(string $organization_id, string $invitation_id): void
     {
         $this->refreshToken();
         $this->organizationInvitationsApi->cancelOrgInvite($organization_id, $invitation_id);
@@ -66,9 +67,10 @@ class InvitationTask extends TaskBase
     public function createOrgInvite(
         string $organization_id,
         string $email,
-        array $permissions,
-        bool $force = true
-    ): Error|OrganizationInvitation {
+        array  $permissions,
+        bool   $force = true
+    ): Error|OrganizationInvitation
+    {
         $this->refreshToken();
 
         $inviteRequest = new CreateOrgInviteRequest([
@@ -99,12 +101,12 @@ class InvitationTask extends TaskBase
      */
     public function listOrgInvites(
         string $organization_id,
-        array $filter_state = null,
-        int $page_size = null,
-        string $page_before = null,
+        array  $filter_state = null,
+        int    $page_size = null, string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ): Error|array {
+    ): Error|array
+    {
         $this->refreshToken();
         return $this->organizationInvitationsApi->listOrgInvites(
             $organization_id,
@@ -151,9 +153,10 @@ class InvitationTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function createProjectInvite(
-        string $project_id,
+        string                     $project_id,
         CreateProjectInviteRequest $create_project_invite_request = null
-    ): ProjectInvitation|Error {
+    ): ProjectInvitation|Error
+    {
         $this->refreshToken();
         return $this->projectInvitationsApi->createProjectInvite($project_id, $create_project_invite_request);
     }
@@ -178,12 +181,13 @@ class InvitationTask extends TaskBase
      */
     public function listProjectInvites(
         string $project_id,
-        array $filter_state = null,
-        int $page_size = null,
+        array  $filter_state = null,
+        int    $page_size = null,
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ): Error|array {
+    ): Error|array
+    {
         $this->refreshToken();
         return $this->projectInvitationsApi->listProjectInvites(
             $project_id,
