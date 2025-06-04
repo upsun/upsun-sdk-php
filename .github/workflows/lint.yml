@@ -3,51 +3,6 @@ on:
     pull_request:
         types: [ labeled, opened, reopened, synchronize ]
 jobs:
-    fix-php:
-        name: Fix PHP
-        runs-on: ubuntu-latest
-        
-        steps:
-            -   name: Checkout
-                uses: actions/checkout@v4
-                with:
-                    ref: ${{ github.event.pull_request.head.sha }}
-            -   name: Set up Git
-                run: |
-                    git config --global user.name "github-actions[bot]"
-                    git config --global user.email "github-actions[bot]@users.noreply.github.com"
-            
-            -   name: Set up PHP
-                uses: shivammathur/setup-php@v2
-                with:
-                    php-version: '8.2'
-                    tools: composer
-
-            -   name: Install Composer dependencies
-                run: composer install --prefer-dist --no-progress --no-suggest
-
-            -   name: Fix PHP lint errors automatically
-                run: composer run fix || true
-
-            -   name: Check for changes
-                id: git-check
-                run: |
-                    if [[ -n $(git status -s) ]]; then
-                      echo "changes=true" >> $GITHUB_OUTPUT
-                    else
-                      echo "changes=false" >> $GITHUB_OUTPUT
-                    fi
-
-            -   name: Commit and push fixes
-                if: steps.git-check.outputs.changes == 'true'
-                env:
-                    TOKEN: ${{ secrets.OPENAPI_WORKFLOW_TOKEN }}
-                run: |
-                    git remote set-url origin https://x-access-token:${TOKEN}@github.com/upsun/upsun-sdk-php
-                    git add src/Core/Tasks
-                    git commit -m "Fix PHP style issues with phpcbf"
-                    git push origin HEAD:${{ github.head_ref }}
-
     lint-php:
         name: Run PHP lint
         needs: fix-php
