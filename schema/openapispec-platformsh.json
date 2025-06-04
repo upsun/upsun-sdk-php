@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Platform.sh Rest API test",
+    "title": "Platform.sh Rest API",
     "version": "1.0",
     "contact": {
       "name": "Support",
@@ -15364,7 +15364,7 @@
               "basic_auth"
             ],
             "additionalProperties": false,
-            "title": "HTTP access permissions"
+            "title": "Http access permissions"
           },
           "enable_smtp": {
             "type": "boolean",
