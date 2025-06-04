@@ -22,7 +22,11 @@ jobs:
                 run: |
                     git config --global user.name "github-actions[bot]"
                     git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
+            
+            -   name: Install OpenAPI Generator CLI
+                run: |
+                    npm install -g @openapitools/openapi-generator-cli
+                    
             -   name: Download and patch OpenAPI spec
                 run: |
                     echo "Download OpenAPI spec..."
@@ -30,7 +34,17 @@ jobs:
                     
                     echo "Patch OpenAPI spec..."
                     sed -i 's/HTTP access permissions/Http access permissions/g' ./schema/openapispec-platformsh.json
-
+            
+            -   name: Generate code (php)
+                run: |
+                    export GIT_USER_ID=upsun
+                    export GIT_REPO_ID=upsun-sdk-go
+                    openapi-generator-cli generate \
+                      -i ./schema/openapispec-platformsh.json \
+                      -g php \
+                      -o apisgen \
+                      --additional-properties=apiPackage=apisgen
+                    
             -   name: Create Pull Request if changes
                 uses: peter-evans/create-pull-request@v6
                 with:

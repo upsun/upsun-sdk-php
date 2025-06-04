@@ -1,0 +1,76 @@
+name: Linting
+on:
+    pull_request:
+        branches: [ main ]
+        types: [ labeled,opened,reopened,synchronize ]
+
+jobs:
+    #  lint-markdown:
+    #    name: Lint markdown
+    #
+    #    runs-on: ubuntu-latest
+    #
+    #    steps:
+    #    - name: Checkout
+    #      uses: actions/checkout@v4
+    #      with:
+    #        ref:  ${{ github.event.pull_request.head.sha }}
+    #
+    #    - name: Set up Node.js
+    #      uses: actions/setup-node@v4
+    #      with:
+    #        node-version: 16
+    #        cache: 'npm'
+    #
+    #    - name: Run lint markdown
+    #      run: |
+    #        cd apisgen
+    #        npm ci
+    #        npm run lint:markdown
+    #        cd ../src
+    #        npm ci
+    #        npm run lint:markdown
+    #        
+    lint-php:
+        name: Lint PHP
+        runs-on: ubuntu-latest
+        
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v4
+                with:
+                    ref: ${{ github.event.pull_request.head.sha }}
+
+            -   name: Set up PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: '8.2'
+                    extensions: mbstring, intl
+                    tools: composer
+
+            -   name: Install PHP dependencies
+                run: composer install --prefer-dist --no-progress
+
+            -   name: Run PHP lint
+                run: npm run lint
+    lint-prose:
+        name: Lint Prose
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v4
+                with:
+                    # we need to check out the PR repo/branch even if it's a fork because the action in the next step needs to
+                    # check the markdown from the PR itself. Plus, we're only running this job if a PR from fork has been approved
+                    fetch-depth: 0
+                    ref: ${{ github.event.pull_request.head.sha }}
+
+            -   name: Vale
+                uses: errata-ai/vale-action@reviewdog
+                with:
+                    version: 3.0.7
+                    fail_on_error: true
+                    reporter: github-check
+                    files: /
+                env:
+                    GITHUB_TOKEN: ${{ secrets.OPENAPI_WORKFLOW_TOKEN }}
