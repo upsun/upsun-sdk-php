@@ -22,10 +22,12 @@ class VariableTask extends TaskBase
 
     public function __construct(
         public readonly UpsunClient $client,
-    )
-    {
+    ) {
         $this->projectVariablesApi = new ProjectVariablesApi($this->client->apiClient, $this->client->apiConfig);
-        $this->environmentVariablesApi = new EnvironmentVariablesApi($this->client->apiClient, $this->client->apiConfig);
+        $this->environmentVariablesApi = new EnvironmentVariablesApi(
+            $this->client->apiClient,
+            $this->client->apiConfig
+        );
     }
 
     /************** *******************************/
@@ -107,13 +109,20 @@ class VariableTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateProjectVariable(string $project_id, string $project_variable_id, array $project_variable_patch): AcceptedResponse
-    {
+    public function updateProjectVariable(
+        string $project_id,
+        string $project_variable_id,
+        array $project_variable_patch
+    ): AcceptedResponse {
         $this->refreshToken();
         $project_variable_patch = new ProjectVariablePatch($project_variable_patch);
-        return $this->projectVariablesApi->updateProjectsVariables($project_id, $project_variable_id, $project_variable_patch);
+        return $this->projectVariablesApi->updateProjectsVariables(
+            $project_id,
+            $project_variable_id,
+            $project_variable_patch
+        );
     }
-    
+
     /************** ***********************************/
     /********* EnvironmentVariablesApi ****************/
     /************** ***********************************/
@@ -129,11 +138,18 @@ class VariableTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createEnvironmentVariable(string $project_id, string $environment_id, array $environment_variable_create_input): AcceptedResponse
-    {
+    public function createEnvironmentVariable(
+        string $project_id,
+        string $environment_id,
+        array $environment_variable_create_input
+    ): AcceptedResponse {
         $this->refreshToken();
         $environment_variable_create_input = new EnvironmentVariableCreateInput($environment_variable_create_input);
-        return $this->environmentVariablesApi->deleteProjectsEnvironmentsVariables($project_id, $environment_id, $environment_variable_create_input);
+        return $this->environmentVariablesApi->deleteProjectsEnvironmentsVariables(
+            $project_id,
+            $environment_id,
+            $environment_variable_create_input
+        );
     }
 
     /**
@@ -147,10 +163,17 @@ class VariableTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteEnvironmentVariable(string $project_id, string $environment_id, string $variable_id): AcceptedResponse
-    {
+    public function deleteEnvironmentVariable(
+        string $project_id,
+        string $environment_id,
+        string $variable_id
+    ): AcceptedResponse {
         $this->refreshToken();
-        return $this->environmentVariablesApi->deleteProjectsEnvironmentsVariables($project_id, $environment_id, $variable_id);
+        return $this->environmentVariablesApi->deleteProjectsEnvironmentsVariables(
+            $project_id,
+            $environment_id,
+            $variable_id
+        );
     }
 
     /**
@@ -164,10 +187,17 @@ class VariableTask extends TaskBase
      * @return EnvironmentVariable
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getEnvironmentVariable(string $project_id, string $environment_id, string $variable_id): EnvironmentVariable
-    {
+    public function getEnvironmentVariable(
+        string $project_id,
+        string $environment_id,
+        string $variable_id
+    ): EnvironmentVariable {
         $this->refreshToken();
-        return $this->environmentVariablesApi->getProjectsEnvironmentsVariables($project_id, $environment_id, $variable_id);
+        return $this->environmentVariablesApi->getProjectsEnvironmentsVariables(
+            $project_id,
+            $environment_id,
+            $variable_id
+        );
     }
 
     /**
@@ -198,10 +228,19 @@ class VariableTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateEnvironmentVariable(string $project_id, string $environment_id, string $variable_id, array $environment_variable_patch): AcceptedResponse
-    {
+    public function updateEnvironmentVariable(
+        string $project_id,
+        string $environment_id,
+        string $variable_id,
+        array $environment_variable_patch
+    ): AcceptedResponse {
         $this->refreshToken();
         $environment_variable_patch = new EnvironmentVariablePatch($environment_variable_patch);
-        return $this->environmentVariablesApi->updateProjectsEnvironmentsVariables($project_id, $environment_id, $variable_id, $environment_variable_patch);
+        return $this->environmentVariablesApi->updateProjectsEnvironmentsVariables(
+            $project_id,
+            $environment_id,
+            $variable_id,
+            $environment_variable_patch
+        );
     }
 }

@@ -13,11 +13,10 @@ use Upsun\UpsunClient;
 class RouteTask extends TaskBase
 {
     public readonly RoutingApi $api;
-    
+
     public function __construct(
         public readonly UpsunClient $client,
-    )
-    {
+    ) {
         $this->api = new RoutingApi($this->client->apiClient, $this->client->apiConfig);
     }
 

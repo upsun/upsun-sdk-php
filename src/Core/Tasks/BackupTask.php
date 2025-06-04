@@ -16,8 +16,7 @@ class BackupTask extends TaskBase
 
     public function __construct(
         public readonly UpsunClient $client,
-    )
-    {
+    ) {
         $this->api = new EnvironmentBackupsApi($this->client->apiClient, $this->client->apiConfig);
     }
 
@@ -36,8 +35,11 @@ class BackupTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function backup(string $project_id, string $environment_id, array $environment_backup_input): AcceptedResponse
-    {
+    public function backup(
+        string $project_id,
+        string $environment_id,
+        array $environment_backup_input
+    ): AcceptedResponse {
         $this->refreshToken();
         $environment_backup_input = new EnvironmentBackupInput($environment_backup_input);
         return $this->api->backupEnvironment($project_id, $environment_id, $environment_backup_input);
@@ -105,8 +107,12 @@ class BackupTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function restore(string $project_id, string $environment_id, string $backup_id, array $environment_restore_input): AcceptedResponse
-    {
+    public function restore(
+        string $project_id,
+        string $environment_id,
+        string $backup_id,
+        array $environment_restore_input
+    ): AcceptedResponse {
         $this->refreshToken();
         $environment_restore_input = new EnvironmentRestoreInput($environment_restore_input);
         return $this->api->restoreBackup($project_id, $environment_id, $backup_id, $environment_restore_input);

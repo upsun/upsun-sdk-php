@@ -16,8 +16,7 @@ class ActivityTask extends TaskBase
 
     public function __construct(
         public readonly UpsunClient $client,
-    )
-    {
+    ) {
         $this->api = new ProjectActivityApi($this->client->apiClient, $this->client->apiConfig);
         $this->envApi = new EnvironmentActivityApi($this->client->apiClient, $this->client->apiConfig);
     }
@@ -126,5 +125,4 @@ class ActivityTask extends TaskBase
         $this->refreshToken();
         return $this->envApi->listProjectsEnvironmentsActivities($project_id, $environment_id);
     }
-
 }

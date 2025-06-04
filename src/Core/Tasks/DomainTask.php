@@ -16,8 +16,7 @@ class DomainTask extends TaskBase
 
     public function __construct(
         public readonly UpsunClient $client,
-    )
-    {
+    ) {
         $this->api = new DomainManagementApi($this->client->apiClient, $this->client->apiConfig);
     }
 
@@ -53,8 +52,11 @@ class DomainTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createEnvironmentDomain(string $project_id, string $environment_id, array $domain_create_input): AcceptedResponse
-    {
+    public function createEnvironmentDomain(
+        string $project_id,
+        string $environment_id,
+        array $domain_create_input
+    ): AcceptedResponse {
         $this->refreshToken();
         $domain_create_input = new DomainCreateInput($domain_create_input);
         return $this->api->createProjectsEnvironmentsDomains($project_id, $environment_id, $domain_create_input);
@@ -87,8 +89,11 @@ class DomainTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteEnvironmentDomain(string $project_id, string $environment_id, string $domain_id): AcceptedResponse
-    {
+    public function deleteEnvironmentDomain(
+        string $project_id,
+        string $environment_id,
+        string $domain_id
+    ): AcceptedResponse {
         $this->refreshToken();
         return $this->api->deleteProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id);
     }
@@ -187,8 +192,12 @@ class DomainTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateEnvironmentDomain(string $project_id, string $environment_id, string $domain_id, array $domain_patch): AcceptedResponse
-    {
+    public function updateEnvironmentDomain(
+        string $project_id,
+        string $environment_id,
+        string $domain_id,
+        array $domain_patch
+    ): AcceptedResponse {
         $this->refreshToken();
         $domain_patch = new DomainPatch($domain_patch);
         return $this->api->updateProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id, $domain_patch);

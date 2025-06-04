@@ -40,6 +40,7 @@ use OpenAPI\Client\Model\ListOrgPlanRecords200Response;
 use OpenAPI\Client\Model\ListOrgProjects200Response;
 use OpenAPI\Client\Model\ListOrgs200Response;
 use OpenAPI\Client\Model\ListOrgUsageRecords200Response;
+use OpenAPI\Client\Model\ListTeams200Response;
 use OpenAPI\Client\Model\ListUserOrgs200Response;
 use OpenAPI\Client\Model\Order;
 use OpenAPI\Client\Model\Organization;
@@ -64,7 +65,7 @@ use Upsun\UpsunClient;
 
 class OrganizationTask extends TaskBase
 {
-    const DEFAULT_UPSUN_PLAN = 'upsun/flexible';
+    private const  DEFAULT_UPSUN_PLAN = 'upsun/flexible';
 
     public OrganizationsApi $api;
     public OrganizationProjectsApi $projectsApi;
@@ -80,8 +81,7 @@ class OrganizationTask extends TaskBase
 
     public function __construct(
         public readonly UpsunClient $client,
-    )
-    {
+    ) {
         $this->headerSelector = new HeaderSelector();
         $this->api = new OrganizationsApi($this->client->apiClient, $this->client->apiConfig);
         $this->projectsApi = new OrganizationProjectsApi($this->client->apiClient, $this->client->apiConfig);
@@ -139,11 +139,12 @@ class OrganizationTask extends TaskBase
      *
      * Get organization
      *
-     * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
+     * @param string $organization_id The ID of the organization.
+     *         to retrieve the organization by name instead. (required)
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
      * @return Organization|Error
+     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function get(string $organization_id): Organization|Error
     {
@@ -156,26 +157,55 @@ class OrganizationTask extends TaskBase
      *
      * List organizations
      *
-     * @param array|null $filter_id Allows filtering by &#x60;id&#x60; using one or more operators. (optional)
-     * @param array|null $filter_owner_id Allows filtering by &#x60;owner_id&#x60; using one or more operators. (optional)
-     * @param array|null $filter_name Allows filtering by &#x60;name&#x60; using one or more operators. (optional)
+     * @param array|null $filter_id Allows filtering by `id` using one or more operators. (optional)
+     * @param array|null $filter_owner_id Allows filtering by `owner_id` using one or more operators. (optional)
+     * @param array|null $filter_name Allows filtering by `name` using one or more operators. (optional)
      * @param array|null $filter_label
-     * @param array|null $filter_vendor Allows filtering by &#x60;vendor&#x60; using one or more operators. (optional)
-     * @param array|null $filter_capabilities Allows filtering by &#x60;capabilites&#x60; using one or more operators. (optional)
-     * @param array|null $filter_status Allows filtering by &#x60;status&#x60; using one or more operators.&lt;br&gt; Defaults to &#x60;filter[status][in]&#x3D;active,restricted,suspended&#x60;. (optional)
-     * @param array|null $filter_updated_at Allows filtering by &#x60;updated_at&#x60; using one or more operators. (optional)
+     * @param array|null $filter_vendor Allows filtering by `vendor` using one or more operators. (optional)
+     * @param array|null $filter_capabilities Allows filtering by `capabilites` using one or more operators. (optional)
+     * @param array|null $filter_status Allows filtering by `status` using one or more operators.
+     *        Defaults to `filter[status][in]=active,restricted,suspended`. (optional)
+     * @param array|null $filter_updated_at Allows filtering by `updated_at` using one or more operators. (optional)
      * @param int $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;name&#x60;, &#x60;label&#x60;, &#x60;created_at&#x60;, &#x60;updated_at&#x60;. (optional)
+     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $sort Allows sorting by a single field. Use a dash ('-') to sort descending.
+     *        Supported fields: `name`, `label`, `created_at`, `updated_at`. (optional)
      *
      * @return ListOrgs200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function list(array $filter_id = null, array $filter_owner_id = null, array $filter_name = null, array $filter_label = null, array $filter_vendor = null, array $filter_capabilities = null, array $filter_status = null, array $filter_updated_at = null, int $page_size = 100, string $page_before = null, string $page_after = null, string $sort = null): Error|ListOrgs200Response
-    {
+    public function list(
+        array $filter_id = null,
+        array $filter_owner_id = null,
+        array $filter_name = null,
+        array $filter_label = null,
+        array $filter_vendor = null,
+        array $filter_capabilities = null,
+        array $filter_status = null,
+        array $filter_updated_at = null,
+        int $page_size = 100,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): Error|ListOrgs200Response {
         $this->refreshToken();
-        return $this->api->listOrgs($filter_id, $filter_owner_id, $filter_name, $filter_label, $filter_vendor, $filter_capabilities, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+        return $this->api->listOrgs(
+            $filter_id,
+            $filter_owner_id,
+            $filter_name,
+            $filter_label,
+            $filter_vendor,
+            $filter_capabilities,
+            $filter_status,
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
     }
 
     /**
@@ -184,22 +214,45 @@ class OrganizationTask extends TaskBase
      * User organizations
      *
      * @param string $user_id The ID of the user. (required)
-     * @param array|null $filter_id Allows filtering by &#x60;id&#x60; using one or more operators. (optional)
-     * @param array|null $filter_vendor Allows filtering by &#x60;vendor&#x60; using one or more operators. (optional)
-     * @param array|null $filter_status Allows filtering by &#x60;status&#x60; using one or more operators.&lt;br&gt; Defaults to &#x60;filter[status][in]&#x3D;active,restricted,suspended&#x60;. (optional)
-     * @param array|null $filter_updated_at Allows filtering by &#x60;updated_at&#x60; using one or more operators. (optional)
+     * @param array|null $filter_id Allows filtering by `id` using one or more operators. (optional)
+     * @param array|null $filter_vendor Allows filtering by `vendor` using one or more operators. (optional)
+     * @param array|null $filter_status Allows filtering by `status` using one or more operators.
+     *        Defaults to `filter[status][in]=active,restricted,suspended`. (optional)
+     * @param array|null $filter_updated_at Allows filtering by `updated_at` using one or more operators. (optional)
      * @param int|null $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;name&#x60;, &#x60;label&#x60;, &#x60;created_at&#x60;, &#x60;updated_at&#x60;. (optional)
+     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $sort Allows sorting by a single field. Use a dash ('-') to sort descending.
+     *        Supported fields: `name`, `label`, `created_at`, `updated_at`. (optional)
      *
      * @return ListUserOrgs200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listUserOrgs(string $user_id, array $filter_id = null, array $filter_vendor = null, array $filter_status = null, array $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|ListUserOrgs200Response
-    {
+    public function listUserOrgs(
+        string $user_id,
+        array $filter_id = null,
+        array $filter_vendor = null,
+        array $filter_status = null,
+        array $filter_updated_at = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): Error|ListUserOrgs200Response {
         $this->refreshToken();
-        return $this->api->listUserOrgs($user_id, $filter_id, $filter_vendor, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+        return $this->api->listUserOrgs(
+            $user_id,
+            $filter_id,
+            $filter_vendor,
+            $filter_status,
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
     }
 
     /**
@@ -207,21 +260,43 @@ class OrganizationTask extends TaskBase
      *
      * User organizations
      *
-     * @param array|null $filter_id Allows filtering by &#x60;id&#x60; using one or more operators. (optional)
-     * @param array|null $filter_vendor Allows filtering by &#x60;vendor&#x60; using one or more operators. (optional)
-     * @param array|null $filter_status Allows filtering by &#x60;status&#x60; using one or more operators.&lt;br&gt; Defaults to &#x60;filter[status][in]&#x3D;active,restricted,suspended&#x60;. (optional)
-     * @param array|null $filter_updated_at Allows filtering by &#x60;updated_at&#x60; using one or more operators. (optional)
+     * @param array|null $filter_id Allows filtering by `id` using one or more operators. (optional)
+     * @param array|null $filter_vendor Allows filtering by `vendor` using one or more operators. (optional)
+     * @param array|null $filter_status Allows filtering by `status` using one or more operators.
+     *        Defaults to `filter[status][in]=active,restricted,suspended`. (optional)
+     * @param array|null $filter_updated_at Allows filtering by `updated_at` using one or more operators. (optional)
      * @param int|null $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;name&#x60;, &#x60;label&#x60;, &#x60;created_at&#x60;, &#x60;updated_at&#x60;. (optional)
+     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $sort Allows sorting by a single field. Use a dash ('-') to sort descending.
+     *        Supported fields: `name`, `label`, `created_at`, `updated_at`. (optional)
      *
      * @return ListUserOrgs200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listCurrentUserOrgs(array $filter_id = null, array $filter_vendor = null, array $filter_status = null, array $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|ListUserOrgs200Response
-    {
-        return $this->listUserOrgs($this->client->user->me()->getId(), $filter_id, $filter_vendor, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+    public function listCurrentUserOrgs(
+        array $filter_id = null,
+        array $filter_vendor = null,
+        array $filter_status = null,
+        array $filter_updated_at = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): Error|ListUserOrgs200Response {
+        return $this->listUserOrgs(
+            $this->client->user->me()->getId(),
+            $filter_id,
+            $filter_vendor,
+            $filter_status,
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
     }
 
     /**
@@ -252,13 +327,28 @@ class OrganizationTask extends TaskBase
      * @param null $page_after
      * @param null $sort
      * @param string $contentType
-     * @return mixed
+     * @return Error|ListTeams200Response
      * @throws ApiException
      */
-    public function listTeams($organization_id, $filter_updated_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null, string $contentType = ''): mixed
-    {
+    public function listTeams(
+        $organization_id,
+        $filter_updated_at = null,
+        $page_size = null,
+        $page_before = null,
+        $page_after = null,
+        $sort = null,
+        string $contentType = ''
+    ): Error|ListTeams200Response {
         $this->refreshToken();
-        return $this->client->team->listUserTeams($this->client->getUserId(), ['eq' => $organization_id], $filter_updated_at, $page_size, $page_before, $page_after, $sort, $contentType);
+        return $this->client->team->listUserTeams(
+            $this->client->getUserId(),
+            ['eq' => $organization_id],
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
     }
 
     /************** ***********************************/
@@ -290,23 +380,47 @@ class OrganizationTask extends TaskBase
      * List projects from an organization
      *
      * @param string $organization_id The ID of the organization. (required)
-     * @param array|null $filter_id Allows filtering by &#x60;id&#x60; using one or more operators. (optional)
-     * @param array|null $filter_title Allows filtering by &#x60;title&#x60; using one or more operators. (optional)
-     * @param array|null $filter_status Allows filtering by &#x60;status&#x60; using one or more operators. (optional)
-     * @param array|null $filter_updated_at Allows filtering by &#x60;updated_at&#x60; using one or more operators. (optional)
-     * @param array|null $filter_created_at Allows filtering by &#x60;created_at&#x60; using one or more operators. (optional)
+     * @param array|null $filter_id Allows filtering by `id` using one or more operators. (optional)
+     * @param array|null $filter_title Allows filtering by `title` using one or more operators. (optional)
+     * @param array|null $filter_status Allows filtering by `status` using one or more operators. (optional)
+     * @param array|null $filter_updated_at Allows filtering by `updated_at` using one or more operators. (optional)
+     * @param array|null $filter_created_at Allows filtering by `created_at` using one or more operators. (optional)
      * @param int|null $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;id&#x60;, &#x60;created_at&#x60;, &#x60;updated_at&#x60;. (optional)
+     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $sort Allows sorting by a single field. Use a dash ('-') to sort descending.
+     *        Supported fields: `id`, `created_at`, `updated_at`. (optional)
      *
      * @return ListOrgProjects200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjects(string $organization_id, array $filter_id = null, array $filter_title = null, array $filter_status = null, array $filter_updated_at = null, array $filter_created_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): ListOrgProjects200Response|Error
-    {
+    public function listProjects(
+        string $organization_id,
+        array $filter_id = null,
+        array $filter_title = null,
+        array $filter_status = null,
+        array $filter_updated_at = null,
+        array $filter_created_at = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): ListOrgProjects200Response|Error {
         $this->refreshToken();
-        return $this->projectsApi->listOrgProjects($organization_id, $filter_id, $filter_title, $filter_status, $filter_updated_at, $filter_created_at, $page_size, $page_before, $page_after, $sort);
+        return $this->projectsApi->listOrgProjects(
+            $organization_id,
+            $filter_id,
+            $filter_title,
+            $filter_status,
+            $filter_updated_at,
+            $filter_created_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
     }
 
     /************** **********************************/
@@ -325,8 +439,10 @@ class OrganizationTask extends TaskBase
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createMember(string $organization_id, CreateOrgMemberRequest $create_org_member_request): OrganizationMember|Error
-    {
+    public function createMember(
+        string $organization_id,
+        CreateOrgMemberRequest $create_org_member_request
+    ): OrganizationMember|Error {
         $this->refreshToken();
         return $this->membersApi->createOrgMember($organization_id, $create_org_member_request);
     }
@@ -343,8 +459,11 @@ class OrganizationTask extends TaskBase
      * @return OrganizationMember|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateMember(string $organization_id, string $user_id, UpdateOrgMemberRequest $update_org_member_request = null): OrganizationMember|Error
-    {
+    public function updateMember(
+        string $organization_id,
+        string $user_id,
+        UpdateOrgMemberRequest $update_org_member_request = null
+    ): OrganizationMember|Error {
         $this->refreshToken();
         return $this->membersApi->updateOrgMember($organization_id, $user_id, $update_org_member_request);
     }
@@ -354,12 +473,13 @@ class OrganizationTask extends TaskBase
      *
      * Get organization member
      *
-     * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
+     * @param string $organization_id The ID of the organization.
+     *        Prefix with name= to retrieve the organization by name instead. (required)
      * @param string $user_id The ID of the user. (required)
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
      * @return OrganizationMember|Error
+     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function getMember(string $organization_id, string $user_id): OrganizationMember|Error
     {
@@ -372,20 +492,37 @@ class OrganizationTask extends TaskBase
      *
      * List organization members
      *
-     * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
-     * @param array|null $filter_permissions Allows filtering by &#x60;permissions&#x60; using one or more operators. (optional)
+     * @param string $organization_id The ID of the organization.
+     *        Prefix with name= to retrieve the organization by name instead. (required)
+     * @param array|null $filter_permissions Allows filtering by `permissions` using one or more operators. (optional)
      * @param int|null $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;created_at&#x60;, &#x60;updated_at&#x60;. (optional)
+     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $sort Allows sorting by a single field. Use a dash ('-') to sort descending.
+     *        Supported fields: `created_at`, `updated_at`. (optional)
      *
      * @return ListOrgMembers200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listMembers(string $organization_id, array $filter_permissions = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): ListOrgMembers200Response|Error
-    {
+    public function listMembers(
+        string $organization_id,
+        array $filter_permissions = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): ListOrgMembers200Response|Error {
         $this->refreshToken();
-        return $this->membersApi->listOrgMembers($organization_id, $filter_permissions, $page_size, $page_before, $page_after, $sort);
+        return $this->membersApi->listOrgMembers(
+            $organization_id,
+            $filter_permissions,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
     }
 
     /**
@@ -474,10 +611,22 @@ class OrganizationTask extends TaskBase
      * @return EstimationObject|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function estimateNewProject(string $organization_id, int $environments = 3, int $storage = 500, int $user_licenses = 1, string $format = null): EstimationObject|Error
-    {
+    public function estimateNewProject(
+        string $organization_id,
+        int $environments = 3,
+        int $storage = 500,
+        int $user_licenses = 1,
+        string $format = null
+    ): EstimationObject|Error {
         $this->refreshToken();
-        return $this->subscriptionsApi->estimateNewOrgSubscription($organization_id, self::DEFAULT_UPSUN_PLAN, $environments, $storage, $user_licenses, $format);
+        return $this->subscriptionsApi->estimateNewOrgSubscription(
+            $organization_id,
+            self::DEFAULT_UPSUN_PLAN,
+            $environments,
+            $storage,
+            $user_licenses,
+            $format
+        );
     }
 
     /**
@@ -487,7 +636,8 @@ class OrganizationTask extends TaskBase
      *
      * @param string $organization_id The ID of the organization. (required)
      * @param string $project_id
-     * @param int|null $environments The maximum number of environments which can be provisioned on the project. (optional)
+     * @param int|null $environments The maximum number of environments which
+     *        can be provisioned on the project. (optional)
      * @param int|null $storage The total storage available to each environment, in MiB. (optional)
      * @param int|null $user_licenses The number of user licenses. (optional)
      * @param string|null $format The format of the estimation output. (optional)
@@ -495,13 +645,27 @@ class OrganizationTask extends TaskBase
      * @return EstimationObject|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function estimateProject(string $organization_id, string $project_id, int $environments = null, int $storage = null, int $user_licenses = null, string $format = null): EstimationObject|Error
-    {
+    public function estimateProject(
+        string $organization_id,
+        string $project_id,
+        int $environments = null,
+        int $storage = null,
+        int $user_licenses = null,
+        string $format = null
+    ): EstimationObject|Error {
         $this->refreshToken();
 
-        return $this->subscriptionsApi->estimateOrgSubscription($organization_id, $project_id, self::DEFAULT_UPSUN_PLAN, $environments, $storage, $user_licenses, $format);
+        return $this->subscriptionsApi->estimateOrgSubscription(
+            $organization_id,
+            $project_id,
+            self::DEFAULT_UPSUN_PLAN,
+            $environments,
+            $storage,
+            $user_licenses,
+            $format
+        );
     }
-    
+
     /**
      * Operation getOrgSubscriptionCurrentUsage
      *
@@ -515,10 +679,19 @@ class OrganizationTask extends TaskBase
      * @return SubscriptionCurrentUsageObject|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectUsage(string $organization_id, string $project_id, string $usage_groups = null, bool $include_not_charged = null): Error|SubscriptionCurrentUsageObject
-    {
+    public function getProjectUsage(
+        string $organization_id,
+        string $project_id,
+        string $usage_groups = null,
+        bool $include_not_charged = null
+    ): Error|SubscriptionCurrentUsageObject {
         $this->refreshToken();
-        return $this->subscriptionsApi->getOrgSubscriptionCurrentUsage($organization_id, $project_id, $usage_groups, $include_not_charged);
+        return $this->subscriptionsApi->getOrgSubscriptionCurrentUsage(
+            $organization_id,
+            $project_id,
+            $usage_groups,
+            $include_not_charged
+        );
     }
 
 
@@ -528,13 +701,16 @@ class OrganizationTask extends TaskBase
      * Update subscription
      *
      * @param string $organization_id The ID of the organization. (required)
-     * @param string $subscription_id The ID of the subscription. (required)
-     * @param array|null $update_org_subscription_data
+     * @param string $project_id
+     * @param array|null $update_project_data
      * @return Subscription|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateProject(string $organization_id, string $project_id, array $update_project_data = null): Error|Subscription
-    {
+    public function updateProject(
+        string $organization_id,
+        string $project_id,
+        array $update_project_data = null
+    ): Error|Subscription {
         $this->refreshToken();
         $update_project_request = new UpdateOrgSubscriptionRequest($update_project_data);
         return $this->subscriptionsApi->updateOrgSubscription($organization_id, $project_id, $update_project_request);
@@ -579,7 +755,8 @@ class OrganizationTask extends TaskBase
      *
      * Get organization MFA settings
      *
-     * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
+     * @param string $organization_id The ID of the organization.
+     *        Prefix with name= to retrieve the organization by name instead. (required)
      * @return OrganizationMFAEnforcement|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
@@ -617,7 +794,8 @@ class OrganizationTask extends TaskBase
      * Get invoice
      *
      * @param string $invoice_id The ID of the invoice. (required)
-     * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
+     * @param string $organization_id The ID of the organization.
+     *        Prefix with name= to retrieve the organization by name instead. (required)
      * @return Invoice|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
@@ -632,18 +810,31 @@ class OrganizationTask extends TaskBase
      *
      * List invoices
      *
-     * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
+     * @param string $organization_id The ID of the organization.
+     *        Prefix with name= to retrieve the organization by name instead. (required)
      * @param string|null $filter_status The status of the invoice. (optional)
-     * @param string|null $filter_type The invoice type. Use invoice for standard invoices, credit_memo for refund/credit invoices. (optional)
+     * @param string|null $filter_type The invoice type. Use invoice for standard invoices,
+     *        credit_memo for refund/credit invoices. (optional)
      * @param string|null $filter_order_id The order id of Invoice. (optional)
      * @param int|null $page Page to be displayed. Defaults to 1. (optional)
      * @return ListOrgInvoices200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listInvoices(string $organization_id, string $filter_status = null, string $filter_type = null, string $filter_order_id = null, int $page = null): ListOrgInvoices200Response|Error
-    {
+    public function listInvoices(
+        string $organization_id,
+        string $filter_status = null,
+        string $filter_type = null,
+        string $filter_order_id = null,
+        int $page = null
+    ): ListOrgInvoices200Response|Error {
         $this->refreshToken();
-        return $this->invoicesApi->listOrgInvoices($organization_id, $filter_status, $filter_type, $filter_order_id, $page);
+        return $this->invoicesApi->listOrgInvoices(
+            $organization_id,
+            $filter_status,
+            $filter_type,
+            $filter_order_id,
+            $page
+        );
     }
 
     /************** *****************************/
@@ -655,13 +846,16 @@ class OrganizationTask extends TaskBase
      *
      * Create confirmation credentials for 3D-Secure
      *
-     * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
+     * @param string $organization_id The ID of the organization.
+     *               Prefix with name= to retrieve the organization by name instead. (required)
      * @param string $order_id The ID of the order. (required)
      * @return CreateAuthorizationCredentials200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createAuthorizationCredentials(string $organization_id, string $order_id): CreateAuthorizationCredentials200Response|Error
-    {
+    public function createAuthorizationCredentials(
+        string $organization_id,
+        string $order_id
+    ): CreateAuthorizationCredentials200Response|Error {
         $this->refreshToken();
         return $this->ordersApi->createAuthorizationCredentials($organization_id, $order_id);
     }
@@ -686,7 +880,8 @@ class OrganizationTask extends TaskBase
      *
      * Get order
      *
-     * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
+     * @param string $organization_id The ID of the organization.
+     *        Prefix with name= to retrieve the organization by name instead. (required)
      * @param string $order_id The ID of the order. (required)
      * @param string|null $mode The output mode. (optional)
      * @return Order|Error
@@ -703,7 +898,8 @@ class OrganizationTask extends TaskBase
      *
      * List orders
      *
-     * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
+     * @param string $organization_id The ID of the organization.
+     *        Prefix with name= to retrieve the organization by name instead. (required)
      * @param string|null $filter_status The status of the order. (optional)
      * @param int|null $filter_total The total of the order. (optional)
      * @param int|null $page Page to be displayed. Defaults to 1. (optional)
@@ -711,8 +907,13 @@ class OrganizationTask extends TaskBase
      * @return ListOrgOrders200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listOrders(string $organization_id, string $filter_status = null, int $filter_total = null, int $page = null, string $mode = null): ListOrgOrders200Response|Error
-    {
+    public function listOrders(
+        string $organization_id,
+        string $filter_status = null,
+        int $filter_total = null,
+        int $page = null,
+        string $mode = null
+    ): ListOrgOrders200Response|Error {
         $this->refreshToken();
         return $this->ordersApi->listOrgOrders($organization_id, $filter_status, $filter_total, $page, $mode);
     }
@@ -726,7 +927,8 @@ class OrganizationTask extends TaskBase
      *
      * Get address
      *
-     * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
+     * @param string $organization_id The ID of the organization.
+     *         to retrieve the organization by name instead. (required)
      * @return Address|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
@@ -741,7 +943,8 @@ class OrganizationTask extends TaskBase
      *
      * Get profile
      *
-     * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
+     * @param string $organization_id The ID of the organization.
+     *         to retrieve the organization by name instead. (required)
      * @return Profile|Error|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
@@ -793,22 +996,50 @@ class OrganizationTask extends TaskBase
      *
      * List plan records
      *
-     * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
+     * @param string $organization_id The ID of the organization.
+     *         to retrieve the organization by name instead. (required)
      * @param string|null $filter_subscription_id The ID of the subscription (optional)
      * @param string|null $filter_plan The plan type of the subscription. (optional)
      * @param DateTime|null $filter_status The status of the plan record. (optional)
-     * @param DateTime|null $filter_start The start of the observation period for the record. E.g. filter[start]&#x3D;2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01 (optional)
-     * @param DateTime|null $filter_end The end of the observation period for the record. E.g. filter[end]&#x3D;2018-01-01 will display all records that were active on (i.e. they started before) 2018-01-01 (optional)
-     * @param DateTime|null $filter_started_at The record&#39;s start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]&#x3D;2020-01-01&amp;filter[started_at][operator]&#x3D;&gt; (optional)
-     * @param DateTime|null $filter_ended_at The record&#39;s end timestamp. You can use this filter to list records ended after, or before a certain time. E.g. filter[ended_at][value]&#x3D;2020-01-01&amp;filter[ended_at][operator]&#x3D;&gt; (optional)
+     * @param DateTime|null $filter_start The start of the observation period for the record.
+     *        E.g. filter[start]=2018-01-01 will display all records that were active (i.e. did not end)
+     *        on 2018-01-01 (optional)
+     * @param DateTime|null $filter_end The end of the observation period for the record.
+     *        E.g. filter[end]=2018-01-01 will display all records that were active on (i.e. they started before)
+     *        2018-01-01 (optional)
+     * @param DateTime|null $filter_started_at The record's start timestamp.
+     *        You can use this filter to list records started after, or before a certain time.
+     *        E.g. filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional)
+     * @param DateTime|null $filter_ended_at The record's end timestamp.
+     *        You can use this filter to list records ended after, or before a certain time.
+     *        E.g. filter[ended_at][value]=2020-01-01&filter[ended_at][operator]=> (optional)
      * @param int|null $page Page to be displayed. Defaults to 1. (optional)
-     * @return ListOrgPlanRecords200Response|Error|Error
+     * @return ListOrgPlanRecords200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listRecords(string $organization_id, string $filter_subscription_id = null, string $filter_plan = null, DateTime $filter_status = null, DateTime $filter_start = null, DateTime $filter_end = null, DateTime $filter_started_at = null, DateTime $filter_ended_at = null, int $page = null): Error|ListOrgPlanRecords200Response
-    {
+    public function listRecords(
+        string $organization_id,
+        string $filter_subscription_id = null,
+        string $filter_plan = null,
+        DateTime $filter_status = null,
+        DateTime $filter_start = null,
+        DateTime $filter_end = null,
+        DateTime $filter_started_at = null,
+        DateTime $filter_ended_at = null,
+        int $page = null
+    ): Error|ListOrgPlanRecords200Response {
         $this->refreshToken();
-        return $this->recordsApi->listOrgPlanRecords($organization_id, $filter_subscription_id, $filter_plan, $filter_status, $filter_start, $filter_end, $filter_started_at, $filter_ended_at, $page);
+        return $this->recordsApi->listOrgPlanRecords(
+            $organization_id,
+            $filter_subscription_id,
+            $filter_plan,
+            $filter_status,
+            $filter_start,
+            $filter_end,
+            $filter_started_at,
+            $filter_ended_at,
+            $page
+        );
     }
 
     /**
@@ -816,19 +1047,37 @@ class OrganizationTask extends TaskBase
      *
      * List usage records
      *
-     * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
+     * @param string $organization_id The ID of the organization.
+     *         to retrieve the organization by name instead. (required)
      * @param string|null $filter_subscription_id The ID of the subscription (optional)
      * @param string|null $filter_usage_group Filter records by the type of usage. (optional)
-     * @param DateTime|null $filter_start The start of the observation period for the record. E.g. filter[start]&#x3D;2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01 (optional)
-     * @param DateTime|null $filter_started_at The record&#39;s start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]&#x3D;2020-01-01&amp;filter[started_at][operator]&#x3D;&gt; (optional)
+     * @param DateTime|null $filter_start The start of the observation period for the record.
+     *        E.g. filter[start]=2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01
+     *        (optional)
+     * @param DateTime|null $filter_started_at The record's start timestamp.
+     *        You can use this filter to list records started after, or before a certain time.
+     *        E.g. filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional)
      * @param int|null $page Page to be displayed. Defaults to 1. (optional)
      * @return ListOrgUsageRecords200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listUsageRecords(string $organization_id, string $filter_subscription_id = null, string $filter_usage_group = null, DateTime $filter_start = null, DateTime $filter_started_at = null, int $page = null): Error|ListOrgUsageRecords200Response
-    {
+    public function listUsageRecords(
+        string $organization_id,
+        string $filter_subscription_id = null,
+        string $filter_usage_group = null,
+        DateTime $filter_start = null,
+        DateTime $filter_started_at = null,
+        int $page = null
+    ): Error|ListOrgUsageRecords200Response {
         $this->refreshToken();
-        return $this->recordsApi->listOrgUsageRecords($organization_id, $filter_subscription_id, $filter_usage_group, $filter_start, $filter_started_at, $page);
+        return $this->recordsApi->listOrgUsageRecords(
+            $organization_id,
+            $filter_subscription_id,
+            $filter_usage_group,
+            $filter_start,
+            $filter_started_at,
+            $page
+        );
     }
 
     /************** *******************************/
@@ -857,7 +1106,8 @@ class OrganizationTask extends TaskBase
      *
      * List vouchers
      *
-     * @param string $organization_id The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. (required)
+     * @param string $organization_id The ID of the organization.
+     *         to retrieve the organization by name instead. (required)
      * @return Vouchers|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
@@ -866,7 +1116,7 @@ class OrganizationTask extends TaskBase
         $this->refreshToken();
         return $this->vouchersApi->listOrgVouchers($organization_id);
     }
-    
+
     /************** *********************/
     /********* Override ****************/
     /************** *********************/
@@ -874,7 +1124,8 @@ class OrganizationTask extends TaskBase
     /**
      * Activate addons userManagement on organization $organizationId
      *
-     * Equivalent to `upsun api:curl -X PATCH --json '{"user_management":"standard"}' 'api/organizations/ORGANIZATION_ID/addons' | jq`
+     * Equivalent to
+     * `upsun api:curl -X PATCH --json '{"user_management":"standard"}' 'api/organizations/ORGANIZATION_ID/addons' | jq`
      * Missing from the openapi config
      * @param string $organization_id
      * @return mixed
@@ -903,7 +1154,9 @@ class OrganizationTask extends TaskBase
         if ($this->client->apiConfig->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->client->apiConfig->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new RuntimeException('Failed to open the debug file: ' . $this->client->apiConfig->getDebugFile());
+                throw new RuntimeException(
+                    'Failed to open the debug file: ' . $this->client->apiConfig->getDebugFile()
+                );
             }
         }
 
@@ -920,11 +1173,10 @@ class OrganizationTask extends TaskBase
      * @throws ApiException
      */
     private function handleResponseWithDataType(
-        string            $dataType,
-        RequestInterface  $request,
+        string $dataType,
+        RequestInterface $request,
         ResponseInterface $response
-    ): array
-    {
+    ): array {
         if ($dataType === '\SplFileObject') {
             $content = $response->getBody(); //stream goes to serializer
         } else {
@@ -962,14 +1214,20 @@ class OrganizationTask extends TaskBase
      *
      * @param string $organization_id The ID of the organization. (required)
      * @param array $update_org_request (optional)
-     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['updateOrg'] to see the possible values for this operation
+     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['updateOrg']
+     *        to see the possible values for this operation
      *
-     * @return array of \OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\Organization|\OpenAPI\Client\Model\Error
+     *         |\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error,
+     *         HTTP status code, HTTP response headers (array of strings)
      * @throws InvalidArgumentException
      * @throws ApiException|GuzzleException on non-2xx response or if the response body is not in the expected format
      */
-    private function updateOrgAddonsWithHttpInfo($organization_id, $update_org_request = [], string $contentType = OrganizationsApi::contentTypes['updateOrg'][0]): array
-    {
+    private function updateOrgAddonsWithHttpInfo(
+        $organization_id,
+        $update_org_request = [],
+        string $contentType = OrganizationsApi::contentTypes['updateOrg'][0]
+    ): array {
         $request = $this->updateOrgAddonsRequest($organization_id, $update_org_request, $contentType);
         try {
             $options = $this->createHttpClientOption();
@@ -1075,13 +1333,17 @@ class OrganizationTask extends TaskBase
      *
      * @param string $organization_id The ID of the organization. (required)
      * @param array $update_org_request (optional)
-     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['updateOrg'] to see the possible values for this operation
+     * @param string $contentType The value for the Content-Type header.
+     *        Check self::contentTypes['updateOrg'] to see the possible values for this operation
      *
      * @return Request
      * @throws InvalidArgumentException
      */
-    public function updateOrgAddonsRequest($organization_id, array $update_org_request = [], string $contentType = OrganizationsApi::contentTypes['updateOrg'][0]): Request
-    {
+    public function updateOrgAddonsRequest(
+        $organization_id,
+        array $update_org_request = [],
+        string $contentType = OrganizationsApi::contentTypes['updateOrg'][0]
+    ): Request {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new InvalidArgumentException(
@@ -1117,7 +1379,9 @@ class OrganizationTask extends TaskBase
         if (isset($update_org_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($update_org_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(
+                    ObjectSerializer::sanitizeForSerialization($update_org_request)
+                );
             } else {
                 $httpBody = $update_org_request;
             }
@@ -1135,7 +1399,6 @@ class OrganizationTask extends TaskBase
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);

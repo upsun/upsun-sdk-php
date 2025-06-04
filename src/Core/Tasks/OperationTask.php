@@ -11,11 +11,10 @@ use Upsun\UpsunClient;
 class OperationTask extends TaskBase
 {
     public readonly RuntimeOperationsApi $api;
-    
+
     public function __construct(
         public readonly UpsunClient $client,
-    )
-    {
+    ) {
         $this->api = new RuntimeOperationsApi($this->client->apiClient, $this->client->apiConfig);
     }
 
@@ -35,8 +34,12 @@ class OperationTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function run(string $project_id, string $environment_id, string $deployment_id, array $environment_operation_input): AcceptedResponse
-    {
+    public function run(
+        string $project_id,
+        string $environment_id,
+        string $deployment_id,
+        array $environment_operation_input
+    ): AcceptedResponse {
         $this->refreshToken();
         $environment_operation_input = new EnvironmentOperationInput($environment_operation_input);
         return $this->api->runOperation($project_id, $environment_id, $deployment_id, $environment_operation_input);

@@ -25,8 +25,7 @@ class TeamTask extends TaskBase
 
     public function __construct(
         public readonly UpsunClient $client,
-    )
-    {
+    ) {
         $this->api = new TeamsApi($this->client->apiClient, $this->client->apiConfig);
         $this->accessApi = new TeamAccessApi($this->client->apiClient, $this->client->apiConfig);
     }
@@ -136,14 +135,20 @@ class TeamTask extends TaskBase
      * List team members
      *
      * @param string $team_id The ID of the team. (required)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending. (optional)
+     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $sort Allows sorting by a single field. Use a dash (`-`) to sort descending. (optional)
      * @return ListTeamMembers200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listMembers(string $team_id, string $page_before = null, string $page_after = null, string $sort = null): Error|ListTeamMembers200Response
-    {
+    public function listMembers(
+        string $team_id,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): Error|ListTeamMembers200Response {
         $this->refreshToken();
         return $this->api->listTeamMembers($team_id, $page_before, $page_after, $sort);
     }
@@ -153,20 +158,38 @@ class TeamTask extends TaskBase
      *
      * List teams
      *
-     * @param array|null $filter_organization_id Allows filtering by &#x60;organization_id&#x60; using one or more operators. (optional)
-     * @param array|null $filter_id Allows filtering by &#x60;id&#x60; using one or more operators. (optional)
-     * @param array|null $filter_updated_at Allows filtering by &#x60;updated_at&#x60; using one or more operators. (optional)
+     * @param array|null $filter_organization_id Allows filtering by `organization_id` using one or more operators.
+     *        (optional)
+     * @param array|null $filter_id Allows filtering by `id` using one or more operators. (optional)
+     * @param array|null $filter_updated_at Allows filtering by `updated_at` using one or more operators. (optional)
      * @param int|null $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending. (optional)
+     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided
+     *        in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $sort Allows sorting by a single field. Use a dash (`-`) to sort descending. (optional)
      * @return ListTeams200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function list(array $filter_organization_id = null, array $filter_id = null, array $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|ListTeams200Response
-    {
+    public function list(
+        array $filter_organization_id = null,
+        array $filter_id = null,
+        array $filter_updated_at = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): Error|ListTeams200Response {
         $this->refreshToken();
-        return $this->api->listTeams($filter_organization_id, $filter_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+        return $this->api->listTeams(
+            $filter_organization_id,
+            $filter_id,
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
     }
 
     /**
@@ -175,19 +198,39 @@ class TeamTask extends TaskBase
      * User teams
      *
      * @param string $user_id The ID of the user. (required)
-     * @param array|null $filter_organization_id Allows filtering by &#x60;organization_id&#x60; using one or more operators. (optional)
-     * @param array|null $filter_updated_at Allows filtering by &#x60;updated_at&#x60; using one or more operators. (optional)
+     * @param array|null $filter_organization_id Allows filtering by `organization_id`
+     *        using one or more operators. (optional)
+     * @param array|null $filter_updated_at Allows filtering by `updated_at`
+     *        using one or more operators. (optional)
      * @param int|null $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending. (optional)
+     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $sort Allows sorting by a single field.
+     *        Use a dash (`-`) to sort descending. (optional)
      * @return ListTeams200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listUserTeams(string $user_id, array $filter_organization_id = null, array $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|ListTeams200Response
-    {
+    public function listUserTeams(
+        string $user_id,
+        array $filter_organization_id = null,
+        array $filter_updated_at = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): Error|ListTeams200Response {
         $this->refreshToken();
-        return $this->api->listUserTeams($user_id, $filter_organization_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+        return $this->api->listUserTeams(
+            $user_id,
+            $filter_organization_id,
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
     }
 
     /**
@@ -249,7 +292,8 @@ class TeamTask extends TaskBase
      * Grant team access to a project
      *
      * @param string $project_id The ID of the project. (required)
-     * @param GrantProjectTeamAccessRequestInner[] $grant_project_team_access_request_inner grant_project_team_access_request_inner (required)
+     * @param GrantProjectTeamAccessRequestInner[] $grant_project_team_access_request_inner
+     *        grant_project_team_access_request_inner (required)
      * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
@@ -265,7 +309,8 @@ class TeamTask extends TaskBase
      * Grant project access to a team
      *
      * @param string $team_id The ID of the team. (required)
-     * @param GrantTeamProjectAccessRequestInner[] $grant_team_project_access_request_inner grant_team_project_access_request_inner (required)
+     * @param GrantTeamProjectAccessRequestInner[] $grant_team_project_access_request_inner
+     *        grant_team_project_access_request_inner (required)
      * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
@@ -282,14 +327,22 @@ class TeamTask extends TaskBase
      *
      * @param string $project_id The ID of the project. (required)
      * @param int|null $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. (optional)
+     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $sort Allows sorting by a single field. Use a dash (`-`) to sort descending.
+     *        Supported fields: `granted_at`, `updated_at`. (optional)
      * @return ListTeamProjectAccess200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectTeamAccess(string $project_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|ListTeamProjectAccess200Response
-    {
+    public function listProjectTeamAccess(
+        string $project_id,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): Error|ListTeamProjectAccess200Response {
         $this->refreshToken();
         return $this->accessApi->listProjectTeamAccess($project_id, $page_size, $page_before, $page_after, $sort);
     }
@@ -301,14 +354,22 @@ class TeamTask extends TaskBase
      *
      * @param string $team_id The ID of the team. (required)
      * @param int|null $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;project_title&#x60;, &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. (optional)
+     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary
+     *          and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $sort Allows sorting by a single field. Use a dash (`-`) to sort descending.
+     *        Supported fields: `project_title`, `granted_at`, `updated_at`. (optional)
      * @return ListTeamProjectAccess200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listTeamProjectAccess(string $team_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|ListTeamProjectAccess200Response
-    {
+    public function listTeamProjectAccess(
+        string $team_id,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): Error|ListTeamProjectAccess200Response {
         $this->refreshToken();
         return $this->accessApi->listTeamProjectAccess($team_id, $page_size, $page_before, $page_after, $sort);
     }
@@ -344,9 +405,8 @@ class TeamTask extends TaskBase
         $this->refreshToken();
         $this->accessApi->removeTeamProjectAccess($team_id, $project_id);
     }
-    
+
     /************** ****************************/
     /********* Custom Functions ****************/
     /************** ****************************/
-
 }

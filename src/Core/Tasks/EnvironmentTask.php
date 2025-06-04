@@ -36,8 +36,7 @@ class EnvironmentTask extends TaskBase
 
     public function __construct(
         public readonly UpsunClient $client
-    )
-    {
+    ) {
         $this->api = new EnvironmentApi($this->client->apiClient, $this->client->apiConfig);
         $this->typeApi = new EnvironmentTypeApi($this->client->apiClient, $this->client->apiConfig);
         $this->deploymentApi = new DeploymentApi($this->client->apiClient, $this->client->apiConfig);
@@ -58,8 +57,11 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function activate(string $project_id, string $environment_id, array $environment_activate_input): AcceptedResponse
-    {
+    public function activate(
+        string $project_id,
+        string $environment_id,
+        array $environment_activate_input
+    ): AcceptedResponse {
         $this->refreshToken();
         $environment_activate_input = new EnvironmentActivateInput($environment_activate_input);
         return $this->api->activateEnvironment($project_id, $environment_id, $environment_activate_input);
@@ -77,8 +79,11 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function branch(string $project_id, string $environment_id, array $environment_branch_input): AcceptedResponse
-    {
+    public function branch(
+        string $project_id,
+        string $environment_id,
+        array $environment_branch_input
+    ): AcceptedResponse {
         $this->refreshToken();
         $environment_branch_input = new EnvironmentBranchInput($environment_branch_input);
         return $this->api->branchEnvironment($project_id, $environment_id, $environment_branch_input);
@@ -96,8 +101,11 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createVersions(string $project_id, string $environment_id, array $version_create_input): AcceptedResponse
-    {
+    public function createVersions(
+        string $project_id,
+        string $environment_id,
+        array $version_create_input
+    ): AcceptedResponse {
         $this->refreshToken();
         $version_create_input = new VersionCreateInput($version_create_input);
         return $this->api->createProjectsEnvironmentsVersions($project_id, $environment_id, $version_create_input);
@@ -198,8 +206,11 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function initialize(string $project_id, string $environment_id, array $environment_initialize_input): AcceptedResponse
-    {
+    public function initialize(
+        string $project_id,
+        string $environment_id,
+        array $environment_initialize_input
+    ): AcceptedResponse {
         $this->refreshToken();
         $environment_initialize_input = new EnvironmentInitializeInput($environment_initialize_input);
         return $this->api->initializeEnvironment($project_id, $environment_id, $environment_initialize_input);
@@ -315,8 +326,11 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function synchronize(string $project_id, string $environment_id, array $environment_synchronize_input): AcceptedResponse
-    {
+    public function synchronize(
+        string $project_id,
+        string $environment_id,
+        array $environment_synchronize_input
+    ): AcceptedResponse {
         $this->refreshToken();
         $environment_synchronize_input = new EnvironmentSynchronizeInput($environment_synchronize_input);
         return $this->api->synchronizeEnvironment($project_id, $environment_id, $environment_synchronize_input);
@@ -354,11 +368,20 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateVersions(string $project_id, string $environment_id, string $version_id, array $version_patch): AcceptedResponse
-    {
+    public function updateVersions(
+        string $project_id,
+        string $environment_id,
+        string $version_id,
+        array $version_patch
+    ): AcceptedResponse {
         $this->refreshToken();
         $version_patch = new VersionPatch($version_patch);
-        return $this->api->updateProjectsEnvironmentsVersions($project_id, $environment_id, $version_id, $version_patch);
+        return $this->api->updateProjectsEnvironmentsVersions(
+            $project_id,
+            $environment_id,
+            $version_id,
+            $version_patch
+        );
     }
 
     /************** **********************************/
@@ -430,8 +453,11 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function backup(string $project_id, string $environment_id, array $environment_backup_input): AcceptedResponse
-    {
+    public function backup(
+        string $project_id,
+        string $environment_id,
+        array $environment_backup_input
+    ): AcceptedResponse {
         return $this->client->backup->backup($project_id, $environment_id, $environment_backup_input);
     }
 
@@ -454,7 +480,7 @@ class EnvironmentTask extends TaskBase
     /**
      * Operation getBackup
      *
-     * Get an environment snapshot&#39;s info
+     * Get an environment snapshot's info
      *
      * @param string $project_id project_id (required)
      * @param string $environment_id environment_id (required)
@@ -470,7 +496,7 @@ class EnvironmentTask extends TaskBase
     /**
      * Operation listBackups
      *
-     * Get an environment&#39;s snapshot list
+     * Get an environment's snapshot list
      *
      * @param string $project_id project_id (required)
      * @param string $environment_id environment_id (required)
@@ -494,8 +520,12 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function restoreBackup(string $project_id, string $environment_id, string $backup_id, array $environment_restore_input): AcceptedResponse
-    {
+    public function restoreBackup(
+        string $project_id,
+        string $environment_id,
+        string $backup_id,
+        array $environment_restore_input
+    ): AcceptedResponse {
         return $this->client->backup->restore($project_id, $environment_id, $backup_id, $environment_restore_input);
     }
 
@@ -549,9 +579,16 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createVariable(string $project_id, string $environment_id, array $environment_variable_create_input): AcceptedResponse
-    {
-        return $this->client->variables->createEnvironmentVariable($project_id, $environment_id, $environment_variable_create_input);
+    public function createVariable(
+        string $project_id,
+        string $environment_id,
+        array $environment_variable_create_input
+    ): AcceptedResponse {
+        return $this->client->variables->createEnvironmentVariable(
+            $project_id,
+            $environment_id,
+            $environment_variable_create_input
+        );
     }
 
     /**
@@ -613,9 +650,18 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateVariable(string $project_id, string $environment_id, string $variable_id, array $environment_variable_patch): AcceptedResponse
-    {
-        return $this->client->variables->updateEnvironmentVariable($project_id, $environment_id, $variable_id, $environment_variable_patch);
+    public function updateVariable(
+        string $project_id,
+        string $environment_id,
+        string $variable_id,
+        array $environment_variable_patch
+    ): AcceptedResponse {
+        return $this->client->variables->updateEnvironmentVariable(
+            $project_id,
+            $environment_id,
+            $variable_id,
+            $environment_variable_patch
+        );
     }
 
     /************** ********************************/
@@ -657,7 +703,7 @@ class EnvironmentTask extends TaskBase
     /**
      * Operation getRoute
      *
-     * Get a route&#39;s info
+     * Get a route's info
      *
      * @param string $project_id project_id (required)
      * @param string $environment_id environment_id (required)
@@ -697,8 +743,12 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateRoute(string $project_id, string $environment_id, string $route_id, array $route_patch): AcceptedResponse
-    {
+    public function updateRoute(
+        string $project_id,
+        string $environment_id,
+        string $route_id,
+        array $route_patch
+    ): AcceptedResponse {
         return $this->client->route->update($project_id, $environment_id, $route_id, $route_patch);
     }
 
@@ -717,9 +767,12 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createDomain(string $project_id, string $environment_id, array $domain_create_input): AcceptedResponse
-    {
-        return $this->client->domain->createEnvironmentsDomains($project_id, $environment_id, $domain_create_input);
+    public function createDomain(
+        string $project_id,
+        string $environment_id,
+        array $domain_create_input
+    ): AcceptedResponse {
+        return $this->client->domain->createEnvironmentDomain($project_id, $environment_id, $domain_create_input);
     }
 
     /**
@@ -735,7 +788,7 @@ class EnvironmentTask extends TaskBase
      */
     public function deleteDomain(string $project_id, string $environment_id, string $domain_id): AcceptedResponse
     {
-        return $this->client->domain->deleteEnvironmentsDomains($project_id, $environment_id, $domain_id);
+        return $this->client->domain->deleteEnvironmentDomain($project_id, $environment_id, $domain_id);
     }
 
     /**
@@ -781,8 +834,12 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateDomain(string $project_id, string $environment_id, string $domain_id, array $domain_patch): AcceptedResponse
-    {
+    public function updateDomain(
+        string $project_id,
+        string $environment_id,
+        string $domain_id,
+        array $domain_patch
+    ): AcceptedResponse {
         return $this->client->domain->updateEnvironmentDomain($project_id, $environment_id, $domain_id, $domain_patch);
     }
 
@@ -810,7 +867,7 @@ class EnvironmentTask extends TaskBase
     /**
      * Operation listDeployments
      *
-     * Get an environment&#39;s deployment information
+     * Get an environment's deployment information
      *
      * @param string $project_id project_id (required)
      * @param string $environment_id environment_id (required)
@@ -853,14 +910,15 @@ class EnvironmentTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function runSourceOperation(string $project_id, string $environment_id, array $environment_source_operation_input): AcceptedResponse
-    {
+    public function runSourceOperation(
+        string $project_id,
+        string $environment_id,
+        array $environment_source_operation_input
+    ): AcceptedResponse {
         return $this->client->sourceOperation->run($project_id, $environment_id, $environment_source_operation_input);
     }
-    
+
     /************** ****************************/
     /********* Custom function  ****************/
     /************** ****************************/
-
-
 }

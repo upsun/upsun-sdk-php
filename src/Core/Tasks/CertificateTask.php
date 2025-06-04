@@ -13,11 +13,10 @@ use Upsun\UpsunClient;
 class CertificateTask extends TaskBase
 {
     public readonly CertManagementApi $api;
-    
+
     public function __construct(
         public readonly UpsunClient $client,
-    )
-    {
+    ) {
         $this->api = new CertManagementApi($this->client->apiClient, $this->client->apiConfig);
     }
 

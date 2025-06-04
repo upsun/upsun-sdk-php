@@ -12,26 +12,25 @@ class ApplicationTask extends TaskBase
 
     public function __construct(
         public readonly UpsunClient $client,
-    )
-    {
+    ) {
         $this->api = new DeploymentApi($this->client->apiClient, $this->client->apiConfig);
     }
 
     /**
      * @param string $projectId
      * @param string $environmentId
-     * @return array|string
+     * @return array
      * @throws ApiException
      */
     public function listApplications(string $projectId, string $environmentId): array
     {
         $deployments = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);
-        
-        
-        
+
+
+
         dd($deployments, $deployments[0]->getWebapps());
-        
-        
+
+
         $defaultEnv = $this->getDefaultEnv($projectId);
 
         var_dump($projectId);

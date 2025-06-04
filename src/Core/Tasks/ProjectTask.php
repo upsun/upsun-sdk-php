@@ -59,15 +59,17 @@ class ProjectTask extends TaskBase
 
     public function __construct(
         public readonly UpsunClient $client,
-    )
-    {
+    ) {
         $this->headerSelector = new HeaderSelector();
         $this->api = new ProjectApi($this->client->apiClient, $this->client->apiConfig);
         $this->settingsApi = new ProjectSettingsApi($this->client->apiClient, $this->client->apiConfig);
         $this->deploymentTargetApi = new DeploymentTargetApi($this->client->apiClient, $this->client->apiConfig);
         $this->repositoryApi = new RepositoryApi($this->client->apiClient, $this->client->apiConfig);
         $this->systemInfoApi = new SystemInformationApi($this->client->apiClient, $this->client->apiConfig);
-        $this->thirdPartyIntegrationsApi = new ThirdPartyIntegrationsApi($this->client->apiClient, $this->client->apiConfig);
+        $this->thirdPartyIntegrationsApi = new ThirdPartyIntegrationsApi(
+            $this->client->apiClient,
+            $this->client->apiConfig
+        );
     }
 
     /************** **********************/
@@ -111,7 +113,7 @@ class ProjectTask extends TaskBase
     /**
      * Operation getProjectsCapabilities
      *
-     * Get a project&#39;s capabilities
+     * Get a project's capabilities
      *
      * @param string $project_id project_id (required)
      *
@@ -177,8 +179,10 @@ class ProjectTask extends TaskBase
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createInvite(string $project_id, CreateProjectInviteRequest $create_project_invite_request = null): ProjectInvitation|Error
-    {
+    public function createInvite(
+        string $project_id,
+        CreateProjectInviteRequest $create_project_invite_request = null
+    ): ProjectInvitation|Error {
         return $this->client->invitations->createProjectInvite($project_id, $create_project_invite_request);
     }
 
@@ -188,18 +192,34 @@ class ProjectTask extends TaskBase
      * List invitations to a project
      *
      * @param string $project_id The ID of the project. (required)
-     * @param array|null $filter_state Allows filtering by &#x60;state&#x60; of the invtations: \&quot;pending\&quot; (default), \&quot;error\&quot;. (optional)
+     * @param array|null $filter_state Allows filtering by `state` of the invitations:
+     *        'pending' (default), 'error'. (optional)
      * @param int|null $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending. (optional)
+     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $sort Allows sorting by a single field. Use a dash ('-') to sort descending. (optional)
      *
      * @return ProjectInvitation[]|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listInvites(string $project_id, array $filter_state = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|array
-    {
-        return $this->client->invitations->listProjectInvites($project_id, $filter_state, $page_size, $page_before, $page_after, $sort);
+    public function listInvites(
+        string $project_id,
+        array $filter_state = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): Error|array {
+        return $this->client->invitations->listProjectInvites(
+            $project_id,
+            $filter_state,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
     }
 
     /************** ******************************/
@@ -297,9 +317,16 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateVariable(string $project_id, string $project_variable_id, array $project_variable_patch): AcceptedResponse
-    {
-        return $this->client->variables->updateProjectVariable($project_id, $project_variable_id, $project_variable_patch);
+    public function updateVariable(
+        string $project_id,
+        string $project_variable_id,
+        array $project_variable_patch
+    ): AcceptedResponse {
+        return $this->client->variables->updateProjectVariable(
+            $project_id,
+            $project_variable_id,
+            $project_variable_patch
+        );
     }
 
     /************** **********************************/
@@ -429,11 +456,18 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateDeployment(string $project_id, string $deployment_target_configuration_id, array $deployment_target_patch): AcceptedResponse
-    {
+    public function updateDeployment(
+        string $project_id,
+        string $deployment_target_configuration_id,
+        array $deployment_target_patch
+    ): AcceptedResponse {
         $this->refreshToken();
         $deployment_target_patch = new DeploymentTargetPatch($deployment_target_patch);
-        return $this->deploymentTargetApi->updateProjectsDeployments($project_id, $deployment_target_configuration_id, $deployment_target_patch);
+        return $this->deploymentTargetApi->updateProjectsDeployments(
+            $project_id,
+            $deployment_target_configuration_id,
+            $deployment_target_patch
+        );
     }
 
     /************** **************************/
@@ -633,11 +667,18 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateIntegration(string $project_id, string $integration_id, array $integration_patch): AcceptedResponse
-    {
+    public function updateIntegration(
+        string $project_id,
+        string $integration_id,
+        array $integration_patch
+    ): AcceptedResponse {
         $this->refreshToken();
         $integration_patch = new IntegrationPatch($integration_patch);
-        return $this->thirdPartyIntegrationsApi->updateProjectsIntegrations($project_id, $integration_id, $integration_patch);
+        return $this->thirdPartyIntegrationsApi->updateProjectsIntegrations(
+            $project_id,
+            $integration_id,
+            $integration_patch
+        );
     }
 
     /************** ********************************/
@@ -795,8 +836,11 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateCertificate(string $project_id, string $certificate_id, array $certificate_patch): AcceptedResponse
-    {
+    public function updateCertificate(
+        string $project_id,
+        string $certificate_id,
+        array $certificate_patch
+    ): AcceptedResponse {
         return $this->client->certificate->update($project_id, $certificate_id, $certificate_patch);
     }
 
@@ -816,9 +860,18 @@ class ProjectTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function runOperation(string $project_id, string $environment_id, string $deployment_id, array $environment_operation_input): AcceptedResponse
-    {
-        return $this->client->operation->run($project_id, $environment_id, $deployment_id, $environment_operation_input);
+    public function runOperation(
+        string $project_id,
+        string $environment_id,
+        string $deployment_id,
+        array $environment_operation_input
+    ): AcceptedResponse {
+        return $this->client->operation->run(
+            $project_id,
+            $environment_id,
+            $deployment_id,
+            $environment_operation_input
+        );
     }
 
     /************** ******************************/
@@ -863,7 +916,8 @@ class ProjectTask extends TaskBase
      * Grant team access to a project
      *
      * @param string $project_id The ID of the project. (required)
-     * @param GrantProjectTeamAccessRequestInner[] $grant_project_team_access_request_inner grant_project_team_access_request_inner (required)
+     * @param GrantProjectTeamAccessRequestInner[] $grant_project_team_access_request_inner
+     *        grant_project_team_access_request_inner (required)
      * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
@@ -878,7 +932,8 @@ class ProjectTask extends TaskBase
      * Grant project access to a team
      *
      * @param string $team_id The ID of the team. (required)
-     * @param GrantTeamProjectAccessRequestInner[] $grant_team_project_access_request_inner grant_team_project_access_request_inner (required)
+     * @param GrantTeamProjectAccessRequestInner[] $grant_team_project_access_request_inner
+     *        grant_team_project_access_request_inner (required)
      * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
@@ -894,14 +949,22 @@ class ProjectTask extends TaskBase
      *
      * @param string $project_id The ID of the project. (required)
      * @param int|null $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. (optional)
+     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $sort Allows sorting by a single field. Use a dash ('-') to sort descending.
+     *        Supported fields: `granted_at`, `updated_at`. (optional)
      * @return ListTeamProjectAccess200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectTeamAccess(string $project_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|ListTeamProjectAccess200Response
-    {
+    public function listProjectTeamAccess(
+        string $project_id,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): Error|ListTeamProjectAccess200Response {
         return $this->client->team->listProjectTeamAccess($project_id, $page_size, $page_before, $page_after, $sort);
     }
 
@@ -912,14 +975,22 @@ class ProjectTask extends TaskBase
      *
      * @param string $team_id The ID of the team. (required)
      * @param int|null $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;project_title&#x60;, &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. (optional)
+     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $sort Allows sorting by a single field. Use a dash ('-') to sort descending.
+     *        Supported fields: `project_title`, `granted_at`, `updated_at`. (optional)
      * @return ListTeamProjectAccess200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listTeamProjectAccess(string $team_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Error|ListTeamProjectAccess200Response
-    {
+    public function listTeamProjectAccess(
+        string $team_id,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): Error|ListTeamProjectAccess200Response {
         return $this->client->team->listTeamProjectAccess($team_id, $page_size, $page_before, $page_after, $sort);
     }
 
@@ -978,7 +1049,8 @@ class ProjectTask extends TaskBase
      * Grant user access to a project
      *
      * @param string $project_id The ID of the project. (required)
-     * @param GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner grant_project_user_access_request_inner (required)
+     * @param GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner
+     *        grant_project_user_access_request_inner (required)
      * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
@@ -1013,8 +1085,11 @@ class ProjectTask extends TaskBase
      * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateProjectUserAccess(string $project_id, string $user_id, array $update_project_user_access_request = null): void
-    {
+    public function updateProjectUserAccess(
+        string $project_id,
+        string $user_id,
+        array $update_project_user_access_request = null
+    ): void {
         $this->client->user->updateProjectUserAccess($project_id, $user_id, $update_project_user_access_request);
     }
 
@@ -1025,14 +1100,22 @@ class ProjectTask extends TaskBase
      *
      * @param string $project_id The ID of the project. (required)
      * @param int|null $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. (optional)
+     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary
+     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param string|null $sort Allows sorting by a single field. Use a dash ('-') to sort descending.
+     *        Supported fields: `granted_at`, `updated_at`. (optional)
      * @return ListProjectUserAccess200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listProjectUserAccess(string $project_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): ListProjectUserAccess200Response|Error
-    {
+    public function listProjectUserAccess(
+        string $project_id,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): ListProjectUserAccess200Response|Error {
         return $this->client->user->listProjectUserAccess($project_id, $page_size, $page_before, $page_after, $sort);
     }
 
@@ -1071,6 +1154,4 @@ class ProjectTask extends TaskBase
         $this->refreshToken();
         return $this->client->environment->list($project_id);
     }
-
-
 }

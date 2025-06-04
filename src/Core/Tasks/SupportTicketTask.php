@@ -18,15 +18,14 @@ class SupportTicketTask extends TaskBase
 {
     public readonly DefaultApi $api;
     public readonly SupportApi $supportApi;
-    
+
     public function __construct(
         public readonly UpsunClient $client,
-    )
-    {
+    ) {
         $this->api = new DefaultApi($this->client->apiClient, $this->client->apiConfig);
         $this->supportApi = new SupportApi($this->client->apiClient, $this->client->apiConfig);
     }
-    
+
     /************** **********************/
     /********* DefaultApi ****************/
     /************** **********************/
@@ -37,8 +36,10 @@ class SupportTicketTask extends TaskBase
      * List support tickets
      *
      * @param int|null $filter_ticket_id The ID of the ticket. (optional)
-     * @param DateTime|null $filter_created ISO dateformat expected. The time when the support ticket was created. (optional)
-     * @param DateTime|null $filter_updated ISO dateformat expected. The time when the support ticket was updated. (optional)
+     * @param DateTime|null $filter_created ISO dateformat expected.
+     *        The time when the support ticket was created. (optional)
+     * @param DateTime|null $filter_updated ISO dateformat expected.
+     *        The time when the support ticket was updated. (optional)
      * @param string|null $filter_type The type of the support ticket. (optional)
      * @param string|null $filter_priority The priority of the support ticket. (optional)
      * @param string|null $filter_status The status of the support ticket. (optional)
@@ -52,12 +53,39 @@ class SupportTicketTask extends TaskBase
      * @return ListTickets200Response
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function list(int $filter_ticket_id = null, DateTime $filter_created = null, DateTime $filter_updated = null, string $filter_type = null, string $filter_priority = null, string $filter_status = null, string $filter_requester_id = null, string $filter_submitter_id = null, string $filter_assignee_id = null, bool $filter_has_incidents = null, DateTime $filter_due = null, string $search = null, int $page = null): ListTickets200Response
-    {
+    public function list(
+        int $filter_ticket_id = null,
+        DateTime $filter_created = null,
+        DateTime $filter_updated = null,
+        string $filter_type = null,
+        string $filter_priority = null,
+        string $filter_status = null,
+        string $filter_requester_id = null,
+        string $filter_submitter_id = null,
+        string $filter_assignee_id = null,
+        bool $filter_has_incidents = null,
+        DateTime $filter_due = null,
+        string $search = null,
+        int $page = null
+    ): ListTickets200Response {
         $this->refreshToken();
-        return $this->api->listTickets($filter_ticket_id, $filter_created, $filter_updated, $filter_type, $filter_priority, $filter_status, $filter_requester_id, $filter_submitter_id, $filter_assignee_id, $filter_has_incidents, $filter_due, $search, $page);
+        return $this->api->listTickets(
+            $filter_ticket_id,
+            $filter_created,
+            $filter_updated,
+            $filter_type,
+            $filter_priority,
+            $filter_status,
+            $filter_requester_id,
+            $filter_submitter_id,
+            $filter_assignee_id,
+            $filter_has_incidents,
+            $filter_due,
+            $search,
+            $page
+        );
     }
-    
+
     /************** **********************/
     /********* SupportApi ****************/
     /************** **********************/
