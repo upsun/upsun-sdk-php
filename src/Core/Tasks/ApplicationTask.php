@@ -51,8 +51,6 @@ class ApplicationTask extends TaskBase
         $deployment = reset($deployment);
 
         /** @var Deployment $deployment */
-        return ($deployment->getWebapps())[$app_id] ?? null;
+        return !empty($deployments) ? ($deployment->getWebapps())[$app_id] : null;
     }
-
-
 }
