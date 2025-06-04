@@ -49,7 +49,16 @@ class ApplicationTask extends TaskBase
     {
         $deployment = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);
         $deployment = reset($deployment);
+        /** @var Deployment $deployment */
         
-        return !(empty($deployment->getWebapps())) ? ($deployment->getWebapps())[$app_id] ?? null : null;
+        $environment = $this->client->environment->get($projectId, $environmentId);
+        
+        if ($environment->getDeploymentState()->getLastDeploymentSuccessful()) {
+            return !(empty($deployment->getWebapps())) ? ($deployment->getWebapps())[$app_id] ?? null : null;
+        } else {
+            var_dump('last deployment successful');
+            dd($environment->getDeploymentState());
+            return null;
+        }
     }
 }
