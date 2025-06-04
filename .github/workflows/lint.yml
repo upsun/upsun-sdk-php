@@ -1,0 +1,21 @@
+lint-php:
+    name: Lint PHP
+    runs-on: ubuntu-latest
+
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+          with:
+              ref: ${{ github.event.pull_request.head.sha }}
+
+        - name: Set up PHP
+          uses: shivammathur/setup-php@v2
+          with:
+              php-version: '8.2'
+              tools: composer
+
+        - name: Install Composer dependencies
+          run: composer install --prefer-dist --no-progress --no-suggest
+
+        - name: Run PHP lint (phpcs)
+          run: composer run lint
