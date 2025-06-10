@@ -2,12 +2,9 @@
 
 namespace Tests\Unit\Upsun\Core\Tasks;
 
-use GuzzleHttp\Client;
-use InvalidArgumentException;
 use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\OrganizationInvitationsApi;
 use OpenAPI\Client\apisgen\ProjectInvitationsApi;
-use OpenAPI\Client\Configuration;
 use OpenAPI\Client\Model\CreateOrgInviteRequest;
 use OpenAPI\Client\Model\CreateProjectInviteRequest;
 use OpenAPI\Client\Model\Error;
@@ -15,72 +12,29 @@ use OpenAPI\Client\Model\OrganizationInvitation;
 use OpenAPI\Client\Model\ProjectInvitation;
 use PHPUnit\Framework\TestCase;
 use Upsun\Core\Tasks\InvitationTask;
-use Upsun\UpsunClient;
-use GuzzleHttp\Client as GuzzleClient;
 
 class InvitationTaskTest extends TestCase
 {
-    private InvitationTask $invitationTask;
-    private UpsunClient $clientMock;
+    private readonly InvitationTask $invitationTask;
     private OrganizationInvitationsApi $organizationInvitationsApiMock;
     private ProjectInvitationsApi $projectInvitationsApiMock;
 
+
     protected function setUp(): void
     {
-        $this->clientMock = new class() extends UpsunClient {
-            public Client $apiClient;
-            public Configuration $apiConfig;
-            public function __construct() {}
-        };
-
-        $this->clientMock->apiClient = $this->createMock(Client::class);
-        $this->clientMock->apiConfig = $this->createMock(Configuration::class);
-
         $this->organizationInvitationsApiMock = $this->createMock(OrganizationInvitationsApi::class);
         $this->projectInvitationsApiMock = $this->createMock(ProjectInvitationsApi::class);
 
-        // BackupTask avec injection du mock
-        $this->invitationTask = new class($this->clientMock) extends InvitationTask {
-            private ?OrganizationInvitationsApi $mockOrgApi = null;
-            private ?ProjectInvitationsApi $mockPrjApi = null;
-
-            public function refreshToken(): void {}
-
-            public function setMockOrgApi(OrganizationInvitationsApi $mock): void
+        $this->invitationTask = new class(
+            $this->organizationInvitationsApiMock,
+            $this->projectInvitationsApiMock
+        ) extends InvitationTask {
+            public function refreshToken(): void
             {
-                $this->mockOrgApi = $mock;
-            }
-
-            public function setMockPrjApi(ProjectInvitationsApi $mock): void
-            {
-                $this->mockPrjApi = $mock;
-            }
-            public function getOrganizationInvitationsApi(): OrganizationInvitationsApi
-            {
-                return $this->mockOrgApi ?? parent::getOrganizationInvitationsApi();
-            }
-
-            public function getProjectInvitationsApi(): ProjectInvitationsApi
-            {
-                return $this->mockPrjApi ?? parent::getProjectInvitationsApi();
             }
         };
-
-        $this->invitationTask->setMockOrgApi($this->organizationInvitationsApiMock);
-        $this->invitationTask->setMockPrjApi($this->projectInvitationsApiMock);
     }
 
-    public function testGetOrganizationInvitationsApi(): void
-    {
-        $api = $this->invitationTask->getOrganizationInvitationsApi();
-        $this->assertInstanceOf(OrganizationInvitationsApi::class, $api);
-    }
-
-    public function testGetProjectInvitationsApi(): void
-    {
-        $api = $this->invitationTask->getProjectInvitationsApi();
-        $this->assertInstanceOf(ProjectInvitationsApi::class, $api);
-    }
 
     // Organization Invitation Tests
 

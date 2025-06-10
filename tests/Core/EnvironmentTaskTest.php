@@ -3,7 +3,6 @@
 namespace Tests\Unit\Upsun\Core\Tasks;
 
 use GuzzleHttp\Client;
-use InvalidArgumentException;
 use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\DeploymentApi;
 use OpenAPI\Client\apisgen\EnvironmentApi;
@@ -13,20 +12,15 @@ use OpenAPI\Client\Model\AcceptedResponse;
 use OpenAPI\Client\Model\Activity;
 use OpenAPI\Client\Model\Backup;
 use OpenAPI\Client\Model\Deployment;
-use OpenAPI\Client\Model\Domain;
 use OpenAPI\Client\Model\Environment;
 use OpenAPI\Client\Model\EnvironmentActivateInput;
 use OpenAPI\Client\Model\EnvironmentBranchInput;
-use OpenAPI\Client\Model\EnvironmentInitializeInput;
 use OpenAPI\Client\Model\EnvironmentMergeInput;
 use OpenAPI\Client\Model\EnvironmentPatch;
-use OpenAPI\Client\Model\EnvironmentSynchronizeInput;
 use OpenAPI\Client\Model\EnvironmentType;
 use OpenAPI\Client\Model\EnvironmentVariable;
-use OpenAPI\Client\Model\Route;
 use OpenAPI\Client\Model\Version;
 use OpenAPI\Client\Model\VersionCreateInput;
-use OpenAPI\Client\Model\VersionPatch;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Upsun\Core\Tasks\ActivityTask;
@@ -53,25 +47,28 @@ class EnvironmentTaskTest extends TestCase
     private MockObject|DomainTask $mockDomainTask;
     private MockObject|SourceOperationTask $mockSourceOperationTask;
 
+
     protected function setUp(): void
     {
-        parent::setUp();
+        $this->mockEnvironmentApi = $this->createMock(EnvironmentApi::class);
+        $this->mockEnvironmentTypeApi = $this->createMock(EnvironmentTypeApi::class);
+        $this->mockDeploymentApi = $this->createMock(DeploymentApi::class);
 
-        // Mock du client principal
         $this->clientMock = new class() extends UpsunClient {
             public Client $apiClient;
             public Configuration $apiConfig;
 
             public function __construct() {}
         };
-        
-        $this->clientMock->apiClient = $this->createMock(Client::class);
-        $this->clientMock->apiConfig = $this->createMock(Configuration::class);
 
-        // Mock des APIs
-        $this->mockEnvironmentApi = $this->createMock(EnvironmentApi::class);
-        $this->mockEnvironmentTypeApi = $this->createMock(EnvironmentTypeApi::class);
-        $this->mockDeploymentApi = $this->createMock(DeploymentApi::class);
+        $this->environmentTask = new class(
+            $this->clientMock, 
+            $this->mockEnvironmentApi, 
+            $this->mockEnvironmentTypeApi, 
+            $this->mockDeploymentApi
+        ) extends EnvironmentTask {
+            public function refreshToken(): void {}
+        };
 
         // Mock des tâches
         $this->mockActivityTask = $this->createMock(ActivityTask::class);
@@ -88,30 +85,8 @@ class EnvironmentTaskTest extends TestCase
         $this->clientMock->route = $this->mockRouteTask;
         $this->clientMock->domain = $this->mockDomainTask;
         $this->clientMock->sourceOperation = $this->mockSourceOperationTask;
-
-        // Création de l'instance à tester avec injection partielle des mocks
-        $this->environmentTask = new class($this->clientMock) extends EnvironmentTask {
-            public function setMockApis($envApi, $typeApi, $deployApi): void
-            {
-                $this->api = $envApi;
-                $this->typeApi = $typeApi;
-                $this->deploymentApi = $deployApi;
-            }
-
-            public function refreshToken(): void {}
-
-        };
-
-        $this->environmentTask->setMockApis(
-            $this->mockEnvironmentApi,
-            $this->mockEnvironmentTypeApi,
-            $this->mockDeploymentApi
-        );
     }
     
-    /**
-     * @test
-     */
     public function testActivate(): void
     {
         $projectId = 'project-123';
@@ -133,10 +108,7 @@ class EnvironmentTaskTest extends TestCase
 
         $this->assertSame($expectedResponse, $result);
     }
-
-    /**
-     * @test
-     */
+    
     public function testBranch(): void
     {
         $projectId = 'project-123';
@@ -158,10 +130,7 @@ class EnvironmentTaskTest extends TestCase
 
         $this->assertSame($expectedResponse, $result);
     }
-
-    /**
-     * @test
-     */
+    
     public function testGet(): void
     {
         $projectId = 'project-123';
@@ -178,10 +147,7 @@ class EnvironmentTaskTest extends TestCase
 
         $this->assertSame($expectedEnvironment, $result);
     }
-
-    /**
-     * @test
-     */
+    
     public function testList(): void
     {
         $projectId = 'project-123';
@@ -200,10 +166,7 @@ class EnvironmentTaskTest extends TestCase
 
         $this->assertSame($expectedEnvironments, $result);
     }
-
-    /**
-     * @test
-     */
+    
     public function testDelete(): void
     {
         $projectId = 'project-123';
@@ -220,10 +183,7 @@ class EnvironmentTaskTest extends TestCase
 
         $this->assertSame($expectedResponse, $result);
     }
-
-    /**
-     * @test
-     */
+    
     public function testUpdate(): void
     {
         $projectId = 'project-123';
@@ -246,9 +206,6 @@ class EnvironmentTaskTest extends TestCase
         $this->assertSame($expectedResponse, $result);
     }
 
-    /**
-     * @test
-     */
     public function testMerge(): void
     {
         $projectId = 'project-123';
@@ -271,9 +228,6 @@ class EnvironmentTaskTest extends TestCase
         $this->assertSame($expectedResponse, $result);
     }
 
-    /**
-     * @test
-     */
     public function testPause(): void
     {
         $projectId = 'project-123';
@@ -291,9 +245,6 @@ class EnvironmentTaskTest extends TestCase
         $this->assertSame($expectedResponse, $result);
     }
 
-    /**
-     * @test
-     */
     public function testResume(): void
     {
         $projectId = 'project-123';
@@ -311,11 +262,6 @@ class EnvironmentTaskTest extends TestCase
         $this->assertSame($expectedResponse, $result);
     }
 
-    // Tests pour les méthodes de version
-
-    /**
-     * @test
-     */
     public function testCreateVersions(): void
     {
         $projectId = 'project-123';
@@ -338,9 +284,6 @@ class EnvironmentTaskTest extends TestCase
         $this->assertSame($expectedResponse, $result);
     }
 
-    /**
-     * @test
-     */
     public function testGetVersions(): void
     {
         $projectId = 'project-123';
@@ -359,11 +302,6 @@ class EnvironmentTaskTest extends TestCase
         $this->assertSame($expectedVersion, $result);
     }
 
-    // Tests pour les raccourcis Activity
-
-    /**
-     * @test
-     */
     public function testListActivities(): void
     {
         $projectId = 'project-123';
@@ -384,9 +322,6 @@ class EnvironmentTaskTest extends TestCase
         $this->assertSame($expectedActivities, $result);
     }
 
-    /**
-     * @test
-     */
     public function testGetActivities(): void
     {
         $projectId = 'project-123';
@@ -405,11 +340,6 @@ class EnvironmentTaskTest extends TestCase
         $this->assertSame($expectedActivity, $result);
     }
 
-    // Tests pour les raccourcis Backup
-
-    /**
-     * @test
-     */
     public function testBackup(): void
     {
         $projectId = 'project-123';
@@ -428,9 +358,6 @@ class EnvironmentTaskTest extends TestCase
         $this->assertSame($expectedResponse, $result);
     }
 
-    /**
-     * @test
-     */
     public function testListBackups(): void
     {
         $projectId = 'project-123';
@@ -451,11 +378,6 @@ class EnvironmentTaskTest extends TestCase
         $this->assertSame($expectedBackups, $result);
     }
 
-    // Tests pour les variables d'environnement
-
-    /**
-     * @test
-     */
     public function testCreateVariable(): void
     {
         $projectId = 'project-123';
@@ -474,9 +396,6 @@ class EnvironmentTaskTest extends TestCase
         $this->assertSame($expectedResponse, $result);
     }
 
-    /**
-     * @test
-     */
     public function testListVariables(): void
     {
         $projectId = 'project-123';
@@ -497,11 +416,6 @@ class EnvironmentTaskTest extends TestCase
         $this->assertSame($expectedVariables, $result);
     }
 
-    // Tests pour les routes
-
-    /**
-     * @test
-     */
     public function testCreateRoute(): void
     {
         $projectId = 'project-123';
@@ -520,11 +434,6 @@ class EnvironmentTaskTest extends TestCase
         $this->assertSame($expectedResponse, $result);
     }
 
-    // Tests pour les domaines
-
-    /**
-     * @test
-     */
     public function testCreateDomain(): void
     {
         $projectId = 'project-123';
@@ -543,11 +452,6 @@ class EnvironmentTaskTest extends TestCase
         $this->assertSame($expectedResponse, $result);
     }
 
-    // Tests pour les types d'environnement
-
-    /**
-     * @test
-     */
     public function testGetType(): void
     {
         $projectId = 'project-123';
@@ -565,9 +469,6 @@ class EnvironmentTaskTest extends TestCase
         $this->assertSame($expectedType, $result);
     }
 
-    /**
-     * @test
-     */
     public function testListTypes(): void
     {
         $projectId = 'project-123';
@@ -587,11 +488,6 @@ class EnvironmentTaskTest extends TestCase
         $this->assertSame($expectedTypes, $result);
     }
 
-    // Tests pour les déploiements
-
-    /**
-     * @test
-     */
     public function testGetDeployment(): void
     {
         $projectId = 'project-123';
@@ -609,10 +505,7 @@ class EnvironmentTaskTest extends TestCase
 
         $this->assertSame($expectedDeployment, $result);
     }
-
-    /**
-     * @test
-     */
+    
     public function testListDeployments(): void
     {
         $projectId = 'project-123';
@@ -632,12 +525,7 @@ class EnvironmentTaskTest extends TestCase
 
         $this->assertSame($expectedDeployments, $result);
     }
-
-    // Tests pour les opérations source
-
-    /**
-     * @test
-     */
+    
     public function testRunSourceOperation(): void
     {
         $projectId = 'project-123';
@@ -656,11 +544,6 @@ class EnvironmentTaskTest extends TestCase
         $this->assertSame($expectedResponse, $result);
     }
 
-    // Tests d'exception
-
-    /**
-     * @test
-     */
     public function testActivateThrowsApiException(): void
     {
         $projectId = 'project-123';

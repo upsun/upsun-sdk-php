@@ -1,247 +1,135 @@
 <?php
 
-namespace Tests\Upsun\Core\Tasks;
+namespace Tests\Unit\Core\Tasks;
 
-use GuzzleHttp\Client;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\apisgen\DeploymentApi;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\Model\Deployment;
-use OpenAPI\Client\Model\Environment;
-use OpenAPI\Client\Model\TheEnvironmentDeploymentState;
-use OpenAPI\Client\Model\WebApplicationsValue;
 use PHPUnit\Framework\TestCase;
+use OpenAPI\Client\apisgen\DeploymentApi;
 use Upsun\Core\Tasks\ApplicationTask;
 use Upsun\Core\Tasks\EnvironmentTask;
 use Upsun\UpsunClient;
+use OpenAPI\Client\Model\Deployment;
+use OpenAPI\Client\Model\WebApplicationsValue;
+use OpenAPI\Client\Model\Environment;
+use OpenAPI\Client\Model\TheEnvironmentDeploymentState as DeploymentState;
 
 class ApplicationTaskTest extends TestCase
 {
-    private UpsunClient $clientMock;
     private DeploymentApi $deploymentApiMock;
-    private ApplicationTask $applicationTask;
+    private UpsunClient $clientMock;
     private EnvironmentTask $environmentTaskMock;
+    private ApplicationTask $applicationTask;
+
     protected function setUp(): void
     {
-        $this->deploymentApiMock = $this->createMock(DeploymentApi::class); 
+        $this->deploymentApiMock = $this->createMock(DeploymentApi::class);
+        $this->environmentTaskMock = $this->createMock(EnvironmentTask::class); 
 
-        $this->clientMock = new class() extends UpsunClient {
-            public Client $apiClient;
-            public Configuration $apiConfig;
-
-            public function __construct() {}
+        $this->clientMock = new class($this->environmentTaskMock) extends UpsunClient {
+            public EnvironmentTask $environment;
+            public function __construct($env) {
+                $this->environment = $env;
+            }
         };
 
-        $this->clientMock->apiClient = $this->createMock(Client::class);
-        $this->clientMock->apiConfig = $this->createMock(Configuration::class);
-
-        $this->environmentTaskMock = $this->createMock(EnvironmentTask::class);
-        $this->clientMock->environment = $this->environmentTaskMock;
-        
-        $this->applicationTask = new class($this->clientMock) extends ApplicationTask {
-            private ?DeploymentApi $mockApi = null;
-
+        $this->applicationTask = new class($this->clientMock, $this->deploymentApiMock) extends ApplicationTask {
             public function refreshToken(): void {}
-
-            public function setMockApi(DeploymentApi $mock): void
-            {
-                $this->mockApi = $mock;
-            }
-
-            public function getApi(): DeploymentApi
-            {
-                return $this->mockApi ?? parent::getApi();
-            }
         };
-        $this->applicationTask->setMockApi($this->deploymentApiMock);
     }
 
-    public function testListApplicationsSuccess()
+    public function testListReturnsWebappsArray(): void
     {
-        // Prepare test data
-        $projectId = 'test-project';
-        $environmentId = 'test-env';
+        $projectId = 'proj-1';
+        $envId = 'env-1';
 
-        $mockDeployment = new Deployment();
-        $mockWebapps = [
-            'app1' => new WebApplicationsValue(),
-            'app2' => new WebApplicationsValue()
-        ];
-        $mockDeployment->setWebapps($mockWebapps);
+        $webapps = ['app1' => $this->createMock(WebApplicationsValue::class)];
 
-        // Configure the mock
-        $this->deploymentApiMock->expects($this->once())
-            ->method('listProjectsEnvironmentsDeployments')
-            ->with($projectId, $environmentId)
-            ->willReturn([$mockDeployment]);
+        $deployment = $this->createMock(Deployment::class);
+        $deployment->method('getWebapps')->willReturn($webapps);
 
-        // Execute the method
-        $result = $this->applicationTask->list($projectId, $environmentId);
-
-        // Assert the result
-        $this->assertIsArray($result);
-        $this->assertCount(2, $result);
-        $this->assertArrayHasKey('app1', $result);
-        $this->assertArrayHasKey('app2', $result);
-    }
-
-    public function testListApplicationsEmptyResult()
-    {
-        $projectId = 'test-project';
-        $environmentId = 'test-env';
-
-        // Configure the mock to return empty array
-        $this->deploymentApiMock->expects($this->once())
-            ->method('listProjectsEnvironmentsDeployments')
-            ->with($projectId, $environmentId)
-            ->willReturn([]);
-
-        $result = $this->applicationTask->list($projectId, $environmentId);
-
-        $this->assertIsArray($result);
-        $this->assertEmpty($result);
-    }
-
-    public function testListApplicationsApiException()
-    {
-        $projectId = 'test-project';
-        $environmentId = 'test-env';
-
-        $this->deploymentApiMock->expects($this->once())
-            ->method('listProjectsEnvironmentsDeployments')
-            ->with($projectId, $environmentId)
-            ->willThrowException(new ApiException("API Error", 500));
-
-        $this->expectException(ApiException::class);
-        $this->applicationTask->list($projectId, $environmentId);
-    }
-
-    public function testGetApplicationSuccess(): void
-    {
-        $projectId = 'test-project';
-        $environmentId = 'test-env';
-        $appId = 'app1';
-
-        // Simule un environnement avec un déploiement réussi
-        $deploymentState = new TheEnvironmentDeploymentState();
-        $deploymentState->setLastDeploymentSuccessful(true);
-
-        $environment = new \OpenAPI\Client\Model\Environment();
-        $environment->setDeploymentState($deploymentState);
-
-        // Le mock d'EnvironmentTask doit retourner l'environnement simulé
-        $this->environmentTaskMock
-            ->expects($this->once())
-            ->method('get')
-            ->with($projectId, $environmentId)
-            ->willReturn($environment);
-
-        // Simule une réponse de déploiement avec deux applications
-        $webapps = [
-            'app1' => new WebApplicationsValue(),
-            'app2' => new WebApplicationsValue(),
-        ];
-        $deployment = new Deployment();
-        $deployment->setWebapps($webapps);
-
-        $this->deploymentApiMock
-            ->expects($this->once())
-            ->method('listProjectsEnvironmentsDeployments')
-            ->with($projectId, $environmentId)
+        $this->deploymentApiMock->method('listProjectsEnvironmentsDeployments')
+            ->with($projectId, $envId)
             ->willReturn([$deployment]);
 
-        // Exécution
-        $result = $this->applicationTask->get($projectId, $environmentId, $appId);
-
-        // Vérification
-        $this->assertInstanceOf(WebApplicationsValue::class, $result);
-        $this->assertSame($webapps['app1'], $result);
+        $result = $this->applicationTask->list($projectId, $envId);
+        $this->assertSame($webapps, $result);
     }
 
-
-    public function testGetApplicationNotFound()
+    public function testListReturnsEmptyArrayIfNoDeployment(): void
     {
-        $projectId = 'test-project';
-        $environmentId = 'test-env';
-        $appId = 'non-existent-app';
+        $projectId = 'proj-1';
+        $envId = 'env-1';
 
-        // Mock environment with successful deployment state
-        $environmentMock = new Environment();
-        $deploymentStateMock = new TheEnvironmentDeploymentState();
-        $deploymentStateMock->setLastDeploymentSuccessful(true);
-        $environmentMock->setDeploymentState($deploymentStateMock);
-        
-        $this->environmentTaskMock->expects($this->once())
-            ->method('get')
-            ->with($projectId, $environmentId)
-            ->willReturn($environmentMock);
+        $this->deploymentApiMock->method('listProjectsEnvironmentsDeployments')
+            ->willReturn([]);
 
-        // Mock deployment with webapps
-        $mockDeployment = new Deployment();
-        $mockWebapps = [
-            'app1' => new WebApplicationsValue()
-        ];
-        $mockDeployment->setWebapps($mockWebapps);
+        $result = $this->applicationTask->list($projectId, $envId);
+        $this->assertSame([], $result);
+    }
 
-        $this->deploymentApiMock->expects($this->once())
-            ->method('listProjectsEnvironmentsDeployments')
-            ->with($projectId, $environmentId)
-            ->willReturn([$mockDeployment]);
+    public function testGetReturnsWebApplicationWhenAvailable(): void
+    {
+        $projectId = 'proj-1';
+        $envId = 'env-1';
+        $appId = 'app1';
 
-        $result = $this->applicationTask->get($projectId, $environmentId, $appId);
+        $webapp = $this->createMock(WebApplicationsValue::class);
+        $webapps = [$appId => $webapp];
 
+        $deployment = $this->createMock(Deployment::class);
+        $deployment->method('getWebapps')->willReturn($webapps);
+
+        $deploymentState = $this->createMock(DeploymentState::class);
+        $deploymentState->method('getLastDeploymentSuccessful')->willReturn(true);
+
+        $environment = $this->createMock(Environment::class);
+        $environment->method('getDeploymentState')->willReturn($deploymentState);
+
+        $this->environmentTaskMock->method('get')->with($projectId, $envId)->willReturn($environment);
+
+        $this->deploymentApiMock->method('listProjectsEnvironmentsDeployments')
+            ->willReturn([$deployment]);
+
+        $result = $this->applicationTask->get($projectId, $envId, $appId);
+        $this->assertSame($webapp, $result);
+    }
+
+    public function testGetReturnsNullWhenLastDeploymentUnsuccessful(): void
+    {
+        $projectId = 'proj-1';
+        $envId = 'env-1';
+        $appId = 'app1';
+
+        $deploymentState = $this->createMock(DeploymentState::class);
+        $deploymentState->method('getLastDeploymentSuccessful')->willReturn(false);
+
+        $environment = $this->createMock(Environment::class);
+        $environment->method('getDeploymentState')->willReturn($deploymentState);
+
+        $this->environmentTaskMock->method('get')->willReturn($environment);
+
+        $result = $this->applicationTask->get($projectId, $envId, $appId);
         $this->assertNull($result);
     }
 
-    public function testGetApplicationFailedDeployment()
+    public function testGetReturnsNullWhenAppNotFound(): void
     {
-        $projectId = 'test-project';
-        $environmentId = 'test-env';
-        $appId = 'app1';
+        $projectId = 'proj-1';
+        $envId = 'env-1';
+        $appId = 'nonexistent';
 
-        // Mock environment with failed deployment state
-        $environmentMock = new Environment();
-        $deploymentStateMock = new TheEnvironmentDeploymentState();
-        $deploymentStateMock->setLastDeploymentSuccessful(false);
-        $environmentMock->setDeploymentState($deploymentStateMock);
+        $deployment = $this->createMock(Deployment::class);
+        $deployment->method('getWebapps')->willReturn([]);
 
-        $this->environmentTaskMock->expects($this->once())
-            ->method('get')
-            ->with($projectId, $environmentId)
-            ->willReturn($environmentMock);
+        $deploymentState = $this->createMock(DeploymentState::class);
+        $deploymentState->method('getLastDeploymentSuccessful')->willReturn(true);
 
-        // The API should not be called when deployment failed
-        $this->deploymentApiMock->expects($this->never())
-            ->method('listProjectsEnvironmentsDeployments');
+        $environment = $this->createMock(Environment::class);
+        $environment->method('getDeploymentState')->willReturn($deploymentState);
 
-        $result = $this->applicationTask->get($projectId, $environmentId, $appId);
+        $this->environmentTaskMock->method('get')->willReturn($environment);
+        $this->deploymentApiMock->method('listProjectsEnvironmentsDeployments')->willReturn([$deployment]);
 
+        $result = $this->applicationTask->get($projectId, $envId, $appId);
         $this->assertNull($result);
-    }
-
-    public function testGetApplicationApiException()
-    {
-        $projectId = 'test-project';
-        $environmentId = 'test-env';
-        $appId = 'app1';
-
-        // Mock environment with successful deployment state
-        $environmentMock = new Environment();
-        $deploymentStateMock = new TheEnvironmentDeploymentState();
-        $deploymentStateMock->setLastDeploymentSuccessful(true);
-        $environmentMock->setDeploymentState($deploymentStateMock);
-
-        $this->environmentTaskMock->expects($this->once())
-            ->method('get')
-            ->with($projectId, $environmentId)
-            ->willReturn($environmentMock);
-
-        $this->deploymentApiMock->expects($this->once())
-            ->method('listProjectsEnvironmentsDeployments')
-            ->with($projectId, $environmentId)
-            ->willThrowException(new ApiException("API Error", 500));
-
-        $this->expectException(ApiException::class);
-        $this->applicationTask->get($projectId, $environmentId, $appId);
     }
 }

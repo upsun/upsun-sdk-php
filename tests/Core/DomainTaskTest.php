@@ -2,52 +2,27 @@
 
 namespace Tests\Upsun\Core\Tasks;
 
-use GuzzleHttp\Client;
 use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\DomainManagementApi;
-use OpenAPI\Client\Configuration;
 use OpenAPI\Client\Model\AcceptedResponse;
 use OpenAPI\Client\Model\Domain;
 use OpenAPI\Client\Model\DomainCreateInput;
 use OpenAPI\Client\Model\DomainPatch;
 use PHPUnit\Framework\TestCase;
 use Upsun\Core\Tasks\DomainTask;
-use Upsun\UpsunClient;
 
 class DomainTaskTest extends TestCase
 {
-    private UpsunClient $clientMock;
     private DomainManagementApi $apiMock;
     private DomainTask $task;
 
     protected function setUp(): void
     {
-        $this->clientMock = new class() extends UpsunClient {
-            public Client $apiClient;
-            public Configuration $apiConfig;
-            public function __construct() {}
-        };
-
-        $this->clientMock->apiClient = $this->createMock(Client::class);
-        $this->clientMock->apiConfig = $this->createMock(Configuration::class);
-
         $this->apiMock = $this->createMock(DomainManagementApi::class);
 
-        $this->task = new class($this->clientMock) extends DomainTask {
-            private ?DomainManagementApi $mockApi = null;
-
+        $this->task = new class($this->apiMock) extends DomainTask {
             public function refreshToken(): void {}
-            public function setMockApi(DomainManagementApi $mock): void
-            {
-                $this->mockApi = $mock;
-            }
-            public function getApi(): DomainManagementApi
-            {
-                return $this->mockApi ?? parent::getApi();
-            }
         };
-
-        $this->task->setMockApi($this->apiMock);
     }
 
     public function testCreateWithoutEnvironment(): void

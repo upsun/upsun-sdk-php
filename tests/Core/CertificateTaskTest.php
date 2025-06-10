@@ -2,52 +2,27 @@
 
 namespace Tests\Upsun\Core\Tasks;
 
-use GuzzleHttp\Client;
 use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\CertManagementApi;
-use OpenAPI\Client\Configuration;
 use OpenAPI\Client\Model\AcceptedResponse;
 use OpenAPI\Client\Model\Certificate;
 use OpenAPI\Client\Model\CertificateCreateInput;
 use OpenAPI\Client\Model\CertificatePatch;
 use PHPUnit\Framework\TestCase;
 use Upsun\Core\Tasks\CertificateTask;
-use Upsun\UpsunClient;
 
 class CertificateTaskTest extends TestCase
 {
-    private $clientMock;
     private $apiMock;
     private $task;
 
     protected function setUp(): void
     {
-        $this->clientMock = new class() extends UpsunClient {
-            public Client $apiClient;
-            public Configuration $apiConfig;
-            public function __construct() {}
-        };
-
-        $this->clientMock->apiClient = $this->createMock(Client::class);
-        $this->clientMock->apiConfig = $this->createMock(Configuration::class);
-
         $this->apiMock = $this->createMock(CertManagementApi::class);
 
-        $this->task = new class($this->clientMock) extends CertificateTask {
-            private ?CertManagementApi $mockApi = null;
-
+        $this->task = new class($this->apiMock) extends CertificateTask {
             public function refreshToken(): void {}
-            public function setMockApi(CertManagementApi $mock): void
-            {
-                $this->mockApi = $mock;
-            }
-            public function getApi(): CertManagementApi
-            {
-                return $this->mockApi ?? parent::getApi();
-            }
         };
-
-        $this->task->setMockApi($this->apiMock);
     }
 
     public function testCreateCertificate(): void

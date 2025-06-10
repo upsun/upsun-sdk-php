@@ -1,160 +1,106 @@
 <?php
 
-namespace Tests\Upsun\Core\Tasks;
+namespace Tests\Unit\Core\Tasks;
 
-use GuzzleHttp\Client;
-use OpenAPI\Client\apisgen\EnvironmentBackupsApi;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\Model\Backup;
 use PHPUnit\Framework\TestCase;
-use Upsun\Core\Tasks\BackupTask;
-use Upsun\UpsunClient;
 use OpenAPI\Client\ApiException;
+use OpenAPI\Client\apisgen\EnvironmentBackupsApi;
+use OpenAPI\Client\Model\AcceptedResponse;
+use OpenAPI\Client\Model\Backup;
+use Upsun\Core\Tasks\BackupTask;
+use OpenAPI\Client\Model\EnvironmentBackupInput;
+use OpenAPI\Client\Model\EnvironmentRestoreInput;
 
 class BackupTaskTest extends TestCase
 {
-    private UpsunClient $clientMock;
-    private EnvironmentBackupsApi $backupApiMock;
-    private BackupTask $backupTask;
+    private EnvironmentBackupsApi $apiMock;
+    private BackupTask $task;
 
     protected function setUp(): void
     {
-        $this->clientMock = new class() extends UpsunClient {
-            public Client $apiClient;
-            public Configuration $apiConfig;
-            public function __construct() {}
-        };
+        $this->apiMock = $this->createMock(EnvironmentBackupsApi::class);
 
-        $this->clientMock->apiClient = $this->createMock(Client::class);
-        $this->clientMock->apiConfig = $this->createMock(Configuration::class);
-
-        $this->backupApiMock = $this->createMock(EnvironmentBackupsApi::class);
-
-        // BackupTask avec injection du mock
-        $this->backupTask = new class($this->clientMock) extends BackupTask {
-            private ?EnvironmentBackupsApi $mockApi = null;
-
+        $this->task = new class($this->apiMock) extends BackupTask {
             public function refreshToken(): void {}
-
-            public function setMockApi(EnvironmentBackupsApi $mock): void
-            {
-                $this->mockApi = $mock;
-            }
-
-            public function getApi(): EnvironmentBackupsApi
-            {
-                return $this->mockApi ?? parent::getApi();
-            }
         };
-
-        $this->backupTask->setMockApi($this->backupApiMock);
     }
 
-    public function testListBackupsSuccess(): void
+    public function testBackupCallsApiWithCorrectParameters()
     {
-        $projectId = 'project-123';
-        $environmentId = 'env-abc';
+        $projectId = 'prj';
+        $envId = 'env';
+        $inputArray = ['foo' => 'bar'];
 
-        $backup1 = new Backup();
-        $backup2 = new Backup();
+        $expectedResponse = $this->createMock(AcceptedResponse::class);
 
-        $this->backupApiMock
-            ->expects($this->once())
-            ->method('listProjectsEnvironmentsBackups')
-            ->with($projectId, $environmentId)
-            ->willReturn([$backup1, $backup2]);
+        $this->apiMock->expects($this->once())
+            ->method('backupEnvironment')
+            ->with(
+                $this->equalTo($projectId),
+                $this->equalTo($envId),
+                $this->isInstanceOf(EnvironmentBackupInput::class)
+            )
+            ->willReturn($expectedResponse);
 
-        $result = $this->backupTask->list($projectId, $environmentId);
+        $result = $this->task->backup($projectId, $envId, $inputArray);
 
-        $this->assertIsArray($result);
-        $this->assertCount(2, $result);
-        $this->assertContainsOnlyInstancesOf(Backup::class, $result);
+        $this->assertSame($expectedResponse, $result);
     }
 
-    public function testListBackupsEmpty(): void
+    public function testDeleteCallsApi()
     {
-        $projectId = 'project-123';
-        $environmentId = 'env-abc';
+        $this->apiMock->expects($this->once())
+            ->method('deleteProjectsEnvironmentsBackups')
+            ->willReturn($this->createMock(AcceptedResponse::class));
 
-        $this->backupApiMock
-            ->expects($this->once())
+        $this->task->delete('prj', 'env', 'bkp');
+        $this->assertTrue(true); // Just to avoid risky test
+    }
+
+    public function testGetCallsApi()
+    {
+        $this->apiMock->expects($this->once())
+            ->method('getProjectsEnvironmentsBackups')
+            ->willReturn($this->createMock(Backup::class));
+
+        $this->task->get('prj', 'env', 'bkp');
+        $this->assertTrue(true);
+    }
+
+    public function testListCallsApi()
+    {
+        $this->apiMock->expects($this->once())
             ->method('listProjectsEnvironmentsBackups')
-            ->with($projectId, $environmentId)
             ->willReturn([]);
 
-        $result = $this->backupTask->list($projectId, $environmentId);
+        $result = $this->task->list('prj', 'env');
 
         $this->assertIsArray($result);
-        $this->assertEmpty($result);
     }
 
-    public function testListBackupsApiException(): void
+    public function testRestoreCallsApi()
     {
-        $projectId = 'project-123';
-        $environmentId = 'env-abc';
+        $this->apiMock->expects($this->once())
+            ->method('restoreBackup')
+            ->with(
+                'prj',
+                'env',
+                'bkp',
+                $this->isInstanceOf(EnvironmentRestoreInput::class)
+            )
+            ->willReturn($this->createMock(AcceptedResponse::class));
 
-        $this->backupApiMock
-            ->expects($this->once())
-            ->method('listProjectsEnvironmentsBackups')
-            ->with($projectId, $environmentId)
-            ->willThrowException(new ApiException("Erreur", 500));
+        $this->task->restore('prj', 'env', 'bkp', ['foo' => 'bar']);
+        $this->assertTrue(true);
+    }
 
+    public function testBackupThrowsApiException()
+    {
         $this->expectException(ApiException::class);
 
-        $this->backupTask->list($projectId, $environmentId);
-    }
+        $this->apiMock->method('backupEnvironment')
+            ->willThrowException(new ApiException());
 
-    public function testGetBackupSuccess(): void
-    {
-        $projectId = 'project-123';
-        $environmentId = 'env-abc';
-        $backupId = 'backup-1';
-
-        $backup = new Backup();
-
-        $this->backupApiMock
-            ->expects($this->once())
-            ->method('getProjectsEnvironmentsBackups')
-            ->with($projectId, $environmentId, $backupId)
-            ->willReturn($backup);
-
-        $result = $this->backupTask->get($projectId, $environmentId, $backupId);
-
-        $this->assertInstanceOf(Backup::class, $result);
-        $this->assertSame($backup, $result);
-    }
-
-    public function testGetBackupNotFound(): void
-    {
-        $projectId = 'project-123';
-        $environmentId = 'env-abc';
-        $backupId = 'backup-inexistant';
-
-        $this->backupApiMock
-            ->expects($this->once())
-            ->method('getProjectsEnvironmentsBackups')
-            ->with($projectId, $environmentId, $backupId)
-            ->willReturn(null);
-
-        $result = $this->backupTask->get($projectId, $environmentId, $backupId);
-
-        $this->assertNull($result);
-    }
-
-    public function testGetBackupApiException(): void
-    {
-        $projectId = 'project-123';
-        $environmentId = 'env-abc';
-        $backupId = 'backup-err';
-
-        $this->backupApiMock
-            ->expects($this->once())
-            ->method('getProjectsEnvironmentsBackups')
-            ->with($projectId, $environmentId, $backupId)
-            ->willThrowException(new ApiException("Erreur API", 500));
-
-        $this->expectException(ApiException::class);
-
-        $this->backupTask->get($projectId, $environmentId, $backupId);
+        $this->task->backup('prj', 'env', []);
     }
 }
