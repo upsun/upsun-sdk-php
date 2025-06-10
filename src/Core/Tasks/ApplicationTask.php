@@ -10,12 +10,21 @@ use Upsun\UpsunClient;
 
 class ApplicationTask extends TaskBase
 {
-    public readonly DeploymentApi $api;
+    private readonly DeploymentApi $api;
 
     public function __construct(
         public readonly UpsunClient $client,
     ) {
         $this->api = new DeploymentApi($this->client->apiClient, $this->client->apiConfig);
+    }
+
+    /************** **************************/
+    /********* Getter ************************/
+    /************** **************************/
+
+    public function getApi(): DeploymentApi
+    {
+        return $this->api;
     }
 
     /**
@@ -28,7 +37,7 @@ class ApplicationTask extends TaskBase
      */
     public function list(string $projectId, string $environmentId): array
     {
-        $deployments = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);
+        $deployments = $this->getApi()->listProjectsEnvironmentsDeployments($projectId, $environmentId);
         $deployments = reset($deployments);
 
         return !empty($deployments) ? $deployments->getWebapps() : [];
@@ -47,7 +56,7 @@ class ApplicationTask extends TaskBase
     {
         $environment = $this->client->environment->get($projectId, $environmentId);
         if ($environment->getDeploymentState() && $environment->getDeploymentState()->getLastDeploymentSuccessful()) {
-            $deployment = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);
+            $deployment = $this->getApi()->listProjectsEnvironmentsDeployments($projectId, $environmentId);
             $deployment = reset($deployment);
             /** @var Deployment $deployment */
 

@@ -15,6 +15,7 @@ use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\InvoicesApi;
 use OpenAPI\Client\apisgen\MFAApi;
 use OpenAPI\Client\apisgen\OrdersApi;
+use OpenAPI\Client\apisgen\OrganizationInvitationsApi;
 use OpenAPI\Client\apisgen\OrganizationMembersApi;
 use OpenAPI\Client\apisgen\OrganizationProjectsApi;
 use OpenAPI\Client\apisgen\OrganizationsApi;
@@ -66,18 +67,18 @@ use Upsun\UpsunClient;
 class OrganizationTask extends TaskBase
 {
     private const  DEFAULT_UPSUN_PLAN = 'upsun/flexible';
-
-    public OrganizationsApi $api;
-    public OrganizationProjectsApi $projectsApi;
-    public OrganizationMembersApi $membersApi;
-    public SubscriptionsApi $subscriptionsApi;
     protected HeaderSelector $headerSelector;
-    public readonly InvoicesApi $invoicesApi;
-    public readonly MFAApi $mfaApi;
-    public readonly OrdersApi $ordersApi;
-    public readonly ProfilesApi $profilesApi;
-    public readonly RecordsApi $recordsApi;
-    public readonly VouchersApi $vouchersApi;
+
+    private readonly OrganizationsApi $api;
+    private readonly OrganizationProjectsApi $projectsApi;
+    private readonly OrganizationMembersApi $membersApi;
+    private readonly SubscriptionsApi $subscriptionsApi;
+    private readonly InvoicesApi $invoicesApi;
+    private readonly MFAApi $mfaApi;
+    private readonly OrdersApi $ordersApi;
+    private readonly ProfilesApi $profilesApi;
+    private readonly RecordsApi $recordsApi;
+    private readonly VouchersApi $vouchersApi;
 
     public function __construct(
         public readonly UpsunClient $client,
@@ -94,6 +95,61 @@ class OrganizationTask extends TaskBase
         $this->recordsApi = new RecordsApi($this->client->apiClient, $this->client->apiConfig);
         $this->vouchersApi = new VouchersApi($this->client->apiClient, $this->client->apiConfig);
     }
+
+    /************** **************************/
+    /********* Getter ************************/
+    /************** **************************/
+    
+    public function getApi(): OrganizationsApi
+    {
+        return $this->api;
+    }
+    
+    public function getProjectsApi(): OrganizationProjectsApi
+    {
+        return $this->projectsApi;
+    }
+    
+    public function getMembersApi(): OrganizationMembersApi
+    {
+        return $this->membersApi;
+    }
+    
+    public function getSubscriptionsApi(): SubscriptionsApi
+    {
+        return $this->subscriptionsApi;
+    }
+    
+    public function getInvoicesApi(): InvoicesApi
+    {
+        return $this->invoicesApi;
+    }
+    
+    public function getMfaApi(): MFAApi
+    {
+        return $this->mfaApi;
+    }
+    
+    public function getOrdersApi(): OrdersApi
+    {
+        return $this->ordersApi;
+    }
+    
+    public function getProfilesApi(): ProfilesApi
+    {
+        return $this->profilesApi;
+    }
+    
+    public function getRecordsApi(): RecordsApi
+    {
+        return $this->recordsApi;
+    }
+    
+    public function getVouchersApi(): VouchersApi
+    {
+        return $this->vouchersApi;
+    }
+    
 
     /************** ***********************************/
     /********* OrganizationApi ************************/
@@ -114,7 +170,7 @@ class OrganizationTask extends TaskBase
     {
         $this->refreshToken();
         $create_org_request = new CreateOrgRequest($create_org_data);
-        return $this->api->createOrg($create_org_request);
+        return $this->getApi()->createOrg($create_org_request);
     }
 
     /**
@@ -131,7 +187,7 @@ class OrganizationTask extends TaskBase
     public function delete(string $organization_id): void
     {
         $this->refreshToken();
-        $this->api->deleteOrg($organization_id);
+        $this->getApi()->deleteOrg($organization_id);
     }
 
     /**
@@ -149,7 +205,7 @@ class OrganizationTask extends TaskBase
     public function get(string $organization_id): Organization|Error
     {
         $this->refreshToken();
-        return $this->api->getOrg($organization_id);
+        return $this->getApi()->getOrg($organization_id);
     }
 
     /**
@@ -192,7 +248,7 @@ class OrganizationTask extends TaskBase
         string $sort = null
     ): Error|ListOrgs200Response {
         $this->refreshToken();
-        return $this->api->listOrgs(
+        return $this->getApi()->listOrgs(
             $filter_id,
             $filter_owner_id,
             $filter_name,
@@ -242,7 +298,7 @@ class OrganizationTask extends TaskBase
         string $sort = null
     ): Error|ListUserOrgs200Response {
         $this->refreshToken();
-        return $this->api->listUserOrgs(
+        return $this->getApi()->listUserOrgs(
             $user_id,
             $filter_id,
             $filter_vendor,
@@ -314,7 +370,7 @@ class OrganizationTask extends TaskBase
     {
         $this->refreshToken();
         $update_org_request = new UpdateOrgRequest($update_org_data);
-        return $this->api->updateOrg($organization_id, $update_org_request);
+        return $this->getApi()->updateOrg($organization_id, $update_org_request);
     }
 
     /**
@@ -370,7 +426,7 @@ class OrganizationTask extends TaskBase
     public function getProject(string $organization_id, string $project_id): OrganizationProject|Error
     {
         $this->refreshToken();
-        return $this->projectsApi->getOrgProject($organization_id, $project_id);
+        return $this->getProjectsApi()->getOrgProject($organization_id, $project_id);
     }
 
 
@@ -409,7 +465,7 @@ class OrganizationTask extends TaskBase
         string $sort = null
     ): ListOrgProjects200Response|Error {
         $this->refreshToken();
-        return $this->projectsApi->listOrgProjects(
+        return $this->getProjectsApi()->listOrgProjects(
             $organization_id,
             $filter_id,
             $filter_title,
@@ -444,7 +500,7 @@ class OrganizationTask extends TaskBase
         CreateOrgMemberRequest $create_org_member_request
     ): OrganizationMember|Error {
         $this->refreshToken();
-        return $this->membersApi->createOrgMember($organization_id, $create_org_member_request);
+        return $this->getMembersApi()->createOrgMember($organization_id, $create_org_member_request);
     }
 
     /**
@@ -465,7 +521,7 @@ class OrganizationTask extends TaskBase
         UpdateOrgMemberRequest $update_org_member_request = null
     ): OrganizationMember|Error {
         $this->refreshToken();
-        return $this->membersApi->updateOrgMember($organization_id, $user_id, $update_org_member_request);
+        return $this->getMembersApi()->updateOrgMember($organization_id, $user_id, $update_org_member_request);
     }
 
     /**
@@ -484,7 +540,7 @@ class OrganizationTask extends TaskBase
     public function getMember(string $organization_id, string $user_id): OrganizationMember|Error
     {
         $this->refreshToken();
-        return $this->membersApi->getOrgMember($organization_id, $user_id);
+        return $this->getMembersApi()->getOrgMember($organization_id, $user_id);
     }
 
     /**
@@ -515,7 +571,7 @@ class OrganizationTask extends TaskBase
         string $sort = null
     ): ListOrgMembers200Response|Error {
         $this->refreshToken();
-        return $this->membersApi->listOrgMembers(
+        return $this->getMembersApi()->listOrgMembers(
             $organization_id,
             $filter_permissions,
             $page_size,
@@ -540,7 +596,7 @@ class OrganizationTask extends TaskBase
     public function deleteMember(string $organization_id, string $user_id): void
     {
         $this->refreshToken();
-        $this->membersApi->deleteOrgMember($organization_id, $user_id);
+        $this->getMembersApi()->deleteOrgMember($organization_id, $user_id);
     }
 
     /************** ************************************/
@@ -561,7 +617,7 @@ class OrganizationTask extends TaskBase
     public function canCreateProject(string $organization_id): CanCreateNewOrgSubscription200Response|Error
     {
         $this->refreshToken();
-        return $this->subscriptionsApi->canCreateNewOrgSubscription($organization_id);
+        return $this->getSubscriptionsApi()->canCreateNewOrgSubscription($organization_id);
     }
 
     /**
@@ -578,7 +634,7 @@ class OrganizationTask extends TaskBase
     {
         $this->refreshToken();
         $create_project_data = new CreateOrgSubscriptionRequest($create_project_data);
-        return $this->subscriptionsApi->createOrgSubscription($organization_id, $create_project_data);
+        return $this->getSubscriptionsApi()->createOrgSubscription($organization_id, $create_project_data);
     }
 
     /**
@@ -594,7 +650,7 @@ class OrganizationTask extends TaskBase
     public function deleteProject(string $organization_id, string $project_id): void
     {
         $this->refreshToken();
-        $this->subscriptionsApi->deleteOrgSubscription($organization_id, $project_id);
+        $this->getSubscriptionsApi()->deleteOrgSubscription($organization_id, $project_id);
     }
 
     /**
@@ -619,7 +675,7 @@ class OrganizationTask extends TaskBase
         string $format = null
     ): EstimationObject|Error {
         $this->refreshToken();
-        return $this->subscriptionsApi->estimateNewOrgSubscription(
+        return $this->getSubscriptionsApi()->estimateNewOrgSubscription(
             $organization_id,
             self::DEFAULT_UPSUN_PLAN,
             $environments,
@@ -655,7 +711,7 @@ class OrganizationTask extends TaskBase
     ): EstimationObject|Error {
         $this->refreshToken();
 
-        return $this->subscriptionsApi->estimateOrgSubscription(
+        return $this->getSubscriptionsApi()->estimateOrgSubscription(
             $organization_id,
             $project_id,
             self::DEFAULT_UPSUN_PLAN,
@@ -686,7 +742,7 @@ class OrganizationTask extends TaskBase
         bool $include_not_charged = null
     ): Error|SubscriptionCurrentUsageObject {
         $this->refreshToken();
-        return $this->subscriptionsApi->getOrgSubscriptionCurrentUsage(
+        return $this->getSubscriptionsApi()->getOrgSubscriptionCurrentUsage(
             $organization_id,
             $project_id,
             $usage_groups,
@@ -713,7 +769,11 @@ class OrganizationTask extends TaskBase
     ): Error|Subscription {
         $this->refreshToken();
         $update_project_request = new UpdateOrgSubscriptionRequest($update_project_data);
-        return $this->subscriptionsApi->updateOrgSubscription($organization_id, $project_id, $update_project_request);
+        return $this->getSubscriptionsApi()->updateOrgSubscription(
+            $organization_id, 
+            $project_id,
+            $update_project_request
+        );
     }
 
     /************** **************************/
@@ -732,7 +792,7 @@ class OrganizationTask extends TaskBase
     public function disableMfaEnforcement(string $organization_id): void
     {
         $this->refreshToken();
-        $this->mfaApi->disableOrgMfaEnforcement($organization_id);
+        $this->getMfaApi()->disableOrgMfaEnforcement($organization_id);
     }
 
     /**
@@ -747,7 +807,7 @@ class OrganizationTask extends TaskBase
     public function enableMfaEnforcement(string $organization_id): void
     {
         $this->refreshToken();
-        $this->mfaApi->disableOrgMfaEnforcement($organization_id);
+        $this->getMfaApi()->disableOrgMfaEnforcement($organization_id);
     }
 
     /**
@@ -763,7 +823,7 @@ class OrganizationTask extends TaskBase
     public function getMfaEnforcement(string $organization_id): Error|OrganizationMFAEnforcement
     {
         $this->refreshToken();
-        return $this->mfaApi->getOrgMfaEnforcement($organization_id);
+        return $this->getMfaApi()->getOrgMfaEnforcement($organization_id);
     }
 
     /**
@@ -780,7 +840,7 @@ class OrganizationTask extends TaskBase
     {
         $this->refreshToken();
         $send_org_mfa_reminders_request = new SendOrgMfaRemindersRequest($send_org_mfa_reminders_request);
-        return $this->mfaApi->sendOrgMfaReminders($organization_id, $send_org_mfa_reminders_request);
+        return $this->getMfaApi()->sendOrgMfaReminders($organization_id, $send_org_mfa_reminders_request);
     }
 
 
@@ -802,7 +862,7 @@ class OrganizationTask extends TaskBase
     public function getInvoice(string $invoice_id, string $organization_id): Error|Invoice
     {
         $this->refreshToken();
-        return $this->invoicesApi->getOrgInvoice($invoice_id, $organization_id);
+        return $this->getInvoicesApi()->getOrgInvoice($invoice_id, $organization_id);
     }
 
     /**
@@ -828,7 +888,7 @@ class OrganizationTask extends TaskBase
         int $page = null
     ): ListOrgInvoices200Response|Error {
         $this->refreshToken();
-        return $this->invoicesApi->listOrgInvoices(
+        return $this->getInvoicesApi()->listOrgInvoices(
             $organization_id,
             $filter_status,
             $filter_type,
@@ -857,7 +917,7 @@ class OrganizationTask extends TaskBase
         string $order_id
     ): CreateAuthorizationCredentials200Response|Error {
         $this->refreshToken();
-        return $this->ordersApi->createAuthorizationCredentials($organization_id, $order_id);
+        return $this->getOrdersApi()->createAuthorizationCredentials($organization_id, $order_id);
     }
 
     /**
@@ -872,7 +932,7 @@ class OrganizationTask extends TaskBase
     public function downloadInvoice(string $token): void
     {
         $this->refreshToken();
-        $this->ordersApi->downloadInvoice($token);
+        $this->getOrdersApi()->downloadInvoice($token);
     }
 
     /**
@@ -890,7 +950,7 @@ class OrganizationTask extends TaskBase
     public function getOrder(string $organization_id, string $order_id, string $mode = null): Error|Order
     {
         $this->refreshToken();
-        return $this->ordersApi->getOrgOrder($organization_id, $order_id, $mode);
+        return $this->getOrdersApi()->getOrgOrder($organization_id, $order_id, $mode);
     }
 
     /**
@@ -915,7 +975,7 @@ class OrganizationTask extends TaskBase
         string $mode = null
     ): ListOrgOrders200Response|Error {
         $this->refreshToken();
-        return $this->ordersApi->listOrgOrders($organization_id, $filter_status, $filter_total, $page, $mode);
+        return $this->getOrdersApi()->listOrgOrders($organization_id, $filter_status, $filter_total, $page, $mode);
     }
 
     /************** *******************************/
@@ -935,7 +995,7 @@ class OrganizationTask extends TaskBase
     public function getAddress(string $organization_id): Error|Address
     {
         $this->refreshToken();
-        return $this->profilesApi->getOrgAddress($organization_id);
+        return $this->getProfilesApi()->getOrgAddress($organization_id);
     }
 
     /**
@@ -951,7 +1011,7 @@ class OrganizationTask extends TaskBase
     public function getProfile(string $organization_id)
     {
         $this->refreshToken();
-        return $this->profilesApi->getOrgProfile($organization_id);
+        return $this->getProfilesApi()->getOrgProfile($organization_id);
     }
 
     /**
@@ -967,7 +1027,7 @@ class OrganizationTask extends TaskBase
     public function updateAddress(string $organization_id, array $address = null): Error|Address
     {
         $this->refreshToken();
-        return $this->profilesApi->updateOrgAddress($organization_id, $address);
+        return $this->getProfilesApi()->updateOrgAddress($organization_id, $address);
     }
 
     /**
@@ -984,7 +1044,7 @@ class OrganizationTask extends TaskBase
     {
         $this->refreshToken();
         $update_org_profile_request = new UpdateOrgProfileRequest($update_org_profile_request);
-        return $this->profilesApi->updateOrgAddress($organization_id, $update_org_profile_request);
+        return $this->getProfilesApi()->updateOrgAddress($organization_id, $update_org_profile_request);
     }
 
     /************** ******************************/
@@ -1029,7 +1089,7 @@ class OrganizationTask extends TaskBase
         int $page = null
     ): Error|ListOrgPlanRecords200Response {
         $this->refreshToken();
-        return $this->recordsApi->listOrgPlanRecords(
+        return $this->getRecordsApi()->listOrgPlanRecords(
             $organization_id,
             $filter_subscription_id,
             $filter_plan,
@@ -1070,7 +1130,7 @@ class OrganizationTask extends TaskBase
         int $page = null
     ): Error|ListOrgUsageRecords200Response {
         $this->refreshToken();
-        return $this->recordsApi->listOrgUsageRecords(
+        return $this->getRecordsApi()->listOrgUsageRecords(
             $organization_id,
             $filter_subscription_id,
             $filter_usage_group,
@@ -1098,7 +1158,7 @@ class OrganizationTask extends TaskBase
     {
         $this->refreshToken();
         $apply_org_voucher_request = new ApplyOrgVoucherRequest($apply_org_voucher_request);
-        $this->vouchersApi->applyOrgVoucher($organization_id, $apply_org_voucher_request);
+        $this->getVouchersApi()->applyOrgVoucher($organization_id, $apply_org_voucher_request);
     }
 
     /**
@@ -1114,7 +1174,7 @@ class OrganizationTask extends TaskBase
     public function listVouchers(string $organization_id): Error|Vouchers
     {
         $this->refreshToken();
-        return $this->vouchersApi->listOrgVouchers($organization_id);
+        return $this->getVouchersApi()->listOrgVouchers($organization_id);
     }
 
     /************** *********************/
@@ -1409,13 +1469,13 @@ class OrganizationTask extends TaskBase
         }
 
         // this endpoint requires OAuth (access token)
-        if (!empty($this->api->getConfig()->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->api->getConfig()->getAccessToken();
+        if (!empty($this->getApi()->getConfig()->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->getApi()->getConfig()->getAccessToken();
         }
 
         $defaultHeaders = [];
-        if ($this->api->getConfig()->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->api->getConfig()->getUserAgent();
+        if ($this->getApi()->getConfig()->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->getApi()->getConfig()->getUserAgent();
         }
 
         $headers = array_merge(
@@ -1424,7 +1484,7 @@ class OrganizationTask extends TaskBase
             $headers
         );
 
-        $operationHost = $this->api->getConfig()->getHost();
+        $operationHost = $this->getApi()->getConfig()->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'PATCH',

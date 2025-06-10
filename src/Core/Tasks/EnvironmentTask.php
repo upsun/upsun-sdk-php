@@ -30,9 +30,9 @@ use Upsun\UpsunClient;
 
 class EnvironmentTask extends TaskBase
 {
-    public readonly EnvironmentApi $api;
-    public readonly EnvironmentTypeApi $typeApi;
-    public readonly DeploymentApi $deploymentApi;
+    public EnvironmentApi $api;
+    public EnvironmentTypeApi $typeApi;
+    public DeploymentApi $deploymentApi;
 
     public function __construct(
         public readonly UpsunClient $client
@@ -41,6 +41,27 @@ class EnvironmentTask extends TaskBase
         $this->typeApi = new EnvironmentTypeApi($this->client->apiClient, $this->client->apiConfig);
         $this->deploymentApi = new DeploymentApi($this->client->apiClient, $this->client->apiConfig);
     }
+
+    /************** **************************/
+    /********* Getter ************************/
+    /************** **************************/
+
+    public function getApi(): EnvironmentApi
+    {
+        return $this->api;
+    }
+
+    public function getTypeApi(): EnvironmentTypeApi
+    {
+        return $this->typeApi;
+    }
+
+    public function getDeploymentApi(): DeploymentApi
+    {
+        return $this->deploymentApi;
+    }
+
+
 
     /************** **************************/
     /********* EnvironmentApi ****************/
@@ -64,7 +85,7 @@ class EnvironmentTask extends TaskBase
     ): AcceptedResponse {
         $this->refreshToken();
         $environment_activate_input = new EnvironmentActivateInput($environment_activate_input);
-        return $this->api->activateEnvironment($project_id, $environment_id, $environment_activate_input);
+        return $this->getApi()->activateEnvironment($project_id, $environment_id, $environment_activate_input);
     }
 
     /**
@@ -86,7 +107,7 @@ class EnvironmentTask extends TaskBase
     ): AcceptedResponse {
         $this->refreshToken();
         $environment_branch_input = new EnvironmentBranchInput($environment_branch_input);
-        return $this->api->branchEnvironment($project_id, $environment_id, $environment_branch_input);
+        return $this->getApi()->branchEnvironment($project_id, $environment_id, $environment_branch_input);
     }
 
     /**
@@ -108,7 +129,7 @@ class EnvironmentTask extends TaskBase
     ): AcceptedResponse {
         $this->refreshToken();
         $version_create_input = new VersionCreateInput($version_create_input);
-        return $this->api->createProjectsEnvironmentsVersions($project_id, $environment_id, $version_create_input);
+        return $this->getApi()->createProjectsEnvironmentsVersions($project_id, $environment_id, $version_create_input);
     }
 
     /**
@@ -126,7 +147,7 @@ class EnvironmentTask extends TaskBase
     public function deactivate(string $project_id, string $environment_id): AcceptedResponse
     {
         $this->refreshToken();
-        return $this->api->deactivateEnvironment($project_id, $environment_id);
+        return $this->getApi()->deactivateEnvironment($project_id, $environment_id);
     }
 
     /**
@@ -142,7 +163,7 @@ class EnvironmentTask extends TaskBase
     public function delete(string $project_id, string $environment_id): AcceptedResponse
     {
         $this->refreshToken();
-        return $this->api->deleteEnvironment($project_id, $environment_id);
+        return $this->getApi()->deleteEnvironment($project_id, $environment_id);
     }
 
     /**
@@ -159,7 +180,7 @@ class EnvironmentTask extends TaskBase
     public function deleteVersions(string $project_id, string $environment_id, string $version_id): AcceptedResponse
     {
         $this->refreshToken();
-        return $this->api->deleteProjectsEnvironmentsVersions($project_id, $environment_id, $version_id);
+        return $this->getApi()->deleteProjectsEnvironmentsVersions($project_id, $environment_id, $version_id);
     }
 
     /**
@@ -175,7 +196,7 @@ class EnvironmentTask extends TaskBase
     public function get(string $project_id, string $environment_id): Environment
     {
         $this->refreshToken();
-        return $this->api->getEnvironment($project_id, $environment_id);
+        return $this->getApi()->getEnvironment($project_id, $environment_id);
     }
 
     /**
@@ -192,7 +213,7 @@ class EnvironmentTask extends TaskBase
     public function getVersions(string $project_id, string $environment_id, string $version_id): Version
     {
         $this->refreshToken();
-        return $this->api->getProjectsEnvironmentsVersions($project_id, $environment_id, $version_id);
+        return $this->getApi()->getProjectsEnvironmentsVersions($project_id, $environment_id, $version_id);
     }
 
     /**
@@ -213,7 +234,7 @@ class EnvironmentTask extends TaskBase
     ): AcceptedResponse {
         $this->refreshToken();
         $environment_initialize_input = new EnvironmentInitializeInput($environment_initialize_input);
-        return $this->api->initializeEnvironment($project_id, $environment_id, $environment_initialize_input);
+        return $this->getApi()->initializeEnvironment($project_id, $environment_id, $environment_initialize_input);
     }
 
     /**
@@ -228,7 +249,7 @@ class EnvironmentTask extends TaskBase
     public function list(string $project_id): array
     {
         $this->refreshToken();
-        return $this->api->listProjectsEnvironments($project_id);
+        return $this->getApi()->listProjectsEnvironments($project_id);
     }
 
     /**
@@ -244,7 +265,7 @@ class EnvironmentTask extends TaskBase
     public function listVersions(string $project_id, string $environment_id): array
     {
         $this->refreshToken();
-        return $this->api->listProjectsEnvironmentsVersions($project_id, $environment_id);
+        return $this->getApi()->listProjectsEnvironmentsVersions($project_id, $environment_id);
     }
 
     /**
@@ -262,7 +283,7 @@ class EnvironmentTask extends TaskBase
     {
         $this->refreshToken();
         $environment_merge_input = new EnvironmentMergeInput($environment_merge_input);
-        return $this->api->mergeEnvironment($project_id, $environment_id, $environment_merge_input);
+        return $this->getApi()->mergeEnvironment($project_id, $environment_id, $environment_merge_input);
     }
 
     /**
@@ -278,7 +299,7 @@ class EnvironmentTask extends TaskBase
     public function pause(string $project_id, string $environment_id): AcceptedResponse
     {
         $this->refreshToken();
-        return $this->api->pauseEnvironment($project_id, $environment_id);
+        return $this->getApi()->pauseEnvironment($project_id, $environment_id);
     }
 
     /**
@@ -294,7 +315,7 @@ class EnvironmentTask extends TaskBase
     public function redeploy(string $project_id, string $environment_id): AcceptedResponse
     {
         $this->refreshToken();
-        return $this->api->redeployEnvironment($project_id, $environment_id);
+        return $this->getApi()->redeployEnvironment($project_id, $environment_id);
     }
 
     /**
@@ -312,7 +333,7 @@ class EnvironmentTask extends TaskBase
     public function resume(string $project_id, string $environment_id): AcceptedResponse
     {
         $this->refreshToken();
-        return $this->api->resumeEnvironment($project_id, $environment_id);
+        return $this->getApi()->resumeEnvironment($project_id, $environment_id);
     }
 
     /**
@@ -333,7 +354,7 @@ class EnvironmentTask extends TaskBase
     ): AcceptedResponse {
         $this->refreshToken();
         $environment_synchronize_input = new EnvironmentSynchronizeInput($environment_synchronize_input);
-        return $this->api->synchronizeEnvironment($project_id, $environment_id, $environment_synchronize_input);
+        return $this->getApi()->synchronizeEnvironment($project_id, $environment_id, $environment_synchronize_input);
     }
 
     /**
@@ -352,7 +373,7 @@ class EnvironmentTask extends TaskBase
     {
         $this->refreshToken();
         $environment_patch = new EnvironmentPatch($environment_patch);
-        return $this->api->updateEnvironment($project_id, $environment_id, $environment_patch);
+        return $this->getApi()->updateEnvironment($project_id, $environment_id, $environment_patch);
     }
 
     /**
@@ -376,7 +397,7 @@ class EnvironmentTask extends TaskBase
     ): AcceptedResponse {
         $this->refreshToken();
         $version_patch = new VersionPatch($version_patch);
-        return $this->api->updateProjectsEnvironmentsVersions(
+        return $this->getApi()->updateProjectsEnvironmentsVersions(
             $project_id,
             $environment_id,
             $version_id,
@@ -546,7 +567,7 @@ class EnvironmentTask extends TaskBase
     public function getType(string $project_id, string $environment_type_id): EnvironmentType
     {
         $this->refreshToken();
-        return $this->typeApi->getEnvironmentType($project_id, $environment_type_id);
+        return $this->getTypeApi()->getEnvironmentType($project_id, $environment_type_id);
     }
 
     /**
@@ -561,7 +582,7 @@ class EnvironmentTask extends TaskBase
     public function listTypes(string $project_id): array
     {
         $this->refreshToken();
-        return $this->typeApi->listProjectsEnvironmentTypes($project_id);
+        return $this->getTypeApi()->listProjectsEnvironmentTypes($project_id);
     }
 
     /************** ***********************************/
@@ -861,7 +882,7 @@ class EnvironmentTask extends TaskBase
     public function getDeployment(string $project_id, string $environment_id, string $deployment_id): Deployment
     {
         $this->refreshToken();
-        return $this->deploymentApi->getProjectsEnvironmentsDeployments($project_id, $environment_id, $deployment_id);
+        return $this->getDeploymentApi()->getProjectsEnvironmentsDeployments($project_id, $environment_id, $deployment_id);
     }
 
     /**
@@ -877,7 +898,7 @@ class EnvironmentTask extends TaskBase
     public function listDeployments(string $project_id, string $environment_id): array
     {
         $this->refreshToken();
-        return $this->deploymentApi->listProjectsEnvironmentsDeployments($project_id, $environment_id);
+        return $this->getDeploymentApi()->listProjectsEnvironmentsDeployments($project_id, $environment_id);
     }
 
     /************** *****************************************/

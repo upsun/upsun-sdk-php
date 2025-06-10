@@ -94,13 +94,8 @@ class ProjectTask extends TaskBase
     }
 
     /**
-     * Operation getProjects
+     * Gets a project
      *
-     * Get a project
-     *
-     * @param string $project_id project_id (required)
-     *
-     * @return Project
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */

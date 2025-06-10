@@ -3,6 +3,8 @@
 namespace Upsun;
 
 use GuzzleHttp\Client;
+use OpenAPI\Client\apisgen\EnvironmentActivityApi;
+use OpenAPI\Client\apisgen\ProjectActivityApi;
 use OpenAPI\Client\Configuration;
 
 use Upsun\Core\OAuthProvider;
@@ -73,7 +75,10 @@ class UpsunClient
         );
 
         // Initialize the commands tasks.
-        $this->activity = new ActivityTask($this);
+        $this->activity = new ActivityTask(
+            new ProjectActivityApi($this->apiClient, $this->apiConfig),
+            new EnvironmentActivityApi($this->apiClient, $this->apiConfig)
+        );
         $this->application = new ApplicationTask($this);
         $this->backup = new BackupTask($this);
         $this->certificate = new CertificateTask($this);
@@ -108,5 +113,12 @@ class UpsunClient
     public function getToken()
     {
         return $this->upsunConfig->apiKey;
+    }
+
+    public function getApiClient(): Client {
+        return $this->apiClient;
+    }
+    public function getApiConfig(): Configuration {
+        return $this->apiConfig;
     }
 }

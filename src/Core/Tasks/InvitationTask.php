@@ -15,9 +15,9 @@ use Upsun\UpsunClient;
 
 class InvitationTask extends TaskBase
 {
-    public readonly OrganizationInvitationsApi $organizationInvitationsApi;
+    private OrganizationInvitationsApi $organizationInvitationsApi;
 
-    public readonly ProjectInvitationsApi $projectInvitationsApi;
+    private ProjectInvitationsApi $projectInvitationsApi;
 
     public function __construct(
         public readonly UpsunClient $client,
@@ -29,6 +29,20 @@ class InvitationTask extends TaskBase
         $this->projectInvitationsApi = new ProjectInvitationsApi($this->client->apiClient, $this->client->apiConfig);
     }
 
+    /************** **************************/
+    /********* Getter ************************/
+    /************** **************************/
+    
+    public function getOrganizationInvitationsApi(): OrganizationInvitationsApi
+    {
+        return $this->organizationInvitationsApi;
+    }
+    
+    public function getProjectInvitationsApi(): ProjectInvitationsApi
+    {
+        return $this->projectInvitationsApi;
+    }
+    
     /************** **************************************/
     /********* OrganizationInvitationsApi ****************/
     /************** **************************************/
@@ -48,7 +62,7 @@ class InvitationTask extends TaskBase
     public function cancelOrgInvite(string $organization_id, string $invitation_id): void
     {
         $this->refreshToken();
-        $this->organizationInvitationsApi->cancelOrgInvite($organization_id, $invitation_id);
+        $this->getOrganizationInvitationsApi()->cancelOrgInvite($organization_id, $invitation_id);
     }
 
     /**
@@ -67,7 +81,7 @@ class InvitationTask extends TaskBase
         string $organization_id,
         string $email,
         array $permissions,
-        bool $force = true
+        ?bool $force = true
     ): Error|OrganizationInvitation {
         $this->refreshToken();
 
@@ -76,7 +90,7 @@ class InvitationTask extends TaskBase
             'permissions' => $permissions,
             'force' => $force
         ]);
-        return $this->organizationInvitationsApi->createOrgInvite($organization_id, $inviteRequest);
+        return $this->getOrganizationInvitationsApi()->createOrgInvite($organization_id, $inviteRequest);
     }
 
     /**
@@ -99,14 +113,14 @@ class InvitationTask extends TaskBase
      */
     public function listOrgInvites(
         string $organization_id,
-        array $filter_state = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
-        string $sort = null
+        ?array $filter_state = null,
+        ?int $page_size = null,
+        ?string $page_before = null,
+        ?string $page_after = null,
+        ?string $sort = null
     ): Error|array {
         $this->refreshToken();
-        return $this->organizationInvitationsApi->listOrgInvites(
+        return $this->getOrganizationInvitationsApi()->listOrgInvites(
             $organization_id,
             $filter_state,
             $page_size,
@@ -135,7 +149,7 @@ class InvitationTask extends TaskBase
     public function cancelProjectInvite(string $project_id, string $invitation_id): void
     {
         $this->refreshToken();
-        $this->projectInvitationsApi->cancelProjectInvite($project_id, $invitation_id);
+        $this->getProjectInvitationsApi()->cancelProjectInvite($project_id, $invitation_id);
     }
 
     /**
@@ -152,10 +166,10 @@ class InvitationTask extends TaskBase
      */
     public function createProjectInvite(
         string $project_id,
-        CreateProjectInviteRequest $create_project_invite_request = null
+        ?CreateProjectInviteRequest $create_project_invite_request = null
     ): ProjectInvitation|Error {
         $this->refreshToken();
-        return $this->projectInvitationsApi->createProjectInvite($project_id, $create_project_invite_request);
+        return $this->getProjectInvitationsApi()->createProjectInvite($project_id, $create_project_invite_request);
     }
 
     /**
@@ -178,14 +192,14 @@ class InvitationTask extends TaskBase
      */
     public function listProjectInvites(
         string $project_id,
-        array $filter_state = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
-        string $sort = null
+        ?array $filter_state = null,
+        ?int $page_size = null,
+        ?string $page_before = null,
+        ?string $page_after = null,
+        ?string $sort = null
     ): Error|array {
         $this->refreshToken();
-        return $this->projectInvitationsApi->listProjectInvites(
+        return $this->getProjectInvitationsApi()->listProjectInvites(
             $project_id,
             $filter_state,
             $page_size,

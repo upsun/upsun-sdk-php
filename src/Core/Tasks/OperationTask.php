@@ -18,6 +18,15 @@ class OperationTask extends TaskBase
         $this->api = new RuntimeOperationsApi($this->client->apiClient, $this->client->apiConfig);
     }
 
+    /************** **************************/
+    /********* Getter ************************/
+    /************** **************************/
+
+    public function getApi(): RuntimeOperationsApi
+    {
+        return $this->api;
+    }
+    
     /************** *********************************/
     /********* RuntimeOperationsApi  ****************/
     /************** *********************************/
@@ -42,6 +51,6 @@ class OperationTask extends TaskBase
     ): AcceptedResponse {
         $this->refreshToken();
         $environment_operation_input = new EnvironmentOperationInput($environment_operation_input);
-        return $this->api->runOperation($project_id, $environment_id, $deployment_id, $environment_operation_input);
+        return $this->getApi()->runOperation($project_id, $environment_id, $deployment_id, $environment_operation_input);
     }
 }

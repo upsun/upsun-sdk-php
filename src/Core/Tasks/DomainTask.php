@@ -12,7 +12,7 @@ use Upsun\UpsunClient;
 
 class DomainTask extends TaskBase
 {
-    public readonly DomainManagementApi $api;
+    private readonly DomainManagementApi $api;
 
     public function __construct(
         public readonly UpsunClient $client,
@@ -20,6 +20,15 @@ class DomainTask extends TaskBase
         $this->api = new DomainManagementApi($this->client->apiClient, $this->client->apiConfig);
     }
 
+    /************** **************************/
+    /********* Getter ************************/
+    /************** **************************/
+    
+    public function getApi(): DomainManagementApi
+    {
+        return $this->api;
+    }
+    
     /************** ********************************/
     /********* DomainManagementApi  ****************/
     /************** ********************************/
@@ -38,14 +47,18 @@ class DomainTask extends TaskBase
     public function create(
         string $project_id,
         array $domain_create_input,
-        string $environment_id = null
+        ?string $environment_id = null
     ): AcceptedResponse {
         $this->refreshToken();
         $domain_create_input = new DomainCreateInput($domain_create_input);
         if (!$environment_id) {
-            return $this->api->createProjectsDomains($project_id, $domain_create_input);
+            return $this->getApi()->createProjectsDomains($project_id, $domain_create_input);
         } else {
-            return $this->api->createProjectsEnvironmentsDomains($project_id, $environment_id, $domain_create_input);
+            return $this->getApi()->createProjectsEnvironmentsDomains(
+                $project_id,
+                $environment_id,
+                $domain_create_input
+            );
         }
     }
 
@@ -60,13 +73,13 @@ class DomainTask extends TaskBase
      * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function delete(string $project_id, string $domain_id, string $environment_id = null): AcceptedResponse
+    public function delete(string $project_id, string $domain_id, ?string $environment_id = null): AcceptedResponse
     {
         $this->refreshToken();
         if (!$environment_id) {
-            return $this->api->deleteProjectsDomains($project_id, $domain_id);
+            return $this->getApi()->deleteProjectsDomains($project_id, $domain_id);
         } else {
-            return $this->api->deleteProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id);
+            return $this->getApi()->deleteProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id);
         }
     }
 
@@ -81,13 +94,13 @@ class DomainTask extends TaskBase
      * @return Domain
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function get(string $project_id, string $domain_id, string $environment_id = null): Domain
+    public function get(string $project_id, string $domain_id, ?string $environment_id = null): Domain
     {
         $this->refreshToken();
         if (!$environment_id) {
-            return $this->api->getProjectsDomains($project_id, $domain_id);
+            return $this->getApi()->getProjectsDomains($project_id, $domain_id);
         } else {
-            return $this->api->getProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id);
+            return $this->getApi()->getProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id);
         }
     }
 
@@ -101,13 +114,13 @@ class DomainTask extends TaskBase
      * @return Domain[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function list(string $project_id, string $environment_id = null): array
+    public function list(string $project_id, ?string $environment_id = null): array
     {
         $this->refreshToken();
         if (!$environment_id) {
-            return $this->api->listProjectsDomains($project_id);
+            return $this->getApi()->listProjectsDomains($project_id);
         } else {
-            return $this->api->listProjectsEnvironmentsDomains($project_id, $environment_id);
+            return $this->getApi()->listProjectsEnvironmentsDomains($project_id, $environment_id);
         }
     }
 
@@ -127,14 +140,14 @@ class DomainTask extends TaskBase
         string $project_id,
         string $domain_id,
         array $domain_patch,
-        string $environment_id = null
+        ?string $environment_id = null
     ): AcceptedResponse {
         $this->refreshToken();
         $domain_patch = new DomainPatch($domain_patch);
         if (!$environment_id) {
-            return $this->api->updateProjectsDomains($project_id, $domain_id, $domain_patch);
+            return $this->getApi()->updateProjectsDomains($project_id, $domain_id, $domain_patch);
         } else {
-            return $this->api->updateProjectsEnvironmentsDomains(
+            return $this->getApi()->updateProjectsEnvironmentsDomains(
                 $project_id,
                 $environment_id,
                 $domain_id,

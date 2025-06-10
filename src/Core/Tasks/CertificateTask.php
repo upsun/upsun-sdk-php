@@ -12,7 +12,7 @@ use Upsun\UpsunClient;
 
 class CertificateTask extends TaskBase
 {
-    public readonly CertManagementApi $api;
+    private readonly CertManagementApi $api;
 
     public function __construct(
         public readonly UpsunClient $client,
@@ -20,6 +20,15 @@ class CertificateTask extends TaskBase
         $this->api = new CertManagementApi($this->client->apiClient, $this->client->apiConfig);
     }
 
+    /************** **************************/
+    /********* Getter ************************/
+    /************** **************************/
+
+    public function getApi(): CertManagementApi
+    {
+        return $this->api;
+    }
+    
     /************** *****************************/
     /********* CertManagementApi ****************/
     /************** *****************************/
@@ -38,7 +47,7 @@ class CertificateTask extends TaskBase
     {
         $this->refreshToken();
         $certificate_create_input = new CertificateCreateInput($certificate_create_input);
-        return $this->api->createProjectsCertificates($project_id, $certificate_create_input);
+        return $this->getApi()->createProjectsCertificates($project_id, $certificate_create_input);
     }
 
     /**
@@ -54,7 +63,7 @@ class CertificateTask extends TaskBase
     public function delete(string $project_id, string $certificate_id): AcceptedResponse
     {
         $this->refreshToken();
-        return $this->api->deleteProjectsCertificates($project_id, $certificate_id);
+        return $this->getApi()->deleteProjectsCertificates($project_id, $certificate_id);
     }
 
     /**
@@ -70,7 +79,7 @@ class CertificateTask extends TaskBase
     public function get(string $project_id, string $certificate_id): Certificate
     {
         $this->refreshToken();
-        return $this->api->getProjectsCertificates($project_id, $certificate_id);
+        return $this->getApi()->getProjectsCertificates($project_id, $certificate_id);
     }
 
     /**
@@ -85,7 +94,7 @@ class CertificateTask extends TaskBase
     public function list(string $project_id): array
     {
         $this->refreshToken();
-        return $this->api->listProjectsCertificates($project_id);
+        return $this->getApi()->listProjectsCertificates($project_id);
     }
 
     /**
@@ -103,6 +112,6 @@ class CertificateTask extends TaskBase
     {
         $this->refreshToken();
         $certificate_patch = new CertificatePatch($certificate_patch);
-        return $this->api->updateProjectsCertificates($project_id, $certificate_id, $certificate_patch);
+        return $this->getApi()->updateProjectsCertificates($project_id, $certificate_id, $certificate_patch);
     }
 }

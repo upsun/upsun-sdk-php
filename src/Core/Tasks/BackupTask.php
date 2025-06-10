@@ -12,12 +12,21 @@ use Upsun\UpsunClient;
 
 class BackupTask extends TaskBase
 {
-    public readonly EnvironmentBackupsApi $api;
+    public EnvironmentBackupsApi $api;
 
     public function __construct(
         public readonly UpsunClient $client,
     ) {
         $this->api = new EnvironmentBackupsApi($this->client->apiClient, $this->client->apiConfig);
+    }
+
+    /************** **************************/
+    /********* Getter ************************/
+    /************** **************************/
+
+    public function getApi(): EnvironmentBackupsApi
+    {
+        return $this->api;
     }
 
     /************** *****************************************/
@@ -42,7 +51,7 @@ class BackupTask extends TaskBase
     ): AcceptedResponse {
         $this->refreshToken();
         $environment_backup_input = new EnvironmentBackupInput($environment_backup_input);
-        return $this->api->backupEnvironment($project_id, $environment_id, $environment_backup_input);
+        return $this->getApi()->backupEnvironment($project_id, $environment_id, $environment_backup_input);
     }
 
     /**
@@ -59,7 +68,7 @@ class BackupTask extends TaskBase
     public function delete(string $project_id, string $environment_id, string $backup_id): AcceptedResponse
     {
         $this->refreshToken();
-        return $this->api->deleteProjectsEnvironmentsBackups($project_id, $environment_id, $backup_id);
+        return $this->getApi()->deleteProjectsEnvironmentsBackups($project_id, $environment_id, $backup_id);
     }
 
     /**
@@ -70,13 +79,13 @@ class BackupTask extends TaskBase
      * @param string $project_id project_id (required)
      * @param string $environment_id environment_id (required)
      * @param string $backup_id backup_id (required)
-     * @return Backup
+     * @return Backup|null
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function get(string $project_id, string $environment_id, string $backup_id): Backup
+    public function get(string $project_id, string $environment_id, string $backup_id): ?Backup
     {
         $this->refreshToken();
-        return $this->api->getProjectsEnvironmentsBackups($project_id, $environment_id, $backup_id);
+        return $this->getApi()->getProjectsEnvironmentsBackups($project_id, $environment_id, $backup_id);
     }
 
     /**
@@ -92,7 +101,7 @@ class BackupTask extends TaskBase
     public function list(string $project_id, string $environment_id): array
     {
         $this->refreshToken();
-        return $this->api->listProjectsEnvironmentsBackups($project_id, $environment_id);
+        return $this->getApi()->listProjectsEnvironmentsBackups($project_id, $environment_id);
     }
 
     /**
@@ -115,6 +124,6 @@ class BackupTask extends TaskBase
     ): AcceptedResponse {
         $this->refreshToken();
         $environment_restore_input = new EnvironmentRestoreInput($environment_restore_input);
-        return $this->api->restoreBackup($project_id, $environment_id, $backup_id, $environment_restore_input);
+        return $this->getApi()->restoreBackup($project_id, $environment_id, $backup_id, $environment_restore_input);
     }
 }
