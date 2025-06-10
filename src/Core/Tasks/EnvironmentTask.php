@@ -18,7 +18,6 @@ use OpenAPI\Client\Model\EnvironmentBranchInput;
 use OpenAPI\Client\Model\EnvironmentInitializeInput;
 use OpenAPI\Client\Model\EnvironmentMergeInput;
 use OpenAPI\Client\Model\EnvironmentPatch;
-use OpenAPI\Client\Model\EnvironmentSourceOperation;
 use OpenAPI\Client\Model\EnvironmentSynchronizeInput;
 use OpenAPI\Client\Model\EnvironmentType;
 use OpenAPI\Client\Model\EnvironmentVariable;
@@ -30,916 +29,593 @@ use Upsun\UpsunClient;
 
 class EnvironmentTask extends TaskBase
 {
-    public EnvironmentApi $api;
-    public EnvironmentTypeApi $typeApi;
-    public DeploymentApi $deploymentApi;
 
     public function __construct(
-        public readonly UpsunClient $client
-    ) {
-        $this->api = new EnvironmentApi($this->client->apiClient, $this->client->apiConfig);
-        $this->typeApi = new EnvironmentTypeApi($this->client->apiClient, $this->client->apiConfig);
-        $this->deploymentApi = new DeploymentApi($this->client->apiClient, $this->client->apiConfig);
-    }
-
-    /************** **************************/
-    /********* Getter ************************/
-    /************** **************************/
-
-    public function getApi(): EnvironmentApi
+        private readonly UpsunClient        $client,
+        private readonly EnvironmentApi     $api,
+        private readonly EnvironmentTypeApi $typeApi,
+        private readonly DeploymentApi      $deploymentApi,
+    )
     {
-        return $this->api;
     }
-
-    public function getTypeApi(): EnvironmentTypeApi
-    {
-        return $this->typeApi;
-    }
-
-    public function getDeploymentApi(): DeploymentApi
-    {
-        return $this->deploymentApi;
-    }
-
-
-
-    /************** **************************/
-    /********* EnvironmentApi ****************/
-    /************** **************************/
 
     /**
-     * Operation activateEnvironment
+     * Activates an environment
      *
-     * Activate an environment
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param array $environment_activate_input (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function activate(
-        string $project_id,
-        string $environment_id,
-        array $environment_activate_input
-    ): AcceptedResponse {
+        string $projectId,
+        string $environmentId,
+        array  $environmentActivateInput
+    ): AcceptedResponse
+    {
         $this->refreshToken();
-        $environment_activate_input = new EnvironmentActivateInput($environment_activate_input);
-        return $this->getApi()->activateEnvironment($project_id, $environment_id, $environment_activate_input);
+        $environmentActivateInput = new EnvironmentActivateInput($environmentActivateInput);
+        return $this->api->activateEnvironment($projectId, $environmentId, $environmentActivateInput);
     }
 
     /**
-     * Operation branchEnvironment
+     * Branchs an environment
      *
-     * Branch an environment
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param array $environment_branch_input (required)
-     *
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function branch(
-        string $project_id,
-        string $environment_id,
-        array $environment_branch_input
-    ): AcceptedResponse {
+        string $projectId,
+        string $environmentId,
+        array  $environmentBranchInput
+    ): AcceptedResponse
+    {
         $this->refreshToken();
-        $environment_branch_input = new EnvironmentBranchInput($environment_branch_input);
-        return $this->getApi()->branchEnvironment($project_id, $environment_id, $environment_branch_input);
+        $environmentBranchInput = new EnvironmentBranchInput($environmentBranchInput);
+        return $this->api->branchEnvironment($projectId, $environmentId, $environmentBranchInput);
     }
 
     /**
-     * Operation createProjectsEnvironmentsVersions
+     * Creates versions associated with the environment
      *
-     * Create versions associated with the environment
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param array $version_create_input (required)
-     *
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function createVersions(
-        string $project_id,
-        string $environment_id,
-        array $version_create_input
-    ): AcceptedResponse {
+        string $projectId,
+        string $environmentId,
+        array  $versionCreateInput
+    ): AcceptedResponse
+    {
         $this->refreshToken();
-        $version_create_input = new VersionCreateInput($version_create_input);
-        return $this->getApi()->createProjectsEnvironmentsVersions($project_id, $environment_id, $version_create_input);
+        $versionCreateInput = new VersionCreateInput($versionCreateInput);
+        return $this->api->createProjectsEnvironmentsVersions($projectId, $environmentId, $versionCreateInput);
     }
 
     /**
-     * Operation deactivateEnvironment
+     * Deactivates an environment
      *
-     * Deactivate an environment
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     *
-     * @return AcceptedResponse
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deactivate(string $project_id, string $environment_id): AcceptedResponse
+    public function deactivate(string $projectId, string $environmentId): AcceptedResponse
     {
         $this->refreshToken();
-        return $this->getApi()->deactivateEnvironment($project_id, $environment_id);
+        return $this->api->deactivateEnvironment($projectId, $environmentId);
     }
 
     /**
-     * Operation deleteEnvironment
+     * Deletes an environment
      *
-     * Delete an environment
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function delete(string $project_id, string $environment_id): AcceptedResponse
+    public function delete(string $projectId, string $environmentId): AcceptedResponse
     {
         $this->refreshToken();
-        return $this->getApi()->deleteEnvironment($project_id, $environment_id);
+        return $this->api->deleteEnvironment($projectId, $environmentId);
     }
 
     /**
-     * Operation deleteProjectsEnvironmentsVersions
+     * Deletes the version
      *
-     * Delete the version
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param string $version_id version_id (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteVersions(string $project_id, string $environment_id, string $version_id): AcceptedResponse
+    public function deleteVersions(string $projectId, string $environmentId, string $versionId): AcceptedResponse
     {
         $this->refreshToken();
-        return $this->getApi()->deleteProjectsEnvironmentsVersions($project_id, $environment_id, $version_id);
+        return $this->api->deleteProjectsEnvironmentsVersions($projectId, $environmentId, $versionId);
     }
 
     /**
-     * Operation getEnvironment
+     * Gets an environment
      *
-     * Get an environment
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @return Environment
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function get(string $project_id, string $environment_id): Environment
+    public function get(string $projectId, string $environmentId): Environment
     {
         $this->refreshToken();
-        return $this->getApi()->getEnvironment($project_id, $environment_id);
+        return $this->api->getEnvironment($projectId, $environmentId);
     }
 
     /**
-     * Operation getProjectsEnvironmentsVersions
+     * Lists the version
      *
-     * List the version
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param string $version_id version_id (required)
-     * @return Version
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getVersions(string $project_id, string $environment_id, string $version_id): Version
+    public function getVersions(string $projectId, string $environmentId, string $versionId): Version
     {
         $this->refreshToken();
-        return $this->getApi()->getProjectsEnvironmentsVersions($project_id, $environment_id, $version_id);
+        return $this->api->getProjectsEnvironmentsVersions($projectId, $environmentId, $versionId);
     }
 
     /**
-     * Operation initializeEnvironment
+     * Initializes a new environment
      *
-     * Initialize a new environment
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param array $environment_initialize_input (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function initialize(
-        string $project_id,
-        string $environment_id,
-        array $environment_initialize_input
-    ): AcceptedResponse {
-        $this->refreshToken();
-        $environment_initialize_input = new EnvironmentInitializeInput($environment_initialize_input);
-        return $this->getApi()->initializeEnvironment($project_id, $environment_id, $environment_initialize_input);
-    }
-
-    /**
-     * Operation listProjectsEnvironments
-     *
-     * Get list of project environments
-     *
-     * @param string $project_id project_id (required)
-     * @return Environment[]
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     */
-    public function list(string $project_id): array
+        string $projectId,
+        string $environmentId,
+        array  $environmentInitializeInput
+    ): AcceptedResponse
     {
         $this->refreshToken();
-        return $this->getApi()->listProjectsEnvironments($project_id);
+        $environmentInitializeInput = new EnvironmentInitializeInput($environmentInitializeInput);
+        return $this->api->initializeEnvironment($projectId, $environmentId, $environmentInitializeInput);
     }
 
     /**
-     * Operation listProjectsEnvironmentsVersions
+     * Gets list of project environments
      *
-     * List versions associated with the environment
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @return Version[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listVersions(string $project_id, string $environment_id): array
+    public function list(string $projectId): array
     {
         $this->refreshToken();
-        return $this->getApi()->listProjectsEnvironmentsVersions($project_id, $environment_id);
+        return $this->api->listProjectsEnvironments($projectId);
     }
 
     /**
-     * Operation mergeEnvironment
+     * Lists versions associated with the environment
      *
-     * Merge an environment
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param array $environment_merge_input (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function merge(string $project_id, string $environment_id, array $environment_merge_input): AcceptedResponse
+    public function listVersions(string $projectId, string $environmentId): array
     {
         $this->refreshToken();
-        $environment_merge_input = new EnvironmentMergeInput($environment_merge_input);
-        return $this->getApi()->mergeEnvironment($project_id, $environment_id, $environment_merge_input);
+        return $this->api->listProjectsEnvironmentsVersions($projectId, $environmentId);
     }
 
     /**
-     * Operation pauseEnvironment
+     * Merges an environment
      *
-     * Pause an environment
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function pause(string $project_id, string $environment_id): AcceptedResponse
+    public function merge(string $projectId, string $environmentId, array $environmentMergeInput): AcceptedResponse
     {
         $this->refreshToken();
-        return $this->getApi()->pauseEnvironment($project_id, $environment_id);
+        $environmentMergeInput = new EnvironmentMergeInput($environmentMergeInput);
+        return $this->api->mergeEnvironment($projectId, $environmentId, $environmentMergeInput);
     }
 
     /**
-     * Operation redeployEnvironment
+     * Pauses an environment
      *
-     * Redeploy an environment
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function redeploy(string $project_id, string $environment_id): AcceptedResponse
+    public function pause(string $projectId, string $environmentId): AcceptedResponse
     {
         $this->refreshToken();
-        return $this->getApi()->redeployEnvironment($project_id, $environment_id);
+        return $this->api->pauseEnvironment($projectId, $environmentId);
     }
 
     /**
-     * Operation resumeEnvironment
+     * Redeploys an environment
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function redeploy(string $projectId, string $environmentId): AcceptedResponse
+    {
+        $this->refreshToken();
+        return $this->api->redeployEnvironment($projectId, $environmentId);
+    }
+
+    /**
      * Resume a paused environment
      *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     *
-     * @return AcceptedResponse
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function resume(string $project_id, string $environment_id): AcceptedResponse
+    public function resume(string $projectId, string $environmentId): AcceptedResponse
     {
         $this->refreshToken();
-        return $this->getApi()->resumeEnvironment($project_id, $environment_id);
+        return $this->api->resumeEnvironment($projectId, $environmentId);
     }
 
     /**
-     * Operation synchronizeEnvironment
+     * Synchronizes a child environment with its parent
      *
-     * Synchronize a child environment with its parent
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param array $environment_synchronize_input (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function synchronize(
-        string $project_id,
-        string $environment_id,
-        array $environment_synchronize_input
-    ): AcceptedResponse {
-        $this->refreshToken();
-        $environment_synchronize_input = new EnvironmentSynchronizeInput($environment_synchronize_input);
-        return $this->getApi()->synchronizeEnvironment($project_id, $environment_id, $environment_synchronize_input);
-    }
-
-    /**
-     * Operation updateEnvironment
-     *
-     * Update an environment
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param array $environment_patch (required)
-     *
-     * @return AcceptedResponse
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     */
-    public function update(string $project_id, string $environment_id, array $environment_patch): AcceptedResponse
+        string $projectId,
+        string $environmentId,
+        array  $environmentSynchronizeInput
+    ): AcceptedResponse
     {
         $this->refreshToken();
-        $environment_patch = new EnvironmentPatch($environment_patch);
-        return $this->getApi()->updateEnvironment($project_id, $environment_id, $environment_patch);
+        $environmentSynchronizeInput = new EnvironmentSynchronizeInput($environmentSynchronizeInput);
+        return $this->api->synchronizeEnvironment($projectId, $environmentId, $environmentSynchronizeInput);
     }
 
     /**
-     * Operation updateProjectsEnvironmentsVersions
+     * Updates an environment
      *
-     * Update the version
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function update(string $projectId, string $environmentId, array $environmentPatch): AcceptedResponse
+    {
+        $this->refreshToken();
+        $environmentPatch = new EnvironmentPatch($environmentPatch);
+        return $this->api->updateEnvironment($projectId, $environmentId, $environmentPatch);
+    }
+
+    /**
+     * Updates the version
      *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param string $version_id version_id (required)
-     * @param array $version_patch (required)
-     *
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function updateVersions(
-        string $project_id,
-        string $environment_id,
-        string $version_id,
-        array $version_patch
-    ): AcceptedResponse {
+        string $projectId,
+        string $environmentId,
+        string $versionId,
+        array  $versionPatch
+    ): AcceptedResponse
+    {
         $this->refreshToken();
-        $version_patch = new VersionPatch($version_patch);
-        return $this->getApi()->updateProjectsEnvironmentsVersions(
-            $project_id,
-            $environment_id,
-            $version_id,
-            $version_patch
+        $versionPatch = new VersionPatch($versionPatch);
+        return $this->api->updateProjectsEnvironmentsVersions(
+            $projectId,
+            $environmentId,
+            $versionId,
+            $versionPatch
         );
     }
 
-    /************** **********************************/
-    /********* ActivityTask shortcuts ****************/
-    /************** **********************************/
-
     /**
-     * Operation actionProjectsEnvironmentsActivitiesCancel
+     * Cancels an environment activity
      *
-     * Cancel an environment activity
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param string $activity_id activity_id (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function activitiesCancel(string $project_id, string $environment_id, string $activity_id): AcceptedResponse
+    public function activitiesCancel(string $projectId, string $environmentId, string $activityId): AcceptedResponse
     {
         $this->refreshToken();
-        return $this->client->activity->cancel($project_id, $activity_id, $environment_id);
+        return $this->client->activity->cancel($projectId, $activityId, $environmentId);
     }
 
     /**
-     * Operation getProjectsEnvironmentsActivities
+     * Gets an environment activity log entry
      *
-     * Get an environment activity log entry
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param string $activity_id activity_id (required)
-     * @return Activity
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getActivities(string $project_id, string $environment_id, string $activity_id): Activity
+    public function getActivities(string $projectId, string $environmentId, string $activityId): Activity
     {
         $this->refreshToken();
-        return $this->client->activity->get($project_id, $activity_id, $environment_id);
+        return $this->client->activity->get($projectId, $activityId, $environmentId);
     }
 
     /**
-     * Operation listProjectsEnvironmentsActivities
+     * Gets environment activity log
      *
-     * Get environment activity log
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @return Activity[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listActivities(string $project_id, string $environment_id): array
+    public function listActivities(string $projectId, string $environmentId): array
     {
         $this->refreshToken();
-        return $this->client->activity->list($project_id, $environment_id);
+        return $this->client->activity->list($projectId, $environmentId);
     }
 
-    /************** ********************************/
-    /********* BackupTask shortcuts ****************/
-    /************** ********************************/
-
     /**
-     * Operation backup
+     * Creates snapshot of environment
      *
-     * Create snapshot of environment
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param array $environment_backup_input (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function backup(
-        string $project_id,
-        string $environment_id,
-        array $environment_backup_input
-    ): AcceptedResponse {
-        return $this->client->backup->backup($project_id, $environment_id, $environment_backup_input);
+        string $projectId,
+        string $environmentId,
+        array  $environmentBackupInput
+    ): AcceptedResponse
+    {
+        return $this->client->backup->backup($projectId, $environmentId, $environmentBackupInput);
     }
 
     /**
-     * Operation deleteBackup
+     * Deletes an environment snapshot
      *
-     * Delete an environment snapshot
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param string $backup_id backup_id (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteBackup(string $project_id, string $environment_id, string $backup_id): AcceptedResponse
+    public function deleteBackup(string $projectId, string $environmentId, string $backupId): AcceptedResponse
     {
-        return $this->client->backup->delete($project_id, $environment_id, $backup_id);
+        return $this->client->backup->delete($projectId, $environmentId, $backupId);
     }
 
     /**
-     * Operation getBackup
+     * Gets an environment snapshot's info
      *
-     * Get an environment snapshot's info
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param string $backup_id backup_id (required)
-     * @return Backup
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getBackup(string $project_id, string $environment_id, string $backup_id): Backup
+    public function getBackup(string $projectId, string $environmentId, string $backupId): Backup
     {
-        return $this->client->backup->get($project_id, $environment_id, $backup_id);
+        return $this->client->backup->get($projectId, $environmentId, $backupId);
     }
 
     /**
-     * Operation listBackups
+     * Gets an environment's snapshot list
      *
-     * Get an environment's snapshot list
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @return Backup[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listBackups(string $project_id, string $environment_id): array
+    public function listBackups(string $projectId, string $environmentId): array
     {
-        return $this->client->backup->list($project_id, $environment_id);
+        return $this->client->backup->list($projectId, $environmentId);
     }
 
     /**
-     * Operation restoreBackup
+     * Restores an environment snapshot
      *
-     * Restore an environment snapshot
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param string $backup_id backup_id (required)
-     * @param array $environment_restore_input (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function restoreBackup(
-        string $project_id,
-        string $environment_id,
-        string $backup_id,
-        array $environment_restore_input
-    ): AcceptedResponse {
-        return $this->client->backup->restore($project_id, $environment_id, $backup_id, $environment_restore_input);
+        string $projectId,
+        string $environmentId,
+        string $backupId,
+        array  $environmentRestoreInput
+    ): AcceptedResponse
+    {
+        return $this->client->backup->restore($projectId, $environmentId, $backupId, $environmentRestoreInput);
     }
 
-    /************** *******************************/
-    /********* EnvironmentTypesApi ****************/
-    /************** *******************************/
-
     /**
-     * Operation getEnvironmentType
+     * Gets environment type links
      *
-     * Get environment type links
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_type_id environment_type_id (required)
-     * @return EnvironmentType
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getType(string $project_id, string $environment_type_id): EnvironmentType
+    public function getType(string $projectId, string $environment_type_id): EnvironmentType
     {
         $this->refreshToken();
-        return $this->getTypeApi()->getEnvironmentType($project_id, $environment_type_id);
+        return $this->typeApi->getEnvironmentType($projectId, $environment_type_id);
     }
 
     /**
-     * Operation listProjectsEnvironmentTypes
+     * Gets environment types
      *
-     * Get environment types
-     *
-     * @param string $project_id project_id (required)
-     * @return EnvironmentType[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listTypes(string $project_id): array
+    public function listTypes(string $projectId): array
     {
         $this->refreshToken();
-        return $this->getTypeApi()->listProjectsEnvironmentTypes($project_id);
+        return $this->typeApi->listProjectsEnvironmentTypes($projectId);
     }
 
-    /************** ***********************************/
-    /********* VariableTask shortcuts ****************/
-    /************** ***********************************/
-
     /**
-     * Operation createVariable
+     * Adds an environment variable
      *
-     * Add an environment variable
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param array $environment_variable_create_input (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function createVariable(
-        string $project_id,
-        string $environment_id,
-        array $environment_variable_create_input
-    ): AcceptedResponse {
+        string $projectId,
+        string $environmentId,
+        array  $environmentVariableCreateInput
+    ): AcceptedResponse
+    {
         return $this->client->variables->createEnvironmentVariable(
-            $project_id,
-            $environment_id,
-            $environment_variable_create_input
+            $projectId,
+            $environmentId,
+            $environmentVariableCreateInput
         );
     }
 
     /**
-     * Operation deleteVariable
+     * Deletes an environment variable
      *
-     * Delete an environment variable
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param string $variable_id variable_id (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteVariable(string $project_id, string $environment_id, string $variable_id): AcceptedResponse
+    public function deleteVariable(string $projectId, string $environmentId, string $variableId): AcceptedResponse
     {
-        return $this->client->variables->deleteEnvironmentVariable($project_id, $environment_id, $variable_id);
+        return $this->client->variables->deleteEnvironmentVariable($projectId, $environmentId, $variableId);
     }
 
     /**
-     * Operation getVariable
+     * Gets an environment variable
      *
-     * Get an environment variable
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param string $variable_id variable_id (required)
-     * @return EnvironmentVariable
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getVariable(string $project_id, string $environment_id, string $variable_id): EnvironmentVariable
+    public function getVariable(string $projectId, string $environmentId, string $variableId): EnvironmentVariable
     {
-        return $this->client->variables->getEnvironmentVariable($project_id, $environment_id, $variable_id);
+        return $this->client->variables->getEnvironmentVariable($projectId, $environmentId, $variableId);
     }
 
     /**
-     * Operation listVariables
+     * Gets list of environment variables
      *
-     * Get list of environment variables
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @return EnvironmentVariable[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listVariables(string $project_id, string $environment_id): array
+    public function listVariables(string $projectId, string $environmentId): array
     {
-        return $this->client->variables->listEnvironmentVariables($project_id, $environment_id);
+        return $this->client->variables->listEnvironmentVariables($projectId, $environmentId);
     }
 
     /**
-     * Operation updateVariable
+     * Updates an environment variable
      *
-     * Update an environment variable
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param string $variable_id variable_id (required)
-     * @param array $environment_variable_patch (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function updateVariable(
-        string $project_id,
-        string $environment_id,
-        string $variable_id,
-        array $environment_variable_patch
-    ): AcceptedResponse {
+        string $projectId,
+        string $environmentId,
+        string $variableId,
+        array  $environmentVariablePatch
+    ): AcceptedResponse
+    {
         return $this->client->variables->updateEnvironmentVariable(
-            $project_id,
-            $environment_id,
-            $variable_id,
-            $environment_variable_patch
+            $projectId,
+            $environmentId,
+            $variableId,
+            $environmentVariablePatch
         );
     }
 
-    /************** ********************************/
-    /********* RouteTask shortcuts  ****************/
-    /************** ********************************/
-
     /**
-     * Operation createRoute
+     * Creates a new route
      *
-     * Create a new route
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param array $route_create_input (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createRoute(string $project_id, string $environment_id, array $route_create_input): AcceptedResponse
+    public function createRoute(string $projectId, string $environmentId, array $routeCreateInput): AcceptedResponse
     {
-        return $this->client->route->create($project_id, $environment_id, $route_create_input);
+        return $this->client->route->create($projectId, $environmentId, $routeCreateInput);
     }
 
     /**
-     * Operation deleteRoute
+     * Deletes a route
      *
-     * Delete a route
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param string $route_id route_id (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteRoute(string $project_id, string $environment_id, string $route_id): AcceptedResponse
+    public function deleteRoute(string $projectId, string $environmentId, string $routeId): AcceptedResponse
     {
-        return $this->client->route->delete($project_id, $environment_id, $route_id);
+        return $this->client->route->delete($projectId, $environmentId, $routeId);
     }
 
     /**
-     * Operation getRoute
+     * Gets a route's info
      *
-     * Get a route's info
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param string $route_id route_id (required)
-     * @return Route
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getRoute(string $project_id, string $environment_id, string $route_id): Route
+    public function getRoute(string $projectId, string $environmentId, string $routeId): Route
     {
-        return $this->client->route->get($project_id, $environment_id, $route_id);
+        return $this->client->route->get($projectId, $environmentId, $routeId);
     }
 
     /**
-     * Operation listProjectsEnvironmentsRoutes
+     * Gets list of routes
      *
-     * Get list of routes
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @return Route[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listRoutes(string $project_id, string $environment_id): array
+    public function listRoutes(string $projectId, string $environmentId): array
     {
-        return $this->client->route->list($project_id, $environment_id);
+        return $this->client->route->list($projectId, $environmentId);
     }
 
     /**
-     * Operation updateRoute
+     * Updates a route
      *
-     * Update a route
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param string $route_id route_id (required)
-     * @param array $route_patch (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function updateRoute(
-        string $project_id,
-        string $environment_id,
-        string $route_id,
-        array $route_patch
-    ): AcceptedResponse {
-        return $this->client->route->update($project_id, $environment_id, $route_id, $route_patch);
+        string $projectId,
+        string $environmentId,
+        string $routeId,
+        array  $routePatch
+    ): AcceptedResponse
+    {
+        return $this->client->route->update($projectId, $environmentId, $routeId, $routePatch);
     }
-
-    /************** *********************************/
-    /********* DomainTask shortcuts  ****************/
-    /************** *********************************/
-
+    
     /**
-     * Operation createDomain
+     * Adds an environment domain
      *
-     * Add an environment domain
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param array $domain_create_input (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function createDomain(
-        string $project_id,
-        string $environment_id,
-        array $domain_create_input
-    ): AcceptedResponse {
-        return $this->client->domain->create($project_id, $domain_create_input, $environment_id);
+        string $projectId,
+        string $environmentId,
+        array  $domainCreateInput
+    ): AcceptedResponse
+    {
+        return $this->client->domain->create($projectId, $domainCreateInput, $environmentId);
     }
 
     /**
-     * Operation deleteDomain
+     * Deletes an environment domain
      *
-     * Delete an environment domain
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param string $domain_id domain_id (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteDomain(string $project_id, string $environment_id, string $domain_id): AcceptedResponse
+    public function deleteDomain(string $projectId, string $environmentId, string $domainId): AcceptedResponse
     {
-        return $this->client->domain->delete($project_id, $domain_id, $environment_id);
+        return $this->client->domain->delete($projectId, $domainId, $environmentId);
     }
 
     /**
-     * Operation getDomain
+     * Gets an environment domain
      *
-     * Get an environment domain
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param string $domain_id domain_id (required)
-     * @return Domain
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getDomain(string $project_id, string $environment_id, string $domain_id): Domain
+    public function getDomain(string $projectId, string $environmentId, string $domainId): Domain
     {
-        return $this->client->domain->get($project_id, $environment_id, $domain_id);
+        return $this->client->domain->get($projectId, $environmentId, $domainId);
     }
 
     /**
-     * Operation listProjectsEnvironmentsDomains
+     * Gets a list of environment domains
      *
-     * Get a list of environment domains
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @return Domain[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listDomains(string $project_id, string $environment_id): array
+    public function listDomains(string $projectId, string $environmentId): array
     {
-        return $this->client->domain->list($project_id, $environment_id);
+        return $this->client->domain->list($projectId, $environmentId);
     }
 
     /**
-     * Operation updateDomain
+     * Updates an environment domain
      *
-     * Update an environment domain
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param string $domain_id domain_id (required)
-     * @param array $domain_patch (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function updateDomain(
-        string $project_id,
-        string $environment_id,
-        string $domain_id,
-        array $domain_patch
-    ): AcceptedResponse {
-        return $this->client->domain->update($project_id, $domain_id, $domain_patch, $environment_id);
+        string $projectId,
+        string $environmentId,
+        string $domainId,
+        array  $domainPatch
+    ): AcceptedResponse
+    {
+        return $this->client->domain->update($projectId, $domainId, $domainPatch, $environmentId);
     }
 
-    /************** *************************/
-    /********* DeploymentApi ****************/
-    /************** *************************/
-
     /**
-     * Operation getDeployment
+     * Gets a single environment deployment
      *
-     * Get a single environment deployment
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param string $deployment_id deployment_id (required)
-     * @return Deployment
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getDeployment(string $project_id, string $environment_id, string $deployment_id): Deployment
+    public function getDeployment(string $projectId, string $environmentId, string $deploymentId): Deployment
     {
         $this->refreshToken();
-        return $this->getDeploymentApi()->getProjectsEnvironmentsDeployments($project_id, $environment_id, $deployment_id);
+        return $this->deploymentApi->getProjectsEnvironmentsDeployments($projectId, $environmentId, $deploymentId);
     }
 
     /**
-     * Operation listDeployments
+     * Gets an environment's deployment information
      *
-     * Get an environment's deployment information
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @return Deployment[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listDeployments(string $project_id, string $environment_id): array
+    public function listDeployments(string $projectId, string $environmentId): array
     {
         $this->refreshToken();
-        return $this->getDeploymentApi()->listProjectsEnvironmentsDeployments($project_id, $environment_id);
+        return $this->deploymentApi->listProjectsEnvironmentsDeployments($projectId, $environmentId);
     }
 
-    /************** *****************************************/
-    /********* SourceOperationTask shortcuts ****************/
-    /************** *****************************************/
-
     /**
-     * Operation listSourceOperations
+     * Lists source operations
      *
-     * List source operations
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @return EnvironmentSourceOperation[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listSourceOperations(string $project_id, string $environment_id): array
+    public function listSourceOperations(string $projectId, string $environmentId): array
     {
-        return $this->client->sourceOperation->list($project_id, $environment_id);
+        return $this->client->sourceOperation->list($projectId, $environmentId);
     }
 
     /**
-     * Operation runSourceOperation
+     * Triggers a source operation
      *
-     * Trigger a source operation
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param array $environment_source_operation_input (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function runSourceOperation(
-        string $project_id,
-        string $environment_id,
-        array $environment_source_operation_input
-    ): AcceptedResponse {
-        return $this->client->sourceOperation->run($project_id, $environment_id, $environment_source_operation_input);
+        string $projectId,
+        string $environmentId,
+        array  $environmentSourceOperationInput
+    ): AcceptedResponse
+    {
+        return $this->client->sourceOperation->run($projectId, $environmentId, $environmentSourceOperationInput);
     }
-
-    /************** ****************************/
-    /********* Custom function  ****************/
-    /************** ****************************/
 }

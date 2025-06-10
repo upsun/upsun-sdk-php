@@ -19,14 +19,11 @@ use OpenAPI\Client\Model\ConfirmTotpEnrollment200Response;
 use OpenAPI\Client\Model\ConfirmTotpEnrollmentRequest;
 use OpenAPI\Client\Model\Connection;
 use OpenAPI\Client\Model\CreateApiTokenRequest;
-use OpenAPI\Client\Model\CreateProfilePicture200Response;
 use OpenAPI\Client\Model\Error;
 use OpenAPI\Client\Model\GetAddress200Response;
 use OpenAPI\Client\Model\GetCurrentUserVerificationStatus200Response;
 use OpenAPI\Client\Model\GetCurrentUserVerificationStatusFull200Response;
 use OpenAPI\Client\Model\GetTotpEnrollment200Response;
-use OpenAPI\Client\Model\GrantProjectUserAccessRequestInner;
-use OpenAPI\Client\Model\GrantUserProjectAccessRequestInner;
 use OpenAPI\Client\Model\ListProfiles200Response;
 use OpenAPI\Client\Model\ListProjectUserAccess200Response;
 use OpenAPI\Client\Model\ListUserExtendedAccess200Response;
@@ -44,38 +41,24 @@ use Upsun\UpsunClient;
 
 class UserTask extends TaskBase
 {
-    public readonly UsersApi $api;
-    public readonly UserProfilesApi $profilesApi;
-    public readonly UserAccessApi $accessApi;
-    public readonly APITokensApi $tokensApi;
-    public readonly ConnectionsApi $connectionsApi;
-    public readonly GrantsApi $grantsApi;
-    public readonly MFAApi $mfaApi;
-    public readonly PhoneNumberApi $phoneNumberApi;
 
     public function __construct(
-        public readonly UpsunClient $client,
-    ) {
-        $this->api = new UsersApi($this->client->apiClient, $this->client->apiConfig);
-        $this->profilesApi = new UserProfilesApi($this->client->apiClient, $this->client->apiConfig);
-        $this->accessApi = new UserAccessApi($this->client->apiClient, $this->client->apiConfig);
-        $this->tokensApi = new APITokensApi($this->client->apiClient, $this->client->apiConfig);
-        $this->connectionsApi = new ConnectionsApi($this->client->apiClient, $this->client->apiConfig);
-        $this->grantsApi = new GrantsApi($this->client->apiClient, $this->client->apiConfig);
-        $this->mfaApi = new MFAApi($this->client->apiClient, $this->client->apiConfig);
-        $this->phoneNumberApi = new PhoneNumberApi($this->client->apiClient, $this->client->apiConfig);
+        private readonly UpsunClient     $client, // used in the TaskBase class
+        private readonly UsersApi        $api,
+        private readonly UserProfilesApi $profilesApi,
+        private readonly UserAccessApi   $accessApi,
+        private readonly APITokensApi    $tokensApi,
+        private readonly ConnectionsApi  $connectionsApi,
+        private readonly GrantsApi       $grantsApi,
+        private readonly MFAApi          $mfaApi,
+        private readonly PhoneNumberApi  $phoneNumberApi,
+    )
+    {
     }
 
-    /************** ********************/
-    /********* UsersApi ****************/
-    /************** ********************/
-
     /**
-     * Operation me
-     *
      * Get the current user
      *
-     * @return User|Error
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
@@ -86,11 +69,8 @@ class UserTask extends TaskBase
     }
 
     /**
-     * Operation getCurrentUserVerificationStatus
+     * Checks if phone verification is required
      *
-     * Check if phone verification is required
-     *
-     * @return GetCurrentUserVerificationStatus200Response
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
@@ -101,11 +81,8 @@ class UserTask extends TaskBase
     }
 
     /**
-     * Operation getCurrentUserVerificationStatusFull
+     * Checks if verification is required
      *
-     * Check if verification is required
-     *
-     * @return GetCurrentUserVerificationStatusFull200Response
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
@@ -116,13 +93,8 @@ class UserTask extends TaskBase
     }
 
     /**
-     * Operation getUser
+     * Gets a user
      *
-     * Get a user
-     *
-     * @param string $id The ID of the user. (required)
-     *
-     * @return User|Error
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
@@ -133,15 +105,10 @@ class UserTask extends TaskBase
     }
 
     /**
-     * Operation getUserByEmailAddress
-     *
-     * Get a user by email
-     *
-     * @param string $email The user's email address. (required)
+     * Gets a user by email
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return User|Error
      */
     public function getByEmailAddress(string $email): User|Error
     {
@@ -150,15 +117,10 @@ class UserTask extends TaskBase
     }
 
     /**
-     * Operation getUserByUsername
-     *
-     * Get a user by username
-     *
-     * @param string $username The user's username. (required)
+     * Gets a user by username
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return User|Error
      */
     public function getByUsername(string $username): User|Error
     {
@@ -167,294 +129,198 @@ class UserTask extends TaskBase
     }
 
     /**
-     * Operation resetEmailAddress
+     * Resets email address
      *
-     * Reset email address
-     *
-     * @param string $user_id The ID of the user. (required)
-     * @param ResetEmailAddressRequest|null $reset_email_address_request (optional)
-     *
-     * @return void
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function resetEmailAddress(
-        string $user_id,
-        ResetEmailAddressRequest $reset_email_address_request = null
-    ): void {
+        string                    $userId,
+        ?ResetEmailAddressRequest $resetEmailAddressRequest = null
+    ): void
+    {
         $this->refreshToken();
-        $this->api->resetEmailAddress($user_id, $reset_email_address_request);
+        $this->api->resetEmailAddress($userId, $resetEmailAddressRequest);
     }
 
     /**
-     * Operation resetPassword
+     * Resets user password
      *
-     * Reset user password
-     *
-     * @param string $user_id The ID of the user. (required)
-     *
-     * @return void
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function resetPassword(string $user_id): void
+    public function resetPassword(string $userId): void
     {
         $this->refreshToken();
-        $this->api->resetPassword($user_id);
+        $this->api->resetPassword($userId);
     }
 
     /**
-     * Operation updateUser
+     * Updates a user
      *
-     * Update a user
-     *
-     * @param string $user_id The ID of the user. (required)
-     * @param array $update_user_data update_user_request (optional)
-     *
-     * @return User|Error
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function update(string $user_id, array $update_user_data = []): User|Error
+    public function update(string $userId, ?array $update_user_data = []): User|Error
     {
         $this->refreshToken();
-        $update_user_request = new UpdateUserRequest();
-        return $this->api->updateUser($user_id, $update_user_request);
+        $update_user_request = new UpdateUserRequest($update_user_data);
+        return $this->api->updateUser($userId, $update_user_request);
     }
 
-    /************** ****************************/
-    /********* UsersAccessApi ****************/
-    /************** ****************************/
-
     /**
-     * Operation getProjectUserAccess
+     * Gets user access for a project
      *
-     * Get user access for a project
-     *
-     * @param string $project_id The ID of the project. (required)
-     * @param string $user_id The ID of the user. (required)
-     * @return UserProjectAccess|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectUserAccess(string $project_id, string $user_id): Error|UserProjectAccess
+    public function getProjectUserAccess(string $projectId, string $userId): Error|UserProjectAccess
     {
         $this->refreshToken();
-        return $this->accessApi->getProjectUserAccess($project_id, $user_id);
+        return $this->accessApi->getProjectUserAccess($projectId, $userId);
     }
 
     /**
-     * Operation getUserProjectAccess
+     * Gets project access for a user
      *
-     * Get project access for a user
-     *
-     * @param string $user_id The ID of the user. (required)
-     * @param string $project_id The ID of the project. (required)
-     * @return UserProjectAccess|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getUserProjectAccess(string $user_id, string $project_id): Error|UserProjectAccess
+    public function getUserProjectAccess(string $userId, string $projectId): Error|UserProjectAccess
     {
         $this->refreshToken();
-        return $this->accessApi->getUserProjectAccess($user_id, $project_id);
+        return $this->accessApi->getUserProjectAccess($userId, $projectId);
     }
 
     /**
-     * Operation grantProjectUserAccess
+     * Grants user access to a project
      *
-     * Grant user access to a project
-     *
-     * @param string $project_id The ID of the project. (required)
-     * @param GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner
-     *        grant_project_user_access_request_inner (required)
-     * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function grantProjectUserAccess(string $project_id, array $grant_project_user_access_request_inner): void
+    public function grantProjectUserAccess(string $projectId, array $grantProjectUserAccessRequestInner): void
     {
         $this->refreshToken();
-        $this->accessApi->grantProjectUserAccess($project_id, $grant_project_user_access_request_inner);
+        $this->accessApi->grantProjectUserAccess($projectId, $grantProjectUserAccessRequestInner);
     }
 
     /**
-     * Operation grantUserProjectAccess
+     * Grants project access to a user
      *
-     * Grant project access to a user
-     *
-     * @param string $user_id The ID of the user. (required)
-     * @param GrantUserProjectAccessRequestInner[] $grant_user_project_access_request_inner
-     *        grant_user_project_access_request_inner (required)
-     * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function grantUserProjectAccess(string $user_id, array $grant_user_project_access_request_inner): void
+    public function grantUserProjectAccess(string $userId, array $grantUserProjectAccessRequest): void
     {
         $this->refreshToken();
-        $this->accessApi->grantUserProjectAccess($user_id, $grant_user_project_access_request_inner);
+        $this->accessApi->grantUserProjectAccess($userId, $grantUserProjectAccessRequest);
     }
 
     /**
-     * Operation listProjectUserAccess
+     * Lists user access for a project
      *
-     * List user access for a project
-     *
-     * @param string $project_id The ID of the project. (required)
-     * @param int|null $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary
-     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary
-     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field. Use a dash ('-') to sort descending.
-     *        Supported fields: `granted_at`, `updated_at`. (optional)
-     * @return ListProjectUserAccess200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listProjectUserAccess(
-        string $project_id,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
-        string $sort = null
-    ): ListProjectUserAccess200Response|Error {
+        string  $projectId,
+        ?int    $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
+    ): ListProjectUserAccess200Response|Error
+    {
         $this->refreshToken();
-        return $this->accessApi->listProjectUserAccess($project_id, $page_size, $page_before, $page_after, $sort);
+        return $this->accessApi->listProjectUserAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 
     /**
-     * Operation listUserProjectAccess
+     * Lists project access for a user
      *
-     * List project access for a user
-     *
-     * @param string $user_id The ID of the user. (required)
-     * @param string|null $filter_organization_id Allows filtering by `organization_id`. (optional)
-     * @param int|null $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary
-     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary
-     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field. Use a dash ('-') to sort descending.
-     *        Supported fields: `project_title`, `granted_at`, `updated_at`. (optional)
-     * @return ListProjectUserAccess200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listUserProjectAccess(
-        string $user_id,
-        string $filter_organization_id = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
-        string $sort = null
-    ): ListProjectUserAccess200Response|Error {
+        string  $userId,
+        ?string $filterOrganizationId = null,
+        ?int    $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
+    ): ListProjectUserAccess200Response|Error
+    {
         $this->refreshToken();
         return $this->accessApi->listUserProjectAccess(
-            $user_id,
-            $filter_organization_id,
-            $page_size,
-            $page_before,
-            $page_after,
+            $userId,
+            $filterOrganizationId,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         );
     }
 
     /**
-     * Operation removeProjectUserAccess
+     * Removes user access for a project
      *
-     * Remove user access for a project
-     *
-     * @param string $project_id The ID of the project. (required)
-     * @param string $user_id The ID of the user. (required)
-     * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function removeProjectUserAccess(string $project_id, string $user_id): void
+    public function removeProjectUserAccess(string $projectId, string $userId): void
     {
         $this->refreshToken();
-        $this->accessApi->removeProjectUserAccess($project_id, $user_id);
+        $this->accessApi->removeProjectUserAccess($projectId, $userId);
     }
 
     /**
-     * Operation removeUserProjectAccess
+     * Removes project access for a user
      *
-     * Remove project access for a user
-     *
-     * @param string $user_id The ID of the user. (required)
-     * @param string $project_id The ID of the project. (required)
-     * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function removeUserProjectAccess(string $user_id, string $project_id): void
+    public function removeUserProjectAccess(string $userId, string $projectId): void
     {
         $this->refreshToken();
-        $this->accessApi->removeUserProjectAccess($user_id, $project_id);
+        $this->accessApi->removeUserProjectAccess($userId, $projectId);
     }
 
     /**
-     * Operation updateProjectUserAccess
+     * Updates user access for a project
      *
-     * Update user access for a project
-     *
-     * @param string $project_id The ID of the project. (required)
-     * @param string $user_id The ID of the user. (required)
-     * @param array|null $update_project_user_access_request update_project_user_access_request (optional)
-     * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function updateProjectUserAccess(
-        string $project_id,
-        string $user_id,
-        array $update_project_user_access_request = null
-    ): void {
+        string $projectId,
+        string $userId,
+        ?array $updateProjectUserAccessRequest = null
+    ): void
+    {
         $this->refreshToken();
-        $update_project_user_access_request = new UpdateProjectUserAccessRequest($update_project_user_access_request);
-        $this->accessApi->updateProjectUserAccess($project_id, $user_id, $update_project_user_access_request);
+        $updateProjectUserAccessRequest = new UpdateProjectUserAccessRequest($updateProjectUserAccessRequest);
+        $this->accessApi->updateProjectUserAccess($projectId, $userId, $updateProjectUserAccessRequest);
     }
 
     /**
-     * Operation updateUserProjectAccess
+     * Updates project access for a user
      *
-     * Update project access for a user
-     *
-     * @param string $user_id The ID of the user. (required)
-     * @param string $project_id The ID of the project. (required)
-     * @param array|null $update_project_user_access_request update_project_user_access_request (optional)
-     * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function updateUserProjectAccess(
-        string $user_id,
-        string $project_id,
-        array $update_project_user_access_request = null
-    ): void {
+        string $userId,
+        string $projectId,
+        ?array $updateProjectUserAccessRequest = null
+    ): void
+    {
         $this->refreshToken();
-        $update_project_user_access_request = new UpdateProjectUserAccessRequest($update_project_user_access_request);
-        $this->accessApi->updateUserProjectAccess($project_id, $user_id, $update_project_user_access_request);
+        $updateProjectUserAccessRequest = new UpdateProjectUserAccessRequest($updateProjectUserAccessRequest);
+        $this->accessApi->updateUserProjectAccess($projectId, $userId, $updateProjectUserAccessRequest);
     }
 
-    /************** ****************************/
-    /********* UsersProfilesApi ****************/
-    /************** ****************************/
-
     /**
-     * Operation createProfilePicture
+     * Creates a user profile picture
      *
-     * Create a user profile picture
-     *
-     * @param string $uuid The uuid of the user (required)
-     * @return CreateProfilePicture200Response
      * @throws UpsunException on non-2xx response or if the response body is not in the expected format
      */
     public function createProfilePicture(string $uuid)
     {
-        throw new UpsunException("Not implemented (missing params on apisgen side");
+        throw new UpsunException("Not implemented (yet)");
     }
 
     /**
-     * Operation deleteProfilePicture
+     * Deletes a user profile picture
      *
-     * Delete a user profile picture
-     *
-     * @param string $uuid The uuid of the user (required)
-     *
-     * @return void
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
@@ -465,45 +331,32 @@ class UserTask extends TaskBase
     }
 
     /**
-     * Operation getAddress
+     * Gets a user address
      *
-     * Get a user address
-     *
-     * @param string $user_id The UUID of the user (required)
-     *
-     * @return GetAddress200Response
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getAddress(string $user_id): GetAddress200Response
+    public function getAddress(string $userId): GetAddress200Response
     {
         $this->refreshToken();
-        return $this->profilesApi->getAddress($user_id);
+        return $this->profilesApi->getAddress($userId);
     }
 
     /**
-     * Operation getProfile
+     * Gets a single user profile
      *
-     * Get a single user profile
-     *
-     * @param string $user_id The UUID of the user (required)
-     *
-     * @return Profile
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProfile(string $user_id): Profile
+    public function getProfile(string $userId): Profile
     {
         $this->refreshToken();
-        return $this->profilesApi->getProfile($user_id);
+        return $this->profilesApi->getProfile($userId);
     }
 
     /**
-     * Operation listProfiles
+     * Lists current user profiles
      *
-     * List current user profiles
-     *
-     * @return ListProfiles200Response
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
@@ -514,215 +367,142 @@ class UserTask extends TaskBase
     }
 
     /**
-     * Operation updateAddress
+     * Updates a user address
      *
-     * Update a user address
-     *
-     * @param string $user_id The UUID of the user (required)
-     * @param Address|null $address address (optional)
-     *
-     * @return GetAddress200Response
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateAddress(string $user_id, Address $address = null): GetAddress200Response
+    public function updateAddress(string $userId, ?Address $address = null): GetAddress200Response
     {
         $this->refreshToken();
-        return $this->profilesApi->updateAddress($user_id, $address);
+        return $this->profilesApi->updateAddress($userId, $address);
     }
 
     /**
-     * Operation updateProfile
+     * Updates a user profile
      *
-     * Update a user profile
-     *
-     * @param string $user_id The UUID of the user (required)
-     * @param array $update_profile_data update_profile_request (optional)
-     *
-     * @return Profile
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateProfile(string $user_id, array $update_profile_data = []): Profile
+    public function updateProfile(string $userId, ?array $updateProfileData = []): Profile
     {
         $this->refreshToken();
-        $update_profile_request = new UpdateProfileRequest($update_profile_data);
-        return $this->profilesApi->updateProfile($user_id, $update_profile_request);
+        $update_profile_request = new UpdateProfileRequest($updateProfileData);
+        return $this->profilesApi->updateProfile($userId, $update_profile_request);
     }
 
-    /************** ************************/
-    /********* APITokensApi ****************/
-    /************** ************************/
-
     /**
-     * Operation createApiToken
+     * Creates an API token
      *
-     * Create an API token
-     *
-     * @param string $user_id The ID of the user. (required)
-     * @param array|null $create_api_token_request create_api_token_request (optional)
-     * @return APIToken|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createApiToken(string $user_id, array $create_api_token_request = null): Error|APIToken
+    public function createApiToken(string $userId, ?array $createApiTokenRequest = null): Error|APIToken
     {
         $this->refreshToken();
-        $create_api_token_request = new CreateApiTokenRequest($create_api_token_request);
-        return $this->tokensApi->createApiToken($user_id, $create_api_token_request);
+        $createApiTokenRequest = new CreateApiTokenRequest($createApiTokenRequest);
+        return $this->tokensApi->createApiToken($userId, $createApiTokenRequest);
     }
 
     /**
-     * Operation deleteApiToken
+     * Deletes an API token
      *
-     * Delete an API token
-     *
-     * @param string $user_id The ID of the user. (required)
-     * @param string $token_id The ID of the token. (required)
-     * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteApiToken(string $user_id, string $token_id): void
+    public function deleteApiToken(string $userId, string $token_id): void
     {
         $this->refreshToken();
-        $this->tokensApi->deleteApiToken($user_id, $token_id);
+        $this->tokensApi->deleteApiToken($userId, $token_id);
     }
 
     /**
-     * Operation getApiToken
+     * Gets an API token
      *
-     * Get an API token
-     *
-     * @param string $user_id The ID of the user. (required)
-     * @param string $token_id The ID of the token. (required)
-     * @return APIToken|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getApiToken(string $user_id, string $token_id): Error|APIToken
+    public function getApiToken(string $userId, string $token_id): Error|APIToken
     {
         $this->refreshToken();
-        return $this->tokensApi->getApiToken($user_id, $token_id);
+        return $this->tokensApi->getApiToken($userId, $token_id);
     }
 
     /**
-     * Operation listApiTokens
+     * Lists a user's API tokens
      *
-     * List a user's API tokens
-     *
-     * @param string $user_id The ID of the user. (required)
-     * @return APIToken[]|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listApiTokens(string $user_id): Error|array
+    public function listApiTokens(string $userId): Error|array
     {
         $this->refreshToken();
-        return $this->tokensApi->createApiToken($user_id);
+        return $this->tokensApi->createApiToken($userId);
     }
 
-    /************** **************************/
-    /********* ConnectionsApi ****************/
-    /************** **************************/
-
     /**
-     * Operation deleteLoginConnection
+     * Deletes a federated login connection
      *
-     * Delete a federated login connection
-     *
-     * @param string $provider The name of the federation provider. (required)
-     * @param string $user_id The ID of the user. (required)
-     * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteLoginConnection(string $provider, string $user_id): void
+    public function deleteLoginConnection(string $provider, string $userId): void
     {
         $this->refreshToken();
-        $this->connectionsApi->deleteLoginConnection($provider, $user_id);
+        $this->connectionsApi->deleteLoginConnection($provider, $userId);
     }
 
     /**
-     * Operation getLoginConnection
+     * Gets a federated login connection
      *
-     * Get a federated login connection
-     *
-     * @param string $provider The name of the federation provider. (required)
-     * @param string $user_id The ID of the user. (required)
-     * @return Connection|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getLoginConnection(string $provider, string $user_id): Error|Connection
+    public function getLoginConnection(string $provider, string $userId): Error|Connection
     {
         $this->refreshToken();
-        return $this->connectionsApi->getLoginConnection($provider, $user_id);
+        return $this->connectionsApi->getLoginConnection($provider, $userId);
     }
 
     /**
-     * Operation listLoginConnections
+     * Lists federated login connections
      *
-     * List federated login connections
-     *
-     * @param string $user_id The ID of the user. (required)
-     * @return Connection[]|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listLoginConnections(string $user_id): array|Error
+    public function listLoginConnections(string $userId): array|Error
     {
         $this->refreshToken();
-        return $this->connectionsApi->listLoginConnections($user_id);
+        return $this->connectionsApi->listLoginConnections($userId);
     }
 
-    /************** *********************/
-    /********* GrantsApi ****************/
-    /************** *********************/
-
     /**
-     * Operation listUserExtendedAccess
+     * Lists extended access of a user
      *
-     * List extended access of a user
-     *
-     * @param string $user_id The ID of the user. (required)
-     * @param array|null $filter_resource_type Allows filtering by `resource_type` (project or organization)
-     *        using one or more operators. (optional)
-     * @param array|null $filter_organization_id Allows filtering by `organization_id` using one or more operators.
-     *        (optional)
-     * @param array|null $filter_permissions Allows filtering by `permissions` using one or more operators. (optional)
-     * @return ListUserExtendedAccess200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listExtendedAccess(
-        string $user_id,
-        array $filter_resource_type = null,
-        array $filter_organization_id = null,
-        array $filter_permissions = null
-    ): ListUserExtendedAccess200Response|Error {
+        string $userId,
+        ?array $filterResourceType = null,
+        ?array $filterOrganizationId = null,
+        ?array $filterPermissions = null
+    ): ListUserExtendedAccess200Response|Error
+    {
         $this->refreshToken();
         return $this->grantsApi->listUserExtendedAccess(
-            $user_id,
-            $filter_resource_type,
-            $filter_organization_id,
-            $filter_permissions
+            $userId,
+            $filterResourceType,
+            $filterOrganizationId,
+            $filterPermissions
         );
     }
 
-    /************** ******************/
-    /********* MFAApi ****************/
-    /************** ******************/
-
     /**
-     * Operation confirmTotpEnrollment
+     * Confirms TOTP enrollment
      *
-     * Confirm TOTP enrollment
-     *
-     * @param string $user_id The ID of the user. (required)
-     * @param array|null $confirm_totp_enrollment_request (optional)
-     * @return ConfirmTotpEnrollment200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function confirmTotpEnrollment(
-        string $user_id,
-        array $confirm_totp_enrollment_request = null
-    ): ConfirmTotpEnrollment200Response|Error {
+        string $userId,
+        ?array  $confirmTotpEnrollmentRequest = null
+    ): ConfirmTotpEnrollment200Response|Error
+    {
         $this->refreshToken();
-        $confirm_totp_enrollment_request = new ConfirmTotpEnrollmentRequest($confirm_totp_enrollment_request);
-        return $this->mfaApi->confirmTotpEnrollment($user_id, $confirm_totp_enrollment_request);
+        $confirmTotpEnrollmentRequest = new ConfirmTotpEnrollmentRequest($confirmTotpEnrollmentRequest);
+        return $this->mfaApi->confirmTotpEnrollment($userId, $confirmTotpEnrollmentRequest);
     }
 
     /**
@@ -730,88 +510,62 @@ class UserTask extends TaskBase
      *
      * Get information about TOTP enrollment
      *
-     * @param string $user_id The ID of the user. (required)
+     * @param string $userId The ID of the user. (required)
      * @return GetTotpEnrollment200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getTotpEnrollment(string $user_id): GetTotpEnrollment200Response|Error
+    public function getTotpEnrollment(string $userId): GetTotpEnrollment200Response|Error
     {
         $this->refreshToken();
-        return $this->mfaApi->getTotpEnrollment($user_id);
+        return $this->mfaApi->getTotpEnrollment($userId);
     }
 
     /**
-     * Operation recreateRecoveryCodes
+     * Re-creates recovery codes
      *
-     * Re-create recovery codes
-     *
-     * @param string $user_id The ID of the user. (required)
-     * @return ConfirmTotpEnrollment200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function recreateRecoveryCodes(string $user_id): ConfirmTotpEnrollment200Response|Error
+    public function recreateRecoveryCodes(string $userId): ConfirmTotpEnrollment200Response|Error
     {
         $this->refreshToken();
-        return $this->mfaApi->recreateRecoveryCodes($user_id);
+        return $this->mfaApi->recreateRecoveryCodes($userId);
     }
 
     /**
-     * Operation withdrawTotpEnrollment
+     * Withdraws TOTP enrollment
      *
-     * Withdraw TOTP enrollment
-     *
-     * @param string $user_id The ID of the user. (required)
-     * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function withdrawTotpEnrollment(string $user_id): void
+    public function withdrawTotpEnrollment(string $userId): void
     {
         $this->refreshToken();
-        $this->mfaApi->withdrawTotpEnrollment($user_id);
+        $this->mfaApi->withdrawTotpEnrollment($userId);
     }
-
-    /************** **************************/
-    /********* PhoneNumberApi ****************/
-    /************** **************************/
-
+    
     /**
-     * Operation confirmPhoneNumber
+     * Confirms phone number
      *
-     * Confirm phone number
-     *
-     * @param string $sid The session ID obtained from `POST /users/{user_id}/phonenumber`. (required)
-     * @param string $user_id The ID of the user. (required)
-     * @param array|null $confirm_phone_number_request confirm_phone_number_request (optional)
-     * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function confirmPhoneNumber(string $sid, string $user_id, array $confirm_phone_number_request = null): void
+    public function confirmPhoneNumber(string $sid, string $userId, ?array $confirmPhoneNumberRequest = null): void
     {
         $this->refreshToken();
-        $confirm_phone_number_request = new ConfirmPhoneNumberRequest($confirm_phone_number_request);
-        $this->phoneNumberApi->confirmPhoneNumber($sid, $user_id, $confirm_phone_number_request);
+        $confirmPhoneNumberRequest = new ConfirmPhoneNumberRequest($confirmPhoneNumberRequest);
+        $this->phoneNumberApi->confirmPhoneNumber($sid, $userId, $confirmPhoneNumberRequest);
     }
 
     /**
-     * Operation verifyPhoneNumber
+     * Verifies phone number
      *
-     * Verify phone number
-     *
-     * @param string $user_id The ID of the user. (required)
-     * @param array|null $verify_phone_number_request verify_phone_number_request (optional)
-     * @return VerifyPhoneNumber200Response|Error|Error|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function verifyPhoneNumber(
-        string $user_id,
-        array $verify_phone_number_request = null
-    ): VerifyPhoneNumber200Response|Error {
+        string $userId,
+        ?array  $verifyPhoneNumberRequest = null
+    ): VerifyPhoneNumber200Response|Error
+    {
         $this->refreshToken();
-        $verify_phone_number_request = new VerifyPhoneNumberRequest($verify_phone_number_request);
-        return $this->phoneNumberApi->verifyPhoneNumber($user_id, $verify_phone_number_request);
+        $verifyPhoneNumberRequest = new VerifyPhoneNumberRequest($verifyPhoneNumberRequest);
+        return $this->phoneNumberApi->verifyPhoneNumber($userId, $verifyPhoneNumberRequest);
     }
-
-    /************** ***************************/
-    /********* Custom function ****************/
-    /************** ***************************/
 }

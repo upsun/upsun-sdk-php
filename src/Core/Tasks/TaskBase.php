@@ -8,9 +8,4 @@ abstract class TaskBase
     {
         $this->client->apiConfig->setAccessToken($this->client->auth->getAccessToken());
     }
-
-    protected function checkProjectId(string $project_id)
-    {
-        //TODO
-    }
 }

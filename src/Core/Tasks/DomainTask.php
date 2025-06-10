@@ -12,146 +12,102 @@ use Upsun\UpsunClient;
 
 class DomainTask extends TaskBase
 {
-    private readonly DomainManagementApi $api;
 
     public function __construct(
         public readonly UpsunClient $client,
+        private readonly DomainManagementApi $api,
     ) {
-        $this->api = new DomainManagementApi($this->client->apiClient, $this->client->apiConfig);
-    }
-
-    /************** **************************/
-    /********* Getter ************************/
-    /************** **************************/
-    
-    public function getApi(): DomainManagementApi
-    {
-        return $this->api;
     }
     
-    /************** ********************************/
-    /********* DomainManagementApi  ****************/
-    /************** ********************************/
-
     /**
-     * Operation createProjectDomain
+     * Adds a project (or environment) domain
      *
-     * Add a project (or environment) domain
-     *
-     * @param string $project_id project_id (required)
-     * @param array $domain_create_input (required)
-     * @param string|null $environment_id (optional)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function create(
-        string $project_id,
-        array $domain_create_input,
-        ?string $environment_id = null
+        string $projectId,
+        array $domainCreateInput,
+        ?string $environmentId = null
     ): AcceptedResponse {
         $this->refreshToken();
-        $domain_create_input = new DomainCreateInput($domain_create_input);
-        if (!$environment_id) {
-            return $this->getApi()->createProjectsDomains($project_id, $domain_create_input);
+        $domainCreateInput = new DomainCreateInput($domainCreateInput);
+        if (!$environmentId) {
+            return $this->api->createProjectsDomains($projectId, $domainCreateInput);
         } else {
-            return $this->getApi()->createProjectsEnvironmentsDomains(
-                $project_id,
-                $environment_id,
-                $domain_create_input
+            return $this->api->createProjectsEnvironmentsDomains(
+                $projectId,
+                $environmentId,
+                $domainCreateInput
             );
         }
     }
 
     /**
-     * Operation deleteProjectDomain
+     * Deletes a project (or environment) domain
      *
-     * Delete a project (or environment) domain
-     *
-     * @param string $project_id project_id (required)
-     * @param string $domain_id domain_id (required)
-     * @param string|null $environment_id (optional)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function delete(string $project_id, string $domain_id, ?string $environment_id = null): AcceptedResponse
+    public function delete(string $projectId, string $domainId, ?string $environmentId = null): AcceptedResponse
     {
         $this->refreshToken();
-        if (!$environment_id) {
-            return $this->getApi()->deleteProjectsDomains($project_id, $domain_id);
+        if (!$environmentId) {
+            return $this->api->deleteProjectsDomains($projectId, $domainId);
         } else {
-            return $this->getApi()->deleteProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id);
+            return $this->api->deleteProjectsEnvironmentsDomains($projectId, $environmentId, $domainId);
         }
     }
 
     /**
-     * Operation getProjectsDomains
+     * Gets a project (or environment) domain
      *
-     * Get a project (or environment) domain
-     *
-     * @param string $project_id project_id (required)
-     * @param string $domain_id domain_id (required)
-     * @param string|null $environment_id
-     * @return Domain
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function get(string $project_id, string $domain_id, ?string $environment_id = null): Domain
+    public function get(string $projectId, string $domainId, ?string $environmentId = null): Domain
     {
         $this->refreshToken();
-        if (!$environment_id) {
-            return $this->getApi()->getProjectsDomains($project_id, $domain_id);
+        if (!$environmentId) {
+            return $this->api->getProjectsDomains($projectId, $domainId);
         } else {
-            return $this->getApi()->getProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id);
+            return $this->api->getProjectsEnvironmentsDomains($projectId, $environmentId, $domainId);
         }
     }
 
     /**
-     * Operation listProjectDomains
+     * Gets list of project (or environment) domains
      *
-     * Get list of project (or environment) domains
-     *
-     * @param string $project_id project_id (required)
-     * @param string|null $environment_id (optional)
-     * @return Domain[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function list(string $project_id, ?string $environment_id = null): array
+    public function list(string $projectId, ?string $environmentId = null): array
     {
         $this->refreshToken();
-        if (!$environment_id) {
-            return $this->getApi()->listProjectsDomains($project_id);
+        if (!$environmentId) {
+            return $this->api->listProjectsDomains($projectId);
         } else {
-            return $this->getApi()->listProjectsEnvironmentsDomains($project_id, $environment_id);
+            return $this->api->listProjectsEnvironmentsDomains($projectId, $environmentId);
         }
     }
 
     /**
-     * Operation updateProjectDomain
+     * Updates a project (or environment) domain
      *
-     * Update a project (or environment) domain
-     *
-     * @param string $project_id project_id (required)
-     * @param string $domain_id domain_id (required)
-     * @param array $domain_patch (required)
-     * @param string|null $environment_id (optional)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function update(
-        string $project_id,
-        string $domain_id,
-        array $domain_patch,
-        ?string $environment_id = null
+        string $projectId,
+        string $domainId,
+        array $domainPatch,
+        ?string $environmentId = null
     ): AcceptedResponse {
         $this->refreshToken();
-        $domain_patch = new DomainPatch($domain_patch);
-        if (!$environment_id) {
-            return $this->getApi()->updateProjectsDomains($project_id, $domain_id, $domain_patch);
+        $domainPatch = new DomainPatch($domainPatch);
+        if (!$environmentId) {
+            return $this->api->updateProjectsDomains($projectId, $domainId, $domainPatch);
         } else {
-            return $this->getApi()->updateProjectsEnvironmentsDomains(
-                $project_id,
-                $environment_id,
-                $domain_id,
-                $domain_patch
+            return $this->api->updateProjectsEnvironmentsDomains(
+                $projectId,
+                $environmentId,
+                $domainId,
+                $domainPatch
             );
         }
     }

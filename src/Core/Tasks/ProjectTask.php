@@ -10,7 +10,6 @@ use OpenAPI\Client\apisgen\ProjectSettingsApi;
 use OpenAPI\Client\apisgen\RepositoryApi;
 use OpenAPI\Client\apisgen\SystemInformationApi;
 use OpenAPI\Client\apisgen\ThirdPartyIntegrationsApi;
-use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\Model\AcceptedResponse;
 use OpenAPI\Client\Model\Activity;
 use OpenAPI\Client\Model\Blob;
@@ -21,11 +20,7 @@ use OpenAPI\Client\Model\DeploymentTarget;
 use OpenAPI\Client\Model\DeploymentTargetCreateInput;
 use OpenAPI\Client\Model\DeploymentTargetPatch;
 use OpenAPI\Client\Model\Domain;
-use OpenAPI\Client\Model\Environment;
 use OpenAPI\Client\Model\Error;
-use OpenAPI\Client\Model\GrantProjectTeamAccessRequestInner;
-use OpenAPI\Client\Model\GrantProjectUserAccessRequestInner;
-use OpenAPI\Client\Model\GrantTeamProjectAccessRequestInner;
 use OpenAPI\Client\Model\Integration;
 use OpenAPI\Client\Model\IntegrationCreateInput;
 use OpenAPI\Client\Model\IntegrationPatch;
@@ -37,7 +32,6 @@ use OpenAPI\Client\Model\ProjectInvitation;
 use OpenAPI\Client\Model\ProjectPatch;
 use OpenAPI\Client\Model\ProjectSettings;
 use OpenAPI\Client\Model\ProjectSettingsPatch;
-use OpenAPI\Client\Model\ProjectVariable;
 use OpenAPI\Client\Model\Ref;
 use OpenAPI\Client\Model\Subscription;
 use OpenAPI\Client\Model\SystemInformation;
@@ -48,49 +42,28 @@ use Upsun\UpsunClient;
 
 class ProjectTask extends TaskBase
 {
-    protected HeaderSelector $headerSelector;
-
-    public readonly ProjectApi $api;
-    public readonly ProjectSettingsApi $settingsApi;
-    public readonly DeploymentTargetApi $deploymentTargetApi;
-    public readonly RepositoryApi $repositoryApi;
-    public readonly SystemInformationApi $systemInfoApi;
-    public readonly ThirdPartyIntegrationsApi $thirdPartyIntegrationsApi;
-
     public function __construct(
-        public readonly UpsunClient $client,
-    ) {
-        $this->headerSelector = new HeaderSelector();
-        $this->api = new ProjectApi($this->client->apiClient, $this->client->apiConfig);
-        $this->settingsApi = new ProjectSettingsApi($this->client->apiClient, $this->client->apiConfig);
-        $this->deploymentTargetApi = new DeploymentTargetApi($this->client->apiClient, $this->client->apiConfig);
-        $this->repositoryApi = new RepositoryApi($this->client->apiClient, $this->client->apiConfig);
-        $this->systemInfoApi = new SystemInformationApi($this->client->apiClient, $this->client->apiConfig);
-        $this->thirdPartyIntegrationsApi = new ThirdPartyIntegrationsApi(
-            $this->client->apiClient,
-            $this->client->apiConfig
-        );
+        private readonly UpsunClient               $client,
+        private readonly ProjectApi                $api,
+        private readonly ProjectSettingsApi        $settingsApi,
+        private readonly DeploymentTargetApi       $deploymentTargetApi,
+        private readonly RepositoryApi             $repositoryApi,
+        private readonly SystemInformationApi      $systemInfoApi,
+        private readonly ThirdPartyIntegrationsApi $thirdPartyIntegrationsApi,
+    )
+    {
     }
 
-    /************** **********************/
-    /********* ProjectApi ****************/
-    /************** **********************/
-
     /**
-     * Operation deleteProjects
+     * Deletes a project
      *
-     * Delete a project
-     *
-     * @param string $project_id project_id (required)
-     *
-     * @return AcceptedResponse
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function delete(string $project_id): AcceptedResponse
+    public function delete(string $projectId): AcceptedResponse
     {
         $this->refreshToken();
-        return $this->api->deleteProjects($project_id);
+        return $this->api->deleteProjects($projectId);
     }
 
     /**
@@ -99,1054 +72,692 @@ class ProjectTask extends TaskBase
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function get(string $project_id): Project
+    public function get(string $projectId): Project
     {
         $this->refreshToken();
-        return $this->api->getProjects($project_id);
+        return $this->api->getProjects($projectId);
     }
 
     /**
-     * Operation getProjectsCapabilities
+     * Gets a project's capabilities
      *
-     * Get a project's capabilities
-     *
-     * @param string $project_id project_id (required)
-     *
-     * @return ProjectCapabilities
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getCapabilities(string $project_id): ProjectCapabilities
+    public function getCapabilities(string $projectId): ProjectCapabilities
     {
         $this->refreshToken();
-        return $this->api->getProjectsCapabilities($project_id);
+        return $this->api->getProjectsCapabilities($projectId);
     }
 
     /**
-     * Operation updateProjects
+     * Updates a project
      *
-     * Update a project
-     *
-     * @param string $project_id project_id (required)
-     * @param array $project_data (required)
-     *
-     * @return AcceptedResponse
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function update(string $project_id, array $project_data): AcceptedResponse
+    public function update(string $projectId, array $projectData): AcceptedResponse
     {
         $this->refreshToken();
-        $project_patch = new ProjectPatch($project_data);
-        return $this->api->updateProjects($project_id, $project_patch);
+        $project_patch = new ProjectPatch($projectData);
+        return $this->api->updateProjects($projectId, $project_patch);
     }
 
-    /************** ************************************/
-    /********* InvitationTask shortcuts ****************/
-    /************** ************************************/
-
     /**
-     * Operation cancelProjectInvite
+     * Cancels a pending invitation to a project
      *
-     * Cancel a pending invitation to a project
-     *
-     * @param string $project_id The ID of the project. (required)
-     * @param string $invitation_id The ID of the invitation. (required)
-     *
-     * @return void
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function cancelInvite(string $project_id, string $invitation_id): void
+    public function cancelInvite(string $projectId, string $invitationId): void
     {
-        $this->client->invitations->cancelProjectInvite($project_id, $invitation_id);
+        $this->client->invitations->cancelProjectInvite($projectId, $invitationId);
     }
 
     /**
-     * Operation createProjectInvite
+     * Invites user to a project by email
      *
-     * Invite user to a project by email
-     *
-     * @param string $project_id The ID of the project. (required)
-     * @param CreateProjectInviteRequest|null $create_project_invite_request create_project_invite_request (optional)
-     *
-     * @return ProjectInvitation|Error
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function createInvite(
-        string $project_id,
-        CreateProjectInviteRequest $create_project_invite_request = null
-    ): ProjectInvitation|Error {
-        return $this->client->invitations->createProjectInvite($project_id, $create_project_invite_request);
+        string                      $projectId,
+        ?CreateProjectInviteRequest $createProjectInviteRequest = null
+    ): ProjectInvitation|Error
+    {
+        return $this->client->invitations->createProjectInvite($projectId, $createProjectInviteRequest);
     }
 
     /**
-     * Operation listProjectInvites
+     * Lists invitations to a project
      *
-     * List invitations to a project
-     *
-     * @param string $project_id The ID of the project. (required)
-     * @param array|null $filter_state Allows filtering by `state` of the invitations:
-     *        'pending' (default), 'error'. (optional)
-     * @param int|null $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary
-     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary
-     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field. Use a dash ('-') to sort descending. (optional)
-     *
-     * @return ProjectInvitation[]|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listInvites(
-        string $project_id,
-        array $filter_state = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
-        string $sort = null
-    ): Error|array {
+        string  $projectId,
+        ?array  $filterState = null,
+        ?int    $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
+    ): Error|array
+    {
         return $this->client->invitations->listProjectInvites(
-            $project_id,
-            $filter_state,
-            $page_size,
-            $page_before,
-            $page_after,
+            $projectId,
+            $filterState,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         );
     }
 
-    /************** ******************************/
-    /********* ProjectSettingsApi ****************/
-    /************** ******************************/
-
     /**
-     * Operation getProjectsSettings
+     * Gets list of project settings
      *
-     * Get list of project settings
-     *
-     * @param string $project_id project_id (required)
-     * @return ProjectSettings
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getSettings(string $project_id): ProjectSettings
+    public function getSettings(string $projectId): ProjectSettings
     {
         $this->refreshToken();
-        return $this->settingsApi->getProjectsSettings($project_id);
+        return $this->settingsApi->getProjectsSettings($projectId);
     }
 
     /**
-     * Operation updateProjectsSettings
+     * Updates a project setting
      *
-     * Update a project setting
-     *
-     * @param string $project_id project_id (required)
-     * @param array $project_settings_patch (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateSettings(string $project_id, array $project_settings_patch): AcceptedResponse
+    public function updateSettings(string $projectId, array $projectSettingsPatch): AcceptedResponse
     {
         $this->refreshToken();
-        $project_settings_patch = new ProjectSettingsPatch($project_settings_patch);
-        return $this->settingsApi->updateProjectsSettings($project_id, $project_settings_patch);
+        $projectSettingsPatch = new ProjectSettingsPatch($projectSettingsPatch);
+        return $this->settingsApi->updateProjectsSettings($projectId, $projectSettingsPatch);
     }
 
-    /************** **********************************/
-    /********* VariableTask shortcuts ****************/
-    /************** **********************************/
-
     /**
-     * Operation createVariable
+     * Adds a project variable
      *
-     * Add a project variable
-     *
-     * @param string $project_id project_id (required)
-     * @param array $project_variable_create_input (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createVariable(string $project_id, array $project_variable_create_input): AcceptedResponse
+    public function createVariable(string $projectId, array $projectVariableCreateInput): AcceptedResponse
     {
-        return $this->client->variables->createProjectVariable($project_id, $project_variable_create_input);
+        return $this->client->variables->createProjectVariable($projectId, $projectVariableCreateInput);
     }
 
     /**
-     * Operation deleteVariable
+     * Deletes a project variable
      *
-     * Delete a project variable
-     *
-     * @param string $project_id project_id (required)
-     * @param string $project_variable_id project_variable_id (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteVariable(string $project_id, string $project_variable_id): AcceptedResponse
+    public function deleteVariable(string $projectId, string $projectVariableId): AcceptedResponse
     {
-        return $this->client->variables->deleteProjectVariable($project_id, $project_variable_id);
+        return $this->client->variables->deleteProjectVariable($projectId, $projectVariableId);
     }
 
     /**
-     * Operation listVariables
+     * Gets list of project variables
      *
-     * Get list of project variables
-     *
-     * @param string $project_id project_id (required)
-     * @return ProjectVariable[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listVariables(string $project_id): array
+    public function listVariables(string $projectId): array
     {
-        return $this->client->variables->listProjectVariables($project_id);
+        return $this->client->variables->listProjectVariables($projectId);
     }
 
     /**
-     * Operation updateVariable
+     * Updates a project variable
      *
-     * Update a project variable
-     *
-     * @param string $project_id project_id (required)
-     * @param string $project_variable_id project_variable_id (required)
-     * @param array $project_variable_patch (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function updateVariable(
-        string $project_id,
-        string $project_variable_id,
-        array $project_variable_patch
-    ): AcceptedResponse {
+        string $projectId,
+        string $projectVariableId,
+        array  $projectVariablePatch
+    ): AcceptedResponse
+    {
         return $this->client->variables->updateProjectVariable(
-            $project_id,
-            $project_variable_id,
-            $project_variable_patch
+            $projectId,
+            $projectVariableId,
+            $projectVariablePatch
         );
     }
 
-    /************** **********************************/
-    /********* ActivityTask shortcuts ****************/
-    /************** **********************************/
-
     /**
-     * Operation cancelActivity
+     * Cancels a project activity
      *
-     * Cancel a project activity
-     *
-     * @param string $project_id project_id (required)
-     * @param string $activity_id activity_id (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function cancelActivity(string $project_id, string $activity_id): AcceptedResponse
+    public function cancelActivity(string $projectId, string $activityId): AcceptedResponse
     {
-        return $this->client->activity->projectCancel($project_id, $activity_id);
+        return $this->client->activity->cancel($projectId, $activityId);
     }
 
     /**
-     * Operation getActivity
+     * Gets a project activity log entry
      *
-     * Get a project activity log entry
-     *
-     * @param string $project_id project_id (required)
-     * @param string $activity_id activity_id (required)
-     * @return Activity
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getActivity(string $project_id, string $activity_id): Activity
+    public function getActivity(string $projectId, string $activityId): Activity
     {
-        return $this->client->activity->projectGet($project_id, $activity_id);
+        return $this->client->activity->get($projectId, $activityId);
     }
 
     /**
-     * Operation listProjectsActivities
+     * Gets project activity log
      *
-     * Get project activity log
-     *
-     * @param string $project_id project_id (required)
-     * @return Activity[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listActivities(string $project_id): array
+    public function listActivities(string $projectId): array
     {
-        return $this->client->activity->projectList($project_id);
+        return $this->client->activity->list($projectId);
     }
 
-    /************** ********************************/
-    /********* DeploymentTargetApi  ****************/
-    /************** ********************************/
-
     /**
-     * Operation createDeployment
+     * Creates a project deployment target
      *
-     * Create a project deployment target
-     *
-     * @param string $project_id project_id (required)
-     * @param array $deployment_target_create_input (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createDeployment(string $project_id, array $deployment_target_create_input): AcceptedResponse
+    public function createDeployment(string $projectId, array $deploymentTargetCreateInput): AcceptedResponse
     {
         $this->refreshToken();
-        $deployment_target_create_input = new DeploymentTargetCreateInput($deployment_target_create_input);
-        return $this->deploymentTargetApi->createProjectsDeployments($project_id, $deployment_target_create_input);
+        $deploymentTargetCreateInput = new DeploymentTargetCreateInput($deploymentTargetCreateInput);
+        return $this->deploymentTargetApi->createProjectsDeployments($projectId, $deploymentTargetCreateInput);
     }
 
     /**
-     * Operation deleteProjectsDeployments
+     * Deletes a single project deployment target
      *
-     * Delete a single project deployment target
-     *
-     * @param string $project_id project_id (required)
-     * @param string $deployment_target_configuration_id deployment_target_configuration_id (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteDeployment(string $project_id, string $deployment_target_configuration_id): AcceptedResponse
+    public function deleteDeployment(string $projectId, string $deploymentTargetConfigurationId): AcceptedResponse
     {
         $this->refreshToken();
-        return $this->deploymentTargetApi->deleteProjectsDeployments($project_id, $deployment_target_configuration_id);
+        return $this->deploymentTargetApi->deleteProjectsDeployments($projectId, $deploymentTargetConfigurationId);
     }
 
     /**
-     * Operation getProjectsDeployments
+     * Gets a single project deployment target
      *
-     * Get a single project deployment target
-     *
-     * @param string $project_id project_id (required)
-     * @param string $deployment_target_configuration_id deployment_target_configuration_id (required)
-     * @return DeploymentTarget
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getDeployment(string $project_id, string $deployment_target_configuration_id): DeploymentTarget
+    public function getDeployment(string $projectId, string $deploymentTargetConfigurationId): DeploymentTarget
     {
         $this->refreshToken();
-        return $this->deploymentTargetApi->getProjectsDeployments($project_id, $deployment_target_configuration_id);
+        return $this->deploymentTargetApi->getProjectsDeployments($projectId, $deploymentTargetConfigurationId);
     }
 
     /**
-     * Operation listProjectsDeployments
+     * Gets project deployment target info
      *
-     * Get project deployment target info
-     *
-     * @param string $project_id project_id (required)
-     * @return DeploymentTarget[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listDeployments(string $project_id): array
+    public function listDeployments(string $projectId): array
     {
         $this->refreshToken();
-        return $this->deploymentTargetApi->listProjectsDeployments($project_id);
+        return $this->deploymentTargetApi->listProjectsDeployments($projectId);
     }
 
     /**
-     * Operation updateDeployment
+     * Updates a project deployment
      *
-     * Update a project deployment
-     *
-     * @param string $project_id project_id (required)
-     * @param string $deployment_target_configuration_id deployment_target_configuration_id (required)
-     * @param array $deployment_target_patch (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function updateDeployment(
-        string $project_id,
-        string $deployment_target_configuration_id,
-        array $deployment_target_patch
-    ): AcceptedResponse {
+        string $projectId,
+        string $deploymentTargetConfigurationId,
+        array  $deploymentTargetPatch
+    ): AcceptedResponse
+    {
         $this->refreshToken();
-        $deployment_target_patch = new DeploymentTargetPatch($deployment_target_patch);
+        $deploymentTargetPatch = new DeploymentTargetPatch($deploymentTargetPatch);
         return $this->deploymentTargetApi->updateProjectsDeployments(
-            $project_id,
-            $deployment_target_configuration_id,
-            $deployment_target_patch
+            $projectId,
+            $deploymentTargetConfigurationId,
+            $deploymentTargetPatch
         );
     }
 
-    /************** **************************/
-    /********* RepositoryApi  ****************/
-    /************** **************************/
-
     /**
-     * Operation getGitBlob
+     * Gets a blob object
      *
-     * Get a blob object
-     *
-     * @param string $project_id project_id (required)
-     * @param string $repository_blob_id repository_blob_id (required)
-     * @return Blob
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getGitBlob(string $project_id, string $repository_blob_id): Blob
+    public function getGitBlob(string $projectId, string $repositoryBlobId): Blob
     {
         $this->refreshToken();
-        return $this->repositoryApi->getProjectsGitBlobs($project_id, $repository_blob_id);
+        return $this->repositoryApi->getProjectsGitBlobs($projectId, $repositoryBlobId);
     }
 
     /**
-     * Operation getGitCommit
+     * Gets a commit object
      *
-     * Get a commit object
-     *
-     * @param string $project_id project_id (required)
-     * @param string $repository_commit_id repository_commit_id (required)
-     * @return Commit
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getGitCommit(string $project_id, string $repository_commit_id): Commit
+    public function getGitCommit(string $projectId, string $repositoryCommitId): Commit
     {
         $this->refreshToken();
-        return $this->repositoryApi->getProjectsGitCommits($project_id, $repository_commit_id);
+        return $this->repositoryApi->getProjectsGitCommits($projectId, $repositoryCommitId);
     }
 
     /**
-     * Operation getGitRef
+     * Gets a Git ref object
      *
-     * Get a ref object
-     *
-     * @param string $project_id project_id (required)
-     * @param string $repository_ref_id repository_ref_id (required)
-     * @return Ref
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getGitRef(string $project_id, string $repository_ref_id): Ref
+    public function getGitRef(string $projectId, string $repositoryRefId): Ref
     {
         $this->refreshToken();
-        return $this->repositoryApi->getProjectsGitRefs($project_id, $repository_ref_id);
+        return $this->repositoryApi->getProjectsGitRefs($projectId, $repositoryRefId);
     }
 
     /**
-     * Operation getGitTree
+     * Gets a Git tree object
      *
-     * Get a tree object
-     *
-     * @param string $project_id project_id (required)
-     * @param string $repository_tree_id repository_tree_id (required)
-     * @return Tree
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getGitTree(string $project_id, string $repository_tree_id): Tree
+    public function getGitTree(string $projectId, string $repositoryTreeId): Tree
     {
         $this->refreshToken();
-        return $this->repositoryApi->getProjectsGitTrees($project_id, $repository_tree_id);
+        return $this->repositoryApi->getProjectsGitTrees($projectId, $repositoryTreeId);
     }
 
 
     /**
-     * Operation listGitRefs
+     * Gets list of repository refs
      *
-     * Get list of repository refs
-     *
-     * @param string $project_id project_id (required)
-     * @return Ref[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listGitRefs(string $project_id): array
+    public function listGitRefs(string $projectId): array
     {
         $this->refreshToken();
-        return $this->repositoryApi->listProjectsGitRefs($project_id);
-    }
-
-    /************** *********************************/
-    /********* SystemInformationApi  ****************/
-    /************** *********************************/
-
-    /**
-     * Operation restartGitServer
-     *
-     * Restart the Git server
-     *
-     * @param string $project_id project_id (required)
-     * @return AcceptedResponse
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     */
-    public function restartGitServer(string $project_id): AcceptedResponse
-    {
-        $this->refreshToken();
-        return $this->systemInfoApi->actionProjectsSystemRestart($project_id);
+        return $this->repositoryApi->listProjectsGitRefs($projectId);
     }
 
     /**
-     * Operation getGitInfo
+     * Restarts the Git server
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function restartGitServer(string $projectId): AcceptedResponse
+    {
+        $this->refreshToken();
+        return $this->systemInfoApi->actionProjectsSystemRestart($projectId);
+    }
+
+    /**
      * Get information about the Git server.
      *
-     * @param string $project_id project_id (required)
-     * @return SystemInformation
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getGitInfo(string $project_id): SystemInformation
+    public function getGitInfo(string $projectId): SystemInformation
     {
         $this->refreshToken();
-        return $this->systemInfoApi->getProjectsSystem($project_id);
-    }
-
-    /************** **************************************/
-    /********* ThirdPartyIntegrationsApi  ****************/
-    /************** **************************************/
-
-    /**
-     * Operation createIntegration
-     *
-     * Integrate project with a third-party service
-     *
-     * @param string $project_id project_id (required)
-     * @param array $integration_create_input (required)
-     * @return AcceptedResponse
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     */
-    public function createIntegration(string $project_id, array $integration_create_input): AcceptedResponse
-    {
-        $this->refreshToken();
-        $integration_create_input = new IntegrationCreateInput($integration_create_input);
-        return $this->thirdPartyIntegrationsApi->createProjectsIntegrations($project_id, $integration_create_input);
+        return $this->systemInfoApi->getProjectsSystem($projectId);
     }
 
     /**
-     * Operation deleteIntegration
+     * Integrates project with a third-party service
      *
-     * Delete an existing third-party integration
-     *
-     * @param string $project_id project_id (required)
-     * @param string $integration_id integration_id (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteIntegration(string $project_id, string $integration_id): AcceptedResponse
+    public function createIntegration(string $projectId, array $integrationCreateInput): AcceptedResponse
     {
         $this->refreshToken();
-        return $this->thirdPartyIntegrationsApi->deleteProjectsIntegrations($project_id, $integration_id);
+        $integrationCreateInput = new IntegrationCreateInput($integrationCreateInput);
+        return $this->thirdPartyIntegrationsApi->createProjectsIntegrations($projectId, $integrationCreateInput);
     }
 
     /**
-     * Operation getIntegration
+     * Deletes an existing third-party integration
      *
-     * Get information about an existing third-party integration
-     *
-     * @param string $project_id project_id (required)
-     * @param string $integration_id integration_id (required)
-     * @return Integration
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getIntegration(string $project_id, string $integration_id): Integration
+    public function deleteIntegration(string $projectId, string $integrationId): AcceptedResponse
     {
         $this->refreshToken();
-        return $this->thirdPartyIntegrationsApi->getProjectsIntegrations($project_id, $integration_id);
+        return $this->thirdPartyIntegrationsApi->deleteProjectsIntegrations($projectId, $integrationId);
     }
 
     /**
-     * Operation listIntegrations
+     * Gets information about an existing third-party integration
      *
-     * Get list of existing integrations for a project
-     *
-     * @param string $project_id project_id (required)
-     * @return Integration[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listIntegrations(string $project_id): array
+    public function getIntegration(string $projectId, string $integrationId): Integration
     {
         $this->refreshToken();
-        return $this->thirdPartyIntegrationsApi->listProjectsIntegrations($project_id);
+        return $this->thirdPartyIntegrationsApi->getProjectsIntegrations($projectId, $integrationId);
     }
 
     /**
-     * Operation updateIntegration
+     * Gets list of existing integrations for a project
      *
-     * Update an existing third-party integration
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function listIntegrations(string $projectId): array
+    {
+        $this->refreshToken();
+        return $this->thirdPartyIntegrationsApi->listProjectsIntegrations($projectId);
+    }
+
+    /**
+     * Updates an existing third-party integration
      *
-     * @param string $project_id project_id (required)
-     * @param string $integration_id integration_id (required)
-     * @param array $integration_patch (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function updateIntegration(
-        string $project_id,
-        string $integration_id,
-        array $integration_patch
-    ): AcceptedResponse {
+        string $projectId,
+        string $integrationId,
+        array  $integrationPatch
+    ): AcceptedResponse
+    {
         $this->refreshToken();
-        $integration_patch = new IntegrationPatch($integration_patch);
+        $integrationPatch = new IntegrationPatch($integrationPatch);
         return $this->thirdPartyIntegrationsApi->updateProjectsIntegrations(
-            $project_id,
-            $integration_id,
-            $integration_patch
+            $projectId,
+            $integrationId,
+            $integrationPatch
         );
     }
 
-    /************** ********************************/
-    /********* DomainTask shortcuts ****************/
-    /************** ********************************/
-
     /**
-     * Operation createDomain
+     * Adds a project domain
      *
-     * Add a project domain
-     *
-     * @param string $project_id project_id (required)
-     * @param array $domain_create_input (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createDomain(string $project_id, array $domain_create_input): AcceptedResponse
+    public function createDomain(string $projectId, array $domainCreateInput): AcceptedResponse
     {
-        return $this->client->domain->createProjectsDomains($project_id, $domain_create_input);
+        return $this->client->domain->create($projectId, $domainCreateInput);
     }
 
     /**
-     * Operation deleteDomain
+     * Deletes a project domain
      *
-     * Delete a project domain
-     *
-     * @param string $project_id project_id (required)
-     * @param string $domain_id domain_id (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteDomain(string $project_id, string $domain_id): AcceptedResponse
+    public function deleteDomain(string $projectId, string $domainId): AcceptedResponse
     {
-        return $this->client->domain->deleteProjectsDomains($project_id, $domain_id);
+        return $this->client->domain->delete($projectId, $domainId);
     }
 
     /**
-     * Operation getDomain
+     * Gets a project domain
      *
-     * Get a project domain
-     *
-     * @param string $project_id project_id (required)
-     * @param string $domain_id domain_id (required)
-     * @return Domain
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getDomain(string $project_id, string $domain_id): Domain
+    public function getDomain(string $projectId, string $domainId): Domain
     {
-        return $this->client->domain->getProjectsDomains($project_id, $domain_id);
+        return $this->client->domain->get($projectId, $domainId);
     }
 
     /**
-     * Operation listDomains
+     * Gets list of project domains
      *
-     * Get list of project domains
-     *
-     * @param string $project_id project_id (required)
-     * @return Domain[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listDomains(string $project_id): array
+    public function listDomains(string $projectId): array
     {
         $this->refreshToken();
-        return $this->client->domain->listProjectsDomains($project_id);
+        return $this->client->domain->list($projectId);
     }
 
     /**
-     * Operation updateDomain
+     * Updates a project domain
      *
-     * Update a project domain
-     *
-     * @param string $project_id project_id (required)
-     * @param string $domain_id domain_id (required)
-     * @param array $domain_patch (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function updateDomain(string $project_id, string $domain_id, array $domain_patch): AcceptedResponse
+    public function updateDomain(string $projectId, string $domainId, array $domainPatch): AcceptedResponse
     {
-        return $this->client->domain->updateProjectsDomains($project_id, $domain_id, $domain_patch);
+        return $this->client->domain->update($projectId, $domainId, $domainPatch);
     }
 
-    /************** *************************************/
-    /********* CertificateTask shortcuts ****************/
-    /************** *************************************/
-
     /**
-     * Operation createCertificate
+     * Adds an SSL certificate
      *
-     * Add an SSL certificate
-     *
-     * @param string $project_id project_id (required)
-     * @param array $certificate_create_input (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createCertificate(string $project_id, array $certificate_create_input): AcceptedResponse
+    public function createCertificate(string $projectId, array $certificateCreateInput): AcceptedResponse
     {
-        return $this->client->certificate->create($project_id, $certificate_create_input);
+        return $this->client->certificate->create($projectId, $certificateCreateInput);
     }
 
-
     /**
-     * Operation deleteCertificate
+     * Deletes an SSL certificate
      *
-     * Delete an SSL certificate
-     *
-     * @param string $project_id project_id (required)
-     * @param string $certificate_id certificate_id (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteCertificate(string $project_id, string $certificate_id): AcceptedResponse
+    public function deleteCertificate(string $projectId, string $certificateId): AcceptedResponse
     {
-        return $this->client->certificate->delete($project_id, $certificate_id);
+        return $this->client->certificate->delete($projectId, $certificateId);
     }
 
     /**
-     * Operation getCertificate
+     * Gets an SSL certificate
      *
-     * Get an SSL certificate
-     *
-     * @param string $project_id project_id (required)
-     * @param string $certificate_id certificate_id (required)
-     * @return Certificate
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getCertificate(string $project_id, string $certificate_id): Certificate
+    public function getCertificate(string $projectId, string $certificateId): Certificate
     {
-        return $this->client->certificate->get($project_id, $certificate_id);
+        return $this->client->certificate->get($projectId, $certificateId);
     }
 
     /**
-     * Operation listCertificates
+     * Gets list of SSL certificates
      *
-     * Get list of SSL certificates
-     *
-     * @param string $project_id project_id (required)
-     * @return Certificate[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function listCertificates(string $project_id): array
+    public function listCertificates(string $projectId): array
     {
-        return $this->client->certificate->list($project_id);
+        return $this->client->certificate->list($projectId);
     }
 
     /**
-     * Operation updateCertificate
+     * Updates an SSL certificate
      *
-     * Update an SSL certificate
-     *
-     * @param string $project_id project_id (required)
-     * @param string $certificate_id certificate_id (required)
-     * @param array $certificate_patch (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function updateCertificate(
-        string $project_id,
-        string $certificate_id,
-        array $certificate_patch
-    ): AcceptedResponse {
-        return $this->client->certificate->update($project_id, $certificate_id, $certificate_patch);
+        string $projectId,
+        string $certificateId,
+        array  $certificatePatch
+    ): AcceptedResponse
+    {
+        return $this->client->certificate->update($projectId, $certificateId, $certificatePatch);
     }
 
-    /************** ***********************************/
-    /********* OperationTask shortcuts ****************/
-    /************** ***********************************/
-
     /**
-     * Operation runOperation
+     * Executes a runtime operation
      *
-     * Execute a runtime operation
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param string $deployment_id deployment_id (required)
-     * @param array $environment_operation_input (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function runOperation(
-        string $project_id,
-        string $environment_id,
-        string $deployment_id,
-        array $environment_operation_input
-    ): AcceptedResponse {
+        string $projectId,
+        string $environmentId,
+        string $deploymentId,
+        array  $environmentOperationInput
+    ): AcceptedResponse
+    {
         return $this->client->operation->run(
-            $project_id,
-            $environment_id,
-            $deployment_id,
-            $environment_operation_input
+            $projectId,
+            $environmentId,
+            $deploymentId,
+            $environmentOperationInput
         );
     }
 
-    /************** ******************************/
-    /********* TeamTask shortcuts ****************/
-    /************** ******************************/
-
-
     /**
-     * Operation getProjectTeamAccess
+     * Gets team access for a project
      *
-     * Get team access for a project
-     *
-     * @param string $project_id The ID of the project. (required)
-     * @param string $team_id The ID of the team. (required)
-     * @return TeamProjectAccess|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectTeamAccess(string $project_id, string $team_id): Error|TeamProjectAccess
+    public function getProjectTeamAccess(string $projectId, string $teamId): Error|TeamProjectAccess
     {
-        return $this->client->team->getProjectTeamAccess($project_id, $team_id);
+        return $this->client->team->getProjectTeamAccess($projectId, $teamId);
     }
 
 
     /**
-     * Operation getTeamProjectAccess
+     * Gets project access for a team
      *
-     * Get project access for a team
-     *
-     * @param string $team_id The ID of the team. (required)
-     * @param string $project_id The ID of the project. (required)
-     * @return TeamProjectAccess|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getTeamProjectAccess(string $team_id, string $project_id): Error|TeamProjectAccess
+    public function getTeamProjectAccess(string $teamId, string $projectId): Error|TeamProjectAccess
     {
-        return $this->client->team->getTeamProjectAccess($team_id, $project_id);
+        return $this->client->team->getTeamProjectAccess($teamId, $projectId);
     }
 
     /**
-     * Operation grantProjectTeamAccess
+     * Grants team access to a project
      *
-     * Grant team access to a project
-     *
-     * @param string $project_id The ID of the project. (required)
-     * @param GrantProjectTeamAccessRequestInner[] $grant_project_team_access_request_inner
-     *        grant_project_team_access_request_inner (required)
-     * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function grantProjectTeamAccess(string $project_id, array $grant_project_team_access_request_inner): void
+    public function grantProjectTeamAccess(string $projectId, array $grantProjectTeamAccessRequestInner): void
     {
-        $this->client->team->grantProjectTeamAccess($project_id, $grant_project_team_access_request_inner);
+        $this->client->team->grantProjectTeamAccess($projectId, $grantProjectTeamAccessRequestInner);
     }
 
     /**
-     * Operation grantTeamProjectAccess
+     * Grants project access to a team
      *
-     * Grant project access to a team
-     *
-     * @param string $team_id The ID of the team. (required)
-     * @param GrantTeamProjectAccessRequestInner[] $grant_team_project_access_request_inner
-     *        grant_team_project_access_request_inner (required)
-     * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function grantTeamProjectAccess(string $team_id, array $grant_team_project_access_request_inner): void
+    public function grantTeamProjectAccess(string $teamId, array $grantTeamProjectAccessRequestInner): void
     {
-        $this->client->team->grantTeamProjectAccess($team_id, $grant_team_project_access_request_inner);
+        $this->client->team->grantTeamProjectAccess($teamId, $grantTeamProjectAccessRequestInner);
     }
 
     /**
-     * Operation listProjectTeamAccess
+     * Lists team access for a project
      *
-     * List team access for a project
-     *
-     * @param string $project_id The ID of the project. (required)
-     * @param int|null $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary
-     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary
-     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field. Use a dash ('-') to sort descending.
-     *        Supported fields: `granted_at`, `updated_at`. (optional)
-     * @return ListTeamProjectAccess200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listProjectTeamAccess(
-        string $project_id,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $projectId,
+        int    $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
-    ): Error|ListTeamProjectAccess200Response {
-        return $this->client->team->listProjectTeamAccess($project_id, $page_size, $page_before, $page_after, $sort);
+    ): Error|ListTeamProjectAccess200Response
+    {
+        return $this->client->team->listProjectTeamAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 
     /**
-     * Operation listTeamProjectAccess
+     * Lists project access for a team
      *
-     * List project access for a team
-     *
-     * @param string $team_id The ID of the team. (required)
-     * @param int|null $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary
-     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary
-     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field. Use a dash ('-') to sort descending.
-     *        Supported fields: `project_title`, `granted_at`, `updated_at`. (optional)
-     * @return ListTeamProjectAccess200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listTeamProjectAccess(
-        string $team_id,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $teamId,
+        int    $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
-    ): Error|ListTeamProjectAccess200Response {
-        return $this->client->team->listTeamProjectAccess($team_id, $page_size, $page_before, $page_after, $sort);
+    ): Error|ListTeamProjectAccess200Response
+    {
+        return $this->client->team->listTeamProjectAccess($teamId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 
     /**
-     * Operation removeProjectTeamAccess
+     * Removes team access for a project
      *
-     * Remove team access for a project
-     *
-     * @param string $project_id The ID of the project. (required)
-     * @param string $team_id The ID of the team. (required)
-     * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function removeProjectTeamAccess(string $project_id, string $team_id): void
+    public function removeProjectTeamAccess(string $projectId, string $teamId): void
     {
-        $this->client->team->removeProjectTeamAccess($project_id, $team_id);
+        $this->client->team->removeProjectTeamAccess($projectId, $teamId);
     }
 
     /**
-     * Operation removeTeamProjectAccess
+     * Removes project access for a team
      *
-     * Remove project access for a team
-     *
-     * @param string $team_id The ID of the team. (required)
-     * @param string $project_id The ID of the project. (required)
-     * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function removeTeamProjectAccess(string $team_id, string $project_id): void
+    public function removeTeamProjectAccess(string $teamId, string $projectId): void
     {
-        $this->client->team->removeTeamProjectAccess($team_id, $project_id);
+        $this->client->team->removeTeamProjectAccess($teamId, $projectId);
     }
 
-    /************** ********************************/
-    /********* UserTask shortcuts ****************/
-    /************** ********************************/
-
     /**
-     * Operation getProjectUserAccess
+     * Gets user access for a project
      *
-     * Get user access for a project
-     *
-     * @param string $project_id The ID of the project. (required)
-     * @param string $user_id The ID of the user. (required)
-     * @return UserProjectAccess|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectUserAccess(string $project_id, string $user_id): Error|UserProjectAccess
+    public function getProjectUserAccess(string $projectId, string $userId): Error|UserProjectAccess
     {
-        return $this->client->user->getProjectUserAccess($project_id, $user_id);
+        return $this->client->user->getProjectUserAccess($projectId, $userId);
     }
 
     /**
-     * Operation grantProjectUserAccess
+     * Grants user access to a project
      *
-     * Grant user access to a project
-     *
-     * @param string $project_id The ID of the project. (required)
-     * @param GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner
-     *        grant_project_user_access_request_inner (required)
-     * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function grantProjectUserAccess(string $project_id, array $grant_project_user_access_request_inner): void
+    public function grantProjectUserAccess(string $projectId, array $grantProjectUserAccessRequestInner): void
     {
-        $this->client->user->grantProjectUserAccess($project_id, $grant_project_user_access_request_inner);
+        $this->client->user->grantProjectUserAccess($projectId, $grantProjectUserAccessRequestInner);
     }
 
     /**
-     * Operation removeProjectUserAccess
+     * Removes user access for a project
      *
-     * Remove user access for a project
-     *
-     * @param string $project_id The ID of the project. (required)
-     * @param string $user_id The ID of the user. (required)
-     * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function removeProjectUserAccess(string $project_id, string $user_id): void
+    public function removeProjectUserAccess(string $projectId, string $userId): void
     {
-        $this->client->user->removeProjectUserAccess($project_id, $user_id);
+        $this->client->user->removeProjectUserAccess($projectId, $userId);
     }
 
     /**
-     * Operation updateProjectUserAccess
+     * Updates user access for a project
      *
-     * Update user access for a project
-     *
-     * @param string $project_id The ID of the project. (required)
-     * @param string $user_id The ID of the user. (required)
-     * @param array|null $update_project_user_access_request update_project_user_access_request (optional)
-     * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function updateProjectUserAccess(
-        string $project_id,
-        string $user_id,
-        array $update_project_user_access_request = null
-    ): void {
-        $this->client->user->updateProjectUserAccess($project_id, $user_id, $update_project_user_access_request);
+        string $projectId,
+        string $userId,
+        array  $updateProjectUserAccessRequest = null
+    ): void
+    {
+        $this->client->user->updateProjectUserAccess($projectId, $userId, $updateProjectUserAccessRequest);
     }
 
     /**
-     * Operation listProjectUserAccess
+     * Lists user access for a project
      *
-     * List user access for a project
-     *
-     * @param string $project_id The ID of the project. (required)
-     * @param int|null $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary
-     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary
-     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field. Use a dash ('-') to sort descending.
-     *        Supported fields: `granted_at`, `updated_at`. (optional)
-     * @return ListProjectUserAccess200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listProjectUserAccess(
-        string $project_id,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
-        string $sort = null
-    ): ListProjectUserAccess200Response|Error {
-        return $this->client->user->listProjectUserAccess($project_id, $page_size, $page_before, $page_after, $sort);
-    }
-
-    /************** ***************************/
-    /********* Custom function ****************/
-    /************** ***************************/
-
-    /**
-     * Operation createProject
-     *
-     * create a project
-     *
-     * @param string $organization_id
-     * @param array $project_data
-     *
-     * @return Subscription|Error
-     * @throws ApiException
-     */
-    public function create(string $organization_id, array $project_data): Error|Subscription
+        string  $projectId,
+        ?int    $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
+    ): ListProjectUserAccess200Response|Error
     {
-        $this->refreshToken();
-        return $this->client->organization->createProject($organization_id, $project_data);
+        return $this->client->user->listProjectUserAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 
     /**
-     * Operation listEnvironment
+     * Creates a project
      *
-     * (shortcut to EnvironmentTask.listProjectsEnvironments)
-     *
-     * @param string $project_id
-     * @return Environment[]
      * @throws ApiException
      */
-    public function listEnvironments(string $project_id): array
+    public function create(string $organizationId, array $projectData): Error|Subscription
     {
         $this->refreshToken();
-        return $this->client->environment->list($project_id);
+        return $this->client->organization->createProject($organizationId, $projectData);
+    }
+
+    /**
+     * Lists environments of a project
+     *
+     * @throws ApiException
+     */
+    public function listEnvironments(string $projectId): array
+    {
+        $this->refreshToken();
+        return $this->client->environment->list($projectId);
     }
 }

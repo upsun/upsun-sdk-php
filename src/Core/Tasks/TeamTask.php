@@ -8,8 +8,6 @@ use OpenAPI\Client\apisgen\TeamsApi;
 use OpenAPI\Client\Model\CreateTeamMemberRequest;
 use OpenAPI\Client\Model\CreateTeamRequest;
 use OpenAPI\Client\Model\Error;
-use OpenAPI\Client\Model\GrantProjectTeamAccessRequestInner;
-use OpenAPI\Client\Model\GrantTeamProjectAccessRequestInner;
 use OpenAPI\Client\Model\ListTeamMembers200Response;
 use OpenAPI\Client\Model\ListTeamProjectAccess200Response;
 use OpenAPI\Client\Model\ListTeams200Response;
@@ -20,393 +18,262 @@ use Upsun\UpsunClient;
 
 class TeamTask extends TaskBase
 {
-    public readonly TeamsApi $teamsApi;
-    public readonly TeamAccessApi $accessApi;
 
     public function __construct(
-        public readonly UpsunClient $client,
-    ) {
-        $this->teamsApi  = new TeamsApi($this->client->apiClient, $this->client->apiConfig);
-        $this->accessApi = new TeamAccessApi($this->client->apiClient, $this->client->apiConfig);
+        private readonly UpsunClient   $client,
+        private readonly TeamsApi      $teamsApi,
+        private readonly TeamAccessApi $accessApi,
+    )
+    {
     }
 
-    /************** ********************/
-    /********* TeamsApi ****************/
-    /************** ********************/
-
     /**
-     * Operation create
+     * Creates team
      *
-     * Create team
-     *
-     * @param array $create_team_request create_team_request (required)
-     * @return Team|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function create(array $create_team_request): Team|Error
+    public function create(array $createTeamRequest): Team|Error
     {
         $this->refreshToken();
-        $create_team_request = new CreateTeamRequest($create_team_request);
-        return $this->teamsApi->createTeam($create_team_request);
+        $createTeamRequest = new CreateTeamRequest($createTeamRequest);
+        return $this->teamsApi->createTeam($createTeamRequest);
     }
 
     /**
-     * Operation createMember
+     * Creates team member
      *
-     * Create team member
-     *
-     * @param string $team_id The ID of the team. (required)
-     * @param array $create_team_member_request create_team_member_request (required)
-     * @return TeamMember|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createMember(string $team_id, array $create_team_member_request): Error|TeamMember
+    public function createMember(string $teamId, array $createTeamMemberRequest): Error|TeamMember
     {
         $this->refreshToken();
-        $create_team_member_request = new CreateTeamMemberRequest($create_team_member_request);
-        return $this->teamsApi->createTeamMember($team_id, $create_team_member_request);
+        $createTeamMemberRequest = new CreateTeamMemberRequest($createTeamMemberRequest);
+        return $this->teamsApi->createTeamMember($teamId, $createTeamMemberRequest);
     }
 
     /**
-     * Operation deleteTeam
+     * Deletes team
      *
-     * Delete team
-     *
-     * @param string $team_id The ID of the team. (required)
-     * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function delete(string $team_id): void
+    public function delete(string $teamId): void
     {
         $this->refreshToken();
-        $this->teamsApi->deleteTeam($team_id);
+        $this->teamsApi->deleteTeam($teamId);
     }
 
     /**
-     * Operation deleteTeamMember
+     * Deletes team member
      *
-     * Delete team member
-     *
-     * @param string $team_id The ID of the team. (required)
-     * @param string $user_id The ID of the user. (required)
-     * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteMember(string $team_id, string $user_id): void
+    public function deleteMember(string $teamId, string $userId): void
     {
         $this->refreshToken();
-        $this->teamsApi->deleteTeamMember($team_id, $user_id);
+        $this->teamsApi->deleteTeamMember($teamId, $userId);
     }
 
     /**
-     * Operation getTeam
+     * Gets team
      *
-     * Get team
-     *
-     * @param string $team_id The ID of the team. (required)
-     * @return Team|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function get(string $team_id): Team|Error
+    public function get(string $teamId): Team|Error
     {
         $this->refreshToken();
-        return $this->teamsApi->getTeam($team_id);
+        return $this->teamsApi->getTeam($teamId);
     }
 
     /**
-     * Operation getTeamMember
+     * Gets team member
      *
-     * Get team member
-     *
-     * @param string $team_id The ID of the team. (required)
-     * @param string $user_id The ID of the user. (required)
-     * @return TeamMember|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getMember(string $team_id, string $user_id): Error|TeamMember
+    public function getMember(string $teamId, string $userId): Error|TeamMember
     {
         $this->refreshToken();
-        return $this->teamsApi->getTeamMember($team_id, $user_id);
+        return $this->teamsApi->getTeamMember($teamId, $userId);
     }
 
     /**
-     * Operation listTeamMembers
+     * Lists team members
      *
-     * List team members
-     *
-     * @param string $team_id The ID of the team. (required)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary
-     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary
-     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field. Use a dash (`-`) to sort descending. (optional)
-     * @return ListTeamMembers200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listMembers(
-        string $team_id,
-        string $page_before = null,
-        string $page_after = null,
-        string $sort = null
-    ): Error|ListTeamMembers200Response {
+        string  $teamId,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
+    ): Error|ListTeamMembers200Response
+    {
         $this->refreshToken();
-        return $this->teamsApi->listTeamMembers($team_id, $page_before, $page_after, $sort);
+        return $this->teamsApi->listTeamMembers($teamId, $pageBefore, $pageAfter, $sort);
     }
 
     /**
-     * Operation listTeams
+     * Lists teams
      *
-     * List teams
-     *
-     * @param array|null $filter_organization_id Allows filtering by `organization_id` using one or more operators.
-     *        (optional)
-     * @param array|null $filter_id Allows filtering by `id` using one or more operators. (optional)
-     * @param array|null $filter_updated_at Allows filtering by `updated_at` using one or more operators. (optional)
-     * @param int|null $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary and provided
-     *        in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary
-     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field. Use a dash (`-`) to sort descending. (optional)
-     * @return ListTeams200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function list(
-        array $filter_organization_id = null,
-        array $filter_id = null,
-        array $filter_updated_at = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
-        string $sort = null
-    ): Error|ListTeams200Response {
+        ?array  $filterOrganizationId = null,
+        ?array  $filterId = null,
+        ?array  $filterUpdatedAt = null,
+        ?int    $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
+    ): Error|ListTeams200Response
+    {
         $this->refreshToken();
         return $this->teamsApi->listTeams(
-            $filter_organization_id,
-            $filter_id,
-            $filter_updated_at,
-            $page_size,
-            $page_before,
-            $page_after,
+            $filterOrganizationId,
+            $filterId,
+            $filterUpdatedAt,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         );
     }
 
     /**
-     * Operation listUserTeams
+     * Lists User teams
      *
-     * User teams
-     *
-     * @param string $user_id The ID of the user. (required)
-     * @param array|null $filter_organization_id Allows filtering by `organization_id`
-     *        using one or more operators. (optional)
-     * @param array|null $filter_updated_at Allows filtering by `updated_at`
-     *        using one or more operators. (optional)
-     * @param int|null $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary
-     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary
-     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field.
-     *        Use a dash (`-`) to sort descending. (optional)
-     * @return ListTeams200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listUserTeams(
-        string $user_id,
-        array $filter_organization_id = null,
-        array $filter_updated_at = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
-        string $sort = null
-    ): Error|ListTeams200Response {
+        string  $userId,
+        ?array  $filterOrganizationId = null,
+        ?array  $filterUpdatedAt = null,
+        ?int    $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
+    ): Error|ListTeams200Response
+    {
         $this->refreshToken();
         return $this->teamsApi->listUserTeams(
-            $user_id,
-            $filter_organization_id,
-            $filter_updated_at,
-            $page_size,
-            $page_before,
-            $page_after,
+            $userId,
+            $filterOrganizationId,
+            $filterUpdatedAt,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         );
     }
 
     /**
-     * Operation updateTeam
+     * Updates team
      *
-     * Update team
-     *
-     * @param string $team_id The ID of the team. (required)
-     * @param array|null $update_team_request update_team_request (optional)
-     * @return Team|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function update(string $team_id, array $update_team_request = null): Team|Error
+    public function update(string $teamId, ?array $updateTeamRequest = null): Team|Error
     {
         $this->refreshToken();
-        return $this->teamsApi->updateTeam($team_id, $update_team_request);
+        return $this->teamsApi->updateTeam($teamId, $updateTeamRequest);
     }
 
-    /************** *************************/
-    /********* TeamAccessApi ****************/
-    /************** *************************/
-
     /**
-     * Operation getProjectTeamAccess
+     * Gets team access for a project
      *
-     * Get team access for a project
-     *
-     * @param string $project_id The ID of the project. (required)
-     * @param string $team_id The ID of the team. (required)
-     * @return TeamProjectAccess|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectTeamAccess(string $project_id, string $team_id): Error|TeamProjectAccess
+    public function getProjectTeamAccess(string $projectId, string $teamId): Error|TeamProjectAccess
     {
         $this->refreshToken();
-        return $this->accessApi->getProjectTeamAccess($project_id, $team_id);
+        return $this->accessApi->getProjectTeamAccess($projectId, $teamId);
     }
 
 
     /**
-     * Operation getTeamProjectAccess
+     * Gets project access for a team
      *
-     * Get project access for a team
-     *
-     * @param string $team_id The ID of the team. (required)
-     * @param string $project_id The ID of the project. (required)
-     * @return TeamProjectAccess|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getTeamProjectAccess(string $team_id, string $project_id): Error|TeamProjectAccess
+    public function getTeamProjectAccess(string $teamId, string $projectId): Error|TeamProjectAccess
     {
         $this->refreshToken();
-        return $this->accessApi->getTeamProjectAccess($team_id, $project_id);
+        return $this->accessApi->getTeamProjectAccess($teamId, $projectId);
     }
 
     /**
-     * Operation grantProjectTeamAccess
+     * Grants team access to a project
      *
-     * Grant team access to a project
-     *
-     * @param string $project_id The ID of the project. (required)
-     * @param GrantProjectTeamAccessRequestInner[] $grant_project_team_access_request_inner
-     *        grant_project_team_access_request_inner (required)
-     * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function grantProjectTeamAccess(string $project_id, array $grant_project_team_access_request_inner): void
+    public function grantProjectTeamAccess(string $projectId, array $grantProjectTeamAccessRequestInner): void
     {
         $this->refreshToken();
-        $this->accessApi->grantProjectTeamAccess($project_id, $grant_project_team_access_request_inner);
+        $this->accessApi->grantProjectTeamAccess($projectId, $grantProjectTeamAccessRequestInner);
     }
 
     /**
-     * Operation grantTeamProjectAccess
+     * Grants project access to a team
      *
-     * Grant project access to a team
-     *
-     * @param string $team_id The ID of the team. (required)
-     * @param GrantTeamProjectAccessRequestInner[] $grant_team_project_access_request_inner
-     *        grant_team_project_access_request_inner (required)
-     * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function grantTeamProjectAccess(string $team_id, array $grant_team_project_access_request_inner): void
+    public function grantTeamProjectAccess(string $teamId, array $grantTeamProjectAccessRequestInner): void
     {
         $this->refreshToken();
-        $this->accessApi->grantTeamProjectAccess($team_id, $grant_team_project_access_request_inner);
+        $this->accessApi->grantTeamProjectAccess($teamId, $grantTeamProjectAccessRequestInner);
     }
 
     /**
-     * Operation listProjectTeamAccess
+     * Lists team access for a project
      *
-     * List team access for a project
-     *
-     * @param string $project_id The ID of the project. (required)
-     * @param int|null $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary
-     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary
-     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field. Use a dash (`-`) to sort descending.
-     *        Supported fields: `granted_at`, `updated_at`. (optional)
-     * @return ListTeamProjectAccess200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listProjectTeamAccess(
-        string $project_id,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
-        string $sort = null
-    ): Error|ListTeamProjectAccess200Response {
+        string  $projectId,
+        ?int    $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
+    ): Error|ListTeamProjectAccess200Response
+    {
         $this->refreshToken();
-        return $this->accessApi->listProjectTeamAccess($project_id, $page_size, $page_before, $page_after, $sort);
+        return $this->accessApi->listProjectTeamAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 
     /**
-     * Operation listTeamProjectAccess
+     * Lists project access for a team
      *
-     * List project access for a team
-     *
-     * @param string $team_id The ID of the team. (required)
-     * @param int|null $page_size Determines the number of items to show. (optional)
-     * @param string|null $page_before Pagination cursor. This is automatically generated as necessary
-     *          and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $page_after Pagination cursor. This is automatically generated as necessary
-     *        and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param string|null $sort Allows sorting by a single field. Use a dash (`-`) to sort descending.
-     *        Supported fields: `project_title`, `granted_at`, `updated_at`. (optional)
-     * @return ListTeamProjectAccess200Response|Error
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listTeamProjectAccess(
-        string $team_id,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
-        string $sort = null
-    ): Error|ListTeamProjectAccess200Response {
+        string  $teamId,
+        ?int    $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
+    ): Error|ListTeamProjectAccess200Response
+    {
         $this->refreshToken();
-        return $this->accessApi->listTeamProjectAccess($team_id, $page_size, $page_before, $page_after, $sort);
+        return $this->accessApi->listTeamProjectAccess($teamId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 
     /**
-     * Operation removeProjectTeamAccess
+     * Removes team access for a project
      *
-     * Remove team access for a project
-     *
-     * @param string $project_id The ID of the project. (required)
-     * @param string $team_id The ID of the team. (required)
-     * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function removeProjectTeamAccess(string $project_id, string $team_id): void
+    public function removeProjectTeamAccess(string $projectId, string $teamId): void
     {
         $this->refreshToken();
-        $this->accessApi->removeProjectTeamAccess($project_id, $team_id);
+        $this->accessApi->removeProjectTeamAccess($projectId, $teamId);
     }
 
     /**
-     * Operation removeTeamProjectAccess
+     * Removes project access for a team
      *
-     * Remove project access for a team
-     *
-     * @param string $team_id The ID of the team. (required)
-     * @param string $project_id The ID of the project. (required)
-     * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function removeTeamProjectAccess(string $team_id, string $project_id): void
+    public function removeTeamProjectAccess(string $teamId, string $projectId): void
     {
         $this->refreshToken();
-        $this->accessApi->removeTeamProjectAccess($team_id, $project_id);
+        $this->accessApi->removeTeamProjectAccess($teamId, $projectId);
     }
-
-    /************** ****************************/
-    /********* Custom Functions ****************/
-    /************** ****************************/
 }

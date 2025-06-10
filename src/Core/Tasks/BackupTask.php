@@ -12,118 +12,77 @@ use Upsun\UpsunClient;
 
 class BackupTask extends TaskBase
 {
-    public EnvironmentBackupsApi $api;
 
     public function __construct(
         public readonly UpsunClient $client,
-    ) {
-        $this->api = new EnvironmentBackupsApi($this->client->apiClient, $this->client->apiConfig);
-    }
-
-    /************** **************************/
-    /********* Getter ************************/
-    /************** **************************/
-
-    public function getApi(): EnvironmentBackupsApi
+        private readonly EnvironmentBackupsApi $api,
+    )
     {
-        return $this->api;
     }
-
-    /************** *****************************************/
-    /********* EnvironmentBackupsApi ************************/
-    /************** *****************************************/
 
     /**
-     * Operation backup
+     * Creates snapshot of environment
      *
-     * Create snapshot of environment
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param array $environment_backup_input (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function backup(
-        string $project_id,
-        string $environment_id,
-        array $environment_backup_input
-    ): AcceptedResponse {
-        $this->refreshToken();
-        $environment_backup_input = new EnvironmentBackupInput($environment_backup_input);
-        return $this->getApi()->backupEnvironment($project_id, $environment_id, $environment_backup_input);
-    }
-
-    /**
-     * Operation delete
-     *
-     * Delete an environment snapshot
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param string $backup_id backup_id (required)
-     * @return AcceptedResponse
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     */
-    public function delete(string $project_id, string $environment_id, string $backup_id): AcceptedResponse
+        string $projectId,
+        string $environmentId,
+        array  $environmentBackupInput
+    ): AcceptedResponse
     {
         $this->refreshToken();
-        return $this->getApi()->deleteProjectsEnvironmentsBackups($project_id, $environment_id, $backup_id);
+        $environmentBackupInput = new EnvironmentBackupInput($environmentBackupInput);
+        return $this->api->backupEnvironment($projectId, $environmentId, $environmentBackupInput);
     }
 
     /**
-     * Operation get
+     * Deletes an environment snapshot
      *
-     * Get an environment snapshot's info
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param string $backup_id backup_id (required)
-     * @return Backup|null
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function get(string $project_id, string $environment_id, string $backup_id): ?Backup
+    public function delete(string $projectId, string $environmentId, string $backupId): AcceptedResponse
     {
         $this->refreshToken();
-        return $this->getApi()->getProjectsEnvironmentsBackups($project_id, $environment_id, $backup_id);
+        return $this->api->deleteProjectsEnvironmentsBackups($projectId, $environmentId, $backupId);
     }
 
     /**
-     * Operation list
+     * Gets an environment snapshot's info
      *
-     * Get an environment's snapshot list
-     *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @return Backup[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function list(string $project_id, string $environment_id): array
+    public function get(string $projectId, string $environmentId, string $backupId): Backup
     {
         $this->refreshToken();
-        return $this->getApi()->listProjectsEnvironmentsBackups($project_id, $environment_id);
+        return $this->api->getProjectsEnvironmentsBackups($projectId, $environmentId, $backupId);
     }
 
     /**
-     * Operation restoreBackup
+     * Gets an environment's snapshot list
      *
-     * Restore an environment snapshot
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function list(string $projectId, string $environmentId): array
+    {
+        $this->refreshToken();
+        return $this->api->listProjectsEnvironmentsBackups($projectId, $environmentId);
+    }
+
+    /**
+     * Restores an environment snapshot
      *
-     * @param string $project_id project_id (required)
-     * @param string $environment_id environment_id (required)
-     * @param string $backup_id backup_id (required)
-     * @param array $environment_restore_input (required)
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function restore(
-        string $project_id,
-        string $environment_id,
-        string $backup_id,
-        array $environment_restore_input
-    ): AcceptedResponse {
+        string $projectId,
+        string $environmentId,
+        string $backupId,
+        array  $environmentRestoreInput
+    ): AcceptedResponse
+    {
         $this->refreshToken();
-        $environment_restore_input = new EnvironmentRestoreInput($environment_restore_input);
-        return $this->getApi()->restoreBackup($project_id, $environment_id, $backup_id, $environment_restore_input);
+        $environmentRestoreInput = new EnvironmentRestoreInput($environmentRestoreInput);
+        return $this->api->restoreBackup($projectId, $environmentId, $backupId, $environmentRestoreInput);
     }
 }
