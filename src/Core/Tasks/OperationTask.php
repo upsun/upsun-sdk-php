@@ -16,6 +16,7 @@ class OperationTask extends TaskBase
         private readonly RuntimeOperationsApi $api
     )
     {
+        parent::__construct($this->client);
     }
 
     /**

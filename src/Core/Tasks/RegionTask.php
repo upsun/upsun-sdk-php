@@ -18,6 +18,7 @@ class RegionTask extends TaskBase
         private readonly RegionsApi $api,
     )
     {
+        parent::__construct($this->client);
     }
 
     /**

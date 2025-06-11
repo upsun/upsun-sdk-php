@@ -18,11 +18,12 @@ class VariableTask extends TaskBase
 {
 
     public function __construct(
-        private readonly UpsunClient             $client, // used in TaskBase
+        public  readonly UpsunClient             $client,
         private readonly ProjectVariablesApi     $projectVariablesApi,
         private readonly EnvironmentVariablesApi $environmentVariablesApi,
     )
     {
+        parent::__construct($this->client);
     }
 
     /**

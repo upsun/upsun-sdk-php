@@ -43,7 +43,7 @@ class UserTask extends TaskBase
 {
 
     public function __construct(
-        private readonly UpsunClient     $client, // used in the TaskBase class
+        public readonly UpsunClient      $client,
         private readonly UsersApi        $api,
         private readonly UserProfilesApi $profilesApi,
         private readonly UserAccessApi   $accessApi,
@@ -54,6 +54,7 @@ class UserTask extends TaskBase
         private readonly PhoneNumberApi  $phoneNumberApi,
     )
     {
+        parent::__construct($this->client);
     }
 
     /**
@@ -497,7 +498,7 @@ class UserTask extends TaskBase
      */
     public function confirmTotpEnrollment(
         string $userId,
-        ?array  $confirmTotpEnrollmentRequest = null
+        ?array $confirmTotpEnrollmentRequest = null
     ): ConfirmTotpEnrollment200Response|Error
     {
         $this->refreshToken();
@@ -541,7 +542,7 @@ class UserTask extends TaskBase
         $this->refreshToken();
         $this->mfaApi->withdrawTotpEnrollment($userId);
     }
-    
+
     /**
      * Confirms phone number
      *
@@ -561,7 +562,7 @@ class UserTask extends TaskBase
      */
     public function verifyPhoneNumber(
         string $userId,
-        ?array  $verifyPhoneNumberRequest = null
+        ?array $verifyPhoneNumberRequest = null
     ): VerifyPhoneNumber200Response|Error
     {
         $this->refreshToken();

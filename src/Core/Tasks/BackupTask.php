@@ -14,10 +14,11 @@ class BackupTask extends TaskBase
 {
 
     public function __construct(
-        public readonly UpsunClient $client,
+        public readonly UpsunClient            $client,
         private readonly EnvironmentBackupsApi $api,
     )
     {
+        parent::__construct($this->client);
     }
 
     /**

@@ -17,6 +17,7 @@ class ActivityTask extends TaskBase
         private readonly EnvironmentActivityApi $envApi
     )
     {
+        parent::__construct($this->client);
     }
 
     /**

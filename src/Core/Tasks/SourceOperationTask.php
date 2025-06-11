@@ -16,6 +16,7 @@ class SourceOperationTask extends TaskBase
         private readonly SourceOperationsApi $api,
     )
     {
+        parent::__construct($this->client);
     }
 
     /**

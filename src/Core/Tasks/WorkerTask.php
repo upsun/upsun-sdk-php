@@ -11,9 +11,11 @@ class WorkerTask extends TaskBase
 {
 
     public function __construct(
-        private readonly UpsunClient $client, // used in TaskBase
+        public readonly UpsunClient    $client, // used in TaskBase
         private readonly DeploymentApi $api,
-    ) {
+    )
+    {
+        parent::__construct($this->client);
     }
 
     /**

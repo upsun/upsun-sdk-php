@@ -12,10 +12,11 @@ class ApplicationTask extends TaskBase
 {
 
     public function __construct(
-        private readonly UpsunClient   $client,
+        public readonly UpsunClient    $client,
         private readonly DeploymentApi $api
     )
     {
+        parent::__construct($this->client);
     }
 
     /**

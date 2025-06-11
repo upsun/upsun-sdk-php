@@ -43,7 +43,7 @@ use Upsun\UpsunClient;
 class ProjectTask extends TaskBase
 {
     public function __construct(
-        private readonly UpsunClient               $client,
+        public readonly UpsunClient                $client,
         private readonly ProjectApi                $api,
         private readonly ProjectSettingsApi        $settingsApi,
         private readonly DeploymentTargetApi       $deploymentTargetApi,
@@ -52,6 +52,7 @@ class ProjectTask extends TaskBase
         private readonly ThirdPartyIntegrationsApi $thirdPartyIntegrationsApi,
     )
     {
+        parent::__construct($this->client);
     }
 
     /**

@@ -22,6 +22,7 @@ class InvitationTask extends TaskBase
         private readonly ProjectInvitationsApi      $prjInvApi,
     )
     {
+        parent::__construct($this->client);
     }
 
     /**

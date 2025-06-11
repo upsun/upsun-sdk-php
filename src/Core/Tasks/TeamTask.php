@@ -20,11 +20,12 @@ class TeamTask extends TaskBase
 {
 
     public function __construct(
-        private readonly UpsunClient   $client,
+        public readonly UpsunClient    $client,
         private readonly TeamsApi      $teamsApi,
         private readonly TeamAccessApi $accessApi,
     )
     {
+        parent::__construct($this->client);
     }
 
     /**

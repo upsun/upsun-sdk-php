@@ -18,6 +18,7 @@ class RouteTask extends TaskBase
         private readonly RoutingApi $api,
     )
     {
+        parent::__construct($this->client);
     }
 
     /**

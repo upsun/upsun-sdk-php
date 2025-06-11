@@ -21,6 +21,7 @@ class SupportTicketTask extends TaskBase
         private readonly SupportApi $supportApi,
     )
     {
+        parent::__construct($this->client);
     }
 
     /**

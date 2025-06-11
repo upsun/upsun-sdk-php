@@ -31,12 +31,13 @@ class EnvironmentTask extends TaskBase
 {
 
     public function __construct(
-        private readonly UpsunClient        $client,
+        public readonly UpsunClient         $client,
         private readonly EnvironmentApi     $api,
         private readonly EnvironmentTypeApi $typeApi,
         private readonly DeploymentApi      $deploymentApi,
     )
     {
+        parent::__construct($this->client);
     }
 
     /**
@@ -513,7 +514,7 @@ class EnvironmentTask extends TaskBase
     {
         return $this->client->route->update($projectId, $environmentId, $routeId, $routePatch);
     }
-    
+
     /**
      * Adds an environment domain
      *
