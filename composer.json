@@ -9,7 +9,7 @@
     "php-http/message": "^1.16",
     "guzzlehttp/psr7": "^2.7",
     "php-http/message-factory": "^1.1",
-    "symfony/http-client": "^7.3"
+    "symfony/http-client": "^7"
   },
   "autoload": {
     "psr-4": {
