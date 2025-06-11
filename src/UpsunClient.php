@@ -2,6 +2,8 @@
 
 namespace Upsun;
 
+use Http\Discovery\Psr17FactoryDiscovery;
+use Http\Discovery\Psr18ClientDiscovery;
 use OpenAPI\Client\apisgen\APITokensApi;
 use OpenAPI\Client\apisgen\CertManagementApi;
 use OpenAPI\Client\apisgen\ConnectionsApi;
@@ -110,8 +112,12 @@ class UpsunClient
 
         $this->apiClient = new HttplugClient();
 
+        $httpClient = Psr18ClientDiscovery::find(); // découvre automatiquement curl-client
+        $requestFactory = Psr17FactoryDiscovery::findRequestFactory();
+        
         $this->auth = new OAuthProvider(
-            new HttpClient(),
+            $httpClient,
+            $requestFactory,
             tokenEndpoint: $this->upsunConfig->auth_url . "/" . $this->upsunConfig->token_endpoint,
             clientId: $this->upsunConfig->clientId,
             clientSecret: $this->upsunConfig->apiKey,

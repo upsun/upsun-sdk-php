@@ -2,9 +2,9 @@
 
 namespace Upsun\Core;
 
-use Symfony\Component\HttpClient\HttpClient;
-use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestFactoryInterface;
+use Psr\Http\Client\ClientExceptionInterface;
 
 class OAuthProvider
 {
@@ -14,34 +14,32 @@ class OAuthProvider
     private int $tokenExpiry = 0;
 
     public function __construct(
-        private HttpClient $httpClient,
+        private ClientInterface $httpClient,
+        private RequestFactoryInterface $requestFactory,
         private readonly string $tokenEndpoint,
         private readonly string $clientId,
         private readonly string $clientSecret
-    ) {
-        if (!$httpClient instanceof \Symfony\Component\HttpClient\HttpClient) {
-            throw new \InvalidArgumentException('You must provide a Symfony HttpClient instance');
-        }
-    }
+    ) {}
 
     public function exchangeCodeForToken(): bool
     {
         try {
-            $response = $this->httpClient->request('POST', $this->tokenEndpoint, [
-                'headers' => [
-                    'Authorization' => 'Basic ' . base64_encode('platform-api-user:'),
-                    'Content-Type' => 'application/x-www-form-urlencoded',
-                ],
-                'body' => http_build_query([
-                    'grant_type' => 'api_token',
-                    'api_token' => $this->clientSecret,
-                ]),
+            $body = http_build_query([
+                'grant_type' => 'api_token',
+                'api_token' => $this->clientSecret,
             ]);
 
-            $data = $response->toArray();
+            $request = $this->requestFactory->createRequest('POST', $this->tokenEndpoint)
+                ->withHeader('Authorization', 'Basic ' . base64_encode('platform-api-user:'))
+                ->withHeader('Content-Type', 'application/x-www-form-urlencoded')
+                ->withBody(\Nyholm\Psr7\Stream::create($body));
+
+            $response = $this->httpClient->sendRequest($request);
+            $data = json_decode((string)$response->getBody(), true);
+
             $this->storeTokenData($data);
             return true;
-        } catch (ExceptionInterface $e) {
+        } catch (ClientExceptionInterface $e) {
             throw new \Exception('Token exchange failed: ' . $e->getMessage());
         }
     }
@@ -61,20 +59,21 @@ class OAuthProvider
         }
 
         try {
-            $response = $this->httpClient->request('POST', $this->tokenEndpoint, [
-                'headers' => [
-                    'Content-Type' => 'application/x-www-form-urlencoded',
-                ],
-                'body' => http_build_query([
-                    'grant_type' => 'refresh_token',
-                    'refresh_token' => $this->refreshToken,
-                    'client_id' => $this->clientId,
-                ]),
+            $body = http_build_query([
+                'grant_type' => 'refresh_token',
+                'refresh_token' => $this->refreshToken,
+                'client_id' => $this->clientId,
             ]);
 
-            $data = $response->toArray();
+            $request = $this->requestFactory->createRequest('POST', $this->tokenEndpoint)
+                ->withHeader('Content-Type', 'application/x-www-form-urlencoded')
+                ->withBody(\Nyholm\Psr7\Stream::create($body));
+
+            $response = $this->httpClient->sendRequest($request);
+            $data = json_decode((string)$response->getBody(), true);
+
             $this->storeTokenData($data);
-        } catch (ExceptionInterface $e) {
+        } catch (ClientExceptionInterface $e) {
             throw new \Exception('Token refresh failed: ' . $e->getMessage());
         }
     }
