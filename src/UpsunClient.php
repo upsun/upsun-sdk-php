@@ -2,7 +2,7 @@
 
 namespace Upsun;
 
-use GuzzleHttp\Client;
+use http\Client;
 use OpenAPI\Client\apisgen\APITokensApi;
 use OpenAPI\Client\apisgen\CertManagementApi;
 use OpenAPI\Client\apisgen\ConnectionsApi;

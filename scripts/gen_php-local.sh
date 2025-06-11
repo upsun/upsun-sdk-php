@@ -33,12 +33,14 @@ if $DEBUG; then
     -g php \
     -o "$PKG" \
     --additional-properties=apiPackage="$PKG"
+    --library="psr-18"
 else
   openapi-generator-cli generate \
     -i ./schema/openapispec-platformsh.json \
     -g php \
     -o "$PKG" \
-    --additional-properties=apiPackage="$PKG" &> /dev/null
+    --additional-properties=apiPackage="$PKG" &> /dev/null \
+    --library="psr-18"
 fi
 
 echo "Clean up unnecessary files..."

@@ -739,7 +739,7 @@ class OrganizationTask extends TaskBase
             $page
         );
     }
-    
+
     /**
      * Applies voucher
      *
@@ -769,7 +769,7 @@ class OrganizationTask extends TaskBase
      * Equivalent to
      * `upsun api:curl -X PATCH --json '{"user_management":"standard"}' 'api/organizations/ORGANIZATION_ID/addons' | jq`
      * Missing from the openapi config
-     * 
+     *
      * @throws ApiException
      * @throws GuzzleException
      */
