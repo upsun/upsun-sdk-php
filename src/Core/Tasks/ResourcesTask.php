@@ -2,7 +2,14 @@
 
 namespace Upsun\Core\Tasks;
 
+use Upsun\UpsunClient;
+
 class ResourcesTask extends TaskBase
 {
-    //fixme missing openapi endpoints
+    public function __construct(
+        public UpsunClient $client,
+    )
+    {
+        parent::__construct($this->client);
+    }
 }

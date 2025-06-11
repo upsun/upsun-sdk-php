@@ -106,7 +106,6 @@ class UpsunClient
     public function __construct(protected UpsunConfig $upsunConfig)
     {
 
-        $this->upsunConfig = $upsunConfig;
         $this->apiConfig = Configuration::getDefaultConfiguration()
             ->setHost($this->upsunConfig->base_url);
 
@@ -156,7 +155,7 @@ class UpsunClient
             new OrganizationInvitationsApi($this->apiClient, $this->apiConfig),
             new ProjectInvitationsApi($this->apiClient, $this->apiConfig),
         );
-        $this->metrics = new MetricsTask();
+        $this->metrics = new MetricsTask($this);
         $this->mount = new MountTask($this);
         $this->operation = new OperationTask(
             $this,
@@ -189,7 +188,9 @@ class UpsunClient
             $this,
             new RegionsApi($this->apiClient, $this->apiConfig)
         );
-        $this->resource = new ResourcesTask($this);
+        $this->resource = new ResourcesTask(
+            $this
+        );
         $this->route = new RouteTask(
             $this,
             new RoutingApi($this->apiClient, $this->apiConfig)
@@ -244,7 +245,7 @@ class UpsunClient
         return $this->upsunConfig->apiKey;
     }
 
-    public function getApiClient(): Client
+    public function getApiClient(): HttplugClient
     {
         return $this->apiClient;
     }
