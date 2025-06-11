@@ -20,7 +20,7 @@ class TeamTask extends TaskBase
 {
 
     public function __construct(
-        public readonly UpsunClient    $client,
+        public UpsunClient             $client,
         private readonly TeamsApi      $teamsApi,
         private readonly TeamAccessApi $accessApi,
     )

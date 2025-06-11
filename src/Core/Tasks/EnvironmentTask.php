@@ -31,7 +31,7 @@ class EnvironmentTask extends TaskBase
 {
 
     public function __construct(
-        public readonly UpsunClient         $client,
+        public UpsunClient         $client,
         private readonly EnvironmentApi     $api,
         private readonly EnvironmentTypeApi $typeApi,
         private readonly DeploymentApi      $deploymentApi,

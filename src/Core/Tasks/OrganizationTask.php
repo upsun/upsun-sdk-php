@@ -67,7 +67,7 @@ class OrganizationTask extends TaskBase
     private const DEFAULT_UPSUN_PLAN = 'upsun/flexible';
 
     public function __construct(
-        public readonly UpsunClient             $client,
+        public UpsunClient                       $client,
         private readonly HeaderSelector          $headerSelector,
         private readonly OrganizationsApi        $api,
         private readonly OrganizationProjectsApi $projectsApi,

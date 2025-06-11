@@ -14,7 +14,7 @@ class CertificateTask extends TaskBase
 {
 
     public function __construct(
-        public readonly UpsunClient        $client,
+        public UpsunClient        $client,
         private readonly CertManagementApi $api,
     )
     {

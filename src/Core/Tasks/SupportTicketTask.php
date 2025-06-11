@@ -16,7 +16,7 @@ class SupportTicketTask extends TaskBase
 {
 
     public function __construct(
-        public readonly UpsunClient $client,
+        public UpsunClient          $client,
         private readonly DefaultApi $defaultApi,
         private readonly SupportApi $supportApi,
     )

@@ -17,7 +17,7 @@ class InvitationTask extends TaskBase
 {
 
     public function __construct(
-        public readonly UpsunClient                 $client,
+        public UpsunClient                 $client,
         private readonly OrganizationInvitationsApi $orgInvApi,
         private readonly ProjectInvitationsApi      $prjInvApi,
     )

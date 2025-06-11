@@ -18,7 +18,7 @@ class VariableTask extends TaskBase
 {
 
     public function __construct(
-        public  readonly UpsunClient             $client,
+        public UpsunClient                       $client,
         private readonly ProjectVariablesApi     $projectVariablesApi,
         private readonly EnvironmentVariablesApi $environmentVariablesApi,
     )

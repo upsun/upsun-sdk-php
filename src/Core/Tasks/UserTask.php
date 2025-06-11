@@ -43,7 +43,7 @@ class UserTask extends TaskBase
 {
 
     public function __construct(
-        public readonly UpsunClient      $client,
+        public UpsunClient               $client,
         private readonly UsersApi        $api,
         private readonly UserProfilesApi $profilesApi,
         private readonly UserAccessApi   $accessApi,

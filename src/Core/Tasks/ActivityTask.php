@@ -12,7 +12,7 @@ use Upsun\UpsunClient;
 class ActivityTask extends TaskBase
 {
     public function __construct(
-        public readonly UpsunClient $client,
+        public UpsunClient                      $client,
         private readonly ProjectActivityApi     $prjApi,
         private readonly EnvironmentActivityApi $envApi
     )

@@ -14,7 +14,7 @@ class BackupTask extends TaskBase
 {
 
     public function __construct(
-        public readonly UpsunClient            $client,
+        public UpsunClient            $client,
         private readonly EnvironmentBackupsApi $api,
     )
     {
