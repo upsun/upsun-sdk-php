@@ -110,6 +110,7 @@ class UpsunClient
         $this->apiClient = new HttplugClient();
 
         $this->auth = new OAuthProvider(
+            $this->apiClient,
             tokenEndpoint: $this->upsunConfig->auth_url . "/" . $this->upsunConfig->token_endpoint,
             clientId: $this->upsunConfig->clientId,
             clientSecret: $this->upsunConfig->apiKey,
