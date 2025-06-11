@@ -47,6 +47,7 @@ use OpenAPI\Client\apisgen\UsersApi;
 use OpenAPI\Client\apisgen\VouchersApi;
 use OpenAPI\Client\Configuration;
 use OpenAPI\Client\HeaderSelector;
+use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\ActivityTask;
@@ -110,7 +111,7 @@ class UpsunClient
         $this->apiClient = new HttplugClient();
 
         $this->auth = new OAuthProvider(
-            $this->apiClient,
+            new HttpClient(),
             tokenEndpoint: $this->upsunConfig->auth_url . "/" . $this->upsunConfig->token_endpoint,
             clientId: $this->upsunConfig->clientId,
             clientSecret: $this->upsunConfig->apiKey,

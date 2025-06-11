@@ -2,7 +2,7 @@
 
 namespace Upsun\Core;
 
-use Symfony\Component\HttpClient\HttplugClient;
+use Symfony\Component\HttpClient\HttpClient;
 use Http\Client\Exception\RequestException;
 
 class OAuthProvider
@@ -14,7 +14,7 @@ class OAuthProvider
     private int $tokenExpiry = 0;
     
     public function __construct(
-        private HttplugClient $httpPlugClient,
+        private HttpClient $httpClient,
         private readonly string $tokenEndpoint,
         private readonly string $clientId,
         private readonly string $clientSecret
@@ -24,15 +24,15 @@ class OAuthProvider
     public function exchangeCodeForToken(): bool
     {
         try {
-            $request = $this->httpPlugClient->createRequest('POST', $this->tokenEndpoint)
+            $request = $this->httpClient->createRequest('POST', $this->tokenEndpoint)
                 ->withHeader('Authorization', 'Basic ' . base64_encode('platform-api-user:'))
                 ->withHeader('Content-Type', 'application/x-www-form-urlencoded');
             $body = http_build_query([
                 'grant_type' => 'api_token',
                 'api_token' => $this->clientSecret,
             ]);
-            $request = $request->withBody($this->httpPlugClient->createStream($body));
-            $response = $this->httpPlugClient->sendRequest($request);
+            $request = $request->withBody($this->httpClient->createStream($body));
+            $response = $this->httpClient->sendRequest($request);
 
             $data = json_decode($response->getBody()->getContents(), true);
             $this->storeTokenData($data);
@@ -57,16 +57,16 @@ class OAuthProvider
         }
 
         try {
-            $request = $this->httpPlugClient->createRequest('POST', $this->tokenEndpoint)
+            $request = $this->httpClient->createRequest('POST', $this->tokenEndpoint)
                 ->withHeader('Content-Type', 'application/x-www-form-urlencoded');
             $body = http_build_query([
                 'grant_type' => 'refresh_token',
                 'refresh_token' => $this->refreshToken,
                 'client_id' => $this->clientId,
             ]);
-            $request = $request->withBody($this->httpPlugClient->createStream($body));
+            $request = $request->withBody($this->httpClient->createStream($body));
             
-            $response = $this->httpPlugClient->sendRequest($request);
+            $response = $this->httpClient->sendRequest($request);
 
             $data = json_decode($response->getBody()->getContents(), true);
             $this->storeTokenData($data);
