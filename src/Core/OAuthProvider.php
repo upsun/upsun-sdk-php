@@ -14,11 +14,14 @@ class OAuthProvider
     private int $tokenExpiry = 0;
 
     public function __construct(
-        private HttpClientInterface $httpClient,
+        private HttpClient $httpClient,
         private readonly string $tokenEndpoint,
         private readonly string $clientId,
         private readonly string $clientSecret
     ) {
+        if (!$httpClient instanceof \Symfony\Component\HttpClient\HttpClient) {
+            throw new \InvalidArgumentException('You must provide a Symfony HttpClient instance');
+        }
     }
 
     public function exchangeCodeForToken(): bool
