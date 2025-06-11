@@ -3,12 +3,8 @@
 namespace Upsun\Core\Tasks;
 
 use DateTime;
-use GuzzleHttp\Exception\ConnectException;
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\RequestOptions;
 use InvalidArgumentException;
 use JsonException;
 use OpenAPI\Client\ApiException;
@@ -309,11 +305,12 @@ class OrganizationTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function createMember(
-        string                 $organizationId,
-        CreateOrgMemberRequest $createOrgMemberRequest
+        string $organizationId,
+        array  $createOrgMemberRequest
     ): OrganizationMember|Error
     {
         $this->refreshToken();
+        $createOrgMemberRequest = new CreateOrgMemberRequest($createOrgMemberRequest);
         return $this->membersApi->createOrgMember($organizationId, $createOrgMemberRequest);
     }
 
@@ -323,12 +320,13 @@ class OrganizationTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function updateMember(
-        string                  $organizationId,
-        string                  $userId,
-        ?UpdateOrgMemberRequest $updateOrgMemberRequest = null
+        string $organizationId,
+        string $userId,
+        ?array $updateOrgMemberRequest = []
     ): OrganizationMember|Error
     {
         $this->refreshToken();
+        $updateOrgMemberRequest = new UpdateOrgMemberRequest($updateOrgMemberRequest);
         return $this->membersApi->updateOrgMember($organizationId, $userId, $updateOrgMemberRequest);
     }
 

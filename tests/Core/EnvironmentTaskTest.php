@@ -23,6 +23,7 @@ use OpenAPI\Client\Model\Version;
 use OpenAPI\Client\Model\VersionCreateInput;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\ActivityTask;
 use Upsun\Core\Tasks\BackupTask;
 use Upsun\Core\Tasks\DomainTask;
@@ -55,7 +56,7 @@ class EnvironmentTaskTest extends TestCase
         $this->mockDeploymentApi = $this->createMock(DeploymentApi::class);
 
         $this->clientMock = new class() extends UpsunClient {
-            public Client $apiClient;
+            public HttplugClient $apiClient;
             public Configuration $apiConfig;
 
             public function __construct() {}

@@ -15,7 +15,15 @@ use OpenAPI\Client\apisgen\SubscriptionsApi;
 use OpenAPI\Client\apisgen\VouchersApi;
 use OpenAPI\Client\Configuration;
 use OpenAPI\Client\HeaderSelector;
+use OpenAPI\Client\Model\AcceptedResponse;
+use OpenAPI\Client\Model\CreateOrgRequest;
+use OpenAPI\Client\Model\CreateOrgSubscriptionRequest;
+use OpenAPI\Client\Model\EnvironmentOperationInput;
+use OpenAPI\Client\Model\UpdateOrgRequest;
+use OpenAPI\Client\Model\UpdateOrgSubscriptionRequest;
+use OpenAPI\Client\Model\User;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\ActivityTask;
 use Upsun\Core\Tasks\BackupTask;
 use Upsun\Core\Tasks\DomainTask;
@@ -37,8 +45,11 @@ use OpenAPI\Client\Model\UpdateOrgMemberRequest;
 use OpenAPI\Client\Model\CanCreateNewOrgSubscription200Response;
 use Upsun\Core\Tasks\RouteTask;
 use Upsun\Core\Tasks\SourceOperationTask;
+use Upsun\Core\Tasks\TeamTask;
+use Upsun\Core\Tasks\UserTask;
 use Upsun\Core\Tasks\VariableTask;
 use Upsun\UpsunClient;
+use Upsun\UpsunConfig;
 
 class OrganizationTaskTest extends TestCase
 {
@@ -58,59 +69,80 @@ class OrganizationTaskTest extends TestCase
     private readonly RecordsApi $recordsApiMock;
     private readonly VouchersApi $vouchersApiMock;
 
+    private readonly UserTask $mockUserTask;
+    private readonly TeamTask $mockTeamTask;
+
     protected function setUp(): void
     {
-        $this->mockEnvironmentApi = $this->createMock(EnvironmentApi::class);
-        $this->mockEnvironmentTypeApi = $this->createMock(EnvironmentTypeApi::class);
-        $this->mockDeploymentApi = $this->createMock(DeploymentApi::class);
+        $this->headerSelectorMock = $this->createMock(HeaderSelector::class);
+        $this->apiMock = $this->createMock(OrganizationsApi::class);
+        $this->projectsApiMock = $this->createMock(OrganizationProjectsApi::class);
+        $this->membersApiMock = $this->createMock(OrganizationMembersApi::class);
+        $this->subscriptionsApiMock = $this->createMock(SubscriptionsApi::class);
+        $this->invoicesApiMock = $this->createMock(InvoicesApi::class);
+        $this->mfaApiMock = $this->createMock(MFAApi::class);
+        $this->ordersApiMock = $this->createMock(OrdersApi::class);
+        $this->profilesApiMock = $this->createMock(ProfilesApi::class);
+        $this->recordsApiMock = $this->createMock(RecordsApi::class);
+        $this->vouchersApiMock = $this->createMock(VouchersApi::class);
 
         $this->clientMock = new class() extends UpsunClient {
-            public \Psr\Http\Client\ClientInterface $apiClient;
+            public HttplugClient $apiClient;
             public Configuration $apiConfig;
+
+            public UpsunConfig $upsunConfig;
 
             public function __construct()
             {
             }
         };
 
-        $this->environmentTask = new class(
+        $this->organizationTask = new class(
             $this->clientMock,
-            $this->mockEnvironmentApi,
-            $this->mockEnvironmentTypeApi,
-            $this->mockDeploymentApi
-        ) extends EnvironmentTask {
+            $this->headerSelectorMock,
+            $this->apiMock,
+            $this->projectsApiMock,
+            $this->membersApiMock,
+            $this->subscriptionsApiMock,
+            $this->invoicesApiMock,
+            $this->mfaApiMock,
+            $this->ordersApiMock,
+            $this->profilesApiMock,
+            $this->recordsApiMock,
+            $this->vouchersApiMock,
+
+        ) extends OrganizationTask {
             public function refreshToken(): void
             {
             }
         };
 
-        // Mock des tâches
-        $this->mockActivityTask = $this->createMock(ActivityTask::class);
-        $this->mockBackupTask = $this->createMock(BackupTask::class);
-        $this->mockVariableTask = $this->createMock(VariableTask::class);
-        $this->mockRouteTask = $this->createMock(RouteTask::class);
-        $this->mockDomainTask = $this->createMock(DomainTask::class);
-        $this->mockSourceOperationTask = $this->createMock(SourceOperationTask::class);
-
-        // Configuration des propriétés du client
-        $this->clientMock->activity = $this->mockActivityTask;
-        $this->clientMock->backup = $this->mockBackupTask;
-        $this->clientMock->variables = $this->mockVariableTask;
-        $this->clientMock->route = $this->mockRouteTask;
-        $this->clientMock->domain = $this->mockDomainTask;
-        $this->clientMock->sourceOperation = $this->mockSourceOperationTask;
+        $this->mockUserTask = $this->createMock(UserTask::class);
+        $this->mockTeamTask = $this->createMock(TeamTask::class);
+        $this->clientMock->user = $this->mockUserTask;
+        $this->clientMock->team = $this->mockTeamTask;
     }
-
-//    protected function setUp(): void
-//    {
-//        parent::setUp();
-//        $this->organizationTask = App::make(OrganizationTask::class);
-//    }
 
     public function testCreateOrganizationSuccess()
     {
-        $response = $this->organizationTask->create(['name' => 'Test Org']);
-        $this->assertInstanceOf(Organization::class, $response);
+        $params = [
+            'owner_id' => '12345',
+            'label' => 'test Org',
+            'name' => 'test-org',
+        ];
+
+        $expectedResponse = $this->createMock(Organization::class);
+
+        $this->apiMock->expects($this->once())
+            ->method('createOrg')
+            ->with(
+                $this->isInstanceOf(CreateOrgRequest::class)
+            )
+            ->willReturn($expectedResponse);
+
+        $response = $this->organizationTask->create($params);
+
+        $this->assertSame($expectedResponse, $response);
     }
 
     public function testDeleteOrganization()
@@ -121,58 +153,157 @@ class OrganizationTaskTest extends TestCase
 
     public function testGetOrganizationSuccess()
     {
-        $response = $this->organizationTask->get('org_123');
-        $this->assertInstanceOf(Organization::class, $response);
+        $orgId = 'org_123';
+        $expectedResponse = $this->createMock(Organization::class);
+
+        $this->apiMock
+            ->expects($this->once())
+            ->method('getOrg')
+            ->with($orgId)
+            ->willReturn($expectedResponse);
+
+        $response = $this->organizationTask->get($orgId);
+
+        $this->assertSame($expectedResponse, $response);
     }
 
     public function testListOrganizations()
     {
+        $list = $this->createMock(ListOrgs200Response::class);
+
+        $this->apiMock
+            ->expects($this->once())
+            ->method('listOrgs')
+            ->willReturn($list);
+
         $response = $this->organizationTask->list();
-        $this->assertInstanceOf(ListOrgs200Response::class, $response);
+        $this->assertSame($list, $response);
     }
 
     public function testListUserOrganizations()
     {
+        $list = $this->createMock(ListUserOrgs200Response::class);
+
+        $this->apiMock
+            ->expects($this->once())
+            ->method('listUserOrgs')
+            ->willReturn($list);
+
         $response = $this->organizationTask->listUserOrgs('user_123');
-        $this->assertInstanceOf(ListUserOrgs200Response::class, $response);
+        $this->assertSame($list, $response);
     }
 
     public function testListCurrentUserOrganizations()
     {
+        $list = $this->createMock(ListUserOrgs200Response::class);
+        $user = $this->createMock(User::class);
+
+
+        $this->mockUserTask
+            ->expects($this->once())
+            ->method('me')
+            ->willReturn($user);
+
+        $user->method('getId')->willReturn('user_123');
+
+        $this->apiMock
+            ->expects($this->once())
+            ->method('listUserOrgs')
+            ->with($user->getId())
+            ->willReturn($list);
+
         $response = $this->organizationTask->listCurrentUserOrgs();
-        $this->assertInstanceOf(ListUserOrgs200Response::class, $response);
+        $this->assertSame($list, $response);
     }
 
     public function testUpdateOrganization()
     {
-        $response = $this->organizationTask->update('org_123', ['name' => 'Updated']);
-        $this->assertInstanceOf(Organization::class, $response);
+
+        $orgId = 'project-123';
+
+        $expectedResponse = $this->createMock(Organization::class);
+
+        $this->apiMock
+            ->expects($this->once())
+            ->method('updateOrg')
+            ->with(
+                $this->equalTo($orgId),
+                $this->isInstanceOf(UpdateOrgRequest::class)
+            )
+            ->willReturn($expectedResponse);
+
+        $result = $this->organizationTask->update($orgId, ['label' => 'updated Org']);
+
+        $this->assertSame($expectedResponse, $result);
     }
 
     public function testCreateMember()
     {
-        $request = new CreateOrgMemberRequest(['userId' => 'user_1']);
-        $response = $this->organizationTask->createMember('org_123', $request);
+        $params = ['userId' => 'user_1'];
+
+        $expectedResponse = $this->createMock(OrganizationMember::class);
+
+        $this->membersApiMock->expects($this->once())
+            ->method('createOrgMember')
+            ->with(
+                'org_123',
+                $this->isInstanceOf(CreateOrgMemberRequest::class)
+            )
+            ->willReturn($expectedResponse);
+
+        $response = $this->organizationTask->createMember('org_123', $params);
         $this->assertInstanceOf(OrganizationMember::class, $response);
     }
 
     public function testUpdateMember()
     {
-        $request = new UpdateOrgMemberRequest(['role' => 'admin']);
-        $response = $this->organizationTask->updateMember('org_123', 'user_1', $request);
+        $params = ['role' => 'admin'];
+        $expectedResponse = $this->createMock(OrganizationMember::class);
+
+        $this->membersApiMock->expects($this->once())
+            ->method('updateOrgMember')
+            ->with(
+                'org_123',
+                'user_1',
+                $this->isInstanceOf(UpdateOrgMemberRequest::class)
+            )
+            ->willReturn($expectedResponse);
+
+        $response = $this->organizationTask->updateMember('org_123', 'user_1', $params);
         $this->assertInstanceOf(OrganizationMember::class, $response);
     }
 
     public function testGetMember()
     {
-        $response = $this->organizationTask->getMember('org_123', 'user_1');
-        $this->assertInstanceOf(OrganizationMember::class, $response);
+        $orgId = 'org_123';
+        $userId = 'user_1';
+        $expectedResponse = $this->createMock(OrganizationMember::class);
+
+        $this->membersApiMock
+            ->expects($this->once())
+            ->method('getOrgMember')
+            ->with($orgId, $userId)
+            ->willReturn($expectedResponse);
+
+        $response = $this->organizationTask->getMember($orgId, $userId);
+
+        $this->assertSame($expectedResponse, $response);
     }
 
     public function testListMembers()
     {
-        $response = $this->organizationTask->listMembers('org_123');
-        $this->assertInstanceOf(ListOrgMembers200Response::class, $response);
+        $orgId = 'org_123';
+        $expectedResponse = $this->createMock(ListOrgMembers200Response::class);
+
+        $this->membersApiMock
+            ->expects($this->once())
+            ->method('listOrgMembers')
+            ->with($orgId)
+            ->willReturn($expectedResponse);
+
+        $response = $this->organizationTask->listMembers($orgId);
+
+        $this->assertSame($expectedResponse, $response);
     }
 
     public function testDeleteMember()
@@ -183,32 +314,97 @@ class OrganizationTaskTest extends TestCase
 
     public function testListTeams()
     {
-        $response = $this->organizationTask->listTeams('org_123');
-        $this->assertInstanceOf(ListTeams200Response::class, $response);
+        $orgId = 'org_123';
+        $userId = 'user_1';
+        $list = $this->createMock(ListTeams200Response::class);
+        $user = $this->createMock(User::class);
+
+        $user->expects($this->once())
+            ->method('getId')
+            ->willReturn('user_1');
+
+        $this->mockUserTask
+            ->expects($this->once())
+            ->method('me')
+            ->willReturn($user);
+
+        $this->mockTeamTask
+            ->expects($this->once())
+            ->method('listUserTeams')
+            ->with($userId)
+            ->willReturn($list);
+
+        $response = $this->organizationTask->listTeams($orgId);
+        $this->assertSame($list, $response);
     }
 
     public function testGetProject()
     {
-        $response = $this->organizationTask->getProject('org_123', 'proj_1');
-        $this->assertInstanceOf(OrganizationProject::class, $response);
+        $orgId = 'org_123';
+        $prjId = 'prj_1';
+        $expectedResponse = $this->createMock(OrganizationProject::class);
+
+        $this->projectsApiMock
+            ->expects($this->once())
+            ->method('getOrgProject')
+            ->with($orgId, $prjId)
+            ->willReturn($expectedResponse);
+
+        $response = $this->organizationTask->getProject($orgId, $prjId);
+
+        $this->assertSame($expectedResponse, $response);
     }
 
     public function testListProjects()
     {
-        $response = $this->organizationTask->listProjects('org_123');
-        $this->assertInstanceOf(ListOrgProjects200Response::class, $response);
+        $orgId = 'org_123';
+        $expectedResponse = $this->createMock(ListOrgProjects200Response::class);
+
+        $this->projectsApiMock
+            ->expects($this->once())
+            ->method('listOrgProjects')
+            ->with($orgId)
+            ->willReturn($expectedResponse);
+
+        $response = $this->organizationTask->listProjects($orgId);
+
+        $this->assertSame($expectedResponse, $response);
     }
 
     public function testCanCreateProject()
     {
-        $response = $this->organizationTask->canCreateProject('org_123');
-        $this->assertInstanceOf(CanCreateNewOrgSubscription200Response::class, $response);
+        $orgId = 'org_123';
+        $expectedResponse = $this->createMock(CanCreateNewOrgSubscription200Response::class);
+
+        $this->subscriptionsApiMock
+            ->expects($this->once())
+            ->method('canCreateNewOrgSubscription')
+            ->with($orgId)
+            ->willReturn($expectedResponse);
+
+        $response = $this->organizationTask->canCreateProject($orgId);
+
+        $this->assertSame($expectedResponse, $response);
     }
 
     public function testCreateProject()
     {
-        $response = $this->organizationTask->createProject('org_123', ['name' => 'New Project']);
-        $this->assertInstanceOf(Subscription::class, $response);
+        $orgId = 'org_1';
+        $params = ['name' => 'New Project'];
+
+        $expectedResponse = $this->createMock(Subscription::class);
+
+        $this->subscriptionsApiMock->expects($this->once())
+            ->method('createOrgSubscription')
+            ->with(
+                $orgId,
+                $this->isInstanceOf(CreateOrgSubscriptionRequest::class)
+            )
+            ->willReturn($expectedResponse);
+
+        $response = $this->organizationTask->createProject($orgId, $params);
+
+        $this->assertSame($expectedResponse, $response);
     }
 
     public function testDeleteProject()
@@ -219,25 +415,104 @@ class OrganizationTaskTest extends TestCase
 
     public function testUpdateProject()
     {
-        $response = $this->organizationTask->updateProject('org_123', 'proj_1', ['name' => 'Updated Project']);
-        $this->assertInstanceOf(Subscription::class, $response);
+        $orgId = 'org_1';
+        $prjId = 'proj_1';
+        $params = ['name' => 'Updated Project'];
+
+        $expectedResponse = $this->createMock(Subscription::class);
+
+        $this->subscriptionsApiMock->expects($this->once())
+            ->method('updateOrgSubscription')
+            ->with(
+                $orgId,
+                $prjId,
+                $this->isInstanceOf(UpdateOrgSubscriptionRequest::class)
+            )
+            ->willReturn($expectedResponse);
+
+        $response = $this->organizationTask->updateProject($orgId, $prjId, $params);
+
+        $this->assertSame($expectedResponse, $response);
     }
 
     public function testEstimateNewProject()
     {
-        $response = $this->organizationTask->estimateNewProject('org_123');
-        $this->assertInstanceOf(EstimationObject::class, $response);
+        $orgId = 'org_1';
+
+        $expectedResponse = $this->createMock(EstimationObject::class);
+
+        $this->subscriptionsApiMock->expects($this->once())
+            ->method('estimateNewOrgSubscription')
+            ->with(
+                $orgId
+            )
+            ->willReturn($expectedResponse);
+
+        $response = $this->organizationTask->estimateNewProject($orgId);
+
+        $this->assertSame($expectedResponse, $response);
     }
 
     public function testEstimateProject()
     {
-        $response = $this->organizationTask->estimateProject('org_123', 'proj_1');
-        $this->assertInstanceOf(EstimationObject::class, $response);
+        $orgId = 'org_1';
+        $prjId = 'prj_1';
+
+        $expectedResponse = $this->createMock(EstimationObject::class);
+
+        $this->subscriptionsApiMock->expects($this->once())
+            ->method('estimateOrgSubscription')
+            ->with(
+                $orgId,
+                $prjId
+            )
+            ->willReturn($expectedResponse);
+
+        $response = $this->organizationTask->estimateProject($orgId, $prjId);
+
+        $this->assertSame($expectedResponse, $response);
     }
 
     public function testGetProjectUsage()
     {
-        $response = $this->organizationTask->getProjectUsage('org_123', 'proj_1');
-        $this->assertInstanceOf(SubscriptionCurrentUsageObject::class, $response);
+        $orgId = 'org_1';
+        $prjId = 'prj_1';
+
+        $expectedResponse = $this->createMock(SubscriptionCurrentUsageObject::class);
+
+        $this->subscriptionsApiMock->expects($this->once())
+            ->method('getOrgSubscriptionCurrentUsage')
+            ->with(
+                $orgId,
+                $prjId
+            )
+            ->willReturn($expectedResponse);
+
+        $response = $this->organizationTask->getProjectUsage($orgId, $prjId);
+
+        $this->assertSame($expectedResponse, $response);
+    }
+
+    public function testDisableMfaEnforcement(): void
+    {
+        $orgId = 'org_1';
+
+        $environmentId = 'env-456';
+        $input = ['parent' => 'main'];
+        $expectedResponse = new AcceptedResponse(['status' => 'accepted']);
+
+        $this->mockEnvironmentApi
+            ->expects($this->once())
+            ->method('mergeEnvironment')
+            ->with(
+                $this->equalTo($projectId),
+                $this->equalTo($environmentId),
+                $this->isInstanceOf(EnvironmentMergeInput::class)
+            )
+            ->willReturn($expectedResponse);
+
+        $result = $this->environmentTask->merge($projectId, $environmentId, $input);
+
+        $this->assertSame($expectedResponse, $result);
     }
 }
