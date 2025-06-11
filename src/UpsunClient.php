@@ -2,7 +2,6 @@
 
 namespace Upsun;
 
-use http\Client;
 use OpenAPI\Client\apisgen\APITokensApi;
 use OpenAPI\Client\apisgen\CertManagementApi;
 use OpenAPI\Client\apisgen\ConnectionsApi;
@@ -48,6 +47,7 @@ use OpenAPI\Client\apisgen\UsersApi;
 use OpenAPI\Client\apisgen\VouchersApi;
 use OpenAPI\Client\Configuration;
 use OpenAPI\Client\HeaderSelector;
+use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\ActivityTask;
 use Upsun\Core\Tasks\ApplicationTask;
@@ -73,7 +73,7 @@ use Upsun\Core\Tasks\WorkerTask;
 
 class UpsunClient
 {
-    public Client $apiClient;
+    public HttplugClient $apiClient;
     public Configuration $apiConfig;
     public OAuthProvider $auth;
     public ?string $userId = null;
@@ -107,7 +107,7 @@ class UpsunClient
         $this->apiConfig = Configuration::getDefaultConfiguration()
             ->setHost($this->upsunConfig->base_url);
 
-        $this->apiClient = new Client();
+        $this->apiClient = new HttplugClient();
 
         $this->auth = new OAuthProvider(
             tokenEndpoint: $this->upsunConfig->auth_url . "/" . $this->upsunConfig->token_endpoint,
