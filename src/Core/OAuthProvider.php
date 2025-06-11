@@ -2,8 +2,11 @@
 
 namespace Upsun\Core;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
+use Psr\Http\Message\RequestFactoryInterface;
+use Psr\Http\Message\StreamFactoryInterface;
+use Symfony\Component\HttpClient\HttpClient as Client;
+use Symfony\Component\HttpClient\HttplugClient;
+use Http\Client\Exception\RequestException;
 
 class OAuthProvider
 {
@@ -13,29 +16,29 @@ class OAuthProvider
     private ?string $refreshToken = null;
     private int $tokenExpiry = 0;
     
-    private Client $httpClient;
-
     public function __construct(
+        private RequestFactoryInterface $requestFactory,
+        private StreamFactoryInterface $streamFactory,
+        private Client $httpClient,
+        private HttplugClient $httpPlugClient,
         private readonly string $tokenEndpoint,
         private readonly string $clientId,
         private readonly string $clientSecret
     ) {
-        $this->httpClient = new Client();
     }
 
     public function exchangeCodeForToken(): bool
     {
         try {
-            $response = $this->httpClient->post($this->tokenEndpoint, [
-                'headers' => [
-                    'Authorization' => 'Basic ' . base64_encode('platform-api-user:'),
-                    'Content-Type' => 'application/x-www-form-urlencoded',
-                ],
-                'form_params' => [
-                    'grant_type' => 'api_token',
-                    'api_token' => $this->clientSecret,
-                ],
+            $request = $this->requestFactory->createRequest('POST', $this->tokenEndpoint)
+                ->withHeader('Authorization', 'Basic ' . base64_encode('platform-api-user:'))
+                ->withHeader('Content-Type', 'application/x-www-form-urlencoded');
+            $body = http_build_query([
+                'grant_type' => 'api_token',
+                'api_token' => $this->clientSecret,
             ]);
+            $request = $request->withBody($this->streamFactory->createStream($body));
+            $response = $this->httpPlugClient->sendRequest($request);
 
             $data = json_decode($response->getBody()->getContents(), true);
             $this->storeTokenData($data);
@@ -60,16 +63,26 @@ class OAuthProvider
         }
 
         try {
-            $response = $this->httpClient->post($this->tokenEndpoint, [
-                'headers' => [
-                    'Content-Type' => 'application/x-www-form-urlencoded',
-                ],
-                'form_params' => [
-                    'grant_type' => 'refresh_token',
-                    'refresh_token' => $this->refreshToken,
-                    'client_id' => $this->clientId,
-                ],
+//            $response = $this->httpClient->post($this->tokenEndpoint, [
+//                'headers' => [
+//                    'Content-Type' => 'application/x-www-form-urlencoded',
+//                ],
+//                'form_params' => [
+//                    'grant_type' => 'refresh_token',
+//                    'refresh_token' => $this->refreshToken,
+//                    'client_id' => $this->clientId,
+//                ],
+//            ]);
+            $request = $this->requestFactory->createRequest('POST', $this->tokenEndpoint)
+                ->withHeader('Content-Type', 'application/x-www-form-urlencoded');
+            $body = http_build_query([
+                'grant_type' => 'refresh_token',
+                'refresh_token' => $this->refreshToken,
+                'client_id' => $this->clientId,
             ]);
+            $request = $request->withBody($this->streamFactory->createStream($body));
+            
+            $response = $this->httpPlugClient->sendRequest($request);
 
             $data = json_decode($response->getBody()->getContents(), true);
             $this->storeTokenData($data);
