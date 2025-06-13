@@ -3,7 +3,6 @@
 namespace Tests\Upsun\Core\Tasks;
 
 use Nyholm\Psr7\Request;
-use InvalidArgumentException;
 use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\DeploymentTargetApi;
 use OpenAPI\Client\apisgen\ProjectApi;
@@ -17,12 +16,10 @@ use OpenAPI\Client\Model\Activity;
 use OpenAPI\Client\Model\Blob;
 use OpenAPI\Client\Model\Certificate;
 use OpenAPI\Client\Model\Commit;
-use OpenAPI\Client\Model\CreateProjectInviteRequest;
 use OpenAPI\Client\Model\DeploymentTarget;
 use OpenAPI\Client\Model\DeploymentTargetCreateInput;
 use OpenAPI\Client\Model\DeploymentTargetPatch;
 use OpenAPI\Client\Model\Domain;
-use OpenAPI\Client\Model\Error;
 use OpenAPI\Client\Model\Integration;
 use OpenAPI\Client\Model\IntegrationCreateInput;
 use OpenAPI\Client\Model\IntegrationPatch;
