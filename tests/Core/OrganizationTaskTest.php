@@ -1,8 +1,5 @@
 <?php
 
-use OpenAPI\Client\apisgen\DeploymentApi;
-use OpenAPI\Client\apisgen\EnvironmentApi;
-use OpenAPI\Client\apisgen\EnvironmentTypeApi;
 use OpenAPI\Client\apisgen\InvoicesApi;
 use OpenAPI\Client\apisgen\MFAApi;
 use OpenAPI\Client\apisgen\OrdersApi;
@@ -15,19 +12,25 @@ use OpenAPI\Client\apisgen\SubscriptionsApi;
 use OpenAPI\Client\apisgen\VouchersApi;
 use OpenAPI\Client\Configuration;
 use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\Model\AcceptedResponse;
+use OpenAPI\Client\Model\Address;
+use OpenAPI\Client\Model\ApplyOrgVoucherRequest;
+use OpenAPI\Client\Model\CreateAuthorizationCredentials200Response;
 use OpenAPI\Client\Model\CreateOrgRequest;
 use OpenAPI\Client\Model\CreateOrgSubscriptionRequest;
-use OpenAPI\Client\Model\EnvironmentOperationInput;
+use OpenAPI\Client\Model\Invoice;
+use OpenAPI\Client\Model\ListOrgInvoices200Response;
+use OpenAPI\Client\Model\ListOrgOrders200Response;
+use OpenAPI\Client\Model\ListOrgPlanRecords200Response;
+use OpenAPI\Client\Model\Order;
+use OpenAPI\Client\Model\OrganizationMFAEnforcement;
+use OpenAPI\Client\Model\Profile;
+use OpenAPI\Client\Model\SendOrgMfaReminders200ResponseValue;
+use OpenAPI\Client\Model\UpdateOrgProfileRequest;
 use OpenAPI\Client\Model\UpdateOrgRequest;
 use OpenAPI\Client\Model\UpdateOrgSubscriptionRequest;
 use OpenAPI\Client\Model\User;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttplugClient;
-use Upsun\Core\Tasks\ActivityTask;
-use Upsun\Core\Tasks\BackupTask;
-use Upsun\Core\Tasks\DomainTask;
-use Upsun\Core\Tasks\EnvironmentTask;
 use Upsun\Core\Tasks\OrganizationTask;
 use OpenAPI\Client\Model\Organization;
 use OpenAPI\Client\Model\OrganizationMember;
@@ -43,11 +46,8 @@ use OpenAPI\Client\Model\ListOrgProjects200Response;
 use OpenAPI\Client\Model\CreateOrgMemberRequest;
 use OpenAPI\Client\Model\UpdateOrgMemberRequest;
 use OpenAPI\Client\Model\CanCreateNewOrgSubscription200Response;
-use Upsun\Core\Tasks\RouteTask;
-use Upsun\Core\Tasks\SourceOperationTask;
 use Upsun\Core\Tasks\TeamTask;
 use Upsun\Core\Tasks\UserTask;
-use Upsun\Core\Tasks\VariableTask;
 use Upsun\UpsunClient;
 use Upsun\UpsunConfig;
 
@@ -114,6 +114,15 @@ class OrganizationTaskTest extends TestCase
         ) extends OrganizationTask {
             public function refreshToken(): void
             {
+            }
+
+            protected function updateOrgAddonsWithHttpInfo(
+                $organizationId,
+                ?array $update_org_request = [],
+                ?string $contentType = 'application/json'
+            ): array
+            {
+                return ['data', 200, []];
             }
         };
 
@@ -497,22 +506,218 @@ class OrganizationTaskTest extends TestCase
     {
         $orgId = 'org_1';
 
-        $environmentId = 'env-456';
-        $input = ['parent' => 'main'];
-        $expectedResponse = new AcceptedResponse(['status' => 'accepted']);
-
-        $this->mockEnvironmentApi
+        $this->mfaApiMock
             ->expects($this->once())
-            ->method('mergeEnvironment')
+            ->method('disableOrgMfaEnforcement')
             ->with(
-                $this->equalTo($projectId),
-                $this->equalTo($environmentId),
-                $this->isInstanceOf(EnvironmentMergeInput::class)
-            )
-            ->willReturn($expectedResponse);
+                $this->equalTo($orgId),
+            );
 
-        $result = $this->environmentTask->merge($projectId, $environmentId, $input);
-
-        $this->assertSame($expectedResponse, $result);
+        $this->organizationTask->disableMfaEnforcement($orgId);
     }
+
+    public function testGetInvoice(): void
+    {
+        $invoice = $this->createMock(Invoice::class);
+
+        $this->invoicesApiMock->expects($this->once())
+            ->method('getOrgInvoice')
+            ->with('inv-001', 'org-123')
+            ->willReturn($invoice);
+
+        $result = $this->organizationTask->getInvoice('inv-001', 'org-123');
+        $this->assertSame($invoice, $result);
+    }
+
+    public function testGetAddress(): void
+    {
+        $address = $this->createMock(Address::class);
+
+        $this->profilesApiMock->expects($this->once())
+            ->method('getOrgAddress')
+            ->with('org-123')
+            ->willReturn($address);
+
+        $result = $this->organizationTask->getAddress('org-123');
+        $this->assertSame($address, $result);
+    }
+
+    public function testListUsageRecords(): void
+    {
+        $response = $this->createMock(\OpenAPI\Client\Model\ListOrgUsageRecords200Response::class);
+
+        $this->recordsApiMock->expects($this->once())
+            ->method('listOrgUsageRecords')
+            ->with('org-123')
+            ->willReturn($response);
+
+        $result = $this->organizationTask->listUsageRecords('org-123');
+        $this->assertSame($response, $result);
+    }
+
+    public function testListVouchers(): void
+    {
+        $vouchers = $this->createMock(\OpenAPI\Client\Model\Vouchers::class);
+
+        $this->vouchersApiMock->expects($this->once())
+            ->method('listOrgVouchers')
+            ->with('org-123')
+            ->willReturn($vouchers);
+
+        $result = $this->organizationTask->listVouchers('org-123');
+        $this->assertSame($vouchers, $result);
+    }
+
+    public function testEnableMfaEnforcement(): void
+    {
+        $this->mfaApiMock->expects($this->once())
+            ->method('enableOrgMfaEnforcement')
+            ->with('org-123');
+
+        $this->organizationTask->enableMfaEnforcement('org-123');
+    }
+
+    public function testGetMfaEnforcement(): void
+    {
+        $list = $this->createMock(OrganizationMFAEnforcement::class);
+        $this->mfaApiMock->expects($this->once())
+            ->method('getOrgMfaEnforcement')
+            ->with('org-123')
+            ->willReturn($list);
+
+        $this->assertSame($list, $this->organizationTask->getMfaEnforcement('org-123'));
+    }
+
+    public function testSendMfaReminders(): void
+    {
+        $result = [$this->createMock(SendOrgMfaReminders200ResponseValue::class)];
+
+        $this->mfaApiMock->expects($this->once())
+            ->method('sendOrgMfaReminders')
+            ->with('org-123')
+            ->willReturn($result);
+
+        $this->assertSame($result, $this->organizationTask->sendMfaReminders('org-123'));
+    }
+
+    public function testListInvoices(): void
+    {
+        $list = $this->createMock(ListOrgInvoices200Response::class);
+
+        $this->invoicesApiMock->expects($this->once())
+            ->method('listOrgInvoices')
+            ->with('org-123')
+            ->willReturn($list);
+
+        $result = $this->organizationTask->listInvoices('org-123');
+        $this->assertSame($list, $result);
+    }
+
+    public function testCreateAuthorizationCredentials(): void
+    {
+        $result = $this->createMock(CreateAuthorizationCredentials200Response::class);
+        $this->ordersApiMock->expects($this->once())
+            ->method('createAuthorizationCredentials')
+            ->with('org-123', 'ord_1')
+            ->willReturn($result);
+
+        $this->assertSame($result, $this->organizationTask->createAuthorizationCredentials('org-123', 'ord_1'));
+    }
+
+    public function testDownloadInvoice(): void
+    {
+        $this->ordersApiMock->expects($this->once())
+            ->method('downloadInvoice')
+            ->with('token_123');
+
+        $this->organizationTask->downloadInvoice('token_123');
+    }
+
+    public function testGetOrder(): void
+    {
+        $order = $this->createMock(Order::class);
+
+        $this->ordersApiMock->expects($this->once())
+            ->method('getOrgOrder')
+            ->with('order-001', 'org-123')
+            ->willReturn($order);
+
+        $this->assertSame($order, $this->organizationTask->getOrder('order-001', 'org-123'));
+    }
+
+    public function testListOrders(): void
+    {
+        $list = $this->createMock(ListOrgOrders200Response::class);
+
+        $this->ordersApiMock->expects($this->once())
+            ->method('listOrgOrders')
+            ->with('org-123')
+            ->willReturn($list);
+
+        $this->assertSame($list, $this->organizationTask->listOrders('org-123'));
+    }
+
+    public function testGetProfile(): void
+    {
+        $profile = $this->createMock(Profile::class);
+
+        $this->profilesApiMock->expects($this->once())
+            ->method('getOrgProfile')
+            ->with('org-123')
+            ->willReturn($profile);
+
+        $this->assertSame($profile, $this->organizationTask->getProfile('org-123'));
+    }
+
+    public function testUpdateAddress(): void
+    {
+        $address = $this->createMock(Address::class);
+
+        $this->profilesApiMock->expects($this->once())
+            ->method('updateOrgAddress')
+            ->with('org-123', ['street' => '21 jump street'])
+            ->willReturn($address);;
+
+        $this->assertSame($address, $this->organizationTask->updateAddress('org-123', ['street' => '21 jump street']));
+    }
+
+    public function testUpdateProfile(): void
+    {
+        $profile = $this->createMock(Profile::class);
+
+        $this->profilesApiMock->expects($this->once())
+            ->method('updateOrgProfile')
+            ->with('org-123', $this->isInstanceOf(UpdateOrgProfileRequest::class))
+            ->willReturn($profile);
+
+        $this->assertSame($profile, $this->organizationTask->updateProfile('org-123', ['name' => 'Mister Bean']));
+    }
+
+    public function testListRecords(): void
+    {
+        $records = $this->createMock(ListOrgPlanRecords200Response::class);
+
+        $this->recordsApiMock->expects($this->once())
+            ->method('listOrgPlanRecords')
+            ->with('org-123')
+            ->willReturn($records);
+
+        $this->assertSame($records, $this->organizationTask->listRecords('org-123'));
+    }
+
+    public function testApplyVoucher(): void
+    {
+        $this->vouchersApiMock->expects($this->once())
+            ->method('applyOrgVoucher')
+            ->with('org-123', $this->isInstanceOf(ApplyOrgVoucherRequest::class));
+
+        $this->organizationTask->applyVoucher('org-123', ['voucher' => 'VOUCHER123']);
+    }
+
+    public function testUpdateAddons(): void
+    {
+        $result = $this->organizationTask->updateAddons('org-123');
+        $this->assertSame('data', $result);
+    }
+
 }

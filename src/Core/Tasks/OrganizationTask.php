@@ -525,7 +525,7 @@ class OrganizationTask extends TaskBase
     public function enableMfaEnforcement(string $organizationId): void
     {
         $this->refreshToken();
-        $this->mfaApi->disableOrgMfaEnforcement($organizationId);
+        $this->mfaApi->enableOrgMfaEnforcement($organizationId);
     }
 
     /**
@@ -680,7 +680,7 @@ class OrganizationTask extends TaskBase
     {
         $this->refreshToken();
         $update_org_profile_request = new UpdateOrgProfileRequest($update_org_profile_request);
-        return $this->profilesApi->updateOrgAddress($organizationId, $update_org_profile_request);
+        return $this->profilesApi->updateOrgProfile($organizationId, $update_org_profile_request);
     }
 
     /**
@@ -770,7 +770,7 @@ class OrganizationTask extends TaskBase
      * Missing from the openapi config
      *
      * @throws ApiException
-     * @throws GuzzleException
+     * @throws RuntimeException
      */
     public function updateAddons(string $organizationId): mixed
     {
@@ -779,8 +779,7 @@ class OrganizationTask extends TaskBase
         list($response) = $this->updateOrgAddonsWithHttpInfo($organizationId, $user_management_addons);
         return $response;
     }
-
-
+    
     /**
      * Create http client option
      * TODO missing from OrganizationApi.php
@@ -807,7 +806,7 @@ class OrganizationTask extends TaskBase
      * TODO missing from Organizationpi
      * @throws ApiException
      */
-    private function handleResponseWithDataType(
+    protected function handleResponseWithDataType(
         string            $dataType,
         RequestInterface  $request,
         ResponseInterface $response
@@ -847,12 +846,12 @@ class OrganizationTask extends TaskBase
      * @TODO missing from OrganizationAPI
      *
      * @throws InvalidArgumentException
-     * @throws ApiException|GuzzleException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    private function updateOrgAddonsWithHttpInfo(
+    protected function updateOrgAddonsWithHttpInfo(
         $organizationId,
         ?array $update_org_request = [],
-        ?string $contentType = OrganizationsApi::contentTypes['updateOrg'][0]
+        ?string $contentType = 'application/json'
     ): array
     {
         $request = $this->updateOrgAddonsRequest($organizationId, $update_org_request, $contentType);
