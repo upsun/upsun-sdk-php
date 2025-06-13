@@ -962,7 +962,7 @@ class OrganizationTask extends TaskBase
     public function updateOrgAddonsRequest(
         $organizationId,
         ?array $update_org_request = [],
-        ?string $contentType = OrganizationsApi::contentTypes['updateOrg'][0]
+        ?string $contentType = 'application/json'
     ): Request
     {
         // verify the required parameter 'organization_id' is set

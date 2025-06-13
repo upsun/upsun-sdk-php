@@ -104,10 +104,11 @@ class InvitationTask extends TaskBase
      */
     public function createProjectInvite(
         string                      $projectId,
-        ?CreateProjectInviteRequest $createProjectInviteRequest = null
+        ?array $createProjectInviteRequest = null
     ): ProjectInvitation|Error
     {
         $this->refreshToken();
+        $createProjectInviteRequest = new CreateProjectInviteRequest($createProjectInviteRequest);
         return $this->prjInvApi->createProjectInvite($projectId, $createProjectInviteRequest);
     }
 

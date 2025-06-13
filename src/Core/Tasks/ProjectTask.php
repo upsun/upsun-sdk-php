@@ -123,7 +123,7 @@ class ProjectTask extends TaskBase
      */
     public function createInvite(
         string                      $projectId,
-        ?CreateProjectInviteRequest $createProjectInviteRequest = null
+        ?array $createProjectInviteRequest = null
     ): ProjectInvitation|Error
     {
         return $this->client->invitations->createProjectInvite($projectId, $createProjectInviteRequest);
@@ -634,11 +634,11 @@ class ProjectTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listProjectTeamAccess(
-        string $projectId,
-        int    $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        string  $projectId,
+        ?int    $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): Error|ListTeamProjectAccess200Response
     {
         return $this->client->team->listProjectTeamAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
@@ -650,11 +650,11 @@ class ProjectTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listTeamProjectAccess(
-        string $teamId,
-        int    $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        string  $teamId,
+        ?int    $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): Error|ListTeamProjectAccess200Response
     {
         return $this->client->team->listTeamProjectAccess($teamId, $pageSize, $pageBefore, $pageAfter, $sort);
@@ -718,7 +718,7 @@ class ProjectTask extends TaskBase
     public function updateProjectUserAccess(
         string $projectId,
         string $userId,
-        array  $updateProjectUserAccessRequest = null
+        ?array  $updateProjectUserAccessRequest = null
     ): void
     {
         $this->client->user->updateProjectUserAccess($projectId, $userId, $updateProjectUserAccessRequest);
