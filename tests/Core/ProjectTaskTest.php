@@ -3,6 +3,7 @@
 namespace Tests\Upsun\Core\Tasks;
 
 use Nyholm\Psr7\Request;
+use InvalidArgumentException;
 use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\DeploymentTargetApi;
 use OpenAPI\Client\apisgen\ProjectApi;
@@ -16,10 +17,12 @@ use OpenAPI\Client\Model\Activity;
 use OpenAPI\Client\Model\Blob;
 use OpenAPI\Client\Model\Certificate;
 use OpenAPI\Client\Model\Commit;
+use OpenAPI\Client\Model\CreateProjectInviteRequest;
 use OpenAPI\Client\Model\DeploymentTarget;
 use OpenAPI\Client\Model\DeploymentTargetCreateInput;
 use OpenAPI\Client\Model\DeploymentTargetPatch;
 use OpenAPI\Client\Model\Domain;
+use OpenAPI\Client\Model\Error;
 use OpenAPI\Client\Model\Integration;
 use OpenAPI\Client\Model\IntegrationCreateInput;
 use OpenAPI\Client\Model\IntegrationPatch;
@@ -1062,12 +1065,11 @@ class ProjectTaskTest extends TestCase
     public function testDeleteWithError()
     {
         $projectId = 'test-project';
-        $error = new ApiException('Not Found', $this->createMock(Request::class));
 
         $this->projectApi->expects($this->once())
             ->method('deleteProjects')
             ->with($projectId)
-            ->willThrowException($error);
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
         $this->projectTask->delete($projectId);
@@ -1076,12 +1078,11 @@ class ProjectTaskTest extends TestCase
     public function testGetWithError()
     {
         $projectId = 'test-project';
-        $error = new ApiException('Forbidden', $this->createMock(Request::class));
 
         $this->projectApi->expects($this->once())
             ->method('getProjects')
             ->with($projectId)
-            ->willThrowException($error);
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
         $this->projectTask->get($projectId);
@@ -1090,12 +1091,11 @@ class ProjectTaskTest extends TestCase
     public function testGetCapabilitiesWithError()
     {
         $projectId = 'test-project';
-        $error = new ApiException('Server Error', $this->createMock(Request::class));
 
         $this->projectApi->expects($this->once())
             ->method('getProjectsCapabilities')
             ->with($projectId)
-            ->willThrowException($error);
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
         $this->projectTask->getCapabilities($projectId);
@@ -1105,26 +1105,52 @@ class ProjectTaskTest extends TestCase
     {
         $projectId = 'test-project';
         $projectData = ['title' => 'Updated Project'];
-        $error = new ApiException('Bad Request', $this->createMock(Request::class));
 
         $this->projectApi->expects($this->once())
             ->method('updateProjects')
             ->with($projectId, $this->isInstanceOf(ProjectPatch::class))
-            ->willThrowException($error);
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
         $this->projectTask->update($projectId, $projectData);
+    }
+
+    public function testCancelInviteWithError()
+    {
+        $projectId = '-1';
+        $invitationId = 'invite-123';
+
+        $this->invitationTask->expects($this->once())
+            ->method('cancelProjectInvite')
+            ->with($projectId, $invitationId)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->cancelInvite($projectId, $invitationId);
+    }
+
+    public function testCreateInviteWithError()
+    {
+        $projectId = 'test-project';
+        $request = ['email' => 'test'];
+
+        $this->invitationTask->expects($this->once())
+            ->method('createProjectInvite')
+            ->with($projectId, $request)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->createInvite($projectId, $request);
     }
     
     public function testGetSettingsWithError()
     {
         $projectId = 'test-project';
-        $error = new ApiException('Forbidden', $this->createMock(Request::class));
 
         $this->settingsApi->expects($this->once())
             ->method('getProjectsSettings')
             ->with($projectId)
-            ->willThrowException($error);
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
         $this->projectTask->getSettings($projectId);
@@ -1134,12 +1160,11 @@ class ProjectTaskTest extends TestCase
     {
         $projectId = 'test-project';
         $settingsData = ['timezone' => 'UTC'];
-        $error = new ApiException('Bad Request', $this->createMock(Request::class));
 
         $this->settingsApi->expects($this->once())
             ->method('updateProjectsSettings')
             ->with($projectId, $this->isInstanceOf(ProjectSettingsPatch::class))
-            ->willThrowException($error);
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
         $this->projectTask->updateSettings($projectId, $settingsData);
@@ -1149,12 +1174,11 @@ class ProjectTaskTest extends TestCase
     {
         $projectId = 'test-project';
         $deploymentData = ['name' => 'production'];
-        $error = new ApiException('Bad Request', $this->createMock(Request::class));
 
         $this->deploymentTargetApi->expects($this->once())
             ->method('createProjectsDeployments')
             ->with($projectId, $this->isInstanceOf(DeploymentTargetCreateInput::class))
-            ->willThrowException($error);
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
         $this->projectTask->createDeployment($projectId, $deploymentData);
@@ -1164,12 +1188,11 @@ class ProjectTaskTest extends TestCase
     {
         $projectId = 'test-project';
         $deploymentId = 'deploy-123';
-        $error = new ApiException('Not Found', $this->createMock(Request::class));
 
         $this->deploymentTargetApi->expects($this->once())
             ->method('deleteProjectsDeployments')
             ->with($projectId, $deploymentId)
-            ->willThrowException($error);
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
         $this->projectTask->deleteDeployment($projectId, $deploymentId);
@@ -1179,12 +1202,11 @@ class ProjectTaskTest extends TestCase
     {
         $projectId = 'test-project';
         $deploymentId = 'deploy-123';
-        $error = new ApiException('Forbidden', $this->createMock(Request::class));
 
         $this->deploymentTargetApi->expects($this->once())
             ->method('getProjectsDeployments')
             ->with($projectId, $deploymentId)
-            ->willThrowException($error);
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
         $this->projectTask->getDeployment($projectId, $deploymentId);
@@ -1193,12 +1215,11 @@ class ProjectTaskTest extends TestCase
     public function testListDeploymentsWithError()
     {
         $projectId = 'test-project';
-        $error = new ApiException('Unauthorized', $this->createMock(Request::class));
 
         $this->deploymentTargetApi->expects($this->once())
             ->method('listProjectsDeployments')
             ->with($projectId)
-            ->willThrowException($error);
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
         $this->projectTask->listDeployments($projectId);
@@ -1209,12 +1230,11 @@ class ProjectTaskTest extends TestCase
         $projectId = 'test-project';
         $deploymentId = 'deploy-123';
         $deploymentData = ['name' => 'staging'];
-        $error = new ApiException('Conflict', $this->createMock(Request::class));
 
         $this->deploymentTargetApi->expects($this->once())
             ->method('updateProjectsDeployments')
             ->with($projectId, $deploymentId, $this->isInstanceOf(DeploymentTargetPatch::class))
-            ->willThrowException($error);
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
         $this->projectTask->updateDeployment($projectId, $deploymentId, $deploymentData);
@@ -1224,12 +1244,11 @@ class ProjectTaskTest extends TestCase
     {
         $projectId = 'test-project';
         $blobId = 'blob-123';
-        $error = new ApiException('Not Found', $this->createMock(Request::class));
 
         $this->repositoryApi->expects($this->once())
             ->method('getProjectsGitBlobs')
             ->with($projectId, $blobId)
-            ->willThrowException($error);
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
         $this->projectTask->getGitBlob($projectId, $blobId);
@@ -1239,12 +1258,11 @@ class ProjectTaskTest extends TestCase
     {
         $projectId = 'test-project';
         $commitId = 'commit-123';
-        $error = new ApiException('Forbidden', $this->createMock(Request::class));
 
         $this->repositoryApi->expects($this->once())
             ->method('getProjectsGitCommits')
             ->with($projectId, $commitId)
-            ->willThrowException($error);
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
         $this->projectTask->getGitCommit($projectId, $commitId);
@@ -1254,12 +1272,11 @@ class ProjectTaskTest extends TestCase
     {
         $projectId = 'test-project';
         $refId = 'ref-123';
-        $error = new ApiException('Server Error', $this->createMock(Request::class));
 
         $this->repositoryApi->expects($this->once())
             ->method('getProjectsGitRefs')
             ->with($projectId, $refId)
-            ->willThrowException($error);
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
         $this->projectTask->getGitRef($projectId, $refId);
@@ -1269,12 +1286,11 @@ class ProjectTaskTest extends TestCase
     {
         $projectId = 'test-project';
         $treeId = 'tree-123';
-        $error = new ApiException('Bad Request', $this->createMock(Request::class));
 
         $this->repositoryApi->expects($this->once())
             ->method('getProjectsGitTrees')
             ->with($projectId, $treeId)
-            ->willThrowException($error);
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
         $this->projectTask->getGitTree($projectId, $treeId);
@@ -1283,12 +1299,11 @@ class ProjectTaskTest extends TestCase
     public function testListGitRefsWithError()
     {
         $projectId = 'test-project';
-        $error = new ApiException('Unauthorized', $this->createMock(Request::class));
 
         $this->repositoryApi->expects($this->once())
             ->method('listProjectsGitRefs')
             ->with($projectId)
-            ->willThrowException($error);
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
         $this->projectTask->listGitRefs($projectId);
@@ -1297,12 +1312,11 @@ class ProjectTaskTest extends TestCase
     public function testRestartGitServerWithError()
     {
         $projectId = 'test-project';
-        $error = new ApiException('Forbidden', $this->createMock(Request::class));
 
         $this->systemInfoApi->expects($this->once())
             ->method('actionProjectsSystemRestart')
             ->with($projectId)
-            ->willThrowException($error);
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
         $this->projectTask->restartGitServer($projectId);
@@ -1311,12 +1325,11 @@ class ProjectTaskTest extends TestCase
     public function testGetGitInfoWithError()
     {
         $projectId = 'test-project';
-        $error = new ApiException('Not Found', $this->createMock(Request::class));
 
         $this->systemInfoApi->expects($this->once())
             ->method('getProjectsSystem')
             ->with($projectId)
-            ->willThrowException($error);
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
         $this->projectTask->getGitInfo($projectId);
@@ -1326,12 +1339,11 @@ class ProjectTaskTest extends TestCase
     {
         $projectId = 'test-project';
         $integrationData = ['type' => 'github'];
-        $error = new ApiException('Conflict', $this->createMock(Request::class));
 
         $this->thirdPartyIntegrationsApi->expects($this->once())
             ->method('createProjectsIntegrations')
             ->with($projectId, $this->isInstanceOf(IntegrationCreateInput::class))
-            ->willThrowException($error);
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
         $this->projectTask->createIntegration($projectId, $integrationData);
@@ -1341,12 +1353,11 @@ class ProjectTaskTest extends TestCase
     {
         $projectId = 'test-project';
         $integrationId = 'integration-123';
-        $error = new ApiException('Not Found', $this->createMock(Request::class));
 
         $this->thirdPartyIntegrationsApi->expects($this->once())
             ->method('deleteProjectsIntegrations')
             ->with($projectId, $integrationId)
-            ->willThrowException($error);
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
         $this->projectTask->deleteIntegration($projectId, $integrationId);
@@ -1356,12 +1367,11 @@ class ProjectTaskTest extends TestCase
     {
         $projectId = 'test-project';
         $integrationId = 'integration-123';
-        $error = new ApiException('Forbidden', $this->createMock(Request::class));
 
         $this->thirdPartyIntegrationsApi->expects($this->once())
             ->method('getProjectsIntegrations')
             ->with($projectId, $integrationId)
-            ->willThrowException($error);
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
         $this->projectTask->getIntegration($projectId, $integrationId);
@@ -1370,12 +1380,11 @@ class ProjectTaskTest extends TestCase
     public function testListIntegrationsWithError()
     {
         $projectId = 'test-project';
-        $error = new ApiException('Unauthorized', $this->createMock(Request::class));
 
         $this->thirdPartyIntegrationsApi->expects($this->once())
             ->method('listProjectsIntegrations')
             ->with($projectId)
-            ->willThrowException($error);
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
         $this->projectTask->listIntegrations($projectId);
@@ -1386,14 +1395,378 @@ class ProjectTaskTest extends TestCase
         $projectId = 'test-project';
         $integrationId = 'integration-123';
         $integrationData = ['config' => ['key' => 'value']];
-        $error = new ApiException('Bad Request', $this->createMock(Request::class));
 
         $this->thirdPartyIntegrationsApi->expects($this->once())
             ->method('updateProjectsIntegrations')
             ->with($projectId, $integrationId, $this->isInstanceOf(IntegrationPatch::class))
-            ->willThrowException($error);
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
         $this->projectTask->updateIntegration($projectId, $integrationId, $integrationData);
+    }
+
+    public function testCreateDomainWithError()
+    {
+        $projectId = '-1';
+        $domainData = ['name' => 'example.com'];
+
+        $this->domainTask->expects($this->once())
+            ->method('create')
+            ->with($projectId, $domainData)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->createDomain($projectId, $domainData);
+    }
+
+    public function testDeleteDomainWithError()
+    {
+        $projectId = 'test-project';
+        $domainId = 'domain-123';
+
+        $this->domainTask->expects($this->once())
+            ->method('delete')
+            ->with($projectId)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->deleteDomain($projectId, $domainId);
+    }
+
+    public function testGetDomainWithError()
+    {
+        $projectId = 'test-project';
+        $domainId = 'domain-123';
+
+        $this->domainTask->expects($this->once())
+            ->method('get')
+            ->with($projectId, $domainId)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->getDomain($projectId, $domainId);
+    }
+
+    public function testListDomainsWithError()
+    {
+        $projectId = 'test-project';
+
+        $this->domainTask->expects($this->once())
+            ->method('list')
+            ->with($projectId)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->listDomains($projectId);
+    }
+
+    public function testUpdateDomainWithError()
+    {
+        $projectId = 'test-project';
+        $domainId = 'domain-123';
+        $domainData = ['ssl' => ['enabled' => true]];
+
+        $this->domainTask->expects($this->once())
+            ->method('update')
+            ->with($projectId, $domainId, $domainData)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->updateDomain($projectId, $domainId, $domainData);
+    }
+
+    public function testCreateCertificateWithError()
+    {
+        $projectId = 'test-project';
+        $certData = ['certificate' => 'cert-data', 'key' => 'key-data'];
+
+        $this->certificateTask->expects($this->once())
+            ->method('create')
+            ->with($projectId, $certData)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->createCertificate($projectId, $certData);
+    }
+
+    public function testDeleteCertificateWithError()
+    {
+        $projectId = 'test-project';
+        $certId = 'cert-123';
+
+        $this->certificateTask->expects($this->once())
+            ->method('delete')
+            ->with($projectId, $certId)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->deleteCertificate($projectId, $certId);
+    }
+
+    public function testGetCertificateWithError()
+    {
+        $projectId = 'test-project';
+        $certId = 'cert-123';
+
+        $this->certificateTask->expects($this->once())
+            ->method('get')
+            ->with($projectId, $certId)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->getCertificate($projectId, $certId);
+    }
+
+    public function testListCertificatesWithError()
+    {
+        $projectId = 'test-project';
+
+        $this->certificateTask->expects($this->once())
+            ->method('list')
+            ->with($projectId)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->listCertificates($projectId);
+    }
+
+    public function testUpdateCertificateWithError()
+    {
+        $projectId = 'test-project';
+        $certId = 'cert-123';
+        $certData = ['certificate' => 'new-cert-data'];
+
+        $this->certificateTask->expects($this->once())
+            ->method('update')
+            ->with($projectId, $certId, $certData)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->updateCertificate($projectId, $certId, $certData);
+    }
+
+    public function testRunOperationWithError()
+    {
+        $projectId = 'test-project';
+        $environmentId = 'env-123';
+        $deploymentId = 'deploy-123';
+        $operationData = ['type' => 'restart'];
+
+        $this->operationTask->expects($this->once())
+            ->method('run')
+            ->with($projectId, $environmentId, $deploymentId, $operationData)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->runOperation($projectId, $environmentId, $deploymentId, $operationData);
+    }
+
+    public function testGetProjectTeamAccessWithError()
+    {
+        $projectId = 'test-project';
+        $teamId = 'team-123';
+
+        $this->teamTask->expects($this->once())
+            ->method('getProjectTeamAccess')
+            ->with($projectId, $teamId)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->getProjectTeamAccess($projectId, $teamId);
+    }
+
+    public function testGetTeamProjectAccessWithError()
+    {
+        $teamId = 'team-123';
+        $projectId = 'test-project';
+
+        $this->teamTask->expects($this->once())
+            ->method('getTeamProjectAccess')
+            ->with($teamId, $projectId)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->getTeamProjectAccess($teamId, $projectId);
+    }
+
+    public function testGrantProjectTeamAccessWithError()
+    {
+        $projectId = 'test-project';
+        $request = [['role' => 'admin']];
+
+        $this->teamTask->expects($this->once())
+            ->method('grantProjectTeamAccess')
+            ->with($projectId, $request)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->grantProjectTeamAccess($projectId, $request);
+    }
+
+    public function testGrantTeamProjectAccessWithError()
+    {
+        $teamId = 'team-123';
+        $request = [['role' => 'admin']];
+
+        $this->teamTask->expects($this->once())
+            ->method('grantTeamProjectAccess')
+            ->with($teamId, $request)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->grantTeamProjectAccess($teamId, $request);
+    }
+
+    public function testListProjectTeamAccessWithError()
+    {
+        $projectId = 'test-project';
+
+        $this->teamTask->expects($this->once())
+            ->method('listProjectTeamAccess')
+            ->with($projectId)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->listProjectTeamAccess($projectId);
+    }
+
+    public function testListTeamProjectAccessWithError()
+    {
+        $teamId = 'team-123';
+
+        $this->teamTask->expects($this->once())
+            ->method('listTeamProjectAccess')
+            ->with($teamId)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->listTeamProjectAccess($teamId);
+    }
+
+    public function testRemoveProjectTeamAccessWithError()
+    {
+        $projectId = 'test-project';
+        $teamId = 'team-123';
+        $error = new ApiException('Not Found', $this->createMock(Request::class));
+
+        $this->teamTask->expects($this->once())
+            ->method('removeProjectTeamAccess')
+            ->with($projectId, $teamId)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->removeProjectTeamAccess($projectId, $teamId);
+    }
+
+    public function testRemoveTeamProjectAccessWithError()
+    {
+        $teamId = 'team-123';
+        $projectId = 'test-project';
+        $error = new ApiException('Forbidden', $this->createMock(Request::class));
+
+        $this->teamTask->expects($this->once())
+            ->method('removeTeamProjectAccess')
+            ->with($teamId, $projectId)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->removeTeamProjectAccess($teamId, $projectId);
+    }
+
+    public function testGetProjectUserAccessWithError()
+    {
+        $projectId = 'test-project';
+        $userId = 'user-123';
+
+        $this->userTask->expects($this->once())
+            ->method('getProjectUserAccess')
+            ->with($projectId, $userId)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->getProjectUserAccess($projectId, $userId);
+    }
+
+    public function testGrantProjectUserAccessWithError()
+    {
+        $projectId = 'test-project';
+        $request = [['role' => 'admin']];
+
+        $this->userTask->expects($this->once())
+            ->method('grantProjectUserAccess')
+            ->with($projectId, $request)
+            ->willThrowException($this->createMock(ApiException::class));
+        
+        $this->expectException(ApiException::class);
+        $this->projectTask->grantProjectUserAccess($projectId, $request);
+    }
+
+    public function testRemoveProjectUserAccessWithError()
+    {
+        $projectId = 'test-project';
+        $userId = 'user-123';
+
+        $this->userTask->expects($this->once())
+            ->method('removeProjectUserAccess')
+            ->with($projectId, $userId)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->removeProjectUserAccess($projectId, $userId);
+    }
+
+    public function testUpdateProjectUserAccessWithError()
+    {
+        $projectId = 'test-project';
+        $userId = 'user-123';
+        $request = ['role' => 'admin'];
+
+        $this->userTask->expects($this->once())
+            ->method('updateProjectUserAccess')
+            ->with($projectId, $userId, $request)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->updateProjectUserAccess($projectId, $userId, $request);
+    }
+
+    public function testListProjectUserAccessWithError()
+    {
+        $projectId = 'test-project';
+
+        $this->userTask->expects($this->once())
+            ->method('listProjectUserAccess')
+            ->with($projectId)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->listProjectUserAccess($projectId);
+    }
+
+    public function testCreateWithError()
+    {
+        $orgId = 'org-123';
+        $projectData = ['title' => 'New Project'];
+
+        $this->organizationTask->expects($this->once())
+            ->method('createProject')
+            ->with($orgId, $projectData)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->create($orgId, $projectData);
+    }
+
+    public function testListEnvironmentsWithError()
+    {
+        $projectId = 'test-project';
+
+        $this->environmentTask->expects($this->once())
+            ->method('list')
+            ->with($projectId)
+            ->willThrowException($this->createMock(ApiException::class));
+
+        $this->expectException(ApiException::class);
+        $this->projectTask->listEnvironments($projectId);
     }
 }

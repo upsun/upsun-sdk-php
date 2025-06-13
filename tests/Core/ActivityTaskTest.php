@@ -10,6 +10,7 @@ use OpenAPI\Client\Configuration;
 use OpenAPI\Client\Model\AcceptedResponse;
 use OpenAPI\Client\Model\Activity;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\ActivityTask;
 use Upsun\UpsunClient;
 use Upsun\UpsunConfig;
@@ -20,12 +21,26 @@ class ActivityTaskTest extends TestCase
     private ProjectActivityApi $projectActivityApiMock;
     private EnvironmentActivityApi $environmentActivityApiMock;
 
+    private UpsunClient $clientMock;
+
     protected function setUp(): void
     {
         $this->projectActivityApiMock = $this->createMock(ProjectActivityApi::class);
         $this->environmentActivityApiMock = $this->createMock(EnvironmentActivityApi::class);
 
+        $this->clientMock = new class() extends UpsunClient {
+            public HttplugClient $apiClient;
+            public Configuration $apiConfig;
+
+            public UpsunConfig $upsunConfig;
+
+            public function __construct()
+            {
+            }
+        };
+        
         $this->activityTask = new class(
+            $this->clientMock,
             $this->projectActivityApiMock,
             $this->environmentActivityApiMock
         ) extends ActivityTask {

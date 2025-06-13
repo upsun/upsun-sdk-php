@@ -2,25 +2,42 @@
 
 namespace Tests\Unit\Core\Tasks;
 
+use OpenAPI\Client\Configuration;
 use PHPUnit\Framework\TestCase;
 use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\EnvironmentBackupsApi;
 use OpenAPI\Client\Model\AcceptedResponse;
 use OpenAPI\Client\Model\Backup;
+use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\BackupTask;
 use OpenAPI\Client\Model\EnvironmentBackupInput;
 use OpenAPI\Client\Model\EnvironmentRestoreInput;
+use Upsun\UpsunClient;
+use Upsun\UpsunConfig;
 
 class BackupTaskTest extends TestCase
 {
     private EnvironmentBackupsApi $apiMock;
     private BackupTask $task;
 
+    private UpsunClient $clientMock;
+
     protected function setUp(): void
     {
         $this->apiMock = $this->createMock(EnvironmentBackupsApi::class);
 
-        $this->task = new class($this->apiMock) extends BackupTask {
+        $this->clientMock = new class() extends UpsunClient {
+            public HttplugClient $apiClient;
+            public Configuration $apiConfig;
+
+            public UpsunConfig $upsunConfig;
+
+            public function __construct()
+            {
+            }
+        };
+        
+        $this->task = new class($this->clientMock, $this->apiMock) extends BackupTask {
             public function refreshToken(): void {}
         };
     }
@@ -99,7 +116,7 @@ class BackupTaskTest extends TestCase
         $this->expectException(ApiException::class);
 
         $this->apiMock->method('backupEnvironment')
-            ->willThrowException(new ApiException());
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->task->backup('prj', 'env', []);
     }

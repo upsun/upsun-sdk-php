@@ -554,10 +554,9 @@ class EnvironmentTaskTest extends TestCase
         $this->mockEnvironmentApi
             ->expects($this->once())
             ->method('activateEnvironment')
-            ->willThrowException(new ApiException('API Error'));
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
-        $this->expectExceptionMessage('API Error');
 
         $this->environmentTask->activate($projectId, $environmentId, $input);
     }

@@ -8,7 +8,6 @@ use Upsun\UpsunClient;
 use OpenAPI\Client\apisgen\RegionsApi;
 use OpenAPI\Client\Model\Region;
 use OpenAPI\Client\Model\ListRegions200Response;
-use OpenAPI\Client\Model\Error;
 use OpenAPI\Client\ApiException;
 use Upsun\UpsunConfig;
 

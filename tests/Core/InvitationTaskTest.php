@@ -5,27 +5,43 @@ namespace Tests\Unit\Upsun\Core\Tasks;
 use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\OrganizationInvitationsApi;
 use OpenAPI\Client\apisgen\ProjectInvitationsApi;
+use OpenAPI\Client\Configuration;
 use OpenAPI\Client\Model\CreateOrgInviteRequest;
 use OpenAPI\Client\Model\CreateProjectInviteRequest;
 use OpenAPI\Client\Model\Error;
 use OpenAPI\Client\Model\OrganizationInvitation;
 use OpenAPI\Client\Model\ProjectInvitation;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\InvitationTask;
+use Upsun\UpsunClient;
+use Upsun\UpsunConfig;
 
 class InvitationTaskTest extends TestCase
 {
     private readonly InvitationTask $invitationTask;
     private OrganizationInvitationsApi $organizationInvitationsApiMock;
     private ProjectInvitationsApi $projectInvitationsApiMock;
-
-
+    
+    private UpsunClient $clientMock;
     protected function setUp(): void
     {
         $this->organizationInvitationsApiMock = $this->createMock(OrganizationInvitationsApi::class);
         $this->projectInvitationsApiMock = $this->createMock(ProjectInvitationsApi::class);
 
+        $this->clientMock = new class() extends UpsunClient {
+            public HttplugClient $apiClient;
+            public Configuration $apiConfig;
+
+            public UpsunConfig $upsunConfig;
+
+            public function __construct()
+            {
+            }
+        };
+        
         $this->invitationTask = new class(
+            $this->clientMock,
             $this->organizationInvitationsApiMock,
             $this->projectInvitationsApiMock
         ) extends InvitationTask {
@@ -60,7 +76,7 @@ class InvitationTaskTest extends TestCase
             ->expects($this->once())
             ->method('cancelOrgInvite')
             ->with($organizationId, $invitationId)
-            ->willThrowException(new ApiException('API Error'));
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
         $this->invitationTask->cancelOrgInvite($organizationId, $invitationId);
@@ -205,7 +221,7 @@ class InvitationTaskTest extends TestCase
             ->expects($this->once())
             ->method('cancelProjectInvite')
             ->with($projectId, $invitationId)
-            ->willThrowException(new ApiException('API Error'));
+            ->willThrowException($this->createMock(ApiException::class));
 
         $this->expectException(ApiException::class);
         $this->invitationTask->cancelProjectInvite($projectId, $invitationId);
@@ -214,13 +230,13 @@ class InvitationTaskTest extends TestCase
     public function testCreateProjectInvite(): void
     {
         $projectId = 'project-123';
-        $request = new CreateProjectInviteRequest();
+        $request = ['email' => 'test@test.fr'];
         $expectedInvitation = new ProjectInvitation();
 
         $this->projectInvitationsApiMock
             ->expects($this->once())
             ->method('createProjectInvite')
-            ->with($projectId, $request)
+            ->with($projectId)
             ->willReturn($expectedInvitation);
 
         $result = $this->invitationTask->createProjectInvite($projectId, $request);
@@ -236,7 +252,7 @@ class InvitationTaskTest extends TestCase
         $this->projectInvitationsApiMock
             ->expects($this->once())
             ->method('createProjectInvite')
-            ->with($projectId, null)
+            ->with($projectId)
             ->willReturn($expectedInvitation);
 
         $result = $this->invitationTask->createProjectInvite($projectId);
@@ -247,13 +263,13 @@ class InvitationTaskTest extends TestCase
     public function testCreateProjectInviteReturnsError(): void
     {
         $projectId = 'project-123';
-        $request = new CreateProjectInviteRequest();
+        $request = ['email' => 'test2@test.fr'];
         $expectedError = new Error();
 
         $this->projectInvitationsApiMock
             ->expects($this->once())
             ->method('createProjectInvite')
-            ->with($projectId, $request)
+            ->with($projectId)
             ->willReturn($expectedError);
 
         $result = $this->invitationTask->createProjectInvite($projectId, $request);

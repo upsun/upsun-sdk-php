@@ -4,23 +4,40 @@ namespace Tests\Upsun\Core\Tasks;
 
 use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\CertManagementApi;
+use OpenAPI\Client\Configuration;
 use OpenAPI\Client\Model\AcceptedResponse;
 use OpenAPI\Client\Model\Certificate;
 use OpenAPI\Client\Model\CertificateCreateInput;
 use OpenAPI\Client\Model\CertificatePatch;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\CertificateTask;
+use Upsun\UpsunClient;
+use Upsun\UpsunConfig;
 
 class CertificateTaskTest extends TestCase
 {
     private $apiMock;
     private $task;
 
+    private UpsunClient $clientMock;
+
     protected function setUp(): void
     {
         $this->apiMock = $this->createMock(CertManagementApi::class);
 
-        $this->task = new class($this->apiMock) extends CertificateTask {
+        $this->clientMock = new class() extends UpsunClient {
+            public HttplugClient $apiClient;
+            public Configuration $apiConfig;
+
+            public UpsunConfig $upsunConfig;
+
+            public function __construct()
+            {
+            }
+        };
+        
+        $this->task = new class($this->clientMock, $this->apiMock) extends CertificateTask {
             public function refreshToken(): void {}
         };
     }
@@ -111,7 +128,9 @@ class CertificateTaskTest extends TestCase
     public function testApiExceptionOnCreate(): void
     {
         $this->expectException(ApiException::class);
-        $this->apiMock->method('createProjectsCertificates')->willThrowException(new ApiException("Erreur"));
+        $this->apiMock->method('createProjectsCertificates')
+            ->willThrowException($this->createMock(ApiException::class));
+
         $this->task->create('proj-id', ['certificate' => 'data', 'key' => 'key']);
     }
 }
