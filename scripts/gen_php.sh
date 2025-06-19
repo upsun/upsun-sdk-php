@@ -15,8 +15,8 @@ rm -rf ./schema/*
 rm -rf ./apisgen/*
 
 echo "Download last openAPI spec..."
-wget -O ./schema/openapispec-platformsh.json https://api.upsun.com/docs/openapispec-platformsh.json
-
+#wget -O ./schema/openapispec-platformsh.json https://api.upsun.com/docs/openapispec-platformsh.json
+cp ./data/openapispec-platformsh.json ./schema/
 echo "Hotfix openAPI spec..."
 sed 's/HTTP access permissions/Http access permissions/g' ./schema/openapispec-platformsh.json &> /dev/null
 
@@ -33,12 +33,14 @@ if $DEBUG; then
     -g php \
     -o "$PKG" \
     --additional-properties=apiPackage="$PKG"
+    --library="psr-18"
 else
   openapi-generator-cli generate \
     -i ./schema/openapispec-platformsh.json \
     -g php \
     -o "$PKG" \
-    --additional-properties=apiPackage="$PKG" &> /dev/null
+    --additional-properties=apiPackage="$PKG" &> /dev/null \
+    --library="psr-18"
 fi
 
 echo "Clean up unnecessary files..."
