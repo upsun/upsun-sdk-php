@@ -241,9 +241,9 @@ class OrganizationTask extends TaskBase
     ): Error|ListTeams200Response
     {
         $this->refreshToken();
-        return $this->client->team->listUserTeams(
-            $this->client->getUserId(),
+        return $this->client->team->list(
             ['eq' => $organizationId],
+            null,
             $filterUpdatedAt,
             $pageSize,
             $pageBefore,
