@@ -18,8 +18,11 @@ echo "Download last openAPI spec..."
 #wget -O ./schema/openapispec-platformsh.json https://api.upsun.com/docs/openapispec-platformsh.json
 cp ./data/openapispec-platformsh.json ./schema/
 echo "Hotfix openAPI spec..."
+
 OS=$(uname)
 FILE="./schema/openapispec-platformsh.json"
+
+grep 'HTTP access permissions' "$FILE"
 
 if [[ "$OS" == "Darwin" ]]; then
   # macOS
@@ -27,10 +30,12 @@ if [[ "$OS" == "Darwin" ]]; then
 elif [[ "$OS" == "Linux" ]]; then
   # Linux
   echo "On Linux"
-  sed -i 's/HTTP access permissions/Http access permissions/g' "$FILE" &> /dev/null
+  sed -i 's/HTTP access permissions/Http access permissions/g' "$FILE"
 fi
 
 echo "$OS"
+grep 'HTTP access permissions' "$FILE"
+
 echo "Generate apis_gen code..."
 npm install @openapitools/openapi-generator-cli -g
 
