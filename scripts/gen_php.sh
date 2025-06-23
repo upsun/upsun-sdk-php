@@ -26,6 +26,7 @@ grep 'HTTP access permissions' "$FILE"
 
 if [[ "$OS" == "Darwin" ]]; then
   # macOS
+  echo "On MacOs"
   sed -i '' 's/HTTP access permissions/Http access permissions/g' "$FILE"
 elif [[ "$OS" == "Linux" ]]; then
   # Linux
