@@ -26,9 +26,11 @@ if [[ "$OS" == "Darwin" ]]; then
   sed -i '' 's/HTTP access permissions/Http access permissions/g' "$FILE"
 elif [[ "$OS" == "Linux" ]]; then
   # Linux
+  echo "On Linux"
   sed -i 's/HTTP access permissions/Http access permissions/g' "$FILE" &> /dev/null
 fi
 
+echo "$OS"
 echo "Generate apis_gen code..."
 npm install @openapitools/openapi-generator-cli -g
 
