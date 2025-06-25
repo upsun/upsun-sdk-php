@@ -18,13 +18,11 @@ use Upsun\UpsunClient;
 
 class TeamTask extends TaskBase
 {
-
     public function __construct(
-        public UpsunClient             $client,
-        private readonly TeamsApi      $teamsApi,
+        public UpsunClient $client,
+        private readonly TeamsApi $teamsApi,
         private readonly TeamAccessApi $accessApi,
-    )
-    {
+    ) {
         parent::__construct($this->client);
     }
 
@@ -102,12 +100,11 @@ class TeamTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listMembers(
-        string  $teamId,
+        string $teamId,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|ListTeamMembers200Response
-    {
+    ): Error|ListTeamMembers200Response {
         $this->refreshToken();
         return $this->teamsApi->listTeamMembers($teamId, $pageBefore, $pageAfter, $sort);
     }
@@ -118,15 +115,14 @@ class TeamTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function list(
-        ?array  $filterOrganizationId = null,
-        ?array  $filterId = null,
-        ?array  $filterUpdatedAt = null,
-        ?int    $pageSize = null,
+        ?array $filterOrganizationId = null,
+        ?array $filterId = null,
+        ?array $filterUpdatedAt = null,
+        ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|ListTeams200Response
-    {
+    ): Error|ListTeams200Response {
         $this->refreshToken();
         return $this->teamsApi->listTeams(
             $filterOrganizationId,
@@ -145,15 +141,14 @@ class TeamTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listUserTeams(
-        string  $userId,
-        ?array  $filterOrganizationId = null,
-        ?array  $filterUpdatedAt = null,
-        ?int    $pageSize = null,
+        string $userId,
+        ?array $filterOrganizationId = null,
+        ?array $filterUpdatedAt = null,
+        ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|ListTeams200Response
-    {
+    ): Error|ListTeams200Response {
         $this->refreshToken();
         return $this->teamsApi->listUserTeams(
             $userId,
@@ -228,13 +223,12 @@ class TeamTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listProjectTeamAccess(
-        string  $projectId,
-        ?int    $pageSize = null,
+        string $projectId,
+        ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|ListTeamProjectAccess200Response
-    {
+    ): Error|ListTeamProjectAccess200Response {
         $this->refreshToken();
         return $this->accessApi->listProjectTeamAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
@@ -245,13 +239,12 @@ class TeamTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listTeamProjectAccess(
-        string  $teamId,
-        ?int    $pageSize = null,
+        string $teamId,
+        ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|ListTeamProjectAccess200Response
-    {
+    ): Error|ListTeamProjectAccess200Response {
         $this->refreshToken();
         return $this->accessApi->listTeamProjectAccess($teamId, $pageSize, $pageBefore, $pageAfter, $sort);
     }

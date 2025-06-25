@@ -14,13 +14,11 @@ use Upsun\UpsunClient;
 
 class SupportTicketTask extends TaskBase
 {
-
     public function __construct(
-        public UpsunClient          $client,
+        public UpsunClient $client,
         private readonly DefaultApi $defaultApi,
         private readonly SupportApi $supportApi,
-    )
-    {
+    ) {
         parent::__construct($this->client);
     }
 
@@ -30,21 +28,20 @@ class SupportTicketTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function list(
-        ?int      $filterTicketId = null,
+        ?int $filterTicketId = null,
         ?DateTime $filterCreated = null,
         ?DateTime $filterUpdated = null,
-        ?string   $filterType = null,
-        ?string   $filterPriority = null,
-        ?string   $filterStatus = null,
-        ?string   $filterRequesterId = null,
-        ?string   $filterSubmitterId = null,
-        ?string   $filterAssigneeId = null,
-        ?bool     $filterHasIncidents = null,
+        ?string $filterType = null,
+        ?string $filterPriority = null,
+        ?string $filterStatus = null,
+        ?string $filterRequesterId = null,
+        ?string $filterSubmitterId = null,
+        ?string $filterAssigneeId = null,
+        ?bool $filterHasIncidents = null,
         ?DateTime $filterDue = null,
-        ?string   $search = null,
-        ?int      $page = null
-    ): ListTickets200Response
-    {
+        ?string $search = null,
+        ?int $page = null
+    ): ListTickets200Response {
         $this->refreshToken();
         return $this->defaultApi->listTickets(
             $filterTicketId,

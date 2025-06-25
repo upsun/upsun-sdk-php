@@ -12,12 +12,10 @@ use Upsun\UpsunClient;
 
 class CertificateTask extends TaskBase
 {
-
     public function __construct(
-        public UpsunClient        $client,
+        public UpsunClient $client,
         private readonly CertManagementApi $api,
-    )
-    {
+    ) {
         parent::__construct($this->client);
     }
 

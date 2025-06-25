@@ -43,15 +43,14 @@ use Upsun\UpsunClient;
 class ProjectTask extends TaskBase
 {
     public function __construct(
-        public UpsunClient                         $client,
-        private readonly ProjectApi                $api,
-        private readonly ProjectSettingsApi        $settingsApi,
-        private readonly DeploymentTargetApi       $deploymentTargetApi,
-        private readonly RepositoryApi             $repositoryApi,
-        private readonly SystemInformationApi      $systemInfoApi,
+        public UpsunClient $client,
+        private readonly ProjectApi $api,
+        private readonly ProjectSettingsApi $settingsApi,
+        private readonly DeploymentTargetApi $deploymentTargetApi,
+        private readonly RepositoryApi $repositoryApi,
+        private readonly SystemInformationApi $systemInfoApi,
         private readonly ThirdPartyIntegrationsApi $thirdPartyIntegrationsApi,
-    )
-    {
+    ) {
         parent::__construct($this->client);
     }
 
@@ -122,10 +121,9 @@ class ProjectTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function createInvite(
-        string                      $projectId,
+        string $projectId,
         ?array $createProjectInviteRequest = null
-    ): ProjectInvitation|Error
-    {
+    ): ProjectInvitation|Error {
         return $this->client->invitations->createProjectInvite($projectId, $createProjectInviteRequest);
     }
 
@@ -135,14 +133,13 @@ class ProjectTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listInvites(
-        string  $projectId,
-        ?array  $filterState = null,
-        ?int    $pageSize = null,
+        string $projectId,
+        ?array $filterState = null,
+        ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|array
-    {
+    ): Error|array {
         return $this->client->invitations->listProjectInvites(
             $projectId,
             $filterState,
@@ -214,9 +211,8 @@ class ProjectTask extends TaskBase
     public function updateVariable(
         string $projectId,
         string $projectVariableId,
-        array  $projectVariablePatch
-    ): AcceptedResponse
-    {
+        array $projectVariablePatch
+    ): AcceptedResponse {
         return $this->client->variables->updateProjectVariable(
             $projectId,
             $projectVariableId,
@@ -307,9 +303,8 @@ class ProjectTask extends TaskBase
     public function updateDeployment(
         string $projectId,
         string $deploymentTargetConfigurationId,
-        array  $deploymentTargetPatch
-    ): AcceptedResponse
-    {
+        array $deploymentTargetPatch
+    ): AcceptedResponse {
         $this->refreshToken();
         $deploymentTargetPatch = new DeploymentTargetPatch($deploymentTargetPatch);
         return $this->deploymentTargetApi->updateProjectsDeployments(
@@ -450,9 +445,8 @@ class ProjectTask extends TaskBase
     public function updateIntegration(
         string $projectId,
         string $integrationId,
-        array  $integrationPatch
-    ): AcceptedResponse
-    {
+        array $integrationPatch
+    ): AcceptedResponse {
         $this->refreshToken();
         $integrationPatch = new IntegrationPatch($integrationPatch);
         return $this->thirdPartyIntegrationsApi->updateProjectsIntegrations(
@@ -561,9 +555,8 @@ class ProjectTask extends TaskBase
     public function updateCertificate(
         string $projectId,
         string $certificateId,
-        array  $certificatePatch
-    ): AcceptedResponse
-    {
+        array $certificatePatch
+    ): AcceptedResponse {
         return $this->client->certificate->update($projectId, $certificateId, $certificatePatch);
     }
 
@@ -576,9 +569,8 @@ class ProjectTask extends TaskBase
         string $projectId,
         string $environmentId,
         string $deploymentId,
-        array  $environmentOperationInput
-    ): AcceptedResponse
-    {
+        array $environmentOperationInput
+    ): AcceptedResponse {
         return $this->client->operation->run(
             $projectId,
             $environmentId,
@@ -634,13 +626,12 @@ class ProjectTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listProjectTeamAccess(
-        string  $projectId,
-        ?int    $pageSize = null,
+        string $projectId,
+        ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|ListTeamProjectAccess200Response
-    {
+    ): Error|ListTeamProjectAccess200Response {
         return $this->client->team->listProjectTeamAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 
@@ -650,13 +641,12 @@ class ProjectTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listTeamProjectAccess(
-        string  $teamId,
-        ?int    $pageSize = null,
+        string $teamId,
+        ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|ListTeamProjectAccess200Response
-    {
+    ): Error|ListTeamProjectAccess200Response {
         return $this->client->team->listTeamProjectAccess($teamId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 
@@ -718,9 +708,8 @@ class ProjectTask extends TaskBase
     public function updateProjectUserAccess(
         string $projectId,
         string $userId,
-        ?array  $updateProjectUserAccessRequest = null
-    ): void
-    {
+        ?array $updateProjectUserAccessRequest = null
+    ): void {
         $this->client->user->updateProjectUserAccess($projectId, $userId, $updateProjectUserAccessRequest);
     }
 
@@ -730,13 +719,12 @@ class ProjectTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listProjectUserAccess(
-        string  $projectId,
-        ?int    $pageSize = null,
+        string $projectId,
+        ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListProjectUserAccess200Response|Error
-    {
+    ): ListProjectUserAccess200Response|Error {
         return $this->client->user->listProjectUserAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 

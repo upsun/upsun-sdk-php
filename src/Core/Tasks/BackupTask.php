@@ -12,12 +12,10 @@ use Upsun\UpsunClient;
 
 class BackupTask extends TaskBase
 {
-
     public function __construct(
-        public UpsunClient            $client,
+        public UpsunClient $client,
         private readonly EnvironmentBackupsApi $api,
-    )
-    {
+    ) {
         parent::__construct($this->client);
     }
 
@@ -29,9 +27,8 @@ class BackupTask extends TaskBase
     public function backup(
         string $projectId,
         string $environmentId,
-        array  $environmentBackupInput
-    ): AcceptedResponse
-    {
+        array $environmentBackupInput
+    ): AcceptedResponse {
         $this->refreshToken();
         $environmentBackupInput = new EnvironmentBackupInput($environmentBackupInput);
         return $this->api->backupEnvironment($projectId, $environmentId, $environmentBackupInput);
@@ -79,9 +76,8 @@ class BackupTask extends TaskBase
         string $projectId,
         string $environmentId,
         string $backupId,
-        array  $environmentRestoreInput
-    ): AcceptedResponse
-    {
+        array $environmentRestoreInput
+    ): AcceptedResponse {
         $this->refreshToken();
         $environmentRestoreInput = new EnvironmentRestoreInput($environmentRestoreInput);
         return $this->api->restoreBackup($projectId, $environmentId, $backupId, $environmentRestoreInput);

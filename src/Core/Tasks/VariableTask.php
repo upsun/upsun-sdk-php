@@ -16,13 +16,11 @@ use Upsun\UpsunClient;
 
 class VariableTask extends TaskBase
 {
-
     public function __construct(
-        public UpsunClient                       $client,
-        private readonly ProjectVariablesApi     $projectVariablesApi,
+        public UpsunClient $client,
+        private readonly ProjectVariablesApi $projectVariablesApi,
         private readonly EnvironmentVariablesApi $environmentVariablesApi,
-    )
-    {
+    ) {
         parent::__construct($this->client);
     }
 
@@ -79,9 +77,8 @@ class VariableTask extends TaskBase
     public function updateProjectVariable(
         string $projectId,
         string $projectVariableId,
-        array  $projectVariablePatch
-    ): AcceptedResponse
-    {
+        array $projectVariablePatch
+    ): AcceptedResponse {
         $this->refreshToken();
         $projectVariablePatch = new ProjectVariablePatch($projectVariablePatch);
         return $this->projectVariablesApi->updateProjectsVariables(
@@ -99,9 +96,8 @@ class VariableTask extends TaskBase
     public function createEnvironmentVariable(
         string $projectId,
         string $environmentId,
-        array  $environmentVariableCreateInput
-    ): AcceptedResponse
-    {
+        array $environmentVariableCreateInput
+    ): AcceptedResponse {
         $this->refreshToken();
         $environmentVariableCreateInput = new EnvironmentVariableCreateInput($environmentVariableCreateInput);
         return $this->environmentVariablesApi->deleteProjectsEnvironmentsVariables(
@@ -120,8 +116,7 @@ class VariableTask extends TaskBase
         string $projectId,
         string $environmentId,
         string $variableId
-    ): AcceptedResponse
-    {
+    ): AcceptedResponse {
         $this->refreshToken();
         return $this->environmentVariablesApi->deleteProjectsEnvironmentsVariables(
             $projectId,
@@ -139,8 +134,7 @@ class VariableTask extends TaskBase
         string $projectId,
         string $environmentId,
         string $variableId
-    ): EnvironmentVariable
-    {
+    ): EnvironmentVariable {
         $this->refreshToken();
         return $this->environmentVariablesApi->getProjectsEnvironmentsVariables(
             $projectId,
@@ -169,9 +163,8 @@ class VariableTask extends TaskBase
         string $projectId,
         string $environmentId,
         string $variableId,
-        array  $environmentVariablePatch
-    ): AcceptedResponse
-    {
+        array $environmentVariablePatch
+    ): AcceptedResponse {
         $this->refreshToken();
         $environmentVariablePatch = new EnvironmentVariablePatch($environmentVariablePatch);
         return $this->environmentVariablesApi->updateProjectsEnvironmentsVariables(

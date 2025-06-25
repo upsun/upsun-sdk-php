@@ -12,12 +12,10 @@ use Upsun\UpsunClient;
 
 class RegionTask extends TaskBase
 {
-
     public function __construct(
-        public UpsunClient          $client,
+        public UpsunClient $client,
         private readonly RegionsApi $api,
-    )
-    {
+    ) {
         parent::__construct($this->client);
     }
 
@@ -39,15 +37,14 @@ class RegionTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function list(
-        ?array  $filter_available = null,
-        ?array  $filter_private = null,
-        ?array  $filter_zone = null,
-        ?int    $pageSize = null,
+        ?array $filter_available = null,
+        ?array $filter_private = null,
+        ?array $filter_zone = null,
+        ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListRegions200Response|Error
-    {
+    ): ListRegions200Response|Error {
         $this->refreshToken();
         return $this->api->listRegions(
             $filter_available,

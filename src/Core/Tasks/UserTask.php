@@ -41,19 +41,17 @@ use Upsun\UpsunClient;
 
 class UserTask extends TaskBase
 {
-
     public function __construct(
-        public UpsunClient               $client,
-        private readonly UsersApi        $api,
+        public UpsunClient $client,
+        private readonly UsersApi $api,
         private readonly UserProfilesApi $profilesApi,
-        private readonly UserAccessApi   $accessApi,
-        private readonly APITokensApi    $tokensApi,
-        private readonly ConnectionsApi  $connectionsApi,
-        private readonly GrantsApi       $grantsApi,
-        private readonly MFAApi          $mfaApi,
-        private readonly PhoneNumberApi  $phoneNumberApi,
-    )
-    {
+        private readonly UserAccessApi $accessApi,
+        private readonly APITokensApi $tokensApi,
+        private readonly ConnectionsApi $connectionsApi,
+        private readonly GrantsApi $grantsApi,
+        private readonly MFAApi $mfaApi,
+        private readonly PhoneNumberApi $phoneNumberApi,
+    ) {
         parent::__construct($this->client);
     }
 
@@ -136,10 +134,9 @@ class UserTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function resetEmailAddress(
-        string                    $userId,
+        string $userId,
         ?ResetEmailAddressRequest $resetEmailAddressRequest = null
-    ): void
-    {
+    ): void {
         $this->refreshToken();
         $this->api->resetEmailAddress($userId, $resetEmailAddressRequest);
     }
@@ -219,13 +216,12 @@ class UserTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listProjectUserAccess(
-        string  $projectId,
-        ?int    $pageSize = null,
+        string $projectId,
+        ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListProjectUserAccess200Response|Error
-    {
+    ): ListProjectUserAccess200Response|Error {
         $this->refreshToken();
         return $this->accessApi->listProjectUserAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
@@ -236,14 +232,13 @@ class UserTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listUserProjectAccess(
-        string  $userId,
+        string $userId,
         ?string $filterOrganizationId = null,
-        ?int    $pageSize = null,
+        ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListProjectUserAccess200Response|Error
-    {
+    ): ListProjectUserAccess200Response|Error {
         $this->refreshToken();
         return $this->accessApi->listUserProjectAccess(
             $userId,
@@ -286,8 +281,7 @@ class UserTask extends TaskBase
         string $projectId,
         string $userId,
         ?array $updateProjectUserAccessRequest = null
-    ): void
-    {
+    ): void {
         $this->refreshToken();
         $updateProjectUserAccessRequest = new UpdateProjectUserAccessRequest($updateProjectUserAccessRequest);
         $this->accessApi->updateProjectUserAccess($projectId, $userId, $updateProjectUserAccessRequest);
@@ -302,8 +296,7 @@ class UserTask extends TaskBase
         string $userId,
         string $projectId,
         ?array $updateProjectUserAccessRequest = null
-    ): void
-    {
+    ): void {
         $this->refreshToken();
         $updateProjectUserAccessRequest = new UpdateProjectUserAccessRequest($updateProjectUserAccessRequest);
         $this->accessApi->updateUserProjectAccess($projectId, $userId, $updateProjectUserAccessRequest);
@@ -480,8 +473,7 @@ class UserTask extends TaskBase
         ?array $filterResourceType = null,
         ?array $filterOrganizationId = null,
         ?array $filterPermissions = null
-    ): ListUserExtendedAccess200Response|Error
-    {
+    ): ListUserExtendedAccess200Response|Error {
         $this->refreshToken();
         return $this->grantsApi->listUserExtendedAccess(
             $userId,
@@ -499,8 +491,7 @@ class UserTask extends TaskBase
     public function confirmTotpEnrollment(
         string $userId,
         ?array $confirmTotpEnrollmentRequest = null
-    ): ConfirmTotpEnrollment200Response|Error
-    {
+    ): ConfirmTotpEnrollment200Response|Error {
         $this->refreshToken();
         $confirmTotpEnrollmentRequest = new ConfirmTotpEnrollmentRequest($confirmTotpEnrollmentRequest);
         return $this->mfaApi->confirmTotpEnrollment($userId, $confirmTotpEnrollmentRequest);
@@ -563,8 +554,7 @@ class UserTask extends TaskBase
     public function verifyPhoneNumber(
         string $userId,
         ?array $verifyPhoneNumberRequest = null
-    ): VerifyPhoneNumber200Response|Error
-    {
+    ): VerifyPhoneNumber200Response|Error {
         $this->refreshToken();
         $verifyPhoneNumberRequest = new VerifyPhoneNumberRequest($verifyPhoneNumberRequest);
         return $this->phoneNumberApi->verifyPhoneNumber($userId, $verifyPhoneNumberRequest);

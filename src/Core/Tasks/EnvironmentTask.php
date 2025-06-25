@@ -29,14 +29,12 @@ use Upsun\UpsunClient;
 
 class EnvironmentTask extends TaskBase
 {
-
     public function __construct(
-        public UpsunClient         $client,
-        private readonly EnvironmentApi     $api,
+        public UpsunClient $client,
+        private readonly EnvironmentApi $api,
         private readonly EnvironmentTypeApi $typeApi,
-        private readonly DeploymentApi      $deploymentApi,
-    )
-    {
+        private readonly DeploymentApi $deploymentApi,
+    ) {
         parent::__construct($this->client);
     }
 
@@ -48,9 +46,8 @@ class EnvironmentTask extends TaskBase
     public function activate(
         string $projectId,
         string $environmentId,
-        array  $environmentActivateInput
-    ): AcceptedResponse
-    {
+        array $environmentActivateInput
+    ): AcceptedResponse {
         $this->refreshToken();
         $environmentActivateInput = new EnvironmentActivateInput($environmentActivateInput);
         return $this->api->activateEnvironment($projectId, $environmentId, $environmentActivateInput);
@@ -64,9 +61,8 @@ class EnvironmentTask extends TaskBase
     public function branch(
         string $projectId,
         string $environmentId,
-        array  $environmentBranchInput
-    ): AcceptedResponse
-    {
+        array $environmentBranchInput
+    ): AcceptedResponse {
         $this->refreshToken();
         $environmentBranchInput = new EnvironmentBranchInput($environmentBranchInput);
         return $this->api->branchEnvironment($projectId, $environmentId, $environmentBranchInput);
@@ -80,9 +76,8 @@ class EnvironmentTask extends TaskBase
     public function createVersions(
         string $projectId,
         string $environmentId,
-        array  $versionCreateInput
-    ): AcceptedResponse
-    {
+        array $versionCreateInput
+    ): AcceptedResponse {
         $this->refreshToken();
         $versionCreateInput = new VersionCreateInput($versionCreateInput);
         return $this->api->createProjectsEnvironmentsVersions($projectId, $environmentId, $versionCreateInput);
@@ -152,9 +147,8 @@ class EnvironmentTask extends TaskBase
     public function initialize(
         string $projectId,
         string $environmentId,
-        array  $environmentInitializeInput
-    ): AcceptedResponse
-    {
+        array $environmentInitializeInput
+    ): AcceptedResponse {
         $this->refreshToken();
         $environmentInitializeInput = new EnvironmentInitializeInput($environmentInitializeInput);
         return $this->api->initializeEnvironment($projectId, $environmentId, $environmentInitializeInput);
@@ -236,9 +230,8 @@ class EnvironmentTask extends TaskBase
     public function synchronize(
         string $projectId,
         string $environmentId,
-        array  $environmentSynchronizeInput
-    ): AcceptedResponse
-    {
+        array $environmentSynchronizeInput
+    ): AcceptedResponse {
         $this->refreshToken();
         $environmentSynchronizeInput = new EnvironmentSynchronizeInput($environmentSynchronizeInput);
         return $this->api->synchronizeEnvironment($projectId, $environmentId, $environmentSynchronizeInput);
@@ -265,9 +258,8 @@ class EnvironmentTask extends TaskBase
         string $projectId,
         string $environmentId,
         string $versionId,
-        array  $versionPatch
-    ): AcceptedResponse
-    {
+        array $versionPatch
+    ): AcceptedResponse {
         $this->refreshToken();
         $versionPatch = new VersionPatch($versionPatch);
         return $this->api->updateProjectsEnvironmentsVersions(
@@ -319,9 +311,8 @@ class EnvironmentTask extends TaskBase
     public function backup(
         string $projectId,
         string $environmentId,
-        array  $environmentBackupInput
-    ): AcceptedResponse
-    {
+        array $environmentBackupInput
+    ): AcceptedResponse {
         return $this->client->backup->backup($projectId, $environmentId, $environmentBackupInput);
     }
 
@@ -364,9 +355,8 @@ class EnvironmentTask extends TaskBase
         string $projectId,
         string $environmentId,
         string $backupId,
-        array  $environmentRestoreInput
-    ): AcceptedResponse
-    {
+        array $environmentRestoreInput
+    ): AcceptedResponse {
         return $this->client->backup->restore($projectId, $environmentId, $backupId, $environmentRestoreInput);
     }
 
@@ -400,9 +390,8 @@ class EnvironmentTask extends TaskBase
     public function createVariable(
         string $projectId,
         string $environmentId,
-        array  $environmentVariableCreateInput
-    ): AcceptedResponse
-    {
+        array $environmentVariableCreateInput
+    ): AcceptedResponse {
         return $this->client->variables->createEnvironmentVariable(
             $projectId,
             $environmentId,
@@ -449,9 +438,8 @@ class EnvironmentTask extends TaskBase
         string $projectId,
         string $environmentId,
         string $variableId,
-        array  $environmentVariablePatch
-    ): AcceptedResponse
-    {
+        array $environmentVariablePatch
+    ): AcceptedResponse {
         return $this->client->variables->updateEnvironmentVariable(
             $projectId,
             $environmentId,
@@ -509,9 +497,8 @@ class EnvironmentTask extends TaskBase
         string $projectId,
         string $environmentId,
         string $routeId,
-        array  $routePatch
-    ): AcceptedResponse
-    {
+        array $routePatch
+    ): AcceptedResponse {
         return $this->client->route->update($projectId, $environmentId, $routeId, $routePatch);
     }
 
@@ -523,9 +510,8 @@ class EnvironmentTask extends TaskBase
     public function createDomain(
         string $projectId,
         string $environmentId,
-        array  $domainCreateInput
-    ): AcceptedResponse
-    {
+        array $domainCreateInput
+    ): AcceptedResponse {
         return $this->client->domain->create($projectId, $domainCreateInput, $environmentId);
     }
 
@@ -568,9 +554,8 @@ class EnvironmentTask extends TaskBase
         string $projectId,
         string $environmentId,
         string $domainId,
-        array  $domainPatch
-    ): AcceptedResponse
-    {
+        array $domainPatch
+    ): AcceptedResponse {
         return $this->client->domain->update($projectId, $domainId, $domainPatch, $environmentId);
     }
 
@@ -614,9 +599,8 @@ class EnvironmentTask extends TaskBase
     public function runSourceOperation(
         string $projectId,
         string $environmentId,
-        array  $environmentSourceOperationInput
-    ): AcceptedResponse
-    {
+        array $environmentSourceOperationInput
+    ): AcceptedResponse {
         return $this->client->sourceOperation->run($projectId, $environmentId, $environmentSourceOperationInput);
     }
 }

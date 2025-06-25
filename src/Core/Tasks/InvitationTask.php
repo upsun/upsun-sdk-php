@@ -15,13 +15,11 @@ use Upsun\UpsunClient;
 
 class InvitationTask extends TaskBase
 {
-
     public function __construct(
-        public UpsunClient                 $client,
+        public UpsunClient $client,
         private readonly OrganizationInvitationsApi $orgInvApi,
-        private readonly ProjectInvitationsApi      $prjInvApi,
-    )
-    {
+        private readonly ProjectInvitationsApi $prjInvApi,
+    ) {
         parent::__construct($this->client);
     }
 
@@ -45,10 +43,9 @@ class InvitationTask extends TaskBase
     public function createOrgInvite(
         string $organizationId,
         string $email,
-        array  $permissions,
-        ?bool  $force = true
-    ): Error|OrganizationInvitation
-    {
+        array $permissions,
+        ?bool $force = true
+    ): Error|OrganizationInvitation {
         $this->refreshToken();
 
         $inviteRequest = new CreateOrgInviteRequest([
@@ -65,14 +62,13 @@ class InvitationTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listOrgInvites(
-        string  $organizationId,
-        ?array  $filterState = null,
-        ?int    $pageSize = null,
+        string $organizationId,
+        ?array $filterState = null,
+        ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|array
-    {
+    ): Error|array {
         $this->refreshToken();
         return $this->orgInvApi->listOrgInvites(
             $organizationId,
@@ -103,10 +99,9 @@ class InvitationTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function createProjectInvite(
-        string                      $projectId,
+        string $projectId,
         ?array $createProjectInviteRequest = null
-    ): ProjectInvitation|Error
-    {
+    ): ProjectInvitation|Error {
         $this->refreshToken();
         $createProjectInviteRequest = new CreateProjectInviteRequest($createProjectInviteRequest);
         return $this->prjInvApi->createProjectInvite($projectId, $createProjectInviteRequest);
@@ -118,14 +113,13 @@ class InvitationTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listProjectInvites(
-        string  $projectId,
-        ?array  $filterState = null,
-        ?int    $pageSize = null,
+        string $projectId,
+        ?array $filterState = null,
+        ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|array
-    {
+    ): Error|array {
         $this->refreshToken();
         return $this->prjInvApi->listProjectInvites(
             $projectId,

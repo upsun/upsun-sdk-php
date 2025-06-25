@@ -12,12 +12,10 @@ use Upsun\UpsunClient;
 
 class RouteTask extends TaskBase
 {
-
     public function __construct(
-        public UpsunClient          $client,
+        public UpsunClient $client,
         private readonly RoutingApi $api,
-    )
-    {
+    ) {
         parent::__construct($this->client);
     }
 
@@ -75,9 +73,8 @@ class RouteTask extends TaskBase
         string $projectId,
         string $environmentId,
         string $routeId,
-        array  $routePatch
-    ): AcceptedResponse
-    {
+        array $routePatch
+    ): AcceptedResponse {
         $this->refreshToken();
         $routePatch = new RoutePatch($routePatch);
         return $this->api->updateProjectsEnvironmentsRoutes($projectId, $environmentId, $routeId, $routePatch);

@@ -12,26 +12,23 @@ use Upsun\UpsunClient;
 
 class DomainTask extends TaskBase
 {
-
     public function __construct(
-        public UpsunClient          $client,
+        public UpsunClient $client,
         private readonly DomainManagementApi $api,
-    )
-    {
+    ) {
         parent::__construct($this->client);
     }
-    
+
     /**
      * Adds a project (or environment) domain
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function create(
-        string  $projectId,
-        array   $domainCreateInput,
+        string $projectId,
+        array $domainCreateInput,
         ?string $environmentId = null
-    ): AcceptedResponse
-    {
+    ): AcceptedResponse {
         $this->refreshToken();
         $domainCreateInput = new DomainCreateInput($domainCreateInput);
         if (!$environmentId) {
@@ -96,12 +93,11 @@ class DomainTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function update(
-        string  $projectId,
-        string  $domainId,
-        array   $domainPatch,
+        string $projectId,
+        string $domainId,
+        array $domainPatch,
         ?string $environmentId = null
-    ): AcceptedResponse
-    {
+    ): AcceptedResponse {
         $this->refreshToken();
         $domainPatch = new DomainPatch($domainPatch);
         if (!$environmentId) {

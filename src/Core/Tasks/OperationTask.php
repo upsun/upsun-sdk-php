@@ -10,12 +10,10 @@ use Upsun\UpsunClient;
 
 class OperationTask extends TaskBase
 {
-
     public function __construct(
-        public UpsunClient           $client,
+        public UpsunClient $client,
         private readonly RuntimeOperationsApi $api
-    )
-    {
+    ) {
         parent::__construct($this->client);
     }
 
@@ -28,9 +26,8 @@ class OperationTask extends TaskBase
         string $projectId,
         string $environmentId,
         string $deploymentId,
-        array  $environmentOperationInput
-    ): AcceptedResponse
-    {
+        array $environmentOperationInput
+    ): AcceptedResponse {
         $this->refreshToken();
         $environmentOperationInput = new EnvironmentOperationInput($environmentOperationInput);
         return $this->api->runOperation($projectId, $environmentId, $deploymentId, $environmentOperationInput);
