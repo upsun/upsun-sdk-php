@@ -2,7 +2,7 @@ name: Check OpenAPI Spec Update
 
 on:
     schedule:
-        -   cron: '*/5 * * * *'  # Toutes les 5 minutes
+        -   cron: '* 3 * * *'
     workflow_dispatch:
         branches: [ main ]
 permissions:
