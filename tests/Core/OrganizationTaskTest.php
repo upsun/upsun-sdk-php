@@ -324,23 +324,12 @@ class OrganizationTaskTest extends TestCase
     public function testListTeams()
     {
         $orgId = 'org_123';
-        $userId = 'user_1';
         $list = $this->createMock(ListTeams200Response::class);
-        $user = $this->createMock(User::class);
-
-        $user->expects($this->once())
-            ->method('getId')
-            ->willReturn('user_1');
-
-        $this->mockUserTask
-            ->expects($this->once())
-            ->method('me')
-            ->willReturn($user);
-
+        
         $this->mockTeamTask
             ->expects($this->once())
-            ->method('listUserTeams')
-            ->with($userId)
+            ->method('list')
+            ->with(['eq' => $orgId])
             ->willReturn($list);
 
         $response = $this->organizationTask->listTeams($orgId);
