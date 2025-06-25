@@ -106,6 +106,6 @@ class SupportTicketTask extends TaskBase
     {
         $this->refreshToken();
         $updateTicketRequest = new UpdateTicketRequest($updateTicketRequest);
-        return $this->supportApi->createTicket($ticket_id, $updateTicketRequest);
+        return $this->supportApi->updateTicket($ticket_id, $updateTicketRequest);
     }
 }
