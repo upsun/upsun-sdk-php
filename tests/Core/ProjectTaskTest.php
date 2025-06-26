@@ -9,6 +9,7 @@ use OpenAPI\Client\apisgen\DeploymentTargetApi;
 use OpenAPI\Client\apisgen\ProjectApi;
 use OpenAPI\Client\apisgen\ProjectSettingsApi;
 use OpenAPI\Client\apisgen\RepositoryApi;
+use OpenAPI\Client\apisgen\SubscriptionsApi;
 use OpenAPI\Client\apisgen\SystemInformationApi;
 use OpenAPI\Client\apisgen\ThirdPartyIntegrationsApi;
 use OpenAPI\Client\Configuration;
@@ -17,6 +18,7 @@ use OpenAPI\Client\Model\Activity;
 use OpenAPI\Client\Model\Blob;
 use OpenAPI\Client\Model\Certificate;
 use OpenAPI\Client\Model\Commit;
+use OpenAPI\Client\Model\CreateOrgSubscriptionRequest;
 use OpenAPI\Client\Model\CreateProjectInviteRequest;
 use OpenAPI\Client\Model\DeploymentTarget;
 use OpenAPI\Client\Model\DeploymentTargetCreateInput;
@@ -97,6 +99,7 @@ class ProjectTaskTest extends TestCase
     public readonly SourceOperationTask $sourceOperationTask;
     public readonly TeamTask $teamTask;
     public readonly SupportTicketTask $supportTicketTask;
+    public readonly SubscriptionsApi $subscriptionsApi;
     public readonly UserTask $userTask;
     public readonly WorkerTask $workerTask;
     
@@ -108,6 +111,7 @@ class ProjectTaskTest extends TestCase
         $this->repositoryApi = $this->createMock(RepositoryApi::class);
         $this->systemInfoApi = $this->createMock(SystemInformationApi::class);
         $this->thirdPartyIntegrationsApi = $this->createMock(ThirdPartyIntegrationsApi::class);
+        $this->subscriptionsApi = $this->createMock(SubscriptionsApi::class);
 
         $this->client = new class() extends UpsunClient {
             public HttplugClient $apiClient;
@@ -127,7 +131,8 @@ class ProjectTaskTest extends TestCase
             $this->deploymentTargetApi,
             $this->repositoryApi,
             $this->systemInfoApi,
-            $this->thirdPartyIntegrationsApi
+            $this->thirdPartyIntegrationsApi,
+            $this->subscriptionsApi
         ) extends ProjectTask {
             public function refreshToken(): void
             {
@@ -1025,9 +1030,9 @@ class ProjectTaskTest extends TestCase
         $projectData = ['title' => 'New Project'];
         $expectedResponse = new Subscription();
 
-        $this->organizationTask->expects($this->once())
-            ->method('createProject')
-            ->with($orgId, $projectData)
+        $this->subscriptionsApi->expects($this->once())
+            ->method('createOrgSubscription')
+            ->with($orgId, $this->isInstanceOf(CreateOrgSubscriptionRequest::class))
             ->willReturn($expectedResponse);
 
         $result = $this->projectTask->create($orgId, $projectData);
@@ -1748,11 +1753,11 @@ class ProjectTaskTest extends TestCase
         $orgId = 'org-123';
         $projectData = ['title' => 'New Project'];
 
-        $this->organizationTask->expects($this->once())
-            ->method('createProject')
-            ->with($orgId, $projectData)
+        $this->subscriptionsApi->expects($this->once())
+            ->method('createOrgSubscription')
+            ->with($orgId, $this->isInstanceOf(CreateOrgSubscriptionRequest::class))
             ->willThrowException($this->createMock(ApiException::class));
-
+        
         $this->expectException(ApiException::class);
         $this->projectTask->create($orgId, $projectData);
     }

@@ -25,7 +25,6 @@ use OpenAPI\Client\Model\CanCreateNewOrgSubscription200Response;
 use OpenAPI\Client\Model\CreateAuthorizationCredentials200Response;
 use OpenAPI\Client\Model\CreateOrgMemberRequest;
 use OpenAPI\Client\Model\CreateOrgRequest;
-use OpenAPI\Client\Model\CreateOrgSubscriptionRequest;
 use OpenAPI\Client\Model\Error;
 use OpenAPI\Client\Model\EstimationObject;
 use OpenAPI\Client\Model\Invoice;
@@ -378,8 +377,7 @@ class OrganizationTask extends TaskBase
      */
     public function canCreateProject(string $organizationId): CanCreateNewOrgSubscription200Response|Error
     {
-        $this->refreshToken();
-        return $this->subscriptionsApi->canCreateNewOrgSubscription($organizationId);
+        return $this->client->project->canCreate($organizationId);
     }
 
     /**
@@ -389,9 +387,7 @@ class OrganizationTask extends TaskBase
      */
     public function createProject(string $organizationId, array $createProjectData): Error|Subscription
     {
-        $this->refreshToken();
-        $createProjectData = new CreateOrgSubscriptionRequest($createProjectData);
-        return $this->subscriptionsApi->createOrgSubscription($organizationId, $createProjectData);
+        return $this->client->project->create($organizationId, $createProjectData);
     }
 
     /**
@@ -401,8 +397,7 @@ class OrganizationTask extends TaskBase
      */
     public function deleteProject(string $organizationId, string $projectId): void
     {
-        $this->refreshToken();
-        $this->subscriptionsApi->deleteOrgSubscription($organizationId, $projectId);
+        $this->client->project->delete($organizationId, $projectId);
     }
 
     /**

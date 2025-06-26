@@ -46,6 +46,7 @@ use OpenAPI\Client\Model\ListOrgProjects200Response;
 use OpenAPI\Client\Model\CreateOrgMemberRequest;
 use OpenAPI\Client\Model\UpdateOrgMemberRequest;
 use OpenAPI\Client\Model\CanCreateNewOrgSubscription200Response;
+use Upsun\Core\Tasks\ProjectTask;
 use Upsun\Core\Tasks\TeamTask;
 use Upsun\Core\Tasks\UserTask;
 use Upsun\UpsunClient;
@@ -70,6 +71,7 @@ class OrganizationTaskTest extends TestCase
     private readonly VouchersApi $vouchersApiMock;
 
     private readonly UserTask $mockUserTask;
+    private readonly ProjectTask $mockProjectTask;
     private readonly TeamTask $mockTeamTask;
 
     protected function setUp(): void
@@ -127,8 +129,10 @@ class OrganizationTaskTest extends TestCase
         };
 
         $this->mockUserTask = $this->createMock(UserTask::class);
+        $this->mockProjectTask = $this->createMock(ProjectTask::class);
         $this->mockTeamTask = $this->createMock(TeamTask::class);
         $this->clientMock->user = $this->mockUserTask;
+        $this->clientMock->project = $this->mockProjectTask;
         $this->clientMock->team = $this->mockTeamTask;
     }
 
@@ -374,9 +378,9 @@ class OrganizationTaskTest extends TestCase
         $orgId = 'org_123';
         $expectedResponse = $this->createMock(CanCreateNewOrgSubscription200Response::class);
 
-        $this->subscriptionsApiMock
+        $this->mockProjectTask
             ->expects($this->once())
-            ->method('canCreateNewOrgSubscription')
+            ->method('canCreate')
             ->with($orgId)
             ->willReturn($expectedResponse);
 
@@ -391,13 +395,11 @@ class OrganizationTaskTest extends TestCase
         $params = ['name' => 'New Project'];
 
         $expectedResponse = $this->createMock(Subscription::class);
-
-        $this->subscriptionsApiMock->expects($this->once())
-            ->method('createOrgSubscription')
-            ->with(
-                $orgId,
-                $this->isInstanceOf(CreateOrgSubscriptionRequest::class)
-            )
+        
+        $this->mockProjectTask
+            ->expects($this->once())
+            ->method('create')
+            ->with($orgId, $params)
             ->willReturn($expectedResponse);
 
         $response = $this->organizationTask->createProject($orgId, $params);

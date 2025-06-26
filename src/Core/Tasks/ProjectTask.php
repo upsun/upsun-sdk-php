@@ -8,13 +8,16 @@ use OpenAPI\Client\apisgen\DeploymentTargetApi;
 use OpenAPI\Client\apisgen\ProjectApi;
 use OpenAPI\Client\apisgen\ProjectSettingsApi;
 use OpenAPI\Client\apisgen\RepositoryApi;
+use OpenAPI\Client\apisgen\SubscriptionsApi;
 use OpenAPI\Client\apisgen\SystemInformationApi;
 use OpenAPI\Client\apisgen\ThirdPartyIntegrationsApi;
 use OpenAPI\Client\Model\AcceptedResponse;
 use OpenAPI\Client\Model\Activity;
 use OpenAPI\Client\Model\Blob;
+use OpenAPI\Client\Model\CanCreateNewOrgSubscription200Response;
 use OpenAPI\Client\Model\Certificate;
 use OpenAPI\Client\Model\Commit;
+use OpenAPI\Client\Model\CreateOrgSubscriptionRequest;
 use OpenAPI\Client\Model\CreateProjectInviteRequest;
 use OpenAPI\Client\Model\DeploymentTarget;
 use OpenAPI\Client\Model\DeploymentTargetCreateInput;
@@ -50,6 +53,7 @@ class ProjectTask extends TaskBase
         private readonly RepositoryApi $repositoryApi,
         private readonly SystemInformationApi $systemInfoApi,
         private readonly ThirdPartyIntegrationsApi $thirdPartyIntegrationsApi,
+        private readonly SubscriptionsApi $subscriptionsApi,
     ) {
         parent::__construct($this->client);
     }
@@ -736,7 +740,20 @@ class ProjectTask extends TaskBase
     public function create(string $organizationId, array $projectData): Error|Subscription
     {
         $this->refreshToken();
-        return $this->client->organization->createProject($organizationId, $projectData);
+        $createProjectData = new CreateOrgSubscriptionRequest($projectData);
+        return $this->subscriptionsApi->createOrgSubscription($organizationId, $createProjectData);
+    }
+
+    /**
+     * Checks if the user is able to create a new project in the organization.
+     *
+     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function canCreate(string $organizationId): CanCreateNewOrgSubscription200Response|Error
+    {
+        $this->refreshToken();
+        return $this->subscriptionsApi->canCreateNewOrgSubscription($organizationId);
     }
 
     /**
@@ -746,7 +763,6 @@ class ProjectTask extends TaskBase
      */
     public function listEnvironments(string $projectId): array
     {
-        $this->refreshToken();
         return $this->client->environment->list($projectId);
     }
 }
