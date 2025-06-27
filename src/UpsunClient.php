@@ -233,7 +233,7 @@ class UpsunClient
 
     public function getUserId()
     {
-        if ($this->userId == null) {
+        if (!$this->userId) {
             $this->userId = $this->user->me()->getId();
         }
 

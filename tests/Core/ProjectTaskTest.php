@@ -6,6 +6,7 @@ use Nyholm\Psr7\Request;
 use InvalidArgumentException;
 use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\DeploymentTargetApi;
+use OpenAPI\Client\apisgen\OrganizationProjectsApi;
 use OpenAPI\Client\apisgen\ProjectApi;
 use OpenAPI\Client\apisgen\ProjectSettingsApi;
 use OpenAPI\Client\apisgen\RepositoryApi;
@@ -30,6 +31,7 @@ use OpenAPI\Client\Model\IntegrationCreateInput;
 use OpenAPI\Client\Model\IntegrationPatch;
 use OpenAPI\Client\Model\ListProjectUserAccess200Response;
 use OpenAPI\Client\Model\ListTeamProjectAccess200Response;
+use OpenAPI\Client\Model\OrganizationProject;
 use OpenAPI\Client\Model\Project;
 use OpenAPI\Client\Model\ProjectCapabilities;
 use OpenAPI\Client\Model\ProjectInvitation;
@@ -74,6 +76,8 @@ class ProjectTaskTest extends TestCase
     private readonly ProjectApi $projectApi;
     private readonly ProjectSettingsApi $settingsApi;
     private readonly DeploymentTargetApi $deploymentTargetApi;
+    
+    public readonly OrganizationProjectsApi $organizationProjectsApi;
     private readonly RepositoryApi $repositoryApi;
     private readonly SystemInformationApi $systemInfoApi;
     private readonly ThirdPartyIntegrationsApi $thirdPartyIntegrationsApi;
@@ -112,6 +116,7 @@ class ProjectTaskTest extends TestCase
         $this->systemInfoApi = $this->createMock(SystemInformationApi::class);
         $this->thirdPartyIntegrationsApi = $this->createMock(ThirdPartyIntegrationsApi::class);
         $this->subscriptionsApi = $this->createMock(SubscriptionsApi::class);
+        $this->organizationProjectsApi = $this->createMock(OrganizationProjectsApi::class);
 
         $this->client = new class() extends UpsunClient {
             public HttplugClient $apiClient;
@@ -132,7 +137,8 @@ class ProjectTaskTest extends TestCase
             $this->repositoryApi,
             $this->systemInfoApi,
             $this->thirdPartyIntegrationsApi,
-            $this->subscriptionsApi
+            $this->subscriptionsApi,
+            $this->organizationProjectsApi
         ) extends ProjectTask {
             public function refreshToken(): void
             {
@@ -198,16 +204,24 @@ class ProjectTaskTest extends TestCase
 
     public function testGet()
     {
-        $projectId = 'test-project';
-        $expectedResponse = new Project();
+        $orgId = 'test-org';
+        $prjId = 'test-project';
+        $expectedProject = $this->createMock(Project::class);
+        $expectedProject->method('getOrganization')->willReturn($orgId);
+        $expectedOrgProject = new OrganizationProject();
 
         $this->projectApi->expects($this->once())
             ->method('getProjects')
-            ->with($projectId)
-            ->willReturn($expectedResponse);
+            ->with($prjId)
+            ->willReturn($expectedProject);
+        
+        $this->organizationProjectsApi->expects($this->once())
+            ->method('getOrgProject')
+            ->with($orgId, $prjId)
+            ->willReturn($expectedOrgProject);
 
-        $result = $this->projectTask->get($projectId);
-        $this->assertSame($expectedResponse, $result);
+        $result = $this->projectTask->get($prjId);
+        $this->assertSame($expectedOrgProject, $result);
     }
 
     public function testGetCapabilities()
@@ -1027,16 +1041,33 @@ class ProjectTaskTest extends TestCase
     public function testCreate()
     {
         $orgId = 'org-123';
+        $prjId = 'prj-123';
         $projectData = ['title' => 'New Project'];
-        $expectedResponse = new Subscription();
+        $expectedSubscription = $this->createMock(Subscription::class);
+        $expectedSubscription->method('getProjectId')->willReturn($prjId);
+
+        $expectedProject = $this->createMock(Project::class);
+        $expectedProject->method('getOrganization')->willReturn($orgId);
+        
+        $expectedOrgProject = $this->createMock(OrganizationProject::class);
 
         $this->subscriptionsApi->expects($this->once())
             ->method('createOrgSubscription')
             ->with($orgId, $this->isInstanceOf(CreateOrgSubscriptionRequest::class))
-            ->willReturn($expectedResponse);
+            ->willReturn($expectedSubscription);
 
+        $this->projectApi->expects($this->once())
+            ->method('getProjects')
+            ->with($prjId)
+            ->willReturn($expectedProject);
+        
+        $this->organizationProjectsApi->expects($this->once())
+            ->method('getOrgProject')
+            ->with($orgId, $prjId)
+            ->willReturn($expectedOrgProject);
+        
         $result = $this->projectTask->create($orgId, $projectData);
-        $this->assertSame($expectedResponse, $result);
+        $this->assertSame($expectedOrgProject, $result);
     }
 
     public function testListEnvironments()
@@ -1050,20 +1081,6 @@ class ProjectTaskTest extends TestCase
             ->willReturn($expectedResponse);
 
         $result = $this->projectTask->listEnvironments($projectId);
-        $this->assertSame($expectedResponse, $result);
-    }
-
-    public function testRefreshTokenIsCalled()
-    {
-        $projectId = 'test-project';
-        $expectedResponse = new Project();
-
-        $this->projectApi->expects($this->once())
-            ->method('getProjects')
-            ->with($projectId)
-            ->willReturn($expectedResponse);
-
-        $result = $this->projectTask->get($projectId);
         $this->assertSame($expectedResponse, $result);
     }
 

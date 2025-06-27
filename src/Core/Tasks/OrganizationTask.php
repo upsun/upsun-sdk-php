@@ -19,6 +19,7 @@ use OpenAPI\Client\apisgen\RecordsApi;
 use OpenAPI\Client\apisgen\SubscriptionsApi;
 use OpenAPI\Client\apisgen\VouchersApi;
 use OpenAPI\Client\HeaderSelector;
+use OpenAPI\Client\Model\AcceptedResponse;
 use OpenAPI\Client\Model\Address;
 use OpenAPI\Client\Model\ApplyOrgVoucherRequest;
 use OpenAPI\Client\Model\CanCreateNewOrgSubscription200Response;
@@ -44,12 +45,10 @@ use OpenAPI\Client\Model\OrganizationMFAEnforcement;
 use OpenAPI\Client\Model\OrganizationProject;
 use OpenAPI\Client\Model\Profile;
 use OpenAPI\Client\Model\SendOrgMfaRemindersRequest;
-use OpenAPI\Client\Model\Subscription;
 use OpenAPI\Client\Model\SubscriptionCurrentUsageObject;
 use OpenAPI\Client\Model\UpdateOrgMemberRequest;
 use OpenAPI\Client\Model\UpdateOrgProfileRequest;
 use OpenAPI\Client\Model\UpdateOrgRequest;
-use OpenAPI\Client\Model\UpdateOrgSubscriptionRequest;
 use OpenAPI\Client\Model\Vouchers;
 use OpenAPI\Client\ObjectSerializer;
 use Psr\Http\Message\RequestInterface;
@@ -62,19 +61,20 @@ class OrganizationTask extends TaskBase
     private const DEFAULT_UPSUN_PLAN = 'upsun/flexible';
 
     public function __construct(
-        public UpsunClient $client,
-        private readonly HeaderSelector $headerSelector,
-        private readonly OrganizationsApi $api,
+        public UpsunClient                       $client,
+        private readonly HeaderSelector          $headerSelector,
+        private readonly OrganizationsApi        $api,
         private readonly OrganizationProjectsApi $projectsApi,
-        private readonly OrganizationMembersApi $membersApi,
-        private readonly SubscriptionsApi $subscriptionsApi,
-        private readonly InvoicesApi $invoicesApi,
-        private readonly MFAApi $mfaApi,
-        private readonly OrdersApi $ordersApi,
-        private readonly ProfilesApi $profilesApi,
-        private readonly RecordsApi $recordsApi,
-        private readonly VouchersApi $vouchersApi,
-    ) {
+        private readonly OrganizationMembersApi  $membersApi,
+        private readonly SubscriptionsApi        $subscriptionsApi,
+        private readonly InvoicesApi             $invoicesApi,
+        private readonly MFAApi                  $mfaApi,
+        private readonly OrdersApi               $ordersApi,
+        private readonly ProfilesApi             $profilesApi,
+        private readonly RecordsApi              $recordsApi,
+        private readonly VouchersApi             $vouchersApi,
+    )
+    {
         parent::__construct($this->client);
     }
 
@@ -121,19 +121,20 @@ class OrganizationTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function list(
-        ?array $filterId = null,
-        ?array $filterOwnerId = null,
-        ?array $filterName = null,
-        ?array $filterLabel = null,
-        ?array $filterVendor = null,
-        ?array $filterCapabilities = null,
-        ?array $filterStatus = null,
-        ?array $filterUpdatedAt = null,
-        ?int $pageSize = 100,
+        ?array  $filterId = null,
+        ?array  $filterOwnerId = null,
+        ?array  $filterName = null,
+        ?array  $filterLabel = null,
+        ?array  $filterVendor = null,
+        ?array  $filterCapabilities = null,
+        ?array  $filterStatus = null,
+        ?array  $filterUpdatedAt = null,
+        ?int    $pageSize = 100,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|ListOrgs200Response {
+    ): Error|ListOrgs200Response
+    {
         $this->refreshToken();
         return $this->api->listOrgs(
             $filterId,
@@ -157,16 +158,17 @@ class OrganizationTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listUserOrgs(
-        string $userId,
-        ?array $filterId = null,
-        ?array $filterVendor = null,
-        ?array $filterStatus = null,
-        ?array $filterUpdatedAt = null,
-        ?int $pageSize = null,
+        string  $userId,
+        ?array  $filterId = null,
+        ?array  $filterVendor = null,
+        ?array  $filterStatus = null,
+        ?array  $filterUpdatedAt = null,
+        ?int    $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|ListUserOrgs200Response {
+    ): Error|ListUserOrgs200Response
+    {
         $this->refreshToken();
         return $this->api->listUserOrgs(
             $userId,
@@ -187,15 +189,16 @@ class OrganizationTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listCurrentUserOrgs(
-        ?array $filterId = null,
-        ?array $filterVendor = null,
-        ?array $filterStatus = null,
-        ?array $filterUpdatedAt = null,
-        ?int $pageSize = null,
+        ?array  $filterId = null,
+        ?array  $filterVendor = null,
+        ?array  $filterStatus = null,
+        ?array  $filterUpdatedAt = null,
+        ?int    $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|ListUserOrgs200Response {
+    ): Error|ListUserOrgs200Response
+    {
         return $this->listUserOrgs(
             $this->client->user->me()->getId(),
             $filterId,
@@ -227,13 +230,14 @@ class OrganizationTask extends TaskBase
      * @throws ApiException
      */
     public function listTeams(
-        string $organizationId,
+        string  $organizationId,
         ?string $filterUpdatedAt = null,
-        ?int $pageSize = null,
+        ?int    $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|ListTeams200Response {
+    ): Error|ListTeams200Response
+    {
         $this->refreshToken();
         return $this->client->team->list(
             ['eq' => $organizationId],
@@ -265,17 +269,18 @@ class OrganizationTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listProjects(
-        string $organizationId,
-        ?array $filterId = null,
-        ?array $filterTitle = null,
-        ?array $filterStatus = null,
-        ?array $filterUpdatedAt = null,
-        ?array $filterCreatedAt = null,
-        ?int $pageSize = null,
+        string  $organizationId,
+        ?array  $filterId = null,
+        ?array  $filterTitle = null,
+        ?array  $filterStatus = null,
+        ?array  $filterUpdatedAt = null,
+        ?array  $filterCreatedAt = null,
+        ?int    $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListOrgProjects200Response|Error {
+    ): ListOrgProjects200Response|Error
+    {
         $this->refreshToken();
         return $this->projectsApi->listOrgProjects(
             $organizationId,
@@ -299,8 +304,9 @@ class OrganizationTask extends TaskBase
      */
     public function createMember(
         string $organizationId,
-        array $createOrgMemberRequest
-    ): OrganizationMember|Error {
+        array  $createOrgMemberRequest
+    ): OrganizationMember|Error
+    {
         $this->refreshToken();
         $createOrgMemberRequest = new CreateOrgMemberRequest($createOrgMemberRequest);
         return $this->membersApi->createOrgMember($organizationId, $createOrgMemberRequest);
@@ -315,7 +321,8 @@ class OrganizationTask extends TaskBase
         string $organizationId,
         string $userId,
         ?array $updateOrgMemberRequest = []
-    ): OrganizationMember|Error {
+    ): OrganizationMember|Error
+    {
         $this->refreshToken();
         $updateOrgMemberRequest = new UpdateOrgMemberRequest($updateOrgMemberRequest);
         return $this->membersApi->updateOrgMember($organizationId, $userId, $updateOrgMemberRequest);
@@ -339,13 +346,14 @@ class OrganizationTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listMembers(
-        string $organizationId,
-        ?array $filterPermissions = null,
-        ?int $pageSize = null,
+        string  $organizationId,
+        ?array  $filterPermissions = null,
+        ?int    $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListOrgMembers200Response|Error {
+    ): ListOrgMembers200Response|Error
+    {
         $this->refreshToken();
         return $this->membersApi->listOrgMembers(
             $organizationId,
@@ -385,7 +393,7 @@ class OrganizationTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createProject(string $organizationId, array $createProjectData): Error|Subscription
+    public function createProject(string $organizationId, array $createProjectData): Error|OrganizationProject
     {
         return $this->client->project->create($organizationId, $createProjectData);
     }
@@ -406,12 +414,13 @@ class OrganizationTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function estimateNewProject(
-        string $organizationId,
-        ?int $environments = 3,
-        ?int $storage = 500,
-        ?int $userLicenses = 1,
+        string  $organizationId,
+        ?int    $environments = 3,
+        ?int    $storage = 500,
+        ?int    $userLicenses = 1,
         ?string $format = null
-    ): EstimationObject|Error {
+    ): EstimationObject|Error
+    {
         $this->refreshToken();
         return $this->subscriptionsApi->estimateNewOrgSubscription(
             $organizationId,
@@ -429,13 +438,14 @@ class OrganizationTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function estimateProject(
-        string $organizationId,
-        string $projectId,
-        ?int $environments = null,
-        ?int $storage = null,
-        ?int $userLicenses = null,
+        string  $organizationId,
+        string  $projectId,
+        ?int    $environments = null,
+        ?int    $storage = null,
+        ?int    $userLicenses = null,
         ?string $format = null
-    ): EstimationObject|Error {
+    ): EstimationObject|Error
+    {
         $this->refreshToken();
 
         return $this->subscriptionsApi->estimateOrgSubscription(
@@ -455,11 +465,12 @@ class OrganizationTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function getProjectUsage(
-        string $organizationId,
-        string $projectId,
+        string  $organizationId,
+        string  $projectId,
         ?string $usageGroups = null,
-        ?bool $includeNotCharged = null
-    ): Error|SubscriptionCurrentUsageObject {
+        ?bool   $includeNotCharged = null
+    ): Error|SubscriptionCurrentUsageObject
+    {
         $this->refreshToken();
         return $this->subscriptionsApi->getOrgSubscriptionCurrentUsage(
             $organizationId,
@@ -475,17 +486,11 @@ class OrganizationTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function updateProject(
-        string $organizationId,
         string $projectId,
         ?array $updateProjectData = null
-    ): Error|Subscription {
-        $this->refreshToken();
-        $update_project_request = new UpdateOrgSubscriptionRequest($updateProjectData);
-        return $this->subscriptionsApi->updateOrgSubscription(
-            $organizationId,
-            $projectId,
-            $update_project_request
-        );
+    ): AcceptedResponse
+    {
+        return $this->client->project->update($projectId, $updateProjectData);
     }
 
     /**
@@ -550,12 +555,13 @@ class OrganizationTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listInvoices(
-        string $organizationId,
+        string  $organizationId,
         ?string $filterStatus = null,
         ?string $filter_type = null,
         ?string $filter_order_id = null,
-        ?int $page = null
-    ): ListOrgInvoices200Response|Error {
+        ?int    $page = null
+    ): ListOrgInvoices200Response|Error
+    {
         $this->refreshToken();
         return $this->invoicesApi->listOrgInvoices(
             $organizationId,
@@ -574,7 +580,8 @@ class OrganizationTask extends TaskBase
     public function createAuthorizationCredentials(
         string $organizationId,
         string $orderId
-    ): CreateAuthorizationCredentials200Response|Error {
+    ): CreateAuthorizationCredentials200Response|Error
+    {
         $this->refreshToken();
         return $this->ordersApi->createAuthorizationCredentials($organizationId, $orderId);
     }
@@ -607,12 +614,13 @@ class OrganizationTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listOrders(
-        string $organizationId,
+        string  $organizationId,
         ?string $filterStatus = null,
-        ?int $filterTotal = null,
-        ?int $page = null,
+        ?int    $filterTotal = null,
+        ?int    $page = null,
         ?string $mode = null
-    ): ListOrgOrders200Response|Error {
+    ): ListOrgOrders200Response|Error
+    {
         $this->refreshToken();
         return $this->ordersApi->listOrgOrders($organizationId, $filterStatus, $filterTotal, $page, $mode);
     }
@@ -668,20 +676,21 @@ class OrganizationTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listRecords(
-        string $organizationId,
-        ?string $filterSubscriptionId = null,
-        ?string $filterPlan = null,
+        string    $organizationId,
+        ?string   $filterProjectId = null,
+        ?string   $filterPlan = null,
         ?DateTime $filterStatus = null,
         ?DateTime $filterStart = null,
         ?DateTime $filterEnd = null,
         ?DateTime $filterStartedAt = null,
         ?DateTime $filterEndedAt = null,
-        ?int $page = null
-    ): Error|ListOrgPlanRecords200Response {
+        ?int      $page = null
+    ): Error|ListOrgPlanRecords200Response
+    {
         $this->refreshToken();
         return $this->recordsApi->listOrgPlanRecords(
             $organizationId,
-            $filterSubscriptionId,
+            $filterProjectId,
             $filterPlan,
             $filterStatus,
             $filterStart,
@@ -698,17 +707,18 @@ class OrganizationTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listUsageRecords(
-        string $organizationId,
-        ?string $filterSubscriptionId = null,
-        ?string $filterUsageGroup = null,
+        string    $organizationId,
+        ?string   $filterProjectId = null,
+        ?string   $filterUsageGroup = null,
         ?DateTime $filterStart = null,
         ?DateTime $filterStartedAt = null,
-        ?int $page = null
-    ): Error|ListOrgUsageRecords200Response {
+        ?int      $page = null
+    ): Error|ListOrgUsageRecords200Response
+    {
         $this->refreshToken();
         return $this->recordsApi->listOrgUsageRecords(
             $organizationId,
-            $filterSubscriptionId,
+            $filterProjectId,
             $filterUsageGroup,
             $filterStart,
             $filterStartedAt,
@@ -759,20 +769,23 @@ class OrganizationTask extends TaskBase
 
     /**
      * Create http client option
-     * TODO missing from OrganizationApi.php
+     * note: missing from OrganizationApi.php
      *
      * @throws RuntimeException on file opening failure
      */
     protected function createHttpClientOption(): array
     {
         $options = [];
+
         if ($this->client->apiConfig->getDebug()) {
-            $options[RequestOptions::DEBUG] = fopen($this->client->apiConfig->getDebugFile(), 'a');
-            if (!$options[RequestOptions::DEBUG]) {
-                throw new RuntimeException(
-                    'Failed to open the debug file: ' . $this->client->apiConfig->getDebugFile()
-                );
+            $debugFile = $this->client->apiConfig->getDebugFile();
+            $handle = fopen($debugFile, 'a');
+
+            if (!$handle) {
+                throw new RuntimeException('Failed to open the debug file: ' . $debugFile);
             }
+
+            $options['debug'] = $handle;
         }
 
         return $options;
@@ -780,14 +793,15 @@ class OrganizationTask extends TaskBase
 
     /**
      *
-     * TODO missing from Organizationpi
+     * note: missing from OrganizationApi
      * @throws ApiException
      */
     protected function handleResponseWithDataType(
-        string $dataType,
-        RequestInterface $request,
+        string            $dataType,
+        RequestInterface  $request,
         ResponseInterface $response
-    ): array {
+    ): array
+    {
         if ($dataType === '\SplFileObject') {
             $content = $response->getBody(); //stream goes to serializer
         } else {
@@ -801,9 +815,9 @@ class OrganizationTask extends TaskBase
                             'Error JSON decoding server response (%s)',
                             $request->getUri()
                         ),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                        $content
+                        $request,
+                        $response,
+                        $exception
                     );
                 }
             }
@@ -819,7 +833,7 @@ class OrganizationTask extends TaskBase
     /**
      * Updates organization addons
      *
-     * @TODO missing from OrganizationAPI
+     * note: missing from OrganizationAPI
      *
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -828,26 +842,21 @@ class OrganizationTask extends TaskBase
         $organizationId,
         ?array $update_org_request = [],
         ?string $contentType = 'application/json'
-    ): array {
+    ): array
+    {
         $request = $this->updateOrgAddonsRequest($organizationId, $update_org_request, $contentType);
         try {
             $options = $this->createHttpClientOption();
             try {
                 $response = $this->client->apiClient->send($request, $options);
-            } catch (RequestException $e) {
+            } catch (\Exception $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int)$e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
                     $e->getResponse() ? (string)$e->getResponse()->getBody() : null
                 );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int)$e->getCode(),
-                    null,
-                    null
-                );
+
             }
 
             $statusCode = $response->getStatusCode();
@@ -930,7 +939,7 @@ class OrganizationTask extends TaskBase
 
     /**
      * Create request for operation 'updateOrg'
-     * @TODO missing from OrganizationAPI
+     * note: missing from OrganizationAPI
      *
      * @throws InvalidArgumentException
      */
@@ -938,7 +947,8 @@ class OrganizationTask extends TaskBase
         $organizationId,
         ?array $update_org_request = [],
         ?string $contentType = 'application/json'
-    ): Request {
+    ): Request
+    {
         // verify the required parameter 'organization_id' is set
         if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
             throw new InvalidArgumentException(
@@ -963,7 +973,6 @@ class OrganizationTask extends TaskBase
             );
         }
 
-
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json',],
             $contentType,
@@ -974,9 +983,16 @@ class OrganizationTask extends TaskBase
         if (isset($update_org_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(
-                    ObjectSerializer::sanitizeForSerialization($update_org_request)
-                );
+                try {
+                    $httpBody = json_encode(
+                        ObjectSerializer::sanitizeForSerialization($update_org_request),
+                        JSON_THROW_ON_ERROR
+                    );
+                } catch (JsonException $e) {
+                    throw new \RuntimeException(
+                        'Failed to encode request body to JSON: ' . $e->getMessage(), 0, $e
+                    );
+                }
             } else {
                 $httpBody = $update_org_request;
             }
@@ -996,7 +1012,13 @@ class OrganizationTask extends TaskBase
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                try {
+                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
+                } catch (JsonException $e) {
+                    throw new \RuntimeException(
+                        'Failed to encode form parameters to JSON: ' . $e->getMessage(), 0, $e
+                    );
+                }
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

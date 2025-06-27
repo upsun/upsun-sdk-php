@@ -5,6 +5,7 @@ namespace Upsun\Core\Tasks;
 use InvalidArgumentException;
 use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\DeploymentTargetApi;
+use OpenAPI\Client\apisgen\OrganizationProjectsApi;
 use OpenAPI\Client\apisgen\ProjectApi;
 use OpenAPI\Client\apisgen\ProjectSettingsApi;
 use OpenAPI\Client\apisgen\RepositoryApi;
@@ -29,6 +30,7 @@ use OpenAPI\Client\Model\IntegrationCreateInput;
 use OpenAPI\Client\Model\IntegrationPatch;
 use OpenAPI\Client\Model\ListProjectUserAccess200Response;
 use OpenAPI\Client\Model\ListTeamProjectAccess200Response;
+use OpenAPI\Client\Model\OrganizationProject;
 use OpenAPI\Client\Model\Project;
 use OpenAPI\Client\Model\ProjectCapabilities;
 use OpenAPI\Client\Model\ProjectInvitation;
@@ -54,6 +56,7 @@ class ProjectTask extends TaskBase
         private readonly SystemInformationApi $systemInfoApi,
         private readonly ThirdPartyIntegrationsApi $thirdPartyIntegrationsApi,
         private readonly SubscriptionsApi $subscriptionsApi,
+        private readonly OrganizationProjectsApi $organizationProjectsApi,
     ) {
         parent::__construct($this->client);
     }
@@ -76,10 +79,12 @@ class ProjectTask extends TaskBase
      * @throws InvalidArgumentException
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function get(string $projectId): Project
+    public function get(string $projectId): OrganizationProject
     {
         $this->refreshToken();
-        return $this->api->getProjects($projectId);
+        $project = $this->api->getProjects($projectId);
+        $orgId = $project->getOrganization();
+        return $this->organizationProjectsApi->getOrgProject($orgId, $projectId);
     }
 
     /**
@@ -737,11 +742,15 @@ class ProjectTask extends TaskBase
      *
      * @throws ApiException
      */
-    public function create(string $organizationId, array $projectData): Error|Subscription
+    public function create(string $organizationId, array $projectData): Error|OrganizationProject
     {
         $this->refreshToken();
         $createProjectData = new CreateOrgSubscriptionRequest($projectData);
-        return $this->subscriptionsApi->createOrgSubscription($organizationId, $createProjectData);
+        $subscription = $this->subscriptionsApi->createOrgSubscription($organizationId, $createProjectData);
+        return $this->organizationProjectsApi->getOrgProject(
+            $this->api->getProjects($subscription->getProjectId())->getOrganization(), 
+            $subscription->getProjectId()
+        );
     }
 
     /**

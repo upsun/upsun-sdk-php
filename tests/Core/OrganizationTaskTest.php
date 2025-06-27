@@ -12,11 +12,11 @@ use OpenAPI\Client\apisgen\SubscriptionsApi;
 use OpenAPI\Client\apisgen\VouchersApi;
 use OpenAPI\Client\Configuration;
 use OpenAPI\Client\HeaderSelector;
+use OpenAPI\Client\Model\AcceptedResponse;
 use OpenAPI\Client\Model\Address;
 use OpenAPI\Client\Model\ApplyOrgVoucherRequest;
 use OpenAPI\Client\Model\CreateAuthorizationCredentials200Response;
 use OpenAPI\Client\Model\CreateOrgRequest;
-use OpenAPI\Client\Model\CreateOrgSubscriptionRequest;
 use OpenAPI\Client\Model\Invoice;
 use OpenAPI\Client\Model\ListOrgInvoices200Response;
 use OpenAPI\Client\Model\ListOrgOrders200Response;
@@ -392,7 +392,7 @@ class OrganizationTaskTest extends TestCase
         $orgId = 'org_1';
         $params = ['name' => 'New Project'];
 
-        $expectedResponse = $this->createMock(Subscription::class);
+        $expectedResponse = $this->createMock(OrganizationProject::class);
         
         $this->mockProjectTask
             ->expects($this->once())
@@ -413,22 +413,20 @@ class OrganizationTaskTest extends TestCase
 
     public function testUpdateProject()
     {
-        $orgId = 'org_1';
         $prjId = 'proj_1';
         $params = ['name' => 'Updated Project'];
 
-        $expectedResponse = $this->createMock(Subscription::class);
+        $expectedResponse = $this->createMock(AcceptedResponse::class);
 
-        $this->subscriptionsApiMock->expects($this->once())
-            ->method('updateOrgSubscription')
+        $this->mockProjectTask->expects($this->once())
+            ->method('update')
             ->with(
-                $orgId,
                 $prjId,
-                $this->isInstanceOf(UpdateOrgSubscriptionRequest::class)
+                $params
             )
             ->willReturn($expectedResponse);
 
-        $response = $this->organizationTask->updateProject($orgId, $prjId, $params);
+        $response = $this->organizationTask->updateProject($prjId, $params);
 
         $this->assertSame($expectedResponse, $response);
     }

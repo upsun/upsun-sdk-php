@@ -20,49 +20,51 @@ composer require upsun/upsun-sdk-php
 To use the Upsun SDK, you need to initialize the `Upsun` class with your API key and connection URL. Here's an example:
 
 ```php
-require 'vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
-use Upsun\Upsun;
+use Upsun\UpsunClient;
 use Upsun\UpsunConfig;
 
 $config = new UpsunConfig(apiKey: '');
-$upsun = new Upsun($config);
+$upsun = new UpsunClient($config);
 
 // List organizations
-$organizations = $upsun->organization->listOrgs();
+$organizations = $upsun->organization->list();
 
 // List projects for a specific organization
 $organizationId = '12345';
-$projects = $upsun->organization->listOrgProjects($organizationId);
+$projects = $upsun->organization->listProjects($organizationId);
 
 // Create a project in a specific organization
 $organizationId = '12345';
-$subscription = $upsun->organization->createOrgSubscription(
-  $organizationId,
-  [
-    'owner' => '<upsunUserId>',
-    'project_title' => 'title',
-    'project_region' => 'eu-5.platform.sh',
-    'default_branch' => 'main',
-  ]
+$project = $upsun->project->create(
+    $organizationId,
+    [
+        'owner' => '<upsunUserId>',
+        'project_title' => 'title',
+        'project_region' => 'eu-5.platform.sh',
+        'default_branch' => 'main',
+    ]
 );
 
 // Get a specific project
-$projectId = $subscription->getProjectId();
-$projects = $upsun->project->getProjects($projectId);
+$projectId = $project->getId();
+$project = $upsun->project->get($projectId);
 
 // Update a project
-$projectId = $subscription->getProjectId();
+$projectId = $project->getId();
 $projectData = [
-  'title' => 'title',
-  'description' => 'description' // see vendor/upsun/upsun-sdk-php/apisgen/lib/Model/Project.php for more info
+    'title' => 'title',
+    'description' => 'description' // see vendor/upsun/upsun-sdk-php/apisgen/lib/Model/Project.php for more info
 ];
-$projects = $upsun->project->updateProjects($projectId, $projectData);
+$response = $upsun->project->update($projectId, $projectData);
 
 // Delete a project
 $organizationId = '12345';
-$projectId = $subscription->getProjectId();
-$projects = $upsun->organization->deleteOrgSubscription($organizationId, $projectId);
+$projectId = $project->getId();
+$upsun->project->delete($projectId);
+// OR
+$upsun->organization->deleteProject($organizationId, $projectId);
 ```
 
 All CRUD operations respect the same structure.
