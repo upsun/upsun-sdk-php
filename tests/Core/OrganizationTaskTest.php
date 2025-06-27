@@ -54,9 +54,7 @@ use Upsun\UpsunConfig;
 
 class OrganizationTaskTest extends TestCase
 {
-    protected $organizationTask;
-    private const DEFAULT_UPSUN_PLAN = 'upsun/flexible';
-
+    protected OrganizationTask $organizationTask;
     private readonly UpsunClient $clientMock;
     private readonly HeaderSelector $headerSelectorMock;
     private readonly OrganizationsApi $apiMock;
