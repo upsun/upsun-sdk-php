@@ -86,7 +86,35 @@ class ProjectTask extends TaskBase
         $orgId = $project->getOrganization();
         return $this->organizationProjectsApi->getOrgProject($orgId, $projectId);
     }
+    
+    /**
+     * Creates a project
+     *
+     * @throws ApiException
+     */
+    public function create(string $organizationId, array $projectData): Error|OrganizationProject
+    {
+        $this->refreshToken();
+        $createProjectData = new CreateOrgSubscriptionRequest($projectData);
+        $subscription = $this->subscriptionsApi->createOrgSubscription($organizationId, $createProjectData);
+        return $this->organizationProjectsApi->getOrgProject(
+            $this->api->getProjects($subscription->getProjectId())->getOrganization(),
+            $subscription->getProjectId()
+        );
+    }
 
+    /**
+     * Checks if the user is able to create a new project in the organization.
+     *
+     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function canCreate(string $organizationId): CanCreateNewOrgSubscription200Response|Error
+    {
+        $this->refreshToken();
+        return $this->subscriptionsApi->canCreateNewOrgSubscription($organizationId);
+    }
+    
     /**
      * Gets a project's capabilities
      *
@@ -735,34 +763,6 @@ class ProjectTask extends TaskBase
         ?string $sort = null
     ): ListProjectUserAccess200Response|Error {
         return $this->client->user->listProjectUserAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
-    }
-
-    /**
-     * Creates a project
-     *
-     * @throws ApiException
-     */
-    public function create(string $organizationId, array $projectData): Error|OrganizationProject
-    {
-        $this->refreshToken();
-        $createProjectData = new CreateOrgSubscriptionRequest($projectData);
-        $subscription = $this->subscriptionsApi->createOrgSubscription($organizationId, $createProjectData);
-        return $this->organizationProjectsApi->getOrgProject(
-            $this->api->getProjects($subscription->getProjectId())->getOrganization(),
-            $subscription->getProjectId()
-        );
-    }
-
-    /**
-     * Checks if the user is able to create a new project in the organization.
-     *
-     * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     */
-    public function canCreate(string $organizationId): CanCreateNewOrgSubscription200Response|Error
-    {
-        $this->refreshToken();
-        return $this->subscriptionsApi->canCreateNewOrgSubscription($organizationId);
     }
 
     /**
