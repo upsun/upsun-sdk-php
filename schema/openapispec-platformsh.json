@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Platform.sh Rest API test",
+    "title": "Platform.sh Rest API",
     "version": "1.0",
     "contact": {
       "name": "Support",
@@ -42,19 +42,11 @@
     },
     {
       "name": "Environment Type",
-      "description": "Environment Types is the way Platform.sh manages access. We currently have 3 enviroment types:\n* Development\n* Staging\n* Production\n\nEach environment type will contain a group of users and their accesses. We manage access,\nadding, updating and removing users and their roles, here.\n\nEach environemnt will have a type, pointing to one of these 3 environemnt types.\nSee `type` in [Environments](#tag/Environment).\n\nIn general:\n* Production will be reserved for the default branch, and cannot be set manually.\n* An environment can be set to be type staging or development manually and when branching.\n\nDedicated Generation 2 projects have different rules for environment types. If your project\ncontains at least one of those Dedicated Generation 2 environments, the rules are slightly different:\n* All non-dedicated environment in your project are enforeced to be `development`.\n* Dedicated Generation 2 environments can be set either to Staging or Production.\n* The default branch is not considered to be a special case.\n"
+      "description": "Environment Types is the way Platform.sh manages access. We currently have 3 environment types:\n* Development\n* Staging\n* Production\n\nEach environment type will contain a group of users and their accesses. We manage access,\nadding, updating and removing users and their roles, here.\n\nEach environment will have a type, pointing to one of these 3 environment types.\nSee `type` in [Environments](#tag/Environment).\n\nIn general:\n* Production will be reserved for the default branch, and cannot be set manually.\n* An environment can be set to be type `staging` or development manually and when branching.\n\nDedicated Generation 2 projects have different rules for environment types. If your project\ncontains at least one of those Dedicated Generation 2 environments, the rules are slightly different:\n* All non-dedicated environments in your project can be `development` or `staging`, but never `production`.\n* Dedicated Generation 2 environments can be set either to `staging` or `production`, but never `development`.\n* The default branch is not considered to be a special case.\n"
     },
     {
       "name": "Environment Backups",
       "description": "A snapshot is a complete backup of an environment, including all the\npersistent data from all services running in an environment and all\nfiles present in mounted volumes.\n\nThese endpoints can be used to trigger the creation of new snapshots,\nget information about existing snapshots, delete existing snapshots or\nrestore a snapshot.\nMore information about snapshots can be found in our\n[Snapshot and Restore](https://docs.platform.sh/administration/snapshot-and-restore.html)\ndocumentation.\n"
-    },
-    {
-      "name": "Environment Type Access",
-      "description": "These endpoints can be used to manipulate the access control list\nof a environment type at the environment type level—that is, users and roles\ndefined here will apply specifically to a single environment type.\nSee [Environment Types](#tag/Environment-Type)\n\nFor more project-level access control, see\nthe section entitled [Project Access](#tag/Project-Access).\n"
-    },
-    {
-      "name": "Environment Access",
-      "description": "**DEPRECATED**\n\nThis endpoint is currently maintained for backwards compatibility, but it has been deprecated and\nits behaviour has changed, please, use\n[Environment Type Access](#tag/Environment-Type-Access) instead.\n\nThe access is no longer associated with an environment, but with environment **types**. Doing any operation\nagainst an environment access endpoint will be the same as doing said operation against the environment **type**\naccess endpoint. For example, if you list or modify an access in an environment of `type` development, you will be\neffectively changing the environment **type**; all the environments of `type` development would be affected.\n"
     },
     {
       "name": "Environment Variables",
@@ -63,10 +55,6 @@
     {
       "name": "Project",
       "description": "## Project Overview\n\nOn Platform.sh, a Project is backed by a single Git repository\nand encompasses your entire application stack, the services\nused by your application, the application's data storage,\nthe production and staging environments, and the backups of those\nenvironments.\n\nWhen you create a new project, you start with a single\n[Environment](#tag/Environment) called *Master*,\ncorresponding to the master branch in the Git repository of\nthe project—this will be your production environment.\n\nIf you connect your project to an external Git repo\nusing one of our [Third-Party Integrations](#tag/Third-Party-Integrations)\na new development environment can be created for each branch\nor pull request created in the repository. When a new development\nenvironment is created, the production environment's data\nwill be cloned on-the-fly, giving you an isolated, production-ready\ntest environment.\n\nThis set of API endpoints can be used to retrieve a list of projects\nassociated with an API key, as well as create and update the parameters\nof existing projects.\n\n> **Note**:\n>\n> To list projects or to create a new project, use [`/subscriptions`](#tag/Subscriptions).\n"
-    },
-    {
-      "name": "Project Access",
-      "description": "These endpoints can be used to manipulate the access control list\nat the project level. Users and roles defined here will apply globally\nto all environments within a project. For more fine-grained,\nenvironment-level access control, see the section\nentitled [Environment Type Access](#tag/Environment-Type-Access).\n"
     },
     {
       "name": "Project Variables",
@@ -138,6 +126,207 @@
     }
   ],
   "paths": {
+    "/alerts/subscriptions/{subscriptionId}/usage": {
+      "get": {
+        "tags": [
+          "Alerts"
+        ],
+        "summary": "Get usage alerts for a subscription",
+        "operationId": "get-usage-alerts",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/subscription_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The list of current and available alerts for the subscription.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "available": {
+                      "description": "The list of available usage alerts.",
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Alert"
+                      }
+                    },
+                    "current": {
+                      "description": "The list of the current usage alerts.",
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Alert"
+                      }
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Alerts"
+        ],
+        "summary": "Create a usage alert.",
+        "operationId": "create-usage-alert",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/subscription_id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "id": {
+                    "description": "The usage group to create an alert for.",
+                    "type": "string"
+                  },
+                  "config": {
+                    "description": "The configuration of the alert.",
+                    "properties": {
+                      "threshold": {
+                        "description": "The amount after which a usage alert should be triggered.",
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The created usage alert",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Alert"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/alerts/subscriptions/{subscriptionId}/usage/{usageId}": {
+      "delete": {
+        "tags": [
+          "Alerts"
+        ],
+        "summary": "Delete a usage alert.",
+        "operationId": "delete-usage-alert",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/subscription_id"
+          },
+          {
+            "name": "usageId",
+            "in": "path",
+            "description": "The usage id of the alert.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success."
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Alerts"
+        ],
+        "summary": "Update a usage alert.",
+        "operationId": "update-usage-alert",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/subscription_id"
+          },
+          {
+            "name": "usageId",
+            "in": "path",
+            "description": "The usage id of the alert.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "config": {
+                    "description": "The configuration of the alert.",
+                    "properties": {
+                      "threshold": {
+                        "description": "The amount after which a usage alert should be triggered.",
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated usage alert.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Alert"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/download": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Download an invoice.",
+        "operationId": "download-invoice",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "description": "JWT for invoice.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An invoice PDF.",
+            "content": {
+              "application/pdf": {}
+            }
+          }
+        }
+      }
+    },
     "/discounts/{id}": {
       "get": {
         "tags": [
@@ -161,7 +350,8 @@
               }
             }
           }
-        }
+        },
+        "x-vendor": "upsun"
       }
     },
     "/discounts/types/allowance": {
@@ -305,7 +495,8 @@
               }
             }
           }
-        }
+        },
+        "x-vendor": "upsun"
       }
     },
     "/me": {
@@ -524,80 +715,6 @@
                     }
                   },
                   "type": "object"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/locate": {
-      "get": {
-        "tags": [
-          "Project Discovery"
-        ],
-        "summary": "Locate user projects",
-        "description": "Returns a paginated list of all the projects associated with a given UUID.\nThe returned information includes each project's respective endpoint and\nmanagement console URLs, as well as information about the project owner.\n",
-        "operationId": "locate-projects",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/filter_subscription_owner"
-          },
-          {
-            "$ref": "#/components/parameters/page"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The list of projects.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "count": {
-                      "description": "Total number of results.",
-                      "type": "integer"
-                    },
-                    "projects": {
-                      "description": "Array of standard project information.",
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/ProjectLink"
-                      }
-                    },
-                    "_links": {
-                      "$ref": "#/components/schemas/HalLinks"
-                    }
-                  },
-                  "type": "object"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true
-      }
-    },
-    "/locate/{projectId}": {
-      "get": {
-        "tags": [
-          "Project Discovery"
-        ],
-        "summary": "Locate a single project",
-        "description": "Returns a project's endpoint and management console URLs, as well as information about the project owner.",
-        "operationId": "locate-project",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/projectId"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A Project object",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProjectLink"
                 }
               }
             }
@@ -1014,6 +1131,10 @@
                     "description": "see create()",
                     "type": "string"
                   },
+                  "organization_id": {
+                    "description": "see create()",
+                    "type": "string"
+                  },
                   "affected_url": {
                     "description": "see create().",
                     "type": "string",
@@ -1228,6 +1349,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "organization_id",
+            "in": "query",
+            "description": "The ID of the organization the ticket should be related to",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1268,7 +1398,7 @@
         "description": "Creates an invitation to an organization for a user with the specified email address.",
         "operationId": "create-org-invite",
         "tags": [
-          "Invitations"
+          "Organization Invitations"
         ],
         "responses": {
           "201": {
@@ -1358,7 +1488,7 @@
         "description": "Returns a list of invitations to an organization.",
         "operationId": "list-org-invites",
         "tags": [
-          "Invitations"
+          "Organization Invitations"
         ],
         "parameters": [
           {
@@ -1452,7 +1582,7 @@
         "description": "Cancels the specified invitation.",
         "operationId": "cancel-org-invite",
         "tags": [
-          "Invitations"
+          "Organization Invitations"
         ],
         "responses": {
           "204": {
@@ -1485,7 +1615,7 @@
         "description": "Creates an invitation to a project for a user with the specified email address.",
         "operationId": "create-project-invite",
         "tags": [
-          "Invitations"
+          "Project Invitations"
         ],
         "responses": {
           "201": {
@@ -1637,7 +1767,7 @@
         "description": "Returns a list of invitations to a project.",
         "operationId": "list-project-invites",
         "tags": [
-          "Invitations"
+          "Project Invitations"
         ],
         "parameters": [
           {
@@ -1741,7 +1871,7 @@
         "description": "Cancels the specified invitation.",
         "operationId": "cancel-project-invite",
         "tags": [
-          "Invitations"
+          "Project Invitations"
         ],
         "responses": {
           "204": {
@@ -3900,216 +4030,6 @@
         "description": "Delete the entire project."
       }
     },
-    "/projects/{projectId}/access": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "name": "projectId"
-          }
-        ],
-        "operationId": "list-projects-access",
-        "responses": {
-          "default": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProjectAccessCollection"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "tags": [
-          "Project Access"
-        ],
-        "summary": "Get a project's access control list",
-        "description": "Retrieve a list of objects specifying the users with access to a project\nand those users' roles.\n",
-        "x-stability": "DEPRECATED"
-      },
-      "post": {
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "name": "projectId"
-          }
-        ],
-        "operationId": "create-projects-access",
-        "responses": {
-          "default": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AcceptedResponse"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "description": "",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProjectAccessCreateInput"
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "tags": [
-          "Project Access"
-        ],
-        "summary": "Add a user to a project ACL",
-        "description": "Add a user to a project's access control list\n\n> **Note**:\n>\n> For more granular control and invitation by email, use [`/invitations`](#tag/Invitation).\n",
-        "x-stability": "DEPRECATED"
-      }
-    },
-    "/projects/{projectId}/access/{projectAccessId}": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "name": "projectId"
-          },
-          {
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "name": "projectAccessId"
-          }
-        ],
-        "operationId": "get-projects-access",
-        "responses": {
-          "default": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProjectAccess"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "tags": [
-          "Project Access"
-        ],
-        "summary": "Get a single project ACL entry",
-        "description": "Retrieve the details of a user from a project's access control list\nusing the `id` of the entry in the access control list\nretrieved with the [Get project access control list](#tag/Project-Access%2Fpaths%2F~1projects~1%7BprojectId%7D~1access%2Fget)\nendpoint.\n",
-        "x-stability": "DEPRECATED"
-      },
-      "patch": {
-        "requestBody": {
-          "description": "",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProjectAccessPatch"
-              }
-            }
-          }
-        },
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "name": "projectId"
-          },
-          {
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "name": "projectAccessId"
-          }
-        ],
-        "operationId": "update-projects-access",
-        "responses": {
-          "default": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AcceptedResponse"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "tags": [
-          "Project Access"
-        ],
-        "summary": "Update a project user's role",
-        "description": "Change the role of a user from a project's access control list\nusing the `id` of the entry in the access control list\nretrieved with the [Get project access control list](#tag/Project-Access%2Fpaths%2F~1projects~1%7BprojectId%7D~1access%2Fget)\nendpoint.\n",
-        "x-stability": "DEPRECATED"
-      },
-      "delete": {
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "name": "projectId"
-          },
-          {
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "name": "projectAccessId"
-          }
-        ],
-        "operationId": "delete-projects-access",
-        "responses": {
-          "default": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AcceptedResponse"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "tags": [
-          "Project Access"
-        ],
-        "summary": "Remove a user from a project",
-        "description": "Remove a user from a project's access control list\nusing the `id` of the entry in the access control list\nretrieved with the [Get project access control list](#tag/Project-Access%2Fpaths%2F~1projects~1%7BprojectId%7D~1access%2Fget)\nendpoint.\n",
-        "x-stability": "DEPRECATED"
-      }
-    },
     "/projects/{projectId}/activities": {
       "get": {
         "parameters": [
@@ -4955,256 +4875,6 @@
         ],
         "summary": "Get environment type links",
         "description": "Lists the endpoints used to retrieve info about the environment type."
-      }
-    },
-    "/projects/{projectId}/environment-types/{environmentTypeId}/access": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "name": "projectId"
-          },
-          {
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "name": "environmentTypeId"
-          }
-        ],
-        "operationId": "list-environment-type-access",
-        "responses": {
-          "default": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EnvironmentTypeAccessCollection"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "tags": [
-          "Environment Type Access"
-        ],
-        "summary": "Get an environment type's access control list",
-        "description": "Retrieve a list of objects for users and their roles for the\ngiven environment type.\n",
-        "x-stability": "DEPRECATED"
-      },
-      "post": {
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "name": "projectId"
-          },
-          {
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "name": "environmentTypeId"
-          }
-        ],
-        "operationId": "create-environment-type-access",
-        "responses": {
-          "default": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AcceptedResponse"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "description": "",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EnvironmentTypeAccessCreateInput"
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "tags": [
-          "Environment Type Access"
-        ],
-        "summary": "Add a user to an environment ACL",
-        "description": "Add a user to an environment type's access control list\n\n> **Note**:\n>\n> For more granular control and invitation by email, use [`/invitations`](#tag/Invitation).\n",
-        "x-stability": "DEPRECATED"
-      }
-    },
-    "/projects/{projectId}/environment-types/{environmentTypeId}/access/{environmentTypeAccessId}": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "name": "projectId"
-          },
-          {
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "name": "environmentTypeId"
-          },
-          {
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "name": "environmentTypeAccessId"
-          }
-        ],
-        "operationId": "get-environment-type-access",
-        "responses": {
-          "default": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EnvironmentTypeAccess"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "tags": [
-          "Environment Type Access"
-        ],
-        "summary": "Get a single environment type's ACL entry",
-        "description": "Retrieve the details of a user from an environment type's access control list\nusing the `id` of the entry in the access control list\nretrieved with the [Get environment type's access control list](#tag/Environment-Type-Access/paths/~1projects~1{projectId}~1environment-types~1{environmentTypeId}~1access/get)\nendpoint.\n",
-        "x-stability": "DEPRECATED"
-      },
-      "patch": {
-        "requestBody": {
-          "description": "",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EnvironmentTypeAccessPatch"
-              }
-            }
-          }
-        },
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "name": "projectId"
-          },
-          {
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "name": "environmentTypeId"
-          },
-          {
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "name": "environmentTypeAccessId"
-          }
-        ],
-        "operationId": "update-environment-type-access",
-        "responses": {
-          "default": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AcceptedResponse"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "tags": [
-          "Environment Type Access"
-        ],
-        "summary": "Update an environment type user's role",
-        "description": "Update the role of a user from an environment type's access control list\nusing the `id` of the entry in the access control list\nretrieved with the [Get environment access control list](#tag/Environment-Type-Access/paths/~1projects~1{projectId}~1environment-types~1{environmentTypeId}~1access/get)\nendpoint.\n",
-        "x-stability": "DEPRECATED"
-      },
-      "delete": {
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "name": "projectId"
-          },
-          {
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "name": "environmentTypeId"
-          },
-          {
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "name": "environmentTypeAccessId"
-          }
-        ],
-        "operationId": "delete-environment-type-access",
-        "responses": {
-          "default": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AcceptedResponse"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "tags": [
-          "Environment Type Access"
-        ],
-        "summary": "Remove a user from an environment type",
-        "description": "Remove a user from an environment type's access control list.\nusing the `id` of the entry in the access control list\nretrieved with the [Get environment type access control list](#tag/Environment-Type-Access/paths/~1projects~1{projectId}~1environment-types~1{environmentTypeId}~1access/get)\nendpoint.\n",
-        "x-stability": "DEPRECATED"
       }
     },
     "/projects/{projectId}/environments": {
@@ -8478,6 +8148,14 @@
                   "label"
                 ],
                 "properties": {
+                  "type": {
+                    "type": "string",
+                    "description": "The type of the organization.",
+                    "enum": [
+                      "fixed",
+                      "flexible"
+                    ]
+                  },
                   "owner_id": {
                     "type": "string",
                     "format": "uuid",
@@ -8892,7 +8570,7 @@
         "description": "Accessible to organization owners and members with the \"manage members\" permission.",
         "operationId": "list-org-members",
         "tags": [
-          "Organizations"
+          "Organization Members"
         ],
         "parameters": [
           {
@@ -9008,7 +8686,7 @@
         "description": "Creates a new organization member.",
         "operationId": "create-org-member",
         "tags": [
-          "Organizations"
+          "Organization Members"
         ],
         "parameters": [
           {
@@ -9088,7 +8766,7 @@
         "description": "Retrieves the specified organization member.",
         "operationId": "get-org-member",
         "tags": [
-          "Organizations"
+          "Organization Members"
         ],
         "parameters": [
           {
@@ -9136,7 +8814,7 @@
         "description": "Updates the specified organization member.",
         "operationId": "update-org-member",
         "tags": [
-          "Organizations"
+          "Organization Members"
         ],
         "parameters": [
           {
@@ -9208,7 +8886,7 @@
         "description": "Deletes the specified organization member.",
         "operationId": "delete-org-member",
         "tags": [
-          "Organizations"
+          "Organization Members"
         ],
         "parameters": [
           {
@@ -9245,6 +8923,494 @@
         }
       }
     },
+    "/teams/{team_id}/project-access": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/TeamID"
+        }
+      ],
+      "get": {
+        "summary": "List project access for a team",
+        "description": "Returns a list of items representing the team's project access.",
+        "operationId": "list-team-project-access",
+        "tags": [
+          "Team Access"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page[size]",
+            "description": "Determines the number of items to show.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 200,
+              "default": null
+            }
+          },
+          {
+            "in": "query",
+            "name": "page[before]",
+            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page[after]",
+            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Allows sorting by a single field.<br>\nUse a dash (\"-\") to sort descending.<br>\nSupported fields: `project_title`, `granted_at`, `updated_at`.\n",
+            "schema": {
+              "type": "string",
+              "example": "-updated_at"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TeamProjectAccess"
+                      }
+                    },
+                    "_links": {
+                      "$ref": "#/components/schemas/ListLinks"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Grant project access to a team",
+        "description": "Adds the team to one or more specified projects.",
+        "operationId": "grant-team-project-access",
+        "tags": [
+          "Team Access"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "project_id": {
+                      "type": "string",
+                      "description": "ID of the project."
+                    }
+                  },
+                  "required": [
+                    "project_id"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/teams/{team_id}/project-access/{project_id}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/TeamID"
+        },
+        {
+          "$ref": "#/components/parameters/ProjectID"
+        }
+      ],
+      "get": {
+        "summary": "Get project access for a team",
+        "description": "Retrieves the team's permissions for the current project.",
+        "operationId": "get-team-project-access",
+        "tags": [
+          "Team Access"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamProjectAccess"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove project access for a team",
+        "description": "Removes the team from the current project.",
+        "operationId": "remove-team-project-access",
+        "tags": [
+          "Team Access"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/team-access": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ProjectID"
+        }
+      ],
+      "get": {
+        "summary": "List team access for a project",
+        "description": "Returns a list of items representing the project access.",
+        "operationId": "list-project-team-access",
+        "tags": [
+          "Team Access"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page[size]",
+            "description": "Determines the number of items to show.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 200,
+              "default": null
+            }
+          },
+          {
+            "in": "query",
+            "name": "page[before]",
+            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page[after]",
+            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Allows sorting by a single field.<br>\nUse a dash (\"-\") to sort descending.<br>\nSupported fields: `granted_at`, `updated_at`.\n",
+            "schema": {
+              "type": "string",
+              "example": "-updated_at"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TeamProjectAccess"
+                      }
+                    },
+                    "_links": {
+                      "$ref": "#/components/schemas/ListLinks"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Grant team access to a project",
+        "description": "Grants one or more team access to a specific project.",
+        "operationId": "grant-project-team-access",
+        "tags": [
+          "Team Access"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "team_id": {
+                      "type": "string",
+                      "description": "ID of the team."
+                    }
+                  },
+                  "required": [
+                    "team_id"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/team-access/{team_id}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ProjectID"
+        },
+        {
+          "$ref": "#/components/parameters/TeamID"
+        }
+      ],
+      "get": {
+        "summary": "Get team access for a project",
+        "description": "Retrieves the team's permissions for the current project.",
+        "operationId": "get-project-team-access",
+        "tags": [
+          "Team Access"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamProjectAccess"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove team access for a project",
+        "description": "Removes the team from the current project.",
+        "operationId": "remove-project-team-access",
+        "tags": [
+          "Team Access"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/projects/{project_id}/user-access": {
       "parameters": [
         {
@@ -9256,7 +9422,7 @@
         "description": "Returns a list of items representing the project access.",
         "operationId": "list-project-user-access",
         "tags": [
-          "Project Access"
+          "User Access"
         ],
         "parameters": [
           {
@@ -9345,7 +9511,7 @@
         "description": "Grants one or more users access to a specific project.",
         "operationId": "grant-project-user-access",
         "tags": [
-          "Project Access"
+          "User Access"
         ],
         "requestBody": {
           "required": true,
@@ -9418,7 +9584,7 @@
         "description": "Retrieves the user's permissions for the current project.",
         "operationId": "get-project-user-access",
         "tags": [
-          "Project Access"
+          "User Access"
         ],
         "responses": {
           "200": {
@@ -9458,7 +9624,7 @@
         "description": "Updates the user's permissions for the current project.",
         "operationId": "update-project-user-access",
         "tags": [
-          "Project Access"
+          "User Access"
         ],
         "requestBody": {
           "content": {
@@ -9518,7 +9684,7 @@
         "description": "Removes the user from the current project.",
         "operationId": "remove-project-user-access",
         "tags": [
-          "Project Access"
+          "User Access"
         ],
         "responses": {
           "204": {
@@ -10364,6 +10530,86 @@
         }
       }
     },
+    "/organizations/{organization_id}/orders/{order_id}/authorize": {
+      "post": {
+        "summary": "Create confirmation credentials for for 3D-Secure",
+        "description": "Creates confirmation credentials for payments that require online authorization",
+        "operationId": "create-authorization-credentials",
+        "tags": [
+          "Orders"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationIDName"
+          },
+          {
+            "$ref": "#/components/parameters/OrderID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Payment authorization credentials, if the payment is pending",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "redirect_to_url": {
+                      "type": "object",
+                      "description": "URL information to complete the payment.",
+                      "properties": {
+                        "return_url": {
+                          "type": "string",
+                          "description": "Return URL after payment completion."
+                        },
+                        "url": {
+                          "type": "string",
+                          "description": "URL for payment finalization."
+                        }
+                      }
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Required payment action type."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request when no authorization is required.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/organizations/{organization_id}/records/plan": {
       "get": {
         "summary": "List plan records",
@@ -10495,370 +10741,6 @@
                 }
               }
             }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/organizations/{organization_id}/subscriptions": {
-      "get": {
-        "summary": "List subscriptions",
-        "description": "Retrieves subscriptions for the specified organization.",
-        "operationId": "list-org-subscriptions",
-        "tags": [
-          "Subscriptions"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/OrganizationIDName"
-          },
-          {
-            "$ref": "#/components/parameters/subscription_status"
-          },
-          {
-            "$ref": "#/components/parameters/page"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/schemas-Subscription"
-                      }
-                    },
-                    "_links": {
-                      "$ref": "#/components/schemas/ListLinks"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Create subscription",
-        "description": "Creates a subscription for the specified organization.",
-        "operationId": "create-org-subscription",
-        "tags": [
-          "Subscriptions"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/OrganizationID"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "project_region"
-                ],
-                "properties": {
-                  "plan": {
-                    "$ref": "#/components/schemas/PlanType",
-                    "default": null
-                  },
-                  "project_region": {
-                    "type": "string",
-                    "description": "The machine name of the region where the project is located. Cannot be changed after project creation."
-                  },
-                  "project_title": {
-                    "type": "string",
-                    "description": "The name given to the project. Appears as the title in the UI."
-                  },
-                  "options_url": {
-                    "type": "string",
-                    "description": "The URL of the project options file."
-                  },
-                  "options_custom": {
-                    "type": "object",
-                    "description": "Customizations at creation time integrated into project options."
-                  },
-                  "default_branch": {
-                    "type": "string",
-                    "description": "The default Git branch name for the project."
-                  },
-                  "environments": {
-                    "type": "integer",
-                    "description": "The maximum number of active environments on the project."
-                  },
-                  "storage": {
-                    "type": "integer",
-                    "description": "The total storage available to each environment, in MiB. Only multiples of 1024 are accepted as legal values."
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/schemas-Subscription"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/organizations/{organization_id}/subscriptions/{subscription_id}": {
-      "get": {
-        "summary": "Get subscription",
-        "description": "Retrieves a subscription for the specified organization.",
-        "operationId": "get-org-subscription",
-        "tags": [
-          "Subscriptions"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/OrganizationIDName"
-          },
-          {
-            "$ref": "#/components/parameters/SubscriptionID"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/schemas-Subscription"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "summary": "Update subscription",
-        "description": "Updates a subscription for the specified organization.",
-        "operationId": "update-org-subscription",
-        "tags": [
-          "Subscriptions"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/OrganizationID"
-          },
-          {
-            "$ref": "#/components/parameters/SubscriptionID"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "plan"
-                ],
-                "properties": {
-                  "plan": {
-                    "$ref": "#/components/schemas/PlanType"
-                  },
-                  "environments": {
-                    "type": "integer",
-                    "description": "The maximum number of environments which can be provisioned on the project."
-                  },
-                  "storage": {
-                    "type": "integer",
-                    "description": "The total storage available to each environment, in MiB."
-                  },
-                  "big_dev": {
-                    "type": "string",
-                    "description": "The development environment plan."
-                  },
-                  "big_dev_service": {
-                    "type": "string",
-                    "description": "The development service plan."
-                  },
-                  "backups": {
-                    "type": "string",
-                    "description": "The backups plan."
-                  },
-                  "observability_suite": {
-                    "type": "string",
-                    "description": "The observability suite option."
-                  },
-                  "blackfire": {
-                    "type": "string",
-                    "description": "The Blackfire integration option."
-                  },
-                  "continuous_profiling": {
-                    "type": "string",
-                    "description": "The Blackfire continuous profiling option."
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/schemas-Subscription"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete subscription",
-        "description": "Deletes a subscription for the specified organization.",
-        "operationId": "delete-org-subscription",
-        "tags": [
-          "Subscriptions"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/OrganizationID"
-          },
-          {
-            "$ref": "#/components/parameters/SubscriptionID"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
           },
           "403": {
             "description": "Forbidden",
@@ -11224,7 +11106,8 @@
               }
             }
           }
-        }
+        },
+        "x-vendor": "upsun"
       }
     },
     "/organizations/{organization_id}/vouchers": {
@@ -11333,73 +11216,6 @@
         }
       }
     },
-    "/organizations/{organization_id}/regions": {
-      "get": {
-        "summary": "List available regions",
-        "description": "Retrieves the list of available regions for the specified organization.",
-        "operationId": "list-org-regions",
-        "tags": [
-          "Regions"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/OrganizationIDName"
-          },
-          {
-            "$ref": "#/components/parameters/region_zone"
-          },
-          {
-            "$ref": "#/components/parameters/region_available"
-          },
-          {
-            "$ref": "#/components/parameters/region_private"
-          },
-          {
-            "$ref": "#/components/parameters/page"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Region"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/organizations/{organization_id}/estimate": {
       "get": {
         "summary": "Estimate total spend",
@@ -11444,7 +11260,8 @@
               }
             }
           }
-        }
+        },
+        "x-vendor": "upsun"
       }
     },
     "/organizations/{organization_id}/addons": {
@@ -11453,7 +11270,7 @@
         "description": "Retrieves information about the add-ons for an organization.",
         "operationId": "get-org-addons",
         "tags": [
-          "Organization Management"
+          "Add-ons"
         ],
         "parameters": [
           {
@@ -11491,7 +11308,8 @@
               }
             }
           }
-        }
+        },
+        "x-vendor": "upsun"
       }
     },
     "/organizations/{organization_id}/alerts/billing": {
@@ -11538,7 +11356,8 @@
               }
             }
           }
-        }
+        },
+        "x-vendor": "upsun"
       },
       "patch": {
         "summary": "Update billing alert configuration",
@@ -11612,7 +11431,8 @@
               }
             }
           }
-        }
+        },
+        "x-vendor": "upsun"
       }
     },
     "/organizations/{organization_id}/discounts": {
@@ -11670,7 +11490,8 @@
               }
             }
           }
-        }
+        },
+        "x-vendor": "upsun"
       }
     },
     "/organizations/{organization_id}/prepayment": {
@@ -11694,13 +11515,1038 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/PrepaymentObject"
+                    "prepayment": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/PrepaymentObject"
+                    },
+                    "_links": {
+                      "type": "object",
+                      "properties": {
+                        "self": {
+                          "type": "object",
+                          "description": "Link to the current resource.",
+                          "properties": {
+                            "href": {
+                              "type": "string",
+                              "description": "URL of the link."
+                            }
+                          }
+                        },
+                        "transactions": {
+                          "type": "object",
+                          "description": "Link to the prepayment transactions resource.",
+                          "properties": {
+                            "href": {
+                              "type": "string",
+                              "description": "URL of the link."
+                            }
+                          }
+                        }
                       }
                     }
                   }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-vendor": "upsun"
+      }
+    },
+    "/organizations/{organization_id}/prepayment/transactions": {
+      "get": {
+        "summary": "List organization prepayment transactions",
+        "description": "Retrieves a list of prepayment transactions for the specified organization, if applicable.",
+        "operationId": "list-org-prepayment-transactions",
+        "tags": [
+          "Organization Management"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer",
+                      "description": "Total number of items across pages."
+                    },
+                    "transactions": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PrepaymentTransactionObject"
+                      }
+                    },
+                    "_links": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/ListLinks",
+                      "properties": {
+                        "prepayment": {
+                          "type": "object",
+                          "description": "Link to the prepayment resource.",
+                          "properties": {
+                            "href": {
+                              "type": "string",
+                              "description": "URL of the link."
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-vendor": "upsun"
+      }
+    },
+    "/organizations/{organization_id}/projects": {
+      "get": {
+        "summary": "List projects",
+        "description": "Retrieves a list of projects for the specified organization.",
+        "operationId": "list-org-projects",
+        "tags": [
+          "Organization Projects"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          },
+          {
+            "in": "query",
+            "name": "filter[id]",
+            "description": "Allows filtering by `id` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter[title]",
+            "description": "Allows filtering by `title` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter[status]",
+            "description": "Allows filtering by `status` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter[updated_at]",
+            "description": "Allows filtering by `updated_at` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/DateTimeFilter"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter[created_at]",
+            "description": "Allows filtering by `created_at` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/DateTimeFilter"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page[size]",
+            "description": "Determines the number of items to show.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": null
+            }
+          },
+          {
+            "in": "query",
+            "name": "page[before]",
+            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page[after]",
+            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Allows sorting by a single field.<br>\nUse a dash (\"-\") to sort descending.<br>\nSupported fields: `id`, `created_at`, `updated_at`.\n",
+            "schema": {
+              "type": "string",
+              "example": "-updated_at"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/OrganizationProject"
+                      }
+                    },
+                    "_links": {
+                      "$ref": "#/components/schemas/ListLinks"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/projects/{project_id}": {
+      "get": {
+        "summary": "Get project",
+        "description": "Retrieves the specified project.",
+        "operationId": "get-org-project",
+        "tags": [
+          "Organization Projects"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          },
+          {
+            "$ref": "#/components/parameters/ProjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationProject"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/subscriptions": {
+      "get": {
+        "summary": "List subscriptions",
+        "description": "Retrieves subscriptions for the specified organization.",
+        "operationId": "list-org-subscriptions",
+        "tags": [
+          "Subscriptions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          },
+          {
+            "$ref": "#/components/parameters/subscription_status"
+          },
+          {
+            "$ref": "#/components/parameters/id"
+          },
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/project_title"
+          },
+          {
+            "$ref": "#/components/parameters/region"
+          },
+          {
+            "$ref": "#/components/parameters/updated_at"
+          },
+          {
+            "$ref": "#/components/parameters/page_size"
+          },
+          {
+            "$ref": "#/components/parameters/page_before"
+          },
+          {
+            "$ref": "#/components/parameters/page_after"
+          },
+          {
+            "$ref": "#/components/parameters/subscription_sort"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Subscription"
+                      }
+                    },
+                    "_links": {
+                      "$ref": "#/components/schemas/ListLinks"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create subscription",
+        "description": "Creates a subscription for the specified organization.",
+        "operationId": "create-org-subscription",
+        "tags": [
+          "Subscriptions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "project_region"
+                ],
+                "properties": {
+                  "plan": {
+                    "$ref": "#/components/schemas/ProjectPlan",
+                    "default": null
+                  },
+                  "project_region": {
+                    "type": "string",
+                    "description": "The machine name of the region where the project is located. Cannot be changed after project creation."
+                  },
+                  "project_title": {
+                    "type": "string",
+                    "description": "The name given to the project. Appears as the title in the UI."
+                  },
+                  "options_url": {
+                    "type": "string",
+                    "description": "The URL of the project options file."
+                  },
+                  "default_branch": {
+                    "type": "string",
+                    "description": "The default Git branch name for the project."
+                  },
+                  "environments": {
+                    "type": "integer",
+                    "description": "The maximum number of active environments on the project."
+                  },
+                  "storage": {
+                    "type": "integer",
+                    "description": "The total storage available to each environment, in MiB. Only multiples of 1024 are accepted as legal values."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subscription"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/subscriptions/{subscription_id}": {
+      "get": {
+        "summary": "Get subscription",
+        "description": "Retrieves a subscription for the specified organization.",
+        "operationId": "get-org-subscription",
+        "tags": [
+          "Subscriptions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          },
+          {
+            "$ref": "#/components/parameters/SubscriptionID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subscription"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update subscription",
+        "description": "Updates a subscription for the specified organization.",
+        "operationId": "update-org-subscription",
+        "tags": [
+          "Subscriptions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          },
+          {
+            "$ref": "#/components/parameters/SubscriptionID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "project_title": {
+                    "$ref": "#/components/schemas/ProjectTitle"
+                  },
+                  "plan": {
+                    "$ref": "#/components/schemas/ProjectPlan"
+                  },
+                  "timezone": {
+                    "$ref": "#/components/schemas/ProjectTimeZone"
+                  },
+                  "environments": {
+                    "type": "integer",
+                    "description": "The maximum number of environments which can be provisioned on the project."
+                  },
+                  "storage": {
+                    "type": "integer",
+                    "description": "The total storage available to each environment, in MiB."
+                  },
+                  "big_dev": {
+                    "type": "string",
+                    "description": "The development environment plan."
+                  },
+                  "big_dev_service": {
+                    "type": "string",
+                    "description": "The development service plan."
+                  },
+                  "backups": {
+                    "type": "string",
+                    "description": "The backups plan."
+                  },
+                  "observability_suite": {
+                    "type": "string",
+                    "description": "The observability suite option."
+                  },
+                  "blackfire": {
+                    "type": "string",
+                    "description": "The Blackfire integration option."
+                  },
+                  "continuous_profiling": {
+                    "type": "string",
+                    "description": "The Blackfire continuous profiling option."
+                  },
+                  "project_support_level": {
+                    "type": "string",
+                    "description": "The project uptime option."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subscription"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete subscription",
+        "description": "Deletes a subscription for the specified organization.",
+        "operationId": "delete-org-subscription",
+        "tags": [
+          "Subscriptions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          },
+          {
+            "$ref": "#/components/parameters/SubscriptionID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/regions": {
+      "get": {
+        "summary": "List regions",
+        "description": "Retrieves a list of available regions.",
+        "operationId": "list-regions",
+        "tags": [
+          "Regions"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "filter[available]",
+            "description": "Allows filtering by `available` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter[private]",
+            "description": "Allows filtering by `private` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter[zone]",
+            "description": "Allows filtering by `zone` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page[size]",
+            "description": "Determines the number of items to show.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": null
+            }
+          },
+          {
+            "in": "query",
+            "name": "page[before]",
+            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page[after]",
+            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Allows sorting by a single field.<br>\nUse a dash (\"-\") to sort descending.<br>\nSupported fields: `id`, `created_at`, `updated_at`.\n",
+            "schema": {
+              "type": "string",
+              "example": "-updated_at"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "regions": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Region"
+                      }
+                    },
+                    "_links": {
+                      "$ref": "#/components/schemas/ListLinks"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/regions/{region_id}": {
+      "get": {
+        "summary": "Get region",
+        "description": "Retrieves the specified region.",
+        "operationId": "get-region",
+        "tags": [
+          "Regions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/RegionID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Region"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ref/projects": {
+      "get": {
+        "summary": "List referenced projects",
+        "description": "Retrieves a list of projects referenced by a trusted service. Clients cannot construct the URL themselves. The correct URL will be provided in the HAL links of another API response, in the <code>_links</code> object with a key like <code>ref:projects:0</code>.",
+        "operationId": "list-referenced-projects",
+        "tags": [
+          "References"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "in",
+            "description": "The list of comma-separated project IDs generated by a trusted service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "sig",
+            "description": "The signature of this request generated by a trusted service.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "A map of referenced projects indexed by the organization ID.",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/ProjectReference"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ref/regions": {
+      "get": {
+        "summary": "List referenced regions",
+        "description": "Retrieves a list of regions referenced by a trusted service. Clients cannot construct the URL themselves. The correct URL will be provided in the HAL links of another API response, in the <code>_links</code> object with a key like <code>ref:regions:0</code>.",
+        "operationId": "list-referenced-regions",
+        "tags": [
+          "References"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "in",
+            "description": "The list of comma-separated region IDs generated by a trusted service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "sig",
+            "description": "The signature of this request generated by a trusted service.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "A map of referenced projects indexed by the organization ID.",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/RegionReference"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -11731,6 +12577,38 @@
   },
   "components": {
     "schemas": {
+      "Alert": {
+        "description": "The alert object.",
+        "properties": {
+          "id": {
+            "description": "The identification of the alert type.",
+            "type": "string"
+          },
+          "active": {
+            "description": "Whether the alert is currently active.",
+            "type": "boolean"
+          },
+          "alerts_sent": {
+            "description": "The amount of alerts of this type that have been sent so far.",
+            "type": "integer"
+          },
+          "last_alert_at": {
+            "description": "The time the last alert has been sent.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "description": "The time the alert has last been updated.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "config": {
+            "description": "The alert type specific configuration.",
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
       "LineItem": {
         "description": "A line item in an order.",
         "properties": {
@@ -11746,8 +12624,22 @@
               "organization_subtotal"
             ]
           },
+          "license_id": {
+            "description": "The associated subscription identifier.",
+            "type": "number",
+            "nullable": true
+          },
+          "project_id": {
+            "description": "The associated project identifier.",
+            "type": "string",
+            "nullable": true
+          },
           "product": {
             "description": "Display name of the line item product.",
+            "type": "string"
+          },
+          "sku": {
+            "description": "The line item product SKU.",
             "type": "string"
           },
           "total": {
@@ -12074,32 +12966,201 @@
         },
         "type": "object"
       },
-      "ProjectLink": {
-        "description": "The project link object",
+      "Region": {
+        "description": "The hosting region.",
         "properties": {
           "id": {
-            "description": "The ID of the project",
+            "description": "The ID of the region.",
             "type": "string"
+          },
+          "label": {
+            "description": "The human-readable name of the region.",
+            "type": "string"
+          },
+          "zone": {
+            "description": "Geographical zone of the region",
+            "type": "string"
+          },
+          "selection_label": {
+            "description": "The label to display when choosing between regions for new projects.",
+            "type": "string"
+          },
+          "project_label": {
+            "description": "The label to display on existing projects.",
+            "type": "string"
+          },
+          "timezone": {
+            "description": "Default timezone of the region",
+            "type": "string"
+          },
+          "available": {
+            "description": "Indicator whether or not this region is selectable during the checkout. Not available regions will never show up during checkout.",
+            "type": "boolean"
+          },
+          "private": {
+            "description": "Indicator whether or not this platform is for private use only.",
+            "type": "boolean"
           },
           "endpoint": {
-            "description": "The API endpoint URL",
+            "description": "Link to the region API endpoint.",
             "type": "string"
           },
-          "ui": {
-            "description": "The UI URL",
+          "provider": {
+            "description": "Information about the region provider.",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "logo": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "datacenter": {
+            "description": "Information about the region provider data center.",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "location": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "environmental_impact": {
+            "description": "Information about the region provider's environmental impact.",
+            "properties": {
+              "zone": {
+                "type": "string"
+              },
+              "carbon_intensity": {
+                "type": "string"
+              },
+              "green": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "Subscription": {
+        "description": "The subscription object.",
+        "properties": {
+          "id": {
+            "description": "The internal ID of the subscription.",
             "type": "string"
           },
-          "subscription_id": {
-            "description": "The ID of the subscription",
-            "type": "integer"
+          "status": {
+            "description": "The status of the subscription.",
+            "type": "string",
+            "enum": [
+              "requested",
+              "provisioning failure",
+              "provisioning",
+              "active",
+              "suspended",
+              "deleted"
+            ]
+          },
+          "created_at": {
+            "description": "The date and time when the subscription was created.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "description": "The date and time when the subscription was last updated.",
+            "type": "string",
+            "format": "date-time"
           },
           "owner": {
-            "description": "The UUID of the project owner",
+            "description": "The UUID of the owner.",
             "type": "string",
             "format": "uuid"
           },
           "owner_info": {
             "$ref": "#/components/schemas/OwnerInfo"
+          },
+          "vendor": {
+            "description": "The machine name of the vendor the subscription belongs to.",
+            "type": "string"
+          },
+          "plan": {
+            "description": "The plan type of the subscription.",
+            "type": "string"
+          },
+          "environments": {
+            "description": "The number of environments which can be provisioned on the project.",
+            "type": "integer"
+          },
+          "storage": {
+            "description": "The total storage available to each environment, in MiB. Only multiples of 1024 are accepted as legal values.",
+            "type": "integer"
+          },
+          "user_licenses": {
+            "description": "The number of chargeable users who currently have access to the project. Manage this value by adding and removing users through the Platform project API. Staff and billing/administrative contacts can be added to a project for no charge. Contact support for questions about user licenses.",
+            "type": "integer"
+          },
+          "project_id": {
+            "description": "The unique ID string of the project.",
+            "type": "string"
+          },
+          "project_endpoint": {
+            "description": "The project API endpoint for the project.",
+            "type": "string"
+          },
+          "project_title": {
+            "description": "The name given to the project. Appears as the title in the UI.",
+            "type": "string"
+          },
+          "project_region": {
+            "description": "The machine name of the region where the project is located. Cannot be changed after project creation.",
+            "type": "string"
+          },
+          "project_region_label": {
+            "description": "The human-readable name of the region where the project is located.",
+            "type": "string"
+          },
+          "project_ui": {
+            "description": "The URL for the project's user interface.",
+            "type": "string"
+          },
+          "project_options": {
+            "$ref": "#/components/schemas/ProjectOptions"
+          },
+          "agency_site": {
+            "description": "True if the project is an agency site.",
+            "type": "boolean"
+          },
+          "invoiced": {
+            "description": "Whether the subscription is invoiced.",
+            "type": "boolean"
+          },
+          "hipaa": {
+            "description": "Whether the project is marked as HIPAA.",
+            "type": "boolean"
+          },
+          "is_trial_plan": {
+            "description": "Whether the project is currently on a trial plan.",
+            "type": "boolean"
+          },
+          "services": {
+            "description": "Details of the attached services.",
+            "type": "array",
+            "items": {
+              "description": "Details of a service",
+              "type": "object"
+            }
+          },
+          "green": {
+            "description": "Whether the subscription is considered green (on a green region, belonging to a green vendor) for billing purposes.",
+            "type": "boolean"
           }
         },
         "type": "object"
@@ -12529,7 +13590,8 @@
                 "enum": [
                   "credit-card"
                 ],
-                "nullable": true
+                "nullable": true,
+                "deprecated": true
               },
               "model": {
                 "description": "The trial trial model.",
@@ -12550,21 +13612,25 @@
         "type": "object"
       },
       "AddressMetadata": {
-        "description": "Information about fields required to express an address",
+        "description": "Information about fields required to express an address.",
         "properties": {
           "metadata": {
             "description": "Address field metadata.",
             "properties": {
               "required_fields": {
-                "description": "Fields required to express the address",
+                "description": "Fields required to express the address.",
                 "type": "array",
                 "items": {
                   "type": "string"
                 }
               },
               "field_labels": {
-                "description": "Localized labels for address fields",
+                "description": "Localized labels for address fields.",
                 "type": "object"
+              },
+              "show_vat": {
+                "description": "Whether this country supports a VAT number.",
+                "type": "boolean"
               }
             },
             "type": "object"
@@ -12805,6 +13871,11 @@
               },
               "type": "object"
             }
+          },
+          "zd_ticket_url": {
+            "description": "URL to the customer-facing ticket in Zendesk.",
+            "type": "string",
+            "format": "url"
           }
         },
         "type": "object"
@@ -13446,6 +14517,10 @@
             "type": "string",
             "description": "The name of the federation provider."
           },
+          "provider_type": {
+            "type": "string",
+            "description": "The type of the federation provider."
+          },
           "is_mandatory": {
             "type": "boolean",
             "description": "Whether the federated login connection is mandatory."
@@ -13453,6 +14528,10 @@
           "subject": {
             "type": "string",
             "description": "The identity on the federation provider."
+          },
+          "email_address": {
+            "type": "string",
+            "description": "The email address presented on the federated login connection."
           },
           "created_at": {
             "type": "string",
@@ -13469,7 +14548,9 @@
           "example-1": {
             "created_at": "2021-05-24T07:20:35.683264Z",
             "provider": "acme-inc-oidc",
+            "provider_type": "okta",
             "subject": "1621840835647277693",
+            "email_address": "name@example.com",
             "updated_at": "2021-05-24T07:20:35.683264Z"
           }
         }
@@ -14132,6 +15213,18 @@
       "BitbucketIntegration": {
         "type": "object",
         "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Creation date"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Update date"
+          },
           "type": {
             "type": "string",
             "title": "Integration type"
@@ -14207,6 +15300,8 @@
           }
         },
         "required": [
+          "created_at",
+          "updated_at",
           "type",
           "fetch_branches",
           "prune_branches",
@@ -14407,6 +15502,18 @@
       "BitbucketServerIntegration": {
         "type": "object",
         "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Creation date"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Update date"
+          },
           "type": {
             "type": "string",
             "title": "Integration type"
@@ -14455,6 +15562,8 @@
           }
         },
         "required": [
+          "created_at",
+          "updated_at",
           "type",
           "fetch_branches",
           "prune_branches",
@@ -14599,6 +15708,18 @@
       "BlackfireIntegration": {
         "type": "object",
         "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Creation date"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Update date"
+          },
           "type": {
             "type": "string",
             "title": "Integration type"
@@ -14631,6 +15752,8 @@
           }
         },
         "required": [
+          "created_at",
+          "updated_at",
           "type",
           "environments_credentials",
           "continuous_profiling"
@@ -15185,6 +16308,10 @@
                 "type": "boolean",
                 "title": "Is this environment a production environment"
               },
+              "constraints": {
+                "type": "object",
+                "title": "Constraints of the environment's deployment"
+              },
               "reference": {
                 "type": "string",
                 "title": "The reference in Git for this environment"
@@ -15207,6 +16334,7 @@
               "status",
               "is_main",
               "is_production",
+              "constraints",
               "reference",
               "machine_name",
               "environment_type",
@@ -15364,7 +16492,7 @@
               "basic_auth"
             ],
             "additionalProperties": false,
-            "title": "HTTP access permissions"
+            "title": "Http access permissions"
           },
           "enable_smtp": {
             "type": "boolean",
@@ -16395,12 +17523,10 @@
                         },
                         "start": {
                           "type": "string",
+                          "nullable": true,
                           "title": "The command used to start the application.  It will be restarted if it terminates. Do not use on PHP unless using a custom persistent process like React PHP."
                         }
                       },
-                      "required": [
-                        "start"
-                      ],
                       "additionalProperties": false,
                       "title": "Commands to manage the application's lifecycle."
                     },
@@ -17121,11 +18247,11 @@
                         "pre_start": {
                           "type": "string",
                           "nullable": true,
-                          "title": "A command executed before the application is started"
+                          "title": "A command executed before the worker is started"
                         },
                         "start": {
                           "type": "string",
-                          "title": "The command used to start the application.  It will be restarted if it terminates. Do not use on PHP unless using a custom persistent process like React PHP."
+                          "title": "The command used to start the worker."
                         }
                       },
                       "required": [
@@ -17335,6 +18461,18 @@
       "EmailIntegration": {
         "type": "object",
         "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Creation date"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Update date"
+          },
           "type": {
             "type": "string",
             "title": "Integration type"
@@ -17353,6 +18491,8 @@
           }
         },
         "required": [
+          "created_at",
+          "updated_at",
           "type",
           "from_address",
           "recipients"
@@ -17470,6 +18610,10 @@
             },
             "title": "List of SSH Hosts."
           },
+          "maintenance_mode": {
+            "type": "boolean",
+            "title": "Whether to perform deployments or not"
+          },
           "enterprise_environments_mapping": {
             "type": "object",
             "title": "Mapping of clusters to Enterprise applications",
@@ -17483,7 +18627,8 @@
           "deploy_host",
           "docroots",
           "site_urls",
-          "ssh_hosts"
+          "ssh_hosts",
+          "maintenance_mode"
         ],
         "additionalProperties": false
       },
@@ -17828,6 +18973,11 @@
             },
             "title": "Resources overrides"
           },
+          "max_instance_count": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Max number of instances for this environment."
+          },
           "last_active_at": {
             "type": "string",
             "format": "date-time",
@@ -17891,6 +19041,10 @@
           "has_deployment": {
             "type": "boolean",
             "title": "Whether this environment had a successful deployment."
+          },
+          "supports_restrict_robots": {
+            "type": "boolean",
+            "title": "Does this environment support configuring restrict_robots"
           }
         },
         "required": [
@@ -17915,6 +19069,7 @@
           "edge_hostname",
           "deployment_state",
           "resources_overrides",
+          "max_instance_count",
           "last_active_at",
           "last_backup_at",
           "project",
@@ -17923,7 +19078,8 @@
           "has_code",
           "head_commit",
           "merge_info",
-          "has_deployment"
+          "has_deployment",
+          "supports_restrict_robots"
         ],
         "additionalProperties": false
       },
@@ -18072,13 +19228,34 @@
               "additionalProperties": false
             },
             "title": "A list of files to add to the repository during initialization"
+          },
+          "resources": {
+            "type": "object",
+            "properties": {
+              "init": {
+                "type": "string",
+                "enum": [
+                  "default",
+                  "minimum"
+                ],
+                "nullable": true,
+                "title": "The resources used when initializing the environment"
+              }
+            },
+            "required": [
+              "init"
+            ],
+            "additionalProperties": false,
+            "nullable": true,
+            "title": "Resources"
           }
         },
         "required": [
           "profile",
           "repository",
           "config",
-          "files"
+          "files",
+          "resources"
         ],
         "additionalProperties": false
       },
@@ -18370,75 +19547,6 @@
         ],
         "additionalProperties": false
       },
-      "EnvironmentTypeAccess": {
-        "type": "object",
-        "properties": {
-          "user": {
-            "type": "string",
-            "title": "User"
-          },
-          "role": {
-            "type": "string",
-            "enum": [
-              "admin",
-              "contributor",
-              "viewer"
-            ],
-            "title": "Role"
-          }
-        },
-        "required": [
-          "role"
-        ],
-        "additionalProperties": false
-      },
-      "EnvironmentTypeAccessCollection": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/EnvironmentTypeAccess"
-        }
-      },
-      "EnvironmentTypeAccessCreateInput": {
-        "type": "object",
-        "properties": {
-          "user": {
-            "type": "string",
-            "title": "User"
-          },
-          "email": {
-            "type": "string",
-            "title": "E-mail address"
-          },
-          "role": {
-            "type": "string",
-            "enum": [
-              "admin",
-              "contributor",
-              "viewer"
-            ],
-            "title": "Role"
-          }
-        },
-        "required": [
-          "role"
-        ],
-        "additionalProperties": false
-      },
-      "EnvironmentTypeAccessPatch": {
-        "type": "object",
-        "properties": {
-          "role": {
-            "type": "string",
-            "enum": [
-              "admin",
-              "contributor",
-              "viewer"
-            ],
-            "title": "Role"
-          }
-        },
-        "additionalProperties": false
-      },
       "EnvironmentTypeCollection": {
         "type": "array",
         "items": {
@@ -18632,6 +19740,18 @@
       "FastlyIntegration": {
         "type": "object",
         "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Creation date"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Update date"
+          },
           "type": {
             "type": "string",
             "title": "Integration type"
@@ -18679,6 +19799,8 @@
           }
         },
         "required": [
+          "created_at",
+          "updated_at",
           "type",
           "events",
           "environments",
@@ -19010,6 +20132,18 @@
       "GitLabIntegration": {
         "type": "object",
         "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Creation date"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Update date"
+          },
           "type": {
             "type": "string",
             "title": "Integration type"
@@ -19054,6 +20188,8 @@
           }
         },
         "required": [
+          "created_at",
+          "updated_at",
           "type",
           "fetch_branches",
           "prune_branches",
@@ -19183,6 +20319,18 @@
       "GithubIntegration": {
         "type": "object",
         "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Creation date"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Update date"
+          },
           "type": {
             "type": "string",
             "title": "Integration type"
@@ -19240,6 +20388,8 @@
           }
         },
         "required": [
+          "created_at",
+          "updated_at",
           "type",
           "fetch_branches",
           "prune_branches",
@@ -19381,6 +20531,18 @@
       "HealthWebHookIntegration": {
         "type": "object",
         "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Creation date"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Update date"
+          },
           "type": {
             "type": "string",
             "title": "Integration type"
@@ -19391,6 +20553,8 @@
           }
         },
         "required": [
+          "created_at",
+          "updated_at",
           "type",
           "url"
         ],
@@ -19445,6 +20609,18 @@
       "HttpLogIntegration": {
         "type": "object",
         "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Creation date"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Update date"
+          },
           "type": {
             "type": "string",
             "title": "Integration type"
@@ -19473,6 +20649,8 @@
           }
         },
         "required": [
+          "created_at",
+          "updated_at",
           "type",
           "extra",
           "url",
@@ -19727,6 +20905,18 @@
       "NewRelicIntegration": {
         "type": "object",
         "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Creation date"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Update date"
+          },
           "type": {
             "type": "string",
             "title": "Integration type"
@@ -19748,6 +20938,8 @@
           }
         },
         "required": [
+          "created_at",
+          "updated_at",
           "type",
           "extra",
           "url",
@@ -19826,6 +21018,18 @@
       "PagerDutyIntegration": {
         "type": "object",
         "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Creation date"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Update date"
+          },
           "type": {
             "type": "string",
             "title": "Integration type"
@@ -19836,6 +21040,8 @@
           }
         },
         "required": [
+          "created_at",
+          "updated_at",
           "type",
           "routing_key"
         ],
@@ -20262,72 +21468,6 @@
           "default_domain",
           "subscription"
         ],
-        "additionalProperties": false
-      },
-      "ProjectAccess": {
-        "type": "object",
-        "properties": {
-          "user": {
-            "type": "string",
-            "title": "User"
-          },
-          "role": {
-            "type": "string",
-            "enum": [
-              "admin",
-              "viewer"
-            ],
-            "title": "Role"
-          }
-        },
-        "required": [
-          "role"
-        ],
-        "additionalProperties": false
-      },
-      "ProjectAccessCollection": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ProjectAccess"
-        }
-      },
-      "ProjectAccessCreateInput": {
-        "type": "object",
-        "properties": {
-          "user": {
-            "type": "string",
-            "title": "User"
-          },
-          "email": {
-            "type": "string",
-            "title": "E-mail address"
-          },
-          "role": {
-            "type": "string",
-            "enum": [
-              "admin",
-              "viewer"
-            ],
-            "title": "Role"
-          }
-        },
-        "required": [
-          "role"
-        ],
-        "additionalProperties": false
-      },
-      "ProjectAccessPatch": {
-        "type": "object",
-        "properties": {
-          "role": {
-            "type": "string",
-            "enum": [
-              "admin",
-              "viewer"
-            ],
-            "title": "Role"
-          }
-        },
         "additionalProperties": false
       },
       "ProjectCapabilities": {
@@ -21152,15 +22292,11 @@
           },
           "support_generic_images": {
             "type": "boolean",
-            "title": "Support generic images"
+            "title": "Support composable images"
           },
           "enable_github_app_token_exchange": {
             "type": "boolean",
             "title": "Enable fetching the GitHub App token from SIA."
-          },
-          "enable_marefs": {
-            "type": "boolean",
-            "title": "Enable marefs mounts"
           },
           "continuous_profiling": {
             "type": "object",
@@ -21178,6 +22314,14 @@
             ],
             "additionalProperties": false,
             "title": "The continuous profiling configuration"
+          },
+          "disable_agent_error_reporter": {
+            "type": "boolean",
+            "title": "Disable agent error reporter"
+          },
+          "requires_domain_ownership": {
+            "type": "boolean",
+            "title": "Require ownership proof before domains are added to environments."
           }
         },
         "required": [
@@ -21238,8 +22382,9 @@
           "image_deployment_validation",
           "support_generic_images",
           "enable_github_app_token_exchange",
-          "enable_marefs",
-          "continuous_profiling"
+          "continuous_profiling",
+          "disable_agent_error_reporter",
+          "requires_domain_ownership"
         ],
         "additionalProperties": false
       },
@@ -22470,6 +23615,18 @@
       "ScriptIntegration": {
         "type": "object",
         "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Creation date"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Update date"
+          },
           "type": {
             "type": "string",
             "title": "Integration type"
@@ -22517,6 +23674,8 @@
           }
         },
         "required": [
+          "created_at",
+          "updated_at",
           "type",
           "events",
           "environments",
@@ -22640,6 +23799,18 @@
       "SlackIntegration": {
         "type": "object",
         "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Creation date"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Update date"
+          },
           "type": {
             "type": "string",
             "title": "Integration type"
@@ -22650,6 +23821,8 @@
           }
         },
         "required": [
+          "created_at",
+          "updated_at",
           "type",
           "channel"
         ],
@@ -22704,6 +23877,18 @@
       "SplunkIntegration": {
         "type": "object",
         "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Creation date"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Update date"
+          },
           "type": {
             "type": "string",
             "title": "Integration type"
@@ -22733,6 +23918,8 @@
           }
         },
         "required": [
+          "created_at",
+          "updated_at",
           "type",
           "extra",
           "url",
@@ -22831,6 +24018,18 @@
       "SumologicIntegration": {
         "type": "object",
         "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Creation date"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Update date"
+          },
           "type": {
             "type": "string",
             "title": "Integration type"
@@ -22856,6 +24055,8 @@
           }
         },
         "required": [
+          "created_at",
+          "updated_at",
           "type",
           "extra",
           "url",
@@ -22933,6 +24134,18 @@
       "SyslogIntegration": {
         "type": "object",
         "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Creation date"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Update date"
+          },
           "type": {
             "type": "string",
             "title": "Integration type"
@@ -22979,6 +24192,8 @@
           }
         },
         "required": [
+          "created_at",
+          "updated_at",
           "type",
           "extra",
           "host",
@@ -23924,6 +25139,18 @@
       "WebHookIntegration": {
         "type": "object",
         "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Creation date"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Update date"
+          },
           "type": {
             "type": "string",
             "title": "Integration type"
@@ -23976,6 +25203,8 @@
           }
         },
         "required": [
+          "created_at",
+          "updated_at",
           "type",
           "events",
           "environments",
@@ -24205,6 +25434,14 @@
             "type": "string",
             "format": "ulid",
             "description": "The ID of the organization."
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of the organization.",
+            "enum": [
+              "fixed",
+              "flexible"
+            ]
           },
           "owner_id": {
             "type": "string",
@@ -24565,6 +25802,238 @@
           }
         }
       },
+      "OrganizationProject": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the project."
+          },
+          "organization_id": {
+            "type": "string",
+            "format": "ulid",
+            "description": "The ID of the organization."
+          },
+          "subscription_id": {
+            "type": "string",
+            "description": "The ID of the subscription."
+          },
+          "region": {
+            "type": "string",
+            "description": "The machine name of the region where the project is located."
+          },
+          "title": {
+            "type": "string",
+            "description": "The title of the project."
+          },
+          "type": {
+            "$ref": "#/components/schemas/OrganizationProjectType"
+          },
+          "plan": {
+            "$ref": "#/components/schemas/OrganizationProjectPlan"
+          },
+          "access_migration_status": {
+            "type": "string",
+            "description": "The access migration status of the project.",
+            "enum": [
+              "pending",
+              "in_progress",
+              "completed"
+            ]
+          },
+          "status": {
+            "$ref": "#/components/schemas/OrganizationProjectStatus"
+          },
+          "vendor": {
+            "type": "string",
+            "description": "The vendor."
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the project was created."
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the project was last updated."
+          },
+          "_links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "type": "object",
+                "description": "Link to the current project.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  }
+                }
+              },
+              "update": {
+                "type": "object",
+                "description": "Link for updating the current project.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  },
+                  "method": {
+                    "type": "string",
+                    "description": "The HTTP method to use."
+                  }
+                }
+              },
+              "delete": {
+                "type": "object",
+                "description": "Link for deleting the current project.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  },
+                  "method": {
+                    "type": "string",
+                    "description": "The HTTP method to use."
+                  }
+                }
+              },
+              "subscription": {
+                "type": "object",
+                "description": "Link to the project's subscription.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  }
+                }
+              },
+              "api": {
+                "type": "object",
+                "description": "Link to the project's regional API endpoint.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "OrganizationProjectStatus": {
+        "type": "string",
+        "description": "The status of the project.",
+        "enum": [
+          "provisioning",
+          "active",
+          "suspended"
+        ]
+      },
+      "OrganizationProjectType": {
+        "type": "string",
+        "description": "The type of the project.",
+        "enum": [
+          "grid",
+          "dedicated"
+        ]
+      },
+      "OrganizationProjectPlan": {
+        "type": "string",
+        "description": "The ID of the plan.",
+        "enum": [
+          "development",
+          "small",
+          "essential",
+          "standard",
+          "standard-high-memory",
+          "medium",
+          "medium-high-memory",
+          "large",
+          "large-high-memory",
+          "xlarge",
+          "xlarge-high-memory",
+          "2xlarge",
+          "2xlarge-high-memory",
+          "4xlarge",
+          "flexible",
+          "grid/xlarge",
+          "grid/2xlarge",
+          "grid/4xlarge",
+          "grid/8xlarge",
+          "trial/development",
+          "trial/standard",
+          "trial/medium",
+          "trial/large",
+          "trial/2xlarge",
+          "trial/upsun-flexible",
+          "upsun/flexible",
+          "pimcore/small",
+          "pimcore/medium",
+          "pimcore/large"
+        ]
+      },
+      "ProjectReference": {
+        "description": "The referenced project, or null if it no longer exists.",
+        "type": "object",
+        "nullable": true,
+        "required": [
+          "id",
+          "organization_id",
+          "subscription_id",
+          "region",
+          "title",
+          "status",
+          "plan",
+          "type",
+          "created_at",
+          "updated_at"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the project."
+          },
+          "organization_id": {
+            "type": "string",
+            "format": "ulid",
+            "description": "The ID of the organization."
+          },
+          "subscription_id": {
+            "type": "string",
+            "description": "The ID of the subscription."
+          },
+          "region": {
+            "type": "string",
+            "description": "The machine name of the region where the project is located."
+          },
+          "title": {
+            "type": "string",
+            "description": "The title of the project."
+          },
+          "type": {
+            "$ref": "#/components/schemas/OrganizationProjectType"
+          },
+          "plan": {
+            "$ref": "#/components/schemas/OrganizationProjectPlan"
+          },
+          "status": {
+            "$ref": "#/components/schemas/OrganizationProjectStatus"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the project was created."
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the project was last updated."
+          }
+        }
+      },
       "Vouchers": {
         "type": "object",
         "properties": {
@@ -24679,20 +26148,6 @@
           ]
         }
       },
-      "PlanType": {
-        "type": "string",
-        "description": "The plan type of the subscription.",
-        "enum": [
-          "development",
-          "standard",
-          "medium",
-          "large",
-          "xlarge",
-          "2xlarge",
-          "4xlarge",
-          "8xlarge"
-        ]
-      },
       "EstimationObject": {
         "type": "object",
         "description": "A price estimate object.",
@@ -24720,6 +26175,82 @@
           "options": {
             "type": "object",
             "description": "The unit prices of the options."
+          }
+        }
+      },
+      "TeamProjectAccess": {
+        "type": "object",
+        "properties": {
+          "team_id": {
+            "type": "string",
+            "format": "ulid",
+            "description": "The ID of the team."
+          },
+          "organization_id": {
+            "type": "string",
+            "format": "ulid",
+            "description": "The ID of the organization."
+          },
+          "project_id": {
+            "type": "string",
+            "description": "The ID of the project."
+          },
+          "project_title": {
+            "type": "string",
+            "description": "The title of the project."
+          },
+          "granted_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the access was granted."
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the access was last updated."
+          },
+          "_links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "type": "object",
+                "description": "Link to the current access item.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  }
+                }
+              },
+              "update": {
+                "type": "object",
+                "description": "Link for updating the current access item.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  },
+                  "method": {
+                    "type": "string",
+                    "description": "The HTTP method to use."
+                  }
+                }
+              },
+              "delete": {
+                "type": "object",
+                "description": "Link for deleting the current access item.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  },
+                  "method": {
+                    "type": "string",
+                    "description": "The HTTP method to use."
+                  }
+                }
+              }
+            }
           }
         }
       },
@@ -25009,17 +26540,19 @@
             "description": "The list of available add-ons and their possible values.",
             "properties": {
               "user_management": {
-                "type": "array",
-                "description": "The levels of user management that are available.",
-                "items": {
-                  "type": "string"
+                "type": "object",
+                "description": "Information about the levels of user management that are available.",
+                "additionalProperties": {
+                  "type": "number",
+                  "description": "The number of commitment days required for the addon."
                 }
               },
               "support_level": {
-                "type": "array",
-                "description": "The levels of support available.",
-                "items": {
-                  "type": "string"
+                "type": "object",
+                "description": "Information about the levels of support available.",
+                "additionalProperties": {
+                  "type": "number",
+                  "description": "The number of commitment days required for the addon."
                 }
               }
             }
@@ -25029,12 +26562,20 @@
             "description": "The list of existing add-ons and their current values.",
             "properties": {
               "user_management": {
-                "type": "string",
-                "description": "The type of user management currently selected."
+                "type": "object",
+                "description": "Information about the type of user management currently selected.",
+                "additionalProperties": {
+                  "type": "number",
+                  "description": "The number of commitment days that remain for the addon."
+                }
               },
               "support_level": {
-                "type": "string",
-                "description": "The level of support currently selected."
+                "type": "object",
+                "description": "Information about the level of support currently selected.",
+                "additionalProperties": {
+                  "type": "number",
+                  "description": "The number of commitment days that remain for the addon."
+                }
               }
             }
           },
@@ -25070,12 +26611,18 @@
             "properties": {
               "continuous_profiling": {
                 "type": "object",
-                "description": "Information about the continuous profiling addon.",
-                "properties": {
-                  "cont-profiling": {
-                    "type": "number",
-                    "description": "The number of commitment days for the addon."
-                  }
+                "description": "Information about the continuous profiling options available.",
+                "additionalProperties": {
+                  "type": "number",
+                  "description": "The number of commitment days for the addon."
+                }
+              },
+              "project_support_level": {
+                "type": "object",
+                "description": "Information about the project uptime options available.",
+                "additionalProperties": {
+                  "type": "number",
+                  "description": "The number of commitment days for the addon."
                 }
               }
             }
@@ -25086,19 +26633,41 @@
             "properties": {
               "continuous_profiling": {
                 "type": "object",
-                "description": "The current continuous_profiling level of the license.",
-                "properties": {
-                  "cont-profiling": {
-                    "type": "number",
-                    "description": "The number of remaining commitment days for the addon."
-                  }
+                "description": "The current continuous profiling level of the license.",
+                "additionalProperties": {
+                  "type": "number",
+                  "description": "The number of remaining commitment days for the addon."
+                }
+              },
+              "project_support_level": {
+                "type": "object",
+                "description": "The current project uptime level of the license.",
+                "additionalProperties": {
+                  "type": "number",
+                  "description": "The number of remaining commitment days for the addon."
                 }
               }
             }
           },
           "upgrades_available": {
             "type": "object",
-            "description": "The upgrades available for current addons."
+            "description": "The upgrades available for current addons.",
+            "properties": {
+              "continuous_profiling": {
+                "type": "array",
+                "description": "Available upgrade options for continuous profiling.",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "project_support_level": {
+                "type": "array",
+                "description": "Available upgrade options for project uptime.",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       },
@@ -25167,11 +26736,71 @@
         "type": "object",
         "description": "Prepayment information for an organization.",
         "properties": {
-          "id": {
+          "prepayment": {
+            "type": "object",
+            "description": "Prepayment information for an organization.",
+            "properties": {
+              "organization_id": {
+                "type": "string",
+                "description": "Organization ID"
+              },
+              "balance": {
+                "type": "object",
+                "description": "The prepayment balance in complex format.",
+                "properties": {
+                  "formatted": {
+                    "type": "string",
+                    "description": "Formatted balance."
+                  },
+                  "amount": {
+                    "type": "number",
+                    "description": "The balance amount."
+                  },
+                  "currency_code": {
+                    "type": "string",
+                    "description": "The balance currency code."
+                  },
+                  "currency_symbol": {
+                    "type": "string",
+                    "description": "The balance currency symbol."
+                  }
+                }
+              },
+              "last_updated_at": {
+                "type": "string",
+                "nullable": true,
+                "description": "The date the prepayment balance was last updated."
+              },
+              "sufficient": {
+                "type": "boolean",
+                "description": "Whether the prepayment balance is enough to cover the upcoming order."
+              },
+              "fallback": {
+                "type": "string",
+                "nullable": true,
+                "description": "The fallback payment method, if any, to be used in case prepayment balance is not enough to cover an order."
+              }
+            }
+          }
+        }
+      },
+      "PrepaymentTransactionObject": {
+        "type": "object",
+        "description": "Prepayment transaction for an organization.",
+        "properties": {
+          "order_id": {
             "type": "string",
-            "description": "Organization ID"
+            "description": "Order ID"
           },
-          "balance": {
+          "message": {
+            "type": "string",
+            "description": "The message associated with transaction."
+          },
+          "status": {
+            "type": "string",
+            "description": "Whether the transactions was successful or a failure."
+          },
+          "amount": {
             "type": "object",
             "description": "The prepayment balance in complex format.",
             "properties": {
@@ -25193,19 +26822,19 @@
               }
             }
           },
-          "last_updated_at": {
+          "created": {
             "type": "string",
-            "nullable": true,
-            "description": "The date the prepayment balance was last updated."
+            "description": "Time the transaction was created."
           },
-          "sufficient": {
-            "type": "boolean",
-            "description": "Whether the prepayment balance is enough to cover the upcoming order."
-          },
-          "fallback": {
+          "updated": {
             "type": "string",
-            "nullable": true,
-            "description": "The fallback payment method, if any, to be used in case prepayment balance is not enough to cover an order."
+            "description": "Time the transaction was last updated.",
+            "nullable": true
+          },
+          "expire_date": {
+            "type": "string",
+            "description": "The expiration date of the transaction (deposits only).",
+            "nullable": true
           }
         }
       },
@@ -25229,6 +26858,154 @@
             "description": "Not in (comma-separated list)"
           }
         }
+      },
+      "ProjectPlan": {
+        "type": "string",
+        "description": "The project plan."
+      },
+      "RegionReference": {
+        "description": "The referenced region, or null if it no longer exists.",
+        "type": "object",
+        "nullable": true,
+        "required": [
+          "id",
+          "label",
+          "zone",
+          "selection_label",
+          "project_label",
+          "timezone",
+          "available",
+          "endpoint",
+          "provider",
+          "datacenter",
+          "compliance",
+          "created_at",
+          "updated_at"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/RegionID"
+          },
+          "label": {
+            "$ref": "#/components/schemas/RegionLabel"
+          },
+          "zone": {
+            "$ref": "#/components/schemas/RegionZone"
+          },
+          "selection_label": {
+            "$ref": "#/components/schemas/RegionSelectionLabel"
+          },
+          "project_label": {
+            "$ref": "#/components/schemas/RegionProjectLabel"
+          },
+          "timezone": {
+            "$ref": "#/components/schemas/RegionTimezone"
+          },
+          "available": {
+            "$ref": "#/components/schemas/RegionAvailable"
+          },
+          "private": {
+            "$ref": "#/components/schemas/RegionPrivate"
+          },
+          "endpoint": {
+            "$ref": "#/components/schemas/RegionEndpoint"
+          },
+          "code": {
+            "$ref": "#/components/schemas/RegionCode"
+          },
+          "provider": {
+            "$ref": "#/components/schemas/RegionProvider"
+          },
+          "datacenter": {
+            "$ref": "#/components/schemas/RegionDataCenter"
+          },
+          "envimpact": {
+            "$ref": "#/components/schemas/RegionEnvImpact"
+          },
+          "compliance": {
+            "$ref": "#/components/schemas/RegionCompliance"
+          },
+          "created_at": {
+            "$ref": "#/components/schemas/CreatedAt"
+          },
+          "updated_at": {
+            "$ref": "#/components/schemas/UpdatedAt"
+          }
+        }
+      },
+      "RegionID": {
+        "type": "string",
+        "description": "The machine name of the region where the project is located."
+      },
+      "ProjectTitle": {
+        "type": "string",
+        "description": "The title of the project."
+      },
+      "ProjectTimeZone": {
+        "type": "string",
+        "description": "Timezone of the project."
+      },
+      "RegionLabel": {
+        "type": "string",
+        "description": "The human-readable name of the region."
+      },
+      "RegionZone": {
+        "type": "string",
+        "description": "The geographical zone of the region."
+      },
+      "RegionSelectionLabel": {
+        "type": "string",
+        "description": "The label to display when choosing between regions for new projects."
+      },
+      "RegionProjectLabel": {
+        "type": "string",
+        "description": "The label to display on existing projects."
+      },
+      "RegionTimezone": {
+        "type": "string",
+        "description": "Default timezone of the region."
+      },
+      "RegionAvailable": {
+        "type": "boolean",
+        "description": "Indicator whether or not this region is selectable during the checkout. Not available regions will never show up during checkout."
+      },
+      "RegionPrivate": {
+        "type": "boolean",
+        "description": "Indicator whether or not this platform is for private use only."
+      },
+      "RegionEndpoint": {
+        "type": "string",
+        "description": "Link to the region API endpoint."
+      },
+      "RegionCode": {
+        "type": "string",
+        "description": "The code of the region"
+      },
+      "RegionProvider": {
+        "type": "object",
+        "description": "Information about the region provider."
+      },
+      "RegionDataCenter": {
+        "type": "object",
+        "description": "Information about the region provider data center."
+      },
+      "RegionEnvImpact": {
+        "type": "object",
+        "description": "Information about the region provider's environmental impact."
+      },
+      "RegionCompliance": {
+        "type": "object",
+        "description": "Information about the region's compliance."
+      },
+      "CreatedAt": {
+        "type": "string",
+        "format": "date-time",
+        "description": "The date and time when the resource was created."
+      },
+      "UpdatedAt": {
+        "type": "string",
+        "format": "date-time",
+        "description": "The date and time when the resource was last updated."
       },
       "InvoicePDF": {
         "description": "Invoice PDF document details.",
@@ -25274,6 +27051,10 @@
           },
           "address": {
             "$ref": "#/components/schemas/Address"
+          },
+          "company": {
+            "description": "The company name.",
+            "type": "string"
           },
           "vat_number": {
             "description": "An identifier used in many countries for value added tax purposes.",
@@ -25450,205 +27231,6 @@
           }
         },
         "type": "object"
-      },
-      "schemas-Subscription": {
-        "description": "The subscription object.",
-        "properties": {
-          "id": {
-            "description": "The internal ID of the subscription.",
-            "type": "string"
-          },
-          "status": {
-            "description": "The status of the subscription.",
-            "type": "string",
-            "enum": [
-              "requested",
-              "provisioning failure",
-              "provisioning",
-              "active",
-              "suspended",
-              "deleted"
-            ]
-          },
-          "created_at": {
-            "description": "The date and time when the subscription was created.",
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "description": "The date and time when the subscription was last updated.",
-            "type": "string",
-            "format": "date-time"
-          },
-          "owner": {
-            "description": "The UUID of the owner.",
-            "type": "string",
-            "format": "uuid"
-          },
-          "owner_info": {
-            "$ref": "#/components/schemas/OwnerInfo"
-          },
-          "vendor": {
-            "description": "The machine name of the vendor the subscription belongs to.",
-            "type": "string"
-          },
-          "plan": {
-            "description": "The plan type of the subscription.",
-            "type": "string"
-          },
-          "environments": {
-            "description": "The number of environments which can be provisioned on the project.",
-            "type": "integer"
-          },
-          "storage": {
-            "description": "The total storage available to each environment, in MiB. Only multiples of 1024 are accepted as legal values.",
-            "type": "integer"
-          },
-          "user_licenses": {
-            "description": "The number of chargeable users who currently have access to the project. Manage this value by adding and removing users through the Platform project API. Staff and billing/administrative contacts can be added to a project for no charge. Contact support for questions about user licenses.",
-            "type": "integer"
-          },
-          "project_id": {
-            "description": "The unique ID string of the project.",
-            "type": "string"
-          },
-          "project_endpoint": {
-            "description": "The project API endpoint for the project.",
-            "type": "string"
-          },
-          "project_title": {
-            "description": "The name given to the project. Appears as the title in the UI.",
-            "type": "string"
-          },
-          "project_region": {
-            "description": "The machine name of the region where the project is located. Cannot be changed after project creation.",
-            "type": "string"
-          },
-          "project_region_label": {
-            "description": "The human-readable name of the region where the project is located.",
-            "type": "string"
-          },
-          "project_ui": {
-            "description": "The URL for the project's user interface.",
-            "type": "string"
-          },
-          "project_options": {
-            "$ref": "#/components/schemas/ProjectOptions"
-          },
-          "agency_site": {
-            "description": "True if the project is an agency site.",
-            "type": "boolean"
-          },
-          "invoiced": {
-            "description": "Whether the subscription is invoiced.",
-            "type": "boolean"
-          },
-          "hipaa": {
-            "description": "Whether the project is marked as HIPAA.",
-            "type": "boolean"
-          },
-          "is_trial_plan": {
-            "description": "Whether the project is currently on a trial plan.",
-            "type": "boolean"
-          },
-          "services": {
-            "description": "Details of the attached services.",
-            "type": "array",
-            "items": {
-              "description": "Details of a service",
-              "type": "object"
-            }
-          },
-          "green": {
-            "description": "Whether the subscription is considered green (on a green region, belonging to a green vendor) for billing purposes.",
-            "type": "boolean"
-          }
-        },
-        "type": "object"
-      },
-      "Region": {
-        "description": "The hosting region.",
-        "properties": {
-          "id": {
-            "description": "The ID of the region.",
-            "type": "string"
-          },
-          "label": {
-            "description": "The human-readable name of the region.",
-            "type": "string"
-          },
-          "zone": {
-            "description": "Geographical zone of the region",
-            "type": "string"
-          },
-          "selection_label": {
-            "description": "The label to display when choosing between regions for new projects.",
-            "type": "string"
-          },
-          "project_label": {
-            "description": "The label to display on existing projects.",
-            "type": "string"
-          },
-          "timezone": {
-            "description": "Default timezone of the region",
-            "type": "string"
-          },
-          "available": {
-            "description": "Indicator whether or not this region is selectable during the checkout. Not available regions will never show up during checkout.",
-            "type": "boolean"
-          },
-          "private": {
-            "description": "Indicator whether or not this platform is for private use only.",
-            "type": "boolean"
-          },
-          "endpoint": {
-            "description": "Link to the region API endpoint.",
-            "type": "string"
-          },
-          "provider": {
-            "description": "Information about the region provider.",
-            "properties": {
-              "name": {
-                "type": "string"
-              },
-              "logo": {
-                "type": "string"
-              }
-            },
-            "type": "object"
-          },
-          "datacenter": {
-            "description": "Information about the region provider data center.",
-            "properties": {
-              "name": {
-                "type": "string"
-              },
-              "label": {
-                "type": "string"
-              },
-              "location": {
-                "type": "string"
-              }
-            },
-            "type": "object"
-          },
-          "environmental_impact": {
-            "description": "Information about the region provider's environmental impact.",
-            "properties": {
-              "zone": {
-                "type": "string"
-              },
-              "carbon_intensity": {
-                "type": "string"
-              },
-              "green": {
-                "type": "boolean"
-              }
-            },
-            "type": "object"
-          }
-        },
-        "type": "object"
       }
     },
     "parameters": {
@@ -25793,34 +27375,18 @@
           "type": "string"
         }
       },
-      "region_zone": {
-        "name": "filter[zone]",
+      "id": {
+        "name": "filter[id]",
         "in": "query",
-        "description": "Geographical zone of the region.",
+        "description": "Machine name of the region.",
         "schema": {
           "type": "string"
         }
       },
-      "region_available": {
-        "name": "filter[available]",
-        "in": "query",
-        "description": "Value 0 displays only disabled regions. Value 1 displays only enabled ones.",
-        "schema": {
-          "type": "string"
-        }
-      },
-      "region_private": {
-        "name": "filter[private]",
-        "in": "query",
-        "description": "Value 0 displays only public regions. Value 1 displays only private ones.",
-        "schema": {
-          "type": "string"
-        }
-      },
-      "projectId": {
-        "name": "projectId",
+      "subscription_id": {
+        "name": "subscriptionId",
         "in": "path",
-        "description": "The ID of the project",
+        "description": "The ID of the subscription",
         "required": true,
         "schema": {
           "type": "string"
@@ -25848,14 +27414,6 @@
             "suspended",
             "deleted"
           ]
-        }
-      },
-      "filter_subscription_owner": {
-        "name": "filter[owner]",
-        "in": "query",
-        "description": "The UUID of the owner.",
-        "schema": {
-          "type": "string"
         }
       },
       "filter_subscription_plan": {
@@ -26091,6 +27649,91 @@
         "schema": {
           "type": "string"
         }
+      },
+      "RegionID": {
+        "in": "path",
+        "name": "region_id",
+        "description": "The ID of the region.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "project_id": {
+        "name": "filter[project_id]",
+        "in": "query",
+        "description": "Allows filtering by `project_id` using one or more operators.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/StringFilter"
+        }
+      },
+      "project_title": {
+        "in": "query",
+        "name": "filter[project_title]",
+        "description": "Allows filtering by `project_title` using one or more operators.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/StringFilter"
+        }
+      },
+      "region": {
+        "in": "query",
+        "name": "filter[region]",
+        "description": "Allows filtering by `region` using one or more operators.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/StringFilter"
+        }
+      },
+      "updated_at": {
+        "in": "query",
+        "name": "filter[updated_at]",
+        "description": "Allows filtering by `updated_at` using one or more operators.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/DateTimeFilter"
+        }
+      },
+      "subscription_sort": {
+        "in": "query",
+        "name": "sort",
+        "description": "Allows sorting by a single field.<br>\nUse a dash (\"-\") to sort descending.<br>\nSupported fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`, `updated_at`.\n",
+        "schema": {
+          "type": "string",
+          "example": "-updated_at"
+        }
+      },
+      "page_size": {
+        "in": "query",
+        "name": "page[size]",
+        "description": "Determines the number of items to show.",
+        "schema": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100,
+          "default": null
+        }
+      },
+      "page_before": {
+        "in": "query",
+        "name": "page[before]",
+        "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "page_after": {
+        "in": "query",
+        "name": "page[after]",
+        "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
+        "schema": {
+          "type": "string"
+        }
       }
     },
     "securitySchemes": {
@@ -26125,6 +27768,16 @@
   },
   "x-tagGroups": [
     {
+      "name": "Organization Administration",
+      "tags": [
+        "Organizations",
+        "Organization Members",
+        "Organization Invitations",
+        "Organization Projects",
+        "Add-ons"
+      ]
+    },
+    {
       "name": "Project Administration",
       "tags": [
         "Project",
@@ -26156,34 +27809,30 @@
       ]
     },
     {
-      "name": "Access Control",
+      "name": "Project Access",
       "tags": [
-        "Project Access",
-        "Environment Type",
-        "Environment Type Access",
-        "Environment Access",
-        "Invitations"
+        "Project Invitations",
+        "Teams",
+        "Team Access",
+        "User Access"
       ]
     },
     {
       "name": "Account Management",
       "tags": [
-        "Organizations",
         "API Tokens",
         "Connections",
         "MFA",
         "Users",
-        "User Access",
         "User Profiles",
         "SSH Keys",
-        "Teams",
-        "Plans",
-        "References"
+        "Plans"
       ]
     },
     {
       "name": "Billing",
       "tags": [
+        "Organization Management",
         "Subscriptions",
         "Orders",
         "Invoices",
@@ -26197,6 +27846,7 @@
       "name": "Global Info",
       "tags": [
         "Project Discovery",
+        "References",
         "Regions"
       ]
     },
