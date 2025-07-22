@@ -86,7 +86,7 @@ class ProjectTask extends TaskBase
         $orgId = $project->getOrganization();
         return $this->organizationProjectsApi->getOrgProject($orgId, $projectId);
     }
-    
+
     /**
      * Creates a project
      *
@@ -114,7 +114,7 @@ class ProjectTask extends TaskBase
         $this->refreshToken();
         return $this->subscriptionsApi->canCreateNewOrgSubscription($organizationId);
     }
-    
+
     /**
      * Gets a project's capabilities
      *
