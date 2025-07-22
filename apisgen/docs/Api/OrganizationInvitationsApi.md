@@ -1,12 +1,12 @@
 # OpenAPI\Client\OrganizationInvitationsApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**cancelOrgInvite()**](OrganizationInvitationsApi.md#cancelOrgInvite) | **DELETE** /organizations/{organization_id}/invitations/{invitation_id} | Cancel a pending invitation to an organization |
-| [**createOrgInvite()**](OrganizationInvitationsApi.md#createOrgInvite) | **POST** /organizations/{organization_id}/invitations | Invite user to an organization by email |
-| [**listOrgInvites()**](OrganizationInvitationsApi.md#listOrgInvites) | **GET** /organizations/{organization_id}/invitations | List invitations to an organization |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**cancelOrgInvite()**](OrganizationInvitationsApi.md#cancelOrgInvite) | **DELETE** /organizations/{organization_id}/invitations/{invitation_id} | Cancel a pending invitation to an organization
+[**createOrgInvite()**](OrganizationInvitationsApi.md#createOrgInvite) | **POST** /organizations/{organization_id}/invitations | Invite user to an organization by email
+[**listOrgInvites()**](OrganizationInvitationsApi.md#listOrgInvites) | **GET** /organizations/{organization_id}/invitations | List invitations to an organization
 
 
 ## `cancelOrgInvite()`
@@ -31,8 +31,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\OrganizationInvitationsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -48,10 +48,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organization_id** | **string**| The ID of the organization. | |
-| **invitation_id** | **string**| The ID of the invitation. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization_id** | **string**| The ID of the organization. |
+ **invitation_id** | **string**| The ID of the invitation. |
 
 ### Return type
 
@@ -92,8 +92,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\OrganizationInvitationsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -110,10 +110,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organization_id** | **string**| The ID of the organization. | |
-| **create_org_invite_request** | [**\OpenAPI\Client\Model\CreateOrgInviteRequest**](../Model/CreateOrgInviteRequest.md)|  | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization_id** | **string**| The ID of the organization. |
+ **create_org_invite_request** | [**\OpenAPI\Client\Model\CreateOrgInviteRequest**](../Model/CreateOrgInviteRequest.md)|  | [optional]
 
 ### Return type
 
@@ -154,8 +154,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\OrganizationInvitationsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -176,14 +176,14 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organization_id** | **string**| The ID of the organization. | |
-| **filter_state** | [**\OpenAPI\Client\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;state&#x60; of the invtations: \&quot;pending\&quot; (default), \&quot;error\&quot;. | [optional] |
-| **page_size** | **int**| Determines the number of items to show. | [optional] |
-| **page_before** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
-| **page_after** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
-| **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending. | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization_id** | **string**| The ID of the organization. |
+ **filter_state** | [**\OpenAPI\Client\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;state&#x60; of the invtations: \&quot;pending\&quot; (default), \&quot;error\&quot;. | [optional]
+ **page_size** | **int**| Determines the number of items to show. | [optional]
+ **page_before** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **page_after** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending. | [optional]
 
 ### Return type
 

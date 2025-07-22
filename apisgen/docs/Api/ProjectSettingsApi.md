@@ -1,11 +1,11 @@
 # OpenAPI\Client\ProjectSettingsApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**getProjectsSettings()**](ProjectSettingsApi.md#getProjectsSettings) | **GET** /projects/{projectId}/settings | Get list of project settings |
-| [**updateProjectsSettings()**](ProjectSettingsApi.md#updateProjectsSettings) | **PATCH** /projects/{projectId}/settings | Update a project setting |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**getProjectsSettings()**](ProjectSettingsApi.md#getProjectsSettings) | **GET** /projects/{projectId}/settings | Get list of project settings
+[**updateProjectsSettings()**](ProjectSettingsApi.md#updateProjectsSettings) | **PATCH** /projects/{projectId}/settings | Update a project setting
 
 
 ## `getProjectsSettings()`
@@ -30,8 +30,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\ProjectSettingsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -47,9 +47,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
 
 ### Return type
 
@@ -90,8 +90,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\ProjectSettingsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -108,10 +108,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **project_settings_patch** | [**\OpenAPI\Client\Model\ProjectSettingsPatch**](../Model/ProjectSettingsPatch.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **project_settings_patch** | [**\OpenAPI\Client\Model\ProjectSettingsPatch**](../Model/ProjectSettingsPatch.md)|  |
 
 ### Return type
 

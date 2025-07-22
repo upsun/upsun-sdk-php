@@ -1,14 +1,14 @@
 # OpenAPI\Client\ProjectVariablesApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**createProjectsVariables()**](ProjectVariablesApi.md#createProjectsVariables) | **POST** /projects/{projectId}/variables | Add a project variable |
-| [**deleteProjectsVariables()**](ProjectVariablesApi.md#deleteProjectsVariables) | **DELETE** /projects/{projectId}/variables/{projectVariableId} | Delete a project variable |
-| [**getProjectsVariables()**](ProjectVariablesApi.md#getProjectsVariables) | **GET** /projects/{projectId}/variables/{projectVariableId} | Get a project variable |
-| [**listProjectsVariables()**](ProjectVariablesApi.md#listProjectsVariables) | **GET** /projects/{projectId}/variables | Get list of project variables |
-| [**updateProjectsVariables()**](ProjectVariablesApi.md#updateProjectsVariables) | **PATCH** /projects/{projectId}/variables/{projectVariableId} | Update a project variable |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**createProjectsVariables()**](ProjectVariablesApi.md#createProjectsVariables) | **POST** /projects/{projectId}/variables | Add a project variable
+[**deleteProjectsVariables()**](ProjectVariablesApi.md#deleteProjectsVariables) | **DELETE** /projects/{projectId}/variables/{projectVariableId} | Delete a project variable
+[**getProjectsVariables()**](ProjectVariablesApi.md#getProjectsVariables) | **GET** /projects/{projectId}/variables/{projectVariableId} | Get a project variable
+[**listProjectsVariables()**](ProjectVariablesApi.md#listProjectsVariables) | **GET** /projects/{projectId}/variables | Get list of project variables
+[**updateProjectsVariables()**](ProjectVariablesApi.md#updateProjectsVariables) | **PATCH** /projects/{projectId}/variables/{projectVariableId} | Update a project variable
 
 
 ## `createProjectsVariables()`
@@ -33,8 +33,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\ProjectVariablesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -51,10 +51,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **project_variable_create_input** | [**\OpenAPI\Client\Model\ProjectVariableCreateInput**](../Model/ProjectVariableCreateInput.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **project_variable_create_input** | [**\OpenAPI\Client\Model\ProjectVariableCreateInput**](../Model/ProjectVariableCreateInput.md)|  |
 
 ### Return type
 
@@ -95,8 +95,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\ProjectVariablesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -113,10 +113,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **project_variable_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **project_variable_id** | **string**|  |
 
 ### Return type
 
@@ -157,8 +157,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\ProjectVariablesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -175,10 +175,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **project_variable_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **project_variable_id** | **string**|  |
 
 ### Return type
 
@@ -219,8 +219,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\ProjectVariablesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -236,9 +236,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
 
 ### Return type
 
@@ -279,8 +279,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\ProjectVariablesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -298,11 +298,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **project_variable_id** | **string**|  | |
-| **project_variable_patch** | [**\OpenAPI\Client\Model\ProjectVariablePatch**](../Model/ProjectVariablePatch.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **project_variable_id** | **string**|  |
+ **project_variable_patch** | [**\OpenAPI\Client\Model\ProjectVariablePatch**](../Model/ProjectVariablePatch.md)|  |
 
 ### Return type
 

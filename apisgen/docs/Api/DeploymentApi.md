@@ -1,11 +1,11 @@
 # OpenAPI\Client\DeploymentApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**getProjectsEnvironmentsDeployments()**](DeploymentApi.md#getProjectsEnvironmentsDeployments) | **GET** /projects/{projectId}/environments/{environmentId}/deployments/{deploymentId} | Get a single environment deployment |
-| [**listProjectsEnvironmentsDeployments()**](DeploymentApi.md#listProjectsEnvironmentsDeployments) | **GET** /projects/{projectId}/environments/{environmentId}/deployments | Get an environment&#39;s deployment information |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**getProjectsEnvironmentsDeployments()**](DeploymentApi.md#getProjectsEnvironmentsDeployments) | **GET** /projects/{projectId}/environments/{environmentId}/deployments/{deploymentId} | Get a single environment deployment
+[**listProjectsEnvironmentsDeployments()**](DeploymentApi.md#listProjectsEnvironmentsDeployments) | **GET** /projects/{projectId}/environments/{environmentId}/deployments | Get an environment&#39;s deployment information
 
 
 ## `getProjectsEnvironmentsDeployments()`
@@ -30,8 +30,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\DeploymentApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -49,11 +49,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **deployment_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **deployment_id** | **string**|  |
 
 ### Return type
 
@@ -94,8 +94,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\DeploymentApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -112,10 +112,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
 
 ### Return type
 

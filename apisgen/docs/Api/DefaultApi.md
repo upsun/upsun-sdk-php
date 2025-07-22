@@ -1,10 +1,10 @@
 # OpenAPI\Client\DefaultApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**listTickets()**](DefaultApi.md#listTickets) | **GET** /tickets | List support tickets |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**listTickets()**](DefaultApi.md#listTickets) | **GET** /tickets | List support tickets
 
 
 ## `listTickets()`
@@ -27,8 +27,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\DefaultApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -56,21 +56,21 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **filter_ticket_id** | **int**| The ID of the ticket. | [optional] |
-| **filter_created** | **\DateTime**| ISO dateformat expected. The time when the support ticket was created. | [optional] |
-| **filter_updated** | **\DateTime**| ISO dateformat expected. The time when the support ticket was updated. | [optional] |
-| **filter_type** | **string**| The type of the support ticket. | [optional] |
-| **filter_priority** | **string**| The priority of the support ticket. | [optional] |
-| **filter_status** | **string**| The status of the support ticket. | [optional] |
-| **filter_requester_id** | **string**| UUID of the ticket requester. Converted from the ZID value. | [optional] |
-| **filter_submitter_id** | **string**| UUID of the ticket submitter. Converted from the ZID value. | [optional] |
-| **filter_assignee_id** | **string**| UUID of the ticket assignee. Converted from the ZID value. | [optional] |
-| **filter_has_incidents** | **bool**| Whether or not this ticket has incidents. | [optional] |
-| **filter_due** | **\DateTime**| ISO dateformat expected. A time that the ticket is due at. | [optional] |
-| **search** | **string**| Search string for the ticket subject and description. | [optional] |
-| **page** | **int**| Page to be displayed. Defaults to 1. | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **filter_ticket_id** | **int**| The ID of the ticket. | [optional]
+ **filter_created** | **\DateTime**| ISO dateformat expected. The time when the support ticket was created. | [optional]
+ **filter_updated** | **\DateTime**| ISO dateformat expected. The time when the support ticket was updated. | [optional]
+ **filter_type** | **string**| The type of the support ticket. | [optional]
+ **filter_priority** | **string**| The priority of the support ticket. | [optional]
+ **filter_status** | **string**| The status of the support ticket. | [optional]
+ **filter_requester_id** | **string**| UUID of the ticket requester. Converted from the ZID value. | [optional]
+ **filter_submitter_id** | **string**| UUID of the ticket submitter. Converted from the ZID value. | [optional]
+ **filter_assignee_id** | **string**| UUID of the ticket assignee. Converted from the ZID value. | [optional]
+ **filter_has_incidents** | **bool**| Whether or not this ticket has incidents. | [optional]
+ **filter_due** | **\DateTime**| ISO dateformat expected. A time that the ticket is due at. | [optional]
+ **search** | **string**| Search string for the ticket subject and description. | [optional]
+ **page** | **int**| Page to be displayed. Defaults to 1. | [optional]
 
 ### Return type
 

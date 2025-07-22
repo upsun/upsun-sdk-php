@@ -1,11 +1,11 @@
 # OpenAPI\Client\PhoneNumberApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**confirmPhoneNumber()**](PhoneNumberApi.md#confirmPhoneNumber) | **POST** /users/{user_id}/phonenumber/{sid} | Confirm phone number |
-| [**verifyPhoneNumber()**](PhoneNumberApi.md#verifyPhoneNumber) | **POST** /users/{user_id}/phonenumber | Verify phone number |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**confirmPhoneNumber()**](PhoneNumberApi.md#confirmPhoneNumber) | **POST** /users/{user_id}/phonenumber/{sid} | Confirm phone number
+[**verifyPhoneNumber()**](PhoneNumberApi.md#verifyPhoneNumber) | **POST** /users/{user_id}/phonenumber | Verify phone number
 
 
 ## `confirmPhoneNumber()`
@@ -30,8 +30,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\PhoneNumberApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -48,11 +48,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **sid** | **string**| The session ID obtained from &#x60;POST /users/{user_id}/phonenumber&#x60;. | |
-| **user_id** | **string**| The ID of the user. | |
-| **confirm_phone_number_request** | [**\OpenAPI\Client\Model\ConfirmPhoneNumberRequest**](../Model/ConfirmPhoneNumberRequest.md)|  | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **sid** | **string**| The session ID obtained from &#x60;POST /users/{user_id}/phonenumber&#x60;. |
+ **user_id** | **string**| The ID of the user. |
+ **confirm_phone_number_request** | [**\OpenAPI\Client\Model\ConfirmPhoneNumberRequest**](../Model/ConfirmPhoneNumberRequest.md)|  | [optional]
 
 ### Return type
 
@@ -93,8 +93,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\PhoneNumberApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -111,10 +111,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **user_id** | **string**| The ID of the user. | |
-| **verify_phone_number_request** | [**\OpenAPI\Client\Model\VerifyPhoneNumberRequest**](../Model/VerifyPhoneNumberRequest.md)|  | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **string**| The ID of the user. |
+ **verify_phone_number_request** | [**\OpenAPI\Client\Model\VerifyPhoneNumberRequest**](../Model/VerifyPhoneNumberRequest.md)|  | [optional]
 
 ### Return type
 

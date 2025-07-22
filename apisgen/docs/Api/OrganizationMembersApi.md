@@ -1,14 +1,14 @@
 # OpenAPI\Client\OrganizationMembersApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**createOrgMember()**](OrganizationMembersApi.md#createOrgMember) | **POST** /organizations/{organization_id}/members | Create organization member |
-| [**deleteOrgMember()**](OrganizationMembersApi.md#deleteOrgMember) | **DELETE** /organizations/{organization_id}/members/{user_id} | Delete organization member |
-| [**getOrgMember()**](OrganizationMembersApi.md#getOrgMember) | **GET** /organizations/{organization_id}/members/{user_id} | Get organization member |
-| [**listOrgMembers()**](OrganizationMembersApi.md#listOrgMembers) | **GET** /organizations/{organization_id}/members | List organization members |
-| [**updateOrgMember()**](OrganizationMembersApi.md#updateOrgMember) | **PATCH** /organizations/{organization_id}/members/{user_id} | Update organization member |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**createOrgMember()**](OrganizationMembersApi.md#createOrgMember) | **POST** /organizations/{organization_id}/members | Create organization member
+[**deleteOrgMember()**](OrganizationMembersApi.md#deleteOrgMember) | **DELETE** /organizations/{organization_id}/members/{user_id} | Delete organization member
+[**getOrgMember()**](OrganizationMembersApi.md#getOrgMember) | **GET** /organizations/{organization_id}/members/{user_id} | Get organization member
+[**listOrgMembers()**](OrganizationMembersApi.md#listOrgMembers) | **GET** /organizations/{organization_id}/members | List organization members
+[**updateOrgMember()**](OrganizationMembersApi.md#updateOrgMember) | **PATCH** /organizations/{organization_id}/members/{user_id} | Update organization member
 
 
 ## `createOrgMember()`
@@ -33,8 +33,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\OrganizationMembersApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -51,10 +51,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organization_id** | **string**| The ID of the organization. | |
-| **create_org_member_request** | [**\OpenAPI\Client\Model\CreateOrgMemberRequest**](../Model/CreateOrgMemberRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization_id** | **string**| The ID of the organization. |
+ **create_org_member_request** | [**\OpenAPI\Client\Model\CreateOrgMemberRequest**](../Model/CreateOrgMemberRequest.md)|  |
 
 ### Return type
 
@@ -95,8 +95,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\OrganizationMembersApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -112,10 +112,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organization_id** | **string**| The ID of the organization. | |
-| **user_id** | **string**| The ID of the user. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization_id** | **string**| The ID of the organization. |
+ **user_id** | **string**| The ID of the user. |
 
 ### Return type
 
@@ -156,8 +156,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\OrganizationMembersApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -174,10 +174,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. | |
-| **user_id** | **string**| The ID of the user. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+ **user_id** | **string**| The ID of the user. |
 
 ### Return type
 
@@ -218,8 +218,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\OrganizationMembersApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -240,14 +240,14 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. | |
-| **filter_permissions** | [**\OpenAPI\Client\Model\ArrayFilter**](../Model/.md)| Allows filtering by &#x60;permissions&#x60; using one or more operators. | [optional] |
-| **page_size** | **int**| Determines the number of items to show. | [optional] |
-| **page_before** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
-| **page_after** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
-| **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;created_at&#x60;, &#x60;updated_at&#x60;. | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+ **filter_permissions** | [**\OpenAPI\Client\Model\ArrayFilter**](../Model/.md)| Allows filtering by &#x60;permissions&#x60; using one or more operators. | [optional]
+ **page_size** | **int**| Determines the number of items to show. | [optional]
+ **page_before** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **page_after** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;created_at&#x60;, &#x60;updated_at&#x60;. | [optional]
 
 ### Return type
 
@@ -288,8 +288,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\OrganizationMembersApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -307,11 +307,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organization_id** | **string**| The ID of the organization. | |
-| **user_id** | **string**| The ID of the user. | |
-| **update_org_member_request** | [**\OpenAPI\Client\Model\UpdateOrgMemberRequest**](../Model/UpdateOrgMemberRequest.md)|  | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization_id** | **string**| The ID of the organization. |
+ **user_id** | **string**| The ID of the user. |
+ **update_org_member_request** | [**\OpenAPI\Client\Model\UpdateOrgMemberRequest**](../Model/UpdateOrgMemberRequest.md)|  | [optional]
 
 ### Return type
 

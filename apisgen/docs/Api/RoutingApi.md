@@ -1,14 +1,14 @@
 # OpenAPI\Client\RoutingApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**createProjectsEnvironmentsRoutes()**](RoutingApi.md#createProjectsEnvironmentsRoutes) | **POST** /projects/{projectId}/environments/{environmentId}/routes | Create a new route |
-| [**deleteProjectsEnvironmentsRoutes()**](RoutingApi.md#deleteProjectsEnvironmentsRoutes) | **DELETE** /projects/{projectId}/environments/{environmentId}/routes/{routeId} | Delete a route |
-| [**getProjectsEnvironmentsRoutes()**](RoutingApi.md#getProjectsEnvironmentsRoutes) | **GET** /projects/{projectId}/environments/{environmentId}/routes/{routeId} | Get a route&#39;s info |
-| [**listProjectsEnvironmentsRoutes()**](RoutingApi.md#listProjectsEnvironmentsRoutes) | **GET** /projects/{projectId}/environments/{environmentId}/routes | Get list of routes |
-| [**updateProjectsEnvironmentsRoutes()**](RoutingApi.md#updateProjectsEnvironmentsRoutes) | **PATCH** /projects/{projectId}/environments/{environmentId}/routes/{routeId} | Update a route |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**createProjectsEnvironmentsRoutes()**](RoutingApi.md#createProjectsEnvironmentsRoutes) | **POST** /projects/{projectId}/environments/{environmentId}/routes | Create a new route
+[**deleteProjectsEnvironmentsRoutes()**](RoutingApi.md#deleteProjectsEnvironmentsRoutes) | **DELETE** /projects/{projectId}/environments/{environmentId}/routes/{routeId} | Delete a route
+[**getProjectsEnvironmentsRoutes()**](RoutingApi.md#getProjectsEnvironmentsRoutes) | **GET** /projects/{projectId}/environments/{environmentId}/routes/{routeId} | Get a route&#39;s info
+[**listProjectsEnvironmentsRoutes()**](RoutingApi.md#listProjectsEnvironmentsRoutes) | **GET** /projects/{projectId}/environments/{environmentId}/routes | Get list of routes
+[**updateProjectsEnvironmentsRoutes()**](RoutingApi.md#updateProjectsEnvironmentsRoutes) | **PATCH** /projects/{projectId}/environments/{environmentId}/routes/{routeId} | Update a route
 
 
 ## `createProjectsEnvironmentsRoutes()`
@@ -33,8 +33,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\RoutingApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -52,11 +52,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **route_create_input** | [**\OpenAPI\Client\Model\RouteCreateInput**](../Model/RouteCreateInput.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **route_create_input** | [**\OpenAPI\Client\Model\RouteCreateInput**](../Model/RouteCreateInput.md)|  |
 
 ### Return type
 
@@ -97,8 +97,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\RoutingApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -116,11 +116,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **route_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **route_id** | **string**|  |
 
 ### Return type
 
@@ -161,8 +161,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\RoutingApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -180,11 +180,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **route_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **route_id** | **string**|  |
 
 ### Return type
 
@@ -225,8 +225,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\RoutingApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -243,10 +243,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
 
 ### Return type
 
@@ -287,8 +287,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\RoutingApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -307,12 +307,12 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **route_id** | **string**|  | |
-| **route_patch** | [**\OpenAPI\Client\Model\RoutePatch**](../Model/RoutePatch.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **route_id** | **string**|  |
+ **route_patch** | [**\OpenAPI\Client\Model\RoutePatch**](../Model/RoutePatch.md)|  |
 
 ### Return type
 

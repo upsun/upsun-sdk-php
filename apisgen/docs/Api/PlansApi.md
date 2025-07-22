@@ -1,10 +1,10 @@
 # OpenAPI\Client\PlansApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**listPlans()**](PlansApi.md#listPlans) | **GET** /plans | List available plans |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**listPlans()**](PlansApi.md#listPlans) | **GET** /plans | List available plans
 
 
 ## `listPlans()`
@@ -29,8 +29,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\PlansApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );

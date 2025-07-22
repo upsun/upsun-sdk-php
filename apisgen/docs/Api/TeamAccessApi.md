@@ -1,17 +1,17 @@
 # OpenAPI\Client\TeamAccessApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**getProjectTeamAccess()**](TeamAccessApi.md#getProjectTeamAccess) | **GET** /projects/{project_id}/team-access/{team_id} | Get team access for a project |
-| [**getTeamProjectAccess()**](TeamAccessApi.md#getTeamProjectAccess) | **GET** /teams/{team_id}/project-access/{project_id} | Get project access for a team |
-| [**grantProjectTeamAccess()**](TeamAccessApi.md#grantProjectTeamAccess) | **POST** /projects/{project_id}/team-access | Grant team access to a project |
-| [**grantTeamProjectAccess()**](TeamAccessApi.md#grantTeamProjectAccess) | **POST** /teams/{team_id}/project-access | Grant project access to a team |
-| [**listProjectTeamAccess()**](TeamAccessApi.md#listProjectTeamAccess) | **GET** /projects/{project_id}/team-access | List team access for a project |
-| [**listTeamProjectAccess()**](TeamAccessApi.md#listTeamProjectAccess) | **GET** /teams/{team_id}/project-access | List project access for a team |
-| [**removeProjectTeamAccess()**](TeamAccessApi.md#removeProjectTeamAccess) | **DELETE** /projects/{project_id}/team-access/{team_id} | Remove team access for a project |
-| [**removeTeamProjectAccess()**](TeamAccessApi.md#removeTeamProjectAccess) | **DELETE** /teams/{team_id}/project-access/{project_id} | Remove project access for a team |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**getProjectTeamAccess()**](TeamAccessApi.md#getProjectTeamAccess) | **GET** /projects/{project_id}/team-access/{team_id} | Get team access for a project
+[**getTeamProjectAccess()**](TeamAccessApi.md#getTeamProjectAccess) | **GET** /teams/{team_id}/project-access/{project_id} | Get project access for a team
+[**grantProjectTeamAccess()**](TeamAccessApi.md#grantProjectTeamAccess) | **POST** /projects/{project_id}/team-access | Grant team access to a project
+[**grantTeamProjectAccess()**](TeamAccessApi.md#grantTeamProjectAccess) | **POST** /teams/{team_id}/project-access | Grant project access to a team
+[**listProjectTeamAccess()**](TeamAccessApi.md#listProjectTeamAccess) | **GET** /projects/{project_id}/team-access | List team access for a project
+[**listTeamProjectAccess()**](TeamAccessApi.md#listTeamProjectAccess) | **GET** /teams/{team_id}/project-access | List project access for a team
+[**removeProjectTeamAccess()**](TeamAccessApi.md#removeProjectTeamAccess) | **DELETE** /projects/{project_id}/team-access/{team_id} | Remove team access for a project
+[**removeTeamProjectAccess()**](TeamAccessApi.md#removeTeamProjectAccess) | **DELETE** /teams/{team_id}/project-access/{project_id} | Remove project access for a team
 
 
 ## `getProjectTeamAccess()`
@@ -36,8 +36,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\TeamAccessApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -54,10 +54,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**| The ID of the project. | |
-| **team_id** | **string**| The ID of the team. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**| The ID of the project. |
+ **team_id** | **string**| The ID of the team. |
 
 ### Return type
 
@@ -98,8 +98,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\TeamAccessApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -116,10 +116,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **team_id** | **string**| The ID of the team. | |
-| **project_id** | **string**| The ID of the project. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **team_id** | **string**| The ID of the team. |
+ **project_id** | **string**| The ID of the project. |
 
 ### Return type
 
@@ -160,8 +160,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\TeamAccessApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -177,10 +177,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**| The ID of the project. | |
-| **grant_project_team_access_request_inner** | [**\OpenAPI\Client\Model\GrantProjectTeamAccessRequestInner[]**](../Model/GrantProjectTeamAccessRequestInner.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**| The ID of the project. |
+ **grant_project_team_access_request_inner** | [**\OpenAPI\Client\Model\GrantProjectTeamAccessRequestInner[]**](../Model/GrantProjectTeamAccessRequestInner.md)|  |
 
 ### Return type
 
@@ -221,8 +221,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\TeamAccessApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -238,10 +238,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **team_id** | **string**| The ID of the team. | |
-| **grant_team_project_access_request_inner** | [**\OpenAPI\Client\Model\GrantTeamProjectAccessRequestInner[]**](../Model/GrantTeamProjectAccessRequestInner.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **team_id** | **string**| The ID of the team. |
+ **grant_team_project_access_request_inner** | [**\OpenAPI\Client\Model\GrantTeamProjectAccessRequestInner[]**](../Model/GrantTeamProjectAccessRequestInner.md)|  |
 
 ### Return type
 
@@ -282,8 +282,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\TeamAccessApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -303,13 +303,13 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**| The ID of the project. | |
-| **page_size** | **int**| Determines the number of items to show. | [optional] |
-| **page_before** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
-| **page_after** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
-| **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**| The ID of the project. |
+ **page_size** | **int**| Determines the number of items to show. | [optional]
+ **page_before** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **page_after** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. | [optional]
 
 ### Return type
 
@@ -350,8 +350,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\TeamAccessApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -371,13 +371,13 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **team_id** | **string**| The ID of the team. | |
-| **page_size** | **int**| Determines the number of items to show. | [optional] |
-| **page_before** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
-| **page_after** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
-| **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;project_title&#x60;, &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **team_id** | **string**| The ID of the team. |
+ **page_size** | **int**| Determines the number of items to show. | [optional]
+ **page_before** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **page_after** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;project_title&#x60;, &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. | [optional]
 
 ### Return type
 
@@ -418,8 +418,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\TeamAccessApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -435,10 +435,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**| The ID of the project. | |
-| **team_id** | **string**| The ID of the team. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**| The ID of the project. |
+ **team_id** | **string**| The ID of the team. |
 
 ### Return type
 
@@ -479,8 +479,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\TeamAccessApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -496,10 +496,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **team_id** | **string**| The ID of the team. | |
-| **project_id** | **string**| The ID of the project. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **team_id** | **string**| The ID of the team. |
+ **project_id** | **string**| The ID of the project. |
 
 ### Return type
 

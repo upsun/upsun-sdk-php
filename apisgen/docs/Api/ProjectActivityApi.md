@@ -1,12 +1,12 @@
 # OpenAPI\Client\ProjectActivityApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**actionProjectsActivitiesCancel()**](ProjectActivityApi.md#actionProjectsActivitiesCancel) | **POST** /projects/{projectId}/activities/{activityId}/cancel | Cancel a project activity |
-| [**getProjectsActivities()**](ProjectActivityApi.md#getProjectsActivities) | **GET** /projects/{projectId}/activities/{activityId} | Get a project activity log entry |
-| [**listProjectsActivities()**](ProjectActivityApi.md#listProjectsActivities) | **GET** /projects/{projectId}/activities | Get project activity log |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**actionProjectsActivitiesCancel()**](ProjectActivityApi.md#actionProjectsActivitiesCancel) | **POST** /projects/{projectId}/activities/{activityId}/cancel | Cancel a project activity
+[**getProjectsActivities()**](ProjectActivityApi.md#getProjectsActivities) | **GET** /projects/{projectId}/activities/{activityId} | Get a project activity log entry
+[**listProjectsActivities()**](ProjectActivityApi.md#listProjectsActivities) | **GET** /projects/{projectId}/activities | Get project activity log
 
 
 ## `actionProjectsActivitiesCancel()`
@@ -31,8 +31,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\ProjectActivityApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -49,10 +49,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **activity_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **activity_id** | **string**|  |
 
 ### Return type
 
@@ -93,8 +93,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\ProjectActivityApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -111,10 +111,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **activity_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **activity_id** | **string**|  |
 
 ### Return type
 
@@ -155,8 +155,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\ProjectActivityApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -172,9 +172,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
 
 ### Return type
 

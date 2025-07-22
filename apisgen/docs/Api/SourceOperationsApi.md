@@ -1,11 +1,11 @@
 # OpenAPI\Client\SourceOperationsApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**listProjectsEnvironmentsSourceOperations()**](SourceOperationsApi.md#listProjectsEnvironmentsSourceOperations) | **GET** /projects/{projectId}/environments/{environmentId}/source-operations | List source operations |
-| [**runSourceOperation()**](SourceOperationsApi.md#runSourceOperation) | **POST** /projects/{projectId}/environments/{environmentId}/source-operation | Trigger a source operation |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**listProjectsEnvironmentsSourceOperations()**](SourceOperationsApi.md#listProjectsEnvironmentsSourceOperations) | **GET** /projects/{projectId}/environments/{environmentId}/source-operations | List source operations
+[**runSourceOperation()**](SourceOperationsApi.md#runSourceOperation) | **POST** /projects/{projectId}/environments/{environmentId}/source-operation | Trigger a source operation
 
 
 ## `listProjectsEnvironmentsSourceOperations()`
@@ -30,8 +30,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\SourceOperationsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -48,10 +48,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
 
 ### Return type
 
@@ -92,8 +92,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\SourceOperationsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -111,11 +111,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **environment_source_operation_input** | [**\OpenAPI\Client\Model\EnvironmentSourceOperationInput**](../Model/EnvironmentSourceOperationInput.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **environment_source_operation_input** | [**\OpenAPI\Client\Model\EnvironmentSourceOperationInput**](../Model/EnvironmentSourceOperationInput.md)|  |
 
 ### Return type
 

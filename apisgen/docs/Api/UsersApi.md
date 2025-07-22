@@ -1,19 +1,19 @@
 # OpenAPI\Client\UsersApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**getCurrentUser()**](UsersApi.md#getCurrentUser) | **GET** /users/me | Get the current user |
-| [**getCurrentUserDeprecated()**](UsersApi.md#getCurrentUserDeprecated) | **GET** /me | Get current logged-in user info |
-| [**getCurrentUserVerificationStatus()**](UsersApi.md#getCurrentUserVerificationStatus) | **POST** /me/phone | Check if phone verification is required |
-| [**getCurrentUserVerificationStatusFull()**](UsersApi.md#getCurrentUserVerificationStatusFull) | **POST** /me/verification | Check if verification is required |
-| [**getUser()**](UsersApi.md#getUser) | **GET** /users/{user_id} | Get a user |
-| [**getUserByEmailAddress()**](UsersApi.md#getUserByEmailAddress) | **GET** /users/email&#x3D;{email} | Get a user by email |
-| [**getUserByUsername()**](UsersApi.md#getUserByUsername) | **GET** /users/username&#x3D;{username} | Get a user by username |
-| [**resetEmailAddress()**](UsersApi.md#resetEmailAddress) | **POST** /users/{user_id}/emailaddress | Reset email address |
-| [**resetPassword()**](UsersApi.md#resetPassword) | **POST** /users/{user_id}/resetpassword | Reset user password |
-| [**updateUser()**](UsersApi.md#updateUser) | **PATCH** /users/{user_id} | Update a user |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**getCurrentUser()**](UsersApi.md#getCurrentUser) | **GET** /users/me | Get the current user
+[**getCurrentUserDeprecated()**](UsersApi.md#getCurrentUserDeprecated) | **GET** /me | Get current logged-in user info
+[**getCurrentUserVerificationStatus()**](UsersApi.md#getCurrentUserVerificationStatus) | **POST** /me/phone | Check if phone verification is required
+[**getCurrentUserVerificationStatusFull()**](UsersApi.md#getCurrentUserVerificationStatusFull) | **POST** /me/verification | Check if verification is required
+[**getUser()**](UsersApi.md#getUser) | **GET** /users/{user_id} | Get a user
+[**getUserByEmailAddress()**](UsersApi.md#getUserByEmailAddress) | **GET** /users/email&#x3D;{email} | Get a user by email
+[**getUserByUsername()**](UsersApi.md#getUserByUsername) | **GET** /users/username&#x3D;{username} | Get a user by username
+[**resetEmailAddress()**](UsersApi.md#resetEmailAddress) | **POST** /users/{user_id}/emailaddress | Reset email address
+[**resetPassword()**](UsersApi.md#resetPassword) | **POST** /users/{user_id}/resetpassword | Reset user password
+[**updateUser()**](UsersApi.md#updateUser) | **PATCH** /users/{user_id} | Update a user
 
 
 ## `getCurrentUser()`
@@ -38,8 +38,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UsersApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -95,8 +95,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UsersApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -152,8 +152,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UsersApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -209,8 +209,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UsersApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -266,8 +266,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UsersApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -283,9 +283,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **user_id** | **string**| The ID of the user. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **string**| The ID of the user. |
 
 ### Return type
 
@@ -326,8 +326,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UsersApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -343,9 +343,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **email** | **string**| The user&#39;s email address. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **email** | **string**| The user&#39;s email address. |
 
 ### Return type
 
@@ -386,8 +386,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UsersApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -403,9 +403,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **username** | **string**| The user&#39;s username. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **username** | **string**| The user&#39;s username. |
 
 ### Return type
 
@@ -446,8 +446,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UsersApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -463,10 +463,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **user_id** | **string**| The ID of the user. | |
-| **reset_email_address_request** | [**\OpenAPI\Client\Model\ResetEmailAddressRequest**](../Model/ResetEmailAddressRequest.md)|  | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **string**| The ID of the user. |
+ **reset_email_address_request** | [**\OpenAPI\Client\Model\ResetEmailAddressRequest**](../Model/ResetEmailAddressRequest.md)|  | [optional]
 
 ### Return type
 
@@ -507,8 +507,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UsersApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -523,9 +523,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **user_id** | **string**| The ID of the user. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **string**| The ID of the user. |
 
 ### Return type
 
@@ -566,8 +566,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UsersApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -584,10 +584,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **user_id** | **string**| The ID of the user. | |
-| **update_user_request** | [**\OpenAPI\Client\Model\UpdateUserRequest**](../Model/UpdateUserRequest.md)|  | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **string**| The ID of the user. |
+ **update_user_request** | [**\OpenAPI\Client\Model\UpdateUserRequest**](../Model/UpdateUserRequest.md)|  | [optional]
 
 ### Return type
 

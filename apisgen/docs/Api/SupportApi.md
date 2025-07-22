@@ -1,13 +1,13 @@
 # OpenAPI\Client\SupportApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**createTicket()**](SupportApi.md#createTicket) | **POST** /tickets | Create a new support ticket |
-| [**listTicketCategories()**](SupportApi.md#listTicketCategories) | **GET** /tickets/category | List support ticket categories |
-| [**listTicketPriorities()**](SupportApi.md#listTicketPriorities) | **GET** /tickets/priority | List support ticket priorities |
-| [**updateTicket()**](SupportApi.md#updateTicket) | **PATCH** /tickets/{ticket_id} | Update a ticket |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**createTicket()**](SupportApi.md#createTicket) | **POST** /tickets | Create a new support ticket
+[**listTicketCategories()**](SupportApi.md#listTicketCategories) | **GET** /tickets/category | List support ticket categories
+[**listTicketPriorities()**](SupportApi.md#listTicketPriorities) | **GET** /tickets/priority | List support ticket priorities
+[**updateTicket()**](SupportApi.md#updateTicket) | **PATCH** /tickets/{ticket_id} | Update a ticket
 
 
 ## `createTicket()`
@@ -30,8 +30,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\SupportApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -47,9 +47,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **create_ticket_request** | [**\OpenAPI\Client\Model\CreateTicketRequest**](../Model/CreateTicketRequest.md)|  | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_ticket_request** | [**\OpenAPI\Client\Model\CreateTicketRequest**](../Model/CreateTicketRequest.md)|  | [optional]
 
 ### Return type
 
@@ -88,8 +88,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\SupportApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -106,10 +106,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **subscription_id** | **string**| The ID of the subscription the ticket should be related to | [optional] |
-| **organization_id** | **string**| The ID of the organization the ticket should be related to | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **subscription_id** | **string**| The ID of the subscription the ticket should be related to | [optional]
+ **organization_id** | **string**| The ID of the organization the ticket should be related to | [optional]
 
 ### Return type
 
@@ -148,8 +148,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\SupportApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -166,10 +166,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **subscription_id** | **string**| The ID of the subscription the ticket should be related to | [optional] |
-| **category** | **string**| The category of the support ticket. | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **subscription_id** | **string**| The ID of the subscription the ticket should be related to | [optional]
+ **category** | **string**| The category of the support ticket. | [optional]
 
 ### Return type
 
@@ -208,8 +208,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\SupportApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -226,10 +226,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **ticket_id** | **string**| The ID of the ticket | |
-| **update_ticket_request** | [**\OpenAPI\Client\Model\UpdateTicketRequest**](../Model/UpdateTicketRequest.md)|  | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ticket_id** | **string**| The ID of the ticket |
+ **update_ticket_request** | [**\OpenAPI\Client\Model\UpdateTicketRequest**](../Model/UpdateTicketRequest.md)|  | [optional]
 
 ### Return type
 

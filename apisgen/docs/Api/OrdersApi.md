@@ -1,13 +1,13 @@
 # OpenAPI\Client\OrdersApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**createAuthorizationCredentials()**](OrdersApi.md#createAuthorizationCredentials) | **POST** /organizations/{organization_id}/orders/{order_id}/authorize | Create confirmation credentials for for 3D-Secure |
-| [**downloadInvoice()**](OrdersApi.md#downloadInvoice) | **GET** /orders/download | Download an invoice. |
-| [**getOrgOrder()**](OrdersApi.md#getOrgOrder) | **GET** /organizations/{organization_id}/orders/{order_id} | Get order |
-| [**listOrgOrders()**](OrdersApi.md#listOrgOrders) | **GET** /organizations/{organization_id}/orders | List orders |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**createAuthorizationCredentials()**](OrdersApi.md#createAuthorizationCredentials) | **POST** /organizations/{organization_id}/orders/{order_id}/authorize | Create confirmation credentials for for 3D-Secure
+[**downloadInvoice()**](OrdersApi.md#downloadInvoice) | **GET** /orders/download | Download an invoice.
+[**getOrgOrder()**](OrdersApi.md#getOrgOrder) | **GET** /organizations/{organization_id}/orders/{order_id} | Get order
+[**listOrgOrders()**](OrdersApi.md#listOrgOrders) | **GET** /organizations/{organization_id}/orders | List orders
 
 
 ## `createAuthorizationCredentials()`
@@ -32,8 +32,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\OrdersApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -50,10 +50,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. | |
-| **order_id** | **string**| The ID of the order. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+ **order_id** | **string**| The ID of the order. |
 
 ### Return type
 
@@ -92,8 +92,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\OrdersApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -108,9 +108,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **token** | **string**| JWT for invoice. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **token** | **string**| JWT for invoice. |
 
 ### Return type
 
@@ -151,8 +151,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\OrdersApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -170,11 +170,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. | |
-| **order_id** | **string**| The ID of the order. | |
-| **mode** | **string**| The output mode. | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+ **order_id** | **string**| The ID of the order. |
+ **mode** | **string**| The output mode. | [optional]
 
 ### Return type
 
@@ -215,8 +215,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\OrdersApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -236,13 +236,13 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. | |
-| **filter_status** | **string**| The status of the order. | [optional] |
-| **filter_total** | **int**| The total of the order. | [optional] |
-| **page** | **int**| Page to be displayed. Defaults to 1. | [optional] |
-| **mode** | **string**| The output mode. | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+ **filter_status** | **string**| The status of the order. | [optional]
+ **filter_total** | **int**| The total of the order. | [optional]
+ **page** | **int**| Page to be displayed. Defaults to 1. | [optional]
+ **mode** | **string**| The output mode. | [optional]
 
 ### Return type
 

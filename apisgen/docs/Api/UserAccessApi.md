@@ -1,19 +1,19 @@
 # OpenAPI\Client\UserAccessApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**getProjectUserAccess()**](UserAccessApi.md#getProjectUserAccess) | **GET** /projects/{project_id}/user-access/{user_id} | Get user access for a project |
-| [**getUserProjectAccess()**](UserAccessApi.md#getUserProjectAccess) | **GET** /users/{user_id}/project-access/{project_id} | Get project access for a user |
-| [**grantProjectUserAccess()**](UserAccessApi.md#grantProjectUserAccess) | **POST** /projects/{project_id}/user-access | Grant user access to a project |
-| [**grantUserProjectAccess()**](UserAccessApi.md#grantUserProjectAccess) | **POST** /users/{user_id}/project-access | Grant project access to a user |
-| [**listProjectUserAccess()**](UserAccessApi.md#listProjectUserAccess) | **GET** /projects/{project_id}/user-access | List user access for a project |
-| [**listUserProjectAccess()**](UserAccessApi.md#listUserProjectAccess) | **GET** /users/{user_id}/project-access | List project access for a user |
-| [**removeProjectUserAccess()**](UserAccessApi.md#removeProjectUserAccess) | **DELETE** /projects/{project_id}/user-access/{user_id} | Remove user access for a project |
-| [**removeUserProjectAccess()**](UserAccessApi.md#removeUserProjectAccess) | **DELETE** /users/{user_id}/project-access/{project_id} | Remove project access for a user |
-| [**updateProjectUserAccess()**](UserAccessApi.md#updateProjectUserAccess) | **PATCH** /projects/{project_id}/user-access/{user_id} | Update user access for a project |
-| [**updateUserProjectAccess()**](UserAccessApi.md#updateUserProjectAccess) | **PATCH** /users/{user_id}/project-access/{project_id} | Update project access for a user |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**getProjectUserAccess()**](UserAccessApi.md#getProjectUserAccess) | **GET** /projects/{project_id}/user-access/{user_id} | Get user access for a project
+[**getUserProjectAccess()**](UserAccessApi.md#getUserProjectAccess) | **GET** /users/{user_id}/project-access/{project_id} | Get project access for a user
+[**grantProjectUserAccess()**](UserAccessApi.md#grantProjectUserAccess) | **POST** /projects/{project_id}/user-access | Grant user access to a project
+[**grantUserProjectAccess()**](UserAccessApi.md#grantUserProjectAccess) | **POST** /users/{user_id}/project-access | Grant project access to a user
+[**listProjectUserAccess()**](UserAccessApi.md#listProjectUserAccess) | **GET** /projects/{project_id}/user-access | List user access for a project
+[**listUserProjectAccess()**](UserAccessApi.md#listUserProjectAccess) | **GET** /users/{user_id}/project-access | List project access for a user
+[**removeProjectUserAccess()**](UserAccessApi.md#removeProjectUserAccess) | **DELETE** /projects/{project_id}/user-access/{user_id} | Remove user access for a project
+[**removeUserProjectAccess()**](UserAccessApi.md#removeUserProjectAccess) | **DELETE** /users/{user_id}/project-access/{project_id} | Remove project access for a user
+[**updateProjectUserAccess()**](UserAccessApi.md#updateProjectUserAccess) | **PATCH** /projects/{project_id}/user-access/{user_id} | Update user access for a project
+[**updateUserProjectAccess()**](UserAccessApi.md#updateUserProjectAccess) | **PATCH** /users/{user_id}/project-access/{project_id} | Update project access for a user
 
 
 ## `getProjectUserAccess()`
@@ -38,8 +38,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UserAccessApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -56,10 +56,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**| The ID of the project. | |
-| **user_id** | **string**| The ID of the user. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**| The ID of the project. |
+ **user_id** | **string**| The ID of the user. |
 
 ### Return type
 
@@ -100,8 +100,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UserAccessApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -118,10 +118,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **user_id** | **string**| The ID of the user. | |
-| **project_id** | **string**| The ID of the project. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **string**| The ID of the user. |
+ **project_id** | **string**| The ID of the project. |
 
 ### Return type
 
@@ -162,8 +162,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UserAccessApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -179,10 +179,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**| The ID of the project. | |
-| **grant_project_user_access_request_inner** | [**\OpenAPI\Client\Model\GrantProjectUserAccessRequestInner[]**](../Model/GrantProjectUserAccessRequestInner.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**| The ID of the project. |
+ **grant_project_user_access_request_inner** | [**\OpenAPI\Client\Model\GrantProjectUserAccessRequestInner[]**](../Model/GrantProjectUserAccessRequestInner.md)|  |
 
 ### Return type
 
@@ -223,8 +223,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UserAccessApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -240,10 +240,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **user_id** | **string**| The ID of the user. | |
-| **grant_user_project_access_request_inner** | [**\OpenAPI\Client\Model\GrantUserProjectAccessRequestInner[]**](../Model/GrantUserProjectAccessRequestInner.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **string**| The ID of the user. |
+ **grant_user_project_access_request_inner** | [**\OpenAPI\Client\Model\GrantUserProjectAccessRequestInner[]**](../Model/GrantUserProjectAccessRequestInner.md)|  |
 
 ### Return type
 
@@ -284,8 +284,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UserAccessApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -305,13 +305,13 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**| The ID of the project. | |
-| **page_size** | **int**| Determines the number of items to show. | [optional] |
-| **page_before** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
-| **page_after** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
-| **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**| The ID of the project. |
+ **page_size** | **int**| Determines the number of items to show. | [optional]
+ **page_before** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **page_after** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. | [optional]
 
 ### Return type
 
@@ -352,8 +352,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UserAccessApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -374,14 +374,14 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **user_id** | **string**| The ID of the user. | |
-| **filter_organization_id** | **string**| Allows filtering by &#x60;organization_id&#x60;. | [optional] |
-| **page_size** | **int**| Determines the number of items to show. | [optional] |
-| **page_before** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
-| **page_after** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
-| **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;project_title&#x60;, &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **string**| The ID of the user. |
+ **filter_organization_id** | **string**| Allows filtering by &#x60;organization_id&#x60;. | [optional]
+ **page_size** | **int**| Determines the number of items to show. | [optional]
+ **page_before** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **page_after** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;project_title&#x60;, &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. | [optional]
 
 ### Return type
 
@@ -422,8 +422,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UserAccessApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -439,10 +439,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**| The ID of the project. | |
-| **user_id** | **string**| The ID of the user. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**| The ID of the project. |
+ **user_id** | **string**| The ID of the user. |
 
 ### Return type
 
@@ -483,8 +483,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UserAccessApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -500,10 +500,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **user_id** | **string**| The ID of the user. | |
-| **project_id** | **string**| The ID of the project. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **string**| The ID of the user. |
+ **project_id** | **string**| The ID of the project. |
 
 ### Return type
 
@@ -544,8 +544,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UserAccessApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -562,11 +562,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**| The ID of the project. | |
-| **user_id** | **string**| The ID of the user. | |
-| **update_project_user_access_request** | [**\OpenAPI\Client\Model\UpdateProjectUserAccessRequest**](../Model/UpdateProjectUserAccessRequest.md)|  | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**| The ID of the project. |
+ **user_id** | **string**| The ID of the user. |
+ **update_project_user_access_request** | [**\OpenAPI\Client\Model\UpdateProjectUserAccessRequest**](../Model/UpdateProjectUserAccessRequest.md)|  | [optional]
 
 ### Return type
 
@@ -607,8 +607,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UserAccessApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -625,11 +625,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **user_id** | **string**| The ID of the user. | |
-| **project_id** | **string**| The ID of the project. | |
-| **update_project_user_access_request** | [**\OpenAPI\Client\Model\UpdateProjectUserAccessRequest**](../Model/UpdateProjectUserAccessRequest.md)|  | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **string**| The ID of the user. |
+ **project_id** | **string**| The ID of the project. |
+ **update_project_user_access_request** | [**\OpenAPI\Client\Model\UpdateProjectUserAccessRequest**](../Model/UpdateProjectUserAccessRequest.md)|  | [optional]
 
 ### Return type
 

@@ -1,11 +1,11 @@
 # OpenAPI\Client\InvoicesApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**getOrgInvoice()**](InvoicesApi.md#getOrgInvoice) | **GET** /organizations/{organization_id}/invoices/{invoice_id} | Get invoice |
-| [**listOrgInvoices()**](InvoicesApi.md#listOrgInvoices) | **GET** /organizations/{organization_id}/invoices | List invoices |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**getOrgInvoice()**](InvoicesApi.md#getOrgInvoice) | **GET** /organizations/{organization_id}/invoices/{invoice_id} | Get invoice
+[**listOrgInvoices()**](InvoicesApi.md#listOrgInvoices) | **GET** /organizations/{organization_id}/invoices | List invoices
 
 
 ## `getOrgInvoice()`
@@ -30,8 +30,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\InvoicesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -48,10 +48,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **invoice_id** | **string**| The ID of the invoice. | |
-| **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **invoice_id** | **string**| The ID of the invoice. |
+ **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
 
 ### Return type
 
@@ -92,8 +92,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\InvoicesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -113,13 +113,13 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. | |
-| **filter_status** | **string**| The status of the invoice. | [optional] |
-| **filter_type** | **string**| The invoice type. Use invoice for standard invoices, credit_memo for refund/credit invoices. | [optional] |
-| **filter_order_id** | **string**| The order id of Invoice. | [optional] |
-| **page** | **int**| Page to be displayed. Defaults to 1. | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+ **filter_status** | **string**| The status of the invoice. | [optional]
+ **filter_type** | **string**| The invoice type. Use invoice for standard invoices, credit_memo for refund/credit invoices. | [optional]
+ **filter_order_id** | **string**| The order id of Invoice. | [optional]
+ **page** | **int**| Page to be displayed. Defaults to 1. | [optional]
 
 ### Return type
 

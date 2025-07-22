@@ -1,10 +1,10 @@
 # OpenAPI\Client\RuntimeOperationsApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**runOperation()**](RuntimeOperationsApi.md#runOperation) | **POST** /projects/{projectId}/environments/{environmentId}/deployments/{deploymentId}/operations | Execute a runtime operation |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**runOperation()**](RuntimeOperationsApi.md#runOperation) | **POST** /projects/{projectId}/environments/{environmentId}/deployments/{deploymentId}/operations | Execute a runtime operation
 
 
 ## `runOperation()`
@@ -29,8 +29,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\RuntimeOperationsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -49,12 +49,12 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **deployment_id** | **string**|  | |
-| **environment_operation_input** | [**\OpenAPI\Client\Model\EnvironmentOperationInput**](../Model/EnvironmentOperationInput.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **deployment_id** | **string**|  |
+ **environment_operation_input** | [**\OpenAPI\Client\Model\EnvironmentOperationInput**](../Model/EnvironmentOperationInput.md)|  |
 
 ### Return type
 

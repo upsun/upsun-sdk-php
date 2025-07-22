@@ -1,12 +1,12 @@
 # OpenAPI\Client\EnvironmentActivityApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**actionProjectsEnvironmentsActivitiesCancel()**](EnvironmentActivityApi.md#actionProjectsEnvironmentsActivitiesCancel) | **POST** /projects/{projectId}/environments/{environmentId}/activities/{activityId}/cancel | Cancel an environment activity |
-| [**getProjectsEnvironmentsActivities()**](EnvironmentActivityApi.md#getProjectsEnvironmentsActivities) | **GET** /projects/{projectId}/environments/{environmentId}/activities/{activityId} | Get an environment activity log entry |
-| [**listProjectsEnvironmentsActivities()**](EnvironmentActivityApi.md#listProjectsEnvironmentsActivities) | **GET** /projects/{projectId}/environments/{environmentId}/activities | Get environment activity log |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**actionProjectsEnvironmentsActivitiesCancel()**](EnvironmentActivityApi.md#actionProjectsEnvironmentsActivitiesCancel) | **POST** /projects/{projectId}/environments/{environmentId}/activities/{activityId}/cancel | Cancel an environment activity
+[**getProjectsEnvironmentsActivities()**](EnvironmentActivityApi.md#getProjectsEnvironmentsActivities) | **GET** /projects/{projectId}/environments/{environmentId}/activities/{activityId} | Get an environment activity log entry
+[**listProjectsEnvironmentsActivities()**](EnvironmentActivityApi.md#listProjectsEnvironmentsActivities) | **GET** /projects/{projectId}/environments/{environmentId}/activities | Get environment activity log
 
 
 ## `actionProjectsEnvironmentsActivitiesCancel()`
@@ -31,8 +31,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentActivityApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -50,11 +50,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **activity_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **activity_id** | **string**|  |
 
 ### Return type
 
@@ -95,8 +95,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentActivityApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -114,11 +114,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **activity_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **activity_id** | **string**|  |
 
 ### Return type
 
@@ -159,8 +159,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentActivityApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -177,10 +177,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
 
 ### Return type
 

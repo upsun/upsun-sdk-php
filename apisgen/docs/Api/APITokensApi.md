@@ -1,13 +1,13 @@
 # OpenAPI\Client\APITokensApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**createApiToken()**](APITokensApi.md#createApiToken) | **POST** /users/{user_id}/api-tokens | Create an API token |
-| [**deleteApiToken()**](APITokensApi.md#deleteApiToken) | **DELETE** /users/{user_id}/api-tokens/{token_id} | Delete an API token |
-| [**getApiToken()**](APITokensApi.md#getApiToken) | **GET** /users/{user_id}/api-tokens/{token_id} | Get an API token |
-| [**listApiTokens()**](APITokensApi.md#listApiTokens) | **GET** /users/{user_id}/api-tokens | List a user&#39;s API tokens |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**createApiToken()**](APITokensApi.md#createApiToken) | **POST** /users/{user_id}/api-tokens | Create an API token
+[**deleteApiToken()**](APITokensApi.md#deleteApiToken) | **DELETE** /users/{user_id}/api-tokens/{token_id} | Delete an API token
+[**getApiToken()**](APITokensApi.md#getApiToken) | **GET** /users/{user_id}/api-tokens/{token_id} | Get an API token
+[**listApiTokens()**](APITokensApi.md#listApiTokens) | **GET** /users/{user_id}/api-tokens | List a user&#39;s API tokens
 
 
 ## `createApiToken()`
@@ -32,8 +32,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\APITokensApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -50,10 +50,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **user_id** | **string**| The ID of the user. | |
-| **create_api_token_request** | [**\OpenAPI\Client\Model\CreateApiTokenRequest**](../Model/CreateApiTokenRequest.md)|  | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **string**| The ID of the user. |
+ **create_api_token_request** | [**\OpenAPI\Client\Model\CreateApiTokenRequest**](../Model/CreateApiTokenRequest.md)|  | [optional]
 
 ### Return type
 
@@ -94,8 +94,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\APITokensApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -111,10 +111,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **user_id** | **string**| The ID of the user. | |
-| **token_id** | **string**| The ID of the token. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **string**| The ID of the user. |
+ **token_id** | **string**| The ID of the token. |
 
 ### Return type
 
@@ -155,8 +155,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\APITokensApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -173,10 +173,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **user_id** | **string**| The ID of the user. | |
-| **token_id** | **string**| The ID of the token. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **string**| The ID of the user. |
+ **token_id** | **string**| The ID of the token. |
 
 ### Return type
 
@@ -217,8 +217,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\APITokensApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -234,9 +234,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **user_id** | **string**| The ID of the user. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **string**| The ID of the user. |
 
 ### Return type
 

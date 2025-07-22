@@ -1,27 +1,27 @@
 # OpenAPI\Client\EnvironmentApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**activateEnvironment()**](EnvironmentApi.md#activateEnvironment) | **POST** /projects/{projectId}/environments/{environmentId}/activate | Activate an environment |
-| [**branchEnvironment()**](EnvironmentApi.md#branchEnvironment) | **POST** /projects/{projectId}/environments/{environmentId}/branch | Branch an environment |
-| [**createProjectsEnvironmentsVersions()**](EnvironmentApi.md#createProjectsEnvironmentsVersions) | **POST** /projects/{projectId}/environments/{environmentId}/versions | Create versions associated with the environment |
-| [**deactivateEnvironment()**](EnvironmentApi.md#deactivateEnvironment) | **POST** /projects/{projectId}/environments/{environmentId}/deactivate | Deactivate an environment |
-| [**deleteEnvironment()**](EnvironmentApi.md#deleteEnvironment) | **DELETE** /projects/{projectId}/environments/{environmentId} | Delete an environment |
-| [**deleteProjectsEnvironmentsVersions()**](EnvironmentApi.md#deleteProjectsEnvironmentsVersions) | **DELETE** /projects/{projectId}/environments/{environmentId}/versions/{versionId} | Delete the version |
-| [**getEnvironment()**](EnvironmentApi.md#getEnvironment) | **GET** /projects/{projectId}/environments/{environmentId} | Get an environment |
-| [**getProjectsEnvironmentsVersions()**](EnvironmentApi.md#getProjectsEnvironmentsVersions) | **GET** /projects/{projectId}/environments/{environmentId}/versions/{versionId} | List the version |
-| [**initializeEnvironment()**](EnvironmentApi.md#initializeEnvironment) | **POST** /projects/{projectId}/environments/{environmentId}/initialize | Initialize a new environment |
-| [**listProjectsEnvironments()**](EnvironmentApi.md#listProjectsEnvironments) | **GET** /projects/{projectId}/environments | Get list of project environments |
-| [**listProjectsEnvironmentsVersions()**](EnvironmentApi.md#listProjectsEnvironmentsVersions) | **GET** /projects/{projectId}/environments/{environmentId}/versions | List versions associated with the environment |
-| [**mergeEnvironment()**](EnvironmentApi.md#mergeEnvironment) | **POST** /projects/{projectId}/environments/{environmentId}/merge | Merge an environment |
-| [**pauseEnvironment()**](EnvironmentApi.md#pauseEnvironment) | **POST** /projects/{projectId}/environments/{environmentId}/pause | Pause an environment |
-| [**redeployEnvironment()**](EnvironmentApi.md#redeployEnvironment) | **POST** /projects/{projectId}/environments/{environmentId}/redeploy | Redeploy an environment |
-| [**resumeEnvironment()**](EnvironmentApi.md#resumeEnvironment) | **POST** /projects/{projectId}/environments/{environmentId}/resume | Resume a paused environment |
-| [**synchronizeEnvironment()**](EnvironmentApi.md#synchronizeEnvironment) | **POST** /projects/{projectId}/environments/{environmentId}/synchronize | Synchronize a child environment with its parent |
-| [**updateEnvironment()**](EnvironmentApi.md#updateEnvironment) | **PATCH** /projects/{projectId}/environments/{environmentId} | Update an environment |
-| [**updateProjectsEnvironmentsVersions()**](EnvironmentApi.md#updateProjectsEnvironmentsVersions) | **PATCH** /projects/{projectId}/environments/{environmentId}/versions/{versionId} | Update the version |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**activateEnvironment()**](EnvironmentApi.md#activateEnvironment) | **POST** /projects/{projectId}/environments/{environmentId}/activate | Activate an environment
+[**branchEnvironment()**](EnvironmentApi.md#branchEnvironment) | **POST** /projects/{projectId}/environments/{environmentId}/branch | Branch an environment
+[**createProjectsEnvironmentsVersions()**](EnvironmentApi.md#createProjectsEnvironmentsVersions) | **POST** /projects/{projectId}/environments/{environmentId}/versions | Create versions associated with the environment
+[**deactivateEnvironment()**](EnvironmentApi.md#deactivateEnvironment) | **POST** /projects/{projectId}/environments/{environmentId}/deactivate | Deactivate an environment
+[**deleteEnvironment()**](EnvironmentApi.md#deleteEnvironment) | **DELETE** /projects/{projectId}/environments/{environmentId} | Delete an environment
+[**deleteProjectsEnvironmentsVersions()**](EnvironmentApi.md#deleteProjectsEnvironmentsVersions) | **DELETE** /projects/{projectId}/environments/{environmentId}/versions/{versionId} | Delete the version
+[**getEnvironment()**](EnvironmentApi.md#getEnvironment) | **GET** /projects/{projectId}/environments/{environmentId} | Get an environment
+[**getProjectsEnvironmentsVersions()**](EnvironmentApi.md#getProjectsEnvironmentsVersions) | **GET** /projects/{projectId}/environments/{environmentId}/versions/{versionId} | List the version
+[**initializeEnvironment()**](EnvironmentApi.md#initializeEnvironment) | **POST** /projects/{projectId}/environments/{environmentId}/initialize | Initialize a new environment
+[**listProjectsEnvironments()**](EnvironmentApi.md#listProjectsEnvironments) | **GET** /projects/{projectId}/environments | Get list of project environments
+[**listProjectsEnvironmentsVersions()**](EnvironmentApi.md#listProjectsEnvironmentsVersions) | **GET** /projects/{projectId}/environments/{environmentId}/versions | List versions associated with the environment
+[**mergeEnvironment()**](EnvironmentApi.md#mergeEnvironment) | **POST** /projects/{projectId}/environments/{environmentId}/merge | Merge an environment
+[**pauseEnvironment()**](EnvironmentApi.md#pauseEnvironment) | **POST** /projects/{projectId}/environments/{environmentId}/pause | Pause an environment
+[**redeployEnvironment()**](EnvironmentApi.md#redeployEnvironment) | **POST** /projects/{projectId}/environments/{environmentId}/redeploy | Redeploy an environment
+[**resumeEnvironment()**](EnvironmentApi.md#resumeEnvironment) | **POST** /projects/{projectId}/environments/{environmentId}/resume | Resume a paused environment
+[**synchronizeEnvironment()**](EnvironmentApi.md#synchronizeEnvironment) | **POST** /projects/{projectId}/environments/{environmentId}/synchronize | Synchronize a child environment with its parent
+[**updateEnvironment()**](EnvironmentApi.md#updateEnvironment) | **PATCH** /projects/{projectId}/environments/{environmentId} | Update an environment
+[**updateProjectsEnvironmentsVersions()**](EnvironmentApi.md#updateProjectsEnvironmentsVersions) | **PATCH** /projects/{projectId}/environments/{environmentId}/versions/{versionId} | Update the version
 
 
 ## `activateEnvironment()`
@@ -46,8 +46,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -65,11 +65,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **environment_activate_input** | [**\OpenAPI\Client\Model\EnvironmentActivateInput**](../Model/EnvironmentActivateInput.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **environment_activate_input** | [**\OpenAPI\Client\Model\EnvironmentActivateInput**](../Model/EnvironmentActivateInput.md)|  |
 
 ### Return type
 
@@ -110,8 +110,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -129,11 +129,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **environment_branch_input** | [**\OpenAPI\Client\Model\EnvironmentBranchInput**](../Model/EnvironmentBranchInput.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **environment_branch_input** | [**\OpenAPI\Client\Model\EnvironmentBranchInput**](../Model/EnvironmentBranchInput.md)|  |
 
 ### Return type
 
@@ -174,8 +174,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -193,11 +193,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **version_create_input** | [**\OpenAPI\Client\Model\VersionCreateInput**](../Model/VersionCreateInput.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **version_create_input** | [**\OpenAPI\Client\Model\VersionCreateInput**](../Model/VersionCreateInput.md)|  |
 
 ### Return type
 
@@ -238,8 +238,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -256,10 +256,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
 
 ### Return type
 
@@ -300,8 +300,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -318,10 +318,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
 
 ### Return type
 
@@ -362,8 +362,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -381,11 +381,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **version_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **version_id** | **string**|  |
 
 ### Return type
 
@@ -426,8 +426,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -444,10 +444,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
 
 ### Return type
 
@@ -488,8 +488,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -507,11 +507,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **version_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **version_id** | **string**|  |
 
 ### Return type
 
@@ -552,8 +552,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -571,11 +571,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **environment_initialize_input** | [**\OpenAPI\Client\Model\EnvironmentInitializeInput**](../Model/EnvironmentInitializeInput.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **environment_initialize_input** | [**\OpenAPI\Client\Model\EnvironmentInitializeInput**](../Model/EnvironmentInitializeInput.md)|  |
 
 ### Return type
 
@@ -616,8 +616,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -633,9 +633,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
 
 ### Return type
 
@@ -676,8 +676,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -694,10 +694,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
 
 ### Return type
 
@@ -738,8 +738,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -757,11 +757,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **environment_merge_input** | [**\OpenAPI\Client\Model\EnvironmentMergeInput**](../Model/EnvironmentMergeInput.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **environment_merge_input** | [**\OpenAPI\Client\Model\EnvironmentMergeInput**](../Model/EnvironmentMergeInput.md)|  |
 
 ### Return type
 
@@ -802,8 +802,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -820,10 +820,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
 
 ### Return type
 
@@ -864,8 +864,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -882,10 +882,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
 
 ### Return type
 
@@ -926,8 +926,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -944,10 +944,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
 
 ### Return type
 
@@ -988,8 +988,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -1007,11 +1007,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **environment_synchronize_input** | [**\OpenAPI\Client\Model\EnvironmentSynchronizeInput**](../Model/EnvironmentSynchronizeInput.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **environment_synchronize_input** | [**\OpenAPI\Client\Model\EnvironmentSynchronizeInput**](../Model/EnvironmentSynchronizeInput.md)|  |
 
 ### Return type
 
@@ -1052,8 +1052,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -1071,11 +1071,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **environment_patch** | [**\OpenAPI\Client\Model\EnvironmentPatch**](../Model/EnvironmentPatch.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **environment_patch** | [**\OpenAPI\Client\Model\EnvironmentPatch**](../Model/EnvironmentPatch.md)|  |
 
 ### Return type
 
@@ -1116,8 +1116,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -1136,12 +1136,12 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **version_id** | **string**|  | |
-| **version_patch** | [**\OpenAPI\Client\Model\VersionPatch**](../Model/VersionPatch.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **version_id** | **string**|  |
+ **version_patch** | [**\OpenAPI\Client\Model\VersionPatch**](../Model/VersionPatch.md)|  |
 
 ### Return type
 

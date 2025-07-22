@@ -1,16 +1,16 @@
 # OpenAPI\Client\UserProfilesApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**createProfilePicture()**](UserProfilesApi.md#createProfilePicture) | **POST** /profile/{uuid}/picture | Create a user profile picture |
-| [**deleteProfilePicture()**](UserProfilesApi.md#deleteProfilePicture) | **DELETE** /profile/{uuid}/picture | Delete a user profile picture |
-| [**getAddress()**](UserProfilesApi.md#getAddress) | **GET** /profiles/{userId}/address | Get a user address |
-| [**getProfile()**](UserProfilesApi.md#getProfile) | **GET** /profiles/{userId} | Get a single user profile |
-| [**listProfiles()**](UserProfilesApi.md#listProfiles) | **GET** /profiles | List user profiles |
-| [**updateAddress()**](UserProfilesApi.md#updateAddress) | **PATCH** /profiles/{userId}/address | Update a user address |
-| [**updateProfile()**](UserProfilesApi.md#updateProfile) | **PATCH** /profiles/{userId} | Update a user profile |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**createProfilePicture()**](UserProfilesApi.md#createProfilePicture) | **POST** /profile/{uuid}/picture | Create a user profile picture
+[**deleteProfilePicture()**](UserProfilesApi.md#deleteProfilePicture) | **DELETE** /profile/{uuid}/picture | Delete a user profile picture
+[**getAddress()**](UserProfilesApi.md#getAddress) | **GET** /profiles/{userId}/address | Get a user address
+[**getProfile()**](UserProfilesApi.md#getProfile) | **GET** /profiles/{userId} | Get a single user profile
+[**listProfiles()**](UserProfilesApi.md#listProfiles) | **GET** /profiles | List user profiles
+[**updateAddress()**](UserProfilesApi.md#updateAddress) | **PATCH** /profiles/{userId}/address | Update a user address
+[**updateProfile()**](UserProfilesApi.md#updateProfile) | **PATCH** /profiles/{userId} | Update a user profile
 
 
 ## `createProfilePicture()`
@@ -33,8 +33,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UserProfilesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -50,9 +50,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **uuid** | **string**| The uuid of the user | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uuid** | **string**| The uuid of the user |
 
 ### Return type
 
@@ -91,8 +91,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UserProfilesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -107,9 +107,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **uuid** | **string**| The uuid of the user | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uuid** | **string**| The uuid of the user |
 
 ### Return type
 
@@ -148,8 +148,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UserProfilesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -165,9 +165,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **user_id** | **string**| The UUID of the user | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **string**| The UUID of the user |
 
 ### Return type
 
@@ -206,8 +206,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UserProfilesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -223,9 +223,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **user_id** | **string**| The UUID of the user | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **string**| The UUID of the user |
 
 ### Return type
 
@@ -264,8 +264,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UserProfilesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -321,8 +321,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UserProfilesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -339,10 +339,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **user_id** | **string**| The UUID of the user | |
-| **address** | [**\OpenAPI\Client\Model\Address**](../Model/Address.md)|  | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **string**| The UUID of the user |
+ **address** | [**\OpenAPI\Client\Model\Address**](../Model/Address.md)|  | [optional]
 
 ### Return type
 
@@ -383,8 +383,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\UserProfilesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -401,10 +401,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **user_id** | **string**| The UUID of the user | |
-| **update_profile_request** | [**\OpenAPI\Client\Model\UpdateProfileRequest**](../Model/UpdateProfileRequest.md)|  | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **string**| The UUID of the user |
+ **update_profile_request** | [**\OpenAPI\Client\Model\UpdateProfileRequest**](../Model/UpdateProfileRequest.md)|  | [optional]
 
 ### Return type
 

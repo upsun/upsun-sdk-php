@@ -1,14 +1,14 @@
 # OpenAPI\Client\CertManagementApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**createProjectsCertificates()**](CertManagementApi.md#createProjectsCertificates) | **POST** /projects/{projectId}/certificates | Add an SSL certificate |
-| [**deleteProjectsCertificates()**](CertManagementApi.md#deleteProjectsCertificates) | **DELETE** /projects/{projectId}/certificates/{certificateId} | Delete an SSL certificate |
-| [**getProjectsCertificates()**](CertManagementApi.md#getProjectsCertificates) | **GET** /projects/{projectId}/certificates/{certificateId} | Get an SSL certificate |
-| [**listProjectsCertificates()**](CertManagementApi.md#listProjectsCertificates) | **GET** /projects/{projectId}/certificates | Get list of SSL certificates |
-| [**updateProjectsCertificates()**](CertManagementApi.md#updateProjectsCertificates) | **PATCH** /projects/{projectId}/certificates/{certificateId} | Update an SSL certificate |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**createProjectsCertificates()**](CertManagementApi.md#createProjectsCertificates) | **POST** /projects/{projectId}/certificates | Add an SSL certificate
+[**deleteProjectsCertificates()**](CertManagementApi.md#deleteProjectsCertificates) | **DELETE** /projects/{projectId}/certificates/{certificateId} | Delete an SSL certificate
+[**getProjectsCertificates()**](CertManagementApi.md#getProjectsCertificates) | **GET** /projects/{projectId}/certificates/{certificateId} | Get an SSL certificate
+[**listProjectsCertificates()**](CertManagementApi.md#listProjectsCertificates) | **GET** /projects/{projectId}/certificates | Get list of SSL certificates
+[**updateProjectsCertificates()**](CertManagementApi.md#updateProjectsCertificates) | **PATCH** /projects/{projectId}/certificates/{certificateId} | Update an SSL certificate
 
 
 ## `createProjectsCertificates()`
@@ -33,8 +33,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\CertManagementApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -51,10 +51,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **certificate_create_input** | [**\OpenAPI\Client\Model\CertificateCreateInput**](../Model/CertificateCreateInput.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **certificate_create_input** | [**\OpenAPI\Client\Model\CertificateCreateInput**](../Model/CertificateCreateInput.md)|  |
 
 ### Return type
 
@@ -95,8 +95,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\CertManagementApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -113,10 +113,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **certificate_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **certificate_id** | **string**|  |
 
 ### Return type
 
@@ -157,8 +157,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\CertManagementApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -175,10 +175,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **certificate_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **certificate_id** | **string**|  |
 
 ### Return type
 
@@ -219,8 +219,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\CertManagementApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -236,9 +236,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
 
 ### Return type
 
@@ -279,8 +279,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\CertManagementApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -298,11 +298,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **certificate_id** | **string**|  | |
-| **certificate_patch** | [**\OpenAPI\Client\Model\CertificatePatch**](../Model/CertificatePatch.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **certificate_id** | **string**|  |
+ **certificate_patch** | [**\OpenAPI\Client\Model\CertificatePatch**](../Model/CertificatePatch.md)|  |
 
 ### Return type
 

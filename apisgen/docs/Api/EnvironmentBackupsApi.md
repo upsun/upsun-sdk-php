@@ -1,14 +1,14 @@
 # OpenAPI\Client\EnvironmentBackupsApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**backupEnvironment()**](EnvironmentBackupsApi.md#backupEnvironment) | **POST** /projects/{projectId}/environments/{environmentId}/backup | Create snapshot of environment |
-| [**deleteProjectsEnvironmentsBackups()**](EnvironmentBackupsApi.md#deleteProjectsEnvironmentsBackups) | **DELETE** /projects/{projectId}/environments/{environmentId}/backups/{backupId} | Delete an environment snapshot |
-| [**getProjectsEnvironmentsBackups()**](EnvironmentBackupsApi.md#getProjectsEnvironmentsBackups) | **GET** /projects/{projectId}/environments/{environmentId}/backups/{backupId} | Get an environment snapshot&#39;s info |
-| [**listProjectsEnvironmentsBackups()**](EnvironmentBackupsApi.md#listProjectsEnvironmentsBackups) | **GET** /projects/{projectId}/environments/{environmentId}/backups | Get an environment&#39;s snapshot list |
-| [**restoreBackup()**](EnvironmentBackupsApi.md#restoreBackup) | **POST** /projects/{projectId}/environments/{environmentId}/backups/{backupId}/restore | Restore an environment snapshot |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**backupEnvironment()**](EnvironmentBackupsApi.md#backupEnvironment) | **POST** /projects/{projectId}/environments/{environmentId}/backup | Create snapshot of environment
+[**deleteProjectsEnvironmentsBackups()**](EnvironmentBackupsApi.md#deleteProjectsEnvironmentsBackups) | **DELETE** /projects/{projectId}/environments/{environmentId}/backups/{backupId} | Delete an environment snapshot
+[**getProjectsEnvironmentsBackups()**](EnvironmentBackupsApi.md#getProjectsEnvironmentsBackups) | **GET** /projects/{projectId}/environments/{environmentId}/backups/{backupId} | Get an environment snapshot&#39;s info
+[**listProjectsEnvironmentsBackups()**](EnvironmentBackupsApi.md#listProjectsEnvironmentsBackups) | **GET** /projects/{projectId}/environments/{environmentId}/backups | Get an environment&#39;s snapshot list
+[**restoreBackup()**](EnvironmentBackupsApi.md#restoreBackup) | **POST** /projects/{projectId}/environments/{environmentId}/backups/{backupId}/restore | Restore an environment snapshot
 
 
 ## `backupEnvironment()`
@@ -33,8 +33,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentBackupsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -52,11 +52,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **environment_backup_input** | [**\OpenAPI\Client\Model\EnvironmentBackupInput**](../Model/EnvironmentBackupInput.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **environment_backup_input** | [**\OpenAPI\Client\Model\EnvironmentBackupInput**](../Model/EnvironmentBackupInput.md)|  |
 
 ### Return type
 
@@ -97,8 +97,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentBackupsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -116,11 +116,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **backup_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **backup_id** | **string**|  |
 
 ### Return type
 
@@ -161,8 +161,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentBackupsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -180,11 +180,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **backup_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **backup_id** | **string**|  |
 
 ### Return type
 
@@ -225,8 +225,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentBackupsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -243,10 +243,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
 
 ### Return type
 
@@ -287,8 +287,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\EnvironmentBackupsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -307,12 +307,12 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **backup_id** | **string**|  | |
-| **environment_restore_input** | [**\OpenAPI\Client\Model\EnvironmentRestoreInput**](../Model/EnvironmentRestoreInput.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **backup_id** | **string**|  |
+ **environment_restore_input** | [**\OpenAPI\Client\Model\EnvironmentRestoreInput**](../Model/EnvironmentRestoreInput.md)|  |
 
 ### Return type
 

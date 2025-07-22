@@ -1,12 +1,12 @@
 # OpenAPI\Client\SSHKeysApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**createSshKey()**](SSHKeysApi.md#createSshKey) | **POST** /ssh_keys | Add a new public SSH key to a user |
-| [**deleteSshKey()**](SSHKeysApi.md#deleteSshKey) | **DELETE** /ssh_keys/{key_id} | Delete an SSH key |
-| [**getSshKey()**](SSHKeysApi.md#getSshKey) | **GET** /ssh_keys/{key_id} | Get an SSH key |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**createSshKey()**](SSHKeysApi.md#createSshKey) | **POST** /ssh_keys | Add a new public SSH key to a user
+[**deleteSshKey()**](SSHKeysApi.md#deleteSshKey) | **DELETE** /ssh_keys/{key_id} | Delete an SSH key
+[**getSshKey()**](SSHKeysApi.md#getSshKey) | **GET** /ssh_keys/{key_id} | Get an SSH key
 
 
 ## `createSshKey()`
@@ -29,8 +29,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\SSHKeysApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -46,9 +46,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **create_ssh_key_request** | [**\OpenAPI\Client\Model\CreateSshKeyRequest**](../Model/CreateSshKeyRequest.md)|  | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_ssh_key_request** | [**\OpenAPI\Client\Model\CreateSshKeyRequest**](../Model/CreateSshKeyRequest.md)|  | [optional]
 
 ### Return type
 
@@ -87,8 +87,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\SSHKeysApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -103,9 +103,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **key_id** | **int**| The ID of the ssh key. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **key_id** | **int**| The ID of the ssh key. |
 
 ### Return type
 
@@ -144,8 +144,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\SSHKeysApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -161,9 +161,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **key_id** | **int**| The ID of the ssh key. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **key_id** | **int**| The ID of the ssh key. |
 
 ### Return type
 

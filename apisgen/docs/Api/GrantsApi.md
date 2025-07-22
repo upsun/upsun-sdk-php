@@ -1,10 +1,10 @@
 # OpenAPI\Client\GrantsApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**listUserExtendedAccess()**](GrantsApi.md#listUserExtendedAccess) | **GET** /users/{user_id}/extended-access | List extended access of a user |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**listUserExtendedAccess()**](GrantsApi.md#listUserExtendedAccess) | **GET** /users/{user_id}/extended-access | List extended access of a user
 
 
 ## `listUserExtendedAccess()`
@@ -29,8 +29,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\GrantsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -49,12 +49,12 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **user_id** | **string**| The ID of the user. | |
-| **filter_resource_type** | [**\OpenAPI\Client\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;resource_type&#x60; (project or organization) using one or more operators. | [optional] |
-| **filter_organization_id** | [**\OpenAPI\Client\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;organization_id&#x60; using one or more operators. | [optional] |
-| **filter_permissions** | [**\OpenAPI\Client\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;permissions&#x60; using one or more operators. | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **string**| The ID of the user. |
+ **filter_resource_type** | [**\OpenAPI\Client\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;resource_type&#x60; (project or organization) using one or more operators. | [optional]
+ **filter_organization_id** | [**\OpenAPI\Client\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;organization_id&#x60; using one or more operators. | [optional]
+ **filter_permissions** | [**\OpenAPI\Client\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;permissions&#x60; using one or more operators. | [optional]
 
 ### Return type
 

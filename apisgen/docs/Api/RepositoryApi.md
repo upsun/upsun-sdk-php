@@ -1,14 +1,14 @@
 # OpenAPI\Client\RepositoryApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**getProjectsGitBlobs()**](RepositoryApi.md#getProjectsGitBlobs) | **GET** /projects/{projectId}/git/blobs/{repositoryBlobId} | Get a blob object |
-| [**getProjectsGitCommits()**](RepositoryApi.md#getProjectsGitCommits) | **GET** /projects/{projectId}/git/commits/{repositoryCommitId} | Get a commit object |
-| [**getProjectsGitRefs()**](RepositoryApi.md#getProjectsGitRefs) | **GET** /projects/{projectId}/git/refs/{repositoryRefId} | Get a ref object |
-| [**getProjectsGitTrees()**](RepositoryApi.md#getProjectsGitTrees) | **GET** /projects/{projectId}/git/trees/{repositoryTreeId} | Get a tree object |
-| [**listProjectsGitRefs()**](RepositoryApi.md#listProjectsGitRefs) | **GET** /projects/{projectId}/git/refs | Get list of repository refs |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**getProjectsGitBlobs()**](RepositoryApi.md#getProjectsGitBlobs) | **GET** /projects/{projectId}/git/blobs/{repositoryBlobId} | Get a blob object
+[**getProjectsGitCommits()**](RepositoryApi.md#getProjectsGitCommits) | **GET** /projects/{projectId}/git/commits/{repositoryCommitId} | Get a commit object
+[**getProjectsGitRefs()**](RepositoryApi.md#getProjectsGitRefs) | **GET** /projects/{projectId}/git/refs/{repositoryRefId} | Get a ref object
+[**getProjectsGitTrees()**](RepositoryApi.md#getProjectsGitTrees) | **GET** /projects/{projectId}/git/trees/{repositoryTreeId} | Get a tree object
+[**listProjectsGitRefs()**](RepositoryApi.md#listProjectsGitRefs) | **GET** /projects/{projectId}/git/refs | Get list of repository refs
 
 
 ## `getProjectsGitBlobs()`
@@ -33,8 +33,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\RepositoryApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -51,10 +51,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **repository_blob_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **repository_blob_id** | **string**|  |
 
 ### Return type
 
@@ -95,8 +95,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\RepositoryApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -113,10 +113,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **repository_commit_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **repository_commit_id** | **string**|  |
 
 ### Return type
 
@@ -157,8 +157,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\RepositoryApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -175,10 +175,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **repository_ref_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **repository_ref_id** | **string**|  |
 
 ### Return type
 
@@ -219,8 +219,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\RepositoryApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -237,10 +237,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **repository_tree_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **repository_tree_id** | **string**|  |
 
 ### Return type
 
@@ -281,8 +281,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\RepositoryApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -298,9 +298,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
 
 ### Return type
 

@@ -1,12 +1,12 @@
 # OpenAPI\Client\ConnectionsApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**deleteLoginConnection()**](ConnectionsApi.md#deleteLoginConnection) | **DELETE** /users/{user_id}/connections/{provider} | Delete a federated login connection |
-| [**getLoginConnection()**](ConnectionsApi.md#getLoginConnection) | **GET** /users/{user_id}/connections/{provider} | Get a federated login connection |
-| [**listLoginConnections()**](ConnectionsApi.md#listLoginConnections) | **GET** /users/{user_id}/connections | List federated login connections |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**deleteLoginConnection()**](ConnectionsApi.md#deleteLoginConnection) | **DELETE** /users/{user_id}/connections/{provider} | Delete a federated login connection
+[**getLoginConnection()**](ConnectionsApi.md#getLoginConnection) | **GET** /users/{user_id}/connections/{provider} | Get a federated login connection
+[**listLoginConnections()**](ConnectionsApi.md#listLoginConnections) | **GET** /users/{user_id}/connections | List federated login connections
 
 
 ## `deleteLoginConnection()`
@@ -31,8 +31,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\ConnectionsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -48,10 +48,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **provider** | **string**| The name of the federation provider. | |
-| **user_id** | **string**| The ID of the user. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **provider** | **string**| The name of the federation provider. |
+ **user_id** | **string**| The ID of the user. |
 
 ### Return type
 
@@ -92,8 +92,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\ConnectionsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -110,10 +110,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **provider** | **string**| The name of the federation provider. | |
-| **user_id** | **string**| The ID of the user. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **provider** | **string**| The name of the federation provider. |
+ **user_id** | **string**| The ID of the user. |
 
 ### Return type
 
@@ -154,8 +154,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\ConnectionsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -171,9 +171,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **user_id** | **string**| The ID of the user. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **string**| The ID of the user. |
 
 ### Return type
 

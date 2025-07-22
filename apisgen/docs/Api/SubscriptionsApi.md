@@ -1,19 +1,18 @@
 # OpenAPI\Client\SubscriptionsApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**canCreateNewOrgSubscription()**](SubscriptionsApi.md#canCreateNewOrgSubscription) | **GET** /organizations/{organization_id}/subscriptions/can-create | Checks if the user is able to create a new project. |
-| [**createOrgSubscription()**](SubscriptionsApi.md#createOrgSubscription) | **POST** /organizations/{organization_id}/subscriptions | Create subscription |
-| [**deleteOrgSubscription()**](SubscriptionsApi.md#deleteOrgSubscription) | **DELETE** /organizations/{organization_id}/subscriptions/{subscription_id} | Delete subscription |
-| [**estimateNewOrgSubscription()**](SubscriptionsApi.md#estimateNewOrgSubscription) | **GET** /organizations/{organization_id}/subscriptions/estimate | Estimate the price of a new subscription |
-| [**estimateOrgSubscription()**](SubscriptionsApi.md#estimateOrgSubscription) | **GET** /organizations/{organization_id}/subscriptions/{subscription_id}/estimate | Estimate the price of a subscription |
-| [**getOrgSubscription()**](SubscriptionsApi.md#getOrgSubscription) | **GET** /organizations/{organization_id}/subscriptions/{subscription_id} | Get subscription |
-| [**getOrgSubscriptionCurrentUsage()**](SubscriptionsApi.md#getOrgSubscriptionCurrentUsage) | **GET** /organizations/{organization_id}/subscriptions/{subscription_id}/current_usage | Get current usage for a subscription |
-| [**listOrgSubscriptions()**](SubscriptionsApi.md#listOrgSubscriptions) | **GET** /organizations/{organization_id}/subscriptions | List subscriptions |
-| [**listSubscriptionAddons()**](SubscriptionsApi.md#listSubscriptionAddons) | **GET** /organizations/{organization_id}/subscriptions/{subscription_id}/addons | List addons for a subscription |
-| [**updateOrgSubscription()**](SubscriptionsApi.md#updateOrgSubscription) | **PATCH** /organizations/{organization_id}/subscriptions/{subscription_id} | Update subscription |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**canCreateNewOrgSubscription()**](SubscriptionsApi.md#canCreateNewOrgSubscription) | **GET** /organizations/{organization_id}/subscriptions/can-create | Checks if the user is able to create a new project.
+[**createOrgSubscription()**](SubscriptionsApi.md#createOrgSubscription) | **POST** /organizations/{organization_id}/subscriptions | Create subscription
+[**deleteOrgSubscription()**](SubscriptionsApi.md#deleteOrgSubscription) | **DELETE** /organizations/{organization_id}/subscriptions/{subscription_id} | Delete subscription
+[**estimateNewOrgSubscription()**](SubscriptionsApi.md#estimateNewOrgSubscription) | **GET** /organizations/{organization_id}/subscriptions/estimate | Estimate the price of a new subscription
+[**estimateOrgSubscription()**](SubscriptionsApi.md#estimateOrgSubscription) | **GET** /organizations/{organization_id}/subscriptions/{subscription_id}/estimate | Estimate the price of a subscription
+[**getOrgSubscription()**](SubscriptionsApi.md#getOrgSubscription) | **GET** /organizations/{organization_id}/subscriptions/{subscription_id} | Get subscription
+[**getOrgSubscriptionCurrentUsage()**](SubscriptionsApi.md#getOrgSubscriptionCurrentUsage) | **GET** /organizations/{organization_id}/subscriptions/{subscription_id}/current_usage | Get current usage for a subscription
+[**listOrgSubscriptions()**](SubscriptionsApi.md#listOrgSubscriptions) | **GET** /organizations/{organization_id}/subscriptions | List subscriptions
+[**updateOrgSubscription()**](SubscriptionsApi.md#updateOrgSubscription) | **PATCH** /organizations/{organization_id}/subscriptions/{subscription_id} | Update subscription
 
 
 ## `canCreateNewOrgSubscription()`
@@ -36,8 +35,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\SubscriptionsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -53,9 +52,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organization_id** | **string**| The ID of the organization. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization_id** | **string**| The ID of the organization. |
 
 ### Return type
 
@@ -96,8 +95,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\SubscriptionsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -114,10 +113,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organization_id** | **string**| The ID of the organization. | |
-| **create_org_subscription_request** | [**\OpenAPI\Client\Model\CreateOrgSubscriptionRequest**](../Model/CreateOrgSubscriptionRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization_id** | **string**| The ID of the organization. |
+ **create_org_subscription_request** | [**\OpenAPI\Client\Model\CreateOrgSubscriptionRequest**](../Model/CreateOrgSubscriptionRequest.md)|  |
 
 ### Return type
 
@@ -158,8 +157,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\SubscriptionsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -175,10 +174,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organization_id** | **string**| The ID of the organization. | |
-| **subscription_id** | **string**| The ID of the subscription. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization_id** | **string**| The ID of the organization. |
+ **subscription_id** | **string**| The ID of the subscription. |
 
 ### Return type
 
@@ -217,8 +216,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\SubscriptionsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -239,14 +238,14 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organization_id** | **string**| The ID of the organization. | |
-| **plan** | **string**| The plan type of the subscription. | |
-| **environments** | **int**| The maximum number of environments which can be provisioned on the project. | |
-| **storage** | **int**| The total storage available to each environment, in MiB. | |
-| **user_licenses** | **int**| The number of user licenses. | |
-| **format** | **string**| The format of the estimation output. | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization_id** | **string**| The ID of the organization. |
+ **plan** | **string**| The plan type of the subscription. |
+ **environments** | **int**| The maximum number of environments which can be provisioned on the project. |
+ **storage** | **int**| The total storage available to each environment, in MiB. |
+ **user_licenses** | **int**| The number of user licenses. |
+ **format** | **string**| The format of the estimation output. | [optional]
 
 ### Return type
 
@@ -285,8 +284,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\SubscriptionsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -308,15 +307,15 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organization_id** | **string**| The ID of the organization. | |
-| **subscription_id** | **string**| The ID of the subscription. | |
-| **plan** | **string**| The plan type of the subscription. | |
-| **environments** | **int**| The maximum number of environments which can be provisioned on the project. | [optional] |
-| **storage** | **int**| The total storage available to each environment, in MiB. | [optional] |
-| **user_licenses** | **int**| The number of user licenses. | [optional] |
-| **format** | **string**| The format of the estimation output. | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization_id** | **string**| The ID of the organization. |
+ **subscription_id** | **string**| The ID of the subscription. |
+ **plan** | **string**| The plan type of the subscription. |
+ **environments** | **int**| The maximum number of environments which can be provisioned on the project. | [optional]
+ **storage** | **int**| The total storage available to each environment, in MiB. | [optional]
+ **user_licenses** | **int**| The number of user licenses. | [optional]
+ **format** | **string**| The format of the estimation output. | [optional]
 
 ### Return type
 
@@ -357,8 +356,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\SubscriptionsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -375,10 +374,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organization_id** | **string**| The ID of the organization. | |
-| **subscription_id** | **string**| The ID of the subscription. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization_id** | **string**| The ID of the organization. |
+ **subscription_id** | **string**| The ID of the subscription. |
 
 ### Return type
 
@@ -417,8 +416,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\SubscriptionsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -437,12 +436,12 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organization_id** | **string**| The ID of the organization. | |
-| **subscription_id** | **string**| The ID of the subscription. | |
-| **usage_groups** | **string**| A list of usage groups to retrieve current usage for. | [optional] |
-| **include_not_charged** | **bool**| Whether to include not charged usage groups. | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization_id** | **string**| The ID of the organization. |
+ **subscription_id** | **string**| The ID of the subscription. |
+ **usage_groups** | **string**| A list of usage groups to retrieve current usage for. | [optional]
+ **include_not_charged** | **bool**| Whether to include not charged usage groups. | [optional]
 
 ### Return type
 
@@ -483,8 +482,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\SubscriptionsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -510,83 +509,23 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organization_id** | **string**| The ID of the organization. | |
-| **filter_status** | **string**| The status of the subscription. | [optional] |
-| **filter_id** | **string**| Machine name of the region. | [optional] |
-| **filter_project_id** | [**\OpenAPI\Client\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;project_id&#x60; using one or more operators. | [optional] |
-| **filter_project_title** | [**\OpenAPI\Client\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;project_title&#x60; using one or more operators. | [optional] |
-| **filter_region** | [**\OpenAPI\Client\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;region&#x60; using one or more operators. | [optional] |
-| **filter_updated_at** | [**\OpenAPI\Client\Model\DateTimeFilter**](../Model/.md)| Allows filtering by &#x60;updated_at&#x60; using one or more operators. | [optional] |
-| **page_size** | **int**| Determines the number of items to show. | [optional] |
-| **page_before** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
-| **page_after** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
-| **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;region&#x60;, &#x60;project_title&#x60;, &#x60;type&#x60;, &#x60;plan&#x60;, &#x60;status&#x60;, &#x60;created_at&#x60;, &#x60;updated_at&#x60;. | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization_id** | **string**| The ID of the organization. |
+ **filter_status** | **string**| The status of the subscription. | [optional]
+ **filter_id** | **string**| Machine name of the region. | [optional]
+ **filter_project_id** | [**\OpenAPI\Client\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;project_id&#x60; using one or more operators. | [optional]
+ **filter_project_title** | [**\OpenAPI\Client\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;project_title&#x60; using one or more operators. | [optional]
+ **filter_region** | [**\OpenAPI\Client\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;region&#x60; using one or more operators. | [optional]
+ **filter_updated_at** | [**\OpenAPI\Client\Model\DateTimeFilter**](../Model/.md)| Allows filtering by &#x60;updated_at&#x60; using one or more operators. | [optional]
+ **page_size** | **int**| Determines the number of items to show. | [optional]
+ **page_before** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **page_after** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;region&#x60;, &#x60;project_title&#x60;, &#x60;type&#x60;, &#x60;plan&#x60;, &#x60;status&#x60;, &#x60;created_at&#x60;, &#x60;updated_at&#x60;. | [optional]
 
 ### Return type
 
 [**\OpenAPI\Client\Model\ListOrgSubscriptions200Response**](../Model/ListOrgSubscriptions200Response.md)
-
-### Authorization
-
-[OAuth2](../../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`, `application/problem+json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `listSubscriptionAddons()`
-
-```php
-listSubscriptionAddons($organization_id, $subscription_id): \OpenAPI\Client\Model\SubscriptionAddonsObject
-```
-
-List addons for a subscription
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure OAuth2 access token for authorization: OAuth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-
-$apiInstance = new OpenAPI\Client\Api\SubscriptionsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$organization_id = 'organization_id_example'; // string | The ID of the organization.
-$subscription_id = 'subscription_id_example'; // string | The ID of the subscription.
-
-try {
-    $result = $apiInstance->listSubscriptionAddons($organization_id, $subscription_id);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling SubscriptionsApi->listSubscriptionAddons: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organization_id** | **string**| The ID of the organization. | |
-| **subscription_id** | **string**| The ID of the subscription. | |
-
-### Return type
-
-[**\OpenAPI\Client\Model\SubscriptionAddonsObject**](../Model/SubscriptionAddonsObject.md)
 
 ### Authorization
 
@@ -623,8 +562,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\SubscriptionsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -642,11 +581,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organization_id** | **string**| The ID of the organization. | |
-| **subscription_id** | **string**| The ID of the subscription. | |
-| **update_org_subscription_request** | [**\OpenAPI\Client\Model\UpdateOrgSubscriptionRequest**](../Model/UpdateOrgSubscriptionRequest.md)|  | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization_id** | **string**| The ID of the organization. |
+ **subscription_id** | **string**| The ID of the subscription. |
+ **update_org_subscription_request** | [**\OpenAPI\Client\Model\UpdateOrgSubscriptionRequest**](../Model/UpdateOrgSubscriptionRequest.md)|  | [optional]
 
 ### Return type
 

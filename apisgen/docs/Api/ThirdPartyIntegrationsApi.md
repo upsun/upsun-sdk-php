@@ -1,14 +1,14 @@
 # OpenAPI\Client\ThirdPartyIntegrationsApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**createProjectsIntegrations()**](ThirdPartyIntegrationsApi.md#createProjectsIntegrations) | **POST** /projects/{projectId}/integrations | Integrate project with a third-party service |
-| [**deleteProjectsIntegrations()**](ThirdPartyIntegrationsApi.md#deleteProjectsIntegrations) | **DELETE** /projects/{projectId}/integrations/{integrationId} | Delete an existing third-party integration |
-| [**getProjectsIntegrations()**](ThirdPartyIntegrationsApi.md#getProjectsIntegrations) | **GET** /projects/{projectId}/integrations/{integrationId} | Get information about an existing third-party integration |
-| [**listProjectsIntegrations()**](ThirdPartyIntegrationsApi.md#listProjectsIntegrations) | **GET** /projects/{projectId}/integrations | Get list of existing integrations for a project |
-| [**updateProjectsIntegrations()**](ThirdPartyIntegrationsApi.md#updateProjectsIntegrations) | **PATCH** /projects/{projectId}/integrations/{integrationId} | Update an existing third-party integration |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**createProjectsIntegrations()**](ThirdPartyIntegrationsApi.md#createProjectsIntegrations) | **POST** /projects/{projectId}/integrations | Integrate project with a third-party service
+[**deleteProjectsIntegrations()**](ThirdPartyIntegrationsApi.md#deleteProjectsIntegrations) | **DELETE** /projects/{projectId}/integrations/{integrationId} | Delete an existing third-party integration
+[**getProjectsIntegrations()**](ThirdPartyIntegrationsApi.md#getProjectsIntegrations) | **GET** /projects/{projectId}/integrations/{integrationId} | Get information about an existing third-party integration
+[**listProjectsIntegrations()**](ThirdPartyIntegrationsApi.md#listProjectsIntegrations) | **GET** /projects/{projectId}/integrations | Get list of existing integrations for a project
+[**updateProjectsIntegrations()**](ThirdPartyIntegrationsApi.md#updateProjectsIntegrations) | **PATCH** /projects/{projectId}/integrations/{integrationId} | Update an existing third-party integration
 
 
 ## `createProjectsIntegrations()`
@@ -31,8 +31,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\ThirdPartyIntegrationsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -49,10 +49,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **integration_create_input** | [**\OpenAPI\Client\Model\IntegrationCreateInput**](../Model/IntegrationCreateInput.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **integration_create_input** | [**\OpenAPI\Client\Model\IntegrationCreateInput**](../Model/IntegrationCreateInput.md)|  |
 
 ### Return type
 
@@ -91,8 +91,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\ThirdPartyIntegrationsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -109,10 +109,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **integration_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **integration_id** | **string**|  |
 
 ### Return type
 
@@ -151,8 +151,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\ThirdPartyIntegrationsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -169,10 +169,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **integration_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **integration_id** | **string**|  |
 
 ### Return type
 
@@ -211,8 +211,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\ThirdPartyIntegrationsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -228,9 +228,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
 
 ### Return type
 
@@ -269,8 +269,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\ThirdPartyIntegrationsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -288,11 +288,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **integration_id** | **string**|  | |
-| **integration_patch** | [**\OpenAPI\Client\Model\IntegrationPatch**](../Model/IntegrationPatch.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **integration_id** | **string**|  |
+ **integration_patch** | [**\OpenAPI\Client\Model\IntegrationPatch**](../Model/IntegrationPatch.md)|  |
 
 ### Return type
 

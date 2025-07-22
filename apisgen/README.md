@@ -158,7 +158,7 @@ For more information, please visit [https://platform.sh/contact](https://platfor
 
 ### Requirements
 
-PHP 8.1 and later.
+PHP 7.2 and later.
 
 ### Composer
 
@@ -179,6 +179,18 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
 ```
 
 Then run `composer install`
+
+Your project is free to choose the http client of your choice
+Please require packages that will provide http client functionality:
+https://packagist.org/providers/psr/http-client-implementation
+https://packagist.org/providers/php-http/async-client-implementation
+https://packagist.org/providers/psr/http-factory-implementation
+
+As an example:
+
+```
+composer require guzzlehttp/guzzle php-http/guzzle7-adapter http-interop/http-factory-guzzle
+```
 
 ### Manual Installation
 
@@ -204,8 +216,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\APITokensApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -231,7 +243,6 @@ Class | Method | HTTP request | Description
 *APITokensApi* | [**deleteApiToken**](docs/Api/APITokensApi.md#deleteapitoken) | **DELETE** /users/{user_id}/api-tokens/{token_id} | Delete an API token
 *APITokensApi* | [**getApiToken**](docs/Api/APITokensApi.md#getapitoken) | **GET** /users/{user_id}/api-tokens/{token_id} | Get an API token
 *APITokensApi* | [**listApiTokens**](docs/Api/APITokensApi.md#listapitokens) | **GET** /users/{user_id}/api-tokens | List a user&#39;s API tokens
-*AddOnsApi* | [**getOrgAddons**](docs/Api/AddOnsApi.md#getorgaddons) | **GET** /organizations/{organization_id}/addons | Get add-ons
 *AlertsApi* | [**createUsageAlert**](docs/Api/AlertsApi.md#createusagealert) | **POST** /alerts/subscriptions/{subscriptionId}/usage | Create a usage alert.
 *AlertsApi* | [**deleteUsageAlert**](docs/Api/AlertsApi.md#deleteusagealert) | **DELETE** /alerts/subscriptions/{subscriptionId}/usage/{usageId} | Delete a usage alert.
 *AlertsApi* | [**getUsageAlerts**](docs/Api/AlertsApi.md#getusagealerts) | **GET** /alerts/subscriptions/{subscriptionId}/usage | Get usage alerts for a subscription
@@ -252,9 +263,6 @@ Class | Method | HTTP request | Description
 *DeploymentTargetApi* | [**getProjectsDeployments**](docs/Api/DeploymentTargetApi.md#getprojectsdeployments) | **GET** /projects/{projectId}/deployments/{deploymentTargetConfigurationId} | Get a single project deployment target
 *DeploymentTargetApi* | [**listProjectsDeployments**](docs/Api/DeploymentTargetApi.md#listprojectsdeployments) | **GET** /projects/{projectId}/deployments | Get project deployment target info
 *DeploymentTargetApi* | [**updateProjectsDeployments**](docs/Api/DeploymentTargetApi.md#updateprojectsdeployments) | **PATCH** /projects/{projectId}/deployments/{deploymentTargetConfigurationId} | Update a project deployment
-*DiscountsApi* | [**getDiscount**](docs/Api/DiscountsApi.md#getdiscount) | **GET** /discounts/{id} | Get an organization discount
-*DiscountsApi* | [**getTypeAllowance**](docs/Api/DiscountsApi.md#gettypeallowance) | **GET** /discounts/types/allowance | Get the value of the First Project Incentive discount
-*DiscountsApi* | [**listOrgDiscounts**](docs/Api/DiscountsApi.md#listorgdiscounts) | **GET** /organizations/{organization_id}/discounts | List organization discounts
 *DomainManagementApi* | [**createProjectsDomains**](docs/Api/DomainManagementApi.md#createprojectsdomains) | **POST** /projects/{projectId}/domains | Add a project domain
 *DomainManagementApi* | [**createProjectsEnvironmentsDomains**](docs/Api/DomainManagementApi.md#createprojectsenvironmentsdomains) | **POST** /projects/{projectId}/environments/{environmentId}/domains | Add an environment domain
 *DomainManagementApi* | [**deleteProjectsDomains**](docs/Api/DomainManagementApi.md#deleteprojectsdomains) | **DELETE** /projects/{projectId}/domains/{domainId} | Delete a project domain
@@ -316,11 +324,6 @@ Class | Method | HTTP request | Description
 *OrganizationInvitationsApi* | [**cancelOrgInvite**](docs/Api/OrganizationInvitationsApi.md#cancelorginvite) | **DELETE** /organizations/{organization_id}/invitations/{invitation_id} | Cancel a pending invitation to an organization
 *OrganizationInvitationsApi* | [**createOrgInvite**](docs/Api/OrganizationInvitationsApi.md#createorginvite) | **POST** /organizations/{organization_id}/invitations | Invite user to an organization by email
 *OrganizationInvitationsApi* | [**listOrgInvites**](docs/Api/OrganizationInvitationsApi.md#listorginvites) | **GET** /organizations/{organization_id}/invitations | List invitations to an organization
-*OrganizationManagementApi* | [**estimateOrg**](docs/Api/OrganizationManagementApi.md#estimateorg) | **GET** /organizations/{organization_id}/estimate | Estimate total spend
-*OrganizationManagementApi* | [**getOrgBillingAlertConfig**](docs/Api/OrganizationManagementApi.md#getorgbillingalertconfig) | **GET** /organizations/{organization_id}/alerts/billing | Get billing alert configuration
-*OrganizationManagementApi* | [**getOrgPrepaymentInfo**](docs/Api/OrganizationManagementApi.md#getorgprepaymentinfo) | **GET** /organizations/{organization_id}/prepayment | Get organization prepayment information
-*OrganizationManagementApi* | [**listOrgPrepaymentTransactions**](docs/Api/OrganizationManagementApi.md#listorgprepaymenttransactions) | **GET** /organizations/{organization_id}/prepayment/transactions | List organization prepayment transactions
-*OrganizationManagementApi* | [**updateOrgBillingAlertConfig**](docs/Api/OrganizationManagementApi.md#updateorgbillingalertconfig) | **PATCH** /organizations/{organization_id}/alerts/billing | Update billing alert configuration
 *OrganizationMembersApi* | [**createOrgMember**](docs/Api/OrganizationMembersApi.md#createorgmember) | **POST** /organizations/{organization_id}/members | Create organization member
 *OrganizationMembersApi* | [**deleteOrgMember**](docs/Api/OrganizationMembersApi.md#deleteorgmember) | **DELETE** /organizations/{organization_id}/members/{user_id} | Delete organization member
 *OrganizationMembersApi* | [**getOrgMember**](docs/Api/OrganizationMembersApi.md#getorgmember) | **GET** /organizations/{organization_id}/members/{user_id} | Get organization member
@@ -392,7 +395,6 @@ Class | Method | HTTP request | Description
 *SubscriptionsApi* | [**getOrgSubscription**](docs/Api/SubscriptionsApi.md#getorgsubscription) | **GET** /organizations/{organization_id}/subscriptions/{subscription_id} | Get subscription
 *SubscriptionsApi* | [**getOrgSubscriptionCurrentUsage**](docs/Api/SubscriptionsApi.md#getorgsubscriptioncurrentusage) | **GET** /organizations/{organization_id}/subscriptions/{subscription_id}/current_usage | Get current usage for a subscription
 *SubscriptionsApi* | [**listOrgSubscriptions**](docs/Api/SubscriptionsApi.md#listorgsubscriptions) | **GET** /organizations/{organization_id}/subscriptions | List subscriptions
-*SubscriptionsApi* | [**listSubscriptionAddons**](docs/Api/SubscriptionsApi.md#listsubscriptionaddons) | **GET** /organizations/{organization_id}/subscriptions/{subscription_id}/addons | List addons for a subscription
 *SubscriptionsApi* | [**updateOrgSubscription**](docs/Api/SubscriptionsApi.md#updateorgsubscription) | **PATCH** /organizations/{organization_id}/subscriptions/{subscription_id} | Update subscription
 *SupportApi* | [**createTicket**](docs/Api/SupportApi.md#createticket) | **POST** /tickets | Create a new support ticket
 *SupportApi* | [**listTicketCategories**](docs/Api/SupportApi.md#listticketcategories) | **GET** /tickets/category | List support ticket categories
@@ -527,8 +529,6 @@ Class | Method | HTTP request | Description
 - [CreateTicketRequestAttachmentsInner](docs/Model/CreateTicketRequestAttachmentsInner.md)
 - [CreateUsageAlertRequest](docs/Model/CreateUsageAlertRequest.md)
 - [CreateUsageAlertRequestConfig](docs/Model/CreateUsageAlertRequestConfig.md)
-- [CurrencyAmount](docs/Model/CurrencyAmount.md)
-- [CurrencyAmountNullable](docs/Model/CurrencyAmountNullable.md)
 - [CurrentUser](docs/Model/CurrentUser.md)
 - [CurrentUserCurrentTrialInner](docs/Model/CurrentUserCurrentTrialInner.md)
 - [CurrentUserProjectsInner](docs/Model/CurrentUserProjectsInner.md)
@@ -546,11 +546,6 @@ Class | Method | HTTP request | Description
 - [DeploymentTarget](docs/Model/DeploymentTarget.md)
 - [DeploymentTargetCreateInput](docs/Model/DeploymentTargetCreateInput.md)
 - [DeploymentTargetPatch](docs/Model/DeploymentTargetPatch.md)
-- [Discount](docs/Model/Discount.md)
-- [DiscountCommitment](docs/Model/DiscountCommitment.md)
-- [DiscountCommitmentAmount](docs/Model/DiscountCommitmentAmount.md)
-- [DiscountCommitmentNet](docs/Model/DiscountCommitmentNet.md)
-- [DiscountDiscount](docs/Model/DiscountDiscount.md)
 - [Domain](docs/Model/Domain.md)
 - [DomainCreateInput](docs/Model/DomainCreateInput.md)
 - [DomainPatch](docs/Model/DomainPatch.md)
@@ -591,18 +586,7 @@ Class | Method | HTTP request | Description
 - [GetAddress200Response](docs/Model/GetAddress200Response.md)
 - [GetCurrentUserVerificationStatus200Response](docs/Model/GetCurrentUserVerificationStatus200Response.md)
 - [GetCurrentUserVerificationStatusFull200Response](docs/Model/GetCurrentUserVerificationStatusFull200Response.md)
-- [GetOrgPrepaymentInfo200Response](docs/Model/GetOrgPrepaymentInfo200Response.md)
-- [GetOrgPrepaymentInfo200ResponseLinks](docs/Model/GetOrgPrepaymentInfo200ResponseLinks.md)
-- [GetOrgPrepaymentInfo200ResponseLinksSelf](docs/Model/GetOrgPrepaymentInfo200ResponseLinksSelf.md)
-- [GetOrgPrepaymentInfo200ResponseLinksTransactions](docs/Model/GetOrgPrepaymentInfo200ResponseLinksTransactions.md)
 - [GetTotpEnrollment200Response](docs/Model/GetTotpEnrollment200Response.md)
-- [GetTypeAllowance200Response](docs/Model/GetTypeAllowance200Response.md)
-- [GetTypeAllowance200ResponseCurrencies](docs/Model/GetTypeAllowance200ResponseCurrencies.md)
-- [GetTypeAllowance200ResponseCurrenciesAUD](docs/Model/GetTypeAllowance200ResponseCurrenciesAUD.md)
-- [GetTypeAllowance200ResponseCurrenciesCAD](docs/Model/GetTypeAllowance200ResponseCurrenciesCAD.md)
-- [GetTypeAllowance200ResponseCurrenciesEUR](docs/Model/GetTypeAllowance200ResponseCurrenciesEUR.md)
-- [GetTypeAllowance200ResponseCurrenciesGBP](docs/Model/GetTypeAllowance200ResponseCurrenciesGBP.md)
-- [GetTypeAllowance200ResponseCurrenciesUSD](docs/Model/GetTypeAllowance200ResponseCurrenciesUSD.md)
 - [GetUsageAlerts200Response](docs/Model/GetUsageAlerts200Response.md)
 - [GitHubIntegrationConfigurations](docs/Model/GitHubIntegrationConfigurations.md)
 - [GitLabIntegration](docs/Model/GitLabIntegration.md)
@@ -648,12 +632,10 @@ Class | Method | HTTP request | Description
 - [ListLinksNext](docs/Model/ListLinksNext.md)
 - [ListLinksPrevious](docs/Model/ListLinksPrevious.md)
 - [ListLinksSelf](docs/Model/ListLinksSelf.md)
-- [ListOrgDiscounts200Response](docs/Model/ListOrgDiscounts200Response.md)
 - [ListOrgInvoices200Response](docs/Model/ListOrgInvoices200Response.md)
 - [ListOrgMembers200Response](docs/Model/ListOrgMembers200Response.md)
 - [ListOrgOrders200Response](docs/Model/ListOrgOrders200Response.md)
 - [ListOrgPlanRecords200Response](docs/Model/ListOrgPlanRecords200Response.md)
-- [ListOrgPrepaymentTransactions200Response](docs/Model/ListOrgPrepaymentTransactions200Response.md)
 - [ListOrgProjects200Response](docs/Model/ListOrgProjects200Response.md)
 - [ListOrgSubscriptions200Response](docs/Model/ListOrgSubscriptions200Response.md)
 - [ListOrgUsageRecords200Response](docs/Model/ListOrgUsageRecords200Response.md)
@@ -685,26 +667,6 @@ Class | Method | HTTP request | Description
 - [OrderLinks](docs/Model/OrderLinks.md)
 - [OrderLinksInvoices](docs/Model/OrderLinksInvoices.md)
 - [Organization](docs/Model/Organization.md)
-- [OrganizationAddonsObject](docs/Model/OrganizationAddonsObject.md)
-- [OrganizationAddonsObjectAvailable](docs/Model/OrganizationAddonsObjectAvailable.md)
-- [OrganizationAddonsObjectCurrent](docs/Model/OrganizationAddonsObjectCurrent.md)
-- [OrganizationAddonsObjectUpgradesAvailable](docs/Model/OrganizationAddonsObjectUpgradesAvailable.md)
-- [OrganizationAlertConfig](docs/Model/OrganizationAlertConfig.md)
-- [OrganizationAlertConfigConfig](docs/Model/OrganizationAlertConfigConfig.md)
-- [OrganizationAlertConfigConfigThreshold](docs/Model/OrganizationAlertConfigConfigThreshold.md)
-- [OrganizationEstimationObject](docs/Model/OrganizationEstimationObject.md)
-- [OrganizationEstimationObjectSubscriptions](docs/Model/OrganizationEstimationObjectSubscriptions.md)
-- [OrganizationEstimationObjectSubscriptionsListInner](docs/Model/OrganizationEstimationObjectSubscriptionsListInner.md)
-- [OrganizationEstimationObjectSubscriptionsListInnerUsage](docs/Model/OrganizationEstimationObjectSubscriptionsListInnerUsage.md)
-- [OrganizationEstimationObjectUserLicenses](docs/Model/OrganizationEstimationObjectUserLicenses.md)
-- [OrganizationEstimationObjectUserLicensesBase](docs/Model/OrganizationEstimationObjectUserLicensesBase.md)
-- [OrganizationEstimationObjectUserLicensesBaseList](docs/Model/OrganizationEstimationObjectUserLicensesBaseList.md)
-- [OrganizationEstimationObjectUserLicensesBaseListAdminUser](docs/Model/OrganizationEstimationObjectUserLicensesBaseListAdminUser.md)
-- [OrganizationEstimationObjectUserLicensesBaseListViewerUser](docs/Model/OrganizationEstimationObjectUserLicensesBaseListViewerUser.md)
-- [OrganizationEstimationObjectUserLicensesUserManagement](docs/Model/OrganizationEstimationObjectUserLicensesUserManagement.md)
-- [OrganizationEstimationObjectUserLicensesUserManagementList](docs/Model/OrganizationEstimationObjectUserLicensesUserManagementList.md)
-- [OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser](docs/Model/OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser.md)
-- [OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser](docs/Model/OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser.md)
 - [OrganizationInvitation](docs/Model/OrganizationInvitation.md)
 - [OrganizationInvitationOwner](docs/Model/OrganizationInvitationOwner.md)
 - [OrganizationLinks](docs/Model/OrganizationLinks.md)
@@ -750,10 +712,6 @@ Class | Method | HTTP request | Description
 - [PerServiceResourcesOverridesValue](docs/Model/PerServiceResourcesOverridesValue.md)
 - [Plan](docs/Model/Plan.md)
 - [PlanRecords](docs/Model/PlanRecords.md)
-- [PrepaymentObject](docs/Model/PrepaymentObject.md)
-- [PrepaymentObjectPrepayment](docs/Model/PrepaymentObjectPrepayment.md)
-- [PrepaymentObjectPrepaymentBalance](docs/Model/PrepaymentObjectPrepaymentBalance.md)
-- [PrepaymentTransactionObject](docs/Model/PrepaymentTransactionObject.md)
 - [ProdDomainStorage](docs/Model/ProdDomainStorage.md)
 - [ProdDomainStorageCreateInput](docs/Model/ProdDomainStorageCreateInput.md)
 - [ProdDomainStoragePatch](docs/Model/ProdDomainStoragePatch.md)
@@ -837,10 +795,6 @@ Class | Method | HTTP request | Description
 - [StringFilter](docs/Model/StringFilter.md)
 - [Subscription](docs/Model/Subscription.md)
 - [Subscription1](docs/Model/Subscription1.md)
-- [SubscriptionAddonsObject](docs/Model/SubscriptionAddonsObject.md)
-- [SubscriptionAddonsObjectAvailable](docs/Model/SubscriptionAddonsObjectAvailable.md)
-- [SubscriptionAddonsObjectCurrent](docs/Model/SubscriptionAddonsObjectCurrent.md)
-- [SubscriptionAddonsObjectUpgradesAvailable](docs/Model/SubscriptionAddonsObjectUpgradesAvailable.md)
 - [SubscriptionCurrentUsageObject](docs/Model/SubscriptionCurrentUsageObject.md)
 - [SubscriptionInformation](docs/Model/SubscriptionInformation.md)
 - [SumoLogicLogForwardingIntegrationConfigurations](docs/Model/SumoLogicLogForwardingIntegrationConfigurations.md)
@@ -896,8 +850,6 @@ Class | Method | HTTP request | Description
 - [Ticket](docs/Model/Ticket.md)
 - [TicketJiraInner](docs/Model/TicketJiraInner.md)
 - [Tree](docs/Model/Tree.md)
-- [UpdateOrgBillingAlertConfigRequest](docs/Model/UpdateOrgBillingAlertConfigRequest.md)
-- [UpdateOrgBillingAlertConfigRequestConfig](docs/Model/UpdateOrgBillingAlertConfigRequestConfig.md)
 - [UpdateOrgMemberRequest](docs/Model/UpdateOrgMemberRequest.md)
 - [UpdateOrgProfileRequest](docs/Model/UpdateOrgProfileRequest.md)
 - [UpdateOrgRequest](docs/Model/UpdateOrgRequest.md)
@@ -924,6 +876,7 @@ Class | Method | HTTP request | Description
 - [VersionPatch](docs/Model/VersionPatch.md)
 - [Vouchers](docs/Model/Vouchers.md)
 - [VouchersLinks](docs/Model/VouchersLinks.md)
+- [VouchersLinksSelf](docs/Model/VouchersLinksSelf.md)
 - [VouchersVouchersInner](docs/Model/VouchersVouchersInner.md)
 - [VouchersVouchersInnerOrdersInner](docs/Model/VouchersVouchersInnerOrdersInner.md)
 - [WebApplicationsValue](docs/Model/WebApplicationsValue.md)
@@ -935,13 +888,13 @@ Class | Method | HTTP request | Description
 
 ## Authorization
 
-Authentication schemes defined for the API:
 ### OAuth2
 
 - **Type**: `OAuth`
 - **Flow**: `accessCode`
 - **Authorization URL**: `https://auth.api.platform.sh/oauth2/authorize`
 - **Scopes**: N/A
+
 
 ### OAuth2Admin
 
@@ -969,5 +922,5 @@ vendor/bin/phpunit
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `1.0`
-    - Generator version: `7.14.0`
+    - Generator version: `7.13.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

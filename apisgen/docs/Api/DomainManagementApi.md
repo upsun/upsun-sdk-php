@@ -1,19 +1,19 @@
 # OpenAPI\Client\DomainManagementApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**createProjectsDomains()**](DomainManagementApi.md#createProjectsDomains) | **POST** /projects/{projectId}/domains | Add a project domain |
-| [**createProjectsEnvironmentsDomains()**](DomainManagementApi.md#createProjectsEnvironmentsDomains) | **POST** /projects/{projectId}/environments/{environmentId}/domains | Add an environment domain |
-| [**deleteProjectsDomains()**](DomainManagementApi.md#deleteProjectsDomains) | **DELETE** /projects/{projectId}/domains/{domainId} | Delete a project domain |
-| [**deleteProjectsEnvironmentsDomains()**](DomainManagementApi.md#deleteProjectsEnvironmentsDomains) | **DELETE** /projects/{projectId}/environments/{environmentId}/domains/{domainId} | Delete an environment domain |
-| [**getProjectsDomains()**](DomainManagementApi.md#getProjectsDomains) | **GET** /projects/{projectId}/domains/{domainId} | Get a project domain |
-| [**getProjectsEnvironmentsDomains()**](DomainManagementApi.md#getProjectsEnvironmentsDomains) | **GET** /projects/{projectId}/environments/{environmentId}/domains/{domainId} | Get an environment domain |
-| [**listProjectsDomains()**](DomainManagementApi.md#listProjectsDomains) | **GET** /projects/{projectId}/domains | Get list of project domains |
-| [**listProjectsEnvironmentsDomains()**](DomainManagementApi.md#listProjectsEnvironmentsDomains) | **GET** /projects/{projectId}/environments/{environmentId}/domains | Get a list of environment domains |
-| [**updateProjectsDomains()**](DomainManagementApi.md#updateProjectsDomains) | **PATCH** /projects/{projectId}/domains/{domainId} | Update a project domain |
-| [**updateProjectsEnvironmentsDomains()**](DomainManagementApi.md#updateProjectsEnvironmentsDomains) | **PATCH** /projects/{projectId}/environments/{environmentId}/domains/{domainId} | Update an environment domain |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**createProjectsDomains()**](DomainManagementApi.md#createProjectsDomains) | **POST** /projects/{projectId}/domains | Add a project domain
+[**createProjectsEnvironmentsDomains()**](DomainManagementApi.md#createProjectsEnvironmentsDomains) | **POST** /projects/{projectId}/environments/{environmentId}/domains | Add an environment domain
+[**deleteProjectsDomains()**](DomainManagementApi.md#deleteProjectsDomains) | **DELETE** /projects/{projectId}/domains/{domainId} | Delete a project domain
+[**deleteProjectsEnvironmentsDomains()**](DomainManagementApi.md#deleteProjectsEnvironmentsDomains) | **DELETE** /projects/{projectId}/environments/{environmentId}/domains/{domainId} | Delete an environment domain
+[**getProjectsDomains()**](DomainManagementApi.md#getProjectsDomains) | **GET** /projects/{projectId}/domains/{domainId} | Get a project domain
+[**getProjectsEnvironmentsDomains()**](DomainManagementApi.md#getProjectsEnvironmentsDomains) | **GET** /projects/{projectId}/environments/{environmentId}/domains/{domainId} | Get an environment domain
+[**listProjectsDomains()**](DomainManagementApi.md#listProjectsDomains) | **GET** /projects/{projectId}/domains | Get list of project domains
+[**listProjectsEnvironmentsDomains()**](DomainManagementApi.md#listProjectsEnvironmentsDomains) | **GET** /projects/{projectId}/environments/{environmentId}/domains | Get a list of environment domains
+[**updateProjectsDomains()**](DomainManagementApi.md#updateProjectsDomains) | **PATCH** /projects/{projectId}/domains/{domainId} | Update a project domain
+[**updateProjectsEnvironmentsDomains()**](DomainManagementApi.md#updateProjectsEnvironmentsDomains) | **PATCH** /projects/{projectId}/environments/{environmentId}/domains/{domainId} | Update an environment domain
 
 
 ## `createProjectsDomains()`
@@ -38,8 +38,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\DomainManagementApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -56,10 +56,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **domain_create_input** | [**\OpenAPI\Client\Model\DomainCreateInput**](../Model/DomainCreateInput.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **domain_create_input** | [**\OpenAPI\Client\Model\DomainCreateInput**](../Model/DomainCreateInput.md)|  |
 
 ### Return type
 
@@ -100,8 +100,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\DomainManagementApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -119,11 +119,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **domain_create_input** | [**\OpenAPI\Client\Model\DomainCreateInput**](../Model/DomainCreateInput.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **domain_create_input** | [**\OpenAPI\Client\Model\DomainCreateInput**](../Model/DomainCreateInput.md)|  |
 
 ### Return type
 
@@ -164,8 +164,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\DomainManagementApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -182,10 +182,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **domain_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **domain_id** | **string**|  |
 
 ### Return type
 
@@ -226,8 +226,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\DomainManagementApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -245,11 +245,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **domain_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **domain_id** | **string**|  |
 
 ### Return type
 
@@ -290,8 +290,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\DomainManagementApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -308,10 +308,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **domain_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **domain_id** | **string**|  |
 
 ### Return type
 
@@ -352,8 +352,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\DomainManagementApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -371,11 +371,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **domain_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **domain_id** | **string**|  |
 
 ### Return type
 
@@ -416,8 +416,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\DomainManagementApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -433,9 +433,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
 
 ### Return type
 
@@ -476,8 +476,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\DomainManagementApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -494,10 +494,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
 
 ### Return type
 
@@ -538,8 +538,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\DomainManagementApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -557,11 +557,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **domain_id** | **string**|  | |
-| **domain_patch** | [**\OpenAPI\Client\Model\DomainPatch**](../Model/DomainPatch.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **domain_id** | **string**|  |
+ **domain_patch** | [**\OpenAPI\Client\Model\DomainPatch**](../Model/DomainPatch.md)|  |
 
 ### Return type
 
@@ -602,8 +602,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\DomainManagementApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -622,12 +622,12 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **project_id** | **string**|  | |
-| **environment_id** | **string**|  | |
-| **domain_id** | **string**|  | |
-| **domain_patch** | [**\OpenAPI\Client\Model\DomainPatch**](../Model/DomainPatch.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **string**|  |
+ **environment_id** | **string**|  |
+ **domain_id** | **string**|  |
+ **domain_patch** | [**\OpenAPI\Client\Model\DomainPatch**](../Model/DomainPatch.md)|  |
 
 ### Return type
 

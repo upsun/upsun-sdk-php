@@ -1,11 +1,11 @@
 # OpenAPI\Client\VouchersApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**applyOrgVoucher()**](VouchersApi.md#applyOrgVoucher) | **POST** /organizations/{organization_id}/vouchers/apply | Apply voucher |
-| [**listOrgVouchers()**](VouchersApi.md#listOrgVouchers) | **GET** /organizations/{organization_id}/vouchers | List vouchers |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**applyOrgVoucher()**](VouchersApi.md#applyOrgVoucher) | **POST** /organizations/{organization_id}/vouchers/apply | Apply voucher
+[**listOrgVouchers()**](VouchersApi.md#listOrgVouchers) | **GET** /organizations/{organization_id}/vouchers | List vouchers
 
 
 ## `applyOrgVoucher()`
@@ -30,8 +30,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\VouchersApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -47,10 +47,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organization_id** | **string**| The ID of the organization. | |
-| **apply_org_voucher_request** | [**\OpenAPI\Client\Model\ApplyOrgVoucherRequest**](../Model/ApplyOrgVoucherRequest.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization_id** | **string**| The ID of the organization. |
+ **apply_org_voucher_request** | [**\OpenAPI\Client\Model\ApplyOrgVoucherRequest**](../Model/ApplyOrgVoucherRequest.md)|  |
 
 ### Return type
 
@@ -91,8 +91,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\VouchersApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -108,9 +108,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
 
 ### Return type
 

@@ -1,13 +1,13 @@
 # OpenAPI\Client\AlertsApi
 
-All URIs are relative to https://api.platform.sh, except if the operation defines another base path.
+All URIs are relative to https://api.platform.sh.
 
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**createUsageAlert()**](AlertsApi.md#createUsageAlert) | **POST** /alerts/subscriptions/{subscriptionId}/usage | Create a usage alert. |
-| [**deleteUsageAlert()**](AlertsApi.md#deleteUsageAlert) | **DELETE** /alerts/subscriptions/{subscriptionId}/usage/{usageId} | Delete a usage alert. |
-| [**getUsageAlerts()**](AlertsApi.md#getUsageAlerts) | **GET** /alerts/subscriptions/{subscriptionId}/usage | Get usage alerts for a subscription |
-| [**updateUsageAlert()**](AlertsApi.md#updateUsageAlert) | **PATCH** /alerts/subscriptions/{subscriptionId}/usage/{usageId} | Update a usage alert. |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**createUsageAlert()**](AlertsApi.md#createUsageAlert) | **POST** /alerts/subscriptions/{subscriptionId}/usage | Create a usage alert.
+[**deleteUsageAlert()**](AlertsApi.md#deleteUsageAlert) | **DELETE** /alerts/subscriptions/{subscriptionId}/usage/{usageId} | Delete a usage alert.
+[**getUsageAlerts()**](AlertsApi.md#getUsageAlerts) | **GET** /alerts/subscriptions/{subscriptionId}/usage | Get usage alerts for a subscription
+[**updateUsageAlert()**](AlertsApi.md#updateUsageAlert) | **PATCH** /alerts/subscriptions/{subscriptionId}/usage/{usageId} | Update a usage alert.
 
 
 ## `createUsageAlert()`
@@ -30,8 +30,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\AlertsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -48,10 +48,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **subscription_id** | **string**| The ID of the subscription | |
-| **create_usage_alert_request** | [**\OpenAPI\Client\Model\CreateUsageAlertRequest**](../Model/CreateUsageAlertRequest.md)|  | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **subscription_id** | **string**| The ID of the subscription |
+ **create_usage_alert_request** | [**\OpenAPI\Client\Model\CreateUsageAlertRequest**](../Model/CreateUsageAlertRequest.md)|  | [optional]
 
 ### Return type
 
@@ -90,8 +90,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\AlertsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -107,10 +107,10 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **subscription_id** | **string**| The ID of the subscription | |
-| **usage_id** | **string**| The usage id of the alert. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **subscription_id** | **string**| The ID of the subscription |
+ **usage_id** | **string**| The usage id of the alert. |
 
 ### Return type
 
@@ -149,8 +149,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\AlertsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -166,9 +166,9 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **subscription_id** | **string**| The ID of the subscription | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **subscription_id** | **string**| The ID of the subscription |
 
 ### Return type
 
@@ -207,8 +207,8 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 
 
 $apiInstance = new OpenAPI\Client\Api\AlertsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -226,11 +226,11 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **subscription_id** | **string**| The ID of the subscription | |
-| **usage_id** | **string**| The usage id of the alert. | |
-| **update_usage_alert_request** | [**\OpenAPI\Client\Model\UpdateUsageAlertRequest**](../Model/UpdateUsageAlertRequest.md)|  | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **subscription_id** | **string**| The ID of the subscription |
+ **usage_id** | **string**| The usage id of the alert. |
+ **update_usage_alert_request** | [**\OpenAPI\Client\Model\UpdateUsageAlertRequest**](../Model/UpdateUsageAlertRequest.md)|  | [optional]
 
 ### Return type
 
