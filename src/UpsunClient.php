@@ -113,7 +113,7 @@ class UpsunClient
 
         $httpClient = Psr18ClientDiscovery::find(); // découvre automatiquement curl-client
         $requestFactory = Psr17FactoryDiscovery::findRequestFactory();
-        
+
         $this->auth = new OAuthProvider(
             $httpClient,
             $requestFactory,
@@ -183,6 +183,8 @@ class UpsunClient
             new RepositoryApi($this->apiClient, $this->apiConfig),
             new SystemInformationApi($this->apiClient, $this->apiConfig),
             new ThirdPartyIntegrationsApi($this->apiClient, $this->apiConfig),
+            new SubscriptionsApi($this->apiClient, $this->apiConfig),
+            new OrganizationProjectsApi($this->apiClient, $this->apiConfig)
         );
         $this->region = new RegionTask(
             $this,
