@@ -6,6 +6,7 @@ DEBUG=false          # Debug mode flag
 PKG="apisgen"        # Output package directory name
 SPEC_FILE="./schema/openapispec-platformsh.json"  # OpenAPI specification file path
 TEMP_SPEC="./schema/temp_openapispec.json"       # Temporary file for spec processing
+MINIMUM_GENERATOR_VERSION="6.6.0"  # Minimum required OpenAPI Generator version
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
@@ -52,19 +53,34 @@ if grep -q 'HTTP access permissions' "${SPEC_FILE}"; then
   echo "Warning: Some HTTP strings might remain unchanged"  # Log warning if replacements failed
 fi
 
-# Ensure openapi-generator is available
+# Function to compare versions
+version_compare() {
+  local version=$1 min_version=$2
+  if [ "$(printf '%s\n' "$min_version" "$version" | sort -V | head -n1)" = "$min_version" ]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+# Ensure openapi-generator is available and meets version requirement
 echo "Setting up openapi-generator..."
 OPENAPI_GENERATOR=""
 if command -v openapi-generator-cli &>/dev/null; then
-  # Use globally installed version if available
-  OPENAPI_GENERATOR="openapi-generator-cli"
-elif [ -f "vendor/bin/openapi-generator-cli" ]; then
-  # Fall back to composer-installed version
-  OPENAPI_GENERATOR="vendor/bin/openapi-generator-cli"
-else
-  # Install globally if no version found
-  echo "Installing @openapitools/openapi-generator-cli globally..."
-  npm install -g @openapitools/openapi-generator-cli
+  # Check installed version
+  INSTALLED_VERSION=$(openapi-generator-cli version | awk '{print $NF}')
+  if version_compare "$INSTALLED_VERSION" "$MINIMUM_GENERATOR_VERSION"; then
+    OPENAPI_GENERATOR="openapi-generator-cli"
+    echo "Using system openapi-generator-cli v$INSTALLED_VERSION"
+  else
+    echo "System openapi-generator-cli v$INSTALLED_VERSION is too old (needs v$MINIMUM_GENERATOR_VERSION+)"
+  fi
+fi
+
+# Install if no suitable version found
+if [ -z "$OPENAPI_GENERATOR" ]; then
+  echo "Installing @openapitools/openapi-generator-cli via npm..."
+  npm install -g "@openapitools/openapi-generator-cli@$MINIMUM_GENERATOR_VERSION"
   OPENAPI_GENERATOR="openapi-generator-cli"
 fi
 
@@ -76,6 +92,7 @@ GEN_CMD=(
   -g php                        # PHP language target
   -o "${PKG}"                   # Output directory
   --library="psr-18"            # PSR-18 HTTP client
+  --additional-properties=invokerPackage=Upsun\\Api  # Set root namespace
 )
 
 # Add quiet flag if not in debug mode
@@ -90,8 +107,13 @@ fi
 echo "Cleaning up generated artifacts..."
 rm -rf \
   "${PKG}/git_push.sh" \     # Remove unnecessary helper script
+  "${PKG}/.openapi-generator" \  # Remove generator metadata
   "${PKG}/.gitignore" \      # Remove default gitignore
   "${PKG}/.travis.yml" \     # Remove CI configuration
   "${PKG}/composer.json"     # Remove generated composer file
+
+# Fix generated PHP files (optional)
+find "${PKG}" -type f -name "*.php" -exec sed -i.bak 's/^use Psr\\/use Upsun\\Api\\Psr\\/g' {} \;
+find "${PKG}" -type f -name "*.bak" -delete
 
 echo "API client generation completed successfully!"
