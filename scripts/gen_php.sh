@@ -1,13 +1,41 @@
 #!/usr/bin/bash
 
+DEBUG=false
+
+# check arguments
+for arg in "$@"; do
+  if [ "$arg" == "--debug" ]; then
+    DEBUG=true
+    break
+  fi
+done
+
 echo "Clean old build..."
 rm -rf ./schema/*
+rm -rf ./apisgen/*
 
 echo "Download last openAPI spec..."
-wget -O ./schema/openapispec-platformsh.json https://api.upsun.com/docs/openapispec-platformsh.json
-
+#wget -O ./schema/openapispec-platformsh.json https://api.upsun.com/docs/openapispec-platformsh.json
+cp ./data/openapispec-platformsh.json ./schema/
 echo "Hotfix openAPI spec..."
-sed -i 's/HTTP access permissions/Http access permissions/g' ./schema/openapispec-platformsh.json
+
+OS=$(uname)
+FILE="./schema/openapispec-platformsh.json"
+
+grep 'HTTP access permissions' "$FILE"
+
+if [[ "$OS" == "Darwin" ]]; then
+  # macOS
+  echo "On MacOs"
+  sed -i '' 's/HTTP access permissions/Http access permissions/g' "$FILE"
+elif [[ "$OS" == "Linux" ]]; then
+  # Linux
+  echo "On Linux"
+  sed -i 's/HTTP access permissions/Http access permissions/g' "$FILE"
+fi
+
+echo "$OS"
+grep 'HTTP access permissions' "$FILE"
 
 echo "Generate apis_gen code..."
 npm install @openapitools/openapi-generator-cli -g
@@ -16,11 +44,21 @@ PKG="apisgen"
 export GIT_USER_ID=upsun
 export GIT_REPO_ID=upsun-sdk-go
 
-openapi-generator-cli generate \
-  -i ./schema/openapispec-platformsh.json \
-  -g php \
-  -o "$PKG" \
-  --additional-properties=apiPackage="$PKG"
+if $DEBUG; then
+  openapi-generator-cli generate \
+    -i ./schema/openapispec-platformsh.json \
+    -g php \
+    -o "$PKG" \
+    --additional-properties=apiPackage="$PKG"
+    --library="psr-18"
+else
+  openapi-generator-cli generate \
+    -i ./schema/openapispec-platformsh.json \
+    -g php \
+    -o "$PKG" \
+    --additional-properties=apiPackage="$PKG" &> /dev/null \
+    --library="psr-18"
+fi
 
 echo "Clean up unnecessary files..."
 rm -rf ./$PKG/git_push.sh ./$PKG/.gitignore ./$PKG/.travis.yml ./$PKG/composer.json

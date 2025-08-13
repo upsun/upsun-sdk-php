@@ -4,27 +4,50 @@ namespace Upsun\Core\Tasks;
 
 use OpenAPI\Client\ApiException;
 use OpenAPI\Client\apisgen\DeploymentApi;
+use OpenAPI\Client\Model\Deployment;
+use OpenAPI\Client\Model\WebApplicationsValue;
 use Upsun\UpsunClient;
 
 class ApplicationTask extends TaskBase
 {
-    public readonly DeploymentApi $api;
-
     public function __construct(
-        public readonly UpsunClient $client,
+        public UpsunClient $client,
+        private readonly DeploymentApi $api
     ) {
-        $this->api = new DeploymentApi($this->client->apiClient, $this->client->apiConfig);
+        parent::__construct($this->client);
     }
 
     /**
-     * @param string $projectId
-     * @param string $environmentId
-     * @return array
+     * Lists applications of an environment
+     *
      * @throws ApiException
      */
-    public function listApplications(string $projectId, string $environmentId): array
+    public function list(string $projectId, string $environmentId): array
     {
+        $this->refreshToken();
         $deployments = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);
-        return $deployments[0]->getWebapps();
+        $deployments = reset($deployments);
+
+        return !empty($deployments) ? $deployments->getWebapps() : [];
+    }
+
+    /**
+     * Gets an environment's application
+     *
+     * @throws ApiException
+     */
+    public function get(string $projectId, string $environmentId, string $app_id): WebApplicationsValue|null
+    {
+        $this->refreshToken();
+        $environment = $this->client->environment->get($projectId, $environmentId);
+        if ($environment->getDeploymentState() && $environment->getDeploymentState()->getLastDeploymentSuccessful()) {
+            $deployment = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);
+            $deployment = reset($deployment);
+            /** @var Deployment $deployment */
+
+            return !(empty($deployment->getWebapps())) ? ($deployment->getWebapps())[$app_id] ?? null : null;
+        } else {
+            return null;
+        }
     }
 }
