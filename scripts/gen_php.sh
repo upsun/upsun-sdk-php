@@ -1,66 +1,97 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
+set -eo pipefail  # Exit immediately if any command fails and show errors in pipelines
 
-DEBUG=false
+# Configuration variables
+DEBUG=false          # Debug mode flag
+PKG="apisgen"        # Output package directory name
+SPEC_FILE="./schema/openapispec-platformsh.json"  # OpenAPI specification file path
+TEMP_SPEC="./schema/temp_openapispec.json"       # Temporary file for spec processing
 
-# check arguments
-for arg in "$@"; do
-  if [ "$arg" == "--debug" ]; then
-    DEBUG=true
-    break
-  fi
+# Parse command line arguments
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --debug)
+      DEBUG=true     # Enable debug mode
+      shift          # Move to next argument
+      ;;
+    *)
+      echo "Unknown argument: $1"  # Handle unknown arguments
+      exit 1
+      ;;
+  esac
 done
 
-echo "Clean old build..."
-rm -rf ./schema/*
-rm -rf ./apisgen/*
+# Cleanup function to remove temporary files
+cleanup() {
+  echo "Cleaning up temporary files..."
+  rm -rf "${TEMP_SPEC}" 2>/dev/null || true  # Silently remove temp file if exists
+}
+trap cleanup EXIT  # Ensure cleanup runs on script exit
 
-echo "Download last openAPI spec..."
-#wget -O ./schema/openapispec-platformsh.json https://api.upsun.com/docs/openapispec-platformsh.json
-cp ./data/openapispec-platformsh.json ./schema/
-echo "Hotfix openAPI spec..."
+# Prepare fresh build environment
+echo "Cleaning old build artifacts..."
+rm -rf ./schema/* ./"${PKG}"/*  # Remove previous build files
 
-OS=$(uname)
-FILE="./schema/openapispec-platformsh.json"
+# Get OpenAPI specification
+echo "Downloading OpenAPI specification..."
+cp ./data/openapispec-platformsh.json "${SPEC_FILE}"  # Copy spec file to working directory
 
-grep 'HTTP access permissions' "$FILE"
+# Process specification file
+echo "Applying hotfixes to OpenAPI specification..."
+# Use temp file to avoid direct modification of original
+cp "${SPEC_FILE}" "${TEMP_SPEC}"
 
-if [[ "$OS" == "Darwin" ]]; then
-  # macOS
-  echo "On MacOs"
-  sed -i '' 's/HTTP access permissions/Http access permissions/g' "$FILE"
-elif [[ "$OS" == "Linux" ]]; then
-  # Linux
-  echo "On Linux"
-  sed -i 's/HTTP access permissions/Http access permissions/g' "$FILE"
+# Platform-independent sed operation with backup file
+sed -i.bak 's/HTTP access permissions/Http access permissions/g' "${TEMP_SPEC}"
+rm -f "${TEMP_SPEC}.bak"  # Remove backup file
+mv "${TEMP_SPEC}" "${SPEC_FILE}"  # Replace original with modified version
+
+# Verify changes were applied
+echo "Verifying specification changes..."
+if grep -q 'HTTP access permissions' "${SPEC_FILE}"; then
+  echo "Warning: Some HTTP strings might remain unchanged"  # Log warning if replacements failed
 fi
 
-echo "$OS"
-grep 'HTTP access permissions' "$FILE"
-
-echo "Generate apis_gen code..."
-npm install @openapitools/openapi-generator-cli -g
-
-PKG="apisgen"
-export GIT_USER_ID=upsun
-export GIT_REPO_ID=upsun-sdk-go
-
-if $DEBUG; then
-  openapi-generator-cli generate \
-    -i ./schema/openapispec-platformsh.json \
-    -g php \
-    -o "$PKG" \
-    --additional-properties=apiPackage="$PKG"
-    --library="psr-18"
+# Ensure openapi-generator is available
+echo "Setting up openapi-generator..."
+OPENAPI_GENERATOR=""
+if command -v openapi-generator-cli &>/dev/null; then
+  # Use globally installed version if available
+  OPENAPI_GENERATOR="openapi-generator-cli"
+elif [ -f "vendor/bin/openapi-generator-cli" ]; then
+  # Fall back to composer-installed version
+  OPENAPI_GENERATOR="vendor/bin/openapi-generator-cli"
 else
-  openapi-generator-cli generate \
-    -i ./schema/openapispec-platformsh.json \
-    -g php \
-    -o "$PKG" \
-    --additional-properties=apiPackage="$PKG" &> /dev/null \
-    --library="psr-18"
+  # Install globally if no version found
+  echo "Installing @openapitools/openapi-generator-cli globally..."
+  npm install -g @openapitools/openapi-generator-cli
+  OPENAPI_GENERATOR="openapi-generator-cli"
 fi
 
-echo "Clean up unnecessary files..."
-rm -rf ./$PKG/git_push.sh ./$PKG/.gitignore ./$PKG/.travis.yml ./$PKG/composer.json
-# --global-property=models,apis,apiDocs,modelDocs,apiTests,modelTests,supportingFiles \
-# ,supportingFiles
+# Generate API client code
+echo "Generating API client code..."
+GEN_CMD=(
+  "$OPENAPI_GENERATOR" generate  # Base command
+  -i "${SPEC_FILE}"             # Input specification
+  -g php                        # PHP language target
+  -o "${PKG}"                   # Output directory
+  --library="psr-18"            # PSR-18 HTTP client
+)
+
+# Add quiet flag if not in debug mode
+if ! $DEBUG; then
+  GEN_CMD+=(--quiet)  # Suppress output in non-debug mode
+fi
+
+# Execute the generation command
+"${GEN_CMD[@]}"
+
+# Clean up unnecessary generated files
+echo "Cleaning up generated artifacts..."
+rm -rf \
+  "${PKG}/git_push.sh" \     # Remove unnecessary helper script
+  "${PKG}/.gitignore" \      # Remove default gitignore
+  "${PKG}/.travis.yml" \     # Remove CI configuration
+  "${PKG}/composer.json"     # Remove generated composer file
+
+echo "API client generation completed successfully!"
