@@ -38,7 +38,7 @@ echo "$OS"
 grep 'HTTP access permissions' "$FILE"
 
 echo "Generate apis_gen code..."
-npm install @openapitools/openapi-generator-cli -g
+npm install @openapitools/openapi-generator-cli --save-dev
 
 PKG="apisgen"
 export GIT_USER_ID=upsun
