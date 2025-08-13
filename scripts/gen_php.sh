@@ -38,21 +38,21 @@ echo "$OS"
 grep 'HTTP access permissions' "$FILE"
 
 echo "Generate apis_gen code..."
-npm install @openapitools/openapi-generator-cli -g
+npm install @openapitools/openapi-generator-cli --save-dev
 
 PKG="apisgen"
 export GIT_USER_ID=upsun
 export GIT_REPO_ID=upsun-sdk-go
 
 if $DEBUG; then
-  openapi-generator-cli generate \
+  npx openapi-generator-cli generate \
     -i ./schema/openapispec-platformsh.json \
     -g php \
     -o "$PKG" \
     --additional-properties=apiPackage="$PKG"
     --library="psr-18"
 else
-  openapi-generator-cli generate \
+  npx openapi-generator-cli generate \
     -i ./schema/openapispec-platformsh.json \
     -g php \
     -o "$PKG" \
