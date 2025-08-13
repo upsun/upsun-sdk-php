@@ -4,7 +4,7 @@
 
 # Upsun SDK PHP
 
-Upsun SDK for PHP.  
+Upsun SDK for PHP.
 This SDK maps the Upsun CLI commands. For more information, read [the documentation](https://docs.upsun.com).
 
 ## Installation
@@ -13,6 +13,23 @@ To install the Upsun SDK, you can use Composer. Run the following command in you
 
 ```bash
 composer require upsun/upsun-sdk-php
+```
+
+Then add in your `composer.json` call to `gen_php.sh` script:
+
+```json {location="composer.json"}
+{
+  "scripts": {
+    "post-install-cmd": [
+      "@gen-open-api-sdk"
+    ],
+    "post-update-cmd": [
+      "@gen-open-api-sdk"
+    ],
+    "gen-open-api-sdk": "cd ./vendor/upsun/upsun-sdk-php && bash ./scripts/gen_php.sh"
+  }
+}
+
 ```
 
 ## Usage
