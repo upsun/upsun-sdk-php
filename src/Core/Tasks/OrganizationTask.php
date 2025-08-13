@@ -394,9 +394,9 @@ class OrganizationTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteProject(string $organizationId, string $projectId): void
+    public function deleteProject(string $projectId): void
     {
-        $this->client->project->delete($organizationId, $projectId);
+        $this->client->project->delete($projectId);
     }
 
     /**

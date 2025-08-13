@@ -327,7 +327,7 @@ class OrganizationTaskTest extends TestCase
     {
         $orgId = 'org_123';
         $list = $this->createMock(ListTeams200Response::class);
-        
+
         $this->mockTeamTask
             ->expects($this->once())
             ->method('list')
@@ -393,7 +393,7 @@ class OrganizationTaskTest extends TestCase
         $params = ['name' => 'New Project'];
 
         $expectedResponse = $this->createMock(OrganizationProject::class);
-        
+
         $this->mockProjectTask
             ->expects($this->once())
             ->method('create')
@@ -408,7 +408,7 @@ class OrganizationTaskTest extends TestCase
     public function testDeleteProject()
     {
         $this->expectNotToPerformAssertions();
-        $this->organizationTask->deleteProject('org_123', 'proj_1');
+        $this->organizationTask->deleteProject('proj_1');
     }
 
     public function testUpdateProject()

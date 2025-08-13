@@ -76,15 +76,15 @@ class ProjectTaskTest extends TestCase
     private readonly ProjectApi $projectApi;
     private readonly ProjectSettingsApi $settingsApi;
     private readonly DeploymentTargetApi $deploymentTargetApi;
-    
+
     public readonly OrganizationProjectsApi $organizationProjectsApi;
     private readonly RepositoryApi $repositoryApi;
     private readonly SystemInformationApi $systemInfoApi;
     private readonly ThirdPartyIntegrationsApi $thirdPartyIntegrationsApi;
     protected $projectTask;
-    
+
     private readonly InvitationTask $invitationTask;
-    
+
     private readonly VariableTask $variableTask;
 
     public readonly ActivityTask $activityTask;
@@ -106,7 +106,7 @@ class ProjectTaskTest extends TestCase
     public readonly SubscriptionsApi $subscriptionsApi;
     public readonly UserTask $userTask;
     public readonly WorkerTask $workerTask;
-    
+
     protected function setUp(): void
     {
         $this->projectApi = $this->createMock(ProjectApi::class);
@@ -128,7 +128,7 @@ class ProjectTaskTest extends TestCase
             {
             }
         };
-        
+
         $this->projectTask = new class(
             $this->client,
             $this->projectApi,
@@ -165,7 +165,7 @@ class ProjectTaskTest extends TestCase
         $this->supportTicketTask = $this->createMock(SupportTicketTask::class);
         $this->userTask = $this->createMock(UserTask::class);
         $this->workerTask = $this->createMock(WorkerTask::class);
-        
+
         $this->client->invitations = $this->invitationTask;
         $this->client->variables = $this->variableTask;
         $this->client->activity = $this->activityTask;
@@ -214,7 +214,7 @@ class ProjectTaskTest extends TestCase
             ->method('getProjects')
             ->with($prjId)
             ->willReturn($expectedProject);
-        
+
         $this->organizationProjectsApi->expects($this->once())
             ->method('getOrgProject')
             ->with($orgId, $prjId)
@@ -1048,7 +1048,7 @@ class ProjectTaskTest extends TestCase
 
         $expectedProject = $this->createMock(Project::class);
         $expectedProject->method('getOrganization')->willReturn($orgId);
-        
+
         $expectedOrgProject = $this->createMock(OrganizationProject::class);
 
         $this->subscriptionsApi->expects($this->once())
@@ -1060,12 +1060,12 @@ class ProjectTaskTest extends TestCase
             ->method('getProjects')
             ->with($prjId)
             ->willReturn($expectedProject);
-        
+
         $this->organizationProjectsApi->expects($this->once())
             ->method('getOrgProject')
             ->with($orgId, $prjId)
             ->willReturn($expectedOrgProject);
-        
+
         $result = $this->projectTask->create($orgId, $projectData);
         $this->assertSame($expectedOrgProject, $result);
     }
@@ -1164,7 +1164,7 @@ class ProjectTaskTest extends TestCase
         $this->expectException(ApiException::class);
         $this->projectTask->createInvite($projectId, $request);
     }
-    
+
     public function testGetSettingsWithError()
     {
         $projectId = 'test-project';
@@ -1718,7 +1718,7 @@ class ProjectTaskTest extends TestCase
             ->method('grantProjectUserAccess')
             ->with($projectId, $request)
             ->willThrowException($this->createMock(ApiException::class));
-        
+
         $this->expectException(ApiException::class);
         $this->projectTask->grantProjectUserAccess($projectId, $request);
     }
@@ -1774,7 +1774,7 @@ class ProjectTaskTest extends TestCase
             ->method('createOrgSubscription')
             ->with($orgId, $this->isInstanceOf(CreateOrgSubscriptionRequest::class))
             ->willThrowException($this->createMock(ApiException::class));
-        
+
         $this->expectException(ApiException::class);
         $this->projectTask->create($orgId, $projectData);
     }
