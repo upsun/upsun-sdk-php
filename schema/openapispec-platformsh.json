@@ -327,6 +327,178 @@
         }
       }
     },
+    "/discounts/{id}": {
+      "get": {
+        "tags": [
+          "Discounts"
+        ],
+        "summary": "Get an organization discount",
+        "operationId": "get-discount",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/discountId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A discount object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Discount"
+                }
+              }
+            }
+          }
+        },
+        "x-vendor": "upsun"
+      }
+    },
+    "/discounts/types/allowance": {
+      "get": {
+        "tags": [
+          "Discounts"
+        ],
+        "summary": "Get the value of the First Project Incentive discount",
+        "operationId": "get-type-allowance",
+        "responses": {
+          "200": {
+            "description": "A discount object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "currencies": {
+                      "description": "Discount values per currency.",
+                      "properties": {
+                        "EUR": {
+                          "description": "Discount value in EUR.",
+                          "properties": {
+                            "formatted": {
+                              "description": "The discount amount formatted.",
+                              "type": "string"
+                            },
+                            "amount": {
+                              "description": "The discount amount.",
+                              "type": "number",
+                              "format": "float"
+                            },
+                            "currency": {
+                              "description": "The currency.",
+                              "type": "string"
+                            },
+                            "currency_symbol": {
+                              "description": "Currency symbol.",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "USD": {
+                          "description": "Discount value in USD.",
+                          "properties": {
+                            "formatted": {
+                              "description": "The discount amount formatted.",
+                              "type": "string"
+                            },
+                            "amount": {
+                              "description": "The discount amount.",
+                              "type": "number",
+                              "format": "float"
+                            },
+                            "currency": {
+                              "description": "The currency.",
+                              "type": "string"
+                            },
+                            "currency_symbol": {
+                              "description": "Currency symbol.",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "GBP": {
+                          "description": "Discount value in GBP.",
+                          "properties": {
+                            "formatted": {
+                              "description": "The discount amount formatted.",
+                              "type": "string"
+                            },
+                            "amount": {
+                              "description": "The discount amount.",
+                              "type": "number",
+                              "format": "float"
+                            },
+                            "currency": {
+                              "description": "The currency.",
+                              "type": "string"
+                            },
+                            "currency_symbol": {
+                              "description": "Currency symbol.",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "AUD": {
+                          "description": "Discount value in AUD.",
+                          "properties": {
+                            "formatted": {
+                              "description": "The discount amount formatted.",
+                              "type": "string"
+                            },
+                            "amount": {
+                              "description": "The discount amount.",
+                              "type": "number",
+                              "format": "float"
+                            },
+                            "currency": {
+                              "description": "The currency.",
+                              "type": "string"
+                            },
+                            "currency_symbol": {
+                              "description": "Currency symbol.",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "CAD": {
+                          "description": "Discount value in CAD.",
+                          "properties": {
+                            "formatted": {
+                              "description": "The discount amount formatted.",
+                              "type": "string"
+                            },
+                            "amount": {
+                              "description": "The discount amount.",
+                              "type": "number",
+                              "format": "float"
+                            },
+                            "currency": {
+                              "description": "The currency.",
+                              "type": "string"
+                            },
+                            "currency_symbol": {
+                              "description": "Currency symbol.",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "x-vendor": "upsun"
+      }
+    },
     "/me": {
       "get": {
         "tags": [
@@ -10898,6 +11070,46 @@
         }
       }
     },
+    "/organizations/{organization_id}/subscriptions/{subscription_id}/addons": {
+      "get": {
+        "summary": "List addons for a subscription",
+        "operationId": "list-subscription-addons",
+        "tags": [
+          "Subscriptions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          },
+          {
+            "$ref": "#/components/parameters/SubscriptionID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionAddonsObject"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-vendor": "upsun"
+      }
+    },
     "/organizations/{organization_id}/vouchers": {
       "get": {
         "summary": "List vouchers",
@@ -11002,6 +11214,439 @@
             }
           }
         }
+      }
+    },
+    "/organizations/{organization_id}/estimate": {
+      "get": {
+        "summary": "Estimate total spend",
+        "description": "Estimates the total spend for the specified organization.",
+        "operationId": "estimate-org",
+        "tags": [
+          "Organization Management"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationIDName"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationEstimationObject"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-vendor": "upsun"
+      }
+    },
+    "/organizations/{organization_id}/addons": {
+      "get": {
+        "summary": "Get add-ons",
+        "description": "Retrieves information about the add-ons for an organization.",
+        "operationId": "get-org-addons",
+        "tags": [
+          "Add-ons"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationIDName"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationAddonsObject"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-vendor": "upsun"
+      }
+    },
+    "/organizations/{organization_id}/alerts/billing": {
+      "get": {
+        "summary": "Get billing alert configuration",
+        "description": "Retrieves billing alert configuration for the specified organization.",
+        "operationId": "get-org-billing-alert-config",
+        "tags": [
+          "Organization Management"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationIDName"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationAlertConfig"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-vendor": "upsun"
+      },
+      "patch": {
+        "summary": "Update billing alert configuration",
+        "description": "Updates billing alert configuration for the specified organization.",
+        "operationId": "update-org-billing-alert-config",
+        "tags": [
+          "Organization Management"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationIDName"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "active": {
+                    "type": "boolean",
+                    "description": "Whether the billing alert should be active or not."
+                  },
+                  "config": {
+                    "type": "object",
+                    "description": "The configuration for billing alerts.",
+                    "properties": {
+                      "threshold": {
+                        "type": "integer",
+                        "description": "The amount after which a billing alert should be triggered."
+                      },
+                      "mode": {
+                        "type": "string",
+                        "description": "The mode in which the alert is triggered."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationAlertConfig"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-vendor": "upsun"
+      }
+    },
+    "/organizations/{organization_id}/discounts": {
+      "get": {
+        "summary": "List organization discounts",
+        "description": "Retrieves all applicable discounts granted to the specified organization.",
+        "operationId": "list-org-discounts",
+        "tags": [
+          "Discounts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationIDName"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Discount"
+                      }
+                    },
+                    "_links": {
+                      "$ref": "#/components/schemas/ListLinks"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-vendor": "upsun"
+      }
+    },
+    "/organizations/{organization_id}/prepayment": {
+      "get": {
+        "summary": "Get organization prepayment information",
+        "description": "Retrieves prepayment information for the specified organization, if applicable.",
+        "operationId": "get-org-prepayment-info",
+        "tags": [
+          "Organization Management"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "prepayment": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/PrepaymentObject"
+                    },
+                    "_links": {
+                      "type": "object",
+                      "properties": {
+                        "self": {
+                          "type": "object",
+                          "description": "Link to the current resource.",
+                          "properties": {
+                            "href": {
+                              "type": "string",
+                              "description": "URL of the link."
+                            }
+                          }
+                        },
+                        "transactions": {
+                          "type": "object",
+                          "description": "Link to the prepayment transactions resource.",
+                          "properties": {
+                            "href": {
+                              "type": "string",
+                              "description": "URL of the link."
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-vendor": "upsun"
+      }
+    },
+    "/organizations/{organization_id}/prepayment/transactions": {
+      "get": {
+        "summary": "List organization prepayment transactions",
+        "description": "Retrieves a list of prepayment transactions for the specified organization, if applicable.",
+        "operationId": "list-org-prepayment-transactions",
+        "tags": [
+          "Organization Management"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer",
+                      "description": "Total number of items across pages."
+                    },
+                    "transactions": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PrepaymentTransactionObject"
+                      }
+                    },
+                    "_links": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/ListLinks",
+                      "properties": {
+                        "prepayment": {
+                          "type": "object",
+                          "description": "Link to the prepayment resource.",
+                          "properties": {
+                            "href": {
+                              "type": "string",
+                              "description": "URL of the link."
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-vendor": "upsun"
       }
     },
     "/organizations/{organization_id}/projects": {
@@ -12098,6 +12743,166 @@
           }
         },
         "type": "object"
+      },
+      "Discount": {
+        "description": "The discount object.",
+        "properties": {
+          "id": {
+            "description": "The ID of the organization discount.",
+            "type": "integer"
+          },
+          "organization_id": {
+            "description": "The ULID of the organization the discount applies to.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The machine name of the discount type.",
+            "type": "string",
+            "enum": [
+              "allowance",
+              "startup",
+              "enterprise"
+            ]
+          },
+          "type_label": {
+            "description": "The label of the discount type.",
+            "type": "string"
+          },
+          "status": {
+            "description": "The status of the discount.",
+            "type": "string",
+            "enum": [
+              "inactive",
+              "active",
+              "expired",
+              "deactivated"
+            ]
+          },
+          "commitment": {
+            "description": "The minimum commitment associated with the discount (if applicable).",
+            "properties": {
+              "months": {
+                "description": "Commitment period length in months.",
+                "type": "integer"
+              },
+              "amount": {
+                "description": "Commitment amounts.",
+                "properties": {
+                  "monthly": {
+                    "$ref": "#/components/schemas/CurrencyAmount"
+                  },
+                  "commitment_period": {
+                    "$ref": "#/components/schemas/CurrencyAmount"
+                  },
+                  "contract_total": {
+                    "$ref": "#/components/schemas/CurrencyAmount"
+                  }
+                },
+                "type": "object"
+              },
+              "net": {
+                "description": "Net commitment amounts (discount deducted).",
+                "properties": {
+                  "monthly": {
+                    "$ref": "#/components/schemas/CurrencyAmount"
+                  },
+                  "commitment_period": {
+                    "$ref": "#/components/schemas/CurrencyAmount"
+                  },
+                  "contract_total": {
+                    "$ref": "#/components/schemas/CurrencyAmount"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object",
+            "nullable": true
+          },
+          "total_months": {
+            "description": "The contract length in months (if applicable).",
+            "type": "integer",
+            "nullable": true
+          },
+          "discount": {
+            "description": "Discount value per relevant time periods.",
+            "properties": {
+              "monthly": {
+                "$ref": "#/components/schemas/CurrencyAmount"
+              },
+              "commitment_period": {
+                "$ref": "#/components/schemas/CurrencyAmountNullable"
+              },
+              "contract_total": {
+                "$ref": "#/components/schemas/CurrencyAmountNullable"
+              }
+            },
+            "type": "object"
+          },
+          "config": {
+            "description": "The discount type specific configuration.",
+            "type": "object"
+          },
+          "start_at": {
+            "description": "The start time of the discount period.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "end_at": {
+            "description": "The end time of the discount period (if applicable).",
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "type": "object"
+      },
+      "CurrencyAmount": {
+        "description": "Currency amount with detailed components.",
+        "properties": {
+          "formatted": {
+            "description": "Formatted currency value.",
+            "type": "string"
+          },
+          "amount": {
+            "description": "Plain amount.",
+            "type": "number",
+            "format": "float"
+          },
+          "currency_code": {
+            "description": "Currency code.",
+            "type": "string"
+          },
+          "currency_symbol": {
+            "description": "Currency symbol.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "CurrencyAmountNullable": {
+        "description": "Currency amount with detailed components.",
+        "properties": {
+          "formatted": {
+            "description": "Formatted currency value.",
+            "type": "string"
+          },
+          "amount": {
+            "description": "Plain amount.",
+            "type": "number",
+            "format": "float"
+          },
+          "currency_code": {
+            "description": "Currency code.",
+            "type": "string"
+          },
+          "currency_symbol": {
+            "description": "Currency symbol.",
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "nullable": true
       },
       "OwnerInfo": {
         "description": "Project owner information that can be exposed to collaborators.",
@@ -25548,6 +26353,491 @@
           ]
         }
       },
+      "OrganizationEstimationObject": {
+        "type": "object",
+        "description": "An estimation of all organization spend.",
+        "properties": {
+          "total": {
+            "type": "string",
+            "description": "The total estimated price for the organization."
+          },
+          "sub_total": {
+            "type": "string",
+            "description": "The sub total for all projects and sellables."
+          },
+          "vouchers": {
+            "type": "string",
+            "description": "The total amount of vouchers."
+          },
+          "user_licenses": {
+            "type": "object",
+            "description": "An estimation of user licenses cost.",
+            "properties": {
+              "base": {
+                "type": "object",
+                "properties": {
+                  "count": {
+                    "type": "integer",
+                    "description": "The number of base user licenses."
+                  },
+                  "total": {
+                    "type": "string",
+                    "description": "The total price for base user licenses."
+                  },
+                  "list": {
+                    "type": "object",
+                    "properties": {
+                      "admin_user": {
+                        "type": "object",
+                        "description": "An estimation of admin users cost.",
+                        "properties": {
+                          "count": {
+                            "type": "integer",
+                            "description": "The number of admin user licenses."
+                          },
+                          "total": {
+                            "type": "string",
+                            "description": "The total price for admin user licenses."
+                          }
+                        }
+                      },
+                      "viewer_user": {
+                        "type": "object",
+                        "description": "An estimation of viewer users cost.",
+                        "properties": {
+                          "count": {
+                            "type": "integer",
+                            "description": "The number of viewer user licenses."
+                          },
+                          "total": {
+                            "type": "string",
+                            "description": "The total price for viewer user licenses."
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "user_management": {
+                "type": "object",
+                "properties": {
+                  "count": {
+                    "type": "integer",
+                    "description": "The number of user_management licenses."
+                  },
+                  "total": {
+                    "type": "string",
+                    "description": "The total price for user_management licenses."
+                  },
+                  "list": {
+                    "type": "object",
+                    "properties": {
+                      "standard_management_user": {
+                        "type": "object",
+                        "description": "An estimation of standard_management_user cost.",
+                        "properties": {
+                          "count": {
+                            "type": "integer",
+                            "description": "The number of standard_management_user licenses."
+                          },
+                          "total": {
+                            "type": "string",
+                            "description": "The total price for standard_management_user licenses."
+                          }
+                        }
+                      },
+                      "advanced_management_user": {
+                        "type": "object",
+                        "description": "An estimation of advanced_management_user cost.",
+                        "properties": {
+                          "count": {
+                            "type": "integer",
+                            "description": "The number of advanced_management_user licenses."
+                          },
+                          "total": {
+                            "type": "string",
+                            "description": "The total price for advanced_management_user licenses."
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "user_management": {
+            "type": "string",
+            "description": "An estimation of the advanced user management sellable cost."
+          },
+          "support_level": {
+            "type": "string",
+            "description": "The total monthly price for premium support."
+          },
+          "subscriptions": {
+            "type": "object",
+            "description": "An estimation of subscriptions cost.",
+            "properties": {
+              "total": {
+                "type": "string",
+                "description": "The total price for subscriptions."
+              },
+              "list": {
+                "type": "array",
+                "description": "The list of active subscriptions.",
+                "items": {
+                  "description": "Details of a subscription",
+                  "type": "object",
+                  "properties": {
+                    "license_id": {
+                      "type": "string",
+                      "description": "The id of the subscription."
+                    },
+                    "project_title": {
+                      "type": "string",
+                      "description": "The name of the project."
+                    },
+                    "total": {
+                      "type": "string",
+                      "description": "The total price for the subscription."
+                    },
+                    "usage": {
+                      "type": "object",
+                      "description": "The detail of the usage for the subscription.",
+                      "properties": {
+                        "cpu": {
+                          "type": "number",
+                          "description": "The total cpu for this subsciption."
+                        },
+                        "memory": {
+                          "type": "number",
+                          "description": "The total memory for this subsciption."
+                        },
+                        "storage": {
+                          "type": "number",
+                          "description": "The total storage for this subsciption."
+                        },
+                        "environments": {
+                          "type": "integer",
+                          "description": "The total environments for this subsciption."
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "OrganizationAddonsObject": {
+        "type": "object",
+        "description": "The list of available and current add-ons of an organization.",
+        "properties": {
+          "available": {
+            "type": "object",
+            "description": "The list of available add-ons and their possible values.",
+            "properties": {
+              "user_management": {
+                "type": "object",
+                "description": "Information about the levels of user management that are available.",
+                "additionalProperties": {
+                  "type": "number",
+                  "description": "The number of commitment days required for the addon."
+                }
+              },
+              "support_level": {
+                "type": "object",
+                "description": "Information about the levels of support available.",
+                "additionalProperties": {
+                  "type": "number",
+                  "description": "The number of commitment days required for the addon."
+                }
+              }
+            }
+          },
+          "current": {
+            "type": "object",
+            "description": "The list of existing add-ons and their current values.",
+            "properties": {
+              "user_management": {
+                "type": "object",
+                "description": "Information about the type of user management currently selected.",
+                "additionalProperties": {
+                  "type": "number",
+                  "description": "The number of commitment days that remain for the addon."
+                }
+              },
+              "support_level": {
+                "type": "object",
+                "description": "Information about the level of support currently selected.",
+                "additionalProperties": {
+                  "type": "number",
+                  "description": "The number of commitment days that remain for the addon."
+                }
+              }
+            }
+          },
+          "upgrades_available": {
+            "type": "object",
+            "description": "The upgrades available for current add-ons.",
+            "properties": {
+              "user_management": {
+                "type": "array",
+                "description": "Available upgrade options for user management.",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "support_level": {
+                "type": "array",
+                "description": "Available upgrade options for support.",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "SubscriptionAddonsObject": {
+        "type": "object",
+        "description": "The list of available and current addons for the license.",
+        "properties": {
+          "available": {
+            "type": "object",
+            "description": "The list of available addons.",
+            "properties": {
+              "continuous_profiling": {
+                "type": "object",
+                "description": "Information about the continuous profiling options available.",
+                "additionalProperties": {
+                  "type": "number",
+                  "description": "The number of commitment days for the addon."
+                }
+              },
+              "project_support_level": {
+                "type": "object",
+                "description": "Information about the project uptime options available.",
+                "additionalProperties": {
+                  "type": "number",
+                  "description": "The number of commitment days for the addon."
+                }
+              }
+            }
+          },
+          "current": {
+            "type": "object",
+            "description": "The list of existing addons and their current values.",
+            "properties": {
+              "continuous_profiling": {
+                "type": "object",
+                "description": "The current continuous profiling level of the license.",
+                "additionalProperties": {
+                  "type": "number",
+                  "description": "The number of remaining commitment days for the addon."
+                }
+              },
+              "project_support_level": {
+                "type": "object",
+                "description": "The current project uptime level of the license.",
+                "additionalProperties": {
+                  "type": "number",
+                  "description": "The number of remaining commitment days for the addon."
+                }
+              }
+            }
+          },
+          "upgrades_available": {
+            "type": "object",
+            "description": "The upgrades available for current addons.",
+            "properties": {
+              "continuous_profiling": {
+                "type": "array",
+                "description": "Available upgrade options for continuous profiling.",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "project_support_level": {
+                "type": "array",
+                "description": "Available upgrade options for project uptime.",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "OrganizationAlertConfig": {
+        "type": "object",
+        "description": "The alert configuration for an organization.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Type of alert (e.g. \"billing\")"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Whether the billing alert should be active or not."
+          },
+          "alerts_sent": {
+            "type": "number",
+            "description": "Number of alerts sent."
+          },
+          "last_alert_at": {
+            "type": "string",
+            "description": "The datetime the alert was last sent.",
+            "nullable": true
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "The datetime the alert was last updated.",
+            "nullable": true
+          },
+          "config": {
+            "type": "object",
+            "nullable": true,
+            "description": "Configuration for threshold and mode.",
+            "properties": {
+              "threshold": {
+                "type": "object",
+                "description": "Data regarding threshold spend.",
+                "properties": {
+                  "formatted": {
+                    "type": "string",
+                    "description": "Formatted threshold value."
+                  },
+                  "amount": {
+                    "type": "number",
+                    "description": "Threshold value."
+                  },
+                  "currency_code": {
+                    "type": "string",
+                    "description": "Threshold currency code."
+                  },
+                  "currency_symbol": {
+                    "type": "string",
+                    "description": "Threshold currency symbol."
+                  }
+                }
+              },
+              "mode": {
+                "type": "string",
+                "description": "The mode of alert."
+              }
+            }
+          }
+        }
+      },
+      "PrepaymentObject": {
+        "type": "object",
+        "description": "Prepayment information for an organization.",
+        "properties": {
+          "prepayment": {
+            "type": "object",
+            "description": "Prepayment information for an organization.",
+            "properties": {
+              "organization_id": {
+                "type": "string",
+                "description": "Organization ID"
+              },
+              "balance": {
+                "type": "object",
+                "description": "The prepayment balance in complex format.",
+                "properties": {
+                  "formatted": {
+                    "type": "string",
+                    "description": "Formatted balance."
+                  },
+                  "amount": {
+                    "type": "number",
+                    "description": "The balance amount."
+                  },
+                  "currency_code": {
+                    "type": "string",
+                    "description": "The balance currency code."
+                  },
+                  "currency_symbol": {
+                    "type": "string",
+                    "description": "The balance currency symbol."
+                  }
+                }
+              },
+              "last_updated_at": {
+                "type": "string",
+                "nullable": true,
+                "description": "The date the prepayment balance was last updated."
+              },
+              "sufficient": {
+                "type": "boolean",
+                "description": "Whether the prepayment balance is enough to cover the upcoming order."
+              },
+              "fallback": {
+                "type": "string",
+                "nullable": true,
+                "description": "The fallback payment method, if any, to be used in case prepayment balance is not enough to cover an order."
+              }
+            }
+          }
+        }
+      },
+      "PrepaymentTransactionObject": {
+        "type": "object",
+        "description": "Prepayment transaction for an organization.",
+        "properties": {
+          "order_id": {
+            "type": "string",
+            "description": "Order ID"
+          },
+          "message": {
+            "type": "string",
+            "description": "The message associated with transaction."
+          },
+          "status": {
+            "type": "string",
+            "description": "Whether the transactions was successful or a failure."
+          },
+          "amount": {
+            "type": "object",
+            "description": "The prepayment balance in complex format.",
+            "properties": {
+              "formatted": {
+                "type": "string",
+                "description": "Formatted balance."
+              },
+              "amount": {
+                "type": "number",
+                "description": "The balance amount."
+              },
+              "currency_code": {
+                "type": "string",
+                "description": "The balance currency code."
+              },
+              "currency_symbol": {
+                "type": "string",
+                "description": "The balance currency symbol."
+              }
+            }
+          },
+          "created": {
+            "type": "string",
+            "description": "Time the transaction was created."
+          },
+          "updated": {
+            "type": "string",
+            "description": "Time the transaction was last updated.",
+            "nullable": true
+          },
+          "expire_date": {
+            "type": "string",
+            "description": "The expiration date of the transaction (deposits only).",
+            "nullable": true
+          }
+        }
+      },
       "ArrayFilter": {
         "type": "object",
         "properties": {
@@ -26076,6 +27366,15 @@
           "format": "date-time"
         }
       },
+      "discountId": {
+        "name": "id",
+        "in": "path",
+        "description": "The ID of the organization discount",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
       "id": {
         "name": "filter[id]",
         "in": "query",
@@ -26533,6 +27832,7 @@
     {
       "name": "Billing",
       "tags": [
+        "Organization Management",
         "Subscriptions",
         "Orders",
         "Invoices",
