@@ -1669,7 +1669,7 @@ class ProjectTaskTest extends TestCase
     {
         $projectId = 'test-project';
         $teamId = 'team-123';
-        $error = new ApiException('Not Found', $this->createMock(Request::class));
+        $error = new ApiException('Not Found');
 
         $this->teamTask->expects($this->once())
             ->method('removeProjectTeamAccess')
@@ -1684,7 +1684,7 @@ class ProjectTaskTest extends TestCase
     {
         $teamId = 'team-123';
         $projectId = 'test-project';
-        $error = new ApiException('Forbidden', $this->createMock(Request::class));
+        $error = new ApiException('Forbidden');
 
         $this->teamTask->expects($this->once())
             ->method('removeTeamProjectAccess')
