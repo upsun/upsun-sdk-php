@@ -1,4 +1,7 @@
 .env
-apisgen
+apisgen/.travis.yml
+apisgen/git_push.sh
+apisgen/.openapi-generator/
+apisgen/.openapi-generator-ignore
 vendor
 composer.lock
