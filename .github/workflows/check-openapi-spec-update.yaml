@@ -2,7 +2,7 @@ name: Check OpenAPI Spec Update
 
 on:
     schedule:
-        -   cron: '* 3 * * *'  
+        -   cron: '* 3 * * *'
     workflow_dispatch:
         branches: [ main ]
 permissions:
@@ -17,24 +17,24 @@ jobs:
         steps:
             -   name: Checkout repository
                 uses: actions/checkout@v4
-                    
+
             -   name: Set up Git
                 run: |
                     git config --global user.name "github-actions[bot]"
                     git config --global user.email "github-actions[bot]@users.noreply.github.com"
-            
+
             -   name: Install OpenAPI Generator CLI
                 run: |
                     npm install -g @openapitools/openapi-generator-cli
-                    
+
             -   name: Download and patch OpenAPI spec
                 run: |
                     echo "Download OpenAPI spec..."
-                    wget -O ./schema/openapispec-platformsh.json https://api.upsun.com/docs/openapispec-platformsh.json
-                    
+                    wget -O ./schema/openapispec-platformsh.json https://proxy.upsun.com/docs/openapispec-platformsh.json
+
                     echo "Patch OpenAPI spec..."
                     sed -i 's/HTTP access permissions/Http access permissions/g' ./schema/openapispec-platformsh.json
-            
+
             -   name: Generate code (php)
                 run: |
                     export GIT_USER_ID=upsun
@@ -44,11 +44,11 @@ jobs:
                       -g php \
                       -o apisgen \
                       --additional-properties=apiPackage=apisgen
-            
+
             -   name: Force-add apisgen to Git
                 run: |
                     git add -f apisgen
-                    
+
             -   name: Create Pull Request if changes
                 uses: peter-evans/create-pull-request@v6
                 with:
