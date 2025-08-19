@@ -15,26 +15,12 @@ To install the Upsun SDK, you can use Composer. Run the following command in you
 composer require upsun/upsun-sdk-php
 ```
 
-Then add in your `composer.json` call to `gen_php.sh` script:
-
-```json {location="composer.json"}
-{
-  "scripts": {
-    "post-install-cmd": [
-      "@gen-open-api-sdk"
-    ],
-    "post-update-cmd": [
-      "@gen-open-api-sdk"
-    ],
-    "gen-open-api-sdk": "cd ./vendor/upsun/upsun-sdk-php && bash ./scripts/gen_php.sh"
-  }
-}
-
-```
+Then you can use this SDK in your PHP app.
 
 ## Usage
 
-To use the Upsun SDK, you need to initialize the `Upsun` class with your API key and connection URL. Here's an example:
+To use the Upsun SDK, you need to initialize the `Upsun` class with your Upsun API key ``<UPSUN_API_KEY>``.
+Here's an example:
 
 ```php
 require __DIR__ . '/../vendor/autoload.php';
@@ -42,7 +28,7 @@ require __DIR__ . '/../vendor/autoload.php';
 use Upsun\UpsunClient;
 use Upsun\UpsunConfig;
 
-$config = new UpsunConfig(apiKey: '');
+$config = new UpsunConfig(apiKey: '<UPSUN_API_KEY>'); // please use an environment variable
 $upsun = new UpsunClient($config);
 
 // List organizations
