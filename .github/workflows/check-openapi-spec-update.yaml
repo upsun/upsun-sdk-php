@@ -47,7 +47,7 @@ jobs:
 
             -   name: Force-add apisgen to Git
                 run: |
-                    git add -f apisgen
+                    git add apisgen
 
             -   name: Create Pull Request if changes
                 uses: peter-evans/create-pull-request@v6
