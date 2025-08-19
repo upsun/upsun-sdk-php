@@ -3,8 +3,7 @@ name: Check OpenAPI Spec Update
 on:
     schedule:
         -   cron: '* 3 * * *'
-    workflow_dispatch:
-        branches: [ main ]
+    workflow_dispatch: ~
 permissions:
     contents: write
 env:
@@ -63,7 +62,7 @@ jobs:
                     branch: update-openapi-spec
                     title: "[API-BOT] Update OpenAPI spec and regenerate SDK"
 
-                    base: main  # Change si la branche par défaut a un autre nom
+                    base: main
                     labels: |
                         report
                         automated pr
