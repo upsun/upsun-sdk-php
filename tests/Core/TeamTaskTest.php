@@ -1,11 +1,11 @@
 <?php
 
-use OpenAPI\Client\Configuration;
+use Upsun\Configuration;
 use PHPUnit\Framework\TestCase;
-use OpenAPI\Client\apisgen\TeamsApi;
-use OpenAPI\Client\apisgen\TeamAccessApi;
-use OpenAPI\Client\Model\{CreateTeamRequest, CreateTeamMemberRequest, Error, ListTeamMembers200Response, ListTeamProjectAccess200Response, ListTeams200Response, Team, TeamMember, TeamProjectAccess};
-use OpenAPI\Client\ApiException;
+use Upsun\Api\TeamsApi;
+use Upsun\Api\TeamAccessApi;
+use Upsun\Model\{CreateTeamRequest, CreateTeamMemberRequest, Error, ListTeamMembers200Response, ListTeamProjectAccess200Response, ListTeams200Response, Team, TeamMember, TeamProjectAccess};
+use Upsun\ApiException;
 use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\TeamTask;
 use Upsun\UpsunClient;

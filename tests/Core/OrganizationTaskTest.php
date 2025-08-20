@@ -1,51 +1,51 @@
 <?php
 
-use OpenAPI\Client\apisgen\InvoicesApi;
-use OpenAPI\Client\apisgen\MFAApi;
-use OpenAPI\Client\apisgen\OrdersApi;
-use OpenAPI\Client\apisgen\OrganizationMembersApi;
-use OpenAPI\Client\apisgen\OrganizationProjectsApi;
-use OpenAPI\Client\apisgen\OrganizationsApi;
-use OpenAPI\Client\apisgen\ProfilesApi;
-use OpenAPI\Client\apisgen\RecordsApi;
-use OpenAPI\Client\apisgen\SubscriptionsApi;
-use OpenAPI\Client\apisgen\VouchersApi;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\Model\AcceptedResponse;
-use OpenAPI\Client\Model\Address;
-use OpenAPI\Client\Model\ApplyOrgVoucherRequest;
-use OpenAPI\Client\Model\CreateAuthorizationCredentials200Response;
-use OpenAPI\Client\Model\CreateOrgRequest;
-use OpenAPI\Client\Model\Invoice;
-use OpenAPI\Client\Model\ListOrgInvoices200Response;
-use OpenAPI\Client\Model\ListOrgOrders200Response;
-use OpenAPI\Client\Model\ListOrgPlanRecords200Response;
-use OpenAPI\Client\Model\Order;
-use OpenAPI\Client\Model\OrganizationMFAEnforcement;
-use OpenAPI\Client\Model\Profile;
-use OpenAPI\Client\Model\SendOrgMfaReminders200ResponseValue;
-use OpenAPI\Client\Model\UpdateOrgProfileRequest;
-use OpenAPI\Client\Model\UpdateOrgRequest;
-use OpenAPI\Client\Model\UpdateOrgSubscriptionRequest;
-use OpenAPI\Client\Model\User;
+use Upsun\Api\InvoicesApi;
+use Upsun\Api\MFAApi;
+use Upsun\Api\OrdersApi;
+use Upsun\Api\OrganizationMembersApi;
+use Upsun\Api\OrganizationProjectsApi;
+use Upsun\Api\OrganizationsApi;
+use Upsun\Api\ProfilesApi;
+use Upsun\Api\RecordsApi;
+use Upsun\Api\SubscriptionsApi;
+use Upsun\Api\VouchersApi;
+use Upsun\Configuration;
+use Upsun\HeaderSelector;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Address;
+use Upsun\Model\ApplyOrgVoucherRequest;
+use Upsun\Model\CreateAuthorizationCredentials200Response;
+use Upsun\Model\CreateOrgRequest;
+use Upsun\Model\Invoice;
+use Upsun\Model\ListOrgInvoices200Response;
+use Upsun\Model\ListOrgOrders200Response;
+use Upsun\Model\ListOrgPlanRecords200Response;
+use Upsun\Model\Order;
+use Upsun\Model\OrganizationMFAEnforcement;
+use Upsun\Model\Profile;
+use Upsun\Model\SendOrgMfaReminders200ResponseValue;
+use Upsun\Model\UpdateOrgProfileRequest;
+use Upsun\Model\UpdateOrgRequest;
+use Upsun\Model\UpdateOrgSubscriptionRequest;
+use Upsun\Model\User;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\OrganizationTask;
-use OpenAPI\Client\Model\Organization;
-use OpenAPI\Client\Model\OrganizationMember;
-use OpenAPI\Client\Model\OrganizationProject;
-use OpenAPI\Client\Model\Subscription;
-use OpenAPI\Client\Model\EstimationObject;
-use OpenAPI\Client\Model\SubscriptionCurrentUsageObject;
-use OpenAPI\Client\Model\ListOrgs200Response;
-use OpenAPI\Client\Model\ListUserOrgs200Response;
-use OpenAPI\Client\Model\ListOrgMembers200Response;
-use OpenAPI\Client\Model\ListTeams200Response;
-use OpenAPI\Client\Model\ListOrgProjects200Response;
-use OpenAPI\Client\Model\CreateOrgMemberRequest;
-use OpenAPI\Client\Model\UpdateOrgMemberRequest;
-use OpenAPI\Client\Model\CanCreateNewOrgSubscription200Response;
+use Upsun\Model\Organization;
+use Upsun\Model\OrganizationMember;
+use Upsun\Model\OrganizationProject;
+use Upsun\Model\Subscription;
+use Upsun\Model\EstimationObject;
+use Upsun\Model\SubscriptionCurrentUsageObject;
+use Upsun\Model\ListOrgs200Response;
+use Upsun\Model\ListUserOrgs200Response;
+use Upsun\Model\ListOrgMembers200Response;
+use Upsun\Model\ListTeams200Response;
+use Upsun\Model\ListOrgProjects200Response;
+use Upsun\Model\CreateOrgMemberRequest;
+use Upsun\Model\UpdateOrgMemberRequest;
+use Upsun\Model\CanCreateNewOrgSubscription200Response;
 use Upsun\Core\Tasks\ProjectTask;
 use Upsun\Core\Tasks\TeamTask;
 use Upsun\Core\Tasks\UserTask;
@@ -531,7 +531,7 @@ class OrganizationTaskTest extends TestCase
 
     public function testListUsageRecords(): void
     {
-        $response = $this->createMock(\OpenAPI\Client\Model\ListOrgUsageRecords200Response::class);
+        $response = $this->createMock(\Upsun\Model\ListOrgUsageRecords200Response::class);
 
         $this->recordsApiMock->expects($this->once())
             ->method('listOrgUsageRecords')
@@ -544,7 +544,7 @@ class OrganizationTaskTest extends TestCase
 
     public function testListVouchers(): void
     {
-        $vouchers = $this->createMock(\OpenAPI\Client\Model\Vouchers::class);
+        $vouchers = $this->createMock(\Upsun\Model\Vouchers::class);
 
         $this->vouchersApiMock->expects($this->once())
             ->method('listOrgVouchers')

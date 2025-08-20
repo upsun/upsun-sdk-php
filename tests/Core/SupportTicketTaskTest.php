@@ -1,17 +1,17 @@
 <?php
 
-use OpenAPI\Client\Configuration;
+use Upsun\Configuration;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\SupportTicketTask;
 use Upsun\UpsunClient;
-use OpenAPI\Client\apisgen\DefaultApi;
-use OpenAPI\Client\apisgen\SupportApi;
-use OpenAPI\Client\Model\Ticket;
-use OpenAPI\Client\Model\ListTickets200Response;
-use OpenAPI\Client\Model\CreateTicketRequest;
-use OpenAPI\Client\Model\UpdateTicketRequest;
-use OpenAPI\Client\ApiException;
+use Upsun\Api\DefaultApi;
+use Upsun\Api\SupportApi;
+use Upsun\Model\Ticket;
+use Upsun\Model\ListTickets200Response;
+use Upsun\Model\CreateTicketRequest;
+use Upsun\Model\UpdateTicketRequest;
+use Upsun\ApiException;
 use Upsun\UpsunConfig;
 
 class SupportTicketTaskTest extends TestCase

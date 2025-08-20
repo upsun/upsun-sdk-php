@@ -1,15 +1,15 @@
 <?php
 
-use OpenAPI\Client\Configuration;
+use Upsun\Configuration;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\VariableTask;
-use OpenAPI\Client\apisgen\ProjectVariablesApi;
-use OpenAPI\Client\apisgen\EnvironmentVariablesApi;
-use OpenAPI\Client\Model\AcceptedResponse;
-use OpenAPI\Client\Model\ProjectVariable;
-use OpenAPI\Client\Model\EnvironmentVariable;
-use OpenAPI\Client\ApiException;
+use Upsun\Api\ProjectVariablesApi;
+use Upsun\Api\EnvironmentVariablesApi;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\ProjectVariable;
+use Upsun\Model\EnvironmentVariable;
+use Upsun\ApiException;
 use Upsun\UpsunClient;
 use Upsun\UpsunConfig;
 

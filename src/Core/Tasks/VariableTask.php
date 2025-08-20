@@ -2,16 +2,16 @@
 
 namespace Upsun\Core\Tasks;
 
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\apisgen\EnvironmentVariablesApi;
-use OpenAPI\Client\apisgen\ProjectVariablesApi;
-use OpenAPI\Client\Model\AcceptedResponse;
-use OpenAPI\Client\Model\EnvironmentVariable;
-use OpenAPI\Client\Model\EnvironmentVariableCreateInput;
-use OpenAPI\Client\Model\EnvironmentVariablePatch;
-use OpenAPI\Client\Model\ProjectVariable;
-use OpenAPI\Client\Model\ProjectVariableCreateInput;
-use OpenAPI\Client\Model\ProjectVariablePatch;
+use Upsun\ApiException;
+use Upsun\Api\EnvironmentVariablesApi;
+use Upsun\Api\ProjectVariablesApi;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\EnvironmentVariable;
+use Upsun\Model\EnvironmentVariableCreateInput;
+use Upsun\Model\EnvironmentVariablePatch;
+use Upsun\Model\ProjectVariable;
+use Upsun\Model\ProjectVariableCreateInput;
+use Upsun\Model\ProjectVariablePatch;
 use Upsun\UpsunClient;
 
 class VariableTask extends TaskBase

@@ -2,12 +2,12 @@
 
 namespace Upsun\Core\Tasks;
 
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\apisgen\DomainManagementApi;
-use OpenAPI\Client\Model\AcceptedResponse;
-use OpenAPI\Client\Model\Domain;
-use OpenAPI\Client\Model\DomainCreateInput;
-use OpenAPI\Client\Model\DomainPatch;
+use Upsun\ApiException;
+use Upsun\Api\DomainManagementApi;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Domain;
+use Upsun\Model\DomainCreateInput;
+use Upsun\Model\DomainPatch;
 use Upsun\UpsunClient;
 
 class DomainTask extends TaskBase

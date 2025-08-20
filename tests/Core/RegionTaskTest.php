@@ -1,14 +1,14 @@
 <?php
 
-use OpenAPI\Client\Configuration;
+use Upsun\Configuration;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\RegionTask;
 use Upsun\UpsunClient;
-use OpenAPI\Client\apisgen\RegionsApi;
-use OpenAPI\Client\Model\Region;
-use OpenAPI\Client\Model\ListRegions200Response;
-use OpenAPI\Client\ApiException;
+use Upsun\Api\RegionsApi;
+use Upsun\Model\Region;
+use Upsun\Model\ListRegions200Response;
+use Upsun\ApiException;
 use Upsun\UpsunConfig;
 
 class RegionTaskTest extends TestCase

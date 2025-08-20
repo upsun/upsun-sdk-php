@@ -2,18 +2,18 @@
 
 namespace Upsun\Core\Tasks;
 
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\apisgen\TeamAccessApi;
-use OpenAPI\Client\apisgen\TeamsApi;
-use OpenAPI\Client\Model\CreateTeamMemberRequest;
-use OpenAPI\Client\Model\CreateTeamRequest;
-use OpenAPI\Client\Model\Error;
-use OpenAPI\Client\Model\ListTeamMembers200Response;
-use OpenAPI\Client\Model\ListTeamProjectAccess200Response;
-use OpenAPI\Client\Model\ListTeams200Response;
-use OpenAPI\Client\Model\Team;
-use OpenAPI\Client\Model\TeamMember;
-use OpenAPI\Client\Model\TeamProjectAccess;
+use Upsun\ApiException;
+use Upsun\Api\TeamAccessApi;
+use Upsun\Api\TeamsApi;
+use Upsun\Model\CreateTeamMemberRequest;
+use Upsun\Model\CreateTeamRequest;
+use Upsun\Model\Error;
+use Upsun\Model\ListTeamMembers200Response;
+use Upsun\Model\ListTeamProjectAccess200Response;
+use Upsun\Model\ListTeams200Response;
+use Upsun\Model\Team;
+use Upsun\Model\TeamMember;
+use Upsun\Model\TeamProjectAccess;
 use Upsun\UpsunClient;
 
 class TeamTask extends TaskBase

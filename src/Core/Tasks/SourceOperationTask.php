@@ -2,10 +2,10 @@
 
 namespace Upsun\Core\Tasks;
 
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\apisgen\SourceOperationsApi;
-use OpenAPI\Client\Model\AcceptedResponse;
-use OpenAPI\Client\Model\EnvironmentSourceOperationInput;
+use Upsun\ApiException;
+use Upsun\Api\SourceOperationsApi;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\EnvironmentSourceOperationInput;
 use Upsun\UpsunClient;
 
 class SourceOperationTask extends TaskBase

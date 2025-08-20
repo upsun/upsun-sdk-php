@@ -1,14 +1,14 @@
 <?php
 
-use OpenAPI\Client\apisgen\SourceOperationsApi;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\Model\EnvironmentSourceOperationInput;
+use Upsun\Api\SourceOperationsApi;
+use Upsun\Configuration;
+use Upsun\Model\EnvironmentSourceOperationInput;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\SourceOperationTask;
 use Upsun\UpsunClient;
-use OpenAPI\Client\Model\AcceptedResponse;
-use OpenAPI\Client\ApiException;
+use Upsun\Model\AcceptedResponse;
+use Upsun\ApiException;
 use Upsun\UpsunConfig;
 
 class SourceOperationTaskTest extends TestCase

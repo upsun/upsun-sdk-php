@@ -7,50 +7,50 @@ use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use InvalidArgumentException;
 use JsonException;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\apisgen\InvoicesApi;
-use OpenAPI\Client\apisgen\MFAApi;
-use OpenAPI\Client\apisgen\OrdersApi;
-use OpenAPI\Client\apisgen\OrganizationMembersApi;
-use OpenAPI\Client\apisgen\OrganizationProjectsApi;
-use OpenAPI\Client\apisgen\OrganizationsApi;
-use OpenAPI\Client\apisgen\ProfilesApi;
-use OpenAPI\Client\apisgen\RecordsApi;
-use OpenAPI\Client\apisgen\SubscriptionsApi;
-use OpenAPI\Client\apisgen\VouchersApi;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\Model\AcceptedResponse;
-use OpenAPI\Client\Model\Address;
-use OpenAPI\Client\Model\ApplyOrgVoucherRequest;
-use OpenAPI\Client\Model\CanCreateNewOrgSubscription200Response;
-use OpenAPI\Client\Model\CreateAuthorizationCredentials200Response;
-use OpenAPI\Client\Model\CreateOrgMemberRequest;
-use OpenAPI\Client\Model\CreateOrgRequest;
-use OpenAPI\Client\Model\Error;
-use OpenAPI\Client\Model\EstimationObject;
-use OpenAPI\Client\Model\Invoice;
-use OpenAPI\Client\Model\ListOrgInvoices200Response;
-use OpenAPI\Client\Model\ListOrgMembers200Response;
-use OpenAPI\Client\Model\ListOrgOrders200Response;
-use OpenAPI\Client\Model\ListOrgPlanRecords200Response;
-use OpenAPI\Client\Model\ListOrgProjects200Response;
-use OpenAPI\Client\Model\ListOrgs200Response;
-use OpenAPI\Client\Model\ListOrgUsageRecords200Response;
-use OpenAPI\Client\Model\ListTeams200Response;
-use OpenAPI\Client\Model\ListUserOrgs200Response;
-use OpenAPI\Client\Model\Order;
-use OpenAPI\Client\Model\Organization;
-use OpenAPI\Client\Model\OrganizationMember;
-use OpenAPI\Client\Model\OrganizationMFAEnforcement;
-use OpenAPI\Client\Model\OrganizationProject;
-use OpenAPI\Client\Model\Profile;
-use OpenAPI\Client\Model\SendOrgMfaRemindersRequest;
-use OpenAPI\Client\Model\SubscriptionCurrentUsageObject;
-use OpenAPI\Client\Model\UpdateOrgMemberRequest;
-use OpenAPI\Client\Model\UpdateOrgProfileRequest;
-use OpenAPI\Client\Model\UpdateOrgRequest;
-use OpenAPI\Client\Model\Vouchers;
-use OpenAPI\Client\ObjectSerializer;
+use Upsun\ApiException;
+use Upsun\Api\InvoicesApi;
+use Upsun\Api\MFAApi;
+use Upsun\Api\OrdersApi;
+use Upsun\Api\OrganizationMembersApi;
+use Upsun\Api\OrganizationProjectsApi;
+use Upsun\Api\OrganizationsApi;
+use Upsun\Api\ProfilesApi;
+use Upsun\Api\RecordsApi;
+use Upsun\Api\SubscriptionsApi;
+use Upsun\Api\VouchersApi;
+use Upsun\HeaderSelector;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Address;
+use Upsun\Model\ApplyOrgVoucherRequest;
+use Upsun\Model\CanCreateNewOrgSubscription200Response;
+use Upsun\Model\CreateAuthorizationCredentials200Response;
+use Upsun\Model\CreateOrgMemberRequest;
+use Upsun\Model\CreateOrgRequest;
+use Upsun\Model\Error;
+use Upsun\Model\EstimationObject;
+use Upsun\Model\Invoice;
+use Upsun\Model\ListOrgInvoices200Response;
+use Upsun\Model\ListOrgMembers200Response;
+use Upsun\Model\ListOrgOrders200Response;
+use Upsun\Model\ListOrgPlanRecords200Response;
+use Upsun\Model\ListOrgProjects200Response;
+use Upsun\Model\ListOrgs200Response;
+use Upsun\Model\ListOrgUsageRecords200Response;
+use Upsun\Model\ListTeams200Response;
+use Upsun\Model\ListUserOrgs200Response;
+use Upsun\Model\Order;
+use Upsun\Model\Organization;
+use Upsun\Model\OrganizationMember;
+use Upsun\Model\OrganizationMFAEnforcement;
+use Upsun\Model\OrganizationProject;
+use Upsun\Model\Profile;
+use Upsun\Model\SendOrgMfaRemindersRequest;
+use Upsun\Model\SubscriptionCurrentUsageObject;
+use Upsun\Model\UpdateOrgMemberRequest;
+use Upsun\Model\UpdateOrgProfileRequest;
+use Upsun\Model\UpdateOrgRequest;
+use Upsun\Model\Vouchers;
+use Upsun\ObjectSerializer;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use RuntimeException;
@@ -844,7 +844,7 @@ class OrganizationTask extends TaskBase
             switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\Organization',
+                        '\Upsun\Model\Organization',
                         $request,
                         $response,
                     );
@@ -852,7 +852,7 @@ class OrganizationTask extends TaskBase
                 case 403:
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\Error',
+                        '\Upsun\Model\Error',
                         $request,
                         $response,
                     );
@@ -872,7 +872,7 @@ class OrganizationTask extends TaskBase
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\Organization',
+                '\Upsun\Model\Organization',
                 $request,
                 $response,
             );
@@ -881,7 +881,7 @@ class OrganizationTask extends TaskBase
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Organization',
+                        '\Upsun\Model\Organization',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -889,7 +889,7 @@ class OrganizationTask extends TaskBase
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Error',
+                        '\Upsun\Model\Error',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -897,7 +897,7 @@ class OrganizationTask extends TaskBase
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Error',
+                        '\Upsun\Model\Error',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -905,7 +905,7 @@ class OrganizationTask extends TaskBase
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Error',
+                        '\Upsun\Model\Error',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);

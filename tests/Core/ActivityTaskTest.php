@@ -3,12 +3,12 @@
 namespace Tests\Unit\Upsun\Core\Tasks;
 
 use GuzzleHttp\Client;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\apisgen\EnvironmentActivityApi;
-use OpenAPI\Client\apisgen\ProjectActivityApi;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\Model\AcceptedResponse;
-use OpenAPI\Client\Model\Activity;
+use Upsun\ApiException;
+use Upsun\Api\EnvironmentActivityApi;
+use Upsun\Api\ProjectActivityApi;
+use Upsun\Configuration;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Activity;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\ActivityTask;

@@ -3,13 +3,13 @@
 namespace Upsun\Core\Tasks;
 
 use DateTime;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\apisgen\DefaultApi;
-use OpenAPI\Client\apisgen\SupportApi;
-use OpenAPI\Client\Model\CreateTicketRequest;
-use OpenAPI\Client\Model\ListTickets200Response;
-use OpenAPI\Client\Model\Ticket;
-use OpenAPI\Client\Model\UpdateTicketRequest;
+use Upsun\ApiException;
+use Upsun\Api\DefaultApi;
+use Upsun\Api\SupportApi;
+use Upsun\Model\CreateTicketRequest;
+use Upsun\Model\ListTickets200Response;
+use Upsun\Model\Ticket;
+use Upsun\Model\UpdateTicketRequest;
 use Upsun\UpsunClient;
 
 class SupportTicketTask extends TaskBase

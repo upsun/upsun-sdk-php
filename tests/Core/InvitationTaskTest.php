@@ -2,15 +2,15 @@
 
 namespace Tests\Unit\Upsun\Core\Tasks;
 
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\apisgen\OrganizationInvitationsApi;
-use OpenAPI\Client\apisgen\ProjectInvitationsApi;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\Model\CreateOrgInviteRequest;
-use OpenAPI\Client\Model\CreateProjectInviteRequest;
-use OpenAPI\Client\Model\Error;
-use OpenAPI\Client\Model\OrganizationInvitation;
-use OpenAPI\Client\Model\ProjectInvitation;
+use Upsun\ApiException;
+use Upsun\Api\OrganizationInvitationsApi;
+use Upsun\Api\ProjectInvitationsApi;
+use Upsun\Configuration;
+use Upsun\Model\CreateOrgInviteRequest;
+use Upsun\Model\CreateProjectInviteRequest;
+use Upsun\Model\Error;
+use Upsun\Model\OrganizationInvitation;
+use Upsun\Model\ProjectInvitation;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\InvitationTask;

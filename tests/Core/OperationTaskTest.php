@@ -2,14 +2,14 @@
 
 namespace Tests\Unit\Core\Tasks;
 
-use OpenAPI\Client\Configuration;
+use Upsun\Configuration;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\OperationTask;
-use OpenAPI\Client\apisgen\RuntimeOperationsApi;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Model\AcceptedResponse;
-use OpenAPI\Client\Model\EnvironmentOperationInput;
+use Upsun\Api\RuntimeOperationsApi;
+use Upsun\ApiException;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\EnvironmentOperationInput;
 use Upsun\UpsunClient;
 use Upsun\UpsunConfig;
 
