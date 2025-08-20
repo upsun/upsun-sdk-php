@@ -1,6 +1,6 @@
 {
     "name": "upsun/upsun-sdk-php",
-    "description": "Upsun SDK for PHP.\nThis SDK maps the Upsun CLI commands. For more information, read [the documentation](https://docs.upsun.com).",
+    "description": "Upsun SDK for PHP. This SDK maps the Upsun CLI commands. For more information, read [the documentation](https://docs.upsun.com).",
     "keywords": [
         "openapitools",
         "openapi-generator",
