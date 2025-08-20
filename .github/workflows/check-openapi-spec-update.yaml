@@ -31,6 +31,7 @@ jobs:
                     mv .gitignore .gitignore.bak
                     mv README.md README.md.bak
                     mv composer.json composer.json.bak
+                    mv phpunit.xml.dist phpunit.xml.dist.bak
             
             -   name: Download and patch OpenAPI spec
                 run: |
@@ -65,6 +66,8 @@ jobs:
                     mv README.md.bak README.md
                     mv .gitignore.bak .gitignore
                     mv composer.json.bak composer.json
+                    rm -Rf phpunit.xml.dist
+                    mv phpunit.xml.dist.bak phpunit.xml.dist
 
             -   name: Create Pull Request if changes
                 uses: peter-evans/create-pull-request@v6
