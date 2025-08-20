@@ -52,12 +52,9 @@ jobs:
                       --additional-properties="apiPackage=.,invokerPackage=Upsun\\Client,apiPackage=Api,modelPackage=Model,srcBasePath=src \
                       --library="psr-18"
 
-            -   name: Move generated OpenAPI test from /test to /tests
+            -   name: Remove empty phpunit tests from OpenAPI Generator 
                 run: |
                     if [ -d "./test" ]; then
-                        rm -Rf ./tests/API
-                        rm -Rf ./tests/Model
-                        mv ./test/* "./tests/"
                         rm -Rf "./test"
                     fi
             -   name: Get back existing files (removed by openapi-generator-cli generate)

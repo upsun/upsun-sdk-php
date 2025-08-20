@@ -1,5 +1,6 @@
 {
-    "description": "Upsun SDK for PHP.\nThis SDK maps the Upsun CLI commands. For more information, read [the documentation](https://docs.upsun.com).",
+    "name": "upsun/upsun-sdk-php",
+    "description": "Upsun SDK for PHP. This SDK maps the Upsun CLI commands. For more information, read [the documentation](https://docs.upsun.com).",
     "keywords": [
         "openapitools",
         "openapi-generator",
@@ -11,7 +12,8 @@
         "Upsun"
     ],
     "homepage": "https://github.com/upsun/upsun-sdk-php",
-    "license": "unlicense",
+    "license": "Apache-2.0",
+    "type": "library",
     "authors": [
         {
             "name": "Upsun",
@@ -38,7 +40,8 @@
         "psr/http-client-implementation": "^1.0",
         "psr/http-factory": "^1.0",
         "psr/http-factory-implementation": "^1.0",
-        "psr/http-message": "^1.0"
+        "psr/http-message": "^1.0",
+        "nyholm/psr7": "^1.8"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.6",
