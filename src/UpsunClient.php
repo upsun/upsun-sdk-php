@@ -102,7 +102,6 @@ class UpsunClient
 
     public function __construct(protected UpsunConfig $upsunConfig)
     {
-
         $this->apiConfig = Configuration::getDefaultConfiguration()
             ->setHost($this->upsunConfig->base_url);
 

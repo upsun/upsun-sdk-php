@@ -40,7 +40,6 @@ use Upsun\Model\VerifyPhoneNumberRequest;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\UserTask;
-use Upsun\Exception\UpsunException;
 use Upsun\UpsunClient;
 use Upsun\UpsunConfig;
 
@@ -587,8 +586,8 @@ class UserTaskTest extends TestCase
 
     public function testCreateProfilePictureNotImplemented()
     {
-        $this->expectException(UpsunException::class);
-        $this->expectExceptionMessage('Not implemented (yet)');
+        $this->expectException(\BadMethodCallException::class);
+        $this->expectExceptionMessage('Not implemented yet');
 
         $this->userTask->createProfilePicture('123');
     }

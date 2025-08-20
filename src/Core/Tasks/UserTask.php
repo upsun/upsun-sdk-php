@@ -36,7 +36,6 @@ use Upsun\Model\User;
 use Upsun\Model\UserProjectAccess;
 use Upsun\Model\VerifyPhoneNumber200Response;
 use Upsun\Model\VerifyPhoneNumberRequest;
-use Upsun\Exception\UpsunException;
 use Upsun\UpsunClient;
 
 class UserTask extends TaskBase
@@ -305,11 +304,11 @@ class UserTask extends TaskBase
     /**
      * Creates a user profile picture
      *
-     * @throws UpsunException on non-2xx response or if the response body is not in the expected format
+     * @throws \BadMethodCallException Not implemented yet
      */
     public function createProfilePicture(string $uuid)
     {
-        throw new UpsunException("Not implemented (yet)");
+        throw new \BadMethodCallException("Not implemented yet");
     }
 
     /**
