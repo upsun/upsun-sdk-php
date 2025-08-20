@@ -2,16 +2,16 @@
 
 namespace Tests\Unit\Core\Tasks;
 
-use OpenAPI\Client\Configuration;
+use Upsun\Configuration;
 use PHPUnit\Framework\TestCase;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\apisgen\EnvironmentBackupsApi;
-use OpenAPI\Client\Model\AcceptedResponse;
-use OpenAPI\Client\Model\Backup;
+use Upsun\ApiException;
+use Upsun\API\EnvironmentBackupsApi;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Backup;
 use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\BackupTask;
-use OpenAPI\Client\Model\EnvironmentBackupInput;
-use OpenAPI\Client\Model\EnvironmentRestoreInput;
+use Upsun\Model\EnvironmentBackupInput;
+use Upsun\Model\EnvironmentRestoreInput;
 use Upsun\UpsunClient;
 use Upsun\UpsunConfig;
 

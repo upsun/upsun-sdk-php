@@ -2,12 +2,12 @@
 
 namespace Upsun\Core\Tasks;
 
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\apisgen\EnvironmentBackupsApi;
-use OpenAPI\Client\Model\AcceptedResponse;
-use OpenAPI\Client\Model\Backup;
-use OpenAPI\Client\Model\EnvironmentBackupInput;
-use OpenAPI\Client\Model\EnvironmentRestoreInput;
+use Upsun\ApiException;
+use Upsun\API\EnvironmentBackupsApi;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Backup;
+use Upsun\Model\EnvironmentBackupInput;
+use Upsun\Model\EnvironmentRestoreInput;
 use Upsun\UpsunClient;
 
 class BackupTask extends TaskBase

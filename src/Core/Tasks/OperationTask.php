@@ -2,10 +2,10 @@
 
 namespace Upsun\Core\Tasks;
 
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\apisgen\RuntimeOperationsApi;
-use OpenAPI\Client\Model\AcceptedResponse;
-use OpenAPI\Client\Model\EnvironmentOperationInput;
+use Upsun\ApiException;
+use Upsun\API\RuntimeOperationsApi;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\EnvironmentOperationInput;
 use Upsun\UpsunClient;
 
 class OperationTask extends TaskBase

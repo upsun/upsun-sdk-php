@@ -2,48 +2,44 @@
 
 namespace Tests\Upsun\Core\Tasks;
 
-use Nyholm\Psr7\Request;
-use InvalidArgumentException;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\apisgen\DeploymentTargetApi;
-use OpenAPI\Client\apisgen\OrganizationProjectsApi;
-use OpenAPI\Client\apisgen\ProjectApi;
-use OpenAPI\Client\apisgen\ProjectSettingsApi;
-use OpenAPI\Client\apisgen\RepositoryApi;
-use OpenAPI\Client\apisgen\SubscriptionsApi;
-use OpenAPI\Client\apisgen\SystemInformationApi;
-use OpenAPI\Client\apisgen\ThirdPartyIntegrationsApi;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\Model\AcceptedResponse;
-use OpenAPI\Client\Model\Activity;
-use OpenAPI\Client\Model\Blob;
-use OpenAPI\Client\Model\Certificate;
-use OpenAPI\Client\Model\Commit;
-use OpenAPI\Client\Model\CreateOrgSubscriptionRequest;
-use OpenAPI\Client\Model\CreateProjectInviteRequest;
-use OpenAPI\Client\Model\DeploymentTarget;
-use OpenAPI\Client\Model\DeploymentTargetCreateInput;
-use OpenAPI\Client\Model\DeploymentTargetPatch;
-use OpenAPI\Client\Model\Domain;
-use OpenAPI\Client\Model\Error;
-use OpenAPI\Client\Model\Integration;
-use OpenAPI\Client\Model\IntegrationCreateInput;
-use OpenAPI\Client\Model\IntegrationPatch;
-use OpenAPI\Client\Model\ListProjectUserAccess200Response;
-use OpenAPI\Client\Model\ListTeamProjectAccess200Response;
-use OpenAPI\Client\Model\OrganizationProject;
-use OpenAPI\Client\Model\Project;
-use OpenAPI\Client\Model\ProjectCapabilities;
-use OpenAPI\Client\Model\ProjectInvitation;
-use OpenAPI\Client\Model\ProjectPatch;
-use OpenAPI\Client\Model\ProjectSettings;
-use OpenAPI\Client\Model\ProjectSettingsPatch;
-use OpenAPI\Client\Model\Ref;
-use OpenAPI\Client\Model\Subscription;
-use OpenAPI\Client\Model\SystemInformation;
-use OpenAPI\Client\Model\TeamProjectAccess;
-use OpenAPI\Client\Model\Tree;
-use OpenAPI\Client\Model\UserProjectAccess;
+use Upsun\ApiException;
+use Upsun\API\DeploymentTargetApi;
+use Upsun\API\OrganizationProjectsApi;
+use Upsun\API\ProjectApi;
+use Upsun\API\ProjectSettingsApi;
+use Upsun\API\RepositoryApi;
+use Upsun\API\SubscriptionsApi;
+use Upsun\API\SystemInformationApi;
+use Upsun\API\ThirdPartyIntegrationsApi;
+use Upsun\Configuration;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Activity;
+use Upsun\Model\Blob;
+use Upsun\Model\Certificate;
+use Upsun\Model\Commit;
+use Upsun\Model\CreateOrgSubscriptionRequest;
+use Upsun\Model\DeploymentTarget;
+use Upsun\Model\DeploymentTargetCreateInput;
+use Upsun\Model\DeploymentTargetPatch;
+use Upsun\Model\Domain;
+use Upsun\Model\Integration;
+use Upsun\Model\IntegrationCreateInput;
+use Upsun\Model\IntegrationPatch;
+use Upsun\Model\ListProjectUserAccess200Response;
+use Upsun\Model\ListTeamProjectAccess200Response;
+use Upsun\Model\OrganizationProject;
+use Upsun\Model\Project;
+use Upsun\Model\ProjectCapabilities;
+use Upsun\Model\ProjectInvitation;
+use Upsun\Model\ProjectPatch;
+use Upsun\Model\ProjectSettings;
+use Upsun\Model\ProjectSettingsPatch;
+use Upsun\Model\Ref;
+use Upsun\Model\Subscription;
+use Upsun\Model\SystemInformation;
+use Upsun\Model\TeamProjectAccess;
+use Upsun\Model\Tree;
+use Upsun\Model\UserProjectAccess;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\ActivityTask;
@@ -120,9 +116,9 @@ class ProjectTaskTest extends TestCase
 
         $this->client = new class() extends UpsunClient {
             public HttplugClient $apiClient;
-            public Configuration $apiConfig;
 
             public UpsunConfig $upsunConfig;
+            public Configuration $apiConfig;
 
             public function __construct()
             {
@@ -1669,7 +1665,7 @@ class ProjectTaskTest extends TestCase
     {
         $projectId = 'test-project';
         $teamId = 'team-123';
-        $error = new ApiException('Not Found');
+        $error = new ApiException('Not Found', $this->createMock(\Psr\Http\Message\RequestInterface::class));
 
         $this->teamTask->expects($this->once())
             ->method('removeProjectTeamAccess')
@@ -1684,7 +1680,7 @@ class ProjectTaskTest extends TestCase
     {
         $teamId = 'team-123';
         $projectId = 'test-project';
-        $error = new ApiException('Forbidden');
+        $error = new ApiException('Forbidden', $this->createMock(\Psr\Http\Message\RequestInterface::class));
 
         $this->teamTask->expects($this->once())
             ->method('removeTeamProjectAccess')

@@ -1,14 +1,14 @@
 <?php
 
-use OpenAPI\Client\Configuration;
+use Upsun\Configuration;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\RouteTask;
 use Upsun\UpsunClient;
-use OpenAPI\Client\apisgen\RoutingApi;
-use OpenAPI\Client\Model\AcceptedResponse;
-use OpenAPI\Client\Model\Route;
-use OpenAPI\Client\ApiException;
+use Upsun\API\RoutingApi;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Route;
+use Upsun\ApiException;
 use Upsun\UpsunConfig;
 
 class RouteTaskTest extends TestCase

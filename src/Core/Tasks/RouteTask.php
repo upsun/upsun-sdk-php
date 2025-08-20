@@ -2,12 +2,12 @@
 
 namespace Upsun\Core\Tasks;
 
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\apisgen\RoutingApi;
-use OpenAPI\Client\Model\AcceptedResponse;
-use OpenAPI\Client\Model\Route;
-use OpenAPI\Client\Model\RouteCreateInput;
-use OpenAPI\Client\Model\RoutePatch;
+use Upsun\ApiException;
+use Upsun\API\RoutingApi;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Route;
+use Upsun\Model\RouteCreateInput;
+use Upsun\Model\RoutePatch;
 use Upsun\UpsunClient;
 
 class RouteTask extends TaskBase

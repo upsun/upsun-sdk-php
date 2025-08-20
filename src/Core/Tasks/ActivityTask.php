@@ -2,11 +2,11 @@
 
 namespace Upsun\Core\Tasks;
 
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\apisgen\EnvironmentActivityApi;
-use OpenAPI\Client\apisgen\ProjectActivityApi;
-use OpenAPI\Client\Model\AcceptedResponse;
-use OpenAPI\Client\Model\Activity;
+use Upsun\ApiException;
+use Upsun\Api\EnvironmentActivityApi;
+use Upsun\API\ProjectActivityApi;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Activity;
 use Upsun\UpsunClient;
 
 class ActivityTask extends TaskBase

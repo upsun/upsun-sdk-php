@@ -2,14 +2,14 @@
 
 namespace Tests\Tasks;
 
-use OpenAPI\Client\Configuration;
+use Upsun\Configuration;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\WorkerTask;
-use OpenAPI\Client\apisgen\DeploymentApi;
-use OpenAPI\Client\Model\Deployment;
+use Upsun\API\DeploymentApi;
+use Upsun\Model\Deployment;
 use Upsun\UpsunClient;
-use OpenAPI\Client\ApiException;
+use Upsun\ApiException;
 use Upsun\UpsunConfig;
 
 class WorkerTaskTest extends TestCase

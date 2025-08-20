@@ -25,7 +25,13 @@ jobs:
             -   name: Install OpenAPI Generator CLI
                 run: |
                     npm install -g @openapitools/openapi-generator-cli
-
+            
+            -   name: Keep existing files (removed by openapi-generator-cli generate)
+                run: |
+                    mv .gitignore .gitignore.bak
+                    mv README.md README.md.bak
+                    mv composer.json composer.json.bak
+            
             -   name: Download and patch OpenAPI spec
                 run: |
                     echo "Download OpenAPI spec..."
@@ -42,11 +48,23 @@ jobs:
                       -i ./schema/openapispec-platformsh.json \
                       -g php \
                       -o apisgen \
-                      --additional-properties=apiPackage=apisgen
+                      --additional-properties="apiPackage=.,invokerPackage=Upsun\\Client,apiPackage=Api,modelPackage=Model,srcBasePath=src \
+                      --library="psr-18"
 
-            -   name: Force-add apisgen to Git
+            -   name: Move generated OpenAPI test from /test to /tests
                 run: |
-                    git add apisgen
+                    if [ -d "./test" ]; then
+                        rm -Rf ./tests/API
+                        rm -Rf ./tests/Model
+                        mv ./test/* "./tests/"
+                        rm -Rf "./test"
+                    fi
+            -   name: Get back existing files (removed by openapi-generator-cli generate)
+                run: |
+                    mv README.md README-OPENAPI.md
+                    mv README.md.bak README.md
+                    mv .gitignore.bak .gitignore
+                    mv composer.json.bak composer.json
 
             -   name: Create Pull Request if changes
                 uses: peter-evans/create-pull-request@v6
@@ -68,3 +86,9 @@ jobs:
                         automated pr
                     add-paths: |
                         schema/openapispec-platformsh.json
+                        src/
+                        tests/
+                        docs/
+                        README-OPENAPI.md
+                        
+                        

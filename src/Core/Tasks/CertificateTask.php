@@ -2,12 +2,12 @@
 
 namespace Upsun\Core\Tasks;
 
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\apisgen\CertManagementApi;
-use OpenAPI\Client\Model\AcceptedResponse;
-use OpenAPI\Client\Model\Certificate;
-use OpenAPI\Client\Model\CertificateCreateInput;
-use OpenAPI\Client\Model\CertificatePatch;
+use Upsun\ApiException;
+use Upsun\API\CertManagementApi;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Certificate;
+use Upsun\Model\CertificateCreateInput;
+use Upsun\Model\CertificatePatch;
 use Upsun\UpsunClient;
 
 class CertificateTask extends TaskBase

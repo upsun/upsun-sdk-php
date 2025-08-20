@@ -2,9 +2,9 @@
 
 namespace Upsun\Core\Tasks;
 
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\apisgen\DeploymentApi;
-use OpenAPI\Client\Model\Deployment;
+use Upsun\ApiException;
+use Upsun\API\DeploymentApi;
+use Upsun\Model\Deployment;
 use Upsun\UpsunClient;
 
 class WorkerTask extends TaskBase

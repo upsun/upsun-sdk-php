@@ -3,14 +3,14 @@
 namespace Tests\Unit\Core\Tasks;
 
 use PHPUnit\Framework\TestCase;
-use OpenAPI\Client\apisgen\DeploymentApi;
+use Upsun\API\DeploymentApi;
 use Upsun\Core\Tasks\ApplicationTask;
 use Upsun\Core\Tasks\EnvironmentTask;
 use Upsun\UpsunClient;
-use OpenAPI\Client\Model\Deployment;
-use OpenAPI\Client\Model\WebApplicationsValue;
-use OpenAPI\Client\Model\Environment;
-use OpenAPI\Client\Model\TheEnvironmentDeploymentState as DeploymentState;
+use Upsun\Model\Deployment;
+use Upsun\Model\WebApplicationsValue;
+use Upsun\Model\Environment;
+use Upsun\Model\TheEnvironmentDeploymentState as DeploymentState;
 
 class ApplicationTaskTest extends TestCase
 {

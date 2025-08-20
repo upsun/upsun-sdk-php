@@ -3,14 +3,14 @@
 namespace Upsun\Core\Tasks;
 
 use InvalidArgumentException;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\apisgen\OrganizationInvitationsApi;
-use OpenAPI\Client\apisgen\ProjectInvitationsApi;
-use OpenAPI\Client\Model\CreateOrgInviteRequest;
-use OpenAPI\Client\Model\CreateProjectInviteRequest;
-use OpenAPI\Client\Model\Error;
-use OpenAPI\Client\Model\OrganizationInvitation;
-use OpenAPI\Client\Model\ProjectInvitation;
+use Upsun\ApiException;
+use Upsun\API\OrganizationInvitationsApi;
+use Upsun\API\ProjectInvitationsApi;
+use Upsun\Model\CreateOrgInviteRequest;
+use Upsun\Model\CreateProjectInviteRequest;
+use Upsun\Model\Error;
+use Upsun\Model\OrganizationInvitation;
+use Upsun\Model\ProjectInvitation;
 use Upsun\UpsunClient;
 
 class InvitationTask extends TaskBase
