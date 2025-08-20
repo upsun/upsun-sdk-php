@@ -4,8 +4,8 @@ namespace Upsun\Core\Tasks;
 
 use InvalidArgumentException;
 use Upsun\ApiException;
-use Upsun\API\OrganizationInvitationsApi;
-use Upsun\API\ProjectInvitationsApi;
+use Upsun\Api\OrganizationInvitationsApi;
+use Upsun\Api\ProjectInvitationsApi;
 use Upsun\Model\CreateOrgInviteRequest;
 use Upsun\Model\CreateProjectInviteRequest;
 use Upsun\Model\Error;

@@ -4,7 +4,7 @@ namespace Upsun\Core\Tasks;
 
 use InvalidArgumentException;
 use Upsun\ApiException;
-use Upsun\API\RegionsApi;
+use Upsun\Api\RegionsApi;
 use Upsun\Model\Error;
 use Upsun\Model\ListRegions200Response;
 use Upsun\Model\Region;

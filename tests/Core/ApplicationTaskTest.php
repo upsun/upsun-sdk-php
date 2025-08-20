@@ -3,7 +3,7 @@
 namespace Tests\Unit\Core\Tasks;
 
 use PHPUnit\Framework\TestCase;
-use Upsun\API\DeploymentApi;
+use Upsun\Api\DeploymentApi;
 use Upsun\Core\Tasks\ApplicationTask;
 use Upsun\Core\Tasks\EnvironmentTask;
 use Upsun\UpsunClient;

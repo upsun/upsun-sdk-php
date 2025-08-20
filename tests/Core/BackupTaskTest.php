@@ -5,7 +5,7 @@ namespace Tests\Unit\Core\Tasks;
 use Upsun\Configuration;
 use PHPUnit\Framework\TestCase;
 use Upsun\ApiException;
-use Upsun\API\EnvironmentBackupsApi;
+use Upsun\Api\EnvironmentBackupsApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Backup;
 use Symfony\Component\HttpClient\HttplugClient;

@@ -3,7 +3,7 @@
 namespace Tests\Upsun\Core\Tasks;
 
 use Upsun\ApiException;
-use Upsun\API\DomainManagementApi;
+use Upsun\Api\DomainManagementApi;
 use Upsun\Configuration;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Domain;

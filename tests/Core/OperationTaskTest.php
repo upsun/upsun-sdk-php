@@ -6,7 +6,7 @@ use Upsun\Configuration;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\OperationTask;
-use Upsun\API\RuntimeOperationsApi;
+use Upsun\Api\RuntimeOperationsApi;
 use Upsun\ApiException;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\EnvironmentOperationInput;

@@ -3,7 +3,7 @@
 namespace Tests\Upsun\Core\Tasks;
 
 use Upsun\ApiException;
-use Upsun\API\CertManagementApi;
+use Upsun\Api\CertManagementApi;
 use Upsun\Configuration;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Certificate;

@@ -6,7 +6,7 @@ use Upsun\Configuration;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\WorkerTask;
-use Upsun\API\DeploymentApi;
+use Upsun\Api\DeploymentApi;
 use Upsun\Model\Deployment;
 use Upsun\UpsunClient;
 use Upsun\ApiException;

@@ -3,14 +3,14 @@
 namespace Tests\Upsun\Core\Tasks;
 
 use Upsun\ApiException;
-use Upsun\API\DeploymentTargetApi;
-use Upsun\API\OrganizationProjectsApi;
-use Upsun\API\ProjectApi;
-use Upsun\API\ProjectSettingsApi;
-use Upsun\API\RepositoryApi;
-use Upsun\API\SubscriptionsApi;
-use Upsun\API\SystemInformationApi;
-use Upsun\API\ThirdPartyIntegrationsApi;
+use Upsun\Api\DeploymentTargetApi;
+use Upsun\Api\OrganizationProjectsApi;
+use Upsun\Api\ProjectApi;
+use Upsun\Api\ProjectSettingsApi;
+use Upsun\Api\RepositoryApi;
+use Upsun\Api\SubscriptionsApi;
+use Upsun\Api\SystemInformationApi;
+use Upsun\Api\ThirdPartyIntegrationsApi;
 use Upsun\Configuration;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;

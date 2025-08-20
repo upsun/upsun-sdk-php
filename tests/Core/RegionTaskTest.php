@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\RegionTask;
 use Upsun\UpsunClient;
-use Upsun\API\RegionsApi;
+use Upsun\Api\RegionsApi;
 use Upsun\Model\Region;
 use Upsun\Model\ListRegions200Response;
 use Upsun\ApiException;

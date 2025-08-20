@@ -4,7 +4,7 @@ namespace Upsun\Core\Tasks;
 
 use Upsun\ApiException;
 use Upsun\Api\EnvironmentActivityApi;
-use Upsun\API\ProjectActivityApi;
+use Upsun\Api\ProjectActivityApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;
 use Upsun\UpsunClient;

@@ -3,7 +3,7 @@
 namespace Upsun\Core\Tasks;
 
 use Upsun\ApiException;
-use Upsun\API\SourceOperationsApi;
+use Upsun\Api\SourceOperationsApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\EnvironmentSourceOperationInput;
 use Upsun\UpsunClient;

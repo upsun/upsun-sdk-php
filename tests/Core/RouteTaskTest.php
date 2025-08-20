@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\RouteTask;
 use Upsun\UpsunClient;
-use Upsun\API\RoutingApi;
+use Upsun\Api\RoutingApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Route;
 use Upsun\ApiException;

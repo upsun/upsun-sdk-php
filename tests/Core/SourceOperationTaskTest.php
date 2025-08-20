@@ -1,6 +1,6 @@
 <?php
 
-use Upsun\API\SourceOperationsApi;
+use Upsun\Api\SourceOperationsApi;
 use Upsun\Configuration;
 use Upsun\Model\EnvironmentSourceOperationInput;
 use PHPUnit\Framework\TestCase;

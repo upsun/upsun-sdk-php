@@ -3,8 +3,8 @@
 namespace Upsun\Core\Tasks;
 
 use Upsun\ApiException;
-use Upsun\API\TeamAccessApi;
-use Upsun\API\TeamsApi;
+use Upsun\Api\TeamAccessApi;
+use Upsun\Api\TeamsApi;
 use Upsun\Model\CreateTeamMemberRequest;
 use Upsun\Model\CreateTeamRequest;
 use Upsun\Model\Error;

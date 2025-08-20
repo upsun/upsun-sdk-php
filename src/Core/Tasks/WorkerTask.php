@@ -3,7 +3,7 @@
 namespace Upsun\Core\Tasks;
 
 use Upsun\ApiException;
-use Upsun\API\DeploymentApi;
+use Upsun\Api\DeploymentApi;
 use Upsun\Model\Deployment;
 use Upsun\UpsunClient;
 

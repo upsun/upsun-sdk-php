@@ -3,8 +3,8 @@
 namespace Upsun\Core\Tasks;
 
 use Upsun\ApiException;
-use Upsun\API\EnvironmentVariablesApi;
-use Upsun\API\ProjectVariablesApi;
+use Upsun\Api\EnvironmentVariablesApi;
+use Upsun\Api\ProjectVariablesApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\EnvironmentVariable;
 use Upsun\Model\EnvironmentVariableCreateInput;

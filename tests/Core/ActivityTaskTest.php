@@ -4,8 +4,8 @@ namespace Tests\Unit\Upsun\Core\Tasks;
 
 use GuzzleHttp\Client;
 use Upsun\ApiException;
-use Upsun\API\EnvironmentActivityApi;
-use Upsun\API\ProjectActivityApi;
+use Upsun\Api\EnvironmentActivityApi;
+use Upsun\Api\ProjectActivityApi;
 use Upsun\Configuration;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;

@@ -4,8 +4,8 @@ namespace Upsun\Core\Tasks;
 
 use DateTime;
 use Upsun\ApiException;
-use Upsun\API\DefaultApi;
-use Upsun\API\SupportApi;
+use Upsun\Api\DefaultApi;
+use Upsun\Api\SupportApi;
 use Upsun\Model\CreateTicketRequest;
 use Upsun\Model\ListTickets200Response;
 use Upsun\Model\Ticket;

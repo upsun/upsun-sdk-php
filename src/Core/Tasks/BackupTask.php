@@ -3,7 +3,7 @@
 namespace Upsun\Core\Tasks;
 
 use Upsun\ApiException;
-use Upsun\API\EnvironmentBackupsApi;
+use Upsun\Api\EnvironmentBackupsApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Backup;
 use Upsun\Model\EnvironmentBackupInput;

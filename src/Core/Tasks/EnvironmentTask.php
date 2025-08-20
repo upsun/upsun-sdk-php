@@ -4,9 +4,9 @@ namespace Upsun\Core\Tasks;
 
 use InvalidArgumentException;
 use Upsun\ApiException;
-use Upsun\API\DeploymentApi;
-use Upsun\API\EnvironmentApi;
-use Upsun\API\EnvironmentTypeApi;
+use Upsun\Api\DeploymentApi;
+use Upsun\Api\EnvironmentApi;
+use Upsun\Api\EnvironmentTypeApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;
 use Upsun\Model\Backup;

@@ -2,8 +2,8 @@
 
 use Upsun\Configuration;
 use PHPUnit\Framework\TestCase;
-use Upsun\API\TeamsApi;
-use Upsun\API\TeamAccessApi;
+use Upsun\Api\TeamsApi;
+use Upsun\Api\TeamAccessApi;
 use Upsun\Model\{CreateTeamRequest, CreateTeamMemberRequest, Error, ListTeamMembers200Response, ListTeamProjectAccess200Response, ListTeams200Response, Team, TeamMember, TeamProjectAccess};
 use Upsun\ApiException;
 use Symfony\Component\HttpClient\HttplugClient;

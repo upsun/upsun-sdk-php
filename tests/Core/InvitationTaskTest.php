@@ -3,8 +3,8 @@
 namespace Tests\Unit\Upsun\Core\Tasks;
 
 use Upsun\ApiException;
-use Upsun\API\OrganizationInvitationsApi;
-use Upsun\API\ProjectInvitationsApi;
+use Upsun\Api\OrganizationInvitationsApi;
+use Upsun\Api\ProjectInvitationsApi;
 use Upsun\Configuration;
 use Upsun\Model\CreateOrgInviteRequest;
 use Upsun\Model\CreateProjectInviteRequest;
