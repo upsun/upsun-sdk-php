@@ -59,7 +59,7 @@ jobs:
                     fi
             -   name: Get back existing files (removed by openapi-generator-cli generate)
                 run: |
-                    mv README.md README-OPENAPI.md
+                    rm README.md
                     mv README.md.bak README.md
                     mv .gitignore.bak .gitignore
                     mv composer.json.bak composer.json
