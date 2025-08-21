@@ -115,7 +115,7 @@ class UpsunClient
             $requestFactory,
             tokenEndpoint: $this->upsunConfig->auth_url . "/" . $this->upsunConfig->token_endpoint,
             clientId: $this->upsunConfig->clientId,
-            clientSecret: $this->upsunConfig->apiKey,
+            clientSecret: $this->upsunConfig->apiToken,
         );
 
         // Initialize the commands tasks.
@@ -240,7 +240,7 @@ class UpsunClient
 
     public function getToken()
     {
-        return $this->upsunConfig->apiKey;
+        return $this->upsunConfig->apiToken;
     }
 
     public function getApiClient(): HttplugClient
