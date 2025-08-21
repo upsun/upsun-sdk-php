@@ -44,11 +44,11 @@ jobs:
             -   name: Generate code (php)
                 run: |
                     export GIT_USER_ID=upsun
-                    export GIT_REPO_ID=upsun-sdk-go
+                    export GIT_REPO_ID=upsun-sdk-php
                     openapi-generator-cli generate \
                       -i ./schema/openapispec-platformsh.json \
                       -g php \
-                      -o apisgen \
+                      -o "." \
                       --additional-properties="apiPackage=.,invokerPackage=Upsun\\Client,apiPackage=Api,modelPackage=Model,srcBasePath=src \
                       --library="psr-18"
 
