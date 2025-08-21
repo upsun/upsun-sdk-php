@@ -49,7 +49,7 @@ jobs:
                       -i ./schema/openapispec-platformsh.json \
                       -g php \
                       -o apisgen \
-                      --additional-properties="apiPackage=.,invokerPackage=Upsun\\Client,apiPackage=Api,modelPackage=Model,srcBasePath=src \
+                      --additional-properties="apiPackage=.,invokerPackage=Upsun\\Client,apiPackage=Api,modelPackage=Model,srcBasePath=src" \
                       --library="psr-18"
 
             -   name: Remove empty phpunit tests from OpenAPI Generator 
