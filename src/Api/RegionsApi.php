@@ -763,6 +763,8 @@ final class RegionsApi
 
         $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
 
+        var_dump($uri, $headers, $httpBody);
+
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
 
