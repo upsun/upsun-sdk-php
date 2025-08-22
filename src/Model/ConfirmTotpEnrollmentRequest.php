@@ -190,7 +190,8 @@ final class ConfirmTotpEnrollmentRequest implements ModelInterface, ArrayAccess,
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -238,7 +239,7 @@ final class ConfirmTotpEnrollmentRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets secret
      */
-    public function setSecret($secret)
+    public function setSecret(string|null $secret = null)
     {
         if (is_null($secret)) {
             throw new \InvalidArgumentException('non-nullable secret cannot be null');
@@ -261,7 +262,7 @@ final class ConfirmTotpEnrollmentRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets passcode
      */
-    public function setPasscode($passcode)
+    public function setPasscode(string|null $passcode = null)
     {
         if (is_null($passcode)) {
             throw new \InvalidArgumentException('non-nullable passcode cannot be null');
@@ -340,5 +341,3 @@ final class ConfirmTotpEnrollmentRequest implements ModelInterface, ArrayAccess,
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

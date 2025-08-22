@@ -183,7 +183,8 @@ final class GetTypeAllowance200Response implements ModelInterface, ArrayAccess, 
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -225,7 +226,7 @@ final class GetTypeAllowance200Response implements ModelInterface, ArrayAccess, 
     /**
      * Sets currencies
      */
-    public function setCurrencies($currencies)
+    public function setCurrencies(string|null $currencies = null)
     {
         if (is_null($currencies)) {
             throw new \InvalidArgumentException('non-nullable currencies cannot be null');
@@ -304,5 +305,3 @@ final class GetTypeAllowance200Response implements ModelInterface, ArrayAccess, 
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

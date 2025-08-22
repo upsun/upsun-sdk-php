@@ -103,16 +103,12 @@ final class TeamsApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,10 @@ final class TeamsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Team
      */
-    public function createTeam($create_team_request)
-    {
+    public function createTeam(
+        $create_team_request
+    ): \Upsun\Model\Team {
         list($response) = $this->createTeamWithHttpInfo($create_team_request);
         return $response;
     }
@@ -265,7 +261,7 @@ final class TeamsApi
      */
     public function createTeamAsyncWithHttpInfo(
         \Upsun\Model\CreateTeamRequest $create_team_request
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Team';
         $request = $this->createTeamRequest($create_team_request);
 
@@ -390,10 +386,11 @@ final class TeamsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\TeamMember
      */
-    public function createTeamMember($team_id, $create_team_member_request)
-    {
+    public function createTeamMember(
+        $team_id,
+        $create_team_member_request
+    ): \Upsun\Model\TeamMember {
         list($response) = $this->createTeamMemberWithHttpInfo($team_id, $create_team_member_request);
         return $response;
     }
@@ -549,7 +546,7 @@ final class TeamsApi
     public function createTeamMemberAsyncWithHttpInfo(
         string $team_id,
         \Upsun\Model\CreateTeamMemberRequest $create_team_member_request
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\TeamMember';
         $request = $this->createTeamMemberRequest($team_id, $create_team_member_request);
 
@@ -689,10 +686,10 @@ final class TeamsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function deleteTeam($team_id)
-    {
+    public function deleteTeam(
+        $team_id
+    ): void {
         $this->deleteTeamWithHttpInfo($team_id);
     }
 
@@ -783,7 +780,7 @@ final class TeamsApi
      */
     public function deleteTeamAsyncWithHttpInfo(
         string $team_id
-    ) {
+    ): Promise {
         $returnType = '';
         $request = $this->deleteTeamRequest($team_id);
 
@@ -900,10 +897,11 @@ final class TeamsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function deleteTeamMember($team_id, $user_id)
-    {
+    public function deleteTeamMember(
+        $team_id,
+        $user_id
+    ): void {
         $this->deleteTeamMemberWithHttpInfo($team_id, $user_id);
     }
 
@@ -997,7 +995,7 @@ final class TeamsApi
     public function deleteTeamMemberAsyncWithHttpInfo(
         string $team_id,
         string $user_id
-    ) {
+    ): Promise {
         $returnType = '';
         $request = $this->deleteTeamMemberRequest($team_id, $user_id);
 
@@ -1129,10 +1127,10 @@ final class TeamsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Team
      */
-    public function getTeam($team_id)
-    {
+    public function getTeam(
+        $team_id
+    ): \Upsun\Model\Team {
         list($response) = $this->getTeamWithHttpInfo($team_id);
         return $response;
     }
@@ -1271,7 +1269,7 @@ final class TeamsApi
      */
     public function getTeamAsyncWithHttpInfo(
         string $team_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Team';
         $request = $this->getTeamRequest($team_id);
 
@@ -1398,10 +1396,11 @@ final class TeamsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\TeamMember
      */
-    public function getTeamMember($team_id, $user_id)
-    {
+    public function getTeamMember(
+        $team_id,
+        $user_id
+    ): \Upsun\Model\TeamMember {
         list($response) = $this->getTeamMemberWithHttpInfo($team_id, $user_id);
         return $response;
     }
@@ -1543,7 +1542,7 @@ final class TeamsApi
     public function getTeamMemberAsyncWithHttpInfo(
         string $team_id,
         string $user_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\TeamMember';
         $request = $this->getTeamMemberRequest($team_id, $user_id);
 
@@ -1685,10 +1684,13 @@ final class TeamsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ListTeamMembers200Response
      */
-    public function listTeamMembers($team_id, $page_before = null, $page_after = null, $sort = null)
-    {
+    public function listTeamMembers(
+        $team_id,
+        $page_before = null,
+        $page_after = null,
+        $sort = null
+    ): \Upsun\Model\ListTeamMembers200Response {
         list($response) = $this->listTeamMembersWithHttpInfo($team_id, $page_before, $page_after, $sort);
         return $response;
     }
@@ -1836,7 +1838,7 @@ final class TeamsApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ListTeamMembers200Response';
         $request = $this->listTeamMembersRequest($team_id, $page_before, $page_after, $sort);
 
@@ -1899,8 +1901,8 @@ final class TeamsApi
 
         // query params
         if ($page_before !== null) {
-            if('form' === 'form' && is_array($page_before)) {
-                foreach($page_before as $key => $value) {
+            if ('form' === 'form' && is_array($page_before)) {
+                foreach ($page_before as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1910,8 +1912,8 @@ final class TeamsApi
         }
         // query params
         if ($page_after !== null) {
-            if('form' === 'form' && is_array($page_after)) {
-                foreach($page_after as $key => $value) {
+            if ('form' === 'form' && is_array($page_after)) {
+                foreach ($page_after as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1921,8 +1923,8 @@ final class TeamsApi
         }
         // query params
         if ($sort !== null) {
-            if('form' === 'form' && is_array($sort)) {
-                foreach($sort as $key => $value) {
+            if ('form' === 'form' && is_array($sort)) {
+                foreach ($sort as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1999,10 +2001,16 @@ final class TeamsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ListTeams200Response
      */
-    public function listTeams($filter_organization_id = null, $filter_id = null, $filter_updated_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
-    {
+    public function listTeams(
+        $filter_organization_id = null,
+        $filter_id = null,
+        $filter_updated_at = null,
+        $page_size = null,
+        $page_before = null,
+        $page_after = null,
+        $sort = null
+    ): \Upsun\Model\ListTeams200Response {
         list($response) = $this->listTeamsWithHttpInfo($filter_organization_id, $filter_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
         return $response;
     }
@@ -2145,7 +2153,7 @@ final class TeamsApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ListTeams200Response';
         $request = $this->listTeamsRequest($filter_organization_id, $filter_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
 
@@ -2212,8 +2220,8 @@ final class TeamsApi
 
         // query params
         if ($filter_organization_id !== null) {
-            if('form' === 'deepObject' && is_array($filter_organization_id)) {
-                foreach($filter_organization_id as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_organization_id)) {
+                foreach ($filter_organization_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -2223,8 +2231,8 @@ final class TeamsApi
         }
         // query params
         if ($filter_id !== null) {
-            if('form' === 'deepObject' && is_array($filter_id)) {
-                foreach($filter_id as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_id)) {
+                foreach ($filter_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -2234,8 +2242,8 @@ final class TeamsApi
         }
         // query params
         if ($filter_updated_at !== null) {
-            if('form' === 'deepObject' && is_array($filter_updated_at)) {
-                foreach($filter_updated_at as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_updated_at)) {
+                foreach ($filter_updated_at as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -2245,8 +2253,8 @@ final class TeamsApi
         }
         // query params
         if ($page_size !== null) {
-            if('form' === 'form' && is_array($page_size)) {
-                foreach($page_size as $key => $value) {
+            if ('form' === 'form' && is_array($page_size)) {
+                foreach ($page_size as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -2256,8 +2264,8 @@ final class TeamsApi
         }
         // query params
         if ($page_before !== null) {
-            if('form' === 'form' && is_array($page_before)) {
-                foreach($page_before as $key => $value) {
+            if ('form' === 'form' && is_array($page_before)) {
+                foreach ($page_before as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -2267,8 +2275,8 @@ final class TeamsApi
         }
         // query params
         if ($page_after !== null) {
-            if('form' === 'form' && is_array($page_after)) {
-                foreach($page_after as $key => $value) {
+            if ('form' === 'form' && is_array($page_after)) {
+                foreach ($page_after as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -2278,8 +2286,8 @@ final class TeamsApi
         }
         // query params
         if ($sort !== null) {
-            if('form' === 'form' && is_array($sort)) {
-                foreach($sort as $key => $value) {
+            if ('form' === 'form' && is_array($sort)) {
+                foreach ($sort as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -2348,10 +2356,16 @@ final class TeamsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ListTeams200Response
      */
-    public function listUserTeams($user_id, $filter_organization_id = null, $filter_updated_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
-    {
+    public function listUserTeams(
+        $user_id,
+        $filter_organization_id = null,
+        $filter_updated_at = null,
+        $page_size = null,
+        $page_before = null,
+        $page_after = null,
+        $sort = null
+    ): \Upsun\Model\ListTeams200Response {
         list($response) = $this->listUserTeamsWithHttpInfo($user_id, $filter_organization_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
         return $response;
     }
@@ -2508,7 +2522,7 @@ final class TeamsApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ListTeams200Response';
         $request = $this->listUserTeamsRequest($user_id, $filter_organization_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
 
@@ -2581,8 +2595,8 @@ final class TeamsApi
 
         // query params
         if ($filter_organization_id !== null) {
-            if('form' === 'deepObject' && is_array($filter_organization_id)) {
-                foreach($filter_organization_id as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_organization_id)) {
+                foreach ($filter_organization_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -2592,8 +2606,8 @@ final class TeamsApi
         }
         // query params
         if ($filter_updated_at !== null) {
-            if('form' === 'deepObject' && is_array($filter_updated_at)) {
-                foreach($filter_updated_at as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_updated_at)) {
+                foreach ($filter_updated_at as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -2603,8 +2617,8 @@ final class TeamsApi
         }
         // query params
         if ($page_size !== null) {
-            if('form' === 'form' && is_array($page_size)) {
-                foreach($page_size as $key => $value) {
+            if ('form' === 'form' && is_array($page_size)) {
+                foreach ($page_size as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -2614,8 +2628,8 @@ final class TeamsApi
         }
         // query params
         if ($page_before !== null) {
-            if('form' === 'form' && is_array($page_before)) {
-                foreach($page_before as $key => $value) {
+            if ('form' === 'form' && is_array($page_before)) {
+                foreach ($page_before as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -2625,8 +2639,8 @@ final class TeamsApi
         }
         // query params
         if ($page_after !== null) {
-            if('form' === 'form' && is_array($page_after)) {
-                foreach($page_after as $key => $value) {
+            if ('form' === 'form' && is_array($page_after)) {
+                foreach ($page_after as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -2636,8 +2650,8 @@ final class TeamsApi
         }
         // query params
         if ($sort !== null) {
-            if('form' === 'form' && is_array($sort)) {
-                foreach($sort as $key => $value) {
+            if ('form' === 'form' && is_array($sort)) {
+                foreach ($sort as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -2714,10 +2728,11 @@ final class TeamsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Team
      */
-    public function updateTeam($team_id, $update_team_request = null)
-    {
+    public function updateTeam(
+        $team_id,
+        $update_team_request = null
+    ): \Upsun\Model\Team {
         list($response) = $this->updateTeamWithHttpInfo($team_id, $update_team_request);
         return $response;
     }
@@ -2873,7 +2888,7 @@ final class TeamsApi
     public function updateTeamAsyncWithHttpInfo(
         string $team_id,
         \Upsun\Model\UpdateTeamRequest $update_team_request = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Team';
         $request = $this->updateTeamRequest($team_id, $update_team_request);
 

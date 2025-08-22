@@ -211,7 +211,8 @@ final class SpecificOverridesValue implements ModelInterface, ArrayAccess, \Json
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -253,7 +254,7 @@ final class SpecificOverridesValue implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets expires
      */
-    public function setExpires($expires)
+    public function setExpires(string|null $expires = null)
     {
         if (is_null($expires)) {
             array_push($this->openAPINullablesSetToNull, 'expires');
@@ -283,7 +284,7 @@ final class SpecificOverridesValue implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets passthru
      */
-    public function setPassthru($passthru)
+    public function setPassthru(string|null $passthru = null)
     {
         if (is_null($passthru)) {
             throw new \InvalidArgumentException('non-nullable passthru cannot be null');
@@ -306,7 +307,7 @@ final class SpecificOverridesValue implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets scripts
      */
-    public function setScripts($scripts)
+    public function setScripts(string|null $scripts = null)
     {
         if (is_null($scripts)) {
             throw new \InvalidArgumentException('non-nullable scripts cannot be null');
@@ -329,7 +330,7 @@ final class SpecificOverridesValue implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets allow
      */
-    public function setAllow($allow)
+    public function setAllow(string|null $allow = null)
     {
         if (is_null($allow)) {
             throw new \InvalidArgumentException('non-nullable allow cannot be null');
@@ -352,7 +353,7 @@ final class SpecificOverridesValue implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets headers
      */
-    public function setHeaders($headers)
+    public function setHeaders(string|null $headers = null)
     {
         if (is_null($headers)) {
             throw new \InvalidArgumentException('non-nullable headers cannot be null');
@@ -431,5 +432,3 @@ final class SpecificOverridesValue implements ModelInterface, ArrayAccess, \Json
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

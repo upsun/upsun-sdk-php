@@ -203,7 +203,8 @@ final class InvoicePDF implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -254,7 +255,7 @@ final class InvoicePDF implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets url
      */
-    public function setUrl($url)
+    public function setUrl(string|null $url = null)
     {
         if (is_null($url)) {
             throw new \InvalidArgumentException('non-nullable url cannot be null');
@@ -277,7 +278,7 @@ final class InvoicePDF implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      */
-    public function setStatus($status)
+    public function setStatus(string|null $status = null)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
@@ -366,5 +367,3 @@ final class InvoicePDF implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

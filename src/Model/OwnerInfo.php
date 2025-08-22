@@ -197,7 +197,8 @@ final class OwnerInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -239,7 +240,7 @@ final class OwnerInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -262,7 +263,7 @@ final class OwnerInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets username
      */
-    public function setUsername($username)
+    public function setUsername(string|null $username = null)
     {
         if (is_null($username)) {
             throw new \InvalidArgumentException('non-nullable username cannot be null');
@@ -285,7 +286,7 @@ final class OwnerInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets display_name
      */
-    public function setDisplayName($display_name)
+    public function setDisplayName(string|null $display_name = null)
     {
         if (is_null($display_name)) {
             throw new \InvalidArgumentException('non-nullable display_name cannot be null');
@@ -364,5 +365,3 @@ final class OwnerInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

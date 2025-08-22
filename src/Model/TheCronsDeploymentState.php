@@ -205,7 +205,8 @@ final class TheCronsDeploymentState implements ModelInterface, ArrayAccess, \Jso
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -262,7 +263,7 @@ final class TheCronsDeploymentState implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets enabled
      */
-    public function setEnabled($enabled)
+    public function setEnabled(string|null $enabled = null)
     {
         if (is_null($enabled)) {
             throw new \InvalidArgumentException('non-nullable enabled cannot be null');
@@ -285,7 +286,7 @@ final class TheCronsDeploymentState implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets status
      */
-    public function setStatus($status)
+    public function setStatus(string|null $status = null)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
@@ -374,5 +375,3 @@ final class TheCronsDeploymentState implements ModelInterface, ArrayAccess, \Jso
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

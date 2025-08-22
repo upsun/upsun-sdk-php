@@ -103,16 +103,12 @@ final class MFAApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,11 @@ final class MFAApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ConfirmTotpEnrollment200Response
      */
-    public function confirmTotpEnrollment($user_id, $confirm_totp_enrollment_request = null)
-    {
+    public function confirmTotpEnrollment(
+        $user_id,
+        $confirm_totp_enrollment_request = null
+    ): \Upsun\Model\ConfirmTotpEnrollment200Response {
         list($response) = $this->confirmTotpEnrollmentWithHttpInfo($user_id, $confirm_totp_enrollment_request);
         return $response;
     }
@@ -282,7 +279,7 @@ final class MFAApi
     public function confirmTotpEnrollmentAsyncWithHttpInfo(
         string $user_id,
         \Upsun\Model\ConfirmTotpEnrollmentRequest $confirm_totp_enrollment_request = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ConfirmTotpEnrollment200Response';
         $request = $this->confirmTotpEnrollmentRequest($user_id, $confirm_totp_enrollment_request);
 
@@ -416,10 +413,10 @@ final class MFAApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function disableOrgMfaEnforcement($organization_id)
-    {
+    public function disableOrgMfaEnforcement(
+        $organization_id
+    ): void {
         $this->disableOrgMfaEnforcementWithHttpInfo($organization_id);
     }
 
@@ -502,7 +499,7 @@ final class MFAApi
      */
     public function disableOrgMfaEnforcementAsyncWithHttpInfo(
         string $organization_id
-    ) {
+    ): Promise {
         $returnType = '';
         $request = $this->disableOrgMfaEnforcementRequest($organization_id);
 
@@ -619,10 +616,10 @@ final class MFAApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function enableOrgMfaEnforcement($organization_id)
-    {
+    public function enableOrgMfaEnforcement(
+        $organization_id
+    ): void {
         $this->enableOrgMfaEnforcementWithHttpInfo($organization_id);
     }
 
@@ -705,7 +702,7 @@ final class MFAApi
      */
     public function enableOrgMfaEnforcementAsyncWithHttpInfo(
         string $organization_id
-    ) {
+    ): Promise {
         $returnType = '';
         $request = $this->enableOrgMfaEnforcementRequest($organization_id);
 
@@ -822,10 +819,10 @@ final class MFAApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\OrganizationMFAEnforcement
      */
-    public function getOrgMfaEnforcement($organization_id)
-    {
+    public function getOrgMfaEnforcement(
+        $organization_id
+    ): \Upsun\Model\OrganizationMFAEnforcement {
         list($response) = $this->getOrgMfaEnforcementWithHttpInfo($organization_id);
         return $response;
     }
@@ -950,7 +947,7 @@ final class MFAApi
      */
     public function getOrgMfaEnforcementAsyncWithHttpInfo(
         string $organization_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\OrganizationMFAEnforcement';
         $request = $this->getOrgMfaEnforcementRequest($organization_id);
 
@@ -1077,10 +1074,10 @@ final class MFAApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\GetTotpEnrollment200Response
      */
-    public function getTotpEnrollment($user_id)
-    {
+    public function getTotpEnrollment(
+        $user_id
+    ): \Upsun\Model\GetTotpEnrollment200Response {
         list($response) = $this->getTotpEnrollmentWithHttpInfo($user_id);
         return $response;
     }
@@ -1205,7 +1202,7 @@ final class MFAApi
      */
     public function getTotpEnrollmentAsyncWithHttpInfo(
         string $user_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\GetTotpEnrollment200Response';
         $request = $this->getTotpEnrollmentRequest($user_id);
 
@@ -1332,10 +1329,10 @@ final class MFAApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ConfirmTotpEnrollment200Response
      */
-    public function recreateRecoveryCodes($user_id)
-    {
+    public function recreateRecoveryCodes(
+        $user_id
+    ): \Upsun\Model\ConfirmTotpEnrollment200Response {
         list($response) = $this->recreateRecoveryCodesWithHttpInfo($user_id);
         return $response;
     }
@@ -1460,7 +1457,7 @@ final class MFAApi
      */
     public function recreateRecoveryCodesAsyncWithHttpInfo(
         string $user_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ConfirmTotpEnrollment200Response';
         $request = $this->recreateRecoveryCodesRequest($user_id);
 
@@ -1587,10 +1584,11 @@ final class MFAApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return array<string,\Upsun\Model\SendOrgMfaReminders200ResponseValue>
      */
-    public function sendOrgMfaReminders($organization_id, $send_org_mfa_reminders_request = null)
-    {
+    public function sendOrgMfaReminders(
+        $organization_id,
+        $send_org_mfa_reminders_request = null
+    ): array<string,\Upsun\Model\SendOrgMfaReminders200ResponseValue> {
         list($response) = $this->sendOrgMfaRemindersWithHttpInfo($organization_id, $send_org_mfa_reminders_request);
         return $response;
     }
@@ -1732,7 +1730,7 @@ final class MFAApi
     public function sendOrgMfaRemindersAsyncWithHttpInfo(
         string $organization_id,
         \Upsun\Model\SendOrgMfaRemindersRequest $send_org_mfa_reminders_request = null
-    ) {
+    ): Promise {
         $returnType = 'array<string,\Upsun\Model\SendOrgMfaReminders200ResponseValue>';
         $request = $this->sendOrgMfaRemindersRequest($organization_id, $send_org_mfa_reminders_request);
 
@@ -1866,10 +1864,10 @@ final class MFAApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function withdrawTotpEnrollment($user_id)
-    {
+    public function withdrawTotpEnrollment(
+        $user_id
+    ): void {
         $this->withdrawTotpEnrollmentWithHttpInfo($user_id);
     }
 
@@ -1952,7 +1950,7 @@ final class MFAApi
      */
     public function withdrawTotpEnrollmentAsyncWithHttpInfo(
         string $user_id
-    ) {
+    ): Promise {
         $returnType = '';
         $request = $this->withdrawTotpEnrollmentRequest($user_id);
 

@@ -190,7 +190,8 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Mo
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -238,7 +239,7 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Mo
     /**
      * Sets service
      */
-    public function setService($service)
+    public function setService(string|null $service = null)
     {
         if (is_null($service)) {
             array_push($this->openAPINullablesSetToNull, 'service');
@@ -268,7 +269,7 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Mo
     /**
      * Sets endpoint
      */
-    public function setEndpoint($endpoint)
+    public function setEndpoint(string|null $endpoint = null)
     {
         if (is_null($endpoint)) {
             array_push($this->openAPINullablesSetToNull, 'endpoint');
@@ -354,5 +355,3 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Mo
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -183,7 +183,8 @@ final class CreateTeamMemberRequest implements ModelInterface, ArrayAccess, \Jso
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -228,7 +229,7 @@ final class CreateTeamMemberRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets user_id
      */
-    public function setUserId($user_id)
+    public function setUserId(string|null $user_id = null)
     {
         if (is_null($user_id)) {
             throw new \InvalidArgumentException('non-nullable user_id cannot be null');
@@ -307,5 +308,3 @@ final class CreateTeamMemberRequest implements ModelInterface, ArrayAccess, \Jso
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

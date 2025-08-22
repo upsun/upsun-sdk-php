@@ -183,7 +183,8 @@ final class VerifyPhoneNumber200Response implements ModelInterface, ArrayAccess,
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -225,7 +226,7 @@ final class VerifyPhoneNumber200Response implements ModelInterface, ArrayAccess,
     /**
      * Sets sid
      */
-    public function setSid($sid)
+    public function setSid(string|null $sid = null)
     {
         if (is_null($sid)) {
             throw new \InvalidArgumentException('non-nullable sid cannot be null');
@@ -304,5 +305,3 @@ final class VerifyPhoneNumber200Response implements ModelInterface, ArrayAccess,
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

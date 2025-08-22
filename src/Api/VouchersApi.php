@@ -103,16 +103,12 @@ final class VouchersApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,11 @@ final class VouchersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function applyOrgVoucher($organization_id, $apply_org_voucher_request)
-    {
+    public function applyOrgVoucher(
+        $organization_id,
+        $apply_org_voucher_request
+    ): void {
         $this->applyOrgVoucherWithHttpInfo($organization_id, $apply_org_voucher_request);
     }
 
@@ -220,7 +217,7 @@ final class VouchersApi
     public function applyOrgVoucherAsyncWithHttpInfo(
         string $organization_id,
         \Upsun\Model\ApplyOrgVoucherRequest $apply_org_voucher_request
-    ) {
+    ): Promise {
         $returnType = '';
         $request = $this->applyOrgVoucherRequest($organization_id, $apply_org_voucher_request);
 
@@ -350,10 +347,10 @@ final class VouchersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Vouchers
      */
-    public function listOrgVouchers($organization_id)
-    {
+    public function listOrgVouchers(
+        $organization_id
+    ): \Upsun\Model\Vouchers {
         list($response) = $this->listOrgVouchersWithHttpInfo($organization_id);
         return $response;
     }
@@ -492,7 +489,7 @@ final class VouchersApi
      */
     public function listOrgVouchersAsyncWithHttpInfo(
         string $organization_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Vouchers';
         $request = $this->listOrgVouchersRequest($organization_id);
 

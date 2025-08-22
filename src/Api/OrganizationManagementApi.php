@@ -103,16 +103,12 @@ final class OrganizationManagementApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,10 @@ final class OrganizationManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\OrganizationEstimationObject
      */
-    public function estimateOrg($organization_id)
-    {
+    public function estimateOrg(
+        $organization_id
+    ): \Upsun\Model\OrganizationEstimationObject {
         list($response) = $this->estimateOrgWithHttpInfo($organization_id);
         return $response;
     }
@@ -265,7 +261,7 @@ final class OrganizationManagementApi
      */
     public function estimateOrgAsyncWithHttpInfo(
         string $organization_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\OrganizationEstimationObject';
         $request = $this->estimateOrgRequest($organization_id);
 
@@ -392,10 +388,10 @@ final class OrganizationManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\OrganizationAlertConfig
      */
-    public function getOrgBillingAlertConfig($organization_id)
-    {
+    public function getOrgBillingAlertConfig(
+        $organization_id
+    ): \Upsun\Model\OrganizationAlertConfig {
         list($response) = $this->getOrgBillingAlertConfigWithHttpInfo($organization_id);
         return $response;
     }
@@ -534,7 +530,7 @@ final class OrganizationManagementApi
      */
     public function getOrgBillingAlertConfigAsyncWithHttpInfo(
         string $organization_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\OrganizationAlertConfig';
         $request = $this->getOrgBillingAlertConfigRequest($organization_id);
 
@@ -661,10 +657,10 @@ final class OrganizationManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\GetOrgPrepaymentInfo200Response
      */
-    public function getOrgPrepaymentInfo($organization_id)
-    {
+    public function getOrgPrepaymentInfo(
+        $organization_id
+    ): \Upsun\Model\GetOrgPrepaymentInfo200Response {
         list($response) = $this->getOrgPrepaymentInfoWithHttpInfo($organization_id);
         return $response;
     }
@@ -803,7 +799,7 @@ final class OrganizationManagementApi
      */
     public function getOrgPrepaymentInfoAsyncWithHttpInfo(
         string $organization_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\GetOrgPrepaymentInfo200Response';
         $request = $this->getOrgPrepaymentInfoRequest($organization_id);
 
@@ -930,10 +926,10 @@ final class OrganizationManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ListOrgPrepaymentTransactions200Response
      */
-    public function listOrgPrepaymentTransactions($organization_id)
-    {
+    public function listOrgPrepaymentTransactions(
+        $organization_id
+    ): \Upsun\Model\ListOrgPrepaymentTransactions200Response {
         list($response) = $this->listOrgPrepaymentTransactionsWithHttpInfo($organization_id);
         return $response;
     }
@@ -1072,7 +1068,7 @@ final class OrganizationManagementApi
      */
     public function listOrgPrepaymentTransactionsAsyncWithHttpInfo(
         string $organization_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ListOrgPrepaymentTransactions200Response';
         $request = $this->listOrgPrepaymentTransactionsRequest($organization_id);
 
@@ -1199,10 +1195,11 @@ final class OrganizationManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\OrganizationAlertConfig
      */
-    public function updateOrgBillingAlertConfig($organization_id, $update_org_billing_alert_config_request = null)
-    {
+    public function updateOrgBillingAlertConfig(
+        $organization_id,
+        $update_org_billing_alert_config_request = null
+    ): \Upsun\Model\OrganizationAlertConfig {
         list($response) = $this->updateOrgBillingAlertConfigWithHttpInfo($organization_id, $update_org_billing_alert_config_request);
         return $response;
     }
@@ -1344,7 +1341,7 @@ final class OrganizationManagementApi
     public function updateOrgBillingAlertConfigAsyncWithHttpInfo(
         string $organization_id,
         \Upsun\Model\UpdateOrgBillingAlertConfigRequest $update_org_billing_alert_config_request = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\OrganizationAlertConfig';
         $request = $this->updateOrgBillingAlertConfigRequest($organization_id, $update_org_billing_alert_config_request);
 

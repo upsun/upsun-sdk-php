@@ -103,16 +103,12 @@ final class OrdersApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,11 @@ final class OrdersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\CreateAuthorizationCredentials200Response
      */
-    public function createAuthorizationCredentials($organization_id, $order_id)
-    {
+    public function createAuthorizationCredentials(
+        $organization_id,
+        $order_id
+    ): \Upsun\Model\CreateAuthorizationCredentials200Response {
         list($response) = $this->createAuthorizationCredentialsWithHttpInfo($organization_id, $order_id);
         return $response;
     }
@@ -282,7 +279,7 @@ final class OrdersApi
     public function createAuthorizationCredentialsAsyncWithHttpInfo(
         string $organization_id,
         string $order_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\CreateAuthorizationCredentials200Response';
         $request = $this->createAuthorizationCredentialsRequest($organization_id, $order_id);
 
@@ -424,10 +421,10 @@ final class OrdersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function downloadInvoice($token)
-    {
+    public function downloadInvoice(
+        $token
+    ): void {
         $this->downloadInvoiceWithHttpInfo($token);
     }
 
@@ -502,7 +499,7 @@ final class OrdersApi
      */
     public function downloadInvoiceAsyncWithHttpInfo(
         string $token
-    ) {
+    ): Promise {
         $returnType = '';
         $request = $this->downloadInvoiceRequest($token);
 
@@ -552,8 +549,8 @@ final class OrdersApi
 
         // query params
         if ($token !== null) {
-            if('form' === 'form' && is_array($token)) {
-                foreach($token as $key => $value) {
+            if ('form' === 'form' && is_array($token)) {
+                foreach ($token as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -622,10 +619,12 @@ final class OrdersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Order
      */
-    public function getOrgOrder($organization_id, $order_id, $mode = null)
-    {
+    public function getOrgOrder(
+        $organization_id,
+        $order_id,
+        $mode = null
+    ): \Upsun\Model\Order {
         list($response) = $this->getOrgOrderWithHttpInfo($organization_id, $order_id, $mode);
         return $response;
     }
@@ -770,7 +769,7 @@ final class OrdersApi
         string $organization_id,
         string $order_id,
         string $mode = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Order';
         $request = $this->getOrgOrderRequest($organization_id, $order_id, $mode);
 
@@ -838,8 +837,8 @@ final class OrdersApi
 
         // query params
         if ($mode !== null) {
-            if('form' === 'form' && is_array($mode)) {
-                foreach($mode as $key => $value) {
+            if ('form' === 'form' && is_array($mode)) {
+                foreach ($mode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -924,10 +923,14 @@ final class OrdersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ListOrgOrders200Response
      */
-    public function listOrgOrders($organization_id, $filter_status = null, $filter_total = null, $page = null, $mode = null)
-    {
+    public function listOrgOrders(
+        $organization_id,
+        $filter_status = null,
+        $filter_total = null,
+        $page = null,
+        $mode = null
+    ): \Upsun\Model\ListOrgOrders200Response {
         list($response) = $this->listOrgOrdersWithHttpInfo($organization_id, $filter_status, $filter_total, $page, $mode);
         return $response;
     }
@@ -1078,7 +1081,7 @@ final class OrdersApi
         int $filter_total = null,
         int $page = null,
         string $mode = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ListOrgOrders200Response';
         $request = $this->listOrgOrdersRequest($organization_id, $filter_status, $filter_total, $page, $mode);
 
@@ -1142,8 +1145,8 @@ final class OrdersApi
 
         // query params
         if ($filter_status !== null) {
-            if('form' === 'form' && is_array($filter_status)) {
-                foreach($filter_status as $key => $value) {
+            if ('form' === 'form' && is_array($filter_status)) {
+                foreach ($filter_status as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1153,8 +1156,8 @@ final class OrdersApi
         }
         // query params
         if ($filter_total !== null) {
-            if('form' === 'form' && is_array($filter_total)) {
-                foreach($filter_total as $key => $value) {
+            if ('form' === 'form' && is_array($filter_total)) {
+                foreach ($filter_total as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1164,8 +1167,8 @@ final class OrdersApi
         }
         // query params
         if ($page !== null) {
-            if('form' === 'form' && is_array($page)) {
-                foreach($page as $key => $value) {
+            if ('form' === 'form' && is_array($page)) {
+                foreach ($page as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1175,8 +1178,8 @@ final class OrdersApi
         }
         // query params
         if ($mode !== null) {
-            if('form' === 'form' && is_array($mode)) {
-                foreach($mode as $key => $value) {
+            if ('form' === 'form' && is_array($mode)) {
+                foreach ($mode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }

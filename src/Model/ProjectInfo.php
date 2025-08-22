@@ -218,7 +218,8 @@ final class ProjectInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -278,7 +279,7 @@ final class ProjectInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets title
      */
-    public function setTitle($title)
+    public function setTitle(string|null $title = null)
     {
         if (is_null($title)) {
             throw new \InvalidArgumentException('non-nullable title cannot be null');
@@ -301,7 +302,7 @@ final class ProjectInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets name
      */
-    public function setName($name)
+    public function setName(string|null $name = null)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -324,7 +325,7 @@ final class ProjectInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets namespace
      */
-    public function setNamespace($namespace)
+    public function setNamespace(string|null $namespace = null)
     {
         if (is_null($namespace)) {
             array_push($this->openAPINullablesSetToNull, 'namespace');
@@ -354,7 +355,7 @@ final class ProjectInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets organization
      */
-    public function setOrganization($organization)
+    public function setOrganization(string|null $organization = null)
     {
         if (is_null($organization)) {
             array_push($this->openAPINullablesSetToNull, 'organization');
@@ -384,7 +385,7 @@ final class ProjectInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets capabilities
      */
-    public function setCapabilities($capabilities)
+    public function setCapabilities(string|null $capabilities = null)
     {
         if (is_null($capabilities)) {
             throw new \InvalidArgumentException('non-nullable capabilities cannot be null');
@@ -407,7 +408,7 @@ final class ProjectInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets settings
      */
-    public function setSettings($settings)
+    public function setSettings(string|null $settings = null)
     {
         if (is_null($settings)) {
             throw new \InvalidArgumentException('non-nullable settings cannot be null');
@@ -486,5 +487,3 @@ final class ProjectInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

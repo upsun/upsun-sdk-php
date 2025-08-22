@@ -205,7 +205,8 @@ final class AccessControlDefinitionForThisEnviromentInner implements ModelInterf
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -262,7 +263,7 @@ final class AccessControlDefinitionForThisEnviromentInner implements ModelInterf
     /**
      * Sets entity_id
      */
-    public function setEntityId($entity_id)
+    public function setEntityId(string|null $entity_id = null)
     {
         if (is_null($entity_id)) {
             throw new \InvalidArgumentException('non-nullable entity_id cannot be null');
@@ -285,7 +286,7 @@ final class AccessControlDefinitionForThisEnviromentInner implements ModelInterf
     /**
      * Sets role
      */
-    public function setRole($role)
+    public function setRole(string|null $role = null)
     {
         if (is_null($role)) {
             throw new \InvalidArgumentException('non-nullable role cannot be null');
@@ -374,5 +375,3 @@ final class AccessControlDefinitionForThisEnviromentInner implements ModelInterf
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

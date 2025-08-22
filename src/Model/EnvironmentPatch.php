@@ -254,7 +254,8 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, \JsonSerial
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -305,7 +306,7 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets name
      */
-    public function setName($name)
+    public function setName(string|null $name = null)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -328,7 +329,7 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets title
      */
-    public function setTitle($title)
+    public function setTitle(string|null $title = null)
     {
         if (is_null($title)) {
             throw new \InvalidArgumentException('non-nullable title cannot be null');
@@ -351,7 +352,7 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets attributes
      */
-    public function setAttributes($attributes)
+    public function setAttributes(string|null $attributes = null)
     {
         if (is_null($attributes)) {
             throw new \InvalidArgumentException('non-nullable attributes cannot be null');
@@ -374,7 +375,7 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -407,7 +408,7 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets parent
      */
-    public function setParent($parent)
+    public function setParent(string|null $parent = null)
     {
         if (is_null($parent)) {
             array_push($this->openAPINullablesSetToNull, 'parent');
@@ -437,7 +438,7 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets clone_parent_on_create
      */
-    public function setCloneParentOnCreate($clone_parent_on_create)
+    public function setCloneParentOnCreate(string|null $clone_parent_on_create = null)
     {
         if (is_null($clone_parent_on_create)) {
             throw new \InvalidArgumentException('non-nullable clone_parent_on_create cannot be null');
@@ -460,7 +461,7 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets http_access
      */
-    public function setHttpAccess($http_access)
+    public function setHttpAccess(string|null $http_access = null)
     {
         if (is_null($http_access)) {
             throw new \InvalidArgumentException('non-nullable http_access cannot be null');
@@ -483,7 +484,7 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets enable_smtp
      */
-    public function setEnableSmtp($enable_smtp)
+    public function setEnableSmtp(string|null $enable_smtp = null)
     {
         if (is_null($enable_smtp)) {
             throw new \InvalidArgumentException('non-nullable enable_smtp cannot be null');
@@ -506,7 +507,7 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets restrict_robots
      */
-    public function setRestrictRobots($restrict_robots)
+    public function setRestrictRobots(string|null $restrict_robots = null)
     {
         if (is_null($restrict_robots)) {
             throw new \InvalidArgumentException('non-nullable restrict_robots cannot be null');
@@ -585,5 +586,3 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, \JsonSerial
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

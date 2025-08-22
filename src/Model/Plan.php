@@ -190,7 +190,8 @@ final class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -232,7 +233,7 @@ final class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      */
-    public function setName($name)
+    public function setName(string|null $name = null)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -255,7 +256,7 @@ final class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets label
      */
-    public function setLabel($label)
+    public function setLabel(string|null $label = null)
     {
         if (is_null($label)) {
             throw new \InvalidArgumentException('non-nullable label cannot be null');
@@ -334,5 +335,3 @@ final class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

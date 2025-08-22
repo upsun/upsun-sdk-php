@@ -224,7 +224,8 @@ final class CreateOrgRequest implements ModelInterface, ArrayAccess, \JsonSerial
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -282,7 +283,7 @@ final class CreateOrgRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -315,7 +316,7 @@ final class CreateOrgRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets owner_id
      */
-    public function setOwnerId($owner_id)
+    public function setOwnerId(string|null $owner_id = null)
     {
         if (is_null($owner_id)) {
             throw new \InvalidArgumentException('non-nullable owner_id cannot be null');
@@ -338,7 +339,7 @@ final class CreateOrgRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets name
      */
-    public function setName($name)
+    public function setName(string|null $name = null)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -361,7 +362,7 @@ final class CreateOrgRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets label
      */
-    public function setLabel($label)
+    public function setLabel(string|null $label = null)
     {
         if (is_null($label)) {
             throw new \InvalidArgumentException('non-nullable label cannot be null');
@@ -384,13 +385,15 @@ final class CreateOrgRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets country
      */
-    public function setCountry($country)
+    public function setCountry(string|null $country = null)
     {
         if (is_null($country)) {
             throw new \InvalidArgumentException('non-nullable country cannot be null');
         }
         if ((mb_strlen($country) > 2)) {
-            throw new \InvalidArgumentException('invalid length for $country when calling CreateOrgRequest., must be smaller than or equal to 2.');
+            throw new \InvalidArgumentException(
+                'invalid length for $country when calling CreateOrgRequest., must be smaller than or equal to 2.'
+            );
         }
 
         $this->container['country'] = $country;
@@ -467,5 +470,3 @@ final class CreateOrgRequest implements ModelInterface, ArrayAccess, \JsonSerial
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

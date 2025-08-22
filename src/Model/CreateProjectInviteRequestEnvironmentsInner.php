@@ -205,7 +205,8 @@ final class CreateProjectInviteRequestEnvironmentsInner implements ModelInterfac
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -256,7 +257,7 @@ final class CreateProjectInviteRequestEnvironmentsInner implements ModelInterfac
     /**
      * Sets id
      */
-    public function setId($id)
+    public function setId(string|null $id = null)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -279,7 +280,7 @@ final class CreateProjectInviteRequestEnvironmentsInner implements ModelInterfac
     /**
      * Sets role
      */
-    public function setRole($role)
+    public function setRole(string|null $role = null)
     {
         if (is_null($role)) {
             throw new \InvalidArgumentException('non-nullable role cannot be null');
@@ -368,5 +369,3 @@ final class CreateProjectInviteRequestEnvironmentsInner implements ModelInterfac
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

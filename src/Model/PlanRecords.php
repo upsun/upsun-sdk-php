@@ -239,7 +239,8 @@ final class PlanRecords implements ModelInterface, ArrayAccess, \JsonSerializabl
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -281,7 +282,7 @@ final class PlanRecords implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets id
      */
-    public function setId($id)
+    public function setId(string|null $id = null)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -304,7 +305,7 @@ final class PlanRecords implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets owner
      */
-    public function setOwner($owner)
+    public function setOwner(string|null $owner = null)
     {
         if (is_null($owner)) {
             throw new \InvalidArgumentException('non-nullable owner cannot be null');
@@ -327,7 +328,7 @@ final class PlanRecords implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets subscription_id
      */
-    public function setSubscriptionId($subscription_id)
+    public function setSubscriptionId(string|null $subscription_id = null)
     {
         if (is_null($subscription_id)) {
             throw new \InvalidArgumentException('non-nullable subscription_id cannot be null');
@@ -350,7 +351,7 @@ final class PlanRecords implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets sku
      */
-    public function setSku($sku)
+    public function setSku(string|null $sku = null)
     {
         if (is_null($sku)) {
             throw new \InvalidArgumentException('non-nullable sku cannot be null');
@@ -373,7 +374,7 @@ final class PlanRecords implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets plan
      */
-    public function setPlan($plan)
+    public function setPlan(string|null $plan = null)
     {
         if (is_null($plan)) {
             throw new \InvalidArgumentException('non-nullable plan cannot be null');
@@ -396,7 +397,7 @@ final class PlanRecords implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets options
      */
-    public function setOptions($options)
+    public function setOptions(string|null $options = null)
     {
         if (is_null($options)) {
             throw new \InvalidArgumentException('non-nullable options cannot be null');
@@ -419,7 +420,7 @@ final class PlanRecords implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets start
      */
-    public function setStart($start)
+    public function setStart(string|null $start = null)
     {
         if (is_null($start)) {
             throw new \InvalidArgumentException('non-nullable start cannot be null');
@@ -442,7 +443,7 @@ final class PlanRecords implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets end
      */
-    public function setEnd($end)
+    public function setEnd(string|null $end = null)
     {
         if (is_null($end)) {
             array_push($this->openAPINullablesSetToNull, 'end');
@@ -472,7 +473,7 @@ final class PlanRecords implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets status
      */
-    public function setStatus($status)
+    public function setStatus(string|null $status = null)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
@@ -551,5 +552,3 @@ final class PlanRecords implements ModelInterface, ArrayAccess, \JsonSerializabl
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

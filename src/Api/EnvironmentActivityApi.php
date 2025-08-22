@@ -103,16 +103,12 @@ final class EnvironmentActivityApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,12 @@ final class EnvironmentActivityApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function actionProjectsEnvironmentsActivitiesCancel($project_id, $environment_id, $activity_id)
-    {
+    public function actionProjectsEnvironmentsActivitiesCancel(
+        $project_id,
+        $environment_id,
+        $activity_id
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->actionProjectsEnvironmentsActivitiesCancelWithHttpInfo($project_id, $environment_id, $activity_id);
         return $response;
     }
@@ -243,7 +241,7 @@ final class EnvironmentActivityApi
         string $project_id,
         string $environment_id,
         string $activity_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->actionProjectsEnvironmentsActivitiesCancelRequest($project_id, $environment_id, $activity_id);
 
@@ -400,10 +398,12 @@ final class EnvironmentActivityApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Activity
      */
-    public function getProjectsEnvironmentsActivities($project_id, $environment_id, $activity_id)
-    {
+    public function getProjectsEnvironmentsActivities(
+        $project_id,
+        $environment_id,
+        $activity_id
+    ): \Upsun\Model\Activity {
         list($response) = $this->getProjectsEnvironmentsActivitiesWithHttpInfo($project_id, $environment_id, $activity_id);
         return $response;
     }
@@ -520,7 +520,7 @@ final class EnvironmentActivityApi
         string $project_id,
         string $environment_id,
         string $activity_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Activity';
         $request = $this->getProjectsEnvironmentsActivitiesRequest($project_id, $environment_id, $activity_id);
 
@@ -677,10 +677,11 @@ final class EnvironmentActivityApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Activity[]
      */
-    public function listProjectsEnvironmentsActivities($project_id, $environment_id)
-    {
+    public function listProjectsEnvironmentsActivities(
+        $project_id,
+        $environment_id
+    ): \Upsun\Model\Activity[] {
         list($response) = $this->listProjectsEnvironmentsActivitiesWithHttpInfo($project_id, $environment_id);
         return $response;
     }
@@ -794,7 +795,7 @@ final class EnvironmentActivityApi
     public function listProjectsEnvironmentsActivitiesAsyncWithHttpInfo(
         string $project_id,
         string $environment_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Activity[]';
         $request = $this->listProjectsEnvironmentsActivitiesRequest($project_id, $environment_id);
 

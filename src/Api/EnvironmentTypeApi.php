@@ -103,16 +103,12 @@ final class EnvironmentTypeApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,11 @@ final class EnvironmentTypeApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\EnvironmentType
      */
-    public function getEnvironmentType($project_id, $environment_type_id)
-    {
+    public function getEnvironmentType(
+        $project_id,
+        $environment_type_id
+    ): \Upsun\Model\EnvironmentType {
         list($response) = $this->getEnvironmentTypeWithHttpInfo($project_id, $environment_type_id);
         return $response;
     }
@@ -240,7 +237,7 @@ final class EnvironmentTypeApi
     public function getEnvironmentTypeAsyncWithHttpInfo(
         string $project_id,
         string $environment_type_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\EnvironmentType';
         $request = $this->getEnvironmentTypeRequest($project_id, $environment_type_id);
 
@@ -382,10 +379,10 @@ final class EnvironmentTypeApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\EnvironmentType[]
      */
-    public function listProjectsEnvironmentTypes($project_id)
-    {
+    public function listProjectsEnvironmentTypes(
+        $project_id
+    ): \Upsun\Model\EnvironmentType[] {
         list($response) = $this->listProjectsEnvironmentTypesWithHttpInfo($project_id);
         return $response;
     }
@@ -496,7 +493,7 @@ final class EnvironmentTypeApi
      */
     public function listProjectsEnvironmentTypesAsyncWithHttpInfo(
         string $project_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\EnvironmentType[]';
         $request = $this->listProjectsEnvironmentTypesRequest($project_id);
 

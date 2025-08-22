@@ -218,7 +218,8 @@ final class TheVariablesApplyingToThisEnvironmentInner implements ModelInterface
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -275,7 +276,7 @@ final class TheVariablesApplyingToThisEnvironmentInner implements ModelInterface
     /**
      * Sets name
      */
-    public function setName($name)
+    public function setName(string|null $name = null)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -298,7 +299,7 @@ final class TheVariablesApplyingToThisEnvironmentInner implements ModelInterface
     /**
      * Sets value
      */
-    public function setValue($value)
+    public function setValue(string|null $value = null)
     {
         if (is_null($value)) {
             throw new \InvalidArgumentException('non-nullable value cannot be null');
@@ -321,7 +322,7 @@ final class TheVariablesApplyingToThisEnvironmentInner implements ModelInterface
     /**
      * Sets is_sensitive
      */
-    public function setIsSensitive($is_sensitive)
+    public function setIsSensitive(string|null $is_sensitive = null)
     {
         if (is_null($is_sensitive)) {
             throw new \InvalidArgumentException('non-nullable is_sensitive cannot be null');
@@ -344,7 +345,7 @@ final class TheVariablesApplyingToThisEnvironmentInner implements ModelInterface
     /**
      * Sets is_json
      */
-    public function setIsJson($is_json)
+    public function setIsJson(string|null $is_json = null)
     {
         if (is_null($is_json)) {
             throw new \InvalidArgumentException('non-nullable is_json cannot be null');
@@ -367,7 +368,7 @@ final class TheVariablesApplyingToThisEnvironmentInner implements ModelInterface
     /**
      * Sets visible_build
      */
-    public function setVisibleBuild($visible_build)
+    public function setVisibleBuild(string|null $visible_build = null)
     {
         if (is_null($visible_build)) {
             throw new \InvalidArgumentException('non-nullable visible_build cannot be null');
@@ -390,7 +391,7 @@ final class TheVariablesApplyingToThisEnvironmentInner implements ModelInterface
     /**
      * Sets visible_runtime
      */
-    public function setVisibleRuntime($visible_runtime)
+    public function setVisibleRuntime(string|null $visible_runtime = null)
     {
         if (is_null($visible_runtime)) {
             throw new \InvalidArgumentException('non-nullable visible_runtime cannot be null');
@@ -469,5 +470,3 @@ final class TheVariablesApplyingToThisEnvironmentInner implements ModelInterface
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

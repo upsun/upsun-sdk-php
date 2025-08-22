@@ -197,7 +197,8 @@ final class DiscountCommitment implements ModelInterface, ArrayAccess, \JsonSeri
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -239,7 +240,7 @@ final class DiscountCommitment implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets months
      */
-    public function setMonths($months)
+    public function setMonths(string|null $months = null)
     {
         if (is_null($months)) {
             throw new \InvalidArgumentException('non-nullable months cannot be null');
@@ -262,7 +263,7 @@ final class DiscountCommitment implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets amount
      */
-    public function setAmount($amount)
+    public function setAmount(string|null $amount = null)
     {
         if (is_null($amount)) {
             throw new \InvalidArgumentException('non-nullable amount cannot be null');
@@ -285,7 +286,7 @@ final class DiscountCommitment implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets net
      */
-    public function setNet($net)
+    public function setNet(string|null $net = null)
     {
         if (is_null($net)) {
             throw new \InvalidArgumentException('non-nullable net cannot be null');
@@ -364,5 +365,3 @@ final class DiscountCommitment implements ModelInterface, ArrayAccess, \JsonSeri
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -183,7 +183,8 @@ final class VersionPatch implements ModelInterface, ArrayAccess, \JsonSerializab
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -225,7 +226,7 @@ final class VersionPatch implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets routing
      */
-    public function setRouting($routing)
+    public function setRouting(string|null $routing = null)
     {
         if (is_null($routing)) {
             throw new \InvalidArgumentException('non-nullable routing cannot be null');
@@ -304,5 +305,3 @@ final class VersionPatch implements ModelInterface, ArrayAccess, \JsonSerializab
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

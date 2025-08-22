@@ -197,7 +197,8 @@ final class SlackIntegrationPatch implements ModelInterface, ArrayAccess, \JsonS
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -248,7 +249,7 @@ final class SlackIntegrationPatch implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -271,7 +272,7 @@ final class SlackIntegrationPatch implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets token
      */
-    public function setToken($token)
+    public function setToken(string|null $token = null)
     {
         if (is_null($token)) {
             throw new \InvalidArgumentException('non-nullable token cannot be null');
@@ -294,7 +295,7 @@ final class SlackIntegrationPatch implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets channel
      */
-    public function setChannel($channel)
+    public function setChannel(string|null $channel = null)
     {
         if (is_null($channel)) {
             throw new \InvalidArgumentException('non-nullable channel cannot be null');
@@ -373,5 +374,3 @@ final class SlackIntegrationPatch implements ModelInterface, ArrayAccess, \JsonS
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

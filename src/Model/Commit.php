@@ -218,7 +218,8 @@ final class Commit implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -278,7 +279,7 @@ final class Commit implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets sha
      */
-    public function setSha($sha)
+    public function setSha(string|null $sha = null)
     {
         if (is_null($sha)) {
             throw new \InvalidArgumentException('non-nullable sha cannot be null');
@@ -301,7 +302,7 @@ final class Commit implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets author
      */
-    public function setAuthor($author)
+    public function setAuthor(string|null $author = null)
     {
         if (is_null($author)) {
             throw new \InvalidArgumentException('non-nullable author cannot be null');
@@ -324,7 +325,7 @@ final class Commit implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets committer
      */
-    public function setCommitter($committer)
+    public function setCommitter(string|null $committer = null)
     {
         if (is_null($committer)) {
             throw new \InvalidArgumentException('non-nullable committer cannot be null');
@@ -347,7 +348,7 @@ final class Commit implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets message
      */
-    public function setMessage($message)
+    public function setMessage(string|null $message = null)
     {
         if (is_null($message)) {
             throw new \InvalidArgumentException('non-nullable message cannot be null');
@@ -370,7 +371,7 @@ final class Commit implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets tree
      */
-    public function setTree($tree)
+    public function setTree(string|null $tree = null)
     {
         if (is_null($tree)) {
             throw new \InvalidArgumentException('non-nullable tree cannot be null');
@@ -393,7 +394,7 @@ final class Commit implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets parents
      */
-    public function setParents($parents)
+    public function setParents(string|null $parents = null)
     {
         if (is_null($parents)) {
             throw new \InvalidArgumentException('non-nullable parents cannot be null');
@@ -472,5 +473,3 @@ final class Commit implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

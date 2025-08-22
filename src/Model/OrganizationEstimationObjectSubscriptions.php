@@ -190,7 +190,8 @@ final class OrganizationEstimationObjectSubscriptions implements ModelInterface,
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -232,7 +233,7 @@ final class OrganizationEstimationObjectSubscriptions implements ModelInterface,
     /**
      * Sets total
      */
-    public function setTotal($total)
+    public function setTotal(string|null $total = null)
     {
         if (is_null($total)) {
             throw new \InvalidArgumentException('non-nullable total cannot be null');
@@ -255,7 +256,7 @@ final class OrganizationEstimationObjectSubscriptions implements ModelInterface,
     /**
      * Sets list
      */
-    public function setList($list)
+    public function setList(string|null $list = null)
     {
         if (is_null($list)) {
             throw new \InvalidArgumentException('non-nullable list cannot be null');
@@ -334,5 +335,3 @@ final class OrganizationEstimationObjectSubscriptions implements ModelInterface,
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

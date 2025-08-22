@@ -183,7 +183,8 @@ final class ConfigurationAboutTheTrafficRoutedToThisVersion1 implements ModelInt
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -225,7 +226,7 @@ final class ConfigurationAboutTheTrafficRoutedToThisVersion1 implements ModelInt
     /**
      * Sets percentage
      */
-    public function setPercentage($percentage)
+    public function setPercentage(string|null $percentage = null)
     {
         if (is_null($percentage)) {
             throw new \InvalidArgumentException('non-nullable percentage cannot be null');
@@ -304,5 +305,3 @@ final class ConfigurationAboutTheTrafficRoutedToThisVersion1 implements ModelInt
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

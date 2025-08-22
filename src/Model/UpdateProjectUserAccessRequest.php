@@ -214,7 +214,8 @@ final class UpdateProjectUserAccessRequest implements ModelInterface, ArrayAcces
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -259,7 +260,7 @@ final class UpdateProjectUserAccessRequest implements ModelInterface, ArrayAcces
     /**
      * Sets permissions
      */
-    public function setPermissions($permissions)
+    public function setPermissions(string|null $permissions = null)
     {
         if (is_null($permissions)) {
             throw new \InvalidArgumentException('non-nullable permissions cannot be null');
@@ -347,5 +348,3 @@ final class UpdateProjectUserAccessRequest implements ModelInterface, ArrayAcces
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

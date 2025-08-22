@@ -301,7 +301,8 @@ final class CreateTicketRequest implements ModelInterface, ArrayAccess, \JsonSer
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -367,7 +368,7 @@ final class CreateTicketRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets subject
      */
-    public function setSubject($subject)
+    public function setSubject(string|null $subject = null)
     {
         if (is_null($subject)) {
             throw new \InvalidArgumentException('non-nullable subject cannot be null');
@@ -390,7 +391,7 @@ final class CreateTicketRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets description
      */
-    public function setDescription($description)
+    public function setDescription(string|null $description = null)
     {
         if (is_null($description)) {
             throw new \InvalidArgumentException('non-nullable description cannot be null');
@@ -413,7 +414,7 @@ final class CreateTicketRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets requester_id
      */
-    public function setRequesterId($requester_id)
+    public function setRequesterId(string|null $requester_id = null)
     {
         if (is_null($requester_id)) {
             throw new \InvalidArgumentException('non-nullable requester_id cannot be null');
@@ -436,7 +437,7 @@ final class CreateTicketRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets priority
      */
-    public function setPriority($priority)
+    public function setPriority(string|null $priority = null)
     {
         if (is_null($priority)) {
             throw new \InvalidArgumentException('non-nullable priority cannot be null');
@@ -469,7 +470,7 @@ final class CreateTicketRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets subscription_id
      */
-    public function setSubscriptionId($subscription_id)
+    public function setSubscriptionId(string|null $subscription_id = null)
     {
         if (is_null($subscription_id)) {
             throw new \InvalidArgumentException('non-nullable subscription_id cannot be null');
@@ -492,7 +493,7 @@ final class CreateTicketRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets organization_id
      */
-    public function setOrganizationId($organization_id)
+    public function setOrganizationId(string|null $organization_id = null)
     {
         if (is_null($organization_id)) {
             throw new \InvalidArgumentException('non-nullable organization_id cannot be null');
@@ -515,7 +516,7 @@ final class CreateTicketRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets affected_url
      */
-    public function setAffectedUrl($affected_url)
+    public function setAffectedUrl(string|null $affected_url = null)
     {
         if (is_null($affected_url)) {
             throw new \InvalidArgumentException('non-nullable affected_url cannot be null');
@@ -538,7 +539,7 @@ final class CreateTicketRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets followup_tid
      */
-    public function setFollowupTid($followup_tid)
+    public function setFollowupTid(string|null $followup_tid = null)
     {
         if (is_null($followup_tid)) {
             throw new \InvalidArgumentException('non-nullable followup_tid cannot be null');
@@ -561,7 +562,7 @@ final class CreateTicketRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets category
      */
-    public function setCategory($category)
+    public function setCategory(string|null $category = null)
     {
         if (is_null($category)) {
             throw new \InvalidArgumentException('non-nullable category cannot be null');
@@ -594,7 +595,7 @@ final class CreateTicketRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets attachments
      */
-    public function setAttachments($attachments)
+    public function setAttachments(string|null $attachments = null)
     {
         if (is_null($attachments)) {
             throw new \InvalidArgumentException('non-nullable attachments cannot be null');
@@ -617,7 +618,7 @@ final class CreateTicketRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets collaborator_ids
      */
-    public function setCollaboratorIds($collaborator_ids)
+    public function setCollaboratorIds(string|null $collaborator_ids = null)
     {
         if (is_null($collaborator_ids)) {
             throw new \InvalidArgumentException('non-nullable collaborator_ids cannot be null');
@@ -696,5 +697,3 @@ final class CreateTicketRequest implements ModelInterface, ArrayAccess, \JsonSer
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

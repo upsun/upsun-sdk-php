@@ -275,7 +275,8 @@ final class OrganizationInvitation implements ModelInterface, ArrayAccess, \Json
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -326,7 +327,7 @@ final class OrganizationInvitation implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets id
      */
-    public function setId($id)
+    public function setId(string|null $id = null)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -349,7 +350,7 @@ final class OrganizationInvitation implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets state
      */
-    public function setState($state)
+    public function setState(string|null $state = null)
     {
         if (is_null($state)) {
             throw new \InvalidArgumentException('non-nullable state cannot be null');
@@ -382,7 +383,7 @@ final class OrganizationInvitation implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets organization_id
      */
-    public function setOrganizationId($organization_id)
+    public function setOrganizationId(string|null $organization_id = null)
     {
         if (is_null($organization_id)) {
             throw new \InvalidArgumentException('non-nullable organization_id cannot be null');
@@ -405,7 +406,7 @@ final class OrganizationInvitation implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets email
      */
-    public function setEmail($email)
+    public function setEmail(string|null $email = null)
     {
         if (is_null($email)) {
             throw new \InvalidArgumentException('non-nullable email cannot be null');
@@ -428,7 +429,7 @@ final class OrganizationInvitation implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets owner
      */
-    public function setOwner($owner)
+    public function setOwner(string|null $owner = null)
     {
         if (is_null($owner)) {
             throw new \InvalidArgumentException('non-nullable owner cannot be null');
@@ -451,7 +452,7 @@ final class OrganizationInvitation implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets created_at
      */
-    public function setCreatedAt($created_at)
+    public function setCreatedAt(string|null $created_at = null)
     {
         if (is_null($created_at)) {
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
@@ -474,7 +475,7 @@ final class OrganizationInvitation implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt($updated_at)
+    public function setUpdatedAt(string|null $updated_at = null)
     {
         if (is_null($updated_at)) {
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
@@ -497,7 +498,7 @@ final class OrganizationInvitation implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets finished_at
      */
-    public function setFinishedAt($finished_at)
+    public function setFinishedAt(string|null $finished_at = null)
     {
         if (is_null($finished_at)) {
             array_push($this->openAPINullablesSetToNull, 'finished_at');
@@ -527,7 +528,7 @@ final class OrganizationInvitation implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets permissions
      */
-    public function setPermissions($permissions)
+    public function setPermissions(string|null $permissions = null)
     {
         if (is_null($permissions)) {
             throw new \InvalidArgumentException('non-nullable permissions cannot be null');
@@ -615,5 +616,3 @@ final class OrganizationInvitation implements ModelInterface, ArrayAccess, \Json
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

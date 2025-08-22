@@ -197,7 +197,8 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Mo
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -248,7 +249,7 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Mo
     /**
      * Sets commits_ahead
      */
-    public function setCommitsAhead($commits_ahead)
+    public function setCommitsAhead(string|null $commits_ahead = null)
     {
         if (is_null($commits_ahead)) {
             array_push($this->openAPINullablesSetToNull, 'commits_ahead');
@@ -278,7 +279,7 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Mo
     /**
      * Sets commits_behind
      */
-    public function setCommitsBehind($commits_behind)
+    public function setCommitsBehind(string|null $commits_behind = null)
     {
         if (is_null($commits_behind)) {
             array_push($this->openAPINullablesSetToNull, 'commits_behind');
@@ -308,7 +309,7 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Mo
     /**
      * Sets parent_ref
      */
-    public function setParentRef($parent_ref)
+    public function setParentRef(string|null $parent_ref = null)
     {
         if (is_null($parent_ref)) {
             array_push($this->openAPINullablesSetToNull, 'parent_ref');
@@ -394,5 +395,3 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Mo
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

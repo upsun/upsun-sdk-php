@@ -204,7 +204,8 @@ final class CacheConfiguration1 implements ModelInterface, ArrayAccess, \JsonSer
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -249,7 +250,7 @@ final class CacheConfiguration1 implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets enabled
      */
-    public function setEnabled($enabled)
+    public function setEnabled(string|null $enabled = null)
     {
         if (is_null($enabled)) {
             throw new \InvalidArgumentException('non-nullable enabled cannot be null');
@@ -272,7 +273,7 @@ final class CacheConfiguration1 implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets default_ttl
      */
-    public function setDefaultTtl($default_ttl)
+    public function setDefaultTtl(string|null $default_ttl = null)
     {
         if (is_null($default_ttl)) {
             throw new \InvalidArgumentException('non-nullable default_ttl cannot be null');
@@ -295,7 +296,7 @@ final class CacheConfiguration1 implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets cookies
      */
-    public function setCookies($cookies)
+    public function setCookies(string|null $cookies = null)
     {
         if (is_null($cookies)) {
             throw new \InvalidArgumentException('non-nullable cookies cannot be null');
@@ -318,7 +319,7 @@ final class CacheConfiguration1 implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets headers
      */
-    public function setHeaders($headers)
+    public function setHeaders(string|null $headers = null)
     {
         if (is_null($headers)) {
             throw new \InvalidArgumentException('non-nullable headers cannot be null');
@@ -397,5 +398,3 @@ final class CacheConfiguration1 implements ModelInterface, ArrayAccess, \JsonSer
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

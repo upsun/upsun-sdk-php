@@ -190,7 +190,8 @@ final class GetUsageAlerts200Response implements ModelInterface, ArrayAccess, \J
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -232,7 +233,7 @@ final class GetUsageAlerts200Response implements ModelInterface, ArrayAccess, \J
     /**
      * Sets available
      */
-    public function setAvailable($available)
+    public function setAvailable(string|null $available = null)
     {
         if (is_null($available)) {
             throw new \InvalidArgumentException('non-nullable available cannot be null');
@@ -255,7 +256,7 @@ final class GetUsageAlerts200Response implements ModelInterface, ArrayAccess, \J
     /**
      * Sets current
      */
-    public function setCurrent($current)
+    public function setCurrent(string|null $current = null)
     {
         if (is_null($current)) {
             throw new \InvalidArgumentException('non-nullable current cannot be null');
@@ -334,5 +335,3 @@ final class GetUsageAlerts200Response implements ModelInterface, ArrayAccess, \J
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -183,7 +183,8 @@ final class LogsForwarding implements ModelInterface, ArrayAccess, \JsonSerializ
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -228,7 +229,7 @@ final class LogsForwarding implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets max_extra_payload_size
      */
-    public function setMaxExtraPayloadSize($max_extra_payload_size)
+    public function setMaxExtraPayloadSize(string|null $max_extra_payload_size = null)
     {
         if (is_null($max_extra_payload_size)) {
             throw new \InvalidArgumentException('non-nullable max_extra_payload_size cannot be null');
@@ -307,5 +308,3 @@ final class LogsForwarding implements ModelInterface, ArrayAccess, \JsonSerializ
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

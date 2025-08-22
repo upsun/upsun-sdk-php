@@ -190,7 +190,8 @@ final class TheCommandsToManageTheWorker implements ModelInterface, ArrayAccess,
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -235,7 +236,7 @@ final class TheCommandsToManageTheWorker implements ModelInterface, ArrayAccess,
     /**
      * Sets pre_start
      */
-    public function setPreStart($pre_start)
+    public function setPreStart(string|null $pre_start = null)
     {
         if (is_null($pre_start)) {
             array_push($this->openAPINullablesSetToNull, 'pre_start');
@@ -265,7 +266,7 @@ final class TheCommandsToManageTheWorker implements ModelInterface, ArrayAccess,
     /**
      * Sets start
      */
-    public function setStart($start)
+    public function setStart(string|null $start = null)
     {
         if (is_null($start)) {
             throw new \InvalidArgumentException('non-nullable start cannot be null');
@@ -344,5 +345,3 @@ final class TheCommandsToManageTheWorker implements ModelInterface, ArrayAccess,
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

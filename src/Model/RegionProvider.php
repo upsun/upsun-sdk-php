@@ -190,7 +190,8 @@ final class RegionProvider implements ModelInterface, ArrayAccess, \JsonSerializ
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -232,7 +233,7 @@ final class RegionProvider implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets name
      */
-    public function setName($name)
+    public function setName(string|null $name = null)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -255,7 +256,7 @@ final class RegionProvider implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets logo
      */
-    public function setLogo($logo)
+    public function setLogo(string|null $logo = null)
     {
         if (is_null($logo)) {
             throw new \InvalidArgumentException('non-nullable logo cannot be null');
@@ -334,5 +335,3 @@ final class RegionProvider implements ModelInterface, ArrayAccess, \JsonSerializ
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -190,7 +190,8 @@ final class TheCommandsDefinition implements ModelInterface, ArrayAccess, \JsonS
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -235,7 +236,7 @@ final class TheCommandsDefinition implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets start
      */
-    public function setStart($start)
+    public function setStart(string|null $start = null)
     {
         if (is_null($start)) {
             throw new \InvalidArgumentException('non-nullable start cannot be null');
@@ -258,7 +259,7 @@ final class TheCommandsDefinition implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets stop
      */
-    public function setStop($stop)
+    public function setStop(string|null $stop = null)
     {
         if (is_null($stop)) {
             array_push($this->openAPINullablesSetToNull, 'stop');
@@ -344,5 +345,3 @@ final class TheCommandsDefinition implements ModelInterface, ArrayAccess, \JsonS
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -197,7 +197,8 @@ final class Ref implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -248,7 +249,7 @@ final class Ref implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets ref
      */
-    public function setRef($ref)
+    public function setRef(string|null $ref = null)
     {
         if (is_null($ref)) {
             throw new \InvalidArgumentException('non-nullable ref cannot be null');
@@ -271,7 +272,7 @@ final class Ref implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets object
      */
-    public function setObject($object)
+    public function setObject(string|null $object = null)
     {
         if (is_null($object)) {
             throw new \InvalidArgumentException('non-nullable object cannot be null');
@@ -294,7 +295,7 @@ final class Ref implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets sha
      */
-    public function setSha($sha)
+    public function setSha(string|null $sha = null)
     {
         if (is_null($sha)) {
             throw new \InvalidArgumentException('non-nullable sha cannot be null');
@@ -373,5 +374,3 @@ final class Ref implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

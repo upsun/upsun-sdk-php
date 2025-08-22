@@ -210,7 +210,8 @@ final class TheHostsOfTheDeploymentTargetInner1 implements ModelInterface, Array
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -267,7 +268,7 @@ final class TheHostsOfTheDeploymentTargetInner1 implements ModelInterface, Array
     /**
      * Sets id
      */
-    public function setId($id)
+    public function setId(string|null $id = null)
     {
         if (is_null($id)) {
             array_push($this->openAPINullablesSetToNull, 'id');
@@ -297,7 +298,7 @@ final class TheHostsOfTheDeploymentTargetInner1 implements ModelInterface, Array
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -330,7 +331,7 @@ final class TheHostsOfTheDeploymentTargetInner1 implements ModelInterface, Array
     /**
      * Sets services
      */
-    public function setServices($services)
+    public function setServices(string|null $services = null)
     {
         if (is_null($services)) {
             array_push($this->openAPINullablesSetToNull, 'services');
@@ -416,5 +417,3 @@ final class TheHostsOfTheDeploymentTargetInner1 implements ModelInterface, Array
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

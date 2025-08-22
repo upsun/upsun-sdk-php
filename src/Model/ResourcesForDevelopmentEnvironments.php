@@ -204,7 +204,8 @@ final class ResourcesForDevelopmentEnvironments implements ModelInterface, Array
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -258,7 +259,7 @@ final class ResourcesForDevelopmentEnvironments implements ModelInterface, Array
     /**
      * Sets legacy_development
      */
-    public function setLegacyDevelopment($legacy_development)
+    public function setLegacyDevelopment(string|null $legacy_development = null)
     {
         if (is_null($legacy_development)) {
             throw new \InvalidArgumentException('non-nullable legacy_development cannot be null');
@@ -281,7 +282,7 @@ final class ResourcesForDevelopmentEnvironments implements ModelInterface, Array
     /**
      * Sets max_cpu
      */
-    public function setMaxCpu($max_cpu)
+    public function setMaxCpu(string|null $max_cpu = null)
     {
         if (is_null($max_cpu)) {
             array_push($this->openAPINullablesSetToNull, 'max_cpu');
@@ -311,7 +312,7 @@ final class ResourcesForDevelopmentEnvironments implements ModelInterface, Array
     /**
      * Sets max_memory
      */
-    public function setMaxMemory($max_memory)
+    public function setMaxMemory(string|null $max_memory = null)
     {
         if (is_null($max_memory)) {
             array_push($this->openAPINullablesSetToNull, 'max_memory');
@@ -341,7 +342,7 @@ final class ResourcesForDevelopmentEnvironments implements ModelInterface, Array
     /**
      * Sets max_environments
      */
-    public function setMaxEnvironments($max_environments)
+    public function setMaxEnvironments(string|null $max_environments = null)
     {
         if (is_null($max_environments)) {
             array_push($this->openAPINullablesSetToNull, 'max_environments');
@@ -427,5 +428,3 @@ final class ResourcesForDevelopmentEnvironments implements ModelInterface, Array
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

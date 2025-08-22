@@ -190,7 +190,8 @@ final class TheBackupScheduleSpecificationInner implements ModelInterface, Array
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -238,7 +239,7 @@ final class TheBackupScheduleSpecificationInner implements ModelInterface, Array
     /**
      * Sets interval
      */
-    public function setInterval($interval)
+    public function setInterval(string|null $interval = null)
     {
         if (is_null($interval)) {
             throw new \InvalidArgumentException('non-nullable interval cannot be null');
@@ -261,7 +262,7 @@ final class TheBackupScheduleSpecificationInner implements ModelInterface, Array
     /**
      * Sets count
      */
-    public function setCount($count)
+    public function setCount(string|null $count = null)
     {
         if (is_null($count)) {
             throw new \InvalidArgumentException('non-nullable count cannot be null');
@@ -340,5 +341,3 @@ final class TheBackupScheduleSpecificationInner implements ModelInterface, Array
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

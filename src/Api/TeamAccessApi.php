@@ -103,16 +103,12 @@ final class TeamAccessApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,11 @@ final class TeamAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\TeamProjectAccess
      */
-    public function getProjectTeamAccess($project_id, $team_id)
-    {
+    public function getProjectTeamAccess(
+        $project_id,
+        $team_id
+    ): \Upsun\Model\TeamProjectAccess {
         list($response) = $this->getProjectTeamAccessWithHttpInfo($project_id, $team_id);
         return $response;
     }
@@ -268,7 +265,7 @@ final class TeamAccessApi
     public function getProjectTeamAccessAsyncWithHttpInfo(
         string $project_id,
         string $team_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\TeamProjectAccess';
         $request = $this->getProjectTeamAccessRequest($project_id, $team_id);
 
@@ -410,10 +407,11 @@ final class TeamAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\TeamProjectAccess
      */
-    public function getTeamProjectAccess($team_id, $project_id)
-    {
+    public function getTeamProjectAccess(
+        $team_id,
+        $project_id
+    ): \Upsun\Model\TeamProjectAccess {
         list($response) = $this->getTeamProjectAccessWithHttpInfo($team_id, $project_id);
         return $response;
     }
@@ -555,7 +553,7 @@ final class TeamAccessApi
     public function getTeamProjectAccessAsyncWithHttpInfo(
         string $team_id,
         string $project_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\TeamProjectAccess';
         $request = $this->getTeamProjectAccessRequest($team_id, $project_id);
 
@@ -697,10 +695,11 @@ final class TeamAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function grantProjectTeamAccess($project_id, $grant_project_team_access_request_inner)
-    {
+    public function grantProjectTeamAccess(
+        $project_id,
+        $grant_project_team_access_request_inner
+    ): void {
         $this->grantProjectTeamAccessWithHttpInfo($project_id, $grant_project_team_access_request_inner);
     }
 
@@ -712,7 +711,7 @@ final class TeamAccessApi
      */
     public function grantProjectTeamAccessWithHttpInfo(
         string $project_id,
-        \Upsun\Model\GrantProjectTeamAccessRequestInner[] $grant_project_team_access_request_inner
+        array $grant_project_team_access_request_inner
     ): array {
         $request = $this->grantProjectTeamAccessRequest($project_id, $grant_project_team_access_request_inner);
 
@@ -776,7 +775,7 @@ final class TeamAccessApi
      */
     public function grantProjectTeamAccessAsync(
         string $project_id,
-        \Upsun\Model\GrantProjectTeamAccessRequestInner[] $grant_project_team_access_request_inner
+        array $grant_project_team_access_request_inner
     ): Promise {
         return $this->grantProjectTeamAccessAsyncWithHttpInfo($project_id, $grant_project_team_access_request_inner)
             ->then(
@@ -793,8 +792,8 @@ final class TeamAccessApi
      */
     public function grantProjectTeamAccessAsyncWithHttpInfo(
         string $project_id,
-        \Upsun\Model\GrantProjectTeamAccessRequestInner[] $grant_project_team_access_request_inner
-    ) {
+        array $grant_project_team_access_request_inner
+    ): Promise {
         $returnType = '';
         $request = $this->grantProjectTeamAccessRequest($project_id, $grant_project_team_access_request_inner);
 
@@ -827,7 +826,7 @@ final class TeamAccessApi
      */
     public function grantProjectTeamAccessRequest(
         string $project_id,
-        \Upsun\Model\GrantProjectTeamAccessRequestInner[] $grant_project_team_access_request_inner
+        array $grant_project_team_access_request_inner
     ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -924,10 +923,11 @@ final class TeamAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function grantTeamProjectAccess($team_id, $grant_team_project_access_request_inner)
-    {
+    public function grantTeamProjectAccess(
+        $team_id,
+        $grant_team_project_access_request_inner
+    ): void {
         $this->grantTeamProjectAccessWithHttpInfo($team_id, $grant_team_project_access_request_inner);
     }
 
@@ -939,7 +939,7 @@ final class TeamAccessApi
      */
     public function grantTeamProjectAccessWithHttpInfo(
         string $team_id,
-        \Upsun\Model\GrantTeamProjectAccessRequestInner[] $grant_team_project_access_request_inner
+        array $grant_team_project_access_request_inner
     ): array {
         $request = $this->grantTeamProjectAccessRequest($team_id, $grant_team_project_access_request_inner);
 
@@ -1003,7 +1003,7 @@ final class TeamAccessApi
      */
     public function grantTeamProjectAccessAsync(
         string $team_id,
-        \Upsun\Model\GrantTeamProjectAccessRequestInner[] $grant_team_project_access_request_inner
+        array $grant_team_project_access_request_inner
     ): Promise {
         return $this->grantTeamProjectAccessAsyncWithHttpInfo($team_id, $grant_team_project_access_request_inner)
             ->then(
@@ -1020,8 +1020,8 @@ final class TeamAccessApi
      */
     public function grantTeamProjectAccessAsyncWithHttpInfo(
         string $team_id,
-        \Upsun\Model\GrantTeamProjectAccessRequestInner[] $grant_team_project_access_request_inner
-    ) {
+        array $grant_team_project_access_request_inner
+    ): Promise {
         $returnType = '';
         $request = $this->grantTeamProjectAccessRequest($team_id, $grant_team_project_access_request_inner);
 
@@ -1054,7 +1054,7 @@ final class TeamAccessApi
      */
     public function grantTeamProjectAccessRequest(
         string $team_id,
-        \Upsun\Model\GrantTeamProjectAccessRequestInner[] $grant_team_project_access_request_inner
+        array $grant_team_project_access_request_inner
     ): RequestInterface {
         // verify the required parameter 'team_id' is set
         if ($team_id === null || (is_array($team_id) && count($team_id) === 0)) {
@@ -1151,10 +1151,14 @@ final class TeamAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ListTeamProjectAccess200Response
      */
-    public function listProjectTeamAccess($project_id, $page_size = null, $page_before = null, $page_after = null, $sort = null)
-    {
+    public function listProjectTeamAccess(
+        $project_id,
+        $page_size = null,
+        $page_before = null,
+        $page_after = null,
+        $sort = null
+    ): \Upsun\Model\ListTeamProjectAccess200Response {
         list($response) = $this->listProjectTeamAccessWithHttpInfo($project_id, $page_size, $page_before, $page_after, $sort);
         return $response;
     }
@@ -1305,7 +1309,7 @@ final class TeamAccessApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ListTeamProjectAccess200Response';
         $request = $this->listProjectTeamAccessRequest($project_id, $page_size, $page_before, $page_after, $sort);
 
@@ -1376,8 +1380,8 @@ final class TeamAccessApi
 
         // query params
         if ($page_size !== null) {
-            if('form' === 'form' && is_array($page_size)) {
-                foreach($page_size as $key => $value) {
+            if ('form' === 'form' && is_array($page_size)) {
+                foreach ($page_size as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1387,8 +1391,8 @@ final class TeamAccessApi
         }
         // query params
         if ($page_before !== null) {
-            if('form' === 'form' && is_array($page_before)) {
-                foreach($page_before as $key => $value) {
+            if ('form' === 'form' && is_array($page_before)) {
+                foreach ($page_before as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1398,8 +1402,8 @@ final class TeamAccessApi
         }
         // query params
         if ($page_after !== null) {
-            if('form' === 'form' && is_array($page_after)) {
-                foreach($page_after as $key => $value) {
+            if ('form' === 'form' && is_array($page_after)) {
+                foreach ($page_after as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1409,8 +1413,8 @@ final class TeamAccessApi
         }
         // query params
         if ($sort !== null) {
-            if('form' === 'form' && is_array($sort)) {
-                foreach($sort as $key => $value) {
+            if ('form' === 'form' && is_array($sort)) {
+                foreach ($sort as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1487,10 +1491,14 @@ final class TeamAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ListTeamProjectAccess200Response
      */
-    public function listTeamProjectAccess($team_id, $page_size = null, $page_before = null, $page_after = null, $sort = null)
-    {
+    public function listTeamProjectAccess(
+        $team_id,
+        $page_size = null,
+        $page_before = null,
+        $page_after = null,
+        $sort = null
+    ): \Upsun\Model\ListTeamProjectAccess200Response {
         list($response) = $this->listTeamProjectAccessWithHttpInfo($team_id, $page_size, $page_before, $page_after, $sort);
         return $response;
     }
@@ -1641,7 +1649,7 @@ final class TeamAccessApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ListTeamProjectAccess200Response';
         $request = $this->listTeamProjectAccessRequest($team_id, $page_size, $page_before, $page_after, $sort);
 
@@ -1712,8 +1720,8 @@ final class TeamAccessApi
 
         // query params
         if ($page_size !== null) {
-            if('form' === 'form' && is_array($page_size)) {
-                foreach($page_size as $key => $value) {
+            if ('form' === 'form' && is_array($page_size)) {
+                foreach ($page_size as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1723,8 +1731,8 @@ final class TeamAccessApi
         }
         // query params
         if ($page_before !== null) {
-            if('form' === 'form' && is_array($page_before)) {
-                foreach($page_before as $key => $value) {
+            if ('form' === 'form' && is_array($page_before)) {
+                foreach ($page_before as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1734,8 +1742,8 @@ final class TeamAccessApi
         }
         // query params
         if ($page_after !== null) {
-            if('form' === 'form' && is_array($page_after)) {
-                foreach($page_after as $key => $value) {
+            if ('form' === 'form' && is_array($page_after)) {
+                foreach ($page_after as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1745,8 +1753,8 @@ final class TeamAccessApi
         }
         // query params
         if ($sort !== null) {
-            if('form' === 'form' && is_array($sort)) {
-                foreach($sort as $key => $value) {
+            if ('form' === 'form' && is_array($sort)) {
+                foreach ($sort as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1823,10 +1831,11 @@ final class TeamAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function removeProjectTeamAccess($project_id, $team_id)
-    {
+    public function removeProjectTeamAccess(
+        $project_id,
+        $team_id
+    ): void {
         $this->removeProjectTeamAccessWithHttpInfo($project_id, $team_id);
     }
 
@@ -1928,7 +1937,7 @@ final class TeamAccessApi
     public function removeProjectTeamAccessAsyncWithHttpInfo(
         string $project_id,
         string $team_id
-    ) {
+    ): Promise {
         $returnType = '';
         $request = $this->removeProjectTeamAccessRequest($project_id, $team_id);
 
@@ -2060,10 +2069,11 @@ final class TeamAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function removeTeamProjectAccess($team_id, $project_id)
-    {
+    public function removeTeamProjectAccess(
+        $team_id,
+        $project_id
+    ): void {
         $this->removeTeamProjectAccessWithHttpInfo($team_id, $project_id);
     }
 
@@ -2165,7 +2175,7 @@ final class TeamAccessApi
     public function removeTeamProjectAccessAsyncWithHttpInfo(
         string $team_id,
         string $project_id
-    ) {
+    ): Promise {
         $returnType = '';
         $request = $this->removeTeamProjectAccessRequest($team_id, $project_id);
 

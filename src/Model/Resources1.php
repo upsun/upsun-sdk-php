@@ -198,7 +198,8 @@ final class Resources1 implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -252,7 +253,7 @@ final class Resources1 implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets init
      */
-    public function setInit($init)
+    public function setInit(string|null $init = null)
     {
         if (is_null($init)) {
             array_push($this->openAPINullablesSetToNull, 'init');
@@ -348,5 +349,3 @@ final class Resources1 implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

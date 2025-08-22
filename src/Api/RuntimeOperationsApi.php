@@ -103,16 +103,12 @@ final class RuntimeOperationsApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,13 @@ final class RuntimeOperationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function runOperation($project_id, $environment_id, $deployment_id, $environment_operation_input)
-    {
+    public function runOperation(
+        $project_id,
+        $environment_id,
+        $deployment_id,
+        $environment_operation_input
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->runOperationWithHttpInfo($project_id, $environment_id, $deployment_id, $environment_operation_input);
         return $response;
     }
@@ -246,7 +245,7 @@ final class RuntimeOperationsApi
         string $environment_id,
         string $deployment_id,
         \Upsun\Model\EnvironmentOperationInput $environment_operation_input
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->runOperationRequest($project_id, $environment_id, $deployment_id, $environment_operation_input);
 

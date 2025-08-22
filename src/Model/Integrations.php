@@ -197,7 +197,8 @@ final class Integrations implements ModelInterface, ArrayAccess, \JsonSerializab
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -242,7 +243,7 @@ final class Integrations implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets enabled
      */
-    public function setEnabled($enabled)
+    public function setEnabled(string|null $enabled = null)
     {
         if (is_null($enabled)) {
             throw new \InvalidArgumentException('non-nullable enabled cannot be null');
@@ -265,7 +266,7 @@ final class Integrations implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets config
      */
-    public function setConfig($config)
+    public function setConfig(string|null $config = null)
     {
         if (is_null($config)) {
             throw new \InvalidArgumentException('non-nullable config cannot be null');
@@ -288,7 +289,7 @@ final class Integrations implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets allowed_integrations
      */
-    public function setAllowedIntegrations($allowed_integrations)
+    public function setAllowedIntegrations(string|null $allowed_integrations = null)
     {
         if (is_null($allowed_integrations)) {
             throw new \InvalidArgumentException('non-nullable allowed_integrations cannot be null');
@@ -367,5 +368,3 @@ final class Integrations implements ModelInterface, ArrayAccess, \JsonSerializab
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

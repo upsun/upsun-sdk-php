@@ -218,7 +218,8 @@ final class Alert implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -260,7 +261,7 @@ final class Alert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      */
-    public function setId($id)
+    public function setId(string|null $id = null)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -283,7 +284,7 @@ final class Alert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets active
      */
-    public function setActive($active)
+    public function setActive(string|null $active = null)
     {
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
@@ -306,7 +307,7 @@ final class Alert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets alerts_sent
      */
-    public function setAlertsSent($alerts_sent)
+    public function setAlertsSent(string|null $alerts_sent = null)
     {
         if (is_null($alerts_sent)) {
             throw new \InvalidArgumentException('non-nullable alerts_sent cannot be null');
@@ -329,7 +330,7 @@ final class Alert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets last_alert_at
      */
-    public function setLastAlertAt($last_alert_at)
+    public function setLastAlertAt(string|null $last_alert_at = null)
     {
         if (is_null($last_alert_at)) {
             throw new \InvalidArgumentException('non-nullable last_alert_at cannot be null');
@@ -352,7 +353,7 @@ final class Alert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt($updated_at)
+    public function setUpdatedAt(string|null $updated_at = null)
     {
         if (is_null($updated_at)) {
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
@@ -375,7 +376,7 @@ final class Alert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets config
      */
-    public function setConfig($config)
+    public function setConfig(string|null $config = null)
     {
         if (is_null($config)) {
             throw new \InvalidArgumentException('non-nullable config cannot be null');
@@ -454,5 +455,3 @@ final class Alert implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

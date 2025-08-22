@@ -212,7 +212,8 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements ModelI
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -272,7 +273,7 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements ModelI
     /**
      * Sets commands
      */
-    public function setCommands($commands)
+    public function setCommands(string|null $commands = null)
     {
         if (is_null($commands)) {
             throw new \InvalidArgumentException('non-nullable commands cannot be null');
@@ -295,7 +296,7 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements ModelI
     /**
      * Sets timeout
      */
-    public function setTimeout($timeout)
+    public function setTimeout(string|null $timeout = null)
     {
         if (is_null($timeout)) {
             array_push($this->openAPINullablesSetToNull, 'timeout');
@@ -325,7 +326,7 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements ModelI
     /**
      * Sets role
      */
-    public function setRole($role)
+    public function setRole(string|null $role = null)
     {
         if (is_null($role)) {
             throw new \InvalidArgumentException('non-nullable role cannot be null');
@@ -414,5 +415,3 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements ModelI
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

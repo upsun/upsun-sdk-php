@@ -183,7 +183,8 @@ final class GrantTeamProjectAccessRequestInner implements ModelInterface, ArrayA
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -228,7 +229,7 @@ final class GrantTeamProjectAccessRequestInner implements ModelInterface, ArrayA
     /**
      * Sets project_id
      */
-    public function setProjectId($project_id)
+    public function setProjectId(string|null $project_id = null)
     {
         if (is_null($project_id)) {
             throw new \InvalidArgumentException('non-nullable project_id cannot be null');
@@ -307,5 +308,3 @@ final class GrantTeamProjectAccessRequestInner implements ModelInterface, ArrayA
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

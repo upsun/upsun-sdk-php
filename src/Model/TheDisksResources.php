@@ -197,7 +197,8 @@ final class TheDisksResources implements ModelInterface, ArrayAccess, \JsonSeria
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -248,7 +249,7 @@ final class TheDisksResources implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets temporary
      */
-    public function setTemporary($temporary)
+    public function setTemporary(string|null $temporary = null)
     {
         if (is_null($temporary)) {
             array_push($this->openAPINullablesSetToNull, 'temporary');
@@ -278,7 +279,7 @@ final class TheDisksResources implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets instance
      */
-    public function setInstance($instance)
+    public function setInstance(string|null $instance = null)
     {
         if (is_null($instance)) {
             array_push($this->openAPINullablesSetToNull, 'instance');
@@ -308,7 +309,7 @@ final class TheDisksResources implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets storage
      */
-    public function setStorage($storage)
+    public function setStorage(string|null $storage = null)
     {
         if (is_null($storage)) {
             array_push($this->openAPINullablesSetToNull, 'storage');
@@ -394,5 +395,3 @@ final class TheDisksResources implements ModelInterface, ArrayAccess, \JsonSeria
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -218,7 +218,8 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -275,7 +276,7 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
     /**
      * Sets source
      */
-    public function setSource($source)
+    public function setSource(string|null $source = null)
     {
         if (is_null($source)) {
             throw new \InvalidArgumentException('non-nullable source cannot be null');
@@ -308,7 +309,7 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
     /**
      * Sets source_path
      */
-    public function setSourcePath($source_path)
+    public function setSourcePath(string|null $source_path = null)
     {
         if (is_null($source_path)) {
             throw new \InvalidArgumentException('non-nullable source_path cannot be null');
@@ -331,7 +332,7 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
     /**
      * Sets service
      */
-    public function setService($service)
+    public function setService(string|null $service = null)
     {
         if (is_null($service)) {
             array_push($this->openAPINullablesSetToNull, 'service');
@@ -417,5 +418,3 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

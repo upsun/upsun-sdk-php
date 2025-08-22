@@ -224,7 +224,8 @@ final class EnvironmentBranchInput implements ModelInterface, ArrayAccess, \Json
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -290,7 +291,7 @@ final class EnvironmentBranchInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets title
      */
-    public function setTitle($title)
+    public function setTitle(string|null $title = null)
     {
         if (is_null($title)) {
             throw new \InvalidArgumentException('non-nullable title cannot be null');
@@ -313,7 +314,7 @@ final class EnvironmentBranchInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets name
      */
-    public function setName($name)
+    public function setName(string|null $name = null)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -336,7 +337,7 @@ final class EnvironmentBranchInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets clone_parent
      */
-    public function setCloneParent($clone_parent)
+    public function setCloneParent(string|null $clone_parent = null)
     {
         if (is_null($clone_parent)) {
             throw new \InvalidArgumentException('non-nullable clone_parent cannot be null');
@@ -359,7 +360,7 @@ final class EnvironmentBranchInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -392,7 +393,7 @@ final class EnvironmentBranchInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets resources
      */
-    public function setResources($resources)
+    public function setResources(string|null $resources = null)
     {
         if (is_null($resources)) {
             array_push($this->openAPINullablesSetToNull, 'resources');
@@ -478,5 +479,3 @@ final class EnvironmentBranchInput implements ModelInterface, ArrayAccess, \Json
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -232,7 +232,8 @@ final class ProdDomainStorage implements ModelInterface, ArrayAccess, \JsonSeria
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -289,7 +290,7 @@ final class ProdDomainStorage implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets created_at
      */
-    public function setCreatedAt($created_at)
+    public function setCreatedAt(string|null $created_at = null)
     {
         if (is_null($created_at)) {
             array_push($this->openAPINullablesSetToNull, 'created_at');
@@ -319,7 +320,7 @@ final class ProdDomainStorage implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt($updated_at)
+    public function setUpdatedAt(string|null $updated_at = null)
     {
         if (is_null($updated_at)) {
             array_push($this->openAPINullablesSetToNull, 'updated_at');
@@ -349,7 +350,7 @@ final class ProdDomainStorage implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -372,7 +373,7 @@ final class ProdDomainStorage implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets project
      */
-    public function setProject($project)
+    public function setProject(string|null $project = null)
     {
         if (is_null($project)) {
             throw new \InvalidArgumentException('non-nullable project cannot be null');
@@ -395,7 +396,7 @@ final class ProdDomainStorage implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets name
      */
-    public function setName($name)
+    public function setName(string|null $name = null)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -418,7 +419,7 @@ final class ProdDomainStorage implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets registered_name
      */
-    public function setRegisteredName($registered_name)
+    public function setRegisteredName(string|null $registered_name = null)
     {
         if (is_null($registered_name)) {
             throw new \InvalidArgumentException('non-nullable registered_name cannot be null');
@@ -441,7 +442,7 @@ final class ProdDomainStorage implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets attributes
      */
-    public function setAttributes($attributes)
+    public function setAttributes(string|null $attributes = null)
     {
         if (is_null($attributes)) {
             throw new \InvalidArgumentException('non-nullable attributes cannot be null');
@@ -464,7 +465,7 @@ final class ProdDomainStorage implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets is_default
      */
-    public function setIsDefault($is_default)
+    public function setIsDefault(string|null $is_default = null)
     {
         if (is_null($is_default)) {
             throw new \InvalidArgumentException('non-nullable is_default cannot be null');
@@ -543,5 +544,3 @@ final class ProdDomainStorage implements ModelInterface, ArrayAccess, \JsonSeria
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

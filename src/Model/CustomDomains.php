@@ -190,7 +190,8 @@ final class CustomDomains implements ModelInterface, ArrayAccess, \JsonSerializa
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -238,7 +239,7 @@ final class CustomDomains implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets enabled
      */
-    public function setEnabled($enabled)
+    public function setEnabled(string|null $enabled = null)
     {
         if (is_null($enabled)) {
             throw new \InvalidArgumentException('non-nullable enabled cannot be null');
@@ -261,7 +262,7 @@ final class CustomDomains implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets environments_with_domains_limit
      */
-    public function setEnvironmentsWithDomainsLimit($environments_with_domains_limit)
+    public function setEnvironmentsWithDomainsLimit(string|null $environments_with_domains_limit = null)
     {
         if (is_null($environments_with_domains_limit)) {
             throw new \InvalidArgumentException('non-nullable environments_with_domains_limit cannot be null');
@@ -340,5 +341,3 @@ final class CustomDomains implements ModelInterface, ArrayAccess, \JsonSerializa
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

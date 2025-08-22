@@ -103,16 +103,12 @@ final class ConnectionsApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,11 @@ final class ConnectionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function deleteLoginConnection($provider, $user_id)
-    {
+    public function deleteLoginConnection(
+        $provider,
+        $user_id
+    ): void {
         $this->deleteLoginConnectionWithHttpInfo($provider, $user_id);
     }
 
@@ -212,7 +209,7 @@ final class ConnectionsApi
     public function deleteLoginConnectionAsyncWithHttpInfo(
         string $provider,
         string $user_id
-    ) {
+    ): Promise {
         $returnType = '';
         $request = $this->deleteLoginConnectionRequest($provider, $user_id);
 
@@ -344,10 +341,11 @@ final class ConnectionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Connection
      */
-    public function getLoginConnection($provider, $user_id)
-    {
+    public function getLoginConnection(
+        $provider,
+        $user_id
+    ): \Upsun\Model\Connection {
         list($response) = $this->getLoginConnectionWithHttpInfo($provider, $user_id);
         return $response;
     }
@@ -475,7 +473,7 @@ final class ConnectionsApi
     public function getLoginConnectionAsyncWithHttpInfo(
         string $provider,
         string $user_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Connection';
         $request = $this->getLoginConnectionRequest($provider, $user_id);
 
@@ -617,10 +615,10 @@ final class ConnectionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Connection[]
      */
-    public function listLoginConnections($user_id)
-    {
+    public function listLoginConnections(
+        $user_id
+    ): \Upsun\Model\Connection[] {
         list($response) = $this->listLoginConnectionsWithHttpInfo($user_id);
         return $response;
     }
@@ -745,7 +743,7 @@ final class ConnectionsApi
      */
     public function listLoginConnectionsAsyncWithHttpInfo(
         string $user_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Connection[]';
         $request = $this->listLoginConnectionsRequest($user_id);
 

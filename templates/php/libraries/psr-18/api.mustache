@@ -103,16 +103,12 @@ use function sprintf;
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -144,10 +140,11 @@ use function sprintf;
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return {{#returnType}}{{#responses}}{{#dataType}}{{#-first}}{{{dataType}}}{{/-first}}{{/dataType}}{{/responses}}{{/returnType}}{{^returnType}}void{{/returnType}}
      */
-    public function {{operationId}}({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}})
-    {
+    public function {{operationId}}(
+        {{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},
+        {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
+    ): {{#returnType}}{{#responses}}{{#dataType}}{{#-first}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}}{{/-first}}{{/dataType}}{{/responses}}{{/returnType}}{{^returnType}}void{{/returnType}} {
         {{#returnType}}list($response) = {{/returnType}}$this->{{operationId}}WithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}});{{#returnType}}
         return $response;{{/returnType}}
     }
@@ -179,7 +176,7 @@ use function sprintf;
      * @throws InvalidArgumentException
      */
     public function {{operationId}}WithHttpInfo(
-        {{^vendorExtensions.x-group-parameters}}{{#allParams}}{{{dataType}}} ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},
+        {{^vendorExtensions.x-group-parameters}}{{#allParams}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},
         {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
     ): array {
         $request = $this->{{operationId}}Request({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}});
@@ -315,7 +312,7 @@ use function sprintf;
      * @throws InvalidArgumentException|Exception
      */
     public function {{operationId}}Async(
-        {{^vendorExtensions.x-group-parameters}}{{#allParams}}{{{dataType}}} ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},
+        {{^vendorExtensions.x-group-parameters}}{{#allParams}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},
         {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
     ): Promise {
         return $this->{{operationId}}AsyncWithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}})
@@ -351,9 +348,9 @@ use function sprintf;
      * @throws InvalidArgumentException|Exception
      */
     public function {{operationId}}AsyncWithHttpInfo(
-        {{^vendorExtensions.x-group-parameters}}{{#allParams}}{{{dataType}}} ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},
+        {{^vendorExtensions.x-group-parameters}}{{#allParams}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},
         {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
-    ) {
+    ): Promise {
         $returnType = '{{{returnType}}}';
         $request = $this->{{operationId}}Request({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}});
 
@@ -413,7 +410,7 @@ use function sprintf;
      * @throws InvalidArgumentException
      */
     public function {{operationId}}Request(
-        {{^vendorExtensions.x-group-parameters}}{{#allParams}}{{{dataType}}} ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},
+        {{^vendorExtensions.x-group-parameters}}{{#allParams}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},
         {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
     ): RequestInterface {
         {{#vendorExtensions.x-group-parameters}}
@@ -484,8 +481,8 @@ use function sprintf;
         {{#isExplode}}
         if (${{paramName}} !== null) {
         {{#style}}
-            if('form' === '{{style}}' && is_array(${{paramName}})) {
-                foreach(${{paramName}} as $key => $value) {
+            if ('form' === '{{style}}' && is_array(${{paramName}})) {
+                foreach (${{paramName}} as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }

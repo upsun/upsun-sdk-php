@@ -218,7 +218,8 @@ final class CreateOrgInviteRequest implements ModelInterface, ArrayAccess, \Json
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -266,7 +267,7 @@ final class CreateOrgInviteRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets email
      */
-    public function setEmail($email)
+    public function setEmail(string|null $email = null)
     {
         if (is_null($email)) {
             throw new \InvalidArgumentException('non-nullable email cannot be null');
@@ -289,7 +290,7 @@ final class CreateOrgInviteRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets permissions
      */
-    public function setPermissions($permissions)
+    public function setPermissions(string|null $permissions = null)
     {
         if (is_null($permissions)) {
             throw new \InvalidArgumentException('non-nullable permissions cannot be null');
@@ -321,7 +322,7 @@ final class CreateOrgInviteRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets force
      */
-    public function setForce($force)
+    public function setForce(string|null $force = null)
     {
         if (is_null($force)) {
             throw new \InvalidArgumentException('non-nullable force cannot be null');
@@ -400,5 +401,3 @@ final class CreateOrgInviteRequest implements ModelInterface, ArrayAccess, \Json
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

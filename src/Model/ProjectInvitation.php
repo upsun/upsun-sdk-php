@@ -278,7 +278,8 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, \JsonSeria
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -338,7 +339,7 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets id
      */
-    public function setId($id)
+    public function setId(string|null $id = null)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -361,7 +362,7 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets state
      */
-    public function setState($state)
+    public function setState(string|null $state = null)
     {
         if (is_null($state)) {
             throw new \InvalidArgumentException('non-nullable state cannot be null');
@@ -394,7 +395,7 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets project_id
      */
-    public function setProjectId($project_id)
+    public function setProjectId(string|null $project_id = null)
     {
         if (is_null($project_id)) {
             throw new \InvalidArgumentException('non-nullable project_id cannot be null');
@@ -417,7 +418,7 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets role
      */
-    public function setRole($role)
+    public function setRole(string|null $role = null)
     {
         if (is_null($role)) {
             throw new \InvalidArgumentException('non-nullable role cannot be null');
@@ -450,7 +451,7 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets email
      */
-    public function setEmail($email)
+    public function setEmail(string|null $email = null)
     {
         if (is_null($email)) {
             throw new \InvalidArgumentException('non-nullable email cannot be null');
@@ -473,7 +474,7 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets owner
      */
-    public function setOwner($owner)
+    public function setOwner(string|null $owner = null)
     {
         if (is_null($owner)) {
             throw new \InvalidArgumentException('non-nullable owner cannot be null');
@@ -496,7 +497,7 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets created_at
      */
-    public function setCreatedAt($created_at)
+    public function setCreatedAt(string|null $created_at = null)
     {
         if (is_null($created_at)) {
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
@@ -519,7 +520,7 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt($updated_at)
+    public function setUpdatedAt(string|null $updated_at = null)
     {
         if (is_null($updated_at)) {
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
@@ -542,7 +543,7 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets finished_at
      */
-    public function setFinishedAt($finished_at)
+    public function setFinishedAt(string|null $finished_at = null)
     {
         if (is_null($finished_at)) {
             array_push($this->openAPINullablesSetToNull, 'finished_at');
@@ -572,7 +573,7 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets environments
      */
-    public function setEnvironments($environments)
+    public function setEnvironments(string|null $environments = null)
     {
         if (is_null($environments)) {
             throw new \InvalidArgumentException('non-nullable environments cannot be null');
@@ -651,5 +652,3 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, \JsonSeria
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

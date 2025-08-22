@@ -190,7 +190,8 @@ final class ListRegions200Response implements ModelInterface, ArrayAccess, \Json
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -232,7 +233,7 @@ final class ListRegions200Response implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets regions
      */
-    public function setRegions($regions)
+    public function setRegions(string|null $regions = null)
     {
         if (is_null($regions)) {
             throw new \InvalidArgumentException('non-nullable regions cannot be null');
@@ -255,7 +256,7 @@ final class ListRegions200Response implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets _links
      */
-    public function setLinks($_links)
+    public function setLinks(string|null $_links = null)
     {
         if (is_null($_links)) {
             throw new \InvalidArgumentException('non-nullable _links cannot be null');
@@ -334,5 +335,3 @@ final class ListRegions200Response implements ModelInterface, ArrayAccess, \Json
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

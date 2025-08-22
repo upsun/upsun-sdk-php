@@ -103,16 +103,12 @@ final class EnvironmentVariablesApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,12 @@ final class EnvironmentVariablesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function createProjectsEnvironmentsVariables($project_id, $environment_id, $environment_variable_create_input)
-    {
+    public function createProjectsEnvironmentsVariables(
+        $project_id,
+        $environment_id,
+        $environment_variable_create_input
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->createProjectsEnvironmentsVariablesWithHttpInfo($project_id, $environment_id, $environment_variable_create_input);
         return $response;
     }
@@ -243,7 +241,7 @@ final class EnvironmentVariablesApi
         string $project_id,
         string $environment_id,
         \Upsun\Model\EnvironmentVariableCreateInput $environment_variable_create_input
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->createProjectsEnvironmentsVariablesRequest($project_id, $environment_id, $environment_variable_create_input);
 
@@ -398,10 +396,12 @@ final class EnvironmentVariablesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function deleteProjectsEnvironmentsVariables($project_id, $environment_id, $variable_id)
-    {
+    public function deleteProjectsEnvironmentsVariables(
+        $project_id,
+        $environment_id,
+        $variable_id
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsEnvironmentsVariablesWithHttpInfo($project_id, $environment_id, $variable_id);
         return $response;
     }
@@ -518,7 +518,7 @@ final class EnvironmentVariablesApi
         string $project_id,
         string $environment_id,
         string $variable_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deleteProjectsEnvironmentsVariablesRequest($project_id, $environment_id, $variable_id);
 
@@ -675,10 +675,12 @@ final class EnvironmentVariablesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\EnvironmentVariable
      */
-    public function getProjectsEnvironmentsVariables($project_id, $environment_id, $variable_id)
-    {
+    public function getProjectsEnvironmentsVariables(
+        $project_id,
+        $environment_id,
+        $variable_id
+    ): \Upsun\Model\EnvironmentVariable {
         list($response) = $this->getProjectsEnvironmentsVariablesWithHttpInfo($project_id, $environment_id, $variable_id);
         return $response;
     }
@@ -795,7 +797,7 @@ final class EnvironmentVariablesApi
         string $project_id,
         string $environment_id,
         string $variable_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\EnvironmentVariable';
         $request = $this->getProjectsEnvironmentsVariablesRequest($project_id, $environment_id, $variable_id);
 
@@ -952,10 +954,11 @@ final class EnvironmentVariablesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\EnvironmentVariable[]
      */
-    public function listProjectsEnvironmentsVariables($project_id, $environment_id)
-    {
+    public function listProjectsEnvironmentsVariables(
+        $project_id,
+        $environment_id
+    ): \Upsun\Model\EnvironmentVariable[] {
         list($response) = $this->listProjectsEnvironmentsVariablesWithHttpInfo($project_id, $environment_id);
         return $response;
     }
@@ -1069,7 +1072,7 @@ final class EnvironmentVariablesApi
     public function listProjectsEnvironmentsVariablesAsyncWithHttpInfo(
         string $project_id,
         string $environment_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\EnvironmentVariable[]';
         $request = $this->listProjectsEnvironmentsVariablesRequest($project_id, $environment_id);
 
@@ -1211,10 +1214,13 @@ final class EnvironmentVariablesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function updateProjectsEnvironmentsVariables($project_id, $environment_id, $variable_id, $environment_variable_patch)
-    {
+    public function updateProjectsEnvironmentsVariables(
+        $project_id,
+        $environment_id,
+        $variable_id,
+        $environment_variable_patch
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsEnvironmentsVariablesWithHttpInfo($project_id, $environment_id, $variable_id, $environment_variable_patch);
         return $response;
     }
@@ -1334,7 +1340,7 @@ final class EnvironmentVariablesApi
         string $environment_id,
         string $variable_id,
         \Upsun\Model\EnvironmentVariablePatch $environment_variable_patch
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateProjectsEnvironmentsVariablesRequest($project_id, $environment_id, $variable_id, $environment_variable_patch);
 

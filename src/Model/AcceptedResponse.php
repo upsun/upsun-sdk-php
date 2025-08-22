@@ -190,7 +190,8 @@ final class AcceptedResponse implements ModelInterface, ArrayAccess, \JsonSerial
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -238,7 +239,7 @@ final class AcceptedResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets status
      */
-    public function setStatus($status)
+    public function setStatus(string|null $status = null)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
@@ -261,7 +262,7 @@ final class AcceptedResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets code
      */
-    public function setCode($code)
+    public function setCode(string|null $code = null)
     {
         if (is_null($code)) {
             throw new \InvalidArgumentException('non-nullable code cannot be null');
@@ -340,5 +341,3 @@ final class AcceptedResponse implements ModelInterface, ArrayAccess, \JsonSerial
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

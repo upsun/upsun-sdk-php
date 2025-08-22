@@ -211,7 +211,8 @@ final class HttpLogIntegrationPatch implements ModelInterface, ArrayAccess, \Jso
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -259,7 +260,7 @@ final class HttpLogIntegrationPatch implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -282,7 +283,7 @@ final class HttpLogIntegrationPatch implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets extra
      */
-    public function setExtra($extra)
+    public function setExtra(string|null $extra = null)
     {
         if (is_null($extra)) {
             throw new \InvalidArgumentException('non-nullable extra cannot be null');
@@ -305,7 +306,7 @@ final class HttpLogIntegrationPatch implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets url
      */
-    public function setUrl($url)
+    public function setUrl(string|null $url = null)
     {
         if (is_null($url)) {
             throw new \InvalidArgumentException('non-nullable url cannot be null');
@@ -328,7 +329,7 @@ final class HttpLogIntegrationPatch implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets headers
      */
-    public function setHeaders($headers)
+    public function setHeaders(string|null $headers = null)
     {
         if (is_null($headers)) {
             throw new \InvalidArgumentException('non-nullable headers cannot be null');
@@ -351,7 +352,7 @@ final class HttpLogIntegrationPatch implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets tls_verify
      */
-    public function setTlsVerify($tls_verify)
+    public function setTlsVerify(string|null $tls_verify = null)
     {
         if (is_null($tls_verify)) {
             throw new \InvalidArgumentException('non-nullable tls_verify cannot be null');
@@ -430,5 +431,3 @@ final class HttpLogIntegrationPatch implements ModelInterface, ArrayAccess, \Jso
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

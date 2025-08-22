@@ -183,7 +183,8 @@ final class ResetEmailAddressRequest implements ModelInterface, ArrayAccess, \Js
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -228,7 +229,7 @@ final class ResetEmailAddressRequest implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets email_address
      */
-    public function setEmailAddress($email_address)
+    public function setEmailAddress(string|null $email_address = null)
     {
         if (is_null($email_address)) {
             throw new \InvalidArgumentException('non-nullable email_address cannot be null');
@@ -307,5 +308,3 @@ final class ResetEmailAddressRequest implements ModelInterface, ArrayAccess, \Js
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

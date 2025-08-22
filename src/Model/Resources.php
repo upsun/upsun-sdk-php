@@ -218,7 +218,8 @@ final class Resources implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -278,7 +279,7 @@ final class Resources implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets base_memory
      */
-    public function setBaseMemory($base_memory)
+    public function setBaseMemory(string|null $base_memory = null)
     {
         if (is_null($base_memory)) {
             array_push($this->openAPINullablesSetToNull, 'base_memory');
@@ -308,7 +309,7 @@ final class Resources implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets memory_ratio
      */
-    public function setMemoryRatio($memory_ratio)
+    public function setMemoryRatio(string|null $memory_ratio = null)
     {
         if (is_null($memory_ratio)) {
             array_push($this->openAPINullablesSetToNull, 'memory_ratio');
@@ -338,7 +339,7 @@ final class Resources implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets profile_size
      */
-    public function setProfileSize($profile_size)
+    public function setProfileSize(string|null $profile_size = null)
     {
         if (is_null($profile_size)) {
             array_push($this->openAPINullablesSetToNull, 'profile_size');
@@ -368,7 +369,7 @@ final class Resources implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets minimum
      */
-    public function setMinimum($minimum)
+    public function setMinimum(string|null $minimum = null)
     {
         if (is_null($minimum)) {
             array_push($this->openAPINullablesSetToNull, 'minimum');
@@ -398,7 +399,7 @@ final class Resources implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets default
      */
-    public function setDefault($default)
+    public function setDefault(string|null $default = null)
     {
         if (is_null($default)) {
             array_push($this->openAPINullablesSetToNull, 'default');
@@ -428,7 +429,7 @@ final class Resources implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets disk
      */
-    public function setDisk($disk)
+    public function setDisk(string|null $disk = null)
     {
         if (is_null($disk)) {
             array_push($this->openAPINullablesSetToNull, 'disk');
@@ -514,5 +515,3 @@ final class Resources implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

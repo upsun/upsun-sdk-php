@@ -216,7 +216,8 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -282,7 +283,7 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
     /**
      * Sets socket_family
      */
-    public function setSocketFamily($socket_family)
+    public function setSocketFamily(string|null $socket_family = null)
     {
         if (is_null($socket_family)) {
             throw new \InvalidArgumentException('non-nullable socket_family cannot be null');
@@ -315,7 +316,7 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
     /**
      * Sets protocol
      */
-    public function setProtocol($protocol)
+    public function setProtocol(string|null $protocol = null)
     {
         if (is_null($protocol)) {
             array_push($this->openAPINullablesSetToNull, 'protocol');
@@ -411,5 +412,3 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

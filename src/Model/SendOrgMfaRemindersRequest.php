@@ -183,7 +183,8 @@ final class SendOrgMfaRemindersRequest implements ModelInterface, ArrayAccess, \
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -225,7 +226,7 @@ final class SendOrgMfaRemindersRequest implements ModelInterface, ArrayAccess, \
     /**
      * Sets user_ids
      */
-    public function setUserIds($user_ids)
+    public function setUserIds(string|null $user_ids = null)
     {
         if (is_null($user_ids)) {
             throw new \InvalidArgumentException('non-nullable user_ids cannot be null');
@@ -304,5 +305,3 @@ final class SendOrgMfaRemindersRequest implements ModelInterface, ArrayAccess, \
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

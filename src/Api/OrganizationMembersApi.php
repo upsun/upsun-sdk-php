@@ -103,16 +103,12 @@ final class OrganizationMembersApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,11 @@ final class OrganizationMembersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\OrganizationMember
      */
-    public function createOrgMember($organization_id, $create_org_member_request)
-    {
+    public function createOrgMember(
+        $organization_id,
+        $create_org_member_request
+    ): \Upsun\Model\OrganizationMember {
         list($response) = $this->createOrgMemberWithHttpInfo($organization_id, $create_org_member_request);
         return $response;
     }
@@ -282,7 +279,7 @@ final class OrganizationMembersApi
     public function createOrgMemberAsyncWithHttpInfo(
         string $organization_id,
         \Upsun\Model\CreateOrgMemberRequest $create_org_member_request
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\OrganizationMember';
         $request = $this->createOrgMemberRequest($organization_id, $create_org_member_request);
 
@@ -422,10 +419,11 @@ final class OrganizationMembersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function deleteOrgMember($organization_id, $user_id)
-    {
+    public function deleteOrgMember(
+        $organization_id,
+        $user_id
+    ): void {
         $this->deleteOrgMemberWithHttpInfo($organization_id, $user_id);
     }
 
@@ -519,7 +517,7 @@ final class OrganizationMembersApi
     public function deleteOrgMemberAsyncWithHttpInfo(
         string $organization_id,
         string $user_id
-    ) {
+    ): Promise {
         $returnType = '';
         $request = $this->deleteOrgMemberRequest($organization_id, $user_id);
 
@@ -651,10 +649,11 @@ final class OrganizationMembersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\OrganizationMember
      */
-    public function getOrgMember($organization_id, $user_id)
-    {
+    public function getOrgMember(
+        $organization_id,
+        $user_id
+    ): \Upsun\Model\OrganizationMember {
         list($response) = $this->getOrgMemberWithHttpInfo($organization_id, $user_id);
         return $response;
     }
@@ -796,7 +795,7 @@ final class OrganizationMembersApi
     public function getOrgMemberAsyncWithHttpInfo(
         string $organization_id,
         string $user_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\OrganizationMember';
         $request = $this->getOrgMemberRequest($organization_id, $user_id);
 
@@ -938,10 +937,15 @@ final class OrganizationMembersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ListOrgMembers200Response
      */
-    public function listOrgMembers($organization_id, $filter_permissions = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
-    {
+    public function listOrgMembers(
+        $organization_id,
+        $filter_permissions = null,
+        $page_size = null,
+        $page_before = null,
+        $page_after = null,
+        $sort = null
+    ): \Upsun\Model\ListOrgMembers200Response {
         list($response) = $this->listOrgMembersWithHttpInfo($organization_id, $filter_permissions, $page_size, $page_before, $page_after, $sort);
         return $response;
     }
@@ -1109,7 +1113,7 @@ final class OrganizationMembersApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ListOrgMembers200Response';
         $request = $this->listOrgMembersRequest($organization_id, $filter_permissions, $page_size, $page_before, $page_after, $sort);
 
@@ -1181,8 +1185,8 @@ final class OrganizationMembersApi
 
         // query params
         if ($filter_permissions !== null) {
-            if('form' === 'deepObject' && is_array($filter_permissions)) {
-                foreach($filter_permissions as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_permissions)) {
+                foreach ($filter_permissions as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1192,8 +1196,8 @@ final class OrganizationMembersApi
         }
         // query params
         if ($page_size !== null) {
-            if('form' === 'form' && is_array($page_size)) {
-                foreach($page_size as $key => $value) {
+            if ('form' === 'form' && is_array($page_size)) {
+                foreach ($page_size as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1203,8 +1207,8 @@ final class OrganizationMembersApi
         }
         // query params
         if ($page_before !== null) {
-            if('form' === 'form' && is_array($page_before)) {
-                foreach($page_before as $key => $value) {
+            if ('form' === 'form' && is_array($page_before)) {
+                foreach ($page_before as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1214,8 +1218,8 @@ final class OrganizationMembersApi
         }
         // query params
         if ($page_after !== null) {
-            if('form' === 'form' && is_array($page_after)) {
-                foreach($page_after as $key => $value) {
+            if ('form' === 'form' && is_array($page_after)) {
+                foreach ($page_after as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1225,8 +1229,8 @@ final class OrganizationMembersApi
         }
         // query params
         if ($sort !== null) {
-            if('form' === 'form' && is_array($sort)) {
-                foreach($sort as $key => $value) {
+            if ('form' === 'form' && is_array($sort)) {
+                foreach ($sort as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1303,10 +1307,12 @@ final class OrganizationMembersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\OrganizationMember
      */
-    public function updateOrgMember($organization_id, $user_id, $update_org_member_request = null)
-    {
+    public function updateOrgMember(
+        $organization_id,
+        $user_id,
+        $update_org_member_request = null
+    ): \Upsun\Model\OrganizationMember {
         list($response) = $this->updateOrgMemberWithHttpInfo($organization_id, $user_id, $update_org_member_request);
         return $response;
     }
@@ -1465,7 +1471,7 @@ final class OrganizationMembersApi
         string $organization_id,
         string $user_id,
         \Upsun\Model\UpdateOrgMemberRequest $update_org_member_request = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\OrganizationMember';
         $request = $this->updateOrgMemberRequest($organization_id, $user_id, $update_org_member_request);
 

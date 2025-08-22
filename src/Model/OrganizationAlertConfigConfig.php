@@ -190,7 +190,8 @@ final class OrganizationAlertConfigConfig implements ModelInterface, ArrayAccess
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -232,7 +233,7 @@ final class OrganizationAlertConfigConfig implements ModelInterface, ArrayAccess
     /**
      * Sets threshold
      */
-    public function setThreshold($threshold)
+    public function setThreshold(string|null $threshold = null)
     {
         if (is_null($threshold)) {
             throw new \InvalidArgumentException('non-nullable threshold cannot be null');
@@ -255,7 +256,7 @@ final class OrganizationAlertConfigConfig implements ModelInterface, ArrayAccess
     /**
      * Sets mode
      */
-    public function setMode($mode)
+    public function setMode(string|null $mode = null)
     {
         if (is_null($mode)) {
             throw new \InvalidArgumentException('non-nullable mode cannot be null');
@@ -334,5 +335,3 @@ final class OrganizationAlertConfigConfig implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

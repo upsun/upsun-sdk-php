@@ -239,7 +239,8 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -302,7 +303,7 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     /**
      * Sets root
      */
-    public function setRoot($root)
+    public function setRoot(string|null $root = null)
     {
         if (is_null($root)) {
             array_push($this->openAPINullablesSetToNull, 'root');
@@ -332,7 +333,7 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     /**
      * Sets expires
      */
-    public function setExpires($expires)
+    public function setExpires(string|null $expires = null)
     {
         if (is_null($expires)) {
             throw new \InvalidArgumentException('non-nullable expires cannot be null');
@@ -355,7 +356,7 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     /**
      * Sets passthru
      */
-    public function setPassthru($passthru)
+    public function setPassthru(string|null $passthru = null)
     {
         if (is_null($passthru)) {
             throw new \InvalidArgumentException('non-nullable passthru cannot be null');
@@ -378,7 +379,7 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     /**
      * Sets scripts
      */
-    public function setScripts($scripts)
+    public function setScripts(string|null $scripts = null)
     {
         if (is_null($scripts)) {
             throw new \InvalidArgumentException('non-nullable scripts cannot be null');
@@ -401,7 +402,7 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     /**
      * Sets index
      */
-    public function setIndex($index)
+    public function setIndex(string|null $index = null)
     {
         if (is_null($index)) {
             array_push($this->openAPINullablesSetToNull, 'index');
@@ -431,7 +432,7 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     /**
      * Sets allow
      */
-    public function setAllow($allow)
+    public function setAllow(string|null $allow = null)
     {
         if (is_null($allow)) {
             throw new \InvalidArgumentException('non-nullable allow cannot be null');
@@ -454,7 +455,7 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     /**
      * Sets headers
      */
-    public function setHeaders($headers)
+    public function setHeaders(string|null $headers = null)
     {
         if (is_null($headers)) {
             throw new \InvalidArgumentException('non-nullable headers cannot be null');
@@ -477,7 +478,7 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     /**
      * Sets rules
      */
-    public function setRules($rules)
+    public function setRules(string|null $rules = null)
     {
         if (is_null($rules)) {
             throw new \InvalidArgumentException('non-nullable rules cannot be null');
@@ -500,7 +501,7 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     /**
      * Sets request_buffering
      */
-    public function setRequestBuffering($request_buffering)
+    public function setRequestBuffering(string|null $request_buffering = null)
     {
         if (is_null($request_buffering)) {
             throw new \InvalidArgumentException('non-nullable request_buffering cannot be null');
@@ -579,5 +580,3 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

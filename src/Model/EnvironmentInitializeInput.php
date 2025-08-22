@@ -211,7 +211,8 @@ final class EnvironmentInitializeInput implements ModelInterface, ArrayAccess, \
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -268,7 +269,7 @@ final class EnvironmentInitializeInput implements ModelInterface, ArrayAccess, \
     /**
      * Sets profile
      */
-    public function setProfile($profile)
+    public function setProfile(string|null $profile = null)
     {
         if (is_null($profile)) {
             throw new \InvalidArgumentException('non-nullable profile cannot be null');
@@ -291,7 +292,7 @@ final class EnvironmentInitializeInput implements ModelInterface, ArrayAccess, \
     /**
      * Sets repository
      */
-    public function setRepository($repository)
+    public function setRepository(string|null $repository = null)
     {
         if (is_null($repository)) {
             throw new \InvalidArgumentException('non-nullable repository cannot be null');
@@ -314,7 +315,7 @@ final class EnvironmentInitializeInput implements ModelInterface, ArrayAccess, \
     /**
      * Sets config
      */
-    public function setConfig($config)
+    public function setConfig(string|null $config = null)
     {
         if (is_null($config)) {
             array_push($this->openAPINullablesSetToNull, 'config');
@@ -344,7 +345,7 @@ final class EnvironmentInitializeInput implements ModelInterface, ArrayAccess, \
     /**
      * Sets files
      */
-    public function setFiles($files)
+    public function setFiles(string|null $files = null)
     {
         if (is_null($files)) {
             throw new \InvalidArgumentException('non-nullable files cannot be null');
@@ -367,7 +368,7 @@ final class EnvironmentInitializeInput implements ModelInterface, ArrayAccess, \
     /**
      * Sets resources
      */
-    public function setResources($resources)
+    public function setResources(string|null $resources = null)
     {
         if (is_null($resources)) {
             array_push($this->openAPINullablesSetToNull, 'resources');
@@ -453,5 +454,3 @@ final class EnvironmentInitializeInput implements ModelInterface, ArrayAccess, \
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

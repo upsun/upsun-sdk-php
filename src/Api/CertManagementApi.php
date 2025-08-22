@@ -103,16 +103,12 @@ final class CertManagementApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,11 @@ final class CertManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function createProjectsCertificates($project_id, $certificate_create_input)
-    {
+    public function createProjectsCertificates(
+        $project_id,
+        $certificate_create_input
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->createProjectsCertificatesWithHttpInfo($project_id, $certificate_create_input);
         return $response;
     }
@@ -240,7 +237,7 @@ final class CertManagementApi
     public function createProjectsCertificatesAsyncWithHttpInfo(
         string $project_id,
         \Upsun\Model\CertificateCreateInput $certificate_create_input
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->createProjectsCertificatesRequest($project_id, $certificate_create_input);
 
@@ -380,10 +377,11 @@ final class CertManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function deleteProjectsCertificates($project_id, $certificate_id)
-    {
+    public function deleteProjectsCertificates(
+        $project_id,
+        $certificate_id
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsCertificatesWithHttpInfo($project_id, $certificate_id);
         return $response;
     }
@@ -497,7 +495,7 @@ final class CertManagementApi
     public function deleteProjectsCertificatesAsyncWithHttpInfo(
         string $project_id,
         string $certificate_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deleteProjectsCertificatesRequest($project_id, $certificate_id);
 
@@ -639,10 +637,11 @@ final class CertManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Certificate
      */
-    public function getProjectsCertificates($project_id, $certificate_id)
-    {
+    public function getProjectsCertificates(
+        $project_id,
+        $certificate_id
+    ): \Upsun\Model\Certificate {
         list($response) = $this->getProjectsCertificatesWithHttpInfo($project_id, $certificate_id);
         return $response;
     }
@@ -756,7 +755,7 @@ final class CertManagementApi
     public function getProjectsCertificatesAsyncWithHttpInfo(
         string $project_id,
         string $certificate_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Certificate';
         $request = $this->getProjectsCertificatesRequest($project_id, $certificate_id);
 
@@ -898,10 +897,10 @@ final class CertManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Certificate[]
      */
-    public function listProjectsCertificates($project_id)
-    {
+    public function listProjectsCertificates(
+        $project_id
+    ): \Upsun\Model\Certificate[] {
         list($response) = $this->listProjectsCertificatesWithHttpInfo($project_id);
         return $response;
     }
@@ -1012,7 +1011,7 @@ final class CertManagementApi
      */
     public function listProjectsCertificatesAsyncWithHttpInfo(
         string $project_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Certificate[]';
         $request = $this->listProjectsCertificatesRequest($project_id);
 
@@ -1139,10 +1138,12 @@ final class CertManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function updateProjectsCertificates($project_id, $certificate_id, $certificate_patch)
-    {
+    public function updateProjectsCertificates(
+        $project_id,
+        $certificate_id,
+        $certificate_patch
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsCertificatesWithHttpInfo($project_id, $certificate_id, $certificate_patch);
         return $response;
     }
@@ -1259,7 +1260,7 @@ final class CertManagementApi
         string $project_id,
         string $certificate_id,
         \Upsun\Model\CertificatePatch $certificate_patch
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateProjectsCertificatesRequest($project_id, $certificate_id, $certificate_patch);
 

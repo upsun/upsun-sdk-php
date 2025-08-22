@@ -204,7 +204,8 @@ final class CertificateCreateInput implements ModelInterface, ArrayAccess, \Json
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -252,7 +253,7 @@ final class CertificateCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets certificate
      */
-    public function setCertificate($certificate)
+    public function setCertificate(string|null $certificate = null)
     {
         if (is_null($certificate)) {
             throw new \InvalidArgumentException('non-nullable certificate cannot be null');
@@ -275,7 +276,7 @@ final class CertificateCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets key
      */
-    public function setKey($key)
+    public function setKey(string|null $key = null)
     {
         if (is_null($key)) {
             throw new \InvalidArgumentException('non-nullable key cannot be null');
@@ -298,7 +299,7 @@ final class CertificateCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets chain
      */
-    public function setChain($chain)
+    public function setChain(string|null $chain = null)
     {
         if (is_null($chain)) {
             throw new \InvalidArgumentException('non-nullable chain cannot be null');
@@ -321,7 +322,7 @@ final class CertificateCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets is_invalid
      */
-    public function setIsInvalid($is_invalid)
+    public function setIsInvalid(string|null $is_invalid = null)
     {
         if (is_null($is_invalid)) {
             throw new \InvalidArgumentException('non-nullable is_invalid cannot be null');
@@ -400,5 +401,3 @@ final class CertificateCreateInput implements ModelInterface, ArrayAccess, \Json
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

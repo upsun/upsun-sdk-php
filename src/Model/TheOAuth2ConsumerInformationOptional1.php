@@ -190,7 +190,8 @@ final class TheOAuth2ConsumerInformationOptional1 implements ModelInterface, Arr
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -238,7 +239,7 @@ final class TheOAuth2ConsumerInformationOptional1 implements ModelInterface, Arr
     /**
      * Sets key
      */
-    public function setKey($key)
+    public function setKey(string|null $key = null)
     {
         if (is_null($key)) {
             throw new \InvalidArgumentException('non-nullable key cannot be null');
@@ -261,7 +262,7 @@ final class TheOAuth2ConsumerInformationOptional1 implements ModelInterface, Arr
     /**
      * Sets secret
      */
-    public function setSecret($secret)
+    public function setSecret(string|null $secret = null)
     {
         if (is_null($secret)) {
             throw new \InvalidArgumentException('non-nullable secret cannot be null');
@@ -340,5 +341,3 @@ final class TheOAuth2ConsumerInformationOptional1 implements ModelInterface, Arr
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

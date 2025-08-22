@@ -190,7 +190,8 @@ final class TheObjectTheReferencePointsTo implements ModelInterface, ArrayAccess
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -238,7 +239,7 @@ final class TheObjectTheReferencePointsTo implements ModelInterface, ArrayAccess
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -261,7 +262,7 @@ final class TheObjectTheReferencePointsTo implements ModelInterface, ArrayAccess
     /**
      * Sets sha
      */
-    public function setSha($sha)
+    public function setSha(string|null $sha = null)
     {
         if (is_null($sha)) {
             throw new \InvalidArgumentException('non-nullable sha cannot be null');
@@ -340,5 +341,3 @@ final class TheObjectTheReferencePointsTo implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

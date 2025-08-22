@@ -190,7 +190,8 @@ final class ListTicketCategories200ResponseInner implements ModelInterface, Arra
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -232,7 +233,7 @@ final class ListTicketCategories200ResponseInner implements ModelInterface, Arra
     /**
      * Sets id
      */
-    public function setId($id)
+    public function setId(string|null $id = null)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -255,7 +256,7 @@ final class ListTicketCategories200ResponseInner implements ModelInterface, Arra
     /**
      * Sets label
      */
-    public function setLabel($label)
+    public function setLabel(string|null $label = null)
     {
         if (is_null($label)) {
             throw new \InvalidArgumentException('non-nullable label cannot be null');
@@ -334,5 +335,3 @@ final class ListTicketCategories200ResponseInner implements ModelInterface, Arra
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

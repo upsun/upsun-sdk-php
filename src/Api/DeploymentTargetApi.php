@@ -103,16 +103,12 @@ final class DeploymentTargetApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,11 @@ final class DeploymentTargetApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function createProjectsDeployments($project_id, $deployment_target_create_input)
-    {
+    public function createProjectsDeployments(
+        $project_id,
+        $deployment_target_create_input
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->createProjectsDeploymentsWithHttpInfo($project_id, $deployment_target_create_input);
         return $response;
     }
@@ -240,7 +237,7 @@ final class DeploymentTargetApi
     public function createProjectsDeploymentsAsyncWithHttpInfo(
         string $project_id,
         \Upsun\Model\DeploymentTargetCreateInput $deployment_target_create_input
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->createProjectsDeploymentsRequest($project_id, $deployment_target_create_input);
 
@@ -380,10 +377,11 @@ final class DeploymentTargetApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function deleteProjectsDeployments($project_id, $deployment_target_configuration_id)
-    {
+    public function deleteProjectsDeployments(
+        $project_id,
+        $deployment_target_configuration_id
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsDeploymentsWithHttpInfo($project_id, $deployment_target_configuration_id);
         return $response;
     }
@@ -497,7 +495,7 @@ final class DeploymentTargetApi
     public function deleteProjectsDeploymentsAsyncWithHttpInfo(
         string $project_id,
         string $deployment_target_configuration_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deleteProjectsDeploymentsRequest($project_id, $deployment_target_configuration_id);
 
@@ -639,10 +637,11 @@ final class DeploymentTargetApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\DeploymentTarget
      */
-    public function getProjectsDeployments($project_id, $deployment_target_configuration_id)
-    {
+    public function getProjectsDeployments(
+        $project_id,
+        $deployment_target_configuration_id
+    ): \Upsun\Model\DeploymentTarget {
         list($response) = $this->getProjectsDeploymentsWithHttpInfo($project_id, $deployment_target_configuration_id);
         return $response;
     }
@@ -756,7 +755,7 @@ final class DeploymentTargetApi
     public function getProjectsDeploymentsAsyncWithHttpInfo(
         string $project_id,
         string $deployment_target_configuration_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\DeploymentTarget';
         $request = $this->getProjectsDeploymentsRequest($project_id, $deployment_target_configuration_id);
 
@@ -898,10 +897,10 @@ final class DeploymentTargetApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\DeploymentTarget[]
      */
-    public function listProjectsDeployments($project_id)
-    {
+    public function listProjectsDeployments(
+        $project_id
+    ): \Upsun\Model\DeploymentTarget[] {
         list($response) = $this->listProjectsDeploymentsWithHttpInfo($project_id);
         return $response;
     }
@@ -1012,7 +1011,7 @@ final class DeploymentTargetApi
      */
     public function listProjectsDeploymentsAsyncWithHttpInfo(
         string $project_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\DeploymentTarget[]';
         $request = $this->listProjectsDeploymentsRequest($project_id);
 
@@ -1139,10 +1138,12 @@ final class DeploymentTargetApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function updateProjectsDeployments($project_id, $deployment_target_configuration_id, $deployment_target_patch)
-    {
+    public function updateProjectsDeployments(
+        $project_id,
+        $deployment_target_configuration_id,
+        $deployment_target_patch
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsDeploymentsWithHttpInfo($project_id, $deployment_target_configuration_id, $deployment_target_patch);
         return $response;
     }
@@ -1259,7 +1260,7 @@ final class DeploymentTargetApi
         string $project_id,
         string $deployment_target_configuration_id,
         \Upsun\Model\DeploymentTargetPatch $deployment_target_patch
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateProjectsDeploymentsRequest($project_id, $deployment_target_configuration_id, $deployment_target_patch);
 

@@ -246,7 +246,8 @@ final class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -288,7 +289,7 @@ final class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets country
      */
-    public function setCountry($country)
+    public function setCountry(string|null $country = null)
     {
         if (is_null($country)) {
             throw new \InvalidArgumentException('non-nullable country cannot be null');
@@ -311,7 +312,7 @@ final class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name_line
      */
-    public function setNameLine($name_line)
+    public function setNameLine(string|null $name_line = null)
     {
         if (is_null($name_line)) {
             throw new \InvalidArgumentException('non-nullable name_line cannot be null');
@@ -334,7 +335,7 @@ final class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets premise
      */
-    public function setPremise($premise)
+    public function setPremise(string|null $premise = null)
     {
         if (is_null($premise)) {
             throw new \InvalidArgumentException('non-nullable premise cannot be null');
@@ -357,7 +358,7 @@ final class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets sub_premise
      */
-    public function setSubPremise($sub_premise)
+    public function setSubPremise(string|null $sub_premise = null)
     {
         if (is_null($sub_premise)) {
             throw new \InvalidArgumentException('non-nullable sub_premise cannot be null');
@@ -380,7 +381,7 @@ final class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets thoroughfare
      */
-    public function setThoroughfare($thoroughfare)
+    public function setThoroughfare(string|null $thoroughfare = null)
     {
         if (is_null($thoroughfare)) {
             throw new \InvalidArgumentException('non-nullable thoroughfare cannot be null');
@@ -403,7 +404,7 @@ final class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets administrative_area
      */
-    public function setAdministrativeArea($administrative_area)
+    public function setAdministrativeArea(string|null $administrative_area = null)
     {
         if (is_null($administrative_area)) {
             throw new \InvalidArgumentException('non-nullable administrative_area cannot be null');
@@ -426,7 +427,7 @@ final class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets sub_administrative_area
      */
-    public function setSubAdministrativeArea($sub_administrative_area)
+    public function setSubAdministrativeArea(string|null $sub_administrative_area = null)
     {
         if (is_null($sub_administrative_area)) {
             throw new \InvalidArgumentException('non-nullable sub_administrative_area cannot be null');
@@ -449,7 +450,7 @@ final class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets locality
      */
-    public function setLocality($locality)
+    public function setLocality(string|null $locality = null)
     {
         if (is_null($locality)) {
             throw new \InvalidArgumentException('non-nullable locality cannot be null');
@@ -472,7 +473,7 @@ final class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets dependent_locality
      */
-    public function setDependentLocality($dependent_locality)
+    public function setDependentLocality(string|null $dependent_locality = null)
     {
         if (is_null($dependent_locality)) {
             throw new \InvalidArgumentException('non-nullable dependent_locality cannot be null');
@@ -495,7 +496,7 @@ final class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets postal_code
      */
-    public function setPostalCode($postal_code)
+    public function setPostalCode(string|null $postal_code = null)
     {
         if (is_null($postal_code)) {
             throw new \InvalidArgumentException('non-nullable postal_code cannot be null');
@@ -574,5 +575,3 @@ final class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

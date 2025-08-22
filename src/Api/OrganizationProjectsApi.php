@@ -103,16 +103,12 @@ final class OrganizationProjectsApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,11 @@ final class OrganizationProjectsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\OrganizationProject
      */
-    public function getOrgProject($organization_id, $project_id)
-    {
+    public function getOrgProject(
+        $organization_id,
+        $project_id
+    ): \Upsun\Model\OrganizationProject {
         list($response) = $this->getOrgProjectWithHttpInfo($organization_id, $project_id);
         return $response;
     }
@@ -268,7 +265,7 @@ final class OrganizationProjectsApi
     public function getOrgProjectAsyncWithHttpInfo(
         string $organization_id,
         string $project_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\OrganizationProject';
         $request = $this->getOrgProjectRequest($organization_id, $project_id);
 
@@ -410,10 +407,19 @@ final class OrganizationProjectsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ListOrgProjects200Response
      */
-    public function listOrgProjects($organization_id, $filter_id = null, $filter_title = null, $filter_status = null, $filter_updated_at = null, $filter_created_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
-    {
+    public function listOrgProjects(
+        $organization_id,
+        $filter_id = null,
+        $filter_title = null,
+        $filter_status = null,
+        $filter_updated_at = null,
+        $filter_created_at = null,
+        $page_size = null,
+        $page_before = null,
+        $page_after = null,
+        $sort = null
+    ): \Upsun\Model\ListOrgProjects200Response {
         list($response) = $this->listOrgProjectsWithHttpInfo($organization_id, $filter_id, $filter_title, $filter_status, $filter_updated_at, $filter_created_at, $page_size, $page_before, $page_after, $sort);
         return $response;
     }
@@ -593,7 +599,7 @@ final class OrganizationProjectsApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ListOrgProjects200Response';
         $request = $this->listOrgProjectsRequest($organization_id, $filter_id, $filter_title, $filter_status, $filter_updated_at, $filter_created_at, $page_size, $page_before, $page_after, $sort);
 
@@ -669,8 +675,8 @@ final class OrganizationProjectsApi
 
         // query params
         if ($filter_id !== null) {
-            if('form' === 'deepObject' && is_array($filter_id)) {
-                foreach($filter_id as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_id)) {
+                foreach ($filter_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -680,8 +686,8 @@ final class OrganizationProjectsApi
         }
         // query params
         if ($filter_title !== null) {
-            if('form' === 'deepObject' && is_array($filter_title)) {
-                foreach($filter_title as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_title)) {
+                foreach ($filter_title as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -691,8 +697,8 @@ final class OrganizationProjectsApi
         }
         // query params
         if ($filter_status !== null) {
-            if('form' === 'deepObject' && is_array($filter_status)) {
-                foreach($filter_status as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_status)) {
+                foreach ($filter_status as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -702,8 +708,8 @@ final class OrganizationProjectsApi
         }
         // query params
         if ($filter_updated_at !== null) {
-            if('form' === 'deepObject' && is_array($filter_updated_at)) {
-                foreach($filter_updated_at as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_updated_at)) {
+                foreach ($filter_updated_at as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -713,8 +719,8 @@ final class OrganizationProjectsApi
         }
         // query params
         if ($filter_created_at !== null) {
-            if('form' === 'deepObject' && is_array($filter_created_at)) {
-                foreach($filter_created_at as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_created_at)) {
+                foreach ($filter_created_at as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -724,8 +730,8 @@ final class OrganizationProjectsApi
         }
         // query params
         if ($page_size !== null) {
-            if('form' === 'form' && is_array($page_size)) {
-                foreach($page_size as $key => $value) {
+            if ('form' === 'form' && is_array($page_size)) {
+                foreach ($page_size as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -735,8 +741,8 @@ final class OrganizationProjectsApi
         }
         // query params
         if ($page_before !== null) {
-            if('form' === 'form' && is_array($page_before)) {
-                foreach($page_before as $key => $value) {
+            if ('form' === 'form' && is_array($page_before)) {
+                foreach ($page_before as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -746,8 +752,8 @@ final class OrganizationProjectsApi
         }
         // query params
         if ($page_after !== null) {
-            if('form' === 'form' && is_array($page_after)) {
-                foreach($page_after as $key => $value) {
+            if ('form' === 'form' && is_array($page_after)) {
+                foreach ($page_after as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -757,8 +763,8 @@ final class OrganizationProjectsApi
         }
         // query params
         if ($sort !== null) {
-            if('form' === 'form' && is_array($sort)) {
-                foreach($sort as $key => $value) {
+            if ('form' === 'form' && is_array($sort)) {
+                foreach ($sort as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }

@@ -337,7 +337,8 @@ final class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -388,7 +389,7 @@ final class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      */
-    public function setId($id)
+    public function setId(string|null $id = null)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -411,7 +412,7 @@ final class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      */
-    public function setStatus($status)
+    public function setStatus(string|null $status = null)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
@@ -444,7 +445,7 @@ final class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets owner
      */
-    public function setOwner($owner)
+    public function setOwner(string|null $owner = null)
     {
         if (is_null($owner)) {
             throw new \InvalidArgumentException('non-nullable owner cannot be null');
@@ -467,7 +468,7 @@ final class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets address
      */
-    public function setAddress($address)
+    public function setAddress(string|null $address = null)
     {
         if (is_null($address)) {
             throw new \InvalidArgumentException('non-nullable address cannot be null');
@@ -490,7 +491,7 @@ final class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets company
      */
-    public function setCompany($company)
+    public function setCompany(string|null $company = null)
     {
         if (is_null($company)) {
             throw new \InvalidArgumentException('non-nullable company cannot be null');
@@ -513,7 +514,7 @@ final class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets vat_number
      */
-    public function setVatNumber($vat_number)
+    public function setVatNumber(string|null $vat_number = null)
     {
         if (is_null($vat_number)) {
             throw new \InvalidArgumentException('non-nullable vat_number cannot be null');
@@ -536,7 +537,7 @@ final class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets billing_period_start
      */
-    public function setBillingPeriodStart($billing_period_start)
+    public function setBillingPeriodStart(string|null $billing_period_start = null)
     {
         if (is_null($billing_period_start)) {
             throw new \InvalidArgumentException('non-nullable billing_period_start cannot be null');
@@ -559,7 +560,7 @@ final class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets billing_period_end
      */
-    public function setBillingPeriodEnd($billing_period_end)
+    public function setBillingPeriodEnd(string|null $billing_period_end = null)
     {
         if (is_null($billing_period_end)) {
             throw new \InvalidArgumentException('non-nullable billing_period_end cannot be null');
@@ -582,7 +583,7 @@ final class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets billing_period_label
      */
-    public function setBillingPeriodLabel($billing_period_label)
+    public function setBillingPeriodLabel(string|null $billing_period_label = null)
     {
         if (is_null($billing_period_label)) {
             throw new \InvalidArgumentException('non-nullable billing_period_label cannot be null');
@@ -605,7 +606,7 @@ final class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets billing_period_duration
      */
-    public function setBillingPeriodDuration($billing_period_duration)
+    public function setBillingPeriodDuration(string|null $billing_period_duration = null)
     {
         if (is_null($billing_period_duration)) {
             throw new \InvalidArgumentException('non-nullable billing_period_duration cannot be null');
@@ -628,7 +629,7 @@ final class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets paid_on
      */
-    public function setPaidOn($paid_on)
+    public function setPaidOn(string|null $paid_on = null)
     {
         if (is_null($paid_on)) {
             array_push($this->openAPINullablesSetToNull, 'paid_on');
@@ -658,7 +659,7 @@ final class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets total
      */
-    public function setTotal($total)
+    public function setTotal(string|null $total = null)
     {
         if (is_null($total)) {
             throw new \InvalidArgumentException('non-nullable total cannot be null');
@@ -681,7 +682,7 @@ final class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets total_formatted
      */
-    public function setTotalFormatted($total_formatted)
+    public function setTotalFormatted(string|null $total_formatted = null)
     {
         if (is_null($total_formatted)) {
             throw new \InvalidArgumentException('non-nullable total_formatted cannot be null');
@@ -704,7 +705,7 @@ final class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets components
      */
-    public function setComponents($components)
+    public function setComponents(string|null $components = null)
     {
         if (is_null($components)) {
             throw new \InvalidArgumentException('non-nullable components cannot be null');
@@ -727,7 +728,7 @@ final class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets currency
      */
-    public function setCurrency($currency)
+    public function setCurrency(string|null $currency = null)
     {
         if (is_null($currency)) {
             throw new \InvalidArgumentException('non-nullable currency cannot be null');
@@ -750,7 +751,7 @@ final class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets invoice_url
      */
-    public function setInvoiceUrl($invoice_url)
+    public function setInvoiceUrl(string|null $invoice_url = null)
     {
         if (is_null($invoice_url)) {
             throw new \InvalidArgumentException('non-nullable invoice_url cannot be null');
@@ -773,7 +774,7 @@ final class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets last_refreshed
      */
-    public function setLastRefreshed($last_refreshed)
+    public function setLastRefreshed(string|null $last_refreshed = null)
     {
         if (is_null($last_refreshed)) {
             throw new \InvalidArgumentException('non-nullable last_refreshed cannot be null');
@@ -796,7 +797,7 @@ final class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets invoiced
      */
-    public function setInvoiced($invoiced)
+    public function setInvoiced(string|null $invoiced = null)
     {
         if (is_null($invoiced)) {
             throw new \InvalidArgumentException('non-nullable invoiced cannot be null');
@@ -819,7 +820,7 @@ final class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets line_items
      */
-    public function setLineItems($line_items)
+    public function setLineItems(string|null $line_items = null)
     {
         if (is_null($line_items)) {
             throw new \InvalidArgumentException('non-nullable line_items cannot be null');
@@ -842,7 +843,7 @@ final class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets _links
      */
-    public function setLinks($_links)
+    public function setLinks(string|null $_links = null)
     {
         if (is_null($_links)) {
             throw new \InvalidArgumentException('non-nullable _links cannot be null');
@@ -921,5 +922,3 @@ final class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

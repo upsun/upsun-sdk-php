@@ -183,7 +183,8 @@ final class Metrics implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -228,7 +229,7 @@ final class Metrics implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets max_range
      */
-    public function setMaxRange($max_range)
+    public function setMaxRange(string|null $max_range = null)
     {
         if (is_null($max_range)) {
             throw new \InvalidArgumentException('non-nullable max_range cannot be null');
@@ -307,5 +308,3 @@ final class Metrics implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

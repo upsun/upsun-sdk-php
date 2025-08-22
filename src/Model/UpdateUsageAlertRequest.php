@@ -183,7 +183,8 @@ final class UpdateUsageAlertRequest implements ModelInterface, ArrayAccess, \Jso
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -225,7 +226,7 @@ final class UpdateUsageAlertRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets config
      */
-    public function setConfig($config)
+    public function setConfig(string|null $config = null)
     {
         if (is_null($config)) {
             throw new \InvalidArgumentException('non-nullable config cannot be null');
@@ -304,5 +305,3 @@ final class UpdateUsageAlertRequest implements ModelInterface, ArrayAccess, \Jso
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

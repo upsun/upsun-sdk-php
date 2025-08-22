@@ -220,7 +220,8 @@ final class CreateProjectInviteRequestPermissionsInner implements ModelInterface
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -280,7 +281,7 @@ final class CreateProjectInviteRequestPermissionsInner implements ModelInterface
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -313,7 +314,7 @@ final class CreateProjectInviteRequestPermissionsInner implements ModelInterface
     /**
      * Sets role
      */
-    public function setRole($role)
+    public function setRole(string|null $role = null)
     {
         if (is_null($role)) {
             throw new \InvalidArgumentException('non-nullable role cannot be null');
@@ -402,5 +403,3 @@ final class CreateProjectInviteRequestPermissionsInner implements ModelInterface
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

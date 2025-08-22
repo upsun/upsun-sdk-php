@@ -103,16 +103,12 @@ final class SourceOperationsApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,11 @@ final class SourceOperationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\EnvironmentSourceOperation[]
      */
-    public function listProjectsEnvironmentsSourceOperations($project_id, $environment_id)
-    {
+    public function listProjectsEnvironmentsSourceOperations(
+        $project_id,
+        $environment_id
+    ): \Upsun\Model\EnvironmentSourceOperation[] {
         list($response) = $this->listProjectsEnvironmentsSourceOperationsWithHttpInfo($project_id, $environment_id);
         return $response;
     }
@@ -240,7 +237,7 @@ final class SourceOperationsApi
     public function listProjectsEnvironmentsSourceOperationsAsyncWithHttpInfo(
         string $project_id,
         string $environment_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\EnvironmentSourceOperation[]';
         $request = $this->listProjectsEnvironmentsSourceOperationsRequest($project_id, $environment_id);
 
@@ -382,10 +379,12 @@ final class SourceOperationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function runSourceOperation($project_id, $environment_id, $environment_source_operation_input)
-    {
+    public function runSourceOperation(
+        $project_id,
+        $environment_id,
+        $environment_source_operation_input
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->runSourceOperationWithHttpInfo($project_id, $environment_id, $environment_source_operation_input);
         return $response;
     }
@@ -502,7 +501,7 @@ final class SourceOperationsApi
         string $project_id,
         string $environment_id,
         \Upsun\Model\EnvironmentSourceOperationInput $environment_source_operation_input
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->runSourceOperationRequest($project_id, $environment_id, $environment_source_operation_input);
 

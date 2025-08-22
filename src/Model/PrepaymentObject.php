@@ -183,7 +183,8 @@ final class PrepaymentObject implements ModelInterface, ArrayAccess, \JsonSerial
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -225,7 +226,7 @@ final class PrepaymentObject implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets prepayment
      */
-    public function setPrepayment($prepayment)
+    public function setPrepayment(string|null $prepayment = null)
     {
         if (is_null($prepayment)) {
             throw new \InvalidArgumentException('non-nullable prepayment cannot be null');
@@ -304,5 +305,3 @@ final class PrepaymentObject implements ModelInterface, ArrayAccess, \JsonSerial
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -204,7 +204,8 @@ final class TeamMember implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -246,7 +247,7 @@ final class TeamMember implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets team_id
      */
-    public function setTeamId($team_id)
+    public function setTeamId(string|null $team_id = null)
     {
         if (is_null($team_id)) {
             throw new \InvalidArgumentException('non-nullable team_id cannot be null');
@@ -269,7 +270,7 @@ final class TeamMember implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets user_id
      */
-    public function setUserId($user_id)
+    public function setUserId(string|null $user_id = null)
     {
         if (is_null($user_id)) {
             throw new \InvalidArgumentException('non-nullable user_id cannot be null');
@@ -292,7 +293,7 @@ final class TeamMember implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets created_at
      */
-    public function setCreatedAt($created_at)
+    public function setCreatedAt(string|null $created_at = null)
     {
         if (is_null($created_at)) {
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
@@ -315,7 +316,7 @@ final class TeamMember implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt($updated_at)
+    public function setUpdatedAt(string|null $updated_at = null)
     {
         if (is_null($updated_at)) {
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
@@ -394,5 +395,3 @@ final class TeamMember implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

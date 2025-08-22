@@ -183,7 +183,8 @@ final class OutboundFirewall implements ModelInterface, ArrayAccess, \JsonSerial
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -228,7 +229,7 @@ final class OutboundFirewall implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets enabled
      */
-    public function setEnabled($enabled)
+    public function setEnabled(string|null $enabled = null)
     {
         if (is_null($enabled)) {
             throw new \InvalidArgumentException('non-nullable enabled cannot be null');
@@ -307,5 +308,3 @@ final class OutboundFirewall implements ModelInterface, ArrayAccess, \JsonSerial
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

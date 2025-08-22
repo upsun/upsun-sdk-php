@@ -204,7 +204,8 @@ final class GetTotpEnrollment200Response implements ModelInterface, ArrayAccess,
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -246,7 +247,7 @@ final class GetTotpEnrollment200Response implements ModelInterface, ArrayAccess,
     /**
      * Sets issuer
      */
-    public function setIssuer($issuer)
+    public function setIssuer(string|null $issuer = null)
     {
         if (is_null($issuer)) {
             throw new \InvalidArgumentException('non-nullable issuer cannot be null');
@@ -269,7 +270,7 @@ final class GetTotpEnrollment200Response implements ModelInterface, ArrayAccess,
     /**
      * Sets account_name
      */
-    public function setAccountName($account_name)
+    public function setAccountName(string|null $account_name = null)
     {
         if (is_null($account_name)) {
             throw new \InvalidArgumentException('non-nullable account_name cannot be null');
@@ -292,7 +293,7 @@ final class GetTotpEnrollment200Response implements ModelInterface, ArrayAccess,
     /**
      * Sets secret
      */
-    public function setSecret($secret)
+    public function setSecret(string|null $secret = null)
     {
         if (is_null($secret)) {
             throw new \InvalidArgumentException('non-nullable secret cannot be null');
@@ -315,7 +316,7 @@ final class GetTotpEnrollment200Response implements ModelInterface, ArrayAccess,
     /**
      * Sets qr_code
      */
-    public function setQrCode($qr_code)
+    public function setQrCode(string|null $qr_code = null)
     {
         if (is_null($qr_code)) {
             throw new \InvalidArgumentException('non-nullable qr_code cannot be null');
@@ -394,5 +395,3 @@ final class GetTotpEnrollment200Response implements ModelInterface, ArrayAccess,
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

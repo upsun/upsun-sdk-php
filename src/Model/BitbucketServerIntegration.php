@@ -277,7 +277,8 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, \
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -364,7 +365,7 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, \
     /**
      * Sets created_at
      */
-    public function setCreatedAt($created_at)
+    public function setCreatedAt(string|null $created_at = null)
     {
         if (is_null($created_at)) {
             array_push($this->openAPINullablesSetToNull, 'created_at');
@@ -394,7 +395,7 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, \
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt($updated_at)
+    public function setUpdatedAt(string|null $updated_at = null)
     {
         if (is_null($updated_at)) {
             array_push($this->openAPINullablesSetToNull, 'updated_at');
@@ -424,7 +425,7 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, \
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -447,7 +448,7 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, \
     /**
      * Sets fetch_branches
      */
-    public function setFetchBranches($fetch_branches)
+    public function setFetchBranches(string|null $fetch_branches = null)
     {
         if (is_null($fetch_branches)) {
             throw new \InvalidArgumentException('non-nullable fetch_branches cannot be null');
@@ -470,7 +471,7 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, \
     /**
      * Sets prune_branches
      */
-    public function setPruneBranches($prune_branches)
+    public function setPruneBranches(string|null $prune_branches = null)
     {
         if (is_null($prune_branches)) {
             throw new \InvalidArgumentException('non-nullable prune_branches cannot be null');
@@ -493,7 +494,7 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, \
     /**
      * Sets environment_init_resources
      */
-    public function setEnvironmentInitResources($environment_init_resources)
+    public function setEnvironmentInitResources(string|null $environment_init_resources = null)
     {
         if (is_null($environment_init_resources)) {
             throw new \InvalidArgumentException('non-nullable environment_init_resources cannot be null');
@@ -526,7 +527,7 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, \
     /**
      * Sets url
      */
-    public function setUrl($url)
+    public function setUrl(string|null $url = null)
     {
         if (is_null($url)) {
             throw new \InvalidArgumentException('non-nullable url cannot be null');
@@ -549,7 +550,7 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, \
     /**
      * Sets username
      */
-    public function setUsername($username)
+    public function setUsername(string|null $username = null)
     {
         if (is_null($username)) {
             throw new \InvalidArgumentException('non-nullable username cannot be null');
@@ -572,7 +573,7 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, \
     /**
      * Sets project
      */
-    public function setProject($project)
+    public function setProject(string|null $project = null)
     {
         if (is_null($project)) {
             throw new \InvalidArgumentException('non-nullable project cannot be null');
@@ -595,7 +596,7 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, \
     /**
      * Sets repository
      */
-    public function setRepository($repository)
+    public function setRepository(string|null $repository = null)
     {
         if (is_null($repository)) {
             throw new \InvalidArgumentException('non-nullable repository cannot be null');
@@ -618,7 +619,7 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, \
     /**
      * Sets build_pull_requests
      */
-    public function setBuildPullRequests($build_pull_requests)
+    public function setBuildPullRequests(string|null $build_pull_requests = null)
     {
         if (is_null($build_pull_requests)) {
             throw new \InvalidArgumentException('non-nullable build_pull_requests cannot be null');
@@ -641,7 +642,7 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, \
     /**
      * Sets pull_requests_clone_parent_data
      */
-    public function setPullRequestsCloneParentData($pull_requests_clone_parent_data)
+    public function setPullRequestsCloneParentData(string|null $pull_requests_clone_parent_data = null)
     {
         if (is_null($pull_requests_clone_parent_data)) {
             throw new \InvalidArgumentException('non-nullable pull_requests_clone_parent_data cannot be null');
@@ -720,5 +721,3 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, \
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

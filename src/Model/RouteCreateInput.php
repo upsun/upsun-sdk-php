@@ -268,7 +268,8 @@ final class RouteCreateInput implements ModelInterface, ArrayAccess, \JsonSerial
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -328,7 +329,7 @@ final class RouteCreateInput implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets primary
      */
-    public function setPrimary($primary)
+    public function setPrimary(string|null $primary = null)
     {
         if (is_null($primary)) {
             array_push($this->openAPINullablesSetToNull, 'primary');
@@ -358,7 +359,7 @@ final class RouteCreateInput implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets id
      */
-    public function setId($id)
+    public function setId(string|null $id = null)
     {
         if (is_null($id)) {
             array_push($this->openAPINullablesSetToNull, 'id');
@@ -388,7 +389,7 @@ final class RouteCreateInput implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets production_url
      */
-    public function setProductionUrl($production_url)
+    public function setProductionUrl(string|null $production_url = null)
     {
         if (is_null($production_url)) {
             array_push($this->openAPINullablesSetToNull, 'production_url');
@@ -418,7 +419,7 @@ final class RouteCreateInput implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets attributes
      */
-    public function setAttributes($attributes)
+    public function setAttributes(string|null $attributes = null)
     {
         if (is_null($attributes)) {
             throw new \InvalidArgumentException('non-nullable attributes cannot be null');
@@ -441,7 +442,7 @@ final class RouteCreateInput implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -474,7 +475,7 @@ final class RouteCreateInput implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets tls
      */
-    public function setTls($tls)
+    public function setTls(string|null $tls = null)
     {
         if (is_null($tls)) {
             throw new \InvalidArgumentException('non-nullable tls cannot be null');
@@ -497,7 +498,7 @@ final class RouteCreateInput implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets to
      */
-    public function setTo($to)
+    public function setTo(string|null $to = null)
     {
         if (is_null($to)) {
             throw new \InvalidArgumentException('non-nullable to cannot be null');
@@ -520,7 +521,7 @@ final class RouteCreateInput implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets redirects
      */
-    public function setRedirects($redirects)
+    public function setRedirects(string|null $redirects = null)
     {
         if (is_null($redirects)) {
             throw new \InvalidArgumentException('non-nullable redirects cannot be null');
@@ -543,7 +544,7 @@ final class RouteCreateInput implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets cache
      */
-    public function setCache($cache)
+    public function setCache(string|null $cache = null)
     {
         if (is_null($cache)) {
             throw new \InvalidArgumentException('non-nullable cache cannot be null');
@@ -566,7 +567,7 @@ final class RouteCreateInput implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets ssi
      */
-    public function setSsi($ssi)
+    public function setSsi(string|null $ssi = null)
     {
         if (is_null($ssi)) {
             throw new \InvalidArgumentException('non-nullable ssi cannot be null');
@@ -589,7 +590,7 @@ final class RouteCreateInput implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets upstream
      */
-    public function setUpstream($upstream)
+    public function setUpstream(string|null $upstream = null)
     {
         if (is_null($upstream)) {
             throw new \InvalidArgumentException('non-nullable upstream cannot be null');
@@ -668,5 +669,3 @@ final class RouteCreateInput implements ModelInterface, ArrayAccess, \JsonSerial
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

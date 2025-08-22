@@ -197,7 +197,8 @@ final class EmailIntegrationCreateInput implements ModelInterface, ArrayAccess, 
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -245,7 +246,7 @@ final class EmailIntegrationCreateInput implements ModelInterface, ArrayAccess, 
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -268,7 +269,7 @@ final class EmailIntegrationCreateInput implements ModelInterface, ArrayAccess, 
     /**
      * Sets from_address
      */
-    public function setFromAddress($from_address)
+    public function setFromAddress(string|null $from_address = null)
     {
         if (is_null($from_address)) {
             array_push($this->openAPINullablesSetToNull, 'from_address');
@@ -298,7 +299,7 @@ final class EmailIntegrationCreateInput implements ModelInterface, ArrayAccess, 
     /**
      * Sets recipients
      */
-    public function setRecipients($recipients)
+    public function setRecipients(string|null $recipients = null)
     {
         if (is_null($recipients)) {
             throw new \InvalidArgumentException('non-nullable recipients cannot be null');
@@ -377,5 +378,3 @@ final class EmailIntegrationCreateInput implements ModelInterface, ArrayAccess, 
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

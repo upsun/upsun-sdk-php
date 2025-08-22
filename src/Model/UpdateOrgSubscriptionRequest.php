@@ -260,7 +260,8 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -302,7 +303,7 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets project_title
      */
-    public function setProjectTitle($project_title)
+    public function setProjectTitle(string|null $project_title = null)
     {
         if (is_null($project_title)) {
             throw new \InvalidArgumentException('non-nullable project_title cannot be null');
@@ -325,7 +326,7 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets plan
      */
-    public function setPlan($plan)
+    public function setPlan(string|null $plan = null)
     {
         if (is_null($plan)) {
             throw new \InvalidArgumentException('non-nullable plan cannot be null');
@@ -348,7 +349,7 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets timezone
      */
-    public function setTimezone($timezone)
+    public function setTimezone(string|null $timezone = null)
     {
         if (is_null($timezone)) {
             throw new \InvalidArgumentException('non-nullable timezone cannot be null');
@@ -371,7 +372,7 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets environments
      */
-    public function setEnvironments($environments)
+    public function setEnvironments(string|null $environments = null)
     {
         if (is_null($environments)) {
             throw new \InvalidArgumentException('non-nullable environments cannot be null');
@@ -394,7 +395,7 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets storage
      */
-    public function setStorage($storage)
+    public function setStorage(string|null $storage = null)
     {
         if (is_null($storage)) {
             throw new \InvalidArgumentException('non-nullable storage cannot be null');
@@ -417,7 +418,7 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets big_dev
      */
-    public function setBigDev($big_dev)
+    public function setBigDev(string|null $big_dev = null)
     {
         if (is_null($big_dev)) {
             throw new \InvalidArgumentException('non-nullable big_dev cannot be null');
@@ -440,7 +441,7 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets big_dev_service
      */
-    public function setBigDevService($big_dev_service)
+    public function setBigDevService(string|null $big_dev_service = null)
     {
         if (is_null($big_dev_service)) {
             throw new \InvalidArgumentException('non-nullable big_dev_service cannot be null');
@@ -463,7 +464,7 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets backups
      */
-    public function setBackups($backups)
+    public function setBackups(string|null $backups = null)
     {
         if (is_null($backups)) {
             throw new \InvalidArgumentException('non-nullable backups cannot be null');
@@ -486,7 +487,7 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets observability_suite
      */
-    public function setObservabilitySuite($observability_suite)
+    public function setObservabilitySuite(string|null $observability_suite = null)
     {
         if (is_null($observability_suite)) {
             throw new \InvalidArgumentException('non-nullable observability_suite cannot be null');
@@ -509,7 +510,7 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets blackfire
      */
-    public function setBlackfire($blackfire)
+    public function setBlackfire(string|null $blackfire = null)
     {
         if (is_null($blackfire)) {
             throw new \InvalidArgumentException('non-nullable blackfire cannot be null');
@@ -532,7 +533,7 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets continuous_profiling
      */
-    public function setContinuousProfiling($continuous_profiling)
+    public function setContinuousProfiling(string|null $continuous_profiling = null)
     {
         if (is_null($continuous_profiling)) {
             throw new \InvalidArgumentException('non-nullable continuous_profiling cannot be null');
@@ -555,7 +556,7 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets project_support_level
      */
-    public function setProjectSupportLevel($project_support_level)
+    public function setProjectSupportLevel(string|null $project_support_level = null)
     {
         if (is_null($project_support_level)) {
             throw new \InvalidArgumentException('non-nullable project_support_level cannot be null');
@@ -634,5 +635,3 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

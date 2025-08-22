@@ -240,7 +240,8 @@ final class ProxyRoute implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -312,7 +313,7 @@ final class ProxyRoute implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets primary
      */
-    public function setPrimary($primary)
+    public function setPrimary(string|null $primary = null)
     {
         if (is_null($primary)) {
             array_push($this->openAPINullablesSetToNull, 'primary');
@@ -342,7 +343,7 @@ final class ProxyRoute implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      */
-    public function setId($id)
+    public function setId(string|null $id = null)
     {
         if (is_null($id)) {
             array_push($this->openAPINullablesSetToNull, 'id');
@@ -372,7 +373,7 @@ final class ProxyRoute implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets production_url
      */
-    public function setProductionUrl($production_url)
+    public function setProductionUrl(string|null $production_url = null)
     {
         if (is_null($production_url)) {
             array_push($this->openAPINullablesSetToNull, 'production_url');
@@ -402,7 +403,7 @@ final class ProxyRoute implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets attributes
      */
-    public function setAttributes($attributes)
+    public function setAttributes(string|null $attributes = null)
     {
         if (is_null($attributes)) {
             throw new \InvalidArgumentException('non-nullable attributes cannot be null');
@@ -425,7 +426,7 @@ final class ProxyRoute implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -458,7 +459,7 @@ final class ProxyRoute implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets tls
      */
-    public function setTls($tls)
+    public function setTls(string|null $tls = null)
     {
         if (is_null($tls)) {
             throw new \InvalidArgumentException('non-nullable tls cannot be null');
@@ -481,7 +482,7 @@ final class ProxyRoute implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets to
      */
-    public function setTo($to)
+    public function setTo(string|null $to = null)
     {
         if (is_null($to)) {
             throw new \InvalidArgumentException('non-nullable to cannot be null');
@@ -560,5 +561,3 @@ final class ProxyRoute implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

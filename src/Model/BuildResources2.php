@@ -190,7 +190,8 @@ final class BuildResources2 implements ModelInterface, ArrayAccess, \JsonSeriali
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -232,7 +233,7 @@ final class BuildResources2 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets cpu
      */
-    public function setCpu($cpu)
+    public function setCpu(string|null $cpu = null)
     {
         if (is_null($cpu)) {
             throw new \InvalidArgumentException('non-nullable cpu cannot be null');
@@ -255,7 +256,7 @@ final class BuildResources2 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets memory
      */
-    public function setMemory($memory)
+    public function setMemory(string|null $memory = null)
     {
         if (is_null($memory)) {
             throw new \InvalidArgumentException('non-nullable memory cannot be null');
@@ -334,5 +335,3 @@ final class BuildResources2 implements ModelInterface, ArrayAccess, \JsonSeriali
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

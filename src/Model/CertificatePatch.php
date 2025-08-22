@@ -190,7 +190,8 @@ final class CertificatePatch implements ModelInterface, ArrayAccess, \JsonSerial
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -232,7 +233,7 @@ final class CertificatePatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets chain
      */
-    public function setChain($chain)
+    public function setChain(string|null $chain = null)
     {
         if (is_null($chain)) {
             throw new \InvalidArgumentException('non-nullable chain cannot be null');
@@ -255,7 +256,7 @@ final class CertificatePatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets is_invalid
      */
-    public function setIsInvalid($is_invalid)
+    public function setIsInvalid(string|null $is_invalid = null)
     {
         if (is_null($is_invalid)) {
             throw new \InvalidArgumentException('non-nullable is_invalid cannot be null');
@@ -334,5 +335,3 @@ final class CertificatePatch implements ModelInterface, ArrayAccess, \JsonSerial
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -103,16 +103,12 @@ final class DiscountsApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,10 @@ final class DiscountsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Discount
      */
-    public function getDiscount($id)
-    {
+    public function getDiscount(
+        $id
+    ): \Upsun\Model\Discount {
         list($response) = $this->getDiscountWithHttpInfo($id);
         return $response;
     }
@@ -237,7 +233,7 @@ final class DiscountsApi
      */
     public function getDiscountAsyncWithHttpInfo(
         string $id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Discount';
         $request = $this->getDiscountRequest($id);
 
@@ -364,10 +360,10 @@ final class DiscountsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\GetTypeAllowance200Response
      */
-    public function getTypeAllowance()
-    {
+    public function getTypeAllowance(
+        
+    ): \Upsun\Model\GetTypeAllowance200Response {
         list($response) = $this->getTypeAllowanceWithHttpInfo();
         return $response;
     }
@@ -478,7 +474,7 @@ final class DiscountsApi
      */
     public function getTypeAllowanceAsyncWithHttpInfo(
         
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\GetTypeAllowance200Response';
         $request = $this->getTypeAllowanceRequest();
 
@@ -591,10 +587,10 @@ final class DiscountsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ListOrgDiscounts200Response
      */
-    public function listOrgDiscounts($organization_id)
-    {
+    public function listOrgDiscounts(
+        $organization_id
+    ): \Upsun\Model\ListOrgDiscounts200Response {
         list($response) = $this->listOrgDiscountsWithHttpInfo($organization_id);
         return $response;
     }
@@ -733,7 +729,7 @@ final class DiscountsApi
      */
     public function listOrgDiscountsAsyncWithHttpInfo(
         string $organization_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ListOrgDiscounts200Response';
         $request = $this->listOrgDiscountsRequest($organization_id);
 

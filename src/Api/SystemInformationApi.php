@@ -103,16 +103,12 @@ final class SystemInformationApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,10 @@ final class SystemInformationApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function actionProjectsSystemRestart($project_id)
-    {
+    public function actionProjectsSystemRestart(
+        $project_id
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->actionProjectsSystemRestartWithHttpInfo($project_id);
         return $response;
     }
@@ -237,7 +233,7 @@ final class SystemInformationApi
      */
     public function actionProjectsSystemRestartAsyncWithHttpInfo(
         string $project_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->actionProjectsSystemRestartRequest($project_id);
 
@@ -364,10 +360,10 @@ final class SystemInformationApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\SystemInformation
      */
-    public function getProjectsSystem($project_id)
-    {
+    public function getProjectsSystem(
+        $project_id
+    ): \Upsun\Model\SystemInformation {
         list($response) = $this->getProjectsSystemWithHttpInfo($project_id);
         return $response;
     }
@@ -478,7 +474,7 @@ final class SystemInformationApi
      */
     public function getProjectsSystemAsyncWithHttpInfo(
         string $project_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\SystemInformation';
         $request = $this->getProjectsSystemRequest($project_id);
 

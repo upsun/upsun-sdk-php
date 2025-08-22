@@ -225,7 +225,8 @@ final class DateTimeFilter implements ModelInterface, ArrayAccess, \JsonSerializ
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -267,7 +268,7 @@ final class DateTimeFilter implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets eq
      */
-    public function setEq($eq)
+    public function setEq(string|null $eq = null)
     {
         if (is_null($eq)) {
             throw new \InvalidArgumentException('non-nullable eq cannot be null');
@@ -290,7 +291,7 @@ final class DateTimeFilter implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets ne
      */
-    public function setNe($ne)
+    public function setNe(string|null $ne = null)
     {
         if (is_null($ne)) {
             throw new \InvalidArgumentException('non-nullable ne cannot be null');
@@ -313,7 +314,7 @@ final class DateTimeFilter implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets between
      */
-    public function setBetween($between)
+    public function setBetween(string|null $between = null)
     {
         if (is_null($between)) {
             throw new \InvalidArgumentException('non-nullable between cannot be null');
@@ -336,7 +337,7 @@ final class DateTimeFilter implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets gt
      */
-    public function setGt($gt)
+    public function setGt(string|null $gt = null)
     {
         if (is_null($gt)) {
             throw new \InvalidArgumentException('non-nullable gt cannot be null');
@@ -359,7 +360,7 @@ final class DateTimeFilter implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets gte
      */
-    public function setGte($gte)
+    public function setGte(string|null $gte = null)
     {
         if (is_null($gte)) {
             throw new \InvalidArgumentException('non-nullable gte cannot be null');
@@ -382,7 +383,7 @@ final class DateTimeFilter implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets lt
      */
-    public function setLt($lt)
+    public function setLt(string|null $lt = null)
     {
         if (is_null($lt)) {
             throw new \InvalidArgumentException('non-nullable lt cannot be null');
@@ -405,7 +406,7 @@ final class DateTimeFilter implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets lte
      */
-    public function setLte($lte)
+    public function setLte(string|null $lte = null)
     {
         if (is_null($lte)) {
             throw new \InvalidArgumentException('non-nullable lte cannot be null');
@@ -484,5 +485,3 @@ final class DateTimeFilter implements ModelInterface, ArrayAccess, \JsonSerializ
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

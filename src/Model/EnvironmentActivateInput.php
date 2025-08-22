@@ -183,7 +183,8 @@ final class EnvironmentActivateInput implements ModelInterface, ArrayAccess, \Js
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -228,7 +229,7 @@ final class EnvironmentActivateInput implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets resources
      */
-    public function setResources($resources)
+    public function setResources(string|null $resources = null)
     {
         if (is_null($resources)) {
             array_push($this->openAPINullablesSetToNull, 'resources');
@@ -314,5 +315,3 @@ final class EnvironmentActivateInput implements ModelInterface, ArrayAccess, \Js
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

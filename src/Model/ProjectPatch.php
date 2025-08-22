@@ -225,7 +225,8 @@ final class ProjectPatch implements ModelInterface, ArrayAccess, \JsonSerializab
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -267,7 +268,7 @@ final class ProjectPatch implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets attributes
      */
-    public function setAttributes($attributes)
+    public function setAttributes(string|null $attributes = null)
     {
         if (is_null($attributes)) {
             throw new \InvalidArgumentException('non-nullable attributes cannot be null');
@@ -290,7 +291,7 @@ final class ProjectPatch implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets title
      */
-    public function setTitle($title)
+    public function setTitle(string|null $title = null)
     {
         if (is_null($title)) {
             throw new \InvalidArgumentException('non-nullable title cannot be null');
@@ -313,7 +314,7 @@ final class ProjectPatch implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets description
      */
-    public function setDescription($description)
+    public function setDescription(string|null $description = null)
     {
         if (is_null($description)) {
             throw new \InvalidArgumentException('non-nullable description cannot be null');
@@ -336,7 +337,7 @@ final class ProjectPatch implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets default_branch
      */
-    public function setDefaultBranch($default_branch)
+    public function setDefaultBranch(string|null $default_branch = null)
     {
         if (is_null($default_branch)) {
             array_push($this->openAPINullablesSetToNull, 'default_branch');
@@ -366,7 +367,7 @@ final class ProjectPatch implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets timezone
      */
-    public function setTimezone($timezone)
+    public function setTimezone(string|null $timezone = null)
     {
         if (is_null($timezone)) {
             throw new \InvalidArgumentException('non-nullable timezone cannot be null');
@@ -389,7 +390,7 @@ final class ProjectPatch implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets region
      */
-    public function setRegion($region)
+    public function setRegion(string|null $region = null)
     {
         if (is_null($region)) {
             throw new \InvalidArgumentException('non-nullable region cannot be null');
@@ -412,7 +413,7 @@ final class ProjectPatch implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets default_domain
      */
-    public function setDefaultDomain($default_domain)
+    public function setDefaultDomain(string|null $default_domain = null)
     {
         if (is_null($default_domain)) {
             array_push($this->openAPINullablesSetToNull, 'default_domain');
@@ -498,5 +499,3 @@ final class ProjectPatch implements ModelInterface, ArrayAccess, \JsonSerializab
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

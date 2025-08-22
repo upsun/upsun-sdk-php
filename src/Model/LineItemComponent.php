@@ -204,7 +204,8 @@ final class LineItemComponent implements ModelInterface, ArrayAccess, \JsonSeria
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -246,7 +247,7 @@ final class LineItemComponent implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets amount
      */
-    public function setAmount($amount)
+    public function setAmount(string|null $amount = null)
     {
         if (is_null($amount)) {
             throw new \InvalidArgumentException('non-nullable amount cannot be null');
@@ -269,7 +270,7 @@ final class LineItemComponent implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets amount_formatted
      */
-    public function setAmountFormatted($amount_formatted)
+    public function setAmountFormatted(string|null $amount_formatted = null)
     {
         if (is_null($amount_formatted)) {
             throw new \InvalidArgumentException('non-nullable amount_formatted cannot be null');
@@ -292,7 +293,7 @@ final class LineItemComponent implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets display_title
      */
-    public function setDisplayTitle($display_title)
+    public function setDisplayTitle(string|null $display_title = null)
     {
         if (is_null($display_title)) {
             throw new \InvalidArgumentException('non-nullable display_title cannot be null');
@@ -315,7 +316,7 @@ final class LineItemComponent implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets currency
      */
-    public function setCurrency($currency)
+    public function setCurrency(string|null $currency = null)
     {
         if (is_null($currency)) {
             throw new \InvalidArgumentException('non-nullable currency cannot be null');
@@ -394,5 +395,3 @@ final class LineItemComponent implements ModelInterface, ArrayAccess, \JsonSeria
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

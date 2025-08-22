@@ -103,16 +103,12 @@ final class SubscriptionsApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,10 @@ final class SubscriptionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\CanCreateNewOrgSubscription200Response
      */
-    public function canCreateNewOrgSubscription($organization_id)
-    {
+    public function canCreateNewOrgSubscription(
+        $organization_id
+    ): \Upsun\Model\CanCreateNewOrgSubscription200Response {
         list($response) = $this->canCreateNewOrgSubscriptionWithHttpInfo($organization_id);
         return $response;
     }
@@ -265,7 +261,7 @@ final class SubscriptionsApi
      */
     public function canCreateNewOrgSubscriptionAsyncWithHttpInfo(
         string $organization_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\CanCreateNewOrgSubscription200Response';
         $request = $this->canCreateNewOrgSubscriptionRequest($organization_id);
 
@@ -392,10 +388,11 @@ final class SubscriptionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Subscription
      */
-    public function createOrgSubscription($organization_id, $create_org_subscription_request)
-    {
+    public function createOrgSubscription(
+        $organization_id,
+        $create_org_subscription_request
+    ): \Upsun\Model\Subscription {
         list($response) = $this->createOrgSubscriptionWithHttpInfo($organization_id, $create_org_subscription_request);
         return $response;
     }
@@ -551,7 +548,7 @@ final class SubscriptionsApi
     public function createOrgSubscriptionAsyncWithHttpInfo(
         string $organization_id,
         \Upsun\Model\CreateOrgSubscriptionRequest $create_org_subscription_request
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Subscription';
         $request = $this->createOrgSubscriptionRequest($organization_id, $create_org_subscription_request);
 
@@ -691,10 +688,11 @@ final class SubscriptionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function deleteOrgSubscription($organization_id, $subscription_id)
-    {
+    public function deleteOrgSubscription(
+        $organization_id,
+        $subscription_id
+    ): void {
         $this->deleteOrgSubscriptionWithHttpInfo($organization_id, $subscription_id);
     }
 
@@ -788,7 +786,7 @@ final class SubscriptionsApi
     public function deleteOrgSubscriptionAsyncWithHttpInfo(
         string $organization_id,
         string $subscription_id
-    ) {
+    ): Promise {
         $returnType = '';
         $request = $this->deleteOrgSubscriptionRequest($organization_id, $subscription_id);
 
@@ -920,10 +918,15 @@ final class SubscriptionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\EstimationObject
      */
-    public function estimateNewOrgSubscription($organization_id, $plan, $environments, $storage, $user_licenses, $format = null)
-    {
+    public function estimateNewOrgSubscription(
+        $organization_id,
+        $plan,
+        $environments,
+        $storage,
+        $user_licenses,
+        $format = null
+    ): \Upsun\Model\EstimationObject {
         list($response) = $this->estimateNewOrgSubscriptionWithHttpInfo($organization_id, $plan, $environments, $storage, $user_licenses, $format);
         return $response;
     }
@@ -1077,7 +1080,7 @@ final class SubscriptionsApi
         int $storage,
         int $user_licenses,
         string $format = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\EstimationObject';
         $request = $this->estimateNewOrgSubscriptionRequest($organization_id, $plan, $environments, $storage, $user_licenses, $format);
 
@@ -1166,8 +1169,8 @@ final class SubscriptionsApi
 
         // query params
         if ($plan !== null) {
-            if('form' === 'form' && is_array($plan)) {
-                foreach($plan as $key => $value) {
+            if ('form' === 'form' && is_array($plan)) {
+                foreach ($plan as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1177,8 +1180,8 @@ final class SubscriptionsApi
         }
         // query params
         if ($environments !== null) {
-            if('form' === 'form' && is_array($environments)) {
-                foreach($environments as $key => $value) {
+            if ('form' === 'form' && is_array($environments)) {
+                foreach ($environments as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1188,8 +1191,8 @@ final class SubscriptionsApi
         }
         // query params
         if ($storage !== null) {
-            if('form' === 'form' && is_array($storage)) {
-                foreach($storage as $key => $value) {
+            if ('form' === 'form' && is_array($storage)) {
+                foreach ($storage as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1199,8 +1202,8 @@ final class SubscriptionsApi
         }
         // query params
         if ($user_licenses !== null) {
-            if('form' === 'form' && is_array($user_licenses)) {
-                foreach($user_licenses as $key => $value) {
+            if ('form' === 'form' && is_array($user_licenses)) {
+                foreach ($user_licenses as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1210,8 +1213,8 @@ final class SubscriptionsApi
         }
         // query params
         if ($format !== null) {
-            if('form' === 'form' && is_array($format)) {
-                foreach($format as $key => $value) {
+            if ('form' === 'form' && is_array($format)) {
+                foreach ($format as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1288,10 +1291,16 @@ final class SubscriptionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\EstimationObject
      */
-    public function estimateOrgSubscription($organization_id, $subscription_id, $plan, $environments = null, $storage = null, $user_licenses = null, $format = null)
-    {
+    public function estimateOrgSubscription(
+        $organization_id,
+        $subscription_id,
+        $plan,
+        $environments = null,
+        $storage = null,
+        $user_licenses = null,
+        $format = null
+    ): \Upsun\Model\EstimationObject {
         list($response) = $this->estimateOrgSubscriptionWithHttpInfo($organization_id, $subscription_id, $plan, $environments, $storage, $user_licenses, $format);
         return $response;
     }
@@ -1434,7 +1443,7 @@ final class SubscriptionsApi
         int $storage = null,
         int $user_licenses = null,
         string $format = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\EstimationObject';
         $request = $this->estimateOrgSubscriptionRequest($organization_id, $subscription_id, $plan, $environments, $storage, $user_licenses, $format);
 
@@ -1512,8 +1521,8 @@ final class SubscriptionsApi
 
         // query params
         if ($plan !== null) {
-            if('form' === 'form' && is_array($plan)) {
-                foreach($plan as $key => $value) {
+            if ('form' === 'form' && is_array($plan)) {
+                foreach ($plan as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1523,8 +1532,8 @@ final class SubscriptionsApi
         }
         // query params
         if ($environments !== null) {
-            if('form' === 'form' && is_array($environments)) {
-                foreach($environments as $key => $value) {
+            if ('form' === 'form' && is_array($environments)) {
+                foreach ($environments as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1534,8 +1543,8 @@ final class SubscriptionsApi
         }
         // query params
         if ($storage !== null) {
-            if('form' === 'form' && is_array($storage)) {
-                foreach($storage as $key => $value) {
+            if ('form' === 'form' && is_array($storage)) {
+                foreach ($storage as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1545,8 +1554,8 @@ final class SubscriptionsApi
         }
         // query params
         if ($user_licenses !== null) {
-            if('form' === 'form' && is_array($user_licenses)) {
-                foreach($user_licenses as $key => $value) {
+            if ('form' === 'form' && is_array($user_licenses)) {
+                foreach ($user_licenses as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1556,8 +1565,8 @@ final class SubscriptionsApi
         }
         // query params
         if ($format !== null) {
-            if('form' === 'form' && is_array($format)) {
-                foreach($format as $key => $value) {
+            if ('form' === 'form' && is_array($format)) {
+                foreach ($format as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1642,10 +1651,11 @@ final class SubscriptionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Subscription
      */
-    public function getOrgSubscription($organization_id, $subscription_id)
-    {
+    public function getOrgSubscription(
+        $organization_id,
+        $subscription_id
+    ): \Upsun\Model\Subscription {
         list($response) = $this->getOrgSubscriptionWithHttpInfo($organization_id, $subscription_id);
         return $response;
     }
@@ -1787,7 +1797,7 @@ final class SubscriptionsApi
     public function getOrgSubscriptionAsyncWithHttpInfo(
         string $organization_id,
         string $subscription_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Subscription';
         $request = $this->getOrgSubscriptionRequest($organization_id, $subscription_id);
 
@@ -1929,10 +1939,13 @@ final class SubscriptionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\SubscriptionCurrentUsageObject
      */
-    public function getOrgSubscriptionCurrentUsage($organization_id, $subscription_id, $usage_groups = null, $include_not_charged = null)
-    {
+    public function getOrgSubscriptionCurrentUsage(
+        $organization_id,
+        $subscription_id,
+        $usage_groups = null,
+        $include_not_charged = null
+    ): \Upsun\Model\SubscriptionCurrentUsageObject {
         list($response) = $this->getOrgSubscriptionCurrentUsageWithHttpInfo($organization_id, $subscription_id, $usage_groups, $include_not_charged);
         return $response;
     }
@@ -2066,7 +2079,7 @@ final class SubscriptionsApi
         string $subscription_id,
         string $usage_groups = null,
         bool $include_not_charged = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\SubscriptionCurrentUsageObject';
         $request = $this->getOrgSubscriptionCurrentUsageRequest($organization_id, $subscription_id, $usage_groups, $include_not_charged);
 
@@ -2135,8 +2148,8 @@ final class SubscriptionsApi
 
         // query params
         if ($usage_groups !== null) {
-            if('form' === 'form' && is_array($usage_groups)) {
-                foreach($usage_groups as $key => $value) {
+            if ('form' === 'form' && is_array($usage_groups)) {
+                foreach ($usage_groups as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -2146,8 +2159,8 @@ final class SubscriptionsApi
         }
         // query params
         if ($include_not_charged !== null) {
-            if('form' === 'form' && is_array($include_not_charged)) {
-                foreach($include_not_charged as $key => $value) {
+            if ('form' === 'form' && is_array($include_not_charged)) {
+                foreach ($include_not_charged as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -2232,10 +2245,20 @@ final class SubscriptionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ListOrgSubscriptions200Response
      */
-    public function listOrgSubscriptions($organization_id, $filter_status = null, $filter_id = null, $filter_project_id = null, $filter_project_title = null, $filter_region = null, $filter_updated_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
-    {
+    public function listOrgSubscriptions(
+        $organization_id,
+        $filter_status = null,
+        $filter_id = null,
+        $filter_project_id = null,
+        $filter_project_title = null,
+        $filter_region = null,
+        $filter_updated_at = null,
+        $page_size = null,
+        $page_before = null,
+        $page_after = null,
+        $sort = null
+    ): \Upsun\Model\ListOrgSubscriptions200Response {
         list($response) = $this->listOrgSubscriptionsWithHttpInfo($organization_id, $filter_status, $filter_id, $filter_project_id, $filter_project_title, $filter_region, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
         return $response;
     }
@@ -2404,7 +2427,7 @@ final class SubscriptionsApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ListOrgSubscriptions200Response';
         $request = $this->listOrgSubscriptionsRequest($organization_id, $filter_status, $filter_id, $filter_project_id, $filter_project_title, $filter_region, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
 
@@ -2481,8 +2504,8 @@ final class SubscriptionsApi
 
         // query params
         if ($filter_status !== null) {
-            if('form' === 'form' && is_array($filter_status)) {
-                foreach($filter_status as $key => $value) {
+            if ('form' === 'form' && is_array($filter_status)) {
+                foreach ($filter_status as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -2492,8 +2515,8 @@ final class SubscriptionsApi
         }
         // query params
         if ($filter_id !== null) {
-            if('form' === 'form' && is_array($filter_id)) {
-                foreach($filter_id as $key => $value) {
+            if ('form' === 'form' && is_array($filter_id)) {
+                foreach ($filter_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -2503,8 +2526,8 @@ final class SubscriptionsApi
         }
         // query params
         if ($filter_project_id !== null) {
-            if('form' === 'deepObject' && is_array($filter_project_id)) {
-                foreach($filter_project_id as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_project_id)) {
+                foreach ($filter_project_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -2514,8 +2537,8 @@ final class SubscriptionsApi
         }
         // query params
         if ($filter_project_title !== null) {
-            if('form' === 'deepObject' && is_array($filter_project_title)) {
-                foreach($filter_project_title as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_project_title)) {
+                foreach ($filter_project_title as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -2525,8 +2548,8 @@ final class SubscriptionsApi
         }
         // query params
         if ($filter_region !== null) {
-            if('form' === 'deepObject' && is_array($filter_region)) {
-                foreach($filter_region as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_region)) {
+                foreach ($filter_region as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -2536,8 +2559,8 @@ final class SubscriptionsApi
         }
         // query params
         if ($filter_updated_at !== null) {
-            if('form' === 'deepObject' && is_array($filter_updated_at)) {
-                foreach($filter_updated_at as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_updated_at)) {
+                foreach ($filter_updated_at as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -2547,8 +2570,8 @@ final class SubscriptionsApi
         }
         // query params
         if ($page_size !== null) {
-            if('form' === 'form' && is_array($page_size)) {
-                foreach($page_size as $key => $value) {
+            if ('form' === 'form' && is_array($page_size)) {
+                foreach ($page_size as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -2558,8 +2581,8 @@ final class SubscriptionsApi
         }
         // query params
         if ($page_before !== null) {
-            if('form' === 'form' && is_array($page_before)) {
-                foreach($page_before as $key => $value) {
+            if ('form' === 'form' && is_array($page_before)) {
+                foreach ($page_before as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -2569,8 +2592,8 @@ final class SubscriptionsApi
         }
         // query params
         if ($page_after !== null) {
-            if('form' === 'form' && is_array($page_after)) {
-                foreach($page_after as $key => $value) {
+            if ('form' === 'form' && is_array($page_after)) {
+                foreach ($page_after as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -2580,8 +2603,8 @@ final class SubscriptionsApi
         }
         // query params
         if ($sort !== null) {
-            if('form' === 'form' && is_array($sort)) {
-                foreach($sort as $key => $value) {
+            if ('form' === 'form' && is_array($sort)) {
+                foreach ($sort as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -2658,10 +2681,11 @@ final class SubscriptionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\SubscriptionAddonsObject
      */
-    public function listSubscriptionAddons($organization_id, $subscription_id)
-    {
+    public function listSubscriptionAddons(
+        $organization_id,
+        $subscription_id
+    ): \Upsun\Model\SubscriptionAddonsObject {
         list($response) = $this->listSubscriptionAddonsWithHttpInfo($organization_id, $subscription_id);
         return $response;
     }
@@ -2789,7 +2813,7 @@ final class SubscriptionsApi
     public function listSubscriptionAddonsAsyncWithHttpInfo(
         string $organization_id,
         string $subscription_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\SubscriptionAddonsObject';
         $request = $this->listSubscriptionAddonsRequest($organization_id, $subscription_id);
 
@@ -2931,10 +2955,12 @@ final class SubscriptionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Subscription
      */
-    public function updateOrgSubscription($organization_id, $subscription_id, $update_org_subscription_request = null)
-    {
+    public function updateOrgSubscription(
+        $organization_id,
+        $subscription_id,
+        $update_org_subscription_request = null
+    ): \Upsun\Model\Subscription {
         list($response) = $this->updateOrgSubscriptionWithHttpInfo($organization_id, $subscription_id, $update_org_subscription_request);
         return $response;
     }
@@ -3093,7 +3119,7 @@ final class SubscriptionsApi
         string $organization_id,
         string $subscription_id,
         \Upsun\Model\UpdateOrgSubscriptionRequest $update_org_subscription_request = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Subscription';
         $request = $this->updateOrgSubscriptionRequest($organization_id, $subscription_id, $update_org_subscription_request);
 

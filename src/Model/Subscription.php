@@ -365,7 +365,8 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -416,7 +417,7 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets id
      */
-    public function setId($id)
+    public function setId(string|null $id = null)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -439,7 +440,7 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets status
      */
-    public function setStatus($status)
+    public function setStatus(string|null $status = null)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
@@ -472,7 +473,7 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets created_at
      */
-    public function setCreatedAt($created_at)
+    public function setCreatedAt(string|null $created_at = null)
     {
         if (is_null($created_at)) {
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
@@ -495,7 +496,7 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt($updated_at)
+    public function setUpdatedAt(string|null $updated_at = null)
     {
         if (is_null($updated_at)) {
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
@@ -518,7 +519,7 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets owner
      */
-    public function setOwner($owner)
+    public function setOwner(string|null $owner = null)
     {
         if (is_null($owner)) {
             throw new \InvalidArgumentException('non-nullable owner cannot be null');
@@ -541,7 +542,7 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets owner_info
      */
-    public function setOwnerInfo($owner_info)
+    public function setOwnerInfo(string|null $owner_info = null)
     {
         if (is_null($owner_info)) {
             throw new \InvalidArgumentException('non-nullable owner_info cannot be null');
@@ -564,7 +565,7 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets vendor
      */
-    public function setVendor($vendor)
+    public function setVendor(string|null $vendor = null)
     {
         if (is_null($vendor)) {
             throw new \InvalidArgumentException('non-nullable vendor cannot be null');
@@ -587,7 +588,7 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets plan
      */
-    public function setPlan($plan)
+    public function setPlan(string|null $plan = null)
     {
         if (is_null($plan)) {
             throw new \InvalidArgumentException('non-nullable plan cannot be null');
@@ -610,7 +611,7 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets environments
      */
-    public function setEnvironments($environments)
+    public function setEnvironments(string|null $environments = null)
     {
         if (is_null($environments)) {
             throw new \InvalidArgumentException('non-nullable environments cannot be null');
@@ -633,7 +634,7 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets storage
      */
-    public function setStorage($storage)
+    public function setStorage(string|null $storage = null)
     {
         if (is_null($storage)) {
             throw new \InvalidArgumentException('non-nullable storage cannot be null');
@@ -656,7 +657,7 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets user_licenses
      */
-    public function setUserLicenses($user_licenses)
+    public function setUserLicenses(string|null $user_licenses = null)
     {
         if (is_null($user_licenses)) {
             throw new \InvalidArgumentException('non-nullable user_licenses cannot be null');
@@ -679,7 +680,7 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets project_id
      */
-    public function setProjectId($project_id)
+    public function setProjectId(string|null $project_id = null)
     {
         if (is_null($project_id)) {
             throw new \InvalidArgumentException('non-nullable project_id cannot be null');
@@ -702,7 +703,7 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets project_endpoint
      */
-    public function setProjectEndpoint($project_endpoint)
+    public function setProjectEndpoint(string|null $project_endpoint = null)
     {
         if (is_null($project_endpoint)) {
             throw new \InvalidArgumentException('non-nullable project_endpoint cannot be null');
@@ -725,7 +726,7 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets project_title
      */
-    public function setProjectTitle($project_title)
+    public function setProjectTitle(string|null $project_title = null)
     {
         if (is_null($project_title)) {
             throw new \InvalidArgumentException('non-nullable project_title cannot be null');
@@ -748,7 +749,7 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets project_region
      */
-    public function setProjectRegion($project_region)
+    public function setProjectRegion(string|null $project_region = null)
     {
         if (is_null($project_region)) {
             throw new \InvalidArgumentException('non-nullable project_region cannot be null');
@@ -771,7 +772,7 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets project_region_label
      */
-    public function setProjectRegionLabel($project_region_label)
+    public function setProjectRegionLabel(string|null $project_region_label = null)
     {
         if (is_null($project_region_label)) {
             throw new \InvalidArgumentException('non-nullable project_region_label cannot be null');
@@ -794,7 +795,7 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets project_ui
      */
-    public function setProjectUi($project_ui)
+    public function setProjectUi(string|null $project_ui = null)
     {
         if (is_null($project_ui)) {
             throw new \InvalidArgumentException('non-nullable project_ui cannot be null');
@@ -817,7 +818,7 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets project_options
      */
-    public function setProjectOptions($project_options)
+    public function setProjectOptions(string|null $project_options = null)
     {
         if (is_null($project_options)) {
             throw new \InvalidArgumentException('non-nullable project_options cannot be null');
@@ -840,7 +841,7 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets agency_site
      */
-    public function setAgencySite($agency_site)
+    public function setAgencySite(string|null $agency_site = null)
     {
         if (is_null($agency_site)) {
             throw new \InvalidArgumentException('non-nullable agency_site cannot be null');
@@ -863,7 +864,7 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets invoiced
      */
-    public function setInvoiced($invoiced)
+    public function setInvoiced(string|null $invoiced = null)
     {
         if (is_null($invoiced)) {
             throw new \InvalidArgumentException('non-nullable invoiced cannot be null');
@@ -886,7 +887,7 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets hipaa
      */
-    public function setHipaa($hipaa)
+    public function setHipaa(string|null $hipaa = null)
     {
         if (is_null($hipaa)) {
             throw new \InvalidArgumentException('non-nullable hipaa cannot be null');
@@ -909,7 +910,7 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets is_trial_plan
      */
-    public function setIsTrialPlan($is_trial_plan)
+    public function setIsTrialPlan(string|null $is_trial_plan = null)
     {
         if (is_null($is_trial_plan)) {
             throw new \InvalidArgumentException('non-nullable is_trial_plan cannot be null');
@@ -932,7 +933,7 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets services
      */
-    public function setServices($services)
+    public function setServices(string|null $services = null)
     {
         if (is_null($services)) {
             throw new \InvalidArgumentException('non-nullable services cannot be null');
@@ -955,7 +956,7 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets green
      */
-    public function setGreen($green)
+    public function setGreen(string|null $green = null)
     {
         if (is_null($green)) {
             throw new \InvalidArgumentException('non-nullable green cannot be null');
@@ -1034,5 +1035,3 @@ final class Subscription implements ModelInterface, ArrayAccess, \JsonSerializab
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

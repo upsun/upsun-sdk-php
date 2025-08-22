@@ -190,7 +190,8 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements Model
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -238,7 +239,7 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements Model
     /**
      * Sets root
      */
-    public function setRoot($root)
+    public function setRoot(string|null $root = null)
     {
         if (is_null($root)) {
             array_push($this->openAPINullablesSetToNull, 'root');
@@ -268,7 +269,7 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements Model
     /**
      * Sets operations
      */
-    public function setOperations($operations)
+    public function setOperations(string|null $operations = null)
     {
         if (is_null($operations)) {
             throw new \InvalidArgumentException('non-nullable operations cannot be null');
@@ -347,5 +348,3 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements Model
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

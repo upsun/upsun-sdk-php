@@ -103,16 +103,12 @@ final class EnvironmentBackupsApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,12 @@ final class EnvironmentBackupsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function backupEnvironment($project_id, $environment_id, $environment_backup_input)
-    {
+    public function backupEnvironment(
+        $project_id,
+        $environment_id,
+        $environment_backup_input
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->backupEnvironmentWithHttpInfo($project_id, $environment_id, $environment_backup_input);
         return $response;
     }
@@ -243,7 +241,7 @@ final class EnvironmentBackupsApi
         string $project_id,
         string $environment_id,
         \Upsun\Model\EnvironmentBackupInput $environment_backup_input
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->backupEnvironmentRequest($project_id, $environment_id, $environment_backup_input);
 
@@ -398,10 +396,12 @@ final class EnvironmentBackupsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function deleteProjectsEnvironmentsBackups($project_id, $environment_id, $backup_id)
-    {
+    public function deleteProjectsEnvironmentsBackups(
+        $project_id,
+        $environment_id,
+        $backup_id
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsEnvironmentsBackupsWithHttpInfo($project_id, $environment_id, $backup_id);
         return $response;
     }
@@ -518,7 +518,7 @@ final class EnvironmentBackupsApi
         string $project_id,
         string $environment_id,
         string $backup_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deleteProjectsEnvironmentsBackupsRequest($project_id, $environment_id, $backup_id);
 
@@ -675,10 +675,12 @@ final class EnvironmentBackupsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Backup
      */
-    public function getProjectsEnvironmentsBackups($project_id, $environment_id, $backup_id)
-    {
+    public function getProjectsEnvironmentsBackups(
+        $project_id,
+        $environment_id,
+        $backup_id
+    ): \Upsun\Model\Backup {
         list($response) = $this->getProjectsEnvironmentsBackupsWithHttpInfo($project_id, $environment_id, $backup_id);
         return $response;
     }
@@ -795,7 +797,7 @@ final class EnvironmentBackupsApi
         string $project_id,
         string $environment_id,
         string $backup_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Backup';
         $request = $this->getProjectsEnvironmentsBackupsRequest($project_id, $environment_id, $backup_id);
 
@@ -952,10 +954,11 @@ final class EnvironmentBackupsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Backup[]
      */
-    public function listProjectsEnvironmentsBackups($project_id, $environment_id)
-    {
+    public function listProjectsEnvironmentsBackups(
+        $project_id,
+        $environment_id
+    ): \Upsun\Model\Backup[] {
         list($response) = $this->listProjectsEnvironmentsBackupsWithHttpInfo($project_id, $environment_id);
         return $response;
     }
@@ -1069,7 +1072,7 @@ final class EnvironmentBackupsApi
     public function listProjectsEnvironmentsBackupsAsyncWithHttpInfo(
         string $project_id,
         string $environment_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Backup[]';
         $request = $this->listProjectsEnvironmentsBackupsRequest($project_id, $environment_id);
 
@@ -1211,10 +1214,13 @@ final class EnvironmentBackupsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function restoreBackup($project_id, $environment_id, $backup_id, $environment_restore_input)
-    {
+    public function restoreBackup(
+        $project_id,
+        $environment_id,
+        $backup_id,
+        $environment_restore_input
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->restoreBackupWithHttpInfo($project_id, $environment_id, $backup_id, $environment_restore_input);
         return $response;
     }
@@ -1334,7 +1340,7 @@ final class EnvironmentBackupsApi
         string $environment_id,
         string $backup_id,
         \Upsun\Model\EnvironmentRestoreInput $environment_restore_input
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->restoreBackupRequest($project_id, $environment_id, $backup_id, $environment_restore_input);
 

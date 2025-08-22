@@ -197,7 +197,8 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -248,7 +249,7 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
     /**
      * Sets build
      */
-    public function setBuild($build)
+    public function setBuild(string|null $build = null)
     {
         if (is_null($build)) {
             array_push($this->openAPINullablesSetToNull, 'build');
@@ -278,7 +279,7 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
     /**
      * Sets deploy
      */
-    public function setDeploy($deploy)
+    public function setDeploy(string|null $deploy = null)
     {
         if (is_null($deploy)) {
             array_push($this->openAPINullablesSetToNull, 'deploy');
@@ -308,7 +309,7 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
     /**
      * Sets post_deploy
      */
-    public function setPostDeploy($post_deploy)
+    public function setPostDeploy(string|null $post_deploy = null)
     {
         if (is_null($post_deploy)) {
             array_push($this->openAPINullablesSetToNull, 'post_deploy');
@@ -394,5 +395,3 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

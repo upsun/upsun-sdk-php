@@ -103,16 +103,12 @@ final class RegionsApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,10 @@ final class RegionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Region
      */
-    public function getRegion($region_id)
-    {
+    public function getRegion(
+        $region_id
+    ): \Upsun\Model\Region {
         list($response) = $this->getRegionWithHttpInfo($region_id);
         return $response;
     }
@@ -265,7 +261,7 @@ final class RegionsApi
      */
     public function getRegionAsyncWithHttpInfo(
         string $region_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Region';
         $request = $this->getRegionRequest($region_id);
 
@@ -392,10 +388,16 @@ final class RegionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ListRegions200Response
      */
-    public function listRegions($filter_available = null, $filter_private = null, $filter_zone = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
-    {
+    public function listRegions(
+        $filter_available = null,
+        $filter_private = null,
+        $filter_zone = null,
+        $page_size = null,
+        $page_before = null,
+        $page_after = null,
+        $sort = null
+    ): \Upsun\Model\ListRegions200Response {
         list($response) = $this->listRegionsWithHttpInfo($filter_available, $filter_private, $filter_zone, $page_size, $page_before, $page_after, $sort);
         return $response;
     }
@@ -566,7 +568,7 @@ final class RegionsApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ListRegions200Response';
         $request = $this->listRegionsRequest($filter_available, $filter_private, $filter_zone, $page_size, $page_before, $page_after, $sort);
 
@@ -633,8 +635,8 @@ final class RegionsApi
 
         // query params
         if ($filter_available !== null) {
-            if('form' === 'deepObject' && is_array($filter_available)) {
-                foreach($filter_available as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_available)) {
+                foreach ($filter_available as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -644,8 +646,8 @@ final class RegionsApi
         }
         // query params
         if ($filter_private !== null) {
-            if('form' === 'deepObject' && is_array($filter_private)) {
-                foreach($filter_private as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_private)) {
+                foreach ($filter_private as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -655,8 +657,8 @@ final class RegionsApi
         }
         // query params
         if ($filter_zone !== null) {
-            if('form' === 'deepObject' && is_array($filter_zone)) {
-                foreach($filter_zone as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_zone)) {
+                foreach ($filter_zone as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -666,8 +668,8 @@ final class RegionsApi
         }
         // query params
         if ($page_size !== null) {
-            if('form' === 'form' && is_array($page_size)) {
-                foreach($page_size as $key => $value) {
+            if ('form' === 'form' && is_array($page_size)) {
+                foreach ($page_size as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -677,8 +679,8 @@ final class RegionsApi
         }
         // query params
         if ($page_before !== null) {
-            if('form' === 'form' && is_array($page_before)) {
-                foreach($page_before as $key => $value) {
+            if ('form' === 'form' && is_array($page_before)) {
+                foreach ($page_before as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -688,8 +690,8 @@ final class RegionsApi
         }
         // query params
         if ($page_after !== null) {
-            if('form' === 'form' && is_array($page_after)) {
-                foreach($page_after as $key => $value) {
+            if ('form' === 'form' && is_array($page_after)) {
+                foreach ($page_after as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -699,8 +701,8 @@ final class RegionsApi
         }
         // query params
         if ($sort !== null) {
-            if('form' === 'form' && is_array($sort)) {
-                foreach($sort as $key => $value) {
+            if ('form' === 'form' && is_array($sort)) {
+                foreach ($sort as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }

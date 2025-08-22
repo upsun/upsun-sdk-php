@@ -350,7 +350,8 @@ final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -401,7 +402,7 @@ final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      */
-    public function setId($id)
+    public function setId(string|null $id = null)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -424,7 +425,7 @@ final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets display_name
      */
-    public function setDisplayName($display_name)
+    public function setDisplayName(string|null $display_name = null)
     {
         if (is_null($display_name)) {
             throw new \InvalidArgumentException('non-nullable display_name cannot be null');
@@ -447,7 +448,7 @@ final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets email
      */
-    public function setEmail($email)
+    public function setEmail(string|null $email = null)
     {
         if (is_null($email)) {
             throw new \InvalidArgumentException('non-nullable email cannot be null');
@@ -470,7 +471,7 @@ final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets username
      */
-    public function setUsername($username)
+    public function setUsername(string|null $username = null)
     {
         if (is_null($username)) {
             throw new \InvalidArgumentException('non-nullable username cannot be null');
@@ -493,7 +494,7 @@ final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -526,7 +527,7 @@ final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets picture
      */
-    public function setPicture($picture)
+    public function setPicture(string|null $picture = null)
     {
         if (is_null($picture)) {
             throw new \InvalidArgumentException('non-nullable picture cannot be null');
@@ -549,7 +550,7 @@ final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets company_type
      */
-    public function setCompanyType($company_type)
+    public function setCompanyType(string|null $company_type = null)
     {
         if (is_null($company_type)) {
             throw new \InvalidArgumentException('non-nullable company_type cannot be null');
@@ -572,7 +573,7 @@ final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets company_name
      */
-    public function setCompanyName($company_name)
+    public function setCompanyName(string|null $company_name = null)
     {
         if (is_null($company_name)) {
             throw new \InvalidArgumentException('non-nullable company_name cannot be null');
@@ -595,7 +596,7 @@ final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets currency
      */
-    public function setCurrency($currency)
+    public function setCurrency(string|null $currency = null)
     {
         if (is_null($currency)) {
             throw new \InvalidArgumentException('non-nullable currency cannot be null');
@@ -618,7 +619,7 @@ final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets vat_number
      */
-    public function setVatNumber($vat_number)
+    public function setVatNumber(string|null $vat_number = null)
     {
         if (is_null($vat_number)) {
             throw new \InvalidArgumentException('non-nullable vat_number cannot be null');
@@ -641,7 +642,7 @@ final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets company_role
      */
-    public function setCompanyRole($company_role)
+    public function setCompanyRole(string|null $company_role = null)
     {
         if (is_null($company_role)) {
             throw new \InvalidArgumentException('non-nullable company_role cannot be null');
@@ -664,7 +665,7 @@ final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets website_url
      */
-    public function setWebsiteUrl($website_url)
+    public function setWebsiteUrl(string|null $website_url = null)
     {
         if (is_null($website_url)) {
             throw new \InvalidArgumentException('non-nullable website_url cannot be null');
@@ -687,7 +688,7 @@ final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets new_ui
      */
-    public function setNewUi($new_ui)
+    public function setNewUi(string|null $new_ui = null)
     {
         if (is_null($new_ui)) {
             throw new \InvalidArgumentException('non-nullable new_ui cannot be null');
@@ -710,7 +711,7 @@ final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets ui_colorscheme
      */
-    public function setUiColorscheme($ui_colorscheme)
+    public function setUiColorscheme(string|null $ui_colorscheme = null)
     {
         if (is_null($ui_colorscheme)) {
             throw new \InvalidArgumentException('non-nullable ui_colorscheme cannot be null');
@@ -733,7 +734,7 @@ final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets default_catalog
      */
-    public function setDefaultCatalog($default_catalog)
+    public function setDefaultCatalog(string|null $default_catalog = null)
     {
         if (is_null($default_catalog)) {
             throw new \InvalidArgumentException('non-nullable default_catalog cannot be null');
@@ -756,7 +757,7 @@ final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets project_options_url
      */
-    public function setProjectOptionsUrl($project_options_url)
+    public function setProjectOptionsUrl(string|null $project_options_url = null)
     {
         if (is_null($project_options_url)) {
             throw new \InvalidArgumentException('non-nullable project_options_url cannot be null');
@@ -779,7 +780,7 @@ final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets marketing
      */
-    public function setMarketing($marketing)
+    public function setMarketing(string|null $marketing = null)
     {
         if (is_null($marketing)) {
             throw new \InvalidArgumentException('non-nullable marketing cannot be null');
@@ -802,7 +803,7 @@ final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets created_at
      */
-    public function setCreatedAt($created_at)
+    public function setCreatedAt(string|null $created_at = null)
     {
         if (is_null($created_at)) {
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
@@ -825,7 +826,7 @@ final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt($updated_at)
+    public function setUpdatedAt(string|null $updated_at = null)
     {
         if (is_null($updated_at)) {
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
@@ -848,7 +849,7 @@ final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets billing_contact
      */
-    public function setBillingContact($billing_contact)
+    public function setBillingContact(string|null $billing_contact = null)
     {
         if (is_null($billing_contact)) {
             throw new \InvalidArgumentException('non-nullable billing_contact cannot be null');
@@ -871,7 +872,7 @@ final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets security_contact
      */
-    public function setSecurityContact($security_contact)
+    public function setSecurityContact(string|null $security_contact = null)
     {
         if (is_null($security_contact)) {
             throw new \InvalidArgumentException('non-nullable security_contact cannot be null');
@@ -894,7 +895,7 @@ final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets current_trial
      */
-    public function setCurrentTrial($current_trial)
+    public function setCurrentTrial(string|null $current_trial = null)
     {
         if (is_null($current_trial)) {
             throw new \InvalidArgumentException('non-nullable current_trial cannot be null');
@@ -917,7 +918,7 @@ final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets invoiced
      */
-    public function setInvoiced($invoiced)
+    public function setInvoiced(string|null $invoiced = null)
     {
         if (is_null($invoiced)) {
             throw new \InvalidArgumentException('non-nullable invoiced cannot be null');
@@ -996,5 +997,3 @@ final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

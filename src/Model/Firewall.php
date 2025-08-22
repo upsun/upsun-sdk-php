@@ -183,7 +183,8 @@ final class Firewall implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -228,7 +229,7 @@ final class Firewall implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets outbound
      */
-    public function setOutbound($outbound)
+    public function setOutbound(string|null $outbound = null)
     {
         if (is_null($outbound)) {
             throw new \InvalidArgumentException('non-nullable outbound cannot be null');
@@ -307,5 +308,3 @@ final class Firewall implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

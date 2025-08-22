@@ -103,16 +103,12 @@ final class GrantsApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,13 @@ final class GrantsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ListUserExtendedAccess200Response
      */
-    public function listUserExtendedAccess($user_id, $filter_resource_type = null, $filter_organization_id = null, $filter_permissions = null)
-    {
+    public function listUserExtendedAccess(
+        $user_id,
+        $filter_resource_type = null,
+        $filter_organization_id = null,
+        $filter_permissions = null
+    ): \Upsun\Model\ListUserExtendedAccess200Response {
         list($response) = $this->listUserExtendedAccessWithHttpInfo($user_id, $filter_resource_type, $filter_organization_id, $filter_permissions);
         return $response;
     }
@@ -260,7 +259,7 @@ final class GrantsApi
         \Upsun\Model\StringFilter $filter_resource_type = null,
         \Upsun\Model\StringFilter $filter_organization_id = null,
         \Upsun\Model\StringFilter $filter_permissions = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ListUserExtendedAccess200Response';
         $request = $this->listUserExtendedAccessRequest($user_id, $filter_resource_type, $filter_organization_id, $filter_permissions);
 
@@ -323,8 +322,8 @@ final class GrantsApi
 
         // query params
         if ($filter_resource_type !== null) {
-            if('form' === 'deepObject' && is_array($filter_resource_type)) {
-                foreach($filter_resource_type as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_resource_type)) {
+                foreach ($filter_resource_type as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -334,8 +333,8 @@ final class GrantsApi
         }
         // query params
         if ($filter_organization_id !== null) {
-            if('form' === 'deepObject' && is_array($filter_organization_id)) {
-                foreach($filter_organization_id as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_organization_id)) {
+                foreach ($filter_organization_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -345,8 +344,8 @@ final class GrantsApi
         }
         // query params
         if ($filter_permissions !== null) {
-            if('form' === 'deepObject' && is_array($filter_permissions)) {
-                foreach($filter_permissions as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_permissions)) {
+                foreach ($filter_permissions as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }

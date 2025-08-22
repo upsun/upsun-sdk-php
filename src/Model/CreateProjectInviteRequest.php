@@ -224,7 +224,8 @@ final class CreateProjectInviteRequest implements ModelInterface, ArrayAccess, \
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -278,7 +279,7 @@ final class CreateProjectInviteRequest implements ModelInterface, ArrayAccess, \
     /**
      * Sets role
      */
-    public function setRole($role)
+    public function setRole(string|null $role = null)
     {
         if (is_null($role)) {
             throw new \InvalidArgumentException('non-nullable role cannot be null');
@@ -311,7 +312,7 @@ final class CreateProjectInviteRequest implements ModelInterface, ArrayAccess, \
     /**
      * Sets email
      */
-    public function setEmail($email)
+    public function setEmail(string|null $email = null)
     {
         if (is_null($email)) {
             throw new \InvalidArgumentException('non-nullable email cannot be null');
@@ -334,7 +335,7 @@ final class CreateProjectInviteRequest implements ModelInterface, ArrayAccess, \
     /**
      * Sets permissions
      */
-    public function setPermissions($permissions)
+    public function setPermissions(string|null $permissions = null)
     {
         if (is_null($permissions)) {
             throw new \InvalidArgumentException('non-nullable permissions cannot be null');
@@ -361,7 +362,7 @@ final class CreateProjectInviteRequest implements ModelInterface, ArrayAccess, \
      *
      * @deprecated
      */
-    public function setEnvironments($environments)
+    public function setEnvironments(string|null $environments = null)
     {
         if (is_null($environments)) {
             throw new \InvalidArgumentException('non-nullable environments cannot be null');
@@ -384,7 +385,7 @@ final class CreateProjectInviteRequest implements ModelInterface, ArrayAccess, \
     /**
      * Sets force
      */
-    public function setForce($force)
+    public function setForce(string|null $force = null)
     {
         if (is_null($force)) {
             throw new \InvalidArgumentException('non-nullable force cannot be null');
@@ -463,5 +464,3 @@ final class CreateProjectInviteRequest implements ModelInterface, ArrayAccess, \
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

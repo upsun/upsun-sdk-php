@@ -211,7 +211,8 @@ final class ProjectOptions implements ModelInterface, ArrayAccess, \JsonSerializ
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -253,7 +254,7 @@ final class ProjectOptions implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets defaults
      */
-    public function setDefaults($defaults)
+    public function setDefaults(string|null $defaults = null)
     {
         if (is_null($defaults)) {
             throw new \InvalidArgumentException('non-nullable defaults cannot be null');
@@ -276,7 +277,7 @@ final class ProjectOptions implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets enforced
      */
-    public function setEnforced($enforced)
+    public function setEnforced(string|null $enforced = null)
     {
         if (is_null($enforced)) {
             throw new \InvalidArgumentException('non-nullable enforced cannot be null');
@@ -299,7 +300,7 @@ final class ProjectOptions implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets regions
      */
-    public function setRegions($regions)
+    public function setRegions(string|null $regions = null)
     {
         if (is_null($regions)) {
             throw new \InvalidArgumentException('non-nullable regions cannot be null');
@@ -322,7 +323,7 @@ final class ProjectOptions implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets plans
      */
-    public function setPlans($plans)
+    public function setPlans(string|null $plans = null)
     {
         if (is_null($plans)) {
             throw new \InvalidArgumentException('non-nullable plans cannot be null');
@@ -345,7 +346,7 @@ final class ProjectOptions implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets billing
      */
-    public function setBilling($billing)
+    public function setBilling(string|null $billing = null)
     {
         if (is_null($billing)) {
             throw new \InvalidArgumentException('non-nullable billing cannot be null');
@@ -424,5 +425,3 @@ final class ProjectOptions implements ModelInterface, ArrayAccess, \JsonSerializ
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -204,7 +204,8 @@ final class ArrayFilter implements ModelInterface, ArrayAccess, \JsonSerializabl
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -246,7 +247,7 @@ final class ArrayFilter implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets eq
      */
-    public function setEq($eq)
+    public function setEq(string|null $eq = null)
     {
         if (is_null($eq)) {
             throw new \InvalidArgumentException('non-nullable eq cannot be null');
@@ -269,7 +270,7 @@ final class ArrayFilter implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets ne
      */
-    public function setNe($ne)
+    public function setNe(string|null $ne = null)
     {
         if (is_null($ne)) {
             throw new \InvalidArgumentException('non-nullable ne cannot be null');
@@ -292,7 +293,7 @@ final class ArrayFilter implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets in
      */
-    public function setIn($in)
+    public function setIn(string|null $in = null)
     {
         if (is_null($in)) {
             throw new \InvalidArgumentException('non-nullable in cannot be null');
@@ -315,7 +316,7 @@ final class ArrayFilter implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets nin
      */
-    public function setNin($nin)
+    public function setNin(string|null $nin = null)
     {
         if (is_null($nin)) {
             throw new \InvalidArgumentException('non-nullable nin cannot be null');
@@ -394,5 +395,3 @@ final class ArrayFilter implements ModelInterface, ArrayAccess, \JsonSerializabl
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

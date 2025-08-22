@@ -197,7 +197,8 @@ final class TeamProjectAccessLinks implements ModelInterface, ArrayAccess, \Json
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -239,7 +240,7 @@ final class TeamProjectAccessLinks implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets self
      */
-    public function setSelf($self)
+    public function setSelf(string|null $self = null)
     {
         if (is_null($self)) {
             throw new \InvalidArgumentException('non-nullable self cannot be null');
@@ -262,7 +263,7 @@ final class TeamProjectAccessLinks implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets update
      */
-    public function setUpdate($update)
+    public function setUpdate(string|null $update = null)
     {
         if (is_null($update)) {
             throw new \InvalidArgumentException('non-nullable update cannot be null');
@@ -285,7 +286,7 @@ final class TeamProjectAccessLinks implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets delete
      */
-    public function setDelete($delete)
+    public function setDelete(string|null $delete = null)
     {
         if (is_null($delete)) {
             throw new \InvalidArgumentException('non-nullable delete cannot be null');
@@ -364,5 +365,3 @@ final class TeamProjectAccessLinks implements ModelInterface, ArrayAccess, \Json
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

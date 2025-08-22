@@ -190,7 +190,8 @@ final class TheBuildConfigurationOfTheApplication implements ModelInterface, Arr
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -238,7 +239,7 @@ final class TheBuildConfigurationOfTheApplication implements ModelInterface, Arr
     /**
      * Sets flavor
      */
-    public function setFlavor($flavor)
+    public function setFlavor(string|null $flavor = null)
     {
         if (is_null($flavor)) {
             array_push($this->openAPINullablesSetToNull, 'flavor');
@@ -268,7 +269,7 @@ final class TheBuildConfigurationOfTheApplication implements ModelInterface, Arr
     /**
      * Sets caches
      */
-    public function setCaches($caches)
+    public function setCaches(string|null $caches = null)
     {
         if (is_null($caches)) {
             throw new \InvalidArgumentException('non-nullable caches cannot be null');
@@ -347,5 +348,3 @@ final class TheBuildConfigurationOfTheApplication implements ModelInterface, Arr
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

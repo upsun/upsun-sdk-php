@@ -190,7 +190,8 @@ final class OrganizationAddonsObjectAvailable implements ModelInterface, ArrayAc
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -232,7 +233,7 @@ final class OrganizationAddonsObjectAvailable implements ModelInterface, ArrayAc
     /**
      * Sets user_management
      */
-    public function setUserManagement($user_management)
+    public function setUserManagement(string|null $user_management = null)
     {
         if (is_null($user_management)) {
             throw new \InvalidArgumentException('non-nullable user_management cannot be null');
@@ -255,7 +256,7 @@ final class OrganizationAddonsObjectAvailable implements ModelInterface, ArrayAc
     /**
      * Sets support_level
      */
-    public function setSupportLevel($support_level)
+    public function setSupportLevel(string|null $support_level = null)
     {
         if (is_null($support_level)) {
             throw new \InvalidArgumentException('non-nullable support_level cannot be null');
@@ -334,5 +335,3 @@ final class OrganizationAddonsObjectAvailable implements ModelInterface, ArrayAc
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

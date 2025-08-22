@@ -211,7 +211,8 @@ final class PrepaymentObjectPrepayment implements ModelInterface, ArrayAccess, \
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -253,7 +254,7 @@ final class PrepaymentObjectPrepayment implements ModelInterface, ArrayAccess, \
     /**
      * Sets organization_id
      */
-    public function setOrganizationId($organization_id)
+    public function setOrganizationId(string|null $organization_id = null)
     {
         if (is_null($organization_id)) {
             throw new \InvalidArgumentException('non-nullable organization_id cannot be null');
@@ -276,7 +277,7 @@ final class PrepaymentObjectPrepayment implements ModelInterface, ArrayAccess, \
     /**
      * Sets balance
      */
-    public function setBalance($balance)
+    public function setBalance(string|null $balance = null)
     {
         if (is_null($balance)) {
             throw new \InvalidArgumentException('non-nullable balance cannot be null');
@@ -299,7 +300,7 @@ final class PrepaymentObjectPrepayment implements ModelInterface, ArrayAccess, \
     /**
      * Sets last_updated_at
      */
-    public function setLastUpdatedAt($last_updated_at)
+    public function setLastUpdatedAt(string|null $last_updated_at = null)
     {
         if (is_null($last_updated_at)) {
             array_push($this->openAPINullablesSetToNull, 'last_updated_at');
@@ -329,7 +330,7 @@ final class PrepaymentObjectPrepayment implements ModelInterface, ArrayAccess, \
     /**
      * Sets sufficient
      */
-    public function setSufficient($sufficient)
+    public function setSufficient(string|null $sufficient = null)
     {
         if (is_null($sufficient)) {
             throw new \InvalidArgumentException('non-nullable sufficient cannot be null');
@@ -352,7 +353,7 @@ final class PrepaymentObjectPrepayment implements ModelInterface, ArrayAccess, \
     /**
      * Sets fallback
      */
-    public function setFallback($fallback)
+    public function setFallback(string|null $fallback = null)
     {
         if (is_null($fallback)) {
             array_push($this->openAPINullablesSetToNull, 'fallback');
@@ -438,5 +439,3 @@ final class PrepaymentObjectPrepayment implements ModelInterface, ArrayAccess, \
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

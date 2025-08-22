@@ -190,7 +190,8 @@ final class GetOrgPrepaymentInfo200Response implements ModelInterface, ArrayAcce
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -232,7 +233,7 @@ final class GetOrgPrepaymentInfo200Response implements ModelInterface, ArrayAcce
     /**
      * Sets prepayment
      */
-    public function setPrepayment($prepayment)
+    public function setPrepayment(string|null $prepayment = null)
     {
         if (is_null($prepayment)) {
             throw new \InvalidArgumentException('non-nullable prepayment cannot be null');
@@ -255,7 +256,7 @@ final class GetOrgPrepaymentInfo200Response implements ModelInterface, ArrayAcce
     /**
      * Sets _links
      */
-    public function setLinks($_links)
+    public function setLinks(string|null $_links = null)
     {
         if (is_null($_links)) {
             throw new \InvalidArgumentException('non-nullable _links cannot be null');
@@ -334,5 +335,3 @@ final class GetOrgPrepaymentInfo200Response implements ModelInterface, ArrayAcce
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

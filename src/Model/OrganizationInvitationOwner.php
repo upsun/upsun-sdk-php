@@ -190,7 +190,8 @@ final class OrganizationInvitationOwner implements ModelInterface, ArrayAccess, 
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -232,7 +233,7 @@ final class OrganizationInvitationOwner implements ModelInterface, ArrayAccess, 
     /**
      * Sets id
      */
-    public function setId($id)
+    public function setId(string|null $id = null)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -255,7 +256,7 @@ final class OrganizationInvitationOwner implements ModelInterface, ArrayAccess, 
     /**
      * Sets display_name
      */
-    public function setDisplayName($display_name)
+    public function setDisplayName(string|null $display_name = null)
     {
         if (is_null($display_name)) {
             throw new \InvalidArgumentException('non-nullable display_name cannot be null');
@@ -334,5 +335,3 @@ final class OrganizationInvitationOwner implements ModelInterface, ArrayAccess, 
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

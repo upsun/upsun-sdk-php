@@ -204,7 +204,8 @@ final class VouchersVouchersInner implements ModelInterface, ArrayAccess, \JsonS
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -246,7 +247,7 @@ final class VouchersVouchersInner implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets code
      */
-    public function setCode($code)
+    public function setCode(string|null $code = null)
     {
         if (is_null($code)) {
             throw new \InvalidArgumentException('non-nullable code cannot be null');
@@ -269,7 +270,7 @@ final class VouchersVouchersInner implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets amount
      */
-    public function setAmount($amount)
+    public function setAmount(string|null $amount = null)
     {
         if (is_null($amount)) {
             throw new \InvalidArgumentException('non-nullable amount cannot be null');
@@ -292,7 +293,7 @@ final class VouchersVouchersInner implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets currency
      */
-    public function setCurrency($currency)
+    public function setCurrency(string|null $currency = null)
     {
         if (is_null($currency)) {
             throw new \InvalidArgumentException('non-nullable currency cannot be null');
@@ -315,7 +316,7 @@ final class VouchersVouchersInner implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets orders
      */
-    public function setOrders($orders)
+    public function setOrders(string|null $orders = null)
     {
         if (is_null($orders)) {
             throw new \InvalidArgumentException('non-nullable orders cannot be null');
@@ -394,5 +395,3 @@ final class VouchersVouchersInner implements ModelInterface, ArrayAccess, \JsonS
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

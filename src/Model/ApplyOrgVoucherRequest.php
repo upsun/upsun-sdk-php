@@ -183,7 +183,8 @@ final class ApplyOrgVoucherRequest implements ModelInterface, ArrayAccess, \Json
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -228,7 +229,7 @@ final class ApplyOrgVoucherRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets code
      */
-    public function setCode($code)
+    public function setCode(string|null $code = null)
     {
         if (is_null($code)) {
             throw new \InvalidArgumentException('non-nullable code cannot be null');
@@ -307,5 +308,3 @@ final class ApplyOrgVoucherRequest implements ModelInterface, ArrayAccess, \Json
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -197,7 +197,8 @@ final class SystemInformation implements ModelInterface, ArrayAccess, \JsonSeria
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -248,7 +249,7 @@ final class SystemInformation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets version
      */
-    public function setVersion($version)
+    public function setVersion(string|null $version = null)
     {
         if (is_null($version)) {
             throw new \InvalidArgumentException('non-nullable version cannot be null');
@@ -271,7 +272,7 @@ final class SystemInformation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets image
      */
-    public function setImage($image)
+    public function setImage(string|null $image = null)
     {
         if (is_null($image)) {
             throw new \InvalidArgumentException('non-nullable image cannot be null');
@@ -294,7 +295,7 @@ final class SystemInformation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets started_at
      */
-    public function setStartedAt($started_at)
+    public function setStartedAt(string|null $started_at = null)
     {
         if (is_null($started_at)) {
             throw new \InvalidArgumentException('non-nullable started_at cannot be null');
@@ -373,5 +374,3 @@ final class SystemInformation implements ModelInterface, ArrayAccess, \JsonSeria
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

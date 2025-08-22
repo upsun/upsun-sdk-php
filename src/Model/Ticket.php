@@ -543,7 +543,8 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -639,7 +640,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets ticket_id
      */
-    public function setTicketId($ticket_id)
+    public function setTicketId(string|null $ticket_id = null)
     {
         if (is_null($ticket_id)) {
             throw new \InvalidArgumentException('non-nullable ticket_id cannot be null');
@@ -662,7 +663,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets created
      */
-    public function setCreated($created)
+    public function setCreated(string|null $created = null)
     {
         if (is_null($created)) {
             throw new \InvalidArgumentException('non-nullable created cannot be null');
@@ -685,7 +686,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets updated
      */
-    public function setUpdated($updated)
+    public function setUpdated(string|null $updated = null)
     {
         if (is_null($updated)) {
             throw new \InvalidArgumentException('non-nullable updated cannot be null');
@@ -708,7 +709,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -741,7 +742,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets subject
      */
-    public function setSubject($subject)
+    public function setSubject(string|null $subject = null)
     {
         if (is_null($subject)) {
             throw new \InvalidArgumentException('non-nullable subject cannot be null');
@@ -764,7 +765,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets description
      */
-    public function setDescription($description)
+    public function setDescription(string|null $description = null)
     {
         if (is_null($description)) {
             throw new \InvalidArgumentException('non-nullable description cannot be null');
@@ -787,7 +788,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets priority
      */
-    public function setPriority($priority)
+    public function setPriority(string|null $priority = null)
     {
         if (is_null($priority)) {
             throw new \InvalidArgumentException('non-nullable priority cannot be null');
@@ -820,7 +821,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets followup_tid
      */
-    public function setFollowupTid($followup_tid)
+    public function setFollowupTid(string|null $followup_tid = null)
     {
         if (is_null($followup_tid)) {
             throw new \InvalidArgumentException('non-nullable followup_tid cannot be null');
@@ -843,7 +844,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      */
-    public function setStatus($status)
+    public function setStatus(string|null $status = null)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
@@ -876,7 +877,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets recipient
      */
-    public function setRecipient($recipient)
+    public function setRecipient(string|null $recipient = null)
     {
         if (is_null($recipient)) {
             throw new \InvalidArgumentException('non-nullable recipient cannot be null');
@@ -899,7 +900,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets requester_id
      */
-    public function setRequesterId($requester_id)
+    public function setRequesterId(string|null $requester_id = null)
     {
         if (is_null($requester_id)) {
             throw new \InvalidArgumentException('non-nullable requester_id cannot be null');
@@ -922,7 +923,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets submitter_id
      */
-    public function setSubmitterId($submitter_id)
+    public function setSubmitterId(string|null $submitter_id = null)
     {
         if (is_null($submitter_id)) {
             throw new \InvalidArgumentException('non-nullable submitter_id cannot be null');
@@ -945,7 +946,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets assignee_id
      */
-    public function setAssigneeId($assignee_id)
+    public function setAssigneeId(string|null $assignee_id = null)
     {
         if (is_null($assignee_id)) {
             throw new \InvalidArgumentException('non-nullable assignee_id cannot be null');
@@ -968,7 +969,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets organization_id
      */
-    public function setOrganizationId($organization_id)
+    public function setOrganizationId(string|null $organization_id = null)
     {
         if (is_null($organization_id)) {
             throw new \InvalidArgumentException('non-nullable organization_id cannot be null');
@@ -991,7 +992,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets collaborator_ids
      */
-    public function setCollaboratorIds($collaborator_ids)
+    public function setCollaboratorIds(string|null $collaborator_ids = null)
     {
         if (is_null($collaborator_ids)) {
             throw new \InvalidArgumentException('non-nullable collaborator_ids cannot be null');
@@ -1014,7 +1015,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets has_incidents
      */
-    public function setHasIncidents($has_incidents)
+    public function setHasIncidents(string|null $has_incidents = null)
     {
         if (is_null($has_incidents)) {
             throw new \InvalidArgumentException('non-nullable has_incidents cannot be null');
@@ -1037,7 +1038,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets due
      */
-    public function setDue($due)
+    public function setDue(string|null $due = null)
     {
         if (is_null($due)) {
             throw new \InvalidArgumentException('non-nullable due cannot be null');
@@ -1060,7 +1061,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets tags
      */
-    public function setTags($tags)
+    public function setTags(string|null $tags = null)
     {
         if (is_null($tags)) {
             throw new \InvalidArgumentException('non-nullable tags cannot be null');
@@ -1083,7 +1084,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets subscription_id
      */
-    public function setSubscriptionId($subscription_id)
+    public function setSubscriptionId(string|null $subscription_id = null)
     {
         if (is_null($subscription_id)) {
             throw new \InvalidArgumentException('non-nullable subscription_id cannot be null');
@@ -1106,7 +1107,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets ticket_group
      */
-    public function setTicketGroup($ticket_group)
+    public function setTicketGroup(string|null $ticket_group = null)
     {
         if (is_null($ticket_group)) {
             throw new \InvalidArgumentException('non-nullable ticket_group cannot be null');
@@ -1129,7 +1130,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets support_plan
      */
-    public function setSupportPlan($support_plan)
+    public function setSupportPlan(string|null $support_plan = null)
     {
         if (is_null($support_plan)) {
             throw new \InvalidArgumentException('non-nullable support_plan cannot be null');
@@ -1152,7 +1153,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets affected_url
      */
-    public function setAffectedUrl($affected_url)
+    public function setAffectedUrl(string|null $affected_url = null)
     {
         if (is_null($affected_url)) {
             throw new \InvalidArgumentException('non-nullable affected_url cannot be null');
@@ -1175,7 +1176,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets queue
      */
-    public function setQueue($queue)
+    public function setQueue(string|null $queue = null)
     {
         if (is_null($queue)) {
             throw new \InvalidArgumentException('non-nullable queue cannot be null');
@@ -1198,7 +1199,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets issue_type
      */
-    public function setIssueType($issue_type)
+    public function setIssueType(string|null $issue_type = null)
     {
         if (is_null($issue_type)) {
             throw new \InvalidArgumentException('non-nullable issue_type cannot be null');
@@ -1221,7 +1222,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets resolution_time
      */
-    public function setResolutionTime($resolution_time)
+    public function setResolutionTime(string|null $resolution_time = null)
     {
         if (is_null($resolution_time)) {
             throw new \InvalidArgumentException('non-nullable resolution_time cannot be null');
@@ -1244,7 +1245,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets response_time
      */
-    public function setResponseTime($response_time)
+    public function setResponseTime(string|null $response_time = null)
     {
         if (is_null($response_time)) {
             throw new \InvalidArgumentException('non-nullable response_time cannot be null');
@@ -1267,7 +1268,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets project_url
      */
-    public function setProjectUrl($project_url)
+    public function setProjectUrl(string|null $project_url = null)
     {
         if (is_null($project_url)) {
             throw new \InvalidArgumentException('non-nullable project_url cannot be null');
@@ -1290,7 +1291,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets region
      */
-    public function setRegion($region)
+    public function setRegion(string|null $region = null)
     {
         if (is_null($region)) {
             throw new \InvalidArgumentException('non-nullable region cannot be null');
@@ -1313,7 +1314,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets category
      */
-    public function setCategory($category)
+    public function setCategory(string|null $category = null)
     {
         if (is_null($category)) {
             throw new \InvalidArgumentException('non-nullable category cannot be null');
@@ -1346,7 +1347,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets environment
      */
-    public function setEnvironment($environment)
+    public function setEnvironment(string|null $environment = null)
     {
         if (is_null($environment)) {
             throw new \InvalidArgumentException('non-nullable environment cannot be null');
@@ -1379,7 +1380,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets ticket_sharing_status
      */
-    public function setTicketSharingStatus($ticket_sharing_status)
+    public function setTicketSharingStatus(string|null $ticket_sharing_status = null)
     {
         if (is_null($ticket_sharing_status)) {
             throw new \InvalidArgumentException('non-nullable ticket_sharing_status cannot be null');
@@ -1412,7 +1413,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets application_ticket_url
      */
-    public function setApplicationTicketUrl($application_ticket_url)
+    public function setApplicationTicketUrl(string|null $application_ticket_url = null)
     {
         if (is_null($application_ticket_url)) {
             throw new \InvalidArgumentException('non-nullable application_ticket_url cannot be null');
@@ -1435,7 +1436,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets infrastructure_ticket_url
      */
-    public function setInfrastructureTicketUrl($infrastructure_ticket_url)
+    public function setInfrastructureTicketUrl(string|null $infrastructure_ticket_url = null)
     {
         if (is_null($infrastructure_ticket_url)) {
             throw new \InvalidArgumentException('non-nullable infrastructure_ticket_url cannot be null');
@@ -1458,7 +1459,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets jira
      */
-    public function setJira($jira)
+    public function setJira(string|null $jira = null)
     {
         if (is_null($jira)) {
             throw new \InvalidArgumentException('non-nullable jira cannot be null');
@@ -1481,7 +1482,7 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets zd_ticket_url
      */
-    public function setZdTicketUrl($zd_ticket_url)
+    public function setZdTicketUrl(string|null $zd_ticket_url = null)
     {
         if (is_null($zd_ticket_url)) {
             throw new \InvalidArgumentException('non-nullable zd_ticket_url cannot be null');
@@ -1560,5 +1561,3 @@ final class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -204,7 +204,8 @@ final class PrepaymentObjectPrepaymentBalance implements ModelInterface, ArrayAc
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -246,7 +247,7 @@ final class PrepaymentObjectPrepaymentBalance implements ModelInterface, ArrayAc
     /**
      * Sets formatted
      */
-    public function setFormatted($formatted)
+    public function setFormatted(string|null $formatted = null)
     {
         if (is_null($formatted)) {
             throw new \InvalidArgumentException('non-nullable formatted cannot be null');
@@ -269,7 +270,7 @@ final class PrepaymentObjectPrepaymentBalance implements ModelInterface, ArrayAc
     /**
      * Sets amount
      */
-    public function setAmount($amount)
+    public function setAmount(string|null $amount = null)
     {
         if (is_null($amount)) {
             throw new \InvalidArgumentException('non-nullable amount cannot be null');
@@ -292,7 +293,7 @@ final class PrepaymentObjectPrepaymentBalance implements ModelInterface, ArrayAc
     /**
      * Sets currency_code
      */
-    public function setCurrencyCode($currency_code)
+    public function setCurrencyCode(string|null $currency_code = null)
     {
         if (is_null($currency_code)) {
             throw new \InvalidArgumentException('non-nullable currency_code cannot be null');
@@ -315,7 +316,7 @@ final class PrepaymentObjectPrepaymentBalance implements ModelInterface, ArrayAc
     /**
      * Sets currency_symbol
      */
-    public function setCurrencySymbol($currency_symbol)
+    public function setCurrencySymbol(string|null $currency_symbol = null)
     {
         if (is_null($currency_symbol)) {
             throw new \InvalidArgumentException('non-nullable currency_symbol cannot be null');
@@ -394,5 +395,3 @@ final class PrepaymentObjectPrepaymentBalance implements ModelInterface, ArrayAc
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

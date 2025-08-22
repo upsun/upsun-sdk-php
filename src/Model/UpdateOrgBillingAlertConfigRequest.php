@@ -190,7 +190,8 @@ final class UpdateOrgBillingAlertConfigRequest implements ModelInterface, ArrayA
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -232,7 +233,7 @@ final class UpdateOrgBillingAlertConfigRequest implements ModelInterface, ArrayA
     /**
      * Sets active
      */
-    public function setActive($active)
+    public function setActive(string|null $active = null)
     {
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
@@ -255,7 +256,7 @@ final class UpdateOrgBillingAlertConfigRequest implements ModelInterface, ArrayA
     /**
      * Sets config
      */
-    public function setConfig($config)
+    public function setConfig(string|null $config = null)
     {
         if (is_null($config)) {
             throw new \InvalidArgumentException('non-nullable config cannot be null');
@@ -334,5 +335,3 @@ final class UpdateOrgBillingAlertConfigRequest implements ModelInterface, ArrayA
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

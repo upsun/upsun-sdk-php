@@ -238,7 +238,8 @@ final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterfac
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -289,7 +290,7 @@ final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterfac
     /**
      * Sets user_id
      */
-    public function setUserId($user_id)
+    public function setUserId(string|null $user_id = null)
     {
         if (is_null($user_id)) {
             throw new \InvalidArgumentException('non-nullable user_id cannot be null');
@@ -312,7 +313,7 @@ final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterfac
     /**
      * Sets resource_id
      */
-    public function setResourceId($resource_id)
+    public function setResourceId(string|null $resource_id = null)
     {
         if (is_null($resource_id)) {
             throw new \InvalidArgumentException('non-nullable resource_id cannot be null');
@@ -335,7 +336,7 @@ final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterfac
     /**
      * Sets resource_type
      */
-    public function setResourceType($resource_type)
+    public function setResourceType(string|null $resource_type = null)
     {
         if (is_null($resource_type)) {
             throw new \InvalidArgumentException('non-nullable resource_type cannot be null');
@@ -368,7 +369,7 @@ final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterfac
     /**
      * Sets organization_id
      */
-    public function setOrganizationId($organization_id)
+    public function setOrganizationId(string|null $organization_id = null)
     {
         if (is_null($organization_id)) {
             throw new \InvalidArgumentException('non-nullable organization_id cannot be null');
@@ -391,7 +392,7 @@ final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterfac
     /**
      * Sets permissions
      */
-    public function setPermissions($permissions)
+    public function setPermissions(string|null $permissions = null)
     {
         if (is_null($permissions)) {
             throw new \InvalidArgumentException('non-nullable permissions cannot be null');
@@ -414,7 +415,7 @@ final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterfac
     /**
      * Sets granted_at
      */
-    public function setGrantedAt($granted_at)
+    public function setGrantedAt(string|null $granted_at = null)
     {
         if (is_null($granted_at)) {
             throw new \InvalidArgumentException('non-nullable granted_at cannot be null');
@@ -437,7 +438,7 @@ final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterfac
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt($updated_at)
+    public function setUpdatedAt(string|null $updated_at = null)
     {
         if (is_null($updated_at)) {
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
@@ -516,5 +517,3 @@ final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterfac
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

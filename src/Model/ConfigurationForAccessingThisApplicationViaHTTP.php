@@ -246,7 +246,8 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -294,7 +295,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
     /**
      * Sets locations
      */
-    public function setLocations($locations)
+    public function setLocations(string|null $locations = null)
     {
         if (is_null($locations)) {
             throw new \InvalidArgumentException('non-nullable locations cannot be null');
@@ -317,7 +318,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
     /**
      * Sets commands
      */
-    public function setCommands($commands)
+    public function setCommands(string|null $commands = null)
     {
         if (is_null($commands)) {
             throw new \InvalidArgumentException('non-nullable commands cannot be null');
@@ -340,7 +341,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
     /**
      * Sets upstream
      */
-    public function setUpstream($upstream)
+    public function setUpstream(string|null $upstream = null)
     {
         if (is_null($upstream)) {
             throw new \InvalidArgumentException('non-nullable upstream cannot be null');
@@ -363,7 +364,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
     /**
      * Sets document_root
      */
-    public function setDocumentRoot($document_root)
+    public function setDocumentRoot(string|null $document_root = null)
     {
         if (is_null($document_root)) {
             array_push($this->openAPINullablesSetToNull, 'document_root');
@@ -393,7 +394,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
     /**
      * Sets passthru
      */
-    public function setPassthru($passthru)
+    public function setPassthru(string|null $passthru = null)
     {
         if (is_null($passthru)) {
             array_push($this->openAPINullablesSetToNull, 'passthru');
@@ -423,7 +424,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
     /**
      * Sets index_files
      */
-    public function setIndexFiles($index_files)
+    public function setIndexFiles(string|null $index_files = null)
     {
         if (is_null($index_files)) {
             array_push($this->openAPINullablesSetToNull, 'index_files');
@@ -453,7 +454,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
     /**
      * Sets whitelist
      */
-    public function setWhitelist($whitelist)
+    public function setWhitelist(string|null $whitelist = null)
     {
         if (is_null($whitelist)) {
             array_push($this->openAPINullablesSetToNull, 'whitelist');
@@ -483,7 +484,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
     /**
      * Sets blacklist
      */
-    public function setBlacklist($blacklist)
+    public function setBlacklist(string|null $blacklist = null)
     {
         if (is_null($blacklist)) {
             array_push($this->openAPINullablesSetToNull, 'blacklist');
@@ -513,7 +514,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
     /**
      * Sets expires
      */
-    public function setExpires($expires)
+    public function setExpires(string|null $expires = null)
     {
         if (is_null($expires)) {
             array_push($this->openAPINullablesSetToNull, 'expires');
@@ -543,7 +544,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
     /**
      * Sets move_to_root
      */
-    public function setMoveToRoot($move_to_root)
+    public function setMoveToRoot(string|null $move_to_root = null)
     {
         if (is_null($move_to_root)) {
             throw new \InvalidArgumentException('non-nullable move_to_root cannot be null');
@@ -622,5 +623,3 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

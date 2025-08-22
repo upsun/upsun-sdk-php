@@ -103,16 +103,12 @@ final class AlertsApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,11 @@ final class AlertsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Alert
      */
-    public function createUsageAlert($subscription_id, $create_usage_alert_request = null)
-    {
+    public function createUsageAlert(
+        $subscription_id,
+        $create_usage_alert_request = null
+    ): \Upsun\Model\Alert {
         list($response) = $this->createUsageAlertWithHttpInfo($subscription_id, $create_usage_alert_request);
         return $response;
     }
@@ -240,7 +237,7 @@ final class AlertsApi
     public function createUsageAlertAsyncWithHttpInfo(
         string $subscription_id,
         \Upsun\Model\CreateUsageAlertRequest $create_usage_alert_request = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Alert';
         $request = $this->createUsageAlertRequest($subscription_id, $create_usage_alert_request);
 
@@ -374,10 +371,11 @@ final class AlertsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function deleteUsageAlert($subscription_id, $usage_id)
-    {
+    public function deleteUsageAlert(
+        $subscription_id,
+        $usage_id
+    ): void {
         $this->deleteUsageAlertWithHttpInfo($subscription_id, $usage_id);
     }
 
@@ -455,7 +453,7 @@ final class AlertsApi
     public function deleteUsageAlertAsyncWithHttpInfo(
         string $subscription_id,
         string $usage_id
-    ) {
+    ): Promise {
         $returnType = '';
         $request = $this->deleteUsageAlertRequest($subscription_id, $usage_id);
 
@@ -587,10 +585,10 @@ final class AlertsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\GetUsageAlerts200Response
      */
-    public function getUsageAlerts($subscription_id)
-    {
+    public function getUsageAlerts(
+        $subscription_id
+    ): \Upsun\Model\GetUsageAlerts200Response {
         list($response) = $this->getUsageAlertsWithHttpInfo($subscription_id);
         return $response;
     }
@@ -701,7 +699,7 @@ final class AlertsApi
      */
     public function getUsageAlertsAsyncWithHttpInfo(
         string $subscription_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\GetUsageAlerts200Response';
         $request = $this->getUsageAlertsRequest($subscription_id);
 
@@ -828,10 +826,12 @@ final class AlertsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Alert
      */
-    public function updateUsageAlert($subscription_id, $usage_id, $update_usage_alert_request = null)
-    {
+    public function updateUsageAlert(
+        $subscription_id,
+        $usage_id,
+        $update_usage_alert_request = null
+    ): \Upsun\Model\Alert {
         list($response) = $this->updateUsageAlertWithHttpInfo($subscription_id, $usage_id, $update_usage_alert_request);
         return $response;
     }
@@ -948,7 +948,7 @@ final class AlertsApi
         string $subscription_id,
         string $usage_id,
         \Upsun\Model\UpdateUsageAlertRequest $update_usage_alert_request = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Alert';
         $request = $this->updateUsageAlertRequest($subscription_id, $usage_id, $update_usage_alert_request);
 

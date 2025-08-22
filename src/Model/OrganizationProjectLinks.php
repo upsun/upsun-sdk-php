@@ -211,7 +211,8 @@ final class OrganizationProjectLinks implements ModelInterface, ArrayAccess, \Js
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -253,7 +254,7 @@ final class OrganizationProjectLinks implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets self
      */
-    public function setSelf($self)
+    public function setSelf(string|null $self = null)
     {
         if (is_null($self)) {
             throw new \InvalidArgumentException('non-nullable self cannot be null');
@@ -276,7 +277,7 @@ final class OrganizationProjectLinks implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets update
      */
-    public function setUpdate($update)
+    public function setUpdate(string|null $update = null)
     {
         if (is_null($update)) {
             throw new \InvalidArgumentException('non-nullable update cannot be null');
@@ -299,7 +300,7 @@ final class OrganizationProjectLinks implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets delete
      */
-    public function setDelete($delete)
+    public function setDelete(string|null $delete = null)
     {
         if (is_null($delete)) {
             throw new \InvalidArgumentException('non-nullable delete cannot be null');
@@ -322,7 +323,7 @@ final class OrganizationProjectLinks implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets subscription
      */
-    public function setSubscription($subscription)
+    public function setSubscription(string|null $subscription = null)
     {
         if (is_null($subscription)) {
             throw new \InvalidArgumentException('non-nullable subscription cannot be null');
@@ -345,7 +346,7 @@ final class OrganizationProjectLinks implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets api
      */
-    public function setApi($api)
+    public function setApi(string|null $api = null)
     {
         if (is_null($api)) {
             throw new \InvalidArgumentException('non-nullable api cannot be null');
@@ -424,5 +425,3 @@ final class OrganizationProjectLinks implements ModelInterface, ArrayAccess, \Js
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

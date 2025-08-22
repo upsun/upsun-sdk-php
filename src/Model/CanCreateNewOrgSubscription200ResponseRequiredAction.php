@@ -190,7 +190,8 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Mode
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -232,7 +233,7 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Mode
     /**
      * Sets action
      */
-    public function setAction($action)
+    public function setAction(string|null $action = null)
     {
         if (is_null($action)) {
             throw new \InvalidArgumentException('non-nullable action cannot be null');
@@ -255,7 +256,7 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Mode
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -334,5 +335,3 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Mode
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -197,7 +197,8 @@ final class ProdDomainStorageCreateInput implements ModelInterface, ArrayAccess,
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -242,7 +243,7 @@ final class ProdDomainStorageCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets name
      */
-    public function setName($name)
+    public function setName(string|null $name = null)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -265,7 +266,7 @@ final class ProdDomainStorageCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets attributes
      */
-    public function setAttributes($attributes)
+    public function setAttributes(string|null $attributes = null)
     {
         if (is_null($attributes)) {
             throw new \InvalidArgumentException('non-nullable attributes cannot be null');
@@ -288,7 +289,7 @@ final class ProdDomainStorageCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets is_default
      */
-    public function setIsDefault($is_default)
+    public function setIsDefault(string|null $is_default = null)
     {
         if (is_null($is_default)) {
             throw new \InvalidArgumentException('non-nullable is_default cannot be null');
@@ -367,5 +368,3 @@ final class ProdDomainStorageCreateInput implements ModelInterface, ArrayAccess,
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -287,7 +287,8 @@ final class SyslogIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -359,7 +360,7 @@ final class SyslogIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -382,7 +383,7 @@ final class SyslogIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets extra
      */
-    public function setExtra($extra)
+    public function setExtra(string|null $extra = null)
     {
         if (is_null($extra)) {
             throw new \InvalidArgumentException('non-nullable extra cannot be null');
@@ -405,7 +406,7 @@ final class SyslogIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets host
      */
-    public function setHost($host)
+    public function setHost(string|null $host = null)
     {
         if (is_null($host)) {
             throw new \InvalidArgumentException('non-nullable host cannot be null');
@@ -428,7 +429,7 @@ final class SyslogIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets port
      */
-    public function setPort($port)
+    public function setPort(string|null $port = null)
     {
         if (is_null($port)) {
             throw new \InvalidArgumentException('non-nullable port cannot be null');
@@ -451,7 +452,7 @@ final class SyslogIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets protocol
      */
-    public function setProtocol($protocol)
+    public function setProtocol(string|null $protocol = null)
     {
         if (is_null($protocol)) {
             throw new \InvalidArgumentException('non-nullable protocol cannot be null');
@@ -484,7 +485,7 @@ final class SyslogIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets facility
      */
-    public function setFacility($facility)
+    public function setFacility(string|null $facility = null)
     {
         if (is_null($facility)) {
             throw new \InvalidArgumentException('non-nullable facility cannot be null');
@@ -507,7 +508,7 @@ final class SyslogIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets message_format
      */
-    public function setMessageFormat($message_format)
+    public function setMessageFormat(string|null $message_format = null)
     {
         if (is_null($message_format)) {
             throw new \InvalidArgumentException('non-nullable message_format cannot be null');
@@ -540,7 +541,7 @@ final class SyslogIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets auth_token
      */
-    public function setAuthToken($auth_token)
+    public function setAuthToken(string|null $auth_token = null)
     {
         if (is_null($auth_token)) {
             throw new \InvalidArgumentException('non-nullable auth_token cannot be null');
@@ -563,7 +564,7 @@ final class SyslogIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets auth_mode
      */
-    public function setAuthMode($auth_mode)
+    public function setAuthMode(string|null $auth_mode = null)
     {
         if (is_null($auth_mode)) {
             throw new \InvalidArgumentException('non-nullable auth_mode cannot be null');
@@ -596,7 +597,7 @@ final class SyslogIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets tls_verify
      */
-    public function setTlsVerify($tls_verify)
+    public function setTlsVerify(string|null $tls_verify = null)
     {
         if (is_null($tls_verify)) {
             throw new \InvalidArgumentException('non-nullable tls_verify cannot be null');
@@ -675,5 +676,3 @@ final class SyslogIntegrationPatch implements ModelInterface, ArrayAccess, \Json
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -197,7 +197,8 @@ final class CreateSshKeyRequest implements ModelInterface, ArrayAccess, \JsonSer
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -242,7 +243,7 @@ final class CreateSshKeyRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets value
      */
-    public function setValue($value)
+    public function setValue(string|null $value = null)
     {
         if (is_null($value)) {
             throw new \InvalidArgumentException('non-nullable value cannot be null');
@@ -265,7 +266,7 @@ final class CreateSshKeyRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets title
      */
-    public function setTitle($title)
+    public function setTitle(string|null $title = null)
     {
         if (is_null($title)) {
             throw new \InvalidArgumentException('non-nullable title cannot be null');
@@ -288,7 +289,7 @@ final class CreateSshKeyRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets uuid
      */
-    public function setUuid($uuid)
+    public function setUuid(string|null $uuid = null)
     {
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
@@ -367,5 +368,3 @@ final class CreateSshKeyRequest implements ModelInterface, ArrayAccess, \JsonSer
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

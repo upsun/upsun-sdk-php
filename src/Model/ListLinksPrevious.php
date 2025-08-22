@@ -183,7 +183,8 @@ final class ListLinksPrevious implements ModelInterface, ArrayAccess, \JsonSeria
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -225,7 +226,7 @@ final class ListLinksPrevious implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets href
      */
-    public function setHref($href)
+    public function setHref(string|null $href = null)
     {
         if (is_null($href)) {
             throw new \InvalidArgumentException('non-nullable href cannot be null');
@@ -304,5 +305,3 @@ final class ListLinksPrevious implements ModelInterface, ArrayAccess, \JsonSeria
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

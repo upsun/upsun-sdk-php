@@ -215,7 +215,8 @@ final class OutboundFirewallRestrictionsInner implements ModelInterface, ArrayAc
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -278,7 +279,7 @@ final class OutboundFirewallRestrictionsInner implements ModelInterface, ArrayAc
     /**
      * Sets protocol
      */
-    public function setProtocol($protocol)
+    public function setProtocol(string|null $protocol = null)
     {
         if (is_null($protocol)) {
             throw new \InvalidArgumentException('non-nullable protocol cannot be null');
@@ -311,7 +312,7 @@ final class OutboundFirewallRestrictionsInner implements ModelInterface, ArrayAc
     /**
      * Sets ips
      */
-    public function setIps($ips)
+    public function setIps(string|null $ips = null)
     {
         if (is_null($ips)) {
             throw new \InvalidArgumentException('non-nullable ips cannot be null');
@@ -334,7 +335,7 @@ final class OutboundFirewallRestrictionsInner implements ModelInterface, ArrayAc
     /**
      * Sets domains
      */
-    public function setDomains($domains)
+    public function setDomains(string|null $domains = null)
     {
         if (is_null($domains)) {
             throw new \InvalidArgumentException('non-nullable domains cannot be null');
@@ -357,7 +358,7 @@ final class OutboundFirewallRestrictionsInner implements ModelInterface, ArrayAc
     /**
      * Sets ports
      */
-    public function setPorts($ports)
+    public function setPorts(string|null $ports = null)
     {
         if (is_null($ports)) {
             throw new \InvalidArgumentException('non-nullable ports cannot be null');
@@ -436,5 +437,3 @@ final class OutboundFirewallRestrictionsInner implements ModelInterface, ArrayAc
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

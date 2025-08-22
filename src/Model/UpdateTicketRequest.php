@@ -210,7 +210,8 @@ final class UpdateTicketRequest implements ModelInterface, ArrayAccess, \JsonSer
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -261,7 +262,7 @@ final class UpdateTicketRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets status
      */
-    public function setStatus($status)
+    public function setStatus(string|null $status = null)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
@@ -294,7 +295,7 @@ final class UpdateTicketRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets collaborator_ids
      */
-    public function setCollaboratorIds($collaborator_ids)
+    public function setCollaboratorIds(string|null $collaborator_ids = null)
     {
         if (is_null($collaborator_ids)) {
             throw new \InvalidArgumentException('non-nullable collaborator_ids cannot be null');
@@ -317,7 +318,7 @@ final class UpdateTicketRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets collaborators_replace
      */
-    public function setCollaboratorsReplace($collaborators_replace)
+    public function setCollaboratorsReplace(string|null $collaborators_replace = null)
     {
         if (is_null($collaborators_replace)) {
             throw new \InvalidArgumentException('non-nullable collaborators_replace cannot be null');
@@ -396,5 +397,3 @@ final class UpdateTicketRequest implements ModelInterface, ArrayAccess, \JsonSer
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

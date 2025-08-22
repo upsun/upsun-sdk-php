@@ -197,7 +197,8 @@ final class RegionDatacenter implements ModelInterface, ArrayAccess, \JsonSerial
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -239,7 +240,7 @@ final class RegionDatacenter implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets name
      */
-    public function setName($name)
+    public function setName(string|null $name = null)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -262,7 +263,7 @@ final class RegionDatacenter implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets label
      */
-    public function setLabel($label)
+    public function setLabel(string|null $label = null)
     {
         if (is_null($label)) {
             throw new \InvalidArgumentException('non-nullable label cannot be null');
@@ -285,7 +286,7 @@ final class RegionDatacenter implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets location
      */
-    public function setLocation($location)
+    public function setLocation(string|null $location = null)
     {
         if (is_null($location)) {
             throw new \InvalidArgumentException('non-nullable location cannot be null');
@@ -364,5 +365,3 @@ final class RegionDatacenter implements ModelInterface, ArrayAccess, \JsonSerial
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

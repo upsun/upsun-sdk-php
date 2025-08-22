@@ -103,16 +103,12 @@ final class PhoneNumberApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,12 @@ final class PhoneNumberApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function confirmPhoneNumber($sid, $user_id, $confirm_phone_number_request = null)
-    {
+    public function confirmPhoneNumber(
+        $sid,
+        $user_id,
+        $confirm_phone_number_request = null
+    ): void {
         $this->confirmPhoneNumberWithHttpInfo($sid, $user_id, $confirm_phone_number_request);
     }
 
@@ -231,7 +229,7 @@ final class PhoneNumberApi
         string $sid,
         string $user_id,
         \Upsun\Model\ConfirmPhoneNumberRequest $confirm_phone_number_request = null
-    ) {
+    ): Promise {
         $returnType = '';
         $request = $this->confirmPhoneNumberRequest($sid, $user_id, $confirm_phone_number_request);
 
@@ -370,10 +368,11 @@ final class PhoneNumberApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\VerifyPhoneNumber200Response
      */
-    public function verifyPhoneNumber($user_id, $verify_phone_number_request = null)
-    {
+    public function verifyPhoneNumber(
+        $user_id,
+        $verify_phone_number_request = null
+    ): \Upsun\Model\VerifyPhoneNumber200Response {
         list($response) = $this->verifyPhoneNumberWithHttpInfo($user_id, $verify_phone_number_request);
         return $response;
     }
@@ -529,7 +528,7 @@ final class PhoneNumberApi
     public function verifyPhoneNumberAsyncWithHttpInfo(
         string $user_id,
         \Upsun\Model\VerifyPhoneNumberRequest $verify_phone_number_request = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\VerifyPhoneNumber200Response';
         $request = $this->verifyPhoneNumberRequest($user_id, $verify_phone_number_request);
 

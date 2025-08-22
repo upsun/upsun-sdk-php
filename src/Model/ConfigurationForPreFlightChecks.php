@@ -190,7 +190,8 @@ final class ConfigurationForPreFlightChecks implements ModelInterface, ArrayAcce
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -238,7 +239,7 @@ final class ConfigurationForPreFlightChecks implements ModelInterface, ArrayAcce
     /**
      * Sets enabled
      */
-    public function setEnabled($enabled)
+    public function setEnabled(string|null $enabled = null)
     {
         if (is_null($enabled)) {
             throw new \InvalidArgumentException('non-nullable enabled cannot be null');
@@ -261,7 +262,7 @@ final class ConfigurationForPreFlightChecks implements ModelInterface, ArrayAcce
     /**
      * Sets ignored_rules
      */
-    public function setIgnoredRules($ignored_rules)
+    public function setIgnoredRules(string|null $ignored_rules = null)
     {
         if (is_null($ignored_rules)) {
             throw new \InvalidArgumentException('non-nullable ignored_rules cannot be null');
@@ -340,5 +341,3 @@ final class ConfigurationForPreFlightChecks implements ModelInterface, ArrayAcce
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -247,7 +247,8 @@ final class FastlyIntegrationCreateInput implements ModelInterface, ArrayAccess,
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -307,7 +308,7 @@ final class FastlyIntegrationCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -330,7 +331,7 @@ final class FastlyIntegrationCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets events
      */
-    public function setEvents($events)
+    public function setEvents(string|null $events = null)
     {
         if (is_null($events)) {
             throw new \InvalidArgumentException('non-nullable events cannot be null');
@@ -353,7 +354,7 @@ final class FastlyIntegrationCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets environments
      */
-    public function setEnvironments($environments)
+    public function setEnvironments(string|null $environments = null)
     {
         if (is_null($environments)) {
             throw new \InvalidArgumentException('non-nullable environments cannot be null');
@@ -376,7 +377,7 @@ final class FastlyIntegrationCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets excluded_environments
      */
-    public function setExcludedEnvironments($excluded_environments)
+    public function setExcludedEnvironments(string|null $excluded_environments = null)
     {
         if (is_null($excluded_environments)) {
             throw new \InvalidArgumentException('non-nullable excluded_environments cannot be null');
@@ -399,7 +400,7 @@ final class FastlyIntegrationCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets states
      */
-    public function setStates($states)
+    public function setStates(string|null $states = null)
     {
         if (is_null($states)) {
             throw new \InvalidArgumentException('non-nullable states cannot be null');
@@ -422,7 +423,7 @@ final class FastlyIntegrationCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets result
      */
-    public function setResult($result)
+    public function setResult(string|null $result = null)
     {
         if (is_null($result)) {
             throw new \InvalidArgumentException('non-nullable result cannot be null');
@@ -455,7 +456,7 @@ final class FastlyIntegrationCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets token
      */
-    public function setToken($token)
+    public function setToken(string|null $token = null)
     {
         if (is_null($token)) {
             throw new \InvalidArgumentException('non-nullable token cannot be null');
@@ -478,7 +479,7 @@ final class FastlyIntegrationCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets service_id
      */
-    public function setServiceId($service_id)
+    public function setServiceId(string|null $service_id = null)
     {
         if (is_null($service_id)) {
             throw new \InvalidArgumentException('non-nullable service_id cannot be null');
@@ -557,5 +558,3 @@ final class FastlyIntegrationCreateInput implements ModelInterface, ArrayAccess,
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

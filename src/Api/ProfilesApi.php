@@ -103,16 +103,12 @@ final class ProfilesApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,10 @@ final class ProfilesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Address
      */
-    public function getOrgAddress($organization_id)
-    {
+    public function getOrgAddress(
+        $organization_id
+    ): \Upsun\Model\Address {
         list($response) = $this->getOrgAddressWithHttpInfo($organization_id);
         return $response;
     }
@@ -265,7 +261,7 @@ final class ProfilesApi
      */
     public function getOrgAddressAsyncWithHttpInfo(
         string $organization_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Address';
         $request = $this->getOrgAddressRequest($organization_id);
 
@@ -392,10 +388,10 @@ final class ProfilesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Profile
      */
-    public function getOrgProfile($organization_id)
-    {
+    public function getOrgProfile(
+        $organization_id
+    ): \Upsun\Model\Profile {
         list($response) = $this->getOrgProfileWithHttpInfo($organization_id);
         return $response;
     }
@@ -534,7 +530,7 @@ final class ProfilesApi
      */
     public function getOrgProfileAsyncWithHttpInfo(
         string $organization_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Profile';
         $request = $this->getOrgProfileRequest($organization_id);
 
@@ -661,10 +657,11 @@ final class ProfilesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Address
      */
-    public function updateOrgAddress($organization_id, $address = null)
-    {
+    public function updateOrgAddress(
+        $organization_id,
+        $address = null
+    ): \Upsun\Model\Address {
         list($response) = $this->updateOrgAddressWithHttpInfo($organization_id, $address);
         return $response;
     }
@@ -820,7 +817,7 @@ final class ProfilesApi
     public function updateOrgAddressAsyncWithHttpInfo(
         string $organization_id,
         \Upsun\Model\Address $address = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Address';
         $request = $this->updateOrgAddressRequest($organization_id, $address);
 
@@ -954,10 +951,11 @@ final class ProfilesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Profile
      */
-    public function updateOrgProfile($organization_id, $update_org_profile_request = null)
-    {
+    public function updateOrgProfile(
+        $organization_id,
+        $update_org_profile_request = null
+    ): \Upsun\Model\Profile {
         list($response) = $this->updateOrgProfileWithHttpInfo($organization_id, $update_org_profile_request);
         return $response;
     }
@@ -1113,7 +1111,7 @@ final class ProfilesApi
     public function updateOrgProfileAsyncWithHttpInfo(
         string $organization_id,
         \Upsun\Model\UpdateOrgProfileRequest $update_org_profile_request = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Profile';
         $request = $this->updateOrgProfileRequest($organization_id, $update_org_profile_request);
 

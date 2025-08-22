@@ -261,7 +261,8 @@ final class WebHookIntegration implements ModelInterface, ArrayAccess, \JsonSeri
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -342,7 +343,7 @@ final class WebHookIntegration implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets created_at
      */
-    public function setCreatedAt($created_at)
+    public function setCreatedAt(string|null $created_at = null)
     {
         if (is_null($created_at)) {
             array_push($this->openAPINullablesSetToNull, 'created_at');
@@ -372,7 +373,7 @@ final class WebHookIntegration implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt($updated_at)
+    public function setUpdatedAt(string|null $updated_at = null)
     {
         if (is_null($updated_at)) {
             array_push($this->openAPINullablesSetToNull, 'updated_at');
@@ -402,7 +403,7 @@ final class WebHookIntegration implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -425,7 +426,7 @@ final class WebHookIntegration implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets events
      */
-    public function setEvents($events)
+    public function setEvents(string|null $events = null)
     {
         if (is_null($events)) {
             throw new \InvalidArgumentException('non-nullable events cannot be null');
@@ -448,7 +449,7 @@ final class WebHookIntegration implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets environments
      */
-    public function setEnvironments($environments)
+    public function setEnvironments(string|null $environments = null)
     {
         if (is_null($environments)) {
             throw new \InvalidArgumentException('non-nullable environments cannot be null');
@@ -471,7 +472,7 @@ final class WebHookIntegration implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets excluded_environments
      */
-    public function setExcludedEnvironments($excluded_environments)
+    public function setExcludedEnvironments(string|null $excluded_environments = null)
     {
         if (is_null($excluded_environments)) {
             throw new \InvalidArgumentException('non-nullable excluded_environments cannot be null');
@@ -494,7 +495,7 @@ final class WebHookIntegration implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets states
      */
-    public function setStates($states)
+    public function setStates(string|null $states = null)
     {
         if (is_null($states)) {
             throw new \InvalidArgumentException('non-nullable states cannot be null');
@@ -517,7 +518,7 @@ final class WebHookIntegration implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets result
      */
-    public function setResult($result)
+    public function setResult(string|null $result = null)
     {
         if (is_null($result)) {
             throw new \InvalidArgumentException('non-nullable result cannot be null');
@@ -550,7 +551,7 @@ final class WebHookIntegration implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets shared_key
      */
-    public function setSharedKey($shared_key)
+    public function setSharedKey(string|null $shared_key = null)
     {
         if (is_null($shared_key)) {
             array_push($this->openAPINullablesSetToNull, 'shared_key');
@@ -580,7 +581,7 @@ final class WebHookIntegration implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets url
      */
-    public function setUrl($url)
+    public function setUrl(string|null $url = null)
     {
         if (is_null($url)) {
             throw new \InvalidArgumentException('non-nullable url cannot be null');
@@ -659,5 +660,3 @@ final class WebHookIntegration implements ModelInterface, ArrayAccess, \JsonSeri
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

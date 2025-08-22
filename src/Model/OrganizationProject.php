@@ -282,7 +282,8 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, \JsonSer
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -333,7 +334,7 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets id
      */
-    public function setId($id)
+    public function setId(string|null $id = null)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -356,7 +357,7 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets organization_id
      */
-    public function setOrganizationId($organization_id)
+    public function setOrganizationId(string|null $organization_id = null)
     {
         if (is_null($organization_id)) {
             throw new \InvalidArgumentException('non-nullable organization_id cannot be null');
@@ -379,7 +380,7 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets subscription_id
      */
-    public function setSubscriptionId($subscription_id)
+    public function setSubscriptionId(string|null $subscription_id = null)
     {
         if (is_null($subscription_id)) {
             throw new \InvalidArgumentException('non-nullable subscription_id cannot be null');
@@ -402,7 +403,7 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets region
      */
-    public function setRegion($region)
+    public function setRegion(string|null $region = null)
     {
         if (is_null($region)) {
             throw new \InvalidArgumentException('non-nullable region cannot be null');
@@ -425,7 +426,7 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets title
      */
-    public function setTitle($title)
+    public function setTitle(string|null $title = null)
     {
         if (is_null($title)) {
             throw new \InvalidArgumentException('non-nullable title cannot be null');
@@ -448,7 +449,7 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -471,7 +472,7 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets plan
      */
-    public function setPlan($plan)
+    public function setPlan(string|null $plan = null)
     {
         if (is_null($plan)) {
             throw new \InvalidArgumentException('non-nullable plan cannot be null');
@@ -494,7 +495,7 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets access_migration_status
      */
-    public function setAccessMigrationStatus($access_migration_status)
+    public function setAccessMigrationStatus(string|null $access_migration_status = null)
     {
         if (is_null($access_migration_status)) {
             throw new \InvalidArgumentException('non-nullable access_migration_status cannot be null');
@@ -527,7 +528,7 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets status
      */
-    public function setStatus($status)
+    public function setStatus(string|null $status = null)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
@@ -550,7 +551,7 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets vendor
      */
-    public function setVendor($vendor)
+    public function setVendor(string|null $vendor = null)
     {
         if (is_null($vendor)) {
             throw new \InvalidArgumentException('non-nullable vendor cannot be null');
@@ -573,7 +574,7 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets created_at
      */
-    public function setCreatedAt($created_at)
+    public function setCreatedAt(string|null $created_at = null)
     {
         if (is_null($created_at)) {
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
@@ -596,7 +597,7 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt($updated_at)
+    public function setUpdatedAt(string|null $updated_at = null)
     {
         if (is_null($updated_at)) {
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
@@ -619,7 +620,7 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets _links
      */
-    public function setLinks($_links)
+    public function setLinks(string|null $_links = null)
     {
         if (is_null($_links)) {
             throw new \InvalidArgumentException('non-nullable _links cannot be null');
@@ -698,5 +699,3 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, \JsonSer
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

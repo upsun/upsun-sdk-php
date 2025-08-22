@@ -211,7 +211,8 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements ModelInt
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -262,7 +263,7 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements ModelInt
     /**
      * Sets spec
      */
-    public function setSpec($spec)
+    public function setSpec(string|null $spec = null)
     {
         if (is_null($spec)) {
             throw new \InvalidArgumentException('non-nullable spec cannot be null');
@@ -285,7 +286,7 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements ModelInt
     /**
      * Sets commands
      */
-    public function setCommands($commands)
+    public function setCommands(string|null $commands = null)
     {
         if (is_null($commands)) {
             throw new \InvalidArgumentException('non-nullable commands cannot be null');
@@ -308,7 +309,7 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements ModelInt
     /**
      * Sets shutdown_timeout
      */
-    public function setShutdownTimeout($shutdown_timeout)
+    public function setShutdownTimeout(string|null $shutdown_timeout = null)
     {
         if (is_null($shutdown_timeout)) {
             array_push($this->openAPINullablesSetToNull, 'shutdown_timeout');
@@ -338,7 +339,7 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements ModelInt
     /**
      * Sets timeout
      */
-    public function setTimeout($timeout)
+    public function setTimeout(string|null $timeout = null)
     {
         if (is_null($timeout)) {
             throw new \InvalidArgumentException('non-nullable timeout cannot be null');
@@ -361,7 +362,7 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements ModelInt
     /**
      * Sets cmd
      */
-    public function setCmd($cmd)
+    public function setCmd(string|null $cmd = null)
     {
         if (is_null($cmd)) {
             throw new \InvalidArgumentException('non-nullable cmd cannot be null');
@@ -440,5 +441,3 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements ModelInt
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

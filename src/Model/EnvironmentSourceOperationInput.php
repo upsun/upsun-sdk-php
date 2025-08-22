@@ -190,7 +190,8 @@ final class EnvironmentSourceOperationInput implements ModelInterface, ArrayAcce
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -238,7 +239,7 @@ final class EnvironmentSourceOperationInput implements ModelInterface, ArrayAcce
     /**
      * Sets operation
      */
-    public function setOperation($operation)
+    public function setOperation(string|null $operation = null)
     {
         if (is_null($operation)) {
             throw new \InvalidArgumentException('non-nullable operation cannot be null');
@@ -261,7 +262,7 @@ final class EnvironmentSourceOperationInput implements ModelInterface, ArrayAcce
     /**
      * Sets variables
      */
-    public function setVariables($variables)
+    public function setVariables(string|null $variables = null)
     {
         if (is_null($variables)) {
             throw new \InvalidArgumentException('non-nullable variables cannot be null');
@@ -340,5 +341,3 @@ final class EnvironmentSourceOperationInput implements ModelInterface, ArrayAcce
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

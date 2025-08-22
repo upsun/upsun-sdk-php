@@ -211,7 +211,8 @@ final class ProfileCurrentTrialSpendRemaining implements ModelInterface, ArrayAc
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -253,7 +254,7 @@ final class ProfileCurrentTrialSpendRemaining implements ModelInterface, ArrayAc
     /**
      * Sets formatted
      */
-    public function setFormatted($formatted)
+    public function setFormatted(string|null $formatted = null)
     {
         if (is_null($formatted)) {
             throw new \InvalidArgumentException('non-nullable formatted cannot be null');
@@ -276,7 +277,7 @@ final class ProfileCurrentTrialSpendRemaining implements ModelInterface, ArrayAc
     /**
      * Sets amount
      */
-    public function setAmount($amount)
+    public function setAmount(string|null $amount = null)
     {
         if (is_null($amount)) {
             throw new \InvalidArgumentException('non-nullable amount cannot be null');
@@ -299,7 +300,7 @@ final class ProfileCurrentTrialSpendRemaining implements ModelInterface, ArrayAc
     /**
      * Sets currency
      */
-    public function setCurrency($currency)
+    public function setCurrency(string|null $currency = null)
     {
         if (is_null($currency)) {
             throw new \InvalidArgumentException('non-nullable currency cannot be null');
@@ -322,7 +323,7 @@ final class ProfileCurrentTrialSpendRemaining implements ModelInterface, ArrayAc
     /**
      * Sets currency_symbol
      */
-    public function setCurrencySymbol($currency_symbol)
+    public function setCurrencySymbol(string|null $currency_symbol = null)
     {
         if (is_null($currency_symbol)) {
             throw new \InvalidArgumentException('non-nullable currency_symbol cannot be null');
@@ -345,7 +346,7 @@ final class ProfileCurrentTrialSpendRemaining implements ModelInterface, ArrayAc
     /**
      * Sets unlimited
      */
-    public function setUnlimited($unlimited)
+    public function setUnlimited(string|null $unlimited = null)
     {
         if (is_null($unlimited)) {
             throw new \InvalidArgumentException('non-nullable unlimited cannot be null');
@@ -424,5 +425,3 @@ final class ProfileCurrentTrialSpendRemaining implements ModelInterface, ArrayAc
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

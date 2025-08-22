@@ -197,7 +197,8 @@ final class TheEnvironmentDeploymentState implements ModelInterface, ArrayAccess
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -248,7 +249,7 @@ final class TheEnvironmentDeploymentState implements ModelInterface, ArrayAccess
     /**
      * Sets last_deployment_successful
      */
-    public function setLastDeploymentSuccessful($last_deployment_successful)
+    public function setLastDeploymentSuccessful(string|null $last_deployment_successful = null)
     {
         if (is_null($last_deployment_successful)) {
             throw new \InvalidArgumentException('non-nullable last_deployment_successful cannot be null');
@@ -271,7 +272,7 @@ final class TheEnvironmentDeploymentState implements ModelInterface, ArrayAccess
     /**
      * Sets last_deployment_at
      */
-    public function setLastDeploymentAt($last_deployment_at)
+    public function setLastDeploymentAt(string|null $last_deployment_at = null)
     {
         if (is_null($last_deployment_at)) {
             array_push($this->openAPINullablesSetToNull, 'last_deployment_at');
@@ -301,7 +302,7 @@ final class TheEnvironmentDeploymentState implements ModelInterface, ArrayAccess
     /**
      * Sets crons
      */
-    public function setCrons($crons)
+    public function setCrons(string|null $crons = null)
     {
         if (is_null($crons)) {
             throw new \InvalidArgumentException('non-nullable crons cannot be null');
@@ -380,5 +381,3 @@ final class TheEnvironmentDeploymentState implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

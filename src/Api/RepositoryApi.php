@@ -103,16 +103,12 @@ final class RepositoryApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,11 @@ final class RepositoryApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Blob
      */
-    public function getProjectsGitBlobs($project_id, $repository_blob_id)
-    {
+    public function getProjectsGitBlobs(
+        $project_id,
+        $repository_blob_id
+    ): \Upsun\Model\Blob {
         list($response) = $this->getProjectsGitBlobsWithHttpInfo($project_id, $repository_blob_id);
         return $response;
     }
@@ -240,7 +237,7 @@ final class RepositoryApi
     public function getProjectsGitBlobsAsyncWithHttpInfo(
         string $project_id,
         string $repository_blob_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Blob';
         $request = $this->getProjectsGitBlobsRequest($project_id, $repository_blob_id);
 
@@ -382,10 +379,11 @@ final class RepositoryApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Commit
      */
-    public function getProjectsGitCommits($project_id, $repository_commit_id)
-    {
+    public function getProjectsGitCommits(
+        $project_id,
+        $repository_commit_id
+    ): \Upsun\Model\Commit {
         list($response) = $this->getProjectsGitCommitsWithHttpInfo($project_id, $repository_commit_id);
         return $response;
     }
@@ -499,7 +497,7 @@ final class RepositoryApi
     public function getProjectsGitCommitsAsyncWithHttpInfo(
         string $project_id,
         string $repository_commit_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Commit';
         $request = $this->getProjectsGitCommitsRequest($project_id, $repository_commit_id);
 
@@ -641,10 +639,11 @@ final class RepositoryApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Ref
      */
-    public function getProjectsGitRefs($project_id, $repository_ref_id)
-    {
+    public function getProjectsGitRefs(
+        $project_id,
+        $repository_ref_id
+    ): \Upsun\Model\Ref {
         list($response) = $this->getProjectsGitRefsWithHttpInfo($project_id, $repository_ref_id);
         return $response;
     }
@@ -758,7 +757,7 @@ final class RepositoryApi
     public function getProjectsGitRefsAsyncWithHttpInfo(
         string $project_id,
         string $repository_ref_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Ref';
         $request = $this->getProjectsGitRefsRequest($project_id, $repository_ref_id);
 
@@ -900,10 +899,11 @@ final class RepositoryApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Tree
      */
-    public function getProjectsGitTrees($project_id, $repository_tree_id)
-    {
+    public function getProjectsGitTrees(
+        $project_id,
+        $repository_tree_id
+    ): \Upsun\Model\Tree {
         list($response) = $this->getProjectsGitTreesWithHttpInfo($project_id, $repository_tree_id);
         return $response;
     }
@@ -1017,7 +1017,7 @@ final class RepositoryApi
     public function getProjectsGitTreesAsyncWithHttpInfo(
         string $project_id,
         string $repository_tree_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Tree';
         $request = $this->getProjectsGitTreesRequest($project_id, $repository_tree_id);
 
@@ -1159,10 +1159,10 @@ final class RepositoryApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Ref[]
      */
-    public function listProjectsGitRefs($project_id)
-    {
+    public function listProjectsGitRefs(
+        $project_id
+    ): \Upsun\Model\Ref[] {
         list($response) = $this->listProjectsGitRefsWithHttpInfo($project_id);
         return $response;
     }
@@ -1273,7 +1273,7 @@ final class RepositoryApi
      */
     public function listProjectsGitRefsAsyncWithHttpInfo(
         string $project_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Ref[]';
         $request = $this->listProjectsGitRefsRequest($project_id);
 

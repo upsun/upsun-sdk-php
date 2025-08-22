@@ -197,7 +197,8 @@ final class ReplacementDomainStorageCreateInput implements ModelInterface, Array
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -242,7 +243,7 @@ final class ReplacementDomainStorageCreateInput implements ModelInterface, Array
     /**
      * Sets name
      */
-    public function setName($name)
+    public function setName(string|null $name = null)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -265,7 +266,7 @@ final class ReplacementDomainStorageCreateInput implements ModelInterface, Array
     /**
      * Sets attributes
      */
-    public function setAttributes($attributes)
+    public function setAttributes(string|null $attributes = null)
     {
         if (is_null($attributes)) {
             throw new \InvalidArgumentException('non-nullable attributes cannot be null');
@@ -288,7 +289,7 @@ final class ReplacementDomainStorageCreateInput implements ModelInterface, Array
     /**
      * Sets replacement_for
      */
-    public function setReplacementFor($replacement_for)
+    public function setReplacementFor(string|null $replacement_for = null)
     {
         if (is_null($replacement_for)) {
             throw new \InvalidArgumentException('non-nullable replacement_for cannot be null');
@@ -367,5 +368,3 @@ final class ReplacementDomainStorageCreateInput implements ModelInterface, Array
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

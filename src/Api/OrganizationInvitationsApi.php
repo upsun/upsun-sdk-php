@@ -103,16 +103,12 @@ final class OrganizationInvitationsApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,11 @@ final class OrganizationInvitationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function cancelOrgInvite($organization_id, $invitation_id)
-    {
+    public function cancelOrgInvite(
+        $organization_id,
+        $invitation_id
+    ): void {
         $this->cancelOrgInviteWithHttpInfo($organization_id, $invitation_id);
     }
 
@@ -212,7 +209,7 @@ final class OrganizationInvitationsApi
     public function cancelOrgInviteAsyncWithHttpInfo(
         string $organization_id,
         string $invitation_id
-    ) {
+    ): Promise {
         $returnType = '';
         $request = $this->cancelOrgInviteRequest($organization_id, $invitation_id);
 
@@ -344,10 +341,11 @@ final class OrganizationInvitationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\OrganizationInvitation
      */
-    public function createOrgInvite($organization_id, $create_org_invite_request = null)
-    {
+    public function createOrgInvite(
+        $organization_id,
+        $create_org_invite_request = null
+    ): \Upsun\Model\OrganizationInvitation {
         list($response) = $this->createOrgInviteWithHttpInfo($organization_id, $create_org_invite_request);
         return $response;
     }
@@ -503,7 +501,7 @@ final class OrganizationInvitationsApi
     public function createOrgInviteAsyncWithHttpInfo(
         string $organization_id,
         \Upsun\Model\CreateOrgInviteRequest $create_org_invite_request = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\OrganizationInvitation';
         $request = $this->createOrgInviteRequest($organization_id, $create_org_invite_request);
 
@@ -637,10 +635,15 @@ final class OrganizationInvitationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\OrganizationInvitation[]
      */
-    public function listOrgInvites($organization_id, $filter_state = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
-    {
+    public function listOrgInvites(
+        $organization_id,
+        $filter_state = null,
+        $page_size = null,
+        $page_before = null,
+        $page_after = null,
+        $sort = null
+    ): \Upsun\Model\OrganizationInvitation[] {
         list($response) = $this->listOrgInvitesWithHttpInfo($organization_id, $filter_state, $page_size, $page_before, $page_after, $sort);
         return $response;
     }
@@ -780,7 +783,7 @@ final class OrganizationInvitationsApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\OrganizationInvitation[]';
         $request = $this->listOrgInvitesRequest($organization_id, $filter_state, $page_size, $page_before, $page_after, $sort);
 
@@ -852,8 +855,8 @@ final class OrganizationInvitationsApi
 
         // query params
         if ($filter_state !== null) {
-            if('form' === 'deepObject' && is_array($filter_state)) {
-                foreach($filter_state as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_state)) {
+                foreach ($filter_state as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -863,8 +866,8 @@ final class OrganizationInvitationsApi
         }
         // query params
         if ($page_size !== null) {
-            if('form' === 'form' && is_array($page_size)) {
-                foreach($page_size as $key => $value) {
+            if ('form' === 'form' && is_array($page_size)) {
+                foreach ($page_size as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -874,8 +877,8 @@ final class OrganizationInvitationsApi
         }
         // query params
         if ($page_before !== null) {
-            if('form' === 'form' && is_array($page_before)) {
-                foreach($page_before as $key => $value) {
+            if ('form' === 'form' && is_array($page_before)) {
+                foreach ($page_before as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -885,8 +888,8 @@ final class OrganizationInvitationsApi
         }
         // query params
         if ($page_after !== null) {
-            if('form' === 'form' && is_array($page_after)) {
-                foreach($page_after as $key => $value) {
+            if ('form' === 'form' && is_array($page_after)) {
+                foreach ($page_after as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -896,8 +899,8 @@ final class OrganizationInvitationsApi
         }
         // query params
         if ($sort !== null) {
-            if('form' === 'form' && is_array($sort)) {
-                foreach($sort as $key => $value) {
+            if ('form' === 'form' && is_array($sort)) {
+                foreach ($sort as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }

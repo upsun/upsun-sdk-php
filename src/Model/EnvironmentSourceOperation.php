@@ -197,7 +197,8 @@ final class EnvironmentSourceOperation implements ModelInterface, ArrayAccess, \
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -248,7 +249,7 @@ final class EnvironmentSourceOperation implements ModelInterface, ArrayAccess, \
     /**
      * Sets app
      */
-    public function setApp($app)
+    public function setApp(string|null $app = null)
     {
         if (is_null($app)) {
             throw new \InvalidArgumentException('non-nullable app cannot be null');
@@ -271,7 +272,7 @@ final class EnvironmentSourceOperation implements ModelInterface, ArrayAccess, \
     /**
      * Sets operation
      */
-    public function setOperation($operation)
+    public function setOperation(string|null $operation = null)
     {
         if (is_null($operation)) {
             throw new \InvalidArgumentException('non-nullable operation cannot be null');
@@ -294,7 +295,7 @@ final class EnvironmentSourceOperation implements ModelInterface, ArrayAccess, \
     /**
      * Sets command
      */
-    public function setCommand($command)
+    public function setCommand(string|null $command = null)
     {
         if (is_null($command)) {
             throw new \InvalidArgumentException('non-nullable command cannot be null');
@@ -373,5 +374,3 @@ final class EnvironmentSourceOperation implements ModelInterface, ArrayAccess, \
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

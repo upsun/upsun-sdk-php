@@ -322,7 +322,8 @@ final class Invoice implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -382,7 +383,7 @@ final class Invoice implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      */
-    public function setId($id)
+    public function setId(string|null $id = null)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -405,7 +406,7 @@ final class Invoice implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets invoice_number
      */
-    public function setInvoiceNumber($invoice_number)
+    public function setInvoiceNumber(string|null $invoice_number = null)
     {
         if (is_null($invoice_number)) {
             throw new \InvalidArgumentException('non-nullable invoice_number cannot be null');
@@ -428,7 +429,7 @@ final class Invoice implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -461,7 +462,7 @@ final class Invoice implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets order_id
      */
-    public function setOrderId($order_id)
+    public function setOrderId(string|null $order_id = null)
     {
         if (is_null($order_id)) {
             throw new \InvalidArgumentException('non-nullable order_id cannot be null');
@@ -484,7 +485,7 @@ final class Invoice implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets related_invoice_id
      */
-    public function setRelatedInvoiceId($related_invoice_id)
+    public function setRelatedInvoiceId(string|null $related_invoice_id = null)
     {
         if (is_null($related_invoice_id)) {
             array_push($this->openAPINullablesSetToNull, 'related_invoice_id');
@@ -514,7 +515,7 @@ final class Invoice implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      */
-    public function setStatus($status)
+    public function setStatus(string|null $status = null)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
@@ -547,7 +548,7 @@ final class Invoice implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets owner
      */
-    public function setOwner($owner)
+    public function setOwner(string|null $owner = null)
     {
         if (is_null($owner)) {
             throw new \InvalidArgumentException('non-nullable owner cannot be null');
@@ -570,7 +571,7 @@ final class Invoice implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets invoice_date
      */
-    public function setInvoiceDate($invoice_date)
+    public function setInvoiceDate(string|null $invoice_date = null)
     {
         if (is_null($invoice_date)) {
             array_push($this->openAPINullablesSetToNull, 'invoice_date');
@@ -600,7 +601,7 @@ final class Invoice implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets invoice_due
      */
-    public function setInvoiceDue($invoice_due)
+    public function setInvoiceDue(string|null $invoice_due = null)
     {
         if (is_null($invoice_due)) {
             array_push($this->openAPINullablesSetToNull, 'invoice_due');
@@ -630,7 +631,7 @@ final class Invoice implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets created
      */
-    public function setCreated($created)
+    public function setCreated(string|null $created = null)
     {
         if (is_null($created)) {
             array_push($this->openAPINullablesSetToNull, 'created');
@@ -660,7 +661,7 @@ final class Invoice implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets changed
      */
-    public function setChanged($changed)
+    public function setChanged(string|null $changed = null)
     {
         if (is_null($changed)) {
             array_push($this->openAPINullablesSetToNull, 'changed');
@@ -690,7 +691,7 @@ final class Invoice implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets company
      */
-    public function setCompany($company)
+    public function setCompany(string|null $company = null)
     {
         if (is_null($company)) {
             throw new \InvalidArgumentException('non-nullable company cannot be null');
@@ -713,7 +714,7 @@ final class Invoice implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets total
      */
-    public function setTotal($total)
+    public function setTotal(string|null $total = null)
     {
         if (is_null($total)) {
             throw new \InvalidArgumentException('non-nullable total cannot be null');
@@ -736,7 +737,7 @@ final class Invoice implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets address
      */
-    public function setAddress($address)
+    public function setAddress(string|null $address = null)
     {
         if (is_null($address)) {
             throw new \InvalidArgumentException('non-nullable address cannot be null');
@@ -759,7 +760,7 @@ final class Invoice implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets notes
      */
-    public function setNotes($notes)
+    public function setNotes(string|null $notes = null)
     {
         if (is_null($notes)) {
             throw new \InvalidArgumentException('non-nullable notes cannot be null');
@@ -782,7 +783,7 @@ final class Invoice implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets invoice_pdf
      */
-    public function setInvoicePdf($invoice_pdf)
+    public function setInvoicePdf(string|null $invoice_pdf = null)
     {
         if (is_null($invoice_pdf)) {
             throw new \InvalidArgumentException('non-nullable invoice_pdf cannot be null');
@@ -861,5 +862,3 @@ final class Invoice implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

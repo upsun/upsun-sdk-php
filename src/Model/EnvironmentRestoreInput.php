@@ -211,7 +211,8 @@ final class EnvironmentRestoreInput implements ModelInterface, ArrayAccess, \Jso
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -268,7 +269,7 @@ final class EnvironmentRestoreInput implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets environment_name
      */
-    public function setEnvironmentName($environment_name)
+    public function setEnvironmentName(string|null $environment_name = null)
     {
         if (is_null($environment_name)) {
             array_push($this->openAPINullablesSetToNull, 'environment_name');
@@ -298,7 +299,7 @@ final class EnvironmentRestoreInput implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets branch_from
      */
-    public function setBranchFrom($branch_from)
+    public function setBranchFrom(string|null $branch_from = null)
     {
         if (is_null($branch_from)) {
             array_push($this->openAPINullablesSetToNull, 'branch_from');
@@ -328,7 +329,7 @@ final class EnvironmentRestoreInput implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets restore_code
      */
-    public function setRestoreCode($restore_code)
+    public function setRestoreCode(string|null $restore_code = null)
     {
         if (is_null($restore_code)) {
             throw new \InvalidArgumentException('non-nullable restore_code cannot be null');
@@ -351,7 +352,7 @@ final class EnvironmentRestoreInput implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets restore_resources
      */
-    public function setRestoreResources($restore_resources)
+    public function setRestoreResources(string|null $restore_resources = null)
     {
         if (is_null($restore_resources)) {
             throw new \InvalidArgumentException('non-nullable restore_resources cannot be null');
@@ -374,7 +375,7 @@ final class EnvironmentRestoreInput implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets resources
      */
-    public function setResources($resources)
+    public function setResources(string|null $resources = null)
     {
         if (is_null($resources)) {
             array_push($this->openAPINullablesSetToNull, 'resources');
@@ -460,5 +461,3 @@ final class EnvironmentRestoreInput implements ModelInterface, ArrayAccess, \Jso
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

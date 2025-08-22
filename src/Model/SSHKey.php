@@ -218,7 +218,8 @@ final class SSHKey implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -260,7 +261,7 @@ final class SSHKey implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets key_id
      */
-    public function setKeyId($key_id)
+    public function setKeyId(string|null $key_id = null)
     {
         if (is_null($key_id)) {
             throw new \InvalidArgumentException('non-nullable key_id cannot be null');
@@ -283,7 +284,7 @@ final class SSHKey implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets uid
      */
-    public function setUid($uid)
+    public function setUid(string|null $uid = null)
     {
         if (is_null($uid)) {
             throw new \InvalidArgumentException('non-nullable uid cannot be null');
@@ -306,7 +307,7 @@ final class SSHKey implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets fingerprint
      */
-    public function setFingerprint($fingerprint)
+    public function setFingerprint(string|null $fingerprint = null)
     {
         if (is_null($fingerprint)) {
             throw new \InvalidArgumentException('non-nullable fingerprint cannot be null');
@@ -329,7 +330,7 @@ final class SSHKey implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets title
      */
-    public function setTitle($title)
+    public function setTitle(string|null $title = null)
     {
         if (is_null($title)) {
             throw new \InvalidArgumentException('non-nullable title cannot be null');
@@ -352,7 +353,7 @@ final class SSHKey implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets value
      */
-    public function setValue($value)
+    public function setValue(string|null $value = null)
     {
         if (is_null($value)) {
             throw new \InvalidArgumentException('non-nullable value cannot be null');
@@ -375,7 +376,7 @@ final class SSHKey implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets changed
      */
-    public function setChanged($changed)
+    public function setChanged(string|null $changed = null)
     {
         if (is_null($changed)) {
             throw new \InvalidArgumentException('non-nullable changed cannot be null');
@@ -454,5 +455,3 @@ final class SSHKey implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

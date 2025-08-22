@@ -183,7 +183,8 @@ final class OperationsThatCanBeAppliedToTheSourceCodeValue implements ModelInter
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -228,7 +229,7 @@ final class OperationsThatCanBeAppliedToTheSourceCodeValue implements ModelInter
     /**
      * Sets command
      */
-    public function setCommand($command)
+    public function setCommand(string|null $command = null)
     {
         if (is_null($command)) {
             array_push($this->openAPINullablesSetToNull, 'command');
@@ -314,5 +315,3 @@ final class OperationsThatCanBeAppliedToTheSourceCodeValue implements ModelInter
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

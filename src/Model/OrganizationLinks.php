@@ -281,7 +281,8 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, \JsonSeria
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -323,7 +324,7 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets self
      */
-    public function setSelf($self)
+    public function setSelf(string|null $self = null)
     {
         if (is_null($self)) {
             throw new \InvalidArgumentException('non-nullable self cannot be null');
@@ -346,7 +347,7 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets update
      */
-    public function setUpdate($update)
+    public function setUpdate(string|null $update = null)
     {
         if (is_null($update)) {
             throw new \InvalidArgumentException('non-nullable update cannot be null');
@@ -369,7 +370,7 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets delete
      */
-    public function setDelete($delete)
+    public function setDelete(string|null $delete = null)
     {
         if (is_null($delete)) {
             throw new \InvalidArgumentException('non-nullable delete cannot be null');
@@ -392,7 +393,7 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets members
      */
-    public function setMembers($members)
+    public function setMembers(string|null $members = null)
     {
         if (is_null($members)) {
             throw new \InvalidArgumentException('non-nullable members cannot be null');
@@ -415,7 +416,7 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets create_member
      */
-    public function setCreateMember($create_member)
+    public function setCreateMember(string|null $create_member = null)
     {
         if (is_null($create_member)) {
             throw new \InvalidArgumentException('non-nullable create_member cannot be null');
@@ -438,7 +439,7 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets address
      */
-    public function setAddress($address)
+    public function setAddress(string|null $address = null)
     {
         if (is_null($address)) {
             throw new \InvalidArgumentException('non-nullable address cannot be null');
@@ -461,7 +462,7 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets profile
      */
-    public function setProfile($profile)
+    public function setProfile(string|null $profile = null)
     {
         if (is_null($profile)) {
             throw new \InvalidArgumentException('non-nullable profile cannot be null');
@@ -484,7 +485,7 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets payment_source
      */
-    public function setPaymentSource($payment_source)
+    public function setPaymentSource(string|null $payment_source = null)
     {
         if (is_null($payment_source)) {
             throw new \InvalidArgumentException('non-nullable payment_source cannot be null');
@@ -507,7 +508,7 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets orders
      */
-    public function setOrders($orders)
+    public function setOrders(string|null $orders = null)
     {
         if (is_null($orders)) {
             throw new \InvalidArgumentException('non-nullable orders cannot be null');
@@ -530,7 +531,7 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets vouchers
      */
-    public function setVouchers($vouchers)
+    public function setVouchers(string|null $vouchers = null)
     {
         if (is_null($vouchers)) {
             throw new \InvalidArgumentException('non-nullable vouchers cannot be null');
@@ -553,7 +554,7 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets apply_voucher
      */
-    public function setApplyVoucher($apply_voucher)
+    public function setApplyVoucher(string|null $apply_voucher = null)
     {
         if (is_null($apply_voucher)) {
             throw new \InvalidArgumentException('non-nullable apply_voucher cannot be null');
@@ -576,7 +577,7 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets subscriptions
      */
-    public function setSubscriptions($subscriptions)
+    public function setSubscriptions(string|null $subscriptions = null)
     {
         if (is_null($subscriptions)) {
             throw new \InvalidArgumentException('non-nullable subscriptions cannot be null');
@@ -599,7 +600,7 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets create_subscription
      */
-    public function setCreateSubscription($create_subscription)
+    public function setCreateSubscription(string|null $create_subscription = null)
     {
         if (is_null($create_subscription)) {
             throw new \InvalidArgumentException('non-nullable create_subscription cannot be null');
@@ -622,7 +623,7 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets estimate_subscription
      */
-    public function setEstimateSubscription($estimate_subscription)
+    public function setEstimateSubscription(string|null $estimate_subscription = null)
     {
         if (is_null($estimate_subscription)) {
             throw new \InvalidArgumentException('non-nullable estimate_subscription cannot be null');
@@ -645,7 +646,7 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets mfa_enforcement
      */
-    public function setMfaEnforcement($mfa_enforcement)
+    public function setMfaEnforcement(string|null $mfa_enforcement = null)
     {
         if (is_null($mfa_enforcement)) {
             throw new \InvalidArgumentException('non-nullable mfa_enforcement cannot be null');
@@ -724,5 +725,3 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, \JsonSeria
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

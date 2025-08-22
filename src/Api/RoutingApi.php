@@ -103,16 +103,12 @@ final class RoutingApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,12 @@ final class RoutingApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function createProjectsEnvironmentsRoutes($project_id, $environment_id, $route_create_input)
-    {
+    public function createProjectsEnvironmentsRoutes(
+        $project_id,
+        $environment_id,
+        $route_create_input
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->createProjectsEnvironmentsRoutesWithHttpInfo($project_id, $environment_id, $route_create_input);
         return $response;
     }
@@ -243,7 +241,7 @@ final class RoutingApi
         string $project_id,
         string $environment_id,
         \Upsun\Model\RouteCreateInput $route_create_input
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->createProjectsEnvironmentsRoutesRequest($project_id, $environment_id, $route_create_input);
 
@@ -398,10 +396,12 @@ final class RoutingApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function deleteProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id)
-    {
+    public function deleteProjectsEnvironmentsRoutes(
+        $project_id,
+        $environment_id,
+        $route_id
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsEnvironmentsRoutesWithHttpInfo($project_id, $environment_id, $route_id);
         return $response;
     }
@@ -518,7 +518,7 @@ final class RoutingApi
         string $project_id,
         string $environment_id,
         string $route_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deleteProjectsEnvironmentsRoutesRequest($project_id, $environment_id, $route_id);
 
@@ -675,10 +675,12 @@ final class RoutingApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Route
      */
-    public function getProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id)
-    {
+    public function getProjectsEnvironmentsRoutes(
+        $project_id,
+        $environment_id,
+        $route_id
+    ): \Upsun\Model\Route {
         list($response) = $this->getProjectsEnvironmentsRoutesWithHttpInfo($project_id, $environment_id, $route_id);
         return $response;
     }
@@ -795,7 +797,7 @@ final class RoutingApi
         string $project_id,
         string $environment_id,
         string $route_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Route';
         $request = $this->getProjectsEnvironmentsRoutesRequest($project_id, $environment_id, $route_id);
 
@@ -952,10 +954,11 @@ final class RoutingApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Route[]
      */
-    public function listProjectsEnvironmentsRoutes($project_id, $environment_id)
-    {
+    public function listProjectsEnvironmentsRoutes(
+        $project_id,
+        $environment_id
+    ): \Upsun\Model\Route[] {
         list($response) = $this->listProjectsEnvironmentsRoutesWithHttpInfo($project_id, $environment_id);
         return $response;
     }
@@ -1069,7 +1072,7 @@ final class RoutingApi
     public function listProjectsEnvironmentsRoutesAsyncWithHttpInfo(
         string $project_id,
         string $environment_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Route[]';
         $request = $this->listProjectsEnvironmentsRoutesRequest($project_id, $environment_id);
 
@@ -1211,10 +1214,13 @@ final class RoutingApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function updateProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id, $route_patch)
-    {
+    public function updateProjectsEnvironmentsRoutes(
+        $project_id,
+        $environment_id,
+        $route_id,
+        $route_patch
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsEnvironmentsRoutesWithHttpInfo($project_id, $environment_id, $route_id, $route_patch);
         return $response;
     }
@@ -1334,7 +1340,7 @@ final class RoutingApi
         string $environment_id,
         string $route_id,
         \Upsun\Model\RoutePatch $route_patch
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateProjectsEnvironmentsRoutesRequest($project_id, $environment_id, $route_id, $route_patch);
 

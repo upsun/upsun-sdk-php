@@ -225,7 +225,8 @@ final class SplunkIntegrationCreateInput implements ModelInterface, ArrayAccess,
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -279,7 +280,7 @@ final class SplunkIntegrationCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -302,7 +303,7 @@ final class SplunkIntegrationCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets extra
      */
-    public function setExtra($extra)
+    public function setExtra(string|null $extra = null)
     {
         if (is_null($extra)) {
             throw new \InvalidArgumentException('non-nullable extra cannot be null');
@@ -325,7 +326,7 @@ final class SplunkIntegrationCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets url
      */
-    public function setUrl($url)
+    public function setUrl(string|null $url = null)
     {
         if (is_null($url)) {
             throw new \InvalidArgumentException('non-nullable url cannot be null');
@@ -348,7 +349,7 @@ final class SplunkIntegrationCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets index
      */
-    public function setIndex($index)
+    public function setIndex(string|null $index = null)
     {
         if (is_null($index)) {
             throw new \InvalidArgumentException('non-nullable index cannot be null');
@@ -371,7 +372,7 @@ final class SplunkIntegrationCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets token
      */
-    public function setToken($token)
+    public function setToken(string|null $token = null)
     {
         if (is_null($token)) {
             throw new \InvalidArgumentException('non-nullable token cannot be null');
@@ -394,7 +395,7 @@ final class SplunkIntegrationCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets sourcetype
      */
-    public function setSourcetype($sourcetype)
+    public function setSourcetype(string|null $sourcetype = null)
     {
         if (is_null($sourcetype)) {
             throw new \InvalidArgumentException('non-nullable sourcetype cannot be null');
@@ -417,7 +418,7 @@ final class SplunkIntegrationCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets tls_verify
      */
-    public function setTlsVerify($tls_verify)
+    public function setTlsVerify(string|null $tls_verify = null)
     {
         if (is_null($tls_verify)) {
             throw new \InvalidArgumentException('non-nullable tls_verify cannot be null');
@@ -496,5 +497,3 @@ final class SplunkIntegrationCreateInput implements ModelInterface, ArrayAccess,
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

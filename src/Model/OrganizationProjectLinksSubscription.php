@@ -183,7 +183,8 @@ final class OrganizationProjectLinksSubscription implements ModelInterface, Arra
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -225,7 +226,7 @@ final class OrganizationProjectLinksSubscription implements ModelInterface, Arra
     /**
      * Sets href
      */
-    public function setHref($href)
+    public function setHref(string|null $href = null)
     {
         if (is_null($href)) {
             throw new \InvalidArgumentException('non-nullable href cannot be null');
@@ -304,5 +305,3 @@ final class OrganizationProjectLinksSubscription implements ModelInterface, Arra
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

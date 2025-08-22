@@ -103,16 +103,12 @@ final class SSHKeysApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,10 @@ final class SSHKeysApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\SSHKey
      */
-    public function createSshKey($create_ssh_key_request = null)
-    {
+    public function createSshKey(
+        $create_ssh_key_request = null
+    ): \Upsun\Model\SSHKey {
         list($response) = $this->createSshKeyWithHttpInfo($create_ssh_key_request);
         return $response;
     }
@@ -237,7 +233,7 @@ final class SSHKeysApi
      */
     public function createSshKeyAsyncWithHttpInfo(
         \Upsun\Model\CreateSshKeyRequest $create_ssh_key_request = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\SSHKey';
         $request = $this->createSshKeyRequest($create_ssh_key_request);
 
@@ -356,10 +352,10 @@ final class SSHKeysApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function deleteSshKey($key_id)
-    {
+    public function deleteSshKey(
+        $key_id
+    ): void {
         $this->deleteSshKeyWithHttpInfo($key_id);
     }
 
@@ -434,7 +430,7 @@ final class SSHKeysApi
      */
     public function deleteSshKeyAsyncWithHttpInfo(
         int $key_id
-    ) {
+    ): Promise {
         $returnType = '';
         $request = $this->deleteSshKeyRequest($key_id);
 
@@ -551,10 +547,10 @@ final class SSHKeysApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\SSHKey
      */
-    public function getSshKey($key_id)
-    {
+    public function getSshKey(
+        $key_id
+    ): \Upsun\Model\SSHKey {
         list($response) = $this->getSshKeyWithHttpInfo($key_id);
         return $response;
     }
@@ -665,7 +661,7 @@ final class SSHKeysApi
      */
     public function getSshKeyAsyncWithHttpInfo(
         int $key_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\SSHKey';
         $request = $this->getSshKeyRequest($key_id);
 

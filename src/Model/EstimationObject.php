@@ -218,7 +218,8 @@ final class EstimationObject implements ModelInterface, ArrayAccess, \JsonSerial
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -260,7 +261,7 @@ final class EstimationObject implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets plan
      */
-    public function setPlan($plan)
+    public function setPlan(string|null $plan = null)
     {
         if (is_null($plan)) {
             throw new \InvalidArgumentException('non-nullable plan cannot be null');
@@ -283,7 +284,7 @@ final class EstimationObject implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets user_licenses
      */
-    public function setUserLicenses($user_licenses)
+    public function setUserLicenses(string|null $user_licenses = null)
     {
         if (is_null($user_licenses)) {
             throw new \InvalidArgumentException('non-nullable user_licenses cannot be null');
@@ -306,7 +307,7 @@ final class EstimationObject implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets environments
      */
-    public function setEnvironments($environments)
+    public function setEnvironments(string|null $environments = null)
     {
         if (is_null($environments)) {
             throw new \InvalidArgumentException('non-nullable environments cannot be null');
@@ -329,7 +330,7 @@ final class EstimationObject implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets storage
      */
-    public function setStorage($storage)
+    public function setStorage(string|null $storage = null)
     {
         if (is_null($storage)) {
             throw new \InvalidArgumentException('non-nullable storage cannot be null');
@@ -352,7 +353,7 @@ final class EstimationObject implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets total
      */
-    public function setTotal($total)
+    public function setTotal(string|null $total = null)
     {
         if (is_null($total)) {
             throw new \InvalidArgumentException('non-nullable total cannot be null');
@@ -375,7 +376,7 @@ final class EstimationObject implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets options
      */
-    public function setOptions($options)
+    public function setOptions(string|null $options = null)
     {
         if (is_null($options)) {
             throw new \InvalidArgumentException('non-nullable options cannot be null');
@@ -454,5 +455,3 @@ final class EstimationObject implements ModelInterface, ArrayAccess, \JsonSerial
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

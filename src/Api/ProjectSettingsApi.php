@@ -103,16 +103,12 @@ final class ProjectSettingsApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,10 @@ final class ProjectSettingsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ProjectSettings
      */
-    public function getProjectsSettings($project_id)
-    {
+    public function getProjectsSettings(
+        $project_id
+    ): \Upsun\Model\ProjectSettings {
         list($response) = $this->getProjectsSettingsWithHttpInfo($project_id);
         return $response;
     }
@@ -237,7 +233,7 @@ final class ProjectSettingsApi
      */
     public function getProjectsSettingsAsyncWithHttpInfo(
         string $project_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ProjectSettings';
         $request = $this->getProjectsSettingsRequest($project_id);
 
@@ -364,10 +360,11 @@ final class ProjectSettingsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function updateProjectsSettings($project_id, $project_settings_patch)
-    {
+    public function updateProjectsSettings(
+        $project_id,
+        $project_settings_patch
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsSettingsWithHttpInfo($project_id, $project_settings_patch);
         return $response;
     }
@@ -481,7 +478,7 @@ final class ProjectSettingsApi
     public function updateProjectsSettingsAsyncWithHttpInfo(
         string $project_id,
         \Upsun\Model\ProjectSettingsPatch $project_settings_patch
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateProjectsSettingsRequest($project_id, $project_settings_patch);
 

@@ -274,7 +274,8 @@ final class SyslogIntegration implements ModelInterface, ArrayAccess, \JsonSeria
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -364,7 +365,7 @@ final class SyslogIntegration implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets created_at
      */
-    public function setCreatedAt($created_at)
+    public function setCreatedAt(string|null $created_at = null)
     {
         if (is_null($created_at)) {
             array_push($this->openAPINullablesSetToNull, 'created_at');
@@ -394,7 +395,7 @@ final class SyslogIntegration implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt($updated_at)
+    public function setUpdatedAt(string|null $updated_at = null)
     {
         if (is_null($updated_at)) {
             array_push($this->openAPINullablesSetToNull, 'updated_at');
@@ -424,7 +425,7 @@ final class SyslogIntegration implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -447,7 +448,7 @@ final class SyslogIntegration implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets extra
      */
-    public function setExtra($extra)
+    public function setExtra(string|null $extra = null)
     {
         if (is_null($extra)) {
             throw new \InvalidArgumentException('non-nullable extra cannot be null');
@@ -470,7 +471,7 @@ final class SyslogIntegration implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets host
      */
-    public function setHost($host)
+    public function setHost(string|null $host = null)
     {
         if (is_null($host)) {
             throw new \InvalidArgumentException('non-nullable host cannot be null');
@@ -493,7 +494,7 @@ final class SyslogIntegration implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets port
      */
-    public function setPort($port)
+    public function setPort(string|null $port = null)
     {
         if (is_null($port)) {
             throw new \InvalidArgumentException('non-nullable port cannot be null');
@@ -516,7 +517,7 @@ final class SyslogIntegration implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets protocol
      */
-    public function setProtocol($protocol)
+    public function setProtocol(string|null $protocol = null)
     {
         if (is_null($protocol)) {
             throw new \InvalidArgumentException('non-nullable protocol cannot be null');
@@ -549,7 +550,7 @@ final class SyslogIntegration implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets facility
      */
-    public function setFacility($facility)
+    public function setFacility(string|null $facility = null)
     {
         if (is_null($facility)) {
             throw new \InvalidArgumentException('non-nullable facility cannot be null');
@@ -572,7 +573,7 @@ final class SyslogIntegration implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets message_format
      */
-    public function setMessageFormat($message_format)
+    public function setMessageFormat(string|null $message_format = null)
     {
         if (is_null($message_format)) {
             throw new \InvalidArgumentException('non-nullable message_format cannot be null');
@@ -605,7 +606,7 @@ final class SyslogIntegration implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets tls_verify
      */
-    public function setTlsVerify($tls_verify)
+    public function setTlsVerify(string|null $tls_verify = null)
     {
         if (is_null($tls_verify)) {
             throw new \InvalidArgumentException('non-nullable tls_verify cannot be null');
@@ -684,5 +685,3 @@ final class SyslogIntegration implements ModelInterface, ArrayAccess, \JsonSeria
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

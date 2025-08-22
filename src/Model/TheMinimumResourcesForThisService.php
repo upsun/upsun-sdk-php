@@ -204,7 +204,8 @@ final class TheMinimumResourcesForThisService implements ModelInterface, ArrayAc
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -258,7 +259,7 @@ final class TheMinimumResourcesForThisService implements ModelInterface, ArrayAc
     /**
      * Sets cpu
      */
-    public function setCpu($cpu)
+    public function setCpu(string|null $cpu = null)
     {
         if (is_null($cpu)) {
             throw new \InvalidArgumentException('non-nullable cpu cannot be null');
@@ -281,7 +282,7 @@ final class TheMinimumResourcesForThisService implements ModelInterface, ArrayAc
     /**
      * Sets memory
      */
-    public function setMemory($memory)
+    public function setMemory(string|null $memory = null)
     {
         if (is_null($memory)) {
             throw new \InvalidArgumentException('non-nullable memory cannot be null');
@@ -304,7 +305,7 @@ final class TheMinimumResourcesForThisService implements ModelInterface, ArrayAc
     /**
      * Sets disk
      */
-    public function setDisk($disk)
+    public function setDisk(string|null $disk = null)
     {
         if (is_null($disk)) {
             array_push($this->openAPINullablesSetToNull, 'disk');
@@ -334,7 +335,7 @@ final class TheMinimumResourcesForThisService implements ModelInterface, ArrayAc
     /**
      * Sets profile_size
      */
-    public function setProfileSize($profile_size)
+    public function setProfileSize(string|null $profile_size = null)
     {
         if (is_null($profile_size)) {
             array_push($this->openAPINullablesSetToNull, 'profile_size');
@@ -420,5 +421,3 @@ final class TheMinimumResourcesForThisService implements ModelInterface, ArrayAc
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

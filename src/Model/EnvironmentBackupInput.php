@@ -183,7 +183,8 @@ final class EnvironmentBackupInput implements ModelInterface, ArrayAccess, \Json
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -228,7 +229,7 @@ final class EnvironmentBackupInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets safe
      */
-    public function setSafe($safe)
+    public function setSafe(string|null $safe = null)
     {
         if (is_null($safe)) {
             throw new \InvalidArgumentException('non-nullable safe cannot be null');
@@ -307,5 +308,3 @@ final class EnvironmentBackupInput implements ModelInterface, ArrayAccess, \Json
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

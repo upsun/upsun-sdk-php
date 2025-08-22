@@ -228,7 +228,8 @@ final class GrantProjectUserAccessRequestInner implements ModelInterface, ArrayA
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -276,7 +277,7 @@ final class GrantProjectUserAccessRequestInner implements ModelInterface, ArrayA
     /**
      * Sets user_id
      */
-    public function setUserId($user_id)
+    public function setUserId(string|null $user_id = null)
     {
         if (is_null($user_id)) {
             throw new \InvalidArgumentException('non-nullable user_id cannot be null');
@@ -299,7 +300,7 @@ final class GrantProjectUserAccessRequestInner implements ModelInterface, ArrayA
     /**
      * Sets permissions
      */
-    public function setPermissions($permissions)
+    public function setPermissions(string|null $permissions = null)
     {
         if (is_null($permissions)) {
             throw new \InvalidArgumentException('non-nullable permissions cannot be null');
@@ -331,7 +332,7 @@ final class GrantProjectUserAccessRequestInner implements ModelInterface, ArrayA
     /**
      * Sets auto_add_member
      */
-    public function setAutoAddMember($auto_add_member)
+    public function setAutoAddMember(string|null $auto_add_member = null)
     {
         if (is_null($auto_add_member)) {
             throw new \InvalidArgumentException('non-nullable auto_add_member cannot be null');
@@ -410,5 +411,3 @@ final class GrantProjectUserAccessRequestInner implements ModelInterface, ArrayA
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

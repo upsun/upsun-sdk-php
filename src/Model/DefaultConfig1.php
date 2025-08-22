@@ -190,7 +190,8 @@ final class DefaultConfig1 implements ModelInterface, ArrayAccess, \JsonSerializ
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -232,7 +233,7 @@ final class DefaultConfig1 implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets manual_count
      */
-    public function setManualCount($manual_count)
+    public function setManualCount(string|null $manual_count = null)
     {
         if (is_null($manual_count)) {
             throw new \InvalidArgumentException('non-nullable manual_count cannot be null');
@@ -255,7 +256,7 @@ final class DefaultConfig1 implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets schedule
      */
-    public function setSchedule($schedule)
+    public function setSchedule(string|null $schedule = null)
     {
         if (is_null($schedule)) {
             throw new \InvalidArgumentException('non-nullable schedule cannot be null');
@@ -334,5 +335,3 @@ final class DefaultConfig1 implements ModelInterface, ArrayAccess, \JsonSerializ
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

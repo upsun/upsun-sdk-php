@@ -197,7 +197,8 @@ final class SubscriptionAddonsObject implements ModelInterface, ArrayAccess, \Js
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -239,7 +240,7 @@ final class SubscriptionAddonsObject implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets available
      */
-    public function setAvailable($available)
+    public function setAvailable(string|null $available = null)
     {
         if (is_null($available)) {
             throw new \InvalidArgumentException('non-nullable available cannot be null');
@@ -262,7 +263,7 @@ final class SubscriptionAddonsObject implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets current
      */
-    public function setCurrent($current)
+    public function setCurrent(string|null $current = null)
     {
         if (is_null($current)) {
             throw new \InvalidArgumentException('non-nullable current cannot be null');
@@ -285,7 +286,7 @@ final class SubscriptionAddonsObject implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets upgrades_available
      */
-    public function setUpgradesAvailable($upgrades_available)
+    public function setUpgradesAvailable(string|null $upgrades_available = null)
     {
         if (is_null($upgrades_available)) {
             throw new \InvalidArgumentException('non-nullable upgrades_available cannot be null');
@@ -364,5 +365,3 @@ final class SubscriptionAddonsObject implements ModelInterface, ArrayAccess, \Js
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

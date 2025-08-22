@@ -197,7 +197,8 @@ final class TheAddonCredentialInformationOptional1 implements ModelInterface, Ar
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -248,7 +249,7 @@ final class TheAddonCredentialInformationOptional1 implements ModelInterface, Ar
     /**
      * Sets addon_key
      */
-    public function setAddonKey($addon_key)
+    public function setAddonKey(string|null $addon_key = null)
     {
         if (is_null($addon_key)) {
             throw new \InvalidArgumentException('non-nullable addon_key cannot be null');
@@ -271,7 +272,7 @@ final class TheAddonCredentialInformationOptional1 implements ModelInterface, Ar
     /**
      * Sets client_key
      */
-    public function setClientKey($client_key)
+    public function setClientKey(string|null $client_key = null)
     {
         if (is_null($client_key)) {
             throw new \InvalidArgumentException('non-nullable client_key cannot be null');
@@ -294,7 +295,7 @@ final class TheAddonCredentialInformationOptional1 implements ModelInterface, Ar
     /**
      * Sets shared_secret
      */
-    public function setSharedSecret($shared_secret)
+    public function setSharedSecret(string|null $shared_secret = null)
     {
         if (is_null($shared_secret)) {
             throw new \InvalidArgumentException('non-nullable shared_secret cannot be null');
@@ -373,5 +374,3 @@ final class TheAddonCredentialInformationOptional1 implements ModelInterface, Ar
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

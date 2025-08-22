@@ -247,7 +247,8 @@ final class RedirectRouteCreateInput implements ModelInterface, ArrayAccess, \Js
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -304,7 +305,7 @@ final class RedirectRouteCreateInput implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets primary
      */
-    public function setPrimary($primary)
+    public function setPrimary(string|null $primary = null)
     {
         if (is_null($primary)) {
             array_push($this->openAPINullablesSetToNull, 'primary');
@@ -334,7 +335,7 @@ final class RedirectRouteCreateInput implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets id
      */
-    public function setId($id)
+    public function setId(string|null $id = null)
     {
         if (is_null($id)) {
             array_push($this->openAPINullablesSetToNull, 'id');
@@ -364,7 +365,7 @@ final class RedirectRouteCreateInput implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets production_url
      */
-    public function setProductionUrl($production_url)
+    public function setProductionUrl(string|null $production_url = null)
     {
         if (is_null($production_url)) {
             array_push($this->openAPINullablesSetToNull, 'production_url');
@@ -394,7 +395,7 @@ final class RedirectRouteCreateInput implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets attributes
      */
-    public function setAttributes($attributes)
+    public function setAttributes(string|null $attributes = null)
     {
         if (is_null($attributes)) {
             throw new \InvalidArgumentException('non-nullable attributes cannot be null');
@@ -417,7 +418,7 @@ final class RedirectRouteCreateInput implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -450,7 +451,7 @@ final class RedirectRouteCreateInput implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets tls
      */
-    public function setTls($tls)
+    public function setTls(string|null $tls = null)
     {
         if (is_null($tls)) {
             throw new \InvalidArgumentException('non-nullable tls cannot be null');
@@ -473,7 +474,7 @@ final class RedirectRouteCreateInput implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets to
      */
-    public function setTo($to)
+    public function setTo(string|null $to = null)
     {
         if (is_null($to)) {
             throw new \InvalidArgumentException('non-nullable to cannot be null');
@@ -496,7 +497,7 @@ final class RedirectRouteCreateInput implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets redirects
      */
-    public function setRedirects($redirects)
+    public function setRedirects(string|null $redirects = null)
     {
         if (is_null($redirects)) {
             throw new \InvalidArgumentException('non-nullable redirects cannot be null');
@@ -575,5 +576,3 @@ final class RedirectRouteCreateInput implements ModelInterface, ArrayAccess, \Js
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

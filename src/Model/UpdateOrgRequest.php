@@ -197,7 +197,8 @@ final class UpdateOrgRequest implements ModelInterface, ArrayAccess, \JsonSerial
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -243,7 +244,7 @@ final class UpdateOrgRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets name
      */
-    public function setName($name)
+    public function setName(string|null $name = null)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -266,7 +267,7 @@ final class UpdateOrgRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets label
      */
-    public function setLabel($label)
+    public function setLabel(string|null $label = null)
     {
         if (is_null($label)) {
             throw new \InvalidArgumentException('non-nullable label cannot be null');
@@ -289,13 +290,15 @@ final class UpdateOrgRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets country
      */
-    public function setCountry($country)
+    public function setCountry(string|null $country = null)
     {
         if (is_null($country)) {
             throw new \InvalidArgumentException('non-nullable country cannot be null');
         }
         if ((mb_strlen($country) > 2)) {
-            throw new \InvalidArgumentException('invalid length for $country when calling UpdateOrgRequest., must be smaller than or equal to 2.');
+            throw new \InvalidArgumentException(
+                'invalid length for $country when calling UpdateOrgRequest., must be smaller than or equal to 2.'
+            );
         }
 
         $this->container['country'] = $country;
@@ -372,5 +375,3 @@ final class UpdateOrgRequest implements ModelInterface, ArrayAccess, \JsonSerial
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

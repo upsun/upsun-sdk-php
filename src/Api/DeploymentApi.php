@@ -103,16 +103,12 @@ final class DeploymentApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,12 @@ final class DeploymentApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Deployment
      */
-    public function getProjectsEnvironmentsDeployments($project_id, $environment_id, $deployment_id)
-    {
+    public function getProjectsEnvironmentsDeployments(
+        $project_id,
+        $environment_id,
+        $deployment_id
+    ): \Upsun\Model\Deployment {
         list($response) = $this->getProjectsEnvironmentsDeploymentsWithHttpInfo($project_id, $environment_id, $deployment_id);
         return $response;
     }
@@ -243,7 +241,7 @@ final class DeploymentApi
         string $project_id,
         string $environment_id,
         string $deployment_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Deployment';
         $request = $this->getProjectsEnvironmentsDeploymentsRequest($project_id, $environment_id, $deployment_id);
 
@@ -400,10 +398,11 @@ final class DeploymentApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Deployment[]
      */
-    public function listProjectsEnvironmentsDeployments($project_id, $environment_id)
-    {
+    public function listProjectsEnvironmentsDeployments(
+        $project_id,
+        $environment_id
+    ): \Upsun\Model\Deployment[] {
         list($response) = $this->listProjectsEnvironmentsDeploymentsWithHttpInfo($project_id, $environment_id);
         return $response;
     }
@@ -517,7 +516,7 @@ final class DeploymentApi
     public function listProjectsEnvironmentsDeploymentsAsyncWithHttpInfo(
         string $project_id,
         string $environment_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Deployment[]';
         $request = $this->listProjectsEnvironmentsDeploymentsRequest($project_id, $environment_id);
 

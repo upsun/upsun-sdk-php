@@ -212,7 +212,8 @@ final class DedicatedDeploymentTargetPatch implements ModelInterface, ArrayAcces
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -269,7 +270,7 @@ final class DedicatedDeploymentTargetPatch implements ModelInterface, ArrayAcces
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -302,7 +303,7 @@ final class DedicatedDeploymentTargetPatch implements ModelInterface, ArrayAcces
     /**
      * Sets name
      */
-    public function setName($name)
+    public function setName(string|null $name = null)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -325,7 +326,7 @@ final class DedicatedDeploymentTargetPatch implements ModelInterface, ArrayAcces
     /**
      * Sets enforced_mounts
      */
-    public function setEnforcedMounts($enforced_mounts)
+    public function setEnforcedMounts(string|null $enforced_mounts = null)
     {
         if (is_null($enforced_mounts)) {
             throw new \InvalidArgumentException('non-nullable enforced_mounts cannot be null');
@@ -404,5 +405,3 @@ final class DedicatedDeploymentTargetPatch implements ModelInterface, ArrayAcces
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

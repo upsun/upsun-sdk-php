@@ -225,7 +225,8 @@ final class Connection implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -267,7 +268,7 @@ final class Connection implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets provider
      */
-    public function setProvider($provider)
+    public function setProvider(string|null $provider = null)
     {
         if (is_null($provider)) {
             throw new \InvalidArgumentException('non-nullable provider cannot be null');
@@ -290,7 +291,7 @@ final class Connection implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets provider_type
      */
-    public function setProviderType($provider_type)
+    public function setProviderType(string|null $provider_type = null)
     {
         if (is_null($provider_type)) {
             throw new \InvalidArgumentException('non-nullable provider_type cannot be null');
@@ -313,7 +314,7 @@ final class Connection implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets is_mandatory
      */
-    public function setIsMandatory($is_mandatory)
+    public function setIsMandatory(string|null $is_mandatory = null)
     {
         if (is_null($is_mandatory)) {
             throw new \InvalidArgumentException('non-nullable is_mandatory cannot be null');
@@ -336,7 +337,7 @@ final class Connection implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets subject
      */
-    public function setSubject($subject)
+    public function setSubject(string|null $subject = null)
     {
         if (is_null($subject)) {
             throw new \InvalidArgumentException('non-nullable subject cannot be null');
@@ -359,7 +360,7 @@ final class Connection implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets email_address
      */
-    public function setEmailAddress($email_address)
+    public function setEmailAddress(string|null $email_address = null)
     {
         if (is_null($email_address)) {
             throw new \InvalidArgumentException('non-nullable email_address cannot be null');
@@ -382,7 +383,7 @@ final class Connection implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets created_at
      */
-    public function setCreatedAt($created_at)
+    public function setCreatedAt(string|null $created_at = null)
     {
         if (is_null($created_at)) {
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
@@ -405,7 +406,7 @@ final class Connection implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt($updated_at)
+    public function setUpdatedAt(string|null $updated_at = null)
     {
         if (is_null($updated_at)) {
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
@@ -484,5 +485,3 @@ final class Connection implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

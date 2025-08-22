@@ -204,7 +204,8 @@ final class ProjectOptionsDefaults implements ModelInterface, ArrayAccess, \Json
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -246,7 +247,7 @@ final class ProjectOptionsDefaults implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets settings
      */
-    public function setSettings($settings)
+    public function setSettings(string|null $settings = null)
     {
         if (is_null($settings)) {
             throw new \InvalidArgumentException('non-nullable settings cannot be null');
@@ -269,7 +270,7 @@ final class ProjectOptionsDefaults implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets variables
      */
-    public function setVariables($variables)
+    public function setVariables(string|null $variables = null)
     {
         if (is_null($variables)) {
             throw new \InvalidArgumentException('non-nullable variables cannot be null');
@@ -292,7 +293,7 @@ final class ProjectOptionsDefaults implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets access
      */
-    public function setAccess($access)
+    public function setAccess(string|null $access = null)
     {
         if (is_null($access)) {
             throw new \InvalidArgumentException('non-nullable access cannot be null');
@@ -315,7 +316,7 @@ final class ProjectOptionsDefaults implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets capabilities
      */
-    public function setCapabilities($capabilities)
+    public function setCapabilities(string|null $capabilities = null)
     {
         if (is_null($capabilities)) {
             throw new \InvalidArgumentException('non-nullable capabilities cannot be null');
@@ -394,5 +395,3 @@ final class ProjectOptionsDefaults implements ModelInterface, ArrayAccess, \Json
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

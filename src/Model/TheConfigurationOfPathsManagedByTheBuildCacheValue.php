@@ -204,7 +204,8 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements ModelI
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -258,7 +259,7 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements ModelI
     /**
      * Sets directory
      */
-    public function setDirectory($directory)
+    public function setDirectory(string|null $directory = null)
     {
         if (is_null($directory)) {
             array_push($this->openAPINullablesSetToNull, 'directory');
@@ -288,7 +289,7 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements ModelI
     /**
      * Sets watch
      */
-    public function setWatch($watch)
+    public function setWatch(string|null $watch = null)
     {
         if (is_null($watch)) {
             throw new \InvalidArgumentException('non-nullable watch cannot be null');
@@ -311,7 +312,7 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements ModelI
     /**
      * Sets allow_stale
      */
-    public function setAllowStale($allow_stale)
+    public function setAllowStale(string|null $allow_stale = null)
     {
         if (is_null($allow_stale)) {
             throw new \InvalidArgumentException('non-nullable allow_stale cannot be null');
@@ -334,7 +335,7 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements ModelI
     /**
      * Sets share_between_apps
      */
-    public function setShareBetweenApps($share_between_apps)
+    public function setShareBetweenApps(string|null $share_between_apps = null)
     {
         if (is_null($share_between_apps)) {
             throw new \InvalidArgumentException('non-nullable share_between_apps cannot be null');
@@ -413,5 +414,3 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements ModelI
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

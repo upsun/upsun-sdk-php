@@ -190,7 +190,8 @@ final class CreateTicketRequestAttachmentsInner implements ModelInterface, Array
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -232,7 +233,7 @@ final class CreateTicketRequestAttachmentsInner implements ModelInterface, Array
     /**
      * Sets filename
      */
-    public function setFilename($filename)
+    public function setFilename(string|null $filename = null)
     {
         if (is_null($filename)) {
             throw new \InvalidArgumentException('non-nullable filename cannot be null');
@@ -255,7 +256,7 @@ final class CreateTicketRequestAttachmentsInner implements ModelInterface, Array
     /**
      * Sets data
      */
-    public function setData($data)
+    public function setData(string|null $data = null)
     {
         if (is_null($data)) {
             throw new \InvalidArgumentException('non-nullable data cannot be null');
@@ -334,5 +335,3 @@ final class CreateTicketRequestAttachmentsInner implements ModelInterface, Array
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

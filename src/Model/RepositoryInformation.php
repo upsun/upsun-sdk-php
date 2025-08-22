@@ -190,7 +190,8 @@ final class RepositoryInformation implements ModelInterface, ArrayAccess, \JsonS
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -238,7 +239,7 @@ final class RepositoryInformation implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets url
      */
-    public function setUrl($url)
+    public function setUrl(string|null $url = null)
     {
         if (is_null($url)) {
             throw new \InvalidArgumentException('non-nullable url cannot be null');
@@ -261,7 +262,7 @@ final class RepositoryInformation implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets client_ssh_key
      */
-    public function setClientSshKey($client_ssh_key)
+    public function setClientSshKey(string|null $client_ssh_key = null)
     {
         if (is_null($client_ssh_key)) {
             array_push($this->openAPINullablesSetToNull, 'client_ssh_key');
@@ -347,5 +348,3 @@ final class RepositoryInformation implements ModelInterface, ArrayAccess, \JsonS
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

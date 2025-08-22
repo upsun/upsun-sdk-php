@@ -190,7 +190,8 @@ final class CreateAuthorizationCredentials200Response implements ModelInterface,
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -232,7 +233,7 @@ final class CreateAuthorizationCredentials200Response implements ModelInterface,
     /**
      * Sets redirect_to_url
      */
-    public function setRedirectToUrl($redirect_to_url)
+    public function setRedirectToUrl(string|null $redirect_to_url = null)
     {
         if (is_null($redirect_to_url)) {
             throw new \InvalidArgumentException('non-nullable redirect_to_url cannot be null');
@@ -255,7 +256,7 @@ final class CreateAuthorizationCredentials200Response implements ModelInterface,
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -334,5 +335,3 @@ final class CreateAuthorizationCredentials200Response implements ModelInterface,
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

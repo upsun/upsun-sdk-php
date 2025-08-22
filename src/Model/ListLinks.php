@@ -197,7 +197,8 @@ final class ListLinks implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -239,7 +240,7 @@ final class ListLinks implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets self
      */
-    public function setSelf($self)
+    public function setSelf(string|null $self = null)
     {
         if (is_null($self)) {
             throw new \InvalidArgumentException('non-nullable self cannot be null');
@@ -262,7 +263,7 @@ final class ListLinks implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets previous
      */
-    public function setPrevious($previous)
+    public function setPrevious(string|null $previous = null)
     {
         if (is_null($previous)) {
             throw new \InvalidArgumentException('non-nullable previous cannot be null');
@@ -285,7 +286,7 @@ final class ListLinks implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets next
      */
-    public function setNext($next)
+    public function setNext(string|null $next = null)
     {
         if (is_null($next)) {
             throw new \InvalidArgumentException('non-nullable next cannot be null');
@@ -364,5 +365,3 @@ final class ListLinks implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

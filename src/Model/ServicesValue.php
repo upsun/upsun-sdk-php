@@ -269,7 +269,8 @@ final class ServicesValue implements ModelInterface, ArrayAccess, \JsonSerializa
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -350,7 +351,7 @@ final class ServicesValue implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -373,7 +374,7 @@ final class ServicesValue implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets size
      */
-    public function setSize($size)
+    public function setSize(string|null $size = null)
     {
         if (is_null($size)) {
             throw new \InvalidArgumentException('non-nullable size cannot be null');
@@ -406,7 +407,7 @@ final class ServicesValue implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets disk
      */
-    public function setDisk($disk)
+    public function setDisk(string|null $disk = null)
     {
         if (is_null($disk)) {
             array_push($this->openAPINullablesSetToNull, 'disk');
@@ -436,7 +437,7 @@ final class ServicesValue implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets access
      */
-    public function setAccess($access)
+    public function setAccess(string|null $access = null)
     {
         if (is_null($access)) {
             throw new \InvalidArgumentException('non-nullable access cannot be null');
@@ -459,7 +460,7 @@ final class ServicesValue implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets configuration
      */
-    public function setConfiguration($configuration)
+    public function setConfiguration(string|null $configuration = null)
     {
         if (is_null($configuration)) {
             throw new \InvalidArgumentException('non-nullable configuration cannot be null');
@@ -482,7 +483,7 @@ final class ServicesValue implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets relationships
      */
-    public function setRelationships($relationships)
+    public function setRelationships(string|null $relationships = null)
     {
         if (is_null($relationships)) {
             throw new \InvalidArgumentException('non-nullable relationships cannot be null');
@@ -505,7 +506,7 @@ final class ServicesValue implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets firewall
      */
-    public function setFirewall($firewall)
+    public function setFirewall(string|null $firewall = null)
     {
         if (is_null($firewall)) {
             array_push($this->openAPINullablesSetToNull, 'firewall');
@@ -535,7 +536,7 @@ final class ServicesValue implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets resources
      */
-    public function setResources($resources)
+    public function setResources(string|null $resources = null)
     {
         if (is_null($resources)) {
             array_push($this->openAPINullablesSetToNull, 'resources');
@@ -565,7 +566,7 @@ final class ServicesValue implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets container_profile
      */
-    public function setContainerProfile($container_profile)
+    public function setContainerProfile(string|null $container_profile = null)
     {
         if (is_null($container_profile)) {
             array_push($this->openAPINullablesSetToNull, 'container_profile');
@@ -595,7 +596,7 @@ final class ServicesValue implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets endpoints
      */
-    public function setEndpoints($endpoints)
+    public function setEndpoints(string|null $endpoints = null)
     {
         if (is_null($endpoints)) {
             array_push($this->openAPINullablesSetToNull, 'endpoints');
@@ -681,5 +682,3 @@ final class ServicesValue implements ModelInterface, ArrayAccess, \JsonSerializa
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

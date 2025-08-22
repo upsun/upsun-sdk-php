@@ -190,7 +190,8 @@ final class DataRetentionConfigurationValue implements ModelInterface, ArrayAcce
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -238,7 +239,7 @@ final class DataRetentionConfigurationValue implements ModelInterface, ArrayAcce
     /**
      * Sets max_backups
      */
-    public function setMaxBackups($max_backups)
+    public function setMaxBackups(string|null $max_backups = null)
     {
         if (is_null($max_backups)) {
             throw new \InvalidArgumentException('non-nullable max_backups cannot be null');
@@ -261,7 +262,7 @@ final class DataRetentionConfigurationValue implements ModelInterface, ArrayAcce
     /**
      * Sets default_config
      */
-    public function setDefaultConfig($default_config)
+    public function setDefaultConfig(string|null $default_config = null)
     {
         if (is_null($default_config)) {
             throw new \InvalidArgumentException('non-nullable default_config cannot be null');
@@ -340,5 +341,3 @@ final class DataRetentionConfigurationValue implements ModelInterface, ArrayAcce
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

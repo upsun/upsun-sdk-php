@@ -301,7 +301,8 @@ final class User implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -402,7 +403,7 @@ final class User implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      */
-    public function setId($id)
+    public function setId(string|null $id = null)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -425,7 +426,7 @@ final class User implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets deactivated
      */
-    public function setDeactivated($deactivated)
+    public function setDeactivated(string|null $deactivated = null)
     {
         if (is_null($deactivated)) {
             throw new \InvalidArgumentException('non-nullable deactivated cannot be null');
@@ -448,7 +449,7 @@ final class User implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets namespace
      */
-    public function setNamespace($namespace)
+    public function setNamespace(string|null $namespace = null)
     {
         if (is_null($namespace)) {
             throw new \InvalidArgumentException('non-nullable namespace cannot be null');
@@ -471,7 +472,7 @@ final class User implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets username
      */
-    public function setUsername($username)
+    public function setUsername(string|null $username = null)
     {
         if (is_null($username)) {
             throw new \InvalidArgumentException('non-nullable username cannot be null');
@@ -494,7 +495,7 @@ final class User implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets email
      */
-    public function setEmail($email)
+    public function setEmail(string|null $email = null)
     {
         if (is_null($email)) {
             throw new \InvalidArgumentException('non-nullable email cannot be null');
@@ -517,7 +518,7 @@ final class User implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets email_verified
      */
-    public function setEmailVerified($email_verified)
+    public function setEmailVerified(string|null $email_verified = null)
     {
         if (is_null($email_verified)) {
             throw new \InvalidArgumentException('non-nullable email_verified cannot be null');
@@ -540,7 +541,7 @@ final class User implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets first_name
      */
-    public function setFirstName($first_name)
+    public function setFirstName(string|null $first_name = null)
     {
         if (is_null($first_name)) {
             throw new \InvalidArgumentException('non-nullable first_name cannot be null');
@@ -563,7 +564,7 @@ final class User implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets last_name
      */
-    public function setLastName($last_name)
+    public function setLastName(string|null $last_name = null)
     {
         if (is_null($last_name)) {
             throw new \InvalidArgumentException('non-nullable last_name cannot be null');
@@ -586,7 +587,7 @@ final class User implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets picture
      */
-    public function setPicture($picture)
+    public function setPicture(string|null $picture = null)
     {
         if (is_null($picture)) {
             throw new \InvalidArgumentException('non-nullable picture cannot be null');
@@ -609,7 +610,7 @@ final class User implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets company
      */
-    public function setCompany($company)
+    public function setCompany(string|null $company = null)
     {
         if (is_null($company)) {
             throw new \InvalidArgumentException('non-nullable company cannot be null');
@@ -632,7 +633,7 @@ final class User implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets website
      */
-    public function setWebsite($website)
+    public function setWebsite(string|null $website = null)
     {
         if (is_null($website)) {
             throw new \InvalidArgumentException('non-nullable website cannot be null');
@@ -655,16 +656,20 @@ final class User implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets country
      */
-    public function setCountry($country)
+    public function setCountry(string|null $country = null)
     {
         if (is_null($country)) {
             throw new \InvalidArgumentException('non-nullable country cannot be null');
         }
         if ((mb_strlen($country) > 2)) {
-            throw new \InvalidArgumentException('invalid length for $country when calling User., must be smaller than or equal to 2.');
+            throw new \InvalidArgumentException(
+                'invalid length for $country when calling User., must be smaller than or equal to 2.'
+            );
         }
         if ((mb_strlen($country) < 2)) {
-            throw new \InvalidArgumentException('invalid length for $country when calling User., must be bigger than or equal to 2.');
+            throw new \InvalidArgumentException(
+                'invalid length for $country when calling User., must be bigger than or equal to 2.'
+            );
         }
 
         $this->container['country'] = $country;
@@ -685,7 +690,7 @@ final class User implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets created_at
      */
-    public function setCreatedAt($created_at)
+    public function setCreatedAt(string|null $created_at = null)
     {
         if (is_null($created_at)) {
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
@@ -708,7 +713,7 @@ final class User implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt($updated_at)
+    public function setUpdatedAt(string|null $updated_at = null)
     {
         if (is_null($updated_at)) {
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
@@ -731,7 +736,7 @@ final class User implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets consented_at
      */
-    public function setConsentedAt($consented_at)
+    public function setConsentedAt(string|null $consented_at = null)
     {
         if (is_null($consented_at)) {
             throw new \InvalidArgumentException('non-nullable consented_at cannot be null');
@@ -754,7 +759,7 @@ final class User implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets consent_method
      */
-    public function setConsentMethod($consent_method)
+    public function setConsentMethod(string|null $consent_method = null)
     {
         if (is_null($consent_method)) {
             throw new \InvalidArgumentException('non-nullable consent_method cannot be null');
@@ -843,5 +848,3 @@ final class User implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

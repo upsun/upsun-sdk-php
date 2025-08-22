@@ -235,7 +235,8 @@ final class ThePathsToRedirectValue1 implements ModelInterface, ArrayAccess, \Js
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -289,7 +290,7 @@ final class ThePathsToRedirectValue1 implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets regexp
      */
-    public function setRegexp($regexp)
+    public function setRegexp(string|null $regexp = null)
     {
         if (is_null($regexp)) {
             throw new \InvalidArgumentException('non-nullable regexp cannot be null');
@@ -312,7 +313,7 @@ final class ThePathsToRedirectValue1 implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets to
      */
-    public function setTo($to)
+    public function setTo(string|null $to = null)
     {
         if (is_null($to)) {
             throw new \InvalidArgumentException('non-nullable to cannot be null');
@@ -335,7 +336,7 @@ final class ThePathsToRedirectValue1 implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets prefix
      */
-    public function setPrefix($prefix)
+    public function setPrefix(string|null $prefix = null)
     {
         if (is_null($prefix)) {
             array_push($this->openAPINullablesSetToNull, 'prefix');
@@ -365,7 +366,7 @@ final class ThePathsToRedirectValue1 implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets append_suffix
      */
-    public function setAppendSuffix($append_suffix)
+    public function setAppendSuffix(string|null $append_suffix = null)
     {
         if (is_null($append_suffix)) {
             array_push($this->openAPINullablesSetToNull, 'append_suffix');
@@ -395,7 +396,7 @@ final class ThePathsToRedirectValue1 implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets code
      */
-    public function setCode($code)
+    public function setCode(string|null $code = null)
     {
         if (is_null($code)) {
             throw new \InvalidArgumentException('non-nullable code cannot be null');
@@ -428,7 +429,7 @@ final class ThePathsToRedirectValue1 implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets expires
      */
-    public function setExpires($expires)
+    public function setExpires(string|null $expires = null)
     {
         if (is_null($expires)) {
             array_push($this->openAPINullablesSetToNull, 'expires');
@@ -514,5 +515,3 @@ final class ThePathsToRedirectValue1 implements ModelInterface, ArrayAccess, \Js
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

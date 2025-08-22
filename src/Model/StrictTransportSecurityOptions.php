@@ -197,7 +197,8 @@ final class StrictTransportSecurityOptions implements ModelInterface, ArrayAcces
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -248,7 +249,7 @@ final class StrictTransportSecurityOptions implements ModelInterface, ArrayAcces
     /**
      * Sets enabled
      */
-    public function setEnabled($enabled)
+    public function setEnabled(string|null $enabled = null)
     {
         if (is_null($enabled)) {
             array_push($this->openAPINullablesSetToNull, 'enabled');
@@ -278,7 +279,7 @@ final class StrictTransportSecurityOptions implements ModelInterface, ArrayAcces
     /**
      * Sets include_subdomains
      */
-    public function setIncludeSubdomains($include_subdomains)
+    public function setIncludeSubdomains(string|null $include_subdomains = null)
     {
         if (is_null($include_subdomains)) {
             array_push($this->openAPINullablesSetToNull, 'include_subdomains');
@@ -308,7 +309,7 @@ final class StrictTransportSecurityOptions implements ModelInterface, ArrayAcces
     /**
      * Sets preload
      */
-    public function setPreload($preload)
+    public function setPreload(string|null $preload = null)
     {
         if (is_null($preload)) {
             array_push($this->openAPINullablesSetToNull, 'preload');
@@ -394,5 +395,3 @@ final class StrictTransportSecurityOptions implements ModelInterface, ArrayAcces
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -190,7 +190,8 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements ModelInter
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -238,7 +239,7 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements ModelInter
     /**
      * Sets active_docroot
      */
-    public function setActiveDocroot($active_docroot)
+    public function setActiveDocroot(string|null $active_docroot = null)
     {
         if (is_null($active_docroot)) {
             array_push($this->openAPINullablesSetToNull, 'active_docroot');
@@ -268,7 +269,7 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements ModelInter
     /**
      * Sets docroot_versions
      */
-    public function setDocrootVersions($docroot_versions)
+    public function setDocrootVersions(string|null $docroot_versions = null)
     {
         if (is_null($docroot_versions)) {
             array_push($this->openAPINullablesSetToNull, 'docroot_versions');
@@ -354,5 +355,3 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements ModelInter
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -190,7 +190,8 @@ final class RestrictedAndDeniedImageTypes implements ModelInterface, ArrayAccess
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -232,7 +233,7 @@ final class RestrictedAndDeniedImageTypes implements ModelInterface, ArrayAccess
     /**
      * Sets only
      */
-    public function setOnly($only)
+    public function setOnly(string|null $only = null)
     {
         if (is_null($only)) {
             throw new \InvalidArgumentException('non-nullable only cannot be null');
@@ -255,7 +256,7 @@ final class RestrictedAndDeniedImageTypes implements ModelInterface, ArrayAccess
     /**
      * Sets exclude
      */
-    public function setExclude($exclude)
+    public function setExclude(string|null $exclude = null)
     {
         if (is_null($exclude)) {
             throw new \InvalidArgumentException('non-nullable exclude cannot be null');
@@ -334,5 +335,3 @@ final class RestrictedAndDeniedImageTypes implements ModelInterface, ArrayAccess
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

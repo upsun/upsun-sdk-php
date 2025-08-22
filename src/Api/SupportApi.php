@@ -103,16 +103,12 @@ final class SupportApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,10 @@ final class SupportApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Ticket
      */
-    public function createTicket($create_ticket_request = null)
-    {
+    public function createTicket(
+        $create_ticket_request = null
+    ): \Upsun\Model\Ticket {
         list($response) = $this->createTicketWithHttpInfo($create_ticket_request);
         return $response;
     }
@@ -237,7 +233,7 @@ final class SupportApi
      */
     public function createTicketAsyncWithHttpInfo(
         \Upsun\Model\CreateTicketRequest $create_ticket_request = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Ticket';
         $request = $this->createTicketRequest($create_ticket_request);
 
@@ -356,10 +352,11 @@ final class SupportApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ListTicketCategories200ResponseInner[]
      */
-    public function listTicketCategories($subscription_id = null, $organization_id = null)
-    {
+    public function listTicketCategories(
+        $subscription_id = null,
+        $organization_id = null
+    ): \Upsun\Model\ListTicketCategories200ResponseInner[] {
         list($response) = $this->listTicketCategoriesWithHttpInfo($subscription_id, $organization_id);
         return $response;
     }
@@ -473,7 +470,7 @@ final class SupportApi
     public function listTicketCategoriesAsyncWithHttpInfo(
         string $subscription_id = null,
         string $organization_id = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ListTicketCategories200ResponseInner[]';
         $request = $this->listTicketCategoriesRequest($subscription_id, $organization_id);
 
@@ -528,8 +525,8 @@ final class SupportApi
 
         // query params
         if ($subscription_id !== null) {
-            if('form' === 'form' && is_array($subscription_id)) {
-                foreach($subscription_id as $key => $value) {
+            if ('form' === 'form' && is_array($subscription_id)) {
+                foreach ($subscription_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -539,8 +536,8 @@ final class SupportApi
         }
         // query params
         if ($organization_id !== null) {
-            if('form' === 'form' && is_array($organization_id)) {
-                foreach($organization_id as $key => $value) {
+            if ('form' === 'form' && is_array($organization_id)) {
+                foreach ($organization_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -609,10 +606,11 @@ final class SupportApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ListTicketPriorities200ResponseInner[]
      */
-    public function listTicketPriorities($subscription_id = null, $category = null)
-    {
+    public function listTicketPriorities(
+        $subscription_id = null,
+        $category = null
+    ): \Upsun\Model\ListTicketPriorities200ResponseInner[] {
         list($response) = $this->listTicketPrioritiesWithHttpInfo($subscription_id, $category);
         return $response;
     }
@@ -726,7 +724,7 @@ final class SupportApi
     public function listTicketPrioritiesAsyncWithHttpInfo(
         string $subscription_id = null,
         string $category = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ListTicketPriorities200ResponseInner[]';
         $request = $this->listTicketPrioritiesRequest($subscription_id, $category);
 
@@ -781,8 +779,8 @@ final class SupportApi
 
         // query params
         if ($subscription_id !== null) {
-            if('form' === 'form' && is_array($subscription_id)) {
-                foreach($subscription_id as $key => $value) {
+            if ('form' === 'form' && is_array($subscription_id)) {
+                foreach ($subscription_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -792,8 +790,8 @@ final class SupportApi
         }
         // query params
         if ($category !== null) {
-            if('form' === 'form' && is_array($category)) {
-                foreach($category as $key => $value) {
+            if ('form' === 'form' && is_array($category)) {
+                foreach ($category as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -862,10 +860,11 @@ final class SupportApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Ticket
      */
-    public function updateTicket($ticket_id, $update_ticket_request = null)
-    {
+    public function updateTicket(
+        $ticket_id,
+        $update_ticket_request = null
+    ): \Upsun\Model\Ticket {
         list($response) = $this->updateTicketWithHttpInfo($ticket_id, $update_ticket_request);
         return $response;
     }
@@ -979,7 +978,7 @@ final class SupportApi
     public function updateTicketAsyncWithHttpInfo(
         string $ticket_id,
         \Upsun\Model\UpdateTicketRequest $update_ticket_request = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Ticket';
         $request = $this->updateTicketRequest($ticket_id, $update_ticket_request);
 

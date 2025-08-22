@@ -103,16 +103,12 @@ final class ProjectActivityApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,11 @@ final class ProjectActivityApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function actionProjectsActivitiesCancel($project_id, $activity_id)
-    {
+    public function actionProjectsActivitiesCancel(
+        $project_id,
+        $activity_id
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->actionProjectsActivitiesCancelWithHttpInfo($project_id, $activity_id);
         return $response;
     }
@@ -240,7 +237,7 @@ final class ProjectActivityApi
     public function actionProjectsActivitiesCancelAsyncWithHttpInfo(
         string $project_id,
         string $activity_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->actionProjectsActivitiesCancelRequest($project_id, $activity_id);
 
@@ -382,10 +379,11 @@ final class ProjectActivityApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Activity
      */
-    public function getProjectsActivities($project_id, $activity_id)
-    {
+    public function getProjectsActivities(
+        $project_id,
+        $activity_id
+    ): \Upsun\Model\Activity {
         list($response) = $this->getProjectsActivitiesWithHttpInfo($project_id, $activity_id);
         return $response;
     }
@@ -499,7 +497,7 @@ final class ProjectActivityApi
     public function getProjectsActivitiesAsyncWithHttpInfo(
         string $project_id,
         string $activity_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Activity';
         $request = $this->getProjectsActivitiesRequest($project_id, $activity_id);
 
@@ -641,10 +639,10 @@ final class ProjectActivityApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Activity[]
      */
-    public function listProjectsActivities($project_id)
-    {
+    public function listProjectsActivities(
+        $project_id
+    ): \Upsun\Model\Activity[] {
         list($response) = $this->listProjectsActivitiesWithHttpInfo($project_id);
         return $response;
     }
@@ -755,7 +753,7 @@ final class ProjectActivityApi
      */
     public function listProjectsActivitiesAsyncWithHttpInfo(
         string $project_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Activity[]';
         $request = $this->listProjectsActivitiesRequest($project_id);
 

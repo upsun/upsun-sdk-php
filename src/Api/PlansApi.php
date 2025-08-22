@@ -103,16 +103,12 @@ final class PlansApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,10 @@ final class PlansApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ListPlans200Response
      */
-    public function listPlans()
-    {
+    public function listPlans(
+        
+    ): \Upsun\Model\ListPlans200Response {
         list($response) = $this->listPlansWithHttpInfo();
         return $response;
     }
@@ -237,7 +233,7 @@ final class PlansApi
      */
     public function listPlansAsyncWithHttpInfo(
         
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ListPlans200Response';
         $request = $this->listPlansRequest();
 

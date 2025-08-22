@@ -103,16 +103,12 @@ final class UserAccessApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,11 @@ final class UserAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\UserProjectAccess
      */
-    public function getProjectUserAccess($project_id, $user_id)
-    {
+    public function getProjectUserAccess(
+        $project_id,
+        $user_id
+    ): \Upsun\Model\UserProjectAccess {
         list($response) = $this->getProjectUserAccessWithHttpInfo($project_id, $user_id);
         return $response;
     }
@@ -268,7 +265,7 @@ final class UserAccessApi
     public function getProjectUserAccessAsyncWithHttpInfo(
         string $project_id,
         string $user_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\UserProjectAccess';
         $request = $this->getProjectUserAccessRequest($project_id, $user_id);
 
@@ -410,10 +407,11 @@ final class UserAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\UserProjectAccess
      */
-    public function getUserProjectAccess($user_id, $project_id)
-    {
+    public function getUserProjectAccess(
+        $user_id,
+        $project_id
+    ): \Upsun\Model\UserProjectAccess {
         list($response) = $this->getUserProjectAccessWithHttpInfo($user_id, $project_id);
         return $response;
     }
@@ -555,7 +553,7 @@ final class UserAccessApi
     public function getUserProjectAccessAsyncWithHttpInfo(
         string $user_id,
         string $project_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\UserProjectAccess';
         $request = $this->getUserProjectAccessRequest($user_id, $project_id);
 
@@ -697,10 +695,11 @@ final class UserAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function grantProjectUserAccess($project_id, $grant_project_user_access_request_inner)
-    {
+    public function grantProjectUserAccess(
+        $project_id,
+        $grant_project_user_access_request_inner
+    ): void {
         $this->grantProjectUserAccessWithHttpInfo($project_id, $grant_project_user_access_request_inner);
     }
 
@@ -712,7 +711,7 @@ final class UserAccessApi
      */
     public function grantProjectUserAccessWithHttpInfo(
         string $project_id,
-        \Upsun\Model\GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner
+        array $grant_project_user_access_request_inner
     ): array {
         $request = $this->grantProjectUserAccessRequest($project_id, $grant_project_user_access_request_inner);
 
@@ -776,7 +775,7 @@ final class UserAccessApi
      */
     public function grantProjectUserAccessAsync(
         string $project_id,
-        \Upsun\Model\GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner
+        array $grant_project_user_access_request_inner
     ): Promise {
         return $this->grantProjectUserAccessAsyncWithHttpInfo($project_id, $grant_project_user_access_request_inner)
             ->then(
@@ -793,8 +792,8 @@ final class UserAccessApi
      */
     public function grantProjectUserAccessAsyncWithHttpInfo(
         string $project_id,
-        \Upsun\Model\GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner
-    ) {
+        array $grant_project_user_access_request_inner
+    ): Promise {
         $returnType = '';
         $request = $this->grantProjectUserAccessRequest($project_id, $grant_project_user_access_request_inner);
 
@@ -827,7 +826,7 @@ final class UserAccessApi
      */
     public function grantProjectUserAccessRequest(
         string $project_id,
-        \Upsun\Model\GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner
+        array $grant_project_user_access_request_inner
     ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -924,10 +923,11 @@ final class UserAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function grantUserProjectAccess($user_id, $grant_user_project_access_request_inner)
-    {
+    public function grantUserProjectAccess(
+        $user_id,
+        $grant_user_project_access_request_inner
+    ): void {
         $this->grantUserProjectAccessWithHttpInfo($user_id, $grant_user_project_access_request_inner);
     }
 
@@ -939,7 +939,7 @@ final class UserAccessApi
      */
     public function grantUserProjectAccessWithHttpInfo(
         string $user_id,
-        \Upsun\Model\GrantUserProjectAccessRequestInner[] $grant_user_project_access_request_inner
+        array $grant_user_project_access_request_inner
     ): array {
         $request = $this->grantUserProjectAccessRequest($user_id, $grant_user_project_access_request_inner);
 
@@ -1003,7 +1003,7 @@ final class UserAccessApi
      */
     public function grantUserProjectAccessAsync(
         string $user_id,
-        \Upsun\Model\GrantUserProjectAccessRequestInner[] $grant_user_project_access_request_inner
+        array $grant_user_project_access_request_inner
     ): Promise {
         return $this->grantUserProjectAccessAsyncWithHttpInfo($user_id, $grant_user_project_access_request_inner)
             ->then(
@@ -1020,8 +1020,8 @@ final class UserAccessApi
      */
     public function grantUserProjectAccessAsyncWithHttpInfo(
         string $user_id,
-        \Upsun\Model\GrantUserProjectAccessRequestInner[] $grant_user_project_access_request_inner
-    ) {
+        array $grant_user_project_access_request_inner
+    ): Promise {
         $returnType = '';
         $request = $this->grantUserProjectAccessRequest($user_id, $grant_user_project_access_request_inner);
 
@@ -1054,7 +1054,7 @@ final class UserAccessApi
      */
     public function grantUserProjectAccessRequest(
         string $user_id,
-        \Upsun\Model\GrantUserProjectAccessRequestInner[] $grant_user_project_access_request_inner
+        array $grant_user_project_access_request_inner
     ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
@@ -1151,10 +1151,14 @@ final class UserAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ListProjectUserAccess200Response
      */
-    public function listProjectUserAccess($project_id, $page_size = null, $page_before = null, $page_after = null, $sort = null)
-    {
+    public function listProjectUserAccess(
+        $project_id,
+        $page_size = null,
+        $page_before = null,
+        $page_after = null,
+        $sort = null
+    ): \Upsun\Model\ListProjectUserAccess200Response {
         list($response) = $this->listProjectUserAccessWithHttpInfo($project_id, $page_size, $page_before, $page_after, $sort);
         return $response;
     }
@@ -1305,7 +1309,7 @@ final class UserAccessApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ListProjectUserAccess200Response';
         $request = $this->listProjectUserAccessRequest($project_id, $page_size, $page_before, $page_after, $sort);
 
@@ -1376,8 +1380,8 @@ final class UserAccessApi
 
         // query params
         if ($page_size !== null) {
-            if('form' === 'form' && is_array($page_size)) {
-                foreach($page_size as $key => $value) {
+            if ('form' === 'form' && is_array($page_size)) {
+                foreach ($page_size as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1387,8 +1391,8 @@ final class UserAccessApi
         }
         // query params
         if ($page_before !== null) {
-            if('form' === 'form' && is_array($page_before)) {
-                foreach($page_before as $key => $value) {
+            if ('form' === 'form' && is_array($page_before)) {
+                foreach ($page_before as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1398,8 +1402,8 @@ final class UserAccessApi
         }
         // query params
         if ($page_after !== null) {
-            if('form' === 'form' && is_array($page_after)) {
-                foreach($page_after as $key => $value) {
+            if ('form' === 'form' && is_array($page_after)) {
+                foreach ($page_after as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1409,8 +1413,8 @@ final class UserAccessApi
         }
         // query params
         if ($sort !== null) {
-            if('form' === 'form' && is_array($sort)) {
-                foreach($sort as $key => $value) {
+            if ('form' === 'form' && is_array($sort)) {
+                foreach ($sort as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1487,10 +1491,15 @@ final class UserAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ListProjectUserAccess200Response
      */
-    public function listUserProjectAccess($user_id, $filter_organization_id = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
-    {
+    public function listUserProjectAccess(
+        $user_id,
+        $filter_organization_id = null,
+        $page_size = null,
+        $page_before = null,
+        $page_after = null,
+        $sort = null
+    ): \Upsun\Model\ListProjectUserAccess200Response {
         list($response) = $this->listUserProjectAccessWithHttpInfo($user_id, $filter_organization_id, $page_size, $page_before, $page_after, $sort);
         return $response;
     }
@@ -1644,7 +1653,7 @@ final class UserAccessApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ListProjectUserAccess200Response';
         $request = $this->listUserProjectAccessRequest($user_id, $filter_organization_id, $page_size, $page_before, $page_after, $sort);
 
@@ -1716,8 +1725,8 @@ final class UserAccessApi
 
         // query params
         if ($filter_organization_id !== null) {
-            if('form' === 'form' && is_array($filter_organization_id)) {
-                foreach($filter_organization_id as $key => $value) {
+            if ('form' === 'form' && is_array($filter_organization_id)) {
+                foreach ($filter_organization_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1727,8 +1736,8 @@ final class UserAccessApi
         }
         // query params
         if ($page_size !== null) {
-            if('form' === 'form' && is_array($page_size)) {
-                foreach($page_size as $key => $value) {
+            if ('form' === 'form' && is_array($page_size)) {
+                foreach ($page_size as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1738,8 +1747,8 @@ final class UserAccessApi
         }
         // query params
         if ($page_before !== null) {
-            if('form' === 'form' && is_array($page_before)) {
-                foreach($page_before as $key => $value) {
+            if ('form' === 'form' && is_array($page_before)) {
+                foreach ($page_before as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1749,8 +1758,8 @@ final class UserAccessApi
         }
         // query params
         if ($page_after !== null) {
-            if('form' === 'form' && is_array($page_after)) {
-                foreach($page_after as $key => $value) {
+            if ('form' === 'form' && is_array($page_after)) {
+                foreach ($page_after as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1760,8 +1769,8 @@ final class UserAccessApi
         }
         // query params
         if ($sort !== null) {
-            if('form' === 'form' && is_array($sort)) {
-                foreach($sort as $key => $value) {
+            if ('form' === 'form' && is_array($sort)) {
+                foreach ($sort as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1838,10 +1847,11 @@ final class UserAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function removeProjectUserAccess($project_id, $user_id)
-    {
+    public function removeProjectUserAccess(
+        $project_id,
+        $user_id
+    ): void {
         $this->removeProjectUserAccessWithHttpInfo($project_id, $user_id);
     }
 
@@ -1943,7 +1953,7 @@ final class UserAccessApi
     public function removeProjectUserAccessAsyncWithHttpInfo(
         string $project_id,
         string $user_id
-    ) {
+    ): Promise {
         $returnType = '';
         $request = $this->removeProjectUserAccessRequest($project_id, $user_id);
 
@@ -2075,10 +2085,11 @@ final class UserAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function removeUserProjectAccess($user_id, $project_id)
-    {
+    public function removeUserProjectAccess(
+        $user_id,
+        $project_id
+    ): void {
         $this->removeUserProjectAccessWithHttpInfo($user_id, $project_id);
     }
 
@@ -2180,7 +2191,7 @@ final class UserAccessApi
     public function removeUserProjectAccessAsyncWithHttpInfo(
         string $user_id,
         string $project_id
-    ) {
+    ): Promise {
         $returnType = '';
         $request = $this->removeUserProjectAccessRequest($user_id, $project_id);
 
@@ -2312,10 +2323,12 @@ final class UserAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function updateProjectUserAccess($project_id, $user_id, $update_project_user_access_request = null)
-    {
+    public function updateProjectUserAccess(
+        $project_id,
+        $user_id,
+        $update_project_user_access_request = null
+    ): void {
         $this->updateProjectUserAccessWithHttpInfo($project_id, $user_id, $update_project_user_access_request);
     }
 
@@ -2420,7 +2433,7 @@ final class UserAccessApi
         string $project_id,
         string $user_id,
         \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null
-    ) {
+    ): Promise {
         $returnType = '';
         $request = $this->updateProjectUserAccessRequest($project_id, $user_id, $update_project_user_access_request);
 
@@ -2559,10 +2572,12 @@ final class UserAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function updateUserProjectAccess($user_id, $project_id, $update_project_user_access_request = null)
-    {
+    public function updateUserProjectAccess(
+        $user_id,
+        $project_id,
+        $update_project_user_access_request = null
+    ): void {
         $this->updateUserProjectAccessWithHttpInfo($user_id, $project_id, $update_project_user_access_request);
     }
 
@@ -2667,7 +2682,7 @@ final class UserAccessApi
         string $user_id,
         string $project_id,
         \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null
-    ) {
+    ): Promise {
         $returnType = '';
         $request = $this->updateUserProjectAccessRequest($user_id, $project_id, $update_project_user_access_request);
 

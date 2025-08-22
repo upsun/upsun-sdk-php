@@ -197,7 +197,8 @@ final class ProfileCurrentTrialProjects implements ModelInterface, ArrayAccess, 
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -239,7 +240,7 @@ final class ProfileCurrentTrialProjects implements ModelInterface, ArrayAccess, 
     /**
      * Sets id
      */
-    public function setId($id)
+    public function setId(string|null $id = null)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -262,7 +263,7 @@ final class ProfileCurrentTrialProjects implements ModelInterface, ArrayAccess, 
     /**
      * Sets name
      */
-    public function setName($name)
+    public function setName(string|null $name = null)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -285,7 +286,7 @@ final class ProfileCurrentTrialProjects implements ModelInterface, ArrayAccess, 
     /**
      * Sets total
      */
-    public function setTotal($total)
+    public function setTotal(string|null $total = null)
     {
         if (is_null($total)) {
             throw new \InvalidArgumentException('non-nullable total cannot be null');
@@ -364,5 +365,3 @@ final class ProfileCurrentTrialProjects implements ModelInterface, ArrayAccess, 
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

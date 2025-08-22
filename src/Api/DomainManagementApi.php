@@ -103,16 +103,12 @@ final class DomainManagementApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,11 @@ final class DomainManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function createProjectsDomains($project_id, $domain_create_input)
-    {
+    public function createProjectsDomains(
+        $project_id,
+        $domain_create_input
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->createProjectsDomainsWithHttpInfo($project_id, $domain_create_input);
         return $response;
     }
@@ -240,7 +237,7 @@ final class DomainManagementApi
     public function createProjectsDomainsAsyncWithHttpInfo(
         string $project_id,
         \Upsun\Model\DomainCreateInput $domain_create_input
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->createProjectsDomainsRequest($project_id, $domain_create_input);
 
@@ -380,10 +377,12 @@ final class DomainManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function createProjectsEnvironmentsDomains($project_id, $environment_id, $domain_create_input)
-    {
+    public function createProjectsEnvironmentsDomains(
+        $project_id,
+        $environment_id,
+        $domain_create_input
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->createProjectsEnvironmentsDomainsWithHttpInfo($project_id, $environment_id, $domain_create_input);
         return $response;
     }
@@ -500,7 +499,7 @@ final class DomainManagementApi
         string $project_id,
         string $environment_id,
         \Upsun\Model\DomainCreateInput $domain_create_input
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->createProjectsEnvironmentsDomainsRequest($project_id, $environment_id, $domain_create_input);
 
@@ -655,10 +654,11 @@ final class DomainManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function deleteProjectsDomains($project_id, $domain_id)
-    {
+    public function deleteProjectsDomains(
+        $project_id,
+        $domain_id
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsDomainsWithHttpInfo($project_id, $domain_id);
         return $response;
     }
@@ -772,7 +772,7 @@ final class DomainManagementApi
     public function deleteProjectsDomainsAsyncWithHttpInfo(
         string $project_id,
         string $domain_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deleteProjectsDomainsRequest($project_id, $domain_id);
 
@@ -914,10 +914,12 @@ final class DomainManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function deleteProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id)
-    {
+    public function deleteProjectsEnvironmentsDomains(
+        $project_id,
+        $environment_id,
+        $domain_id
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsEnvironmentsDomainsWithHttpInfo($project_id, $environment_id, $domain_id);
         return $response;
     }
@@ -1034,7 +1036,7 @@ final class DomainManagementApi
         string $project_id,
         string $environment_id,
         string $domain_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deleteProjectsEnvironmentsDomainsRequest($project_id, $environment_id, $domain_id);
 
@@ -1191,10 +1193,11 @@ final class DomainManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Domain
      */
-    public function getProjectsDomains($project_id, $domain_id)
-    {
+    public function getProjectsDomains(
+        $project_id,
+        $domain_id
+    ): \Upsun\Model\Domain {
         list($response) = $this->getProjectsDomainsWithHttpInfo($project_id, $domain_id);
         return $response;
     }
@@ -1308,7 +1311,7 @@ final class DomainManagementApi
     public function getProjectsDomainsAsyncWithHttpInfo(
         string $project_id,
         string $domain_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Domain';
         $request = $this->getProjectsDomainsRequest($project_id, $domain_id);
 
@@ -1450,10 +1453,12 @@ final class DomainManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Domain
      */
-    public function getProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id)
-    {
+    public function getProjectsEnvironmentsDomains(
+        $project_id,
+        $environment_id,
+        $domain_id
+    ): \Upsun\Model\Domain {
         list($response) = $this->getProjectsEnvironmentsDomainsWithHttpInfo($project_id, $environment_id, $domain_id);
         return $response;
     }
@@ -1570,7 +1575,7 @@ final class DomainManagementApi
         string $project_id,
         string $environment_id,
         string $domain_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Domain';
         $request = $this->getProjectsEnvironmentsDomainsRequest($project_id, $environment_id, $domain_id);
 
@@ -1727,10 +1732,10 @@ final class DomainManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Domain[]
      */
-    public function listProjectsDomains($project_id)
-    {
+    public function listProjectsDomains(
+        $project_id
+    ): \Upsun\Model\Domain[] {
         list($response) = $this->listProjectsDomainsWithHttpInfo($project_id);
         return $response;
     }
@@ -1841,7 +1846,7 @@ final class DomainManagementApi
      */
     public function listProjectsDomainsAsyncWithHttpInfo(
         string $project_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Domain[]';
         $request = $this->listProjectsDomainsRequest($project_id);
 
@@ -1968,10 +1973,11 @@ final class DomainManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Domain[]
      */
-    public function listProjectsEnvironmentsDomains($project_id, $environment_id)
-    {
+    public function listProjectsEnvironmentsDomains(
+        $project_id,
+        $environment_id
+    ): \Upsun\Model\Domain[] {
         list($response) = $this->listProjectsEnvironmentsDomainsWithHttpInfo($project_id, $environment_id);
         return $response;
     }
@@ -2085,7 +2091,7 @@ final class DomainManagementApi
     public function listProjectsEnvironmentsDomainsAsyncWithHttpInfo(
         string $project_id,
         string $environment_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Domain[]';
         $request = $this->listProjectsEnvironmentsDomainsRequest($project_id, $environment_id);
 
@@ -2227,10 +2233,12 @@ final class DomainManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function updateProjectsDomains($project_id, $domain_id, $domain_patch)
-    {
+    public function updateProjectsDomains(
+        $project_id,
+        $domain_id,
+        $domain_patch
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsDomainsWithHttpInfo($project_id, $domain_id, $domain_patch);
         return $response;
     }
@@ -2347,7 +2355,7 @@ final class DomainManagementApi
         string $project_id,
         string $domain_id,
         \Upsun\Model\DomainPatch $domain_patch
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateProjectsDomainsRequest($project_id, $domain_id, $domain_patch);
 
@@ -2502,10 +2510,13 @@ final class DomainManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function updateProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id, $domain_patch)
-    {
+    public function updateProjectsEnvironmentsDomains(
+        $project_id,
+        $environment_id,
+        $domain_id,
+        $domain_patch
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsEnvironmentsDomainsWithHttpInfo($project_id, $environment_id, $domain_id, $domain_patch);
         return $response;
     }
@@ -2625,7 +2636,7 @@ final class DomainManagementApi
         string $environment_id,
         string $domain_id,
         \Upsun\Model\DomainPatch $domain_patch
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateProjectsEnvironmentsDomainsRequest($project_id, $environment_id, $domain_id, $domain_patch);
 

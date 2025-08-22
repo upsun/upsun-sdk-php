@@ -288,7 +288,8 @@ final class RegionReference implements ModelInterface, ArrayAccess, \JsonSeriali
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -369,7 +370,7 @@ final class RegionReference implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets id
      */
-    public function setId($id)
+    public function setId(string|null $id = null)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -392,7 +393,7 @@ final class RegionReference implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets label
      */
-    public function setLabel($label)
+    public function setLabel(string|null $label = null)
     {
         if (is_null($label)) {
             throw new \InvalidArgumentException('non-nullable label cannot be null');
@@ -415,7 +416,7 @@ final class RegionReference implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets zone
      */
-    public function setZone($zone)
+    public function setZone(string|null $zone = null)
     {
         if (is_null($zone)) {
             throw new \InvalidArgumentException('non-nullable zone cannot be null');
@@ -438,7 +439,7 @@ final class RegionReference implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets selection_label
      */
-    public function setSelectionLabel($selection_label)
+    public function setSelectionLabel(string|null $selection_label = null)
     {
         if (is_null($selection_label)) {
             throw new \InvalidArgumentException('non-nullable selection_label cannot be null');
@@ -461,7 +462,7 @@ final class RegionReference implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets project_label
      */
-    public function setProjectLabel($project_label)
+    public function setProjectLabel(string|null $project_label = null)
     {
         if (is_null($project_label)) {
             throw new \InvalidArgumentException('non-nullable project_label cannot be null');
@@ -484,7 +485,7 @@ final class RegionReference implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets timezone
      */
-    public function setTimezone($timezone)
+    public function setTimezone(string|null $timezone = null)
     {
         if (is_null($timezone)) {
             throw new \InvalidArgumentException('non-nullable timezone cannot be null');
@@ -507,7 +508,7 @@ final class RegionReference implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets available
      */
-    public function setAvailable($available)
+    public function setAvailable(string|null $available = null)
     {
         if (is_null($available)) {
             throw new \InvalidArgumentException('non-nullable available cannot be null');
@@ -530,7 +531,7 @@ final class RegionReference implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets private
      */
-    public function setPrivate($private)
+    public function setPrivate(string|null $private = null)
     {
         if (is_null($private)) {
             throw new \InvalidArgumentException('non-nullable private cannot be null');
@@ -553,7 +554,7 @@ final class RegionReference implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets endpoint
      */
-    public function setEndpoint($endpoint)
+    public function setEndpoint(string|null $endpoint = null)
     {
         if (is_null($endpoint)) {
             throw new \InvalidArgumentException('non-nullable endpoint cannot be null');
@@ -576,7 +577,7 @@ final class RegionReference implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets code
      */
-    public function setCode($code)
+    public function setCode(string|null $code = null)
     {
         if (is_null($code)) {
             throw new \InvalidArgumentException('non-nullable code cannot be null');
@@ -599,7 +600,7 @@ final class RegionReference implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets provider
      */
-    public function setProvider($provider)
+    public function setProvider(string|null $provider = null)
     {
         if (is_null($provider)) {
             throw new \InvalidArgumentException('non-nullable provider cannot be null');
@@ -622,7 +623,7 @@ final class RegionReference implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets datacenter
      */
-    public function setDatacenter($datacenter)
+    public function setDatacenter(string|null $datacenter = null)
     {
         if (is_null($datacenter)) {
             throw new \InvalidArgumentException('non-nullable datacenter cannot be null');
@@ -645,7 +646,7 @@ final class RegionReference implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets envimpact
      */
-    public function setEnvimpact($envimpact)
+    public function setEnvimpact(string|null $envimpact = null)
     {
         if (is_null($envimpact)) {
             throw new \InvalidArgumentException('non-nullable envimpact cannot be null');
@@ -668,7 +669,7 @@ final class RegionReference implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets compliance
      */
-    public function setCompliance($compliance)
+    public function setCompliance(string|null $compliance = null)
     {
         if (is_null($compliance)) {
             throw new \InvalidArgumentException('non-nullable compliance cannot be null');
@@ -691,7 +692,7 @@ final class RegionReference implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets created_at
      */
-    public function setCreatedAt($created_at)
+    public function setCreatedAt(string|null $created_at = null)
     {
         if (is_null($created_at)) {
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
@@ -714,7 +715,7 @@ final class RegionReference implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt($updated_at)
+    public function setUpdatedAt(string|null $updated_at = null)
     {
         if (is_null($updated_at)) {
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
@@ -793,5 +794,3 @@ final class RegionReference implements ModelInterface, ArrayAccess, \JsonSeriali
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

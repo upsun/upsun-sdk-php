@@ -217,7 +217,8 @@ final class Blob implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -280,7 +281,7 @@ final class Blob implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets sha
      */
-    public function setSha($sha)
+    public function setSha(string|null $sha = null)
     {
         if (is_null($sha)) {
             throw new \InvalidArgumentException('non-nullable sha cannot be null');
@@ -303,7 +304,7 @@ final class Blob implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets size
      */
-    public function setSize($size)
+    public function setSize(string|null $size = null)
     {
         if (is_null($size)) {
             throw new \InvalidArgumentException('non-nullable size cannot be null');
@@ -326,7 +327,7 @@ final class Blob implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets encoding
      */
-    public function setEncoding($encoding)
+    public function setEncoding(string|null $encoding = null)
     {
         if (is_null($encoding)) {
             throw new \InvalidArgumentException('non-nullable encoding cannot be null');
@@ -359,7 +360,7 @@ final class Blob implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets content
      */
-    public function setContent($content)
+    public function setContent(string|null $content = null)
     {
         if (is_null($content)) {
             throw new \InvalidArgumentException('non-nullable content cannot be null');
@@ -438,5 +439,3 @@ final class Blob implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

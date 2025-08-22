@@ -183,7 +183,8 @@ final class ConfirmTotpEnrollment200Response implements ModelInterface, ArrayAcc
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -225,7 +226,7 @@ final class ConfirmTotpEnrollment200Response implements ModelInterface, ArrayAcc
     /**
      * Sets recovery_codes
      */
-    public function setRecoveryCodes($recovery_codes)
+    public function setRecoveryCodes(string|null $recovery_codes = null)
     {
         if (is_null($recovery_codes)) {
             throw new \InvalidArgumentException('non-nullable recovery_codes cannot be null');
@@ -304,5 +305,3 @@ final class ConfirmTotpEnrollment200Response implements ModelInterface, ArrayAcc
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

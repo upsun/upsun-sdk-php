@@ -103,16 +103,12 @@ final class AddOnsApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,10 @@ final class AddOnsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\OrganizationAddonsObject
      */
-    public function getOrgAddons($organization_id)
-    {
+    public function getOrgAddons(
+        $organization_id
+    ): \Upsun\Model\OrganizationAddonsObject {
         list($response) = $this->getOrgAddonsWithHttpInfo($organization_id);
         return $response;
     }
@@ -265,7 +261,7 @@ final class AddOnsApi
      */
     public function getOrgAddonsAsyncWithHttpInfo(
         string $organization_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\OrganizationAddonsObject';
         $request = $this->getOrgAddonsRequest($organization_id);
 

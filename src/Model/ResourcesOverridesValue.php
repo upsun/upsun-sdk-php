@@ -211,7 +211,8 @@ final class ResourcesOverridesValue implements ModelInterface, ArrayAccess, \Jso
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -268,7 +269,7 @@ final class ResourcesOverridesValue implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets services
      */
-    public function setServices($services)
+    public function setServices(string|null $services = null)
     {
         if (is_null($services)) {
             throw new \InvalidArgumentException('non-nullable services cannot be null');
@@ -291,7 +292,7 @@ final class ResourcesOverridesValue implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets starts_at
      */
-    public function setStartsAt($starts_at)
+    public function setStartsAt(string|null $starts_at = null)
     {
         if (is_null($starts_at)) {
             array_push($this->openAPINullablesSetToNull, 'starts_at');
@@ -321,7 +322,7 @@ final class ResourcesOverridesValue implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets ends_at
      */
-    public function setEndsAt($ends_at)
+    public function setEndsAt(string|null $ends_at = null)
     {
         if (is_null($ends_at)) {
             array_push($this->openAPINullablesSetToNull, 'ends_at');
@@ -351,7 +352,7 @@ final class ResourcesOverridesValue implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets redeployed_start
      */
-    public function setRedeployedStart($redeployed_start)
+    public function setRedeployedStart(string|null $redeployed_start = null)
     {
         if (is_null($redeployed_start)) {
             throw new \InvalidArgumentException('non-nullable redeployed_start cannot be null');
@@ -374,7 +375,7 @@ final class ResourcesOverridesValue implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets redeployed_end
      */
-    public function setRedeployedEnd($redeployed_end)
+    public function setRedeployedEnd(string|null $redeployed_end = null)
     {
         if (is_null($redeployed_end)) {
             throw new \InvalidArgumentException('non-nullable redeployed_end cannot be null');
@@ -453,5 +454,3 @@ final class ResourcesOverridesValue implements ModelInterface, ArrayAccess, \Jso
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -183,7 +183,8 @@ final class ImagesValueValue implements ModelInterface, ArrayAccess, \JsonSerial
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -228,7 +229,7 @@ final class ImagesValueValue implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets available
      */
-    public function setAvailable($available)
+    public function setAvailable(string|null $available = null)
     {
         if (is_null($available)) {
             throw new \InvalidArgumentException('non-nullable available cannot be null');
@@ -307,5 +308,3 @@ final class ImagesValueValue implements ModelInterface, ArrayAccess, \JsonSerial
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

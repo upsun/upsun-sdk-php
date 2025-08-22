@@ -190,7 +190,8 @@ final class OrganizationEstimationObjectUserLicensesBaseListAdminUser implements
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -232,7 +233,7 @@ final class OrganizationEstimationObjectUserLicensesBaseListAdminUser implements
     /**
      * Sets count
      */
-    public function setCount($count)
+    public function setCount(string|null $count = null)
     {
         if (is_null($count)) {
             throw new \InvalidArgumentException('non-nullable count cannot be null');
@@ -255,7 +256,7 @@ final class OrganizationEstimationObjectUserLicensesBaseListAdminUser implements
     /**
      * Sets total
      */
-    public function setTotal($total)
+    public function setTotal(string|null $total = null)
     {
         if (is_null($total)) {
             throw new \InvalidArgumentException('non-nullable total cannot be null');
@@ -334,5 +335,3 @@ final class OrganizationEstimationObjectUserLicensesBaseListAdminUser implements
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

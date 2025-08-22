@@ -281,7 +281,8 @@ final class CurrentUser implements ModelInterface, ArrayAccess, \JsonSerializabl
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -323,7 +324,7 @@ final class CurrentUser implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets id
      */
-    public function setId($id)
+    public function setId(string|null $id = null)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -346,7 +347,7 @@ final class CurrentUser implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets uuid
      */
-    public function setUuid($uuid)
+    public function setUuid(string|null $uuid = null)
     {
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
@@ -369,7 +370,7 @@ final class CurrentUser implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets username
      */
-    public function setUsername($username)
+    public function setUsername(string|null $username = null)
     {
         if (is_null($username)) {
             throw new \InvalidArgumentException('non-nullable username cannot be null');
@@ -392,7 +393,7 @@ final class CurrentUser implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets display_name
      */
-    public function setDisplayName($display_name)
+    public function setDisplayName(string|null $display_name = null)
     {
         if (is_null($display_name)) {
             throw new \InvalidArgumentException('non-nullable display_name cannot be null');
@@ -415,7 +416,7 @@ final class CurrentUser implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets status
      */
-    public function setStatus($status)
+    public function setStatus(string|null $status = null)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
@@ -438,7 +439,7 @@ final class CurrentUser implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets mail
      */
-    public function setMail($mail)
+    public function setMail(string|null $mail = null)
     {
         if (is_null($mail)) {
             throw new \InvalidArgumentException('non-nullable mail cannot be null');
@@ -461,7 +462,7 @@ final class CurrentUser implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets ssh_keys
      */
-    public function setSshKeys($ssh_keys)
+    public function setSshKeys(string|null $ssh_keys = null)
     {
         if (is_null($ssh_keys)) {
             throw new \InvalidArgumentException('non-nullable ssh_keys cannot be null');
@@ -484,7 +485,7 @@ final class CurrentUser implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets has_key
      */
-    public function setHasKey($has_key)
+    public function setHasKey(string|null $has_key = null)
     {
         if (is_null($has_key)) {
             throw new \InvalidArgumentException('non-nullable has_key cannot be null');
@@ -507,7 +508,7 @@ final class CurrentUser implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets projects
      */
-    public function setProjects($projects)
+    public function setProjects(string|null $projects = null)
     {
         if (is_null($projects)) {
             throw new \InvalidArgumentException('non-nullable projects cannot be null');
@@ -530,7 +531,7 @@ final class CurrentUser implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets sequence
      */
-    public function setSequence($sequence)
+    public function setSequence(string|null $sequence = null)
     {
         if (is_null($sequence)) {
             throw new \InvalidArgumentException('non-nullable sequence cannot be null');
@@ -553,7 +554,7 @@ final class CurrentUser implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets roles
      */
-    public function setRoles($roles)
+    public function setRoles(string|null $roles = null)
     {
         if (is_null($roles)) {
             throw new \InvalidArgumentException('non-nullable roles cannot be null');
@@ -576,7 +577,7 @@ final class CurrentUser implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets picture
      */
-    public function setPicture($picture)
+    public function setPicture(string|null $picture = null)
     {
         if (is_null($picture)) {
             throw new \InvalidArgumentException('non-nullable picture cannot be null');
@@ -599,7 +600,7 @@ final class CurrentUser implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets tickets
      */
-    public function setTickets($tickets)
+    public function setTickets(string|null $tickets = null)
     {
         if (is_null($tickets)) {
             throw new \InvalidArgumentException('non-nullable tickets cannot be null');
@@ -622,7 +623,7 @@ final class CurrentUser implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets trial
      */
-    public function setTrial($trial)
+    public function setTrial(string|null $trial = null)
     {
         if (is_null($trial)) {
             throw new \InvalidArgumentException('non-nullable trial cannot be null');
@@ -645,7 +646,7 @@ final class CurrentUser implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets current_trial
      */
-    public function setCurrentTrial($current_trial)
+    public function setCurrentTrial(string|null $current_trial = null)
     {
         if (is_null($current_trial)) {
             throw new \InvalidArgumentException('non-nullable current_trial cannot be null');
@@ -724,5 +725,3 @@ final class CurrentUser implements ModelInterface, ArrayAccess, \JsonSerializabl
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

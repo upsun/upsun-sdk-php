@@ -226,7 +226,8 @@ final class EnterpriseDeploymentTargetPatch implements ModelInterface, ArrayAcce
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -283,7 +284,7 @@ final class EnterpriseDeploymentTargetPatch implements ModelInterface, ArrayAcce
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -316,7 +317,7 @@ final class EnterpriseDeploymentTargetPatch implements ModelInterface, ArrayAcce
     /**
      * Sets name
      */
-    public function setName($name)
+    public function setName(string|null $name = null)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -339,7 +340,7 @@ final class EnterpriseDeploymentTargetPatch implements ModelInterface, ArrayAcce
     /**
      * Sets site_urls
      */
-    public function setSiteUrls($site_urls)
+    public function setSiteUrls(string|null $site_urls = null)
     {
         if (is_null($site_urls)) {
             throw new \InvalidArgumentException('non-nullable site_urls cannot be null');
@@ -362,7 +363,7 @@ final class EnterpriseDeploymentTargetPatch implements ModelInterface, ArrayAcce
     /**
      * Sets ssh_hosts
      */
-    public function setSshHosts($ssh_hosts)
+    public function setSshHosts(string|null $ssh_hosts = null)
     {
         if (is_null($ssh_hosts)) {
             throw new \InvalidArgumentException('non-nullable ssh_hosts cannot be null');
@@ -389,7 +390,7 @@ final class EnterpriseDeploymentTargetPatch implements ModelInterface, ArrayAcce
      *
      * @deprecated
      */
-    public function setEnterpriseEnvironmentsMapping($enterprise_environments_mapping)
+    public function setEnterpriseEnvironmentsMapping(string|null $enterprise_environments_mapping = null)
     {
         if (is_null($enterprise_environments_mapping)) {
             throw new \InvalidArgumentException('non-nullable enterprise_environments_mapping cannot be null');
@@ -468,5 +469,3 @@ final class EnterpriseDeploymentTargetPatch implements ModelInterface, ArrayAcce
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

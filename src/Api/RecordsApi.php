@@ -103,16 +103,12 @@ final class RecordsApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,18 @@ final class RecordsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ListOrgPlanRecords200Response
      */
-    public function listOrgPlanRecords($organization_id, $filter_subscription_id = null, $filter_plan = null, $filter_status = null, $filter_start = null, $filter_end = null, $filter_started_at = null, $filter_ended_at = null, $page = null)
-    {
+    public function listOrgPlanRecords(
+        $organization_id,
+        $filter_subscription_id = null,
+        $filter_plan = null,
+        $filter_status = null,
+        $filter_start = null,
+        $filter_end = null,
+        $filter_started_at = null,
+        $filter_ended_at = null,
+        $page = null
+    ): \Upsun\Model\ListOrgPlanRecords200Response {
         list($response) = $this->listOrgPlanRecordsWithHttpInfo($organization_id, $filter_subscription_id, $filter_plan, $filter_status, $filter_start, $filter_end, $filter_started_at, $filter_ended_at, $page);
         return $response;
     }
@@ -289,7 +293,7 @@ final class RecordsApi
         \DateTime $filter_started_at = null,
         \DateTime $filter_ended_at = null,
         int $page = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ListOrgPlanRecords200Response';
         $request = $this->listOrgPlanRecordsRequest($organization_id, $filter_subscription_id, $filter_plan, $filter_status, $filter_start, $filter_end, $filter_started_at, $filter_ended_at, $page);
 
@@ -357,8 +361,8 @@ final class RecordsApi
 
         // query params
         if ($filter_subscription_id !== null) {
-            if('form' === 'form' && is_array($filter_subscription_id)) {
-                foreach($filter_subscription_id as $key => $value) {
+            if ('form' === 'form' && is_array($filter_subscription_id)) {
+                foreach ($filter_subscription_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -368,8 +372,8 @@ final class RecordsApi
         }
         // query params
         if ($filter_plan !== null) {
-            if('form' === 'form' && is_array($filter_plan)) {
-                foreach($filter_plan as $key => $value) {
+            if ('form' === 'form' && is_array($filter_plan)) {
+                foreach ($filter_plan as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -379,8 +383,8 @@ final class RecordsApi
         }
         // query params
         if ($filter_status !== null) {
-            if('form' === 'form' && is_array($filter_status)) {
-                foreach($filter_status as $key => $value) {
+            if ('form' === 'form' && is_array($filter_status)) {
+                foreach ($filter_status as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -390,8 +394,8 @@ final class RecordsApi
         }
         // query params
         if ($filter_start !== null) {
-            if('form' === 'form' && is_array($filter_start)) {
-                foreach($filter_start as $key => $value) {
+            if ('form' === 'form' && is_array($filter_start)) {
+                foreach ($filter_start as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -401,8 +405,8 @@ final class RecordsApi
         }
         // query params
         if ($filter_end !== null) {
-            if('form' === 'form' && is_array($filter_end)) {
-                foreach($filter_end as $key => $value) {
+            if ('form' === 'form' && is_array($filter_end)) {
+                foreach ($filter_end as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -412,8 +416,8 @@ final class RecordsApi
         }
         // query params
         if ($filter_started_at !== null) {
-            if('form' === 'form' && is_array($filter_started_at)) {
-                foreach($filter_started_at as $key => $value) {
+            if ('form' === 'form' && is_array($filter_started_at)) {
+                foreach ($filter_started_at as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -423,8 +427,8 @@ final class RecordsApi
         }
         // query params
         if ($filter_ended_at !== null) {
-            if('form' === 'form' && is_array($filter_ended_at)) {
-                foreach($filter_ended_at as $key => $value) {
+            if ('form' === 'form' && is_array($filter_ended_at)) {
+                foreach ($filter_ended_at as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -434,8 +438,8 @@ final class RecordsApi
         }
         // query params
         if ($page !== null) {
-            if('form' === 'form' && is_array($page)) {
-                foreach($page as $key => $value) {
+            if ('form' === 'form' && is_array($page)) {
+                foreach ($page as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -512,10 +516,15 @@ final class RecordsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ListOrgUsageRecords200Response
      */
-    public function listOrgUsageRecords($organization_id, $filter_subscription_id = null, $filter_usage_group = null, $filter_start = null, $filter_started_at = null, $page = null)
-    {
+    public function listOrgUsageRecords(
+        $organization_id,
+        $filter_subscription_id = null,
+        $filter_usage_group = null,
+        $filter_start = null,
+        $filter_started_at = null,
+        $page = null
+    ): \Upsun\Model\ListOrgUsageRecords200Response {
         list($response) = $this->listOrgUsageRecordsWithHttpInfo($organization_id, $filter_subscription_id, $filter_usage_group, $filter_start, $filter_started_at, $page);
         return $response;
     }
@@ -669,7 +678,7 @@ final class RecordsApi
         \DateTime $filter_start = null,
         \DateTime $filter_started_at = null,
         int $page = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ListOrgUsageRecords200Response';
         $request = $this->listOrgUsageRecordsRequest($organization_id, $filter_subscription_id, $filter_usage_group, $filter_start, $filter_started_at, $page);
 
@@ -734,8 +743,8 @@ final class RecordsApi
 
         // query params
         if ($filter_subscription_id !== null) {
-            if('form' === 'form' && is_array($filter_subscription_id)) {
-                foreach($filter_subscription_id as $key => $value) {
+            if ('form' === 'form' && is_array($filter_subscription_id)) {
+                foreach ($filter_subscription_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -745,8 +754,8 @@ final class RecordsApi
         }
         // query params
         if ($filter_usage_group !== null) {
-            if('form' === 'form' && is_array($filter_usage_group)) {
-                foreach($filter_usage_group as $key => $value) {
+            if ('form' === 'form' && is_array($filter_usage_group)) {
+                foreach ($filter_usage_group as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -756,8 +765,8 @@ final class RecordsApi
         }
         // query params
         if ($filter_start !== null) {
-            if('form' === 'form' && is_array($filter_start)) {
-                foreach($filter_start as $key => $value) {
+            if ('form' === 'form' && is_array($filter_start)) {
+                foreach ($filter_start as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -767,8 +776,8 @@ final class RecordsApi
         }
         // query params
         if ($filter_started_at !== null) {
-            if('form' === 'form' && is_array($filter_started_at)) {
-                foreach($filter_started_at as $key => $value) {
+            if ('form' === 'form' && is_array($filter_started_at)) {
+                foreach ($filter_started_at as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -778,8 +787,8 @@ final class RecordsApi
         }
         // query params
         if ($page !== null) {
-            if('form' === 'form' && is_array($page)) {
-                foreach($page as $key => $value) {
+            if ('form' === 'form' && is_array($page)) {
+                foreach ($page as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }

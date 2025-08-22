@@ -273,7 +273,8 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, \JsonSeri
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -328,7 +329,7 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @deprecated
      */
-    public function setId($id)
+    public function setId(string|null $id = null)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -351,7 +352,7 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets organization_id
      */
-    public function setOrganizationId($organization_id)
+    public function setOrganizationId(string|null $organization_id = null)
     {
         if (is_null($organization_id)) {
             throw new \InvalidArgumentException('non-nullable organization_id cannot be null');
@@ -374,7 +375,7 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets user_id
      */
-    public function setUserId($user_id)
+    public function setUserId(string|null $user_id = null)
     {
         if (is_null($user_id)) {
             throw new \InvalidArgumentException('non-nullable user_id cannot be null');
@@ -397,7 +398,7 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets permissions
      */
-    public function setPermissions($permissions)
+    public function setPermissions(string|null $permissions = null)
     {
         if (is_null($permissions)) {
             throw new \InvalidArgumentException('non-nullable permissions cannot be null');
@@ -429,7 +430,7 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets level
      */
-    public function setLevel($level)
+    public function setLevel(string|null $level = null)
     {
         if (is_null($level)) {
             throw new \InvalidArgumentException('non-nullable level cannot be null');
@@ -462,7 +463,7 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets owner
      */
-    public function setOwner($owner)
+    public function setOwner(string|null $owner = null)
     {
         if (is_null($owner)) {
             throw new \InvalidArgumentException('non-nullable owner cannot be null');
@@ -485,7 +486,7 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets created_at
      */
-    public function setCreatedAt($created_at)
+    public function setCreatedAt(string|null $created_at = null)
     {
         if (is_null($created_at)) {
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
@@ -508,7 +509,7 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt($updated_at)
+    public function setUpdatedAt(string|null $updated_at = null)
     {
         if (is_null($updated_at)) {
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
@@ -531,7 +532,7 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets _links
      */
-    public function setLinks($_links)
+    public function setLinks(string|null $_links = null)
     {
         if (is_null($_links)) {
             throw new \InvalidArgumentException('non-nullable _links cannot be null');
@@ -610,5 +611,3 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, \JsonSeri
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

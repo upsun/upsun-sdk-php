@@ -223,7 +223,8 @@ final class TheTreeItemsInner implements ModelInterface, ArrayAccess, \JsonSeria
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -286,7 +287,7 @@ final class TheTreeItemsInner implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets path
      */
-    public function setPath($path)
+    public function setPath(string|null $path = null)
     {
         if (is_null($path)) {
             throw new \InvalidArgumentException('non-nullable path cannot be null');
@@ -309,7 +310,7 @@ final class TheTreeItemsInner implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets mode
      */
-    public function setMode($mode)
+    public function setMode(string|null $mode = null)
     {
         if (is_null($mode)) {
             throw new \InvalidArgumentException('non-nullable mode cannot be null');
@@ -342,7 +343,7 @@ final class TheTreeItemsInner implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -365,7 +366,7 @@ final class TheTreeItemsInner implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets sha
      */
-    public function setSha($sha)
+    public function setSha(string|null $sha = null)
     {
         if (is_null($sha)) {
             array_push($this->openAPINullablesSetToNull, 'sha');
@@ -451,5 +452,3 @@ final class TheTreeItemsInner implements ModelInterface, ArrayAccess, \JsonSeria
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

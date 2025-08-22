@@ -277,7 +277,8 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, \JsonSe
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -358,7 +359,7 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets created_at
      */
-    public function setCreatedAt($created_at)
+    public function setCreatedAt(string|null $created_at = null)
     {
         if (is_null($created_at)) {
             array_push($this->openAPINullablesSetToNull, 'created_at');
@@ -388,7 +389,7 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt($updated_at)
+    public function setUpdatedAt(string|null $updated_at = null)
     {
         if (is_null($updated_at)) {
             array_push($this->openAPINullablesSetToNull, 'updated_at');
@@ -418,7 +419,7 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -441,7 +442,7 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets fetch_branches
      */
-    public function setFetchBranches($fetch_branches)
+    public function setFetchBranches(string|null $fetch_branches = null)
     {
         if (is_null($fetch_branches)) {
             throw new \InvalidArgumentException('non-nullable fetch_branches cannot be null');
@@ -464,7 +465,7 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets prune_branches
      */
-    public function setPruneBranches($prune_branches)
+    public function setPruneBranches(string|null $prune_branches = null)
     {
         if (is_null($prune_branches)) {
             throw new \InvalidArgumentException('non-nullable prune_branches cannot be null');
@@ -487,7 +488,7 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets environment_init_resources
      */
-    public function setEnvironmentInitResources($environment_init_resources)
+    public function setEnvironmentInitResources(string|null $environment_init_resources = null)
     {
         if (is_null($environment_init_resources)) {
             throw new \InvalidArgumentException('non-nullable environment_init_resources cannot be null');
@@ -520,7 +521,7 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets app_credentials
      */
-    public function setAppCredentials($app_credentials)
+    public function setAppCredentials(string|null $app_credentials = null)
     {
         if (is_null($app_credentials)) {
             array_push($this->openAPINullablesSetToNull, 'app_credentials');
@@ -550,7 +551,7 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets addon_credentials
      */
-    public function setAddonCredentials($addon_credentials)
+    public function setAddonCredentials(string|null $addon_credentials = null)
     {
         if (is_null($addon_credentials)) {
             array_push($this->openAPINullablesSetToNull, 'addon_credentials');
@@ -580,7 +581,7 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets repository
      */
-    public function setRepository($repository)
+    public function setRepository(string|null $repository = null)
     {
         if (is_null($repository)) {
             throw new \InvalidArgumentException('non-nullable repository cannot be null');
@@ -603,7 +604,7 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets build_pull_requests
      */
-    public function setBuildPullRequests($build_pull_requests)
+    public function setBuildPullRequests(string|null $build_pull_requests = null)
     {
         if (is_null($build_pull_requests)) {
             throw new \InvalidArgumentException('non-nullable build_pull_requests cannot be null');
@@ -626,7 +627,7 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets pull_requests_clone_parent_data
      */
-    public function setPullRequestsCloneParentData($pull_requests_clone_parent_data)
+    public function setPullRequestsCloneParentData(string|null $pull_requests_clone_parent_data = null)
     {
         if (is_null($pull_requests_clone_parent_data)) {
             throw new \InvalidArgumentException('non-nullable pull_requests_clone_parent_data cannot be null');
@@ -649,7 +650,7 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets resync_pull_requests
      */
-    public function setResyncPullRequests($resync_pull_requests)
+    public function setResyncPullRequests(string|null $resync_pull_requests = null)
     {
         if (is_null($resync_pull_requests)) {
             throw new \InvalidArgumentException('non-nullable resync_pull_requests cannot be null');
@@ -728,5 +729,3 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, \JsonSe
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

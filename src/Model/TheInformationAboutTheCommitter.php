@@ -197,7 +197,8 @@ final class TheInformationAboutTheCommitter implements ModelInterface, ArrayAcce
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -248,7 +249,7 @@ final class TheInformationAboutTheCommitter implements ModelInterface, ArrayAcce
     /**
      * Sets date
      */
-    public function setDate($date)
+    public function setDate(string|null $date = null)
     {
         if (is_null($date)) {
             throw new \InvalidArgumentException('non-nullable date cannot be null');
@@ -271,7 +272,7 @@ final class TheInformationAboutTheCommitter implements ModelInterface, ArrayAcce
     /**
      * Sets name
      */
-    public function setName($name)
+    public function setName(string|null $name = null)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -294,7 +295,7 @@ final class TheInformationAboutTheCommitter implements ModelInterface, ArrayAcce
     /**
      * Sets email
      */
-    public function setEmail($email)
+    public function setEmail(string|null $email = null)
     {
         if (is_null($email)) {
             throw new \InvalidArgumentException('non-nullable email cannot be null');
@@ -373,5 +374,3 @@ final class TheInformationAboutTheCommitter implements ModelInterface, ArrayAcce
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

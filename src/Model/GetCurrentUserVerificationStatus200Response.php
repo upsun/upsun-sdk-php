@@ -183,7 +183,8 @@ final class GetCurrentUserVerificationStatus200Response implements ModelInterfac
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -225,7 +226,7 @@ final class GetCurrentUserVerificationStatus200Response implements ModelInterfac
     /**
      * Sets verify_phone
      */
-    public function setVerifyPhone($verify_phone)
+    public function setVerifyPhone(string|null $verify_phone = null)
     {
         if (is_null($verify_phone)) {
             throw new \InvalidArgumentException('non-nullable verify_phone cannot be null');
@@ -304,5 +305,3 @@ final class GetCurrentUserVerificationStatus200Response implements ModelInterfac
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

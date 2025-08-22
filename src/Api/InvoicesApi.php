@@ -103,16 +103,12 @@ final class InvoicesApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,11 @@ final class InvoicesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Invoice
      */
-    public function getOrgInvoice($invoice_id, $organization_id)
-    {
+    public function getOrgInvoice(
+        $invoice_id,
+        $organization_id
+    ): \Upsun\Model\Invoice {
         list($response) = $this->getOrgInvoiceWithHttpInfo($invoice_id, $organization_id);
         return $response;
     }
@@ -268,7 +265,7 @@ final class InvoicesApi
     public function getOrgInvoiceAsyncWithHttpInfo(
         string $invoice_id,
         string $organization_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Invoice';
         $request = $this->getOrgInvoiceRequest($invoice_id, $organization_id);
 
@@ -410,10 +407,14 @@ final class InvoicesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ListOrgInvoices200Response
      */
-    public function listOrgInvoices($organization_id, $filter_status = null, $filter_type = null, $filter_order_id = null, $page = null)
-    {
+    public function listOrgInvoices(
+        $organization_id,
+        $filter_status = null,
+        $filter_type = null,
+        $filter_order_id = null,
+        $page = null
+    ): \Upsun\Model\ListOrgInvoices200Response {
         list($response) = $this->listOrgInvoicesWithHttpInfo($organization_id, $filter_status, $filter_type, $filter_order_id, $page);
         return $response;
     }
@@ -564,7 +565,7 @@ final class InvoicesApi
         string $filter_type = null,
         string $filter_order_id = null,
         int $page = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ListOrgInvoices200Response';
         $request = $this->listOrgInvoicesRequest($organization_id, $filter_status, $filter_type, $filter_order_id, $page);
 
@@ -628,8 +629,8 @@ final class InvoicesApi
 
         // query params
         if ($filter_status !== null) {
-            if('form' === 'form' && is_array($filter_status)) {
-                foreach($filter_status as $key => $value) {
+            if ('form' === 'form' && is_array($filter_status)) {
+                foreach ($filter_status as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -639,8 +640,8 @@ final class InvoicesApi
         }
         // query params
         if ($filter_type !== null) {
-            if('form' === 'form' && is_array($filter_type)) {
-                foreach($filter_type as $key => $value) {
+            if ('form' === 'form' && is_array($filter_type)) {
+                foreach ($filter_type as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -650,8 +651,8 @@ final class InvoicesApi
         }
         // query params
         if ($filter_order_id !== null) {
-            if('form' === 'form' && is_array($filter_order_id)) {
-                foreach($filter_order_id as $key => $value) {
+            if ('form' === 'form' && is_array($filter_order_id)) {
+                foreach ($filter_order_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -661,8 +662,8 @@ final class InvoicesApi
         }
         // query params
         if ($page !== null) {
-            if('form' === 'form' && is_array($page)) {
-                foreach($page as $key => $value) {
+            if ('form' === 'form' && is_array($page)) {
+                foreach ($page as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }

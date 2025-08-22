@@ -103,16 +103,12 @@ final class OrganizationsApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,10 @@ final class OrganizationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Organization
      */
-    public function createOrg($create_org_request)
-    {
+    public function createOrg(
+        $create_org_request
+    ): \Upsun\Model\Organization {
         list($response) = $this->createOrgWithHttpInfo($create_org_request);
         return $response;
     }
@@ -265,7 +261,7 @@ final class OrganizationsApi
      */
     public function createOrgAsyncWithHttpInfo(
         \Upsun\Model\CreateOrgRequest $create_org_request
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Organization';
         $request = $this->createOrgRequest($create_org_request);
 
@@ -390,10 +386,10 @@ final class OrganizationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function deleteOrg($organization_id)
-    {
+    public function deleteOrg(
+        $organization_id
+    ): void {
         $this->deleteOrgWithHttpInfo($organization_id);
     }
 
@@ -492,7 +488,7 @@ final class OrganizationsApi
      */
     public function deleteOrgAsyncWithHttpInfo(
         string $organization_id
-    ) {
+    ): Promise {
         $returnType = '';
         $request = $this->deleteOrgRequest($organization_id);
 
@@ -609,10 +605,10 @@ final class OrganizationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Organization
      */
-    public function getOrg($organization_id)
-    {
+    public function getOrg(
+        $organization_id
+    ): \Upsun\Model\Organization {
         list($response) = $this->getOrgWithHttpInfo($organization_id);
         return $response;
     }
@@ -751,7 +747,7 @@ final class OrganizationsApi
      */
     public function getOrgAsyncWithHttpInfo(
         string $organization_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Organization';
         $request = $this->getOrgRequest($organization_id);
 
@@ -878,10 +874,21 @@ final class OrganizationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ListOrgs200Response
      */
-    public function listOrgs($filter_id = null, $filter_owner_id = null, $filter_name = null, $filter_label = null, $filter_vendor = null, $filter_capabilities = null, $filter_status = null, $filter_updated_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
-    {
+    public function listOrgs(
+        $filter_id = null,
+        $filter_owner_id = null,
+        $filter_name = null,
+        $filter_label = null,
+        $filter_vendor = null,
+        $filter_capabilities = null,
+        $filter_status = null,
+        $filter_updated_at = null,
+        $page_size = null,
+        $page_before = null,
+        $page_after = null,
+        $sort = null
+    ): \Upsun\Model\ListOrgs200Response {
         list($response) = $this->listOrgsWithHttpInfo($filter_id, $filter_owner_id, $filter_name, $filter_label, $filter_vendor, $filter_capabilities, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
         return $response;
     }
@@ -1053,7 +1060,7 @@ final class OrganizationsApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ListOrgs200Response';
         $request = $this->listOrgsRequest($filter_id, $filter_owner_id, $filter_name, $filter_label, $filter_vendor, $filter_capabilities, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
 
@@ -1125,8 +1132,8 @@ final class OrganizationsApi
 
         // query params
         if ($filter_id !== null) {
-            if('form' === 'deepObject' && is_array($filter_id)) {
-                foreach($filter_id as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_id)) {
+                foreach ($filter_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1136,8 +1143,8 @@ final class OrganizationsApi
         }
         // query params
         if ($filter_owner_id !== null) {
-            if('form' === 'deepObject' && is_array($filter_owner_id)) {
-                foreach($filter_owner_id as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_owner_id)) {
+                foreach ($filter_owner_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1147,8 +1154,8 @@ final class OrganizationsApi
         }
         // query params
         if ($filter_name !== null) {
-            if('form' === 'deepObject' && is_array($filter_name)) {
-                foreach($filter_name as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_name)) {
+                foreach ($filter_name as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1158,8 +1165,8 @@ final class OrganizationsApi
         }
         // query params
         if ($filter_label !== null) {
-            if('form' === 'deepObject' && is_array($filter_label)) {
-                foreach($filter_label as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_label)) {
+                foreach ($filter_label as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1169,8 +1176,8 @@ final class OrganizationsApi
         }
         // query params
         if ($filter_vendor !== null) {
-            if('form' === 'deepObject' && is_array($filter_vendor)) {
-                foreach($filter_vendor as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_vendor)) {
+                foreach ($filter_vendor as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1180,8 +1187,8 @@ final class OrganizationsApi
         }
         // query params
         if ($filter_capabilities !== null) {
-            if('form' === 'deepObject' && is_array($filter_capabilities)) {
-                foreach($filter_capabilities as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_capabilities)) {
+                foreach ($filter_capabilities as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1191,8 +1198,8 @@ final class OrganizationsApi
         }
         // query params
         if ($filter_status !== null) {
-            if('form' === 'deepObject' && is_array($filter_status)) {
-                foreach($filter_status as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_status)) {
+                foreach ($filter_status as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1202,8 +1209,8 @@ final class OrganizationsApi
         }
         // query params
         if ($filter_updated_at !== null) {
-            if('form' === 'deepObject' && is_array($filter_updated_at)) {
-                foreach($filter_updated_at as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_updated_at)) {
+                foreach ($filter_updated_at as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1213,8 +1220,8 @@ final class OrganizationsApi
         }
         // query params
         if ($page_size !== null) {
-            if('form' === 'form' && is_array($page_size)) {
-                foreach($page_size as $key => $value) {
+            if ('form' === 'form' && is_array($page_size)) {
+                foreach ($page_size as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1224,8 +1231,8 @@ final class OrganizationsApi
         }
         // query params
         if ($page_before !== null) {
-            if('form' === 'form' && is_array($page_before)) {
-                foreach($page_before as $key => $value) {
+            if ('form' === 'form' && is_array($page_before)) {
+                foreach ($page_before as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1235,8 +1242,8 @@ final class OrganizationsApi
         }
         // query params
         if ($page_after !== null) {
-            if('form' === 'form' && is_array($page_after)) {
-                foreach($page_after as $key => $value) {
+            if ('form' === 'form' && is_array($page_after)) {
+                foreach ($page_after as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1246,8 +1253,8 @@ final class OrganizationsApi
         }
         // query params
         if ($sort !== null) {
-            if('form' === 'form' && is_array($sort)) {
-                foreach($sort as $key => $value) {
+            if ('form' === 'form' && is_array($sort)) {
+                foreach ($sort as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1316,10 +1323,18 @@ final class OrganizationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ListUserOrgs200Response
      */
-    public function listUserOrgs($user_id, $filter_id = null, $filter_vendor = null, $filter_status = null, $filter_updated_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
-    {
+    public function listUserOrgs(
+        $user_id,
+        $filter_id = null,
+        $filter_vendor = null,
+        $filter_status = null,
+        $filter_updated_at = null,
+        $page_size = null,
+        $page_before = null,
+        $page_after = null,
+        $sort = null
+    ): \Upsun\Model\ListUserOrgs200Response {
         list($response) = $this->listUserOrgsWithHttpInfo($user_id, $filter_id, $filter_vendor, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
         return $response;
     }
@@ -1482,7 +1497,7 @@ final class OrganizationsApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ListUserOrgs200Response';
         $request = $this->listUserOrgsRequest($user_id, $filter_id, $filter_vendor, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
 
@@ -1557,8 +1572,8 @@ final class OrganizationsApi
 
         // query params
         if ($filter_id !== null) {
-            if('form' === 'deepObject' && is_array($filter_id)) {
-                foreach($filter_id as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_id)) {
+                foreach ($filter_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1568,8 +1583,8 @@ final class OrganizationsApi
         }
         // query params
         if ($filter_vendor !== null) {
-            if('form' === 'deepObject' && is_array($filter_vendor)) {
-                foreach($filter_vendor as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_vendor)) {
+                foreach ($filter_vendor as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1579,8 +1594,8 @@ final class OrganizationsApi
         }
         // query params
         if ($filter_status !== null) {
-            if('form' === 'deepObject' && is_array($filter_status)) {
-                foreach($filter_status as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_status)) {
+                foreach ($filter_status as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1590,8 +1605,8 @@ final class OrganizationsApi
         }
         // query params
         if ($filter_updated_at !== null) {
-            if('form' === 'deepObject' && is_array($filter_updated_at)) {
-                foreach($filter_updated_at as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_updated_at)) {
+                foreach ($filter_updated_at as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1601,8 +1616,8 @@ final class OrganizationsApi
         }
         // query params
         if ($page_size !== null) {
-            if('form' === 'form' && is_array($page_size)) {
-                foreach($page_size as $key => $value) {
+            if ('form' === 'form' && is_array($page_size)) {
+                foreach ($page_size as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1612,8 +1627,8 @@ final class OrganizationsApi
         }
         // query params
         if ($page_before !== null) {
-            if('form' === 'form' && is_array($page_before)) {
-                foreach($page_before as $key => $value) {
+            if ('form' === 'form' && is_array($page_before)) {
+                foreach ($page_before as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1623,8 +1638,8 @@ final class OrganizationsApi
         }
         // query params
         if ($page_after !== null) {
-            if('form' === 'form' && is_array($page_after)) {
-                foreach($page_after as $key => $value) {
+            if ('form' === 'form' && is_array($page_after)) {
+                foreach ($page_after as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1634,8 +1649,8 @@ final class OrganizationsApi
         }
         // query params
         if ($sort !== null) {
-            if('form' === 'form' && is_array($sort)) {
-                foreach($sort as $key => $value) {
+            if ('form' === 'form' && is_array($sort)) {
+                foreach ($sort as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1712,10 +1727,11 @@ final class OrganizationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Organization
      */
-    public function updateOrg($organization_id, $update_org_request = null)
-    {
+    public function updateOrg(
+        $organization_id,
+        $update_org_request = null
+    ): \Upsun\Model\Organization {
         list($response) = $this->updateOrgWithHttpInfo($organization_id, $update_org_request);
         return $response;
     }
@@ -1871,7 +1887,7 @@ final class OrganizationsApi
     public function updateOrgAsyncWithHttpInfo(
         string $organization_id,
         \Upsun\Model\UpdateOrgRequest $update_org_request = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Organization';
         $request = $this->updateOrgRequest($organization_id, $update_org_request);
 

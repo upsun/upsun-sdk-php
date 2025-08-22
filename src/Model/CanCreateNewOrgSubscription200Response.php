@@ -197,7 +197,8 @@ final class CanCreateNewOrgSubscription200Response implements ModelInterface, Ar
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -239,7 +240,7 @@ final class CanCreateNewOrgSubscription200Response implements ModelInterface, Ar
     /**
      * Sets can_create
      */
-    public function setCanCreate($can_create)
+    public function setCanCreate(string|null $can_create = null)
     {
         if (is_null($can_create)) {
             throw new \InvalidArgumentException('non-nullable can_create cannot be null');
@@ -262,7 +263,7 @@ final class CanCreateNewOrgSubscription200Response implements ModelInterface, Ar
     /**
      * Sets message
      */
-    public function setMessage($message)
+    public function setMessage(string|null $message = null)
     {
         if (is_null($message)) {
             throw new \InvalidArgumentException('non-nullable message cannot be null');
@@ -285,7 +286,7 @@ final class CanCreateNewOrgSubscription200Response implements ModelInterface, Ar
     /**
      * Sets required_action
      */
-    public function setRequiredAction($required_action)
+    public function setRequiredAction(string|null $required_action = null)
     {
         if (is_null($required_action)) {
             array_push($this->openAPINullablesSetToNull, 'required_action');
@@ -371,5 +372,3 @@ final class CanCreateNewOrgSubscription200Response implements ModelInterface, Ar
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

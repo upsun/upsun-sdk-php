@@ -103,16 +103,12 @@ final class ProjectApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,10 @@ final class ProjectApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function actionProjectsClearBuildCache($project_id)
-    {
+    public function actionProjectsClearBuildCache(
+        $project_id
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->actionProjectsClearBuildCacheWithHttpInfo($project_id);
         return $response;
     }
@@ -237,7 +233,7 @@ final class ProjectApi
      */
     public function actionProjectsClearBuildCacheAsyncWithHttpInfo(
         string $project_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->actionProjectsClearBuildCacheRequest($project_id);
 
@@ -364,10 +360,10 @@ final class ProjectApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function deleteProjects($project_id)
-    {
+    public function deleteProjects(
+        $project_id
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsWithHttpInfo($project_id);
         return $response;
     }
@@ -478,7 +474,7 @@ final class ProjectApi
      */
     public function deleteProjectsAsyncWithHttpInfo(
         string $project_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deleteProjectsRequest($project_id);
 
@@ -605,10 +601,10 @@ final class ProjectApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\Project
      */
-    public function getProjects($project_id)
-    {
+    public function getProjects(
+        $project_id
+    ): \Upsun\Model\Project {
         list($response) = $this->getProjectsWithHttpInfo($project_id);
         return $response;
     }
@@ -719,7 +715,7 @@ final class ProjectApi
      */
     public function getProjectsAsyncWithHttpInfo(
         string $project_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\Project';
         $request = $this->getProjectsRequest($project_id);
 
@@ -846,10 +842,10 @@ final class ProjectApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ProjectCapabilities
      */
-    public function getProjectsCapabilities($project_id)
-    {
+    public function getProjectsCapabilities(
+        $project_id
+    ): \Upsun\Model\ProjectCapabilities {
         list($response) = $this->getProjectsCapabilitiesWithHttpInfo($project_id);
         return $response;
     }
@@ -960,7 +956,7 @@ final class ProjectApi
      */
     public function getProjectsCapabilitiesAsyncWithHttpInfo(
         string $project_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ProjectCapabilities';
         $request = $this->getProjectsCapabilitiesRequest($project_id);
 
@@ -1087,10 +1083,11 @@ final class ProjectApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
      */
-    public function updateProjects($project_id, $project_patch)
-    {
+    public function updateProjects(
+        $project_id,
+        $project_patch
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsWithHttpInfo($project_id, $project_patch);
         return $response;
     }
@@ -1204,7 +1201,7 @@ final class ProjectApi
     public function updateProjectsAsyncWithHttpInfo(
         string $project_id,
         \Upsun\Model\ProjectPatch $project_patch
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateProjectsRequest($project_id, $project_patch);
 

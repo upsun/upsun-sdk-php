@@ -197,7 +197,8 @@ final class HttpAccessPermissions implements ModelInterface, ArrayAccess, \JsonS
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -248,7 +249,7 @@ final class HttpAccessPermissions implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets is_enabled
      */
-    public function setIsEnabled($is_enabled)
+    public function setIsEnabled(string|null $is_enabled = null)
     {
         if (is_null($is_enabled)) {
             throw new \InvalidArgumentException('non-nullable is_enabled cannot be null');
@@ -271,7 +272,7 @@ final class HttpAccessPermissions implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets addresses
      */
-    public function setAddresses($addresses)
+    public function setAddresses(string|null $addresses = null)
     {
         if (is_null($addresses)) {
             throw new \InvalidArgumentException('non-nullable addresses cannot be null');
@@ -294,7 +295,7 @@ final class HttpAccessPermissions implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets basic_auth
      */
-    public function setBasicAuth($basic_auth)
+    public function setBasicAuth(string|null $basic_auth = null)
     {
         if (is_null($basic_auth)) {
             throw new \InvalidArgumentException('non-nullable basic_auth cannot be null');
@@ -373,5 +374,3 @@ final class HttpAccessPermissions implements ModelInterface, ArrayAccess, \JsonS
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

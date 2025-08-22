@@ -571,7 +571,8 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -697,7 +698,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -720,7 +721,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets fetch_branches
      */
-    public function setFetchBranches($fetch_branches)
+    public function setFetchBranches(string|null $fetch_branches = null)
     {
         if (is_null($fetch_branches)) {
             throw new \InvalidArgumentException('non-nullable fetch_branches cannot be null');
@@ -743,7 +744,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets prune_branches
      */
-    public function setPruneBranches($prune_branches)
+    public function setPruneBranches(string|null $prune_branches = null)
     {
         if (is_null($prune_branches)) {
             throw new \InvalidArgumentException('non-nullable prune_branches cannot be null');
@@ -766,7 +767,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets environment_init_resources
      */
-    public function setEnvironmentInitResources($environment_init_resources)
+    public function setEnvironmentInitResources(string|null $environment_init_resources = null)
     {
         if (is_null($environment_init_resources)) {
             throw new \InvalidArgumentException('non-nullable environment_init_resources cannot be null');
@@ -799,7 +800,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets app_credentials
      */
-    public function setAppCredentials($app_credentials)
+    public function setAppCredentials(string|null $app_credentials = null)
     {
         if (is_null($app_credentials)) {
             array_push($this->openAPINullablesSetToNull, 'app_credentials');
@@ -829,7 +830,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets addon_credentials
      */
-    public function setAddonCredentials($addon_credentials)
+    public function setAddonCredentials(string|null $addon_credentials = null)
     {
         if (is_null($addon_credentials)) {
             array_push($this->openAPINullablesSetToNull, 'addon_credentials');
@@ -859,7 +860,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets repository
      */
-    public function setRepository($repository)
+    public function setRepository(string|null $repository = null)
     {
         if (is_null($repository)) {
             throw new \InvalidArgumentException('non-nullable repository cannot be null');
@@ -882,7 +883,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets build_pull_requests
      */
-    public function setBuildPullRequests($build_pull_requests)
+    public function setBuildPullRequests(string|null $build_pull_requests = null)
     {
         if (is_null($build_pull_requests)) {
             throw new \InvalidArgumentException('non-nullable build_pull_requests cannot be null');
@@ -905,7 +906,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets pull_requests_clone_parent_data
      */
-    public function setPullRequestsCloneParentData($pull_requests_clone_parent_data)
+    public function setPullRequestsCloneParentData(string|null $pull_requests_clone_parent_data = null)
     {
         if (is_null($pull_requests_clone_parent_data)) {
             throw new \InvalidArgumentException('non-nullable pull_requests_clone_parent_data cannot be null');
@@ -928,7 +929,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets resync_pull_requests
      */
-    public function setResyncPullRequests($resync_pull_requests)
+    public function setResyncPullRequests(string|null $resync_pull_requests = null)
     {
         if (is_null($resync_pull_requests)) {
             throw new \InvalidArgumentException('non-nullable resync_pull_requests cannot be null');
@@ -951,7 +952,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets url
      */
-    public function setUrl($url)
+    public function setUrl(string|null $url = null)
     {
         if (is_null($url)) {
             throw new \InvalidArgumentException('non-nullable url cannot be null');
@@ -974,7 +975,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets username
      */
-    public function setUsername($username)
+    public function setUsername(string|null $username = null)
     {
         if (is_null($username)) {
             throw new \InvalidArgumentException('non-nullable username cannot be null');
@@ -997,7 +998,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets token
      */
-    public function setToken($token)
+    public function setToken(string|null $token = null)
     {
         if (is_null($token)) {
             throw new \InvalidArgumentException('non-nullable token cannot be null');
@@ -1020,7 +1021,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets project
      */
-    public function setProject($project)
+    public function setProject(string|null $project = null)
     {
         if (is_null($project)) {
             throw new \InvalidArgumentException('non-nullable project cannot be null');
@@ -1043,7 +1044,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets events
      */
-    public function setEvents($events)
+    public function setEvents(string|null $events = null)
     {
         if (is_null($events)) {
             throw new \InvalidArgumentException('non-nullable events cannot be null');
@@ -1066,7 +1067,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets environments
      */
-    public function setEnvironments($environments)
+    public function setEnvironments(string|null $environments = null)
     {
         if (is_null($environments)) {
             throw new \InvalidArgumentException('non-nullable environments cannot be null');
@@ -1089,7 +1090,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets excluded_environments
      */
-    public function setExcludedEnvironments($excluded_environments)
+    public function setExcludedEnvironments(string|null $excluded_environments = null)
     {
         if (is_null($excluded_environments)) {
             throw new \InvalidArgumentException('non-nullable excluded_environments cannot be null');
@@ -1112,7 +1113,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets states
      */
-    public function setStates($states)
+    public function setStates(string|null $states = null)
     {
         if (is_null($states)) {
             throw new \InvalidArgumentException('non-nullable states cannot be null');
@@ -1135,7 +1136,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets result
      */
-    public function setResult($result)
+    public function setResult(string|null $result = null)
     {
         if (is_null($result)) {
             throw new \InvalidArgumentException('non-nullable result cannot be null');
@@ -1168,7 +1169,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets service_id
      */
-    public function setServiceId($service_id)
+    public function setServiceId(string|null $service_id = null)
     {
         if (is_null($service_id)) {
             throw new \InvalidArgumentException('non-nullable service_id cannot be null');
@@ -1191,7 +1192,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets base_url
      */
-    public function setBaseUrl($base_url)
+    public function setBaseUrl(string|null $base_url = null)
     {
         if (is_null($base_url)) {
             throw new \InvalidArgumentException('non-nullable base_url cannot be null');
@@ -1214,7 +1215,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets build_draft_pull_requests
      */
-    public function setBuildDraftPullRequests($build_draft_pull_requests)
+    public function setBuildDraftPullRequests(string|null $build_draft_pull_requests = null)
     {
         if (is_null($build_draft_pull_requests)) {
             throw new \InvalidArgumentException('non-nullable build_draft_pull_requests cannot be null');
@@ -1237,7 +1238,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets build_pull_requests_post_merge
      */
-    public function setBuildPullRequestsPostMerge($build_pull_requests_post_merge)
+    public function setBuildPullRequestsPostMerge(string|null $build_pull_requests_post_merge = null)
     {
         if (is_null($build_pull_requests_post_merge)) {
             throw new \InvalidArgumentException('non-nullable build_pull_requests_post_merge cannot be null');
@@ -1260,7 +1261,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets build_merge_requests
      */
-    public function setBuildMergeRequests($build_merge_requests)
+    public function setBuildMergeRequests(string|null $build_merge_requests = null)
     {
         if (is_null($build_merge_requests)) {
             throw new \InvalidArgumentException('non-nullable build_merge_requests cannot be null');
@@ -1283,7 +1284,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets build_wip_merge_requests
      */
-    public function setBuildWipMergeRequests($build_wip_merge_requests)
+    public function setBuildWipMergeRequests(string|null $build_wip_merge_requests = null)
     {
         if (is_null($build_wip_merge_requests)) {
             throw new \InvalidArgumentException('non-nullable build_wip_merge_requests cannot be null');
@@ -1306,7 +1307,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets merge_requests_clone_parent_data
      */
-    public function setMergeRequestsCloneParentData($merge_requests_clone_parent_data)
+    public function setMergeRequestsCloneParentData(string|null $merge_requests_clone_parent_data = null)
     {
         if (is_null($merge_requests_clone_parent_data)) {
             throw new \InvalidArgumentException('non-nullable merge_requests_clone_parent_data cannot be null');
@@ -1329,7 +1330,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets from_address
      */
-    public function setFromAddress($from_address)
+    public function setFromAddress(string|null $from_address = null)
     {
         if (is_null($from_address)) {
             array_push($this->openAPINullablesSetToNull, 'from_address');
@@ -1359,7 +1360,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets recipients
      */
-    public function setRecipients($recipients)
+    public function setRecipients(string|null $recipients = null)
     {
         if (is_null($recipients)) {
             throw new \InvalidArgumentException('non-nullable recipients cannot be null');
@@ -1382,7 +1383,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets routing_key
      */
-    public function setRoutingKey($routing_key)
+    public function setRoutingKey(string|null $routing_key = null)
     {
         if (is_null($routing_key)) {
             throw new \InvalidArgumentException('non-nullable routing_key cannot be null');
@@ -1405,7 +1406,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets channel
      */
-    public function setChannel($channel)
+    public function setChannel(string|null $channel = null)
     {
         if (is_null($channel)) {
             throw new \InvalidArgumentException('non-nullable channel cannot be null');
@@ -1428,7 +1429,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets shared_key
      */
-    public function setSharedKey($shared_key)
+    public function setSharedKey(string|null $shared_key = null)
     {
         if (is_null($shared_key)) {
             array_push($this->openAPINullablesSetToNull, 'shared_key');
@@ -1458,7 +1459,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets extra
      */
-    public function setExtra($extra)
+    public function setExtra(string|null $extra = null)
     {
         if (is_null($extra)) {
             throw new \InvalidArgumentException('non-nullable extra cannot be null');
@@ -1481,7 +1482,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets headers
      */
-    public function setHeaders($headers)
+    public function setHeaders(string|null $headers = null)
     {
         if (is_null($headers)) {
             throw new \InvalidArgumentException('non-nullable headers cannot be null');
@@ -1504,7 +1505,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets tls_verify
      */
-    public function setTlsVerify($tls_verify)
+    public function setTlsVerify(string|null $tls_verify = null)
     {
         if (is_null($tls_verify)) {
             throw new \InvalidArgumentException('non-nullable tls_verify cannot be null');
@@ -1527,7 +1528,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets license_key
      */
-    public function setLicenseKey($license_key)
+    public function setLicenseKey(string|null $license_key = null)
     {
         if (is_null($license_key)) {
             throw new \InvalidArgumentException('non-nullable license_key cannot be null');
@@ -1550,7 +1551,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets script
      */
-    public function setScript($script)
+    public function setScript(string|null $script = null)
     {
         if (is_null($script)) {
             throw new \InvalidArgumentException('non-nullable script cannot be null');
@@ -1573,7 +1574,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets index
      */
-    public function setIndex($index)
+    public function setIndex(string|null $index = null)
     {
         if (is_null($index)) {
             throw new \InvalidArgumentException('non-nullable index cannot be null');
@@ -1596,7 +1597,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets sourcetype
      */
-    public function setSourcetype($sourcetype)
+    public function setSourcetype(string|null $sourcetype = null)
     {
         if (is_null($sourcetype)) {
             throw new \InvalidArgumentException('non-nullable sourcetype cannot be null');
@@ -1619,7 +1620,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets category
      */
-    public function setCategory($category)
+    public function setCategory(string|null $category = null)
     {
         if (is_null($category)) {
             throw new \InvalidArgumentException('non-nullable category cannot be null');
@@ -1642,7 +1643,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets host
      */
-    public function setHost($host)
+    public function setHost(string|null $host = null)
     {
         if (is_null($host)) {
             throw new \InvalidArgumentException('non-nullable host cannot be null');
@@ -1665,7 +1666,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets port
      */
-    public function setPort($port)
+    public function setPort(string|null $port = null)
     {
         if (is_null($port)) {
             throw new \InvalidArgumentException('non-nullable port cannot be null');
@@ -1688,7 +1689,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets protocol
      */
-    public function setProtocol($protocol)
+    public function setProtocol(string|null $protocol = null)
     {
         if (is_null($protocol)) {
             throw new \InvalidArgumentException('non-nullable protocol cannot be null');
@@ -1721,7 +1722,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets facility
      */
-    public function setFacility($facility)
+    public function setFacility(string|null $facility = null)
     {
         if (is_null($facility)) {
             throw new \InvalidArgumentException('non-nullable facility cannot be null');
@@ -1744,7 +1745,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets message_format
      */
-    public function setMessageFormat($message_format)
+    public function setMessageFormat(string|null $message_format = null)
     {
         if (is_null($message_format)) {
             throw new \InvalidArgumentException('non-nullable message_format cannot be null');
@@ -1777,7 +1778,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets auth_token
      */
-    public function setAuthToken($auth_token)
+    public function setAuthToken(string|null $auth_token = null)
     {
         if (is_null($auth_token)) {
             throw new \InvalidArgumentException('non-nullable auth_token cannot be null');
@@ -1800,7 +1801,7 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets auth_mode
      */
-    public function setAuthMode($auth_mode)
+    public function setAuthMode(string|null $auth_mode = null)
     {
         if (is_null($auth_mode)) {
             throw new \InvalidArgumentException('non-nullable auth_mode cannot be null');
@@ -1889,5 +1890,3 @@ final class IntegrationCreateInput implements ModelInterface, ArrayAccess, \Json
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -190,7 +190,8 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -232,7 +233,7 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
     /**
      * Sets standard_management_user
      */
-    public function setStandardManagementUser($standard_management_user)
+    public function setStandardManagementUser(string|null $standard_management_user = null)
     {
         if (is_null($standard_management_user)) {
             throw new \InvalidArgumentException('non-nullable standard_management_user cannot be null');
@@ -255,7 +256,7 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
     /**
      * Sets advanced_management_user
      */
-    public function setAdvancedManagementUser($advanced_management_user)
+    public function setAdvancedManagementUser(string|null $advanced_management_user = null)
     {
         if (is_null($advanced_management_user)) {
             throw new \InvalidArgumentException('non-nullable advanced_management_user cannot be null');
@@ -334,5 +335,3 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

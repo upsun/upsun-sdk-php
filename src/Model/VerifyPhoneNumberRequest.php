@@ -205,7 +205,8 @@ final class VerifyPhoneNumberRequest implements ModelInterface, ArrayAccess, \Js
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -262,7 +263,7 @@ final class VerifyPhoneNumberRequest implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets channel
      */
-    public function setChannel($channel)
+    public function setChannel(string|null $channel = null)
     {
         if (is_null($channel)) {
             throw new \InvalidArgumentException('non-nullable channel cannot be null');
@@ -295,7 +296,7 @@ final class VerifyPhoneNumberRequest implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets phone_number
      */
-    public function setPhoneNumber($phone_number)
+    public function setPhoneNumber(string|null $phone_number = null)
     {
         if (is_null($phone_number)) {
             throw new \InvalidArgumentException('non-nullable phone_number cannot be null');
@@ -374,5 +375,3 @@ final class VerifyPhoneNumberRequest implements ModelInterface, ArrayAccess, \Js
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

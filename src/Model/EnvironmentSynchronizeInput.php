@@ -204,7 +204,8 @@ final class EnvironmentSynchronizeInput implements ModelInterface, ArrayAccess, 
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -258,7 +259,7 @@ final class EnvironmentSynchronizeInput implements ModelInterface, ArrayAccess, 
     /**
      * Sets synchronize_code
      */
-    public function setSynchronizeCode($synchronize_code)
+    public function setSynchronizeCode(string|null $synchronize_code = null)
     {
         if (is_null($synchronize_code)) {
             throw new \InvalidArgumentException('non-nullable synchronize_code cannot be null');
@@ -281,7 +282,7 @@ final class EnvironmentSynchronizeInput implements ModelInterface, ArrayAccess, 
     /**
      * Sets rebase
      */
-    public function setRebase($rebase)
+    public function setRebase(string|null $rebase = null)
     {
         if (is_null($rebase)) {
             throw new \InvalidArgumentException('non-nullable rebase cannot be null');
@@ -304,7 +305,7 @@ final class EnvironmentSynchronizeInput implements ModelInterface, ArrayAccess, 
     /**
      * Sets synchronize_data
      */
-    public function setSynchronizeData($synchronize_data)
+    public function setSynchronizeData(string|null $synchronize_data = null)
     {
         if (is_null($synchronize_data)) {
             throw new \InvalidArgumentException('non-nullable synchronize_data cannot be null');
@@ -327,7 +328,7 @@ final class EnvironmentSynchronizeInput implements ModelInterface, ArrayAccess, 
     /**
      * Sets synchronize_resources
      */
-    public function setSynchronizeResources($synchronize_resources)
+    public function setSynchronizeResources(string|null $synchronize_resources = null)
     {
         if (is_null($synchronize_resources)) {
             throw new \InvalidArgumentException('non-nullable synchronize_resources cannot be null');
@@ -406,5 +407,3 @@ final class EnvironmentSynchronizeInput implements ModelInterface, ArrayAccess, 
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

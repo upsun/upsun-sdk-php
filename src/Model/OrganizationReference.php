@@ -225,7 +225,8 @@ final class OrganizationReference implements ModelInterface, ArrayAccess, \JsonS
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -267,7 +268,7 @@ final class OrganizationReference implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets id
      */
-    public function setId($id)
+    public function setId(string|null $id = null)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -290,7 +291,7 @@ final class OrganizationReference implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets owner_id
      */
-    public function setOwnerId($owner_id)
+    public function setOwnerId(string|null $owner_id = null)
     {
         if (is_null($owner_id)) {
             throw new \InvalidArgumentException('non-nullable owner_id cannot be null');
@@ -313,7 +314,7 @@ final class OrganizationReference implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets name
      */
-    public function setName($name)
+    public function setName(string|null $name = null)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -336,7 +337,7 @@ final class OrganizationReference implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets label
      */
-    public function setLabel($label)
+    public function setLabel(string|null $label = null)
     {
         if (is_null($label)) {
             throw new \InvalidArgumentException('non-nullable label cannot be null');
@@ -359,7 +360,7 @@ final class OrganizationReference implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets vendor
      */
-    public function setVendor($vendor)
+    public function setVendor(string|null $vendor = null)
     {
         if (is_null($vendor)) {
             throw new \InvalidArgumentException('non-nullable vendor cannot be null');
@@ -382,7 +383,7 @@ final class OrganizationReference implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets created_at
      */
-    public function setCreatedAt($created_at)
+    public function setCreatedAt(string|null $created_at = null)
     {
         if (is_null($created_at)) {
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
@@ -405,7 +406,7 @@ final class OrganizationReference implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt($updated_at)
+    public function setUpdatedAt(string|null $updated_at = null)
     {
         if (is_null($updated_at)) {
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
@@ -484,5 +485,3 @@ final class OrganizationReference implements ModelInterface, ArrayAccess, \JsonS
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

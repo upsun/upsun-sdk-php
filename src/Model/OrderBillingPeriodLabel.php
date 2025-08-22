@@ -204,7 +204,8 @@ final class OrderBillingPeriodLabel implements ModelInterface, ArrayAccess, \Jso
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -246,7 +247,7 @@ final class OrderBillingPeriodLabel implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets formatted
      */
-    public function setFormatted($formatted)
+    public function setFormatted(string|null $formatted = null)
     {
         if (is_null($formatted)) {
             throw new \InvalidArgumentException('non-nullable formatted cannot be null');
@@ -269,7 +270,7 @@ final class OrderBillingPeriodLabel implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets month
      */
-    public function setMonth($month)
+    public function setMonth(string|null $month = null)
     {
         if (is_null($month)) {
             throw new \InvalidArgumentException('non-nullable month cannot be null');
@@ -292,7 +293,7 @@ final class OrderBillingPeriodLabel implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets year
      */
-    public function setYear($year)
+    public function setYear(string|null $year = null)
     {
         if (is_null($year)) {
             throw new \InvalidArgumentException('non-nullable year cannot be null');
@@ -315,7 +316,7 @@ final class OrderBillingPeriodLabel implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets next_month
      */
-    public function setNextMonth($next_month)
+    public function setNextMonth(string|null $next_month = null)
     {
         if (is_null($next_month)) {
             throw new \InvalidArgumentException('non-nullable next_month cannot be null');
@@ -394,5 +395,3 @@ final class OrderBillingPeriodLabel implements ModelInterface, ArrayAccess, \Jso
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

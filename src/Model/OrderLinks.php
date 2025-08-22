@@ -183,7 +183,8 @@ final class OrderLinks implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -225,7 +226,7 @@ final class OrderLinks implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets invoices
      */
-    public function setInvoices($invoices)
+    public function setInvoices(string|null $invoices = null)
     {
         if (is_null($invoices)) {
             throw new \InvalidArgumentException('non-nullable invoices cannot be null');
@@ -304,5 +305,3 @@ final class OrderLinks implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -190,7 +190,8 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Mo
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -232,7 +233,7 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Mo
     /**
      * Sets return_url
      */
-    public function setReturnUrl($return_url)
+    public function setReturnUrl(string|null $return_url = null)
     {
         if (is_null($return_url)) {
             throw new \InvalidArgumentException('non-nullable return_url cannot be null');
@@ -255,7 +256,7 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Mo
     /**
      * Sets url
      */
-    public function setUrl($url)
+    public function setUrl(string|null $url = null)
     {
         if (is_null($url)) {
             throw new \InvalidArgumentException('non-nullable url cannot be null');
@@ -334,5 +335,3 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Mo
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

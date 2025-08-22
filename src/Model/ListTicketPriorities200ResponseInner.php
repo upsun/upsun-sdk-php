@@ -204,7 +204,8 @@ final class ListTicketPriorities200ResponseInner implements ModelInterface, Arra
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -246,7 +247,7 @@ final class ListTicketPriorities200ResponseInner implements ModelInterface, Arra
     /**
      * Sets id
      */
-    public function setId($id)
+    public function setId(string|null $id = null)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -269,7 +270,7 @@ final class ListTicketPriorities200ResponseInner implements ModelInterface, Arra
     /**
      * Sets label
      */
-    public function setLabel($label)
+    public function setLabel(string|null $label = null)
     {
         if (is_null($label)) {
             throw new \InvalidArgumentException('non-nullable label cannot be null');
@@ -292,7 +293,7 @@ final class ListTicketPriorities200ResponseInner implements ModelInterface, Arra
     /**
      * Sets short_description
      */
-    public function setShortDescription($short_description)
+    public function setShortDescription(string|null $short_description = null)
     {
         if (is_null($short_description)) {
             throw new \InvalidArgumentException('non-nullable short_description cannot be null');
@@ -315,7 +316,7 @@ final class ListTicketPriorities200ResponseInner implements ModelInterface, Arra
     /**
      * Sets description
      */
-    public function setDescription($description)
+    public function setDescription(string|null $description = null)
     {
         if (is_null($description)) {
             throw new \InvalidArgumentException('non-nullable description cannot be null');
@@ -394,5 +395,3 @@ final class ListTicketPriorities200ResponseInner implements ModelInterface, Arra
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

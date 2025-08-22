@@ -190,7 +190,8 @@ final class TheConfigurationOfTheRedirects1 implements ModelInterface, ArrayAcce
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -235,7 +236,7 @@ final class TheConfigurationOfTheRedirects1 implements ModelInterface, ArrayAcce
     /**
      * Sets expires
      */
-    public function setExpires($expires)
+    public function setExpires(string|null $expires = null)
     {
         if (is_null($expires)) {
             throw new \InvalidArgumentException('non-nullable expires cannot be null');
@@ -258,7 +259,7 @@ final class TheConfigurationOfTheRedirects1 implements ModelInterface, ArrayAcce
     /**
      * Sets paths
      */
-    public function setPaths($paths)
+    public function setPaths(string|null $paths = null)
     {
         if (is_null($paths)) {
             throw new \InvalidArgumentException('non-nullable paths cannot be null');
@@ -337,5 +338,3 @@ final class TheConfigurationOfTheRedirects1 implements ModelInterface, ArrayAcce
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

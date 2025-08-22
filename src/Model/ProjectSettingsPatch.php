@@ -197,7 +197,8 @@ final class ProjectSettingsPatch implements ModelInterface, ArrayAccess, \JsonSe
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -239,7 +240,7 @@ final class ProjectSettingsPatch implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets initialize
      */
-    public function setInitialize($initialize)
+    public function setInitialize(string|null $initialize = null)
     {
         if (is_null($initialize)) {
             throw new \InvalidArgumentException('non-nullable initialize cannot be null');
@@ -262,7 +263,7 @@ final class ProjectSettingsPatch implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets data_retention
      */
-    public function setDataRetention($data_retention)
+    public function setDataRetention(string|null $data_retention = null)
     {
         if (is_null($data_retention)) {
             array_push($this->openAPINullablesSetToNull, 'data_retention');
@@ -292,7 +293,7 @@ final class ProjectSettingsPatch implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets build_resources
      */
-    public function setBuildResources($build_resources)
+    public function setBuildResources(string|null $build_resources = null)
     {
         if (is_null($build_resources)) {
             throw new \InvalidArgumentException('non-nullable build_resources cannot be null');
@@ -371,5 +372,3 @@ final class ProjectSettingsPatch implements ModelInterface, ArrayAccess, \JsonSe
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

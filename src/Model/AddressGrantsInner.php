@@ -203,7 +203,8 @@ final class AddressGrantsInner implements ModelInterface, ArrayAccess, \JsonSeri
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -260,7 +261,7 @@ final class AddressGrantsInner implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets permission
      */
-    public function setPermission($permission)
+    public function setPermission(string|null $permission = null)
     {
         if (is_null($permission)) {
             throw new \InvalidArgumentException('non-nullable permission cannot be null');
@@ -293,7 +294,7 @@ final class AddressGrantsInner implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets address
      */
-    public function setAddress($address)
+    public function setAddress(string|null $address = null)
     {
         if (is_null($address)) {
             throw new \InvalidArgumentException('non-nullable address cannot be null');
@@ -372,5 +373,3 @@ final class AddressGrantsInner implements ModelInterface, ArrayAccess, \JsonSeri
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

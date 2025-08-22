@@ -260,7 +260,8 @@ final class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -311,7 +312,7 @@ final class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -344,7 +345,7 @@ final class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets license_id
      */
-    public function setLicenseId($license_id)
+    public function setLicenseId(string|null $license_id = null)
     {
         if (is_null($license_id)) {
             array_push($this->openAPINullablesSetToNull, 'license_id');
@@ -374,7 +375,7 @@ final class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets project_id
      */
-    public function setProjectId($project_id)
+    public function setProjectId(string|null $project_id = null)
     {
         if (is_null($project_id)) {
             array_push($this->openAPINullablesSetToNull, 'project_id');
@@ -404,7 +405,7 @@ final class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets product
      */
-    public function setProduct($product)
+    public function setProduct(string|null $product = null)
     {
         if (is_null($product)) {
             throw new \InvalidArgumentException('non-nullable product cannot be null');
@@ -427,7 +428,7 @@ final class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets sku
      */
-    public function setSku($sku)
+    public function setSku(string|null $sku = null)
     {
         if (is_null($sku)) {
             throw new \InvalidArgumentException('non-nullable sku cannot be null');
@@ -450,7 +451,7 @@ final class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets total
      */
-    public function setTotal($total)
+    public function setTotal(string|null $total = null)
     {
         if (is_null($total)) {
             throw new \InvalidArgumentException('non-nullable total cannot be null');
@@ -473,7 +474,7 @@ final class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets total_formatted
      */
-    public function setTotalFormatted($total_formatted)
+    public function setTotalFormatted(string|null $total_formatted = null)
     {
         if (is_null($total_formatted)) {
             throw new \InvalidArgumentException('non-nullable total_formatted cannot be null');
@@ -496,7 +497,7 @@ final class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets components
      */
-    public function setComponents($components)
+    public function setComponents(string|null $components = null)
     {
         if (is_null($components)) {
             throw new \InvalidArgumentException('non-nullable components cannot be null');
@@ -519,7 +520,7 @@ final class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets exclude_from_invoice
      */
-    public function setExcludeFromInvoice($exclude_from_invoice)
+    public function setExcludeFromInvoice(string|null $exclude_from_invoice = null)
     {
         if (is_null($exclude_from_invoice)) {
             throw new \InvalidArgumentException('non-nullable exclude_from_invoice cannot be null');
@@ -598,5 +599,3 @@ final class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

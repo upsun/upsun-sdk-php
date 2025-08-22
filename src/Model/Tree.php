@@ -190,7 +190,8 @@ final class Tree implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -238,7 +239,7 @@ final class Tree implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets sha
      */
-    public function setSha($sha)
+    public function setSha(string|null $sha = null)
     {
         if (is_null($sha)) {
             throw new \InvalidArgumentException('non-nullable sha cannot be null');
@@ -261,7 +262,7 @@ final class Tree implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets tree
      */
-    public function setTree($tree)
+    public function setTree(string|null $tree = null)
     {
         if (is_null($tree)) {
             throw new \InvalidArgumentException('non-nullable tree cannot be null');
@@ -340,5 +341,3 @@ final class Tree implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -103,16 +103,12 @@ final class ReferencesApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,11 @@ final class ReferencesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return array<string,\Upsun\Model\OrganizationReference>
      */
-    public function listReferencedOrgs($in, $sig)
-    {
+    public function listReferencedOrgs(
+        $in,
+        $sig
+    ): array<string,\Upsun\Model\OrganizationReference> {
         list($response) = $this->listReferencedOrgsWithHttpInfo($in, $sig);
         return $response;
     }
@@ -268,7 +265,7 @@ final class ReferencesApi
     public function listReferencedOrgsAsyncWithHttpInfo(
         string $in,
         string $sig
-    ) {
+    ): Promise {
         $returnType = 'array<string,\Upsun\Model\OrganizationReference>';
         $request = $this->listReferencedOrgsRequest($in, $sig);
 
@@ -335,8 +332,8 @@ final class ReferencesApi
 
         // query params
         if ($in !== null) {
-            if('form' === 'form' && is_array($in)) {
-                foreach($in as $key => $value) {
+            if ('form' === 'form' && is_array($in)) {
+                foreach ($in as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -346,8 +343,8 @@ final class ReferencesApi
         }
         // query params
         if ($sig !== null) {
-            if('form' === 'form' && is_array($sig)) {
-                foreach($sig as $key => $value) {
+            if ('form' === 'form' && is_array($sig)) {
+                foreach ($sig as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -416,10 +413,11 @@ final class ReferencesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return array<string,\Upsun\Model\ProjectReference>
      */
-    public function listReferencedProjects($in, $sig)
-    {
+    public function listReferencedProjects(
+        $in,
+        $sig
+    ): array<string,\Upsun\Model\ProjectReference> {
         list($response) = $this->listReferencedProjectsWithHttpInfo($in, $sig);
         return $response;
     }
@@ -575,7 +573,7 @@ final class ReferencesApi
     public function listReferencedProjectsAsyncWithHttpInfo(
         string $in,
         string $sig
-    ) {
+    ): Promise {
         $returnType = 'array<string,\Upsun\Model\ProjectReference>';
         $request = $this->listReferencedProjectsRequest($in, $sig);
 
@@ -642,8 +640,8 @@ final class ReferencesApi
 
         // query params
         if ($in !== null) {
-            if('form' === 'form' && is_array($in)) {
-                foreach($in as $key => $value) {
+            if ('form' === 'form' && is_array($in)) {
+                foreach ($in as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -653,8 +651,8 @@ final class ReferencesApi
         }
         // query params
         if ($sig !== null) {
-            if('form' === 'form' && is_array($sig)) {
-                foreach($sig as $key => $value) {
+            if ('form' === 'form' && is_array($sig)) {
+                foreach ($sig as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -723,10 +721,11 @@ final class ReferencesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return array<string,\Upsun\Model\RegionReference>
      */
-    public function listReferencedRegions($in, $sig)
-    {
+    public function listReferencedRegions(
+        $in,
+        $sig
+    ): array<string,\Upsun\Model\RegionReference> {
         list($response) = $this->listReferencedRegionsWithHttpInfo($in, $sig);
         return $response;
     }
@@ -882,7 +881,7 @@ final class ReferencesApi
     public function listReferencedRegionsAsyncWithHttpInfo(
         string $in,
         string $sig
-    ) {
+    ): Promise {
         $returnType = 'array<string,\Upsun\Model\RegionReference>';
         $request = $this->listReferencedRegionsRequest($in, $sig);
 
@@ -949,8 +948,8 @@ final class ReferencesApi
 
         // query params
         if ($in !== null) {
-            if('form' === 'form' && is_array($in)) {
-                foreach($in as $key => $value) {
+            if ('form' === 'form' && is_array($in)) {
+                foreach ($in as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -960,8 +959,8 @@ final class ReferencesApi
         }
         // query params
         if ($sig !== null) {
-            if('form' === 'form' && is_array($sig)) {
-                foreach($sig as $key => $value) {
+            if ('form' === 'form' && is_array($sig)) {
+                foreach ($sig as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1030,10 +1029,11 @@ final class ReferencesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return array<string,\Upsun\Model\TeamReference>
      */
-    public function listReferencedTeams($in, $sig)
-    {
+    public function listReferencedTeams(
+        $in,
+        $sig
+    ): array<string,\Upsun\Model\TeamReference> {
         list($response) = $this->listReferencedTeamsWithHttpInfo($in, $sig);
         return $response;
     }
@@ -1161,7 +1161,7 @@ final class ReferencesApi
     public function listReferencedTeamsAsyncWithHttpInfo(
         string $in,
         string $sig
-    ) {
+    ): Promise {
         $returnType = 'array<string,\Upsun\Model\TeamReference>';
         $request = $this->listReferencedTeamsRequest($in, $sig);
 
@@ -1228,8 +1228,8 @@ final class ReferencesApi
 
         // query params
         if ($in !== null) {
-            if('form' === 'form' && is_array($in)) {
-                foreach($in as $key => $value) {
+            if ('form' === 'form' && is_array($in)) {
+                foreach ($in as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1239,8 +1239,8 @@ final class ReferencesApi
         }
         // query params
         if ($sig !== null) {
-            if('form' === 'form' && is_array($sig)) {
-                foreach($sig as $key => $value) {
+            if ('form' === 'form' && is_array($sig)) {
+                foreach ($sig as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1309,10 +1309,11 @@ final class ReferencesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return array<string,\Upsun\Model\UserReference>
      */
-    public function listReferencedUsers($in, $sig)
-    {
+    public function listReferencedUsers(
+        $in,
+        $sig
+    ): array<string,\Upsun\Model\UserReference> {
         list($response) = $this->listReferencedUsersWithHttpInfo($in, $sig);
         return $response;
     }
@@ -1440,7 +1441,7 @@ final class ReferencesApi
     public function listReferencedUsersAsyncWithHttpInfo(
         string $in,
         string $sig
-    ) {
+    ): Promise {
         $returnType = 'array<string,\Upsun\Model\UserReference>';
         $request = $this->listReferencedUsersRequest($in, $sig);
 
@@ -1507,8 +1508,8 @@ final class ReferencesApi
 
         // query params
         if ($in !== null) {
-            if('form' === 'form' && is_array($in)) {
-                foreach($in as $key => $value) {
+            if ('form' === 'form' && is_array($in)) {
+                foreach ($in as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -1518,8 +1519,8 @@ final class ReferencesApi
         }
         // query params
         if ($sig !== null) {
-            if('form' === 'form' && is_array($sig)) {
-                foreach($sig as $key => $value) {
+            if ('form' === 'form' && is_array($sig)) {
+                foreach ($sig as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }

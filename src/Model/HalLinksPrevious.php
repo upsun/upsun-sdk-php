@@ -190,7 +190,8 @@ final class HalLinksPrevious implements ModelInterface, ArrayAccess, \JsonSerial
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -232,7 +233,7 @@ final class HalLinksPrevious implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets title
      */
-    public function setTitle($title)
+    public function setTitle(string|null $title = null)
     {
         if (is_null($title)) {
             throw new \InvalidArgumentException('non-nullable title cannot be null');
@@ -255,7 +256,7 @@ final class HalLinksPrevious implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets href
      */
-    public function setHref($href)
+    public function setHref(string|null $href = null)
     {
         if (is_null($href)) {
             throw new \InvalidArgumentException('non-nullable href cannot be null');
@@ -334,5 +335,3 @@ final class HalLinksPrevious implements ModelInterface, ArrayAccess, \JsonSerial
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

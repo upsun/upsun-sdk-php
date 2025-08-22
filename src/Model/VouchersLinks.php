@@ -183,7 +183,8 @@ final class VouchersLinks implements ModelInterface, ArrayAccess, \JsonSerializa
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -225,7 +226,7 @@ final class VouchersLinks implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets self
      */
-    public function setSelf($self)
+    public function setSelf(string|null $self = null)
     {
         if (is_null($self)) {
             throw new \InvalidArgumentException('non-nullable self cannot be null');
@@ -304,5 +305,3 @@ final class VouchersLinks implements ModelInterface, ArrayAccess, \JsonSerializa
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

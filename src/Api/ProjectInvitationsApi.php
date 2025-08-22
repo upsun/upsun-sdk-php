@@ -103,16 +103,12 @@ final class ProjectInvitationsApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,11 @@ final class ProjectInvitationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function cancelProjectInvite($project_id, $invitation_id)
-    {
+    public function cancelProjectInvite(
+        $project_id,
+        $invitation_id
+    ): void {
         $this->cancelProjectInviteWithHttpInfo($project_id, $invitation_id);
     }
 
@@ -212,7 +209,7 @@ final class ProjectInvitationsApi
     public function cancelProjectInviteAsyncWithHttpInfo(
         string $project_id,
         string $invitation_id
-    ) {
+    ): Promise {
         $returnType = '';
         $request = $this->cancelProjectInviteRequest($project_id, $invitation_id);
 
@@ -344,10 +341,11 @@ final class ProjectInvitationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ProjectInvitation
      */
-    public function createProjectInvite($project_id, $create_project_invite_request = null)
-    {
+    public function createProjectInvite(
+        $project_id,
+        $create_project_invite_request = null
+    ): \Upsun\Model\ProjectInvitation {
         list($response) = $this->createProjectInviteWithHttpInfo($project_id, $create_project_invite_request);
         return $response;
     }
@@ -531,7 +529,7 @@ final class ProjectInvitationsApi
     public function createProjectInviteAsyncWithHttpInfo(
         string $project_id,
         \Upsun\Model\CreateProjectInviteRequest $create_project_invite_request = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ProjectInvitation';
         $request = $this->createProjectInviteRequest($project_id, $create_project_invite_request);
 
@@ -665,10 +663,15 @@ final class ProjectInvitationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\ProjectInvitation[]
      */
-    public function listProjectInvites($project_id, $filter_state = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
-    {
+    public function listProjectInvites(
+        $project_id,
+        $filter_state = null,
+        $page_size = null,
+        $page_before = null,
+        $page_after = null,
+        $sort = null
+    ): \Upsun\Model\ProjectInvitation[] {
         list($response) = $this->listProjectInvitesWithHttpInfo($project_id, $filter_state, $page_size, $page_before, $page_after, $sort);
         return $response;
     }
@@ -822,7 +825,7 @@ final class ProjectInvitationsApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\ProjectInvitation[]';
         $request = $this->listProjectInvitesRequest($project_id, $filter_state, $page_size, $page_before, $page_after, $sort);
 
@@ -894,8 +897,8 @@ final class ProjectInvitationsApi
 
         // query params
         if ($filter_state !== null) {
-            if('form' === 'deepObject' && is_array($filter_state)) {
-                foreach($filter_state as $key => $value) {
+            if ('form' === 'deepObject' && is_array($filter_state)) {
+                foreach ($filter_state as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -905,8 +908,8 @@ final class ProjectInvitationsApi
         }
         // query params
         if ($page_size !== null) {
-            if('form' === 'form' && is_array($page_size)) {
-                foreach($page_size as $key => $value) {
+            if ('form' === 'form' && is_array($page_size)) {
+                foreach ($page_size as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -916,8 +919,8 @@ final class ProjectInvitationsApi
         }
         // query params
         if ($page_before !== null) {
-            if('form' === 'form' && is_array($page_before)) {
-                foreach($page_before as $key => $value) {
+            if ('form' === 'form' && is_array($page_before)) {
+                foreach ($page_before as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -927,8 +930,8 @@ final class ProjectInvitationsApi
         }
         // query params
         if ($page_after !== null) {
-            if('form' === 'form' && is_array($page_after)) {
-                foreach($page_after as $key => $value) {
+            if ('form' === 'form' && is_array($page_after)) {
+                foreach ($page_after as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
@@ -938,8 +941,8 @@ final class ProjectInvitationsApi
         }
         // query params
         if ($sort !== null) {
-            if('form' === 'form' && is_array($sort)) {
-                foreach($sort as $key => $value) {
+            if ('form' === 'form' && is_array($sort)) {
+                foreach ($sort as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }

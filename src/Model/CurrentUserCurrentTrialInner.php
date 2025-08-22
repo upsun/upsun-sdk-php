@@ -204,7 +204,8 @@ final class CurrentUserCurrentTrialInner implements ModelInterface, ArrayAccess,
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -246,7 +247,7 @@ final class CurrentUserCurrentTrialInner implements ModelInterface, ArrayAccess,
     /**
      * Sets created
      */
-    public function setCreated($created)
+    public function setCreated(string|null $created = null)
     {
         if (is_null($created)) {
             throw new \InvalidArgumentException('non-nullable created cannot be null');
@@ -269,7 +270,7 @@ final class CurrentUserCurrentTrialInner implements ModelInterface, ArrayAccess,
     /**
      * Sets description
      */
-    public function setDescription($description)
+    public function setDescription(string|null $description = null)
     {
         if (is_null($description)) {
             throw new \InvalidArgumentException('non-nullable description cannot be null');
@@ -292,7 +293,7 @@ final class CurrentUserCurrentTrialInner implements ModelInterface, ArrayAccess,
     /**
      * Sets spend_remaining
      */
-    public function setSpendRemaining($spend_remaining)
+    public function setSpendRemaining(string|null $spend_remaining = null)
     {
         if (is_null($spend_remaining)) {
             throw new \InvalidArgumentException('non-nullable spend_remaining cannot be null');
@@ -315,7 +316,7 @@ final class CurrentUserCurrentTrialInner implements ModelInterface, ArrayAccess,
     /**
      * Sets expiration
      */
-    public function setExpiration($expiration)
+    public function setExpiration(string|null $expiration = null)
     {
         if (is_null($expiration)) {
             throw new \InvalidArgumentException('non-nullable expiration cannot be null');
@@ -394,5 +395,3 @@ final class CurrentUserCurrentTrialInner implements ModelInterface, ArrayAccess,
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

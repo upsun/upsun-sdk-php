@@ -294,7 +294,8 @@ final class Backup implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -390,7 +391,7 @@ final class Backup implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets created_at
      */
-    public function setCreatedAt($created_at)
+    public function setCreatedAt(string|null $created_at = null)
     {
         if (is_null($created_at)) {
             array_push($this->openAPINullablesSetToNull, 'created_at');
@@ -420,7 +421,7 @@ final class Backup implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt($updated_at)
+    public function setUpdatedAt(string|null $updated_at = null)
     {
         if (is_null($updated_at)) {
             array_push($this->openAPINullablesSetToNull, 'updated_at');
@@ -450,7 +451,7 @@ final class Backup implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      */
-    public function setId($id)
+    public function setId(string|null $id = null)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -473,7 +474,7 @@ final class Backup implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets attributes
      */
-    public function setAttributes($attributes)
+    public function setAttributes(string|null $attributes = null)
     {
         if (is_null($attributes)) {
             throw new \InvalidArgumentException('non-nullable attributes cannot be null');
@@ -496,7 +497,7 @@ final class Backup implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      */
-    public function setStatus($status)
+    public function setStatus(string|null $status = null)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
@@ -529,7 +530,7 @@ final class Backup implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets expires_at
      */
-    public function setExpiresAt($expires_at)
+    public function setExpiresAt(string|null $expires_at = null)
     {
         if (is_null($expires_at)) {
             array_push($this->openAPINullablesSetToNull, 'expires_at');
@@ -559,7 +560,7 @@ final class Backup implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets index
      */
-    public function setIndex($index)
+    public function setIndex(string|null $index = null)
     {
         if (is_null($index)) {
             array_push($this->openAPINullablesSetToNull, 'index');
@@ -589,7 +590,7 @@ final class Backup implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets commit_id
      */
-    public function setCommitId($commit_id)
+    public function setCommitId(string|null $commit_id = null)
     {
         if (is_null($commit_id)) {
             throw new \InvalidArgumentException('non-nullable commit_id cannot be null');
@@ -612,7 +613,7 @@ final class Backup implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets environment
      */
-    public function setEnvironment($environment)
+    public function setEnvironment(string|null $environment = null)
     {
         if (is_null($environment)) {
             throw new \InvalidArgumentException('non-nullable environment cannot be null');
@@ -635,7 +636,7 @@ final class Backup implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets safe
      */
-    public function setSafe($safe)
+    public function setSafe(string|null $safe = null)
     {
         if (is_null($safe)) {
             throw new \InvalidArgumentException('non-nullable safe cannot be null');
@@ -658,7 +659,7 @@ final class Backup implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets size_of_volumes
      */
-    public function setSizeOfVolumes($size_of_volumes)
+    public function setSizeOfVolumes(string|null $size_of_volumes = null)
     {
         if (is_null($size_of_volumes)) {
             array_push($this->openAPINullablesSetToNull, 'size_of_volumes');
@@ -688,7 +689,7 @@ final class Backup implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets size_used
      */
-    public function setSizeUsed($size_used)
+    public function setSizeUsed(string|null $size_used = null)
     {
         if (is_null($size_used)) {
             array_push($this->openAPINullablesSetToNull, 'size_used');
@@ -718,7 +719,7 @@ final class Backup implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets deployment
      */
-    public function setDeployment($deployment)
+    public function setDeployment(string|null $deployment = null)
     {
         if (is_null($deployment)) {
             array_push($this->openAPINullablesSetToNull, 'deployment');
@@ -748,7 +749,7 @@ final class Backup implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets restorable
      */
-    public function setRestorable($restorable)
+    public function setRestorable(string|null $restorable = null)
     {
         if (is_null($restorable)) {
             throw new \InvalidArgumentException('non-nullable restorable cannot be null');
@@ -771,7 +772,7 @@ final class Backup implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets automated
      */
-    public function setAutomated($automated)
+    public function setAutomated(string|null $automated = null)
     {
         if (is_null($automated)) {
             throw new \InvalidArgumentException('non-nullable automated cannot be null');
@@ -850,5 +851,3 @@ final class Backup implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

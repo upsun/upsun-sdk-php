@@ -190,7 +190,8 @@ final class OrganizationEstimationObjectUserLicensesBaseList implements ModelInt
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -232,7 +233,7 @@ final class OrganizationEstimationObjectUserLicensesBaseList implements ModelInt
     /**
      * Sets admin_user
      */
-    public function setAdminUser($admin_user)
+    public function setAdminUser(string|null $admin_user = null)
     {
         if (is_null($admin_user)) {
             throw new \InvalidArgumentException('non-nullable admin_user cannot be null');
@@ -255,7 +256,7 @@ final class OrganizationEstimationObjectUserLicensesBaseList implements ModelInt
     /**
      * Sets viewer_user
      */
-    public function setViewerUser($viewer_user)
+    public function setViewerUser(string|null $viewer_user = null)
     {
         if (is_null($viewer_user)) {
             throw new \InvalidArgumentException('non-nullable viewer_user cannot be null');
@@ -334,5 +335,3 @@ final class OrganizationEstimationObjectUserLicensesBaseList implements ModelInt
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

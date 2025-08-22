@@ -190,7 +190,8 @@ final class CommandsToManageTheApplicationSLifecycle implements ModelInterface, 
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -232,7 +233,7 @@ final class CommandsToManageTheApplicationSLifecycle implements ModelInterface, 
     /**
      * Sets pre_start
      */
-    public function setPreStart($pre_start)
+    public function setPreStart(string|null $pre_start = null)
     {
         if (is_null($pre_start)) {
             array_push($this->openAPINullablesSetToNull, 'pre_start');
@@ -262,7 +263,7 @@ final class CommandsToManageTheApplicationSLifecycle implements ModelInterface, 
     /**
      * Sets start
      */
-    public function setStart($start)
+    public function setStart(string|null $start = null)
     {
         if (is_null($start)) {
             array_push($this->openAPINullablesSetToNull, 'start');
@@ -348,5 +349,3 @@ final class CommandsToManageTheApplicationSLifecycle implements ModelInterface, 
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

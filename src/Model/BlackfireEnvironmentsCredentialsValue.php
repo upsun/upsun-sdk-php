@@ -190,7 +190,8 @@ final class BlackfireEnvironmentsCredentialsValue implements ModelInterface, Arr
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -238,7 +239,7 @@ final class BlackfireEnvironmentsCredentialsValue implements ModelInterface, Arr
     /**
      * Sets server_uuid
      */
-    public function setServerUuid($server_uuid)
+    public function setServerUuid(string|null $server_uuid = null)
     {
         if (is_null($server_uuid)) {
             throw new \InvalidArgumentException('non-nullable server_uuid cannot be null');
@@ -261,7 +262,7 @@ final class BlackfireEnvironmentsCredentialsValue implements ModelInterface, Arr
     /**
      * Sets server_token
      */
-    public function setServerToken($server_token)
+    public function setServerToken(string|null $server_token = null)
     {
         if (is_null($server_token)) {
             throw new \InvalidArgumentException('non-nullable server_token cannot be null');
@@ -340,5 +341,3 @@ final class BlackfireEnvironmentsCredentialsValue implements ModelInterface, Arr
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

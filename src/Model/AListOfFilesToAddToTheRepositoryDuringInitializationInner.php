@@ -197,7 +197,8 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -248,7 +249,7 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
     /**
      * Sets path
      */
-    public function setPath($path)
+    public function setPath(string|null $path = null)
     {
         if (is_null($path)) {
             throw new \InvalidArgumentException('non-nullable path cannot be null');
@@ -271,7 +272,7 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
     /**
      * Sets mode
      */
-    public function setMode($mode)
+    public function setMode(string|null $mode = null)
     {
         if (is_null($mode)) {
             throw new \InvalidArgumentException('non-nullable mode cannot be null');
@@ -294,7 +295,7 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
     /**
      * Sets contents
      */
-    public function setContents($contents)
+    public function setContents(string|null $contents = null)
     {
         if (is_null($contents)) {
             throw new \InvalidArgumentException('non-nullable contents cannot be null');
@@ -373,5 +374,3 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

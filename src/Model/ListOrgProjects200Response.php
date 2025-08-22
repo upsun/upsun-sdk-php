@@ -190,7 +190,8 @@ final class ListOrgProjects200Response implements ModelInterface, ArrayAccess, \
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -232,7 +233,7 @@ final class ListOrgProjects200Response implements ModelInterface, ArrayAccess, \
     /**
      * Sets items
      */
-    public function setItems($items)
+    public function setItems(string|null $items = null)
     {
         if (is_null($items)) {
             throw new \InvalidArgumentException('non-nullable items cannot be null');
@@ -255,7 +256,7 @@ final class ListOrgProjects200Response implements ModelInterface, ArrayAccess, \
     /**
      * Sets _links
      */
-    public function setLinks($_links)
+    public function setLinks(string|null $_links = null)
     {
         if (is_null($_links)) {
             throw new \InvalidArgumentException('non-nullable _links cannot be null');
@@ -334,5 +335,3 @@ final class ListOrgProjects200Response implements ModelInterface, ArrayAccess, \
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

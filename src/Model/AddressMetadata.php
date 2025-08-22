@@ -183,7 +183,8 @@ final class AddressMetadata implements ModelInterface, ArrayAccess, \JsonSeriali
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -225,7 +226,7 @@ final class AddressMetadata implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets metadata
      */
-    public function setMetadata($metadata)
+    public function setMetadata(string|null $metadata = null)
     {
         if (is_null($metadata)) {
             throw new \InvalidArgumentException('non-nullable metadata cannot be null');
@@ -304,5 +305,3 @@ final class AddressMetadata implements ModelInterface, ArrayAccess, \JsonSeriali
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

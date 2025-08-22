@@ -197,7 +197,8 @@ final class ResourcesLimits implements ModelInterface, ArrayAccess, \JsonSeriali
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -248,7 +249,7 @@ final class ResourcesLimits implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets container_profiles
      */
-    public function setContainerProfiles($container_profiles)
+    public function setContainerProfiles(string|null $container_profiles = null)
     {
         if (is_null($container_profiles)) {
             throw new \InvalidArgumentException('non-nullable container_profiles cannot be null');
@@ -271,7 +272,7 @@ final class ResourcesLimits implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets production
      */
-    public function setProduction($production)
+    public function setProduction(string|null $production = null)
     {
         if (is_null($production)) {
             throw new \InvalidArgumentException('non-nullable production cannot be null');
@@ -294,7 +295,7 @@ final class ResourcesLimits implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets development
      */
-    public function setDevelopment($development)
+    public function setDevelopment(string|null $development = null)
     {
         if (is_null($development)) {
             throw new \InvalidArgumentException('non-nullable development cannot be null');
@@ -373,5 +374,3 @@ final class ResourcesLimits implements ModelInterface, ArrayAccess, \JsonSeriali
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

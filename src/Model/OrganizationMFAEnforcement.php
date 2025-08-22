@@ -183,7 +183,8 @@ final class OrganizationMFAEnforcement implements ModelInterface, ArrayAccess, \
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -225,7 +226,7 @@ final class OrganizationMFAEnforcement implements ModelInterface, ArrayAccess, \
     /**
      * Sets enforce_mfa
      */
-    public function setEnforceMfa($enforce_mfa)
+    public function setEnforceMfa(string|null $enforce_mfa = null)
     {
         if (is_null($enforce_mfa)) {
             throw new \InvalidArgumentException('non-nullable enforce_mfa cannot be null');
@@ -304,5 +305,3 @@ final class OrganizationMFAEnforcement implements ModelInterface, ArrayAccess, \
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

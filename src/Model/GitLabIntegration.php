@@ -270,7 +270,8 @@ final class GitLabIntegration implements ModelInterface, ArrayAccess, \JsonSeria
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -354,7 +355,7 @@ final class GitLabIntegration implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets created_at
      */
-    public function setCreatedAt($created_at)
+    public function setCreatedAt(string|null $created_at = null)
     {
         if (is_null($created_at)) {
             array_push($this->openAPINullablesSetToNull, 'created_at');
@@ -384,7 +385,7 @@ final class GitLabIntegration implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt($updated_at)
+    public function setUpdatedAt(string|null $updated_at = null)
     {
         if (is_null($updated_at)) {
             array_push($this->openAPINullablesSetToNull, 'updated_at');
@@ -414,7 +415,7 @@ final class GitLabIntegration implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -437,7 +438,7 @@ final class GitLabIntegration implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets fetch_branches
      */
-    public function setFetchBranches($fetch_branches)
+    public function setFetchBranches(string|null $fetch_branches = null)
     {
         if (is_null($fetch_branches)) {
             throw new \InvalidArgumentException('non-nullable fetch_branches cannot be null');
@@ -460,7 +461,7 @@ final class GitLabIntegration implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets prune_branches
      */
-    public function setPruneBranches($prune_branches)
+    public function setPruneBranches(string|null $prune_branches = null)
     {
         if (is_null($prune_branches)) {
             throw new \InvalidArgumentException('non-nullable prune_branches cannot be null');
@@ -483,7 +484,7 @@ final class GitLabIntegration implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets environment_init_resources
      */
-    public function setEnvironmentInitResources($environment_init_resources)
+    public function setEnvironmentInitResources(string|null $environment_init_resources = null)
     {
         if (is_null($environment_init_resources)) {
             throw new \InvalidArgumentException('non-nullable environment_init_resources cannot be null');
@@ -516,7 +517,7 @@ final class GitLabIntegration implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets base_url
      */
-    public function setBaseUrl($base_url)
+    public function setBaseUrl(string|null $base_url = null)
     {
         if (is_null($base_url)) {
             throw new \InvalidArgumentException('non-nullable base_url cannot be null');
@@ -539,7 +540,7 @@ final class GitLabIntegration implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets project
      */
-    public function setProject($project)
+    public function setProject(string|null $project = null)
     {
         if (is_null($project)) {
             throw new \InvalidArgumentException('non-nullable project cannot be null');
@@ -562,7 +563,7 @@ final class GitLabIntegration implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets build_merge_requests
      */
-    public function setBuildMergeRequests($build_merge_requests)
+    public function setBuildMergeRequests(string|null $build_merge_requests = null)
     {
         if (is_null($build_merge_requests)) {
             throw new \InvalidArgumentException('non-nullable build_merge_requests cannot be null');
@@ -585,7 +586,7 @@ final class GitLabIntegration implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets build_wip_merge_requests
      */
-    public function setBuildWipMergeRequests($build_wip_merge_requests)
+    public function setBuildWipMergeRequests(string|null $build_wip_merge_requests = null)
     {
         if (is_null($build_wip_merge_requests)) {
             throw new \InvalidArgumentException('non-nullable build_wip_merge_requests cannot be null');
@@ -608,7 +609,7 @@ final class GitLabIntegration implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets merge_requests_clone_parent_data
      */
-    public function setMergeRequestsCloneParentData($merge_requests_clone_parent_data)
+    public function setMergeRequestsCloneParentData(string|null $merge_requests_clone_parent_data = null)
     {
         if (is_null($merge_requests_clone_parent_data)) {
             throw new \InvalidArgumentException('non-nullable merge_requests_clone_parent_data cannot be null');
@@ -687,5 +688,3 @@ final class GitLabIntegration implements ModelInterface, ArrayAccess, \JsonSeria
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

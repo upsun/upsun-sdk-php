@@ -225,7 +225,8 @@ final class OrganizationEstimationObject implements ModelInterface, ArrayAccess,
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -267,7 +268,7 @@ final class OrganizationEstimationObject implements ModelInterface, ArrayAccess,
     /**
      * Sets total
      */
-    public function setTotal($total)
+    public function setTotal(string|null $total = null)
     {
         if (is_null($total)) {
             throw new \InvalidArgumentException('non-nullable total cannot be null');
@@ -290,7 +291,7 @@ final class OrganizationEstimationObject implements ModelInterface, ArrayAccess,
     /**
      * Sets sub_total
      */
-    public function setSubTotal($sub_total)
+    public function setSubTotal(string|null $sub_total = null)
     {
         if (is_null($sub_total)) {
             throw new \InvalidArgumentException('non-nullable sub_total cannot be null');
@@ -313,7 +314,7 @@ final class OrganizationEstimationObject implements ModelInterface, ArrayAccess,
     /**
      * Sets vouchers
      */
-    public function setVouchers($vouchers)
+    public function setVouchers(string|null $vouchers = null)
     {
         if (is_null($vouchers)) {
             throw new \InvalidArgumentException('non-nullable vouchers cannot be null');
@@ -336,7 +337,7 @@ final class OrganizationEstimationObject implements ModelInterface, ArrayAccess,
     /**
      * Sets user_licenses
      */
-    public function setUserLicenses($user_licenses)
+    public function setUserLicenses(string|null $user_licenses = null)
     {
         if (is_null($user_licenses)) {
             throw new \InvalidArgumentException('non-nullable user_licenses cannot be null');
@@ -359,7 +360,7 @@ final class OrganizationEstimationObject implements ModelInterface, ArrayAccess,
     /**
      * Sets user_management
      */
-    public function setUserManagement($user_management)
+    public function setUserManagement(string|null $user_management = null)
     {
         if (is_null($user_management)) {
             throw new \InvalidArgumentException('non-nullable user_management cannot be null');
@@ -382,7 +383,7 @@ final class OrganizationEstimationObject implements ModelInterface, ArrayAccess,
     /**
      * Sets support_level
      */
-    public function setSupportLevel($support_level)
+    public function setSupportLevel(string|null $support_level = null)
     {
         if (is_null($support_level)) {
             throw new \InvalidArgumentException('non-nullable support_level cannot be null');
@@ -405,7 +406,7 @@ final class OrganizationEstimationObject implements ModelInterface, ArrayAccess,
     /**
      * Sets subscriptions
      */
-    public function setSubscriptions($subscriptions)
+    public function setSubscriptions(string|null $subscriptions = null)
     {
         if (is_null($subscriptions)) {
             throw new \InvalidArgumentException('non-nullable subscriptions cannot be null');
@@ -484,5 +485,3 @@ final class OrganizationEstimationObject implements ModelInterface, ArrayAccess,
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

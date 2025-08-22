@@ -197,7 +197,8 @@ final class PerServiceResourcesOverridesValue implements ModelInterface, ArrayAc
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -248,7 +249,7 @@ final class PerServiceResourcesOverridesValue implements ModelInterface, ArrayAc
     /**
      * Sets cpu
      */
-    public function setCpu($cpu)
+    public function setCpu(string|null $cpu = null)
     {
         if (is_null($cpu)) {
             array_push($this->openAPINullablesSetToNull, 'cpu');
@@ -278,7 +279,7 @@ final class PerServiceResourcesOverridesValue implements ModelInterface, ArrayAc
     /**
      * Sets memory
      */
-    public function setMemory($memory)
+    public function setMemory(string|null $memory = null)
     {
         if (is_null($memory)) {
             array_push($this->openAPINullablesSetToNull, 'memory');
@@ -308,7 +309,7 @@ final class PerServiceResourcesOverridesValue implements ModelInterface, ArrayAc
     /**
      * Sets disk
      */
-    public function setDisk($disk)
+    public function setDisk(string|null $disk = null)
     {
         if (is_null($disk)) {
             array_push($this->openAPINullablesSetToNull, 'disk');
@@ -394,5 +395,3 @@ final class PerServiceResourcesOverridesValue implements ModelInterface, ArrayAc
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -253,7 +253,8 @@ final class Certificate implements ModelInterface, ArrayAccess, \JsonSerializabl
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -328,7 +329,7 @@ final class Certificate implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets created_at
      */
-    public function setCreatedAt($created_at)
+    public function setCreatedAt(string|null $created_at = null)
     {
         if (is_null($created_at)) {
             array_push($this->openAPINullablesSetToNull, 'created_at');
@@ -358,7 +359,7 @@ final class Certificate implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt($updated_at)
+    public function setUpdatedAt(string|null $updated_at = null)
     {
         if (is_null($updated_at)) {
             array_push($this->openAPINullablesSetToNull, 'updated_at');
@@ -388,7 +389,7 @@ final class Certificate implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets certificate
      */
-    public function setCertificate($certificate)
+    public function setCertificate(string|null $certificate = null)
     {
         if (is_null($certificate)) {
             throw new \InvalidArgumentException('non-nullable certificate cannot be null');
@@ -411,7 +412,7 @@ final class Certificate implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets chain
      */
-    public function setChain($chain)
+    public function setChain(string|null $chain = null)
     {
         if (is_null($chain)) {
             throw new \InvalidArgumentException('non-nullable chain cannot be null');
@@ -434,7 +435,7 @@ final class Certificate implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets is_provisioned
      */
-    public function setIsProvisioned($is_provisioned)
+    public function setIsProvisioned(string|null $is_provisioned = null)
     {
         if (is_null($is_provisioned)) {
             throw new \InvalidArgumentException('non-nullable is_provisioned cannot be null');
@@ -457,7 +458,7 @@ final class Certificate implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets is_invalid
      */
-    public function setIsInvalid($is_invalid)
+    public function setIsInvalid(string|null $is_invalid = null)
     {
         if (is_null($is_invalid)) {
             throw new \InvalidArgumentException('non-nullable is_invalid cannot be null');
@@ -480,7 +481,7 @@ final class Certificate implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets is_root
      */
-    public function setIsRoot($is_root)
+    public function setIsRoot(string|null $is_root = null)
     {
         if (is_null($is_root)) {
             throw new \InvalidArgumentException('non-nullable is_root cannot be null');
@@ -503,7 +504,7 @@ final class Certificate implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets domains
      */
-    public function setDomains($domains)
+    public function setDomains(string|null $domains = null)
     {
         if (is_null($domains)) {
             throw new \InvalidArgumentException('non-nullable domains cannot be null');
@@ -526,7 +527,7 @@ final class Certificate implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets auth_type
      */
-    public function setAuthType($auth_type)
+    public function setAuthType(string|null $auth_type = null)
     {
         if (is_null($auth_type)) {
             throw new \InvalidArgumentException('non-nullable auth_type cannot be null');
@@ -549,7 +550,7 @@ final class Certificate implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets issuer
      */
-    public function setIssuer($issuer)
+    public function setIssuer(string|null $issuer = null)
     {
         if (is_null($issuer)) {
             throw new \InvalidArgumentException('non-nullable issuer cannot be null');
@@ -572,7 +573,7 @@ final class Certificate implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets expires_at
      */
-    public function setExpiresAt($expires_at)
+    public function setExpiresAt(string|null $expires_at = null)
     {
         if (is_null($expires_at)) {
             throw new \InvalidArgumentException('non-nullable expires_at cannot be null');
@@ -651,5 +652,3 @@ final class Certificate implements ModelInterface, ArrayAccess, \JsonSerializabl
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

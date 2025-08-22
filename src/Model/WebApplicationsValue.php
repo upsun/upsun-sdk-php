@@ -426,7 +426,8 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -567,7 +568,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets resources
      */
-    public function setResources($resources)
+    public function setResources(string|null $resources = null)
     {
         if (is_null($resources)) {
             array_push($this->openAPINullablesSetToNull, 'resources');
@@ -597,7 +598,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets size
      */
-    public function setSize($size)
+    public function setSize(string|null $size = null)
     {
         if (is_null($size)) {
             throw new \InvalidArgumentException('non-nullable size cannot be null');
@@ -630,7 +631,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets disk
      */
-    public function setDisk($disk)
+    public function setDisk(string|null $disk = null)
     {
         if (is_null($disk)) {
             array_push($this->openAPINullablesSetToNull, 'disk');
@@ -660,7 +661,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets access
      */
-    public function setAccess($access)
+    public function setAccess(string|null $access = null)
     {
         if (is_null($access)) {
             throw new \InvalidArgumentException('non-nullable access cannot be null');
@@ -692,7 +693,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets relationships
      */
-    public function setRelationships($relationships)
+    public function setRelationships(string|null $relationships = null)
     {
         if (is_null($relationships)) {
             throw new \InvalidArgumentException('non-nullable relationships cannot be null');
@@ -715,7 +716,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets additional_hosts
      */
-    public function setAdditionalHosts($additional_hosts)
+    public function setAdditionalHosts(string|null $additional_hosts = null)
     {
         if (is_null($additional_hosts)) {
             throw new \InvalidArgumentException('non-nullable additional_hosts cannot be null');
@@ -738,7 +739,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets mounts
      */
-    public function setMounts($mounts)
+    public function setMounts(string|null $mounts = null)
     {
         if (is_null($mounts)) {
             throw new \InvalidArgumentException('non-nullable mounts cannot be null');
@@ -761,7 +762,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets timezone
      */
-    public function setTimezone($timezone)
+    public function setTimezone(string|null $timezone = null)
     {
         if (is_null($timezone)) {
             array_push($this->openAPINullablesSetToNull, 'timezone');
@@ -791,7 +792,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets variables
      */
-    public function setVariables($variables)
+    public function setVariables(string|null $variables = null)
     {
         if (is_null($variables)) {
             throw new \InvalidArgumentException('non-nullable variables cannot be null');
@@ -814,7 +815,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets firewall
      */
-    public function setFirewall($firewall)
+    public function setFirewall(string|null $firewall = null)
     {
         if (is_null($firewall)) {
             array_push($this->openAPINullablesSetToNull, 'firewall');
@@ -844,7 +845,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets container_profile
      */
-    public function setContainerProfile($container_profile)
+    public function setContainerProfile(string|null $container_profile = null)
     {
         if (is_null($container_profile)) {
             array_push($this->openAPINullablesSetToNull, 'container_profile');
@@ -874,7 +875,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets operations
      */
-    public function setOperations($operations)
+    public function setOperations(string|null $operations = null)
     {
         if (is_null($operations)) {
             throw new \InvalidArgumentException('non-nullable operations cannot be null');
@@ -897,7 +898,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets name
      */
-    public function setName($name)
+    public function setName(string|null $name = null)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -920,7 +921,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -943,7 +944,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets preflight
      */
-    public function setPreflight($preflight)
+    public function setPreflight(string|null $preflight = null)
     {
         if (is_null($preflight)) {
             throw new \InvalidArgumentException('non-nullable preflight cannot be null');
@@ -966,7 +967,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets tree_id
      */
-    public function setTreeId($tree_id)
+    public function setTreeId(string|null $tree_id = null)
     {
         if (is_null($tree_id)) {
             throw new \InvalidArgumentException('non-nullable tree_id cannot be null');
@@ -989,7 +990,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets app_dir
      */
-    public function setAppDir($app_dir)
+    public function setAppDir(string|null $app_dir = null)
     {
         if (is_null($app_dir)) {
             throw new \InvalidArgumentException('non-nullable app_dir cannot be null');
@@ -1012,7 +1013,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets endpoints
      */
-    public function setEndpoints($endpoints)
+    public function setEndpoints(string|null $endpoints = null)
     {
         if (is_null($endpoints)) {
             array_push($this->openAPINullablesSetToNull, 'endpoints');
@@ -1042,7 +1043,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets runtime
      */
-    public function setRuntime($runtime)
+    public function setRuntime(string|null $runtime = null)
     {
         if (is_null($runtime)) {
             throw new \InvalidArgumentException('non-nullable runtime cannot be null');
@@ -1065,7 +1066,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets web
      */
-    public function setWeb($web)
+    public function setWeb(string|null $web = null)
     {
         if (is_null($web)) {
             throw new \InvalidArgumentException('non-nullable web cannot be null');
@@ -1088,7 +1089,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets hooks
      */
-    public function setHooks($hooks)
+    public function setHooks(string|null $hooks = null)
     {
         if (is_null($hooks)) {
             throw new \InvalidArgumentException('non-nullable hooks cannot be null');
@@ -1111,7 +1112,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets crons
      */
-    public function setCrons($crons)
+    public function setCrons(string|null $crons = null)
     {
         if (is_null($crons)) {
             throw new \InvalidArgumentException('non-nullable crons cannot be null');
@@ -1134,7 +1135,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets source
      */
-    public function setSource($source)
+    public function setSource(string|null $source = null)
     {
         if (is_null($source)) {
             throw new \InvalidArgumentException('non-nullable source cannot be null');
@@ -1157,7 +1158,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets build
      */
-    public function setBuild($build)
+    public function setBuild(string|null $build = null)
     {
         if (is_null($build)) {
             throw new \InvalidArgumentException('non-nullable build cannot be null');
@@ -1180,7 +1181,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets dependencies
      */
-    public function setDependencies($dependencies)
+    public function setDependencies(string|null $dependencies = null)
     {
         if (is_null($dependencies)) {
             throw new \InvalidArgumentException('non-nullable dependencies cannot be null');
@@ -1203,7 +1204,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets stack
      */
-    public function setStack($stack)
+    public function setStack(string|null $stack = null)
     {
         if (is_null($stack)) {
             array_push($this->openAPINullablesSetToNull, 'stack');
@@ -1233,7 +1234,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets is_across_submodule
      */
-    public function setIsAcrossSubmodule($is_across_submodule)
+    public function setIsAcrossSubmodule(string|null $is_across_submodule = null)
     {
         if (is_null($is_across_submodule)) {
             throw new \InvalidArgumentException('non-nullable is_across_submodule cannot be null');
@@ -1256,7 +1257,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets instance_count
      */
-    public function setInstanceCount($instance_count)
+    public function setInstanceCount(string|null $instance_count = null)
     {
         if (is_null($instance_count)) {
             array_push($this->openAPINullablesSetToNull, 'instance_count');
@@ -1286,7 +1287,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets config_id
      */
-    public function setConfigId($config_id)
+    public function setConfigId(string|null $config_id = null)
     {
         if (is_null($config_id)) {
             throw new \InvalidArgumentException('non-nullable config_id cannot be null');
@@ -1309,7 +1310,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets slug_id
      */
-    public function setSlugId($slug_id)
+    public function setSlugId(string|null $slug_id = null)
     {
         if (is_null($slug_id)) {
             throw new \InvalidArgumentException('non-nullable slug_id cannot be null');
@@ -1388,5 +1389,3 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

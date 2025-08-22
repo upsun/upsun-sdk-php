@@ -197,7 +197,8 @@ final class Version implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -248,7 +249,7 @@ final class Version implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets commit
      */
-    public function setCommit($commit)
+    public function setCommit(string|null $commit = null)
     {
         if (is_null($commit)) {
             array_push($this->openAPINullablesSetToNull, 'commit');
@@ -278,7 +279,7 @@ final class Version implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets locked
      */
-    public function setLocked($locked)
+    public function setLocked(string|null $locked = null)
     {
         if (is_null($locked)) {
             throw new \InvalidArgumentException('non-nullable locked cannot be null');
@@ -301,7 +302,7 @@ final class Version implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets routing
      */
-    public function setRouting($routing)
+    public function setRouting(string|null $routing = null)
     {
         if (is_null($routing)) {
             throw new \InvalidArgumentException('non-nullable routing cannot be null');
@@ -380,5 +381,3 @@ final class Version implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

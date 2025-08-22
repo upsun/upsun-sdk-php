@@ -219,7 +219,8 @@ final class FoundationDeploymentTargetPatch implements ModelInterface, ArrayAcce
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -276,7 +277,7 @@ final class FoundationDeploymentTargetPatch implements ModelInterface, ArrayAcce
     /**
      * Sets type
      */
-    public function setType($type)
+    public function setType(string|null $type = null)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -309,7 +310,7 @@ final class FoundationDeploymentTargetPatch implements ModelInterface, ArrayAcce
     /**
      * Sets name
      */
-    public function setName($name)
+    public function setName(string|null $name = null)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -332,7 +333,7 @@ final class FoundationDeploymentTargetPatch implements ModelInterface, ArrayAcce
     /**
      * Sets hosts
      */
-    public function setHosts($hosts)
+    public function setHosts(string|null $hosts = null)
     {
         if (is_null($hosts)) {
             array_push($this->openAPINullablesSetToNull, 'hosts');
@@ -362,7 +363,7 @@ final class FoundationDeploymentTargetPatch implements ModelInterface, ArrayAcce
     /**
      * Sets use_dedicated_grid
      */
-    public function setUseDedicatedGrid($use_dedicated_grid)
+    public function setUseDedicatedGrid(string|null $use_dedicated_grid = null)
     {
         if (is_null($use_dedicated_grid)) {
             throw new \InvalidArgumentException('non-nullable use_dedicated_grid cannot be null');
@@ -441,5 +442,3 @@ final class FoundationDeploymentTargetPatch implements ModelInterface, ArrayAcce
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -232,7 +232,8 @@ final class StringFilter implements ModelInterface, ArrayAccess, \JsonSerializab
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -274,7 +275,7 @@ final class StringFilter implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets eq
      */
-    public function setEq($eq)
+    public function setEq(string|null $eq = null)
     {
         if (is_null($eq)) {
             throw new \InvalidArgumentException('non-nullable eq cannot be null');
@@ -297,7 +298,7 @@ final class StringFilter implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets ne
      */
-    public function setNe($ne)
+    public function setNe(string|null $ne = null)
     {
         if (is_null($ne)) {
             throw new \InvalidArgumentException('non-nullable ne cannot be null');
@@ -320,7 +321,7 @@ final class StringFilter implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets in
      */
-    public function setIn($in)
+    public function setIn(string|null $in = null)
     {
         if (is_null($in)) {
             throw new \InvalidArgumentException('non-nullable in cannot be null');
@@ -343,7 +344,7 @@ final class StringFilter implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets nin
      */
-    public function setNin($nin)
+    public function setNin(string|null $nin = null)
     {
         if (is_null($nin)) {
             throw new \InvalidArgumentException('non-nullable nin cannot be null');
@@ -366,7 +367,7 @@ final class StringFilter implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets between
      */
-    public function setBetween($between)
+    public function setBetween(string|null $between = null)
     {
         if (is_null($between)) {
             throw new \InvalidArgumentException('non-nullable between cannot be null');
@@ -389,7 +390,7 @@ final class StringFilter implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets contains
      */
-    public function setContains($contains)
+    public function setContains(string|null $contains = null)
     {
         if (is_null($contains)) {
             throw new \InvalidArgumentException('non-nullable contains cannot be null');
@@ -412,7 +413,7 @@ final class StringFilter implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets starts
      */
-    public function setStarts($starts)
+    public function setStarts(string|null $starts = null)
     {
         if (is_null($starts)) {
             throw new \InvalidArgumentException('non-nullable starts cannot be null');
@@ -435,7 +436,7 @@ final class StringFilter implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets ends
      */
-    public function setEnds($ends)
+    public function setEnds(string|null $ends = null)
     {
         if (is_null($ends)) {
             throw new \InvalidArgumentException('non-nullable ends cannot be null');
@@ -514,5 +515,3 @@ final class StringFilter implements ModelInterface, ArrayAccess, \JsonSerializab
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

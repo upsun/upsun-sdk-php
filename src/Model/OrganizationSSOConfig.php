@@ -229,7 +229,8 @@ final class OrganizationSSOConfig implements ModelInterface, ArrayAccess, \JsonS
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -280,7 +281,7 @@ final class OrganizationSSOConfig implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets provider_type
      */
-    public function setProviderType($provider_type)
+    public function setProviderType(string|null $provider_type = null)
     {
         if (is_null($provider_type)) {
             throw new \InvalidArgumentException('non-nullable provider_type cannot be null');
@@ -313,7 +314,7 @@ final class OrganizationSSOConfig implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets domain
      */
-    public function setDomain($domain)
+    public function setDomain(string|null $domain = null)
     {
         if (is_null($domain)) {
             throw new \InvalidArgumentException('non-nullable domain cannot be null');
@@ -336,7 +337,7 @@ final class OrganizationSSOConfig implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets organization_id
      */
-    public function setOrganizationId($organization_id)
+    public function setOrganizationId(string|null $organization_id = null)
     {
         if (is_null($organization_id)) {
             throw new \InvalidArgumentException('non-nullable organization_id cannot be null');
@@ -359,7 +360,7 @@ final class OrganizationSSOConfig implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets enforced
      */
-    public function setEnforced($enforced)
+    public function setEnforced(string|null $enforced = null)
     {
         if (is_null($enforced)) {
             throw new \InvalidArgumentException('non-nullable enforced cannot be null');
@@ -382,7 +383,7 @@ final class OrganizationSSOConfig implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets created_at
      */
-    public function setCreatedAt($created_at)
+    public function setCreatedAt(string|null $created_at = null)
     {
         if (is_null($created_at)) {
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
@@ -405,7 +406,7 @@ final class OrganizationSSOConfig implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt($updated_at)
+    public function setUpdatedAt(string|null $updated_at = null)
     {
         if (is_null($updated_at)) {
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
@@ -484,5 +485,3 @@ final class OrganizationSSOConfig implements ModelInterface, ArrayAccess, \JsonS
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -103,16 +103,12 @@ final class APITokensApi
 
     /**
      * Get the host index
-     *
      */
     public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
 
-    /**
-     * @return Configuration
-     */
     public function getConfig(): Configuration
     {
         return $this->config;
@@ -123,10 +119,11 @@ final class APITokensApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\APIToken
      */
-    public function createApiToken($user_id, $create_api_token_request = null)
-    {
+    public function createApiToken(
+        $user_id,
+        $create_api_token_request = null
+    ): \Upsun\Model\APIToken {
         list($response) = $this->createApiTokenWithHttpInfo($user_id, $create_api_token_request);
         return $response;
     }
@@ -282,7 +279,7 @@ final class APITokensApi
     public function createApiTokenAsyncWithHttpInfo(
         string $user_id,
         \Upsun\Model\CreateApiTokenRequest $create_api_token_request = null
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\APIToken';
         $request = $this->createApiTokenRequest($user_id, $create_api_token_request);
 
@@ -416,10 +413,11 @@ final class APITokensApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return void
      */
-    public function deleteApiToken($user_id, $token_id)
-    {
+    public function deleteApiToken(
+        $user_id,
+        $token_id
+    ): void {
         $this->deleteApiTokenWithHttpInfo($user_id, $token_id);
     }
 
@@ -505,7 +503,7 @@ final class APITokensApi
     public function deleteApiTokenAsyncWithHttpInfo(
         string $user_id,
         string $token_id
-    ) {
+    ): Promise {
         $returnType = '';
         $request = $this->deleteApiTokenRequest($user_id, $token_id);
 
@@ -637,10 +635,11 @@ final class APITokensApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\APIToken
      */
-    public function getApiToken($user_id, $token_id)
-    {
+    public function getApiToken(
+        $user_id,
+        $token_id
+    ): \Upsun\Model\APIToken {
         list($response) = $this->getApiTokenWithHttpInfo($user_id, $token_id);
         return $response;
     }
@@ -768,7 +767,7 @@ final class APITokensApi
     public function getApiTokenAsyncWithHttpInfo(
         string $user_id,
         string $token_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\APIToken';
         $request = $this->getApiTokenRequest($user_id, $token_id);
 
@@ -910,10 +909,10 @@ final class APITokensApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return \Upsun\Model\APIToken[]
      */
-    public function listApiTokens($user_id)
-    {
+    public function listApiTokens(
+        $user_id
+    ): \Upsun\Model\APIToken[] {
         list($response) = $this->listApiTokensWithHttpInfo($user_id);
         return $response;
     }
@@ -1038,7 +1037,7 @@ final class APITokensApi
      */
     public function listApiTokensAsyncWithHttpInfo(
         string $user_id
-    ) {
+    ): Promise {
         $returnType = '\Upsun\Model\APIToken[]';
         $request = $this->listApiTokensRequest($user_id);
 

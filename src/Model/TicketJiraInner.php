@@ -218,7 +218,8 @@ final class TicketJiraInner implements ModelInterface, ArrayAccess, \JsonSeriali
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -260,7 +261,7 @@ final class TicketJiraInner implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets id
      */
-    public function setId($id)
+    public function setId(string|null $id = null)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -283,7 +284,7 @@ final class TicketJiraInner implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets ticket_id
      */
-    public function setTicketId($ticket_id)
+    public function setTicketId(string|null $ticket_id = null)
     {
         if (is_null($ticket_id)) {
             throw new \InvalidArgumentException('non-nullable ticket_id cannot be null');
@@ -306,7 +307,7 @@ final class TicketJiraInner implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets issue_id
      */
-    public function setIssueId($issue_id)
+    public function setIssueId(string|null $issue_id = null)
     {
         if (is_null($issue_id)) {
             throw new \InvalidArgumentException('non-nullable issue_id cannot be null');
@@ -329,7 +330,7 @@ final class TicketJiraInner implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets issue_key
      */
-    public function setIssueKey($issue_key)
+    public function setIssueKey(string|null $issue_key = null)
     {
         if (is_null($issue_key)) {
             throw new \InvalidArgumentException('non-nullable issue_key cannot be null');
@@ -352,7 +353,7 @@ final class TicketJiraInner implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets created_at
      */
-    public function setCreatedAt($created_at)
+    public function setCreatedAt(string|null $created_at = null)
     {
         if (is_null($created_at)) {
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
@@ -375,7 +376,7 @@ final class TicketJiraInner implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt($updated_at)
+    public function setUpdatedAt(string|null $updated_at = null)
     {
         if (is_null($updated_at)) {
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
@@ -454,5 +455,3 @@ final class TicketJiraInner implements ModelInterface, ArrayAccess, \JsonSeriali
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

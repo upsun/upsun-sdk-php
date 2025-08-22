@@ -239,7 +239,8 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -308,7 +309,7 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets name
      */
-    public function setName($name)
+    public function setName(string|null $name = null)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -331,7 +332,7 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets status
      */
-    public function setStatus($status)
+    public function setStatus(string|null $status = null)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
@@ -354,7 +355,7 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets is_main
      */
-    public function setIsMain($is_main)
+    public function setIsMain(string|null $is_main = null)
     {
         if (is_null($is_main)) {
             throw new \InvalidArgumentException('non-nullable is_main cannot be null');
@@ -377,7 +378,7 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets is_production
      */
-    public function setIsProduction($is_production)
+    public function setIsProduction(string|null $is_production = null)
     {
         if (is_null($is_production)) {
             throw new \InvalidArgumentException('non-nullable is_production cannot be null');
@@ -400,7 +401,7 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets constraints
      */
-    public function setConstraints($constraints)
+    public function setConstraints(string|null $constraints = null)
     {
         if (is_null($constraints)) {
             throw new \InvalidArgumentException('non-nullable constraints cannot be null');
@@ -423,7 +424,7 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets reference
      */
-    public function setReference($reference)
+    public function setReference(string|null $reference = null)
     {
         if (is_null($reference)) {
             throw new \InvalidArgumentException('non-nullable reference cannot be null');
@@ -446,7 +447,7 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets machine_name
      */
-    public function setMachineName($machine_name)
+    public function setMachineName(string|null $machine_name = null)
     {
         if (is_null($machine_name)) {
             throw new \InvalidArgumentException('non-nullable machine_name cannot be null');
@@ -469,7 +470,7 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets environment_type
      */
-    public function setEnvironmentType($environment_type)
+    public function setEnvironmentType(string|null $environment_type = null)
     {
         if (is_null($environment_type)) {
             throw new \InvalidArgumentException('non-nullable environment_type cannot be null');
@@ -492,7 +493,7 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets links
      */
-    public function setLinks($links)
+    public function setLinks(string|null $links = null)
     {
         if (is_null($links)) {
             throw new \InvalidArgumentException('non-nullable links cannot be null');
@@ -571,5 +572,3 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

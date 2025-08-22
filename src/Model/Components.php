@@ -183,7 +183,8 @@ final class Components implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -225,7 +226,7 @@ final class Components implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets voucher_vat_baseprice
      */
-    public function setVoucherVatBaseprice($voucher_vat_baseprice)
+    public function setVoucherVatBaseprice(string|null $voucher_vat_baseprice = null)
     {
         if (is_null($voucher_vat_baseprice)) {
             throw new \InvalidArgumentException('non-nullable voucher_vat_baseprice cannot be null');
@@ -304,5 +305,3 @@ final class Components implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

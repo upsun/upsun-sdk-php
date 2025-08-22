@@ -183,7 +183,8 @@ final class TheContinuousProfilingConfiguration implements ModelInterface, Array
     */
     private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) 
+        if (
+            self::isNullable($variableName)
             && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
         ) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -228,7 +229,7 @@ final class TheContinuousProfilingConfiguration implements ModelInterface, Array
     /**
      * Sets supported_runtimes
      */
-    public function setSupportedRuntimes($supported_runtimes)
+    public function setSupportedRuntimes(string|null $supported_runtimes = null)
     {
         if (is_null($supported_runtimes)) {
             throw new \InvalidArgumentException('non-nullable supported_runtimes cannot be null');
@@ -307,5 +308,3 @@ final class TheContinuousProfilingConfiguration implements ModelInterface, Array
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-
