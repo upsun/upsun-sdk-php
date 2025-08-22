@@ -404,7 +404,7 @@ final class MFAApi
         $operationHost = $this->config->getHost();
 
         $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-        var_dump($uri, $headers, $httpBody);
+
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
 
@@ -607,7 +607,7 @@ final class MFAApi
         $operationHost = $this->config->getHost();
 
         $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-        var_dump($uri, $headers, $httpBody);
+
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
 
@@ -810,7 +810,7 @@ final class MFAApi
         $operationHost = $this->config->getHost();
 
         $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-        var_dump($uri, $headers, $httpBody);
+
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
 
@@ -1065,7 +1065,7 @@ final class MFAApi
         $operationHost = $this->config->getHost();
 
         $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-        var_dump($uri, $headers, $httpBody);
+
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
 
@@ -1320,7 +1320,7 @@ final class MFAApi
         $operationHost = $this->config->getHost();
 
         $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-        var_dump($uri, $headers, $httpBody);
+
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
 
@@ -1575,7 +1575,7 @@ final class MFAApi
         $operationHost = $this->config->getHost();
 
         $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-        var_dump($uri, $headers, $httpBody);
+
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
 
@@ -1857,7 +1857,7 @@ final class MFAApi
         $operationHost = $this->config->getHost();
 
         $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-        var_dump($uri, $headers, $httpBody);
+
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
 
@@ -2060,7 +2060,7 @@ final class MFAApi
         $operationHost = $this->config->getHost();
 
         $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-        var_dump($uri, $headers, $httpBody);
+
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
 

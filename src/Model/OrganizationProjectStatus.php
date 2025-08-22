@@ -11,6 +11,7 @@
  */
 
 namespace Upsun\Model;
+
 use Upsun\ObjectSerializer;
 
 class OrganizationProjectStatus
