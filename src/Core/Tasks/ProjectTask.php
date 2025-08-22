@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use Exception;
 use InvalidArgumentException;
 use Upsun\ApiException;
 use Upsun\Api\DeploymentTargetApi;
@@ -62,19 +63,19 @@ class ProjectTask extends TaskBase
     /**
      * Deletes a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function delete(string $projectId): AcceptedResponse
+    public function delete(string $organizationId, string $projectId): void
     {
         $this->refreshToken();
-        return $this->api->deleteProjects($projectId);
+        $this->subscriptionsApi->deleteOrgSubscription($organizationId, $projectId);
     }
 
     /**
      * Gets a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function get(string $projectId): OrganizationProject
@@ -88,53 +89,19 @@ class ProjectTask extends TaskBase
     /**
      * Creates a project
      *
-     * @throws ApiException
+     * @throws ApiException|Exception
      */
     public function create(string $organizationId, array $projectData): Error|Subscription
     {
         $this->refreshToken();
         $createProjectData = new CreateOrgSubscriptionRequest($projectData);
         return $this->subscriptionsApi->createOrgSubscription($organizationId, $createProjectData);
-        
-
-//        $this->refreshToken();
-        $token = $this->client->auth->getAccessToken(); // remplace avec ton vrai token
-        $projectId = $subscription->getProjectId();
-
-        $ch = curl_init();
-        curl_setopt_array($ch, [
-            CURLOPT_URL => "https://api.upsun.com/projects/" . $projectId,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_HTTPHEADER => [
-                "Authorization: Bearer " . $token,
-                "Accept: application/json",
-                "Content-Type: application/json",
-                "User-Agent: PHP-cURL-test"
-            ],
-        ]);
-
-        $response = curl_exec($ch);
-        
-        dd($response);
-
-        $orgProject = $this->organizationProjectsApi->getOrgProject(
-            $organizationId,
-            $subscription->getProjectId()
-        );
-        
-        
-        dd($subscription, $orgProject);
-        $this->refreshToken();
-        return $this->organizationProjectsApi->getOrgProject(
-            $organizationId,
-            $subscription->getProjectId()
-        );
     }
 
     /**
      * Checks if the user is able to create a new project in the organization.
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function canCreate(string $organizationId): CanCreateNewOrgSubscription200Response|Error
@@ -146,7 +113,7 @@ class ProjectTask extends TaskBase
     /**
      * Gets a project's capabilities
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function getCapabilities(string $projectId): ProjectCapabilities
@@ -158,7 +125,7 @@ class ProjectTask extends TaskBase
     /**
      * Updates a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function update(string $projectId, array $projectData): AcceptedResponse
