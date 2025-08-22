@@ -11,6 +11,7 @@ use Upsun\Model\CreateProjectInviteRequest;
 use Upsun\Model\Error;
 use Upsun\Model\OrganizationInvitation;
 use Upsun\Model\ProjectInvitation;
+use Upsun\Model\StringFilter;
 use Upsun\UpsunClient;
 
 class InvitationTask extends TaskBase
@@ -72,7 +73,7 @@ class InvitationTask extends TaskBase
         $this->refreshToken();
         return $this->orgInvApi->listOrgInvites(
             $organizationId,
-            $filterState,
+            new StringFilter($filterState),
             $pageSize,
             $pageBefore,
             $pageAfter,
@@ -123,7 +124,7 @@ class InvitationTask extends TaskBase
         $this->refreshToken();
         return $this->prjInvApi->listProjectInvites(
             $projectId,
-            $filterState,
+            new StringFilter($filterState),
             $pageSize,
             $pageBefore,
             $pageAfter,

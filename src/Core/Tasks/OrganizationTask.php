@@ -22,10 +22,12 @@ use Upsun\HeaderSelector;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Address;
 use Upsun\Model\ApplyOrgVoucherRequest;
+use Upsun\Model\ArrayFilter;
 use Upsun\Model\CanCreateNewOrgSubscription200Response;
 use Upsun\Model\CreateAuthorizationCredentials200Response;
 use Upsun\Model\CreateOrgMemberRequest;
 use Upsun\Model\CreateOrgRequest;
+use Upsun\Model\DateTimeFilter;
 use Upsun\Model\Error;
 use Upsun\Model\EstimationObject;
 use Upsun\Model\Invoice;
@@ -45,6 +47,7 @@ use Upsun\Model\OrganizationMFAEnforcement;
 use Upsun\Model\OrganizationProject;
 use Upsun\Model\Profile;
 use Upsun\Model\SendOrgMfaRemindersRequest;
+use Upsun\Model\StringFilter;
 use Upsun\Model\SubscriptionCurrentUsageObject;
 use Upsun\Model\UpdateOrgMemberRequest;
 use Upsun\Model\UpdateOrgProfileRequest;
@@ -135,14 +138,14 @@ class OrganizationTask extends TaskBase
     ): Error|ListOrgs200Response {
         $this->refreshToken();
         return $this->api->listOrgs(
-            $filterId,
-            $filterOwnerId,
-            $filterName,
-            $filterLabel,
-            $filterVendor,
-            $filterCapabilities,
-            $filterStatus,
-            $filterUpdatedAt,
+            new StringFilter($filterId),
+            new StringFilter($filterOwnerId),
+            new StringFilter($filterName),
+            new StringFilter($filterLabel),
+            new StringFilter($filterVendor),
+            new ArrayFilter($filterCapabilities),
+            new StringFilter($filterStatus),
+            new DateTimeFilter($filterUpdatedAt),
             $pageSize,
             $pageBefore,
             $pageAfter,
@@ -169,10 +172,10 @@ class OrganizationTask extends TaskBase
         $this->refreshToken();
         return $this->api->listUserOrgs(
             $userId,
-            $filterId,
-            $filterVendor,
-            $filterStatus,
-            $filterUpdatedAt,
+            new StringFilter($filterId),
+            new StringFilter($filterVendor),
+            new StringFilter($filterStatus),
+            new DateTimeFilter($filterUpdatedAt),
             $pageSize,
             $pageBefore,
             $pageAfter,
@@ -278,11 +281,11 @@ class OrganizationTask extends TaskBase
         $this->refreshToken();
         return $this->projectsApi->listOrgProjects(
             $organizationId,
-            $filterId,
-            $filterTitle,
-            $filterStatus,
-            $filterUpdatedAt,
-            $filterCreatedAt,
+            new StringFilter($filterId),
+            new StringFilter($filterTitle),
+            new StringFilter($filterStatus),
+            new DateTimeFilter($filterUpdatedAt),
+            new DateTimeFilter($filterCreatedAt),
             $pageSize,
             $pageBefore,
             $pageAfter,
@@ -348,7 +351,7 @@ class OrganizationTask extends TaskBase
         $this->refreshToken();
         return $this->membersApi->listOrgMembers(
             $organizationId,
-            $filterPermissions,
+            new ArrayFilter($filterPermissions),
             $pageSize,
             $pageBefore,
             $pageAfter,
@@ -832,9 +835,9 @@ class OrganizationTask extends TaskBase
             } catch (\Exception $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
-                    (int)$e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string)$e->getResponse()->getBody() : null
+                    $request,
+                    $e->getResponse() ?? null,
+                    $e
                 );
             }
 
@@ -863,11 +866,10 @@ class OrganizationTask extends TaskBase
                     sprintf(
                         '[%d] Error connecting to the API (%s)',
                         $statusCode,
-                        (string)$request->getUri()
+                        (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string)$response->getBody()
+                    $request,
+                    $response
                 );
             }
 

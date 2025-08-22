@@ -29,6 +29,7 @@ use Upsun\Model\ListProjectUserAccess200Response;
 use Upsun\Model\ListUserExtendedAccess200Response;
 use Upsun\Model\Profile;
 use Upsun\Model\ResetEmailAddressRequest;
+use Upsun\Model\StringFilter;
 use Upsun\Model\UpdateProfileRequest;
 use Upsun\Model\UpdateProjectUserAccessRequest;
 use Upsun\Model\UpdateUserRequest;
@@ -476,9 +477,9 @@ class UserTask extends TaskBase
         $this->refreshToken();
         return $this->grantsApi->listUserExtendedAccess(
             $userId,
-            $filterResourceType,
-            $filterOrganizationId,
-            $filterPermissions
+            new StringFilter($filterResourceType),
+            new StringFilter($filterOrganizationId),
+            new StringFilter($filterPermissions)
         );
     }
 

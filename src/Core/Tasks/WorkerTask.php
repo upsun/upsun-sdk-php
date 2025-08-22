@@ -24,8 +24,8 @@ class WorkerTask extends TaskBase
     public function list(string $projectId, string $environmentId): array
     {
         $deployments = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);
-        $deployments = reset($deployments);
         /** @var Deployment $deployments */
+        $deployments = reset($deployments);
 
         return !empty($deployments) ? $deployments->getWorkers() : [];
     }

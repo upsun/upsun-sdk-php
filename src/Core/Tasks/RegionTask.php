@@ -8,6 +8,7 @@ use Upsun\Api\RegionsApi;
 use Upsun\Model\Error;
 use Upsun\Model\ListRegions200Response;
 use Upsun\Model\Region;
+use Upsun\Model\StringFilter;
 use Upsun\UpsunClient;
 
 class RegionTask extends TaskBase
@@ -47,9 +48,9 @@ class RegionTask extends TaskBase
     ): ListRegions200Response|Error {
         $this->refreshToken();
         return $this->api->listRegions(
-            $filter_available,
-            $filter_private,
-            $filter_zone,
+            new StringFilter($filter_available),
+            new StringFilter($filter_private),
+            new StringFilter($filter_zone),
             $pageSize,
             $pageBefore,
             $pageAfter,

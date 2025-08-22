@@ -7,10 +7,12 @@ use Upsun\Api\TeamAccessApi;
 use Upsun\Api\TeamsApi;
 use Upsun\Model\CreateTeamMemberRequest;
 use Upsun\Model\CreateTeamRequest;
+use Upsun\Model\DateTimeFilter;
 use Upsun\Model\Error;
 use Upsun\Model\ListTeamMembers200Response;
 use Upsun\Model\ListTeamProjectAccess200Response;
 use Upsun\Model\ListTeams200Response;
+use Upsun\Model\StringFilter;
 use Upsun\Model\Team;
 use Upsun\Model\TeamMember;
 use Upsun\Model\TeamProjectAccess;
@@ -125,9 +127,9 @@ class TeamTask extends TaskBase
     ): Error|ListTeams200Response {
         $this->refreshToken();
         return $this->teamsApi->listTeams(
-            $filterOrganizationId,
-            $filterId,
-            $filterUpdatedAt,
+            new StringFilter($filterOrganizationId),
+            new StringFilter($filterId),
+            new DateTimeFilter($filterUpdatedAt),
             $pageSize,
             $pageBefore,
             $pageAfter,
@@ -152,8 +154,8 @@ class TeamTask extends TaskBase
         $this->refreshToken();
         return $this->teamsApi->listUserTeams(
             $userId,
-            $filterOrganizationId,
-            $filterUpdatedAt,
+            new StringFilter($filterOrganizationId),
+            new DateTimeFilter($filterUpdatedAt),
             $pageSize,
             $pageBefore,
             $pageAfter,
