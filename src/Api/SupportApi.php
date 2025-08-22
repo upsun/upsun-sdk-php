@@ -343,7 +343,7 @@ final class SupportApi
         $operationHost = $this->config->getHost();
 
         $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-
+        var_dump( $uri, $headers, $httpBody)
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
 
@@ -526,67 +526,27 @@ final class SupportApi
         $multipart = false;
 
         // query params
-        //if ($subscription_id !== null) {
-        //
-        //    if ('form' === 'form' && is_array($subscription_id)) {
-        //        foreach ($subscription_id as $key => $value) {
-        //            $queryParams[$key] = $value;
-        //        }
-        //    } else {
-        //        $queryParams['subscription_id'] = $subscription_id;
-        //    }
-        //
-        //
-        //}
         if ($subscription_id !== null) {
-            if (is_object($subscription_id)) {
-                // Tous les objets de type Filter sont encodés en JSON compact
-                $queryParams['subscription_id'] = json_encode(
-                    ObjectSerializer::sanitizeForSerialization($subscription_id),
-                    JSON_UNESCAPED_SLASHES
-                );
-            } elseif (is_array($subscription_id)) {
-                // Les tableaux normaux sont sérialisés selon la collection format/style
-                $queryParams['subscription_id'] = ObjectSerializer::serializeCollection(
-                    $subscription_id,
-                    'form',
-                    true
-                );
+            if ('form' === 'form' && is_array($subscription_id)) {
+                foreach ($subscription_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
             } else {
                 $queryParams['subscription_id'] = $subscription_id;
             }
         }
+        
         // query params
-        //if ($organization_id !== null) {
-        //
-        //    if ('form' === 'form' && is_array($organization_id)) {
-        //        foreach ($organization_id as $key => $value) {
-        //            $queryParams[$key] = $value;
-        //        }
-        //    } else {
-        //        $queryParams['organization_id'] = $organization_id;
-        //    }
-        //
-        //
-        //}
         if ($organization_id !== null) {
-            if (is_object($organization_id)) {
-                // Tous les objets de type Filter sont encodés en JSON compact
-                $queryParams['organization_id'] = json_encode(
-                    ObjectSerializer::sanitizeForSerialization($organization_id),
-                    JSON_UNESCAPED_SLASHES
-                );
-            } elseif (is_array($organization_id)) {
-                // Les tableaux normaux sont sérialisés selon la collection format/style
-                $queryParams['organization_id'] = ObjectSerializer::serializeCollection(
-                    $organization_id,
-                    'form',
-                    true
-                );
+            if ('form' === 'form' && is_array($organization_id)) {
+                foreach ($organization_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
             } else {
                 $queryParams['organization_id'] = $organization_id;
             }
         }
+        
 
 
 
@@ -639,7 +599,7 @@ final class SupportApi
         $operationHost = $this->config->getHost();
 
         $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-
+        var_dump( $uri, $headers, $httpBody)
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
 
@@ -822,67 +782,27 @@ final class SupportApi
         $multipart = false;
 
         // query params
-        //if ($subscription_id !== null) {
-        //
-        //    if ('form' === 'form' && is_array($subscription_id)) {
-        //        foreach ($subscription_id as $key => $value) {
-        //            $queryParams[$key] = $value;
-        //        }
-        //    } else {
-        //        $queryParams['subscription_id'] = $subscription_id;
-        //    }
-        //
-        //
-        //}
         if ($subscription_id !== null) {
-            if (is_object($subscription_id)) {
-                // Tous les objets de type Filter sont encodés en JSON compact
-                $queryParams['subscription_id'] = json_encode(
-                    ObjectSerializer::sanitizeForSerialization($subscription_id),
-                    JSON_UNESCAPED_SLASHES
-                );
-            } elseif (is_array($subscription_id)) {
-                // Les tableaux normaux sont sérialisés selon la collection format/style
-                $queryParams['subscription_id'] = ObjectSerializer::serializeCollection(
-                    $subscription_id,
-                    'form',
-                    true
-                );
+            if ('form' === 'form' && is_array($subscription_id)) {
+                foreach ($subscription_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
             } else {
                 $queryParams['subscription_id'] = $subscription_id;
             }
         }
+        
         // query params
-        //if ($category !== null) {
-        //
-        //    if ('form' === 'form' && is_array($category)) {
-        //        foreach ($category as $key => $value) {
-        //            $queryParams[$key] = $value;
-        //        }
-        //    } else {
-        //        $queryParams['category'] = $category;
-        //    }
-        //
-        //
-        //}
         if ($category !== null) {
-            if (is_object($category)) {
-                // Tous les objets de type Filter sont encodés en JSON compact
-                $queryParams['category'] = json_encode(
-                    ObjectSerializer::sanitizeForSerialization($category),
-                    JSON_UNESCAPED_SLASHES
-                );
-            } elseif (is_array($category)) {
-                // Les tableaux normaux sont sérialisés selon la collection format/style
-                $queryParams['category'] = ObjectSerializer::serializeCollection(
-                    $category,
-                    'form',
-                    true
-                );
+            if ('form' === 'form' && is_array($category)) {
+                foreach ($category as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
             } else {
                 $queryParams['category'] = $category;
             }
         }
+        
 
 
 
@@ -935,7 +855,7 @@ final class SupportApi
         $operationHost = $this->config->getHost();
 
         $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-
+        var_dump( $uri, $headers, $httpBody)
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
 
@@ -1187,7 +1107,7 @@ final class SupportApi
         $operationHost = $this->config->getHost();
 
         $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-
+        var_dump( $uri, $headers, $httpBody)
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
 

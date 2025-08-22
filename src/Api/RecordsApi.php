@@ -360,253 +360,93 @@ final class RecordsApi
         $multipart = false;
 
         // query params
-        //if ($filter_subscription_id !== null) {
-        //
-        //    if ('form' === 'form' && is_array($filter_subscription_id)) {
-        //        foreach ($filter_subscription_id as $key => $value) {
-        //            $queryParams[$key] = $value;
-        //        }
-        //    } else {
-        //        $queryParams['filter[subscription_id]'] = $filter_subscription_id;
-        //    }
-        //
-        //
-        //}
         if ($filter_subscription_id !== null) {
-            if (is_object($filter_subscription_id)) {
-                // Tous les objets de type Filter sont encodés en JSON compact
-                $queryParams['filter[subscription_id]'] = json_encode(
-                    ObjectSerializer::sanitizeForSerialization($filter_subscription_id),
-                    JSON_UNESCAPED_SLASHES
-                );
-            } elseif (is_array($filter_subscription_id)) {
-                // Les tableaux normaux sont sérialisés selon la collection format/style
-                $queryParams['filter[subscription_id]'] = ObjectSerializer::serializeCollection(
-                    $filter_subscription_id,
-                    'form',
-                    true
-                );
+            if ('form' === 'form' && is_array($filter_subscription_id)) {
+                foreach ($filter_subscription_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
             } else {
                 $queryParams['filter[subscription_id]'] = $filter_subscription_id;
             }
         }
+        
         // query params
-        //if ($filter_plan !== null) {
-        //
-        //    if ('form' === 'form' && is_array($filter_plan)) {
-        //        foreach ($filter_plan as $key => $value) {
-        //            $queryParams[$key] = $value;
-        //        }
-        //    } else {
-        //        $queryParams['filter[plan]'] = $filter_plan;
-        //    }
-        //
-        //
-        //}
         if ($filter_plan !== null) {
-            if (is_object($filter_plan)) {
-                // Tous les objets de type Filter sont encodés en JSON compact
-                $queryParams['filter[plan]'] = json_encode(
-                    ObjectSerializer::sanitizeForSerialization($filter_plan),
-                    JSON_UNESCAPED_SLASHES
-                );
-            } elseif (is_array($filter_plan)) {
-                // Les tableaux normaux sont sérialisés selon la collection format/style
-                $queryParams['filter[plan]'] = ObjectSerializer::serializeCollection(
-                    $filter_plan,
-                    'form',
-                    true
-                );
+            if ('form' === 'form' && is_array($filter_plan)) {
+                foreach ($filter_plan as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
             } else {
                 $queryParams['filter[plan]'] = $filter_plan;
             }
         }
+        
         // query params
-        //if ($filter_status !== null) {
-        //
-        //    if ('form' === 'form' && is_array($filter_status)) {
-        //        foreach ($filter_status as $key => $value) {
-        //            $queryParams[$key] = $value;
-        //        }
-        //    } else {
-        //        $queryParams['filter[status]'] = $filter_status;
-        //    }
-        //
-        //
-        //}
         if ($filter_status !== null) {
-            if (is_object($filter_status)) {
-                // Tous les objets de type Filter sont encodés en JSON compact
-                $queryParams['filter[status]'] = json_encode(
-                    ObjectSerializer::sanitizeForSerialization($filter_status),
-                    JSON_UNESCAPED_SLASHES
-                );
-            } elseif (is_array($filter_status)) {
-                // Les tableaux normaux sont sérialisés selon la collection format/style
-                $queryParams['filter[status]'] = ObjectSerializer::serializeCollection(
-                    $filter_status,
-                    'form',
-                    true
-                );
+            if ('form' === 'form' && is_array($filter_status)) {
+                foreach ($filter_status as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
             } else {
                 $queryParams['filter[status]'] = $filter_status;
             }
         }
+        
         // query params
-        //if ($filter_start !== null) {
-        //
-        //    if ('form' === 'form' && is_array($filter_start)) {
-        //        foreach ($filter_start as $key => $value) {
-        //            $queryParams[$key] = $value;
-        //        }
-        //    } else {
-        //        $queryParams['filter[start]'] = $filter_start;
-        //    }
-        //
-        //
-        //}
         if ($filter_start !== null) {
-            if (is_object($filter_start)) {
-                // Tous les objets de type Filter sont encodés en JSON compact
-                $queryParams['filter[start]'] = json_encode(
-                    ObjectSerializer::sanitizeForSerialization($filter_start),
-                    JSON_UNESCAPED_SLASHES
-                );
-            } elseif (is_array($filter_start)) {
-                // Les tableaux normaux sont sérialisés selon la collection format/style
-                $queryParams['filter[start]'] = ObjectSerializer::serializeCollection(
-                    $filter_start,
-                    'form',
-                    true
-                );
+            if ('form' === 'form' && is_array($filter_start)) {
+                foreach ($filter_start as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
             } else {
                 $queryParams['filter[start]'] = $filter_start;
             }
         }
+        
         // query params
-        //if ($filter_end !== null) {
-        //
-        //    if ('form' === 'form' && is_array($filter_end)) {
-        //        foreach ($filter_end as $key => $value) {
-        //            $queryParams[$key] = $value;
-        //        }
-        //    } else {
-        //        $queryParams['filter[end]'] = $filter_end;
-        //    }
-        //
-        //
-        //}
         if ($filter_end !== null) {
-            if (is_object($filter_end)) {
-                // Tous les objets de type Filter sont encodés en JSON compact
-                $queryParams['filter[end]'] = json_encode(
-                    ObjectSerializer::sanitizeForSerialization($filter_end),
-                    JSON_UNESCAPED_SLASHES
-                );
-            } elseif (is_array($filter_end)) {
-                // Les tableaux normaux sont sérialisés selon la collection format/style
-                $queryParams['filter[end]'] = ObjectSerializer::serializeCollection(
-                    $filter_end,
-                    'form',
-                    true
-                );
+            if ('form' === 'form' && is_array($filter_end)) {
+                foreach ($filter_end as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
             } else {
                 $queryParams['filter[end]'] = $filter_end;
             }
         }
+        
         // query params
-        //if ($filter_started_at !== null) {
-        //
-        //    if ('form' === 'form' && is_array($filter_started_at)) {
-        //        foreach ($filter_started_at as $key => $value) {
-        //            $queryParams[$key] = $value;
-        //        }
-        //    } else {
-        //        $queryParams['filter[started_at]'] = $filter_started_at;
-        //    }
-        //
-        //
-        //}
         if ($filter_started_at !== null) {
-            if (is_object($filter_started_at)) {
-                // Tous les objets de type Filter sont encodés en JSON compact
-                $queryParams['filter[started_at]'] = json_encode(
-                    ObjectSerializer::sanitizeForSerialization($filter_started_at),
-                    JSON_UNESCAPED_SLASHES
-                );
-            } elseif (is_array($filter_started_at)) {
-                // Les tableaux normaux sont sérialisés selon la collection format/style
-                $queryParams['filter[started_at]'] = ObjectSerializer::serializeCollection(
-                    $filter_started_at,
-                    'form',
-                    true
-                );
+            if ('form' === 'form' && is_array($filter_started_at)) {
+                foreach ($filter_started_at as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
             } else {
                 $queryParams['filter[started_at]'] = $filter_started_at;
             }
         }
+        
         // query params
-        //if ($filter_ended_at !== null) {
-        //
-        //    if ('form' === 'form' && is_array($filter_ended_at)) {
-        //        foreach ($filter_ended_at as $key => $value) {
-        //            $queryParams[$key] = $value;
-        //        }
-        //    } else {
-        //        $queryParams['filter[ended_at]'] = $filter_ended_at;
-        //    }
-        //
-        //
-        //}
         if ($filter_ended_at !== null) {
-            if (is_object($filter_ended_at)) {
-                // Tous les objets de type Filter sont encodés en JSON compact
-                $queryParams['filter[ended_at]'] = json_encode(
-                    ObjectSerializer::sanitizeForSerialization($filter_ended_at),
-                    JSON_UNESCAPED_SLASHES
-                );
-            } elseif (is_array($filter_ended_at)) {
-                // Les tableaux normaux sont sérialisés selon la collection format/style
-                $queryParams['filter[ended_at]'] = ObjectSerializer::serializeCollection(
-                    $filter_ended_at,
-                    'form',
-                    true
-                );
+            if ('form' === 'form' && is_array($filter_ended_at)) {
+                foreach ($filter_ended_at as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
             } else {
                 $queryParams['filter[ended_at]'] = $filter_ended_at;
             }
         }
+        
         // query params
-        //if ($page !== null) {
-        //
-        //    if ('form' === 'form' && is_array($page)) {
-        //        foreach ($page as $key => $value) {
-        //            $queryParams[$key] = $value;
-        //        }
-        //    } else {
-        //        $queryParams['page'] = $page;
-        //    }
-        //
-        //
-        //}
         if ($page !== null) {
-            if (is_object($page)) {
-                // Tous les objets de type Filter sont encodés en JSON compact
-                $queryParams['page'] = json_encode(
-                    ObjectSerializer::sanitizeForSerialization($page),
-                    JSON_UNESCAPED_SLASHES
-                );
-            } elseif (is_array($page)) {
-                // Les tableaux normaux sont sérialisés selon la collection format/style
-                $queryParams['page'] = ObjectSerializer::serializeCollection(
-                    $page,
-                    'form',
-                    true
-                );
+            if ('form' === 'form' && is_array($page)) {
+                foreach ($page as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
             } else {
                 $queryParams['page'] = $page;
             }
         }
+        
 
 
         // path params
@@ -667,7 +507,7 @@ final class RecordsApi
         $operationHost = $this->config->getHost();
 
         $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-
+        var_dump( $uri, $headers, $httpBody)
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
 
@@ -902,160 +742,60 @@ final class RecordsApi
         $multipart = false;
 
         // query params
-        //if ($filter_subscription_id !== null) {
-        //
-        //    if ('form' === 'form' && is_array($filter_subscription_id)) {
-        //        foreach ($filter_subscription_id as $key => $value) {
-        //            $queryParams[$key] = $value;
-        //        }
-        //    } else {
-        //        $queryParams['filter[subscription_id]'] = $filter_subscription_id;
-        //    }
-        //
-        //
-        //}
         if ($filter_subscription_id !== null) {
-            if (is_object($filter_subscription_id)) {
-                // Tous les objets de type Filter sont encodés en JSON compact
-                $queryParams['filter[subscription_id]'] = json_encode(
-                    ObjectSerializer::sanitizeForSerialization($filter_subscription_id),
-                    JSON_UNESCAPED_SLASHES
-                );
-            } elseif (is_array($filter_subscription_id)) {
-                // Les tableaux normaux sont sérialisés selon la collection format/style
-                $queryParams['filter[subscription_id]'] = ObjectSerializer::serializeCollection(
-                    $filter_subscription_id,
-                    'form',
-                    true
-                );
+            if ('form' === 'form' && is_array($filter_subscription_id)) {
+                foreach ($filter_subscription_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
             } else {
                 $queryParams['filter[subscription_id]'] = $filter_subscription_id;
             }
         }
+        
         // query params
-        //if ($filter_usage_group !== null) {
-        //
-        //    if ('form' === 'form' && is_array($filter_usage_group)) {
-        //        foreach ($filter_usage_group as $key => $value) {
-        //            $queryParams[$key] = $value;
-        //        }
-        //    } else {
-        //        $queryParams['filter[usage_group]'] = $filter_usage_group;
-        //    }
-        //
-        //
-        //}
         if ($filter_usage_group !== null) {
-            if (is_object($filter_usage_group)) {
-                // Tous les objets de type Filter sont encodés en JSON compact
-                $queryParams['filter[usage_group]'] = json_encode(
-                    ObjectSerializer::sanitizeForSerialization($filter_usage_group),
-                    JSON_UNESCAPED_SLASHES
-                );
-            } elseif (is_array($filter_usage_group)) {
-                // Les tableaux normaux sont sérialisés selon la collection format/style
-                $queryParams['filter[usage_group]'] = ObjectSerializer::serializeCollection(
-                    $filter_usage_group,
-                    'form',
-                    true
-                );
+            if ('form' === 'form' && is_array($filter_usage_group)) {
+                foreach ($filter_usage_group as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
             } else {
                 $queryParams['filter[usage_group]'] = $filter_usage_group;
             }
         }
+        
         // query params
-        //if ($filter_start !== null) {
-        //
-        //    if ('form' === 'form' && is_array($filter_start)) {
-        //        foreach ($filter_start as $key => $value) {
-        //            $queryParams[$key] = $value;
-        //        }
-        //    } else {
-        //        $queryParams['filter[start]'] = $filter_start;
-        //    }
-        //
-        //
-        //}
         if ($filter_start !== null) {
-            if (is_object($filter_start)) {
-                // Tous les objets de type Filter sont encodés en JSON compact
-                $queryParams['filter[start]'] = json_encode(
-                    ObjectSerializer::sanitizeForSerialization($filter_start),
-                    JSON_UNESCAPED_SLASHES
-                );
-            } elseif (is_array($filter_start)) {
-                // Les tableaux normaux sont sérialisés selon la collection format/style
-                $queryParams['filter[start]'] = ObjectSerializer::serializeCollection(
-                    $filter_start,
-                    'form',
-                    true
-                );
+            if ('form' === 'form' && is_array($filter_start)) {
+                foreach ($filter_start as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
             } else {
                 $queryParams['filter[start]'] = $filter_start;
             }
         }
+        
         // query params
-        //if ($filter_started_at !== null) {
-        //
-        //    if ('form' === 'form' && is_array($filter_started_at)) {
-        //        foreach ($filter_started_at as $key => $value) {
-        //            $queryParams[$key] = $value;
-        //        }
-        //    } else {
-        //        $queryParams['filter[started_at]'] = $filter_started_at;
-        //    }
-        //
-        //
-        //}
         if ($filter_started_at !== null) {
-            if (is_object($filter_started_at)) {
-                // Tous les objets de type Filter sont encodés en JSON compact
-                $queryParams['filter[started_at]'] = json_encode(
-                    ObjectSerializer::sanitizeForSerialization($filter_started_at),
-                    JSON_UNESCAPED_SLASHES
-                );
-            } elseif (is_array($filter_started_at)) {
-                // Les tableaux normaux sont sérialisés selon la collection format/style
-                $queryParams['filter[started_at]'] = ObjectSerializer::serializeCollection(
-                    $filter_started_at,
-                    'form',
-                    true
-                );
+            if ('form' === 'form' && is_array($filter_started_at)) {
+                foreach ($filter_started_at as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
             } else {
                 $queryParams['filter[started_at]'] = $filter_started_at;
             }
         }
+        
         // query params
-        //if ($page !== null) {
-        //
-        //    if ('form' === 'form' && is_array($page)) {
-        //        foreach ($page as $key => $value) {
-        //            $queryParams[$key] = $value;
-        //        }
-        //    } else {
-        //        $queryParams['page'] = $page;
-        //    }
-        //
-        //
-        //}
         if ($page !== null) {
-            if (is_object($page)) {
-                // Tous les objets de type Filter sont encodés en JSON compact
-                $queryParams['page'] = json_encode(
-                    ObjectSerializer::sanitizeForSerialization($page),
-                    JSON_UNESCAPED_SLASHES
-                );
-            } elseif (is_array($page)) {
-                // Les tableaux normaux sont sérialisés selon la collection format/style
-                $queryParams['page'] = ObjectSerializer::serializeCollection(
-                    $page,
-                    'form',
-                    true
-                );
+            if ('form' === 'form' && is_array($page)) {
+                foreach ($page as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
             } else {
                 $queryParams['page'] = $page;
             }
         }
+        
 
 
         // path params
@@ -1116,7 +856,7 @@ final class RecordsApi
         $operationHost = $this->config->getHost();
 
         $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-
+        var_dump( $uri, $headers, $httpBody)
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
 
