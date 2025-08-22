@@ -1,0 +1,26 @@
+generatorName: php
+inputSpec: ./schema/openapispec-platformsh.json
+outputDir: .
+
+templateDir: ./templates/php
+
+library: psr-18
+
+additionalProperties:
+  invokerPackage: Upsun
+  apiPackage: Api
+  modelPackage: Model
+  srcBasePath: src
+  testPath: tests
+  composerVendor: upsun
+  composerProject: upsun-sdk-php
+  licenseName: Apache-2.0
+  composerPackageName: upsun/upsun-sdk-php
+  artifactUrl: https://github.com/upsun/upsun-sdk-php
+  developerOrganization: Upsun
+  developerOrganizationUrl: https://www.upsun.com
+  appDescription: Upsun SDK for PHP. This SDK maps the Upsun CLI commands. For more information, read [the documentation](https://docs.upsun.com).
+  escapedInvokerPackage: "Upsun\\"
+  coreTestPath: ./tests/Core
+  generateInterfaces: true
+generateSupportingFiles: true

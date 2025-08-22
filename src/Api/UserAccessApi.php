@@ -1,28 +1,13 @@
 <?php
-/**
- * UserAccessApi
- * PHP version 7.2
- *
- * @category Class
- * @package  Upsun
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
- */
 
 /**
- * Platform.sh Rest API
+ * Low level UserAccessApi (auto-generated)
  *
- * # Introduction  Platform.sh is a container-based Platform-as-a-Service. Our main API is simply Git. With a single `git push` and a couple of YAML files in your repository you can deploy an arbitrarily complex cluster. Every [**Project**](#tag/Project) can have multiple applications (PHP, Node.js, Python, Ruby, Go, etc.) and managed, automatically provisioned services (databases, message queues, etc.).  Each project also comes with multiple concurrent live staging/development [**Environments**](#tag/Environment). These ephemeral development environments are automatically created every time you push a new branch or create a pull request, and each has a full copy of the data of its parent branch, which is created on-the-fly in seconds.  Our Git implementation supports integrations with third party Git providers such as GitHub, Bitbucket, or GitLab, allowing you to simply integrate Platform.sh into your existing workflow.  ## Using the REST API  In addition to the Git API, we also offer a REST API that allows you to manage every aspect of the platform, from managing projects and environments, to accessing accounts and subscriptions, to creating robust workflows and integrations with your CI systems and internal services.  These API docs are generated from a standard **OpenAPI (Swagger)** Specification document which you can find here in [YAML](openapispec-platformsh.yaml) and in [JSON](openapispec-platformsh.json) formats.  This RESTful API consumes and produces HAL-style JSON over HTTPS, and any REST library can be used to access it. On GitHub, we also host a few API libraries that you can use to make API access easier, such as our [PHP API client](https://github.com/platformsh/platformsh-client-php) and our [JavaScript API client](https://github.com/platformsh/platformsh-client-js).  In order to use the API you will first need to have a Platform.sh account (we have a [free trial](https://accounts.platform.sh/platform/trial/general/setup) available) and create an API Token.  # Authentication  ## OAuth2  API authentication is done with OAuth2 access tokens.  ### API tokens  You can use an API token as one way to get an OAuth2 access token. This is particularly useful in scripts, e.g. for CI pipelines.  To create an API token, go to the \"API Tokens\" section of the \"Account Settings\" tab on the [Console](https://console.platform.sh).  To exchange this API token for an access token, a `POST` request must be made to `https://auth.api.platform.sh/oauth2/token`.  The request will look like this in cURL:  <pre> curl -u platform-api-user: \\     -d 'grant_type=api_token&amp;api_token=<em><b>API_TOKEN</b></em>' \\     https://auth.api.platform.sh/oauth2/token </pre>  This will return a \"Bearer\" access token that can be used to authenticate further API requests, for example:  <pre> {     \"access_token\": \"<em><b>abcdefghij1234567890</b></em>\",     \"expires_in\": 900,     \"token_type\": \"bearer\" } </pre>  ### Using the Access Token  To authenticate further API requests, include this returned bearer token in the `Authorization` header. For example, to retrieve a list of [Projects](#tag/Project) accessible by the current user, you can make the following request (substituting the dummy token for your own):  <pre> curl -H \"Authorization: Bearer <em><b>abcdefghij1234567890</b></em>\" \\     https://api.platform.sh/projects </pre>  # HAL Links  Most endpoints in the API return fields which defines a HAL (Hypertext Application Language) schema for the requested endpoint. The particular objects returns and their contents can vary by endpoint. The payload examples we give here for the requests do not show these elements. These links can allow you to create a fully dynamic API client that does not need to hardcode any method or schema.  Unless they are used for pagination we do not show the HAL links in the payload examples in this documentation for brevity and as their content is contextual (based on the permissions of the user).  ## _links Objects  Most endpoints that respond to `GET` requests will include a `_links` object in their response. The `_links` object contains a key-object pair labelled `self`, which defines two further key-value pairs:  * `href` - A URL string referring to the fully qualified name of the returned object. For many endpoints, this will be the direct link to the API endpoint on the region gateway, rather than on the general API gateway. This means it may reference a host of, for example, `eu-2.platform.sh` rather than `api.platform.sh`. * `meta` - An object defining the OpenAPI Specification (OAS) [schema object](https://swagger.io/specification/#schemaObject) of the component returned by the endpoint.  There may be zero or more other fields in the `_links` object resembling fragment identifiers beginning with a hash mark, e.g. `#edit` or `#delete`. Each of these keys refers to a JSON object containing two key-value pairs:  * `href` - A URL string referring to the path name of endpoint which can perform the action named in the key. * `meta` - An object defining the OAS schema of the endpoint. This consists of a key-value pair, with the key defining an HTTP method and the value defining the [operation object](https://swagger.io/specification/#operationObject) of the endpoint.  To use one of these HAL links, you must send a new request to the URL defined in the `href` field which contains a body defined the schema object in the `meta` field.  For example, if you make a request such as `GET /projects/abcdefghij1234567890`, the `_links` object in the returned response will include the key `#delete`. That object will look something like this fragment:  ``` \"#delete\": {     \"href\": \"/api/projects/abcdefghij1234567890\",     \"meta\": {         \"delete\": {             \"responses\": {                 . . . // Response definition omitted for space             },             \"parameters\": []         }     } } ```  To use this information to delete a project, you would then send a `DELETE` request to the endpoint `https://api.platform.sh/api/projects/abcdefghij1234567890` with no body or parameters to delete the project that was originally requested.  ## _embedded Objects  Requests to endpoints which create or modify objects, such as `POST`, `PATCH`, or `DELETE` requests, will include an `_embedded` key in their response. The object represented by this key will contain the created or modified object. This object is identical to what would be returned by a subsequent `GET` request for the object referred to by the endpoint.
- *
- * The version of the OpenAPI document: 1.0
- * Generated by: https://openapi-generator.tech
- * Generator version: 7.14.0
- */
-
-/**
- * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
- * https://openapi-generator.tech
- * Do not edit the class manually.
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ * @internal  This file was generated by OpenAPI Generator. Do not edit manually.
+ * @generated
  */
 
 namespace Upsun\Api;
@@ -43,7 +28,6 @@ use Upsun\ApiException;
 use Upsun\Configuration;
 use Upsun\DebugPlugin;
 use Upsun\HeaderSelector;
-use Upsun\FormDataProcessor;
 use Upsun\ObjectSerializer;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
@@ -53,57 +37,27 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
 use Psr\Http\Message\UriInterface;
+use InvalidArgumentException;
+
 use function sprintf;
 
-/**
- * UserAccessApi Class Doc Comment
- *
- * @category Class
- * @package  Upsun
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
- */
-class UserAccessApi
+final class UserAccessApi
 {
-    /**
-     * @var PluginClient
-     */
-    protected $httpClient;
+    private readonly PluginClient $httpClient;
 
-    /**
-     * @var PluginClient
-     */
-    protected $httpAsyncClient;
+    private readonly PluginClient $httpAsyncClient;
 
-    /**
-     * @var UriFactoryInterface
-     */
-    protected $uriFactory;
+    private readonly UriFactoryInterface $uriFactory;
 
-    /**
-     * @var Configuration
-     */
-    protected $config;
+    private readonly Configuration $config;
 
-    /**
-     * @var HeaderSelector
-     */
-    protected $headerSelector;
+    private readonly HeaderSelector $headerSelector;
 
-    /**
-     * @var int Host index
-     */
-    protected $hostIndex;
+    private readonly int $hostIndex;
 
-    /**
-     * @var RequestFactoryInterface
-     */
-    protected $requestFactory;
+    private readonly RequestFactoryInterface $requestFactory;
 
-    /**
-     * @var StreamFactoryInterface
-     */
-    protected $streamFactory;
+    private readonly StreamFactoryInterface $streamFactory;
 
     public function __construct(
         ?ClientInterface $httpClient = null,
@@ -147,21 +101,10 @@ class UserAccessApi
     }
 
     /**
-     * Set the host index
-     *
-     * @param int $hostIndex Host index (required)
-     */
-    public function setHostIndex($hostIndex): void
-    {
-        $this->hostIndex = $hostIndex;
-    }
-
-    /**
      * Get the host index
      *
-     * @return int Host index
      */
-    public function getHostIndex()
+    public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
@@ -169,42 +112,30 @@ class UserAccessApi
     /**
      * @return Configuration
      */
-    public function getConfig()
+    public function getConfig(): Configuration
     {
         return $this->config;
     }
 
     /**
-     * Operation getProjectUserAccess
-     *
      * Get user access for a project
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  string $user_id The ID of the user. (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\UserProjectAccess|\Upsun\Model\Error|\Upsun\Model\Error
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function getProjectUserAccess($project_id, $user_id)
+    public function getProjectUserAccess($project_id, $user_id): \Upsun\Model\UserProjectAccess
     {
         list($response) = $this->getProjectUserAccessWithHttpInfo($project_id, $user_id);
         return $response;
     }
 
     /**
-     * Operation getProjectUserAccessWithHttpInfo
-     *
      * Get user access for a project
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  string $user_id The ID of the user. (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\UserProjectAccess|\Upsun\Model\Error|\Upsun\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function getProjectUserAccessWithHttpInfo($project_id, $user_id)
+    public function getProjectUserAccessWithHttpInfo(string $project_id, string $user_id): array
     {
         $request = $this->getProjectUserAccessRequest($project_id, $user_id);
 
@@ -235,7 +166,7 @@ class UserAccessApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\UserProjectAccess',
@@ -256,7 +187,7 @@ class UserAccessApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -265,9 +196,8 @@ class UserAccessApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -303,24 +233,18 @@ class UserAccessApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation getProjectUserAccessAsync
-     *
      * Get user access for a project
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  string $user_id The ID of the user. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function getProjectUserAccessAsync($project_id, $user_id)
+    public function getProjectUserAccessAsync(string $project_id, string $user_id): Promise
     {
         return $this->getProjectUserAccessAsyncWithHttpInfo($project_id, $user_id)
             ->then(
@@ -331,17 +255,11 @@ class UserAccessApi
     }
 
     /**
-     * Operation getProjectUserAccessAsyncWithHttpInfo
-     *
      * Get user access for a project
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  string $user_id The ID of the user. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function getProjectUserAccessAsyncWithHttpInfo($project_id, $user_id)
+    public function getProjectUserAccessAsyncWithHttpInfo(string $project_id, string $user_id)
     {
         $returnType = '\Upsun\Model\UserProjectAccess';
         $request = $this->getProjectUserAccessRequest($project_id, $user_id);
@@ -381,13 +299,9 @@ class UserAccessApi
     /**
      * Create request for operation 'getProjectUserAccess'
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  string $user_id The ID of the user. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function getProjectUserAccessRequest($project_id, $user_id)
+    public function getProjectUserAccessRequest(string $project_id, string $user_id): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -450,10 +364,8 @@ class UserAccessApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -484,36 +396,24 @@ class UserAccessApi
     }
 
     /**
-     * Operation getUserProjectAccess
-     *
      * Get project access for a user
      *
-     * @param  string $user_id The ID of the user. (required)
-     * @param  string $project_id The ID of the project. (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\UserProjectAccess|\Upsun\Model\Error|\Upsun\Model\Error
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function getUserProjectAccess($user_id, $project_id)
+    public function getUserProjectAccess($user_id, $project_id): \Upsun\Model\UserProjectAccess
     {
         list($response) = $this->getUserProjectAccessWithHttpInfo($user_id, $project_id);
         return $response;
     }
 
     /**
-     * Operation getUserProjectAccessWithHttpInfo
-     *
      * Get project access for a user
      *
-     * @param  string $user_id The ID of the user. (required)
-     * @param  string $project_id The ID of the project. (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\UserProjectAccess|\Upsun\Model\Error|\Upsun\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function getUserProjectAccessWithHttpInfo($user_id, $project_id)
+    public function getUserProjectAccessWithHttpInfo(string $user_id, string $project_id): array
     {
         $request = $this->getUserProjectAccessRequest($user_id, $project_id);
 
@@ -544,7 +444,7 @@ class UserAccessApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\UserProjectAccess',
@@ -565,7 +465,7 @@ class UserAccessApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -574,9 +474,8 @@ class UserAccessApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -612,24 +511,18 @@ class UserAccessApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation getUserProjectAccessAsync
-     *
      * Get project access for a user
      *
-     * @param  string $user_id The ID of the user. (required)
-     * @param  string $project_id The ID of the project. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function getUserProjectAccessAsync($user_id, $project_id)
+    public function getUserProjectAccessAsync(string $user_id, string $project_id): Promise
     {
         return $this->getUserProjectAccessAsyncWithHttpInfo($user_id, $project_id)
             ->then(
@@ -640,17 +533,11 @@ class UserAccessApi
     }
 
     /**
-     * Operation getUserProjectAccessAsyncWithHttpInfo
-     *
      * Get project access for a user
      *
-     * @param  string $user_id The ID of the user. (required)
-     * @param  string $project_id The ID of the project. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function getUserProjectAccessAsyncWithHttpInfo($user_id, $project_id)
+    public function getUserProjectAccessAsyncWithHttpInfo(string $user_id, string $project_id)
     {
         $returnType = '\Upsun\Model\UserProjectAccess';
         $request = $this->getUserProjectAccessRequest($user_id, $project_id);
@@ -690,13 +577,9 @@ class UserAccessApi
     /**
      * Create request for operation 'getUserProjectAccess'
      *
-     * @param  string $user_id The ID of the user. (required)
-     * @param  string $project_id The ID of the project. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function getUserProjectAccessRequest($user_id, $project_id)
+    public function getUserProjectAccessRequest(string $user_id, string $project_id): RequestInterface
     {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
@@ -759,10 +642,8 @@ class UserAccessApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -793,35 +674,23 @@ class UserAccessApi
     }
 
     /**
-     * Operation grantProjectUserAccess
-     *
      * Grant user access to a project
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  \Upsun\Model\GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner grant_project_user_access_request_inner (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return void
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function grantProjectUserAccess($project_id, $grant_project_user_access_request_inner)
+    public function grantProjectUserAccess($project_id, $grant_project_user_access_request_inner): void
     {
         $this->grantProjectUserAccessWithHttpInfo($project_id, $grant_project_user_access_request_inner);
     }
 
     /**
-     * Operation grantProjectUserAccessWithHttpInfo
-     *
      * Grant user access to a project
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  \Upsun\Model\GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function grantProjectUserAccessWithHttpInfo($project_id, $grant_project_user_access_request_inner)
+    public function grantProjectUserAccessWithHttpInfo(string $project_id, \Upsun\Model\GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner): array
     {
         $request = $this->grantProjectUserAccessRequest($project_id, $grant_project_user_access_request_inner);
 
@@ -872,24 +741,18 @@ class UserAccessApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation grantProjectUserAccessAsync
-     *
      * Grant user access to a project
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  \Upsun\Model\GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function grantProjectUserAccessAsync($project_id, $grant_project_user_access_request_inner)
+    public function grantProjectUserAccessAsync(string $project_id, \Upsun\Model\GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner): Promise
     {
         return $this->grantProjectUserAccessAsyncWithHttpInfo($project_id, $grant_project_user_access_request_inner)
             ->then(
@@ -900,17 +763,11 @@ class UserAccessApi
     }
 
     /**
-     * Operation grantProjectUserAccessAsyncWithHttpInfo
-     *
      * Grant user access to a project
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  \Upsun\Model\GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function grantProjectUserAccessAsyncWithHttpInfo($project_id, $grant_project_user_access_request_inner)
+    public function grantProjectUserAccessAsyncWithHttpInfo(string $project_id, \Upsun\Model\GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner)
     {
         $returnType = '';
         $request = $this->grantProjectUserAccessRequest($project_id, $grant_project_user_access_request_inner);
@@ -940,13 +797,9 @@ class UserAccessApi
     /**
      * Create request for operation 'grantProjectUserAccess'
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  \Upsun\Model\GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function grantProjectUserAccessRequest($project_id, $grant_project_user_access_request_inner)
+    public function grantProjectUserAccessRequest(string $project_id, \Upsun\Model\GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -1007,10 +860,8 @@ class UserAccessApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1041,35 +892,23 @@ class UserAccessApi
     }
 
     /**
-     * Operation grantUserProjectAccess
-     *
      * Grant project access to a user
      *
-     * @param  string $user_id The ID of the user. (required)
-     * @param  \Upsun\Model\GrantUserProjectAccessRequestInner[] $grant_user_project_access_request_inner grant_user_project_access_request_inner (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return void
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function grantUserProjectAccess($user_id, $grant_user_project_access_request_inner)
+    public function grantUserProjectAccess($user_id, $grant_user_project_access_request_inner): void
     {
         $this->grantUserProjectAccessWithHttpInfo($user_id, $grant_user_project_access_request_inner);
     }
 
     /**
-     * Operation grantUserProjectAccessWithHttpInfo
-     *
      * Grant project access to a user
      *
-     * @param  string $user_id The ID of the user. (required)
-     * @param  \Upsun\Model\GrantUserProjectAccessRequestInner[] $grant_user_project_access_request_inner (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function grantUserProjectAccessWithHttpInfo($user_id, $grant_user_project_access_request_inner)
+    public function grantUserProjectAccessWithHttpInfo(string $user_id, \Upsun\Model\GrantUserProjectAccessRequestInner[] $grant_user_project_access_request_inner): array
     {
         $request = $this->grantUserProjectAccessRequest($user_id, $grant_user_project_access_request_inner);
 
@@ -1120,24 +959,18 @@ class UserAccessApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation grantUserProjectAccessAsync
-     *
      * Grant project access to a user
      *
-     * @param  string $user_id The ID of the user. (required)
-     * @param  \Upsun\Model\GrantUserProjectAccessRequestInner[] $grant_user_project_access_request_inner (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function grantUserProjectAccessAsync($user_id, $grant_user_project_access_request_inner)
+    public function grantUserProjectAccessAsync(string $user_id, \Upsun\Model\GrantUserProjectAccessRequestInner[] $grant_user_project_access_request_inner): Promise
     {
         return $this->grantUserProjectAccessAsyncWithHttpInfo($user_id, $grant_user_project_access_request_inner)
             ->then(
@@ -1148,17 +981,11 @@ class UserAccessApi
     }
 
     /**
-     * Operation grantUserProjectAccessAsyncWithHttpInfo
-     *
      * Grant project access to a user
      *
-     * @param  string $user_id The ID of the user. (required)
-     * @param  \Upsun\Model\GrantUserProjectAccessRequestInner[] $grant_user_project_access_request_inner (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function grantUserProjectAccessAsyncWithHttpInfo($user_id, $grant_user_project_access_request_inner)
+    public function grantUserProjectAccessAsyncWithHttpInfo(string $user_id, \Upsun\Model\GrantUserProjectAccessRequestInner[] $grant_user_project_access_request_inner)
     {
         $returnType = '';
         $request = $this->grantUserProjectAccessRequest($user_id, $grant_user_project_access_request_inner);
@@ -1188,13 +1015,9 @@ class UserAccessApi
     /**
      * Create request for operation 'grantUserProjectAccess'
      *
-     * @param  string $user_id The ID of the user. (required)
-     * @param  \Upsun\Model\GrantUserProjectAccessRequestInner[] $grant_user_project_access_request_inner (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function grantUserProjectAccessRequest($user_id, $grant_user_project_access_request_inner)
+    public function grantUserProjectAccessRequest(string $user_id, \Upsun\Model\GrantUserProjectAccessRequestInner[] $grant_user_project_access_request_inner): RequestInterface
     {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
@@ -1255,10 +1078,8 @@ class UserAccessApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1289,42 +1110,24 @@ class UserAccessApi
     }
 
     /**
-     * Operation listProjectUserAccess
-     *
      * List user access for a project
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  int $page_size Determines the number of items to show. (optional)
-     * @param  string $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. (optional)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\ListProjectUserAccess200Response|\Upsun\Model\Error|\Upsun\Model\Error
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function listProjectUserAccess($project_id, $page_size = null, $page_before = null, $page_after = null, $sort = null)
+    public function listProjectUserAccess($project_id, $page_size = null, $page_before = null, $page_after = null, $sort = null): \Upsun\Model\ListProjectUserAccess200Response
     {
         list($response) = $this->listProjectUserAccessWithHttpInfo($project_id, $page_size, $page_before, $page_after, $sort);
         return $response;
     }
 
     /**
-     * Operation listProjectUserAccessWithHttpInfo
-     *
      * List user access for a project
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  int $page_size Determines the number of items to show. (optional)
-     * @param  string $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. (optional)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\ListProjectUserAccess200Response|\Upsun\Model\Error|\Upsun\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function listProjectUserAccessWithHttpInfo($project_id, $page_size = null, $page_before = null, $page_after = null, $sort = null)
+    public function listProjectUserAccessWithHttpInfo(string $project_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): array
     {
         $request = $this->listProjectUserAccessRequest($project_id, $page_size, $page_before, $page_after, $sort);
 
@@ -1355,7 +1158,7 @@ class UserAccessApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\ListProjectUserAccess200Response',
@@ -1376,7 +1179,7 @@ class UserAccessApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1385,9 +1188,8 @@ class UserAccessApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -1423,27 +1225,18 @@ class UserAccessApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation listProjectUserAccessAsync
-     *
      * List user access for a project
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  int $page_size Determines the number of items to show. (optional)
-     * @param  string $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function listProjectUserAccessAsync($project_id, $page_size = null, $page_before = null, $page_after = null, $sort = null)
+    public function listProjectUserAccessAsync(string $project_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Promise
     {
         return $this->listProjectUserAccessAsyncWithHttpInfo($project_id, $page_size, $page_before, $page_after, $sort)
             ->then(
@@ -1454,20 +1247,11 @@ class UserAccessApi
     }
 
     /**
-     * Operation listProjectUserAccessAsyncWithHttpInfo
-     *
      * List user access for a project
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  int $page_size Determines the number of items to show. (optional)
-     * @param  string $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function listProjectUserAccessAsyncWithHttpInfo($project_id, $page_size = null, $page_before = null, $page_after = null, $sort = null)
+    public function listProjectUserAccessAsyncWithHttpInfo(string $project_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null)
     {
         $returnType = '\Upsun\Model\ListProjectUserAccess200Response';
         $request = $this->listProjectUserAccessRequest($project_id, $page_size, $page_before, $page_after, $sort);
@@ -1507,16 +1291,9 @@ class UserAccessApi
     /**
      * Create request for operation 'listProjectUserAccess'
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  int $page_size Determines the number of items to show. (optional)
-     * @param  string $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function listProjectUserAccessRequest($project_id, $page_size = null, $page_before = null, $page_after = null, $sort = null)
+    public function listProjectUserAccessRequest(string $project_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -1616,10 +1393,8 @@ class UserAccessApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1650,44 +1425,24 @@ class UserAccessApi
     }
 
     /**
-     * Operation listUserProjectAccess
-     *
      * List project access for a user
      *
-     * @param  string $user_id The ID of the user. (required)
-     * @param  string $filter_organization_id Allows filtering by &#x60;organization_id&#x60;. (optional)
-     * @param  int $page_size Determines the number of items to show. (optional)
-     * @param  string $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;project_title&#x60;, &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. (optional)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\ListProjectUserAccess200Response|\Upsun\Model\Error|\Upsun\Model\Error
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function listUserProjectAccess($user_id, $filter_organization_id = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
+    public function listUserProjectAccess($user_id, $filter_organization_id = null, $page_size = null, $page_before = null, $page_after = null, $sort = null): \Upsun\Model\ListProjectUserAccess200Response
     {
         list($response) = $this->listUserProjectAccessWithHttpInfo($user_id, $filter_organization_id, $page_size, $page_before, $page_after, $sort);
         return $response;
     }
 
     /**
-     * Operation listUserProjectAccessWithHttpInfo
-     *
      * List project access for a user
      *
-     * @param  string $user_id The ID of the user. (required)
-     * @param  string $filter_organization_id Allows filtering by &#x60;organization_id&#x60;. (optional)
-     * @param  int $page_size Determines the number of items to show. (optional)
-     * @param  string $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;project_title&#x60;, &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. (optional)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\ListProjectUserAccess200Response|\Upsun\Model\Error|\Upsun\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function listUserProjectAccessWithHttpInfo($user_id, $filter_organization_id = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
+    public function listUserProjectAccessWithHttpInfo(string $user_id, string $filter_organization_id = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): array
     {
         $request = $this->listUserProjectAccessRequest($user_id, $filter_organization_id, $page_size, $page_before, $page_after, $sort);
 
@@ -1718,7 +1473,7 @@ class UserAccessApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\ListProjectUserAccess200Response',
@@ -1739,7 +1494,7 @@ class UserAccessApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1748,9 +1503,8 @@ class UserAccessApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -1786,28 +1540,18 @@ class UserAccessApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation listUserProjectAccessAsync
-     *
      * List project access for a user
      *
-     * @param  string $user_id The ID of the user. (required)
-     * @param  string $filter_organization_id Allows filtering by &#x60;organization_id&#x60;. (optional)
-     * @param  int $page_size Determines the number of items to show. (optional)
-     * @param  string $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;project_title&#x60;, &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function listUserProjectAccessAsync($user_id, $filter_organization_id = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
+    public function listUserProjectAccessAsync(string $user_id, string $filter_organization_id = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Promise
     {
         return $this->listUserProjectAccessAsyncWithHttpInfo($user_id, $filter_organization_id, $page_size, $page_before, $page_after, $sort)
             ->then(
@@ -1818,21 +1562,11 @@ class UserAccessApi
     }
 
     /**
-     * Operation listUserProjectAccessAsyncWithHttpInfo
-     *
      * List project access for a user
      *
-     * @param  string $user_id The ID of the user. (required)
-     * @param  string $filter_organization_id Allows filtering by &#x60;organization_id&#x60;. (optional)
-     * @param  int $page_size Determines the number of items to show. (optional)
-     * @param  string $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;project_title&#x60;, &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function listUserProjectAccessAsyncWithHttpInfo($user_id, $filter_organization_id = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
+    public function listUserProjectAccessAsyncWithHttpInfo(string $user_id, string $filter_organization_id = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null)
     {
         $returnType = '\Upsun\Model\ListProjectUserAccess200Response';
         $request = $this->listUserProjectAccessRequest($user_id, $filter_organization_id, $page_size, $page_before, $page_after, $sort);
@@ -1872,17 +1606,9 @@ class UserAccessApi
     /**
      * Create request for operation 'listUserProjectAccess'
      *
-     * @param  string $user_id The ID of the user. (required)
-     * @param  string $filter_organization_id Allows filtering by &#x60;organization_id&#x60;. (optional)
-     * @param  int $page_size Determines the number of items to show. (optional)
-     * @param  string $page_before Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string $page_after Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string $sort Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;project_title&#x60;, &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function listUserProjectAccessRequest($user_id, $filter_organization_id = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
+    public function listUserProjectAccessRequest(string $user_id, string $filter_organization_id = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): RequestInterface
     {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
@@ -1993,10 +1719,8 @@ class UserAccessApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2027,35 +1751,23 @@ class UserAccessApi
     }
 
     /**
-     * Operation removeProjectUserAccess
-     *
      * Remove user access for a project
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  string $user_id The ID of the user. (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return void
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function removeProjectUserAccess($project_id, $user_id)
+    public function removeProjectUserAccess($project_id, $user_id): void
     {
         $this->removeProjectUserAccessWithHttpInfo($project_id, $user_id);
     }
 
     /**
-     * Operation removeProjectUserAccessWithHttpInfo
-     *
      * Remove user access for a project
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  string $user_id The ID of the user. (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function removeProjectUserAccessWithHttpInfo($project_id, $user_id)
+    public function removeProjectUserAccessWithHttpInfo(string $project_id, string $user_id): array
     {
         $request = $this->removeProjectUserAccessRequest($project_id, $user_id);
 
@@ -2114,24 +1826,18 @@ class UserAccessApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation removeProjectUserAccessAsync
-     *
      * Remove user access for a project
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  string $user_id The ID of the user. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function removeProjectUserAccessAsync($project_id, $user_id)
+    public function removeProjectUserAccessAsync(string $project_id, string $user_id): Promise
     {
         return $this->removeProjectUserAccessAsyncWithHttpInfo($project_id, $user_id)
             ->then(
@@ -2142,17 +1848,11 @@ class UserAccessApi
     }
 
     /**
-     * Operation removeProjectUserAccessAsyncWithHttpInfo
-     *
      * Remove user access for a project
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  string $user_id The ID of the user. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function removeProjectUserAccessAsyncWithHttpInfo($project_id, $user_id)
+    public function removeProjectUserAccessAsyncWithHttpInfo(string $project_id, string $user_id)
     {
         $returnType = '';
         $request = $this->removeProjectUserAccessRequest($project_id, $user_id);
@@ -2182,13 +1882,9 @@ class UserAccessApi
     /**
      * Create request for operation 'removeProjectUserAccess'
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  string $user_id The ID of the user. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function removeProjectUserAccessRequest($project_id, $user_id)
+    public function removeProjectUserAccessRequest(string $project_id, string $user_id): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -2251,10 +1947,8 @@ class UserAccessApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2285,35 +1979,23 @@ class UserAccessApi
     }
 
     /**
-     * Operation removeUserProjectAccess
-     *
      * Remove project access for a user
      *
-     * @param  string $user_id The ID of the user. (required)
-     * @param  string $project_id The ID of the project. (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return void
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function removeUserProjectAccess($user_id, $project_id)
+    public function removeUserProjectAccess($user_id, $project_id): void
     {
         $this->removeUserProjectAccessWithHttpInfo($user_id, $project_id);
     }
 
     /**
-     * Operation removeUserProjectAccessWithHttpInfo
-     *
      * Remove project access for a user
      *
-     * @param  string $user_id The ID of the user. (required)
-     * @param  string $project_id The ID of the project. (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function removeUserProjectAccessWithHttpInfo($user_id, $project_id)
+    public function removeUserProjectAccessWithHttpInfo(string $user_id, string $project_id): array
     {
         $request = $this->removeUserProjectAccessRequest($user_id, $project_id);
 
@@ -2372,24 +2054,18 @@ class UserAccessApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation removeUserProjectAccessAsync
-     *
      * Remove project access for a user
      *
-     * @param  string $user_id The ID of the user. (required)
-     * @param  string $project_id The ID of the project. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function removeUserProjectAccessAsync($user_id, $project_id)
+    public function removeUserProjectAccessAsync(string $user_id, string $project_id): Promise
     {
         return $this->removeUserProjectAccessAsyncWithHttpInfo($user_id, $project_id)
             ->then(
@@ -2400,17 +2076,11 @@ class UserAccessApi
     }
 
     /**
-     * Operation removeUserProjectAccessAsyncWithHttpInfo
-     *
      * Remove project access for a user
      *
-     * @param  string $user_id The ID of the user. (required)
-     * @param  string $project_id The ID of the project. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function removeUserProjectAccessAsyncWithHttpInfo($user_id, $project_id)
+    public function removeUserProjectAccessAsyncWithHttpInfo(string $user_id, string $project_id)
     {
         $returnType = '';
         $request = $this->removeUserProjectAccessRequest($user_id, $project_id);
@@ -2440,13 +2110,9 @@ class UserAccessApi
     /**
      * Create request for operation 'removeUserProjectAccess'
      *
-     * @param  string $user_id The ID of the user. (required)
-     * @param  string $project_id The ID of the project. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function removeUserProjectAccessRequest($user_id, $project_id)
+    public function removeUserProjectAccessRequest(string $user_id, string $project_id): RequestInterface
     {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
@@ -2509,10 +2175,8 @@ class UserAccessApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2543,37 +2207,23 @@ class UserAccessApi
     }
 
     /**
-     * Operation updateProjectUserAccess
-     *
      * Update user access for a project
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  string $user_id The ID of the user. (required)
-     * @param  \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request update_project_user_access_request (optional)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return void
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function updateProjectUserAccess($project_id, $user_id, $update_project_user_access_request = null)
+    public function updateProjectUserAccess($project_id, $user_id, $update_project_user_access_request = null): void
     {
         $this->updateProjectUserAccessWithHttpInfo($project_id, $user_id, $update_project_user_access_request);
     }
 
     /**
-     * Operation updateProjectUserAccessWithHttpInfo
-     *
      * Update user access for a project
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  string $user_id The ID of the user. (required)
-     * @param  \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request (optional)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function updateProjectUserAccessWithHttpInfo($project_id, $user_id, $update_project_user_access_request = null)
+    public function updateProjectUserAccessWithHttpInfo(string $project_id, string $user_id, \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null): array
     {
         $request = $this->updateProjectUserAccessRequest($project_id, $user_id, $update_project_user_access_request);
 
@@ -2632,25 +2282,18 @@ class UserAccessApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation updateProjectUserAccessAsync
-     *
      * Update user access for a project
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  string $user_id The ID of the user. (required)
-     * @param  \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function updateProjectUserAccessAsync($project_id, $user_id, $update_project_user_access_request = null)
+    public function updateProjectUserAccessAsync(string $project_id, string $user_id, \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null): Promise
     {
         return $this->updateProjectUserAccessAsyncWithHttpInfo($project_id, $user_id, $update_project_user_access_request)
             ->then(
@@ -2661,18 +2304,11 @@ class UserAccessApi
     }
 
     /**
-     * Operation updateProjectUserAccessAsyncWithHttpInfo
-     *
      * Update user access for a project
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  string $user_id The ID of the user. (required)
-     * @param  \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function updateProjectUserAccessAsyncWithHttpInfo($project_id, $user_id, $update_project_user_access_request = null)
+    public function updateProjectUserAccessAsyncWithHttpInfo(string $project_id, string $user_id, \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null)
     {
         $returnType = '';
         $request = $this->updateProjectUserAccessRequest($project_id, $user_id, $update_project_user_access_request);
@@ -2702,14 +2338,9 @@ class UserAccessApi
     /**
      * Create request for operation 'updateProjectUserAccess'
      *
-     * @param  string $project_id The ID of the project. (required)
-     * @param  string $user_id The ID of the user. (required)
-     * @param  \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function updateProjectUserAccessRequest($project_id, $user_id, $update_project_user_access_request = null)
+    public function updateProjectUserAccessRequest(string $project_id, string $user_id, \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -2778,10 +2409,8 @@ class UserAccessApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2812,37 +2441,23 @@ class UserAccessApi
     }
 
     /**
-     * Operation updateUserProjectAccess
-     *
      * Update project access for a user
      *
-     * @param  string $user_id The ID of the user. (required)
-     * @param  string $project_id The ID of the project. (required)
-     * @param  \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request update_project_user_access_request (optional)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return void
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function updateUserProjectAccess($user_id, $project_id, $update_project_user_access_request = null)
+    public function updateUserProjectAccess($user_id, $project_id, $update_project_user_access_request = null): void
     {
         $this->updateUserProjectAccessWithHttpInfo($user_id, $project_id, $update_project_user_access_request);
     }
 
     /**
-     * Operation updateUserProjectAccessWithHttpInfo
-     *
      * Update project access for a user
      *
-     * @param  string $user_id The ID of the user. (required)
-     * @param  string $project_id The ID of the project. (required)
-     * @param  \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request (optional)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function updateUserProjectAccessWithHttpInfo($user_id, $project_id, $update_project_user_access_request = null)
+    public function updateUserProjectAccessWithHttpInfo(string $user_id, string $project_id, \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null): array
     {
         $request = $this->updateUserProjectAccessRequest($user_id, $project_id, $update_project_user_access_request);
 
@@ -2901,25 +2516,18 @@ class UserAccessApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation updateUserProjectAccessAsync
-     *
      * Update project access for a user
      *
-     * @param  string $user_id The ID of the user. (required)
-     * @param  string $project_id The ID of the project. (required)
-     * @param  \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function updateUserProjectAccessAsync($user_id, $project_id, $update_project_user_access_request = null)
+    public function updateUserProjectAccessAsync(string $user_id, string $project_id, \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null): Promise
     {
         return $this->updateUserProjectAccessAsyncWithHttpInfo($user_id, $project_id, $update_project_user_access_request)
             ->then(
@@ -2930,18 +2538,11 @@ class UserAccessApi
     }
 
     /**
-     * Operation updateUserProjectAccessAsyncWithHttpInfo
-     *
      * Update project access for a user
      *
-     * @param  string $user_id The ID of the user. (required)
-     * @param  string $project_id The ID of the project. (required)
-     * @param  \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function updateUserProjectAccessAsyncWithHttpInfo($user_id, $project_id, $update_project_user_access_request = null)
+    public function updateUserProjectAccessAsyncWithHttpInfo(string $user_id, string $project_id, \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null)
     {
         $returnType = '';
         $request = $this->updateUserProjectAccessRequest($user_id, $project_id, $update_project_user_access_request);
@@ -2971,14 +2572,9 @@ class UserAccessApi
     /**
      * Create request for operation 'updateUserProjectAccess'
      *
-     * @param  string $user_id The ID of the user. (required)
-     * @param  string $project_id The ID of the project. (required)
-     * @param  \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function updateUserProjectAccessRequest($user_id, $project_id, $update_project_user_access_request = null)
+    public function updateUserProjectAccessRequest(string $user_id, string $project_id, \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null): RequestInterface
     {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
@@ -3047,10 +2643,8 @@ class UserAccessApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -3082,15 +2676,14 @@ class UserAccessApi
 
 
     /**
-     * @param string $method
-     * @param string|UriInterface $uri
-     * @param array $headers
-     * @param string|StreamInterface|null $body
-     *
-     * @return RequestInterface
+     * Create request
      */
-    protected function createRequest(string $method, $uri, array $headers = [], $body = null): RequestInterface
-    {
+    protected function createRequest(
+        string $method, 
+        string|UriInterface $uri, 
+        array $headers = [], 
+        string|StreamInterface|null $body = null
+    ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
             return $this->requestFactory->createRequest(
                 $method,
@@ -3101,7 +2694,9 @@ class UserAccessApi
         }
 
         if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException('Cannot create request: A stream factory is required to create a request with a non-empty string body.');
+            throw new \RuntimeException(
+                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
+            );
         }
 
         $request = $this->requestFactory->createRequest($method, $uri);
@@ -3164,9 +2759,8 @@ class UserAccessApi
                             'Error JSON decoding server response (%s)',
                             $request->getUri()
                         ),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                        $content
+                        $request,
+                        $response
                     );
                 }
             }

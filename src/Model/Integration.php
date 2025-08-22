@@ -1,62 +1,32 @@
 <?php
-/**
- * Integration
- *
- * PHP version 8.1
- *
- * @category Class
- * @package  Upsun
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
- */
 
 /**
- * Platform.sh Rest API
+ * Low level Integration (auto-generated)
  *
- * # Introduction  Platform.sh is a container-based Platform-as-a-Service. Our main API is simply Git. With a single `git push` and a couple of YAML files in your repository you can deploy an arbitrarily complex cluster. Every [**Project**](#tag/Project) can have multiple applications (PHP, Node.js, Python, Ruby, Go, etc.) and managed, automatically provisioned services (databases, message queues, etc.).  Each project also comes with multiple concurrent live staging/development [**Environments**](#tag/Environment). These ephemeral development environments are automatically created every time you push a new branch or create a pull request, and each has a full copy of the data of its parent branch, which is created on-the-fly in seconds.  Our Git implementation supports integrations with third party Git providers such as GitHub, Bitbucket, or GitLab, allowing you to simply integrate Platform.sh into your existing workflow.  ## Using the REST API  In addition to the Git API, we also offer a REST API that allows you to manage every aspect of the platform, from managing projects and environments, to accessing accounts and subscriptions, to creating robust workflows and integrations with your CI systems and internal services.  These API docs are generated from a standard **OpenAPI (Swagger)** Specification document which you can find here in [YAML](openapispec-platformsh.yaml) and in [JSON](openapispec-platformsh.json) formats.  This RESTful API consumes and produces HAL-style JSON over HTTPS, and any REST library can be used to access it. On GitHub, we also host a few API libraries that you can use to make API access easier, such as our [PHP API client](https://github.com/platformsh/platformsh-client-php) and our [JavaScript API client](https://github.com/platformsh/platformsh-client-js).  In order to use the API you will first need to have a Platform.sh account (we have a [free trial](https://accounts.platform.sh/platform/trial/general/setup) available) and create an API Token.  # Authentication  ## OAuth2  API authentication is done with OAuth2 access tokens.  ### API tokens  You can use an API token as one way to get an OAuth2 access token. This is particularly useful in scripts, e.g. for CI pipelines.  To create an API token, go to the \"API Tokens\" section of the \"Account Settings\" tab on the [Console](https://console.platform.sh).  To exchange this API token for an access token, a `POST` request must be made to `https://auth.api.platform.sh/oauth2/token`.  The request will look like this in cURL:  <pre> curl -u platform-api-user: \\     -d 'grant_type=api_token&amp;api_token=<em><b>API_TOKEN</b></em>' \\     https://auth.api.platform.sh/oauth2/token </pre>  This will return a \"Bearer\" access token that can be used to authenticate further API requests, for example:  <pre> {     \"access_token\": \"<em><b>abcdefghij1234567890</b></em>\",     \"expires_in\": 900,     \"token_type\": \"bearer\" } </pre>  ### Using the Access Token  To authenticate further API requests, include this returned bearer token in the `Authorization` header. For example, to retrieve a list of [Projects](#tag/Project) accessible by the current user, you can make the following request (substituting the dummy token for your own):  <pre> curl -H \"Authorization: Bearer <em><b>abcdefghij1234567890</b></em>\" \\     https://api.platform.sh/projects </pre>  # HAL Links  Most endpoints in the API return fields which defines a HAL (Hypertext Application Language) schema for the requested endpoint. The particular objects returns and their contents can vary by endpoint. The payload examples we give here for the requests do not show these elements. These links can allow you to create a fully dynamic API client that does not need to hardcode any method or schema.  Unless they are used for pagination we do not show the HAL links in the payload examples in this documentation for brevity and as their content is contextual (based on the permissions of the user).  ## _links Objects  Most endpoints that respond to `GET` requests will include a `_links` object in their response. The `_links` object contains a key-object pair labelled `self`, which defines two further key-value pairs:  * `href` - A URL string referring to the fully qualified name of the returned object. For many endpoints, this will be the direct link to the API endpoint on the region gateway, rather than on the general API gateway. This means it may reference a host of, for example, `eu-2.platform.sh` rather than `api.platform.sh`. * `meta` - An object defining the OpenAPI Specification (OAS) [schema object](https://swagger.io/specification/#schemaObject) of the component returned by the endpoint.  There may be zero or more other fields in the `_links` object resembling fragment identifiers beginning with a hash mark, e.g. `#edit` or `#delete`. Each of these keys refers to a JSON object containing two key-value pairs:  * `href` - A URL string referring to the path name of endpoint which can perform the action named in the key. * `meta` - An object defining the OAS schema of the endpoint. This consists of a key-value pair, with the key defining an HTTP method and the value defining the [operation object](https://swagger.io/specification/#operationObject) of the endpoint.  To use one of these HAL links, you must send a new request to the URL defined in the `href` field which contains a body defined the schema object in the `meta` field.  For example, if you make a request such as `GET /projects/abcdefghij1234567890`, the `_links` object in the returned response will include the key `#delete`. That object will look something like this fragment:  ``` \"#delete\": {     \"href\": \"/api/projects/abcdefghij1234567890\",     \"meta\": {         \"delete\": {             \"responses\": {                 . . . // Response definition omitted for space             },             \"parameters\": []         }     } } ```  To use this information to delete a project, you would then send a `DELETE` request to the endpoint `https://api.platform.sh/api/projects/abcdefghij1234567890` with no body or parameters to delete the project that was originally requested.  ## _embedded Objects  Requests to endpoints which create or modify objects, such as `POST`, `PATCH`, or `DELETE` requests, will include an `_embedded` key in their response. The object represented by this key will contain the created or modified object. This object is identical to what would be returned by a subsequent `GET` request for the object referred to by the endpoint.
- *
- * The version of the OpenAPI document: 1.0
- * Generated by: https://openapi-generator.tech
- * Generator version: 7.14.0
- */
-
-/**
- * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
- * https://openapi-generator.tech
- * Do not edit the class manually.
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ * @internal  This file was generated by OpenAPI Generator. Do not edit manually.
+ * @generated
  */
 
 namespace Upsun\Model;
 
-use \ArrayAccess;
-use \Upsun\ObjectSerializer;
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 
-/**
- * Integration Class Doc Comment
- *
- * @category Class
- * @package  Upsun
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
- */
-class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
+final class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Integration';
 
     /**
-      * The original name of the model.
-      *
-      * @var string
-      */
-    protected static $openAPIModelName = 'Integration';
-
-    /**
-      * Array of property to type mappings. Used for (de)serialization
-      *
-      * @var string[]
-      */
-    protected static $openAPITypes = [
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
         'created_at' => '\DateTime',
         'updated_at' => '\DateTime',
         'type' => 'string',
@@ -107,13 +77,9 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
     ];
 
     /**
-      * Array of property to format mappings. Used for (de)serialization
-      *
-      * @var string[]
-      * @phpstan-var array<string, string|null>
-      * @psalm-var array<string, string|null>
-      */
-    protected static $openAPIFormats = [
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
         'created_at' => 'date-time',
         'updated_at' => 'date-time',
         'type' => null,
@@ -164,11 +130,9 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
     ];
 
     /**
-      * Array of nullable properties. Used for (de)serialization
-      *
-      * @var boolean[]
-      */
-    protected static array $openAPINullables = [
+     * Array of nullable properties. Used for (de)serialization
+     */
+    private static array $openAPINullables = [
         'created_at' => true,
         'updated_at' => true,
         'type' => false,
@@ -219,36 +183,28 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
     ];
 
     /**
-      * If a nullable field gets set to null, insert it here
-      *
-      * @var boolean[]
-      */
-    protected array $openAPINullablesSetToNull = [];
+     * If a nullable field gets set to null, insert it here
+     */
+    private array $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
      */
-    public static function openAPITypes()
+    public static function openAPITypes(): array
     {
         return self::$openAPITypes;
     }
 
     /**
      * Array of property to format mappings. Used for (de)serialization
-     *
-     * @return array
      */
-    public static function openAPIFormats()
+    public static function openAPIFormats(): array
     {
         return self::$openAPIFormats;
     }
 
     /**
      * Array of nullable properties
-     *
-     * @return array
      */
     protected static function openAPINullables(): array
     {
@@ -257,8 +213,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Array of nullable field names deliberately set to null
-     *
-     * @return boolean[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -267,8 +221,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Setter - Array of nullable field names deliberately set to null
-     *
-     * @param boolean[] $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -277,9 +229,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
      */
     public static function isNullable(string $property): bool
     {
@@ -288,9 +237,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -300,10 +246,8 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
-     *
-     * @var string[]
      */
-    protected static $attributeMap = [
+    private static array $attributeMap = [
         'created_at' => 'created_at',
         'updated_at' => 'updated_at',
         'type' => 'type',
@@ -355,10 +299,8 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @var string[]
      */
-    protected static $setters = [
+    private static $setters = [
         'created_at' => 'setCreatedAt',
         'updated_at' => 'setUpdatedAt',
         'type' => 'setType',
@@ -410,10 +352,8 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
      */
-    protected static $getters = [
+    private static $getters = [
         'created_at' => 'getCreatedAt',
         'updated_at' => 'getUpdatedAt',
         'type' => 'getType',
@@ -466,20 +406,16 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
-     *
-     * @return array
      */
-    public static function attributeMap()
+    public static function attributeMap(): array
     {
         return self::$attributeMap;
     }
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
      */
-    public static function setters()
+    public static function setters(): array
     {
         return self::$setters;
     }
@@ -496,10 +432,8 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * The original name of the model.
-     *
-     * @return string
      */
-    public function getModelName()
+    public function getModelName(): string
     {
         return self::$openAPIModelName;
     }
@@ -521,10 +455,8 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Gets allowable values of the enum
-     *
-     * @return string[]
      */
-    public function getEnvironmentInitResourcesAllowableValues()
+    public function getEnvironmentInitResourcesAllowableValues(): array
     {
         return [
             self::ENVIRONMENT_INIT_RESOURCES__DEFAULT,
@@ -536,10 +468,8 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Gets allowable values of the enum
-     *
-     * @return string[]
      */
-    public function getResultAllowableValues()
+    public function getResultAllowableValues(): array
     {
         return [
             self::RESULT_STAR,
@@ -550,10 +480,8 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Gets allowable values of the enum
-     *
-     * @return string[]
      */
-    public function getTokenTypeAllowableValues()
+    public function getTokenTypeAllowableValues(): array
     {
         return [
             self::TOKEN_TYPE_CLASSIC_PERSONAL_TOKEN,
@@ -563,10 +491,8 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Gets allowable values of the enum
-     *
-     * @return string[]
      */
-    public function getProtocolAllowableValues()
+    public function getProtocolAllowableValues(): array
     {
         return [
             self::PROTOCOL_TCP,
@@ -577,10 +503,8 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Gets allowable values of the enum
-     *
-     * @return string[]
      */
-    public function getMessageFormatAllowableValues()
+    public function getMessageFormatAllowableValues(): array
     {
         return [
             self::MESSAGE_FORMAT_RFC3164,
@@ -590,16 +514,11 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Associative array for storing property values
-     *
-     * @var mixed[]
      */
-    protected $container = [];
+    private array $container = [];
 
     /**
      * Constructor
-     *
-     * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -656,14 +575,12 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
     * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
     * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
     * $this->openAPINullablesSetToNull array
-    *
-    * @param string $variableName
-    * @param array  $fields
-    * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+        if (self::isNullable($variableName) 
+            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
+        ) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
 
@@ -672,10 +589,8 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalidProperties = [];
 
@@ -865,10 +780,8 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Validate all the properties in the model
      * return true if all passed
-     *
-     * @return bool True if all properties are valid
      */
-    public function valid()
+    public function valid(): bool
     {
         return count($this->listInvalidProperties()) === 0;
     }
@@ -886,10 +799,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets created_at
-     *
-     * @param \DateTime $created_at created_at
-     *
-     * @return self
      */
     public function setCreatedAt($created_at)
     {
@@ -898,7 +807,7 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('created_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -920,10 +829,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets updated_at
-     *
-     * @param \DateTime $updated_at updated_at
-     *
-     * @return self
      */
     public function setUpdatedAt($updated_at)
     {
@@ -932,7 +837,7 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('updated_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -954,10 +859,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets type
-     *
-     * @param string $type type
-     *
-     * @return self
      */
     public function setType($type)
     {
@@ -981,10 +882,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets fetch_branches
-     *
-     * @param bool $fetch_branches fetch_branches
-     *
-     * @return self
      */
     public function setFetchBranches($fetch_branches)
     {
@@ -1008,10 +905,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets prune_branches
-     *
-     * @param bool $prune_branches prune_branches
-     *
-     * @return self
      */
     public function setPruneBranches($prune_branches)
     {
@@ -1035,10 +928,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets environment_init_resources
-     *
-     * @param string $environment_init_resources environment_init_resources
-     *
-     * @return self
      */
     public function setEnvironmentInitResources($environment_init_resources)
     {
@@ -1072,10 +961,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets app_credentials
-     *
-     * @param \Upsun\Model\TheOAuth2ConsumerInformationOptional|null $app_credentials app_credentials
-     *
-     * @return self
      */
     public function setAppCredentials($app_credentials)
     {
@@ -1084,7 +969,7 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('app_credentials', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1106,10 +991,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets addon_credentials
-     *
-     * @param \Upsun\Model\TheAddonCredentialInformationOptional|null $addon_credentials addon_credentials
-     *
-     * @return self
      */
     public function setAddonCredentials($addon_credentials)
     {
@@ -1118,7 +999,7 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('addon_credentials', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1140,10 +1021,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets repository
-     *
-     * @param string $repository repository
-     *
-     * @return self
      */
     public function setRepository($repository)
     {
@@ -1167,10 +1044,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets build_pull_requests
-     *
-     * @param bool $build_pull_requests build_pull_requests
-     *
-     * @return self
      */
     public function setBuildPullRequests($build_pull_requests)
     {
@@ -1194,10 +1067,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets pull_requests_clone_parent_data
-     *
-     * @param bool $pull_requests_clone_parent_data pull_requests_clone_parent_data
-     *
-     * @return self
      */
     public function setPullRequestsCloneParentData($pull_requests_clone_parent_data)
     {
@@ -1221,10 +1090,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets resync_pull_requests
-     *
-     * @param bool $resync_pull_requests resync_pull_requests
-     *
-     * @return self
      */
     public function setResyncPullRequests($resync_pull_requests)
     {
@@ -1248,10 +1113,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets url
-     *
-     * @param string $url url
-     *
-     * @return self
      */
     public function setUrl($url)
     {
@@ -1275,10 +1136,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets username
-     *
-     * @param string $username username
-     *
-     * @return self
      */
     public function setUsername($username)
     {
@@ -1302,10 +1159,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets project
-     *
-     * @param string $project project
-     *
-     * @return self
      */
     public function setProject($project)
     {
@@ -1329,10 +1182,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets environments_credentials
-     *
-     * @param array<string,\Upsun\Model\BlackfireEnvironmentsCredentialsValue> $environments_credentials environments_credentials
-     *
-     * @return self
      */
     public function setEnvironmentsCredentials($environments_credentials)
     {
@@ -1356,10 +1205,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets continuous_profiling
-     *
-     * @param bool $continuous_profiling continuous_profiling
-     *
-     * @return self
      */
     public function setContinuousProfiling($continuous_profiling)
     {
@@ -1383,10 +1228,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets events
-     *
-     * @param string[] $events events
-     *
-     * @return self
      */
     public function setEvents($events)
     {
@@ -1410,10 +1251,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets environments
-     *
-     * @param string[] $environments environments
-     *
-     * @return self
      */
     public function setEnvironments($environments)
     {
@@ -1437,10 +1274,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets excluded_environments
-     *
-     * @param string[] $excluded_environments excluded_environments
-     *
-     * @return self
      */
     public function setExcludedEnvironments($excluded_environments)
     {
@@ -1464,10 +1297,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets states
-     *
-     * @param string[] $states states
-     *
-     * @return self
      */
     public function setStates($states)
     {
@@ -1491,10 +1320,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets result
-     *
-     * @param string $result result
-     *
-     * @return self
      */
     public function setResult($result)
     {
@@ -1528,10 +1353,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets service_id
-     *
-     * @param string $service_id service_id
-     *
-     * @return self
      */
     public function setServiceId($service_id)
     {
@@ -1555,10 +1376,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets base_url
-     *
-     * @param string $base_url base_url
-     *
-     * @return self
      */
     public function setBaseUrl($base_url)
     {
@@ -1582,10 +1399,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets build_draft_pull_requests
-     *
-     * @param bool $build_draft_pull_requests build_draft_pull_requests
-     *
-     * @return self
      */
     public function setBuildDraftPullRequests($build_draft_pull_requests)
     {
@@ -1609,10 +1422,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets build_pull_requests_post_merge
-     *
-     * @param bool $build_pull_requests_post_merge build_pull_requests_post_merge
-     *
-     * @return self
      */
     public function setBuildPullRequestsPostMerge($build_pull_requests_post_merge)
     {
@@ -1636,10 +1445,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets token_type
-     *
-     * @param string $token_type token_type
-     *
-     * @return self
      */
     public function setTokenType($token_type)
     {
@@ -1673,10 +1478,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets build_merge_requests
-     *
-     * @param bool $build_merge_requests build_merge_requests
-     *
-     * @return self
      */
     public function setBuildMergeRequests($build_merge_requests)
     {
@@ -1700,10 +1501,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets build_wip_merge_requests
-     *
-     * @param bool $build_wip_merge_requests build_wip_merge_requests
-     *
-     * @return self
      */
     public function setBuildWipMergeRequests($build_wip_merge_requests)
     {
@@ -1727,10 +1524,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets merge_requests_clone_parent_data
-     *
-     * @param bool $merge_requests_clone_parent_data merge_requests_clone_parent_data
-     *
-     * @return self
      */
     public function setMergeRequestsCloneParentData($merge_requests_clone_parent_data)
     {
@@ -1754,10 +1547,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets from_address
-     *
-     * @param string $from_address from_address
-     *
-     * @return self
      */
     public function setFromAddress($from_address)
     {
@@ -1766,7 +1555,7 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('from_address', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1788,10 +1577,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets recipients
-     *
-     * @param string[] $recipients recipients
-     *
-     * @return self
      */
     public function setRecipients($recipients)
     {
@@ -1815,10 +1600,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets routing_key
-     *
-     * @param string $routing_key routing_key
-     *
-     * @return self
      */
     public function setRoutingKey($routing_key)
     {
@@ -1842,10 +1623,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets channel
-     *
-     * @param string $channel channel
-     *
-     * @return self
      */
     public function setChannel($channel)
     {
@@ -1869,10 +1646,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets extra
-     *
-     * @param array<string,string> $extra extra
-     *
-     * @return self
      */
     public function setExtra($extra)
     {
@@ -1896,10 +1669,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets headers
-     *
-     * @param array<string,string> $headers headers
-     *
-     * @return self
      */
     public function setHeaders($headers)
     {
@@ -1923,10 +1692,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets tls_verify
-     *
-     * @param bool $tls_verify tls_verify
-     *
-     * @return self
      */
     public function setTlsVerify($tls_verify)
     {
@@ -1950,10 +1715,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets script
-     *
-     * @param string $script script
-     *
-     * @return self
      */
     public function setScript($script)
     {
@@ -1977,10 +1738,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets index
-     *
-     * @param string $index index
-     *
-     * @return self
      */
     public function setIndex($index)
     {
@@ -2004,10 +1761,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets sourcetype
-     *
-     * @param string $sourcetype sourcetype
-     *
-     * @return self
      */
     public function setSourcetype($sourcetype)
     {
@@ -2031,10 +1784,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets category
-     *
-     * @param string $category category
-     *
-     * @return self
      */
     public function setCategory($category)
     {
@@ -2058,10 +1807,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets host
-     *
-     * @param string $host host
-     *
-     * @return self
      */
     public function setHost($host)
     {
@@ -2085,10 +1830,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets port
-     *
-     * @param int $port port
-     *
-     * @return self
      */
     public function setPort($port)
     {
@@ -2112,10 +1853,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets protocol
-     *
-     * @param string $protocol protocol
-     *
-     * @return self
      */
     public function setProtocol($protocol)
     {
@@ -2149,10 +1886,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets facility
-     *
-     * @param int $facility facility
-     *
-     * @return self
      */
     public function setFacility($facility)
     {
@@ -2176,10 +1909,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets message_format
-     *
-     * @param string $message_format message_format
-     *
-     * @return self
      */
     public function setMessageFormat($message_format)
     {
@@ -2213,10 +1942,6 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets shared_key
-     *
-     * @param string $shared_key shared_key
-     *
-     * @return self
      */
     public function setSharedKey($shared_key)
     {
@@ -2225,7 +1950,7 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('shared_key', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -2236,38 +1961,25 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
     }
     /**
      * Returns true if offset exists. False otherwise.
-     *
-     * @param integer $offset Offset
-     *
-     * @return boolean
      */
-    public function offsetExists($offset): bool
+    public function offsetExists(mixed $offset): bool
     {
         return isset($this->container[$offset]);
     }
 
     /**
      * Gets offset.
-     *
-     * @param integer $offset Offset
-     *
-     * @return mixed|null
      */
     #[\ReturnTypeWillChange]
-    public function offsetGet($offset)
+    public function offsetGet(mixed $offset)
     {
         return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
-     *
-     * @param int|null $offset Offset
-     * @param mixed    $value  Value to be set
-     *
-     * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet(mixed $offset = null, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -2278,12 +1990,8 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Unsets offset.
-     *
-     * @param integer $offset Offset
-     *
-     * @return void
      */
-    public function offsetUnset($offset): void
+    public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
     }
@@ -2291,14 +1999,11 @@ class Integration implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Serializes the object to a value that can be serialized natively by json_encode().
      * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
      */
     #[\ReturnTypeWillChange]
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

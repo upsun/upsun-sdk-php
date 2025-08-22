@@ -1,28 +1,13 @@
 <?php
-/**
- * DomainManagementApi
- * PHP version 7.2
- *
- * @category Class
- * @package  Upsun
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
- */
 
 /**
- * Platform.sh Rest API
+ * Low level DomainManagementApi (auto-generated)
  *
- * # Introduction  Platform.sh is a container-based Platform-as-a-Service. Our main API is simply Git. With a single `git push` and a couple of YAML files in your repository you can deploy an arbitrarily complex cluster. Every [**Project**](#tag/Project) can have multiple applications (PHP, Node.js, Python, Ruby, Go, etc.) and managed, automatically provisioned services (databases, message queues, etc.).  Each project also comes with multiple concurrent live staging/development [**Environments**](#tag/Environment). These ephemeral development environments are automatically created every time you push a new branch or create a pull request, and each has a full copy of the data of its parent branch, which is created on-the-fly in seconds.  Our Git implementation supports integrations with third party Git providers such as GitHub, Bitbucket, or GitLab, allowing you to simply integrate Platform.sh into your existing workflow.  ## Using the REST API  In addition to the Git API, we also offer a REST API that allows you to manage every aspect of the platform, from managing projects and environments, to accessing accounts and subscriptions, to creating robust workflows and integrations with your CI systems and internal services.  These API docs are generated from a standard **OpenAPI (Swagger)** Specification document which you can find here in [YAML](openapispec-platformsh.yaml) and in [JSON](openapispec-platformsh.json) formats.  This RESTful API consumes and produces HAL-style JSON over HTTPS, and any REST library can be used to access it. On GitHub, we also host a few API libraries that you can use to make API access easier, such as our [PHP API client](https://github.com/platformsh/platformsh-client-php) and our [JavaScript API client](https://github.com/platformsh/platformsh-client-js).  In order to use the API you will first need to have a Platform.sh account (we have a [free trial](https://accounts.platform.sh/platform/trial/general/setup) available) and create an API Token.  # Authentication  ## OAuth2  API authentication is done with OAuth2 access tokens.  ### API tokens  You can use an API token as one way to get an OAuth2 access token. This is particularly useful in scripts, e.g. for CI pipelines.  To create an API token, go to the \"API Tokens\" section of the \"Account Settings\" tab on the [Console](https://console.platform.sh).  To exchange this API token for an access token, a `POST` request must be made to `https://auth.api.platform.sh/oauth2/token`.  The request will look like this in cURL:  <pre> curl -u platform-api-user: \\     -d 'grant_type=api_token&amp;api_token=<em><b>API_TOKEN</b></em>' \\     https://auth.api.platform.sh/oauth2/token </pre>  This will return a \"Bearer\" access token that can be used to authenticate further API requests, for example:  <pre> {     \"access_token\": \"<em><b>abcdefghij1234567890</b></em>\",     \"expires_in\": 900,     \"token_type\": \"bearer\" } </pre>  ### Using the Access Token  To authenticate further API requests, include this returned bearer token in the `Authorization` header. For example, to retrieve a list of [Projects](#tag/Project) accessible by the current user, you can make the following request (substituting the dummy token for your own):  <pre> curl -H \"Authorization: Bearer <em><b>abcdefghij1234567890</b></em>\" \\     https://api.platform.sh/projects </pre>  # HAL Links  Most endpoints in the API return fields which defines a HAL (Hypertext Application Language) schema for the requested endpoint. The particular objects returns and their contents can vary by endpoint. The payload examples we give here for the requests do not show these elements. These links can allow you to create a fully dynamic API client that does not need to hardcode any method or schema.  Unless they are used for pagination we do not show the HAL links in the payload examples in this documentation for brevity and as their content is contextual (based on the permissions of the user).  ## _links Objects  Most endpoints that respond to `GET` requests will include a `_links` object in their response. The `_links` object contains a key-object pair labelled `self`, which defines two further key-value pairs:  * `href` - A URL string referring to the fully qualified name of the returned object. For many endpoints, this will be the direct link to the API endpoint on the region gateway, rather than on the general API gateway. This means it may reference a host of, for example, `eu-2.platform.sh` rather than `api.platform.sh`. * `meta` - An object defining the OpenAPI Specification (OAS) [schema object](https://swagger.io/specification/#schemaObject) of the component returned by the endpoint.  There may be zero or more other fields in the `_links` object resembling fragment identifiers beginning with a hash mark, e.g. `#edit` or `#delete`. Each of these keys refers to a JSON object containing two key-value pairs:  * `href` - A URL string referring to the path name of endpoint which can perform the action named in the key. * `meta` - An object defining the OAS schema of the endpoint. This consists of a key-value pair, with the key defining an HTTP method and the value defining the [operation object](https://swagger.io/specification/#operationObject) of the endpoint.  To use one of these HAL links, you must send a new request to the URL defined in the `href` field which contains a body defined the schema object in the `meta` field.  For example, if you make a request such as `GET /projects/abcdefghij1234567890`, the `_links` object in the returned response will include the key `#delete`. That object will look something like this fragment:  ``` \"#delete\": {     \"href\": \"/api/projects/abcdefghij1234567890\",     \"meta\": {         \"delete\": {             \"responses\": {                 . . . // Response definition omitted for space             },             \"parameters\": []         }     } } ```  To use this information to delete a project, you would then send a `DELETE` request to the endpoint `https://api.platform.sh/api/projects/abcdefghij1234567890` with no body or parameters to delete the project that was originally requested.  ## _embedded Objects  Requests to endpoints which create or modify objects, such as `POST`, `PATCH`, or `DELETE` requests, will include an `_embedded` key in their response. The object represented by this key will contain the created or modified object. This object is identical to what would be returned by a subsequent `GET` request for the object referred to by the endpoint.
- *
- * The version of the OpenAPI document: 1.0
- * Generated by: https://openapi-generator.tech
- * Generator version: 7.14.0
- */
-
-/**
- * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
- * https://openapi-generator.tech
- * Do not edit the class manually.
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ * @internal  This file was generated by OpenAPI Generator. Do not edit manually.
+ * @generated
  */
 
 namespace Upsun\Api;
@@ -43,7 +28,6 @@ use Upsun\ApiException;
 use Upsun\Configuration;
 use Upsun\DebugPlugin;
 use Upsun\HeaderSelector;
-use Upsun\FormDataProcessor;
 use Upsun\ObjectSerializer;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
@@ -53,57 +37,27 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
 use Psr\Http\Message\UriInterface;
+use InvalidArgumentException;
+
 use function sprintf;
 
-/**
- * DomainManagementApi Class Doc Comment
- *
- * @category Class
- * @package  Upsun
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
- */
-class DomainManagementApi
+final class DomainManagementApi
 {
-    /**
-     * @var PluginClient
-     */
-    protected $httpClient;
+    private readonly PluginClient $httpClient;
 
-    /**
-     * @var PluginClient
-     */
-    protected $httpAsyncClient;
+    private readonly PluginClient $httpAsyncClient;
 
-    /**
-     * @var UriFactoryInterface
-     */
-    protected $uriFactory;
+    private readonly UriFactoryInterface $uriFactory;
 
-    /**
-     * @var Configuration
-     */
-    protected $config;
+    private readonly Configuration $config;
 
-    /**
-     * @var HeaderSelector
-     */
-    protected $headerSelector;
+    private readonly HeaderSelector $headerSelector;
 
-    /**
-     * @var int Host index
-     */
-    protected $hostIndex;
+    private readonly int $hostIndex;
 
-    /**
-     * @var RequestFactoryInterface
-     */
-    protected $requestFactory;
+    private readonly RequestFactoryInterface $requestFactory;
 
-    /**
-     * @var StreamFactoryInterface
-     */
-    protected $streamFactory;
+    private readonly StreamFactoryInterface $streamFactory;
 
     public function __construct(
         ?ClientInterface $httpClient = null,
@@ -147,21 +101,10 @@ class DomainManagementApi
     }
 
     /**
-     * Set the host index
-     *
-     * @param int $hostIndex Host index (required)
-     */
-    public function setHostIndex($hostIndex): void
-    {
-        $this->hostIndex = $hostIndex;
-    }
-
-    /**
      * Get the host index
      *
-     * @return int Host index
      */
-    public function getHostIndex()
+    public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
@@ -169,42 +112,30 @@ class DomainManagementApi
     /**
      * @return Configuration
      */
-    public function getConfig()
+    public function getConfig(): Configuration
     {
         return $this->config;
     }
 
     /**
-     * Operation createProjectsDomains
-     *
      * Add a project domain
      *
-     * @param  string $project_id project_id (required)
-     * @param  \Upsun\Model\DomainCreateInput $domain_create_input  (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function createProjectsDomains($project_id, $domain_create_input)
+    public function createProjectsDomains($project_id, $domain_create_input): \Upsun\Model\AcceptedResponse
     {
         list($response) = $this->createProjectsDomainsWithHttpInfo($project_id, $domain_create_input);
         return $response;
     }
 
     /**
-     * Operation createProjectsDomainsWithHttpInfo
-     *
      * Add a project domain
      *
-     * @param  string $project_id (required)
-     * @param  \Upsun\Model\DomainCreateInput $domain_create_input  (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\AcceptedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function createProjectsDomainsWithHttpInfo($project_id, $domain_create_input)
+    public function createProjectsDomainsWithHttpInfo(string $project_id, \Upsun\Model\DomainCreateInput $domain_create_input): array
     {
         $request = $this->createProjectsDomainsRequest($project_id, $domain_create_input);
 
@@ -235,7 +166,7 @@ class DomainManagementApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\AcceptedResponse',
@@ -244,7 +175,7 @@ class DomainManagementApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -253,9 +184,8 @@ class DomainManagementApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -275,24 +205,18 @@ class DomainManagementApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation createProjectsDomainsAsync
-     *
      * Add a project domain
      *
-     * @param  string $project_id (required)
-     * @param  \Upsun\Model\DomainCreateInput $domain_create_input  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function createProjectsDomainsAsync($project_id, $domain_create_input)
+    public function createProjectsDomainsAsync(string $project_id, \Upsun\Model\DomainCreateInput $domain_create_input): Promise
     {
         return $this->createProjectsDomainsAsyncWithHttpInfo($project_id, $domain_create_input)
             ->then(
@@ -303,17 +227,11 @@ class DomainManagementApi
     }
 
     /**
-     * Operation createProjectsDomainsAsyncWithHttpInfo
-     *
      * Add a project domain
      *
-     * @param  string $project_id (required)
-     * @param  \Upsun\Model\DomainCreateInput $domain_create_input  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function createProjectsDomainsAsyncWithHttpInfo($project_id, $domain_create_input)
+    public function createProjectsDomainsAsyncWithHttpInfo(string $project_id, \Upsun\Model\DomainCreateInput $domain_create_input)
     {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->createProjectsDomainsRequest($project_id, $domain_create_input);
@@ -353,13 +271,9 @@ class DomainManagementApi
     /**
      * Create request for operation 'createProjectsDomains'
      *
-     * @param  string $project_id (required)
-     * @param  \Upsun\Model\DomainCreateInput $domain_create_input  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function createProjectsDomainsRequest($project_id, $domain_create_input)
+    public function createProjectsDomainsRequest(string $project_id, \Upsun\Model\DomainCreateInput $domain_create_input): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -420,10 +334,8 @@ class DomainManagementApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -454,38 +366,24 @@ class DomainManagementApi
     }
 
     /**
-     * Operation createProjectsEnvironmentsDomains
-     *
      * Add an environment domain
      *
-     * @param  string $project_id project_id (required)
-     * @param  string $environment_id environment_id (required)
-     * @param  \Upsun\Model\DomainCreateInput $domain_create_input  (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function createProjectsEnvironmentsDomains($project_id, $environment_id, $domain_create_input)
+    public function createProjectsEnvironmentsDomains($project_id, $environment_id, $domain_create_input): \Upsun\Model\AcceptedResponse
     {
         list($response) = $this->createProjectsEnvironmentsDomainsWithHttpInfo($project_id, $environment_id, $domain_create_input);
         return $response;
     }
 
     /**
-     * Operation createProjectsEnvironmentsDomainsWithHttpInfo
-     *
      * Add an environment domain
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\DomainCreateInput $domain_create_input  (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\AcceptedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function createProjectsEnvironmentsDomainsWithHttpInfo($project_id, $environment_id, $domain_create_input)
+    public function createProjectsEnvironmentsDomainsWithHttpInfo(string $project_id, string $environment_id, \Upsun\Model\DomainCreateInput $domain_create_input): array
     {
         $request = $this->createProjectsEnvironmentsDomainsRequest($project_id, $environment_id, $domain_create_input);
 
@@ -516,7 +414,7 @@ class DomainManagementApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\AcceptedResponse',
@@ -525,7 +423,7 @@ class DomainManagementApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -534,9 +432,8 @@ class DomainManagementApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -556,25 +453,18 @@ class DomainManagementApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation createProjectsEnvironmentsDomainsAsync
-     *
      * Add an environment domain
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\DomainCreateInput $domain_create_input  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function createProjectsEnvironmentsDomainsAsync($project_id, $environment_id, $domain_create_input)
+    public function createProjectsEnvironmentsDomainsAsync(string $project_id, string $environment_id, \Upsun\Model\DomainCreateInput $domain_create_input): Promise
     {
         return $this->createProjectsEnvironmentsDomainsAsyncWithHttpInfo($project_id, $environment_id, $domain_create_input)
             ->then(
@@ -585,18 +475,11 @@ class DomainManagementApi
     }
 
     /**
-     * Operation createProjectsEnvironmentsDomainsAsyncWithHttpInfo
-     *
      * Add an environment domain
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\DomainCreateInput $domain_create_input  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function createProjectsEnvironmentsDomainsAsyncWithHttpInfo($project_id, $environment_id, $domain_create_input)
+    public function createProjectsEnvironmentsDomainsAsyncWithHttpInfo(string $project_id, string $environment_id, \Upsun\Model\DomainCreateInput $domain_create_input)
     {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->createProjectsEnvironmentsDomainsRequest($project_id, $environment_id, $domain_create_input);
@@ -636,14 +519,9 @@ class DomainManagementApi
     /**
      * Create request for operation 'createProjectsEnvironmentsDomains'
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\DomainCreateInput $domain_create_input  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function createProjectsEnvironmentsDomainsRequest($project_id, $environment_id, $domain_create_input)
+    public function createProjectsEnvironmentsDomainsRequest(string $project_id, string $environment_id, \Upsun\Model\DomainCreateInput $domain_create_input): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -718,10 +596,8 @@ class DomainManagementApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -752,36 +628,24 @@ class DomainManagementApi
     }
 
     /**
-     * Operation deleteProjectsDomains
-     *
      * Delete a project domain
      *
-     * @param  string $project_id project_id (required)
-     * @param  string $domain_id domain_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function deleteProjectsDomains($project_id, $domain_id)
+    public function deleteProjectsDomains($project_id, $domain_id): \Upsun\Model\AcceptedResponse
     {
         list($response) = $this->deleteProjectsDomainsWithHttpInfo($project_id, $domain_id);
         return $response;
     }
 
     /**
-     * Operation deleteProjectsDomainsWithHttpInfo
-     *
      * Delete a project domain
      *
-     * @param  string $project_id (required)
-     * @param  string $domain_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\AcceptedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function deleteProjectsDomainsWithHttpInfo($project_id, $domain_id)
+    public function deleteProjectsDomainsWithHttpInfo(string $project_id, string $domain_id): array
     {
         $request = $this->deleteProjectsDomainsRequest($project_id, $domain_id);
 
@@ -812,7 +676,7 @@ class DomainManagementApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\AcceptedResponse',
@@ -821,7 +685,7 @@ class DomainManagementApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -830,9 +694,8 @@ class DomainManagementApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -852,24 +715,18 @@ class DomainManagementApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation deleteProjectsDomainsAsync
-     *
      * Delete a project domain
      *
-     * @param  string $project_id (required)
-     * @param  string $domain_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function deleteProjectsDomainsAsync($project_id, $domain_id)
+    public function deleteProjectsDomainsAsync(string $project_id, string $domain_id): Promise
     {
         return $this->deleteProjectsDomainsAsyncWithHttpInfo($project_id, $domain_id)
             ->then(
@@ -880,17 +737,11 @@ class DomainManagementApi
     }
 
     /**
-     * Operation deleteProjectsDomainsAsyncWithHttpInfo
-     *
      * Delete a project domain
      *
-     * @param  string $project_id (required)
-     * @param  string $domain_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function deleteProjectsDomainsAsyncWithHttpInfo($project_id, $domain_id)
+    public function deleteProjectsDomainsAsyncWithHttpInfo(string $project_id, string $domain_id)
     {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deleteProjectsDomainsRequest($project_id, $domain_id);
@@ -930,13 +781,9 @@ class DomainManagementApi
     /**
      * Create request for operation 'deleteProjectsDomains'
      *
-     * @param  string $project_id (required)
-     * @param  string $domain_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function deleteProjectsDomainsRequest($project_id, $domain_id)
+    public function deleteProjectsDomainsRequest(string $project_id, string $domain_id): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -999,10 +846,8 @@ class DomainManagementApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1033,38 +878,24 @@ class DomainManagementApi
     }
 
     /**
-     * Operation deleteProjectsEnvironmentsDomains
-     *
      * Delete an environment domain
      *
-     * @param  string $project_id project_id (required)
-     * @param  string $environment_id environment_id (required)
-     * @param  string $domain_id domain_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function deleteProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id)
+    public function deleteProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id): \Upsun\Model\AcceptedResponse
     {
         list($response) = $this->deleteProjectsEnvironmentsDomainsWithHttpInfo($project_id, $environment_id, $domain_id);
         return $response;
     }
 
     /**
-     * Operation deleteProjectsEnvironmentsDomainsWithHttpInfo
-     *
      * Delete an environment domain
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  string $domain_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\AcceptedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function deleteProjectsEnvironmentsDomainsWithHttpInfo($project_id, $environment_id, $domain_id)
+    public function deleteProjectsEnvironmentsDomainsWithHttpInfo(string $project_id, string $environment_id, string $domain_id): array
     {
         $request = $this->deleteProjectsEnvironmentsDomainsRequest($project_id, $environment_id, $domain_id);
 
@@ -1095,7 +926,7 @@ class DomainManagementApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\AcceptedResponse',
@@ -1104,7 +935,7 @@ class DomainManagementApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1113,9 +944,8 @@ class DomainManagementApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -1135,25 +965,18 @@ class DomainManagementApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation deleteProjectsEnvironmentsDomainsAsync
-     *
      * Delete an environment domain
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  string $domain_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function deleteProjectsEnvironmentsDomainsAsync($project_id, $environment_id, $domain_id)
+    public function deleteProjectsEnvironmentsDomainsAsync(string $project_id, string $environment_id, string $domain_id): Promise
     {
         return $this->deleteProjectsEnvironmentsDomainsAsyncWithHttpInfo($project_id, $environment_id, $domain_id)
             ->then(
@@ -1164,18 +987,11 @@ class DomainManagementApi
     }
 
     /**
-     * Operation deleteProjectsEnvironmentsDomainsAsyncWithHttpInfo
-     *
      * Delete an environment domain
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  string $domain_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function deleteProjectsEnvironmentsDomainsAsyncWithHttpInfo($project_id, $environment_id, $domain_id)
+    public function deleteProjectsEnvironmentsDomainsAsyncWithHttpInfo(string $project_id, string $environment_id, string $domain_id)
     {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deleteProjectsEnvironmentsDomainsRequest($project_id, $environment_id, $domain_id);
@@ -1215,14 +1031,9 @@ class DomainManagementApi
     /**
      * Create request for operation 'deleteProjectsEnvironmentsDomains'
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  string $domain_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function deleteProjectsEnvironmentsDomainsRequest($project_id, $environment_id, $domain_id)
+    public function deleteProjectsEnvironmentsDomainsRequest(string $project_id, string $environment_id, string $domain_id): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -1299,10 +1110,8 @@ class DomainManagementApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1333,36 +1142,24 @@ class DomainManagementApi
     }
 
     /**
-     * Operation getProjectsDomains
-     *
      * Get a project domain
      *
-     * @param  string $project_id project_id (required)
-     * @param  string $domain_id domain_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\Domain
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function getProjectsDomains($project_id, $domain_id)
+    public function getProjectsDomains($project_id, $domain_id): \Upsun\Model\Domain
     {
         list($response) = $this->getProjectsDomainsWithHttpInfo($project_id, $domain_id);
         return $response;
     }
 
     /**
-     * Operation getProjectsDomainsWithHttpInfo
-     *
      * Get a project domain
      *
-     * @param  string $project_id (required)
-     * @param  string $domain_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\Domain, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function getProjectsDomainsWithHttpInfo($project_id, $domain_id)
+    public function getProjectsDomainsWithHttpInfo(string $project_id, string $domain_id): array
     {
         $request = $this->getProjectsDomainsRequest($project_id, $domain_id);
 
@@ -1393,7 +1190,7 @@ class DomainManagementApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\Domain',
@@ -1402,7 +1199,7 @@ class DomainManagementApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1411,9 +1208,8 @@ class DomainManagementApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -1433,24 +1229,18 @@ class DomainManagementApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation getProjectsDomainsAsync
-     *
      * Get a project domain
      *
-     * @param  string $project_id (required)
-     * @param  string $domain_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function getProjectsDomainsAsync($project_id, $domain_id)
+    public function getProjectsDomainsAsync(string $project_id, string $domain_id): Promise
     {
         return $this->getProjectsDomainsAsyncWithHttpInfo($project_id, $domain_id)
             ->then(
@@ -1461,17 +1251,11 @@ class DomainManagementApi
     }
 
     /**
-     * Operation getProjectsDomainsAsyncWithHttpInfo
-     *
      * Get a project domain
      *
-     * @param  string $project_id (required)
-     * @param  string $domain_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function getProjectsDomainsAsyncWithHttpInfo($project_id, $domain_id)
+    public function getProjectsDomainsAsyncWithHttpInfo(string $project_id, string $domain_id)
     {
         $returnType = '\Upsun\Model\Domain';
         $request = $this->getProjectsDomainsRequest($project_id, $domain_id);
@@ -1511,13 +1295,9 @@ class DomainManagementApi
     /**
      * Create request for operation 'getProjectsDomains'
      *
-     * @param  string $project_id (required)
-     * @param  string $domain_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function getProjectsDomainsRequest($project_id, $domain_id)
+    public function getProjectsDomainsRequest(string $project_id, string $domain_id): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -1580,10 +1360,8 @@ class DomainManagementApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1614,38 +1392,24 @@ class DomainManagementApi
     }
 
     /**
-     * Operation getProjectsEnvironmentsDomains
-     *
      * Get an environment domain
      *
-     * @param  string $project_id project_id (required)
-     * @param  string $environment_id environment_id (required)
-     * @param  string $domain_id domain_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\Domain
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function getProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id)
+    public function getProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id): \Upsun\Model\Domain
     {
         list($response) = $this->getProjectsEnvironmentsDomainsWithHttpInfo($project_id, $environment_id, $domain_id);
         return $response;
     }
 
     /**
-     * Operation getProjectsEnvironmentsDomainsWithHttpInfo
-     *
      * Get an environment domain
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  string $domain_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\Domain, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function getProjectsEnvironmentsDomainsWithHttpInfo($project_id, $environment_id, $domain_id)
+    public function getProjectsEnvironmentsDomainsWithHttpInfo(string $project_id, string $environment_id, string $domain_id): array
     {
         $request = $this->getProjectsEnvironmentsDomainsRequest($project_id, $environment_id, $domain_id);
 
@@ -1676,7 +1440,7 @@ class DomainManagementApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\Domain',
@@ -1685,7 +1449,7 @@ class DomainManagementApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1694,9 +1458,8 @@ class DomainManagementApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -1716,25 +1479,18 @@ class DomainManagementApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation getProjectsEnvironmentsDomainsAsync
-     *
      * Get an environment domain
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  string $domain_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function getProjectsEnvironmentsDomainsAsync($project_id, $environment_id, $domain_id)
+    public function getProjectsEnvironmentsDomainsAsync(string $project_id, string $environment_id, string $domain_id): Promise
     {
         return $this->getProjectsEnvironmentsDomainsAsyncWithHttpInfo($project_id, $environment_id, $domain_id)
             ->then(
@@ -1745,18 +1501,11 @@ class DomainManagementApi
     }
 
     /**
-     * Operation getProjectsEnvironmentsDomainsAsyncWithHttpInfo
-     *
      * Get an environment domain
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  string $domain_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function getProjectsEnvironmentsDomainsAsyncWithHttpInfo($project_id, $environment_id, $domain_id)
+    public function getProjectsEnvironmentsDomainsAsyncWithHttpInfo(string $project_id, string $environment_id, string $domain_id)
     {
         $returnType = '\Upsun\Model\Domain';
         $request = $this->getProjectsEnvironmentsDomainsRequest($project_id, $environment_id, $domain_id);
@@ -1796,14 +1545,9 @@ class DomainManagementApi
     /**
      * Create request for operation 'getProjectsEnvironmentsDomains'
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  string $domain_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function getProjectsEnvironmentsDomainsRequest($project_id, $environment_id, $domain_id)
+    public function getProjectsEnvironmentsDomainsRequest(string $project_id, string $environment_id, string $domain_id): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -1880,10 +1624,8 @@ class DomainManagementApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1914,34 +1656,24 @@ class DomainManagementApi
     }
 
     /**
-     * Operation listProjectsDomains
-     *
      * Get list of project domains
      *
-     * @param  string $project_id project_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\Domain[]
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function listProjectsDomains($project_id)
+    public function listProjectsDomains($project_id): \Upsun\Model\Domain[]
     {
         list($response) = $this->listProjectsDomainsWithHttpInfo($project_id);
         return $response;
     }
 
     /**
-     * Operation listProjectsDomainsWithHttpInfo
-     *
      * Get list of project domains
      *
-     * @param  string $project_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\Domain[], HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function listProjectsDomainsWithHttpInfo($project_id)
+    public function listProjectsDomainsWithHttpInfo(string $project_id): array
     {
         $request = $this->listProjectsDomainsRequest($project_id);
 
@@ -1972,7 +1704,7 @@ class DomainManagementApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\Domain[]',
@@ -1981,7 +1713,7 @@ class DomainManagementApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1990,9 +1722,8 @@ class DomainManagementApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -2012,23 +1743,18 @@ class DomainManagementApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation listProjectsDomainsAsync
-     *
      * Get list of project domains
      *
-     * @param  string $project_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function listProjectsDomainsAsync($project_id)
+    public function listProjectsDomainsAsync(string $project_id): Promise
     {
         return $this->listProjectsDomainsAsyncWithHttpInfo($project_id)
             ->then(
@@ -2039,16 +1765,11 @@ class DomainManagementApi
     }
 
     /**
-     * Operation listProjectsDomainsAsyncWithHttpInfo
-     *
      * Get list of project domains
      *
-     * @param  string $project_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function listProjectsDomainsAsyncWithHttpInfo($project_id)
+    public function listProjectsDomainsAsyncWithHttpInfo(string $project_id)
     {
         $returnType = '\Upsun\Model\Domain[]';
         $request = $this->listProjectsDomainsRequest($project_id);
@@ -2088,12 +1809,9 @@ class DomainManagementApi
     /**
      * Create request for operation 'listProjectsDomains'
      *
-     * @param  string $project_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function listProjectsDomainsRequest($project_id)
+    public function listProjectsDomainsRequest(string $project_id): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -2142,10 +1860,8 @@ class DomainManagementApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2176,36 +1892,24 @@ class DomainManagementApi
     }
 
     /**
-     * Operation listProjectsEnvironmentsDomains
-     *
      * Get a list of environment domains
      *
-     * @param  string $project_id project_id (required)
-     * @param  string $environment_id environment_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\Domain[]
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsDomains($project_id, $environment_id)
+    public function listProjectsEnvironmentsDomains($project_id, $environment_id): \Upsun\Model\Domain[]
     {
         list($response) = $this->listProjectsEnvironmentsDomainsWithHttpInfo($project_id, $environment_id);
         return $response;
     }
 
     /**
-     * Operation listProjectsEnvironmentsDomainsWithHttpInfo
-     *
      * Get a list of environment domains
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\Domain[], HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsDomainsWithHttpInfo($project_id, $environment_id)
+    public function listProjectsEnvironmentsDomainsWithHttpInfo(string $project_id, string $environment_id): array
     {
         $request = $this->listProjectsEnvironmentsDomainsRequest($project_id, $environment_id);
 
@@ -2236,7 +1940,7 @@ class DomainManagementApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\Domain[]',
@@ -2245,7 +1949,7 @@ class DomainManagementApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -2254,9 +1958,8 @@ class DomainManagementApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -2276,24 +1979,18 @@ class DomainManagementApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation listProjectsEnvironmentsDomainsAsync
-     *
      * Get a list of environment domains
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsDomainsAsync($project_id, $environment_id)
+    public function listProjectsEnvironmentsDomainsAsync(string $project_id, string $environment_id): Promise
     {
         return $this->listProjectsEnvironmentsDomainsAsyncWithHttpInfo($project_id, $environment_id)
             ->then(
@@ -2304,17 +2001,11 @@ class DomainManagementApi
     }
 
     /**
-     * Operation listProjectsEnvironmentsDomainsAsyncWithHttpInfo
-     *
      * Get a list of environment domains
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsDomainsAsyncWithHttpInfo($project_id, $environment_id)
+    public function listProjectsEnvironmentsDomainsAsyncWithHttpInfo(string $project_id, string $environment_id)
     {
         $returnType = '\Upsun\Model\Domain[]';
         $request = $this->listProjectsEnvironmentsDomainsRequest($project_id, $environment_id);
@@ -2354,13 +2045,9 @@ class DomainManagementApi
     /**
      * Create request for operation 'listProjectsEnvironmentsDomains'
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsDomainsRequest($project_id, $environment_id)
+    public function listProjectsEnvironmentsDomainsRequest(string $project_id, string $environment_id): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -2423,10 +2110,8 @@ class DomainManagementApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2457,38 +2142,24 @@ class DomainManagementApi
     }
 
     /**
-     * Operation updateProjectsDomains
-     *
      * Update a project domain
      *
-     * @param  string $project_id project_id (required)
-     * @param  string $domain_id domain_id (required)
-     * @param  \Upsun\Model\DomainPatch $domain_patch  (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function updateProjectsDomains($project_id, $domain_id, $domain_patch)
+    public function updateProjectsDomains($project_id, $domain_id, $domain_patch): \Upsun\Model\AcceptedResponse
     {
         list($response) = $this->updateProjectsDomainsWithHttpInfo($project_id, $domain_id, $domain_patch);
         return $response;
     }
 
     /**
-     * Operation updateProjectsDomainsWithHttpInfo
-     *
      * Update a project domain
      *
-     * @param  string $project_id (required)
-     * @param  string $domain_id (required)
-     * @param  \Upsun\Model\DomainPatch $domain_patch  (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\AcceptedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function updateProjectsDomainsWithHttpInfo($project_id, $domain_id, $domain_patch)
+    public function updateProjectsDomainsWithHttpInfo(string $project_id, string $domain_id, \Upsun\Model\DomainPatch $domain_patch): array
     {
         $request = $this->updateProjectsDomainsRequest($project_id, $domain_id, $domain_patch);
 
@@ -2519,7 +2190,7 @@ class DomainManagementApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\AcceptedResponse',
@@ -2528,7 +2199,7 @@ class DomainManagementApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -2537,9 +2208,8 @@ class DomainManagementApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -2559,25 +2229,18 @@ class DomainManagementApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation updateProjectsDomainsAsync
-     *
      * Update a project domain
      *
-     * @param  string $project_id (required)
-     * @param  string $domain_id (required)
-     * @param  \Upsun\Model\DomainPatch $domain_patch  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function updateProjectsDomainsAsync($project_id, $domain_id, $domain_patch)
+    public function updateProjectsDomainsAsync(string $project_id, string $domain_id, \Upsun\Model\DomainPatch $domain_patch): Promise
     {
         return $this->updateProjectsDomainsAsyncWithHttpInfo($project_id, $domain_id, $domain_patch)
             ->then(
@@ -2588,18 +2251,11 @@ class DomainManagementApi
     }
 
     /**
-     * Operation updateProjectsDomainsAsyncWithHttpInfo
-     *
      * Update a project domain
      *
-     * @param  string $project_id (required)
-     * @param  string $domain_id (required)
-     * @param  \Upsun\Model\DomainPatch $domain_patch  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function updateProjectsDomainsAsyncWithHttpInfo($project_id, $domain_id, $domain_patch)
+    public function updateProjectsDomainsAsyncWithHttpInfo(string $project_id, string $domain_id, \Upsun\Model\DomainPatch $domain_patch)
     {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateProjectsDomainsRequest($project_id, $domain_id, $domain_patch);
@@ -2639,14 +2295,9 @@ class DomainManagementApi
     /**
      * Create request for operation 'updateProjectsDomains'
      *
-     * @param  string $project_id (required)
-     * @param  string $domain_id (required)
-     * @param  \Upsun\Model\DomainPatch $domain_patch  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function updateProjectsDomainsRequest($project_id, $domain_id, $domain_patch)
+    public function updateProjectsDomainsRequest(string $project_id, string $domain_id, \Upsun\Model\DomainPatch $domain_patch): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -2721,10 +2372,8 @@ class DomainManagementApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2755,40 +2404,24 @@ class DomainManagementApi
     }
 
     /**
-     * Operation updateProjectsEnvironmentsDomains
-     *
      * Update an environment domain
      *
-     * @param  string $project_id project_id (required)
-     * @param  string $environment_id environment_id (required)
-     * @param  string $domain_id domain_id (required)
-     * @param  \Upsun\Model\DomainPatch $domain_patch  (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function updateProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id, $domain_patch)
+    public function updateProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id, $domain_patch): \Upsun\Model\AcceptedResponse
     {
         list($response) = $this->updateProjectsEnvironmentsDomainsWithHttpInfo($project_id, $environment_id, $domain_id, $domain_patch);
         return $response;
     }
 
     /**
-     * Operation updateProjectsEnvironmentsDomainsWithHttpInfo
-     *
      * Update an environment domain
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  string $domain_id (required)
-     * @param  \Upsun\Model\DomainPatch $domain_patch  (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\AcceptedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function updateProjectsEnvironmentsDomainsWithHttpInfo($project_id, $environment_id, $domain_id, $domain_patch)
+    public function updateProjectsEnvironmentsDomainsWithHttpInfo(string $project_id, string $environment_id, string $domain_id, \Upsun\Model\DomainPatch $domain_patch): array
     {
         $request = $this->updateProjectsEnvironmentsDomainsRequest($project_id, $environment_id, $domain_id, $domain_patch);
 
@@ -2819,7 +2452,7 @@ class DomainManagementApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\AcceptedResponse',
@@ -2828,7 +2461,7 @@ class DomainManagementApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -2837,9 +2470,8 @@ class DomainManagementApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -2859,26 +2491,18 @@ class DomainManagementApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation updateProjectsEnvironmentsDomainsAsync
-     *
      * Update an environment domain
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  string $domain_id (required)
-     * @param  \Upsun\Model\DomainPatch $domain_patch  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function updateProjectsEnvironmentsDomainsAsync($project_id, $environment_id, $domain_id, $domain_patch)
+    public function updateProjectsEnvironmentsDomainsAsync(string $project_id, string $environment_id, string $domain_id, \Upsun\Model\DomainPatch $domain_patch): Promise
     {
         return $this->updateProjectsEnvironmentsDomainsAsyncWithHttpInfo($project_id, $environment_id, $domain_id, $domain_patch)
             ->then(
@@ -2889,19 +2513,11 @@ class DomainManagementApi
     }
 
     /**
-     * Operation updateProjectsEnvironmentsDomainsAsyncWithHttpInfo
-     *
      * Update an environment domain
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  string $domain_id (required)
-     * @param  \Upsun\Model\DomainPatch $domain_patch  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function updateProjectsEnvironmentsDomainsAsyncWithHttpInfo($project_id, $environment_id, $domain_id, $domain_patch)
+    public function updateProjectsEnvironmentsDomainsAsyncWithHttpInfo(string $project_id, string $environment_id, string $domain_id, \Upsun\Model\DomainPatch $domain_patch)
     {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateProjectsEnvironmentsDomainsRequest($project_id, $environment_id, $domain_id, $domain_patch);
@@ -2941,15 +2557,9 @@ class DomainManagementApi
     /**
      * Create request for operation 'updateProjectsEnvironmentsDomains'
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  string $domain_id (required)
-     * @param  \Upsun\Model\DomainPatch $domain_patch  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function updateProjectsEnvironmentsDomainsRequest($project_id, $environment_id, $domain_id, $domain_patch)
+    public function updateProjectsEnvironmentsDomainsRequest(string $project_id, string $environment_id, string $domain_id, \Upsun\Model\DomainPatch $domain_patch): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -3038,10 +2648,8 @@ class DomainManagementApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -3073,15 +2681,14 @@ class DomainManagementApi
 
 
     /**
-     * @param string $method
-     * @param string|UriInterface $uri
-     * @param array $headers
-     * @param string|StreamInterface|null $body
-     *
-     * @return RequestInterface
+     * Create request
      */
-    protected function createRequest(string $method, $uri, array $headers = [], $body = null): RequestInterface
-    {
+    protected function createRequest(
+        string $method, 
+        string|UriInterface $uri, 
+        array $headers = [], 
+        string|StreamInterface|null $body = null
+    ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
             return $this->requestFactory->createRequest(
                 $method,
@@ -3092,7 +2699,9 @@ class DomainManagementApi
         }
 
         if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException('Cannot create request: A stream factory is required to create a request with a non-empty string body.');
+            throw new \RuntimeException(
+                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
+            );
         }
 
         $request = $this->requestFactory->createRequest($method, $uri);
@@ -3155,9 +2764,8 @@ class DomainManagementApi
                             'Error JSON decoding server response (%s)',
                             $request->getUri()
                         ),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                        $content
+                        $request,
+                        $response
                     );
                 }
             }

@@ -1,28 +1,13 @@
 <?php
-/**
- * ReferencesApi
- * PHP version 7.2
- *
- * @category Class
- * @package  Upsun
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
- */
 
 /**
- * Platform.sh Rest API
+ * Low level ReferencesApi (auto-generated)
  *
- * # Introduction  Platform.sh is a container-based Platform-as-a-Service. Our main API is simply Git. With a single `git push` and a couple of YAML files in your repository you can deploy an arbitrarily complex cluster. Every [**Project**](#tag/Project) can have multiple applications (PHP, Node.js, Python, Ruby, Go, etc.) and managed, automatically provisioned services (databases, message queues, etc.).  Each project also comes with multiple concurrent live staging/development [**Environments**](#tag/Environment). These ephemeral development environments are automatically created every time you push a new branch or create a pull request, and each has a full copy of the data of its parent branch, which is created on-the-fly in seconds.  Our Git implementation supports integrations with third party Git providers such as GitHub, Bitbucket, or GitLab, allowing you to simply integrate Platform.sh into your existing workflow.  ## Using the REST API  In addition to the Git API, we also offer a REST API that allows you to manage every aspect of the platform, from managing projects and environments, to accessing accounts and subscriptions, to creating robust workflows and integrations with your CI systems and internal services.  These API docs are generated from a standard **OpenAPI (Swagger)** Specification document which you can find here in [YAML](openapispec-platformsh.yaml) and in [JSON](openapispec-platformsh.json) formats.  This RESTful API consumes and produces HAL-style JSON over HTTPS, and any REST library can be used to access it. On GitHub, we also host a few API libraries that you can use to make API access easier, such as our [PHP API client](https://github.com/platformsh/platformsh-client-php) and our [JavaScript API client](https://github.com/platformsh/platformsh-client-js).  In order to use the API you will first need to have a Platform.sh account (we have a [free trial](https://accounts.platform.sh/platform/trial/general/setup) available) and create an API Token.  # Authentication  ## OAuth2  API authentication is done with OAuth2 access tokens.  ### API tokens  You can use an API token as one way to get an OAuth2 access token. This is particularly useful in scripts, e.g. for CI pipelines.  To create an API token, go to the \"API Tokens\" section of the \"Account Settings\" tab on the [Console](https://console.platform.sh).  To exchange this API token for an access token, a `POST` request must be made to `https://auth.api.platform.sh/oauth2/token`.  The request will look like this in cURL:  <pre> curl -u platform-api-user: \\     -d 'grant_type=api_token&amp;api_token=<em><b>API_TOKEN</b></em>' \\     https://auth.api.platform.sh/oauth2/token </pre>  This will return a \"Bearer\" access token that can be used to authenticate further API requests, for example:  <pre> {     \"access_token\": \"<em><b>abcdefghij1234567890</b></em>\",     \"expires_in\": 900,     \"token_type\": \"bearer\" } </pre>  ### Using the Access Token  To authenticate further API requests, include this returned bearer token in the `Authorization` header. For example, to retrieve a list of [Projects](#tag/Project) accessible by the current user, you can make the following request (substituting the dummy token for your own):  <pre> curl -H \"Authorization: Bearer <em><b>abcdefghij1234567890</b></em>\" \\     https://api.platform.sh/projects </pre>  # HAL Links  Most endpoints in the API return fields which defines a HAL (Hypertext Application Language) schema for the requested endpoint. The particular objects returns and their contents can vary by endpoint. The payload examples we give here for the requests do not show these elements. These links can allow you to create a fully dynamic API client that does not need to hardcode any method or schema.  Unless they are used for pagination we do not show the HAL links in the payload examples in this documentation for brevity and as their content is contextual (based on the permissions of the user).  ## _links Objects  Most endpoints that respond to `GET` requests will include a `_links` object in their response. The `_links` object contains a key-object pair labelled `self`, which defines two further key-value pairs:  * `href` - A URL string referring to the fully qualified name of the returned object. For many endpoints, this will be the direct link to the API endpoint on the region gateway, rather than on the general API gateway. This means it may reference a host of, for example, `eu-2.platform.sh` rather than `api.platform.sh`. * `meta` - An object defining the OpenAPI Specification (OAS) [schema object](https://swagger.io/specification/#schemaObject) of the component returned by the endpoint.  There may be zero or more other fields in the `_links` object resembling fragment identifiers beginning with a hash mark, e.g. `#edit` or `#delete`. Each of these keys refers to a JSON object containing two key-value pairs:  * `href` - A URL string referring to the path name of endpoint which can perform the action named in the key. * `meta` - An object defining the OAS schema of the endpoint. This consists of a key-value pair, with the key defining an HTTP method and the value defining the [operation object](https://swagger.io/specification/#operationObject) of the endpoint.  To use one of these HAL links, you must send a new request to the URL defined in the `href` field which contains a body defined the schema object in the `meta` field.  For example, if you make a request such as `GET /projects/abcdefghij1234567890`, the `_links` object in the returned response will include the key `#delete`. That object will look something like this fragment:  ``` \"#delete\": {     \"href\": \"/api/projects/abcdefghij1234567890\",     \"meta\": {         \"delete\": {             \"responses\": {                 . . . // Response definition omitted for space             },             \"parameters\": []         }     } } ```  To use this information to delete a project, you would then send a `DELETE` request to the endpoint `https://api.platform.sh/api/projects/abcdefghij1234567890` with no body or parameters to delete the project that was originally requested.  ## _embedded Objects  Requests to endpoints which create or modify objects, such as `POST`, `PATCH`, or `DELETE` requests, will include an `_embedded` key in their response. The object represented by this key will contain the created or modified object. This object is identical to what would be returned by a subsequent `GET` request for the object referred to by the endpoint.
- *
- * The version of the OpenAPI document: 1.0
- * Generated by: https://openapi-generator.tech
- * Generator version: 7.14.0
- */
-
-/**
- * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
- * https://openapi-generator.tech
- * Do not edit the class manually.
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ * @internal  This file was generated by OpenAPI Generator. Do not edit manually.
+ * @generated
  */
 
 namespace Upsun\Api;
@@ -43,7 +28,6 @@ use Upsun\ApiException;
 use Upsun\Configuration;
 use Upsun\DebugPlugin;
 use Upsun\HeaderSelector;
-use Upsun\FormDataProcessor;
 use Upsun\ObjectSerializer;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
@@ -53,57 +37,27 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
 use Psr\Http\Message\UriInterface;
+use InvalidArgumentException;
+
 use function sprintf;
 
-/**
- * ReferencesApi Class Doc Comment
- *
- * @category Class
- * @package  Upsun
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
- */
-class ReferencesApi
+final class ReferencesApi
 {
-    /**
-     * @var PluginClient
-     */
-    protected $httpClient;
+    private readonly PluginClient $httpClient;
 
-    /**
-     * @var PluginClient
-     */
-    protected $httpAsyncClient;
+    private readonly PluginClient $httpAsyncClient;
 
-    /**
-     * @var UriFactoryInterface
-     */
-    protected $uriFactory;
+    private readonly UriFactoryInterface $uriFactory;
 
-    /**
-     * @var Configuration
-     */
-    protected $config;
+    private readonly Configuration $config;
 
-    /**
-     * @var HeaderSelector
-     */
-    protected $headerSelector;
+    private readonly HeaderSelector $headerSelector;
 
-    /**
-     * @var int Host index
-     */
-    protected $hostIndex;
+    private readonly int $hostIndex;
 
-    /**
-     * @var RequestFactoryInterface
-     */
-    protected $requestFactory;
+    private readonly RequestFactoryInterface $requestFactory;
 
-    /**
-     * @var StreamFactoryInterface
-     */
-    protected $streamFactory;
+    private readonly StreamFactoryInterface $streamFactory;
 
     public function __construct(
         ?ClientInterface $httpClient = null,
@@ -147,21 +101,10 @@ class ReferencesApi
     }
 
     /**
-     * Set the host index
-     *
-     * @param int $hostIndex Host index (required)
-     */
-    public function setHostIndex($hostIndex): void
-    {
-        $this->hostIndex = $hostIndex;
-    }
-
-    /**
      * Get the host index
      *
-     * @return int Host index
      */
-    public function getHostIndex()
+    public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
@@ -169,42 +112,30 @@ class ReferencesApi
     /**
      * @return Configuration
      */
-    public function getConfig()
+    public function getConfig(): Configuration
     {
         return $this->config;
     }
 
     /**
-     * Operation listReferencedOrgs
-     *
      * List referenced organizations
      *
-     * @param  string $in The list of comma-separated organization IDs generated by a trusted service. (required)
-     * @param  string $sig The signature of this request generated by a trusted service. (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array<string,\Upsun\Model\OrganizationReference>|\Upsun\Model\Error|\Upsun\Model\Error
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function listReferencedOrgs($in, $sig)
+    public function listReferencedOrgs($in, $sig): array<string,\Upsun\Model\OrganizationReference>
     {
         list($response) = $this->listReferencedOrgsWithHttpInfo($in, $sig);
         return $response;
     }
 
     /**
-     * Operation listReferencedOrgsWithHttpInfo
-     *
      * List referenced organizations
      *
-     * @param  string $in The list of comma-separated organization IDs generated by a trusted service. (required)
-     * @param  string $sig The signature of this request generated by a trusted service. (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of array<string,\Upsun\Model\OrganizationReference>|\Upsun\Model\Error|\Upsun\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function listReferencedOrgsWithHttpInfo($in, $sig)
+    public function listReferencedOrgsWithHttpInfo(string $in, string $sig): array
     {
         $request = $this->listReferencedOrgsRequest($in, $sig);
 
@@ -235,7 +166,7 @@ class ReferencesApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         'array<string,\Upsun\Model\OrganizationReference>',
@@ -256,7 +187,7 @@ class ReferencesApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -265,9 +196,8 @@ class ReferencesApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -303,24 +233,18 @@ class ReferencesApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation listReferencedOrgsAsync
-     *
      * List referenced organizations
      *
-     * @param  string $in The list of comma-separated organization IDs generated by a trusted service. (required)
-     * @param  string $sig The signature of this request generated by a trusted service. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function listReferencedOrgsAsync($in, $sig)
+    public function listReferencedOrgsAsync(string $in, string $sig): Promise
     {
         return $this->listReferencedOrgsAsyncWithHttpInfo($in, $sig)
             ->then(
@@ -331,17 +255,11 @@ class ReferencesApi
     }
 
     /**
-     * Operation listReferencedOrgsAsyncWithHttpInfo
-     *
      * List referenced organizations
      *
-     * @param  string $in The list of comma-separated organization IDs generated by a trusted service. (required)
-     * @param  string $sig The signature of this request generated by a trusted service. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function listReferencedOrgsAsyncWithHttpInfo($in, $sig)
+    public function listReferencedOrgsAsyncWithHttpInfo(string $in, string $sig)
     {
         $returnType = 'array<string,\Upsun\Model\OrganizationReference>';
         $request = $this->listReferencedOrgsRequest($in, $sig);
@@ -381,13 +299,9 @@ class ReferencesApi
     /**
      * Create request for operation 'listReferencedOrgs'
      *
-     * @param  string $in The list of comma-separated organization IDs generated by a trusted service. (required)
-     * @param  string $sig The signature of this request generated by a trusted service. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function listReferencedOrgsRequest($in, $sig)
+    public function listReferencedOrgsRequest(string $in, string $sig): RequestInterface
     {
         // verify the required parameter 'in' is set
         if ($in === null || (is_array($in) && count($in) === 0)) {
@@ -456,10 +370,8 @@ class ReferencesApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -490,36 +402,24 @@ class ReferencesApi
     }
 
     /**
-     * Operation listReferencedProjects
-     *
      * List referenced projects
      *
-     * @param  string $in The list of comma-separated project IDs generated by a trusted service. (required)
-     * @param  string $sig The signature of this request generated by a trusted service. (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array<string,\Upsun\Model\ProjectReference>|\Upsun\Model\Error|\Upsun\Model\Error|\Upsun\Model\Error
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function listReferencedProjects($in, $sig)
+    public function listReferencedProjects($in, $sig): array<string,\Upsun\Model\ProjectReference>
     {
         list($response) = $this->listReferencedProjectsWithHttpInfo($in, $sig);
         return $response;
     }
 
     /**
-     * Operation listReferencedProjectsWithHttpInfo
-     *
      * List referenced projects
      *
-     * @param  string $in The list of comma-separated project IDs generated by a trusted service. (required)
-     * @param  string $sig The signature of this request generated by a trusted service. (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of array<string,\Upsun\Model\ProjectReference>|\Upsun\Model\Error|\Upsun\Model\Error|\Upsun\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function listReferencedProjectsWithHttpInfo($in, $sig)
+    public function listReferencedProjectsWithHttpInfo(string $in, string $sig): array
     {
         $request = $this->listReferencedProjectsRequest($in, $sig);
 
@@ -550,7 +450,7 @@ class ReferencesApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         'array<string,\Upsun\Model\ProjectReference>',
@@ -577,7 +477,7 @@ class ReferencesApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -586,9 +486,8 @@ class ReferencesApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -632,24 +531,18 @@ class ReferencesApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation listReferencedProjectsAsync
-     *
      * List referenced projects
      *
-     * @param  string $in The list of comma-separated project IDs generated by a trusted service. (required)
-     * @param  string $sig The signature of this request generated by a trusted service. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function listReferencedProjectsAsync($in, $sig)
+    public function listReferencedProjectsAsync(string $in, string $sig): Promise
     {
         return $this->listReferencedProjectsAsyncWithHttpInfo($in, $sig)
             ->then(
@@ -660,17 +553,11 @@ class ReferencesApi
     }
 
     /**
-     * Operation listReferencedProjectsAsyncWithHttpInfo
-     *
      * List referenced projects
      *
-     * @param  string $in The list of comma-separated project IDs generated by a trusted service. (required)
-     * @param  string $sig The signature of this request generated by a trusted service. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function listReferencedProjectsAsyncWithHttpInfo($in, $sig)
+    public function listReferencedProjectsAsyncWithHttpInfo(string $in, string $sig)
     {
         $returnType = 'array<string,\Upsun\Model\ProjectReference>';
         $request = $this->listReferencedProjectsRequest($in, $sig);
@@ -710,13 +597,9 @@ class ReferencesApi
     /**
      * Create request for operation 'listReferencedProjects'
      *
-     * @param  string $in The list of comma-separated project IDs generated by a trusted service. (required)
-     * @param  string $sig The signature of this request generated by a trusted service. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function listReferencedProjectsRequest($in, $sig)
+    public function listReferencedProjectsRequest(string $in, string $sig): RequestInterface
     {
         // verify the required parameter 'in' is set
         if ($in === null || (is_array($in) && count($in) === 0)) {
@@ -785,10 +668,8 @@ class ReferencesApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -819,36 +700,24 @@ class ReferencesApi
     }
 
     /**
-     * Operation listReferencedRegions
-     *
      * List referenced regions
      *
-     * @param  string $in The list of comma-separated region IDs generated by a trusted service. (required)
-     * @param  string $sig The signature of this request generated by a trusted service. (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array<string,\Upsun\Model\RegionReference>|\Upsun\Model\Error|\Upsun\Model\Error|\Upsun\Model\Error
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function listReferencedRegions($in, $sig)
+    public function listReferencedRegions($in, $sig): array<string,\Upsun\Model\RegionReference>
     {
         list($response) = $this->listReferencedRegionsWithHttpInfo($in, $sig);
         return $response;
     }
 
     /**
-     * Operation listReferencedRegionsWithHttpInfo
-     *
      * List referenced regions
      *
-     * @param  string $in The list of comma-separated region IDs generated by a trusted service. (required)
-     * @param  string $sig The signature of this request generated by a trusted service. (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of array<string,\Upsun\Model\RegionReference>|\Upsun\Model\Error|\Upsun\Model\Error|\Upsun\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function listReferencedRegionsWithHttpInfo($in, $sig)
+    public function listReferencedRegionsWithHttpInfo(string $in, string $sig): array
     {
         $request = $this->listReferencedRegionsRequest($in, $sig);
 
@@ -879,7 +748,7 @@ class ReferencesApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         'array<string,\Upsun\Model\RegionReference>',
@@ -906,7 +775,7 @@ class ReferencesApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -915,9 +784,8 @@ class ReferencesApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -961,24 +829,18 @@ class ReferencesApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation listReferencedRegionsAsync
-     *
      * List referenced regions
      *
-     * @param  string $in The list of comma-separated region IDs generated by a trusted service. (required)
-     * @param  string $sig The signature of this request generated by a trusted service. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function listReferencedRegionsAsync($in, $sig)
+    public function listReferencedRegionsAsync(string $in, string $sig): Promise
     {
         return $this->listReferencedRegionsAsyncWithHttpInfo($in, $sig)
             ->then(
@@ -989,17 +851,11 @@ class ReferencesApi
     }
 
     /**
-     * Operation listReferencedRegionsAsyncWithHttpInfo
-     *
      * List referenced regions
      *
-     * @param  string $in The list of comma-separated region IDs generated by a trusted service. (required)
-     * @param  string $sig The signature of this request generated by a trusted service. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function listReferencedRegionsAsyncWithHttpInfo($in, $sig)
+    public function listReferencedRegionsAsyncWithHttpInfo(string $in, string $sig)
     {
         $returnType = 'array<string,\Upsun\Model\RegionReference>';
         $request = $this->listReferencedRegionsRequest($in, $sig);
@@ -1039,13 +895,9 @@ class ReferencesApi
     /**
      * Create request for operation 'listReferencedRegions'
      *
-     * @param  string $in The list of comma-separated region IDs generated by a trusted service. (required)
-     * @param  string $sig The signature of this request generated by a trusted service. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function listReferencedRegionsRequest($in, $sig)
+    public function listReferencedRegionsRequest(string $in, string $sig): RequestInterface
     {
         // verify the required parameter 'in' is set
         if ($in === null || (is_array($in) && count($in) === 0)) {
@@ -1114,10 +966,8 @@ class ReferencesApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1148,36 +998,24 @@ class ReferencesApi
     }
 
     /**
-     * Operation listReferencedTeams
-     *
      * List referenced teams
      *
-     * @param  string $in The list of comma-separated team IDs generated by a trusted service. (required)
-     * @param  string $sig The signature of this request generated by a trusted service. (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array<string,\Upsun\Model\TeamReference>|\Upsun\Model\Error
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function listReferencedTeams($in, $sig)
+    public function listReferencedTeams($in, $sig): array<string,\Upsun\Model\TeamReference>
     {
         list($response) = $this->listReferencedTeamsWithHttpInfo($in, $sig);
         return $response;
     }
 
     /**
-     * Operation listReferencedTeamsWithHttpInfo
-     *
      * List referenced teams
      *
-     * @param  string $in The list of comma-separated team IDs generated by a trusted service. (required)
-     * @param  string $sig The signature of this request generated by a trusted service. (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of array<string,\Upsun\Model\TeamReference>|\Upsun\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function listReferencedTeamsWithHttpInfo($in, $sig)
+    public function listReferencedTeamsWithHttpInfo(string $in, string $sig): array
     {
         $request = $this->listReferencedTeamsRequest($in, $sig);
 
@@ -1208,7 +1046,7 @@ class ReferencesApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         'array<string,\Upsun\Model\TeamReference>',
@@ -1223,7 +1061,7 @@ class ReferencesApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1232,9 +1070,8 @@ class ReferencesApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -1262,24 +1099,18 @@ class ReferencesApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation listReferencedTeamsAsync
-     *
      * List referenced teams
      *
-     * @param  string $in The list of comma-separated team IDs generated by a trusted service. (required)
-     * @param  string $sig The signature of this request generated by a trusted service. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function listReferencedTeamsAsync($in, $sig)
+    public function listReferencedTeamsAsync(string $in, string $sig): Promise
     {
         return $this->listReferencedTeamsAsyncWithHttpInfo($in, $sig)
             ->then(
@@ -1290,17 +1121,11 @@ class ReferencesApi
     }
 
     /**
-     * Operation listReferencedTeamsAsyncWithHttpInfo
-     *
      * List referenced teams
      *
-     * @param  string $in The list of comma-separated team IDs generated by a trusted service. (required)
-     * @param  string $sig The signature of this request generated by a trusted service. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function listReferencedTeamsAsyncWithHttpInfo($in, $sig)
+    public function listReferencedTeamsAsyncWithHttpInfo(string $in, string $sig)
     {
         $returnType = 'array<string,\Upsun\Model\TeamReference>';
         $request = $this->listReferencedTeamsRequest($in, $sig);
@@ -1340,13 +1165,9 @@ class ReferencesApi
     /**
      * Create request for operation 'listReferencedTeams'
      *
-     * @param  string $in The list of comma-separated team IDs generated by a trusted service. (required)
-     * @param  string $sig The signature of this request generated by a trusted service. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function listReferencedTeamsRequest($in, $sig)
+    public function listReferencedTeamsRequest(string $in, string $sig): RequestInterface
     {
         // verify the required parameter 'in' is set
         if ($in === null || (is_array($in) && count($in) === 0)) {
@@ -1415,10 +1236,8 @@ class ReferencesApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1449,36 +1268,24 @@ class ReferencesApi
     }
 
     /**
-     * Operation listReferencedUsers
-     *
      * List referenced users
      *
-     * @param  string $in The list of comma-separated user IDs generated by a trusted service. (required)
-     * @param  string $sig The signature of this request generated by a trusted service. (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array<string,\Upsun\Model\UserReference>|\Upsun\Model\Error
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function listReferencedUsers($in, $sig)
+    public function listReferencedUsers($in, $sig): array<string,\Upsun\Model\UserReference>
     {
         list($response) = $this->listReferencedUsersWithHttpInfo($in, $sig);
         return $response;
     }
 
     /**
-     * Operation listReferencedUsersWithHttpInfo
-     *
      * List referenced users
      *
-     * @param  string $in The list of comma-separated user IDs generated by a trusted service. (required)
-     * @param  string $sig The signature of this request generated by a trusted service. (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of array<string,\Upsun\Model\UserReference>|\Upsun\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function listReferencedUsersWithHttpInfo($in, $sig)
+    public function listReferencedUsersWithHttpInfo(string $in, string $sig): array
     {
         $request = $this->listReferencedUsersRequest($in, $sig);
 
@@ -1509,7 +1316,7 @@ class ReferencesApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         'array<string,\Upsun\Model\UserReference>',
@@ -1524,7 +1331,7 @@ class ReferencesApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1533,9 +1340,8 @@ class ReferencesApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -1563,24 +1369,18 @@ class ReferencesApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation listReferencedUsersAsync
-     *
      * List referenced users
      *
-     * @param  string $in The list of comma-separated user IDs generated by a trusted service. (required)
-     * @param  string $sig The signature of this request generated by a trusted service. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function listReferencedUsersAsync($in, $sig)
+    public function listReferencedUsersAsync(string $in, string $sig): Promise
     {
         return $this->listReferencedUsersAsyncWithHttpInfo($in, $sig)
             ->then(
@@ -1591,17 +1391,11 @@ class ReferencesApi
     }
 
     /**
-     * Operation listReferencedUsersAsyncWithHttpInfo
-     *
      * List referenced users
      *
-     * @param  string $in The list of comma-separated user IDs generated by a trusted service. (required)
-     * @param  string $sig The signature of this request generated by a trusted service. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function listReferencedUsersAsyncWithHttpInfo($in, $sig)
+    public function listReferencedUsersAsyncWithHttpInfo(string $in, string $sig)
     {
         $returnType = 'array<string,\Upsun\Model\UserReference>';
         $request = $this->listReferencedUsersRequest($in, $sig);
@@ -1641,13 +1435,9 @@ class ReferencesApi
     /**
      * Create request for operation 'listReferencedUsers'
      *
-     * @param  string $in The list of comma-separated user IDs generated by a trusted service. (required)
-     * @param  string $sig The signature of this request generated by a trusted service. (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function listReferencedUsersRequest($in, $sig)
+    public function listReferencedUsersRequest(string $in, string $sig): RequestInterface
     {
         // verify the required parameter 'in' is set
         if ($in === null || (is_array($in) && count($in) === 0)) {
@@ -1716,10 +1506,8 @@ class ReferencesApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1751,15 +1539,14 @@ class ReferencesApi
 
 
     /**
-     * @param string $method
-     * @param string|UriInterface $uri
-     * @param array $headers
-     * @param string|StreamInterface|null $body
-     *
-     * @return RequestInterface
+     * Create request
      */
-    protected function createRequest(string $method, $uri, array $headers = [], $body = null): RequestInterface
-    {
+    protected function createRequest(
+        string $method, 
+        string|UriInterface $uri, 
+        array $headers = [], 
+        string|StreamInterface|null $body = null
+    ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
             return $this->requestFactory->createRequest(
                 $method,
@@ -1770,7 +1557,9 @@ class ReferencesApi
         }
 
         if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException('Cannot create request: A stream factory is required to create a request with a non-empty string body.');
+            throw new \RuntimeException(
+                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
+            );
         }
 
         $request = $this->requestFactory->createRequest($method, $uri);
@@ -1833,9 +1622,8 @@ class ReferencesApi
                             'Error JSON decoding server response (%s)',
                             $request->getUri()
                         ),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                        $content
+                        $request,
+                        $response
                     );
                 }
             }

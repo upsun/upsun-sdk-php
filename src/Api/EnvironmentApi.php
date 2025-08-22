@@ -1,28 +1,13 @@
 <?php
-/**
- * EnvironmentApi
- * PHP version 7.2
- *
- * @category Class
- * @package  Upsun
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
- */
 
 /**
- * Platform.sh Rest API
+ * Low level EnvironmentApi (auto-generated)
  *
- * # Introduction  Platform.sh is a container-based Platform-as-a-Service. Our main API is simply Git. With a single `git push` and a couple of YAML files in your repository you can deploy an arbitrarily complex cluster. Every [**Project**](#tag/Project) can have multiple applications (PHP, Node.js, Python, Ruby, Go, etc.) and managed, automatically provisioned services (databases, message queues, etc.).  Each project also comes with multiple concurrent live staging/development [**Environments**](#tag/Environment). These ephemeral development environments are automatically created every time you push a new branch or create a pull request, and each has a full copy of the data of its parent branch, which is created on-the-fly in seconds.  Our Git implementation supports integrations with third party Git providers such as GitHub, Bitbucket, or GitLab, allowing you to simply integrate Platform.sh into your existing workflow.  ## Using the REST API  In addition to the Git API, we also offer a REST API that allows you to manage every aspect of the platform, from managing projects and environments, to accessing accounts and subscriptions, to creating robust workflows and integrations with your CI systems and internal services.  These API docs are generated from a standard **OpenAPI (Swagger)** Specification document which you can find here in [YAML](openapispec-platformsh.yaml) and in [JSON](openapispec-platformsh.json) formats.  This RESTful API consumes and produces HAL-style JSON over HTTPS, and any REST library can be used to access it. On GitHub, we also host a few API libraries that you can use to make API access easier, such as our [PHP API client](https://github.com/platformsh/platformsh-client-php) and our [JavaScript API client](https://github.com/platformsh/platformsh-client-js).  In order to use the API you will first need to have a Platform.sh account (we have a [free trial](https://accounts.platform.sh/platform/trial/general/setup) available) and create an API Token.  # Authentication  ## OAuth2  API authentication is done with OAuth2 access tokens.  ### API tokens  You can use an API token as one way to get an OAuth2 access token. This is particularly useful in scripts, e.g. for CI pipelines.  To create an API token, go to the \"API Tokens\" section of the \"Account Settings\" tab on the [Console](https://console.platform.sh).  To exchange this API token for an access token, a `POST` request must be made to `https://auth.api.platform.sh/oauth2/token`.  The request will look like this in cURL:  <pre> curl -u platform-api-user: \\     -d 'grant_type=api_token&amp;api_token=<em><b>API_TOKEN</b></em>' \\     https://auth.api.platform.sh/oauth2/token </pre>  This will return a \"Bearer\" access token that can be used to authenticate further API requests, for example:  <pre> {     \"access_token\": \"<em><b>abcdefghij1234567890</b></em>\",     \"expires_in\": 900,     \"token_type\": \"bearer\" } </pre>  ### Using the Access Token  To authenticate further API requests, include this returned bearer token in the `Authorization` header. For example, to retrieve a list of [Projects](#tag/Project) accessible by the current user, you can make the following request (substituting the dummy token for your own):  <pre> curl -H \"Authorization: Bearer <em><b>abcdefghij1234567890</b></em>\" \\     https://api.platform.sh/projects </pre>  # HAL Links  Most endpoints in the API return fields which defines a HAL (Hypertext Application Language) schema for the requested endpoint. The particular objects returns and their contents can vary by endpoint. The payload examples we give here for the requests do not show these elements. These links can allow you to create a fully dynamic API client that does not need to hardcode any method or schema.  Unless they are used for pagination we do not show the HAL links in the payload examples in this documentation for brevity and as their content is contextual (based on the permissions of the user).  ## _links Objects  Most endpoints that respond to `GET` requests will include a `_links` object in their response. The `_links` object contains a key-object pair labelled `self`, which defines two further key-value pairs:  * `href` - A URL string referring to the fully qualified name of the returned object. For many endpoints, this will be the direct link to the API endpoint on the region gateway, rather than on the general API gateway. This means it may reference a host of, for example, `eu-2.platform.sh` rather than `api.platform.sh`. * `meta` - An object defining the OpenAPI Specification (OAS) [schema object](https://swagger.io/specification/#schemaObject) of the component returned by the endpoint.  There may be zero or more other fields in the `_links` object resembling fragment identifiers beginning with a hash mark, e.g. `#edit` or `#delete`. Each of these keys refers to a JSON object containing two key-value pairs:  * `href` - A URL string referring to the path name of endpoint which can perform the action named in the key. * `meta` - An object defining the OAS schema of the endpoint. This consists of a key-value pair, with the key defining an HTTP method and the value defining the [operation object](https://swagger.io/specification/#operationObject) of the endpoint.  To use one of these HAL links, you must send a new request to the URL defined in the `href` field which contains a body defined the schema object in the `meta` field.  For example, if you make a request such as `GET /projects/abcdefghij1234567890`, the `_links` object in the returned response will include the key `#delete`. That object will look something like this fragment:  ``` \"#delete\": {     \"href\": \"/api/projects/abcdefghij1234567890\",     \"meta\": {         \"delete\": {             \"responses\": {                 . . . // Response definition omitted for space             },             \"parameters\": []         }     } } ```  To use this information to delete a project, you would then send a `DELETE` request to the endpoint `https://api.platform.sh/api/projects/abcdefghij1234567890` with no body or parameters to delete the project that was originally requested.  ## _embedded Objects  Requests to endpoints which create or modify objects, such as `POST`, `PATCH`, or `DELETE` requests, will include an `_embedded` key in their response. The object represented by this key will contain the created or modified object. This object is identical to what would be returned by a subsequent `GET` request for the object referred to by the endpoint.
- *
- * The version of the OpenAPI document: 1.0
- * Generated by: https://openapi-generator.tech
- * Generator version: 7.14.0
- */
-
-/**
- * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
- * https://openapi-generator.tech
- * Do not edit the class manually.
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ * @internal  This file was generated by OpenAPI Generator. Do not edit manually.
+ * @generated
  */
 
 namespace Upsun\Api;
@@ -43,7 +28,6 @@ use Upsun\ApiException;
 use Upsun\Configuration;
 use Upsun\DebugPlugin;
 use Upsun\HeaderSelector;
-use Upsun\FormDataProcessor;
 use Upsun\ObjectSerializer;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
@@ -53,57 +37,27 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
 use Psr\Http\Message\UriInterface;
+use InvalidArgumentException;
+
 use function sprintf;
 
-/**
- * EnvironmentApi Class Doc Comment
- *
- * @category Class
- * @package  Upsun
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
- */
-class EnvironmentApi
+final class EnvironmentApi
 {
-    /**
-     * @var PluginClient
-     */
-    protected $httpClient;
+    private readonly PluginClient $httpClient;
 
-    /**
-     * @var PluginClient
-     */
-    protected $httpAsyncClient;
+    private readonly PluginClient $httpAsyncClient;
 
-    /**
-     * @var UriFactoryInterface
-     */
-    protected $uriFactory;
+    private readonly UriFactoryInterface $uriFactory;
 
-    /**
-     * @var Configuration
-     */
-    protected $config;
+    private readonly Configuration $config;
 
-    /**
-     * @var HeaderSelector
-     */
-    protected $headerSelector;
+    private readonly HeaderSelector $headerSelector;
 
-    /**
-     * @var int Host index
-     */
-    protected $hostIndex;
+    private readonly int $hostIndex;
 
-    /**
-     * @var RequestFactoryInterface
-     */
-    protected $requestFactory;
+    private readonly RequestFactoryInterface $requestFactory;
 
-    /**
-     * @var StreamFactoryInterface
-     */
-    protected $streamFactory;
+    private readonly StreamFactoryInterface $streamFactory;
 
     public function __construct(
         ?ClientInterface $httpClient = null,
@@ -147,21 +101,10 @@ class EnvironmentApi
     }
 
     /**
-     * Set the host index
-     *
-     * @param int $hostIndex Host index (required)
-     */
-    public function setHostIndex($hostIndex): void
-    {
-        $this->hostIndex = $hostIndex;
-    }
-
-    /**
      * Get the host index
      *
-     * @return int Host index
      */
-    public function getHostIndex()
+    public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
@@ -169,44 +112,30 @@ class EnvironmentApi
     /**
      * @return Configuration
      */
-    public function getConfig()
+    public function getConfig(): Configuration
     {
         return $this->config;
     }
 
     /**
-     * Operation activateEnvironment
-     *
      * Activate an environment
      *
-     * @param  string $project_id project_id (required)
-     * @param  string $environment_id environment_id (required)
-     * @param  \Upsun\Model\EnvironmentActivateInput $environment_activate_input  (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function activateEnvironment($project_id, $environment_id, $environment_activate_input)
+    public function activateEnvironment($project_id, $environment_id, $environment_activate_input): \Upsun\Model\AcceptedResponse
     {
         list($response) = $this->activateEnvironmentWithHttpInfo($project_id, $environment_id, $environment_activate_input);
         return $response;
     }
 
     /**
-     * Operation activateEnvironmentWithHttpInfo
-     *
      * Activate an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\EnvironmentActivateInput $environment_activate_input  (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\AcceptedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function activateEnvironmentWithHttpInfo($project_id, $environment_id, $environment_activate_input)
+    public function activateEnvironmentWithHttpInfo(string $project_id, string $environment_id, \Upsun\Model\EnvironmentActivateInput $environment_activate_input): array
     {
         $request = $this->activateEnvironmentRequest($project_id, $environment_id, $environment_activate_input);
 
@@ -237,7 +166,7 @@ class EnvironmentApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\AcceptedResponse',
@@ -246,7 +175,7 @@ class EnvironmentApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -255,9 +184,8 @@ class EnvironmentApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -277,25 +205,18 @@ class EnvironmentApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation activateEnvironmentAsync
-     *
      * Activate an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\EnvironmentActivateInput $environment_activate_input  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function activateEnvironmentAsync($project_id, $environment_id, $environment_activate_input)
+    public function activateEnvironmentAsync(string $project_id, string $environment_id, \Upsun\Model\EnvironmentActivateInput $environment_activate_input): Promise
     {
         return $this->activateEnvironmentAsyncWithHttpInfo($project_id, $environment_id, $environment_activate_input)
             ->then(
@@ -306,18 +227,11 @@ class EnvironmentApi
     }
 
     /**
-     * Operation activateEnvironmentAsyncWithHttpInfo
-     *
      * Activate an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\EnvironmentActivateInput $environment_activate_input  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function activateEnvironmentAsyncWithHttpInfo($project_id, $environment_id, $environment_activate_input)
+    public function activateEnvironmentAsyncWithHttpInfo(string $project_id, string $environment_id, \Upsun\Model\EnvironmentActivateInput $environment_activate_input)
     {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->activateEnvironmentRequest($project_id, $environment_id, $environment_activate_input);
@@ -357,14 +271,9 @@ class EnvironmentApi
     /**
      * Create request for operation 'activateEnvironment'
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\EnvironmentActivateInput $environment_activate_input  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function activateEnvironmentRequest($project_id, $environment_id, $environment_activate_input)
+    public function activateEnvironmentRequest(string $project_id, string $environment_id, \Upsun\Model\EnvironmentActivateInput $environment_activate_input): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -439,10 +348,8 @@ class EnvironmentApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -473,38 +380,24 @@ class EnvironmentApi
     }
 
     /**
-     * Operation branchEnvironment
-     *
      * Branch an environment
      *
-     * @param  string $project_id project_id (required)
-     * @param  string $environment_id environment_id (required)
-     * @param  \Upsun\Model\EnvironmentBranchInput $environment_branch_input  (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function branchEnvironment($project_id, $environment_id, $environment_branch_input)
+    public function branchEnvironment($project_id, $environment_id, $environment_branch_input): \Upsun\Model\AcceptedResponse
     {
         list($response) = $this->branchEnvironmentWithHttpInfo($project_id, $environment_id, $environment_branch_input);
         return $response;
     }
 
     /**
-     * Operation branchEnvironmentWithHttpInfo
-     *
      * Branch an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\EnvironmentBranchInput $environment_branch_input  (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\AcceptedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function branchEnvironmentWithHttpInfo($project_id, $environment_id, $environment_branch_input)
+    public function branchEnvironmentWithHttpInfo(string $project_id, string $environment_id, \Upsun\Model\EnvironmentBranchInput $environment_branch_input): array
     {
         $request = $this->branchEnvironmentRequest($project_id, $environment_id, $environment_branch_input);
 
@@ -535,7 +428,7 @@ class EnvironmentApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\AcceptedResponse',
@@ -544,7 +437,7 @@ class EnvironmentApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -553,9 +446,8 @@ class EnvironmentApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -575,25 +467,18 @@ class EnvironmentApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation branchEnvironmentAsync
-     *
      * Branch an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\EnvironmentBranchInput $environment_branch_input  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function branchEnvironmentAsync($project_id, $environment_id, $environment_branch_input)
+    public function branchEnvironmentAsync(string $project_id, string $environment_id, \Upsun\Model\EnvironmentBranchInput $environment_branch_input): Promise
     {
         return $this->branchEnvironmentAsyncWithHttpInfo($project_id, $environment_id, $environment_branch_input)
             ->then(
@@ -604,18 +489,11 @@ class EnvironmentApi
     }
 
     /**
-     * Operation branchEnvironmentAsyncWithHttpInfo
-     *
      * Branch an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\EnvironmentBranchInput $environment_branch_input  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function branchEnvironmentAsyncWithHttpInfo($project_id, $environment_id, $environment_branch_input)
+    public function branchEnvironmentAsyncWithHttpInfo(string $project_id, string $environment_id, \Upsun\Model\EnvironmentBranchInput $environment_branch_input)
     {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->branchEnvironmentRequest($project_id, $environment_id, $environment_branch_input);
@@ -655,14 +533,9 @@ class EnvironmentApi
     /**
      * Create request for operation 'branchEnvironment'
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\EnvironmentBranchInput $environment_branch_input  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function branchEnvironmentRequest($project_id, $environment_id, $environment_branch_input)
+    public function branchEnvironmentRequest(string $project_id, string $environment_id, \Upsun\Model\EnvironmentBranchInput $environment_branch_input): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -737,10 +610,8 @@ class EnvironmentApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -771,38 +642,24 @@ class EnvironmentApi
     }
 
     /**
-     * Operation createProjectsEnvironmentsVersions
-     *
      * Create versions associated with the environment
      *
-     * @param  string $project_id project_id (required)
-     * @param  string $environment_id environment_id (required)
-     * @param  \Upsun\Model\VersionCreateInput $version_create_input  (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function createProjectsEnvironmentsVersions($project_id, $environment_id, $version_create_input)
+    public function createProjectsEnvironmentsVersions($project_id, $environment_id, $version_create_input): \Upsun\Model\AcceptedResponse
     {
         list($response) = $this->createProjectsEnvironmentsVersionsWithHttpInfo($project_id, $environment_id, $version_create_input);
         return $response;
     }
 
     /**
-     * Operation createProjectsEnvironmentsVersionsWithHttpInfo
-     *
      * Create versions associated with the environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\VersionCreateInput $version_create_input  (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\AcceptedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function createProjectsEnvironmentsVersionsWithHttpInfo($project_id, $environment_id, $version_create_input)
+    public function createProjectsEnvironmentsVersionsWithHttpInfo(string $project_id, string $environment_id, \Upsun\Model\VersionCreateInput $version_create_input): array
     {
         $request = $this->createProjectsEnvironmentsVersionsRequest($project_id, $environment_id, $version_create_input);
 
@@ -833,7 +690,7 @@ class EnvironmentApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\AcceptedResponse',
@@ -842,7 +699,7 @@ class EnvironmentApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -851,9 +708,8 @@ class EnvironmentApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -873,25 +729,18 @@ class EnvironmentApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation createProjectsEnvironmentsVersionsAsync
-     *
      * Create versions associated with the environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\VersionCreateInput $version_create_input  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function createProjectsEnvironmentsVersionsAsync($project_id, $environment_id, $version_create_input)
+    public function createProjectsEnvironmentsVersionsAsync(string $project_id, string $environment_id, \Upsun\Model\VersionCreateInput $version_create_input): Promise
     {
         return $this->createProjectsEnvironmentsVersionsAsyncWithHttpInfo($project_id, $environment_id, $version_create_input)
             ->then(
@@ -902,18 +751,11 @@ class EnvironmentApi
     }
 
     /**
-     * Operation createProjectsEnvironmentsVersionsAsyncWithHttpInfo
-     *
      * Create versions associated with the environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\VersionCreateInput $version_create_input  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function createProjectsEnvironmentsVersionsAsyncWithHttpInfo($project_id, $environment_id, $version_create_input)
+    public function createProjectsEnvironmentsVersionsAsyncWithHttpInfo(string $project_id, string $environment_id, \Upsun\Model\VersionCreateInput $version_create_input)
     {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->createProjectsEnvironmentsVersionsRequest($project_id, $environment_id, $version_create_input);
@@ -953,14 +795,9 @@ class EnvironmentApi
     /**
      * Create request for operation 'createProjectsEnvironmentsVersions'
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\VersionCreateInput $version_create_input  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function createProjectsEnvironmentsVersionsRequest($project_id, $environment_id, $version_create_input)
+    public function createProjectsEnvironmentsVersionsRequest(string $project_id, string $environment_id, \Upsun\Model\VersionCreateInput $version_create_input): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -1035,10 +872,8 @@ class EnvironmentApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1069,36 +904,24 @@ class EnvironmentApi
     }
 
     /**
-     * Operation deactivateEnvironment
-     *
      * Deactivate an environment
      *
-     * @param  string $project_id project_id (required)
-     * @param  string $environment_id environment_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function deactivateEnvironment($project_id, $environment_id)
+    public function deactivateEnvironment($project_id, $environment_id): \Upsun\Model\AcceptedResponse
     {
         list($response) = $this->deactivateEnvironmentWithHttpInfo($project_id, $environment_id);
         return $response;
     }
 
     /**
-     * Operation deactivateEnvironmentWithHttpInfo
-     *
      * Deactivate an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\AcceptedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function deactivateEnvironmentWithHttpInfo($project_id, $environment_id)
+    public function deactivateEnvironmentWithHttpInfo(string $project_id, string $environment_id): array
     {
         $request = $this->deactivateEnvironmentRequest($project_id, $environment_id);
 
@@ -1129,7 +952,7 @@ class EnvironmentApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\AcceptedResponse',
@@ -1138,7 +961,7 @@ class EnvironmentApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1147,9 +970,8 @@ class EnvironmentApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -1169,24 +991,18 @@ class EnvironmentApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation deactivateEnvironmentAsync
-     *
      * Deactivate an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function deactivateEnvironmentAsync($project_id, $environment_id)
+    public function deactivateEnvironmentAsync(string $project_id, string $environment_id): Promise
     {
         return $this->deactivateEnvironmentAsyncWithHttpInfo($project_id, $environment_id)
             ->then(
@@ -1197,17 +1013,11 @@ class EnvironmentApi
     }
 
     /**
-     * Operation deactivateEnvironmentAsyncWithHttpInfo
-     *
      * Deactivate an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function deactivateEnvironmentAsyncWithHttpInfo($project_id, $environment_id)
+    public function deactivateEnvironmentAsyncWithHttpInfo(string $project_id, string $environment_id)
     {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deactivateEnvironmentRequest($project_id, $environment_id);
@@ -1247,13 +1057,9 @@ class EnvironmentApi
     /**
      * Create request for operation 'deactivateEnvironment'
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function deactivateEnvironmentRequest($project_id, $environment_id)
+    public function deactivateEnvironmentRequest(string $project_id, string $environment_id): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -1316,10 +1122,8 @@ class EnvironmentApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1350,36 +1154,24 @@ class EnvironmentApi
     }
 
     /**
-     * Operation deleteEnvironment
-     *
      * Delete an environment
      *
-     * @param  string $project_id project_id (required)
-     * @param  string $environment_id environment_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function deleteEnvironment($project_id, $environment_id)
+    public function deleteEnvironment($project_id, $environment_id): \Upsun\Model\AcceptedResponse
     {
         list($response) = $this->deleteEnvironmentWithHttpInfo($project_id, $environment_id);
         return $response;
     }
 
     /**
-     * Operation deleteEnvironmentWithHttpInfo
-     *
      * Delete an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\AcceptedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function deleteEnvironmentWithHttpInfo($project_id, $environment_id)
+    public function deleteEnvironmentWithHttpInfo(string $project_id, string $environment_id): array
     {
         $request = $this->deleteEnvironmentRequest($project_id, $environment_id);
 
@@ -1410,7 +1202,7 @@ class EnvironmentApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\AcceptedResponse',
@@ -1419,7 +1211,7 @@ class EnvironmentApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1428,9 +1220,8 @@ class EnvironmentApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -1450,24 +1241,18 @@ class EnvironmentApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation deleteEnvironmentAsync
-     *
      * Delete an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function deleteEnvironmentAsync($project_id, $environment_id)
+    public function deleteEnvironmentAsync(string $project_id, string $environment_id): Promise
     {
         return $this->deleteEnvironmentAsyncWithHttpInfo($project_id, $environment_id)
             ->then(
@@ -1478,17 +1263,11 @@ class EnvironmentApi
     }
 
     /**
-     * Operation deleteEnvironmentAsyncWithHttpInfo
-     *
      * Delete an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function deleteEnvironmentAsyncWithHttpInfo($project_id, $environment_id)
+    public function deleteEnvironmentAsyncWithHttpInfo(string $project_id, string $environment_id)
     {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deleteEnvironmentRequest($project_id, $environment_id);
@@ -1528,13 +1307,9 @@ class EnvironmentApi
     /**
      * Create request for operation 'deleteEnvironment'
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function deleteEnvironmentRequest($project_id, $environment_id)
+    public function deleteEnvironmentRequest(string $project_id, string $environment_id): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -1597,10 +1372,8 @@ class EnvironmentApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1631,38 +1404,24 @@ class EnvironmentApi
     }
 
     /**
-     * Operation deleteProjectsEnvironmentsVersions
-     *
      * Delete the version
      *
-     * @param  string $project_id project_id (required)
-     * @param  string $environment_id environment_id (required)
-     * @param  string $version_id version_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function deleteProjectsEnvironmentsVersions($project_id, $environment_id, $version_id)
+    public function deleteProjectsEnvironmentsVersions($project_id, $environment_id, $version_id): \Upsun\Model\AcceptedResponse
     {
         list($response) = $this->deleteProjectsEnvironmentsVersionsWithHttpInfo($project_id, $environment_id, $version_id);
         return $response;
     }
 
     /**
-     * Operation deleteProjectsEnvironmentsVersionsWithHttpInfo
-     *
      * Delete the version
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  string $version_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\AcceptedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function deleteProjectsEnvironmentsVersionsWithHttpInfo($project_id, $environment_id, $version_id)
+    public function deleteProjectsEnvironmentsVersionsWithHttpInfo(string $project_id, string $environment_id, string $version_id): array
     {
         $request = $this->deleteProjectsEnvironmentsVersionsRequest($project_id, $environment_id, $version_id);
 
@@ -1693,7 +1452,7 @@ class EnvironmentApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\AcceptedResponse',
@@ -1702,7 +1461,7 @@ class EnvironmentApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1711,9 +1470,8 @@ class EnvironmentApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -1733,25 +1491,18 @@ class EnvironmentApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation deleteProjectsEnvironmentsVersionsAsync
-     *
      * Delete the version
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  string $version_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function deleteProjectsEnvironmentsVersionsAsync($project_id, $environment_id, $version_id)
+    public function deleteProjectsEnvironmentsVersionsAsync(string $project_id, string $environment_id, string $version_id): Promise
     {
         return $this->deleteProjectsEnvironmentsVersionsAsyncWithHttpInfo($project_id, $environment_id, $version_id)
             ->then(
@@ -1762,18 +1513,11 @@ class EnvironmentApi
     }
 
     /**
-     * Operation deleteProjectsEnvironmentsVersionsAsyncWithHttpInfo
-     *
      * Delete the version
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  string $version_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function deleteProjectsEnvironmentsVersionsAsyncWithHttpInfo($project_id, $environment_id, $version_id)
+    public function deleteProjectsEnvironmentsVersionsAsyncWithHttpInfo(string $project_id, string $environment_id, string $version_id)
     {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deleteProjectsEnvironmentsVersionsRequest($project_id, $environment_id, $version_id);
@@ -1813,14 +1557,9 @@ class EnvironmentApi
     /**
      * Create request for operation 'deleteProjectsEnvironmentsVersions'
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  string $version_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function deleteProjectsEnvironmentsVersionsRequest($project_id, $environment_id, $version_id)
+    public function deleteProjectsEnvironmentsVersionsRequest(string $project_id, string $environment_id, string $version_id): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -1897,10 +1636,8 @@ class EnvironmentApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1931,36 +1668,24 @@ class EnvironmentApi
     }
 
     /**
-     * Operation getEnvironment
-     *
      * Get an environment
      *
-     * @param  string $project_id project_id (required)
-     * @param  string $environment_id environment_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\Environment
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function getEnvironment($project_id, $environment_id)
+    public function getEnvironment($project_id, $environment_id): \Upsun\Model\Environment
     {
         list($response) = $this->getEnvironmentWithHttpInfo($project_id, $environment_id);
         return $response;
     }
 
     /**
-     * Operation getEnvironmentWithHttpInfo
-     *
      * Get an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\Environment, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function getEnvironmentWithHttpInfo($project_id, $environment_id)
+    public function getEnvironmentWithHttpInfo(string $project_id, string $environment_id): array
     {
         $request = $this->getEnvironmentRequest($project_id, $environment_id);
 
@@ -1991,7 +1716,7 @@ class EnvironmentApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\Environment',
@@ -2000,7 +1725,7 @@ class EnvironmentApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -2009,9 +1734,8 @@ class EnvironmentApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -2031,24 +1755,18 @@ class EnvironmentApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation getEnvironmentAsync
-     *
      * Get an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function getEnvironmentAsync($project_id, $environment_id)
+    public function getEnvironmentAsync(string $project_id, string $environment_id): Promise
     {
         return $this->getEnvironmentAsyncWithHttpInfo($project_id, $environment_id)
             ->then(
@@ -2059,17 +1777,11 @@ class EnvironmentApi
     }
 
     /**
-     * Operation getEnvironmentAsyncWithHttpInfo
-     *
      * Get an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function getEnvironmentAsyncWithHttpInfo($project_id, $environment_id)
+    public function getEnvironmentAsyncWithHttpInfo(string $project_id, string $environment_id)
     {
         $returnType = '\Upsun\Model\Environment';
         $request = $this->getEnvironmentRequest($project_id, $environment_id);
@@ -2109,13 +1821,9 @@ class EnvironmentApi
     /**
      * Create request for operation 'getEnvironment'
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function getEnvironmentRequest($project_id, $environment_id)
+    public function getEnvironmentRequest(string $project_id, string $environment_id): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -2178,10 +1886,8 @@ class EnvironmentApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2212,38 +1918,24 @@ class EnvironmentApi
     }
 
     /**
-     * Operation getProjectsEnvironmentsVersions
-     *
      * List the version
      *
-     * @param  string $project_id project_id (required)
-     * @param  string $environment_id environment_id (required)
-     * @param  string $version_id version_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\Version
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function getProjectsEnvironmentsVersions($project_id, $environment_id, $version_id)
+    public function getProjectsEnvironmentsVersions($project_id, $environment_id, $version_id): \Upsun\Model\Version
     {
         list($response) = $this->getProjectsEnvironmentsVersionsWithHttpInfo($project_id, $environment_id, $version_id);
         return $response;
     }
 
     /**
-     * Operation getProjectsEnvironmentsVersionsWithHttpInfo
-     *
      * List the version
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  string $version_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\Version, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function getProjectsEnvironmentsVersionsWithHttpInfo($project_id, $environment_id, $version_id)
+    public function getProjectsEnvironmentsVersionsWithHttpInfo(string $project_id, string $environment_id, string $version_id): array
     {
         $request = $this->getProjectsEnvironmentsVersionsRequest($project_id, $environment_id, $version_id);
 
@@ -2274,7 +1966,7 @@ class EnvironmentApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\Version',
@@ -2283,7 +1975,7 @@ class EnvironmentApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -2292,9 +1984,8 @@ class EnvironmentApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -2314,25 +2005,18 @@ class EnvironmentApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation getProjectsEnvironmentsVersionsAsync
-     *
      * List the version
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  string $version_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function getProjectsEnvironmentsVersionsAsync($project_id, $environment_id, $version_id)
+    public function getProjectsEnvironmentsVersionsAsync(string $project_id, string $environment_id, string $version_id): Promise
     {
         return $this->getProjectsEnvironmentsVersionsAsyncWithHttpInfo($project_id, $environment_id, $version_id)
             ->then(
@@ -2343,18 +2027,11 @@ class EnvironmentApi
     }
 
     /**
-     * Operation getProjectsEnvironmentsVersionsAsyncWithHttpInfo
-     *
      * List the version
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  string $version_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function getProjectsEnvironmentsVersionsAsyncWithHttpInfo($project_id, $environment_id, $version_id)
+    public function getProjectsEnvironmentsVersionsAsyncWithHttpInfo(string $project_id, string $environment_id, string $version_id)
     {
         $returnType = '\Upsun\Model\Version';
         $request = $this->getProjectsEnvironmentsVersionsRequest($project_id, $environment_id, $version_id);
@@ -2394,14 +2071,9 @@ class EnvironmentApi
     /**
      * Create request for operation 'getProjectsEnvironmentsVersions'
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  string $version_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function getProjectsEnvironmentsVersionsRequest($project_id, $environment_id, $version_id)
+    public function getProjectsEnvironmentsVersionsRequest(string $project_id, string $environment_id, string $version_id): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -2478,10 +2150,8 @@ class EnvironmentApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2512,38 +2182,24 @@ class EnvironmentApi
     }
 
     /**
-     * Operation initializeEnvironment
-     *
      * Initialize a new environment
      *
-     * @param  string $project_id project_id (required)
-     * @param  string $environment_id environment_id (required)
-     * @param  \Upsun\Model\EnvironmentInitializeInput $environment_initialize_input  (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function initializeEnvironment($project_id, $environment_id, $environment_initialize_input)
+    public function initializeEnvironment($project_id, $environment_id, $environment_initialize_input): \Upsun\Model\AcceptedResponse
     {
         list($response) = $this->initializeEnvironmentWithHttpInfo($project_id, $environment_id, $environment_initialize_input);
         return $response;
     }
 
     /**
-     * Operation initializeEnvironmentWithHttpInfo
-     *
      * Initialize a new environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\EnvironmentInitializeInput $environment_initialize_input  (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\AcceptedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function initializeEnvironmentWithHttpInfo($project_id, $environment_id, $environment_initialize_input)
+    public function initializeEnvironmentWithHttpInfo(string $project_id, string $environment_id, \Upsun\Model\EnvironmentInitializeInput $environment_initialize_input): array
     {
         $request = $this->initializeEnvironmentRequest($project_id, $environment_id, $environment_initialize_input);
 
@@ -2574,7 +2230,7 @@ class EnvironmentApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\AcceptedResponse',
@@ -2583,7 +2239,7 @@ class EnvironmentApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -2592,9 +2248,8 @@ class EnvironmentApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -2614,25 +2269,18 @@ class EnvironmentApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation initializeEnvironmentAsync
-     *
      * Initialize a new environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\EnvironmentInitializeInput $environment_initialize_input  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function initializeEnvironmentAsync($project_id, $environment_id, $environment_initialize_input)
+    public function initializeEnvironmentAsync(string $project_id, string $environment_id, \Upsun\Model\EnvironmentInitializeInput $environment_initialize_input): Promise
     {
         return $this->initializeEnvironmentAsyncWithHttpInfo($project_id, $environment_id, $environment_initialize_input)
             ->then(
@@ -2643,18 +2291,11 @@ class EnvironmentApi
     }
 
     /**
-     * Operation initializeEnvironmentAsyncWithHttpInfo
-     *
      * Initialize a new environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\EnvironmentInitializeInput $environment_initialize_input  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function initializeEnvironmentAsyncWithHttpInfo($project_id, $environment_id, $environment_initialize_input)
+    public function initializeEnvironmentAsyncWithHttpInfo(string $project_id, string $environment_id, \Upsun\Model\EnvironmentInitializeInput $environment_initialize_input)
     {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->initializeEnvironmentRequest($project_id, $environment_id, $environment_initialize_input);
@@ -2694,14 +2335,9 @@ class EnvironmentApi
     /**
      * Create request for operation 'initializeEnvironment'
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\EnvironmentInitializeInput $environment_initialize_input  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function initializeEnvironmentRequest($project_id, $environment_id, $environment_initialize_input)
+    public function initializeEnvironmentRequest(string $project_id, string $environment_id, \Upsun\Model\EnvironmentInitializeInput $environment_initialize_input): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -2776,10 +2412,8 @@ class EnvironmentApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2810,34 +2444,24 @@ class EnvironmentApi
     }
 
     /**
-     * Operation listProjectsEnvironments
-     *
      * Get list of project environments
      *
-     * @param  string $project_id project_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\Environment[]
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironments($project_id)
+    public function listProjectsEnvironments($project_id): \Upsun\Model\Environment[]
     {
         list($response) = $this->listProjectsEnvironmentsWithHttpInfo($project_id);
         return $response;
     }
 
     /**
-     * Operation listProjectsEnvironmentsWithHttpInfo
-     *
      * Get list of project environments
      *
-     * @param  string $project_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\Environment[], HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsWithHttpInfo($project_id)
+    public function listProjectsEnvironmentsWithHttpInfo(string $project_id): array
     {
         $request = $this->listProjectsEnvironmentsRequest($project_id);
 
@@ -2868,7 +2492,7 @@ class EnvironmentApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\Environment[]',
@@ -2877,7 +2501,7 @@ class EnvironmentApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -2886,9 +2510,8 @@ class EnvironmentApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -2908,23 +2531,18 @@ class EnvironmentApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation listProjectsEnvironmentsAsync
-     *
      * Get list of project environments
      *
-     * @param  string $project_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsAsync($project_id)
+    public function listProjectsEnvironmentsAsync(string $project_id): Promise
     {
         return $this->listProjectsEnvironmentsAsyncWithHttpInfo($project_id)
             ->then(
@@ -2935,16 +2553,11 @@ class EnvironmentApi
     }
 
     /**
-     * Operation listProjectsEnvironmentsAsyncWithHttpInfo
-     *
      * Get list of project environments
      *
-     * @param  string $project_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsAsyncWithHttpInfo($project_id)
+    public function listProjectsEnvironmentsAsyncWithHttpInfo(string $project_id)
     {
         $returnType = '\Upsun\Model\Environment[]';
         $request = $this->listProjectsEnvironmentsRequest($project_id);
@@ -2984,12 +2597,9 @@ class EnvironmentApi
     /**
      * Create request for operation 'listProjectsEnvironments'
      *
-     * @param  string $project_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsRequest($project_id)
+    public function listProjectsEnvironmentsRequest(string $project_id): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -3038,10 +2648,8 @@ class EnvironmentApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -3072,36 +2680,24 @@ class EnvironmentApi
     }
 
     /**
-     * Operation listProjectsEnvironmentsVersions
-     *
      * List versions associated with the environment
      *
-     * @param  string $project_id project_id (required)
-     * @param  string $environment_id environment_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\Version[]
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsVersions($project_id, $environment_id)
+    public function listProjectsEnvironmentsVersions($project_id, $environment_id): \Upsun\Model\Version[]
     {
         list($response) = $this->listProjectsEnvironmentsVersionsWithHttpInfo($project_id, $environment_id);
         return $response;
     }
 
     /**
-     * Operation listProjectsEnvironmentsVersionsWithHttpInfo
-     *
      * List versions associated with the environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\Version[], HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsVersionsWithHttpInfo($project_id, $environment_id)
+    public function listProjectsEnvironmentsVersionsWithHttpInfo(string $project_id, string $environment_id): array
     {
         $request = $this->listProjectsEnvironmentsVersionsRequest($project_id, $environment_id);
 
@@ -3132,7 +2728,7 @@ class EnvironmentApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\Version[]',
@@ -3141,7 +2737,7 @@ class EnvironmentApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -3150,9 +2746,8 @@ class EnvironmentApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -3172,24 +2767,18 @@ class EnvironmentApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation listProjectsEnvironmentsVersionsAsync
-     *
      * List versions associated with the environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsVersionsAsync($project_id, $environment_id)
+    public function listProjectsEnvironmentsVersionsAsync(string $project_id, string $environment_id): Promise
     {
         return $this->listProjectsEnvironmentsVersionsAsyncWithHttpInfo($project_id, $environment_id)
             ->then(
@@ -3200,17 +2789,11 @@ class EnvironmentApi
     }
 
     /**
-     * Operation listProjectsEnvironmentsVersionsAsyncWithHttpInfo
-     *
      * List versions associated with the environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsVersionsAsyncWithHttpInfo($project_id, $environment_id)
+    public function listProjectsEnvironmentsVersionsAsyncWithHttpInfo(string $project_id, string $environment_id)
     {
         $returnType = '\Upsun\Model\Version[]';
         $request = $this->listProjectsEnvironmentsVersionsRequest($project_id, $environment_id);
@@ -3250,13 +2833,9 @@ class EnvironmentApi
     /**
      * Create request for operation 'listProjectsEnvironmentsVersions'
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsVersionsRequest($project_id, $environment_id)
+    public function listProjectsEnvironmentsVersionsRequest(string $project_id, string $environment_id): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -3319,10 +2898,8 @@ class EnvironmentApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -3353,38 +2930,24 @@ class EnvironmentApi
     }
 
     /**
-     * Operation mergeEnvironment
-     *
      * Merge an environment
      *
-     * @param  string $project_id project_id (required)
-     * @param  string $environment_id environment_id (required)
-     * @param  \Upsun\Model\EnvironmentMergeInput $environment_merge_input  (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function mergeEnvironment($project_id, $environment_id, $environment_merge_input)
+    public function mergeEnvironment($project_id, $environment_id, $environment_merge_input): \Upsun\Model\AcceptedResponse
     {
         list($response) = $this->mergeEnvironmentWithHttpInfo($project_id, $environment_id, $environment_merge_input);
         return $response;
     }
 
     /**
-     * Operation mergeEnvironmentWithHttpInfo
-     *
      * Merge an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\EnvironmentMergeInput $environment_merge_input  (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\AcceptedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function mergeEnvironmentWithHttpInfo($project_id, $environment_id, $environment_merge_input)
+    public function mergeEnvironmentWithHttpInfo(string $project_id, string $environment_id, \Upsun\Model\EnvironmentMergeInput $environment_merge_input): array
     {
         $request = $this->mergeEnvironmentRequest($project_id, $environment_id, $environment_merge_input);
 
@@ -3415,7 +2978,7 @@ class EnvironmentApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\AcceptedResponse',
@@ -3424,7 +2987,7 @@ class EnvironmentApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -3433,9 +2996,8 @@ class EnvironmentApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -3455,25 +3017,18 @@ class EnvironmentApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation mergeEnvironmentAsync
-     *
      * Merge an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\EnvironmentMergeInput $environment_merge_input  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function mergeEnvironmentAsync($project_id, $environment_id, $environment_merge_input)
+    public function mergeEnvironmentAsync(string $project_id, string $environment_id, \Upsun\Model\EnvironmentMergeInput $environment_merge_input): Promise
     {
         return $this->mergeEnvironmentAsyncWithHttpInfo($project_id, $environment_id, $environment_merge_input)
             ->then(
@@ -3484,18 +3039,11 @@ class EnvironmentApi
     }
 
     /**
-     * Operation mergeEnvironmentAsyncWithHttpInfo
-     *
      * Merge an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\EnvironmentMergeInput $environment_merge_input  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function mergeEnvironmentAsyncWithHttpInfo($project_id, $environment_id, $environment_merge_input)
+    public function mergeEnvironmentAsyncWithHttpInfo(string $project_id, string $environment_id, \Upsun\Model\EnvironmentMergeInput $environment_merge_input)
     {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->mergeEnvironmentRequest($project_id, $environment_id, $environment_merge_input);
@@ -3535,14 +3083,9 @@ class EnvironmentApi
     /**
      * Create request for operation 'mergeEnvironment'
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\EnvironmentMergeInput $environment_merge_input  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function mergeEnvironmentRequest($project_id, $environment_id, $environment_merge_input)
+    public function mergeEnvironmentRequest(string $project_id, string $environment_id, \Upsun\Model\EnvironmentMergeInput $environment_merge_input): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -3617,10 +3160,8 @@ class EnvironmentApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -3651,36 +3192,24 @@ class EnvironmentApi
     }
 
     /**
-     * Operation pauseEnvironment
-     *
      * Pause an environment
      *
-     * @param  string $project_id project_id (required)
-     * @param  string $environment_id environment_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function pauseEnvironment($project_id, $environment_id)
+    public function pauseEnvironment($project_id, $environment_id): \Upsun\Model\AcceptedResponse
     {
         list($response) = $this->pauseEnvironmentWithHttpInfo($project_id, $environment_id);
         return $response;
     }
 
     /**
-     * Operation pauseEnvironmentWithHttpInfo
-     *
      * Pause an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\AcceptedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function pauseEnvironmentWithHttpInfo($project_id, $environment_id)
+    public function pauseEnvironmentWithHttpInfo(string $project_id, string $environment_id): array
     {
         $request = $this->pauseEnvironmentRequest($project_id, $environment_id);
 
@@ -3711,7 +3240,7 @@ class EnvironmentApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\AcceptedResponse',
@@ -3720,7 +3249,7 @@ class EnvironmentApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -3729,9 +3258,8 @@ class EnvironmentApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -3751,24 +3279,18 @@ class EnvironmentApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation pauseEnvironmentAsync
-     *
      * Pause an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function pauseEnvironmentAsync($project_id, $environment_id)
+    public function pauseEnvironmentAsync(string $project_id, string $environment_id): Promise
     {
         return $this->pauseEnvironmentAsyncWithHttpInfo($project_id, $environment_id)
             ->then(
@@ -3779,17 +3301,11 @@ class EnvironmentApi
     }
 
     /**
-     * Operation pauseEnvironmentAsyncWithHttpInfo
-     *
      * Pause an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function pauseEnvironmentAsyncWithHttpInfo($project_id, $environment_id)
+    public function pauseEnvironmentAsyncWithHttpInfo(string $project_id, string $environment_id)
     {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->pauseEnvironmentRequest($project_id, $environment_id);
@@ -3829,13 +3345,9 @@ class EnvironmentApi
     /**
      * Create request for operation 'pauseEnvironment'
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function pauseEnvironmentRequest($project_id, $environment_id)
+    public function pauseEnvironmentRequest(string $project_id, string $environment_id): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -3898,10 +3410,8 @@ class EnvironmentApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -3932,36 +3442,24 @@ class EnvironmentApi
     }
 
     /**
-     * Operation redeployEnvironment
-     *
      * Redeploy an environment
      *
-     * @param  string $project_id project_id (required)
-     * @param  string $environment_id environment_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function redeployEnvironment($project_id, $environment_id)
+    public function redeployEnvironment($project_id, $environment_id): \Upsun\Model\AcceptedResponse
     {
         list($response) = $this->redeployEnvironmentWithHttpInfo($project_id, $environment_id);
         return $response;
     }
 
     /**
-     * Operation redeployEnvironmentWithHttpInfo
-     *
      * Redeploy an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\AcceptedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function redeployEnvironmentWithHttpInfo($project_id, $environment_id)
+    public function redeployEnvironmentWithHttpInfo(string $project_id, string $environment_id): array
     {
         $request = $this->redeployEnvironmentRequest($project_id, $environment_id);
 
@@ -3992,7 +3490,7 @@ class EnvironmentApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\AcceptedResponse',
@@ -4001,7 +3499,7 @@ class EnvironmentApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -4010,9 +3508,8 @@ class EnvironmentApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -4032,24 +3529,18 @@ class EnvironmentApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation redeployEnvironmentAsync
-     *
      * Redeploy an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function redeployEnvironmentAsync($project_id, $environment_id)
+    public function redeployEnvironmentAsync(string $project_id, string $environment_id): Promise
     {
         return $this->redeployEnvironmentAsyncWithHttpInfo($project_id, $environment_id)
             ->then(
@@ -4060,17 +3551,11 @@ class EnvironmentApi
     }
 
     /**
-     * Operation redeployEnvironmentAsyncWithHttpInfo
-     *
      * Redeploy an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function redeployEnvironmentAsyncWithHttpInfo($project_id, $environment_id)
+    public function redeployEnvironmentAsyncWithHttpInfo(string $project_id, string $environment_id)
     {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->redeployEnvironmentRequest($project_id, $environment_id);
@@ -4110,13 +3595,9 @@ class EnvironmentApi
     /**
      * Create request for operation 'redeployEnvironment'
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function redeployEnvironmentRequest($project_id, $environment_id)
+    public function redeployEnvironmentRequest(string $project_id, string $environment_id): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -4179,10 +3660,8 @@ class EnvironmentApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -4213,36 +3692,24 @@ class EnvironmentApi
     }
 
     /**
-     * Operation resumeEnvironment
-     *
      * Resume a paused environment
      *
-     * @param  string $project_id project_id (required)
-     * @param  string $environment_id environment_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function resumeEnvironment($project_id, $environment_id)
+    public function resumeEnvironment($project_id, $environment_id): \Upsun\Model\AcceptedResponse
     {
         list($response) = $this->resumeEnvironmentWithHttpInfo($project_id, $environment_id);
         return $response;
     }
 
     /**
-     * Operation resumeEnvironmentWithHttpInfo
-     *
      * Resume a paused environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\AcceptedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function resumeEnvironmentWithHttpInfo($project_id, $environment_id)
+    public function resumeEnvironmentWithHttpInfo(string $project_id, string $environment_id): array
     {
         $request = $this->resumeEnvironmentRequest($project_id, $environment_id);
 
@@ -4273,7 +3740,7 @@ class EnvironmentApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\AcceptedResponse',
@@ -4282,7 +3749,7 @@ class EnvironmentApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -4291,9 +3758,8 @@ class EnvironmentApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -4313,24 +3779,18 @@ class EnvironmentApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation resumeEnvironmentAsync
-     *
      * Resume a paused environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function resumeEnvironmentAsync($project_id, $environment_id)
+    public function resumeEnvironmentAsync(string $project_id, string $environment_id): Promise
     {
         return $this->resumeEnvironmentAsyncWithHttpInfo($project_id, $environment_id)
             ->then(
@@ -4341,17 +3801,11 @@ class EnvironmentApi
     }
 
     /**
-     * Operation resumeEnvironmentAsyncWithHttpInfo
-     *
      * Resume a paused environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function resumeEnvironmentAsyncWithHttpInfo($project_id, $environment_id)
+    public function resumeEnvironmentAsyncWithHttpInfo(string $project_id, string $environment_id)
     {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->resumeEnvironmentRequest($project_id, $environment_id);
@@ -4391,13 +3845,9 @@ class EnvironmentApi
     /**
      * Create request for operation 'resumeEnvironment'
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function resumeEnvironmentRequest($project_id, $environment_id)
+    public function resumeEnvironmentRequest(string $project_id, string $environment_id): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -4460,10 +3910,8 @@ class EnvironmentApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -4494,38 +3942,24 @@ class EnvironmentApi
     }
 
     /**
-     * Operation synchronizeEnvironment
-     *
      * Synchronize a child environment with its parent
      *
-     * @param  string $project_id project_id (required)
-     * @param  string $environment_id environment_id (required)
-     * @param  \Upsun\Model\EnvironmentSynchronizeInput $environment_synchronize_input  (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function synchronizeEnvironment($project_id, $environment_id, $environment_synchronize_input)
+    public function synchronizeEnvironment($project_id, $environment_id, $environment_synchronize_input): \Upsun\Model\AcceptedResponse
     {
         list($response) = $this->synchronizeEnvironmentWithHttpInfo($project_id, $environment_id, $environment_synchronize_input);
         return $response;
     }
 
     /**
-     * Operation synchronizeEnvironmentWithHttpInfo
-     *
      * Synchronize a child environment with its parent
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\EnvironmentSynchronizeInput $environment_synchronize_input  (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\AcceptedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function synchronizeEnvironmentWithHttpInfo($project_id, $environment_id, $environment_synchronize_input)
+    public function synchronizeEnvironmentWithHttpInfo(string $project_id, string $environment_id, \Upsun\Model\EnvironmentSynchronizeInput $environment_synchronize_input): array
     {
         $request = $this->synchronizeEnvironmentRequest($project_id, $environment_id, $environment_synchronize_input);
 
@@ -4556,7 +3990,7 @@ class EnvironmentApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\AcceptedResponse',
@@ -4565,7 +3999,7 @@ class EnvironmentApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -4574,9 +4008,8 @@ class EnvironmentApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -4596,25 +4029,18 @@ class EnvironmentApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation synchronizeEnvironmentAsync
-     *
      * Synchronize a child environment with its parent
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\EnvironmentSynchronizeInput $environment_synchronize_input  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function synchronizeEnvironmentAsync($project_id, $environment_id, $environment_synchronize_input)
+    public function synchronizeEnvironmentAsync(string $project_id, string $environment_id, \Upsun\Model\EnvironmentSynchronizeInput $environment_synchronize_input): Promise
     {
         return $this->synchronizeEnvironmentAsyncWithHttpInfo($project_id, $environment_id, $environment_synchronize_input)
             ->then(
@@ -4625,18 +4051,11 @@ class EnvironmentApi
     }
 
     /**
-     * Operation synchronizeEnvironmentAsyncWithHttpInfo
-     *
      * Synchronize a child environment with its parent
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\EnvironmentSynchronizeInput $environment_synchronize_input  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function synchronizeEnvironmentAsyncWithHttpInfo($project_id, $environment_id, $environment_synchronize_input)
+    public function synchronizeEnvironmentAsyncWithHttpInfo(string $project_id, string $environment_id, \Upsun\Model\EnvironmentSynchronizeInput $environment_synchronize_input)
     {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->synchronizeEnvironmentRequest($project_id, $environment_id, $environment_synchronize_input);
@@ -4676,14 +4095,9 @@ class EnvironmentApi
     /**
      * Create request for operation 'synchronizeEnvironment'
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\EnvironmentSynchronizeInput $environment_synchronize_input  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function synchronizeEnvironmentRequest($project_id, $environment_id, $environment_synchronize_input)
+    public function synchronizeEnvironmentRequest(string $project_id, string $environment_id, \Upsun\Model\EnvironmentSynchronizeInput $environment_synchronize_input): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -4758,10 +4172,8 @@ class EnvironmentApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -4792,38 +4204,24 @@ class EnvironmentApi
     }
 
     /**
-     * Operation updateEnvironment
-     *
      * Update an environment
      *
-     * @param  string $project_id project_id (required)
-     * @param  string $environment_id environment_id (required)
-     * @param  \Upsun\Model\EnvironmentPatch $environment_patch  (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function updateEnvironment($project_id, $environment_id, $environment_patch)
+    public function updateEnvironment($project_id, $environment_id, $environment_patch): \Upsun\Model\AcceptedResponse
     {
         list($response) = $this->updateEnvironmentWithHttpInfo($project_id, $environment_id, $environment_patch);
         return $response;
     }
 
     /**
-     * Operation updateEnvironmentWithHttpInfo
-     *
      * Update an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\EnvironmentPatch $environment_patch  (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\AcceptedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function updateEnvironmentWithHttpInfo($project_id, $environment_id, $environment_patch)
+    public function updateEnvironmentWithHttpInfo(string $project_id, string $environment_id, \Upsun\Model\EnvironmentPatch $environment_patch): array
     {
         $request = $this->updateEnvironmentRequest($project_id, $environment_id, $environment_patch);
 
@@ -4854,7 +4252,7 @@ class EnvironmentApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\AcceptedResponse',
@@ -4863,7 +4261,7 @@ class EnvironmentApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -4872,9 +4270,8 @@ class EnvironmentApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -4894,25 +4291,18 @@ class EnvironmentApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation updateEnvironmentAsync
-     *
      * Update an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\EnvironmentPatch $environment_patch  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function updateEnvironmentAsync($project_id, $environment_id, $environment_patch)
+    public function updateEnvironmentAsync(string $project_id, string $environment_id, \Upsun\Model\EnvironmentPatch $environment_patch): Promise
     {
         return $this->updateEnvironmentAsyncWithHttpInfo($project_id, $environment_id, $environment_patch)
             ->then(
@@ -4923,18 +4313,11 @@ class EnvironmentApi
     }
 
     /**
-     * Operation updateEnvironmentAsyncWithHttpInfo
-     *
      * Update an environment
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\EnvironmentPatch $environment_patch  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function updateEnvironmentAsyncWithHttpInfo($project_id, $environment_id, $environment_patch)
+    public function updateEnvironmentAsyncWithHttpInfo(string $project_id, string $environment_id, \Upsun\Model\EnvironmentPatch $environment_patch)
     {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateEnvironmentRequest($project_id, $environment_id, $environment_patch);
@@ -4974,14 +4357,9 @@ class EnvironmentApi
     /**
      * Create request for operation 'updateEnvironment'
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  \Upsun\Model\EnvironmentPatch $environment_patch  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function updateEnvironmentRequest($project_id, $environment_id, $environment_patch)
+    public function updateEnvironmentRequest(string $project_id, string $environment_id, \Upsun\Model\EnvironmentPatch $environment_patch): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -5056,10 +4434,8 @@ class EnvironmentApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -5090,40 +4466,24 @@ class EnvironmentApi
     }
 
     /**
-     * Operation updateProjectsEnvironmentsVersions
-     *
      * Update the version
      *
-     * @param  string $project_id project_id (required)
-     * @param  string $environment_id environment_id (required)
-     * @param  string $version_id version_id (required)
-     * @param  \Upsun\Model\VersionPatch $version_patch  (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Upsun\Model\AcceptedResponse
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function updateProjectsEnvironmentsVersions($project_id, $environment_id, $version_id, $version_patch)
+    public function updateProjectsEnvironmentsVersions($project_id, $environment_id, $version_id, $version_patch): \Upsun\Model\AcceptedResponse
     {
         list($response) = $this->updateProjectsEnvironmentsVersionsWithHttpInfo($project_id, $environment_id, $version_id, $version_patch);
         return $response;
     }
 
     /**
-     * Operation updateProjectsEnvironmentsVersionsWithHttpInfo
-     *
      * Update the version
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  string $version_id (required)
-     * @param  \Upsun\Model\VersionPatch $version_patch  (required)
-     *
-     * @throws \Upsun\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Upsun\Model\AcceptedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
      */
-    public function updateProjectsEnvironmentsVersionsWithHttpInfo($project_id, $environment_id, $version_id, $version_patch)
+    public function updateProjectsEnvironmentsVersionsWithHttpInfo(string $project_id, string $environment_id, string $version_id, \Upsun\Model\VersionPatch $version_patch): array
     {
         $request = $this->updateProjectsEnvironmentsVersionsRequest($project_id, $environment_id, $version_id, $version_patch);
 
@@ -5154,7 +4514,7 @@ class EnvironmentApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 default:
                     return $this->handleResponseWithDataType(
                         '\Upsun\Model\AcceptedResponse',
@@ -5163,7 +4523,7 @@ class EnvironmentApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -5172,9 +4532,8 @@ class EnvironmentApi
                         $statusCode,
                         (string) $request->getUri()
                     ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
+                    $request,
+                    $response
                 );
             }
 
@@ -5194,26 +4553,18 @@ class EnvironmentApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
     }
 
     /**
-     * Operation updateProjectsEnvironmentsVersionsAsync
-     *
      * Update the version
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  string $version_id (required)
-     * @param  \Upsun\Model\VersionPatch $version_patch  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function updateProjectsEnvironmentsVersionsAsync($project_id, $environment_id, $version_id, $version_patch)
+    public function updateProjectsEnvironmentsVersionsAsync(string $project_id, string $environment_id, string $version_id, \Upsun\Model\VersionPatch $version_patch): Promise
     {
         return $this->updateProjectsEnvironmentsVersionsAsyncWithHttpInfo($project_id, $environment_id, $version_id, $version_patch)
             ->then(
@@ -5224,19 +4575,11 @@ class EnvironmentApi
     }
 
     /**
-     * Operation updateProjectsEnvironmentsVersionsAsyncWithHttpInfo
-     *
      * Update the version
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  string $version_id (required)
-     * @param  \Upsun\Model\VersionPatch $version_patch  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return Promise
+     * @throws InvalidArgumentException
      */
-    public function updateProjectsEnvironmentsVersionsAsyncWithHttpInfo($project_id, $environment_id, $version_id, $version_patch)
+    public function updateProjectsEnvironmentsVersionsAsyncWithHttpInfo(string $project_id, string $environment_id, string $version_id, \Upsun\Model\VersionPatch $version_patch)
     {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateProjectsEnvironmentsVersionsRequest($project_id, $environment_id, $version_id, $version_patch);
@@ -5276,15 +4619,9 @@ class EnvironmentApi
     /**
      * Create request for operation 'updateProjectsEnvironmentsVersions'
      *
-     * @param  string $project_id (required)
-     * @param  string $environment_id (required)
-     * @param  string $version_id (required)
-     * @param  \Upsun\Model\VersionPatch $version_patch  (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return RequestInterface
+     * @throws InvalidArgumentException
      */
-    public function updateProjectsEnvironmentsVersionsRequest($project_id, $environment_id, $version_id, $version_patch)
+    public function updateProjectsEnvironmentsVersionsRequest(string $project_id, string $environment_id, string $version_id, \Upsun\Model\VersionPatch $version_patch): RequestInterface
     {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
@@ -5373,10 +4710,8 @@ class EnvironmentApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -5408,15 +4743,14 @@ class EnvironmentApi
 
 
     /**
-     * @param string $method
-     * @param string|UriInterface $uri
-     * @param array $headers
-     * @param string|StreamInterface|null $body
-     *
-     * @return RequestInterface
+     * Create request
      */
-    protected function createRequest(string $method, $uri, array $headers = [], $body = null): RequestInterface
-    {
+    protected function createRequest(
+        string $method, 
+        string|UriInterface $uri, 
+        array $headers = [], 
+        string|StreamInterface|null $body = null
+    ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
             return $this->requestFactory->createRequest(
                 $method,
@@ -5427,7 +4761,9 @@ class EnvironmentApi
         }
 
         if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException('Cannot create request: A stream factory is required to create a request with a non-empty string body.');
+            throw new \RuntimeException(
+                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
+            );
         }
 
         $request = $this->requestFactory->createRequest($method, $uri);
@@ -5490,9 +4826,8 @@ class EnvironmentApi
                             'Error JSON decoding server response (%s)',
                             $request->getUri()
                         ),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                        $content
+                        $request,
+                        $response
                     );
                 }
             }

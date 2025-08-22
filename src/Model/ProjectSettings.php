@@ -1,62 +1,32 @@
 <?php
-/**
- * ProjectSettings
- *
- * PHP version 8.1
- *
- * @category Class
- * @package  Upsun
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
- */
 
 /**
- * Platform.sh Rest API
+ * Low level ProjectSettings (auto-generated)
  *
- * # Introduction  Platform.sh is a container-based Platform-as-a-Service. Our main API is simply Git. With a single `git push` and a couple of YAML files in your repository you can deploy an arbitrarily complex cluster. Every [**Project**](#tag/Project) can have multiple applications (PHP, Node.js, Python, Ruby, Go, etc.) and managed, automatically provisioned services (databases, message queues, etc.).  Each project also comes with multiple concurrent live staging/development [**Environments**](#tag/Environment). These ephemeral development environments are automatically created every time you push a new branch or create a pull request, and each has a full copy of the data of its parent branch, which is created on-the-fly in seconds.  Our Git implementation supports integrations with third party Git providers such as GitHub, Bitbucket, or GitLab, allowing you to simply integrate Platform.sh into your existing workflow.  ## Using the REST API  In addition to the Git API, we also offer a REST API that allows you to manage every aspect of the platform, from managing projects and environments, to accessing accounts and subscriptions, to creating robust workflows and integrations with your CI systems and internal services.  These API docs are generated from a standard **OpenAPI (Swagger)** Specification document which you can find here in [YAML](openapispec-platformsh.yaml) and in [JSON](openapispec-platformsh.json) formats.  This RESTful API consumes and produces HAL-style JSON over HTTPS, and any REST library can be used to access it. On GitHub, we also host a few API libraries that you can use to make API access easier, such as our [PHP API client](https://github.com/platformsh/platformsh-client-php) and our [JavaScript API client](https://github.com/platformsh/platformsh-client-js).  In order to use the API you will first need to have a Platform.sh account (we have a [free trial](https://accounts.platform.sh/platform/trial/general/setup) available) and create an API Token.  # Authentication  ## OAuth2  API authentication is done with OAuth2 access tokens.  ### API tokens  You can use an API token as one way to get an OAuth2 access token. This is particularly useful in scripts, e.g. for CI pipelines.  To create an API token, go to the \"API Tokens\" section of the \"Account Settings\" tab on the [Console](https://console.platform.sh).  To exchange this API token for an access token, a `POST` request must be made to `https://auth.api.platform.sh/oauth2/token`.  The request will look like this in cURL:  <pre> curl -u platform-api-user: \\     -d 'grant_type=api_token&amp;api_token=<em><b>API_TOKEN</b></em>' \\     https://auth.api.platform.sh/oauth2/token </pre>  This will return a \"Bearer\" access token that can be used to authenticate further API requests, for example:  <pre> {     \"access_token\": \"<em><b>abcdefghij1234567890</b></em>\",     \"expires_in\": 900,     \"token_type\": \"bearer\" } </pre>  ### Using the Access Token  To authenticate further API requests, include this returned bearer token in the `Authorization` header. For example, to retrieve a list of [Projects](#tag/Project) accessible by the current user, you can make the following request (substituting the dummy token for your own):  <pre> curl -H \"Authorization: Bearer <em><b>abcdefghij1234567890</b></em>\" \\     https://api.platform.sh/projects </pre>  # HAL Links  Most endpoints in the API return fields which defines a HAL (Hypertext Application Language) schema for the requested endpoint. The particular objects returns and their contents can vary by endpoint. The payload examples we give here for the requests do not show these elements. These links can allow you to create a fully dynamic API client that does not need to hardcode any method or schema.  Unless they are used for pagination we do not show the HAL links in the payload examples in this documentation for brevity and as their content is contextual (based on the permissions of the user).  ## _links Objects  Most endpoints that respond to `GET` requests will include a `_links` object in their response. The `_links` object contains a key-object pair labelled `self`, which defines two further key-value pairs:  * `href` - A URL string referring to the fully qualified name of the returned object. For many endpoints, this will be the direct link to the API endpoint on the region gateway, rather than on the general API gateway. This means it may reference a host of, for example, `eu-2.platform.sh` rather than `api.platform.sh`. * `meta` - An object defining the OpenAPI Specification (OAS) [schema object](https://swagger.io/specification/#schemaObject) of the component returned by the endpoint.  There may be zero or more other fields in the `_links` object resembling fragment identifiers beginning with a hash mark, e.g. `#edit` or `#delete`. Each of these keys refers to a JSON object containing two key-value pairs:  * `href` - A URL string referring to the path name of endpoint which can perform the action named in the key. * `meta` - An object defining the OAS schema of the endpoint. This consists of a key-value pair, with the key defining an HTTP method and the value defining the [operation object](https://swagger.io/specification/#operationObject) of the endpoint.  To use one of these HAL links, you must send a new request to the URL defined in the `href` field which contains a body defined the schema object in the `meta` field.  For example, if you make a request such as `GET /projects/abcdefghij1234567890`, the `_links` object in the returned response will include the key `#delete`. That object will look something like this fragment:  ``` \"#delete\": {     \"href\": \"/api/projects/abcdefghij1234567890\",     \"meta\": {         \"delete\": {             \"responses\": {                 . . . // Response definition omitted for space             },             \"parameters\": []         }     } } ```  To use this information to delete a project, you would then send a `DELETE` request to the endpoint `https://api.platform.sh/api/projects/abcdefghij1234567890` with no body or parameters to delete the project that was originally requested.  ## _embedded Objects  Requests to endpoints which create or modify objects, such as `POST`, `PATCH`, or `DELETE` requests, will include an `_embedded` key in their response. The object represented by this key will contain the created or modified object. This object is identical to what would be returned by a subsequent `GET` request for the object referred to by the endpoint.
- *
- * The version of the OpenAPI document: 1.0
- * Generated by: https://openapi-generator.tech
- * Generator version: 7.14.0
- */
-
-/**
- * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
- * https://openapi-generator.tech
- * Do not edit the class manually.
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ * @internal  This file was generated by OpenAPI Generator. Do not edit manually.
+ * @generated
  */
 
 namespace Upsun\Model;
 
-use \ArrayAccess;
-use \Upsun\ObjectSerializer;
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 
-/**
- * ProjectSettings Class Doc Comment
- *
- * @category Class
- * @package  Upsun
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
- */
-class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
+final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'ProjectSettings';
 
     /**
-      * The original name of the model.
-      *
-      * @var string
-      */
-    protected static $openAPIModelName = 'ProjectSettings';
-
-    /**
-      * Array of property to type mappings. Used for (de)serialization
-      *
-      * @var string[]
-      */
-    protected static $openAPITypes = [
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
         'initialize' => 'object',
         'product_name' => 'string',
         'product_code' => 'string',
@@ -120,13 +90,9 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     ];
 
     /**
-      * Array of property to format mappings. Used for (de)serialization
-      *
-      * @var string[]
-      * @phpstan-var array<string, string|null>
-      * @psalm-var array<string, string|null>
-      */
-    protected static $openAPIFormats = [
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
         'initialize' => null,
         'product_name' => null,
         'product_code' => null,
@@ -190,11 +156,9 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     ];
 
     /**
-      * Array of nullable properties. Used for (de)serialization
-      *
-      * @var boolean[]
-      */
-    protected static array $openAPINullables = [
+     * Array of nullable properties. Used for (de)serialization
+     */
+    private static array $openAPINullables = [
         'initialize' => false,
         'product_name' => false,
         'product_code' => false,
@@ -258,36 +222,28 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     ];
 
     /**
-      * If a nullable field gets set to null, insert it here
-      *
-      * @var boolean[]
-      */
-    protected array $openAPINullablesSetToNull = [];
+     * If a nullable field gets set to null, insert it here
+     */
+    private array $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
      */
-    public static function openAPITypes()
+    public static function openAPITypes(): array
     {
         return self::$openAPITypes;
     }
 
     /**
      * Array of property to format mappings. Used for (de)serialization
-     *
-     * @return array
      */
-    public static function openAPIFormats()
+    public static function openAPIFormats(): array
     {
         return self::$openAPIFormats;
     }
 
     /**
      * Array of nullable properties
-     *
-     * @return array
      */
     protected static function openAPINullables(): array
     {
@@ -296,8 +252,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Array of nullable field names deliberately set to null
-     *
-     * @return boolean[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -306,8 +260,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Setter - Array of nullable field names deliberately set to null
-     *
-     * @param boolean[] $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -316,9 +268,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
      */
     public static function isNullable(string $property): bool
     {
@@ -327,9 +276,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -339,10 +285,8 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
-     *
-     * @var string[]
      */
-    protected static $attributeMap = [
+    private static array $attributeMap = [
         'initialize' => 'initialize',
         'product_name' => 'product_name',
         'product_code' => 'product_code',
@@ -407,10 +351,8 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @var string[]
      */
-    protected static $setters = [
+    private static $setters = [
         'initialize' => 'setInitialize',
         'product_name' => 'setProductName',
         'product_code' => 'setProductCode',
@@ -475,10 +417,8 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
      */
-    protected static $getters = [
+    private static $getters = [
         'initialize' => 'getInitialize',
         'product_name' => 'getProductName',
         'product_code' => 'getProductCode',
@@ -544,20 +484,16 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
-     *
-     * @return array
      */
-    public static function attributeMap()
+    public static function attributeMap(): array
     {
         return self::$attributeMap;
     }
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
      */
-    public static function setters()
+    public static function setters(): array
     {
         return self::$setters;
     }
@@ -574,10 +510,8 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * The original name of the model.
-     *
-     * @return string
      */
-    public function getModelName()
+    public function getModelName(): string
     {
         return self::$openAPIModelName;
     }
@@ -603,10 +537,8 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Gets allowable values of the enum
-     *
-     * @return string[]
      */
-    public function getDevelopmentServiceSizeAllowableValues()
+    public function getDevelopmentServiceSizeAllowableValues(): array
     {
         return [
             self::DEVELOPMENT_SERVICE_SIZE__2_XL,
@@ -620,10 +552,8 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Gets allowable values of the enum
-     *
-     * @return string[]
      */
-    public function getDevelopmentApplicationSizeAllowableValues()
+    public function getDevelopmentApplicationSizeAllowableValues(): array
     {
         return [
             self::DEVELOPMENT_APPLICATION_SIZE__2_XL,
@@ -637,10 +567,8 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Gets allowable values of the enum
-     *
-     * @return string[]
      */
-    public function getCertificateStyleAllowableValues()
+    public function getCertificateStyleAllowableValues(): array
     {
         return [
             self::CERTIFICATE_STYLE_ECDSA,
@@ -650,10 +578,8 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Gets allowable values of the enum
-     *
-     * @return string[]
      */
-    public function getEnvironmentNameStrategyAllowableValues()
+    public function getEnvironmentNameStrategyAllowableValues(): array
     {
         return [
             self::ENVIRONMENT_NAME_STRATEGY_HASH,
@@ -663,10 +589,8 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Gets allowable values of the enum
-     *
-     * @return string[]
      */
-    public function getOutboundRestrictionsDefaultPolicyAllowableValues()
+    public function getOutboundRestrictionsDefaultPolicyAllowableValues(): array
     {
         return [
             self::OUTBOUND_RESTRICTIONS_DEFAULT_POLICY_ALLOW,
@@ -676,16 +600,11 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Associative array for storing property values
-     *
-     * @var mixed[]
      */
-    protected $container = [];
+    private array $container = [];
 
     /**
      * Constructor
-     *
-     * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
      */
     public function __construct(?array $data = null)
     {
@@ -755,14 +674,12 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
     * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
     * $this->openAPINullablesSetToNull array
-    *
-    * @param string $variableName
-    * @param array  $fields
-    * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+        if (self::isNullable($variableName) 
+            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
+        ) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
 
@@ -771,10 +688,8 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalidProperties = [];
 
@@ -1009,10 +924,8 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Validate all the properties in the model
      * return true if all passed
-     *
-     * @return bool True if all properties are valid
      */
-    public function valid()
+    public function valid(): bool
     {
         return count($this->listInvalidProperties()) === 0;
     }
@@ -1030,10 +943,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets initialize
-     *
-     * @param object $initialize initialize
-     *
-     * @return self
      */
     public function setInitialize($initialize)
     {
@@ -1057,10 +966,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets product_name
-     *
-     * @param string $product_name product_name
-     *
-     * @return self
      */
     public function setProductName($product_name)
     {
@@ -1084,10 +989,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets product_code
-     *
-     * @param string $product_code product_code
-     *
-     * @return self
      */
     public function setProductCode($product_code)
     {
@@ -1111,10 +1012,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets ui_uri_template
-     *
-     * @param string $ui_uri_template ui_uri_template
-     *
-     * @return self
      */
     public function setUiUriTemplate($ui_uri_template)
     {
@@ -1138,10 +1035,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets variables_prefix
-     *
-     * @param string $variables_prefix variables_prefix
-     *
-     * @return self
      */
     public function setVariablesPrefix($variables_prefix)
     {
@@ -1165,10 +1058,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets bot_email
-     *
-     * @param string $bot_email bot_email
-     *
-     * @return self
      */
     public function setBotEmail($bot_email)
     {
@@ -1192,10 +1081,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets application_config_file
-     *
-     * @param string $application_config_file application_config_file
-     *
-     * @return self
      */
     public function setApplicationConfigFile($application_config_file)
     {
@@ -1219,10 +1104,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets project_config_dir
-     *
-     * @param string $project_config_dir project_config_dir
-     *
-     * @return self
      */
     public function setProjectConfigDir($project_config_dir)
     {
@@ -1246,10 +1127,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets use_drupal_defaults
-     *
-     * @param bool $use_drupal_defaults use_drupal_defaults
-     *
-     * @return self
      */
     public function setUseDrupalDefaults($use_drupal_defaults)
     {
@@ -1273,10 +1150,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets use_legacy_subdomains
-     *
-     * @param bool $use_legacy_subdomains use_legacy_subdomains
-     *
-     * @return self
      */
     public function setUseLegacySubdomains($use_legacy_subdomains)
     {
@@ -1300,10 +1173,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets development_service_size
-     *
-     * @param string $development_service_size development_service_size
-     *
-     * @return self
      */
     public function setDevelopmentServiceSize($development_service_size)
     {
@@ -1337,10 +1206,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets development_application_size
-     *
-     * @param string $development_application_size development_application_size
-     *
-     * @return self
      */
     public function setDevelopmentApplicationSize($development_application_size)
     {
@@ -1374,10 +1239,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets enable_certificate_provisioning
-     *
-     * @param bool $enable_certificate_provisioning enable_certificate_provisioning
-     *
-     * @return self
      */
     public function setEnableCertificateProvisioning($enable_certificate_provisioning)
     {
@@ -1401,10 +1262,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets certificate_style
-     *
-     * @param string $certificate_style certificate_style
-     *
-     * @return self
      */
     public function setCertificateStyle($certificate_style)
     {
@@ -1438,10 +1295,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets certificate_renewal_activity
-     *
-     * @param bool $certificate_renewal_activity certificate_renewal_activity
-     *
-     * @return self
      */
     public function setCertificateRenewalActivity($certificate_renewal_activity)
     {
@@ -1465,10 +1318,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets development_domain_template
-     *
-     * @param string $development_domain_template development_domain_template
-     *
-     * @return self
      */
     public function setDevelopmentDomainTemplate($development_domain_template)
     {
@@ -1477,7 +1326,7 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('development_domain_template', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1499,10 +1348,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets enable_state_api_deployments
-     *
-     * @param bool $enable_state_api_deployments enable_state_api_deployments
-     *
-     * @return self
      */
     public function setEnableStateApiDeployments($enable_state_api_deployments)
     {
@@ -1526,10 +1371,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets temporary_disk_size
-     *
-     * @param int $temporary_disk_size temporary_disk_size
-     *
-     * @return self
      */
     public function setTemporaryDiskSize($temporary_disk_size)
     {
@@ -1538,7 +1379,7 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('temporary_disk_size', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1560,10 +1401,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets local_disk_size
-     *
-     * @param int $local_disk_size local_disk_size
-     *
-     * @return self
      */
     public function setLocalDiskSize($local_disk_size)
     {
@@ -1572,7 +1409,7 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('local_disk_size', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1594,10 +1431,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets cron_minimum_interval
-     *
-     * @param int $cron_minimum_interval cron_minimum_interval
-     *
-     * @return self
      */
     public function setCronMinimumInterval($cron_minimum_interval)
     {
@@ -1621,10 +1454,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets cron_maximum_jitter
-     *
-     * @param int $cron_maximum_jitter cron_maximum_jitter
-     *
-     * @return self
      */
     public function setCronMaximumJitter($cron_maximum_jitter)
     {
@@ -1648,10 +1477,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets concurrency_limits
-     *
-     * @param array<string,int> $concurrency_limits concurrency_limits
-     *
-     * @return self
      */
     public function setConcurrencyLimits($concurrency_limits)
     {
@@ -1675,10 +1500,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets flexible_build_cache
-     *
-     * @param bool $flexible_build_cache flexible_build_cache
-     *
-     * @return self
      */
     public function setFlexibleBuildCache($flexible_build_cache)
     {
@@ -1702,10 +1523,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets strict_configuration
-     *
-     * @param bool $strict_configuration strict_configuration
-     *
-     * @return self
      */
     public function setStrictConfiguration($strict_configuration)
     {
@@ -1729,10 +1546,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets has_sleepy_crons
-     *
-     * @param bool $has_sleepy_crons has_sleepy_crons
-     *
-     * @return self
      */
     public function setHasSleepyCrons($has_sleepy_crons)
     {
@@ -1756,10 +1569,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets crons_in_git
-     *
-     * @param bool $crons_in_git crons_in_git
-     *
-     * @return self
      */
     public function setCronsInGit($crons_in_git)
     {
@@ -1783,10 +1592,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets custom_error_template
-     *
-     * @param string $custom_error_template custom_error_template
-     *
-     * @return self
      */
     public function setCustomErrorTemplate($custom_error_template)
     {
@@ -1795,7 +1600,7 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('custom_error_template', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1817,10 +1622,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets app_error_page_template
-     *
-     * @param string $app_error_page_template app_error_page_template
-     *
-     * @return self
      */
     public function setAppErrorPageTemplate($app_error_page_template)
     {
@@ -1829,7 +1630,7 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('app_error_page_template', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1851,10 +1652,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets environment_name_strategy
-     *
-     * @param string $environment_name_strategy environment_name_strategy
-     *
-     * @return self
      */
     public function setEnvironmentNameStrategy($environment_name_strategy)
     {
@@ -1888,10 +1685,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets data_retention
-     *
-     * @param array<string,\Upsun\Model\DataRetentionConfigurationValue> $data_retention data_retention
-     *
-     * @return self
      */
     public function setDataRetention($data_retention)
     {
@@ -1900,7 +1693,7 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('data_retention', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1922,10 +1715,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets enable_codesource_integration_push
-     *
-     * @param bool $enable_codesource_integration_push enable_codesource_integration_push
-     *
-     * @return self
      */
     public function setEnableCodesourceIntegrationPush($enable_codesource_integration_push)
     {
@@ -1949,10 +1738,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets enforce_mfa
-     *
-     * @param bool $enforce_mfa enforce_mfa
-     *
-     * @return self
      */
     public function setEnforceMfa($enforce_mfa)
     {
@@ -1976,10 +1761,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets systemd
-     *
-     * @param bool $systemd systemd
-     *
-     * @return self
      */
     public function setSystemd($systemd)
     {
@@ -2003,10 +1784,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets router_gen2
-     *
-     * @param bool $router_gen2 router_gen2
-     *
-     * @return self
      */
     public function setRouterGen2($router_gen2)
     {
@@ -2030,10 +1807,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets build_resources
-     *
-     * @param \Upsun\Model\BuildResources1 $build_resources build_resources
-     *
-     * @return self
      */
     public function setBuildResources($build_resources)
     {
@@ -2057,10 +1830,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets outbound_restrictions_default_policy
-     *
-     * @param string $outbound_restrictions_default_policy outbound_restrictions_default_policy
-     *
-     * @return self
      */
     public function setOutboundRestrictionsDefaultPolicy($outbound_restrictions_default_policy)
     {
@@ -2094,10 +1863,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets self_upgrade
-     *
-     * @param bool $self_upgrade self_upgrade
-     *
-     * @return self
      */
     public function setSelfUpgrade($self_upgrade)
     {
@@ -2121,10 +1886,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets additional_hosts
-     *
-     * @param array<string,string> $additional_hosts additional_hosts
-     *
-     * @return self
      */
     public function setAdditionalHosts($additional_hosts)
     {
@@ -2148,10 +1909,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets max_allowed_routes
-     *
-     * @param int $max_allowed_routes max_allowed_routes
-     *
-     * @return self
      */
     public function setMaxAllowedRoutes($max_allowed_routes)
     {
@@ -2175,10 +1932,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets max_allowed_redirects_paths
-     *
-     * @param int $max_allowed_redirects_paths max_allowed_redirects_paths
-     *
-     * @return self
      */
     public function setMaxAllowedRedirectsPaths($max_allowed_redirects_paths)
     {
@@ -2202,10 +1955,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets enable_incremental_backups
-     *
-     * @param bool $enable_incremental_backups enable_incremental_backups
-     *
-     * @return self
      */
     public function setEnableIncrementalBackups($enable_incremental_backups)
     {
@@ -2229,10 +1978,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets sizing_api_enabled
-     *
-     * @param bool $sizing_api_enabled sizing_api_enabled
-     *
-     * @return self
      */
     public function setSizingApiEnabled($sizing_api_enabled)
     {
@@ -2256,10 +2001,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets enable_cache_grace_period
-     *
-     * @param bool $enable_cache_grace_period enable_cache_grace_period
-     *
-     * @return self
      */
     public function setEnableCacheGracePeriod($enable_cache_grace_period)
     {
@@ -2283,10 +2024,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets enable_zero_downtime_deployments
-     *
-     * @param bool $enable_zero_downtime_deployments enable_zero_downtime_deployments
-     *
-     * @return self
      */
     public function setEnableZeroDowntimeDeployments($enable_zero_downtime_deployments)
     {
@@ -2310,10 +2047,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets enable_admin_agent
-     *
-     * @param bool $enable_admin_agent enable_admin_agent
-     *
-     * @return self
      */
     public function setEnableAdminAgent($enable_admin_agent)
     {
@@ -2337,10 +2070,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets certifier_url
-     *
-     * @param string $certifier_url certifier_url
-     *
-     * @return self
      */
     public function setCertifierUrl($certifier_url)
     {
@@ -2364,10 +2093,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets centralized_permissions
-     *
-     * @param bool $centralized_permissions centralized_permissions
-     *
-     * @return self
      */
     public function setCentralizedPermissions($centralized_permissions)
     {
@@ -2391,10 +2116,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets glue_server_max_request_size
-     *
-     * @param int $glue_server_max_request_size glue_server_max_request_size
-     *
-     * @return self
      */
     public function setGlueServerMaxRequestSize($glue_server_max_request_size)
     {
@@ -2418,10 +2139,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets persistent_endpoints_ssh
-     *
-     * @param bool $persistent_endpoints_ssh persistent_endpoints_ssh
-     *
-     * @return self
      */
     public function setPersistentEndpointsSsh($persistent_endpoints_ssh)
     {
@@ -2445,10 +2162,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets persistent_endpoints_ssl_certificates
-     *
-     * @param bool $persistent_endpoints_ssl_certificates persistent_endpoints_ssl_certificates
-     *
-     * @return self
      */
     public function setPersistentEndpointsSslCertificates($persistent_endpoints_ssl_certificates)
     {
@@ -2472,10 +2185,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets enable_disk_health_monitoring
-     *
-     * @param bool $enable_disk_health_monitoring enable_disk_health_monitoring
-     *
-     * @return self
      */
     public function setEnableDiskHealthMonitoring($enable_disk_health_monitoring)
     {
@@ -2499,10 +2208,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets enable_paused_environments
-     *
-     * @param bool $enable_paused_environments enable_paused_environments
-     *
-     * @return self
      */
     public function setEnablePausedEnvironments($enable_paused_environments)
     {
@@ -2526,10 +2231,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets enable_unified_configuration
-     *
-     * @param bool $enable_unified_configuration enable_unified_configuration
-     *
-     * @return self
      */
     public function setEnableUnifiedConfiguration($enable_unified_configuration)
     {
@@ -2553,10 +2254,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets enable_routes_tracing
-     *
-     * @param bool $enable_routes_tracing enable_routes_tracing
-     *
-     * @return self
      */
     public function setEnableRoutesTracing($enable_routes_tracing)
     {
@@ -2580,10 +2277,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets image_deployment_validation
-     *
-     * @param bool $image_deployment_validation image_deployment_validation
-     *
-     * @return self
      */
     public function setImageDeploymentValidation($image_deployment_validation)
     {
@@ -2607,10 +2300,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets support_generic_images
-     *
-     * @param bool $support_generic_images support_generic_images
-     *
-     * @return self
      */
     public function setSupportGenericImages($support_generic_images)
     {
@@ -2634,10 +2323,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets enable_github_app_token_exchange
-     *
-     * @param bool $enable_github_app_token_exchange enable_github_app_token_exchange
-     *
-     * @return self
      */
     public function setEnableGithubAppTokenExchange($enable_github_app_token_exchange)
     {
@@ -2661,10 +2346,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets continuous_profiling
-     *
-     * @param \Upsun\Model\TheContinuousProfilingConfiguration $continuous_profiling continuous_profiling
-     *
-     * @return self
      */
     public function setContinuousProfiling($continuous_profiling)
     {
@@ -2688,10 +2369,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets disable_agent_error_reporter
-     *
-     * @param bool $disable_agent_error_reporter disable_agent_error_reporter
-     *
-     * @return self
      */
     public function setDisableAgentErrorReporter($disable_agent_error_reporter)
     {
@@ -2715,10 +2392,6 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Sets requires_domain_ownership
-     *
-     * @param bool $requires_domain_ownership requires_domain_ownership
-     *
-     * @return self
      */
     public function setRequiresDomainOwnership($requires_domain_ownership)
     {
@@ -2731,38 +2404,25 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     }
     /**
      * Returns true if offset exists. False otherwise.
-     *
-     * @param integer $offset Offset
-     *
-     * @return boolean
      */
-    public function offsetExists($offset): bool
+    public function offsetExists(mixed $offset): bool
     {
         return isset($this->container[$offset]);
     }
 
     /**
      * Gets offset.
-     *
-     * @param integer $offset Offset
-     *
-     * @return mixed|null
      */
     #[\ReturnTypeWillChange]
-    public function offsetGet($offset)
+    public function offsetGet(mixed $offset)
     {
         return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
-     *
-     * @param int|null $offset Offset
-     * @param mixed    $value  Value to be set
-     *
-     * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet(mixed $offset = null, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -2773,12 +2433,8 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Unsets offset.
-     *
-     * @param integer $offset Offset
-     *
-     * @return void
      */
-    public function offsetUnset($offset): void
+    public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
     }
@@ -2786,14 +2442,11 @@ class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Serializes the object to a value that can be serialized natively by json_encode().
      * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
      */
     #[\ReturnTypeWillChange]
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
