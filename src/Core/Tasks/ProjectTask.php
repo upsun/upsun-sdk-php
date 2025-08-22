@@ -36,6 +36,7 @@ use Upsun\Model\ProjectPatch;
 use Upsun\Model\ProjectSettings;
 use Upsun\Model\ProjectSettingsPatch;
 use Upsun\Model\Ref;
+use Upsun\Model\Subscription;
 use Upsun\Model\SystemInformation;
 use Upsun\Model\TeamProjectAccess;
 use Upsun\Model\Tree;
@@ -89,12 +90,12 @@ class ProjectTask extends TaskBase
      *
      * @throws ApiException
      */
-    public function create(string $organizationId, array $projectData): Error|OrganizationProject
+    public function create(string $organizationId, array $projectData): Error|Subscription
     {
         $this->refreshToken();
         $createProjectData = new CreateOrgSubscriptionRequest($projectData);
-        $subscription = $this->subscriptionsApi->createOrgSubscription($organizationId, $createProjectData);
-
+        return $this->subscriptionsApi->createOrgSubscription($organizationId, $createProjectData);
+        
 
 //        $this->refreshToken();
         $token = $this->client->auth->getAccessToken(); // remplace avec ton vrai token

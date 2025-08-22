@@ -48,6 +48,7 @@ use Upsun\Model\OrganizationProject;
 use Upsun\Model\Profile;
 use Upsun\Model\SendOrgMfaRemindersRequest;
 use Upsun\Model\StringFilter;
+use Upsun\Model\Subscription;
 use Upsun\Model\SubscriptionCurrentUsageObject;
 use Upsun\Model\UpdateOrgMemberRequest;
 use Upsun\Model\UpdateOrgProfileRequest;
@@ -387,7 +388,7 @@ class OrganizationTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createProject(string $organizationId, array $createProjectData): Error|OrganizationProject
+    public function createProject(string $organizationId, array $createProjectData): Error|Subscription
     {
         return $this->client->project->create($organizationId, $createProjectData);
     }
