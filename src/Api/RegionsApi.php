@@ -640,7 +640,7 @@ final class RegionsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[available]'] = $filter_available;
+                $queryParams['filter[available]'] = $filter_available->toHeaderValue();
             }
         }
         
@@ -651,7 +651,7 @@ final class RegionsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[private]'] = $filter_private;
+                $queryParams['filter[private]'] = $filter_private->toHeaderValue();
             }
         }
         
@@ -662,7 +662,7 @@ final class RegionsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[zone]'] = $filter_zone;
+                $queryParams['filter[zone]'] = $filter_zone->toHeaderValue();
             }
         }
         

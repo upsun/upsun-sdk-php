@@ -2531,7 +2531,7 @@ final class SubscriptionsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[project_id]'] = $filter_project_id;
+                $queryParams['filter[project_id]'] = $filter_project_id->toHeaderValue();
             }
         }
         
@@ -2542,7 +2542,7 @@ final class SubscriptionsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[project_title]'] = $filter_project_title;
+                $queryParams['filter[project_title]'] = $filter_project_title->toHeaderValue();
             }
         }
         
@@ -2553,7 +2553,7 @@ final class SubscriptionsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[region]'] = $filter_region;
+                $queryParams['filter[region]'] = $filter_region->toHeaderValue();
             }
         }
         
@@ -2564,7 +2564,7 @@ final class SubscriptionsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[updated_at]'] = $filter_updated_at;
+                $queryParams['filter[updated_at]'] = $filter_updated_at->toHeaderValue();
             }
         }
         

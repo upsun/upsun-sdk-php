@@ -1137,7 +1137,7 @@ final class OrganizationsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[id]'] = $filter_id;
+                $queryParams['filter[id]'] = $filter_id->toHeaderValue();
             }
         }
         
@@ -1148,7 +1148,7 @@ final class OrganizationsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[owner_id]'] = $filter_owner_id;
+                $queryParams['filter[owner_id]'] = $filter_owner_id->toHeaderValue();
             }
         }
         
@@ -1159,7 +1159,7 @@ final class OrganizationsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[name]'] = $filter_name;
+                $queryParams['filter[name]'] = $filter_name->toHeaderValue();
             }
         }
         
@@ -1170,7 +1170,7 @@ final class OrganizationsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[label]'] = $filter_label;
+                $queryParams['filter[label]'] = $filter_label->toHeaderValue();
             }
         }
         
@@ -1181,7 +1181,7 @@ final class OrganizationsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[vendor]'] = $filter_vendor;
+                $queryParams['filter[vendor]'] = $filter_vendor->toHeaderValue();
             }
         }
         
@@ -1192,7 +1192,7 @@ final class OrganizationsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[capabilities]'] = $filter_capabilities;
+                $queryParams['filter[capabilities]'] = $filter_capabilities->toHeaderValue();
             }
         }
         
@@ -1203,7 +1203,7 @@ final class OrganizationsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[status]'] = $filter_status;
+                $queryParams['filter[status]'] = $filter_status->toHeaderValue();
             }
         }
         
@@ -1214,7 +1214,7 @@ final class OrganizationsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[updated_at]'] = $filter_updated_at;
+                $queryParams['filter[updated_at]'] = $filter_updated_at->toHeaderValue();
             }
         }
         
@@ -1577,7 +1577,7 @@ final class OrganizationsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[id]'] = $filter_id;
+                $queryParams['filter[id]'] = $filter_id->toHeaderValue();
             }
         }
         
@@ -1588,7 +1588,7 @@ final class OrganizationsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[vendor]'] = $filter_vendor;
+                $queryParams['filter[vendor]'] = $filter_vendor->toHeaderValue();
             }
         }
         
@@ -1599,7 +1599,7 @@ final class OrganizationsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[status]'] = $filter_status;
+                $queryParams['filter[status]'] = $filter_status->toHeaderValue();
             }
         }
         
@@ -1610,7 +1610,7 @@ final class OrganizationsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[updated_at]'] = $filter_updated_at;
+                $queryParams['filter[updated_at]'] = $filter_updated_at->toHeaderValue();
             }
         }
         
