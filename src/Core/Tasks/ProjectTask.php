@@ -96,7 +96,8 @@ class ProjectTask extends TaskBase
         $subscription = $this->subscriptionsApi->createOrgSubscription($organizationId, $createProjectData);
 
 
-        $token = $this->client->getToken(); // remplace avec ton vrai token
+//        $this->refreshToken();
+        $token = $this->client->auth->getAccessToken(); // remplace avec ton vrai token
         $projectId = $subscription->getProjectId();
 
         $ch = curl_init();
