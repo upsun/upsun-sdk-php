@@ -96,6 +96,25 @@ class ProjectTask extends TaskBase
         $subscription = $this->subscriptionsApi->createOrgSubscription($organizationId, $createProjectData);
 
 
+        $token = $this->client->getToken(); // remplace avec ton vrai token
+        $projectId = $subscription->getProjectId();
+
+        $ch = curl_init();
+        curl_setopt_array($ch, [
+            CURLOPT_URL => "https://api.upsun.com/projects/" . $projectId,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HTTPHEADER => [
+                "Authorization: Bearer " . $token,
+                "Accept: application/json",
+                "Content-Type: application/json",
+                "User-Agent: PHP-cURL-test"
+            ],
+        ]);
+
+        $response = curl_exec($ch);
+        
+        dd($response);
+
         $orgProject = $this->organizationProjectsApi->getOrgProject(
             $organizationId,
             $subscription->getProjectId()
