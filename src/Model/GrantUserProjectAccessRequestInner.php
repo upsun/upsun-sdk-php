@@ -355,7 +355,8 @@ final class GrantUserProjectAccessRequestInner implements ModelInterface, ArrayA
     #[\ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+        //return ObjectSerializer::sanitizeForSerialization($this);
+        return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**
