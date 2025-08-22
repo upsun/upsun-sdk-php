@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class AlertsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Alert
      */
-    public function createUsageAlert($subscription_id, $create_usage_alert_request = null): \Upsun\Model\Alert
+    public function createUsageAlert($subscription_id, $create_usage_alert_request = null)
     {
         list($response) = $this->createUsageAlertWithHttpInfo($subscription_id, $create_usage_alert_request);
         return $response;
@@ -135,8 +137,10 @@ final class AlertsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function createUsageAlertWithHttpInfo(string $subscription_id, \Upsun\Model\CreateUsageAlertRequest $create_usage_alert_request = null): array
-    {
+    public function createUsageAlertWithHttpInfo(
+        string $subscription_id,
+        \Upsun\Model\CreateUsageAlertRequest $create_usage_alert_request = null
+    ): array {
         $request = $this->createUsageAlertRequest($subscription_id, $create_usage_alert_request);
 
         try {
@@ -214,10 +218,12 @@ final class AlertsApi
     /**
      * Create a usage alert.
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createUsageAlertAsync(string $subscription_id, \Upsun\Model\CreateUsageAlertRequest $create_usage_alert_request = null): Promise
-    {
+    public function createUsageAlertAsync(
+        string $subscription_id,
+        \Upsun\Model\CreateUsageAlertRequest $create_usage_alert_request = null
+    ): Promise {
         return $this->createUsageAlertAsyncWithHttpInfo($subscription_id, $create_usage_alert_request)
             ->then(
                 function ($response) {
@@ -229,10 +235,12 @@ final class AlertsApi
     /**
      * Create a usage alert.
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createUsageAlertAsyncWithHttpInfo(string $subscription_id, \Upsun\Model\CreateUsageAlertRequest $create_usage_alert_request = null)
-    {
+    public function createUsageAlertAsyncWithHttpInfo(
+        string $subscription_id,
+        \Upsun\Model\CreateUsageAlertRequest $create_usage_alert_request = null
+    ) {
         $returnType = '\Upsun\Model\Alert';
         $request = $this->createUsageAlertRequest($subscription_id, $create_usage_alert_request);
 
@@ -273,8 +281,10 @@ final class AlertsApi
      *
      * @throws InvalidArgumentException
      */
-    public function createUsageAlertRequest(string $subscription_id, \Upsun\Model\CreateUsageAlertRequest $create_usage_alert_request = null): RequestInterface
-    {
+    public function createUsageAlertRequest(
+        string $subscription_id,
+        \Upsun\Model\CreateUsageAlertRequest $create_usage_alert_request = null
+    ): RequestInterface {
         // verify the required parameter 'subscription_id' is set
         if ($subscription_id === null || (is_array($subscription_id) && count($subscription_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -364,8 +374,9 @@ final class AlertsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function deleteUsageAlert($subscription_id, $usage_id): void
+    public function deleteUsageAlert($subscription_id, $usage_id)
     {
         $this->deleteUsageAlertWithHttpInfo($subscription_id, $usage_id);
     }
@@ -376,8 +387,10 @@ final class AlertsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function deleteUsageAlertWithHttpInfo(string $subscription_id, string $usage_id): array
-    {
+    public function deleteUsageAlertWithHttpInfo(
+        string $subscription_id,
+        string $usage_id
+    ): array {
         $request = $this->deleteUsageAlertRequest($subscription_id, $usage_id);
 
         try {
@@ -420,10 +433,12 @@ final class AlertsApi
     /**
      * Delete a usage alert.
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteUsageAlertAsync(string $subscription_id, string $usage_id): Promise
-    {
+    public function deleteUsageAlertAsync(
+        string $subscription_id,
+        string $usage_id
+    ): Promise {
         return $this->deleteUsageAlertAsyncWithHttpInfo($subscription_id, $usage_id)
             ->then(
                 function ($response) {
@@ -435,10 +450,12 @@ final class AlertsApi
     /**
      * Delete a usage alert.
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteUsageAlertAsyncWithHttpInfo(string $subscription_id, string $usage_id)
-    {
+    public function deleteUsageAlertAsyncWithHttpInfo(
+        string $subscription_id,
+        string $usage_id
+    ) {
         $returnType = '';
         $request = $this->deleteUsageAlertRequest($subscription_id, $usage_id);
 
@@ -469,8 +486,10 @@ final class AlertsApi
      *
      * @throws InvalidArgumentException
      */
-    public function deleteUsageAlertRequest(string $subscription_id, string $usage_id): RequestInterface
-    {
+    public function deleteUsageAlertRequest(
+        string $subscription_id,
+        string $usage_id
+    ): RequestInterface {
         // verify the required parameter 'subscription_id' is set
         if ($subscription_id === null || (is_array($subscription_id) && count($subscription_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -568,8 +587,9 @@ final class AlertsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\GetUsageAlerts200Response
      */
-    public function getUsageAlerts($subscription_id): \Upsun\Model\GetUsageAlerts200Response
+    public function getUsageAlerts($subscription_id)
     {
         list($response) = $this->getUsageAlertsWithHttpInfo($subscription_id);
         return $response;
@@ -581,8 +601,9 @@ final class AlertsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getUsageAlertsWithHttpInfo(string $subscription_id): array
-    {
+    public function getUsageAlertsWithHttpInfo(
+        string $subscription_id
+    ): array {
         $request = $this->getUsageAlertsRequest($subscription_id);
 
         try {
@@ -660,10 +681,11 @@ final class AlertsApi
     /**
      * Get usage alerts for a subscription
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getUsageAlertsAsync(string $subscription_id): Promise
-    {
+    public function getUsageAlertsAsync(
+        string $subscription_id
+    ): Promise {
         return $this->getUsageAlertsAsyncWithHttpInfo($subscription_id)
             ->then(
                 function ($response) {
@@ -675,10 +697,11 @@ final class AlertsApi
     /**
      * Get usage alerts for a subscription
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getUsageAlertsAsyncWithHttpInfo(string $subscription_id)
-    {
+    public function getUsageAlertsAsyncWithHttpInfo(
+        string $subscription_id
+    ) {
         $returnType = '\Upsun\Model\GetUsageAlerts200Response';
         $request = $this->getUsageAlertsRequest($subscription_id);
 
@@ -719,8 +742,9 @@ final class AlertsApi
      *
      * @throws InvalidArgumentException
      */
-    public function getUsageAlertsRequest(string $subscription_id): RequestInterface
-    {
+    public function getUsageAlertsRequest(
+        string $subscription_id
+    ): RequestInterface {
         // verify the required parameter 'subscription_id' is set
         if ($subscription_id === null || (is_array($subscription_id) && count($subscription_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -804,8 +828,9 @@ final class AlertsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Alert
      */
-    public function updateUsageAlert($subscription_id, $usage_id, $update_usage_alert_request = null): \Upsun\Model\Alert
+    public function updateUsageAlert($subscription_id, $usage_id, $update_usage_alert_request = null)
     {
         list($response) = $this->updateUsageAlertWithHttpInfo($subscription_id, $usage_id, $update_usage_alert_request);
         return $response;
@@ -817,8 +842,11 @@ final class AlertsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function updateUsageAlertWithHttpInfo(string $subscription_id, string $usage_id, \Upsun\Model\UpdateUsageAlertRequest $update_usage_alert_request = null): array
-    {
+    public function updateUsageAlertWithHttpInfo(
+        string $subscription_id,
+        string $usage_id,
+        \Upsun\Model\UpdateUsageAlertRequest $update_usage_alert_request = null
+    ): array {
         $request = $this->updateUsageAlertRequest($subscription_id, $usage_id, $update_usage_alert_request);
 
         try {
@@ -896,10 +924,13 @@ final class AlertsApi
     /**
      * Update a usage alert.
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateUsageAlertAsync(string $subscription_id, string $usage_id, \Upsun\Model\UpdateUsageAlertRequest $update_usage_alert_request = null): Promise
-    {
+    public function updateUsageAlertAsync(
+        string $subscription_id,
+        string $usage_id,
+        \Upsun\Model\UpdateUsageAlertRequest $update_usage_alert_request = null
+    ): Promise {
         return $this->updateUsageAlertAsyncWithHttpInfo($subscription_id, $usage_id, $update_usage_alert_request)
             ->then(
                 function ($response) {
@@ -911,10 +942,13 @@ final class AlertsApi
     /**
      * Update a usage alert.
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateUsageAlertAsyncWithHttpInfo(string $subscription_id, string $usage_id, \Upsun\Model\UpdateUsageAlertRequest $update_usage_alert_request = null)
-    {
+    public function updateUsageAlertAsyncWithHttpInfo(
+        string $subscription_id,
+        string $usage_id,
+        \Upsun\Model\UpdateUsageAlertRequest $update_usage_alert_request = null
+    ) {
         $returnType = '\Upsun\Model\Alert';
         $request = $this->updateUsageAlertRequest($subscription_id, $usage_id, $update_usage_alert_request);
 
@@ -955,8 +989,11 @@ final class AlertsApi
      *
      * @throws InvalidArgumentException
      */
-    public function updateUsageAlertRequest(string $subscription_id, string $usage_id, \Upsun\Model\UpdateUsageAlertRequest $update_usage_alert_request = null): RequestInterface
-    {
+    public function updateUsageAlertRequest(
+        string $subscription_id,
+        string $usage_id,
+        \Upsun\Model\UpdateUsageAlertRequest $update_usage_alert_request = null
+    ): RequestInterface {
         // verify the required parameter 'subscription_id' is set
         if ($subscription_id === null || (is_array($subscription_id) && count($subscription_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1060,9 +1097,9 @@ final class AlertsApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -1158,8 +1195,8 @@ final class AlertsApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

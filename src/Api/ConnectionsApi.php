@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class ConnectionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function deleteLoginConnection($provider, $user_id): void
+    public function deleteLoginConnection($provider, $user_id)
     {
         $this->deleteLoginConnectionWithHttpInfo($provider, $user_id);
     }
@@ -134,8 +136,10 @@ final class ConnectionsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function deleteLoginConnectionWithHttpInfo(string $provider, string $user_id): array
-    {
+    public function deleteLoginConnectionWithHttpInfo(
+        string $provider,
+        string $user_id
+    ): array {
         $request = $this->deleteLoginConnectionRequest($provider, $user_id);
 
         try {
@@ -186,10 +190,12 @@ final class ConnectionsApi
     /**
      * Delete a federated login connection
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteLoginConnectionAsync(string $provider, string $user_id): Promise
-    {
+    public function deleteLoginConnectionAsync(
+        string $provider,
+        string $user_id
+    ): Promise {
         return $this->deleteLoginConnectionAsyncWithHttpInfo($provider, $user_id)
             ->then(
                 function ($response) {
@@ -201,10 +207,12 @@ final class ConnectionsApi
     /**
      * Delete a federated login connection
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteLoginConnectionAsyncWithHttpInfo(string $provider, string $user_id)
-    {
+    public function deleteLoginConnectionAsyncWithHttpInfo(
+        string $provider,
+        string $user_id
+    ) {
         $returnType = '';
         $request = $this->deleteLoginConnectionRequest($provider, $user_id);
 
@@ -235,8 +243,10 @@ final class ConnectionsApi
      *
      * @throws InvalidArgumentException
      */
-    public function deleteLoginConnectionRequest(string $provider, string $user_id): RequestInterface
-    {
+    public function deleteLoginConnectionRequest(
+        string $provider,
+        string $user_id
+    ): RequestInterface {
         // verify the required parameter 'provider' is set
         if ($provider === null || (is_array($provider) && count($provider) === 0)) {
             throw new \InvalidArgumentException(
@@ -334,8 +344,9 @@ final class ConnectionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Connection
      */
-    public function getLoginConnection($provider, $user_id): \Upsun\Model\Connection
+    public function getLoginConnection($provider, $user_id)
     {
         list($response) = $this->getLoginConnectionWithHttpInfo($provider, $user_id);
         return $response;
@@ -347,8 +358,10 @@ final class ConnectionsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getLoginConnectionWithHttpInfo(string $provider, string $user_id): array
-    {
+    public function getLoginConnectionWithHttpInfo(
+        string $provider,
+        string $user_id
+    ): array {
         $request = $this->getLoginConnectionRequest($provider, $user_id);
 
         try {
@@ -440,10 +453,12 @@ final class ConnectionsApi
     /**
      * Get a federated login connection
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getLoginConnectionAsync(string $provider, string $user_id): Promise
-    {
+    public function getLoginConnectionAsync(
+        string $provider,
+        string $user_id
+    ): Promise {
         return $this->getLoginConnectionAsyncWithHttpInfo($provider, $user_id)
             ->then(
                 function ($response) {
@@ -455,10 +470,12 @@ final class ConnectionsApi
     /**
      * Get a federated login connection
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getLoginConnectionAsyncWithHttpInfo(string $provider, string $user_id)
-    {
+    public function getLoginConnectionAsyncWithHttpInfo(
+        string $provider,
+        string $user_id
+    ) {
         $returnType = '\Upsun\Model\Connection';
         $request = $this->getLoginConnectionRequest($provider, $user_id);
 
@@ -499,8 +516,10 @@ final class ConnectionsApi
      *
      * @throws InvalidArgumentException
      */
-    public function getLoginConnectionRequest(string $provider, string $user_id): RequestInterface
-    {
+    public function getLoginConnectionRequest(
+        string $provider,
+        string $user_id
+    ): RequestInterface {
         // verify the required parameter 'provider' is set
         if ($provider === null || (is_array($provider) && count($provider) === 0)) {
             throw new \InvalidArgumentException(
@@ -598,8 +617,9 @@ final class ConnectionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Connection[]
      */
-    public function listLoginConnections($user_id): \Upsun\Model\Connection[]
+    public function listLoginConnections($user_id)
     {
         list($response) = $this->listLoginConnectionsWithHttpInfo($user_id);
         return $response;
@@ -611,8 +631,9 @@ final class ConnectionsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listLoginConnectionsWithHttpInfo(string $user_id): array
-    {
+    public function listLoginConnectionsWithHttpInfo(
+        string $user_id
+    ): array {
         $request = $this->listLoginConnectionsRequest($user_id);
 
         try {
@@ -704,10 +725,11 @@ final class ConnectionsApi
     /**
      * List federated login connections
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listLoginConnectionsAsync(string $user_id): Promise
-    {
+    public function listLoginConnectionsAsync(
+        string $user_id
+    ): Promise {
         return $this->listLoginConnectionsAsyncWithHttpInfo($user_id)
             ->then(
                 function ($response) {
@@ -719,10 +741,11 @@ final class ConnectionsApi
     /**
      * List federated login connections
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listLoginConnectionsAsyncWithHttpInfo(string $user_id)
-    {
+    public function listLoginConnectionsAsyncWithHttpInfo(
+        string $user_id
+    ) {
         $returnType = '\Upsun\Model\Connection[]';
         $request = $this->listLoginConnectionsRequest($user_id);
 
@@ -763,8 +786,9 @@ final class ConnectionsApi
      *
      * @throws InvalidArgumentException
      */
-    public function listLoginConnectionsRequest(string $user_id): RequestInterface
-    {
+    public function listLoginConnectionsRequest(
+        string $user_id
+    ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -848,9 +872,9 @@ final class ConnectionsApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -946,8 +970,8 @@ final class ConnectionsApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

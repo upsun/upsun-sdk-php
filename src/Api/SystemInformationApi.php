@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class SystemInformationApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\AcceptedResponse
      */
-    public function actionProjectsSystemRestart($project_id): \Upsun\Model\AcceptedResponse
+    public function actionProjectsSystemRestart($project_id)
     {
         list($response) = $this->actionProjectsSystemRestartWithHttpInfo($project_id);
         return $response;
@@ -135,8 +137,9 @@ final class SystemInformationApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function actionProjectsSystemRestartWithHttpInfo(string $project_id): array
-    {
+    public function actionProjectsSystemRestartWithHttpInfo(
+        string $project_id
+    ): array {
         $request = $this->actionProjectsSystemRestartRequest($project_id);
 
         try {
@@ -214,10 +217,11 @@ final class SystemInformationApi
     /**
      * Restart the Git server
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function actionProjectsSystemRestartAsync(string $project_id): Promise
-    {
+    public function actionProjectsSystemRestartAsync(
+        string $project_id
+    ): Promise {
         return $this->actionProjectsSystemRestartAsyncWithHttpInfo($project_id)
             ->then(
                 function ($response) {
@@ -229,10 +233,11 @@ final class SystemInformationApi
     /**
      * Restart the Git server
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function actionProjectsSystemRestartAsyncWithHttpInfo(string $project_id)
-    {
+    public function actionProjectsSystemRestartAsyncWithHttpInfo(
+        string $project_id
+    ) {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->actionProjectsSystemRestartRequest($project_id);
 
@@ -273,8 +278,9 @@ final class SystemInformationApi
      *
      * @throws InvalidArgumentException
      */
-    public function actionProjectsSystemRestartRequest(string $project_id): RequestInterface
-    {
+    public function actionProjectsSystemRestartRequest(
+        string $project_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -358,8 +364,9 @@ final class SystemInformationApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\SystemInformation
      */
-    public function getProjectsSystem($project_id): \Upsun\Model\SystemInformation
+    public function getProjectsSystem($project_id)
     {
         list($response) = $this->getProjectsSystemWithHttpInfo($project_id);
         return $response;
@@ -371,8 +378,9 @@ final class SystemInformationApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getProjectsSystemWithHttpInfo(string $project_id): array
-    {
+    public function getProjectsSystemWithHttpInfo(
+        string $project_id
+    ): array {
         $request = $this->getProjectsSystemRequest($project_id);
 
         try {
@@ -450,10 +458,11 @@ final class SystemInformationApi
     /**
      * Get information about the Git server.
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsSystemAsync(string $project_id): Promise
-    {
+    public function getProjectsSystemAsync(
+        string $project_id
+    ): Promise {
         return $this->getProjectsSystemAsyncWithHttpInfo($project_id)
             ->then(
                 function ($response) {
@@ -465,10 +474,11 @@ final class SystemInformationApi
     /**
      * Get information about the Git server.
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsSystemAsyncWithHttpInfo(string $project_id)
-    {
+    public function getProjectsSystemAsyncWithHttpInfo(
+        string $project_id
+    ) {
         $returnType = '\Upsun\Model\SystemInformation';
         $request = $this->getProjectsSystemRequest($project_id);
 
@@ -509,8 +519,9 @@ final class SystemInformationApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectsSystemRequest(string $project_id): RequestInterface
-    {
+    public function getProjectsSystemRequest(
+        string $project_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -594,9 +605,9 @@ final class SystemInformationApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -692,8 +703,8 @@ final class SystemInformationApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

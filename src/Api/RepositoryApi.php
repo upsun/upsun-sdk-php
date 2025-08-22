@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class RepositoryApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Blob
      */
-    public function getProjectsGitBlobs($project_id, $repository_blob_id): \Upsun\Model\Blob
+    public function getProjectsGitBlobs($project_id, $repository_blob_id)
     {
         list($response) = $this->getProjectsGitBlobsWithHttpInfo($project_id, $repository_blob_id);
         return $response;
@@ -135,8 +137,10 @@ final class RepositoryApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getProjectsGitBlobsWithHttpInfo(string $project_id, string $repository_blob_id): array
-    {
+    public function getProjectsGitBlobsWithHttpInfo(
+        string $project_id,
+        string $repository_blob_id
+    ): array {
         $request = $this->getProjectsGitBlobsRequest($project_id, $repository_blob_id);
 
         try {
@@ -214,10 +218,12 @@ final class RepositoryApi
     /**
      * Get a blob object
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsGitBlobsAsync(string $project_id, string $repository_blob_id): Promise
-    {
+    public function getProjectsGitBlobsAsync(
+        string $project_id,
+        string $repository_blob_id
+    ): Promise {
         return $this->getProjectsGitBlobsAsyncWithHttpInfo($project_id, $repository_blob_id)
             ->then(
                 function ($response) {
@@ -229,10 +235,12 @@ final class RepositoryApi
     /**
      * Get a blob object
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsGitBlobsAsyncWithHttpInfo(string $project_id, string $repository_blob_id)
-    {
+    public function getProjectsGitBlobsAsyncWithHttpInfo(
+        string $project_id,
+        string $repository_blob_id
+    ) {
         $returnType = '\Upsun\Model\Blob';
         $request = $this->getProjectsGitBlobsRequest($project_id, $repository_blob_id);
 
@@ -273,8 +281,10 @@ final class RepositoryApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectsGitBlobsRequest(string $project_id, string $repository_blob_id): RequestInterface
-    {
+    public function getProjectsGitBlobsRequest(
+        string $project_id,
+        string $repository_blob_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -372,8 +382,9 @@ final class RepositoryApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Commit
      */
-    public function getProjectsGitCommits($project_id, $repository_commit_id): \Upsun\Model\Commit
+    public function getProjectsGitCommits($project_id, $repository_commit_id)
     {
         list($response) = $this->getProjectsGitCommitsWithHttpInfo($project_id, $repository_commit_id);
         return $response;
@@ -385,8 +396,10 @@ final class RepositoryApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getProjectsGitCommitsWithHttpInfo(string $project_id, string $repository_commit_id): array
-    {
+    public function getProjectsGitCommitsWithHttpInfo(
+        string $project_id,
+        string $repository_commit_id
+    ): array {
         $request = $this->getProjectsGitCommitsRequest($project_id, $repository_commit_id);
 
         try {
@@ -464,10 +477,12 @@ final class RepositoryApi
     /**
      * Get a commit object
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsGitCommitsAsync(string $project_id, string $repository_commit_id): Promise
-    {
+    public function getProjectsGitCommitsAsync(
+        string $project_id,
+        string $repository_commit_id
+    ): Promise {
         return $this->getProjectsGitCommitsAsyncWithHttpInfo($project_id, $repository_commit_id)
             ->then(
                 function ($response) {
@@ -479,10 +494,12 @@ final class RepositoryApi
     /**
      * Get a commit object
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsGitCommitsAsyncWithHttpInfo(string $project_id, string $repository_commit_id)
-    {
+    public function getProjectsGitCommitsAsyncWithHttpInfo(
+        string $project_id,
+        string $repository_commit_id
+    ) {
         $returnType = '\Upsun\Model\Commit';
         $request = $this->getProjectsGitCommitsRequest($project_id, $repository_commit_id);
 
@@ -523,8 +540,10 @@ final class RepositoryApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectsGitCommitsRequest(string $project_id, string $repository_commit_id): RequestInterface
-    {
+    public function getProjectsGitCommitsRequest(
+        string $project_id,
+        string $repository_commit_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -622,8 +641,9 @@ final class RepositoryApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Ref
      */
-    public function getProjectsGitRefs($project_id, $repository_ref_id): \Upsun\Model\Ref
+    public function getProjectsGitRefs($project_id, $repository_ref_id)
     {
         list($response) = $this->getProjectsGitRefsWithHttpInfo($project_id, $repository_ref_id);
         return $response;
@@ -635,8 +655,10 @@ final class RepositoryApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getProjectsGitRefsWithHttpInfo(string $project_id, string $repository_ref_id): array
-    {
+    public function getProjectsGitRefsWithHttpInfo(
+        string $project_id,
+        string $repository_ref_id
+    ): array {
         $request = $this->getProjectsGitRefsRequest($project_id, $repository_ref_id);
 
         try {
@@ -714,10 +736,12 @@ final class RepositoryApi
     /**
      * Get a ref object
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsGitRefsAsync(string $project_id, string $repository_ref_id): Promise
-    {
+    public function getProjectsGitRefsAsync(
+        string $project_id,
+        string $repository_ref_id
+    ): Promise {
         return $this->getProjectsGitRefsAsyncWithHttpInfo($project_id, $repository_ref_id)
             ->then(
                 function ($response) {
@@ -729,10 +753,12 @@ final class RepositoryApi
     /**
      * Get a ref object
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsGitRefsAsyncWithHttpInfo(string $project_id, string $repository_ref_id)
-    {
+    public function getProjectsGitRefsAsyncWithHttpInfo(
+        string $project_id,
+        string $repository_ref_id
+    ) {
         $returnType = '\Upsun\Model\Ref';
         $request = $this->getProjectsGitRefsRequest($project_id, $repository_ref_id);
 
@@ -773,8 +799,10 @@ final class RepositoryApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectsGitRefsRequest(string $project_id, string $repository_ref_id): RequestInterface
-    {
+    public function getProjectsGitRefsRequest(
+        string $project_id,
+        string $repository_ref_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -872,8 +900,9 @@ final class RepositoryApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Tree
      */
-    public function getProjectsGitTrees($project_id, $repository_tree_id): \Upsun\Model\Tree
+    public function getProjectsGitTrees($project_id, $repository_tree_id)
     {
         list($response) = $this->getProjectsGitTreesWithHttpInfo($project_id, $repository_tree_id);
         return $response;
@@ -885,8 +914,10 @@ final class RepositoryApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getProjectsGitTreesWithHttpInfo(string $project_id, string $repository_tree_id): array
-    {
+    public function getProjectsGitTreesWithHttpInfo(
+        string $project_id,
+        string $repository_tree_id
+    ): array {
         $request = $this->getProjectsGitTreesRequest($project_id, $repository_tree_id);
 
         try {
@@ -964,10 +995,12 @@ final class RepositoryApi
     /**
      * Get a tree object
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsGitTreesAsync(string $project_id, string $repository_tree_id): Promise
-    {
+    public function getProjectsGitTreesAsync(
+        string $project_id,
+        string $repository_tree_id
+    ): Promise {
         return $this->getProjectsGitTreesAsyncWithHttpInfo($project_id, $repository_tree_id)
             ->then(
                 function ($response) {
@@ -979,10 +1012,12 @@ final class RepositoryApi
     /**
      * Get a tree object
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsGitTreesAsyncWithHttpInfo(string $project_id, string $repository_tree_id)
-    {
+    public function getProjectsGitTreesAsyncWithHttpInfo(
+        string $project_id,
+        string $repository_tree_id
+    ) {
         $returnType = '\Upsun\Model\Tree';
         $request = $this->getProjectsGitTreesRequest($project_id, $repository_tree_id);
 
@@ -1023,8 +1058,10 @@ final class RepositoryApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectsGitTreesRequest(string $project_id, string $repository_tree_id): RequestInterface
-    {
+    public function getProjectsGitTreesRequest(
+        string $project_id,
+        string $repository_tree_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1122,8 +1159,9 @@ final class RepositoryApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Ref[]
      */
-    public function listProjectsGitRefs($project_id): \Upsun\Model\Ref[]
+    public function listProjectsGitRefs($project_id)
     {
         list($response) = $this->listProjectsGitRefsWithHttpInfo($project_id);
         return $response;
@@ -1135,8 +1173,9 @@ final class RepositoryApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listProjectsGitRefsWithHttpInfo(string $project_id): array
-    {
+    public function listProjectsGitRefsWithHttpInfo(
+        string $project_id
+    ): array {
         $request = $this->listProjectsGitRefsRequest($project_id);
 
         try {
@@ -1214,10 +1253,11 @@ final class RepositoryApi
     /**
      * Get list of repository refs
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsGitRefsAsync(string $project_id): Promise
-    {
+    public function listProjectsGitRefsAsync(
+        string $project_id
+    ): Promise {
         return $this->listProjectsGitRefsAsyncWithHttpInfo($project_id)
             ->then(
                 function ($response) {
@@ -1229,10 +1269,11 @@ final class RepositoryApi
     /**
      * Get list of repository refs
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsGitRefsAsyncWithHttpInfo(string $project_id)
-    {
+    public function listProjectsGitRefsAsyncWithHttpInfo(
+        string $project_id
+    ) {
         $returnType = '\Upsun\Model\Ref[]';
         $request = $this->listProjectsGitRefsRequest($project_id);
 
@@ -1273,8 +1314,9 @@ final class RepositoryApi
      *
      * @throws InvalidArgumentException
      */
-    public function listProjectsGitRefsRequest(string $project_id): RequestInterface
-    {
+    public function listProjectsGitRefsRequest(
+        string $project_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1358,9 +1400,9 @@ final class RepositoryApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -1456,8 +1498,8 @@ final class RepositoryApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

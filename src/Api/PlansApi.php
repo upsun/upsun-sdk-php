@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class PlansApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ListPlans200Response
      */
-    public function listPlans(): \Upsun\Model\ListPlans200Response
+    public function listPlans()
     {
         list($response) = $this->listPlansWithHttpInfo();
         return $response;
@@ -135,8 +137,9 @@ final class PlansApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listPlansWithHttpInfo(): array
-    {
+    public function listPlansWithHttpInfo(
+        
+    ): array {
         $request = $this->listPlansRequest();
 
         try {
@@ -214,10 +217,11 @@ final class PlansApi
     /**
      * List available plans
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listPlansAsync(): Promise
-    {
+    public function listPlansAsync(
+        
+    ): Promise {
         return $this->listPlansAsyncWithHttpInfo()
             ->then(
                 function ($response) {
@@ -229,10 +233,11 @@ final class PlansApi
     /**
      * List available plans
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listPlansAsyncWithHttpInfo()
-    {
+    public function listPlansAsyncWithHttpInfo(
+        
+    ) {
         $returnType = '\Upsun\Model\ListPlans200Response';
         $request = $this->listPlansRequest();
 
@@ -273,8 +278,9 @@ final class PlansApi
      *
      * @throws InvalidArgumentException
      */
-    public function listPlansRequest(): RequestInterface
-    {
+    public function listPlansRequest(
+        
+    ): RequestInterface {
 
         $resourcePath = '/plans';
         $formParams = [];
@@ -344,9 +350,9 @@ final class PlansApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -442,8 +448,8 @@ final class PlansApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

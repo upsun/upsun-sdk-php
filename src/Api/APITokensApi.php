@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class APITokensApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\APIToken
      */
-    public function createApiToken($user_id, $create_api_token_request = null): \Upsun\Model\APIToken
+    public function createApiToken($user_id, $create_api_token_request = null)
     {
         list($response) = $this->createApiTokenWithHttpInfo($user_id, $create_api_token_request);
         return $response;
@@ -135,8 +137,10 @@ final class APITokensApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function createApiTokenWithHttpInfo(string $user_id, \Upsun\Model\CreateApiTokenRequest $create_api_token_request = null): array
-    {
+    public function createApiTokenWithHttpInfo(
+        string $user_id,
+        \Upsun\Model\CreateApiTokenRequest $create_api_token_request = null
+    ): array {
         $request = $this->createApiTokenRequest($user_id, $create_api_token_request);
 
         try {
@@ -256,10 +260,12 @@ final class APITokensApi
     /**
      * Create an API token
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createApiTokenAsync(string $user_id, \Upsun\Model\CreateApiTokenRequest $create_api_token_request = null): Promise
-    {
+    public function createApiTokenAsync(
+        string $user_id,
+        \Upsun\Model\CreateApiTokenRequest $create_api_token_request = null
+    ): Promise {
         return $this->createApiTokenAsyncWithHttpInfo($user_id, $create_api_token_request)
             ->then(
                 function ($response) {
@@ -271,10 +277,12 @@ final class APITokensApi
     /**
      * Create an API token
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createApiTokenAsyncWithHttpInfo(string $user_id, \Upsun\Model\CreateApiTokenRequest $create_api_token_request = null)
-    {
+    public function createApiTokenAsyncWithHttpInfo(
+        string $user_id,
+        \Upsun\Model\CreateApiTokenRequest $create_api_token_request = null
+    ) {
         $returnType = '\Upsun\Model\APIToken';
         $request = $this->createApiTokenRequest($user_id, $create_api_token_request);
 
@@ -315,8 +323,10 @@ final class APITokensApi
      *
      * @throws InvalidArgumentException
      */
-    public function createApiTokenRequest(string $user_id, \Upsun\Model\CreateApiTokenRequest $create_api_token_request = null): RequestInterface
-    {
+    public function createApiTokenRequest(
+        string $user_id,
+        \Upsun\Model\CreateApiTokenRequest $create_api_token_request = null
+    ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -406,8 +416,9 @@ final class APITokensApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function deleteApiToken($user_id, $token_id): void
+    public function deleteApiToken($user_id, $token_id)
     {
         $this->deleteApiTokenWithHttpInfo($user_id, $token_id);
     }
@@ -418,8 +429,10 @@ final class APITokensApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function deleteApiTokenWithHttpInfo(string $user_id, string $token_id): array
-    {
+    public function deleteApiTokenWithHttpInfo(
+        string $user_id,
+        string $token_id
+    ): array {
         $request = $this->deleteApiTokenRequest($user_id, $token_id);
 
         try {
@@ -470,10 +483,12 @@ final class APITokensApi
     /**
      * Delete an API token
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteApiTokenAsync(string $user_id, string $token_id): Promise
-    {
+    public function deleteApiTokenAsync(
+        string $user_id,
+        string $token_id
+    ): Promise {
         return $this->deleteApiTokenAsyncWithHttpInfo($user_id, $token_id)
             ->then(
                 function ($response) {
@@ -485,10 +500,12 @@ final class APITokensApi
     /**
      * Delete an API token
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteApiTokenAsyncWithHttpInfo(string $user_id, string $token_id)
-    {
+    public function deleteApiTokenAsyncWithHttpInfo(
+        string $user_id,
+        string $token_id
+    ) {
         $returnType = '';
         $request = $this->deleteApiTokenRequest($user_id, $token_id);
 
@@ -519,8 +536,10 @@ final class APITokensApi
      *
      * @throws InvalidArgumentException
      */
-    public function deleteApiTokenRequest(string $user_id, string $token_id): RequestInterface
-    {
+    public function deleteApiTokenRequest(
+        string $user_id,
+        string $token_id
+    ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -618,8 +637,9 @@ final class APITokensApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\APIToken
      */
-    public function getApiToken($user_id, $token_id): \Upsun\Model\APIToken
+    public function getApiToken($user_id, $token_id)
     {
         list($response) = $this->getApiTokenWithHttpInfo($user_id, $token_id);
         return $response;
@@ -631,8 +651,10 @@ final class APITokensApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getApiTokenWithHttpInfo(string $user_id, string $token_id): array
-    {
+    public function getApiTokenWithHttpInfo(
+        string $user_id,
+        string $token_id
+    ): array {
         $request = $this->getApiTokenRequest($user_id, $token_id);
 
         try {
@@ -724,10 +746,12 @@ final class APITokensApi
     /**
      * Get an API token
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getApiTokenAsync(string $user_id, string $token_id): Promise
-    {
+    public function getApiTokenAsync(
+        string $user_id,
+        string $token_id
+    ): Promise {
         return $this->getApiTokenAsyncWithHttpInfo($user_id, $token_id)
             ->then(
                 function ($response) {
@@ -739,10 +763,12 @@ final class APITokensApi
     /**
      * Get an API token
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getApiTokenAsyncWithHttpInfo(string $user_id, string $token_id)
-    {
+    public function getApiTokenAsyncWithHttpInfo(
+        string $user_id,
+        string $token_id
+    ) {
         $returnType = '\Upsun\Model\APIToken';
         $request = $this->getApiTokenRequest($user_id, $token_id);
 
@@ -783,8 +809,10 @@ final class APITokensApi
      *
      * @throws InvalidArgumentException
      */
-    public function getApiTokenRequest(string $user_id, string $token_id): RequestInterface
-    {
+    public function getApiTokenRequest(
+        string $user_id,
+        string $token_id
+    ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -882,8 +910,9 @@ final class APITokensApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\APIToken[]
      */
-    public function listApiTokens($user_id): \Upsun\Model\APIToken[]
+    public function listApiTokens($user_id)
     {
         list($response) = $this->listApiTokensWithHttpInfo($user_id);
         return $response;
@@ -895,8 +924,9 @@ final class APITokensApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listApiTokensWithHttpInfo(string $user_id): array
-    {
+    public function listApiTokensWithHttpInfo(
+        string $user_id
+    ): array {
         $request = $this->listApiTokensRequest($user_id);
 
         try {
@@ -988,10 +1018,11 @@ final class APITokensApi
     /**
      * List a user&#39;s API tokens
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listApiTokensAsync(string $user_id): Promise
-    {
+    public function listApiTokensAsync(
+        string $user_id
+    ): Promise {
         return $this->listApiTokensAsyncWithHttpInfo($user_id)
             ->then(
                 function ($response) {
@@ -1003,10 +1034,11 @@ final class APITokensApi
     /**
      * List a user&#39;s API tokens
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listApiTokensAsyncWithHttpInfo(string $user_id)
-    {
+    public function listApiTokensAsyncWithHttpInfo(
+        string $user_id
+    ) {
         $returnType = '\Upsun\Model\APIToken[]';
         $request = $this->listApiTokensRequest($user_id);
 
@@ -1047,8 +1079,9 @@ final class APITokensApi
      *
      * @throws InvalidArgumentException
      */
-    public function listApiTokensRequest(string $user_id): RequestInterface
-    {
+    public function listApiTokensRequest(
+        string $user_id
+    ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1132,9 +1165,9 @@ final class APITokensApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -1230,8 +1263,8 @@ final class APITokensApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

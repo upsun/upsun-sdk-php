@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class ProjectSettingsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ProjectSettings
      */
-    public function getProjectsSettings($project_id): \Upsun\Model\ProjectSettings
+    public function getProjectsSettings($project_id)
     {
         list($response) = $this->getProjectsSettingsWithHttpInfo($project_id);
         return $response;
@@ -135,8 +137,9 @@ final class ProjectSettingsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getProjectsSettingsWithHttpInfo(string $project_id): array
-    {
+    public function getProjectsSettingsWithHttpInfo(
+        string $project_id
+    ): array {
         $request = $this->getProjectsSettingsRequest($project_id);
 
         try {
@@ -214,10 +217,11 @@ final class ProjectSettingsApi
     /**
      * Get list of project settings
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsSettingsAsync(string $project_id): Promise
-    {
+    public function getProjectsSettingsAsync(
+        string $project_id
+    ): Promise {
         return $this->getProjectsSettingsAsyncWithHttpInfo($project_id)
             ->then(
                 function ($response) {
@@ -229,10 +233,11 @@ final class ProjectSettingsApi
     /**
      * Get list of project settings
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsSettingsAsyncWithHttpInfo(string $project_id)
-    {
+    public function getProjectsSettingsAsyncWithHttpInfo(
+        string $project_id
+    ) {
         $returnType = '\Upsun\Model\ProjectSettings';
         $request = $this->getProjectsSettingsRequest($project_id);
 
@@ -273,8 +278,9 @@ final class ProjectSettingsApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectsSettingsRequest(string $project_id): RequestInterface
-    {
+    public function getProjectsSettingsRequest(
+        string $project_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -358,8 +364,9 @@ final class ProjectSettingsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\AcceptedResponse
      */
-    public function updateProjectsSettings($project_id, $project_settings_patch): \Upsun\Model\AcceptedResponse
+    public function updateProjectsSettings($project_id, $project_settings_patch)
     {
         list($response) = $this->updateProjectsSettingsWithHttpInfo($project_id, $project_settings_patch);
         return $response;
@@ -371,8 +378,10 @@ final class ProjectSettingsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function updateProjectsSettingsWithHttpInfo(string $project_id, \Upsun\Model\ProjectSettingsPatch $project_settings_patch): array
-    {
+    public function updateProjectsSettingsWithHttpInfo(
+        string $project_id,
+        \Upsun\Model\ProjectSettingsPatch $project_settings_patch
+    ): array {
         $request = $this->updateProjectsSettingsRequest($project_id, $project_settings_patch);
 
         try {
@@ -450,10 +459,12 @@ final class ProjectSettingsApi
     /**
      * Update a project setting
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateProjectsSettingsAsync(string $project_id, \Upsun\Model\ProjectSettingsPatch $project_settings_patch): Promise
-    {
+    public function updateProjectsSettingsAsync(
+        string $project_id,
+        \Upsun\Model\ProjectSettingsPatch $project_settings_patch
+    ): Promise {
         return $this->updateProjectsSettingsAsyncWithHttpInfo($project_id, $project_settings_patch)
             ->then(
                 function ($response) {
@@ -465,10 +476,12 @@ final class ProjectSettingsApi
     /**
      * Update a project setting
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateProjectsSettingsAsyncWithHttpInfo(string $project_id, \Upsun\Model\ProjectSettingsPatch $project_settings_patch)
-    {
+    public function updateProjectsSettingsAsyncWithHttpInfo(
+        string $project_id,
+        \Upsun\Model\ProjectSettingsPatch $project_settings_patch
+    ) {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateProjectsSettingsRequest($project_id, $project_settings_patch);
 
@@ -509,8 +522,10 @@ final class ProjectSettingsApi
      *
      * @throws InvalidArgumentException
      */
-    public function updateProjectsSettingsRequest(string $project_id, \Upsun\Model\ProjectSettingsPatch $project_settings_patch): RequestInterface
-    {
+    public function updateProjectsSettingsRequest(
+        string $project_id,
+        \Upsun\Model\ProjectSettingsPatch $project_settings_patch
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -606,9 +621,9 @@ final class ProjectSettingsApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -704,8 +719,8 @@ final class ProjectSettingsApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

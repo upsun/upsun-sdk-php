@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class DefaultApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ListTickets200Response
      */
-    public function listTickets($filter_ticket_id = null, $filter_created = null, $filter_updated = null, $filter_type = null, $filter_priority = null, $filter_status = null, $filter_requester_id = null, $filter_submitter_id = null, $filter_assignee_id = null, $filter_has_incidents = null, $filter_due = null, $search = null, $page = null): \Upsun\Model\ListTickets200Response
+    public function listTickets($filter_ticket_id = null, $filter_created = null, $filter_updated = null, $filter_type = null, $filter_priority = null, $filter_status = null, $filter_requester_id = null, $filter_submitter_id = null, $filter_assignee_id = null, $filter_has_incidents = null, $filter_due = null, $search = null, $page = null)
     {
         list($response) = $this->listTicketsWithHttpInfo($filter_ticket_id, $filter_created, $filter_updated, $filter_type, $filter_priority, $filter_status, $filter_requester_id, $filter_submitter_id, $filter_assignee_id, $filter_has_incidents, $filter_due, $search, $page);
         return $response;
@@ -135,8 +137,21 @@ final class DefaultApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listTicketsWithHttpInfo(int $filter_ticket_id = null, \DateTime $filter_created = null, \DateTime $filter_updated = null, string $filter_type = null, string $filter_priority = null, string $filter_status = null, string $filter_requester_id = null, string $filter_submitter_id = null, string $filter_assignee_id = null, bool $filter_has_incidents = null, \DateTime $filter_due = null, string $search = null, int $page = null): array
-    {
+    public function listTicketsWithHttpInfo(
+        int $filter_ticket_id = null,
+        \DateTime $filter_created = null,
+        \DateTime $filter_updated = null,
+        string $filter_type = null,
+        string $filter_priority = null,
+        string $filter_status = null,
+        string $filter_requester_id = null,
+        string $filter_submitter_id = null,
+        string $filter_assignee_id = null,
+        bool $filter_has_incidents = null,
+        \DateTime $filter_due = null,
+        string $search = null,
+        int $page = null
+    ): array {
         $request = $this->listTicketsRequest($filter_ticket_id, $filter_created, $filter_updated, $filter_type, $filter_priority, $filter_status, $filter_requester_id, $filter_submitter_id, $filter_assignee_id, $filter_has_incidents, $filter_due, $search, $page);
 
         try {
@@ -214,10 +229,23 @@ final class DefaultApi
     /**
      * List support tickets
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listTicketsAsync(int $filter_ticket_id = null, \DateTime $filter_created = null, \DateTime $filter_updated = null, string $filter_type = null, string $filter_priority = null, string $filter_status = null, string $filter_requester_id = null, string $filter_submitter_id = null, string $filter_assignee_id = null, bool $filter_has_incidents = null, \DateTime $filter_due = null, string $search = null, int $page = null): Promise
-    {
+    public function listTicketsAsync(
+        int $filter_ticket_id = null,
+        \DateTime $filter_created = null,
+        \DateTime $filter_updated = null,
+        string $filter_type = null,
+        string $filter_priority = null,
+        string $filter_status = null,
+        string $filter_requester_id = null,
+        string $filter_submitter_id = null,
+        string $filter_assignee_id = null,
+        bool $filter_has_incidents = null,
+        \DateTime $filter_due = null,
+        string $search = null,
+        int $page = null
+    ): Promise {
         return $this->listTicketsAsyncWithHttpInfo($filter_ticket_id, $filter_created, $filter_updated, $filter_type, $filter_priority, $filter_status, $filter_requester_id, $filter_submitter_id, $filter_assignee_id, $filter_has_incidents, $filter_due, $search, $page)
             ->then(
                 function ($response) {
@@ -229,10 +257,23 @@ final class DefaultApi
     /**
      * List support tickets
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listTicketsAsyncWithHttpInfo(int $filter_ticket_id = null, \DateTime $filter_created = null, \DateTime $filter_updated = null, string $filter_type = null, string $filter_priority = null, string $filter_status = null, string $filter_requester_id = null, string $filter_submitter_id = null, string $filter_assignee_id = null, bool $filter_has_incidents = null, \DateTime $filter_due = null, string $search = null, int $page = null)
-    {
+    public function listTicketsAsyncWithHttpInfo(
+        int $filter_ticket_id = null,
+        \DateTime $filter_created = null,
+        \DateTime $filter_updated = null,
+        string $filter_type = null,
+        string $filter_priority = null,
+        string $filter_status = null,
+        string $filter_requester_id = null,
+        string $filter_submitter_id = null,
+        string $filter_assignee_id = null,
+        bool $filter_has_incidents = null,
+        \DateTime $filter_due = null,
+        string $search = null,
+        int $page = null
+    ) {
         $returnType = '\Upsun\Model\ListTickets200Response';
         $request = $this->listTicketsRequest($filter_ticket_id, $filter_created, $filter_updated, $filter_type, $filter_priority, $filter_status, $filter_requester_id, $filter_submitter_id, $filter_assignee_id, $filter_has_incidents, $filter_due, $search, $page);
 
@@ -273,8 +314,21 @@ final class DefaultApi
      *
      * @throws InvalidArgumentException
      */
-    public function listTicketsRequest(int $filter_ticket_id = null, \DateTime $filter_created = null, \DateTime $filter_updated = null, string $filter_type = null, string $filter_priority = null, string $filter_status = null, string $filter_requester_id = null, string $filter_submitter_id = null, string $filter_assignee_id = null, bool $filter_has_incidents = null, \DateTime $filter_due = null, string $search = null, int $page = null): RequestInterface
-    {
+    public function listTicketsRequest(
+        int $filter_ticket_id = null,
+        \DateTime $filter_created = null,
+        \DateTime $filter_updated = null,
+        string $filter_type = null,
+        string $filter_priority = null,
+        string $filter_status = null,
+        string $filter_requester_id = null,
+        string $filter_submitter_id = null,
+        string $filter_assignee_id = null,
+        bool $filter_has_incidents = null,
+        \DateTime $filter_due = null,
+        string $search = null,
+        int $page = null
+    ): RequestInterface {
 
         $resourcePath = '/tickets';
         $formParams = [];
@@ -487,9 +541,9 @@ final class DefaultApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -585,8 +639,8 @@ final class DefaultApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

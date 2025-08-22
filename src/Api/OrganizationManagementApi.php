@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class OrganizationManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\OrganizationEstimationObject
      */
-    public function estimateOrg($organization_id): \Upsun\Model\OrganizationEstimationObject
+    public function estimateOrg($organization_id)
     {
         list($response) = $this->estimateOrgWithHttpInfo($organization_id);
         return $response;
@@ -135,8 +137,9 @@ final class OrganizationManagementApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function estimateOrgWithHttpInfo(string $organization_id): array
-    {
+    public function estimateOrgWithHttpInfo(
+        string $organization_id
+    ): array {
         $request = $this->estimateOrgRequest($organization_id);
 
         try {
@@ -242,10 +245,11 @@ final class OrganizationManagementApi
     /**
      * Estimate total spend
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function estimateOrgAsync(string $organization_id): Promise
-    {
+    public function estimateOrgAsync(
+        string $organization_id
+    ): Promise {
         return $this->estimateOrgAsyncWithHttpInfo($organization_id)
             ->then(
                 function ($response) {
@@ -257,10 +261,11 @@ final class OrganizationManagementApi
     /**
      * Estimate total spend
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function estimateOrgAsyncWithHttpInfo(string $organization_id)
-    {
+    public function estimateOrgAsyncWithHttpInfo(
+        string $organization_id
+    ) {
         $returnType = '\Upsun\Model\OrganizationEstimationObject';
         $request = $this->estimateOrgRequest($organization_id);
 
@@ -301,8 +306,9 @@ final class OrganizationManagementApi
      *
      * @throws InvalidArgumentException
      */
-    public function estimateOrgRequest(string $organization_id): RequestInterface
-    {
+    public function estimateOrgRequest(
+        string $organization_id
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -386,8 +392,9 @@ final class OrganizationManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\OrganizationAlertConfig
      */
-    public function getOrgBillingAlertConfig($organization_id): \Upsun\Model\OrganizationAlertConfig
+    public function getOrgBillingAlertConfig($organization_id)
     {
         list($response) = $this->getOrgBillingAlertConfigWithHttpInfo($organization_id);
         return $response;
@@ -399,8 +406,9 @@ final class OrganizationManagementApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getOrgBillingAlertConfigWithHttpInfo(string $organization_id): array
-    {
+    public function getOrgBillingAlertConfigWithHttpInfo(
+        string $organization_id
+    ): array {
         $request = $this->getOrgBillingAlertConfigRequest($organization_id);
 
         try {
@@ -506,10 +514,11 @@ final class OrganizationManagementApi
     /**
      * Get billing alert configuration
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getOrgBillingAlertConfigAsync(string $organization_id): Promise
-    {
+    public function getOrgBillingAlertConfigAsync(
+        string $organization_id
+    ): Promise {
         return $this->getOrgBillingAlertConfigAsyncWithHttpInfo($organization_id)
             ->then(
                 function ($response) {
@@ -521,10 +530,11 @@ final class OrganizationManagementApi
     /**
      * Get billing alert configuration
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getOrgBillingAlertConfigAsyncWithHttpInfo(string $organization_id)
-    {
+    public function getOrgBillingAlertConfigAsyncWithHttpInfo(
+        string $organization_id
+    ) {
         $returnType = '\Upsun\Model\OrganizationAlertConfig';
         $request = $this->getOrgBillingAlertConfigRequest($organization_id);
 
@@ -565,8 +575,9 @@ final class OrganizationManagementApi
      *
      * @throws InvalidArgumentException
      */
-    public function getOrgBillingAlertConfigRequest(string $organization_id): RequestInterface
-    {
+    public function getOrgBillingAlertConfigRequest(
+        string $organization_id
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -650,8 +661,9 @@ final class OrganizationManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\GetOrgPrepaymentInfo200Response
      */
-    public function getOrgPrepaymentInfo($organization_id): \Upsun\Model\GetOrgPrepaymentInfo200Response
+    public function getOrgPrepaymentInfo($organization_id)
     {
         list($response) = $this->getOrgPrepaymentInfoWithHttpInfo($organization_id);
         return $response;
@@ -663,8 +675,9 @@ final class OrganizationManagementApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getOrgPrepaymentInfoWithHttpInfo(string $organization_id): array
-    {
+    public function getOrgPrepaymentInfoWithHttpInfo(
+        string $organization_id
+    ): array {
         $request = $this->getOrgPrepaymentInfoRequest($organization_id);
 
         try {
@@ -770,10 +783,11 @@ final class OrganizationManagementApi
     /**
      * Get organization prepayment information
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getOrgPrepaymentInfoAsync(string $organization_id): Promise
-    {
+    public function getOrgPrepaymentInfoAsync(
+        string $organization_id
+    ): Promise {
         return $this->getOrgPrepaymentInfoAsyncWithHttpInfo($organization_id)
             ->then(
                 function ($response) {
@@ -785,10 +799,11 @@ final class OrganizationManagementApi
     /**
      * Get organization prepayment information
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getOrgPrepaymentInfoAsyncWithHttpInfo(string $organization_id)
-    {
+    public function getOrgPrepaymentInfoAsyncWithHttpInfo(
+        string $organization_id
+    ) {
         $returnType = '\Upsun\Model\GetOrgPrepaymentInfo200Response';
         $request = $this->getOrgPrepaymentInfoRequest($organization_id);
 
@@ -829,8 +844,9 @@ final class OrganizationManagementApi
      *
      * @throws InvalidArgumentException
      */
-    public function getOrgPrepaymentInfoRequest(string $organization_id): RequestInterface
-    {
+    public function getOrgPrepaymentInfoRequest(
+        string $organization_id
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -914,8 +930,9 @@ final class OrganizationManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ListOrgPrepaymentTransactions200Response
      */
-    public function listOrgPrepaymentTransactions($organization_id): \Upsun\Model\ListOrgPrepaymentTransactions200Response
+    public function listOrgPrepaymentTransactions($organization_id)
     {
         list($response) = $this->listOrgPrepaymentTransactionsWithHttpInfo($organization_id);
         return $response;
@@ -927,8 +944,9 @@ final class OrganizationManagementApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listOrgPrepaymentTransactionsWithHttpInfo(string $organization_id): array
-    {
+    public function listOrgPrepaymentTransactionsWithHttpInfo(
+        string $organization_id
+    ): array {
         $request = $this->listOrgPrepaymentTransactionsRequest($organization_id);
 
         try {
@@ -1034,10 +1052,11 @@ final class OrganizationManagementApi
     /**
      * List organization prepayment transactions
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listOrgPrepaymentTransactionsAsync(string $organization_id): Promise
-    {
+    public function listOrgPrepaymentTransactionsAsync(
+        string $organization_id
+    ): Promise {
         return $this->listOrgPrepaymentTransactionsAsyncWithHttpInfo($organization_id)
             ->then(
                 function ($response) {
@@ -1049,10 +1068,11 @@ final class OrganizationManagementApi
     /**
      * List organization prepayment transactions
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listOrgPrepaymentTransactionsAsyncWithHttpInfo(string $organization_id)
-    {
+    public function listOrgPrepaymentTransactionsAsyncWithHttpInfo(
+        string $organization_id
+    ) {
         $returnType = '\Upsun\Model\ListOrgPrepaymentTransactions200Response';
         $request = $this->listOrgPrepaymentTransactionsRequest($organization_id);
 
@@ -1093,8 +1113,9 @@ final class OrganizationManagementApi
      *
      * @throws InvalidArgumentException
      */
-    public function listOrgPrepaymentTransactionsRequest(string $organization_id): RequestInterface
-    {
+    public function listOrgPrepaymentTransactionsRequest(
+        string $organization_id
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1178,8 +1199,9 @@ final class OrganizationManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\OrganizationAlertConfig
      */
-    public function updateOrgBillingAlertConfig($organization_id, $update_org_billing_alert_config_request = null): \Upsun\Model\OrganizationAlertConfig
+    public function updateOrgBillingAlertConfig($organization_id, $update_org_billing_alert_config_request = null)
     {
         list($response) = $this->updateOrgBillingAlertConfigWithHttpInfo($organization_id, $update_org_billing_alert_config_request);
         return $response;
@@ -1191,8 +1213,10 @@ final class OrganizationManagementApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function updateOrgBillingAlertConfigWithHttpInfo(string $organization_id, \Upsun\Model\UpdateOrgBillingAlertConfigRequest $update_org_billing_alert_config_request = null): array
-    {
+    public function updateOrgBillingAlertConfigWithHttpInfo(
+        string $organization_id,
+        \Upsun\Model\UpdateOrgBillingAlertConfigRequest $update_org_billing_alert_config_request = null
+    ): array {
         $request = $this->updateOrgBillingAlertConfigRequest($organization_id, $update_org_billing_alert_config_request);
 
         try {
@@ -1298,10 +1322,12 @@ final class OrganizationManagementApi
     /**
      * Update billing alert configuration
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateOrgBillingAlertConfigAsync(string $organization_id, \Upsun\Model\UpdateOrgBillingAlertConfigRequest $update_org_billing_alert_config_request = null): Promise
-    {
+    public function updateOrgBillingAlertConfigAsync(
+        string $organization_id,
+        \Upsun\Model\UpdateOrgBillingAlertConfigRequest $update_org_billing_alert_config_request = null
+    ): Promise {
         return $this->updateOrgBillingAlertConfigAsyncWithHttpInfo($organization_id, $update_org_billing_alert_config_request)
             ->then(
                 function ($response) {
@@ -1313,10 +1339,12 @@ final class OrganizationManagementApi
     /**
      * Update billing alert configuration
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateOrgBillingAlertConfigAsyncWithHttpInfo(string $organization_id, \Upsun\Model\UpdateOrgBillingAlertConfigRequest $update_org_billing_alert_config_request = null)
-    {
+    public function updateOrgBillingAlertConfigAsyncWithHttpInfo(
+        string $organization_id,
+        \Upsun\Model\UpdateOrgBillingAlertConfigRequest $update_org_billing_alert_config_request = null
+    ) {
         $returnType = '\Upsun\Model\OrganizationAlertConfig';
         $request = $this->updateOrgBillingAlertConfigRequest($organization_id, $update_org_billing_alert_config_request);
 
@@ -1357,8 +1385,10 @@ final class OrganizationManagementApi
      *
      * @throws InvalidArgumentException
      */
-    public function updateOrgBillingAlertConfigRequest(string $organization_id, \Upsun\Model\UpdateOrgBillingAlertConfigRequest $update_org_billing_alert_config_request = null): RequestInterface
-    {
+    public function updateOrgBillingAlertConfigRequest(
+        string $organization_id,
+        \Upsun\Model\UpdateOrgBillingAlertConfigRequest $update_org_billing_alert_config_request = null
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1448,9 +1478,9 @@ final class OrganizationManagementApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -1546,8 +1576,8 @@ final class OrganizationManagementApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

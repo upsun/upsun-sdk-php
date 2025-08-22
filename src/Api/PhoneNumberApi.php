@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class PhoneNumberApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function confirmPhoneNumber($sid, $user_id, $confirm_phone_number_request = null): void
+    public function confirmPhoneNumber($sid, $user_id, $confirm_phone_number_request = null)
     {
         $this->confirmPhoneNumberWithHttpInfo($sid, $user_id, $confirm_phone_number_request);
     }
@@ -134,8 +136,11 @@ final class PhoneNumberApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function confirmPhoneNumberWithHttpInfo(string $sid, string $user_id, \Upsun\Model\ConfirmPhoneNumberRequest $confirm_phone_number_request = null): array
-    {
+    public function confirmPhoneNumberWithHttpInfo(
+        string $sid,
+        string $user_id,
+        \Upsun\Model\ConfirmPhoneNumberRequest $confirm_phone_number_request = null
+    ): array {
         $request = $this->confirmPhoneNumberRequest($sid, $user_id, $confirm_phone_number_request);
 
         try {
@@ -202,10 +207,13 @@ final class PhoneNumberApi
     /**
      * Confirm phone number
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function confirmPhoneNumberAsync(string $sid, string $user_id, \Upsun\Model\ConfirmPhoneNumberRequest $confirm_phone_number_request = null): Promise
-    {
+    public function confirmPhoneNumberAsync(
+        string $sid,
+        string $user_id,
+        \Upsun\Model\ConfirmPhoneNumberRequest $confirm_phone_number_request = null
+    ): Promise {
         return $this->confirmPhoneNumberAsyncWithHttpInfo($sid, $user_id, $confirm_phone_number_request)
             ->then(
                 function ($response) {
@@ -217,10 +225,13 @@ final class PhoneNumberApi
     /**
      * Confirm phone number
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function confirmPhoneNumberAsyncWithHttpInfo(string $sid, string $user_id, \Upsun\Model\ConfirmPhoneNumberRequest $confirm_phone_number_request = null)
-    {
+    public function confirmPhoneNumberAsyncWithHttpInfo(
+        string $sid,
+        string $user_id,
+        \Upsun\Model\ConfirmPhoneNumberRequest $confirm_phone_number_request = null
+    ) {
         $returnType = '';
         $request = $this->confirmPhoneNumberRequest($sid, $user_id, $confirm_phone_number_request);
 
@@ -251,8 +262,11 @@ final class PhoneNumberApi
      *
      * @throws InvalidArgumentException
      */
-    public function confirmPhoneNumberRequest(string $sid, string $user_id, \Upsun\Model\ConfirmPhoneNumberRequest $confirm_phone_number_request = null): RequestInterface
-    {
+    public function confirmPhoneNumberRequest(
+        string $sid,
+        string $user_id,
+        \Upsun\Model\ConfirmPhoneNumberRequest $confirm_phone_number_request = null
+    ): RequestInterface {
         // verify the required parameter 'sid' is set
         if ($sid === null || (is_array($sid) && count($sid) === 0)) {
             throw new \InvalidArgumentException(
@@ -356,8 +370,9 @@ final class PhoneNumberApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\VerifyPhoneNumber200Response
      */
-    public function verifyPhoneNumber($user_id, $verify_phone_number_request = null): \Upsun\Model\VerifyPhoneNumber200Response
+    public function verifyPhoneNumber($user_id, $verify_phone_number_request = null)
     {
         list($response) = $this->verifyPhoneNumberWithHttpInfo($user_id, $verify_phone_number_request);
         return $response;
@@ -369,8 +384,10 @@ final class PhoneNumberApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function verifyPhoneNumberWithHttpInfo(string $user_id, \Upsun\Model\VerifyPhoneNumberRequest $verify_phone_number_request = null): array
-    {
+    public function verifyPhoneNumberWithHttpInfo(
+        string $user_id,
+        \Upsun\Model\VerifyPhoneNumberRequest $verify_phone_number_request = null
+    ): array {
         $request = $this->verifyPhoneNumberRequest($user_id, $verify_phone_number_request);
 
         try {
@@ -490,10 +507,12 @@ final class PhoneNumberApi
     /**
      * Verify phone number
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function verifyPhoneNumberAsync(string $user_id, \Upsun\Model\VerifyPhoneNumberRequest $verify_phone_number_request = null): Promise
-    {
+    public function verifyPhoneNumberAsync(
+        string $user_id,
+        \Upsun\Model\VerifyPhoneNumberRequest $verify_phone_number_request = null
+    ): Promise {
         return $this->verifyPhoneNumberAsyncWithHttpInfo($user_id, $verify_phone_number_request)
             ->then(
                 function ($response) {
@@ -505,10 +524,12 @@ final class PhoneNumberApi
     /**
      * Verify phone number
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function verifyPhoneNumberAsyncWithHttpInfo(string $user_id, \Upsun\Model\VerifyPhoneNumberRequest $verify_phone_number_request = null)
-    {
+    public function verifyPhoneNumberAsyncWithHttpInfo(
+        string $user_id,
+        \Upsun\Model\VerifyPhoneNumberRequest $verify_phone_number_request = null
+    ) {
         $returnType = '\Upsun\Model\VerifyPhoneNumber200Response';
         $request = $this->verifyPhoneNumberRequest($user_id, $verify_phone_number_request);
 
@@ -549,8 +570,10 @@ final class PhoneNumberApi
      *
      * @throws InvalidArgumentException
      */
-    public function verifyPhoneNumberRequest(string $user_id, \Upsun\Model\VerifyPhoneNumberRequest $verify_phone_number_request = null): RequestInterface
-    {
+    public function verifyPhoneNumberRequest(
+        string $user_id,
+        \Upsun\Model\VerifyPhoneNumberRequest $verify_phone_number_request = null
+    ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -640,9 +663,9 @@ final class PhoneNumberApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -738,8 +761,8 @@ final class PhoneNumberApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

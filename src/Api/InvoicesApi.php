@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class InvoicesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Invoice
      */
-    public function getOrgInvoice($invoice_id, $organization_id): \Upsun\Model\Invoice
+    public function getOrgInvoice($invoice_id, $organization_id)
     {
         list($response) = $this->getOrgInvoiceWithHttpInfo($invoice_id, $organization_id);
         return $response;
@@ -135,8 +137,10 @@ final class InvoicesApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getOrgInvoiceWithHttpInfo(string $invoice_id, string $organization_id): array
-    {
+    public function getOrgInvoiceWithHttpInfo(
+        string $invoice_id,
+        string $organization_id
+    ): array {
         $request = $this->getOrgInvoiceRequest($invoice_id, $organization_id);
 
         try {
@@ -242,10 +246,12 @@ final class InvoicesApi
     /**
      * Get invoice
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getOrgInvoiceAsync(string $invoice_id, string $organization_id): Promise
-    {
+    public function getOrgInvoiceAsync(
+        string $invoice_id,
+        string $organization_id
+    ): Promise {
         return $this->getOrgInvoiceAsyncWithHttpInfo($invoice_id, $organization_id)
             ->then(
                 function ($response) {
@@ -257,10 +263,12 @@ final class InvoicesApi
     /**
      * Get invoice
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getOrgInvoiceAsyncWithHttpInfo(string $invoice_id, string $organization_id)
-    {
+    public function getOrgInvoiceAsyncWithHttpInfo(
+        string $invoice_id,
+        string $organization_id
+    ) {
         $returnType = '\Upsun\Model\Invoice';
         $request = $this->getOrgInvoiceRequest($invoice_id, $organization_id);
 
@@ -301,8 +309,10 @@ final class InvoicesApi
      *
      * @throws InvalidArgumentException
      */
-    public function getOrgInvoiceRequest(string $invoice_id, string $organization_id): RequestInterface
-    {
+    public function getOrgInvoiceRequest(
+        string $invoice_id,
+        string $organization_id
+    ): RequestInterface {
         // verify the required parameter 'invoice_id' is set
         if ($invoice_id === null || (is_array($invoice_id) && count($invoice_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -400,8 +410,9 @@ final class InvoicesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ListOrgInvoices200Response
      */
-    public function listOrgInvoices($organization_id, $filter_status = null, $filter_type = null, $filter_order_id = null, $page = null): \Upsun\Model\ListOrgInvoices200Response
+    public function listOrgInvoices($organization_id, $filter_status = null, $filter_type = null, $filter_order_id = null, $page = null)
     {
         list($response) = $this->listOrgInvoicesWithHttpInfo($organization_id, $filter_status, $filter_type, $filter_order_id, $page);
         return $response;
@@ -413,8 +424,13 @@ final class InvoicesApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listOrgInvoicesWithHttpInfo(string $organization_id, string $filter_status = null, string $filter_type = null, string $filter_order_id = null, int $page = null): array
-    {
+    public function listOrgInvoicesWithHttpInfo(
+        string $organization_id,
+        string $filter_status = null,
+        string $filter_type = null,
+        string $filter_order_id = null,
+        int $page = null
+    ): array {
         $request = $this->listOrgInvoicesRequest($organization_id, $filter_status, $filter_type, $filter_order_id, $page);
 
         try {
@@ -520,10 +536,15 @@ final class InvoicesApi
     /**
      * List invoices
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listOrgInvoicesAsync(string $organization_id, string $filter_status = null, string $filter_type = null, string $filter_order_id = null, int $page = null): Promise
-    {
+    public function listOrgInvoicesAsync(
+        string $organization_id,
+        string $filter_status = null,
+        string $filter_type = null,
+        string $filter_order_id = null,
+        int $page = null
+    ): Promise {
         return $this->listOrgInvoicesAsyncWithHttpInfo($organization_id, $filter_status, $filter_type, $filter_order_id, $page)
             ->then(
                 function ($response) {
@@ -535,10 +556,15 @@ final class InvoicesApi
     /**
      * List invoices
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listOrgInvoicesAsyncWithHttpInfo(string $organization_id, string $filter_status = null, string $filter_type = null, string $filter_order_id = null, int $page = null)
-    {
+    public function listOrgInvoicesAsyncWithHttpInfo(
+        string $organization_id,
+        string $filter_status = null,
+        string $filter_type = null,
+        string $filter_order_id = null,
+        int $page = null
+    ) {
         $returnType = '\Upsun\Model\ListOrgInvoices200Response';
         $request = $this->listOrgInvoicesRequest($organization_id, $filter_status, $filter_type, $filter_order_id, $page);
 
@@ -579,8 +605,13 @@ final class InvoicesApi
      *
      * @throws InvalidArgumentException
      */
-    public function listOrgInvoicesRequest(string $organization_id, string $filter_status = null, string $filter_type = null, string $filter_order_id = null, int $page = null): RequestInterface
-    {
+    public function listOrgInvoicesRequest(
+        string $organization_id,
+        string $filter_status = null,
+        string $filter_type = null,
+        string $filter_order_id = null,
+        int $page = null
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -708,9 +739,9 @@ final class InvoicesApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -806,8 +837,8 @@ final class InvoicesApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

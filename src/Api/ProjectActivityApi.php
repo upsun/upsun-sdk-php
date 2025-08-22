@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class ProjectActivityApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\AcceptedResponse
      */
-    public function actionProjectsActivitiesCancel($project_id, $activity_id): \Upsun\Model\AcceptedResponse
+    public function actionProjectsActivitiesCancel($project_id, $activity_id)
     {
         list($response) = $this->actionProjectsActivitiesCancelWithHttpInfo($project_id, $activity_id);
         return $response;
@@ -135,8 +137,10 @@ final class ProjectActivityApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function actionProjectsActivitiesCancelWithHttpInfo(string $project_id, string $activity_id): array
-    {
+    public function actionProjectsActivitiesCancelWithHttpInfo(
+        string $project_id,
+        string $activity_id
+    ): array {
         $request = $this->actionProjectsActivitiesCancelRequest($project_id, $activity_id);
 
         try {
@@ -214,10 +218,12 @@ final class ProjectActivityApi
     /**
      * Cancel a project activity
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function actionProjectsActivitiesCancelAsync(string $project_id, string $activity_id): Promise
-    {
+    public function actionProjectsActivitiesCancelAsync(
+        string $project_id,
+        string $activity_id
+    ): Promise {
         return $this->actionProjectsActivitiesCancelAsyncWithHttpInfo($project_id, $activity_id)
             ->then(
                 function ($response) {
@@ -229,10 +235,12 @@ final class ProjectActivityApi
     /**
      * Cancel a project activity
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function actionProjectsActivitiesCancelAsyncWithHttpInfo(string $project_id, string $activity_id)
-    {
+    public function actionProjectsActivitiesCancelAsyncWithHttpInfo(
+        string $project_id,
+        string $activity_id
+    ) {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->actionProjectsActivitiesCancelRequest($project_id, $activity_id);
 
@@ -273,8 +281,10 @@ final class ProjectActivityApi
      *
      * @throws InvalidArgumentException
      */
-    public function actionProjectsActivitiesCancelRequest(string $project_id, string $activity_id): RequestInterface
-    {
+    public function actionProjectsActivitiesCancelRequest(
+        string $project_id,
+        string $activity_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -372,8 +382,9 @@ final class ProjectActivityApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Activity
      */
-    public function getProjectsActivities($project_id, $activity_id): \Upsun\Model\Activity
+    public function getProjectsActivities($project_id, $activity_id)
     {
         list($response) = $this->getProjectsActivitiesWithHttpInfo($project_id, $activity_id);
         return $response;
@@ -385,8 +396,10 @@ final class ProjectActivityApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getProjectsActivitiesWithHttpInfo(string $project_id, string $activity_id): array
-    {
+    public function getProjectsActivitiesWithHttpInfo(
+        string $project_id,
+        string $activity_id
+    ): array {
         $request = $this->getProjectsActivitiesRequest($project_id, $activity_id);
 
         try {
@@ -464,10 +477,12 @@ final class ProjectActivityApi
     /**
      * Get a project activity log entry
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsActivitiesAsync(string $project_id, string $activity_id): Promise
-    {
+    public function getProjectsActivitiesAsync(
+        string $project_id,
+        string $activity_id
+    ): Promise {
         return $this->getProjectsActivitiesAsyncWithHttpInfo($project_id, $activity_id)
             ->then(
                 function ($response) {
@@ -479,10 +494,12 @@ final class ProjectActivityApi
     /**
      * Get a project activity log entry
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsActivitiesAsyncWithHttpInfo(string $project_id, string $activity_id)
-    {
+    public function getProjectsActivitiesAsyncWithHttpInfo(
+        string $project_id,
+        string $activity_id
+    ) {
         $returnType = '\Upsun\Model\Activity';
         $request = $this->getProjectsActivitiesRequest($project_id, $activity_id);
 
@@ -523,8 +540,10 @@ final class ProjectActivityApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectsActivitiesRequest(string $project_id, string $activity_id): RequestInterface
-    {
+    public function getProjectsActivitiesRequest(
+        string $project_id,
+        string $activity_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -622,8 +641,9 @@ final class ProjectActivityApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Activity[]
      */
-    public function listProjectsActivities($project_id): \Upsun\Model\Activity[]
+    public function listProjectsActivities($project_id)
     {
         list($response) = $this->listProjectsActivitiesWithHttpInfo($project_id);
         return $response;
@@ -635,8 +655,9 @@ final class ProjectActivityApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listProjectsActivitiesWithHttpInfo(string $project_id): array
-    {
+    public function listProjectsActivitiesWithHttpInfo(
+        string $project_id
+    ): array {
         $request = $this->listProjectsActivitiesRequest($project_id);
 
         try {
@@ -714,10 +735,11 @@ final class ProjectActivityApi
     /**
      * Get project activity log
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsActivitiesAsync(string $project_id): Promise
-    {
+    public function listProjectsActivitiesAsync(
+        string $project_id
+    ): Promise {
         return $this->listProjectsActivitiesAsyncWithHttpInfo($project_id)
             ->then(
                 function ($response) {
@@ -729,10 +751,11 @@ final class ProjectActivityApi
     /**
      * Get project activity log
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsActivitiesAsyncWithHttpInfo(string $project_id)
-    {
+    public function listProjectsActivitiesAsyncWithHttpInfo(
+        string $project_id
+    ) {
         $returnType = '\Upsun\Model\Activity[]';
         $request = $this->listProjectsActivitiesRequest($project_id);
 
@@ -773,8 +796,9 @@ final class ProjectActivityApi
      *
      * @throws InvalidArgumentException
      */
-    public function listProjectsActivitiesRequest(string $project_id): RequestInterface
-    {
+    public function listProjectsActivitiesRequest(
+        string $project_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -858,9 +882,9 @@ final class ProjectActivityApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -956,8 +980,8 @@ final class ProjectActivityApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

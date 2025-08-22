@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class SourceOperationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\EnvironmentSourceOperation[]
      */
-    public function listProjectsEnvironmentsSourceOperations($project_id, $environment_id): \Upsun\Model\EnvironmentSourceOperation[]
+    public function listProjectsEnvironmentsSourceOperations($project_id, $environment_id)
     {
         list($response) = $this->listProjectsEnvironmentsSourceOperationsWithHttpInfo($project_id, $environment_id);
         return $response;
@@ -135,8 +137,10 @@ final class SourceOperationsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsSourceOperationsWithHttpInfo(string $project_id, string $environment_id): array
-    {
+    public function listProjectsEnvironmentsSourceOperationsWithHttpInfo(
+        string $project_id,
+        string $environment_id
+    ): array {
         $request = $this->listProjectsEnvironmentsSourceOperationsRequest($project_id, $environment_id);
 
         try {
@@ -214,10 +218,12 @@ final class SourceOperationsApi
     /**
      * List source operations
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsEnvironmentsSourceOperationsAsync(string $project_id, string $environment_id): Promise
-    {
+    public function listProjectsEnvironmentsSourceOperationsAsync(
+        string $project_id,
+        string $environment_id
+    ): Promise {
         return $this->listProjectsEnvironmentsSourceOperationsAsyncWithHttpInfo($project_id, $environment_id)
             ->then(
                 function ($response) {
@@ -229,10 +235,12 @@ final class SourceOperationsApi
     /**
      * List source operations
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsEnvironmentsSourceOperationsAsyncWithHttpInfo(string $project_id, string $environment_id)
-    {
+    public function listProjectsEnvironmentsSourceOperationsAsyncWithHttpInfo(
+        string $project_id,
+        string $environment_id
+    ) {
         $returnType = '\Upsun\Model\EnvironmentSourceOperation[]';
         $request = $this->listProjectsEnvironmentsSourceOperationsRequest($project_id, $environment_id);
 
@@ -273,8 +281,10 @@ final class SourceOperationsApi
      *
      * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsSourceOperationsRequest(string $project_id, string $environment_id): RequestInterface
-    {
+    public function listProjectsEnvironmentsSourceOperationsRequest(
+        string $project_id,
+        string $environment_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -372,8 +382,9 @@ final class SourceOperationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\AcceptedResponse
      */
-    public function runSourceOperation($project_id, $environment_id, $environment_source_operation_input): \Upsun\Model\AcceptedResponse
+    public function runSourceOperation($project_id, $environment_id, $environment_source_operation_input)
     {
         list($response) = $this->runSourceOperationWithHttpInfo($project_id, $environment_id, $environment_source_operation_input);
         return $response;
@@ -385,8 +396,11 @@ final class SourceOperationsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function runSourceOperationWithHttpInfo(string $project_id, string $environment_id, \Upsun\Model\EnvironmentSourceOperationInput $environment_source_operation_input): array
-    {
+    public function runSourceOperationWithHttpInfo(
+        string $project_id,
+        string $environment_id,
+        \Upsun\Model\EnvironmentSourceOperationInput $environment_source_operation_input
+    ): array {
         $request = $this->runSourceOperationRequest($project_id, $environment_id, $environment_source_operation_input);
 
         try {
@@ -464,10 +478,13 @@ final class SourceOperationsApi
     /**
      * Trigger a source operation
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function runSourceOperationAsync(string $project_id, string $environment_id, \Upsun\Model\EnvironmentSourceOperationInput $environment_source_operation_input): Promise
-    {
+    public function runSourceOperationAsync(
+        string $project_id,
+        string $environment_id,
+        \Upsun\Model\EnvironmentSourceOperationInput $environment_source_operation_input
+    ): Promise {
         return $this->runSourceOperationAsyncWithHttpInfo($project_id, $environment_id, $environment_source_operation_input)
             ->then(
                 function ($response) {
@@ -479,10 +496,13 @@ final class SourceOperationsApi
     /**
      * Trigger a source operation
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function runSourceOperationAsyncWithHttpInfo(string $project_id, string $environment_id, \Upsun\Model\EnvironmentSourceOperationInput $environment_source_operation_input)
-    {
+    public function runSourceOperationAsyncWithHttpInfo(
+        string $project_id,
+        string $environment_id,
+        \Upsun\Model\EnvironmentSourceOperationInput $environment_source_operation_input
+    ) {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->runSourceOperationRequest($project_id, $environment_id, $environment_source_operation_input);
 
@@ -523,8 +543,11 @@ final class SourceOperationsApi
      *
      * @throws InvalidArgumentException
      */
-    public function runSourceOperationRequest(string $project_id, string $environment_id, \Upsun\Model\EnvironmentSourceOperationInput $environment_source_operation_input): RequestInterface
-    {
+    public function runSourceOperationRequest(
+        string $project_id,
+        string $environment_id,
+        \Upsun\Model\EnvironmentSourceOperationInput $environment_source_operation_input
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -634,9 +657,9 @@ final class SourceOperationsApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -732,8 +755,8 @@ final class SourceOperationsApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

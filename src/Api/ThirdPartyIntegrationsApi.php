@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class ThirdPartyIntegrationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\AcceptedResponse
      */
-    public function createProjectsIntegrations($project_id, $integration_create_input): \Upsun\Model\AcceptedResponse
+    public function createProjectsIntegrations($project_id, $integration_create_input)
     {
         list($response) = $this->createProjectsIntegrationsWithHttpInfo($project_id, $integration_create_input);
         return $response;
@@ -135,8 +137,10 @@ final class ThirdPartyIntegrationsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function createProjectsIntegrationsWithHttpInfo(string $project_id, \Upsun\Model\IntegrationCreateInput $integration_create_input): array
-    {
+    public function createProjectsIntegrationsWithHttpInfo(
+        string $project_id,
+        \Upsun\Model\IntegrationCreateInput $integration_create_input
+    ): array {
         $request = $this->createProjectsIntegrationsRequest($project_id, $integration_create_input);
 
         try {
@@ -214,10 +218,12 @@ final class ThirdPartyIntegrationsApi
     /**
      * Integrate project with a third-party service
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createProjectsIntegrationsAsync(string $project_id, \Upsun\Model\IntegrationCreateInput $integration_create_input): Promise
-    {
+    public function createProjectsIntegrationsAsync(
+        string $project_id,
+        \Upsun\Model\IntegrationCreateInput $integration_create_input
+    ): Promise {
         return $this->createProjectsIntegrationsAsyncWithHttpInfo($project_id, $integration_create_input)
             ->then(
                 function ($response) {
@@ -229,10 +235,12 @@ final class ThirdPartyIntegrationsApi
     /**
      * Integrate project with a third-party service
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createProjectsIntegrationsAsyncWithHttpInfo(string $project_id, \Upsun\Model\IntegrationCreateInput $integration_create_input)
-    {
+    public function createProjectsIntegrationsAsyncWithHttpInfo(
+        string $project_id,
+        \Upsun\Model\IntegrationCreateInput $integration_create_input
+    ) {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->createProjectsIntegrationsRequest($project_id, $integration_create_input);
 
@@ -273,8 +281,10 @@ final class ThirdPartyIntegrationsApi
      *
      * @throws InvalidArgumentException
      */
-    public function createProjectsIntegrationsRequest(string $project_id, \Upsun\Model\IntegrationCreateInput $integration_create_input): RequestInterface
-    {
+    public function createProjectsIntegrationsRequest(
+        string $project_id,
+        \Upsun\Model\IntegrationCreateInput $integration_create_input
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -370,8 +380,9 @@ final class ThirdPartyIntegrationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\AcceptedResponse
      */
-    public function deleteProjectsIntegrations($project_id, $integration_id): \Upsun\Model\AcceptedResponse
+    public function deleteProjectsIntegrations($project_id, $integration_id)
     {
         list($response) = $this->deleteProjectsIntegrationsWithHttpInfo($project_id, $integration_id);
         return $response;
@@ -383,8 +394,10 @@ final class ThirdPartyIntegrationsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function deleteProjectsIntegrationsWithHttpInfo(string $project_id, string $integration_id): array
-    {
+    public function deleteProjectsIntegrationsWithHttpInfo(
+        string $project_id,
+        string $integration_id
+    ): array {
         $request = $this->deleteProjectsIntegrationsRequest($project_id, $integration_id);
 
         try {
@@ -462,10 +475,12 @@ final class ThirdPartyIntegrationsApi
     /**
      * Delete an existing third-party integration
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteProjectsIntegrationsAsync(string $project_id, string $integration_id): Promise
-    {
+    public function deleteProjectsIntegrationsAsync(
+        string $project_id,
+        string $integration_id
+    ): Promise {
         return $this->deleteProjectsIntegrationsAsyncWithHttpInfo($project_id, $integration_id)
             ->then(
                 function ($response) {
@@ -477,10 +492,12 @@ final class ThirdPartyIntegrationsApi
     /**
      * Delete an existing third-party integration
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteProjectsIntegrationsAsyncWithHttpInfo(string $project_id, string $integration_id)
-    {
+    public function deleteProjectsIntegrationsAsyncWithHttpInfo(
+        string $project_id,
+        string $integration_id
+    ) {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deleteProjectsIntegrationsRequest($project_id, $integration_id);
 
@@ -521,8 +538,10 @@ final class ThirdPartyIntegrationsApi
      *
      * @throws InvalidArgumentException
      */
-    public function deleteProjectsIntegrationsRequest(string $project_id, string $integration_id): RequestInterface
-    {
+    public function deleteProjectsIntegrationsRequest(
+        string $project_id,
+        string $integration_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -620,8 +639,9 @@ final class ThirdPartyIntegrationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Integration
      */
-    public function getProjectsIntegrations($project_id, $integration_id): \Upsun\Model\Integration
+    public function getProjectsIntegrations($project_id, $integration_id)
     {
         list($response) = $this->getProjectsIntegrationsWithHttpInfo($project_id, $integration_id);
         return $response;
@@ -633,8 +653,10 @@ final class ThirdPartyIntegrationsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getProjectsIntegrationsWithHttpInfo(string $project_id, string $integration_id): array
-    {
+    public function getProjectsIntegrationsWithHttpInfo(
+        string $project_id,
+        string $integration_id
+    ): array {
         $request = $this->getProjectsIntegrationsRequest($project_id, $integration_id);
 
         try {
@@ -712,10 +734,12 @@ final class ThirdPartyIntegrationsApi
     /**
      * Get information about an existing third-party integration
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsIntegrationsAsync(string $project_id, string $integration_id): Promise
-    {
+    public function getProjectsIntegrationsAsync(
+        string $project_id,
+        string $integration_id
+    ): Promise {
         return $this->getProjectsIntegrationsAsyncWithHttpInfo($project_id, $integration_id)
             ->then(
                 function ($response) {
@@ -727,10 +751,12 @@ final class ThirdPartyIntegrationsApi
     /**
      * Get information about an existing third-party integration
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsIntegrationsAsyncWithHttpInfo(string $project_id, string $integration_id)
-    {
+    public function getProjectsIntegrationsAsyncWithHttpInfo(
+        string $project_id,
+        string $integration_id
+    ) {
         $returnType = '\Upsun\Model\Integration';
         $request = $this->getProjectsIntegrationsRequest($project_id, $integration_id);
 
@@ -771,8 +797,10 @@ final class ThirdPartyIntegrationsApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectsIntegrationsRequest(string $project_id, string $integration_id): RequestInterface
-    {
+    public function getProjectsIntegrationsRequest(
+        string $project_id,
+        string $integration_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -870,8 +898,9 @@ final class ThirdPartyIntegrationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Integration[]
      */
-    public function listProjectsIntegrations($project_id): \Upsun\Model\Integration[]
+    public function listProjectsIntegrations($project_id)
     {
         list($response) = $this->listProjectsIntegrationsWithHttpInfo($project_id);
         return $response;
@@ -883,8 +912,9 @@ final class ThirdPartyIntegrationsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listProjectsIntegrationsWithHttpInfo(string $project_id): array
-    {
+    public function listProjectsIntegrationsWithHttpInfo(
+        string $project_id
+    ): array {
         $request = $this->listProjectsIntegrationsRequest($project_id);
 
         try {
@@ -962,10 +992,11 @@ final class ThirdPartyIntegrationsApi
     /**
      * Get list of existing integrations for a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsIntegrationsAsync(string $project_id): Promise
-    {
+    public function listProjectsIntegrationsAsync(
+        string $project_id
+    ): Promise {
         return $this->listProjectsIntegrationsAsyncWithHttpInfo($project_id)
             ->then(
                 function ($response) {
@@ -977,10 +1008,11 @@ final class ThirdPartyIntegrationsApi
     /**
      * Get list of existing integrations for a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsIntegrationsAsyncWithHttpInfo(string $project_id)
-    {
+    public function listProjectsIntegrationsAsyncWithHttpInfo(
+        string $project_id
+    ) {
         $returnType = '\Upsun\Model\Integration[]';
         $request = $this->listProjectsIntegrationsRequest($project_id);
 
@@ -1021,8 +1053,9 @@ final class ThirdPartyIntegrationsApi
      *
      * @throws InvalidArgumentException
      */
-    public function listProjectsIntegrationsRequest(string $project_id): RequestInterface
-    {
+    public function listProjectsIntegrationsRequest(
+        string $project_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1106,8 +1139,9 @@ final class ThirdPartyIntegrationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\AcceptedResponse
      */
-    public function updateProjectsIntegrations($project_id, $integration_id, $integration_patch): \Upsun\Model\AcceptedResponse
+    public function updateProjectsIntegrations($project_id, $integration_id, $integration_patch)
     {
         list($response) = $this->updateProjectsIntegrationsWithHttpInfo($project_id, $integration_id, $integration_patch);
         return $response;
@@ -1119,8 +1153,11 @@ final class ThirdPartyIntegrationsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function updateProjectsIntegrationsWithHttpInfo(string $project_id, string $integration_id, \Upsun\Model\IntegrationPatch $integration_patch): array
-    {
+    public function updateProjectsIntegrationsWithHttpInfo(
+        string $project_id,
+        string $integration_id,
+        \Upsun\Model\IntegrationPatch $integration_patch
+    ): array {
         $request = $this->updateProjectsIntegrationsRequest($project_id, $integration_id, $integration_patch);
 
         try {
@@ -1198,10 +1235,13 @@ final class ThirdPartyIntegrationsApi
     /**
      * Update an existing third-party integration
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateProjectsIntegrationsAsync(string $project_id, string $integration_id, \Upsun\Model\IntegrationPatch $integration_patch): Promise
-    {
+    public function updateProjectsIntegrationsAsync(
+        string $project_id,
+        string $integration_id,
+        \Upsun\Model\IntegrationPatch $integration_patch
+    ): Promise {
         return $this->updateProjectsIntegrationsAsyncWithHttpInfo($project_id, $integration_id, $integration_patch)
             ->then(
                 function ($response) {
@@ -1213,10 +1253,13 @@ final class ThirdPartyIntegrationsApi
     /**
      * Update an existing third-party integration
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateProjectsIntegrationsAsyncWithHttpInfo(string $project_id, string $integration_id, \Upsun\Model\IntegrationPatch $integration_patch)
-    {
+    public function updateProjectsIntegrationsAsyncWithHttpInfo(
+        string $project_id,
+        string $integration_id,
+        \Upsun\Model\IntegrationPatch $integration_patch
+    ) {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateProjectsIntegrationsRequest($project_id, $integration_id, $integration_patch);
 
@@ -1257,8 +1300,11 @@ final class ThirdPartyIntegrationsApi
      *
      * @throws InvalidArgumentException
      */
-    public function updateProjectsIntegrationsRequest(string $project_id, string $integration_id, \Upsun\Model\IntegrationPatch $integration_patch): RequestInterface
-    {
+    public function updateProjectsIntegrationsRequest(
+        string $project_id,
+        string $integration_id,
+        \Upsun\Model\IntegrationPatch $integration_patch
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1368,9 +1414,9 @@ final class ThirdPartyIntegrationsApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -1466,8 +1512,8 @@ final class ThirdPartyIntegrationsApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

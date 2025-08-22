@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class ReferencesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return array<string,\Upsun\Model\OrganizationReference>
      */
-    public function listReferencedOrgs($in, $sig): array<string,\Upsun\Model\OrganizationReference>
+    public function listReferencedOrgs($in, $sig)
     {
         list($response) = $this->listReferencedOrgsWithHttpInfo($in, $sig);
         return $response;
@@ -135,8 +137,10 @@ final class ReferencesApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listReferencedOrgsWithHttpInfo(string $in, string $sig): array
-    {
+    public function listReferencedOrgsWithHttpInfo(
+        string $in,
+        string $sig
+    ): array {
         $request = $this->listReferencedOrgsRequest($in, $sig);
 
         try {
@@ -242,10 +246,12 @@ final class ReferencesApi
     /**
      * List referenced organizations
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listReferencedOrgsAsync(string $in, string $sig): Promise
-    {
+    public function listReferencedOrgsAsync(
+        string $in,
+        string $sig
+    ): Promise {
         return $this->listReferencedOrgsAsyncWithHttpInfo($in, $sig)
             ->then(
                 function ($response) {
@@ -257,10 +263,12 @@ final class ReferencesApi
     /**
      * List referenced organizations
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listReferencedOrgsAsyncWithHttpInfo(string $in, string $sig)
-    {
+    public function listReferencedOrgsAsyncWithHttpInfo(
+        string $in,
+        string $sig
+    ) {
         $returnType = 'array<string,\Upsun\Model\OrganizationReference>';
         $request = $this->listReferencedOrgsRequest($in, $sig);
 
@@ -301,8 +309,10 @@ final class ReferencesApi
      *
      * @throws InvalidArgumentException
      */
-    public function listReferencedOrgsRequest(string $in, string $sig): RequestInterface
-    {
+    public function listReferencedOrgsRequest(
+        string $in,
+        string $sig
+    ): RequestInterface {
         // verify the required parameter 'in' is set
         if ($in === null || (is_array($in) && count($in) === 0)) {
             throw new \InvalidArgumentException(
@@ -406,8 +416,9 @@ final class ReferencesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return array<string,\Upsun\Model\ProjectReference>
      */
-    public function listReferencedProjects($in, $sig): array<string,\Upsun\Model\ProjectReference>
+    public function listReferencedProjects($in, $sig)
     {
         list($response) = $this->listReferencedProjectsWithHttpInfo($in, $sig);
         return $response;
@@ -419,8 +430,10 @@ final class ReferencesApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listReferencedProjectsWithHttpInfo(string $in, string $sig): array
-    {
+    public function listReferencedProjectsWithHttpInfo(
+        string $in,
+        string $sig
+    ): array {
         $request = $this->listReferencedProjectsRequest($in, $sig);
 
         try {
@@ -540,10 +553,12 @@ final class ReferencesApi
     /**
      * List referenced projects
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listReferencedProjectsAsync(string $in, string $sig): Promise
-    {
+    public function listReferencedProjectsAsync(
+        string $in,
+        string $sig
+    ): Promise {
         return $this->listReferencedProjectsAsyncWithHttpInfo($in, $sig)
             ->then(
                 function ($response) {
@@ -555,10 +570,12 @@ final class ReferencesApi
     /**
      * List referenced projects
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listReferencedProjectsAsyncWithHttpInfo(string $in, string $sig)
-    {
+    public function listReferencedProjectsAsyncWithHttpInfo(
+        string $in,
+        string $sig
+    ) {
         $returnType = 'array<string,\Upsun\Model\ProjectReference>';
         $request = $this->listReferencedProjectsRequest($in, $sig);
 
@@ -599,8 +616,10 @@ final class ReferencesApi
      *
      * @throws InvalidArgumentException
      */
-    public function listReferencedProjectsRequest(string $in, string $sig): RequestInterface
-    {
+    public function listReferencedProjectsRequest(
+        string $in,
+        string $sig
+    ): RequestInterface {
         // verify the required parameter 'in' is set
         if ($in === null || (is_array($in) && count($in) === 0)) {
             throw new \InvalidArgumentException(
@@ -704,8 +723,9 @@ final class ReferencesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return array<string,\Upsun\Model\RegionReference>
      */
-    public function listReferencedRegions($in, $sig): array<string,\Upsun\Model\RegionReference>
+    public function listReferencedRegions($in, $sig)
     {
         list($response) = $this->listReferencedRegionsWithHttpInfo($in, $sig);
         return $response;
@@ -717,8 +737,10 @@ final class ReferencesApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listReferencedRegionsWithHttpInfo(string $in, string $sig): array
-    {
+    public function listReferencedRegionsWithHttpInfo(
+        string $in,
+        string $sig
+    ): array {
         $request = $this->listReferencedRegionsRequest($in, $sig);
 
         try {
@@ -838,10 +860,12 @@ final class ReferencesApi
     /**
      * List referenced regions
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listReferencedRegionsAsync(string $in, string $sig): Promise
-    {
+    public function listReferencedRegionsAsync(
+        string $in,
+        string $sig
+    ): Promise {
         return $this->listReferencedRegionsAsyncWithHttpInfo($in, $sig)
             ->then(
                 function ($response) {
@@ -853,10 +877,12 @@ final class ReferencesApi
     /**
      * List referenced regions
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listReferencedRegionsAsyncWithHttpInfo(string $in, string $sig)
-    {
+    public function listReferencedRegionsAsyncWithHttpInfo(
+        string $in,
+        string $sig
+    ) {
         $returnType = 'array<string,\Upsun\Model\RegionReference>';
         $request = $this->listReferencedRegionsRequest($in, $sig);
 
@@ -897,8 +923,10 @@ final class ReferencesApi
      *
      * @throws InvalidArgumentException
      */
-    public function listReferencedRegionsRequest(string $in, string $sig): RequestInterface
-    {
+    public function listReferencedRegionsRequest(
+        string $in,
+        string $sig
+    ): RequestInterface {
         // verify the required parameter 'in' is set
         if ($in === null || (is_array($in) && count($in) === 0)) {
             throw new \InvalidArgumentException(
@@ -1002,8 +1030,9 @@ final class ReferencesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return array<string,\Upsun\Model\TeamReference>
      */
-    public function listReferencedTeams($in, $sig): array<string,\Upsun\Model\TeamReference>
+    public function listReferencedTeams($in, $sig)
     {
         list($response) = $this->listReferencedTeamsWithHttpInfo($in, $sig);
         return $response;
@@ -1015,8 +1044,10 @@ final class ReferencesApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listReferencedTeamsWithHttpInfo(string $in, string $sig): array
-    {
+    public function listReferencedTeamsWithHttpInfo(
+        string $in,
+        string $sig
+    ): array {
         $request = $this->listReferencedTeamsRequest($in, $sig);
 
         try {
@@ -1108,10 +1139,12 @@ final class ReferencesApi
     /**
      * List referenced teams
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listReferencedTeamsAsync(string $in, string $sig): Promise
-    {
+    public function listReferencedTeamsAsync(
+        string $in,
+        string $sig
+    ): Promise {
         return $this->listReferencedTeamsAsyncWithHttpInfo($in, $sig)
             ->then(
                 function ($response) {
@@ -1123,10 +1156,12 @@ final class ReferencesApi
     /**
      * List referenced teams
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listReferencedTeamsAsyncWithHttpInfo(string $in, string $sig)
-    {
+    public function listReferencedTeamsAsyncWithHttpInfo(
+        string $in,
+        string $sig
+    ) {
         $returnType = 'array<string,\Upsun\Model\TeamReference>';
         $request = $this->listReferencedTeamsRequest($in, $sig);
 
@@ -1167,8 +1202,10 @@ final class ReferencesApi
      *
      * @throws InvalidArgumentException
      */
-    public function listReferencedTeamsRequest(string $in, string $sig): RequestInterface
-    {
+    public function listReferencedTeamsRequest(
+        string $in,
+        string $sig
+    ): RequestInterface {
         // verify the required parameter 'in' is set
         if ($in === null || (is_array($in) && count($in) === 0)) {
             throw new \InvalidArgumentException(
@@ -1272,8 +1309,9 @@ final class ReferencesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return array<string,\Upsun\Model\UserReference>
      */
-    public function listReferencedUsers($in, $sig): array<string,\Upsun\Model\UserReference>
+    public function listReferencedUsers($in, $sig)
     {
         list($response) = $this->listReferencedUsersWithHttpInfo($in, $sig);
         return $response;
@@ -1285,8 +1323,10 @@ final class ReferencesApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listReferencedUsersWithHttpInfo(string $in, string $sig): array
-    {
+    public function listReferencedUsersWithHttpInfo(
+        string $in,
+        string $sig
+    ): array {
         $request = $this->listReferencedUsersRequest($in, $sig);
 
         try {
@@ -1378,10 +1418,12 @@ final class ReferencesApi
     /**
      * List referenced users
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listReferencedUsersAsync(string $in, string $sig): Promise
-    {
+    public function listReferencedUsersAsync(
+        string $in,
+        string $sig
+    ): Promise {
         return $this->listReferencedUsersAsyncWithHttpInfo($in, $sig)
             ->then(
                 function ($response) {
@@ -1393,10 +1435,12 @@ final class ReferencesApi
     /**
      * List referenced users
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listReferencedUsersAsyncWithHttpInfo(string $in, string $sig)
-    {
+    public function listReferencedUsersAsyncWithHttpInfo(
+        string $in,
+        string $sig
+    ) {
         $returnType = 'array<string,\Upsun\Model\UserReference>';
         $request = $this->listReferencedUsersRequest($in, $sig);
 
@@ -1437,8 +1481,10 @@ final class ReferencesApi
      *
      * @throws InvalidArgumentException
      */
-    public function listReferencedUsersRequest(string $in, string $sig): RequestInterface
-    {
+    public function listReferencedUsersRequest(
+        string $in,
+        string $sig
+    ): RequestInterface {
         // verify the required parameter 'in' is set
         if ($in === null || (is_array($in) && count($in) === 0)) {
             throw new \InvalidArgumentException(
@@ -1542,9 +1588,9 @@ final class ReferencesApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -1640,8 +1686,8 @@ final class ReferencesApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

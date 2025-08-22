@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class OrganizationInvitationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function cancelOrgInvite($organization_id, $invitation_id): void
+    public function cancelOrgInvite($organization_id, $invitation_id)
     {
         $this->cancelOrgInviteWithHttpInfo($organization_id, $invitation_id);
     }
@@ -134,8 +136,10 @@ final class OrganizationInvitationsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function cancelOrgInviteWithHttpInfo(string $organization_id, string $invitation_id): array
-    {
+    public function cancelOrgInviteWithHttpInfo(
+        string $organization_id,
+        string $invitation_id
+    ): array {
         $request = $this->cancelOrgInviteRequest($organization_id, $invitation_id);
 
         try {
@@ -186,10 +190,12 @@ final class OrganizationInvitationsApi
     /**
      * Cancel a pending invitation to an organization
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function cancelOrgInviteAsync(string $organization_id, string $invitation_id): Promise
-    {
+    public function cancelOrgInviteAsync(
+        string $organization_id,
+        string $invitation_id
+    ): Promise {
         return $this->cancelOrgInviteAsyncWithHttpInfo($organization_id, $invitation_id)
             ->then(
                 function ($response) {
@@ -201,10 +207,12 @@ final class OrganizationInvitationsApi
     /**
      * Cancel a pending invitation to an organization
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function cancelOrgInviteAsyncWithHttpInfo(string $organization_id, string $invitation_id)
-    {
+    public function cancelOrgInviteAsyncWithHttpInfo(
+        string $organization_id,
+        string $invitation_id
+    ) {
         $returnType = '';
         $request = $this->cancelOrgInviteRequest($organization_id, $invitation_id);
 
@@ -235,8 +243,10 @@ final class OrganizationInvitationsApi
      *
      * @throws InvalidArgumentException
      */
-    public function cancelOrgInviteRequest(string $organization_id, string $invitation_id): RequestInterface
-    {
+    public function cancelOrgInviteRequest(
+        string $organization_id,
+        string $invitation_id
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -334,8 +344,9 @@ final class OrganizationInvitationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\OrganizationInvitation
      */
-    public function createOrgInvite($organization_id, $create_org_invite_request = null): \Upsun\Model\OrganizationInvitation
+    public function createOrgInvite($organization_id, $create_org_invite_request = null)
     {
         list($response) = $this->createOrgInviteWithHttpInfo($organization_id, $create_org_invite_request);
         return $response;
@@ -347,8 +358,10 @@ final class OrganizationInvitationsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function createOrgInviteWithHttpInfo(string $organization_id, \Upsun\Model\CreateOrgInviteRequest $create_org_invite_request = null): array
-    {
+    public function createOrgInviteWithHttpInfo(
+        string $organization_id,
+        \Upsun\Model\CreateOrgInviteRequest $create_org_invite_request = null
+    ): array {
         $request = $this->createOrgInviteRequest($organization_id, $create_org_invite_request);
 
         try {
@@ -468,10 +481,12 @@ final class OrganizationInvitationsApi
     /**
      * Invite user to an organization by email
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createOrgInviteAsync(string $organization_id, \Upsun\Model\CreateOrgInviteRequest $create_org_invite_request = null): Promise
-    {
+    public function createOrgInviteAsync(
+        string $organization_id,
+        \Upsun\Model\CreateOrgInviteRequest $create_org_invite_request = null
+    ): Promise {
         return $this->createOrgInviteAsyncWithHttpInfo($organization_id, $create_org_invite_request)
             ->then(
                 function ($response) {
@@ -483,10 +498,12 @@ final class OrganizationInvitationsApi
     /**
      * Invite user to an organization by email
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createOrgInviteAsyncWithHttpInfo(string $organization_id, \Upsun\Model\CreateOrgInviteRequest $create_org_invite_request = null)
-    {
+    public function createOrgInviteAsyncWithHttpInfo(
+        string $organization_id,
+        \Upsun\Model\CreateOrgInviteRequest $create_org_invite_request = null
+    ) {
         $returnType = '\Upsun\Model\OrganizationInvitation';
         $request = $this->createOrgInviteRequest($organization_id, $create_org_invite_request);
 
@@ -527,8 +544,10 @@ final class OrganizationInvitationsApi
      *
      * @throws InvalidArgumentException
      */
-    public function createOrgInviteRequest(string $organization_id, \Upsun\Model\CreateOrgInviteRequest $create_org_invite_request = null): RequestInterface
-    {
+    public function createOrgInviteRequest(
+        string $organization_id,
+        \Upsun\Model\CreateOrgInviteRequest $create_org_invite_request = null
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -618,8 +637,9 @@ final class OrganizationInvitationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\OrganizationInvitation[]
      */
-    public function listOrgInvites($organization_id, $filter_state = null, $page_size = null, $page_before = null, $page_after = null, $sort = null): \Upsun\Model\OrganizationInvitation[]
+    public function listOrgInvites($organization_id, $filter_state = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
     {
         list($response) = $this->listOrgInvitesWithHttpInfo($organization_id, $filter_state, $page_size, $page_before, $page_after, $sort);
         return $response;
@@ -631,8 +651,14 @@ final class OrganizationInvitationsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listOrgInvitesWithHttpInfo(string $organization_id, \Upsun\Model\StringFilter $filter_state = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): array
-    {
+    public function listOrgInvitesWithHttpInfo(
+        string $organization_id,
+        \Upsun\Model\StringFilter $filter_state = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): array {
         $request = $this->listOrgInvitesRequest($organization_id, $filter_state, $page_size, $page_before, $page_after, $sort);
 
         try {
@@ -724,10 +750,16 @@ final class OrganizationInvitationsApi
     /**
      * List invitations to an organization
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listOrgInvitesAsync(string $organization_id, \Upsun\Model\StringFilter $filter_state = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Promise
-    {
+    public function listOrgInvitesAsync(
+        string $organization_id,
+        \Upsun\Model\StringFilter $filter_state = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): Promise {
         return $this->listOrgInvitesAsyncWithHttpInfo($organization_id, $filter_state, $page_size, $page_before, $page_after, $sort)
             ->then(
                 function ($response) {
@@ -739,10 +771,16 @@ final class OrganizationInvitationsApi
     /**
      * List invitations to an organization
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listOrgInvitesAsyncWithHttpInfo(string $organization_id, \Upsun\Model\StringFilter $filter_state = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null)
-    {
+    public function listOrgInvitesAsyncWithHttpInfo(
+        string $organization_id,
+        \Upsun\Model\StringFilter $filter_state = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ) {
         $returnType = '\Upsun\Model\OrganizationInvitation[]';
         $request = $this->listOrgInvitesRequest($organization_id, $filter_state, $page_size, $page_before, $page_after, $sort);
 
@@ -783,8 +821,14 @@ final class OrganizationInvitationsApi
      *
      * @throws InvalidArgumentException
      */
-    public function listOrgInvitesRequest(string $organization_id, \Upsun\Model\StringFilter $filter_state = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): RequestInterface
-    {
+    public function listOrgInvitesRequest(
+        string $organization_id,
+        \Upsun\Model\StringFilter $filter_state = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -930,9 +974,9 @@ final class OrganizationInvitationsApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -1028,8 +1072,8 @@ final class OrganizationInvitationsApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

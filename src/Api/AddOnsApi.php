@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class AddOnsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\OrganizationAddonsObject
      */
-    public function getOrgAddons($organization_id): \Upsun\Model\OrganizationAddonsObject
+    public function getOrgAddons($organization_id)
     {
         list($response) = $this->getOrgAddonsWithHttpInfo($organization_id);
         return $response;
@@ -135,8 +137,9 @@ final class AddOnsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getOrgAddonsWithHttpInfo(string $organization_id): array
-    {
+    public function getOrgAddonsWithHttpInfo(
+        string $organization_id
+    ): array {
         $request = $this->getOrgAddonsRequest($organization_id);
 
         try {
@@ -242,10 +245,11 @@ final class AddOnsApi
     /**
      * Get add-ons
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getOrgAddonsAsync(string $organization_id): Promise
-    {
+    public function getOrgAddonsAsync(
+        string $organization_id
+    ): Promise {
         return $this->getOrgAddonsAsyncWithHttpInfo($organization_id)
             ->then(
                 function ($response) {
@@ -257,10 +261,11 @@ final class AddOnsApi
     /**
      * Get add-ons
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getOrgAddonsAsyncWithHttpInfo(string $organization_id)
-    {
+    public function getOrgAddonsAsyncWithHttpInfo(
+        string $organization_id
+    ) {
         $returnType = '\Upsun\Model\OrganizationAddonsObject';
         $request = $this->getOrgAddonsRequest($organization_id);
 
@@ -301,8 +306,9 @@ final class AddOnsApi
      *
      * @throws InvalidArgumentException
      */
-    public function getOrgAddonsRequest(string $organization_id): RequestInterface
-    {
+    public function getOrgAddonsRequest(
+        string $organization_id
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -386,9 +392,9 @@ final class AddOnsApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -484,8 +490,8 @@ final class AddOnsApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

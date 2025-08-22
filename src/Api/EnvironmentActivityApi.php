@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class EnvironmentActivityApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\AcceptedResponse
      */
-    public function actionProjectsEnvironmentsActivitiesCancel($project_id, $environment_id, $activity_id): \Upsun\Model\AcceptedResponse
+    public function actionProjectsEnvironmentsActivitiesCancel($project_id, $environment_id, $activity_id)
     {
         list($response) = $this->actionProjectsEnvironmentsActivitiesCancelWithHttpInfo($project_id, $environment_id, $activity_id);
         return $response;
@@ -135,8 +137,11 @@ final class EnvironmentActivityApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function actionProjectsEnvironmentsActivitiesCancelWithHttpInfo(string $project_id, string $environment_id, string $activity_id): array
-    {
+    public function actionProjectsEnvironmentsActivitiesCancelWithHttpInfo(
+        string $project_id,
+        string $environment_id,
+        string $activity_id
+    ): array {
         $request = $this->actionProjectsEnvironmentsActivitiesCancelRequest($project_id, $environment_id, $activity_id);
 
         try {
@@ -214,10 +219,13 @@ final class EnvironmentActivityApi
     /**
      * Cancel an environment activity
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function actionProjectsEnvironmentsActivitiesCancelAsync(string $project_id, string $environment_id, string $activity_id): Promise
-    {
+    public function actionProjectsEnvironmentsActivitiesCancelAsync(
+        string $project_id,
+        string $environment_id,
+        string $activity_id
+    ): Promise {
         return $this->actionProjectsEnvironmentsActivitiesCancelAsyncWithHttpInfo($project_id, $environment_id, $activity_id)
             ->then(
                 function ($response) {
@@ -229,10 +237,13 @@ final class EnvironmentActivityApi
     /**
      * Cancel an environment activity
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function actionProjectsEnvironmentsActivitiesCancelAsyncWithHttpInfo(string $project_id, string $environment_id, string $activity_id)
-    {
+    public function actionProjectsEnvironmentsActivitiesCancelAsyncWithHttpInfo(
+        string $project_id,
+        string $environment_id,
+        string $activity_id
+    ) {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->actionProjectsEnvironmentsActivitiesCancelRequest($project_id, $environment_id, $activity_id);
 
@@ -273,8 +284,11 @@ final class EnvironmentActivityApi
      *
      * @throws InvalidArgumentException
      */
-    public function actionProjectsEnvironmentsActivitiesCancelRequest(string $project_id, string $environment_id, string $activity_id): RequestInterface
-    {
+    public function actionProjectsEnvironmentsActivitiesCancelRequest(
+        string $project_id,
+        string $environment_id,
+        string $activity_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -386,8 +400,9 @@ final class EnvironmentActivityApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Activity
      */
-    public function getProjectsEnvironmentsActivities($project_id, $environment_id, $activity_id): \Upsun\Model\Activity
+    public function getProjectsEnvironmentsActivities($project_id, $environment_id, $activity_id)
     {
         list($response) = $this->getProjectsEnvironmentsActivitiesWithHttpInfo($project_id, $environment_id, $activity_id);
         return $response;
@@ -399,8 +414,11 @@ final class EnvironmentActivityApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getProjectsEnvironmentsActivitiesWithHttpInfo(string $project_id, string $environment_id, string $activity_id): array
-    {
+    public function getProjectsEnvironmentsActivitiesWithHttpInfo(
+        string $project_id,
+        string $environment_id,
+        string $activity_id
+    ): array {
         $request = $this->getProjectsEnvironmentsActivitiesRequest($project_id, $environment_id, $activity_id);
 
         try {
@@ -478,10 +496,13 @@ final class EnvironmentActivityApi
     /**
      * Get an environment activity log entry
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsEnvironmentsActivitiesAsync(string $project_id, string $environment_id, string $activity_id): Promise
-    {
+    public function getProjectsEnvironmentsActivitiesAsync(
+        string $project_id,
+        string $environment_id,
+        string $activity_id
+    ): Promise {
         return $this->getProjectsEnvironmentsActivitiesAsyncWithHttpInfo($project_id, $environment_id, $activity_id)
             ->then(
                 function ($response) {
@@ -493,10 +514,13 @@ final class EnvironmentActivityApi
     /**
      * Get an environment activity log entry
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsEnvironmentsActivitiesAsyncWithHttpInfo(string $project_id, string $environment_id, string $activity_id)
-    {
+    public function getProjectsEnvironmentsActivitiesAsyncWithHttpInfo(
+        string $project_id,
+        string $environment_id,
+        string $activity_id
+    ) {
         $returnType = '\Upsun\Model\Activity';
         $request = $this->getProjectsEnvironmentsActivitiesRequest($project_id, $environment_id, $activity_id);
 
@@ -537,8 +561,11 @@ final class EnvironmentActivityApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectsEnvironmentsActivitiesRequest(string $project_id, string $environment_id, string $activity_id): RequestInterface
-    {
+    public function getProjectsEnvironmentsActivitiesRequest(
+        string $project_id,
+        string $environment_id,
+        string $activity_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -650,8 +677,9 @@ final class EnvironmentActivityApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Activity[]
      */
-    public function listProjectsEnvironmentsActivities($project_id, $environment_id): \Upsun\Model\Activity[]
+    public function listProjectsEnvironmentsActivities($project_id, $environment_id)
     {
         list($response) = $this->listProjectsEnvironmentsActivitiesWithHttpInfo($project_id, $environment_id);
         return $response;
@@ -663,8 +691,10 @@ final class EnvironmentActivityApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsActivitiesWithHttpInfo(string $project_id, string $environment_id): array
-    {
+    public function listProjectsEnvironmentsActivitiesWithHttpInfo(
+        string $project_id,
+        string $environment_id
+    ): array {
         $request = $this->listProjectsEnvironmentsActivitiesRequest($project_id, $environment_id);
 
         try {
@@ -742,10 +772,12 @@ final class EnvironmentActivityApi
     /**
      * Get environment activity log
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsEnvironmentsActivitiesAsync(string $project_id, string $environment_id): Promise
-    {
+    public function listProjectsEnvironmentsActivitiesAsync(
+        string $project_id,
+        string $environment_id
+    ): Promise {
         return $this->listProjectsEnvironmentsActivitiesAsyncWithHttpInfo($project_id, $environment_id)
             ->then(
                 function ($response) {
@@ -757,10 +789,12 @@ final class EnvironmentActivityApi
     /**
      * Get environment activity log
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsEnvironmentsActivitiesAsyncWithHttpInfo(string $project_id, string $environment_id)
-    {
+    public function listProjectsEnvironmentsActivitiesAsyncWithHttpInfo(
+        string $project_id,
+        string $environment_id
+    ) {
         $returnType = '\Upsun\Model\Activity[]';
         $request = $this->listProjectsEnvironmentsActivitiesRequest($project_id, $environment_id);
 
@@ -801,8 +835,10 @@ final class EnvironmentActivityApi
      *
      * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsActivitiesRequest(string $project_id, string $environment_id): RequestInterface
-    {
+    public function listProjectsEnvironmentsActivitiesRequest(
+        string $project_id,
+        string $environment_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -900,9 +936,9 @@ final class EnvironmentActivityApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -998,8 +1034,8 @@ final class EnvironmentActivityApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

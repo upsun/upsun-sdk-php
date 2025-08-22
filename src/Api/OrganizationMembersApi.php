@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class OrganizationMembersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\OrganizationMember
      */
-    public function createOrgMember($organization_id, $create_org_member_request): \Upsun\Model\OrganizationMember
+    public function createOrgMember($organization_id, $create_org_member_request)
     {
         list($response) = $this->createOrgMemberWithHttpInfo($organization_id, $create_org_member_request);
         return $response;
@@ -135,8 +137,10 @@ final class OrganizationMembersApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function createOrgMemberWithHttpInfo(string $organization_id, \Upsun\Model\CreateOrgMemberRequest $create_org_member_request): array
-    {
+    public function createOrgMemberWithHttpInfo(
+        string $organization_id,
+        \Upsun\Model\CreateOrgMemberRequest $create_org_member_request
+    ): array {
         $request = $this->createOrgMemberRequest($organization_id, $create_org_member_request);
 
         try {
@@ -256,10 +260,12 @@ final class OrganizationMembersApi
     /**
      * Create organization member
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createOrgMemberAsync(string $organization_id, \Upsun\Model\CreateOrgMemberRequest $create_org_member_request): Promise
-    {
+    public function createOrgMemberAsync(
+        string $organization_id,
+        \Upsun\Model\CreateOrgMemberRequest $create_org_member_request
+    ): Promise {
         return $this->createOrgMemberAsyncWithHttpInfo($organization_id, $create_org_member_request)
             ->then(
                 function ($response) {
@@ -271,10 +277,12 @@ final class OrganizationMembersApi
     /**
      * Create organization member
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createOrgMemberAsyncWithHttpInfo(string $organization_id, \Upsun\Model\CreateOrgMemberRequest $create_org_member_request)
-    {
+    public function createOrgMemberAsyncWithHttpInfo(
+        string $organization_id,
+        \Upsun\Model\CreateOrgMemberRequest $create_org_member_request
+    ) {
         $returnType = '\Upsun\Model\OrganizationMember';
         $request = $this->createOrgMemberRequest($organization_id, $create_org_member_request);
 
@@ -315,8 +323,10 @@ final class OrganizationMembersApi
      *
      * @throws InvalidArgumentException
      */
-    public function createOrgMemberRequest(string $organization_id, \Upsun\Model\CreateOrgMemberRequest $create_org_member_request): RequestInterface
-    {
+    public function createOrgMemberRequest(
+        string $organization_id,
+        \Upsun\Model\CreateOrgMemberRequest $create_org_member_request
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -412,8 +422,9 @@ final class OrganizationMembersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function deleteOrgMember($organization_id, $user_id): void
+    public function deleteOrgMember($organization_id, $user_id)
     {
         $this->deleteOrgMemberWithHttpInfo($organization_id, $user_id);
     }
@@ -424,8 +435,10 @@ final class OrganizationMembersApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function deleteOrgMemberWithHttpInfo(string $organization_id, string $user_id): array
-    {
+    public function deleteOrgMemberWithHttpInfo(
+        string $organization_id,
+        string $user_id
+    ): array {
         $request = $this->deleteOrgMemberRequest($organization_id, $user_id);
 
         try {
@@ -484,10 +497,12 @@ final class OrganizationMembersApi
     /**
      * Delete organization member
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteOrgMemberAsync(string $organization_id, string $user_id): Promise
-    {
+    public function deleteOrgMemberAsync(
+        string $organization_id,
+        string $user_id
+    ): Promise {
         return $this->deleteOrgMemberAsyncWithHttpInfo($organization_id, $user_id)
             ->then(
                 function ($response) {
@@ -499,10 +514,12 @@ final class OrganizationMembersApi
     /**
      * Delete organization member
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteOrgMemberAsyncWithHttpInfo(string $organization_id, string $user_id)
-    {
+    public function deleteOrgMemberAsyncWithHttpInfo(
+        string $organization_id,
+        string $user_id
+    ) {
         $returnType = '';
         $request = $this->deleteOrgMemberRequest($organization_id, $user_id);
 
@@ -533,8 +550,10 @@ final class OrganizationMembersApi
      *
      * @throws InvalidArgumentException
      */
-    public function deleteOrgMemberRequest(string $organization_id, string $user_id): RequestInterface
-    {
+    public function deleteOrgMemberRequest(
+        string $organization_id,
+        string $user_id
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -632,8 +651,9 @@ final class OrganizationMembersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\OrganizationMember
      */
-    public function getOrgMember($organization_id, $user_id): \Upsun\Model\OrganizationMember
+    public function getOrgMember($organization_id, $user_id)
     {
         list($response) = $this->getOrgMemberWithHttpInfo($organization_id, $user_id);
         return $response;
@@ -645,8 +665,10 @@ final class OrganizationMembersApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getOrgMemberWithHttpInfo(string $organization_id, string $user_id): array
-    {
+    public function getOrgMemberWithHttpInfo(
+        string $organization_id,
+        string $user_id
+    ): array {
         $request = $this->getOrgMemberRequest($organization_id, $user_id);
 
         try {
@@ -752,10 +774,12 @@ final class OrganizationMembersApi
     /**
      * Get organization member
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getOrgMemberAsync(string $organization_id, string $user_id): Promise
-    {
+    public function getOrgMemberAsync(
+        string $organization_id,
+        string $user_id
+    ): Promise {
         return $this->getOrgMemberAsyncWithHttpInfo($organization_id, $user_id)
             ->then(
                 function ($response) {
@@ -767,10 +791,12 @@ final class OrganizationMembersApi
     /**
      * Get organization member
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getOrgMemberAsyncWithHttpInfo(string $organization_id, string $user_id)
-    {
+    public function getOrgMemberAsyncWithHttpInfo(
+        string $organization_id,
+        string $user_id
+    ) {
         $returnType = '\Upsun\Model\OrganizationMember';
         $request = $this->getOrgMemberRequest($organization_id, $user_id);
 
@@ -811,8 +837,10 @@ final class OrganizationMembersApi
      *
      * @throws InvalidArgumentException
      */
-    public function getOrgMemberRequest(string $organization_id, string $user_id): RequestInterface
-    {
+    public function getOrgMemberRequest(
+        string $organization_id,
+        string $user_id
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -910,8 +938,9 @@ final class OrganizationMembersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ListOrgMembers200Response
      */
-    public function listOrgMembers($organization_id, $filter_permissions = null, $page_size = null, $page_before = null, $page_after = null, $sort = null): \Upsun\Model\ListOrgMembers200Response
+    public function listOrgMembers($organization_id, $filter_permissions = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
     {
         list($response) = $this->listOrgMembersWithHttpInfo($organization_id, $filter_permissions, $page_size, $page_before, $page_after, $sort);
         return $response;
@@ -923,8 +952,14 @@ final class OrganizationMembersApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listOrgMembersWithHttpInfo(string $organization_id, \Upsun\Model\ArrayFilter $filter_permissions = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): array
-    {
+    public function listOrgMembersWithHttpInfo(
+        string $organization_id,
+        \Upsun\Model\ArrayFilter $filter_permissions = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): array {
         $request = $this->listOrgMembersRequest($organization_id, $filter_permissions, $page_size, $page_before, $page_after, $sort);
 
         try {
@@ -1044,10 +1079,16 @@ final class OrganizationMembersApi
     /**
      * List organization members
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listOrgMembersAsync(string $organization_id, \Upsun\Model\ArrayFilter $filter_permissions = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Promise
-    {
+    public function listOrgMembersAsync(
+        string $organization_id,
+        \Upsun\Model\ArrayFilter $filter_permissions = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): Promise {
         return $this->listOrgMembersAsyncWithHttpInfo($organization_id, $filter_permissions, $page_size, $page_before, $page_after, $sort)
             ->then(
                 function ($response) {
@@ -1059,10 +1100,16 @@ final class OrganizationMembersApi
     /**
      * List organization members
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listOrgMembersAsyncWithHttpInfo(string $organization_id, \Upsun\Model\ArrayFilter $filter_permissions = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null)
-    {
+    public function listOrgMembersAsyncWithHttpInfo(
+        string $organization_id,
+        \Upsun\Model\ArrayFilter $filter_permissions = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ) {
         $returnType = '\Upsun\Model\ListOrgMembers200Response';
         $request = $this->listOrgMembersRequest($organization_id, $filter_permissions, $page_size, $page_before, $page_after, $sort);
 
@@ -1103,8 +1150,14 @@ final class OrganizationMembersApi
      *
      * @throws InvalidArgumentException
      */
-    public function listOrgMembersRequest(string $organization_id, \Upsun\Model\ArrayFilter $filter_permissions = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): RequestInterface
-    {
+    public function listOrgMembersRequest(
+        string $organization_id,
+        \Upsun\Model\ArrayFilter $filter_permissions = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1250,8 +1303,9 @@ final class OrganizationMembersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\OrganizationMember
      */
-    public function updateOrgMember($organization_id, $user_id, $update_org_member_request = null): \Upsun\Model\OrganizationMember
+    public function updateOrgMember($organization_id, $user_id, $update_org_member_request = null)
     {
         list($response) = $this->updateOrgMemberWithHttpInfo($organization_id, $user_id, $update_org_member_request);
         return $response;
@@ -1263,8 +1317,11 @@ final class OrganizationMembersApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function updateOrgMemberWithHttpInfo(string $organization_id, string $user_id, \Upsun\Model\UpdateOrgMemberRequest $update_org_member_request = null): array
-    {
+    public function updateOrgMemberWithHttpInfo(
+        string $organization_id,
+        string $user_id,
+        \Upsun\Model\UpdateOrgMemberRequest $update_org_member_request = null
+    ): array {
         $request = $this->updateOrgMemberRequest($organization_id, $user_id, $update_org_member_request);
 
         try {
@@ -1384,10 +1441,13 @@ final class OrganizationMembersApi
     /**
      * Update organization member
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateOrgMemberAsync(string $organization_id, string $user_id, \Upsun\Model\UpdateOrgMemberRequest $update_org_member_request = null): Promise
-    {
+    public function updateOrgMemberAsync(
+        string $organization_id,
+        string $user_id,
+        \Upsun\Model\UpdateOrgMemberRequest $update_org_member_request = null
+    ): Promise {
         return $this->updateOrgMemberAsyncWithHttpInfo($organization_id, $user_id, $update_org_member_request)
             ->then(
                 function ($response) {
@@ -1399,10 +1459,13 @@ final class OrganizationMembersApi
     /**
      * Update organization member
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateOrgMemberAsyncWithHttpInfo(string $organization_id, string $user_id, \Upsun\Model\UpdateOrgMemberRequest $update_org_member_request = null)
-    {
+    public function updateOrgMemberAsyncWithHttpInfo(
+        string $organization_id,
+        string $user_id,
+        \Upsun\Model\UpdateOrgMemberRequest $update_org_member_request = null
+    ) {
         $returnType = '\Upsun\Model\OrganizationMember';
         $request = $this->updateOrgMemberRequest($organization_id, $user_id, $update_org_member_request);
 
@@ -1443,8 +1506,11 @@ final class OrganizationMembersApi
      *
      * @throws InvalidArgumentException
      */
-    public function updateOrgMemberRequest(string $organization_id, string $user_id, \Upsun\Model\UpdateOrgMemberRequest $update_org_member_request = null): RequestInterface
-    {
+    public function updateOrgMemberRequest(
+        string $organization_id,
+        string $user_id,
+        \Upsun\Model\UpdateOrgMemberRequest $update_org_member_request = null
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1548,9 +1614,9 @@ final class OrganizationMembersApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -1646,8 +1712,8 @@ final class OrganizationMembersApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

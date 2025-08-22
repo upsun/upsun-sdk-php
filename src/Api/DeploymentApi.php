@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class DeploymentApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Deployment
      */
-    public function getProjectsEnvironmentsDeployments($project_id, $environment_id, $deployment_id): \Upsun\Model\Deployment
+    public function getProjectsEnvironmentsDeployments($project_id, $environment_id, $deployment_id)
     {
         list($response) = $this->getProjectsEnvironmentsDeploymentsWithHttpInfo($project_id, $environment_id, $deployment_id);
         return $response;
@@ -135,8 +137,11 @@ final class DeploymentApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getProjectsEnvironmentsDeploymentsWithHttpInfo(string $project_id, string $environment_id, string $deployment_id): array
-    {
+    public function getProjectsEnvironmentsDeploymentsWithHttpInfo(
+        string $project_id,
+        string $environment_id,
+        string $deployment_id
+    ): array {
         $request = $this->getProjectsEnvironmentsDeploymentsRequest($project_id, $environment_id, $deployment_id);
 
         try {
@@ -214,10 +219,13 @@ final class DeploymentApi
     /**
      * Get a single environment deployment
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsEnvironmentsDeploymentsAsync(string $project_id, string $environment_id, string $deployment_id): Promise
-    {
+    public function getProjectsEnvironmentsDeploymentsAsync(
+        string $project_id,
+        string $environment_id,
+        string $deployment_id
+    ): Promise {
         return $this->getProjectsEnvironmentsDeploymentsAsyncWithHttpInfo($project_id, $environment_id, $deployment_id)
             ->then(
                 function ($response) {
@@ -229,10 +237,13 @@ final class DeploymentApi
     /**
      * Get a single environment deployment
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsEnvironmentsDeploymentsAsyncWithHttpInfo(string $project_id, string $environment_id, string $deployment_id)
-    {
+    public function getProjectsEnvironmentsDeploymentsAsyncWithHttpInfo(
+        string $project_id,
+        string $environment_id,
+        string $deployment_id
+    ) {
         $returnType = '\Upsun\Model\Deployment';
         $request = $this->getProjectsEnvironmentsDeploymentsRequest($project_id, $environment_id, $deployment_id);
 
@@ -273,8 +284,11 @@ final class DeploymentApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectsEnvironmentsDeploymentsRequest(string $project_id, string $environment_id, string $deployment_id): RequestInterface
-    {
+    public function getProjectsEnvironmentsDeploymentsRequest(
+        string $project_id,
+        string $environment_id,
+        string $deployment_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -386,8 +400,9 @@ final class DeploymentApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Deployment[]
      */
-    public function listProjectsEnvironmentsDeployments($project_id, $environment_id): \Upsun\Model\Deployment[]
+    public function listProjectsEnvironmentsDeployments($project_id, $environment_id)
     {
         list($response) = $this->listProjectsEnvironmentsDeploymentsWithHttpInfo($project_id, $environment_id);
         return $response;
@@ -399,8 +414,10 @@ final class DeploymentApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsDeploymentsWithHttpInfo(string $project_id, string $environment_id): array
-    {
+    public function listProjectsEnvironmentsDeploymentsWithHttpInfo(
+        string $project_id,
+        string $environment_id
+    ): array {
         $request = $this->listProjectsEnvironmentsDeploymentsRequest($project_id, $environment_id);
 
         try {
@@ -478,10 +495,12 @@ final class DeploymentApi
     /**
      * Get an environment&#39;s deployment information
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsEnvironmentsDeploymentsAsync(string $project_id, string $environment_id): Promise
-    {
+    public function listProjectsEnvironmentsDeploymentsAsync(
+        string $project_id,
+        string $environment_id
+    ): Promise {
         return $this->listProjectsEnvironmentsDeploymentsAsyncWithHttpInfo($project_id, $environment_id)
             ->then(
                 function ($response) {
@@ -493,10 +512,12 @@ final class DeploymentApi
     /**
      * Get an environment&#39;s deployment information
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsEnvironmentsDeploymentsAsyncWithHttpInfo(string $project_id, string $environment_id)
-    {
+    public function listProjectsEnvironmentsDeploymentsAsyncWithHttpInfo(
+        string $project_id,
+        string $environment_id
+    ) {
         $returnType = '\Upsun\Model\Deployment[]';
         $request = $this->listProjectsEnvironmentsDeploymentsRequest($project_id, $environment_id);
 
@@ -537,8 +558,10 @@ final class DeploymentApi
      *
      * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsDeploymentsRequest(string $project_id, string $environment_id): RequestInterface
-    {
+    public function listProjectsEnvironmentsDeploymentsRequest(
+        string $project_id,
+        string $environment_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -636,9 +659,9 @@ final class DeploymentApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -734,8 +757,8 @@ final class DeploymentApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class GrantsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ListUserExtendedAccess200Response
      */
-    public function listUserExtendedAccess($user_id, $filter_resource_type = null, $filter_organization_id = null, $filter_permissions = null): \Upsun\Model\ListUserExtendedAccess200Response
+    public function listUserExtendedAccess($user_id, $filter_resource_type = null, $filter_organization_id = null, $filter_permissions = null)
     {
         list($response) = $this->listUserExtendedAccessWithHttpInfo($user_id, $filter_resource_type, $filter_organization_id, $filter_permissions);
         return $response;
@@ -135,8 +137,12 @@ final class GrantsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listUserExtendedAccessWithHttpInfo(string $user_id, \Upsun\Model\StringFilter $filter_resource_type = null, \Upsun\Model\StringFilter $filter_organization_id = null, \Upsun\Model\StringFilter $filter_permissions = null): array
-    {
+    public function listUserExtendedAccessWithHttpInfo(
+        string $user_id,
+        \Upsun\Model\StringFilter $filter_resource_type = null,
+        \Upsun\Model\StringFilter $filter_organization_id = null,
+        \Upsun\Model\StringFilter $filter_permissions = null
+    ): array {
         $request = $this->listUserExtendedAccessRequest($user_id, $filter_resource_type, $filter_organization_id, $filter_permissions);
 
         try {
@@ -228,10 +234,14 @@ final class GrantsApi
     /**
      * List extended access of a user
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listUserExtendedAccessAsync(string $user_id, \Upsun\Model\StringFilter $filter_resource_type = null, \Upsun\Model\StringFilter $filter_organization_id = null, \Upsun\Model\StringFilter $filter_permissions = null): Promise
-    {
+    public function listUserExtendedAccessAsync(
+        string $user_id,
+        \Upsun\Model\StringFilter $filter_resource_type = null,
+        \Upsun\Model\StringFilter $filter_organization_id = null,
+        \Upsun\Model\StringFilter $filter_permissions = null
+    ): Promise {
         return $this->listUserExtendedAccessAsyncWithHttpInfo($user_id, $filter_resource_type, $filter_organization_id, $filter_permissions)
             ->then(
                 function ($response) {
@@ -243,10 +253,14 @@ final class GrantsApi
     /**
      * List extended access of a user
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listUserExtendedAccessAsyncWithHttpInfo(string $user_id, \Upsun\Model\StringFilter $filter_resource_type = null, \Upsun\Model\StringFilter $filter_organization_id = null, \Upsun\Model\StringFilter $filter_permissions = null)
-    {
+    public function listUserExtendedAccessAsyncWithHttpInfo(
+        string $user_id,
+        \Upsun\Model\StringFilter $filter_resource_type = null,
+        \Upsun\Model\StringFilter $filter_organization_id = null,
+        \Upsun\Model\StringFilter $filter_permissions = null
+    ) {
         $returnType = '\Upsun\Model\ListUserExtendedAccess200Response';
         $request = $this->listUserExtendedAccessRequest($user_id, $filter_resource_type, $filter_organization_id, $filter_permissions);
 
@@ -287,8 +301,12 @@ final class GrantsApi
      *
      * @throws InvalidArgumentException
      */
-    public function listUserExtendedAccessRequest(string $user_id, \Upsun\Model\StringFilter $filter_resource_type = null, \Upsun\Model\StringFilter $filter_organization_id = null, \Upsun\Model\StringFilter $filter_permissions = null): RequestInterface
-    {
+    public function listUserExtendedAccessRequest(
+        string $user_id,
+        \Upsun\Model\StringFilter $filter_resource_type = null,
+        \Upsun\Model\StringFilter $filter_organization_id = null,
+        \Upsun\Model\StringFilter $filter_permissions = null
+    ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -405,9 +423,9 @@ final class GrantsApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -503,8 +521,8 @@ final class GrantsApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

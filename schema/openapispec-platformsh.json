@@ -11516,7 +11516,6 @@
                   "type": "object",
                   "properties": {
                     "prepayment": {
-                      "type": "object",
                       "$ref": "#/components/schemas/PrepaymentObject"
                     },
                     "_links": {
@@ -11605,20 +11604,26 @@
                       }
                     },
                     "_links": {
-                      "type": "object",
-                      "$ref": "#/components/schemas/ListLinks",
-                      "properties": {
-                        "prepayment": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ListLinks"
+                        },
+                        {
                           "type": "object",
-                          "description": "Link to the prepayment resource.",
                           "properties": {
-                            "href": {
-                              "type": "string",
-                              "description": "URL of the link."
+                            "prepayment": {
+                              "type": "object",
+                              "description": "Link to the prepayment resource.",
+                              "properties": {
+                                "href": {
+                                  "type": "string",
+                                  "description": "URL of the link."
+                                }
+                              }
                             }
                           }
                         }
-                      }
+                      ]
                     }
                   }
                 }

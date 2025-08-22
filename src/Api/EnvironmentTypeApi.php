@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class EnvironmentTypeApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\EnvironmentType
      */
-    public function getEnvironmentType($project_id, $environment_type_id): \Upsun\Model\EnvironmentType
+    public function getEnvironmentType($project_id, $environment_type_id)
     {
         list($response) = $this->getEnvironmentTypeWithHttpInfo($project_id, $environment_type_id);
         return $response;
@@ -135,8 +137,10 @@ final class EnvironmentTypeApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getEnvironmentTypeWithHttpInfo(string $project_id, string $environment_type_id): array
-    {
+    public function getEnvironmentTypeWithHttpInfo(
+        string $project_id,
+        string $environment_type_id
+    ): array {
         $request = $this->getEnvironmentTypeRequest($project_id, $environment_type_id);
 
         try {
@@ -214,10 +218,12 @@ final class EnvironmentTypeApi
     /**
      * Get environment type links
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getEnvironmentTypeAsync(string $project_id, string $environment_type_id): Promise
-    {
+    public function getEnvironmentTypeAsync(
+        string $project_id,
+        string $environment_type_id
+    ): Promise {
         return $this->getEnvironmentTypeAsyncWithHttpInfo($project_id, $environment_type_id)
             ->then(
                 function ($response) {
@@ -229,10 +235,12 @@ final class EnvironmentTypeApi
     /**
      * Get environment type links
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getEnvironmentTypeAsyncWithHttpInfo(string $project_id, string $environment_type_id)
-    {
+    public function getEnvironmentTypeAsyncWithHttpInfo(
+        string $project_id,
+        string $environment_type_id
+    ) {
         $returnType = '\Upsun\Model\EnvironmentType';
         $request = $this->getEnvironmentTypeRequest($project_id, $environment_type_id);
 
@@ -273,8 +281,10 @@ final class EnvironmentTypeApi
      *
      * @throws InvalidArgumentException
      */
-    public function getEnvironmentTypeRequest(string $project_id, string $environment_type_id): RequestInterface
-    {
+    public function getEnvironmentTypeRequest(
+        string $project_id,
+        string $environment_type_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -372,8 +382,9 @@ final class EnvironmentTypeApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\EnvironmentType[]
      */
-    public function listProjectsEnvironmentTypes($project_id): \Upsun\Model\EnvironmentType[]
+    public function listProjectsEnvironmentTypes($project_id)
     {
         list($response) = $this->listProjectsEnvironmentTypesWithHttpInfo($project_id);
         return $response;
@@ -385,8 +396,9 @@ final class EnvironmentTypeApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentTypesWithHttpInfo(string $project_id): array
-    {
+    public function listProjectsEnvironmentTypesWithHttpInfo(
+        string $project_id
+    ): array {
         $request = $this->listProjectsEnvironmentTypesRequest($project_id);
 
         try {
@@ -464,10 +476,11 @@ final class EnvironmentTypeApi
     /**
      * Get environment types
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsEnvironmentTypesAsync(string $project_id): Promise
-    {
+    public function listProjectsEnvironmentTypesAsync(
+        string $project_id
+    ): Promise {
         return $this->listProjectsEnvironmentTypesAsyncWithHttpInfo($project_id)
             ->then(
                 function ($response) {
@@ -479,10 +492,11 @@ final class EnvironmentTypeApi
     /**
      * Get environment types
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsEnvironmentTypesAsyncWithHttpInfo(string $project_id)
-    {
+    public function listProjectsEnvironmentTypesAsyncWithHttpInfo(
+        string $project_id
+    ) {
         $returnType = '\Upsun\Model\EnvironmentType[]';
         $request = $this->listProjectsEnvironmentTypesRequest($project_id);
 
@@ -523,8 +537,9 @@ final class EnvironmentTypeApi
      *
      * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentTypesRequest(string $project_id): RequestInterface
-    {
+    public function listProjectsEnvironmentTypesRequest(
+        string $project_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -608,9 +623,9 @@ final class EnvironmentTypeApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -706,8 +721,8 @@ final class EnvironmentTypeApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

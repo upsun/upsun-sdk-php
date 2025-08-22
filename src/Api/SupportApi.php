@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class SupportApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Ticket
      */
-    public function createTicket($create_ticket_request = null): \Upsun\Model\Ticket
+    public function createTicket($create_ticket_request = null)
     {
         list($response) = $this->createTicketWithHttpInfo($create_ticket_request);
         return $response;
@@ -135,8 +137,9 @@ final class SupportApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function createTicketWithHttpInfo(\Upsun\Model\CreateTicketRequest $create_ticket_request = null): array
-    {
+    public function createTicketWithHttpInfo(
+        \Upsun\Model\CreateTicketRequest $create_ticket_request = null
+    ): array {
         $request = $this->createTicketRequest($create_ticket_request);
 
         try {
@@ -214,10 +217,11 @@ final class SupportApi
     /**
      * Create a new support ticket
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createTicketAsync(\Upsun\Model\CreateTicketRequest $create_ticket_request = null): Promise
-    {
+    public function createTicketAsync(
+        \Upsun\Model\CreateTicketRequest $create_ticket_request = null
+    ): Promise {
         return $this->createTicketAsyncWithHttpInfo($create_ticket_request)
             ->then(
                 function ($response) {
@@ -229,10 +233,11 @@ final class SupportApi
     /**
      * Create a new support ticket
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createTicketAsyncWithHttpInfo(\Upsun\Model\CreateTicketRequest $create_ticket_request = null)
-    {
+    public function createTicketAsyncWithHttpInfo(
+        \Upsun\Model\CreateTicketRequest $create_ticket_request = null
+    ) {
         $returnType = '\Upsun\Model\Ticket';
         $request = $this->createTicketRequest($create_ticket_request);
 
@@ -273,8 +278,9 @@ final class SupportApi
      *
      * @throws InvalidArgumentException
      */
-    public function createTicketRequest(\Upsun\Model\CreateTicketRequest $create_ticket_request = null): RequestInterface
-    {
+    public function createTicketRequest(
+        \Upsun\Model\CreateTicketRequest $create_ticket_request = null
+    ): RequestInterface {
 
         $resourcePath = '/tickets';
         $formParams = [];
@@ -350,8 +356,9 @@ final class SupportApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ListTicketCategories200ResponseInner[]
      */
-    public function listTicketCategories($subscription_id = null, $organization_id = null): \Upsun\Model\ListTicketCategories200ResponseInner[]
+    public function listTicketCategories($subscription_id = null, $organization_id = null)
     {
         list($response) = $this->listTicketCategoriesWithHttpInfo($subscription_id, $organization_id);
         return $response;
@@ -363,8 +370,10 @@ final class SupportApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listTicketCategoriesWithHttpInfo(string $subscription_id = null, string $organization_id = null): array
-    {
+    public function listTicketCategoriesWithHttpInfo(
+        string $subscription_id = null,
+        string $organization_id = null
+    ): array {
         $request = $this->listTicketCategoriesRequest($subscription_id, $organization_id);
 
         try {
@@ -442,10 +451,12 @@ final class SupportApi
     /**
      * List support ticket categories
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listTicketCategoriesAsync(string $subscription_id = null, string $organization_id = null): Promise
-    {
+    public function listTicketCategoriesAsync(
+        string $subscription_id = null,
+        string $organization_id = null
+    ): Promise {
         return $this->listTicketCategoriesAsyncWithHttpInfo($subscription_id, $organization_id)
             ->then(
                 function ($response) {
@@ -457,10 +468,12 @@ final class SupportApi
     /**
      * List support ticket categories
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listTicketCategoriesAsyncWithHttpInfo(string $subscription_id = null, string $organization_id = null)
-    {
+    public function listTicketCategoriesAsyncWithHttpInfo(
+        string $subscription_id = null,
+        string $organization_id = null
+    ) {
         $returnType = '\Upsun\Model\ListTicketCategories200ResponseInner[]';
         $request = $this->listTicketCategoriesRequest($subscription_id, $organization_id);
 
@@ -501,8 +514,10 @@ final class SupportApi
      *
      * @throws InvalidArgumentException
      */
-    public function listTicketCategoriesRequest(string $subscription_id = null, string $organization_id = null): RequestInterface
-    {
+    public function listTicketCategoriesRequest(
+        string $subscription_id = null,
+        string $organization_id = null
+    ): RequestInterface {
 
         $resourcePath = '/tickets/category';
         $formParams = [];
@@ -594,8 +609,9 @@ final class SupportApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ListTicketPriorities200ResponseInner[]
      */
-    public function listTicketPriorities($subscription_id = null, $category = null): \Upsun\Model\ListTicketPriorities200ResponseInner[]
+    public function listTicketPriorities($subscription_id = null, $category = null)
     {
         list($response) = $this->listTicketPrioritiesWithHttpInfo($subscription_id, $category);
         return $response;
@@ -607,8 +623,10 @@ final class SupportApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listTicketPrioritiesWithHttpInfo(string $subscription_id = null, string $category = null): array
-    {
+    public function listTicketPrioritiesWithHttpInfo(
+        string $subscription_id = null,
+        string $category = null
+    ): array {
         $request = $this->listTicketPrioritiesRequest($subscription_id, $category);
 
         try {
@@ -686,10 +704,12 @@ final class SupportApi
     /**
      * List support ticket priorities
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listTicketPrioritiesAsync(string $subscription_id = null, string $category = null): Promise
-    {
+    public function listTicketPrioritiesAsync(
+        string $subscription_id = null,
+        string $category = null
+    ): Promise {
         return $this->listTicketPrioritiesAsyncWithHttpInfo($subscription_id, $category)
             ->then(
                 function ($response) {
@@ -701,10 +721,12 @@ final class SupportApi
     /**
      * List support ticket priorities
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listTicketPrioritiesAsyncWithHttpInfo(string $subscription_id = null, string $category = null)
-    {
+    public function listTicketPrioritiesAsyncWithHttpInfo(
+        string $subscription_id = null,
+        string $category = null
+    ) {
         $returnType = '\Upsun\Model\ListTicketPriorities200ResponseInner[]';
         $request = $this->listTicketPrioritiesRequest($subscription_id, $category);
 
@@ -745,8 +767,10 @@ final class SupportApi
      *
      * @throws InvalidArgumentException
      */
-    public function listTicketPrioritiesRequest(string $subscription_id = null, string $category = null): RequestInterface
-    {
+    public function listTicketPrioritiesRequest(
+        string $subscription_id = null,
+        string $category = null
+    ): RequestInterface {
 
         $resourcePath = '/tickets/priority';
         $formParams = [];
@@ -838,8 +862,9 @@ final class SupportApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Ticket
      */
-    public function updateTicket($ticket_id, $update_ticket_request = null): \Upsun\Model\Ticket
+    public function updateTicket($ticket_id, $update_ticket_request = null)
     {
         list($response) = $this->updateTicketWithHttpInfo($ticket_id, $update_ticket_request);
         return $response;
@@ -851,8 +876,10 @@ final class SupportApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function updateTicketWithHttpInfo(string $ticket_id, \Upsun\Model\UpdateTicketRequest $update_ticket_request = null): array
-    {
+    public function updateTicketWithHttpInfo(
+        string $ticket_id,
+        \Upsun\Model\UpdateTicketRequest $update_ticket_request = null
+    ): array {
         $request = $this->updateTicketRequest($ticket_id, $update_ticket_request);
 
         try {
@@ -930,10 +957,12 @@ final class SupportApi
     /**
      * Update a ticket
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateTicketAsync(string $ticket_id, \Upsun\Model\UpdateTicketRequest $update_ticket_request = null): Promise
-    {
+    public function updateTicketAsync(
+        string $ticket_id,
+        \Upsun\Model\UpdateTicketRequest $update_ticket_request = null
+    ): Promise {
         return $this->updateTicketAsyncWithHttpInfo($ticket_id, $update_ticket_request)
             ->then(
                 function ($response) {
@@ -945,10 +974,12 @@ final class SupportApi
     /**
      * Update a ticket
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateTicketAsyncWithHttpInfo(string $ticket_id, \Upsun\Model\UpdateTicketRequest $update_ticket_request = null)
-    {
+    public function updateTicketAsyncWithHttpInfo(
+        string $ticket_id,
+        \Upsun\Model\UpdateTicketRequest $update_ticket_request = null
+    ) {
         $returnType = '\Upsun\Model\Ticket';
         $request = $this->updateTicketRequest($ticket_id, $update_ticket_request);
 
@@ -989,8 +1020,10 @@ final class SupportApi
      *
      * @throws InvalidArgumentException
      */
-    public function updateTicketRequest(string $ticket_id, \Upsun\Model\UpdateTicketRequest $update_ticket_request = null): RequestInterface
-    {
+    public function updateTicketRequest(
+        string $ticket_id,
+        \Upsun\Model\UpdateTicketRequest $update_ticket_request = null
+    ): RequestInterface {
         // verify the required parameter 'ticket_id' is set
         if ($ticket_id === null || (is_array($ticket_id) && count($ticket_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1080,9 +1113,9 @@ final class SupportApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -1178,8 +1211,8 @@ final class SupportApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class DiscountsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Discount
      */
-    public function getDiscount($id): \Upsun\Model\Discount
+    public function getDiscount($id)
     {
         list($response) = $this->getDiscountWithHttpInfo($id);
         return $response;
@@ -135,8 +137,9 @@ final class DiscountsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getDiscountWithHttpInfo(string $id): array
-    {
+    public function getDiscountWithHttpInfo(
+        string $id
+    ): array {
         $request = $this->getDiscountRequest($id);
 
         try {
@@ -214,10 +217,11 @@ final class DiscountsApi
     /**
      * Get an organization discount
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getDiscountAsync(string $id): Promise
-    {
+    public function getDiscountAsync(
+        string $id
+    ): Promise {
         return $this->getDiscountAsyncWithHttpInfo($id)
             ->then(
                 function ($response) {
@@ -229,10 +233,11 @@ final class DiscountsApi
     /**
      * Get an organization discount
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getDiscountAsyncWithHttpInfo(string $id)
-    {
+    public function getDiscountAsyncWithHttpInfo(
+        string $id
+    ) {
         $returnType = '\Upsun\Model\Discount';
         $request = $this->getDiscountRequest($id);
 
@@ -273,8 +278,9 @@ final class DiscountsApi
      *
      * @throws InvalidArgumentException
      */
-    public function getDiscountRequest(string $id): RequestInterface
-    {
+    public function getDiscountRequest(
+        string $id
+    ): RequestInterface {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
@@ -358,8 +364,9 @@ final class DiscountsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\GetTypeAllowance200Response
      */
-    public function getTypeAllowance(): \Upsun\Model\GetTypeAllowance200Response
+    public function getTypeAllowance()
     {
         list($response) = $this->getTypeAllowanceWithHttpInfo();
         return $response;
@@ -371,8 +378,9 @@ final class DiscountsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getTypeAllowanceWithHttpInfo(): array
-    {
+    public function getTypeAllowanceWithHttpInfo(
+        
+    ): array {
         $request = $this->getTypeAllowanceRequest();
 
         try {
@@ -450,10 +458,11 @@ final class DiscountsApi
     /**
      * Get the value of the First Project Incentive discount
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getTypeAllowanceAsync(): Promise
-    {
+    public function getTypeAllowanceAsync(
+        
+    ): Promise {
         return $this->getTypeAllowanceAsyncWithHttpInfo()
             ->then(
                 function ($response) {
@@ -465,10 +474,11 @@ final class DiscountsApi
     /**
      * Get the value of the First Project Incentive discount
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getTypeAllowanceAsyncWithHttpInfo()
-    {
+    public function getTypeAllowanceAsyncWithHttpInfo(
+        
+    ) {
         $returnType = '\Upsun\Model\GetTypeAllowance200Response';
         $request = $this->getTypeAllowanceRequest();
 
@@ -509,8 +519,9 @@ final class DiscountsApi
      *
      * @throws InvalidArgumentException
      */
-    public function getTypeAllowanceRequest(): RequestInterface
-    {
+    public function getTypeAllowanceRequest(
+        
+    ): RequestInterface {
 
         $resourcePath = '/discounts/types/allowance';
         $formParams = [];
@@ -580,8 +591,9 @@ final class DiscountsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ListOrgDiscounts200Response
      */
-    public function listOrgDiscounts($organization_id): \Upsun\Model\ListOrgDiscounts200Response
+    public function listOrgDiscounts($organization_id)
     {
         list($response) = $this->listOrgDiscountsWithHttpInfo($organization_id);
         return $response;
@@ -593,8 +605,9 @@ final class DiscountsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listOrgDiscountsWithHttpInfo(string $organization_id): array
-    {
+    public function listOrgDiscountsWithHttpInfo(
+        string $organization_id
+    ): array {
         $request = $this->listOrgDiscountsRequest($organization_id);
 
         try {
@@ -700,10 +713,11 @@ final class DiscountsApi
     /**
      * List organization discounts
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listOrgDiscountsAsync(string $organization_id): Promise
-    {
+    public function listOrgDiscountsAsync(
+        string $organization_id
+    ): Promise {
         return $this->listOrgDiscountsAsyncWithHttpInfo($organization_id)
             ->then(
                 function ($response) {
@@ -715,10 +729,11 @@ final class DiscountsApi
     /**
      * List organization discounts
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listOrgDiscountsAsyncWithHttpInfo(string $organization_id)
-    {
+    public function listOrgDiscountsAsyncWithHttpInfo(
+        string $organization_id
+    ) {
         $returnType = '\Upsun\Model\ListOrgDiscounts200Response';
         $request = $this->listOrgDiscountsRequest($organization_id);
 
@@ -759,8 +774,9 @@ final class DiscountsApi
      *
      * @throws InvalidArgumentException
      */
-    public function listOrgDiscountsRequest(string $organization_id): RequestInterface
-    {
+    public function listOrgDiscountsRequest(
+        string $organization_id
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -844,9 +860,9 @@ final class DiscountsApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -942,8 +958,8 @@ final class DiscountsApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

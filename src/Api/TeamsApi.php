@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class TeamsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Team
      */
-    public function createTeam($create_team_request): \Upsun\Model\Team
+    public function createTeam($create_team_request)
     {
         list($response) = $this->createTeamWithHttpInfo($create_team_request);
         return $response;
@@ -135,8 +137,9 @@ final class TeamsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function createTeamWithHttpInfo(\Upsun\Model\CreateTeamRequest $create_team_request): array
-    {
+    public function createTeamWithHttpInfo(
+        \Upsun\Model\CreateTeamRequest $create_team_request
+    ): array {
         $request = $this->createTeamRequest($create_team_request);
 
         try {
@@ -242,10 +245,11 @@ final class TeamsApi
     /**
      * Create team
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createTeamAsync(\Upsun\Model\CreateTeamRequest $create_team_request): Promise
-    {
+    public function createTeamAsync(
+        \Upsun\Model\CreateTeamRequest $create_team_request
+    ): Promise {
         return $this->createTeamAsyncWithHttpInfo($create_team_request)
             ->then(
                 function ($response) {
@@ -257,10 +261,11 @@ final class TeamsApi
     /**
      * Create team
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createTeamAsyncWithHttpInfo(\Upsun\Model\CreateTeamRequest $create_team_request)
-    {
+    public function createTeamAsyncWithHttpInfo(
+        \Upsun\Model\CreateTeamRequest $create_team_request
+    ) {
         $returnType = '\Upsun\Model\Team';
         $request = $this->createTeamRequest($create_team_request);
 
@@ -301,8 +306,9 @@ final class TeamsApi
      *
      * @throws InvalidArgumentException
      */
-    public function createTeamRequest(\Upsun\Model\CreateTeamRequest $create_team_request): RequestInterface
-    {
+    public function createTeamRequest(
+        \Upsun\Model\CreateTeamRequest $create_team_request
+    ): RequestInterface {
         // verify the required parameter 'create_team_request' is set
         if ($create_team_request === null || (is_array($create_team_request) && count($create_team_request) === 0)) {
             throw new \InvalidArgumentException(
@@ -384,8 +390,9 @@ final class TeamsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\TeamMember
      */
-    public function createTeamMember($team_id, $create_team_member_request): \Upsun\Model\TeamMember
+    public function createTeamMember($team_id, $create_team_member_request)
     {
         list($response) = $this->createTeamMemberWithHttpInfo($team_id, $create_team_member_request);
         return $response;
@@ -397,8 +404,10 @@ final class TeamsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function createTeamMemberWithHttpInfo(string $team_id, \Upsun\Model\CreateTeamMemberRequest $create_team_member_request): array
-    {
+    public function createTeamMemberWithHttpInfo(
+        string $team_id,
+        \Upsun\Model\CreateTeamMemberRequest $create_team_member_request
+    ): array {
         $request = $this->createTeamMemberRequest($team_id, $create_team_member_request);
 
         try {
@@ -518,10 +527,12 @@ final class TeamsApi
     /**
      * Create team member
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createTeamMemberAsync(string $team_id, \Upsun\Model\CreateTeamMemberRequest $create_team_member_request): Promise
-    {
+    public function createTeamMemberAsync(
+        string $team_id,
+        \Upsun\Model\CreateTeamMemberRequest $create_team_member_request
+    ): Promise {
         return $this->createTeamMemberAsyncWithHttpInfo($team_id, $create_team_member_request)
             ->then(
                 function ($response) {
@@ -533,10 +544,12 @@ final class TeamsApi
     /**
      * Create team member
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createTeamMemberAsyncWithHttpInfo(string $team_id, \Upsun\Model\CreateTeamMemberRequest $create_team_member_request)
-    {
+    public function createTeamMemberAsyncWithHttpInfo(
+        string $team_id,
+        \Upsun\Model\CreateTeamMemberRequest $create_team_member_request
+    ) {
         $returnType = '\Upsun\Model\TeamMember';
         $request = $this->createTeamMemberRequest($team_id, $create_team_member_request);
 
@@ -577,8 +590,10 @@ final class TeamsApi
      *
      * @throws InvalidArgumentException
      */
-    public function createTeamMemberRequest(string $team_id, \Upsun\Model\CreateTeamMemberRequest $create_team_member_request): RequestInterface
-    {
+    public function createTeamMemberRequest(
+        string $team_id,
+        \Upsun\Model\CreateTeamMemberRequest $create_team_member_request
+    ): RequestInterface {
         // verify the required parameter 'team_id' is set
         if ($team_id === null || (is_array($team_id) && count($team_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -674,8 +689,9 @@ final class TeamsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function deleteTeam($team_id): void
+    public function deleteTeam($team_id)
     {
         $this->deleteTeamWithHttpInfo($team_id);
     }
@@ -686,8 +702,9 @@ final class TeamsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function deleteTeamWithHttpInfo(string $team_id): array
-    {
+    public function deleteTeamWithHttpInfo(
+        string $team_id
+    ): array {
         $request = $this->deleteTeamRequest($team_id);
 
         try {
@@ -746,10 +763,11 @@ final class TeamsApi
     /**
      * Delete team
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteTeamAsync(string $team_id): Promise
-    {
+    public function deleteTeamAsync(
+        string $team_id
+    ): Promise {
         return $this->deleteTeamAsyncWithHttpInfo($team_id)
             ->then(
                 function ($response) {
@@ -761,10 +779,11 @@ final class TeamsApi
     /**
      * Delete team
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteTeamAsyncWithHttpInfo(string $team_id)
-    {
+    public function deleteTeamAsyncWithHttpInfo(
+        string $team_id
+    ) {
         $returnType = '';
         $request = $this->deleteTeamRequest($team_id);
 
@@ -795,8 +814,9 @@ final class TeamsApi
      *
      * @throws InvalidArgumentException
      */
-    public function deleteTeamRequest(string $team_id): RequestInterface
-    {
+    public function deleteTeamRequest(
+        string $team_id
+    ): RequestInterface {
         // verify the required parameter 'team_id' is set
         if ($team_id === null || (is_array($team_id) && count($team_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -880,8 +900,9 @@ final class TeamsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function deleteTeamMember($team_id, $user_id): void
+    public function deleteTeamMember($team_id, $user_id)
     {
         $this->deleteTeamMemberWithHttpInfo($team_id, $user_id);
     }
@@ -892,8 +913,10 @@ final class TeamsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function deleteTeamMemberWithHttpInfo(string $team_id, string $user_id): array
-    {
+    public function deleteTeamMemberWithHttpInfo(
+        string $team_id,
+        string $user_id
+    ): array {
         $request = $this->deleteTeamMemberRequest($team_id, $user_id);
 
         try {
@@ -952,10 +975,12 @@ final class TeamsApi
     /**
      * Delete team member
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteTeamMemberAsync(string $team_id, string $user_id): Promise
-    {
+    public function deleteTeamMemberAsync(
+        string $team_id,
+        string $user_id
+    ): Promise {
         return $this->deleteTeamMemberAsyncWithHttpInfo($team_id, $user_id)
             ->then(
                 function ($response) {
@@ -967,10 +992,12 @@ final class TeamsApi
     /**
      * Delete team member
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteTeamMemberAsyncWithHttpInfo(string $team_id, string $user_id)
-    {
+    public function deleteTeamMemberAsyncWithHttpInfo(
+        string $team_id,
+        string $user_id
+    ) {
         $returnType = '';
         $request = $this->deleteTeamMemberRequest($team_id, $user_id);
 
@@ -1001,8 +1028,10 @@ final class TeamsApi
      *
      * @throws InvalidArgumentException
      */
-    public function deleteTeamMemberRequest(string $team_id, string $user_id): RequestInterface
-    {
+    public function deleteTeamMemberRequest(
+        string $team_id,
+        string $user_id
+    ): RequestInterface {
         // verify the required parameter 'team_id' is set
         if ($team_id === null || (is_array($team_id) && count($team_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1100,8 +1129,9 @@ final class TeamsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Team
      */
-    public function getTeam($team_id): \Upsun\Model\Team
+    public function getTeam($team_id)
     {
         list($response) = $this->getTeamWithHttpInfo($team_id);
         return $response;
@@ -1113,8 +1143,9 @@ final class TeamsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getTeamWithHttpInfo(string $team_id): array
-    {
+    public function getTeamWithHttpInfo(
+        string $team_id
+    ): array {
         $request = $this->getTeamRequest($team_id);
 
         try {
@@ -1220,10 +1251,11 @@ final class TeamsApi
     /**
      * Get team
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getTeamAsync(string $team_id): Promise
-    {
+    public function getTeamAsync(
+        string $team_id
+    ): Promise {
         return $this->getTeamAsyncWithHttpInfo($team_id)
             ->then(
                 function ($response) {
@@ -1235,10 +1267,11 @@ final class TeamsApi
     /**
      * Get team
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getTeamAsyncWithHttpInfo(string $team_id)
-    {
+    public function getTeamAsyncWithHttpInfo(
+        string $team_id
+    ) {
         $returnType = '\Upsun\Model\Team';
         $request = $this->getTeamRequest($team_id);
 
@@ -1279,8 +1312,9 @@ final class TeamsApi
      *
      * @throws InvalidArgumentException
      */
-    public function getTeamRequest(string $team_id): RequestInterface
-    {
+    public function getTeamRequest(
+        string $team_id
+    ): RequestInterface {
         // verify the required parameter 'team_id' is set
         if ($team_id === null || (is_array($team_id) && count($team_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1364,8 +1398,9 @@ final class TeamsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\TeamMember
      */
-    public function getTeamMember($team_id, $user_id): \Upsun\Model\TeamMember
+    public function getTeamMember($team_id, $user_id)
     {
         list($response) = $this->getTeamMemberWithHttpInfo($team_id, $user_id);
         return $response;
@@ -1377,8 +1412,10 @@ final class TeamsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getTeamMemberWithHttpInfo(string $team_id, string $user_id): array
-    {
+    public function getTeamMemberWithHttpInfo(
+        string $team_id,
+        string $user_id
+    ): array {
         $request = $this->getTeamMemberRequest($team_id, $user_id);
 
         try {
@@ -1484,10 +1521,12 @@ final class TeamsApi
     /**
      * Get team member
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getTeamMemberAsync(string $team_id, string $user_id): Promise
-    {
+    public function getTeamMemberAsync(
+        string $team_id,
+        string $user_id
+    ): Promise {
         return $this->getTeamMemberAsyncWithHttpInfo($team_id, $user_id)
             ->then(
                 function ($response) {
@@ -1499,10 +1538,12 @@ final class TeamsApi
     /**
      * Get team member
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getTeamMemberAsyncWithHttpInfo(string $team_id, string $user_id)
-    {
+    public function getTeamMemberAsyncWithHttpInfo(
+        string $team_id,
+        string $user_id
+    ) {
         $returnType = '\Upsun\Model\TeamMember';
         $request = $this->getTeamMemberRequest($team_id, $user_id);
 
@@ -1543,8 +1584,10 @@ final class TeamsApi
      *
      * @throws InvalidArgumentException
      */
-    public function getTeamMemberRequest(string $team_id, string $user_id): RequestInterface
-    {
+    public function getTeamMemberRequest(
+        string $team_id,
+        string $user_id
+    ): RequestInterface {
         // verify the required parameter 'team_id' is set
         if ($team_id === null || (is_array($team_id) && count($team_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1642,8 +1685,9 @@ final class TeamsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ListTeamMembers200Response
      */
-    public function listTeamMembers($team_id, $page_before = null, $page_after = null, $sort = null): \Upsun\Model\ListTeamMembers200Response
+    public function listTeamMembers($team_id, $page_before = null, $page_after = null, $sort = null)
     {
         list($response) = $this->listTeamMembersWithHttpInfo($team_id, $page_before, $page_after, $sort);
         return $response;
@@ -1655,8 +1699,12 @@ final class TeamsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listTeamMembersWithHttpInfo(string $team_id, string $page_before = null, string $page_after = null, string $sort = null): array
-    {
+    public function listTeamMembersWithHttpInfo(
+        string $team_id,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): array {
         $request = $this->listTeamMembersRequest($team_id, $page_before, $page_after, $sort);
 
         try {
@@ -1762,10 +1810,14 @@ final class TeamsApi
     /**
      * List team members
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listTeamMembersAsync(string $team_id, string $page_before = null, string $page_after = null, string $sort = null): Promise
-    {
+    public function listTeamMembersAsync(
+        string $team_id,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): Promise {
         return $this->listTeamMembersAsyncWithHttpInfo($team_id, $page_before, $page_after, $sort)
             ->then(
                 function ($response) {
@@ -1777,10 +1829,14 @@ final class TeamsApi
     /**
      * List team members
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listTeamMembersAsyncWithHttpInfo(string $team_id, string $page_before = null, string $page_after = null, string $sort = null)
-    {
+    public function listTeamMembersAsyncWithHttpInfo(
+        string $team_id,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ) {
         $returnType = '\Upsun\Model\ListTeamMembers200Response';
         $request = $this->listTeamMembersRequest($team_id, $page_before, $page_after, $sort);
 
@@ -1821,8 +1877,12 @@ final class TeamsApi
      *
      * @throws InvalidArgumentException
      */
-    public function listTeamMembersRequest(string $team_id, string $page_before = null, string $page_after = null, string $sort = null): RequestInterface
-    {
+    public function listTeamMembersRequest(
+        string $team_id,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): RequestInterface {
         // verify the required parameter 'team_id' is set
         if ($team_id === null || (is_array($team_id) && count($team_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1939,8 +1999,9 @@ final class TeamsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ListTeams200Response
      */
-    public function listTeams($filter_organization_id = null, $filter_id = null, $filter_updated_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null): \Upsun\Model\ListTeams200Response
+    public function listTeams($filter_organization_id = null, $filter_id = null, $filter_updated_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
     {
         list($response) = $this->listTeamsWithHttpInfo($filter_organization_id, $filter_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
         return $response;
@@ -1952,8 +2013,15 @@ final class TeamsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listTeamsWithHttpInfo(\Upsun\Model\StringFilter $filter_organization_id = null, \Upsun\Model\StringFilter $filter_id = null, \Upsun\Model\DateTimeFilter $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): array
-    {
+    public function listTeamsWithHttpInfo(
+        \Upsun\Model\StringFilter $filter_organization_id = null,
+        \Upsun\Model\StringFilter $filter_id = null,
+        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): array {
         $request = $this->listTeamsRequest($filter_organization_id, $filter_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
 
         try {
@@ -2045,10 +2113,17 @@ final class TeamsApi
     /**
      * List teams
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listTeamsAsync(\Upsun\Model\StringFilter $filter_organization_id = null, \Upsun\Model\StringFilter $filter_id = null, \Upsun\Model\DateTimeFilter $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Promise
-    {
+    public function listTeamsAsync(
+        \Upsun\Model\StringFilter $filter_organization_id = null,
+        \Upsun\Model\StringFilter $filter_id = null,
+        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): Promise {
         return $this->listTeamsAsyncWithHttpInfo($filter_organization_id, $filter_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort)
             ->then(
                 function ($response) {
@@ -2060,10 +2135,17 @@ final class TeamsApi
     /**
      * List teams
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listTeamsAsyncWithHttpInfo(\Upsun\Model\StringFilter $filter_organization_id = null, \Upsun\Model\StringFilter $filter_id = null, \Upsun\Model\DateTimeFilter $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null)
-    {
+    public function listTeamsAsyncWithHttpInfo(
+        \Upsun\Model\StringFilter $filter_organization_id = null,
+        \Upsun\Model\StringFilter $filter_id = null,
+        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ) {
         $returnType = '\Upsun\Model\ListTeams200Response';
         $request = $this->listTeamsRequest($filter_organization_id, $filter_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
 
@@ -2104,8 +2186,15 @@ final class TeamsApi
      *
      * @throws InvalidArgumentException
      */
-    public function listTeamsRequest(\Upsun\Model\StringFilter $filter_organization_id = null, \Upsun\Model\StringFilter $filter_id = null, \Upsun\Model\DateTimeFilter $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): RequestInterface
-    {
+    public function listTeamsRequest(
+        \Upsun\Model\StringFilter $filter_organization_id = null,
+        \Upsun\Model\StringFilter $filter_id = null,
+        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): RequestInterface {
         if ($page_size !== null && $page_size > 100) {
             throw new \InvalidArgumentException('invalid value for "$page_size" when calling TeamsApi.listTeams, must be smaller than or equal to 100.');
         }
@@ -2259,8 +2348,9 @@ final class TeamsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ListTeams200Response
      */
-    public function listUserTeams($user_id, $filter_organization_id = null, $filter_updated_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null): \Upsun\Model\ListTeams200Response
+    public function listUserTeams($user_id, $filter_organization_id = null, $filter_updated_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
     {
         list($response) = $this->listUserTeamsWithHttpInfo($user_id, $filter_organization_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
         return $response;
@@ -2272,8 +2362,15 @@ final class TeamsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listUserTeamsWithHttpInfo(string $user_id, \Upsun\Model\StringFilter $filter_organization_id = null, \Upsun\Model\DateTimeFilter $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): array
-    {
+    public function listUserTeamsWithHttpInfo(
+        string $user_id,
+        \Upsun\Model\StringFilter $filter_organization_id = null,
+        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): array {
         $request = $this->listUserTeamsRequest($user_id, $filter_organization_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
 
         try {
@@ -2379,10 +2476,17 @@ final class TeamsApi
     /**
      * User teams
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listUserTeamsAsync(string $user_id, \Upsun\Model\StringFilter $filter_organization_id = null, \Upsun\Model\DateTimeFilter $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Promise
-    {
+    public function listUserTeamsAsync(
+        string $user_id,
+        \Upsun\Model\StringFilter $filter_organization_id = null,
+        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): Promise {
         return $this->listUserTeamsAsyncWithHttpInfo($user_id, $filter_organization_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort)
             ->then(
                 function ($response) {
@@ -2394,10 +2498,17 @@ final class TeamsApi
     /**
      * User teams
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listUserTeamsAsyncWithHttpInfo(string $user_id, \Upsun\Model\StringFilter $filter_organization_id = null, \Upsun\Model\DateTimeFilter $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null)
-    {
+    public function listUserTeamsAsyncWithHttpInfo(
+        string $user_id,
+        \Upsun\Model\StringFilter $filter_organization_id = null,
+        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ) {
         $returnType = '\Upsun\Model\ListTeams200Response';
         $request = $this->listUserTeamsRequest($user_id, $filter_organization_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
 
@@ -2438,8 +2549,15 @@ final class TeamsApi
      *
      * @throws InvalidArgumentException
      */
-    public function listUserTeamsRequest(string $user_id, \Upsun\Model\StringFilter $filter_organization_id = null, \Upsun\Model\DateTimeFilter $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): RequestInterface
-    {
+    public function listUserTeamsRequest(
+        string $user_id,
+        \Upsun\Model\StringFilter $filter_organization_id = null,
+        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -2596,8 +2714,9 @@ final class TeamsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Team
      */
-    public function updateTeam($team_id, $update_team_request = null): \Upsun\Model\Team
+    public function updateTeam($team_id, $update_team_request = null)
     {
         list($response) = $this->updateTeamWithHttpInfo($team_id, $update_team_request);
         return $response;
@@ -2609,8 +2728,10 @@ final class TeamsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function updateTeamWithHttpInfo(string $team_id, \Upsun\Model\UpdateTeamRequest $update_team_request = null): array
-    {
+    public function updateTeamWithHttpInfo(
+        string $team_id,
+        \Upsun\Model\UpdateTeamRequest $update_team_request = null
+    ): array {
         $request = $this->updateTeamRequest($team_id, $update_team_request);
 
         try {
@@ -2730,10 +2851,12 @@ final class TeamsApi
     /**
      * Update team
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateTeamAsync(string $team_id, \Upsun\Model\UpdateTeamRequest $update_team_request = null): Promise
-    {
+    public function updateTeamAsync(
+        string $team_id,
+        \Upsun\Model\UpdateTeamRequest $update_team_request = null
+    ): Promise {
         return $this->updateTeamAsyncWithHttpInfo($team_id, $update_team_request)
             ->then(
                 function ($response) {
@@ -2745,10 +2868,12 @@ final class TeamsApi
     /**
      * Update team
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateTeamAsyncWithHttpInfo(string $team_id, \Upsun\Model\UpdateTeamRequest $update_team_request = null)
-    {
+    public function updateTeamAsyncWithHttpInfo(
+        string $team_id,
+        \Upsun\Model\UpdateTeamRequest $update_team_request = null
+    ) {
         $returnType = '\Upsun\Model\Team';
         $request = $this->updateTeamRequest($team_id, $update_team_request);
 
@@ -2789,8 +2914,10 @@ final class TeamsApi
      *
      * @throws InvalidArgumentException
      */
-    public function updateTeamRequest(string $team_id, \Upsun\Model\UpdateTeamRequest $update_team_request = null): RequestInterface
-    {
+    public function updateTeamRequest(
+        string $team_id,
+        \Upsun\Model\UpdateTeamRequest $update_team_request = null
+    ): RequestInterface {
         // verify the required parameter 'team_id' is set
         if ($team_id === null || (is_array($team_id) && count($team_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -2880,9 +3007,9 @@ final class TeamsApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -2978,8 +3105,8 @@ final class TeamsApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

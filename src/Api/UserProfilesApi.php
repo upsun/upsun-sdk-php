@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class UserProfilesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\CreateProfilePicture200Response
      */
-    public function createProfilePicture($uuid): \Upsun\Model\CreateProfilePicture200Response
+    public function createProfilePicture($uuid)
     {
         list($response) = $this->createProfilePictureWithHttpInfo($uuid);
         return $response;
@@ -135,8 +137,9 @@ final class UserProfilesApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function createProfilePictureWithHttpInfo(string $uuid): array
-    {
+    public function createProfilePictureWithHttpInfo(
+        string $uuid
+    ): array {
         $request = $this->createProfilePictureRequest($uuid);
 
         try {
@@ -214,10 +217,11 @@ final class UserProfilesApi
     /**
      * Create a user profile picture
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createProfilePictureAsync(string $uuid): Promise
-    {
+    public function createProfilePictureAsync(
+        string $uuid
+    ): Promise {
         return $this->createProfilePictureAsyncWithHttpInfo($uuid)
             ->then(
                 function ($response) {
@@ -229,10 +233,11 @@ final class UserProfilesApi
     /**
      * Create a user profile picture
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createProfilePictureAsyncWithHttpInfo(string $uuid)
-    {
+    public function createProfilePictureAsyncWithHttpInfo(
+        string $uuid
+    ) {
         $returnType = '\Upsun\Model\CreateProfilePicture200Response';
         $request = $this->createProfilePictureRequest($uuid);
 
@@ -273,8 +278,9 @@ final class UserProfilesApi
      *
      * @throws InvalidArgumentException
      */
-    public function createProfilePictureRequest(string $uuid): RequestInterface
-    {
+    public function createProfilePictureRequest(
+        string $uuid
+    ): RequestInterface {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
@@ -358,8 +364,9 @@ final class UserProfilesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function deleteProfilePicture($uuid): void
+    public function deleteProfilePicture($uuid)
     {
         $this->deleteProfilePictureWithHttpInfo($uuid);
     }
@@ -370,8 +377,9 @@ final class UserProfilesApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function deleteProfilePictureWithHttpInfo(string $uuid): array
-    {
+    public function deleteProfilePictureWithHttpInfo(
+        string $uuid
+    ): array {
         $request = $this->deleteProfilePictureRequest($uuid);
 
         try {
@@ -414,10 +422,11 @@ final class UserProfilesApi
     /**
      * Delete a user profile picture
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteProfilePictureAsync(string $uuid): Promise
-    {
+    public function deleteProfilePictureAsync(
+        string $uuid
+    ): Promise {
         return $this->deleteProfilePictureAsyncWithHttpInfo($uuid)
             ->then(
                 function ($response) {
@@ -429,10 +438,11 @@ final class UserProfilesApi
     /**
      * Delete a user profile picture
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteProfilePictureAsyncWithHttpInfo(string $uuid)
-    {
+    public function deleteProfilePictureAsyncWithHttpInfo(
+        string $uuid
+    ) {
         $returnType = '';
         $request = $this->deleteProfilePictureRequest($uuid);
 
@@ -463,8 +473,9 @@ final class UserProfilesApi
      *
      * @throws InvalidArgumentException
      */
-    public function deleteProfilePictureRequest(string $uuid): RequestInterface
-    {
+    public function deleteProfilePictureRequest(
+        string $uuid
+    ): RequestInterface {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
@@ -548,8 +559,9 @@ final class UserProfilesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\GetAddress200Response
      */
-    public function getAddress($user_id): \Upsun\Model\GetAddress200Response
+    public function getAddress($user_id)
     {
         list($response) = $this->getAddressWithHttpInfo($user_id);
         return $response;
@@ -561,8 +573,9 @@ final class UserProfilesApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getAddressWithHttpInfo(string $user_id): array
-    {
+    public function getAddressWithHttpInfo(
+        string $user_id
+    ): array {
         $request = $this->getAddressRequest($user_id);
 
         try {
@@ -640,10 +653,11 @@ final class UserProfilesApi
     /**
      * Get a user address
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getAddressAsync(string $user_id): Promise
-    {
+    public function getAddressAsync(
+        string $user_id
+    ): Promise {
         return $this->getAddressAsyncWithHttpInfo($user_id)
             ->then(
                 function ($response) {
@@ -655,10 +669,11 @@ final class UserProfilesApi
     /**
      * Get a user address
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getAddressAsyncWithHttpInfo(string $user_id)
-    {
+    public function getAddressAsyncWithHttpInfo(
+        string $user_id
+    ) {
         $returnType = '\Upsun\Model\GetAddress200Response';
         $request = $this->getAddressRequest($user_id);
 
@@ -699,8 +714,9 @@ final class UserProfilesApi
      *
      * @throws InvalidArgumentException
      */
-    public function getAddressRequest(string $user_id): RequestInterface
-    {
+    public function getAddressRequest(
+        string $user_id
+    ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -784,8 +800,9 @@ final class UserProfilesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Profile
      */
-    public function getProfile($user_id): \Upsun\Model\Profile
+    public function getProfile($user_id)
     {
         list($response) = $this->getProfileWithHttpInfo($user_id);
         return $response;
@@ -797,8 +814,9 @@ final class UserProfilesApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getProfileWithHttpInfo(string $user_id): array
-    {
+    public function getProfileWithHttpInfo(
+        string $user_id
+    ): array {
         $request = $this->getProfileRequest($user_id);
 
         try {
@@ -876,10 +894,11 @@ final class UserProfilesApi
     /**
      * Get a single user profile
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProfileAsync(string $user_id): Promise
-    {
+    public function getProfileAsync(
+        string $user_id
+    ): Promise {
         return $this->getProfileAsyncWithHttpInfo($user_id)
             ->then(
                 function ($response) {
@@ -891,10 +910,11 @@ final class UserProfilesApi
     /**
      * Get a single user profile
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProfileAsyncWithHttpInfo(string $user_id)
-    {
+    public function getProfileAsyncWithHttpInfo(
+        string $user_id
+    ) {
         $returnType = '\Upsun\Model\Profile';
         $request = $this->getProfileRequest($user_id);
 
@@ -935,8 +955,9 @@ final class UserProfilesApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProfileRequest(string $user_id): RequestInterface
-    {
+    public function getProfileRequest(
+        string $user_id
+    ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1020,8 +1041,9 @@ final class UserProfilesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ListProfiles200Response
      */
-    public function listProfiles(): \Upsun\Model\ListProfiles200Response
+    public function listProfiles()
     {
         list($response) = $this->listProfilesWithHttpInfo();
         return $response;
@@ -1033,8 +1055,9 @@ final class UserProfilesApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listProfilesWithHttpInfo(): array
-    {
+    public function listProfilesWithHttpInfo(
+        
+    ): array {
         $request = $this->listProfilesRequest();
 
         try {
@@ -1112,10 +1135,11 @@ final class UserProfilesApi
     /**
      * List user profiles
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProfilesAsync(): Promise
-    {
+    public function listProfilesAsync(
+        
+    ): Promise {
         return $this->listProfilesAsyncWithHttpInfo()
             ->then(
                 function ($response) {
@@ -1127,10 +1151,11 @@ final class UserProfilesApi
     /**
      * List user profiles
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProfilesAsyncWithHttpInfo()
-    {
+    public function listProfilesAsyncWithHttpInfo(
+        
+    ) {
         $returnType = '\Upsun\Model\ListProfiles200Response';
         $request = $this->listProfilesRequest();
 
@@ -1171,8 +1196,9 @@ final class UserProfilesApi
      *
      * @throws InvalidArgumentException
      */
-    public function listProfilesRequest(): RequestInterface
-    {
+    public function listProfilesRequest(
+        
+    ): RequestInterface {
 
         $resourcePath = '/profiles';
         $formParams = [];
@@ -1242,8 +1268,9 @@ final class UserProfilesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\GetAddress200Response
      */
-    public function updateAddress($user_id, $address = null): \Upsun\Model\GetAddress200Response
+    public function updateAddress($user_id, $address = null)
     {
         list($response) = $this->updateAddressWithHttpInfo($user_id, $address);
         return $response;
@@ -1255,8 +1282,10 @@ final class UserProfilesApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function updateAddressWithHttpInfo(string $user_id, \Upsun\Model\Address $address = null): array
-    {
+    public function updateAddressWithHttpInfo(
+        string $user_id,
+        \Upsun\Model\Address $address = null
+    ): array {
         $request = $this->updateAddressRequest($user_id, $address);
 
         try {
@@ -1334,10 +1363,12 @@ final class UserProfilesApi
     /**
      * Update a user address
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateAddressAsync(string $user_id, \Upsun\Model\Address $address = null): Promise
-    {
+    public function updateAddressAsync(
+        string $user_id,
+        \Upsun\Model\Address $address = null
+    ): Promise {
         return $this->updateAddressAsyncWithHttpInfo($user_id, $address)
             ->then(
                 function ($response) {
@@ -1349,10 +1380,12 @@ final class UserProfilesApi
     /**
      * Update a user address
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateAddressAsyncWithHttpInfo(string $user_id, \Upsun\Model\Address $address = null)
-    {
+    public function updateAddressAsyncWithHttpInfo(
+        string $user_id,
+        \Upsun\Model\Address $address = null
+    ) {
         $returnType = '\Upsun\Model\GetAddress200Response';
         $request = $this->updateAddressRequest($user_id, $address);
 
@@ -1393,8 +1426,10 @@ final class UserProfilesApi
      *
      * @throws InvalidArgumentException
      */
-    public function updateAddressRequest(string $user_id, \Upsun\Model\Address $address = null): RequestInterface
-    {
+    public function updateAddressRequest(
+        string $user_id,
+        \Upsun\Model\Address $address = null
+    ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1484,8 +1519,9 @@ final class UserProfilesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Profile
      */
-    public function updateProfile($user_id, $update_profile_request = null): \Upsun\Model\Profile
+    public function updateProfile($user_id, $update_profile_request = null)
     {
         list($response) = $this->updateProfileWithHttpInfo($user_id, $update_profile_request);
         return $response;
@@ -1497,8 +1533,10 @@ final class UserProfilesApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function updateProfileWithHttpInfo(string $user_id, \Upsun\Model\UpdateProfileRequest $update_profile_request = null): array
-    {
+    public function updateProfileWithHttpInfo(
+        string $user_id,
+        \Upsun\Model\UpdateProfileRequest $update_profile_request = null
+    ): array {
         $request = $this->updateProfileRequest($user_id, $update_profile_request);
 
         try {
@@ -1576,10 +1614,12 @@ final class UserProfilesApi
     /**
      * Update a user profile
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateProfileAsync(string $user_id, \Upsun\Model\UpdateProfileRequest $update_profile_request = null): Promise
-    {
+    public function updateProfileAsync(
+        string $user_id,
+        \Upsun\Model\UpdateProfileRequest $update_profile_request = null
+    ): Promise {
         return $this->updateProfileAsyncWithHttpInfo($user_id, $update_profile_request)
             ->then(
                 function ($response) {
@@ -1591,10 +1631,12 @@ final class UserProfilesApi
     /**
      * Update a user profile
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateProfileAsyncWithHttpInfo(string $user_id, \Upsun\Model\UpdateProfileRequest $update_profile_request = null)
-    {
+    public function updateProfileAsyncWithHttpInfo(
+        string $user_id,
+        \Upsun\Model\UpdateProfileRequest $update_profile_request = null
+    ) {
         $returnType = '\Upsun\Model\Profile';
         $request = $this->updateProfileRequest($user_id, $update_profile_request);
 
@@ -1635,8 +1677,10 @@ final class UserProfilesApi
      *
      * @throws InvalidArgumentException
      */
-    public function updateProfileRequest(string $user_id, \Upsun\Model\UpdateProfileRequest $update_profile_request = null): RequestInterface
-    {
+    public function updateProfileRequest(
+        string $user_id,
+        \Upsun\Model\UpdateProfileRequest $update_profile_request = null
+    ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1726,9 +1770,9 @@ final class UserProfilesApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -1824,8 +1868,8 @@ final class UserProfilesApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

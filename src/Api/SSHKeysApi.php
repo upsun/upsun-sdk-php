@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class SSHKeysApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\SSHKey
      */
-    public function createSshKey($create_ssh_key_request = null): \Upsun\Model\SSHKey
+    public function createSshKey($create_ssh_key_request = null)
     {
         list($response) = $this->createSshKeyWithHttpInfo($create_ssh_key_request);
         return $response;
@@ -135,8 +137,9 @@ final class SSHKeysApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function createSshKeyWithHttpInfo(\Upsun\Model\CreateSshKeyRequest $create_ssh_key_request = null): array
-    {
+    public function createSshKeyWithHttpInfo(
+        \Upsun\Model\CreateSshKeyRequest $create_ssh_key_request = null
+    ): array {
         $request = $this->createSshKeyRequest($create_ssh_key_request);
 
         try {
@@ -214,10 +217,11 @@ final class SSHKeysApi
     /**
      * Add a new public SSH key to a user
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createSshKeyAsync(\Upsun\Model\CreateSshKeyRequest $create_ssh_key_request = null): Promise
-    {
+    public function createSshKeyAsync(
+        \Upsun\Model\CreateSshKeyRequest $create_ssh_key_request = null
+    ): Promise {
         return $this->createSshKeyAsyncWithHttpInfo($create_ssh_key_request)
             ->then(
                 function ($response) {
@@ -229,10 +233,11 @@ final class SSHKeysApi
     /**
      * Add a new public SSH key to a user
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createSshKeyAsyncWithHttpInfo(\Upsun\Model\CreateSshKeyRequest $create_ssh_key_request = null)
-    {
+    public function createSshKeyAsyncWithHttpInfo(
+        \Upsun\Model\CreateSshKeyRequest $create_ssh_key_request = null
+    ) {
         $returnType = '\Upsun\Model\SSHKey';
         $request = $this->createSshKeyRequest($create_ssh_key_request);
 
@@ -273,8 +278,9 @@ final class SSHKeysApi
      *
      * @throws InvalidArgumentException
      */
-    public function createSshKeyRequest(\Upsun\Model\CreateSshKeyRequest $create_ssh_key_request = null): RequestInterface
-    {
+    public function createSshKeyRequest(
+        \Upsun\Model\CreateSshKeyRequest $create_ssh_key_request = null
+    ): RequestInterface {
 
         $resourcePath = '/ssh_keys';
         $formParams = [];
@@ -350,8 +356,9 @@ final class SSHKeysApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function deleteSshKey($key_id): void
+    public function deleteSshKey($key_id)
     {
         $this->deleteSshKeyWithHttpInfo($key_id);
     }
@@ -362,8 +369,9 @@ final class SSHKeysApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function deleteSshKeyWithHttpInfo(int $key_id): array
-    {
+    public function deleteSshKeyWithHttpInfo(
+        int $key_id
+    ): array {
         $request = $this->deleteSshKeyRequest($key_id);
 
         try {
@@ -406,10 +414,11 @@ final class SSHKeysApi
     /**
      * Delete an SSH key
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteSshKeyAsync(int $key_id): Promise
-    {
+    public function deleteSshKeyAsync(
+        int $key_id
+    ): Promise {
         return $this->deleteSshKeyAsyncWithHttpInfo($key_id)
             ->then(
                 function ($response) {
@@ -421,10 +430,11 @@ final class SSHKeysApi
     /**
      * Delete an SSH key
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteSshKeyAsyncWithHttpInfo(int $key_id)
-    {
+    public function deleteSshKeyAsyncWithHttpInfo(
+        int $key_id
+    ) {
         $returnType = '';
         $request = $this->deleteSshKeyRequest($key_id);
 
@@ -455,8 +465,9 @@ final class SSHKeysApi
      *
      * @throws InvalidArgumentException
      */
-    public function deleteSshKeyRequest(int $key_id): RequestInterface
-    {
+    public function deleteSshKeyRequest(
+        int $key_id
+    ): RequestInterface {
         // verify the required parameter 'key_id' is set
         if ($key_id === null || (is_array($key_id) && count($key_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -540,8 +551,9 @@ final class SSHKeysApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\SSHKey
      */
-    public function getSshKey($key_id): \Upsun\Model\SSHKey
+    public function getSshKey($key_id)
     {
         list($response) = $this->getSshKeyWithHttpInfo($key_id);
         return $response;
@@ -553,8 +565,9 @@ final class SSHKeysApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getSshKeyWithHttpInfo(int $key_id): array
-    {
+    public function getSshKeyWithHttpInfo(
+        int $key_id
+    ): array {
         $request = $this->getSshKeyRequest($key_id);
 
         try {
@@ -632,10 +645,11 @@ final class SSHKeysApi
     /**
      * Get an SSH key
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getSshKeyAsync(int $key_id): Promise
-    {
+    public function getSshKeyAsync(
+        int $key_id
+    ): Promise {
         return $this->getSshKeyAsyncWithHttpInfo($key_id)
             ->then(
                 function ($response) {
@@ -647,10 +661,11 @@ final class SSHKeysApi
     /**
      * Get an SSH key
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getSshKeyAsyncWithHttpInfo(int $key_id)
-    {
+    public function getSshKeyAsyncWithHttpInfo(
+        int $key_id
+    ) {
         $returnType = '\Upsun\Model\SSHKey';
         $request = $this->getSshKeyRequest($key_id);
 
@@ -691,8 +706,9 @@ final class SSHKeysApi
      *
      * @throws InvalidArgumentException
      */
-    public function getSshKeyRequest(int $key_id): RequestInterface
-    {
+    public function getSshKeyRequest(
+        int $key_id
+    ): RequestInterface {
         // verify the required parameter 'key_id' is set
         if ($key_id === null || (is_array($key_id) && count($key_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -776,9 +792,9 @@ final class SSHKeysApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -874,8 +890,8 @@ final class SSHKeysApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

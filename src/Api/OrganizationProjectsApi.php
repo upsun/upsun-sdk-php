@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class OrganizationProjectsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\OrganizationProject
      */
-    public function getOrgProject($organization_id, $project_id): \Upsun\Model\OrganizationProject
+    public function getOrgProject($organization_id, $project_id)
     {
         list($response) = $this->getOrgProjectWithHttpInfo($organization_id, $project_id);
         return $response;
@@ -135,8 +137,10 @@ final class OrganizationProjectsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getOrgProjectWithHttpInfo(string $organization_id, string $project_id): array
-    {
+    public function getOrgProjectWithHttpInfo(
+        string $organization_id,
+        string $project_id
+    ): array {
         $request = $this->getOrgProjectRequest($organization_id, $project_id);
 
         try {
@@ -242,10 +246,12 @@ final class OrganizationProjectsApi
     /**
      * Get project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getOrgProjectAsync(string $organization_id, string $project_id): Promise
-    {
+    public function getOrgProjectAsync(
+        string $organization_id,
+        string $project_id
+    ): Promise {
         return $this->getOrgProjectAsyncWithHttpInfo($organization_id, $project_id)
             ->then(
                 function ($response) {
@@ -257,10 +263,12 @@ final class OrganizationProjectsApi
     /**
      * Get project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getOrgProjectAsyncWithHttpInfo(string $organization_id, string $project_id)
-    {
+    public function getOrgProjectAsyncWithHttpInfo(
+        string $organization_id,
+        string $project_id
+    ) {
         $returnType = '\Upsun\Model\OrganizationProject';
         $request = $this->getOrgProjectRequest($organization_id, $project_id);
 
@@ -301,8 +309,10 @@ final class OrganizationProjectsApi
      *
      * @throws InvalidArgumentException
      */
-    public function getOrgProjectRequest(string $organization_id, string $project_id): RequestInterface
-    {
+    public function getOrgProjectRequest(
+        string $organization_id,
+        string $project_id
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -400,8 +410,9 @@ final class OrganizationProjectsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ListOrgProjects200Response
      */
-    public function listOrgProjects($organization_id, $filter_id = null, $filter_title = null, $filter_status = null, $filter_updated_at = null, $filter_created_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null): \Upsun\Model\ListOrgProjects200Response
+    public function listOrgProjects($organization_id, $filter_id = null, $filter_title = null, $filter_status = null, $filter_updated_at = null, $filter_created_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
     {
         list($response) = $this->listOrgProjectsWithHttpInfo($organization_id, $filter_id, $filter_title, $filter_status, $filter_updated_at, $filter_created_at, $page_size, $page_before, $page_after, $sort);
         return $response;
@@ -413,8 +424,18 @@ final class OrganizationProjectsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listOrgProjectsWithHttpInfo(string $organization_id, \Upsun\Model\StringFilter $filter_id = null, \Upsun\Model\StringFilter $filter_title = null, \Upsun\Model\StringFilter $filter_status = null, \Upsun\Model\DateTimeFilter $filter_updated_at = null, \Upsun\Model\DateTimeFilter $filter_created_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): array
-    {
+    public function listOrgProjectsWithHttpInfo(
+        string $organization_id,
+        \Upsun\Model\StringFilter $filter_id = null,
+        \Upsun\Model\StringFilter $filter_title = null,
+        \Upsun\Model\StringFilter $filter_status = null,
+        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
+        \Upsun\Model\DateTimeFilter $filter_created_at = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): array {
         $request = $this->listOrgProjectsRequest($organization_id, $filter_id, $filter_title, $filter_status, $filter_updated_at, $filter_created_at, $page_size, $page_before, $page_after, $sort);
 
         try {
@@ -534,10 +555,20 @@ final class OrganizationProjectsApi
     /**
      * List projects
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listOrgProjectsAsync(string $organization_id, \Upsun\Model\StringFilter $filter_id = null, \Upsun\Model\StringFilter $filter_title = null, \Upsun\Model\StringFilter $filter_status = null, \Upsun\Model\DateTimeFilter $filter_updated_at = null, \Upsun\Model\DateTimeFilter $filter_created_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Promise
-    {
+    public function listOrgProjectsAsync(
+        string $organization_id,
+        \Upsun\Model\StringFilter $filter_id = null,
+        \Upsun\Model\StringFilter $filter_title = null,
+        \Upsun\Model\StringFilter $filter_status = null,
+        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
+        \Upsun\Model\DateTimeFilter $filter_created_at = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): Promise {
         return $this->listOrgProjectsAsyncWithHttpInfo($organization_id, $filter_id, $filter_title, $filter_status, $filter_updated_at, $filter_created_at, $page_size, $page_before, $page_after, $sort)
             ->then(
                 function ($response) {
@@ -549,10 +580,20 @@ final class OrganizationProjectsApi
     /**
      * List projects
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listOrgProjectsAsyncWithHttpInfo(string $organization_id, \Upsun\Model\StringFilter $filter_id = null, \Upsun\Model\StringFilter $filter_title = null, \Upsun\Model\StringFilter $filter_status = null, \Upsun\Model\DateTimeFilter $filter_updated_at = null, \Upsun\Model\DateTimeFilter $filter_created_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null)
-    {
+    public function listOrgProjectsAsyncWithHttpInfo(
+        string $organization_id,
+        \Upsun\Model\StringFilter $filter_id = null,
+        \Upsun\Model\StringFilter $filter_title = null,
+        \Upsun\Model\StringFilter $filter_status = null,
+        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
+        \Upsun\Model\DateTimeFilter $filter_created_at = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ) {
         $returnType = '\Upsun\Model\ListOrgProjects200Response';
         $request = $this->listOrgProjectsRequest($organization_id, $filter_id, $filter_title, $filter_status, $filter_updated_at, $filter_created_at, $page_size, $page_before, $page_after, $sort);
 
@@ -593,8 +634,18 @@ final class OrganizationProjectsApi
      *
      * @throws InvalidArgumentException
      */
-    public function listOrgProjectsRequest(string $organization_id, \Upsun\Model\StringFilter $filter_id = null, \Upsun\Model\StringFilter $filter_title = null, \Upsun\Model\StringFilter $filter_status = null, \Upsun\Model\DateTimeFilter $filter_updated_at = null, \Upsun\Model\DateTimeFilter $filter_created_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): RequestInterface
-    {
+    public function listOrgProjectsRequest(
+        string $organization_id,
+        \Upsun\Model\StringFilter $filter_id = null,
+        \Upsun\Model\StringFilter $filter_title = null,
+        \Upsun\Model\StringFilter $filter_status = null,
+        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
+        \Upsun\Model\DateTimeFilter $filter_created_at = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -784,9 +835,9 @@ final class OrganizationProjectsApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -882,8 +933,8 @@ final class OrganizationProjectsApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

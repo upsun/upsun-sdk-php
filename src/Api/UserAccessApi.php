@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class UserAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\UserProjectAccess
      */
-    public function getProjectUserAccess($project_id, $user_id): \Upsun\Model\UserProjectAccess
+    public function getProjectUserAccess($project_id, $user_id)
     {
         list($response) = $this->getProjectUserAccessWithHttpInfo($project_id, $user_id);
         return $response;
@@ -135,8 +137,10 @@ final class UserAccessApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getProjectUserAccessWithHttpInfo(string $project_id, string $user_id): array
-    {
+    public function getProjectUserAccessWithHttpInfo(
+        string $project_id,
+        string $user_id
+    ): array {
         $request = $this->getProjectUserAccessRequest($project_id, $user_id);
 
         try {
@@ -242,10 +246,12 @@ final class UserAccessApi
     /**
      * Get user access for a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectUserAccessAsync(string $project_id, string $user_id): Promise
-    {
+    public function getProjectUserAccessAsync(
+        string $project_id,
+        string $user_id
+    ): Promise {
         return $this->getProjectUserAccessAsyncWithHttpInfo($project_id, $user_id)
             ->then(
                 function ($response) {
@@ -257,10 +263,12 @@ final class UserAccessApi
     /**
      * Get user access for a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectUserAccessAsyncWithHttpInfo(string $project_id, string $user_id)
-    {
+    public function getProjectUserAccessAsyncWithHttpInfo(
+        string $project_id,
+        string $user_id
+    ) {
         $returnType = '\Upsun\Model\UserProjectAccess';
         $request = $this->getProjectUserAccessRequest($project_id, $user_id);
 
@@ -301,8 +309,10 @@ final class UserAccessApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectUserAccessRequest(string $project_id, string $user_id): RequestInterface
-    {
+    public function getProjectUserAccessRequest(
+        string $project_id,
+        string $user_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -400,8 +410,9 @@ final class UserAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\UserProjectAccess
      */
-    public function getUserProjectAccess($user_id, $project_id): \Upsun\Model\UserProjectAccess
+    public function getUserProjectAccess($user_id, $project_id)
     {
         list($response) = $this->getUserProjectAccessWithHttpInfo($user_id, $project_id);
         return $response;
@@ -413,8 +424,10 @@ final class UserAccessApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getUserProjectAccessWithHttpInfo(string $user_id, string $project_id): array
-    {
+    public function getUserProjectAccessWithHttpInfo(
+        string $user_id,
+        string $project_id
+    ): array {
         $request = $this->getUserProjectAccessRequest($user_id, $project_id);
 
         try {
@@ -520,10 +533,12 @@ final class UserAccessApi
     /**
      * Get project access for a user
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getUserProjectAccessAsync(string $user_id, string $project_id): Promise
-    {
+    public function getUserProjectAccessAsync(
+        string $user_id,
+        string $project_id
+    ): Promise {
         return $this->getUserProjectAccessAsyncWithHttpInfo($user_id, $project_id)
             ->then(
                 function ($response) {
@@ -535,10 +550,12 @@ final class UserAccessApi
     /**
      * Get project access for a user
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getUserProjectAccessAsyncWithHttpInfo(string $user_id, string $project_id)
-    {
+    public function getUserProjectAccessAsyncWithHttpInfo(
+        string $user_id,
+        string $project_id
+    ) {
         $returnType = '\Upsun\Model\UserProjectAccess';
         $request = $this->getUserProjectAccessRequest($user_id, $project_id);
 
@@ -579,8 +596,10 @@ final class UserAccessApi
      *
      * @throws InvalidArgumentException
      */
-    public function getUserProjectAccessRequest(string $user_id, string $project_id): RequestInterface
-    {
+    public function getUserProjectAccessRequest(
+        string $user_id,
+        string $project_id
+    ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -678,8 +697,9 @@ final class UserAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function grantProjectUserAccess($project_id, $grant_project_user_access_request_inner): void
+    public function grantProjectUserAccess($project_id, $grant_project_user_access_request_inner)
     {
         $this->grantProjectUserAccessWithHttpInfo($project_id, $grant_project_user_access_request_inner);
     }
@@ -690,8 +710,10 @@ final class UserAccessApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function grantProjectUserAccessWithHttpInfo(string $project_id, \Upsun\Model\GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner): array
-    {
+    public function grantProjectUserAccessWithHttpInfo(
+        string $project_id,
+        \Upsun\Model\GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner
+    ): array {
         $request = $this->grantProjectUserAccessRequest($project_id, $grant_project_user_access_request_inner);
 
         try {
@@ -750,10 +772,12 @@ final class UserAccessApi
     /**
      * Grant user access to a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function grantProjectUserAccessAsync(string $project_id, \Upsun\Model\GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner): Promise
-    {
+    public function grantProjectUserAccessAsync(
+        string $project_id,
+        \Upsun\Model\GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner
+    ): Promise {
         return $this->grantProjectUserAccessAsyncWithHttpInfo($project_id, $grant_project_user_access_request_inner)
             ->then(
                 function ($response) {
@@ -765,10 +789,12 @@ final class UserAccessApi
     /**
      * Grant user access to a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function grantProjectUserAccessAsyncWithHttpInfo(string $project_id, \Upsun\Model\GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner)
-    {
+    public function grantProjectUserAccessAsyncWithHttpInfo(
+        string $project_id,
+        \Upsun\Model\GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner
+    ) {
         $returnType = '';
         $request = $this->grantProjectUserAccessRequest($project_id, $grant_project_user_access_request_inner);
 
@@ -799,8 +825,10 @@ final class UserAccessApi
      *
      * @throws InvalidArgumentException
      */
-    public function grantProjectUserAccessRequest(string $project_id, \Upsun\Model\GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner): RequestInterface
-    {
+    public function grantProjectUserAccessRequest(
+        string $project_id,
+        \Upsun\Model\GrantProjectUserAccessRequestInner[] $grant_project_user_access_request_inner
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -896,8 +924,9 @@ final class UserAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function grantUserProjectAccess($user_id, $grant_user_project_access_request_inner): void
+    public function grantUserProjectAccess($user_id, $grant_user_project_access_request_inner)
     {
         $this->grantUserProjectAccessWithHttpInfo($user_id, $grant_user_project_access_request_inner);
     }
@@ -908,8 +937,10 @@ final class UserAccessApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function grantUserProjectAccessWithHttpInfo(string $user_id, \Upsun\Model\GrantUserProjectAccessRequestInner[] $grant_user_project_access_request_inner): array
-    {
+    public function grantUserProjectAccessWithHttpInfo(
+        string $user_id,
+        \Upsun\Model\GrantUserProjectAccessRequestInner[] $grant_user_project_access_request_inner
+    ): array {
         $request = $this->grantUserProjectAccessRequest($user_id, $grant_user_project_access_request_inner);
 
         try {
@@ -968,10 +999,12 @@ final class UserAccessApi
     /**
      * Grant project access to a user
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function grantUserProjectAccessAsync(string $user_id, \Upsun\Model\GrantUserProjectAccessRequestInner[] $grant_user_project_access_request_inner): Promise
-    {
+    public function grantUserProjectAccessAsync(
+        string $user_id,
+        \Upsun\Model\GrantUserProjectAccessRequestInner[] $grant_user_project_access_request_inner
+    ): Promise {
         return $this->grantUserProjectAccessAsyncWithHttpInfo($user_id, $grant_user_project_access_request_inner)
             ->then(
                 function ($response) {
@@ -983,10 +1016,12 @@ final class UserAccessApi
     /**
      * Grant project access to a user
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function grantUserProjectAccessAsyncWithHttpInfo(string $user_id, \Upsun\Model\GrantUserProjectAccessRequestInner[] $grant_user_project_access_request_inner)
-    {
+    public function grantUserProjectAccessAsyncWithHttpInfo(
+        string $user_id,
+        \Upsun\Model\GrantUserProjectAccessRequestInner[] $grant_user_project_access_request_inner
+    ) {
         $returnType = '';
         $request = $this->grantUserProjectAccessRequest($user_id, $grant_user_project_access_request_inner);
 
@@ -1017,8 +1052,10 @@ final class UserAccessApi
      *
      * @throws InvalidArgumentException
      */
-    public function grantUserProjectAccessRequest(string $user_id, \Upsun\Model\GrantUserProjectAccessRequestInner[] $grant_user_project_access_request_inner): RequestInterface
-    {
+    public function grantUserProjectAccessRequest(
+        string $user_id,
+        \Upsun\Model\GrantUserProjectAccessRequestInner[] $grant_user_project_access_request_inner
+    ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1114,8 +1151,9 @@ final class UserAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ListProjectUserAccess200Response
      */
-    public function listProjectUserAccess($project_id, $page_size = null, $page_before = null, $page_after = null, $sort = null): \Upsun\Model\ListProjectUserAccess200Response
+    public function listProjectUserAccess($project_id, $page_size = null, $page_before = null, $page_after = null, $sort = null)
     {
         list($response) = $this->listProjectUserAccessWithHttpInfo($project_id, $page_size, $page_before, $page_after, $sort);
         return $response;
@@ -1127,8 +1165,13 @@ final class UserAccessApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listProjectUserAccessWithHttpInfo(string $project_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): array
-    {
+    public function listProjectUserAccessWithHttpInfo(
+        string $project_id,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): array {
         $request = $this->listProjectUserAccessRequest($project_id, $page_size, $page_before, $page_after, $sort);
 
         try {
@@ -1234,10 +1277,15 @@ final class UserAccessApi
     /**
      * List user access for a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectUserAccessAsync(string $project_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Promise
-    {
+    public function listProjectUserAccessAsync(
+        string $project_id,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): Promise {
         return $this->listProjectUserAccessAsyncWithHttpInfo($project_id, $page_size, $page_before, $page_after, $sort)
             ->then(
                 function ($response) {
@@ -1249,10 +1297,15 @@ final class UserAccessApi
     /**
      * List user access for a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectUserAccessAsyncWithHttpInfo(string $project_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null)
-    {
+    public function listProjectUserAccessAsyncWithHttpInfo(
+        string $project_id,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ) {
         $returnType = '\Upsun\Model\ListProjectUserAccess200Response';
         $request = $this->listProjectUserAccessRequest($project_id, $page_size, $page_before, $page_after, $sort);
 
@@ -1293,8 +1346,13 @@ final class UserAccessApi
      *
      * @throws InvalidArgumentException
      */
-    public function listProjectUserAccessRequest(string $project_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): RequestInterface
-    {
+    public function listProjectUserAccessRequest(
+        string $project_id,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1429,8 +1487,9 @@ final class UserAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ListProjectUserAccess200Response
      */
-    public function listUserProjectAccess($user_id, $filter_organization_id = null, $page_size = null, $page_before = null, $page_after = null, $sort = null): \Upsun\Model\ListProjectUserAccess200Response
+    public function listUserProjectAccess($user_id, $filter_organization_id = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
     {
         list($response) = $this->listUserProjectAccessWithHttpInfo($user_id, $filter_organization_id, $page_size, $page_before, $page_after, $sort);
         return $response;
@@ -1442,8 +1501,14 @@ final class UserAccessApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listUserProjectAccessWithHttpInfo(string $user_id, string $filter_organization_id = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): array
-    {
+    public function listUserProjectAccessWithHttpInfo(
+        string $user_id,
+        string $filter_organization_id = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): array {
         $request = $this->listUserProjectAccessRequest($user_id, $filter_organization_id, $page_size, $page_before, $page_after, $sort);
 
         try {
@@ -1549,10 +1614,16 @@ final class UserAccessApi
     /**
      * List project access for a user
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listUserProjectAccessAsync(string $user_id, string $filter_organization_id = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Promise
-    {
+    public function listUserProjectAccessAsync(
+        string $user_id,
+        string $filter_organization_id = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): Promise {
         return $this->listUserProjectAccessAsyncWithHttpInfo($user_id, $filter_organization_id, $page_size, $page_before, $page_after, $sort)
             ->then(
                 function ($response) {
@@ -1564,10 +1635,16 @@ final class UserAccessApi
     /**
      * List project access for a user
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listUserProjectAccessAsyncWithHttpInfo(string $user_id, string $filter_organization_id = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null)
-    {
+    public function listUserProjectAccessAsyncWithHttpInfo(
+        string $user_id,
+        string $filter_organization_id = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ) {
         $returnType = '\Upsun\Model\ListProjectUserAccess200Response';
         $request = $this->listUserProjectAccessRequest($user_id, $filter_organization_id, $page_size, $page_before, $page_after, $sort);
 
@@ -1608,8 +1685,14 @@ final class UserAccessApi
      *
      * @throws InvalidArgumentException
      */
-    public function listUserProjectAccessRequest(string $user_id, string $filter_organization_id = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): RequestInterface
-    {
+    public function listUserProjectAccessRequest(
+        string $user_id,
+        string $filter_organization_id = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1755,8 +1838,9 @@ final class UserAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function removeProjectUserAccess($project_id, $user_id): void
+    public function removeProjectUserAccess($project_id, $user_id)
     {
         $this->removeProjectUserAccessWithHttpInfo($project_id, $user_id);
     }
@@ -1767,8 +1851,10 @@ final class UserAccessApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function removeProjectUserAccessWithHttpInfo(string $project_id, string $user_id): array
-    {
+    public function removeProjectUserAccessWithHttpInfo(
+        string $project_id,
+        string $user_id
+    ): array {
         $request = $this->removeProjectUserAccessRequest($project_id, $user_id);
 
         try {
@@ -1835,10 +1921,12 @@ final class UserAccessApi
     /**
      * Remove user access for a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function removeProjectUserAccessAsync(string $project_id, string $user_id): Promise
-    {
+    public function removeProjectUserAccessAsync(
+        string $project_id,
+        string $user_id
+    ): Promise {
         return $this->removeProjectUserAccessAsyncWithHttpInfo($project_id, $user_id)
             ->then(
                 function ($response) {
@@ -1850,10 +1938,12 @@ final class UserAccessApi
     /**
      * Remove user access for a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function removeProjectUserAccessAsyncWithHttpInfo(string $project_id, string $user_id)
-    {
+    public function removeProjectUserAccessAsyncWithHttpInfo(
+        string $project_id,
+        string $user_id
+    ) {
         $returnType = '';
         $request = $this->removeProjectUserAccessRequest($project_id, $user_id);
 
@@ -1884,8 +1974,10 @@ final class UserAccessApi
      *
      * @throws InvalidArgumentException
      */
-    public function removeProjectUserAccessRequest(string $project_id, string $user_id): RequestInterface
-    {
+    public function removeProjectUserAccessRequest(
+        string $project_id,
+        string $user_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1983,8 +2075,9 @@ final class UserAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function removeUserProjectAccess($user_id, $project_id): void
+    public function removeUserProjectAccess($user_id, $project_id)
     {
         $this->removeUserProjectAccessWithHttpInfo($user_id, $project_id);
     }
@@ -1995,8 +2088,10 @@ final class UserAccessApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function removeUserProjectAccessWithHttpInfo(string $user_id, string $project_id): array
-    {
+    public function removeUserProjectAccessWithHttpInfo(
+        string $user_id,
+        string $project_id
+    ): array {
         $request = $this->removeUserProjectAccessRequest($user_id, $project_id);
 
         try {
@@ -2063,10 +2158,12 @@ final class UserAccessApi
     /**
      * Remove project access for a user
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function removeUserProjectAccessAsync(string $user_id, string $project_id): Promise
-    {
+    public function removeUserProjectAccessAsync(
+        string $user_id,
+        string $project_id
+    ): Promise {
         return $this->removeUserProjectAccessAsyncWithHttpInfo($user_id, $project_id)
             ->then(
                 function ($response) {
@@ -2078,10 +2175,12 @@ final class UserAccessApi
     /**
      * Remove project access for a user
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function removeUserProjectAccessAsyncWithHttpInfo(string $user_id, string $project_id)
-    {
+    public function removeUserProjectAccessAsyncWithHttpInfo(
+        string $user_id,
+        string $project_id
+    ) {
         $returnType = '';
         $request = $this->removeUserProjectAccessRequest($user_id, $project_id);
 
@@ -2112,8 +2211,10 @@ final class UserAccessApi
      *
      * @throws InvalidArgumentException
      */
-    public function removeUserProjectAccessRequest(string $user_id, string $project_id): RequestInterface
-    {
+    public function removeUserProjectAccessRequest(
+        string $user_id,
+        string $project_id
+    ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -2211,8 +2312,9 @@ final class UserAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function updateProjectUserAccess($project_id, $user_id, $update_project_user_access_request = null): void
+    public function updateProjectUserAccess($project_id, $user_id, $update_project_user_access_request = null)
     {
         $this->updateProjectUserAccessWithHttpInfo($project_id, $user_id, $update_project_user_access_request);
     }
@@ -2223,8 +2325,11 @@ final class UserAccessApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function updateProjectUserAccessWithHttpInfo(string $project_id, string $user_id, \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null): array
-    {
+    public function updateProjectUserAccessWithHttpInfo(
+        string $project_id,
+        string $user_id,
+        \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null
+    ): array {
         $request = $this->updateProjectUserAccessRequest($project_id, $user_id, $update_project_user_access_request);
 
         try {
@@ -2291,10 +2396,13 @@ final class UserAccessApi
     /**
      * Update user access for a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateProjectUserAccessAsync(string $project_id, string $user_id, \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null): Promise
-    {
+    public function updateProjectUserAccessAsync(
+        string $project_id,
+        string $user_id,
+        \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null
+    ): Promise {
         return $this->updateProjectUserAccessAsyncWithHttpInfo($project_id, $user_id, $update_project_user_access_request)
             ->then(
                 function ($response) {
@@ -2306,10 +2414,13 @@ final class UserAccessApi
     /**
      * Update user access for a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateProjectUserAccessAsyncWithHttpInfo(string $project_id, string $user_id, \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null)
-    {
+    public function updateProjectUserAccessAsyncWithHttpInfo(
+        string $project_id,
+        string $user_id,
+        \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null
+    ) {
         $returnType = '';
         $request = $this->updateProjectUserAccessRequest($project_id, $user_id, $update_project_user_access_request);
 
@@ -2340,8 +2451,11 @@ final class UserAccessApi
      *
      * @throws InvalidArgumentException
      */
-    public function updateProjectUserAccessRequest(string $project_id, string $user_id, \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null): RequestInterface
-    {
+    public function updateProjectUserAccessRequest(
+        string $project_id,
+        string $user_id,
+        \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -2445,8 +2559,9 @@ final class UserAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function updateUserProjectAccess($user_id, $project_id, $update_project_user_access_request = null): void
+    public function updateUserProjectAccess($user_id, $project_id, $update_project_user_access_request = null)
     {
         $this->updateUserProjectAccessWithHttpInfo($user_id, $project_id, $update_project_user_access_request);
     }
@@ -2457,8 +2572,11 @@ final class UserAccessApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function updateUserProjectAccessWithHttpInfo(string $user_id, string $project_id, \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null): array
-    {
+    public function updateUserProjectAccessWithHttpInfo(
+        string $user_id,
+        string $project_id,
+        \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null
+    ): array {
         $request = $this->updateUserProjectAccessRequest($user_id, $project_id, $update_project_user_access_request);
 
         try {
@@ -2525,10 +2643,13 @@ final class UserAccessApi
     /**
      * Update project access for a user
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateUserProjectAccessAsync(string $user_id, string $project_id, \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null): Promise
-    {
+    public function updateUserProjectAccessAsync(
+        string $user_id,
+        string $project_id,
+        \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null
+    ): Promise {
         return $this->updateUserProjectAccessAsyncWithHttpInfo($user_id, $project_id, $update_project_user_access_request)
             ->then(
                 function ($response) {
@@ -2540,10 +2661,13 @@ final class UserAccessApi
     /**
      * Update project access for a user
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateUserProjectAccessAsyncWithHttpInfo(string $user_id, string $project_id, \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null)
-    {
+    public function updateUserProjectAccessAsyncWithHttpInfo(
+        string $user_id,
+        string $project_id,
+        \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null
+    ) {
         $returnType = '';
         $request = $this->updateUserProjectAccessRequest($user_id, $project_id, $update_project_user_access_request);
 
@@ -2574,8 +2698,11 @@ final class UserAccessApi
      *
      * @throws InvalidArgumentException
      */
-    public function updateUserProjectAccessRequest(string $user_id, string $project_id, \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null): RequestInterface
-    {
+    public function updateUserProjectAccessRequest(
+        string $user_id,
+        string $project_id,
+        \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null
+    ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -2679,9 +2806,9 @@ final class UserAccessApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -2777,8 +2904,8 @@ final class UserAccessApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

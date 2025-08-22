@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class RuntimeOperationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\AcceptedResponse
      */
-    public function runOperation($project_id, $environment_id, $deployment_id, $environment_operation_input): \Upsun\Model\AcceptedResponse
+    public function runOperation($project_id, $environment_id, $deployment_id, $environment_operation_input)
     {
         list($response) = $this->runOperationWithHttpInfo($project_id, $environment_id, $deployment_id, $environment_operation_input);
         return $response;
@@ -135,8 +137,12 @@ final class RuntimeOperationsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function runOperationWithHttpInfo(string $project_id, string $environment_id, string $deployment_id, \Upsun\Model\EnvironmentOperationInput $environment_operation_input): array
-    {
+    public function runOperationWithHttpInfo(
+        string $project_id,
+        string $environment_id,
+        string $deployment_id,
+        \Upsun\Model\EnvironmentOperationInput $environment_operation_input
+    ): array {
         $request = $this->runOperationRequest($project_id, $environment_id, $deployment_id, $environment_operation_input);
 
         try {
@@ -214,10 +220,14 @@ final class RuntimeOperationsApi
     /**
      * Execute a runtime operation
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function runOperationAsync(string $project_id, string $environment_id, string $deployment_id, \Upsun\Model\EnvironmentOperationInput $environment_operation_input): Promise
-    {
+    public function runOperationAsync(
+        string $project_id,
+        string $environment_id,
+        string $deployment_id,
+        \Upsun\Model\EnvironmentOperationInput $environment_operation_input
+    ): Promise {
         return $this->runOperationAsyncWithHttpInfo($project_id, $environment_id, $deployment_id, $environment_operation_input)
             ->then(
                 function ($response) {
@@ -229,10 +239,14 @@ final class RuntimeOperationsApi
     /**
      * Execute a runtime operation
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function runOperationAsyncWithHttpInfo(string $project_id, string $environment_id, string $deployment_id, \Upsun\Model\EnvironmentOperationInput $environment_operation_input)
-    {
+    public function runOperationAsyncWithHttpInfo(
+        string $project_id,
+        string $environment_id,
+        string $deployment_id,
+        \Upsun\Model\EnvironmentOperationInput $environment_operation_input
+    ) {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->runOperationRequest($project_id, $environment_id, $deployment_id, $environment_operation_input);
 
@@ -273,8 +287,12 @@ final class RuntimeOperationsApi
      *
      * @throws InvalidArgumentException
      */
-    public function runOperationRequest(string $project_id, string $environment_id, string $deployment_id, \Upsun\Model\EnvironmentOperationInput $environment_operation_input): RequestInterface
-    {
+    public function runOperationRequest(
+        string $project_id,
+        string $environment_id,
+        string $deployment_id,
+        \Upsun\Model\EnvironmentOperationInput $environment_operation_input
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -398,9 +416,9 @@ final class RuntimeOperationsApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -496,8 +514,8 @@ final class RuntimeOperationsApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

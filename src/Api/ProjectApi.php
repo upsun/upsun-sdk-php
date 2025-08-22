@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class ProjectApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\AcceptedResponse
      */
-    public function actionProjectsClearBuildCache($project_id): \Upsun\Model\AcceptedResponse
+    public function actionProjectsClearBuildCache($project_id)
     {
         list($response) = $this->actionProjectsClearBuildCacheWithHttpInfo($project_id);
         return $response;
@@ -135,8 +137,9 @@ final class ProjectApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function actionProjectsClearBuildCacheWithHttpInfo(string $project_id): array
-    {
+    public function actionProjectsClearBuildCacheWithHttpInfo(
+        string $project_id
+    ): array {
         $request = $this->actionProjectsClearBuildCacheRequest($project_id);
 
         try {
@@ -214,10 +217,11 @@ final class ProjectApi
     /**
      * Clear project build cache
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function actionProjectsClearBuildCacheAsync(string $project_id): Promise
-    {
+    public function actionProjectsClearBuildCacheAsync(
+        string $project_id
+    ): Promise {
         return $this->actionProjectsClearBuildCacheAsyncWithHttpInfo($project_id)
             ->then(
                 function ($response) {
@@ -229,10 +233,11 @@ final class ProjectApi
     /**
      * Clear project build cache
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function actionProjectsClearBuildCacheAsyncWithHttpInfo(string $project_id)
-    {
+    public function actionProjectsClearBuildCacheAsyncWithHttpInfo(
+        string $project_id
+    ) {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->actionProjectsClearBuildCacheRequest($project_id);
 
@@ -273,8 +278,9 @@ final class ProjectApi
      *
      * @throws InvalidArgumentException
      */
-    public function actionProjectsClearBuildCacheRequest(string $project_id): RequestInterface
-    {
+    public function actionProjectsClearBuildCacheRequest(
+        string $project_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -358,8 +364,9 @@ final class ProjectApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\AcceptedResponse
      */
-    public function deleteProjects($project_id): \Upsun\Model\AcceptedResponse
+    public function deleteProjects($project_id)
     {
         list($response) = $this->deleteProjectsWithHttpInfo($project_id);
         return $response;
@@ -371,8 +378,9 @@ final class ProjectApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function deleteProjectsWithHttpInfo(string $project_id): array
-    {
+    public function deleteProjectsWithHttpInfo(
+        string $project_id
+    ): array {
         $request = $this->deleteProjectsRequest($project_id);
 
         try {
@@ -450,10 +458,11 @@ final class ProjectApi
     /**
      * Delete a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteProjectsAsync(string $project_id): Promise
-    {
+    public function deleteProjectsAsync(
+        string $project_id
+    ): Promise {
         return $this->deleteProjectsAsyncWithHttpInfo($project_id)
             ->then(
                 function ($response) {
@@ -465,10 +474,11 @@ final class ProjectApi
     /**
      * Delete a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteProjectsAsyncWithHttpInfo(string $project_id)
-    {
+    public function deleteProjectsAsyncWithHttpInfo(
+        string $project_id
+    ) {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deleteProjectsRequest($project_id);
 
@@ -509,8 +519,9 @@ final class ProjectApi
      *
      * @throws InvalidArgumentException
      */
-    public function deleteProjectsRequest(string $project_id): RequestInterface
-    {
+    public function deleteProjectsRequest(
+        string $project_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -594,8 +605,9 @@ final class ProjectApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Project
      */
-    public function getProjects($project_id): \Upsun\Model\Project
+    public function getProjects($project_id)
     {
         list($response) = $this->getProjectsWithHttpInfo($project_id);
         return $response;
@@ -607,8 +619,9 @@ final class ProjectApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getProjectsWithHttpInfo(string $project_id): array
-    {
+    public function getProjectsWithHttpInfo(
+        string $project_id
+    ): array {
         $request = $this->getProjectsRequest($project_id);
 
         try {
@@ -686,10 +699,11 @@ final class ProjectApi
     /**
      * Get a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsAsync(string $project_id): Promise
-    {
+    public function getProjectsAsync(
+        string $project_id
+    ): Promise {
         return $this->getProjectsAsyncWithHttpInfo($project_id)
             ->then(
                 function ($response) {
@@ -701,10 +715,11 @@ final class ProjectApi
     /**
      * Get a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsAsyncWithHttpInfo(string $project_id)
-    {
+    public function getProjectsAsyncWithHttpInfo(
+        string $project_id
+    ) {
         $returnType = '\Upsun\Model\Project';
         $request = $this->getProjectsRequest($project_id);
 
@@ -745,8 +760,9 @@ final class ProjectApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectsRequest(string $project_id): RequestInterface
-    {
+    public function getProjectsRequest(
+        string $project_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -830,8 +846,9 @@ final class ProjectApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ProjectCapabilities
      */
-    public function getProjectsCapabilities($project_id): \Upsun\Model\ProjectCapabilities
+    public function getProjectsCapabilities($project_id)
     {
         list($response) = $this->getProjectsCapabilitiesWithHttpInfo($project_id);
         return $response;
@@ -843,8 +860,9 @@ final class ProjectApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getProjectsCapabilitiesWithHttpInfo(string $project_id): array
-    {
+    public function getProjectsCapabilitiesWithHttpInfo(
+        string $project_id
+    ): array {
         $request = $this->getProjectsCapabilitiesRequest($project_id);
 
         try {
@@ -922,10 +940,11 @@ final class ProjectApi
     /**
      * Get a project&#39;s capabilities
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsCapabilitiesAsync(string $project_id): Promise
-    {
+    public function getProjectsCapabilitiesAsync(
+        string $project_id
+    ): Promise {
         return $this->getProjectsCapabilitiesAsyncWithHttpInfo($project_id)
             ->then(
                 function ($response) {
@@ -937,10 +956,11 @@ final class ProjectApi
     /**
      * Get a project&#39;s capabilities
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsCapabilitiesAsyncWithHttpInfo(string $project_id)
-    {
+    public function getProjectsCapabilitiesAsyncWithHttpInfo(
+        string $project_id
+    ) {
         $returnType = '\Upsun\Model\ProjectCapabilities';
         $request = $this->getProjectsCapabilitiesRequest($project_id);
 
@@ -981,8 +1001,9 @@ final class ProjectApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectsCapabilitiesRequest(string $project_id): RequestInterface
-    {
+    public function getProjectsCapabilitiesRequest(
+        string $project_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1066,8 +1087,9 @@ final class ProjectApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\AcceptedResponse
      */
-    public function updateProjects($project_id, $project_patch): \Upsun\Model\AcceptedResponse
+    public function updateProjects($project_id, $project_patch)
     {
         list($response) = $this->updateProjectsWithHttpInfo($project_id, $project_patch);
         return $response;
@@ -1079,8 +1101,10 @@ final class ProjectApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function updateProjectsWithHttpInfo(string $project_id, \Upsun\Model\ProjectPatch $project_patch): array
-    {
+    public function updateProjectsWithHttpInfo(
+        string $project_id,
+        \Upsun\Model\ProjectPatch $project_patch
+    ): array {
         $request = $this->updateProjectsRequest($project_id, $project_patch);
 
         try {
@@ -1158,10 +1182,12 @@ final class ProjectApi
     /**
      * Update a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateProjectsAsync(string $project_id, \Upsun\Model\ProjectPatch $project_patch): Promise
-    {
+    public function updateProjectsAsync(
+        string $project_id,
+        \Upsun\Model\ProjectPatch $project_patch
+    ): Promise {
         return $this->updateProjectsAsyncWithHttpInfo($project_id, $project_patch)
             ->then(
                 function ($response) {
@@ -1173,10 +1199,12 @@ final class ProjectApi
     /**
      * Update a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateProjectsAsyncWithHttpInfo(string $project_id, \Upsun\Model\ProjectPatch $project_patch)
-    {
+    public function updateProjectsAsyncWithHttpInfo(
+        string $project_id,
+        \Upsun\Model\ProjectPatch $project_patch
+    ) {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateProjectsRequest($project_id, $project_patch);
 
@@ -1217,8 +1245,10 @@ final class ProjectApi
      *
      * @throws InvalidArgumentException
      */
-    public function updateProjectsRequest(string $project_id, \Upsun\Model\ProjectPatch $project_patch): RequestInterface
-    {
+    public function updateProjectsRequest(
+        string $project_id,
+        \Upsun\Model\ProjectPatch $project_patch
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1314,9 +1344,9 @@ final class ProjectApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -1412,8 +1442,8 @@ final class ProjectApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

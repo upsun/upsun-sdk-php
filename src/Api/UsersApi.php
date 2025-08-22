@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class UsersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\User
      */
-    public function getCurrentUser(): \Upsun\Model\User
+    public function getCurrentUser()
     {
         list($response) = $this->getCurrentUserWithHttpInfo();
         return $response;
@@ -135,8 +137,9 @@ final class UsersApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getCurrentUserWithHttpInfo(): array
-    {
+    public function getCurrentUserWithHttpInfo(
+        
+    ): array {
         $request = $this->getCurrentUserRequest();
 
         try {
@@ -228,10 +231,11 @@ final class UsersApi
     /**
      * Get the current user
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getCurrentUserAsync(): Promise
-    {
+    public function getCurrentUserAsync(
+        
+    ): Promise {
         return $this->getCurrentUserAsyncWithHttpInfo()
             ->then(
                 function ($response) {
@@ -243,10 +247,11 @@ final class UsersApi
     /**
      * Get the current user
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getCurrentUserAsyncWithHttpInfo()
-    {
+    public function getCurrentUserAsyncWithHttpInfo(
+        
+    ) {
         $returnType = '\Upsun\Model\User';
         $request = $this->getCurrentUserRequest();
 
@@ -287,8 +292,9 @@ final class UsersApi
      *
      * @throws InvalidArgumentException
      */
-    public function getCurrentUserRequest(): RequestInterface
-    {
+    public function getCurrentUserRequest(
+        
+    ): RequestInterface {
 
         $resourcePath = '/users/me';
         $formParams = [];
@@ -358,8 +364,9 @@ final class UsersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\CurrentUser
      */
-    public function getCurrentUserDeprecated(): \Upsun\Model\CurrentUser
+    public function getCurrentUserDeprecated()
     {
         list($response) = $this->getCurrentUserDeprecatedWithHttpInfo();
         return $response;
@@ -371,8 +378,9 @@ final class UsersApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getCurrentUserDeprecatedWithHttpInfo(): array
-    {
+    public function getCurrentUserDeprecatedWithHttpInfo(
+        
+    ): array {
         $request = $this->getCurrentUserDeprecatedRequest();
 
         try {
@@ -450,10 +458,11 @@ final class UsersApi
     /**
      * Get current logged-in user info
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getCurrentUserDeprecatedAsync(): Promise
-    {
+    public function getCurrentUserDeprecatedAsync(
+        
+    ): Promise {
         return $this->getCurrentUserDeprecatedAsyncWithHttpInfo()
             ->then(
                 function ($response) {
@@ -465,10 +474,11 @@ final class UsersApi
     /**
      * Get current logged-in user info
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getCurrentUserDeprecatedAsyncWithHttpInfo()
-    {
+    public function getCurrentUserDeprecatedAsyncWithHttpInfo(
+        
+    ) {
         $returnType = '\Upsun\Model\CurrentUser';
         $request = $this->getCurrentUserDeprecatedRequest();
 
@@ -509,8 +519,9 @@ final class UsersApi
      *
      * @throws InvalidArgumentException
      */
-    public function getCurrentUserDeprecatedRequest(): RequestInterface
-    {
+    public function getCurrentUserDeprecatedRequest(
+        
+    ): RequestInterface {
 
         $resourcePath = '/me';
         $formParams = [];
@@ -580,8 +591,9 @@ final class UsersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\GetCurrentUserVerificationStatus200Response
      */
-    public function getCurrentUserVerificationStatus(): \Upsun\Model\GetCurrentUserVerificationStatus200Response
+    public function getCurrentUserVerificationStatus()
     {
         list($response) = $this->getCurrentUserVerificationStatusWithHttpInfo();
         return $response;
@@ -593,8 +605,9 @@ final class UsersApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getCurrentUserVerificationStatusWithHttpInfo(): array
-    {
+    public function getCurrentUserVerificationStatusWithHttpInfo(
+        
+    ): array {
         $request = $this->getCurrentUserVerificationStatusRequest();
 
         try {
@@ -672,10 +685,11 @@ final class UsersApi
     /**
      * Check if phone verification is required
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getCurrentUserVerificationStatusAsync(): Promise
-    {
+    public function getCurrentUserVerificationStatusAsync(
+        
+    ): Promise {
         return $this->getCurrentUserVerificationStatusAsyncWithHttpInfo()
             ->then(
                 function ($response) {
@@ -687,10 +701,11 @@ final class UsersApi
     /**
      * Check if phone verification is required
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getCurrentUserVerificationStatusAsyncWithHttpInfo()
-    {
+    public function getCurrentUserVerificationStatusAsyncWithHttpInfo(
+        
+    ) {
         $returnType = '\Upsun\Model\GetCurrentUserVerificationStatus200Response';
         $request = $this->getCurrentUserVerificationStatusRequest();
 
@@ -731,8 +746,9 @@ final class UsersApi
      *
      * @throws InvalidArgumentException
      */
-    public function getCurrentUserVerificationStatusRequest(): RequestInterface
-    {
+    public function getCurrentUserVerificationStatusRequest(
+        
+    ): RequestInterface {
 
         $resourcePath = '/me/phone';
         $formParams = [];
@@ -802,8 +818,9 @@ final class UsersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\GetCurrentUserVerificationStatusFull200Response
      */
-    public function getCurrentUserVerificationStatusFull(): \Upsun\Model\GetCurrentUserVerificationStatusFull200Response
+    public function getCurrentUserVerificationStatusFull()
     {
         list($response) = $this->getCurrentUserVerificationStatusFullWithHttpInfo();
         return $response;
@@ -815,8 +832,9 @@ final class UsersApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getCurrentUserVerificationStatusFullWithHttpInfo(): array
-    {
+    public function getCurrentUserVerificationStatusFullWithHttpInfo(
+        
+    ): array {
         $request = $this->getCurrentUserVerificationStatusFullRequest();
 
         try {
@@ -894,10 +912,11 @@ final class UsersApi
     /**
      * Check if verification is required
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getCurrentUserVerificationStatusFullAsync(): Promise
-    {
+    public function getCurrentUserVerificationStatusFullAsync(
+        
+    ): Promise {
         return $this->getCurrentUserVerificationStatusFullAsyncWithHttpInfo()
             ->then(
                 function ($response) {
@@ -909,10 +928,11 @@ final class UsersApi
     /**
      * Check if verification is required
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getCurrentUserVerificationStatusFullAsyncWithHttpInfo()
-    {
+    public function getCurrentUserVerificationStatusFullAsyncWithHttpInfo(
+        
+    ) {
         $returnType = '\Upsun\Model\GetCurrentUserVerificationStatusFull200Response';
         $request = $this->getCurrentUserVerificationStatusFullRequest();
 
@@ -953,8 +973,9 @@ final class UsersApi
      *
      * @throws InvalidArgumentException
      */
-    public function getCurrentUserVerificationStatusFullRequest(): RequestInterface
-    {
+    public function getCurrentUserVerificationStatusFullRequest(
+        
+    ): RequestInterface {
 
         $resourcePath = '/me/verification';
         $formParams = [];
@@ -1024,8 +1045,9 @@ final class UsersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\User
      */
-    public function getUser($user_id): \Upsun\Model\User
+    public function getUser($user_id)
     {
         list($response) = $this->getUserWithHttpInfo($user_id);
         return $response;
@@ -1037,8 +1059,9 @@ final class UsersApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getUserWithHttpInfo(string $user_id): array
-    {
+    public function getUserWithHttpInfo(
+        string $user_id
+    ): array {
         $request = $this->getUserRequest($user_id);
 
         try {
@@ -1130,10 +1153,11 @@ final class UsersApi
     /**
      * Get a user
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getUserAsync(string $user_id): Promise
-    {
+    public function getUserAsync(
+        string $user_id
+    ): Promise {
         return $this->getUserAsyncWithHttpInfo($user_id)
             ->then(
                 function ($response) {
@@ -1145,10 +1169,11 @@ final class UsersApi
     /**
      * Get a user
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getUserAsyncWithHttpInfo(string $user_id)
-    {
+    public function getUserAsyncWithHttpInfo(
+        string $user_id
+    ) {
         $returnType = '\Upsun\Model\User';
         $request = $this->getUserRequest($user_id);
 
@@ -1189,8 +1214,9 @@ final class UsersApi
      *
      * @throws InvalidArgumentException
      */
-    public function getUserRequest(string $user_id): RequestInterface
-    {
+    public function getUserRequest(
+        string $user_id
+    ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1274,8 +1300,9 @@ final class UsersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\User
      */
-    public function getUserByEmailAddress($email): \Upsun\Model\User
+    public function getUserByEmailAddress($email)
     {
         list($response) = $this->getUserByEmailAddressWithHttpInfo($email);
         return $response;
@@ -1287,8 +1314,9 @@ final class UsersApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getUserByEmailAddressWithHttpInfo(string $email): array
-    {
+    public function getUserByEmailAddressWithHttpInfo(
+        string $email
+    ): array {
         $request = $this->getUserByEmailAddressRequest($email);
 
         try {
@@ -1380,10 +1408,11 @@ final class UsersApi
     /**
      * Get a user by email
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getUserByEmailAddressAsync(string $email): Promise
-    {
+    public function getUserByEmailAddressAsync(
+        string $email
+    ): Promise {
         return $this->getUserByEmailAddressAsyncWithHttpInfo($email)
             ->then(
                 function ($response) {
@@ -1395,10 +1424,11 @@ final class UsersApi
     /**
      * Get a user by email
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getUserByEmailAddressAsyncWithHttpInfo(string $email)
-    {
+    public function getUserByEmailAddressAsyncWithHttpInfo(
+        string $email
+    ) {
         $returnType = '\Upsun\Model\User';
         $request = $this->getUserByEmailAddressRequest($email);
 
@@ -1439,8 +1469,9 @@ final class UsersApi
      *
      * @throws InvalidArgumentException
      */
-    public function getUserByEmailAddressRequest(string $email): RequestInterface
-    {
+    public function getUserByEmailAddressRequest(
+        string $email
+    ): RequestInterface {
         // verify the required parameter 'email' is set
         if ($email === null || (is_array($email) && count($email) === 0)) {
             throw new \InvalidArgumentException(
@@ -1524,8 +1555,9 @@ final class UsersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\User
      */
-    public function getUserByUsername($username): \Upsun\Model\User
+    public function getUserByUsername($username)
     {
         list($response) = $this->getUserByUsernameWithHttpInfo($username);
         return $response;
@@ -1537,8 +1569,9 @@ final class UsersApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getUserByUsernameWithHttpInfo(string $username): array
-    {
+    public function getUserByUsernameWithHttpInfo(
+        string $username
+    ): array {
         $request = $this->getUserByUsernameRequest($username);
 
         try {
@@ -1630,10 +1663,11 @@ final class UsersApi
     /**
      * Get a user by username
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getUserByUsernameAsync(string $username): Promise
-    {
+    public function getUserByUsernameAsync(
+        string $username
+    ): Promise {
         return $this->getUserByUsernameAsyncWithHttpInfo($username)
             ->then(
                 function ($response) {
@@ -1645,10 +1679,11 @@ final class UsersApi
     /**
      * Get a user by username
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getUserByUsernameAsyncWithHttpInfo(string $username)
-    {
+    public function getUserByUsernameAsyncWithHttpInfo(
+        string $username
+    ) {
         $returnType = '\Upsun\Model\User';
         $request = $this->getUserByUsernameRequest($username);
 
@@ -1689,8 +1724,9 @@ final class UsersApi
      *
      * @throws InvalidArgumentException
      */
-    public function getUserByUsernameRequest(string $username): RequestInterface
-    {
+    public function getUserByUsernameRequest(
+        string $username
+    ): RequestInterface {
         // verify the required parameter 'username' is set
         if ($username === null || (is_array($username) && count($username) === 0)) {
             throw new \InvalidArgumentException(
@@ -1774,8 +1810,9 @@ final class UsersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function resetEmailAddress($user_id, $reset_email_address_request = null): void
+    public function resetEmailAddress($user_id, $reset_email_address_request = null)
     {
         $this->resetEmailAddressWithHttpInfo($user_id, $reset_email_address_request);
     }
@@ -1786,8 +1823,10 @@ final class UsersApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function resetEmailAddressWithHttpInfo(string $user_id, \Upsun\Model\ResetEmailAddressRequest $reset_email_address_request = null): array
-    {
+    public function resetEmailAddressWithHttpInfo(
+        string $user_id,
+        \Upsun\Model\ResetEmailAddressRequest $reset_email_address_request = null
+    ): array {
         $request = $this->resetEmailAddressRequest($user_id, $reset_email_address_request);
 
         try {
@@ -1854,10 +1893,12 @@ final class UsersApi
     /**
      * Reset email address
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function resetEmailAddressAsync(string $user_id, \Upsun\Model\ResetEmailAddressRequest $reset_email_address_request = null): Promise
-    {
+    public function resetEmailAddressAsync(
+        string $user_id,
+        \Upsun\Model\ResetEmailAddressRequest $reset_email_address_request = null
+    ): Promise {
         return $this->resetEmailAddressAsyncWithHttpInfo($user_id, $reset_email_address_request)
             ->then(
                 function ($response) {
@@ -1869,10 +1910,12 @@ final class UsersApi
     /**
      * Reset email address
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function resetEmailAddressAsyncWithHttpInfo(string $user_id, \Upsun\Model\ResetEmailAddressRequest $reset_email_address_request = null)
-    {
+    public function resetEmailAddressAsyncWithHttpInfo(
+        string $user_id,
+        \Upsun\Model\ResetEmailAddressRequest $reset_email_address_request = null
+    ) {
         $returnType = '';
         $request = $this->resetEmailAddressRequest($user_id, $reset_email_address_request);
 
@@ -1903,8 +1946,10 @@ final class UsersApi
      *
      * @throws InvalidArgumentException
      */
-    public function resetEmailAddressRequest(string $user_id, \Upsun\Model\ResetEmailAddressRequest $reset_email_address_request = null): RequestInterface
-    {
+    public function resetEmailAddressRequest(
+        string $user_id,
+        \Upsun\Model\ResetEmailAddressRequest $reset_email_address_request = null
+    ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1994,8 +2039,9 @@ final class UsersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function resetPassword($user_id): void
+    public function resetPassword($user_id)
     {
         $this->resetPasswordWithHttpInfo($user_id);
     }
@@ -2006,8 +2052,9 @@ final class UsersApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function resetPasswordWithHttpInfo(string $user_id): array
-    {
+    public function resetPasswordWithHttpInfo(
+        string $user_id
+    ): array {
         $request = $this->resetPasswordRequest($user_id);
 
         try {
@@ -2058,10 +2105,11 @@ final class UsersApi
     /**
      * Reset user password
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function resetPasswordAsync(string $user_id): Promise
-    {
+    public function resetPasswordAsync(
+        string $user_id
+    ): Promise {
         return $this->resetPasswordAsyncWithHttpInfo($user_id)
             ->then(
                 function ($response) {
@@ -2073,10 +2121,11 @@ final class UsersApi
     /**
      * Reset user password
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function resetPasswordAsyncWithHttpInfo(string $user_id)
-    {
+    public function resetPasswordAsyncWithHttpInfo(
+        string $user_id
+    ) {
         $returnType = '';
         $request = $this->resetPasswordRequest($user_id);
 
@@ -2107,8 +2156,9 @@ final class UsersApi
      *
      * @throws InvalidArgumentException
      */
-    public function resetPasswordRequest(string $user_id): RequestInterface
-    {
+    public function resetPasswordRequest(
+        string $user_id
+    ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -2192,8 +2242,9 @@ final class UsersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\User
      */
-    public function updateUser($user_id, $update_user_request = null): \Upsun\Model\User
+    public function updateUser($user_id, $update_user_request = null)
     {
         list($response) = $this->updateUserWithHttpInfo($user_id, $update_user_request);
         return $response;
@@ -2205,8 +2256,10 @@ final class UsersApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function updateUserWithHttpInfo(string $user_id, \Upsun\Model\UpdateUserRequest $update_user_request = null): array
-    {
+    public function updateUserWithHttpInfo(
+        string $user_id,
+        \Upsun\Model\UpdateUserRequest $update_user_request = null
+    ): array {
         $request = $this->updateUserRequest($user_id, $update_user_request);
 
         try {
@@ -2312,10 +2365,12 @@ final class UsersApi
     /**
      * Update a user
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateUserAsync(string $user_id, \Upsun\Model\UpdateUserRequest $update_user_request = null): Promise
-    {
+    public function updateUserAsync(
+        string $user_id,
+        \Upsun\Model\UpdateUserRequest $update_user_request = null
+    ): Promise {
         return $this->updateUserAsyncWithHttpInfo($user_id, $update_user_request)
             ->then(
                 function ($response) {
@@ -2327,10 +2382,12 @@ final class UsersApi
     /**
      * Update a user
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateUserAsyncWithHttpInfo(string $user_id, \Upsun\Model\UpdateUserRequest $update_user_request = null)
-    {
+    public function updateUserAsyncWithHttpInfo(
+        string $user_id,
+        \Upsun\Model\UpdateUserRequest $update_user_request = null
+    ) {
         $returnType = '\Upsun\Model\User';
         $request = $this->updateUserRequest($user_id, $update_user_request);
 
@@ -2371,8 +2428,10 @@ final class UsersApi
      *
      * @throws InvalidArgumentException
      */
-    public function updateUserRequest(string $user_id, \Upsun\Model\UpdateUserRequest $update_user_request = null): RequestInterface
-    {
+    public function updateUserRequest(
+        string $user_id,
+        \Upsun\Model\UpdateUserRequest $update_user_request = null
+    ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -2462,9 +2521,9 @@ final class UsersApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -2560,8 +2619,8 @@ final class UsersApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

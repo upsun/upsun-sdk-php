@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class RecordsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ListOrgPlanRecords200Response
      */
-    public function listOrgPlanRecords($organization_id, $filter_subscription_id = null, $filter_plan = null, $filter_status = null, $filter_start = null, $filter_end = null, $filter_started_at = null, $filter_ended_at = null, $page = null): \Upsun\Model\ListOrgPlanRecords200Response
+    public function listOrgPlanRecords($organization_id, $filter_subscription_id = null, $filter_plan = null, $filter_status = null, $filter_start = null, $filter_end = null, $filter_started_at = null, $filter_ended_at = null, $page = null)
     {
         list($response) = $this->listOrgPlanRecordsWithHttpInfo($organization_id, $filter_subscription_id, $filter_plan, $filter_status, $filter_start, $filter_end, $filter_started_at, $filter_ended_at, $page);
         return $response;
@@ -135,8 +137,17 @@ final class RecordsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listOrgPlanRecordsWithHttpInfo(string $organization_id, string $filter_subscription_id = null, string $filter_plan = null, string $filter_status = null, \DateTime $filter_start = null, \DateTime $filter_end = null, \DateTime $filter_started_at = null, \DateTime $filter_ended_at = null, int $page = null): array
-    {
+    public function listOrgPlanRecordsWithHttpInfo(
+        string $organization_id,
+        string $filter_subscription_id = null,
+        string $filter_plan = null,
+        string $filter_status = null,
+        \DateTime $filter_start = null,
+        \DateTime $filter_end = null,
+        \DateTime $filter_started_at = null,
+        \DateTime $filter_ended_at = null,
+        int $page = null
+    ): array {
         $request = $this->listOrgPlanRecordsRequest($organization_id, $filter_subscription_id, $filter_plan, $filter_status, $filter_start, $filter_end, $filter_started_at, $filter_ended_at, $page);
 
         try {
@@ -242,10 +253,19 @@ final class RecordsApi
     /**
      * List plan records
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listOrgPlanRecordsAsync(string $organization_id, string $filter_subscription_id = null, string $filter_plan = null, string $filter_status = null, \DateTime $filter_start = null, \DateTime $filter_end = null, \DateTime $filter_started_at = null, \DateTime $filter_ended_at = null, int $page = null): Promise
-    {
+    public function listOrgPlanRecordsAsync(
+        string $organization_id,
+        string $filter_subscription_id = null,
+        string $filter_plan = null,
+        string $filter_status = null,
+        \DateTime $filter_start = null,
+        \DateTime $filter_end = null,
+        \DateTime $filter_started_at = null,
+        \DateTime $filter_ended_at = null,
+        int $page = null
+    ): Promise {
         return $this->listOrgPlanRecordsAsyncWithHttpInfo($organization_id, $filter_subscription_id, $filter_plan, $filter_status, $filter_start, $filter_end, $filter_started_at, $filter_ended_at, $page)
             ->then(
                 function ($response) {
@@ -257,10 +277,19 @@ final class RecordsApi
     /**
      * List plan records
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listOrgPlanRecordsAsyncWithHttpInfo(string $organization_id, string $filter_subscription_id = null, string $filter_plan = null, string $filter_status = null, \DateTime $filter_start = null, \DateTime $filter_end = null, \DateTime $filter_started_at = null, \DateTime $filter_ended_at = null, int $page = null)
-    {
+    public function listOrgPlanRecordsAsyncWithHttpInfo(
+        string $organization_id,
+        string $filter_subscription_id = null,
+        string $filter_plan = null,
+        string $filter_status = null,
+        \DateTime $filter_start = null,
+        \DateTime $filter_end = null,
+        \DateTime $filter_started_at = null,
+        \DateTime $filter_ended_at = null,
+        int $page = null
+    ) {
         $returnType = '\Upsun\Model\ListOrgPlanRecords200Response';
         $request = $this->listOrgPlanRecordsRequest($organization_id, $filter_subscription_id, $filter_plan, $filter_status, $filter_start, $filter_end, $filter_started_at, $filter_ended_at, $page);
 
@@ -301,8 +330,17 @@ final class RecordsApi
      *
      * @throws InvalidArgumentException
      */
-    public function listOrgPlanRecordsRequest(string $organization_id, string $filter_subscription_id = null, string $filter_plan = null, string $filter_status = null, \DateTime $filter_start = null, \DateTime $filter_end = null, \DateTime $filter_started_at = null, \DateTime $filter_ended_at = null, int $page = null): RequestInterface
-    {
+    public function listOrgPlanRecordsRequest(
+        string $organization_id,
+        string $filter_subscription_id = null,
+        string $filter_plan = null,
+        string $filter_status = null,
+        \DateTime $filter_start = null,
+        \DateTime $filter_end = null,
+        \DateTime $filter_started_at = null,
+        \DateTime $filter_ended_at = null,
+        int $page = null
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -474,8 +512,9 @@ final class RecordsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ListOrgUsageRecords200Response
      */
-    public function listOrgUsageRecords($organization_id, $filter_subscription_id = null, $filter_usage_group = null, $filter_start = null, $filter_started_at = null, $page = null): \Upsun\Model\ListOrgUsageRecords200Response
+    public function listOrgUsageRecords($organization_id, $filter_subscription_id = null, $filter_usage_group = null, $filter_start = null, $filter_started_at = null, $page = null)
     {
         list($response) = $this->listOrgUsageRecordsWithHttpInfo($organization_id, $filter_subscription_id, $filter_usage_group, $filter_start, $filter_started_at, $page);
         return $response;
@@ -487,8 +526,14 @@ final class RecordsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listOrgUsageRecordsWithHttpInfo(string $organization_id, string $filter_subscription_id = null, string $filter_usage_group = null, \DateTime $filter_start = null, \DateTime $filter_started_at = null, int $page = null): array
-    {
+    public function listOrgUsageRecordsWithHttpInfo(
+        string $organization_id,
+        string $filter_subscription_id = null,
+        string $filter_usage_group = null,
+        \DateTime $filter_start = null,
+        \DateTime $filter_started_at = null,
+        int $page = null
+    ): array {
         $request = $this->listOrgUsageRecordsRequest($organization_id, $filter_subscription_id, $filter_usage_group, $filter_start, $filter_started_at, $page);
 
         try {
@@ -594,10 +639,16 @@ final class RecordsApi
     /**
      * List usage records
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listOrgUsageRecordsAsync(string $organization_id, string $filter_subscription_id = null, string $filter_usage_group = null, \DateTime $filter_start = null, \DateTime $filter_started_at = null, int $page = null): Promise
-    {
+    public function listOrgUsageRecordsAsync(
+        string $organization_id,
+        string $filter_subscription_id = null,
+        string $filter_usage_group = null,
+        \DateTime $filter_start = null,
+        \DateTime $filter_started_at = null,
+        int $page = null
+    ): Promise {
         return $this->listOrgUsageRecordsAsyncWithHttpInfo($organization_id, $filter_subscription_id, $filter_usage_group, $filter_start, $filter_started_at, $page)
             ->then(
                 function ($response) {
@@ -609,10 +660,16 @@ final class RecordsApi
     /**
      * List usage records
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listOrgUsageRecordsAsyncWithHttpInfo(string $organization_id, string $filter_subscription_id = null, string $filter_usage_group = null, \DateTime $filter_start = null, \DateTime $filter_started_at = null, int $page = null)
-    {
+    public function listOrgUsageRecordsAsyncWithHttpInfo(
+        string $organization_id,
+        string $filter_subscription_id = null,
+        string $filter_usage_group = null,
+        \DateTime $filter_start = null,
+        \DateTime $filter_started_at = null,
+        int $page = null
+    ) {
         $returnType = '\Upsun\Model\ListOrgUsageRecords200Response';
         $request = $this->listOrgUsageRecordsRequest($organization_id, $filter_subscription_id, $filter_usage_group, $filter_start, $filter_started_at, $page);
 
@@ -653,8 +710,14 @@ final class RecordsApi
      *
      * @throws InvalidArgumentException
      */
-    public function listOrgUsageRecordsRequest(string $organization_id, string $filter_subscription_id = null, string $filter_usage_group = null, \DateTime $filter_start = null, \DateTime $filter_started_at = null, int $page = null): RequestInterface
-    {
+    public function listOrgUsageRecordsRequest(
+        string $organization_id,
+        string $filter_subscription_id = null,
+        string $filter_usage_group = null,
+        \DateTime $filter_start = null,
+        \DateTime $filter_started_at = null,
+        int $page = null
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -793,9 +856,9 @@ final class RecordsApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -891,8 +954,8 @@ final class RecordsApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

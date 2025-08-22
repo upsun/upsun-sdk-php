@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class SubscriptionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\CanCreateNewOrgSubscription200Response
      */
-    public function canCreateNewOrgSubscription($organization_id): \Upsun\Model\CanCreateNewOrgSubscription200Response
+    public function canCreateNewOrgSubscription($organization_id)
     {
         list($response) = $this->canCreateNewOrgSubscriptionWithHttpInfo($organization_id);
         return $response;
@@ -135,8 +137,9 @@ final class SubscriptionsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function canCreateNewOrgSubscriptionWithHttpInfo(string $organization_id): array
-    {
+    public function canCreateNewOrgSubscriptionWithHttpInfo(
+        string $organization_id
+    ): array {
         $request = $this->canCreateNewOrgSubscriptionRequest($organization_id);
 
         try {
@@ -242,10 +245,11 @@ final class SubscriptionsApi
     /**
      * Checks if the user is able to create a new project.
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function canCreateNewOrgSubscriptionAsync(string $organization_id): Promise
-    {
+    public function canCreateNewOrgSubscriptionAsync(
+        string $organization_id
+    ): Promise {
         return $this->canCreateNewOrgSubscriptionAsyncWithHttpInfo($organization_id)
             ->then(
                 function ($response) {
@@ -257,10 +261,11 @@ final class SubscriptionsApi
     /**
      * Checks if the user is able to create a new project.
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function canCreateNewOrgSubscriptionAsyncWithHttpInfo(string $organization_id)
-    {
+    public function canCreateNewOrgSubscriptionAsyncWithHttpInfo(
+        string $organization_id
+    ) {
         $returnType = '\Upsun\Model\CanCreateNewOrgSubscription200Response';
         $request = $this->canCreateNewOrgSubscriptionRequest($organization_id);
 
@@ -301,8 +306,9 @@ final class SubscriptionsApi
      *
      * @throws InvalidArgumentException
      */
-    public function canCreateNewOrgSubscriptionRequest(string $organization_id): RequestInterface
-    {
+    public function canCreateNewOrgSubscriptionRequest(
+        string $organization_id
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -386,8 +392,9 @@ final class SubscriptionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Subscription
      */
-    public function createOrgSubscription($organization_id, $create_org_subscription_request): \Upsun\Model\Subscription
+    public function createOrgSubscription($organization_id, $create_org_subscription_request)
     {
         list($response) = $this->createOrgSubscriptionWithHttpInfo($organization_id, $create_org_subscription_request);
         return $response;
@@ -399,8 +406,10 @@ final class SubscriptionsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function createOrgSubscriptionWithHttpInfo(string $organization_id, \Upsun\Model\CreateOrgSubscriptionRequest $create_org_subscription_request): array
-    {
+    public function createOrgSubscriptionWithHttpInfo(
+        string $organization_id,
+        \Upsun\Model\CreateOrgSubscriptionRequest $create_org_subscription_request
+    ): array {
         $request = $this->createOrgSubscriptionRequest($organization_id, $create_org_subscription_request);
 
         try {
@@ -520,10 +529,12 @@ final class SubscriptionsApi
     /**
      * Create subscription
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createOrgSubscriptionAsync(string $organization_id, \Upsun\Model\CreateOrgSubscriptionRequest $create_org_subscription_request): Promise
-    {
+    public function createOrgSubscriptionAsync(
+        string $organization_id,
+        \Upsun\Model\CreateOrgSubscriptionRequest $create_org_subscription_request
+    ): Promise {
         return $this->createOrgSubscriptionAsyncWithHttpInfo($organization_id, $create_org_subscription_request)
             ->then(
                 function ($response) {
@@ -535,10 +546,12 @@ final class SubscriptionsApi
     /**
      * Create subscription
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createOrgSubscriptionAsyncWithHttpInfo(string $organization_id, \Upsun\Model\CreateOrgSubscriptionRequest $create_org_subscription_request)
-    {
+    public function createOrgSubscriptionAsyncWithHttpInfo(
+        string $organization_id,
+        \Upsun\Model\CreateOrgSubscriptionRequest $create_org_subscription_request
+    ) {
         $returnType = '\Upsun\Model\Subscription';
         $request = $this->createOrgSubscriptionRequest($organization_id, $create_org_subscription_request);
 
@@ -579,8 +592,10 @@ final class SubscriptionsApi
      *
      * @throws InvalidArgumentException
      */
-    public function createOrgSubscriptionRequest(string $organization_id, \Upsun\Model\CreateOrgSubscriptionRequest $create_org_subscription_request): RequestInterface
-    {
+    public function createOrgSubscriptionRequest(
+        string $organization_id,
+        \Upsun\Model\CreateOrgSubscriptionRequest $create_org_subscription_request
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -676,8 +691,9 @@ final class SubscriptionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function deleteOrgSubscription($organization_id, $subscription_id): void
+    public function deleteOrgSubscription($organization_id, $subscription_id)
     {
         $this->deleteOrgSubscriptionWithHttpInfo($organization_id, $subscription_id);
     }
@@ -688,8 +704,10 @@ final class SubscriptionsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function deleteOrgSubscriptionWithHttpInfo(string $organization_id, string $subscription_id): array
-    {
+    public function deleteOrgSubscriptionWithHttpInfo(
+        string $organization_id,
+        string $subscription_id
+    ): array {
         $request = $this->deleteOrgSubscriptionRequest($organization_id, $subscription_id);
 
         try {
@@ -748,10 +766,12 @@ final class SubscriptionsApi
     /**
      * Delete subscription
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteOrgSubscriptionAsync(string $organization_id, string $subscription_id): Promise
-    {
+    public function deleteOrgSubscriptionAsync(
+        string $organization_id,
+        string $subscription_id
+    ): Promise {
         return $this->deleteOrgSubscriptionAsyncWithHttpInfo($organization_id, $subscription_id)
             ->then(
                 function ($response) {
@@ -763,10 +783,12 @@ final class SubscriptionsApi
     /**
      * Delete subscription
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteOrgSubscriptionAsyncWithHttpInfo(string $organization_id, string $subscription_id)
-    {
+    public function deleteOrgSubscriptionAsyncWithHttpInfo(
+        string $organization_id,
+        string $subscription_id
+    ) {
         $returnType = '';
         $request = $this->deleteOrgSubscriptionRequest($organization_id, $subscription_id);
 
@@ -797,8 +819,10 @@ final class SubscriptionsApi
      *
      * @throws InvalidArgumentException
      */
-    public function deleteOrgSubscriptionRequest(string $organization_id, string $subscription_id): RequestInterface
-    {
+    public function deleteOrgSubscriptionRequest(
+        string $organization_id,
+        string $subscription_id
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -896,8 +920,9 @@ final class SubscriptionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\EstimationObject
      */
-    public function estimateNewOrgSubscription($organization_id, $plan, $environments, $storage, $user_licenses, $format = null): \Upsun\Model\EstimationObject
+    public function estimateNewOrgSubscription($organization_id, $plan, $environments, $storage, $user_licenses, $format = null)
     {
         list($response) = $this->estimateNewOrgSubscriptionWithHttpInfo($organization_id, $plan, $environments, $storage, $user_licenses, $format);
         return $response;
@@ -909,8 +934,14 @@ final class SubscriptionsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function estimateNewOrgSubscriptionWithHttpInfo(string $organization_id, string $plan, int $environments, int $storage, int $user_licenses, string $format = null): array
-    {
+    public function estimateNewOrgSubscriptionWithHttpInfo(
+        string $organization_id,
+        string $plan,
+        int $environments,
+        int $storage,
+        int $user_licenses,
+        string $format = null
+    ): array {
         $request = $this->estimateNewOrgSubscriptionRequest($organization_id, $plan, $environments, $storage, $user_licenses, $format);
 
         try {
@@ -1016,10 +1047,16 @@ final class SubscriptionsApi
     /**
      * Estimate the price of a new subscription
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function estimateNewOrgSubscriptionAsync(string $organization_id, string $plan, int $environments, int $storage, int $user_licenses, string $format = null): Promise
-    {
+    public function estimateNewOrgSubscriptionAsync(
+        string $organization_id,
+        string $plan,
+        int $environments,
+        int $storage,
+        int $user_licenses,
+        string $format = null
+    ): Promise {
         return $this->estimateNewOrgSubscriptionAsyncWithHttpInfo($organization_id, $plan, $environments, $storage, $user_licenses, $format)
             ->then(
                 function ($response) {
@@ -1031,10 +1068,16 @@ final class SubscriptionsApi
     /**
      * Estimate the price of a new subscription
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function estimateNewOrgSubscriptionAsyncWithHttpInfo(string $organization_id, string $plan, int $environments, int $storage, int $user_licenses, string $format = null)
-    {
+    public function estimateNewOrgSubscriptionAsyncWithHttpInfo(
+        string $organization_id,
+        string $plan,
+        int $environments,
+        int $storage,
+        int $user_licenses,
+        string $format = null
+    ) {
         $returnType = '\Upsun\Model\EstimationObject';
         $request = $this->estimateNewOrgSubscriptionRequest($organization_id, $plan, $environments, $storage, $user_licenses, $format);
 
@@ -1075,8 +1118,14 @@ final class SubscriptionsApi
      *
      * @throws InvalidArgumentException
      */
-    public function estimateNewOrgSubscriptionRequest(string $organization_id, string $plan, int $environments, int $storage, int $user_licenses, string $format = null): RequestInterface
-    {
+    public function estimateNewOrgSubscriptionRequest(
+        string $organization_id,
+        string $plan,
+        int $environments,
+        int $storage,
+        int $user_licenses,
+        string $format = null
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1239,8 +1288,9 @@ final class SubscriptionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\EstimationObject
      */
-    public function estimateOrgSubscription($organization_id, $subscription_id, $plan, $environments = null, $storage = null, $user_licenses = null, $format = null): \Upsun\Model\EstimationObject
+    public function estimateOrgSubscription($organization_id, $subscription_id, $plan, $environments = null, $storage = null, $user_licenses = null, $format = null)
     {
         list($response) = $this->estimateOrgSubscriptionWithHttpInfo($organization_id, $subscription_id, $plan, $environments, $storage, $user_licenses, $format);
         return $response;
@@ -1252,8 +1302,15 @@ final class SubscriptionsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function estimateOrgSubscriptionWithHttpInfo(string $organization_id, string $subscription_id, string $plan, int $environments = null, int $storage = null, int $user_licenses = null, string $format = null): array
-    {
+    public function estimateOrgSubscriptionWithHttpInfo(
+        string $organization_id,
+        string $subscription_id,
+        string $plan,
+        int $environments = null,
+        int $storage = null,
+        int $user_licenses = null,
+        string $format = null
+    ): array {
         $request = $this->estimateOrgSubscriptionRequest($organization_id, $subscription_id, $plan, $environments, $storage, $user_licenses, $format);
 
         try {
@@ -1345,10 +1402,17 @@ final class SubscriptionsApi
     /**
      * Estimate the price of a subscription
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function estimateOrgSubscriptionAsync(string $organization_id, string $subscription_id, string $plan, int $environments = null, int $storage = null, int $user_licenses = null, string $format = null): Promise
-    {
+    public function estimateOrgSubscriptionAsync(
+        string $organization_id,
+        string $subscription_id,
+        string $plan,
+        int $environments = null,
+        int $storage = null,
+        int $user_licenses = null,
+        string $format = null
+    ): Promise {
         return $this->estimateOrgSubscriptionAsyncWithHttpInfo($organization_id, $subscription_id, $plan, $environments, $storage, $user_licenses, $format)
             ->then(
                 function ($response) {
@@ -1360,10 +1424,17 @@ final class SubscriptionsApi
     /**
      * Estimate the price of a subscription
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function estimateOrgSubscriptionAsyncWithHttpInfo(string $organization_id, string $subscription_id, string $plan, int $environments = null, int $storage = null, int $user_licenses = null, string $format = null)
-    {
+    public function estimateOrgSubscriptionAsyncWithHttpInfo(
+        string $organization_id,
+        string $subscription_id,
+        string $plan,
+        int $environments = null,
+        int $storage = null,
+        int $user_licenses = null,
+        string $format = null
+    ) {
         $returnType = '\Upsun\Model\EstimationObject';
         $request = $this->estimateOrgSubscriptionRequest($organization_id, $subscription_id, $plan, $environments, $storage, $user_licenses, $format);
 
@@ -1404,8 +1475,15 @@ final class SubscriptionsApi
      *
      * @throws InvalidArgumentException
      */
-    public function estimateOrgSubscriptionRequest(string $organization_id, string $subscription_id, string $plan, int $environments = null, int $storage = null, int $user_licenses = null, string $format = null): RequestInterface
-    {
+    public function estimateOrgSubscriptionRequest(
+        string $organization_id,
+        string $subscription_id,
+        string $plan,
+        int $environments = null,
+        int $storage = null,
+        int $user_licenses = null,
+        string $format = null
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1564,8 +1642,9 @@ final class SubscriptionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Subscription
      */
-    public function getOrgSubscription($organization_id, $subscription_id): \Upsun\Model\Subscription
+    public function getOrgSubscription($organization_id, $subscription_id)
     {
         list($response) = $this->getOrgSubscriptionWithHttpInfo($organization_id, $subscription_id);
         return $response;
@@ -1577,8 +1656,10 @@ final class SubscriptionsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getOrgSubscriptionWithHttpInfo(string $organization_id, string $subscription_id): array
-    {
+    public function getOrgSubscriptionWithHttpInfo(
+        string $organization_id,
+        string $subscription_id
+    ): array {
         $request = $this->getOrgSubscriptionRequest($organization_id, $subscription_id);
 
         try {
@@ -1684,10 +1765,12 @@ final class SubscriptionsApi
     /**
      * Get subscription
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getOrgSubscriptionAsync(string $organization_id, string $subscription_id): Promise
-    {
+    public function getOrgSubscriptionAsync(
+        string $organization_id,
+        string $subscription_id
+    ): Promise {
         return $this->getOrgSubscriptionAsyncWithHttpInfo($organization_id, $subscription_id)
             ->then(
                 function ($response) {
@@ -1699,10 +1782,12 @@ final class SubscriptionsApi
     /**
      * Get subscription
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getOrgSubscriptionAsyncWithHttpInfo(string $organization_id, string $subscription_id)
-    {
+    public function getOrgSubscriptionAsyncWithHttpInfo(
+        string $organization_id,
+        string $subscription_id
+    ) {
         $returnType = '\Upsun\Model\Subscription';
         $request = $this->getOrgSubscriptionRequest($organization_id, $subscription_id);
 
@@ -1743,8 +1828,10 @@ final class SubscriptionsApi
      *
      * @throws InvalidArgumentException
      */
-    public function getOrgSubscriptionRequest(string $organization_id, string $subscription_id): RequestInterface
-    {
+    public function getOrgSubscriptionRequest(
+        string $organization_id,
+        string $subscription_id
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1842,8 +1929,9 @@ final class SubscriptionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\SubscriptionCurrentUsageObject
      */
-    public function getOrgSubscriptionCurrentUsage($organization_id, $subscription_id, $usage_groups = null, $include_not_charged = null): \Upsun\Model\SubscriptionCurrentUsageObject
+    public function getOrgSubscriptionCurrentUsage($organization_id, $subscription_id, $usage_groups = null, $include_not_charged = null)
     {
         list($response) = $this->getOrgSubscriptionCurrentUsageWithHttpInfo($organization_id, $subscription_id, $usage_groups, $include_not_charged);
         return $response;
@@ -1855,8 +1943,12 @@ final class SubscriptionsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getOrgSubscriptionCurrentUsageWithHttpInfo(string $organization_id, string $subscription_id, string $usage_groups = null, bool $include_not_charged = null): array
-    {
+    public function getOrgSubscriptionCurrentUsageWithHttpInfo(
+        string $organization_id,
+        string $subscription_id,
+        string $usage_groups = null,
+        bool $include_not_charged = null
+    ): array {
         $request = $this->getOrgSubscriptionCurrentUsageRequest($organization_id, $subscription_id, $usage_groups, $include_not_charged);
 
         try {
@@ -1948,10 +2040,14 @@ final class SubscriptionsApi
     /**
      * Get current usage for a subscription
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getOrgSubscriptionCurrentUsageAsync(string $organization_id, string $subscription_id, string $usage_groups = null, bool $include_not_charged = null): Promise
-    {
+    public function getOrgSubscriptionCurrentUsageAsync(
+        string $organization_id,
+        string $subscription_id,
+        string $usage_groups = null,
+        bool $include_not_charged = null
+    ): Promise {
         return $this->getOrgSubscriptionCurrentUsageAsyncWithHttpInfo($organization_id, $subscription_id, $usage_groups, $include_not_charged)
             ->then(
                 function ($response) {
@@ -1963,10 +2059,14 @@ final class SubscriptionsApi
     /**
      * Get current usage for a subscription
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getOrgSubscriptionCurrentUsageAsyncWithHttpInfo(string $organization_id, string $subscription_id, string $usage_groups = null, bool $include_not_charged = null)
-    {
+    public function getOrgSubscriptionCurrentUsageAsyncWithHttpInfo(
+        string $organization_id,
+        string $subscription_id,
+        string $usage_groups = null,
+        bool $include_not_charged = null
+    ) {
         $returnType = '\Upsun\Model\SubscriptionCurrentUsageObject';
         $request = $this->getOrgSubscriptionCurrentUsageRequest($organization_id, $subscription_id, $usage_groups, $include_not_charged);
 
@@ -2007,8 +2107,12 @@ final class SubscriptionsApi
      *
      * @throws InvalidArgumentException
      */
-    public function getOrgSubscriptionCurrentUsageRequest(string $organization_id, string $subscription_id, string $usage_groups = null, bool $include_not_charged = null): RequestInterface
-    {
+    public function getOrgSubscriptionCurrentUsageRequest(
+        string $organization_id,
+        string $subscription_id,
+        string $usage_groups = null,
+        bool $include_not_charged = null
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -2128,8 +2232,9 @@ final class SubscriptionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ListOrgSubscriptions200Response
      */
-    public function listOrgSubscriptions($organization_id, $filter_status = null, $filter_id = null, $filter_project_id = null, $filter_project_title = null, $filter_region = null, $filter_updated_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null): \Upsun\Model\ListOrgSubscriptions200Response
+    public function listOrgSubscriptions($organization_id, $filter_status = null, $filter_id = null, $filter_project_id = null, $filter_project_title = null, $filter_region = null, $filter_updated_at = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
     {
         list($response) = $this->listOrgSubscriptionsWithHttpInfo($organization_id, $filter_status, $filter_id, $filter_project_id, $filter_project_title, $filter_region, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
         return $response;
@@ -2141,8 +2246,19 @@ final class SubscriptionsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listOrgSubscriptionsWithHttpInfo(string $organization_id, string $filter_status = null, string $filter_id = null, \Upsun\Model\StringFilter $filter_project_id = null, \Upsun\Model\StringFilter $filter_project_title = null, \Upsun\Model\StringFilter $filter_region = null, \Upsun\Model\DateTimeFilter $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): array
-    {
+    public function listOrgSubscriptionsWithHttpInfo(
+        string $organization_id,
+        string $filter_status = null,
+        string $filter_id = null,
+        \Upsun\Model\StringFilter $filter_project_id = null,
+        \Upsun\Model\StringFilter $filter_project_title = null,
+        \Upsun\Model\StringFilter $filter_region = null,
+        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): array {
         $request = $this->listOrgSubscriptionsRequest($organization_id, $filter_status, $filter_id, $filter_project_id, $filter_project_title, $filter_region, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
 
         try {
@@ -2248,10 +2364,21 @@ final class SubscriptionsApi
     /**
      * List subscriptions
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listOrgSubscriptionsAsync(string $organization_id, string $filter_status = null, string $filter_id = null, \Upsun\Model\StringFilter $filter_project_id = null, \Upsun\Model\StringFilter $filter_project_title = null, \Upsun\Model\StringFilter $filter_region = null, \Upsun\Model\DateTimeFilter $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Promise
-    {
+    public function listOrgSubscriptionsAsync(
+        string $organization_id,
+        string $filter_status = null,
+        string $filter_id = null,
+        \Upsun\Model\StringFilter $filter_project_id = null,
+        \Upsun\Model\StringFilter $filter_project_title = null,
+        \Upsun\Model\StringFilter $filter_region = null,
+        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): Promise {
         return $this->listOrgSubscriptionsAsyncWithHttpInfo($organization_id, $filter_status, $filter_id, $filter_project_id, $filter_project_title, $filter_region, $filter_updated_at, $page_size, $page_before, $page_after, $sort)
             ->then(
                 function ($response) {
@@ -2263,10 +2390,21 @@ final class SubscriptionsApi
     /**
      * List subscriptions
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listOrgSubscriptionsAsyncWithHttpInfo(string $organization_id, string $filter_status = null, string $filter_id = null, \Upsun\Model\StringFilter $filter_project_id = null, \Upsun\Model\StringFilter $filter_project_title = null, \Upsun\Model\StringFilter $filter_region = null, \Upsun\Model\DateTimeFilter $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null)
-    {
+    public function listOrgSubscriptionsAsyncWithHttpInfo(
+        string $organization_id,
+        string $filter_status = null,
+        string $filter_id = null,
+        \Upsun\Model\StringFilter $filter_project_id = null,
+        \Upsun\Model\StringFilter $filter_project_title = null,
+        \Upsun\Model\StringFilter $filter_region = null,
+        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ) {
         $returnType = '\Upsun\Model\ListOrgSubscriptions200Response';
         $request = $this->listOrgSubscriptionsRequest($organization_id, $filter_status, $filter_id, $filter_project_id, $filter_project_title, $filter_region, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
 
@@ -2307,8 +2445,19 @@ final class SubscriptionsApi
      *
      * @throws InvalidArgumentException
      */
-    public function listOrgSubscriptionsRequest(string $organization_id, string $filter_status = null, string $filter_id = null, \Upsun\Model\StringFilter $filter_project_id = null, \Upsun\Model\StringFilter $filter_project_title = null, \Upsun\Model\StringFilter $filter_region = null, \Upsun\Model\DateTimeFilter $filter_updated_at = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): RequestInterface
-    {
+    public function listOrgSubscriptionsRequest(
+        string $organization_id,
+        string $filter_status = null,
+        string $filter_id = null,
+        \Upsun\Model\StringFilter $filter_project_id = null,
+        \Upsun\Model\StringFilter $filter_project_title = null,
+        \Upsun\Model\StringFilter $filter_region = null,
+        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -2509,8 +2658,9 @@ final class SubscriptionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\SubscriptionAddonsObject
      */
-    public function listSubscriptionAddons($organization_id, $subscription_id): \Upsun\Model\SubscriptionAddonsObject
+    public function listSubscriptionAddons($organization_id, $subscription_id)
     {
         list($response) = $this->listSubscriptionAddonsWithHttpInfo($organization_id, $subscription_id);
         return $response;
@@ -2522,8 +2672,10 @@ final class SubscriptionsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listSubscriptionAddonsWithHttpInfo(string $organization_id, string $subscription_id): array
-    {
+    public function listSubscriptionAddonsWithHttpInfo(
+        string $organization_id,
+        string $subscription_id
+    ): array {
         $request = $this->listSubscriptionAddonsRequest($organization_id, $subscription_id);
 
         try {
@@ -2615,10 +2767,12 @@ final class SubscriptionsApi
     /**
      * List addons for a subscription
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listSubscriptionAddonsAsync(string $organization_id, string $subscription_id): Promise
-    {
+    public function listSubscriptionAddonsAsync(
+        string $organization_id,
+        string $subscription_id
+    ): Promise {
         return $this->listSubscriptionAddonsAsyncWithHttpInfo($organization_id, $subscription_id)
             ->then(
                 function ($response) {
@@ -2630,10 +2784,12 @@ final class SubscriptionsApi
     /**
      * List addons for a subscription
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listSubscriptionAddonsAsyncWithHttpInfo(string $organization_id, string $subscription_id)
-    {
+    public function listSubscriptionAddonsAsyncWithHttpInfo(
+        string $organization_id,
+        string $subscription_id
+    ) {
         $returnType = '\Upsun\Model\SubscriptionAddonsObject';
         $request = $this->listSubscriptionAddonsRequest($organization_id, $subscription_id);
 
@@ -2674,8 +2830,10 @@ final class SubscriptionsApi
      *
      * @throws InvalidArgumentException
      */
-    public function listSubscriptionAddonsRequest(string $organization_id, string $subscription_id): RequestInterface
-    {
+    public function listSubscriptionAddonsRequest(
+        string $organization_id,
+        string $subscription_id
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -2773,8 +2931,9 @@ final class SubscriptionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Subscription
      */
-    public function updateOrgSubscription($organization_id, $subscription_id, $update_org_subscription_request = null): \Upsun\Model\Subscription
+    public function updateOrgSubscription($organization_id, $subscription_id, $update_org_subscription_request = null)
     {
         list($response) = $this->updateOrgSubscriptionWithHttpInfo($organization_id, $subscription_id, $update_org_subscription_request);
         return $response;
@@ -2786,8 +2945,11 @@ final class SubscriptionsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function updateOrgSubscriptionWithHttpInfo(string $organization_id, string $subscription_id, \Upsun\Model\UpdateOrgSubscriptionRequest $update_org_subscription_request = null): array
-    {
+    public function updateOrgSubscriptionWithHttpInfo(
+        string $organization_id,
+        string $subscription_id,
+        \Upsun\Model\UpdateOrgSubscriptionRequest $update_org_subscription_request = null
+    ): array {
         $request = $this->updateOrgSubscriptionRequest($organization_id, $subscription_id, $update_org_subscription_request);
 
         try {
@@ -2907,10 +3069,13 @@ final class SubscriptionsApi
     /**
      * Update subscription
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateOrgSubscriptionAsync(string $organization_id, string $subscription_id, \Upsun\Model\UpdateOrgSubscriptionRequest $update_org_subscription_request = null): Promise
-    {
+    public function updateOrgSubscriptionAsync(
+        string $organization_id,
+        string $subscription_id,
+        \Upsun\Model\UpdateOrgSubscriptionRequest $update_org_subscription_request = null
+    ): Promise {
         return $this->updateOrgSubscriptionAsyncWithHttpInfo($organization_id, $subscription_id, $update_org_subscription_request)
             ->then(
                 function ($response) {
@@ -2922,10 +3087,13 @@ final class SubscriptionsApi
     /**
      * Update subscription
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateOrgSubscriptionAsyncWithHttpInfo(string $organization_id, string $subscription_id, \Upsun\Model\UpdateOrgSubscriptionRequest $update_org_subscription_request = null)
-    {
+    public function updateOrgSubscriptionAsyncWithHttpInfo(
+        string $organization_id,
+        string $subscription_id,
+        \Upsun\Model\UpdateOrgSubscriptionRequest $update_org_subscription_request = null
+    ) {
         $returnType = '\Upsun\Model\Subscription';
         $request = $this->updateOrgSubscriptionRequest($organization_id, $subscription_id, $update_org_subscription_request);
 
@@ -2966,8 +3134,11 @@ final class SubscriptionsApi
      *
      * @throws InvalidArgumentException
      */
-    public function updateOrgSubscriptionRequest(string $organization_id, string $subscription_id, \Upsun\Model\UpdateOrgSubscriptionRequest $update_org_subscription_request = null): RequestInterface
-    {
+    public function updateOrgSubscriptionRequest(
+        string $organization_id,
+        string $subscription_id,
+        \Upsun\Model\UpdateOrgSubscriptionRequest $update_org_subscription_request = null
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -3071,9 +3242,9 @@ final class SubscriptionsApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -3169,8 +3340,8 @@ final class SubscriptionsApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

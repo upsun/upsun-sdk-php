@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class DeploymentTargetApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\AcceptedResponse
      */
-    public function createProjectsDeployments($project_id, $deployment_target_create_input): \Upsun\Model\AcceptedResponse
+    public function createProjectsDeployments($project_id, $deployment_target_create_input)
     {
         list($response) = $this->createProjectsDeploymentsWithHttpInfo($project_id, $deployment_target_create_input);
         return $response;
@@ -135,8 +137,10 @@ final class DeploymentTargetApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function createProjectsDeploymentsWithHttpInfo(string $project_id, \Upsun\Model\DeploymentTargetCreateInput $deployment_target_create_input): array
-    {
+    public function createProjectsDeploymentsWithHttpInfo(
+        string $project_id,
+        \Upsun\Model\DeploymentTargetCreateInput $deployment_target_create_input
+    ): array {
         $request = $this->createProjectsDeploymentsRequest($project_id, $deployment_target_create_input);
 
         try {
@@ -214,10 +218,12 @@ final class DeploymentTargetApi
     /**
      * Create a project deployment target
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createProjectsDeploymentsAsync(string $project_id, \Upsun\Model\DeploymentTargetCreateInput $deployment_target_create_input): Promise
-    {
+    public function createProjectsDeploymentsAsync(
+        string $project_id,
+        \Upsun\Model\DeploymentTargetCreateInput $deployment_target_create_input
+    ): Promise {
         return $this->createProjectsDeploymentsAsyncWithHttpInfo($project_id, $deployment_target_create_input)
             ->then(
                 function ($response) {
@@ -229,10 +235,12 @@ final class DeploymentTargetApi
     /**
      * Create a project deployment target
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createProjectsDeploymentsAsyncWithHttpInfo(string $project_id, \Upsun\Model\DeploymentTargetCreateInput $deployment_target_create_input)
-    {
+    public function createProjectsDeploymentsAsyncWithHttpInfo(
+        string $project_id,
+        \Upsun\Model\DeploymentTargetCreateInput $deployment_target_create_input
+    ) {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->createProjectsDeploymentsRequest($project_id, $deployment_target_create_input);
 
@@ -273,8 +281,10 @@ final class DeploymentTargetApi
      *
      * @throws InvalidArgumentException
      */
-    public function createProjectsDeploymentsRequest(string $project_id, \Upsun\Model\DeploymentTargetCreateInput $deployment_target_create_input): RequestInterface
-    {
+    public function createProjectsDeploymentsRequest(
+        string $project_id,
+        \Upsun\Model\DeploymentTargetCreateInput $deployment_target_create_input
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -370,8 +380,9 @@ final class DeploymentTargetApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\AcceptedResponse
      */
-    public function deleteProjectsDeployments($project_id, $deployment_target_configuration_id): \Upsun\Model\AcceptedResponse
+    public function deleteProjectsDeployments($project_id, $deployment_target_configuration_id)
     {
         list($response) = $this->deleteProjectsDeploymentsWithHttpInfo($project_id, $deployment_target_configuration_id);
         return $response;
@@ -383,8 +394,10 @@ final class DeploymentTargetApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function deleteProjectsDeploymentsWithHttpInfo(string $project_id, string $deployment_target_configuration_id): array
-    {
+    public function deleteProjectsDeploymentsWithHttpInfo(
+        string $project_id,
+        string $deployment_target_configuration_id
+    ): array {
         $request = $this->deleteProjectsDeploymentsRequest($project_id, $deployment_target_configuration_id);
 
         try {
@@ -462,10 +475,12 @@ final class DeploymentTargetApi
     /**
      * Delete a single project deployment target
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteProjectsDeploymentsAsync(string $project_id, string $deployment_target_configuration_id): Promise
-    {
+    public function deleteProjectsDeploymentsAsync(
+        string $project_id,
+        string $deployment_target_configuration_id
+    ): Promise {
         return $this->deleteProjectsDeploymentsAsyncWithHttpInfo($project_id, $deployment_target_configuration_id)
             ->then(
                 function ($response) {
@@ -477,10 +492,12 @@ final class DeploymentTargetApi
     /**
      * Delete a single project deployment target
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteProjectsDeploymentsAsyncWithHttpInfo(string $project_id, string $deployment_target_configuration_id)
-    {
+    public function deleteProjectsDeploymentsAsyncWithHttpInfo(
+        string $project_id,
+        string $deployment_target_configuration_id
+    ) {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deleteProjectsDeploymentsRequest($project_id, $deployment_target_configuration_id);
 
@@ -521,8 +538,10 @@ final class DeploymentTargetApi
      *
      * @throws InvalidArgumentException
      */
-    public function deleteProjectsDeploymentsRequest(string $project_id, string $deployment_target_configuration_id): RequestInterface
-    {
+    public function deleteProjectsDeploymentsRequest(
+        string $project_id,
+        string $deployment_target_configuration_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -620,8 +639,9 @@ final class DeploymentTargetApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\DeploymentTarget
      */
-    public function getProjectsDeployments($project_id, $deployment_target_configuration_id): \Upsun\Model\DeploymentTarget
+    public function getProjectsDeployments($project_id, $deployment_target_configuration_id)
     {
         list($response) = $this->getProjectsDeploymentsWithHttpInfo($project_id, $deployment_target_configuration_id);
         return $response;
@@ -633,8 +653,10 @@ final class DeploymentTargetApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getProjectsDeploymentsWithHttpInfo(string $project_id, string $deployment_target_configuration_id): array
-    {
+    public function getProjectsDeploymentsWithHttpInfo(
+        string $project_id,
+        string $deployment_target_configuration_id
+    ): array {
         $request = $this->getProjectsDeploymentsRequest($project_id, $deployment_target_configuration_id);
 
         try {
@@ -712,10 +734,12 @@ final class DeploymentTargetApi
     /**
      * Get a single project deployment target
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsDeploymentsAsync(string $project_id, string $deployment_target_configuration_id): Promise
-    {
+    public function getProjectsDeploymentsAsync(
+        string $project_id,
+        string $deployment_target_configuration_id
+    ): Promise {
         return $this->getProjectsDeploymentsAsyncWithHttpInfo($project_id, $deployment_target_configuration_id)
             ->then(
                 function ($response) {
@@ -727,10 +751,12 @@ final class DeploymentTargetApi
     /**
      * Get a single project deployment target
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsDeploymentsAsyncWithHttpInfo(string $project_id, string $deployment_target_configuration_id)
-    {
+    public function getProjectsDeploymentsAsyncWithHttpInfo(
+        string $project_id,
+        string $deployment_target_configuration_id
+    ) {
         $returnType = '\Upsun\Model\DeploymentTarget';
         $request = $this->getProjectsDeploymentsRequest($project_id, $deployment_target_configuration_id);
 
@@ -771,8 +797,10 @@ final class DeploymentTargetApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectsDeploymentsRequest(string $project_id, string $deployment_target_configuration_id): RequestInterface
-    {
+    public function getProjectsDeploymentsRequest(
+        string $project_id,
+        string $deployment_target_configuration_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -870,8 +898,9 @@ final class DeploymentTargetApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\DeploymentTarget[]
      */
-    public function listProjectsDeployments($project_id): \Upsun\Model\DeploymentTarget[]
+    public function listProjectsDeployments($project_id)
     {
         list($response) = $this->listProjectsDeploymentsWithHttpInfo($project_id);
         return $response;
@@ -883,8 +912,9 @@ final class DeploymentTargetApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listProjectsDeploymentsWithHttpInfo(string $project_id): array
-    {
+    public function listProjectsDeploymentsWithHttpInfo(
+        string $project_id
+    ): array {
         $request = $this->listProjectsDeploymentsRequest($project_id);
 
         try {
@@ -962,10 +992,11 @@ final class DeploymentTargetApi
     /**
      * Get project deployment target info
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsDeploymentsAsync(string $project_id): Promise
-    {
+    public function listProjectsDeploymentsAsync(
+        string $project_id
+    ): Promise {
         return $this->listProjectsDeploymentsAsyncWithHttpInfo($project_id)
             ->then(
                 function ($response) {
@@ -977,10 +1008,11 @@ final class DeploymentTargetApi
     /**
      * Get project deployment target info
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsDeploymentsAsyncWithHttpInfo(string $project_id)
-    {
+    public function listProjectsDeploymentsAsyncWithHttpInfo(
+        string $project_id
+    ) {
         $returnType = '\Upsun\Model\DeploymentTarget[]';
         $request = $this->listProjectsDeploymentsRequest($project_id);
 
@@ -1021,8 +1053,9 @@ final class DeploymentTargetApi
      *
      * @throws InvalidArgumentException
      */
-    public function listProjectsDeploymentsRequest(string $project_id): RequestInterface
-    {
+    public function listProjectsDeploymentsRequest(
+        string $project_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1106,8 +1139,9 @@ final class DeploymentTargetApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\AcceptedResponse
      */
-    public function updateProjectsDeployments($project_id, $deployment_target_configuration_id, $deployment_target_patch): \Upsun\Model\AcceptedResponse
+    public function updateProjectsDeployments($project_id, $deployment_target_configuration_id, $deployment_target_patch)
     {
         list($response) = $this->updateProjectsDeploymentsWithHttpInfo($project_id, $deployment_target_configuration_id, $deployment_target_patch);
         return $response;
@@ -1119,8 +1153,11 @@ final class DeploymentTargetApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function updateProjectsDeploymentsWithHttpInfo(string $project_id, string $deployment_target_configuration_id, \Upsun\Model\DeploymentTargetPatch $deployment_target_patch): array
-    {
+    public function updateProjectsDeploymentsWithHttpInfo(
+        string $project_id,
+        string $deployment_target_configuration_id,
+        \Upsun\Model\DeploymentTargetPatch $deployment_target_patch
+    ): array {
         $request = $this->updateProjectsDeploymentsRequest($project_id, $deployment_target_configuration_id, $deployment_target_patch);
 
         try {
@@ -1198,10 +1235,13 @@ final class DeploymentTargetApi
     /**
      * Update a project deployment
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateProjectsDeploymentsAsync(string $project_id, string $deployment_target_configuration_id, \Upsun\Model\DeploymentTargetPatch $deployment_target_patch): Promise
-    {
+    public function updateProjectsDeploymentsAsync(
+        string $project_id,
+        string $deployment_target_configuration_id,
+        \Upsun\Model\DeploymentTargetPatch $deployment_target_patch
+    ): Promise {
         return $this->updateProjectsDeploymentsAsyncWithHttpInfo($project_id, $deployment_target_configuration_id, $deployment_target_patch)
             ->then(
                 function ($response) {
@@ -1213,10 +1253,13 @@ final class DeploymentTargetApi
     /**
      * Update a project deployment
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateProjectsDeploymentsAsyncWithHttpInfo(string $project_id, string $deployment_target_configuration_id, \Upsun\Model\DeploymentTargetPatch $deployment_target_patch)
-    {
+    public function updateProjectsDeploymentsAsyncWithHttpInfo(
+        string $project_id,
+        string $deployment_target_configuration_id,
+        \Upsun\Model\DeploymentTargetPatch $deployment_target_patch
+    ) {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateProjectsDeploymentsRequest($project_id, $deployment_target_configuration_id, $deployment_target_patch);
 
@@ -1257,8 +1300,11 @@ final class DeploymentTargetApi
      *
      * @throws InvalidArgumentException
      */
-    public function updateProjectsDeploymentsRequest(string $project_id, string $deployment_target_configuration_id, \Upsun\Model\DeploymentTargetPatch $deployment_target_patch): RequestInterface
-    {
+    public function updateProjectsDeploymentsRequest(
+        string $project_id,
+        string $deployment_target_configuration_id,
+        \Upsun\Model\DeploymentTargetPatch $deployment_target_patch
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1368,9 +1414,9 @@ final class DeploymentTargetApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -1466,8 +1512,8 @@ final class DeploymentTargetApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class CertManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\AcceptedResponse
      */
-    public function createProjectsCertificates($project_id, $certificate_create_input): \Upsun\Model\AcceptedResponse
+    public function createProjectsCertificates($project_id, $certificate_create_input)
     {
         list($response) = $this->createProjectsCertificatesWithHttpInfo($project_id, $certificate_create_input);
         return $response;
@@ -135,8 +137,10 @@ final class CertManagementApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function createProjectsCertificatesWithHttpInfo(string $project_id, \Upsun\Model\CertificateCreateInput $certificate_create_input): array
-    {
+    public function createProjectsCertificatesWithHttpInfo(
+        string $project_id,
+        \Upsun\Model\CertificateCreateInput $certificate_create_input
+    ): array {
         $request = $this->createProjectsCertificatesRequest($project_id, $certificate_create_input);
 
         try {
@@ -214,10 +218,12 @@ final class CertManagementApi
     /**
      * Add an SSL certificate
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createProjectsCertificatesAsync(string $project_id, \Upsun\Model\CertificateCreateInput $certificate_create_input): Promise
-    {
+    public function createProjectsCertificatesAsync(
+        string $project_id,
+        \Upsun\Model\CertificateCreateInput $certificate_create_input
+    ): Promise {
         return $this->createProjectsCertificatesAsyncWithHttpInfo($project_id, $certificate_create_input)
             ->then(
                 function ($response) {
@@ -229,10 +235,12 @@ final class CertManagementApi
     /**
      * Add an SSL certificate
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createProjectsCertificatesAsyncWithHttpInfo(string $project_id, \Upsun\Model\CertificateCreateInput $certificate_create_input)
-    {
+    public function createProjectsCertificatesAsyncWithHttpInfo(
+        string $project_id,
+        \Upsun\Model\CertificateCreateInput $certificate_create_input
+    ) {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->createProjectsCertificatesRequest($project_id, $certificate_create_input);
 
@@ -273,8 +281,10 @@ final class CertManagementApi
      *
      * @throws InvalidArgumentException
      */
-    public function createProjectsCertificatesRequest(string $project_id, \Upsun\Model\CertificateCreateInput $certificate_create_input): RequestInterface
-    {
+    public function createProjectsCertificatesRequest(
+        string $project_id,
+        \Upsun\Model\CertificateCreateInput $certificate_create_input
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -370,8 +380,9 @@ final class CertManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\AcceptedResponse
      */
-    public function deleteProjectsCertificates($project_id, $certificate_id): \Upsun\Model\AcceptedResponse
+    public function deleteProjectsCertificates($project_id, $certificate_id)
     {
         list($response) = $this->deleteProjectsCertificatesWithHttpInfo($project_id, $certificate_id);
         return $response;
@@ -383,8 +394,10 @@ final class CertManagementApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function deleteProjectsCertificatesWithHttpInfo(string $project_id, string $certificate_id): array
-    {
+    public function deleteProjectsCertificatesWithHttpInfo(
+        string $project_id,
+        string $certificate_id
+    ): array {
         $request = $this->deleteProjectsCertificatesRequest($project_id, $certificate_id);
 
         try {
@@ -462,10 +475,12 @@ final class CertManagementApi
     /**
      * Delete an SSL certificate
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteProjectsCertificatesAsync(string $project_id, string $certificate_id): Promise
-    {
+    public function deleteProjectsCertificatesAsync(
+        string $project_id,
+        string $certificate_id
+    ): Promise {
         return $this->deleteProjectsCertificatesAsyncWithHttpInfo($project_id, $certificate_id)
             ->then(
                 function ($response) {
@@ -477,10 +492,12 @@ final class CertManagementApi
     /**
      * Delete an SSL certificate
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteProjectsCertificatesAsyncWithHttpInfo(string $project_id, string $certificate_id)
-    {
+    public function deleteProjectsCertificatesAsyncWithHttpInfo(
+        string $project_id,
+        string $certificate_id
+    ) {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deleteProjectsCertificatesRequest($project_id, $certificate_id);
 
@@ -521,8 +538,10 @@ final class CertManagementApi
      *
      * @throws InvalidArgumentException
      */
-    public function deleteProjectsCertificatesRequest(string $project_id, string $certificate_id): RequestInterface
-    {
+    public function deleteProjectsCertificatesRequest(
+        string $project_id,
+        string $certificate_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -620,8 +639,9 @@ final class CertManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Certificate
      */
-    public function getProjectsCertificates($project_id, $certificate_id): \Upsun\Model\Certificate
+    public function getProjectsCertificates($project_id, $certificate_id)
     {
         list($response) = $this->getProjectsCertificatesWithHttpInfo($project_id, $certificate_id);
         return $response;
@@ -633,8 +653,10 @@ final class CertManagementApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getProjectsCertificatesWithHttpInfo(string $project_id, string $certificate_id): array
-    {
+    public function getProjectsCertificatesWithHttpInfo(
+        string $project_id,
+        string $certificate_id
+    ): array {
         $request = $this->getProjectsCertificatesRequest($project_id, $certificate_id);
 
         try {
@@ -712,10 +734,12 @@ final class CertManagementApi
     /**
      * Get an SSL certificate
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsCertificatesAsync(string $project_id, string $certificate_id): Promise
-    {
+    public function getProjectsCertificatesAsync(
+        string $project_id,
+        string $certificate_id
+    ): Promise {
         return $this->getProjectsCertificatesAsyncWithHttpInfo($project_id, $certificate_id)
             ->then(
                 function ($response) {
@@ -727,10 +751,12 @@ final class CertManagementApi
     /**
      * Get an SSL certificate
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsCertificatesAsyncWithHttpInfo(string $project_id, string $certificate_id)
-    {
+    public function getProjectsCertificatesAsyncWithHttpInfo(
+        string $project_id,
+        string $certificate_id
+    ) {
         $returnType = '\Upsun\Model\Certificate';
         $request = $this->getProjectsCertificatesRequest($project_id, $certificate_id);
 
@@ -771,8 +797,10 @@ final class CertManagementApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectsCertificatesRequest(string $project_id, string $certificate_id): RequestInterface
-    {
+    public function getProjectsCertificatesRequest(
+        string $project_id,
+        string $certificate_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -870,8 +898,9 @@ final class CertManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Certificate[]
      */
-    public function listProjectsCertificates($project_id): \Upsun\Model\Certificate[]
+    public function listProjectsCertificates($project_id)
     {
         list($response) = $this->listProjectsCertificatesWithHttpInfo($project_id);
         return $response;
@@ -883,8 +912,9 @@ final class CertManagementApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listProjectsCertificatesWithHttpInfo(string $project_id): array
-    {
+    public function listProjectsCertificatesWithHttpInfo(
+        string $project_id
+    ): array {
         $request = $this->listProjectsCertificatesRequest($project_id);
 
         try {
@@ -962,10 +992,11 @@ final class CertManagementApi
     /**
      * Get list of SSL certificates
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsCertificatesAsync(string $project_id): Promise
-    {
+    public function listProjectsCertificatesAsync(
+        string $project_id
+    ): Promise {
         return $this->listProjectsCertificatesAsyncWithHttpInfo($project_id)
             ->then(
                 function ($response) {
@@ -977,10 +1008,11 @@ final class CertManagementApi
     /**
      * Get list of SSL certificates
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsCertificatesAsyncWithHttpInfo(string $project_id)
-    {
+    public function listProjectsCertificatesAsyncWithHttpInfo(
+        string $project_id
+    ) {
         $returnType = '\Upsun\Model\Certificate[]';
         $request = $this->listProjectsCertificatesRequest($project_id);
 
@@ -1021,8 +1053,9 @@ final class CertManagementApi
      *
      * @throws InvalidArgumentException
      */
-    public function listProjectsCertificatesRequest(string $project_id): RequestInterface
-    {
+    public function listProjectsCertificatesRequest(
+        string $project_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1106,8 +1139,9 @@ final class CertManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\AcceptedResponse
      */
-    public function updateProjectsCertificates($project_id, $certificate_id, $certificate_patch): \Upsun\Model\AcceptedResponse
+    public function updateProjectsCertificates($project_id, $certificate_id, $certificate_patch)
     {
         list($response) = $this->updateProjectsCertificatesWithHttpInfo($project_id, $certificate_id, $certificate_patch);
         return $response;
@@ -1119,8 +1153,11 @@ final class CertManagementApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function updateProjectsCertificatesWithHttpInfo(string $project_id, string $certificate_id, \Upsun\Model\CertificatePatch $certificate_patch): array
-    {
+    public function updateProjectsCertificatesWithHttpInfo(
+        string $project_id,
+        string $certificate_id,
+        \Upsun\Model\CertificatePatch $certificate_patch
+    ): array {
         $request = $this->updateProjectsCertificatesRequest($project_id, $certificate_id, $certificate_patch);
 
         try {
@@ -1198,10 +1235,13 @@ final class CertManagementApi
     /**
      * Update an SSL certificate
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateProjectsCertificatesAsync(string $project_id, string $certificate_id, \Upsun\Model\CertificatePatch $certificate_patch): Promise
-    {
+    public function updateProjectsCertificatesAsync(
+        string $project_id,
+        string $certificate_id,
+        \Upsun\Model\CertificatePatch $certificate_patch
+    ): Promise {
         return $this->updateProjectsCertificatesAsyncWithHttpInfo($project_id, $certificate_id, $certificate_patch)
             ->then(
                 function ($response) {
@@ -1213,10 +1253,13 @@ final class CertManagementApi
     /**
      * Update an SSL certificate
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateProjectsCertificatesAsyncWithHttpInfo(string $project_id, string $certificate_id, \Upsun\Model\CertificatePatch $certificate_patch)
-    {
+    public function updateProjectsCertificatesAsyncWithHttpInfo(
+        string $project_id,
+        string $certificate_id,
+        \Upsun\Model\CertificatePatch $certificate_patch
+    ) {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateProjectsCertificatesRequest($project_id, $certificate_id, $certificate_patch);
 
@@ -1257,8 +1300,11 @@ final class CertManagementApi
      *
      * @throws InvalidArgumentException
      */
-    public function updateProjectsCertificatesRequest(string $project_id, string $certificate_id, \Upsun\Model\CertificatePatch $certificate_patch): RequestInterface
-    {
+    public function updateProjectsCertificatesRequest(
+        string $project_id,
+        string $certificate_id,
+        \Upsun\Model\CertificatePatch $certificate_patch
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1368,9 +1414,9 @@ final class CertManagementApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -1466,8 +1512,8 @@ final class CertManagementApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

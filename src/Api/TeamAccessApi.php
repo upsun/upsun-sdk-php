@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class TeamAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\TeamProjectAccess
      */
-    public function getProjectTeamAccess($project_id, $team_id): \Upsun\Model\TeamProjectAccess
+    public function getProjectTeamAccess($project_id, $team_id)
     {
         list($response) = $this->getProjectTeamAccessWithHttpInfo($project_id, $team_id);
         return $response;
@@ -135,8 +137,10 @@ final class TeamAccessApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getProjectTeamAccessWithHttpInfo(string $project_id, string $team_id): array
-    {
+    public function getProjectTeamAccessWithHttpInfo(
+        string $project_id,
+        string $team_id
+    ): array {
         $request = $this->getProjectTeamAccessRequest($project_id, $team_id);
 
         try {
@@ -242,10 +246,12 @@ final class TeamAccessApi
     /**
      * Get team access for a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectTeamAccessAsync(string $project_id, string $team_id): Promise
-    {
+    public function getProjectTeamAccessAsync(
+        string $project_id,
+        string $team_id
+    ): Promise {
         return $this->getProjectTeamAccessAsyncWithHttpInfo($project_id, $team_id)
             ->then(
                 function ($response) {
@@ -257,10 +263,12 @@ final class TeamAccessApi
     /**
      * Get team access for a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectTeamAccessAsyncWithHttpInfo(string $project_id, string $team_id)
-    {
+    public function getProjectTeamAccessAsyncWithHttpInfo(
+        string $project_id,
+        string $team_id
+    ) {
         $returnType = '\Upsun\Model\TeamProjectAccess';
         $request = $this->getProjectTeamAccessRequest($project_id, $team_id);
 
@@ -301,8 +309,10 @@ final class TeamAccessApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectTeamAccessRequest(string $project_id, string $team_id): RequestInterface
-    {
+    public function getProjectTeamAccessRequest(
+        string $project_id,
+        string $team_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -400,8 +410,9 @@ final class TeamAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\TeamProjectAccess
      */
-    public function getTeamProjectAccess($team_id, $project_id): \Upsun\Model\TeamProjectAccess
+    public function getTeamProjectAccess($team_id, $project_id)
     {
         list($response) = $this->getTeamProjectAccessWithHttpInfo($team_id, $project_id);
         return $response;
@@ -413,8 +424,10 @@ final class TeamAccessApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getTeamProjectAccessWithHttpInfo(string $team_id, string $project_id): array
-    {
+    public function getTeamProjectAccessWithHttpInfo(
+        string $team_id,
+        string $project_id
+    ): array {
         $request = $this->getTeamProjectAccessRequest($team_id, $project_id);
 
         try {
@@ -520,10 +533,12 @@ final class TeamAccessApi
     /**
      * Get project access for a team
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getTeamProjectAccessAsync(string $team_id, string $project_id): Promise
-    {
+    public function getTeamProjectAccessAsync(
+        string $team_id,
+        string $project_id
+    ): Promise {
         return $this->getTeamProjectAccessAsyncWithHttpInfo($team_id, $project_id)
             ->then(
                 function ($response) {
@@ -535,10 +550,12 @@ final class TeamAccessApi
     /**
      * Get project access for a team
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getTeamProjectAccessAsyncWithHttpInfo(string $team_id, string $project_id)
-    {
+    public function getTeamProjectAccessAsyncWithHttpInfo(
+        string $team_id,
+        string $project_id
+    ) {
         $returnType = '\Upsun\Model\TeamProjectAccess';
         $request = $this->getTeamProjectAccessRequest($team_id, $project_id);
 
@@ -579,8 +596,10 @@ final class TeamAccessApi
      *
      * @throws InvalidArgumentException
      */
-    public function getTeamProjectAccessRequest(string $team_id, string $project_id): RequestInterface
-    {
+    public function getTeamProjectAccessRequest(
+        string $team_id,
+        string $project_id
+    ): RequestInterface {
         // verify the required parameter 'team_id' is set
         if ($team_id === null || (is_array($team_id) && count($team_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -678,8 +697,9 @@ final class TeamAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function grantProjectTeamAccess($project_id, $grant_project_team_access_request_inner): void
+    public function grantProjectTeamAccess($project_id, $grant_project_team_access_request_inner)
     {
         $this->grantProjectTeamAccessWithHttpInfo($project_id, $grant_project_team_access_request_inner);
     }
@@ -690,8 +710,10 @@ final class TeamAccessApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function grantProjectTeamAccessWithHttpInfo(string $project_id, \Upsun\Model\GrantProjectTeamAccessRequestInner[] $grant_project_team_access_request_inner): array
-    {
+    public function grantProjectTeamAccessWithHttpInfo(
+        string $project_id,
+        \Upsun\Model\GrantProjectTeamAccessRequestInner[] $grant_project_team_access_request_inner
+    ): array {
         $request = $this->grantProjectTeamAccessRequest($project_id, $grant_project_team_access_request_inner);
 
         try {
@@ -750,10 +772,12 @@ final class TeamAccessApi
     /**
      * Grant team access to a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function grantProjectTeamAccessAsync(string $project_id, \Upsun\Model\GrantProjectTeamAccessRequestInner[] $grant_project_team_access_request_inner): Promise
-    {
+    public function grantProjectTeamAccessAsync(
+        string $project_id,
+        \Upsun\Model\GrantProjectTeamAccessRequestInner[] $grant_project_team_access_request_inner
+    ): Promise {
         return $this->grantProjectTeamAccessAsyncWithHttpInfo($project_id, $grant_project_team_access_request_inner)
             ->then(
                 function ($response) {
@@ -765,10 +789,12 @@ final class TeamAccessApi
     /**
      * Grant team access to a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function grantProjectTeamAccessAsyncWithHttpInfo(string $project_id, \Upsun\Model\GrantProjectTeamAccessRequestInner[] $grant_project_team_access_request_inner)
-    {
+    public function grantProjectTeamAccessAsyncWithHttpInfo(
+        string $project_id,
+        \Upsun\Model\GrantProjectTeamAccessRequestInner[] $grant_project_team_access_request_inner
+    ) {
         $returnType = '';
         $request = $this->grantProjectTeamAccessRequest($project_id, $grant_project_team_access_request_inner);
 
@@ -799,8 +825,10 @@ final class TeamAccessApi
      *
      * @throws InvalidArgumentException
      */
-    public function grantProjectTeamAccessRequest(string $project_id, \Upsun\Model\GrantProjectTeamAccessRequestInner[] $grant_project_team_access_request_inner): RequestInterface
-    {
+    public function grantProjectTeamAccessRequest(
+        string $project_id,
+        \Upsun\Model\GrantProjectTeamAccessRequestInner[] $grant_project_team_access_request_inner
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -896,8 +924,9 @@ final class TeamAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function grantTeamProjectAccess($team_id, $grant_team_project_access_request_inner): void
+    public function grantTeamProjectAccess($team_id, $grant_team_project_access_request_inner)
     {
         $this->grantTeamProjectAccessWithHttpInfo($team_id, $grant_team_project_access_request_inner);
     }
@@ -908,8 +937,10 @@ final class TeamAccessApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function grantTeamProjectAccessWithHttpInfo(string $team_id, \Upsun\Model\GrantTeamProjectAccessRequestInner[] $grant_team_project_access_request_inner): array
-    {
+    public function grantTeamProjectAccessWithHttpInfo(
+        string $team_id,
+        \Upsun\Model\GrantTeamProjectAccessRequestInner[] $grant_team_project_access_request_inner
+    ): array {
         $request = $this->grantTeamProjectAccessRequest($team_id, $grant_team_project_access_request_inner);
 
         try {
@@ -968,10 +999,12 @@ final class TeamAccessApi
     /**
      * Grant project access to a team
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function grantTeamProjectAccessAsync(string $team_id, \Upsun\Model\GrantTeamProjectAccessRequestInner[] $grant_team_project_access_request_inner): Promise
-    {
+    public function grantTeamProjectAccessAsync(
+        string $team_id,
+        \Upsun\Model\GrantTeamProjectAccessRequestInner[] $grant_team_project_access_request_inner
+    ): Promise {
         return $this->grantTeamProjectAccessAsyncWithHttpInfo($team_id, $grant_team_project_access_request_inner)
             ->then(
                 function ($response) {
@@ -983,10 +1016,12 @@ final class TeamAccessApi
     /**
      * Grant project access to a team
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function grantTeamProjectAccessAsyncWithHttpInfo(string $team_id, \Upsun\Model\GrantTeamProjectAccessRequestInner[] $grant_team_project_access_request_inner)
-    {
+    public function grantTeamProjectAccessAsyncWithHttpInfo(
+        string $team_id,
+        \Upsun\Model\GrantTeamProjectAccessRequestInner[] $grant_team_project_access_request_inner
+    ) {
         $returnType = '';
         $request = $this->grantTeamProjectAccessRequest($team_id, $grant_team_project_access_request_inner);
 
@@ -1017,8 +1052,10 @@ final class TeamAccessApi
      *
      * @throws InvalidArgumentException
      */
-    public function grantTeamProjectAccessRequest(string $team_id, \Upsun\Model\GrantTeamProjectAccessRequestInner[] $grant_team_project_access_request_inner): RequestInterface
-    {
+    public function grantTeamProjectAccessRequest(
+        string $team_id,
+        \Upsun\Model\GrantTeamProjectAccessRequestInner[] $grant_team_project_access_request_inner
+    ): RequestInterface {
         // verify the required parameter 'team_id' is set
         if ($team_id === null || (is_array($team_id) && count($team_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1114,8 +1151,9 @@ final class TeamAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ListTeamProjectAccess200Response
      */
-    public function listProjectTeamAccess($project_id, $page_size = null, $page_before = null, $page_after = null, $sort = null): \Upsun\Model\ListTeamProjectAccess200Response
+    public function listProjectTeamAccess($project_id, $page_size = null, $page_before = null, $page_after = null, $sort = null)
     {
         list($response) = $this->listProjectTeamAccessWithHttpInfo($project_id, $page_size, $page_before, $page_after, $sort);
         return $response;
@@ -1127,8 +1165,13 @@ final class TeamAccessApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listProjectTeamAccessWithHttpInfo(string $project_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): array
-    {
+    public function listProjectTeamAccessWithHttpInfo(
+        string $project_id,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): array {
         $request = $this->listProjectTeamAccessRequest($project_id, $page_size, $page_before, $page_after, $sort);
 
         try {
@@ -1234,10 +1277,15 @@ final class TeamAccessApi
     /**
      * List team access for a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectTeamAccessAsync(string $project_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Promise
-    {
+    public function listProjectTeamAccessAsync(
+        string $project_id,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): Promise {
         return $this->listProjectTeamAccessAsyncWithHttpInfo($project_id, $page_size, $page_before, $page_after, $sort)
             ->then(
                 function ($response) {
@@ -1249,10 +1297,15 @@ final class TeamAccessApi
     /**
      * List team access for a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectTeamAccessAsyncWithHttpInfo(string $project_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null)
-    {
+    public function listProjectTeamAccessAsyncWithHttpInfo(
+        string $project_id,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ) {
         $returnType = '\Upsun\Model\ListTeamProjectAccess200Response';
         $request = $this->listProjectTeamAccessRequest($project_id, $page_size, $page_before, $page_after, $sort);
 
@@ -1293,8 +1346,13 @@ final class TeamAccessApi
      *
      * @throws InvalidArgumentException
      */
-    public function listProjectTeamAccessRequest(string $project_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): RequestInterface
-    {
+    public function listProjectTeamAccessRequest(
+        string $project_id,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1429,8 +1487,9 @@ final class TeamAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ListTeamProjectAccess200Response
      */
-    public function listTeamProjectAccess($team_id, $page_size = null, $page_before = null, $page_after = null, $sort = null): \Upsun\Model\ListTeamProjectAccess200Response
+    public function listTeamProjectAccess($team_id, $page_size = null, $page_before = null, $page_after = null, $sort = null)
     {
         list($response) = $this->listTeamProjectAccessWithHttpInfo($team_id, $page_size, $page_before, $page_after, $sort);
         return $response;
@@ -1442,8 +1501,13 @@ final class TeamAccessApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listTeamProjectAccessWithHttpInfo(string $team_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): array
-    {
+    public function listTeamProjectAccessWithHttpInfo(
+        string $team_id,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): array {
         $request = $this->listTeamProjectAccessRequest($team_id, $page_size, $page_before, $page_after, $sort);
 
         try {
@@ -1549,10 +1613,15 @@ final class TeamAccessApi
     /**
      * List project access for a team
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listTeamProjectAccessAsync(string $team_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Promise
-    {
+    public function listTeamProjectAccessAsync(
+        string $team_id,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): Promise {
         return $this->listTeamProjectAccessAsyncWithHttpInfo($team_id, $page_size, $page_before, $page_after, $sort)
             ->then(
                 function ($response) {
@@ -1564,10 +1633,15 @@ final class TeamAccessApi
     /**
      * List project access for a team
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listTeamProjectAccessAsyncWithHttpInfo(string $team_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null)
-    {
+    public function listTeamProjectAccessAsyncWithHttpInfo(
+        string $team_id,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ) {
         $returnType = '\Upsun\Model\ListTeamProjectAccess200Response';
         $request = $this->listTeamProjectAccessRequest($team_id, $page_size, $page_before, $page_after, $sort);
 
@@ -1608,8 +1682,13 @@ final class TeamAccessApi
      *
      * @throws InvalidArgumentException
      */
-    public function listTeamProjectAccessRequest(string $team_id, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): RequestInterface
-    {
+    public function listTeamProjectAccessRequest(
+        string $team_id,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): RequestInterface {
         // verify the required parameter 'team_id' is set
         if ($team_id === null || (is_array($team_id) && count($team_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1744,8 +1823,9 @@ final class TeamAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function removeProjectTeamAccess($project_id, $team_id): void
+    public function removeProjectTeamAccess($project_id, $team_id)
     {
         $this->removeProjectTeamAccessWithHttpInfo($project_id, $team_id);
     }
@@ -1756,8 +1836,10 @@ final class TeamAccessApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function removeProjectTeamAccessWithHttpInfo(string $project_id, string $team_id): array
-    {
+    public function removeProjectTeamAccessWithHttpInfo(
+        string $project_id,
+        string $team_id
+    ): array {
         $request = $this->removeProjectTeamAccessRequest($project_id, $team_id);
 
         try {
@@ -1824,10 +1906,12 @@ final class TeamAccessApi
     /**
      * Remove team access for a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function removeProjectTeamAccessAsync(string $project_id, string $team_id): Promise
-    {
+    public function removeProjectTeamAccessAsync(
+        string $project_id,
+        string $team_id
+    ): Promise {
         return $this->removeProjectTeamAccessAsyncWithHttpInfo($project_id, $team_id)
             ->then(
                 function ($response) {
@@ -1839,10 +1923,12 @@ final class TeamAccessApi
     /**
      * Remove team access for a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function removeProjectTeamAccessAsyncWithHttpInfo(string $project_id, string $team_id)
-    {
+    public function removeProjectTeamAccessAsyncWithHttpInfo(
+        string $project_id,
+        string $team_id
+    ) {
         $returnType = '';
         $request = $this->removeProjectTeamAccessRequest($project_id, $team_id);
 
@@ -1873,8 +1959,10 @@ final class TeamAccessApi
      *
      * @throws InvalidArgumentException
      */
-    public function removeProjectTeamAccessRequest(string $project_id, string $team_id): RequestInterface
-    {
+    public function removeProjectTeamAccessRequest(
+        string $project_id,
+        string $team_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1972,8 +2060,9 @@ final class TeamAccessApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function removeTeamProjectAccess($team_id, $project_id): void
+    public function removeTeamProjectAccess($team_id, $project_id)
     {
         $this->removeTeamProjectAccessWithHttpInfo($team_id, $project_id);
     }
@@ -1984,8 +2073,10 @@ final class TeamAccessApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function removeTeamProjectAccessWithHttpInfo(string $team_id, string $project_id): array
-    {
+    public function removeTeamProjectAccessWithHttpInfo(
+        string $team_id,
+        string $project_id
+    ): array {
         $request = $this->removeTeamProjectAccessRequest($team_id, $project_id);
 
         try {
@@ -2052,10 +2143,12 @@ final class TeamAccessApi
     /**
      * Remove project access for a team
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function removeTeamProjectAccessAsync(string $team_id, string $project_id): Promise
-    {
+    public function removeTeamProjectAccessAsync(
+        string $team_id,
+        string $project_id
+    ): Promise {
         return $this->removeTeamProjectAccessAsyncWithHttpInfo($team_id, $project_id)
             ->then(
                 function ($response) {
@@ -2067,10 +2160,12 @@ final class TeamAccessApi
     /**
      * Remove project access for a team
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function removeTeamProjectAccessAsyncWithHttpInfo(string $team_id, string $project_id)
-    {
+    public function removeTeamProjectAccessAsyncWithHttpInfo(
+        string $team_id,
+        string $project_id
+    ) {
         $returnType = '';
         $request = $this->removeTeamProjectAccessRequest($team_id, $project_id);
 
@@ -2101,8 +2196,10 @@ final class TeamAccessApi
      *
      * @throws InvalidArgumentException
      */
-    public function removeTeamProjectAccessRequest(string $team_id, string $project_id): RequestInterface
-    {
+    public function removeTeamProjectAccessRequest(
+        string $team_id,
+        string $project_id
+    ): RequestInterface {
         // verify the required parameter 'team_id' is set
         if ($team_id === null || (is_array($team_id) && count($team_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -2200,9 +2297,9 @@ final class TeamAccessApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -2298,8 +2395,8 @@ final class TeamAccessApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

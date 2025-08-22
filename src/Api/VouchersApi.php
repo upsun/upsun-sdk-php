@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class VouchersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function applyOrgVoucher($organization_id, $apply_org_voucher_request): void
+    public function applyOrgVoucher($organization_id, $apply_org_voucher_request)
     {
         $this->applyOrgVoucherWithHttpInfo($organization_id, $apply_org_voucher_request);
     }
@@ -134,8 +136,10 @@ final class VouchersApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function applyOrgVoucherWithHttpInfo(string $organization_id, \Upsun\Model\ApplyOrgVoucherRequest $apply_org_voucher_request): array
-    {
+    public function applyOrgVoucherWithHttpInfo(
+        string $organization_id,
+        \Upsun\Model\ApplyOrgVoucherRequest $apply_org_voucher_request
+    ): array {
         $request = $this->applyOrgVoucherRequest($organization_id, $apply_org_voucher_request);
 
         try {
@@ -194,10 +198,12 @@ final class VouchersApi
     /**
      * Apply voucher
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function applyOrgVoucherAsync(string $organization_id, \Upsun\Model\ApplyOrgVoucherRequest $apply_org_voucher_request): Promise
-    {
+    public function applyOrgVoucherAsync(
+        string $organization_id,
+        \Upsun\Model\ApplyOrgVoucherRequest $apply_org_voucher_request
+    ): Promise {
         return $this->applyOrgVoucherAsyncWithHttpInfo($organization_id, $apply_org_voucher_request)
             ->then(
                 function ($response) {
@@ -209,10 +215,12 @@ final class VouchersApi
     /**
      * Apply voucher
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function applyOrgVoucherAsyncWithHttpInfo(string $organization_id, \Upsun\Model\ApplyOrgVoucherRequest $apply_org_voucher_request)
-    {
+    public function applyOrgVoucherAsyncWithHttpInfo(
+        string $organization_id,
+        \Upsun\Model\ApplyOrgVoucherRequest $apply_org_voucher_request
+    ) {
         $returnType = '';
         $request = $this->applyOrgVoucherRequest($organization_id, $apply_org_voucher_request);
 
@@ -243,8 +251,10 @@ final class VouchersApi
      *
      * @throws InvalidArgumentException
      */
-    public function applyOrgVoucherRequest(string $organization_id, \Upsun\Model\ApplyOrgVoucherRequest $apply_org_voucher_request): RequestInterface
-    {
+    public function applyOrgVoucherRequest(
+        string $organization_id,
+        \Upsun\Model\ApplyOrgVoucherRequest $apply_org_voucher_request
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -340,8 +350,9 @@ final class VouchersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Vouchers
      */
-    public function listOrgVouchers($organization_id): \Upsun\Model\Vouchers
+    public function listOrgVouchers($organization_id)
     {
         list($response) = $this->listOrgVouchersWithHttpInfo($organization_id);
         return $response;
@@ -353,8 +364,9 @@ final class VouchersApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listOrgVouchersWithHttpInfo(string $organization_id): array
-    {
+    public function listOrgVouchersWithHttpInfo(
+        string $organization_id
+    ): array {
         $request = $this->listOrgVouchersRequest($organization_id);
 
         try {
@@ -460,10 +472,11 @@ final class VouchersApi
     /**
      * List vouchers
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listOrgVouchersAsync(string $organization_id): Promise
-    {
+    public function listOrgVouchersAsync(
+        string $organization_id
+    ): Promise {
         return $this->listOrgVouchersAsyncWithHttpInfo($organization_id)
             ->then(
                 function ($response) {
@@ -475,10 +488,11 @@ final class VouchersApi
     /**
      * List vouchers
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listOrgVouchersAsyncWithHttpInfo(string $organization_id)
-    {
+    public function listOrgVouchersAsyncWithHttpInfo(
+        string $organization_id
+    ) {
         $returnType = '\Upsun\Model\Vouchers';
         $request = $this->listOrgVouchersRequest($organization_id);
 
@@ -519,8 +533,9 @@ final class VouchersApi
      *
      * @throws InvalidArgumentException
      */
-    public function listOrgVouchersRequest(string $organization_id): RequestInterface
-    {
+    public function listOrgVouchersRequest(
+        string $organization_id
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -604,9 +619,9 @@ final class VouchersApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -702,8 +717,8 @@ final class VouchersApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

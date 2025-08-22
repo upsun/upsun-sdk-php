@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class ProjectInvitationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function cancelProjectInvite($project_id, $invitation_id): void
+    public function cancelProjectInvite($project_id, $invitation_id)
     {
         $this->cancelProjectInviteWithHttpInfo($project_id, $invitation_id);
     }
@@ -134,8 +136,10 @@ final class ProjectInvitationsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function cancelProjectInviteWithHttpInfo(string $project_id, string $invitation_id): array
-    {
+    public function cancelProjectInviteWithHttpInfo(
+        string $project_id,
+        string $invitation_id
+    ): array {
         $request = $this->cancelProjectInviteRequest($project_id, $invitation_id);
 
         try {
@@ -186,10 +190,12 @@ final class ProjectInvitationsApi
     /**
      * Cancel a pending invitation to a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function cancelProjectInviteAsync(string $project_id, string $invitation_id): Promise
-    {
+    public function cancelProjectInviteAsync(
+        string $project_id,
+        string $invitation_id
+    ): Promise {
         return $this->cancelProjectInviteAsyncWithHttpInfo($project_id, $invitation_id)
             ->then(
                 function ($response) {
@@ -201,10 +207,12 @@ final class ProjectInvitationsApi
     /**
      * Cancel a pending invitation to a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function cancelProjectInviteAsyncWithHttpInfo(string $project_id, string $invitation_id)
-    {
+    public function cancelProjectInviteAsyncWithHttpInfo(
+        string $project_id,
+        string $invitation_id
+    ) {
         $returnType = '';
         $request = $this->cancelProjectInviteRequest($project_id, $invitation_id);
 
@@ -235,8 +243,10 @@ final class ProjectInvitationsApi
      *
      * @throws InvalidArgumentException
      */
-    public function cancelProjectInviteRequest(string $project_id, string $invitation_id): RequestInterface
-    {
+    public function cancelProjectInviteRequest(
+        string $project_id,
+        string $invitation_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -334,8 +344,9 @@ final class ProjectInvitationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ProjectInvitation
      */
-    public function createProjectInvite($project_id, $create_project_invite_request = null): \Upsun\Model\ProjectInvitation
+    public function createProjectInvite($project_id, $create_project_invite_request = null)
     {
         list($response) = $this->createProjectInviteWithHttpInfo($project_id, $create_project_invite_request);
         return $response;
@@ -347,8 +358,10 @@ final class ProjectInvitationsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function createProjectInviteWithHttpInfo(string $project_id, \Upsun\Model\CreateProjectInviteRequest $create_project_invite_request = null): array
-    {
+    public function createProjectInviteWithHttpInfo(
+        string $project_id,
+        \Upsun\Model\CreateProjectInviteRequest $create_project_invite_request = null
+    ): array {
         $request = $this->createProjectInviteRequest($project_id, $create_project_invite_request);
 
         try {
@@ -496,10 +509,12 @@ final class ProjectInvitationsApi
     /**
      * Invite user to a project by email
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createProjectInviteAsync(string $project_id, \Upsun\Model\CreateProjectInviteRequest $create_project_invite_request = null): Promise
-    {
+    public function createProjectInviteAsync(
+        string $project_id,
+        \Upsun\Model\CreateProjectInviteRequest $create_project_invite_request = null
+    ): Promise {
         return $this->createProjectInviteAsyncWithHttpInfo($project_id, $create_project_invite_request)
             ->then(
                 function ($response) {
@@ -511,10 +526,12 @@ final class ProjectInvitationsApi
     /**
      * Invite user to a project by email
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createProjectInviteAsyncWithHttpInfo(string $project_id, \Upsun\Model\CreateProjectInviteRequest $create_project_invite_request = null)
-    {
+    public function createProjectInviteAsyncWithHttpInfo(
+        string $project_id,
+        \Upsun\Model\CreateProjectInviteRequest $create_project_invite_request = null
+    ) {
         $returnType = '\Upsun\Model\ProjectInvitation';
         $request = $this->createProjectInviteRequest($project_id, $create_project_invite_request);
 
@@ -555,8 +572,10 @@ final class ProjectInvitationsApi
      *
      * @throws InvalidArgumentException
      */
-    public function createProjectInviteRequest(string $project_id, \Upsun\Model\CreateProjectInviteRequest $create_project_invite_request = null): RequestInterface
-    {
+    public function createProjectInviteRequest(
+        string $project_id,
+        \Upsun\Model\CreateProjectInviteRequest $create_project_invite_request = null
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -646,8 +665,9 @@ final class ProjectInvitationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ProjectInvitation[]
      */
-    public function listProjectInvites($project_id, $filter_state = null, $page_size = null, $page_before = null, $page_after = null, $sort = null): \Upsun\Model\ProjectInvitation[]
+    public function listProjectInvites($project_id, $filter_state = null, $page_size = null, $page_before = null, $page_after = null, $sort = null)
     {
         list($response) = $this->listProjectInvitesWithHttpInfo($project_id, $filter_state, $page_size, $page_before, $page_after, $sort);
         return $response;
@@ -659,8 +679,14 @@ final class ProjectInvitationsApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listProjectInvitesWithHttpInfo(string $project_id, \Upsun\Model\StringFilter $filter_state = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): array
-    {
+    public function listProjectInvitesWithHttpInfo(
+        string $project_id,
+        \Upsun\Model\StringFilter $filter_state = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): array {
         $request = $this->listProjectInvitesRequest($project_id, $filter_state, $page_size, $page_before, $page_after, $sort);
 
         try {
@@ -766,10 +792,16 @@ final class ProjectInvitationsApi
     /**
      * List invitations to a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectInvitesAsync(string $project_id, \Upsun\Model\StringFilter $filter_state = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): Promise
-    {
+    public function listProjectInvitesAsync(
+        string $project_id,
+        \Upsun\Model\StringFilter $filter_state = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): Promise {
         return $this->listProjectInvitesAsyncWithHttpInfo($project_id, $filter_state, $page_size, $page_before, $page_after, $sort)
             ->then(
                 function ($response) {
@@ -781,10 +813,16 @@ final class ProjectInvitationsApi
     /**
      * List invitations to a project
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectInvitesAsyncWithHttpInfo(string $project_id, \Upsun\Model\StringFilter $filter_state = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null)
-    {
+    public function listProjectInvitesAsyncWithHttpInfo(
+        string $project_id,
+        \Upsun\Model\StringFilter $filter_state = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ) {
         $returnType = '\Upsun\Model\ProjectInvitation[]';
         $request = $this->listProjectInvitesRequest($project_id, $filter_state, $page_size, $page_before, $page_after, $sort);
 
@@ -825,8 +863,14 @@ final class ProjectInvitationsApi
      *
      * @throws InvalidArgumentException
      */
-    public function listProjectInvitesRequest(string $project_id, \Upsun\Model\StringFilter $filter_state = null, int $page_size = null, string $page_before = null, string $page_after = null, string $sort = null): RequestInterface
-    {
+    public function listProjectInvitesRequest(
+        string $project_id,
+        \Upsun\Model\StringFilter $filter_state = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -972,9 +1016,9 @@ final class ProjectInvitationsApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -1070,8 +1114,8 @@ final class ProjectInvitationsApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

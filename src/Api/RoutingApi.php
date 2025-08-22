@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class RoutingApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\AcceptedResponse
      */
-    public function createProjectsEnvironmentsRoutes($project_id, $environment_id, $route_create_input): \Upsun\Model\AcceptedResponse
+    public function createProjectsEnvironmentsRoutes($project_id, $environment_id, $route_create_input)
     {
         list($response) = $this->createProjectsEnvironmentsRoutesWithHttpInfo($project_id, $environment_id, $route_create_input);
         return $response;
@@ -135,8 +137,11 @@ final class RoutingApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function createProjectsEnvironmentsRoutesWithHttpInfo(string $project_id, string $environment_id, \Upsun\Model\RouteCreateInput $route_create_input): array
-    {
+    public function createProjectsEnvironmentsRoutesWithHttpInfo(
+        string $project_id,
+        string $environment_id,
+        \Upsun\Model\RouteCreateInput $route_create_input
+    ): array {
         $request = $this->createProjectsEnvironmentsRoutesRequest($project_id, $environment_id, $route_create_input);
 
         try {
@@ -214,10 +219,13 @@ final class RoutingApi
     /**
      * Create a new route
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createProjectsEnvironmentsRoutesAsync(string $project_id, string $environment_id, \Upsun\Model\RouteCreateInput $route_create_input): Promise
-    {
+    public function createProjectsEnvironmentsRoutesAsync(
+        string $project_id,
+        string $environment_id,
+        \Upsun\Model\RouteCreateInput $route_create_input
+    ): Promise {
         return $this->createProjectsEnvironmentsRoutesAsyncWithHttpInfo($project_id, $environment_id, $route_create_input)
             ->then(
                 function ($response) {
@@ -229,10 +237,13 @@ final class RoutingApi
     /**
      * Create a new route
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createProjectsEnvironmentsRoutesAsyncWithHttpInfo(string $project_id, string $environment_id, \Upsun\Model\RouteCreateInput $route_create_input)
-    {
+    public function createProjectsEnvironmentsRoutesAsyncWithHttpInfo(
+        string $project_id,
+        string $environment_id,
+        \Upsun\Model\RouteCreateInput $route_create_input
+    ) {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->createProjectsEnvironmentsRoutesRequest($project_id, $environment_id, $route_create_input);
 
@@ -273,8 +284,11 @@ final class RoutingApi
      *
      * @throws InvalidArgumentException
      */
-    public function createProjectsEnvironmentsRoutesRequest(string $project_id, string $environment_id, \Upsun\Model\RouteCreateInput $route_create_input): RequestInterface
-    {
+    public function createProjectsEnvironmentsRoutesRequest(
+        string $project_id,
+        string $environment_id,
+        \Upsun\Model\RouteCreateInput $route_create_input
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -384,8 +398,9 @@ final class RoutingApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\AcceptedResponse
      */
-    public function deleteProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id): \Upsun\Model\AcceptedResponse
+    public function deleteProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id)
     {
         list($response) = $this->deleteProjectsEnvironmentsRoutesWithHttpInfo($project_id, $environment_id, $route_id);
         return $response;
@@ -397,8 +412,11 @@ final class RoutingApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function deleteProjectsEnvironmentsRoutesWithHttpInfo(string $project_id, string $environment_id, string $route_id): array
-    {
+    public function deleteProjectsEnvironmentsRoutesWithHttpInfo(
+        string $project_id,
+        string $environment_id,
+        string $route_id
+    ): array {
         $request = $this->deleteProjectsEnvironmentsRoutesRequest($project_id, $environment_id, $route_id);
 
         try {
@@ -476,10 +494,13 @@ final class RoutingApi
     /**
      * Delete a route
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteProjectsEnvironmentsRoutesAsync(string $project_id, string $environment_id, string $route_id): Promise
-    {
+    public function deleteProjectsEnvironmentsRoutesAsync(
+        string $project_id,
+        string $environment_id,
+        string $route_id
+    ): Promise {
         return $this->deleteProjectsEnvironmentsRoutesAsyncWithHttpInfo($project_id, $environment_id, $route_id)
             ->then(
                 function ($response) {
@@ -491,10 +512,13 @@ final class RoutingApi
     /**
      * Delete a route
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteProjectsEnvironmentsRoutesAsyncWithHttpInfo(string $project_id, string $environment_id, string $route_id)
-    {
+    public function deleteProjectsEnvironmentsRoutesAsyncWithHttpInfo(
+        string $project_id,
+        string $environment_id,
+        string $route_id
+    ) {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deleteProjectsEnvironmentsRoutesRequest($project_id, $environment_id, $route_id);
 
@@ -535,8 +559,11 @@ final class RoutingApi
      *
      * @throws InvalidArgumentException
      */
-    public function deleteProjectsEnvironmentsRoutesRequest(string $project_id, string $environment_id, string $route_id): RequestInterface
-    {
+    public function deleteProjectsEnvironmentsRoutesRequest(
+        string $project_id,
+        string $environment_id,
+        string $route_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -648,8 +675,9 @@ final class RoutingApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Route
      */
-    public function getProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id): \Upsun\Model\Route
+    public function getProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id)
     {
         list($response) = $this->getProjectsEnvironmentsRoutesWithHttpInfo($project_id, $environment_id, $route_id);
         return $response;
@@ -661,8 +689,11 @@ final class RoutingApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getProjectsEnvironmentsRoutesWithHttpInfo(string $project_id, string $environment_id, string $route_id): array
-    {
+    public function getProjectsEnvironmentsRoutesWithHttpInfo(
+        string $project_id,
+        string $environment_id,
+        string $route_id
+    ): array {
         $request = $this->getProjectsEnvironmentsRoutesRequest($project_id, $environment_id, $route_id);
 
         try {
@@ -740,10 +771,13 @@ final class RoutingApi
     /**
      * Get a route&#39;s info
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsEnvironmentsRoutesAsync(string $project_id, string $environment_id, string $route_id): Promise
-    {
+    public function getProjectsEnvironmentsRoutesAsync(
+        string $project_id,
+        string $environment_id,
+        string $route_id
+    ): Promise {
         return $this->getProjectsEnvironmentsRoutesAsyncWithHttpInfo($project_id, $environment_id, $route_id)
             ->then(
                 function ($response) {
@@ -755,10 +789,13 @@ final class RoutingApi
     /**
      * Get a route&#39;s info
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsEnvironmentsRoutesAsyncWithHttpInfo(string $project_id, string $environment_id, string $route_id)
-    {
+    public function getProjectsEnvironmentsRoutesAsyncWithHttpInfo(
+        string $project_id,
+        string $environment_id,
+        string $route_id
+    ) {
         $returnType = '\Upsun\Model\Route';
         $request = $this->getProjectsEnvironmentsRoutesRequest($project_id, $environment_id, $route_id);
 
@@ -799,8 +836,11 @@ final class RoutingApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectsEnvironmentsRoutesRequest(string $project_id, string $environment_id, string $route_id): RequestInterface
-    {
+    public function getProjectsEnvironmentsRoutesRequest(
+        string $project_id,
+        string $environment_id,
+        string $route_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -912,8 +952,9 @@ final class RoutingApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Route[]
      */
-    public function listProjectsEnvironmentsRoutes($project_id, $environment_id): \Upsun\Model\Route[]
+    public function listProjectsEnvironmentsRoutes($project_id, $environment_id)
     {
         list($response) = $this->listProjectsEnvironmentsRoutesWithHttpInfo($project_id, $environment_id);
         return $response;
@@ -925,8 +966,10 @@ final class RoutingApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsRoutesWithHttpInfo(string $project_id, string $environment_id): array
-    {
+    public function listProjectsEnvironmentsRoutesWithHttpInfo(
+        string $project_id,
+        string $environment_id
+    ): array {
         $request = $this->listProjectsEnvironmentsRoutesRequest($project_id, $environment_id);
 
         try {
@@ -1004,10 +1047,12 @@ final class RoutingApi
     /**
      * Get list of routes
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsEnvironmentsRoutesAsync(string $project_id, string $environment_id): Promise
-    {
+    public function listProjectsEnvironmentsRoutesAsync(
+        string $project_id,
+        string $environment_id
+    ): Promise {
         return $this->listProjectsEnvironmentsRoutesAsyncWithHttpInfo($project_id, $environment_id)
             ->then(
                 function ($response) {
@@ -1019,10 +1064,12 @@ final class RoutingApi
     /**
      * Get list of routes
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsEnvironmentsRoutesAsyncWithHttpInfo(string $project_id, string $environment_id)
-    {
+    public function listProjectsEnvironmentsRoutesAsyncWithHttpInfo(
+        string $project_id,
+        string $environment_id
+    ) {
         $returnType = '\Upsun\Model\Route[]';
         $request = $this->listProjectsEnvironmentsRoutesRequest($project_id, $environment_id);
 
@@ -1063,8 +1110,10 @@ final class RoutingApi
      *
      * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsRoutesRequest(string $project_id, string $environment_id): RequestInterface
-    {
+    public function listProjectsEnvironmentsRoutesRequest(
+        string $project_id,
+        string $environment_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1162,8 +1211,9 @@ final class RoutingApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\AcceptedResponse
      */
-    public function updateProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id, $route_patch): \Upsun\Model\AcceptedResponse
+    public function updateProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id, $route_patch)
     {
         list($response) = $this->updateProjectsEnvironmentsRoutesWithHttpInfo($project_id, $environment_id, $route_id, $route_patch);
         return $response;
@@ -1175,8 +1225,12 @@ final class RoutingApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function updateProjectsEnvironmentsRoutesWithHttpInfo(string $project_id, string $environment_id, string $route_id, \Upsun\Model\RoutePatch $route_patch): array
-    {
+    public function updateProjectsEnvironmentsRoutesWithHttpInfo(
+        string $project_id,
+        string $environment_id,
+        string $route_id,
+        \Upsun\Model\RoutePatch $route_patch
+    ): array {
         $request = $this->updateProjectsEnvironmentsRoutesRequest($project_id, $environment_id, $route_id, $route_patch);
 
         try {
@@ -1254,10 +1308,14 @@ final class RoutingApi
     /**
      * Update a route
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateProjectsEnvironmentsRoutesAsync(string $project_id, string $environment_id, string $route_id, \Upsun\Model\RoutePatch $route_patch): Promise
-    {
+    public function updateProjectsEnvironmentsRoutesAsync(
+        string $project_id,
+        string $environment_id,
+        string $route_id,
+        \Upsun\Model\RoutePatch $route_patch
+    ): Promise {
         return $this->updateProjectsEnvironmentsRoutesAsyncWithHttpInfo($project_id, $environment_id, $route_id, $route_patch)
             ->then(
                 function ($response) {
@@ -1269,10 +1327,14 @@ final class RoutingApi
     /**
      * Update a route
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateProjectsEnvironmentsRoutesAsyncWithHttpInfo(string $project_id, string $environment_id, string $route_id, \Upsun\Model\RoutePatch $route_patch)
-    {
+    public function updateProjectsEnvironmentsRoutesAsyncWithHttpInfo(
+        string $project_id,
+        string $environment_id,
+        string $route_id,
+        \Upsun\Model\RoutePatch $route_patch
+    ) {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateProjectsEnvironmentsRoutesRequest($project_id, $environment_id, $route_id, $route_patch);
 
@@ -1313,8 +1375,12 @@ final class RoutingApi
      *
      * @throws InvalidArgumentException
      */
-    public function updateProjectsEnvironmentsRoutesRequest(string $project_id, string $environment_id, string $route_id, \Upsun\Model\RoutePatch $route_patch): RequestInterface
-    {
+    public function updateProjectsEnvironmentsRoutesRequest(
+        string $project_id,
+        string $environment_id,
+        string $route_id,
+        \Upsun\Model\RoutePatch $route_patch
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1438,9 +1504,9 @@ final class RoutingApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -1536,8 +1602,8 @@ final class RoutingApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

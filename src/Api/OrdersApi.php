@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class OrdersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\CreateAuthorizationCredentials200Response
      */
-    public function createAuthorizationCredentials($organization_id, $order_id): \Upsun\Model\CreateAuthorizationCredentials200Response
+    public function createAuthorizationCredentials($organization_id, $order_id)
     {
         list($response) = $this->createAuthorizationCredentialsWithHttpInfo($organization_id, $order_id);
         return $response;
@@ -135,8 +137,10 @@ final class OrdersApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function createAuthorizationCredentialsWithHttpInfo(string $organization_id, string $order_id): array
-    {
+    public function createAuthorizationCredentialsWithHttpInfo(
+        string $organization_id,
+        string $order_id
+    ): array {
         $request = $this->createAuthorizationCredentialsRequest($organization_id, $order_id);
 
         try {
@@ -256,10 +260,12 @@ final class OrdersApi
     /**
      * Create confirmation credentials for for 3D-Secure
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createAuthorizationCredentialsAsync(string $organization_id, string $order_id): Promise
-    {
+    public function createAuthorizationCredentialsAsync(
+        string $organization_id,
+        string $order_id
+    ): Promise {
         return $this->createAuthorizationCredentialsAsyncWithHttpInfo($organization_id, $order_id)
             ->then(
                 function ($response) {
@@ -271,10 +277,12 @@ final class OrdersApi
     /**
      * Create confirmation credentials for for 3D-Secure
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createAuthorizationCredentialsAsyncWithHttpInfo(string $organization_id, string $order_id)
-    {
+    public function createAuthorizationCredentialsAsyncWithHttpInfo(
+        string $organization_id,
+        string $order_id
+    ) {
         $returnType = '\Upsun\Model\CreateAuthorizationCredentials200Response';
         $request = $this->createAuthorizationCredentialsRequest($organization_id, $order_id);
 
@@ -315,8 +323,10 @@ final class OrdersApi
      *
      * @throws InvalidArgumentException
      */
-    public function createAuthorizationCredentialsRequest(string $organization_id, string $order_id): RequestInterface
-    {
+    public function createAuthorizationCredentialsRequest(
+        string $organization_id,
+        string $order_id
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -414,8 +424,9 @@ final class OrdersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function downloadInvoice($token): void
+    public function downloadInvoice($token)
     {
         $this->downloadInvoiceWithHttpInfo($token);
     }
@@ -426,8 +437,9 @@ final class OrdersApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function downloadInvoiceWithHttpInfo(string $token): array
-    {
+    public function downloadInvoiceWithHttpInfo(
+        string $token
+    ): array {
         $request = $this->downloadInvoiceRequest($token);
 
         try {
@@ -470,10 +482,11 @@ final class OrdersApi
     /**
      * Download an invoice.
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function downloadInvoiceAsync(string $token): Promise
-    {
+    public function downloadInvoiceAsync(
+        string $token
+    ): Promise {
         return $this->downloadInvoiceAsyncWithHttpInfo($token)
             ->then(
                 function ($response) {
@@ -485,10 +498,11 @@ final class OrdersApi
     /**
      * Download an invoice.
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function downloadInvoiceAsyncWithHttpInfo(string $token)
-    {
+    public function downloadInvoiceAsyncWithHttpInfo(
+        string $token
+    ) {
         $returnType = '';
         $request = $this->downloadInvoiceRequest($token);
 
@@ -519,8 +533,9 @@ final class OrdersApi
      *
      * @throws InvalidArgumentException
      */
-    public function downloadInvoiceRequest(string $token): RequestInterface
-    {
+    public function downloadInvoiceRequest(
+        string $token
+    ): RequestInterface {
         // verify the required parameter 'token' is set
         if ($token === null || (is_array($token) && count($token) === 0)) {
             throw new \InvalidArgumentException(
@@ -607,8 +622,9 @@ final class OrdersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\Order
      */
-    public function getOrgOrder($organization_id, $order_id, $mode = null): \Upsun\Model\Order
+    public function getOrgOrder($organization_id, $order_id, $mode = null)
     {
         list($response) = $this->getOrgOrderWithHttpInfo($organization_id, $order_id, $mode);
         return $response;
@@ -620,8 +636,11 @@ final class OrdersApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getOrgOrderWithHttpInfo(string $organization_id, string $order_id, string $mode = null): array
-    {
+    public function getOrgOrderWithHttpInfo(
+        string $organization_id,
+        string $order_id,
+        string $mode = null
+    ): array {
         $request = $this->getOrgOrderRequest($organization_id, $order_id, $mode);
 
         try {
@@ -727,10 +746,13 @@ final class OrdersApi
     /**
      * Get order
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getOrgOrderAsync(string $organization_id, string $order_id, string $mode = null): Promise
-    {
+    public function getOrgOrderAsync(
+        string $organization_id,
+        string $order_id,
+        string $mode = null
+    ): Promise {
         return $this->getOrgOrderAsyncWithHttpInfo($organization_id, $order_id, $mode)
             ->then(
                 function ($response) {
@@ -742,10 +764,13 @@ final class OrdersApi
     /**
      * Get order
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getOrgOrderAsyncWithHttpInfo(string $organization_id, string $order_id, string $mode = null)
-    {
+    public function getOrgOrderAsyncWithHttpInfo(
+        string $organization_id,
+        string $order_id,
+        string $mode = null
+    ) {
         $returnType = '\Upsun\Model\Order';
         $request = $this->getOrgOrderRequest($organization_id, $order_id, $mode);
 
@@ -786,8 +811,11 @@ final class OrdersApi
      *
      * @throws InvalidArgumentException
      */
-    public function getOrgOrderRequest(string $organization_id, string $order_id, string $mode = null): RequestInterface
-    {
+    public function getOrgOrderRequest(
+        string $organization_id,
+        string $order_id,
+        string $mode = null
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -896,8 +924,9 @@ final class OrdersApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ListOrgOrders200Response
      */
-    public function listOrgOrders($organization_id, $filter_status = null, $filter_total = null, $page = null, $mode = null): \Upsun\Model\ListOrgOrders200Response
+    public function listOrgOrders($organization_id, $filter_status = null, $filter_total = null, $page = null, $mode = null)
     {
         list($response) = $this->listOrgOrdersWithHttpInfo($organization_id, $filter_status, $filter_total, $page, $mode);
         return $response;
@@ -909,8 +938,13 @@ final class OrdersApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listOrgOrdersWithHttpInfo(string $organization_id, string $filter_status = null, int $filter_total = null, int $page = null, string $mode = null): array
-    {
+    public function listOrgOrdersWithHttpInfo(
+        string $organization_id,
+        string $filter_status = null,
+        int $filter_total = null,
+        int $page = null,
+        string $mode = null
+    ): array {
         $request = $this->listOrgOrdersRequest($organization_id, $filter_status, $filter_total, $page, $mode);
 
         try {
@@ -1016,10 +1050,15 @@ final class OrdersApi
     /**
      * List orders
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listOrgOrdersAsync(string $organization_id, string $filter_status = null, int $filter_total = null, int $page = null, string $mode = null): Promise
-    {
+    public function listOrgOrdersAsync(
+        string $organization_id,
+        string $filter_status = null,
+        int $filter_total = null,
+        int $page = null,
+        string $mode = null
+    ): Promise {
         return $this->listOrgOrdersAsyncWithHttpInfo($organization_id, $filter_status, $filter_total, $page, $mode)
             ->then(
                 function ($response) {
@@ -1031,10 +1070,15 @@ final class OrdersApi
     /**
      * List orders
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listOrgOrdersAsyncWithHttpInfo(string $organization_id, string $filter_status = null, int $filter_total = null, int $page = null, string $mode = null)
-    {
+    public function listOrgOrdersAsyncWithHttpInfo(
+        string $organization_id,
+        string $filter_status = null,
+        int $filter_total = null,
+        int $page = null,
+        string $mode = null
+    ) {
         $returnType = '\Upsun\Model\ListOrgOrders200Response';
         $request = $this->listOrgOrdersRequest($organization_id, $filter_status, $filter_total, $page, $mode);
 
@@ -1075,8 +1119,13 @@ final class OrdersApi
      *
      * @throws InvalidArgumentException
      */
-    public function listOrgOrdersRequest(string $organization_id, string $filter_status = null, int $filter_total = null, int $page = null, string $mode = null): RequestInterface
-    {
+    public function listOrgOrdersRequest(
+        string $organization_id,
+        string $filter_status = null,
+        int $filter_total = null,
+        int $page = null,
+        string $mode = null
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1204,9 +1253,9 @@ final class OrdersApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -1302,8 +1351,8 @@ final class OrdersApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

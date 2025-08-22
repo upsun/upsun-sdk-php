@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class ProjectVariablesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\AcceptedResponse
      */
-    public function createProjectsVariables($project_id, $project_variable_create_input): \Upsun\Model\AcceptedResponse
+    public function createProjectsVariables($project_id, $project_variable_create_input)
     {
         list($response) = $this->createProjectsVariablesWithHttpInfo($project_id, $project_variable_create_input);
         return $response;
@@ -135,8 +137,10 @@ final class ProjectVariablesApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function createProjectsVariablesWithHttpInfo(string $project_id, \Upsun\Model\ProjectVariableCreateInput $project_variable_create_input): array
-    {
+    public function createProjectsVariablesWithHttpInfo(
+        string $project_id,
+        \Upsun\Model\ProjectVariableCreateInput $project_variable_create_input
+    ): array {
         $request = $this->createProjectsVariablesRequest($project_id, $project_variable_create_input);
 
         try {
@@ -214,10 +218,12 @@ final class ProjectVariablesApi
     /**
      * Add a project variable
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createProjectsVariablesAsync(string $project_id, \Upsun\Model\ProjectVariableCreateInput $project_variable_create_input): Promise
-    {
+    public function createProjectsVariablesAsync(
+        string $project_id,
+        \Upsun\Model\ProjectVariableCreateInput $project_variable_create_input
+    ): Promise {
         return $this->createProjectsVariablesAsyncWithHttpInfo($project_id, $project_variable_create_input)
             ->then(
                 function ($response) {
@@ -229,10 +235,12 @@ final class ProjectVariablesApi
     /**
      * Add a project variable
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function createProjectsVariablesAsyncWithHttpInfo(string $project_id, \Upsun\Model\ProjectVariableCreateInput $project_variable_create_input)
-    {
+    public function createProjectsVariablesAsyncWithHttpInfo(
+        string $project_id,
+        \Upsun\Model\ProjectVariableCreateInput $project_variable_create_input
+    ) {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->createProjectsVariablesRequest($project_id, $project_variable_create_input);
 
@@ -273,8 +281,10 @@ final class ProjectVariablesApi
      *
      * @throws InvalidArgumentException
      */
-    public function createProjectsVariablesRequest(string $project_id, \Upsun\Model\ProjectVariableCreateInput $project_variable_create_input): RequestInterface
-    {
+    public function createProjectsVariablesRequest(
+        string $project_id,
+        \Upsun\Model\ProjectVariableCreateInput $project_variable_create_input
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -370,8 +380,9 @@ final class ProjectVariablesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\AcceptedResponse
      */
-    public function deleteProjectsVariables($project_id, $project_variable_id): \Upsun\Model\AcceptedResponse
+    public function deleteProjectsVariables($project_id, $project_variable_id)
     {
         list($response) = $this->deleteProjectsVariablesWithHttpInfo($project_id, $project_variable_id);
         return $response;
@@ -383,8 +394,10 @@ final class ProjectVariablesApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function deleteProjectsVariablesWithHttpInfo(string $project_id, string $project_variable_id): array
-    {
+    public function deleteProjectsVariablesWithHttpInfo(
+        string $project_id,
+        string $project_variable_id
+    ): array {
         $request = $this->deleteProjectsVariablesRequest($project_id, $project_variable_id);
 
         try {
@@ -462,10 +475,12 @@ final class ProjectVariablesApi
     /**
      * Delete a project variable
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteProjectsVariablesAsync(string $project_id, string $project_variable_id): Promise
-    {
+    public function deleteProjectsVariablesAsync(
+        string $project_id,
+        string $project_variable_id
+    ): Promise {
         return $this->deleteProjectsVariablesAsyncWithHttpInfo($project_id, $project_variable_id)
             ->then(
                 function ($response) {
@@ -477,10 +492,12 @@ final class ProjectVariablesApi
     /**
      * Delete a project variable
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function deleteProjectsVariablesAsyncWithHttpInfo(string $project_id, string $project_variable_id)
-    {
+    public function deleteProjectsVariablesAsyncWithHttpInfo(
+        string $project_id,
+        string $project_variable_id
+    ) {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deleteProjectsVariablesRequest($project_id, $project_variable_id);
 
@@ -521,8 +538,10 @@ final class ProjectVariablesApi
      *
      * @throws InvalidArgumentException
      */
-    public function deleteProjectsVariablesRequest(string $project_id, string $project_variable_id): RequestInterface
-    {
+    public function deleteProjectsVariablesRequest(
+        string $project_id,
+        string $project_variable_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -620,8 +639,9 @@ final class ProjectVariablesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ProjectVariable
      */
-    public function getProjectsVariables($project_id, $project_variable_id): \Upsun\Model\ProjectVariable
+    public function getProjectsVariables($project_id, $project_variable_id)
     {
         list($response) = $this->getProjectsVariablesWithHttpInfo($project_id, $project_variable_id);
         return $response;
@@ -633,8 +653,10 @@ final class ProjectVariablesApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getProjectsVariablesWithHttpInfo(string $project_id, string $project_variable_id): array
-    {
+    public function getProjectsVariablesWithHttpInfo(
+        string $project_id,
+        string $project_variable_id
+    ): array {
         $request = $this->getProjectsVariablesRequest($project_id, $project_variable_id);
 
         try {
@@ -712,10 +734,12 @@ final class ProjectVariablesApi
     /**
      * Get a project variable
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsVariablesAsync(string $project_id, string $project_variable_id): Promise
-    {
+    public function getProjectsVariablesAsync(
+        string $project_id,
+        string $project_variable_id
+    ): Promise {
         return $this->getProjectsVariablesAsyncWithHttpInfo($project_id, $project_variable_id)
             ->then(
                 function ($response) {
@@ -727,10 +751,12 @@ final class ProjectVariablesApi
     /**
      * Get a project variable
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsVariablesAsyncWithHttpInfo(string $project_id, string $project_variable_id)
-    {
+    public function getProjectsVariablesAsyncWithHttpInfo(
+        string $project_id,
+        string $project_variable_id
+    ) {
         $returnType = '\Upsun\Model\ProjectVariable';
         $request = $this->getProjectsVariablesRequest($project_id, $project_variable_id);
 
@@ -771,8 +797,10 @@ final class ProjectVariablesApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectsVariablesRequest(string $project_id, string $project_variable_id): RequestInterface
-    {
+    public function getProjectsVariablesRequest(
+        string $project_id,
+        string $project_variable_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -870,8 +898,9 @@ final class ProjectVariablesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ProjectVariable[]
      */
-    public function listProjectsVariables($project_id): \Upsun\Model\ProjectVariable[]
+    public function listProjectsVariables($project_id)
     {
         list($response) = $this->listProjectsVariablesWithHttpInfo($project_id);
         return $response;
@@ -883,8 +912,9 @@ final class ProjectVariablesApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function listProjectsVariablesWithHttpInfo(string $project_id): array
-    {
+    public function listProjectsVariablesWithHttpInfo(
+        string $project_id
+    ): array {
         $request = $this->listProjectsVariablesRequest($project_id);
 
         try {
@@ -962,10 +992,11 @@ final class ProjectVariablesApi
     /**
      * Get list of project variables
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsVariablesAsync(string $project_id): Promise
-    {
+    public function listProjectsVariablesAsync(
+        string $project_id
+    ): Promise {
         return $this->listProjectsVariablesAsyncWithHttpInfo($project_id)
             ->then(
                 function ($response) {
@@ -977,10 +1008,11 @@ final class ProjectVariablesApi
     /**
      * Get list of project variables
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsVariablesAsyncWithHttpInfo(string $project_id)
-    {
+    public function listProjectsVariablesAsyncWithHttpInfo(
+        string $project_id
+    ) {
         $returnType = '\Upsun\Model\ProjectVariable[]';
         $request = $this->listProjectsVariablesRequest($project_id);
 
@@ -1021,8 +1053,9 @@ final class ProjectVariablesApi
      *
      * @throws InvalidArgumentException
      */
-    public function listProjectsVariablesRequest(string $project_id): RequestInterface
-    {
+    public function listProjectsVariablesRequest(
+        string $project_id
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1106,8 +1139,9 @@ final class ProjectVariablesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\AcceptedResponse
      */
-    public function updateProjectsVariables($project_id, $project_variable_id, $project_variable_patch): \Upsun\Model\AcceptedResponse
+    public function updateProjectsVariables($project_id, $project_variable_id, $project_variable_patch)
     {
         list($response) = $this->updateProjectsVariablesWithHttpInfo($project_id, $project_variable_id, $project_variable_patch);
         return $response;
@@ -1119,8 +1153,11 @@ final class ProjectVariablesApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function updateProjectsVariablesWithHttpInfo(string $project_id, string $project_variable_id, \Upsun\Model\ProjectVariablePatch $project_variable_patch): array
-    {
+    public function updateProjectsVariablesWithHttpInfo(
+        string $project_id,
+        string $project_variable_id,
+        \Upsun\Model\ProjectVariablePatch $project_variable_patch
+    ): array {
         $request = $this->updateProjectsVariablesRequest($project_id, $project_variable_id, $project_variable_patch);
 
         try {
@@ -1198,10 +1235,13 @@ final class ProjectVariablesApi
     /**
      * Update a project variable
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateProjectsVariablesAsync(string $project_id, string $project_variable_id, \Upsun\Model\ProjectVariablePatch $project_variable_patch): Promise
-    {
+    public function updateProjectsVariablesAsync(
+        string $project_id,
+        string $project_variable_id,
+        \Upsun\Model\ProjectVariablePatch $project_variable_patch
+    ): Promise {
         return $this->updateProjectsVariablesAsyncWithHttpInfo($project_id, $project_variable_id, $project_variable_patch)
             ->then(
                 function ($response) {
@@ -1213,10 +1253,13 @@ final class ProjectVariablesApi
     /**
      * Update a project variable
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function updateProjectsVariablesAsyncWithHttpInfo(string $project_id, string $project_variable_id, \Upsun\Model\ProjectVariablePatch $project_variable_patch)
-    {
+    public function updateProjectsVariablesAsyncWithHttpInfo(
+        string $project_id,
+        string $project_variable_id,
+        \Upsun\Model\ProjectVariablePatch $project_variable_patch
+    ) {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateProjectsVariablesRequest($project_id, $project_variable_id, $project_variable_patch);
 
@@ -1257,8 +1300,11 @@ final class ProjectVariablesApi
      *
      * @throws InvalidArgumentException
      */
-    public function updateProjectsVariablesRequest(string $project_id, string $project_variable_id, \Upsun\Model\ProjectVariablePatch $project_variable_patch): RequestInterface
-    {
+    public function updateProjectsVariablesRequest(
+        string $project_id,
+        string $project_variable_id,
+        \Upsun\Model\ProjectVariablePatch $project_variable_patch
+    ): RequestInterface {
         // verify the required parameter 'project_id' is set
         if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1368,9 +1414,9 @@ final class ProjectVariablesApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -1466,8 +1512,8 @@ final class ProjectVariablesApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

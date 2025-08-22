@@ -12,6 +12,7 @@
 
 namespace Upsun\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
@@ -122,8 +123,9 @@ final class MFAApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ConfirmTotpEnrollment200Response
      */
-    public function confirmTotpEnrollment($user_id, $confirm_totp_enrollment_request = null): \Upsun\Model\ConfirmTotpEnrollment200Response
+    public function confirmTotpEnrollment($user_id, $confirm_totp_enrollment_request = null)
     {
         list($response) = $this->confirmTotpEnrollmentWithHttpInfo($user_id, $confirm_totp_enrollment_request);
         return $response;
@@ -135,8 +137,10 @@ final class MFAApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function confirmTotpEnrollmentWithHttpInfo(string $user_id, \Upsun\Model\ConfirmTotpEnrollmentRequest $confirm_totp_enrollment_request = null): array
-    {
+    public function confirmTotpEnrollmentWithHttpInfo(
+        string $user_id,
+        \Upsun\Model\ConfirmTotpEnrollmentRequest $confirm_totp_enrollment_request = null
+    ): array {
         $request = $this->confirmTotpEnrollmentRequest($user_id, $confirm_totp_enrollment_request);
 
         try {
@@ -256,10 +260,12 @@ final class MFAApi
     /**
      * Confirm TOTP enrollment
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function confirmTotpEnrollmentAsync(string $user_id, \Upsun\Model\ConfirmTotpEnrollmentRequest $confirm_totp_enrollment_request = null): Promise
-    {
+    public function confirmTotpEnrollmentAsync(
+        string $user_id,
+        \Upsun\Model\ConfirmTotpEnrollmentRequest $confirm_totp_enrollment_request = null
+    ): Promise {
         return $this->confirmTotpEnrollmentAsyncWithHttpInfo($user_id, $confirm_totp_enrollment_request)
             ->then(
                 function ($response) {
@@ -271,10 +277,12 @@ final class MFAApi
     /**
      * Confirm TOTP enrollment
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function confirmTotpEnrollmentAsyncWithHttpInfo(string $user_id, \Upsun\Model\ConfirmTotpEnrollmentRequest $confirm_totp_enrollment_request = null)
-    {
+    public function confirmTotpEnrollmentAsyncWithHttpInfo(
+        string $user_id,
+        \Upsun\Model\ConfirmTotpEnrollmentRequest $confirm_totp_enrollment_request = null
+    ) {
         $returnType = '\Upsun\Model\ConfirmTotpEnrollment200Response';
         $request = $this->confirmTotpEnrollmentRequest($user_id, $confirm_totp_enrollment_request);
 
@@ -315,8 +323,10 @@ final class MFAApi
      *
      * @throws InvalidArgumentException
      */
-    public function confirmTotpEnrollmentRequest(string $user_id, \Upsun\Model\ConfirmTotpEnrollmentRequest $confirm_totp_enrollment_request = null): RequestInterface
-    {
+    public function confirmTotpEnrollmentRequest(
+        string $user_id,
+        \Upsun\Model\ConfirmTotpEnrollmentRequest $confirm_totp_enrollment_request = null
+    ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -406,8 +416,9 @@ final class MFAApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function disableOrgMfaEnforcement($organization_id): void
+    public function disableOrgMfaEnforcement($organization_id)
     {
         $this->disableOrgMfaEnforcementWithHttpInfo($organization_id);
     }
@@ -418,8 +429,9 @@ final class MFAApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function disableOrgMfaEnforcementWithHttpInfo(string $organization_id): array
-    {
+    public function disableOrgMfaEnforcementWithHttpInfo(
+        string $organization_id
+    ): array {
         $request = $this->disableOrgMfaEnforcementRequest($organization_id);
 
         try {
@@ -470,10 +482,11 @@ final class MFAApi
     /**
      * Disable organization MFA enforcement
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function disableOrgMfaEnforcementAsync(string $organization_id): Promise
-    {
+    public function disableOrgMfaEnforcementAsync(
+        string $organization_id
+    ): Promise {
         return $this->disableOrgMfaEnforcementAsyncWithHttpInfo($organization_id)
             ->then(
                 function ($response) {
@@ -485,10 +498,11 @@ final class MFAApi
     /**
      * Disable organization MFA enforcement
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function disableOrgMfaEnforcementAsyncWithHttpInfo(string $organization_id)
-    {
+    public function disableOrgMfaEnforcementAsyncWithHttpInfo(
+        string $organization_id
+    ) {
         $returnType = '';
         $request = $this->disableOrgMfaEnforcementRequest($organization_id);
 
@@ -519,8 +533,9 @@ final class MFAApi
      *
      * @throws InvalidArgumentException
      */
-    public function disableOrgMfaEnforcementRequest(string $organization_id): RequestInterface
-    {
+    public function disableOrgMfaEnforcementRequest(
+        string $organization_id
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -604,8 +619,9 @@ final class MFAApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function enableOrgMfaEnforcement($organization_id): void
+    public function enableOrgMfaEnforcement($organization_id)
     {
         $this->enableOrgMfaEnforcementWithHttpInfo($organization_id);
     }
@@ -616,8 +632,9 @@ final class MFAApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function enableOrgMfaEnforcementWithHttpInfo(string $organization_id): array
-    {
+    public function enableOrgMfaEnforcementWithHttpInfo(
+        string $organization_id
+    ): array {
         $request = $this->enableOrgMfaEnforcementRequest($organization_id);
 
         try {
@@ -668,10 +685,11 @@ final class MFAApi
     /**
      * Enable organization MFA enforcement
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function enableOrgMfaEnforcementAsync(string $organization_id): Promise
-    {
+    public function enableOrgMfaEnforcementAsync(
+        string $organization_id
+    ): Promise {
         return $this->enableOrgMfaEnforcementAsyncWithHttpInfo($organization_id)
             ->then(
                 function ($response) {
@@ -683,10 +701,11 @@ final class MFAApi
     /**
      * Enable organization MFA enforcement
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function enableOrgMfaEnforcementAsyncWithHttpInfo(string $organization_id)
-    {
+    public function enableOrgMfaEnforcementAsyncWithHttpInfo(
+        string $organization_id
+    ) {
         $returnType = '';
         $request = $this->enableOrgMfaEnforcementRequest($organization_id);
 
@@ -717,8 +736,9 @@ final class MFAApi
      *
      * @throws InvalidArgumentException
      */
-    public function enableOrgMfaEnforcementRequest(string $organization_id): RequestInterface
-    {
+    public function enableOrgMfaEnforcementRequest(
+        string $organization_id
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -802,8 +822,9 @@ final class MFAApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\OrganizationMFAEnforcement
      */
-    public function getOrgMfaEnforcement($organization_id): \Upsun\Model\OrganizationMFAEnforcement
+    public function getOrgMfaEnforcement($organization_id)
     {
         list($response) = $this->getOrgMfaEnforcementWithHttpInfo($organization_id);
         return $response;
@@ -815,8 +836,9 @@ final class MFAApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getOrgMfaEnforcementWithHttpInfo(string $organization_id): array
-    {
+    public function getOrgMfaEnforcementWithHttpInfo(
+        string $organization_id
+    ): array {
         $request = $this->getOrgMfaEnforcementRequest($organization_id);
 
         try {
@@ -908,10 +930,11 @@ final class MFAApi
     /**
      * Get organization MFA settings
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getOrgMfaEnforcementAsync(string $organization_id): Promise
-    {
+    public function getOrgMfaEnforcementAsync(
+        string $organization_id
+    ): Promise {
         return $this->getOrgMfaEnforcementAsyncWithHttpInfo($organization_id)
             ->then(
                 function ($response) {
@@ -923,10 +946,11 @@ final class MFAApi
     /**
      * Get organization MFA settings
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getOrgMfaEnforcementAsyncWithHttpInfo(string $organization_id)
-    {
+    public function getOrgMfaEnforcementAsyncWithHttpInfo(
+        string $organization_id
+    ) {
         $returnType = '\Upsun\Model\OrganizationMFAEnforcement';
         $request = $this->getOrgMfaEnforcementRequest($organization_id);
 
@@ -967,8 +991,9 @@ final class MFAApi
      *
      * @throws InvalidArgumentException
      */
-    public function getOrgMfaEnforcementRequest(string $organization_id): RequestInterface
-    {
+    public function getOrgMfaEnforcementRequest(
+        string $organization_id
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1052,8 +1077,9 @@ final class MFAApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\GetTotpEnrollment200Response
      */
-    public function getTotpEnrollment($user_id): \Upsun\Model\GetTotpEnrollment200Response
+    public function getTotpEnrollment($user_id)
     {
         list($response) = $this->getTotpEnrollmentWithHttpInfo($user_id);
         return $response;
@@ -1065,8 +1091,9 @@ final class MFAApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function getTotpEnrollmentWithHttpInfo(string $user_id): array
-    {
+    public function getTotpEnrollmentWithHttpInfo(
+        string $user_id
+    ): array {
         $request = $this->getTotpEnrollmentRequest($user_id);
 
         try {
@@ -1158,10 +1185,11 @@ final class MFAApi
     /**
      * Get information about TOTP enrollment
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getTotpEnrollmentAsync(string $user_id): Promise
-    {
+    public function getTotpEnrollmentAsync(
+        string $user_id
+    ): Promise {
         return $this->getTotpEnrollmentAsyncWithHttpInfo($user_id)
             ->then(
                 function ($response) {
@@ -1173,10 +1201,11 @@ final class MFAApi
     /**
      * Get information about TOTP enrollment
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function getTotpEnrollmentAsyncWithHttpInfo(string $user_id)
-    {
+    public function getTotpEnrollmentAsyncWithHttpInfo(
+        string $user_id
+    ) {
         $returnType = '\Upsun\Model\GetTotpEnrollment200Response';
         $request = $this->getTotpEnrollmentRequest($user_id);
 
@@ -1217,8 +1246,9 @@ final class MFAApi
      *
      * @throws InvalidArgumentException
      */
-    public function getTotpEnrollmentRequest(string $user_id): RequestInterface
-    {
+    public function getTotpEnrollmentRequest(
+        string $user_id
+    ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1302,8 +1332,9 @@ final class MFAApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return \Upsun\Model\ConfirmTotpEnrollment200Response
      */
-    public function recreateRecoveryCodes($user_id): \Upsun\Model\ConfirmTotpEnrollment200Response
+    public function recreateRecoveryCodes($user_id)
     {
         list($response) = $this->recreateRecoveryCodesWithHttpInfo($user_id);
         return $response;
@@ -1315,8 +1346,9 @@ final class MFAApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function recreateRecoveryCodesWithHttpInfo(string $user_id): array
-    {
+    public function recreateRecoveryCodesWithHttpInfo(
+        string $user_id
+    ): array {
         $request = $this->recreateRecoveryCodesRequest($user_id);
 
         try {
@@ -1408,10 +1440,11 @@ final class MFAApi
     /**
      * Re-create recovery codes
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function recreateRecoveryCodesAsync(string $user_id): Promise
-    {
+    public function recreateRecoveryCodesAsync(
+        string $user_id
+    ): Promise {
         return $this->recreateRecoveryCodesAsyncWithHttpInfo($user_id)
             ->then(
                 function ($response) {
@@ -1423,10 +1456,11 @@ final class MFAApi
     /**
      * Re-create recovery codes
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function recreateRecoveryCodesAsyncWithHttpInfo(string $user_id)
-    {
+    public function recreateRecoveryCodesAsyncWithHttpInfo(
+        string $user_id
+    ) {
         $returnType = '\Upsun\Model\ConfirmTotpEnrollment200Response';
         $request = $this->recreateRecoveryCodesRequest($user_id);
 
@@ -1467,8 +1501,9 @@ final class MFAApi
      *
      * @throws InvalidArgumentException
      */
-    public function recreateRecoveryCodesRequest(string $user_id): RequestInterface
-    {
+    public function recreateRecoveryCodesRequest(
+        string $user_id
+    ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1552,8 +1587,9 @@ final class MFAApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return array<string,\Upsun\Model\SendOrgMfaReminders200ResponseValue>
      */
-    public function sendOrgMfaReminders($organization_id, $send_org_mfa_reminders_request = null): array<string,\Upsun\Model\SendOrgMfaReminders200ResponseValue>
+    public function sendOrgMfaReminders($organization_id, $send_org_mfa_reminders_request = null)
     {
         list($response) = $this->sendOrgMfaRemindersWithHttpInfo($organization_id, $send_org_mfa_reminders_request);
         return $response;
@@ -1565,8 +1601,10 @@ final class MFAApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function sendOrgMfaRemindersWithHttpInfo(string $organization_id, \Upsun\Model\SendOrgMfaRemindersRequest $send_org_mfa_reminders_request = null): array
-    {
+    public function sendOrgMfaRemindersWithHttpInfo(
+        string $organization_id,
+        \Upsun\Model\SendOrgMfaRemindersRequest $send_org_mfa_reminders_request = null
+    ): array {
         $request = $this->sendOrgMfaRemindersRequest($organization_id, $send_org_mfa_reminders_request);
 
         try {
@@ -1672,10 +1710,12 @@ final class MFAApi
     /**
      * Send MFA reminders to organization members
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function sendOrgMfaRemindersAsync(string $organization_id, \Upsun\Model\SendOrgMfaRemindersRequest $send_org_mfa_reminders_request = null): Promise
-    {
+    public function sendOrgMfaRemindersAsync(
+        string $organization_id,
+        \Upsun\Model\SendOrgMfaRemindersRequest $send_org_mfa_reminders_request = null
+    ): Promise {
         return $this->sendOrgMfaRemindersAsyncWithHttpInfo($organization_id, $send_org_mfa_reminders_request)
             ->then(
                 function ($response) {
@@ -1687,10 +1727,12 @@ final class MFAApi
     /**
      * Send MFA reminders to organization members
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function sendOrgMfaRemindersAsyncWithHttpInfo(string $organization_id, \Upsun\Model\SendOrgMfaRemindersRequest $send_org_mfa_reminders_request = null)
-    {
+    public function sendOrgMfaRemindersAsyncWithHttpInfo(
+        string $organization_id,
+        \Upsun\Model\SendOrgMfaRemindersRequest $send_org_mfa_reminders_request = null
+    ) {
         $returnType = 'array<string,\Upsun\Model\SendOrgMfaReminders200ResponseValue>';
         $request = $this->sendOrgMfaRemindersRequest($organization_id, $send_org_mfa_reminders_request);
 
@@ -1731,8 +1773,10 @@ final class MFAApi
      *
      * @throws InvalidArgumentException
      */
-    public function sendOrgMfaRemindersRequest(string $organization_id, \Upsun\Model\SendOrgMfaRemindersRequest $send_org_mfa_reminders_request = null): RequestInterface
-    {
+    public function sendOrgMfaRemindersRequest(
+        string $organization_id,
+        \Upsun\Model\SendOrgMfaRemindersRequest $send_org_mfa_reminders_request = null
+    ): RequestInterface {
         // verify the required parameter 'organization_id' is set
         if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -1822,8 +1866,9 @@ final class MFAApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     * @return void
      */
-    public function withdrawTotpEnrollment($user_id): void
+    public function withdrawTotpEnrollment($user_id)
     {
         $this->withdrawTotpEnrollmentWithHttpInfo($user_id);
     }
@@ -1834,8 +1879,9 @@ final class MFAApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      */
-    public function withdrawTotpEnrollmentWithHttpInfo(string $user_id): array
-    {
+    public function withdrawTotpEnrollmentWithHttpInfo(
+        string $user_id
+    ): array {
         $request = $this->withdrawTotpEnrollmentRequest($user_id);
 
         try {
@@ -1886,10 +1932,11 @@ final class MFAApi
     /**
      * Withdraw TOTP enrollment
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function withdrawTotpEnrollmentAsync(string $user_id): Promise
-    {
+    public function withdrawTotpEnrollmentAsync(
+        string $user_id
+    ): Promise {
         return $this->withdrawTotpEnrollmentAsyncWithHttpInfo($user_id)
             ->then(
                 function ($response) {
@@ -1901,10 +1948,11 @@ final class MFAApi
     /**
      * Withdraw TOTP enrollment
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
-    public function withdrawTotpEnrollmentAsyncWithHttpInfo(string $user_id)
-    {
+    public function withdrawTotpEnrollmentAsyncWithHttpInfo(
+        string $user_id
+    ) {
         $returnType = '';
         $request = $this->withdrawTotpEnrollmentRequest($user_id);
 
@@ -1935,8 +1983,9 @@ final class MFAApi
      *
      * @throws InvalidArgumentException
      */
-    public function withdrawTotpEnrollmentRequest(string $user_id): RequestInterface
-    {
+    public function withdrawTotpEnrollmentRequest(
+        string $user_id
+    ): RequestInterface {
         // verify the required parameter 'user_id' is set
         if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -2020,9 +2069,9 @@ final class MFAApi
      * Create request
      */
     protected function createRequest(
-        string $method, 
-        string|UriInterface $uri, 
-        array $headers = [], 
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
         if ($this->requestFactory instanceof RequestFactory) {
@@ -2118,8 +2167,8 @@ final class MFAApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }
