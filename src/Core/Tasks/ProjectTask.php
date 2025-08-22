@@ -94,6 +94,7 @@ class ProjectTask extends TaskBase
         $this->refreshToken();
         $createProjectData = new CreateOrgSubscriptionRequest($projectData);
         $subscription = $this->subscriptionsApi->createOrgSubscription($organizationId, $createProjectData);
+        $this->refreshToken();
         return $this->organizationProjectsApi->getOrgProject(
             $this->api->getProjects($subscription->getProjectId())->getOrganization(),
             $subscription->getProjectId()
