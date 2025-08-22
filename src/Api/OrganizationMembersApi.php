@@ -1190,7 +1190,7 @@ final class OrganizationMembersApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[permissions]'] = $filter_permissions->toHeaderValue();
+                $queryParams['filter[permissions]'] = $filter_permissions->getEq();
             }
         }
         

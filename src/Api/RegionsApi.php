@@ -651,7 +651,7 @@ final class RegionsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[private]'] = $filter_private->toHeaderValue();
+                $queryParams['filter[private]'] = $filter_private->getEq();
             }
         }
         
@@ -662,7 +662,7 @@ final class RegionsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[zone]'] = $filter_zone->toHeaderValue();
+                $queryParams['filter[zone]'] = $filter_zone->getEq();
             }
         }
         

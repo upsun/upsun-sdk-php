@@ -862,7 +862,7 @@ final class OrganizationInvitationsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[state]'] = $filter_state->toHeaderValue();
+                $queryParams['filter[state]'] = $filter_state->getEq();
             }
         }
         

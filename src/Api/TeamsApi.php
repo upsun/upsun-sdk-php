@@ -2225,7 +2225,7 @@ final class TeamsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[organization_id]'] = $filter_organization_id->toHeaderValue();
+                $queryParams['filter[organization_id]'] = $filter_organization_id->getEq();
             }
         }
         
@@ -2236,7 +2236,7 @@ final class TeamsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[id]'] = $filter_id->toHeaderValue();
+                $queryParams['filter[id]'] = $filter_id->getEq();
             }
         }
         
@@ -2247,7 +2247,7 @@ final class TeamsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[updated_at]'] = $filter_updated_at->toHeaderValue();
+                $queryParams['filter[updated_at]'] = $filter_updated_at->getEq();
             }
         }
         
@@ -2600,7 +2600,7 @@ final class TeamsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[organization_id]'] = $filter_organization_id->toHeaderValue();
+                $queryParams['filter[organization_id]'] = $filter_organization_id->getEq();
             }
         }
         
@@ -2611,7 +2611,7 @@ final class TeamsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[updated_at]'] = $filter_updated_at->toHeaderValue();
+                $queryParams['filter[updated_at]'] = $filter_updated_at->getEq();
             }
         }
         
