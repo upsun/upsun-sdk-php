@@ -321,35 +321,95 @@ final class GrantsApi
         $multipart = false;
 
         // query params
+        //if ($filter_resource_type !== null) {
+        //
+        //    if ('form' === 'deepObject' && is_array($filter_resource_type)) {
+        //        foreach ($filter_resource_type as $key => $value) {
+        //            $queryParams[$key] = $value;
+        //        }
+        //    } else {
+        //        $queryParams['filter[resource_type]'] = $filter_resource_type;
+        //    }
+        //
+        //
+        //}
         if ($filter_resource_type !== null) {
-            if ('form' === 'deepObject' && is_array($filter_resource_type)) {
-                foreach ($filter_resource_type as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
+            if (is_object($filter_resource_type)) {
+                // Tous les objets de type Filter sont encodés en JSON compact
+                $queryParams['filter[resource_type]'] = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($filter_resource_type),
+                    JSON_UNESCAPED_SLASHES
+                );
+            } elseif (is_array($filter_resource_type)) {
+                // Les tableaux normaux sont sérialisés selon la collection format/style
+                $queryParams['filter[resource_type]'] = ObjectSerializer::serializeCollection(
+                    $filter_resource_type,
+                    'deepObject',
+                    true
+                );
+            } else {
                 $queryParams['filter[resource_type]'] = $filter_resource_type;
             }
         }
         // query params
+        //if ($filter_organization_id !== null) {
+        //
+        //    if ('form' === 'deepObject' && is_array($filter_organization_id)) {
+        //        foreach ($filter_organization_id as $key => $value) {
+        //            $queryParams[$key] = $value;
+        //        }
+        //    } else {
+        //        $queryParams['filter[organization_id]'] = $filter_organization_id;
+        //    }
+        //
+        //
+        //}
         if ($filter_organization_id !== null) {
-            if ('form' === 'deepObject' && is_array($filter_organization_id)) {
-                foreach ($filter_organization_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
+            if (is_object($filter_organization_id)) {
+                // Tous les objets de type Filter sont encodés en JSON compact
+                $queryParams['filter[organization_id]'] = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($filter_organization_id),
+                    JSON_UNESCAPED_SLASHES
+                );
+            } elseif (is_array($filter_organization_id)) {
+                // Les tableaux normaux sont sérialisés selon la collection format/style
+                $queryParams['filter[organization_id]'] = ObjectSerializer::serializeCollection(
+                    $filter_organization_id,
+                    'deepObject',
+                    true
+                );
+            } else {
                 $queryParams['filter[organization_id]'] = $filter_organization_id;
             }
         }
         // query params
+        //if ($filter_permissions !== null) {
+        //
+        //    if ('form' === 'deepObject' && is_array($filter_permissions)) {
+        //        foreach ($filter_permissions as $key => $value) {
+        //            $queryParams[$key] = $value;
+        //        }
+        //    } else {
+        //        $queryParams['filter[permissions]'] = $filter_permissions;
+        //    }
+        //
+        //
+        //}
         if ($filter_permissions !== null) {
-            if ('form' === 'deepObject' && is_array($filter_permissions)) {
-                foreach ($filter_permissions as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
+            if (is_object($filter_permissions)) {
+                // Tous les objets de type Filter sont encodés en JSON compact
+                $queryParams['filter[permissions]'] = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($filter_permissions),
+                    JSON_UNESCAPED_SLASHES
+                );
+            } elseif (is_array($filter_permissions)) {
+                // Les tableaux normaux sont sérialisés selon la collection format/style
+                $queryParams['filter[permissions]'] = ObjectSerializer::serializeCollection(
+                    $filter_permissions,
+                    'deepObject',
+                    true
+                );
+            } else {
                 $queryParams['filter[permissions]'] = $filter_permissions;
             }
         }
