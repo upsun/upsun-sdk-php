@@ -260,7 +260,7 @@ final class UpdateProjectUserAccessRequest implements ModelInterface, ArrayAcces
     /**
      * Sets permissions
      */
-    public function setPermissions(string|null $permissions = null)
+    public function setPermissions($permissions)
     {
         if (is_null($permissions)) {
             throw new \InvalidArgumentException('non-nullable permissions cannot be null');

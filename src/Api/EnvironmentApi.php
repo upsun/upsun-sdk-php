@@ -121,9 +121,9 @@ final class EnvironmentApi
      * @throws InvalidArgumentException
      */
     public function activateEnvironment(
-        $project_id,
-        $environment_id,
-        $environment_activate_input
+        string $project_id,
+        string $environment_id,
+        \Upsun\Model\EnvironmentActivateInput $environment_activate_input
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->activateEnvironmentWithHttpInfo($project_id, $environment_id, $environment_activate_input);
         return $response;
@@ -133,7 +133,7 @@ final class EnvironmentApi
      * Activate an environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function activateEnvironmentWithHttpInfo(
         string $project_id,
@@ -398,9 +398,9 @@ final class EnvironmentApi
      * @throws InvalidArgumentException
      */
     public function branchEnvironment(
-        $project_id,
-        $environment_id,
-        $environment_branch_input
+        string $project_id,
+        string $environment_id,
+        \Upsun\Model\EnvironmentBranchInput $environment_branch_input
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->branchEnvironmentWithHttpInfo($project_id, $environment_id, $environment_branch_input);
         return $response;
@@ -410,7 +410,7 @@ final class EnvironmentApi
      * Branch an environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function branchEnvironmentWithHttpInfo(
         string $project_id,
@@ -675,9 +675,9 @@ final class EnvironmentApi
      * @throws InvalidArgumentException
      */
     public function createProjectsEnvironmentsVersions(
-        $project_id,
-        $environment_id,
-        $version_create_input
+        string $project_id,
+        string $environment_id,
+        \Upsun\Model\VersionCreateInput $version_create_input
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->createProjectsEnvironmentsVersionsWithHttpInfo($project_id, $environment_id, $version_create_input);
         return $response;
@@ -687,7 +687,7 @@ final class EnvironmentApi
      * Create versions associated with the environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createProjectsEnvironmentsVersionsWithHttpInfo(
         string $project_id,
@@ -952,8 +952,8 @@ final class EnvironmentApi
      * @throws InvalidArgumentException
      */
     public function deactivateEnvironment(
-        $project_id,
-        $environment_id
+        string $project_id,
+        string $environment_id
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deactivateEnvironmentWithHttpInfo($project_id, $environment_id);
         return $response;
@@ -963,7 +963,7 @@ final class EnvironmentApi
      * Deactivate an environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deactivateEnvironmentWithHttpInfo(
         string $project_id,
@@ -1212,8 +1212,8 @@ final class EnvironmentApi
      * @throws InvalidArgumentException
      */
     public function deleteEnvironment(
-        $project_id,
-        $environment_id
+        string $project_id,
+        string $environment_id
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteEnvironmentWithHttpInfo($project_id, $environment_id);
         return $response;
@@ -1223,7 +1223,7 @@ final class EnvironmentApi
      * Delete an environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteEnvironmentWithHttpInfo(
         string $project_id,
@@ -1472,9 +1472,9 @@ final class EnvironmentApi
      * @throws InvalidArgumentException
      */
     public function deleteProjectsEnvironmentsVersions(
-        $project_id,
-        $environment_id,
-        $version_id
+        string $project_id,
+        string $environment_id,
+        string $version_id
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsEnvironmentsVersionsWithHttpInfo($project_id, $environment_id, $version_id);
         return $response;
@@ -1484,7 +1484,7 @@ final class EnvironmentApi
      * Delete the version
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsEnvironmentsVersionsWithHttpInfo(
         string $project_id,
@@ -1751,8 +1751,8 @@ final class EnvironmentApi
      * @throws InvalidArgumentException
      */
     public function getEnvironment(
-        $project_id,
-        $environment_id
+        string $project_id,
+        string $environment_id
     ): \Upsun\Model\Environment {
         list($response) = $this->getEnvironmentWithHttpInfo($project_id, $environment_id);
         return $response;
@@ -1762,7 +1762,7 @@ final class EnvironmentApi
      * Get an environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getEnvironmentWithHttpInfo(
         string $project_id,
@@ -2011,9 +2011,9 @@ final class EnvironmentApi
      * @throws InvalidArgumentException
      */
     public function getProjectsEnvironmentsVersions(
-        $project_id,
-        $environment_id,
-        $version_id
+        string $project_id,
+        string $environment_id,
+        string $version_id
     ): \Upsun\Model\Version {
         list($response) = $this->getProjectsEnvironmentsVersionsWithHttpInfo($project_id, $environment_id, $version_id);
         return $response;
@@ -2023,7 +2023,7 @@ final class EnvironmentApi
      * List the version
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsVersionsWithHttpInfo(
         string $project_id,
@@ -2290,9 +2290,9 @@ final class EnvironmentApi
      * @throws InvalidArgumentException
      */
     public function initializeEnvironment(
-        $project_id,
-        $environment_id,
-        $environment_initialize_input
+        string $project_id,
+        string $environment_id,
+        \Upsun\Model\EnvironmentInitializeInput $environment_initialize_input
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->initializeEnvironmentWithHttpInfo($project_id, $environment_id, $environment_initialize_input);
         return $response;
@@ -2302,7 +2302,7 @@ final class EnvironmentApi
      * Initialize a new environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function initializeEnvironmentWithHttpInfo(
         string $project_id,
@@ -2565,10 +2565,12 @@ final class EnvironmentApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return \Upsun\Model\Environment[]
      */
     public function listProjectsEnvironments(
-        $project_id
-    ): \Upsun\Model\Environment[] {
+        string $project_id
+    ): array {
         list($response) = $this->listProjectsEnvironmentsWithHttpInfo($project_id);
         return $response;
     }
@@ -2577,7 +2579,7 @@ final class EnvironmentApi
      * Get list of project environments
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsWithHttpInfo(
         string $project_id
@@ -2806,11 +2808,13 @@ final class EnvironmentApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return \Upsun\Model\Version[]
      */
     public function listProjectsEnvironmentsVersions(
-        $project_id,
-        $environment_id
-    ): \Upsun\Model\Version[] {
+        string $project_id,
+        string $environment_id
+    ): array {
         list($response) = $this->listProjectsEnvironmentsVersionsWithHttpInfo($project_id, $environment_id);
         return $response;
     }
@@ -2819,7 +2823,7 @@ final class EnvironmentApi
      * List versions associated with the environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsVersionsWithHttpInfo(
         string $project_id,
@@ -3068,9 +3072,9 @@ final class EnvironmentApi
      * @throws InvalidArgumentException
      */
     public function mergeEnvironment(
-        $project_id,
-        $environment_id,
-        $environment_merge_input
+        string $project_id,
+        string $environment_id,
+        \Upsun\Model\EnvironmentMergeInput $environment_merge_input
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->mergeEnvironmentWithHttpInfo($project_id, $environment_id, $environment_merge_input);
         return $response;
@@ -3080,7 +3084,7 @@ final class EnvironmentApi
      * Merge an environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function mergeEnvironmentWithHttpInfo(
         string $project_id,
@@ -3345,8 +3349,8 @@ final class EnvironmentApi
      * @throws InvalidArgumentException
      */
     public function pauseEnvironment(
-        $project_id,
-        $environment_id
+        string $project_id,
+        string $environment_id
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->pauseEnvironmentWithHttpInfo($project_id, $environment_id);
         return $response;
@@ -3356,7 +3360,7 @@ final class EnvironmentApi
      * Pause an environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function pauseEnvironmentWithHttpInfo(
         string $project_id,
@@ -3605,8 +3609,8 @@ final class EnvironmentApi
      * @throws InvalidArgumentException
      */
     public function redeployEnvironment(
-        $project_id,
-        $environment_id
+        string $project_id,
+        string $environment_id
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->redeployEnvironmentWithHttpInfo($project_id, $environment_id);
         return $response;
@@ -3616,7 +3620,7 @@ final class EnvironmentApi
      * Redeploy an environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function redeployEnvironmentWithHttpInfo(
         string $project_id,
@@ -3865,8 +3869,8 @@ final class EnvironmentApi
      * @throws InvalidArgumentException
      */
     public function resumeEnvironment(
-        $project_id,
-        $environment_id
+        string $project_id,
+        string $environment_id
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->resumeEnvironmentWithHttpInfo($project_id, $environment_id);
         return $response;
@@ -3876,7 +3880,7 @@ final class EnvironmentApi
      * Resume a paused environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function resumeEnvironmentWithHttpInfo(
         string $project_id,
@@ -4125,9 +4129,9 @@ final class EnvironmentApi
      * @throws InvalidArgumentException
      */
     public function synchronizeEnvironment(
-        $project_id,
-        $environment_id,
-        $environment_synchronize_input
+        string $project_id,
+        string $environment_id,
+        \Upsun\Model\EnvironmentSynchronizeInput $environment_synchronize_input
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->synchronizeEnvironmentWithHttpInfo($project_id, $environment_id, $environment_synchronize_input);
         return $response;
@@ -4137,7 +4141,7 @@ final class EnvironmentApi
      * Synchronize a child environment with its parent
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function synchronizeEnvironmentWithHttpInfo(
         string $project_id,
@@ -4402,9 +4406,9 @@ final class EnvironmentApi
      * @throws InvalidArgumentException
      */
     public function updateEnvironment(
-        $project_id,
-        $environment_id,
-        $environment_patch
+        string $project_id,
+        string $environment_id,
+        \Upsun\Model\EnvironmentPatch $environment_patch
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateEnvironmentWithHttpInfo($project_id, $environment_id, $environment_patch);
         return $response;
@@ -4414,7 +4418,7 @@ final class EnvironmentApi
      * Update an environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateEnvironmentWithHttpInfo(
         string $project_id,
@@ -4679,10 +4683,10 @@ final class EnvironmentApi
      * @throws InvalidArgumentException
      */
     public function updateProjectsEnvironmentsVersions(
-        $project_id,
-        $environment_id,
-        $version_id,
-        $version_patch
+        string $project_id,
+        string $environment_id,
+        string $version_id,
+        \Upsun\Model\VersionPatch $version_patch
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsEnvironmentsVersionsWithHttpInfo($project_id, $environment_id, $version_id, $version_patch);
         return $response;
@@ -4692,7 +4696,7 @@ final class EnvironmentApi
      * Update the version
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsEnvironmentsVersionsWithHttpInfo(
         string $project_id,

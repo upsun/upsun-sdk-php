@@ -249,7 +249,7 @@ final class Version implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets commit
      */
-    public function setCommit(string|null $commit = null)
+    public function setCommit($commit)
     {
         if (is_null($commit)) {
             array_push($this->openAPINullablesSetToNull, 'commit');
@@ -279,7 +279,7 @@ final class Version implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets locked
      */
-    public function setLocked(string|null $locked = null)
+    public function setLocked($locked)
     {
         if (is_null($locked)) {
             throw new \InvalidArgumentException('non-nullable locked cannot be null');
@@ -302,7 +302,7 @@ final class Version implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets routing
      */
-    public function setRouting(string|null $routing = null)
+    public function setRouting($routing)
     {
         if (is_null($routing)) {
             throw new \InvalidArgumentException('non-nullable routing cannot be null');

@@ -229,7 +229,7 @@ final class ResetEmailAddressRequest implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets email_address
      */
-    public function setEmailAddress(string|null $email_address = null)
+    public function setEmailAddress($email_address)
     {
         if (is_null($email_address)) {
             throw new \InvalidArgumentException('non-nullable email_address cannot be null');

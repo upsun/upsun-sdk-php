@@ -249,7 +249,7 @@ final class TheDisksResources implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets temporary
      */
-    public function setTemporary(string|null $temporary = null)
+    public function setTemporary($temporary)
     {
         if (is_null($temporary)) {
             array_push($this->openAPINullablesSetToNull, 'temporary');
@@ -279,7 +279,7 @@ final class TheDisksResources implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets instance
      */
-    public function setInstance(string|null $instance = null)
+    public function setInstance($instance)
     {
         if (is_null($instance)) {
             array_push($this->openAPINullablesSetToNull, 'instance');
@@ -309,7 +309,7 @@ final class TheDisksResources implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets storage
      */
-    public function setStorage(string|null $storage = null)
+    public function setStorage($storage)
     {
         if (is_null($storage)) {
             array_push($this->openAPINullablesSetToNull, 'storage');

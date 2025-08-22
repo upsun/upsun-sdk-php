@@ -233,7 +233,7 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Mo
     /**
      * Sets return_url
      */
-    public function setReturnUrl(string|null $return_url = null)
+    public function setReturnUrl($return_url)
     {
         if (is_null($return_url)) {
             throw new \InvalidArgumentException('non-nullable return_url cannot be null');
@@ -256,7 +256,7 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Mo
     /**
      * Sets url
      */
-    public function setUrl(string|null $url = null)
+    public function setUrl($url)
     {
         if (is_null($url)) {
             throw new \InvalidArgumentException('non-nullable url cannot be null');

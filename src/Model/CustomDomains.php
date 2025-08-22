@@ -239,7 +239,7 @@ final class CustomDomains implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets enabled
      */
-    public function setEnabled(string|null $enabled = null)
+    public function setEnabled($enabled)
     {
         if (is_null($enabled)) {
             throw new \InvalidArgumentException('non-nullable enabled cannot be null');
@@ -262,7 +262,7 @@ final class CustomDomains implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets environments_with_domains_limit
      */
-    public function setEnvironmentsWithDomainsLimit(string|null $environments_with_domains_limit = null)
+    public function setEnvironmentsWithDomainsLimit($environments_with_domains_limit)
     {
         if (is_null($environments_with_domains_limit)) {
             throw new \InvalidArgumentException('non-nullable environments_with_domains_limit cannot be null');

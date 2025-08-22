@@ -139,12 +139,18 @@ use function sprintf;
 {{/servers}}
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
+{{#returnType}}
+{{#returnContainer}}
+     *
+     * @return {{{returnType}}}
+{{/returnContainer}}
+{{/returnType}}     
      */
     public function {{operationId}}(
-        {{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},
+        {{^vendorExtensions.x-group-parameters}}{{#allParams}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},
         {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
-    ): {{#returnType}}{{#responses}}{{#dataType}}{{#-first}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}}{{/-first}}{{/dataType}}{{/responses}}{{/returnType}}{{^returnType}}void{{/returnType}} {
+    ){{#returnType}}: {{#returnContainer}}array{{/returnContainer}}{{^returnContainer}}{{{returnType}}}{{/returnContainer}}{{/returnType}}{{^returnType}}: void{{/returnType}} {
         {{#returnType}}list($response) = {{/returnType}}$this->{{operationId}}WithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}});{{#returnType}}
         return $response;{{/returnType}}
     }
@@ -173,7 +179,7 @@ use function sprintf;
 {{/servers}}
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function {{operationId}}WithHttpInfo(
         {{^vendorExtensions.x-group-parameters}}{{#allParams}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},
@@ -407,7 +413,7 @@ use function sprintf;
      *
 {{/-last}}
 {{/servers}}
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function {{operationId}}Request(
         {{^vendorExtensions.x-group-parameters}}{{#allParams}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},

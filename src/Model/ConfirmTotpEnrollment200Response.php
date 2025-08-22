@@ -226,7 +226,7 @@ final class ConfirmTotpEnrollment200Response implements ModelInterface, ArrayAcc
     /**
      * Sets recovery_codes
      */
-    public function setRecoveryCodes(string|null $recovery_codes = null)
+    public function setRecoveryCodes($recovery_codes)
     {
         if (is_null($recovery_codes)) {
             throw new \InvalidArgumentException('non-nullable recovery_codes cannot be null');

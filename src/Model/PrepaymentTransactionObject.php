@@ -268,7 +268,7 @@ final class PrepaymentTransactionObject implements ModelInterface, ArrayAccess, 
     /**
      * Sets order_id
      */
-    public function setOrderId(string|null $order_id = null)
+    public function setOrderId($order_id)
     {
         if (is_null($order_id)) {
             throw new \InvalidArgumentException('non-nullable order_id cannot be null');
@@ -291,7 +291,7 @@ final class PrepaymentTransactionObject implements ModelInterface, ArrayAccess, 
     /**
      * Sets message
      */
-    public function setMessage(string|null $message = null)
+    public function setMessage($message)
     {
         if (is_null($message)) {
             throw new \InvalidArgumentException('non-nullable message cannot be null');
@@ -314,7 +314,7 @@ final class PrepaymentTransactionObject implements ModelInterface, ArrayAccess, 
     /**
      * Sets status
      */
-    public function setStatus(string|null $status = null)
+    public function setStatus($status)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
@@ -337,7 +337,7 @@ final class PrepaymentTransactionObject implements ModelInterface, ArrayAccess, 
     /**
      * Sets amount
      */
-    public function setAmount(string|null $amount = null)
+    public function setAmount($amount)
     {
         if (is_null($amount)) {
             throw new \InvalidArgumentException('non-nullable amount cannot be null');
@@ -360,7 +360,7 @@ final class PrepaymentTransactionObject implements ModelInterface, ArrayAccess, 
     /**
      * Sets created
      */
-    public function setCreated(string|null $created = null)
+    public function setCreated($created)
     {
         if (is_null($created)) {
             throw new \InvalidArgumentException('non-nullable created cannot be null');
@@ -383,7 +383,7 @@ final class PrepaymentTransactionObject implements ModelInterface, ArrayAccess, 
     /**
      * Sets updated
      */
-    public function setUpdated(string|null $updated = null)
+    public function setUpdated($updated)
     {
         if (is_null($updated)) {
             array_push($this->openAPINullablesSetToNull, 'updated');
@@ -413,7 +413,7 @@ final class PrepaymentTransactionObject implements ModelInterface, ArrayAccess, 
     /**
      * Sets expire_date
      */
-    public function setExpireDate(string|null $expire_date = null)
+    public function setExpireDate($expire_date)
     {
         if (is_null($expire_date)) {
             array_push($this->openAPINullablesSetToNull, 'expire_date');

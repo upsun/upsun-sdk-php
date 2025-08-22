@@ -233,7 +233,7 @@ final class GetUsageAlerts200Response implements ModelInterface, ArrayAccess, \J
     /**
      * Sets available
      */
-    public function setAvailable(string|null $available = null)
+    public function setAvailable($available)
     {
         if (is_null($available)) {
             throw new \InvalidArgumentException('non-nullable available cannot be null');
@@ -256,7 +256,7 @@ final class GetUsageAlerts200Response implements ModelInterface, ArrayAccess, \J
     /**
      * Sets current
      */
-    public function setCurrent(string|null $current = null)
+    public function setCurrent($current)
     {
         if (is_null($current)) {
             throw new \InvalidArgumentException('non-nullable current cannot be null');

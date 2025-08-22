@@ -279,7 +279,7 @@ final class Resources implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets base_memory
      */
-    public function setBaseMemory(string|null $base_memory = null)
+    public function setBaseMemory($base_memory)
     {
         if (is_null($base_memory)) {
             array_push($this->openAPINullablesSetToNull, 'base_memory');
@@ -309,7 +309,7 @@ final class Resources implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets memory_ratio
      */
-    public function setMemoryRatio(string|null $memory_ratio = null)
+    public function setMemoryRatio($memory_ratio)
     {
         if (is_null($memory_ratio)) {
             array_push($this->openAPINullablesSetToNull, 'memory_ratio');
@@ -339,7 +339,7 @@ final class Resources implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets profile_size
      */
-    public function setProfileSize(string|null $profile_size = null)
+    public function setProfileSize($profile_size)
     {
         if (is_null($profile_size)) {
             array_push($this->openAPINullablesSetToNull, 'profile_size');
@@ -369,7 +369,7 @@ final class Resources implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets minimum
      */
-    public function setMinimum(string|null $minimum = null)
+    public function setMinimum($minimum)
     {
         if (is_null($minimum)) {
             array_push($this->openAPINullablesSetToNull, 'minimum');
@@ -399,7 +399,7 @@ final class Resources implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets default
      */
-    public function setDefault(string|null $default = null)
+    public function setDefault($default)
     {
         if (is_null($default)) {
             array_push($this->openAPINullablesSetToNull, 'default');
@@ -429,7 +429,7 @@ final class Resources implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets disk
      */
-    public function setDisk(string|null $disk = null)
+    public function setDisk($disk)
     {
         if (is_null($disk)) {
             array_push($this->openAPINullablesSetToNull, 'disk');

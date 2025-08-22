@@ -229,7 +229,7 @@ final class TheOAuth2ConsumerInformationOptional implements ModelInterface, Arra
     /**
      * Sets key
      */
-    public function setKey(string|null $key = null)
+    public function setKey($key)
     {
         if (is_null($key)) {
             throw new \InvalidArgumentException('non-nullable key cannot be null');

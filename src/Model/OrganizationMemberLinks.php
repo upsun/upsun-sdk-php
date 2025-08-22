@@ -240,7 +240,7 @@ final class OrganizationMemberLinks implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets self
      */
-    public function setSelf(string|null $self = null)
+    public function setSelf($self)
     {
         if (is_null($self)) {
             throw new \InvalidArgumentException('non-nullable self cannot be null');
@@ -263,7 +263,7 @@ final class OrganizationMemberLinks implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets update
      */
-    public function setUpdate(string|null $update = null)
+    public function setUpdate($update)
     {
         if (is_null($update)) {
             throw new \InvalidArgumentException('non-nullable update cannot be null');
@@ -286,7 +286,7 @@ final class OrganizationMemberLinks implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets delete
      */
-    public function setDelete(string|null $delete = null)
+    public function setDelete($delete)
     {
         if (is_null($delete)) {
             throw new \InvalidArgumentException('non-nullable delete cannot be null');

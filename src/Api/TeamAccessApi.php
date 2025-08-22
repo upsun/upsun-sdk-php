@@ -121,8 +121,8 @@ final class TeamAccessApi
      * @throws InvalidArgumentException
      */
     public function getProjectTeamAccess(
-        $project_id,
-        $team_id
+        string $project_id,
+        string $team_id
     ): \Upsun\Model\TeamProjectAccess {
         list($response) = $this->getProjectTeamAccessWithHttpInfo($project_id, $team_id);
         return $response;
@@ -132,7 +132,7 @@ final class TeamAccessApi
      * Get team access for a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectTeamAccessWithHttpInfo(
         string $project_id,
@@ -409,8 +409,8 @@ final class TeamAccessApi
      * @throws InvalidArgumentException
      */
     public function getTeamProjectAccess(
-        $team_id,
-        $project_id
+        string $team_id,
+        string $project_id
     ): \Upsun\Model\TeamProjectAccess {
         list($response) = $this->getTeamProjectAccessWithHttpInfo($team_id, $project_id);
         return $response;
@@ -420,7 +420,7 @@ final class TeamAccessApi
      * Get project access for a team
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getTeamProjectAccessWithHttpInfo(
         string $team_id,
@@ -697,8 +697,8 @@ final class TeamAccessApi
      * @throws InvalidArgumentException
      */
     public function grantProjectTeamAccess(
-        $project_id,
-        $grant_project_team_access_request_inner
+        string $project_id,
+        array $grant_project_team_access_request_inner
     ): void {
         $this->grantProjectTeamAccessWithHttpInfo($project_id, $grant_project_team_access_request_inner);
     }
@@ -707,7 +707,7 @@ final class TeamAccessApi
      * Grant team access to a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function grantProjectTeamAccessWithHttpInfo(
         string $project_id,
@@ -925,8 +925,8 @@ final class TeamAccessApi
      * @throws InvalidArgumentException
      */
     public function grantTeamProjectAccess(
-        $team_id,
-        $grant_team_project_access_request_inner
+        string $team_id,
+        array $grant_team_project_access_request_inner
     ): void {
         $this->grantTeamProjectAccessWithHttpInfo($team_id, $grant_team_project_access_request_inner);
     }
@@ -935,7 +935,7 @@ final class TeamAccessApi
      * Grant project access to a team
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function grantTeamProjectAccessWithHttpInfo(
         string $team_id,
@@ -1153,11 +1153,11 @@ final class TeamAccessApi
      * @throws InvalidArgumentException
      */
     public function listProjectTeamAccess(
-        $project_id,
-        $page_size = null,
-        $page_before = null,
-        $page_after = null,
-        $sort = null
+        string $project_id,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
     ): \Upsun\Model\ListTeamProjectAccess200Response {
         list($response) = $this->listProjectTeamAccessWithHttpInfo($project_id, $page_size, $page_before, $page_after, $sort);
         return $response;
@@ -1167,7 +1167,7 @@ final class TeamAccessApi
      * List team access for a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listProjectTeamAccessWithHttpInfo(
         string $project_id,
@@ -1493,11 +1493,11 @@ final class TeamAccessApi
      * @throws InvalidArgumentException
      */
     public function listTeamProjectAccess(
-        $team_id,
-        $page_size = null,
-        $page_before = null,
-        $page_after = null,
-        $sort = null
+        string $team_id,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
     ): \Upsun\Model\ListTeamProjectAccess200Response {
         list($response) = $this->listTeamProjectAccessWithHttpInfo($team_id, $page_size, $page_before, $page_after, $sort);
         return $response;
@@ -1507,7 +1507,7 @@ final class TeamAccessApi
      * List project access for a team
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listTeamProjectAccessWithHttpInfo(
         string $team_id,
@@ -1833,8 +1833,8 @@ final class TeamAccessApi
      * @throws InvalidArgumentException
      */
     public function removeProjectTeamAccess(
-        $project_id,
-        $team_id
+        string $project_id,
+        string $team_id
     ): void {
         $this->removeProjectTeamAccessWithHttpInfo($project_id, $team_id);
     }
@@ -1843,7 +1843,7 @@ final class TeamAccessApi
      * Remove team access for a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function removeProjectTeamAccessWithHttpInfo(
         string $project_id,
@@ -2071,8 +2071,8 @@ final class TeamAccessApi
      * @throws InvalidArgumentException
      */
     public function removeTeamProjectAccess(
-        $team_id,
-        $project_id
+        string $team_id,
+        string $project_id
     ): void {
         $this->removeTeamProjectAccessWithHttpInfo($team_id, $project_id);
     }
@@ -2081,7 +2081,7 @@ final class TeamAccessApi
      * Remove project access for a team
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function removeTeamProjectAccessWithHttpInfo(
         string $team_id,

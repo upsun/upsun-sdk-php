@@ -240,7 +240,7 @@ final class RegionEnvironmentalImpact implements ModelInterface, ArrayAccess, \J
     /**
      * Sets zone
      */
-    public function setZone(string|null $zone = null)
+    public function setZone($zone)
     {
         if (is_null($zone)) {
             throw new \InvalidArgumentException('non-nullable zone cannot be null');
@@ -263,7 +263,7 @@ final class RegionEnvironmentalImpact implements ModelInterface, ArrayAccess, \J
     /**
      * Sets carbon_intensity
      */
-    public function setCarbonIntensity(string|null $carbon_intensity = null)
+    public function setCarbonIntensity($carbon_intensity)
     {
         if (is_null($carbon_intensity)) {
             throw new \InvalidArgumentException('non-nullable carbon_intensity cannot be null');
@@ -286,7 +286,7 @@ final class RegionEnvironmentalImpact implements ModelInterface, ArrayAccess, \J
     /**
      * Sets green
      */
-    public function setGreen(string|null $green = null)
+    public function setGreen($green)
     {
         if (is_null($green)) {
             throw new \InvalidArgumentException('non-nullable green cannot be null');

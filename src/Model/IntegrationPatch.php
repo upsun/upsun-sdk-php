@@ -698,7 +698,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -721,7 +721,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets fetch_branches
      */
-    public function setFetchBranches(string|null $fetch_branches = null)
+    public function setFetchBranches($fetch_branches)
     {
         if (is_null($fetch_branches)) {
             throw new \InvalidArgumentException('non-nullable fetch_branches cannot be null');
@@ -744,7 +744,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets prune_branches
      */
-    public function setPruneBranches(string|null $prune_branches = null)
+    public function setPruneBranches($prune_branches)
     {
         if (is_null($prune_branches)) {
             throw new \InvalidArgumentException('non-nullable prune_branches cannot be null');
@@ -767,7 +767,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets environment_init_resources
      */
-    public function setEnvironmentInitResources(string|null $environment_init_resources = null)
+    public function setEnvironmentInitResources($environment_init_resources)
     {
         if (is_null($environment_init_resources)) {
             throw new \InvalidArgumentException('non-nullable environment_init_resources cannot be null');
@@ -800,7 +800,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets app_credentials
      */
-    public function setAppCredentials(string|null $app_credentials = null)
+    public function setAppCredentials($app_credentials)
     {
         if (is_null($app_credentials)) {
             array_push($this->openAPINullablesSetToNull, 'app_credentials');
@@ -830,7 +830,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets addon_credentials
      */
-    public function setAddonCredentials(string|null $addon_credentials = null)
+    public function setAddonCredentials($addon_credentials)
     {
         if (is_null($addon_credentials)) {
             array_push($this->openAPINullablesSetToNull, 'addon_credentials');
@@ -860,7 +860,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets repository
      */
-    public function setRepository(string|null $repository = null)
+    public function setRepository($repository)
     {
         if (is_null($repository)) {
             throw new \InvalidArgumentException('non-nullable repository cannot be null');
@@ -883,7 +883,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets build_pull_requests
      */
-    public function setBuildPullRequests(string|null $build_pull_requests = null)
+    public function setBuildPullRequests($build_pull_requests)
     {
         if (is_null($build_pull_requests)) {
             throw new \InvalidArgumentException('non-nullable build_pull_requests cannot be null');
@@ -906,7 +906,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets pull_requests_clone_parent_data
      */
-    public function setPullRequestsCloneParentData(string|null $pull_requests_clone_parent_data = null)
+    public function setPullRequestsCloneParentData($pull_requests_clone_parent_data)
     {
         if (is_null($pull_requests_clone_parent_data)) {
             throw new \InvalidArgumentException('non-nullable pull_requests_clone_parent_data cannot be null');
@@ -929,7 +929,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets resync_pull_requests
      */
-    public function setResyncPullRequests(string|null $resync_pull_requests = null)
+    public function setResyncPullRequests($resync_pull_requests)
     {
         if (is_null($resync_pull_requests)) {
             throw new \InvalidArgumentException('non-nullable resync_pull_requests cannot be null');
@@ -952,7 +952,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets url
      */
-    public function setUrl(string|null $url = null)
+    public function setUrl($url)
     {
         if (is_null($url)) {
             throw new \InvalidArgumentException('non-nullable url cannot be null');
@@ -975,7 +975,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets username
      */
-    public function setUsername(string|null $username = null)
+    public function setUsername($username)
     {
         if (is_null($username)) {
             throw new \InvalidArgumentException('non-nullable username cannot be null');
@@ -998,7 +998,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets token
      */
-    public function setToken(string|null $token = null)
+    public function setToken($token)
     {
         if (is_null($token)) {
             throw new \InvalidArgumentException('non-nullable token cannot be null');
@@ -1021,7 +1021,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets project
      */
-    public function setProject(string|null $project = null)
+    public function setProject($project)
     {
         if (is_null($project)) {
             throw new \InvalidArgumentException('non-nullable project cannot be null');
@@ -1044,7 +1044,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets events
      */
-    public function setEvents(string|null $events = null)
+    public function setEvents($events)
     {
         if (is_null($events)) {
             throw new \InvalidArgumentException('non-nullable events cannot be null');
@@ -1067,7 +1067,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets environments
      */
-    public function setEnvironments(string|null $environments = null)
+    public function setEnvironments($environments)
     {
         if (is_null($environments)) {
             throw new \InvalidArgumentException('non-nullable environments cannot be null');
@@ -1090,7 +1090,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets excluded_environments
      */
-    public function setExcludedEnvironments(string|null $excluded_environments = null)
+    public function setExcludedEnvironments($excluded_environments)
     {
         if (is_null($excluded_environments)) {
             throw new \InvalidArgumentException('non-nullable excluded_environments cannot be null');
@@ -1113,7 +1113,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets states
      */
-    public function setStates(string|null $states = null)
+    public function setStates($states)
     {
         if (is_null($states)) {
             throw new \InvalidArgumentException('non-nullable states cannot be null');
@@ -1136,7 +1136,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets result
      */
-    public function setResult(string|null $result = null)
+    public function setResult($result)
     {
         if (is_null($result)) {
             throw new \InvalidArgumentException('non-nullable result cannot be null');
@@ -1169,7 +1169,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets service_id
      */
-    public function setServiceId(string|null $service_id = null)
+    public function setServiceId($service_id)
     {
         if (is_null($service_id)) {
             throw new \InvalidArgumentException('non-nullable service_id cannot be null');
@@ -1192,7 +1192,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets base_url
      */
-    public function setBaseUrl(string|null $base_url = null)
+    public function setBaseUrl($base_url)
     {
         if (is_null($base_url)) {
             throw new \InvalidArgumentException('non-nullable base_url cannot be null');
@@ -1215,7 +1215,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets build_draft_pull_requests
      */
-    public function setBuildDraftPullRequests(string|null $build_draft_pull_requests = null)
+    public function setBuildDraftPullRequests($build_draft_pull_requests)
     {
         if (is_null($build_draft_pull_requests)) {
             throw new \InvalidArgumentException('non-nullable build_draft_pull_requests cannot be null');
@@ -1238,7 +1238,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets build_pull_requests_post_merge
      */
-    public function setBuildPullRequestsPostMerge(string|null $build_pull_requests_post_merge = null)
+    public function setBuildPullRequestsPostMerge($build_pull_requests_post_merge)
     {
         if (is_null($build_pull_requests_post_merge)) {
             throw new \InvalidArgumentException('non-nullable build_pull_requests_post_merge cannot be null');
@@ -1261,7 +1261,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets build_merge_requests
      */
-    public function setBuildMergeRequests(string|null $build_merge_requests = null)
+    public function setBuildMergeRequests($build_merge_requests)
     {
         if (is_null($build_merge_requests)) {
             throw new \InvalidArgumentException('non-nullable build_merge_requests cannot be null');
@@ -1284,7 +1284,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets build_wip_merge_requests
      */
-    public function setBuildWipMergeRequests(string|null $build_wip_merge_requests = null)
+    public function setBuildWipMergeRequests($build_wip_merge_requests)
     {
         if (is_null($build_wip_merge_requests)) {
             throw new \InvalidArgumentException('non-nullable build_wip_merge_requests cannot be null');
@@ -1307,7 +1307,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets merge_requests_clone_parent_data
      */
-    public function setMergeRequestsCloneParentData(string|null $merge_requests_clone_parent_data = null)
+    public function setMergeRequestsCloneParentData($merge_requests_clone_parent_data)
     {
         if (is_null($merge_requests_clone_parent_data)) {
             throw new \InvalidArgumentException('non-nullable merge_requests_clone_parent_data cannot be null');
@@ -1330,7 +1330,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets from_address
      */
-    public function setFromAddress(string|null $from_address = null)
+    public function setFromAddress($from_address)
     {
         if (is_null($from_address)) {
             array_push($this->openAPINullablesSetToNull, 'from_address');
@@ -1360,7 +1360,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets recipients
      */
-    public function setRecipients(string|null $recipients = null)
+    public function setRecipients($recipients)
     {
         if (is_null($recipients)) {
             throw new \InvalidArgumentException('non-nullable recipients cannot be null');
@@ -1383,7 +1383,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets routing_key
      */
-    public function setRoutingKey(string|null $routing_key = null)
+    public function setRoutingKey($routing_key)
     {
         if (is_null($routing_key)) {
             throw new \InvalidArgumentException('non-nullable routing_key cannot be null');
@@ -1406,7 +1406,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets channel
      */
-    public function setChannel(string|null $channel = null)
+    public function setChannel($channel)
     {
         if (is_null($channel)) {
             throw new \InvalidArgumentException('non-nullable channel cannot be null');
@@ -1429,7 +1429,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets shared_key
      */
-    public function setSharedKey(string|null $shared_key = null)
+    public function setSharedKey($shared_key)
     {
         if (is_null($shared_key)) {
             array_push($this->openAPINullablesSetToNull, 'shared_key');
@@ -1459,7 +1459,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets extra
      */
-    public function setExtra(string|null $extra = null)
+    public function setExtra($extra)
     {
         if (is_null($extra)) {
             throw new \InvalidArgumentException('non-nullable extra cannot be null');
@@ -1482,7 +1482,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets headers
      */
-    public function setHeaders(string|null $headers = null)
+    public function setHeaders($headers)
     {
         if (is_null($headers)) {
             throw new \InvalidArgumentException('non-nullable headers cannot be null');
@@ -1505,7 +1505,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets tls_verify
      */
-    public function setTlsVerify(string|null $tls_verify = null)
+    public function setTlsVerify($tls_verify)
     {
         if (is_null($tls_verify)) {
             throw new \InvalidArgumentException('non-nullable tls_verify cannot be null');
@@ -1528,7 +1528,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets license_key
      */
-    public function setLicenseKey(string|null $license_key = null)
+    public function setLicenseKey($license_key)
     {
         if (is_null($license_key)) {
             throw new \InvalidArgumentException('non-nullable license_key cannot be null');
@@ -1551,7 +1551,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets script
      */
-    public function setScript(string|null $script = null)
+    public function setScript($script)
     {
         if (is_null($script)) {
             throw new \InvalidArgumentException('non-nullable script cannot be null');
@@ -1574,7 +1574,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets index
      */
-    public function setIndex(string|null $index = null)
+    public function setIndex($index)
     {
         if (is_null($index)) {
             throw new \InvalidArgumentException('non-nullable index cannot be null');
@@ -1597,7 +1597,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets sourcetype
      */
-    public function setSourcetype(string|null $sourcetype = null)
+    public function setSourcetype($sourcetype)
     {
         if (is_null($sourcetype)) {
             throw new \InvalidArgumentException('non-nullable sourcetype cannot be null');
@@ -1620,7 +1620,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets category
      */
-    public function setCategory(string|null $category = null)
+    public function setCategory($category)
     {
         if (is_null($category)) {
             throw new \InvalidArgumentException('non-nullable category cannot be null');
@@ -1643,7 +1643,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets host
      */
-    public function setHost(string|null $host = null)
+    public function setHost($host)
     {
         if (is_null($host)) {
             throw new \InvalidArgumentException('non-nullable host cannot be null');
@@ -1666,7 +1666,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets port
      */
-    public function setPort(string|null $port = null)
+    public function setPort($port)
     {
         if (is_null($port)) {
             throw new \InvalidArgumentException('non-nullable port cannot be null');
@@ -1689,7 +1689,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets protocol
      */
-    public function setProtocol(string|null $protocol = null)
+    public function setProtocol($protocol)
     {
         if (is_null($protocol)) {
             throw new \InvalidArgumentException('non-nullable protocol cannot be null');
@@ -1722,7 +1722,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets facility
      */
-    public function setFacility(string|null $facility = null)
+    public function setFacility($facility)
     {
         if (is_null($facility)) {
             throw new \InvalidArgumentException('non-nullable facility cannot be null');
@@ -1745,7 +1745,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets message_format
      */
-    public function setMessageFormat(string|null $message_format = null)
+    public function setMessageFormat($message_format)
     {
         if (is_null($message_format)) {
             throw new \InvalidArgumentException('non-nullable message_format cannot be null');
@@ -1778,7 +1778,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets auth_token
      */
-    public function setAuthToken(string|null $auth_token = null)
+    public function setAuthToken($auth_token)
     {
         if (is_null($auth_token)) {
             throw new \InvalidArgumentException('non-nullable auth_token cannot be null');
@@ -1801,7 +1801,7 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets auth_mode
      */
-    public function setAuthMode(string|null $auth_mode = null)
+    public function setAuthMode($auth_mode)
     {
         if (is_null($auth_mode)) {
             throw new \InvalidArgumentException('non-nullable auth_mode cannot be null');

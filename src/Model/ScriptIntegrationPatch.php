@@ -298,7 +298,7 @@ final class ScriptIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -321,7 +321,7 @@ final class ScriptIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets events
      */
-    public function setEvents(string|null $events = null)
+    public function setEvents($events)
     {
         if (is_null($events)) {
             throw new \InvalidArgumentException('non-nullable events cannot be null');
@@ -344,7 +344,7 @@ final class ScriptIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets environments
      */
-    public function setEnvironments(string|null $environments = null)
+    public function setEnvironments($environments)
     {
         if (is_null($environments)) {
             throw new \InvalidArgumentException('non-nullable environments cannot be null');
@@ -367,7 +367,7 @@ final class ScriptIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets excluded_environments
      */
-    public function setExcludedEnvironments(string|null $excluded_environments = null)
+    public function setExcludedEnvironments($excluded_environments)
     {
         if (is_null($excluded_environments)) {
             throw new \InvalidArgumentException('non-nullable excluded_environments cannot be null');
@@ -390,7 +390,7 @@ final class ScriptIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets states
      */
-    public function setStates(string|null $states = null)
+    public function setStates($states)
     {
         if (is_null($states)) {
             throw new \InvalidArgumentException('non-nullable states cannot be null');
@@ -413,7 +413,7 @@ final class ScriptIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets result
      */
-    public function setResult(string|null $result = null)
+    public function setResult($result)
     {
         if (is_null($result)) {
             throw new \InvalidArgumentException('non-nullable result cannot be null');
@@ -446,7 +446,7 @@ final class ScriptIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets script
      */
-    public function setScript(string|null $script = null)
+    public function setScript($script)
     {
         if (is_null($script)) {
             throw new \InvalidArgumentException('non-nullable script cannot be null');

@@ -261,7 +261,7 @@ final class EstimationObject implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets plan
      */
-    public function setPlan(string|null $plan = null)
+    public function setPlan($plan)
     {
         if (is_null($plan)) {
             throw new \InvalidArgumentException('non-nullable plan cannot be null');
@@ -284,7 +284,7 @@ final class EstimationObject implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets user_licenses
      */
-    public function setUserLicenses(string|null $user_licenses = null)
+    public function setUserLicenses($user_licenses)
     {
         if (is_null($user_licenses)) {
             throw new \InvalidArgumentException('non-nullable user_licenses cannot be null');
@@ -307,7 +307,7 @@ final class EstimationObject implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets environments
      */
-    public function setEnvironments(string|null $environments = null)
+    public function setEnvironments($environments)
     {
         if (is_null($environments)) {
             throw new \InvalidArgumentException('non-nullable environments cannot be null');
@@ -330,7 +330,7 @@ final class EstimationObject implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets storage
      */
-    public function setStorage(string|null $storage = null)
+    public function setStorage($storage)
     {
         if (is_null($storage)) {
             throw new \InvalidArgumentException('non-nullable storage cannot be null');
@@ -353,7 +353,7 @@ final class EstimationObject implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets total
      */
-    public function setTotal(string|null $total = null)
+    public function setTotal($total)
     {
         if (is_null($total)) {
             throw new \InvalidArgumentException('non-nullable total cannot be null');
@@ -376,7 +376,7 @@ final class EstimationObject implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets options
      */
-    public function setOptions(string|null $options = null)
+    public function setOptions($options)
     {
         if (is_null($options)) {
             throw new \InvalidArgumentException('non-nullable options cannot be null');

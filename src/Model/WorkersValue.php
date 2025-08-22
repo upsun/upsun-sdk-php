@@ -508,7 +508,7 @@ final class WorkersValue implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets resources
      */
-    public function setResources(string|null $resources = null)
+    public function setResources($resources)
     {
         if (is_null($resources)) {
             array_push($this->openAPINullablesSetToNull, 'resources');
@@ -538,7 +538,7 @@ final class WorkersValue implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets size
      */
-    public function setSize(string|null $size = null)
+    public function setSize($size)
     {
         if (is_null($size)) {
             throw new \InvalidArgumentException('non-nullable size cannot be null');
@@ -571,7 +571,7 @@ final class WorkersValue implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets disk
      */
-    public function setDisk(string|null $disk = null)
+    public function setDisk($disk)
     {
         if (is_null($disk)) {
             array_push($this->openAPINullablesSetToNull, 'disk');
@@ -601,7 +601,7 @@ final class WorkersValue implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets access
      */
-    public function setAccess(string|null $access = null)
+    public function setAccess($access)
     {
         if (is_null($access)) {
             throw new \InvalidArgumentException('non-nullable access cannot be null');
@@ -633,7 +633,7 @@ final class WorkersValue implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets relationships
      */
-    public function setRelationships(string|null $relationships = null)
+    public function setRelationships($relationships)
     {
         if (is_null($relationships)) {
             throw new \InvalidArgumentException('non-nullable relationships cannot be null');
@@ -656,7 +656,7 @@ final class WorkersValue implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets additional_hosts
      */
-    public function setAdditionalHosts(string|null $additional_hosts = null)
+    public function setAdditionalHosts($additional_hosts)
     {
         if (is_null($additional_hosts)) {
             throw new \InvalidArgumentException('non-nullable additional_hosts cannot be null');
@@ -679,7 +679,7 @@ final class WorkersValue implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets mounts
      */
-    public function setMounts(string|null $mounts = null)
+    public function setMounts($mounts)
     {
         if (is_null($mounts)) {
             throw new \InvalidArgumentException('non-nullable mounts cannot be null');
@@ -702,7 +702,7 @@ final class WorkersValue implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets timezone
      */
-    public function setTimezone(string|null $timezone = null)
+    public function setTimezone($timezone)
     {
         if (is_null($timezone)) {
             array_push($this->openAPINullablesSetToNull, 'timezone');
@@ -732,7 +732,7 @@ final class WorkersValue implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets variables
      */
-    public function setVariables(string|null $variables = null)
+    public function setVariables($variables)
     {
         if (is_null($variables)) {
             throw new \InvalidArgumentException('non-nullable variables cannot be null');
@@ -755,7 +755,7 @@ final class WorkersValue implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets firewall
      */
-    public function setFirewall(string|null $firewall = null)
+    public function setFirewall($firewall)
     {
         if (is_null($firewall)) {
             array_push($this->openAPINullablesSetToNull, 'firewall');
@@ -785,7 +785,7 @@ final class WorkersValue implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets container_profile
      */
-    public function setContainerProfile(string|null $container_profile = null)
+    public function setContainerProfile($container_profile)
     {
         if (is_null($container_profile)) {
             array_push($this->openAPINullablesSetToNull, 'container_profile');
@@ -815,7 +815,7 @@ final class WorkersValue implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets operations
      */
-    public function setOperations(string|null $operations = null)
+    public function setOperations($operations)
     {
         if (is_null($operations)) {
             throw new \InvalidArgumentException('non-nullable operations cannot be null');
@@ -838,7 +838,7 @@ final class WorkersValue implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -861,7 +861,7 @@ final class WorkersValue implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -884,7 +884,7 @@ final class WorkersValue implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets preflight
      */
-    public function setPreflight(string|null $preflight = null)
+    public function setPreflight($preflight)
     {
         if (is_null($preflight)) {
             throw new \InvalidArgumentException('non-nullable preflight cannot be null');
@@ -907,7 +907,7 @@ final class WorkersValue implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets tree_id
      */
-    public function setTreeId(string|null $tree_id = null)
+    public function setTreeId($tree_id)
     {
         if (is_null($tree_id)) {
             throw new \InvalidArgumentException('non-nullable tree_id cannot be null');
@@ -930,7 +930,7 @@ final class WorkersValue implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets app_dir
      */
-    public function setAppDir(string|null $app_dir = null)
+    public function setAppDir($app_dir)
     {
         if (is_null($app_dir)) {
             throw new \InvalidArgumentException('non-nullable app_dir cannot be null');
@@ -953,7 +953,7 @@ final class WorkersValue implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets endpoints
      */
-    public function setEndpoints(string|null $endpoints = null)
+    public function setEndpoints($endpoints)
     {
         if (is_null($endpoints)) {
             array_push($this->openAPINullablesSetToNull, 'endpoints');
@@ -983,7 +983,7 @@ final class WorkersValue implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets runtime
      */
-    public function setRuntime(string|null $runtime = null)
+    public function setRuntime($runtime)
     {
         if (is_null($runtime)) {
             throw new \InvalidArgumentException('non-nullable runtime cannot be null');
@@ -1006,7 +1006,7 @@ final class WorkersValue implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets worker
      */
-    public function setWorker(string|null $worker = null)
+    public function setWorker($worker)
     {
         if (is_null($worker)) {
             throw new \InvalidArgumentException('non-nullable worker cannot be null');
@@ -1029,7 +1029,7 @@ final class WorkersValue implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets app
      */
-    public function setApp(string|null $app = null)
+    public function setApp($app)
     {
         if (is_null($app)) {
             throw new \InvalidArgumentException('non-nullable app cannot be null');
@@ -1052,7 +1052,7 @@ final class WorkersValue implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets stack
      */
-    public function setStack(string|null $stack = null)
+    public function setStack($stack)
     {
         if (is_null($stack)) {
             array_push($this->openAPINullablesSetToNull, 'stack');
@@ -1082,7 +1082,7 @@ final class WorkersValue implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets instance_count
      */
-    public function setInstanceCount(string|null $instance_count = null)
+    public function setInstanceCount($instance_count)
     {
         if (is_null($instance_count)) {
             array_push($this->openAPINullablesSetToNull, 'instance_count');
@@ -1112,7 +1112,7 @@ final class WorkersValue implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets slug_id
      */
-    public function setSlugId(string|null $slug_id = null)
+    public function setSlugId($slug_id)
     {
         if (is_null($slug_id)) {
             throw new \InvalidArgumentException('non-nullable slug_id cannot be null');

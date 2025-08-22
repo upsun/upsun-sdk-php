@@ -121,9 +121,9 @@ final class PhoneNumberApi
      * @throws InvalidArgumentException
      */
     public function confirmPhoneNumber(
-        $sid,
-        $user_id,
-        $confirm_phone_number_request = null
+        string $sid,
+        string $user_id,
+        \Upsun\Model\ConfirmPhoneNumberRequest $confirm_phone_number_request = null
     ): void {
         $this->confirmPhoneNumberWithHttpInfo($sid, $user_id, $confirm_phone_number_request);
     }
@@ -132,7 +132,7 @@ final class PhoneNumberApi
      * Confirm phone number
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function confirmPhoneNumberWithHttpInfo(
         string $sid,
@@ -370,8 +370,8 @@ final class PhoneNumberApi
      * @throws InvalidArgumentException
      */
     public function verifyPhoneNumber(
-        $user_id,
-        $verify_phone_number_request = null
+        string $user_id,
+        \Upsun\Model\VerifyPhoneNumberRequest $verify_phone_number_request = null
     ): \Upsun\Model\VerifyPhoneNumber200Response {
         list($response) = $this->verifyPhoneNumberWithHttpInfo($user_id, $verify_phone_number_request);
         return $response;
@@ -381,7 +381,7 @@ final class PhoneNumberApi
      * Verify phone number
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function verifyPhoneNumberWithHttpInfo(
         string $user_id,

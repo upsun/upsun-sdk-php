@@ -121,8 +121,8 @@ final class UserAccessApi
      * @throws InvalidArgumentException
      */
     public function getProjectUserAccess(
-        $project_id,
-        $user_id
+        string $project_id,
+        string $user_id
     ): \Upsun\Model\UserProjectAccess {
         list($response) = $this->getProjectUserAccessWithHttpInfo($project_id, $user_id);
         return $response;
@@ -132,7 +132,7 @@ final class UserAccessApi
      * Get user access for a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectUserAccessWithHttpInfo(
         string $project_id,
@@ -409,8 +409,8 @@ final class UserAccessApi
      * @throws InvalidArgumentException
      */
     public function getUserProjectAccess(
-        $user_id,
-        $project_id
+        string $user_id,
+        string $project_id
     ): \Upsun\Model\UserProjectAccess {
         list($response) = $this->getUserProjectAccessWithHttpInfo($user_id, $project_id);
         return $response;
@@ -420,7 +420,7 @@ final class UserAccessApi
      * Get project access for a user
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getUserProjectAccessWithHttpInfo(
         string $user_id,
@@ -697,8 +697,8 @@ final class UserAccessApi
      * @throws InvalidArgumentException
      */
     public function grantProjectUserAccess(
-        $project_id,
-        $grant_project_user_access_request_inner
+        string $project_id,
+        array $grant_project_user_access_request_inner
     ): void {
         $this->grantProjectUserAccessWithHttpInfo($project_id, $grant_project_user_access_request_inner);
     }
@@ -707,7 +707,7 @@ final class UserAccessApi
      * Grant user access to a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function grantProjectUserAccessWithHttpInfo(
         string $project_id,
@@ -925,8 +925,8 @@ final class UserAccessApi
      * @throws InvalidArgumentException
      */
     public function grantUserProjectAccess(
-        $user_id,
-        $grant_user_project_access_request_inner
+        string $user_id,
+        array $grant_user_project_access_request_inner
     ): void {
         $this->grantUserProjectAccessWithHttpInfo($user_id, $grant_user_project_access_request_inner);
     }
@@ -935,7 +935,7 @@ final class UserAccessApi
      * Grant project access to a user
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function grantUserProjectAccessWithHttpInfo(
         string $user_id,
@@ -1153,11 +1153,11 @@ final class UserAccessApi
      * @throws InvalidArgumentException
      */
     public function listProjectUserAccess(
-        $project_id,
-        $page_size = null,
-        $page_before = null,
-        $page_after = null,
-        $sort = null
+        string $project_id,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
     ): \Upsun\Model\ListProjectUserAccess200Response {
         list($response) = $this->listProjectUserAccessWithHttpInfo($project_id, $page_size, $page_before, $page_after, $sort);
         return $response;
@@ -1167,7 +1167,7 @@ final class UserAccessApi
      * List user access for a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listProjectUserAccessWithHttpInfo(
         string $project_id,
@@ -1493,12 +1493,12 @@ final class UserAccessApi
      * @throws InvalidArgumentException
      */
     public function listUserProjectAccess(
-        $user_id,
-        $filter_organization_id = null,
-        $page_size = null,
-        $page_before = null,
-        $page_after = null,
-        $sort = null
+        string $user_id,
+        string $filter_organization_id = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
     ): \Upsun\Model\ListProjectUserAccess200Response {
         list($response) = $this->listUserProjectAccessWithHttpInfo($user_id, $filter_organization_id, $page_size, $page_before, $page_after, $sort);
         return $response;
@@ -1508,7 +1508,7 @@ final class UserAccessApi
      * List project access for a user
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listUserProjectAccessWithHttpInfo(
         string $user_id,
@@ -1849,8 +1849,8 @@ final class UserAccessApi
      * @throws InvalidArgumentException
      */
     public function removeProjectUserAccess(
-        $project_id,
-        $user_id
+        string $project_id,
+        string $user_id
     ): void {
         $this->removeProjectUserAccessWithHttpInfo($project_id, $user_id);
     }
@@ -1859,7 +1859,7 @@ final class UserAccessApi
      * Remove user access for a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function removeProjectUserAccessWithHttpInfo(
         string $project_id,
@@ -2087,8 +2087,8 @@ final class UserAccessApi
      * @throws InvalidArgumentException
      */
     public function removeUserProjectAccess(
-        $user_id,
-        $project_id
+        string $user_id,
+        string $project_id
     ): void {
         $this->removeUserProjectAccessWithHttpInfo($user_id, $project_id);
     }
@@ -2097,7 +2097,7 @@ final class UserAccessApi
      * Remove project access for a user
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function removeUserProjectAccessWithHttpInfo(
         string $user_id,
@@ -2325,9 +2325,9 @@ final class UserAccessApi
      * @throws InvalidArgumentException
      */
     public function updateProjectUserAccess(
-        $project_id,
-        $user_id,
-        $update_project_user_access_request = null
+        string $project_id,
+        string $user_id,
+        \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null
     ): void {
         $this->updateProjectUserAccessWithHttpInfo($project_id, $user_id, $update_project_user_access_request);
     }
@@ -2336,7 +2336,7 @@ final class UserAccessApi
      * Update user access for a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateProjectUserAccessWithHttpInfo(
         string $project_id,
@@ -2574,9 +2574,9 @@ final class UserAccessApi
      * @throws InvalidArgumentException
      */
     public function updateUserProjectAccess(
-        $user_id,
-        $project_id,
-        $update_project_user_access_request = null
+        string $user_id,
+        string $project_id,
+        \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null
     ): void {
         $this->updateUserProjectAccessWithHttpInfo($user_id, $project_id, $update_project_user_access_request);
     }
@@ -2585,7 +2585,7 @@ final class UserAccessApi
      * Update project access for a user
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateUserProjectAccessWithHttpInfo(
         string $user_id,

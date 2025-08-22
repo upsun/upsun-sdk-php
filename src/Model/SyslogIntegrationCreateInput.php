@@ -360,7 +360,7 @@ final class SyslogIntegrationCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -383,7 +383,7 @@ final class SyslogIntegrationCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets extra
      */
-    public function setExtra(string|null $extra = null)
+    public function setExtra($extra)
     {
         if (is_null($extra)) {
             throw new \InvalidArgumentException('non-nullable extra cannot be null');
@@ -406,7 +406,7 @@ final class SyslogIntegrationCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets host
      */
-    public function setHost(string|null $host = null)
+    public function setHost($host)
     {
         if (is_null($host)) {
             throw new \InvalidArgumentException('non-nullable host cannot be null');
@@ -429,7 +429,7 @@ final class SyslogIntegrationCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets port
      */
-    public function setPort(string|null $port = null)
+    public function setPort($port)
     {
         if (is_null($port)) {
             throw new \InvalidArgumentException('non-nullable port cannot be null');
@@ -452,7 +452,7 @@ final class SyslogIntegrationCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets protocol
      */
-    public function setProtocol(string|null $protocol = null)
+    public function setProtocol($protocol)
     {
         if (is_null($protocol)) {
             throw new \InvalidArgumentException('non-nullable protocol cannot be null');
@@ -485,7 +485,7 @@ final class SyslogIntegrationCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets facility
      */
-    public function setFacility(string|null $facility = null)
+    public function setFacility($facility)
     {
         if (is_null($facility)) {
             throw new \InvalidArgumentException('non-nullable facility cannot be null');
@@ -508,7 +508,7 @@ final class SyslogIntegrationCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets message_format
      */
-    public function setMessageFormat(string|null $message_format = null)
+    public function setMessageFormat($message_format)
     {
         if (is_null($message_format)) {
             throw new \InvalidArgumentException('non-nullable message_format cannot be null');
@@ -541,7 +541,7 @@ final class SyslogIntegrationCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets auth_token
      */
-    public function setAuthToken(string|null $auth_token = null)
+    public function setAuthToken($auth_token)
     {
         if (is_null($auth_token)) {
             throw new \InvalidArgumentException('non-nullable auth_token cannot be null');
@@ -564,7 +564,7 @@ final class SyslogIntegrationCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets auth_mode
      */
-    public function setAuthMode(string|null $auth_mode = null)
+    public function setAuthMode($auth_mode)
     {
         if (is_null($auth_mode)) {
             throw new \InvalidArgumentException('non-nullable auth_mode cannot be null');
@@ -597,7 +597,7 @@ final class SyslogIntegrationCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets tls_verify
      */
-    public function setTlsVerify(string|null $tls_verify = null)
+    public function setTlsVerify($tls_verify)
     {
         if (is_null($tls_verify)) {
             throw new \InvalidArgumentException('non-nullable tls_verify cannot be null');

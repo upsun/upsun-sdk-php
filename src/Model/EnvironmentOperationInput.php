@@ -239,7 +239,7 @@ final class EnvironmentOperationInput implements ModelInterface, ArrayAccess, \J
     /**
      * Sets service
      */
-    public function setService(string|null $service = null)
+    public function setService($service)
     {
         if (is_null($service)) {
             throw new \InvalidArgumentException('non-nullable service cannot be null');
@@ -262,7 +262,7 @@ final class EnvironmentOperationInput implements ModelInterface, ArrayAccess, \J
     /**
      * Sets operation
      */
-    public function setOperation(string|null $operation = null)
+    public function setOperation($operation)
     {
         if (is_null($operation)) {
             throw new \InvalidArgumentException('non-nullable operation cannot be null');

@@ -254,7 +254,7 @@ final class OrganizationProjectLinks implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets self
      */
-    public function setSelf(string|null $self = null)
+    public function setSelf($self)
     {
         if (is_null($self)) {
             throw new \InvalidArgumentException('non-nullable self cannot be null');
@@ -277,7 +277,7 @@ final class OrganizationProjectLinks implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets update
      */
-    public function setUpdate(string|null $update = null)
+    public function setUpdate($update)
     {
         if (is_null($update)) {
             throw new \InvalidArgumentException('non-nullable update cannot be null');
@@ -300,7 +300,7 @@ final class OrganizationProjectLinks implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets delete
      */
-    public function setDelete(string|null $delete = null)
+    public function setDelete($delete)
     {
         if (is_null($delete)) {
             throw new \InvalidArgumentException('non-nullable delete cannot be null');
@@ -323,7 +323,7 @@ final class OrganizationProjectLinks implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets subscription
      */
-    public function setSubscription(string|null $subscription = null)
+    public function setSubscription($subscription)
     {
         if (is_null($subscription)) {
             throw new \InvalidArgumentException('non-nullable subscription cannot be null');
@@ -346,7 +346,7 @@ final class OrganizationProjectLinks implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets api
      */
-    public function setApi(string|null $api = null)
+    public function setApi($api)
     {
         if (is_null($api)) {
             throw new \InvalidArgumentException('non-nullable api cannot be null');

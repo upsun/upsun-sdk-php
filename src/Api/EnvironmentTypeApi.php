@@ -121,8 +121,8 @@ final class EnvironmentTypeApi
      * @throws InvalidArgumentException
      */
     public function getEnvironmentType(
-        $project_id,
-        $environment_type_id
+        string $project_id,
+        string $environment_type_id
     ): \Upsun\Model\EnvironmentType {
         list($response) = $this->getEnvironmentTypeWithHttpInfo($project_id, $environment_type_id);
         return $response;
@@ -132,7 +132,7 @@ final class EnvironmentTypeApi
      * Get environment type links
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getEnvironmentTypeWithHttpInfo(
         string $project_id,
@@ -379,10 +379,12 @@ final class EnvironmentTypeApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return \Upsun\Model\EnvironmentType[]
      */
     public function listProjectsEnvironmentTypes(
-        $project_id
-    ): \Upsun\Model\EnvironmentType[] {
+        string $project_id
+    ): array {
         list($response) = $this->listProjectsEnvironmentTypesWithHttpInfo($project_id);
         return $response;
     }
@@ -391,7 +393,7 @@ final class EnvironmentTypeApi
      * Get environment types
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentTypesWithHttpInfo(
         string $project_id

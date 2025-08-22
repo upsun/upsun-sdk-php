@@ -358,7 +358,7 @@ final class Subscription1 implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets license_uri
      */
-    public function setLicenseUri(string|null $license_uri = null)
+    public function setLicenseUri($license_uri)
     {
         if (is_null($license_uri)) {
             throw new \InvalidArgumentException('non-nullable license_uri cannot be null');
@@ -381,7 +381,7 @@ final class Subscription1 implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets plan
      */
-    public function setPlan(string|null $plan = null)
+    public function setPlan($plan)
     {
         if (is_null($plan)) {
             throw new \InvalidArgumentException('non-nullable plan cannot be null');
@@ -414,7 +414,7 @@ final class Subscription1 implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets environments
      */
-    public function setEnvironments(string|null $environments = null)
+    public function setEnvironments($environments)
     {
         if (is_null($environments)) {
             throw new \InvalidArgumentException('non-nullable environments cannot be null');
@@ -437,7 +437,7 @@ final class Subscription1 implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets storage
      */
-    public function setStorage(string|null $storage = null)
+    public function setStorage($storage)
     {
         if (is_null($storage)) {
             throw new \InvalidArgumentException('non-nullable storage cannot be null');
@@ -460,7 +460,7 @@ final class Subscription1 implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets included_users
      */
-    public function setIncludedUsers(string|null $included_users = null)
+    public function setIncludedUsers($included_users)
     {
         if (is_null($included_users)) {
             throw new \InvalidArgumentException('non-nullable included_users cannot be null');
@@ -483,7 +483,7 @@ final class Subscription1 implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets subscription_management_uri
      */
-    public function setSubscriptionManagementUri(string|null $subscription_management_uri = null)
+    public function setSubscriptionManagementUri($subscription_management_uri)
     {
         if (is_null($subscription_management_uri)) {
             throw new \InvalidArgumentException('non-nullable subscription_management_uri cannot be null');
@@ -506,7 +506,7 @@ final class Subscription1 implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets restricted
      */
-    public function setRestricted(string|null $restricted = null)
+    public function setRestricted($restricted)
     {
         if (is_null($restricted)) {
             throw new \InvalidArgumentException('non-nullable restricted cannot be null');
@@ -529,7 +529,7 @@ final class Subscription1 implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets suspended
      */
-    public function setSuspended(string|null $suspended = null)
+    public function setSuspended($suspended)
     {
         if (is_null($suspended)) {
             throw new \InvalidArgumentException('non-nullable suspended cannot be null');
@@ -552,7 +552,7 @@ final class Subscription1 implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets user_licenses
      */
-    public function setUserLicenses(string|null $user_licenses = null)
+    public function setUserLicenses($user_licenses)
     {
         if (is_null($user_licenses)) {
             throw new \InvalidArgumentException('non-nullable user_licenses cannot be null');
@@ -575,7 +575,7 @@ final class Subscription1 implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets resources
      */
-    public function setResources(string|null $resources = null)
+    public function setResources($resources)
     {
         if (is_null($resources)) {
             throw new \InvalidArgumentException('non-nullable resources cannot be null');
@@ -598,7 +598,7 @@ final class Subscription1 implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets resource_validation_url
      */
-    public function setResourceValidationUrl(string|null $resource_validation_url = null)
+    public function setResourceValidationUrl($resource_validation_url)
     {
         if (is_null($resource_validation_url)) {
             throw new \InvalidArgumentException('non-nullable resource_validation_url cannot be null');
@@ -621,7 +621,7 @@ final class Subscription1 implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets image_types
      */
-    public function setImageTypes(string|null $image_types = null)
+    public function setImageTypes($image_types)
     {
         if (is_null($image_types)) {
             throw new \InvalidArgumentException('non-nullable image_types cannot be null');

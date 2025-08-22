@@ -229,7 +229,7 @@ final class ConfirmPhoneNumberRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Sets code
      */
-    public function setCode(string|null $code = null)
+    public function setCode($code)
     {
         if (is_null($code)) {
             throw new \InvalidArgumentException('non-nullable code cannot be null');

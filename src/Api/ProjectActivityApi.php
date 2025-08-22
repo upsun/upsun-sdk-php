@@ -121,8 +121,8 @@ final class ProjectActivityApi
      * @throws InvalidArgumentException
      */
     public function actionProjectsActivitiesCancel(
-        $project_id,
-        $activity_id
+        string $project_id,
+        string $activity_id
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->actionProjectsActivitiesCancelWithHttpInfo($project_id, $activity_id);
         return $response;
@@ -132,7 +132,7 @@ final class ProjectActivityApi
      * Cancel a project activity
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function actionProjectsActivitiesCancelWithHttpInfo(
         string $project_id,
@@ -381,8 +381,8 @@ final class ProjectActivityApi
      * @throws InvalidArgumentException
      */
     public function getProjectsActivities(
-        $project_id,
-        $activity_id
+        string $project_id,
+        string $activity_id
     ): \Upsun\Model\Activity {
         list($response) = $this->getProjectsActivitiesWithHttpInfo($project_id, $activity_id);
         return $response;
@@ -392,7 +392,7 @@ final class ProjectActivityApi
      * Get a project activity log entry
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsActivitiesWithHttpInfo(
         string $project_id,
@@ -639,10 +639,12 @@ final class ProjectActivityApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return \Upsun\Model\Activity[]
      */
     public function listProjectsActivities(
-        $project_id
-    ): \Upsun\Model\Activity[] {
+        string $project_id
+    ): array {
         list($response) = $this->listProjectsActivitiesWithHttpInfo($project_id);
         return $response;
     }
@@ -651,7 +653,7 @@ final class ProjectActivityApi
      * Get project activity log
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listProjectsActivitiesWithHttpInfo(
         string $project_id

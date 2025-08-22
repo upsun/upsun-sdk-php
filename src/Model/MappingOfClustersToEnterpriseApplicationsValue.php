@@ -239,7 +239,7 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements ModelInter
     /**
      * Sets active_docroot
      */
-    public function setActiveDocroot(string|null $active_docroot = null)
+    public function setActiveDocroot($active_docroot)
     {
         if (is_null($active_docroot)) {
             array_push($this->openAPINullablesSetToNull, 'active_docroot');
@@ -269,7 +269,7 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements ModelInter
     /**
      * Sets docroot_versions
      */
-    public function setDocrootVersions(string|null $docroot_versions = null)
+    public function setDocrootVersions($docroot_versions)
     {
         if (is_null($docroot_versions)) {
             array_push($this->openAPINullablesSetToNull, 'docroot_versions');

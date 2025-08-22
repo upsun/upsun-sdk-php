@@ -240,7 +240,7 @@ final class ProfileCurrentTrialProjects implements ModelInterface, ArrayAccess, 
     /**
      * Sets id
      */
-    public function setId(string|null $id = null)
+    public function setId($id)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -263,7 +263,7 @@ final class ProfileCurrentTrialProjects implements ModelInterface, ArrayAccess, 
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -286,7 +286,7 @@ final class ProfileCurrentTrialProjects implements ModelInterface, ArrayAccess, 
     /**
      * Sets total
      */
-    public function setTotal(string|null $total = null)
+    public function setTotal($total)
     {
         if (is_null($total)) {
             throw new \InvalidArgumentException('non-nullable total cannot be null');

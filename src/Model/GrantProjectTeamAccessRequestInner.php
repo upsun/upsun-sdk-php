@@ -229,7 +229,7 @@ final class GrantProjectTeamAccessRequestInner implements ModelInterface, ArrayA
     /**
      * Sets team_id
      */
-    public function setTeamId(string|null $team_id = null)
+    public function setTeamId($team_id)
     {
         if (is_null($team_id)) {
             throw new \InvalidArgumentException('non-nullable team_id cannot be null');

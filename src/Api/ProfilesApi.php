@@ -121,7 +121,7 @@ final class ProfilesApi
      * @throws InvalidArgumentException
      */
     public function getOrgAddress(
-        $organization_id
+        string $organization_id
     ): \Upsun\Model\Address {
         list($response) = $this->getOrgAddressWithHttpInfo($organization_id);
         return $response;
@@ -131,7 +131,7 @@ final class ProfilesApi
      * Get address
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getOrgAddressWithHttpInfo(
         string $organization_id
@@ -390,7 +390,7 @@ final class ProfilesApi
      * @throws InvalidArgumentException
      */
     public function getOrgProfile(
-        $organization_id
+        string $organization_id
     ): \Upsun\Model\Profile {
         list($response) = $this->getOrgProfileWithHttpInfo($organization_id);
         return $response;
@@ -400,7 +400,7 @@ final class ProfilesApi
      * Get profile
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getOrgProfileWithHttpInfo(
         string $organization_id
@@ -659,8 +659,8 @@ final class ProfilesApi
      * @throws InvalidArgumentException
      */
     public function updateOrgAddress(
-        $organization_id,
-        $address = null
+        string $organization_id,
+        \Upsun\Model\Address $address = null
     ): \Upsun\Model\Address {
         list($response) = $this->updateOrgAddressWithHttpInfo($organization_id, $address);
         return $response;
@@ -670,7 +670,7 @@ final class ProfilesApi
      * Update address
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateOrgAddressWithHttpInfo(
         string $organization_id,
@@ -953,8 +953,8 @@ final class ProfilesApi
      * @throws InvalidArgumentException
      */
     public function updateOrgProfile(
-        $organization_id,
-        $update_org_profile_request = null
+        string $organization_id,
+        \Upsun\Model\UpdateOrgProfileRequest $update_org_profile_request = null
     ): \Upsun\Model\Profile {
         list($response) = $this->updateOrgProfileWithHttpInfo($organization_id, $update_org_profile_request);
         return $response;
@@ -964,7 +964,7 @@ final class ProfilesApi
      * Update profile
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateOrgProfileWithHttpInfo(
         string $organization_id,

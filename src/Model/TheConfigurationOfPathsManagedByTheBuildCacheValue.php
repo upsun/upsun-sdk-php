@@ -259,7 +259,7 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements ModelI
     /**
      * Sets directory
      */
-    public function setDirectory(string|null $directory = null)
+    public function setDirectory($directory)
     {
         if (is_null($directory)) {
             array_push($this->openAPINullablesSetToNull, 'directory');
@@ -289,7 +289,7 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements ModelI
     /**
      * Sets watch
      */
-    public function setWatch(string|null $watch = null)
+    public function setWatch($watch)
     {
         if (is_null($watch)) {
             throw new \InvalidArgumentException('non-nullable watch cannot be null');
@@ -312,7 +312,7 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements ModelI
     /**
      * Sets allow_stale
      */
-    public function setAllowStale(string|null $allow_stale = null)
+    public function setAllowStale($allow_stale)
     {
         if (is_null($allow_stale)) {
             throw new \InvalidArgumentException('non-nullable allow_stale cannot be null');
@@ -335,7 +335,7 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements ModelI
     /**
      * Sets share_between_apps
      */
-    public function setShareBetweenApps(string|null $share_between_apps = null)
+    public function setShareBetweenApps($share_between_apps)
     {
         if (is_null($share_between_apps)) {
             throw new \InvalidArgumentException('non-nullable share_between_apps cannot be null');

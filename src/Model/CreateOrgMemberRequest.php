@@ -257,7 +257,7 @@ final class CreateOrgMemberRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets user_id
      */
-    public function setUserId(string|null $user_id = null)
+    public function setUserId($user_id)
     {
         if (is_null($user_id)) {
             throw new \InvalidArgumentException('non-nullable user_id cannot be null');
@@ -280,7 +280,7 @@ final class CreateOrgMemberRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets permissions
      */
-    public function setPermissions(string|null $permissions = null)
+    public function setPermissions($permissions)
     {
         if (is_null($permissions)) {
             throw new \InvalidArgumentException('non-nullable permissions cannot be null');

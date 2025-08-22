@@ -121,7 +121,7 @@ final class ProjectSettingsApi
      * @throws InvalidArgumentException
      */
     public function getProjectsSettings(
-        $project_id
+        string $project_id
     ): \Upsun\Model\ProjectSettings {
         list($response) = $this->getProjectsSettingsWithHttpInfo($project_id);
         return $response;
@@ -131,7 +131,7 @@ final class ProjectSettingsApi
      * Get list of project settings
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsSettingsWithHttpInfo(
         string $project_id
@@ -362,8 +362,8 @@ final class ProjectSettingsApi
      * @throws InvalidArgumentException
      */
     public function updateProjectsSettings(
-        $project_id,
-        $project_settings_patch
+        string $project_id,
+        \Upsun\Model\ProjectSettingsPatch $project_settings_patch
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsSettingsWithHttpInfo($project_id, $project_settings_patch);
         return $response;
@@ -373,7 +373,7 @@ final class ProjectSettingsApi
      * Update a project setting
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsSettingsWithHttpInfo(
         string $project_id,

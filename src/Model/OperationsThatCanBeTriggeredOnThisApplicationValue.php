@@ -273,7 +273,7 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements ModelI
     /**
      * Sets commands
      */
-    public function setCommands(string|null $commands = null)
+    public function setCommands($commands)
     {
         if (is_null($commands)) {
             throw new \InvalidArgumentException('non-nullable commands cannot be null');
@@ -296,7 +296,7 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements ModelI
     /**
      * Sets timeout
      */
-    public function setTimeout(string|null $timeout = null)
+    public function setTimeout($timeout)
     {
         if (is_null($timeout)) {
             array_push($this->openAPINullablesSetToNull, 'timeout');
@@ -326,7 +326,7 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements ModelI
     /**
      * Sets role
      */
-    public function setRole(string|null $role = null)
+    public function setRole($role)
     {
         if (is_null($role)) {
             throw new \InvalidArgumentException('non-nullable role cannot be null');

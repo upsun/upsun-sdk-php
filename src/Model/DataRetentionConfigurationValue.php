@@ -239,7 +239,7 @@ final class DataRetentionConfigurationValue implements ModelInterface, ArrayAcce
     /**
      * Sets max_backups
      */
-    public function setMaxBackups(string|null $max_backups = null)
+    public function setMaxBackups($max_backups)
     {
         if (is_null($max_backups)) {
             throw new \InvalidArgumentException('non-nullable max_backups cannot be null');
@@ -262,7 +262,7 @@ final class DataRetentionConfigurationValue implements ModelInterface, ArrayAcce
     /**
      * Sets default_config
      */
-    public function setDefaultConfig(string|null $default_config = null)
+    public function setDefaultConfig($default_config)
     {
         if (is_null($default_config)) {
             throw new \InvalidArgumentException('non-nullable default_config cannot be null');

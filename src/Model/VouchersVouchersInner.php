@@ -247,7 +247,7 @@ final class VouchersVouchersInner implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets code
      */
-    public function setCode(string|null $code = null)
+    public function setCode($code)
     {
         if (is_null($code)) {
             throw new \InvalidArgumentException('non-nullable code cannot be null');
@@ -270,7 +270,7 @@ final class VouchersVouchersInner implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets amount
      */
-    public function setAmount(string|null $amount = null)
+    public function setAmount($amount)
     {
         if (is_null($amount)) {
             throw new \InvalidArgumentException('non-nullable amount cannot be null');
@@ -293,7 +293,7 @@ final class VouchersVouchersInner implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets currency
      */
-    public function setCurrency(string|null $currency = null)
+    public function setCurrency($currency)
     {
         if (is_null($currency)) {
             throw new \InvalidArgumentException('non-nullable currency cannot be null');
@@ -316,7 +316,7 @@ final class VouchersVouchersInner implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets orders
      */
-    public function setOrders(string|null $orders = null)
+    public function setOrders($orders)
     {
         if (is_null($orders)) {
             throw new \InvalidArgumentException('non-nullable orders cannot be null');

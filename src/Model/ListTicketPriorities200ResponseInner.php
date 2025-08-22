@@ -247,7 +247,7 @@ final class ListTicketPriorities200ResponseInner implements ModelInterface, Arra
     /**
      * Sets id
      */
-    public function setId(string|null $id = null)
+    public function setId($id)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -270,7 +270,7 @@ final class ListTicketPriorities200ResponseInner implements ModelInterface, Arra
     /**
      * Sets label
      */
-    public function setLabel(string|null $label = null)
+    public function setLabel($label)
     {
         if (is_null($label)) {
             throw new \InvalidArgumentException('non-nullable label cannot be null');
@@ -293,7 +293,7 @@ final class ListTicketPriorities200ResponseInner implements ModelInterface, Arra
     /**
      * Sets short_description
      */
-    public function setShortDescription(string|null $short_description = null)
+    public function setShortDescription($short_description)
     {
         if (is_null($short_description)) {
             throw new \InvalidArgumentException('non-nullable short_description cannot be null');
@@ -316,7 +316,7 @@ final class ListTicketPriorities200ResponseInner implements ModelInterface, Arra
     /**
      * Sets description
      */
-    public function setDescription(string|null $description = null)
+    public function setDescription($description)
     {
         if (is_null($description)) {
             throw new \InvalidArgumentException('non-nullable description cannot be null');

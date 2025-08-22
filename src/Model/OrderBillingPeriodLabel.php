@@ -247,7 +247,7 @@ final class OrderBillingPeriodLabel implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets formatted
      */
-    public function setFormatted(string|null $formatted = null)
+    public function setFormatted($formatted)
     {
         if (is_null($formatted)) {
             throw new \InvalidArgumentException('non-nullable formatted cannot be null');
@@ -270,7 +270,7 @@ final class OrderBillingPeriodLabel implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets month
      */
-    public function setMonth(string|null $month = null)
+    public function setMonth($month)
     {
         if (is_null($month)) {
             throw new \InvalidArgumentException('non-nullable month cannot be null');
@@ -293,7 +293,7 @@ final class OrderBillingPeriodLabel implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets year
      */
-    public function setYear(string|null $year = null)
+    public function setYear($year)
     {
         if (is_null($year)) {
             throw new \InvalidArgumentException('non-nullable year cannot be null');
@@ -316,7 +316,7 @@ final class OrderBillingPeriodLabel implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets next_month
      */
-    public function setNextMonth(string|null $next_month = null)
+    public function setNextMonth($next_month)
     {
         if (is_null($next_month)) {
             throw new \InvalidArgumentException('non-nullable next_month cannot be null');

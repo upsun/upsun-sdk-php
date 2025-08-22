@@ -283,7 +283,7 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
     /**
      * Sets socket_family
      */
-    public function setSocketFamily(string|null $socket_family = null)
+    public function setSocketFamily($socket_family)
     {
         if (is_null($socket_family)) {
             throw new \InvalidArgumentException('non-nullable socket_family cannot be null');
@@ -316,7 +316,7 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
     /**
      * Sets protocol
      */
-    public function setProtocol(string|null $protocol = null)
+    public function setProtocol($protocol)
     {
         if (is_null($protocol)) {
             array_push($this->openAPINullablesSetToNull, 'protocol');

@@ -283,7 +283,7 @@ final class CreateOrgRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -316,7 +316,7 @@ final class CreateOrgRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets owner_id
      */
-    public function setOwnerId(string|null $owner_id = null)
+    public function setOwnerId($owner_id)
     {
         if (is_null($owner_id)) {
             throw new \InvalidArgumentException('non-nullable owner_id cannot be null');
@@ -339,7 +339,7 @@ final class CreateOrgRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -362,7 +362,7 @@ final class CreateOrgRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets label
      */
-    public function setLabel(string|null $label = null)
+    public function setLabel($label)
     {
         if (is_null($label)) {
             throw new \InvalidArgumentException('non-nullable label cannot be null');
@@ -385,7 +385,7 @@ final class CreateOrgRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets country
      */
-    public function setCountry(string|null $country = null)
+    public function setCountry($country)
     {
         if (is_null($country)) {
             throw new \InvalidArgumentException('non-nullable country cannot be null');

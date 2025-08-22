@@ -229,7 +229,7 @@ final class LogsForwarding implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets max_extra_payload_size
      */
-    public function setMaxExtraPayloadSize(string|null $max_extra_payload_size = null)
+    public function setMaxExtraPayloadSize($max_extra_payload_size)
     {
         if (is_null($max_extra_payload_size)) {
             throw new \InvalidArgumentException('non-nullable max_extra_payload_size cannot be null');

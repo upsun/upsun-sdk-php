@@ -229,7 +229,7 @@ final class EnvironmentActivateInput implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets resources
      */
-    public function setResources(string|null $resources = null)
+    public function setResources($resources)
     {
         if (is_null($resources)) {
             array_push($this->openAPINullablesSetToNull, 'resources');

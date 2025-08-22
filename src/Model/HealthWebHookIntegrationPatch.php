@@ -246,7 +246,7 @@ final class HealthWebHookIntegrationPatch implements ModelInterface, ArrayAccess
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -269,7 +269,7 @@ final class HealthWebHookIntegrationPatch implements ModelInterface, ArrayAccess
     /**
      * Sets shared_key
      */
-    public function setSharedKey(string|null $shared_key = null)
+    public function setSharedKey($shared_key)
     {
         if (is_null($shared_key)) {
             array_push($this->openAPINullablesSetToNull, 'shared_key');
@@ -299,7 +299,7 @@ final class HealthWebHookIntegrationPatch implements ModelInterface, ArrayAccess
     /**
      * Sets url
      */
-    public function setUrl(string|null $url = null)
+    public function setUrl($url)
     {
         if (is_null($url)) {
             throw new \InvalidArgumentException('non-nullable url cannot be null');

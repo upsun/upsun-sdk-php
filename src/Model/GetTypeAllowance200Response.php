@@ -226,7 +226,7 @@ final class GetTypeAllowance200Response implements ModelInterface, ArrayAccess, 
     /**
      * Sets currencies
      */
-    public function setCurrencies(string|null $currencies = null)
+    public function setCurrencies($currencies)
     {
         if (is_null($currencies)) {
             throw new \InvalidArgumentException('non-nullable currencies cannot be null');

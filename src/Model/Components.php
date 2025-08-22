@@ -226,7 +226,7 @@ final class Components implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets voucher_vat_baseprice
      */
-    public function setVoucherVatBaseprice(string|null $voucher_vat_baseprice = null)
+    public function setVoucherVatBaseprice($voucher_vat_baseprice)
     {
         if (is_null($voucher_vat_baseprice)) {
             throw new \InvalidArgumentException('non-nullable voucher_vat_baseprice cannot be null');

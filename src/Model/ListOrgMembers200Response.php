@@ -240,7 +240,7 @@ final class ListOrgMembers200Response implements ModelInterface, ArrayAccess, \J
     /**
      * Sets count
      */
-    public function setCount(string|null $count = null)
+    public function setCount($count)
     {
         if (is_null($count)) {
             throw new \InvalidArgumentException('non-nullable count cannot be null');
@@ -263,7 +263,7 @@ final class ListOrgMembers200Response implements ModelInterface, ArrayAccess, \J
     /**
      * Sets items
      */
-    public function setItems(string|null $items = null)
+    public function setItems($items)
     {
         if (is_null($items)) {
             throw new \InvalidArgumentException('non-nullable items cannot be null');
@@ -286,7 +286,7 @@ final class ListOrgMembers200Response implements ModelInterface, ArrayAccess, \J
     /**
      * Sets _links
      */
-    public function setLinks(string|null $_links = null)
+    public function setLinks($_links)
     {
         if (is_null($_links)) {
             throw new \InvalidArgumentException('non-nullable _links cannot be null');

@@ -261,7 +261,7 @@ final class OrganizationAlertConfig implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets id
      */
-    public function setId(string|null $id = null)
+    public function setId($id)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -284,7 +284,7 @@ final class OrganizationAlertConfig implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets active
      */
-    public function setActive(string|null $active = null)
+    public function setActive($active)
     {
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
@@ -307,7 +307,7 @@ final class OrganizationAlertConfig implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets alerts_sent
      */
-    public function setAlertsSent(string|null $alerts_sent = null)
+    public function setAlertsSent($alerts_sent)
     {
         if (is_null($alerts_sent)) {
             throw new \InvalidArgumentException('non-nullable alerts_sent cannot be null');
@@ -330,7 +330,7 @@ final class OrganizationAlertConfig implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets last_alert_at
      */
-    public function setLastAlertAt(string|null $last_alert_at = null)
+    public function setLastAlertAt($last_alert_at)
     {
         if (is_null($last_alert_at)) {
             array_push($this->openAPINullablesSetToNull, 'last_alert_at');
@@ -360,7 +360,7 @@ final class OrganizationAlertConfig implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt(string|null $updated_at = null)
+    public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
             array_push($this->openAPINullablesSetToNull, 'updated_at');
@@ -390,7 +390,7 @@ final class OrganizationAlertConfig implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets config
      */
-    public function setConfig(string|null $config = null)
+    public function setConfig($config)
     {
         if (is_null($config)) {
             array_push($this->openAPINullablesSetToNull, 'config');

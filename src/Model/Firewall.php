@@ -229,7 +229,7 @@ final class Firewall implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets outbound
      */
-    public function setOutbound(string|null $outbound = null)
+    public function setOutbound($outbound)
     {
         if (is_null($outbound)) {
             throw new \InvalidArgumentException('non-nullable outbound cannot be null');

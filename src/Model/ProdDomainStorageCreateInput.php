@@ -243,7 +243,7 @@ final class ProdDomainStorageCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -266,7 +266,7 @@ final class ProdDomainStorageCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets attributes
      */
-    public function setAttributes(string|null $attributes = null)
+    public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
             throw new \InvalidArgumentException('non-nullable attributes cannot be null');
@@ -289,7 +289,7 @@ final class ProdDomainStorageCreateInput implements ModelInterface, ArrayAccess,
     /**
      * Sets is_default
      */
-    public function setIsDefault(string|null $is_default = null)
+    public function setIsDefault($is_default)
     {
         if (is_null($is_default)) {
             throw new \InvalidArgumentException('non-nullable is_default cannot be null');

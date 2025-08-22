@@ -233,7 +233,7 @@ final class OrganizationLinksApplyVoucher implements ModelInterface, ArrayAccess
     /**
      * Sets href
      */
-    public function setHref(string|null $href = null)
+    public function setHref($href)
     {
         if (is_null($href)) {
             throw new \InvalidArgumentException('non-nullable href cannot be null');
@@ -256,7 +256,7 @@ final class OrganizationLinksApplyVoucher implements ModelInterface, ArrayAccess
     /**
      * Sets method
      */
-    public function setMethod(string|null $method = null)
+    public function setMethod($method)
     {
         if (is_null($method)) {
             throw new \InvalidArgumentException('non-nullable method cannot be null');

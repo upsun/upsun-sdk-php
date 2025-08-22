@@ -226,7 +226,7 @@ final class GetCurrentUserVerificationStatus200Response implements ModelInterfac
     /**
      * Sets verify_phone
      */
-    public function setVerifyPhone(string|null $verify_phone = null)
+    public function setVerifyPhone($verify_phone)
     {
         if (is_null($verify_phone)) {
             throw new \InvalidArgumentException('non-nullable verify_phone cannot be null');

@@ -249,7 +249,7 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Mo
     /**
      * Sets commits_ahead
      */
-    public function setCommitsAhead(string|null $commits_ahead = null)
+    public function setCommitsAhead($commits_ahead)
     {
         if (is_null($commits_ahead)) {
             array_push($this->openAPINullablesSetToNull, 'commits_ahead');
@@ -279,7 +279,7 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Mo
     /**
      * Sets commits_behind
      */
-    public function setCommitsBehind(string|null $commits_behind = null)
+    public function setCommitsBehind($commits_behind)
     {
         if (is_null($commits_behind)) {
             array_push($this->openAPINullablesSetToNull, 'commits_behind');
@@ -309,7 +309,7 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Mo
     /**
      * Sets parent_ref
      */
-    public function setParentRef(string|null $parent_ref = null)
+    public function setParentRef($parent_ref)
     {
         if (is_null($parent_ref)) {
             array_push($this->openAPINullablesSetToNull, 'parent_ref');

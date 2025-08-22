@@ -356,7 +356,7 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets created_at
      */
-    public function setCreatedAt(string|null $created_at = null)
+    public function setCreatedAt($created_at)
     {
         if (is_null($created_at)) {
             array_push($this->openAPINullablesSetToNull, 'created_at');
@@ -386,7 +386,7 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt(string|null $updated_at = null)
+    public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
             array_push($this->openAPINullablesSetToNull, 'updated_at');
@@ -416,7 +416,7 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -439,7 +439,7 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets attributes
      */
-    public function setAttributes(string|null $attributes = null)
+    public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
             throw new \InvalidArgumentException('non-nullable attributes cannot be null');
@@ -462,7 +462,7 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets value
      */
-    public function setValue(string|null $value = null)
+    public function setValue($value)
     {
         if (is_null($value)) {
             throw new \InvalidArgumentException('non-nullable value cannot be null');
@@ -485,7 +485,7 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets is_json
      */
-    public function setIsJson(string|null $is_json = null)
+    public function setIsJson($is_json)
     {
         if (is_null($is_json)) {
             throw new \InvalidArgumentException('non-nullable is_json cannot be null');
@@ -508,7 +508,7 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets is_sensitive
      */
-    public function setIsSensitive(string|null $is_sensitive = null)
+    public function setIsSensitive($is_sensitive)
     {
         if (is_null($is_sensitive)) {
             throw new \InvalidArgumentException('non-nullable is_sensitive cannot be null');
@@ -531,7 +531,7 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets visible_build
      */
-    public function setVisibleBuild(string|null $visible_build = null)
+    public function setVisibleBuild($visible_build)
     {
         if (is_null($visible_build)) {
             throw new \InvalidArgumentException('non-nullable visible_build cannot be null');
@@ -554,7 +554,7 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets visible_runtime
      */
-    public function setVisibleRuntime(string|null $visible_runtime = null)
+    public function setVisibleRuntime($visible_runtime)
     {
         if (is_null($visible_runtime)) {
             throw new \InvalidArgumentException('non-nullable visible_runtime cannot be null');
@@ -577,7 +577,7 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets project
      */
-    public function setProject(string|null $project = null)
+    public function setProject($project)
     {
         if (is_null($project)) {
             throw new \InvalidArgumentException('non-nullable project cannot be null');
@@ -600,7 +600,7 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets environment
      */
-    public function setEnvironment(string|null $environment = null)
+    public function setEnvironment($environment)
     {
         if (is_null($environment)) {
             throw new \InvalidArgumentException('non-nullable environment cannot be null');
@@ -623,7 +623,7 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets inherited
      */
-    public function setInherited(string|null $inherited = null)
+    public function setInherited($inherited)
     {
         if (is_null($inherited)) {
             throw new \InvalidArgumentException('non-nullable inherited cannot be null');
@@ -646,7 +646,7 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets is_enabled
      */
-    public function setIsEnabled(string|null $is_enabled = null)
+    public function setIsEnabled($is_enabled)
     {
         if (is_null($is_enabled)) {
             throw new \InvalidArgumentException('non-nullable is_enabled cannot be null');
@@ -669,7 +669,7 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets is_inheritable
      */
-    public function setIsInheritable(string|null $is_inheritable = null)
+    public function setIsInheritable($is_inheritable)
     {
         if (is_null($is_inheritable)) {
             throw new \InvalidArgumentException('non-nullable is_inheritable cannot be null');

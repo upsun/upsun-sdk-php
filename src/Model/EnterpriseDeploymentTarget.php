@@ -320,7 +320,7 @@ final class EnterpriseDeploymentTarget implements ModelInterface, ArrayAccess, \
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -353,7 +353,7 @@ final class EnterpriseDeploymentTarget implements ModelInterface, ArrayAccess, \
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -376,7 +376,7 @@ final class EnterpriseDeploymentTarget implements ModelInterface, ArrayAccess, \
     /**
      * Sets deploy_host
      */
-    public function setDeployHost(string|null $deploy_host = null)
+    public function setDeployHost($deploy_host)
     {
         if (is_null($deploy_host)) {
             array_push($this->openAPINullablesSetToNull, 'deploy_host');
@@ -406,7 +406,7 @@ final class EnterpriseDeploymentTarget implements ModelInterface, ArrayAccess, \
     /**
      * Sets docroots
      */
-    public function setDocroots(string|null $docroots = null)
+    public function setDocroots($docroots)
     {
         if (is_null($docroots)) {
             throw new \InvalidArgumentException('non-nullable docroots cannot be null');
@@ -429,7 +429,7 @@ final class EnterpriseDeploymentTarget implements ModelInterface, ArrayAccess, \
     /**
      * Sets site_urls
      */
-    public function setSiteUrls(string|null $site_urls = null)
+    public function setSiteUrls($site_urls)
     {
         if (is_null($site_urls)) {
             throw new \InvalidArgumentException('non-nullable site_urls cannot be null');
@@ -452,7 +452,7 @@ final class EnterpriseDeploymentTarget implements ModelInterface, ArrayAccess, \
     /**
      * Sets ssh_hosts
      */
-    public function setSshHosts(string|null $ssh_hosts = null)
+    public function setSshHosts($ssh_hosts)
     {
         if (is_null($ssh_hosts)) {
             throw new \InvalidArgumentException('non-nullable ssh_hosts cannot be null');
@@ -475,7 +475,7 @@ final class EnterpriseDeploymentTarget implements ModelInterface, ArrayAccess, \
     /**
      * Sets maintenance_mode
      */
-    public function setMaintenanceMode(string|null $maintenance_mode = null)
+    public function setMaintenanceMode($maintenance_mode)
     {
         if (is_null($maintenance_mode)) {
             throw new \InvalidArgumentException('non-nullable maintenance_mode cannot be null');
@@ -502,7 +502,7 @@ final class EnterpriseDeploymentTarget implements ModelInterface, ArrayAccess, \
      *
      * @deprecated
      */
-    public function setEnterpriseEnvironmentsMapping(string|null $enterprise_environments_mapping = null)
+    public function setEnterpriseEnvironmentsMapping($enterprise_environments_mapping)
     {
         if (is_null($enterprise_environments_mapping)) {
             throw new \InvalidArgumentException('non-nullable enterprise_environments_mapping cannot be null');

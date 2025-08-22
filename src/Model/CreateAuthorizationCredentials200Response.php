@@ -233,7 +233,7 @@ final class CreateAuthorizationCredentials200Response implements ModelInterface,
     /**
      * Sets redirect_to_url
      */
-    public function setRedirectToUrl(string|null $redirect_to_url = null)
+    public function setRedirectToUrl($redirect_to_url)
     {
         if (is_null($redirect_to_url)) {
             throw new \InvalidArgumentException('non-nullable redirect_to_url cannot be null');
@@ -256,7 +256,7 @@ final class CreateAuthorizationCredentials200Response implements ModelInterface,
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');

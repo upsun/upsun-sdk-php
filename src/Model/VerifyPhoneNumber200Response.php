@@ -226,7 +226,7 @@ final class VerifyPhoneNumber200Response implements ModelInterface, ArrayAccess,
     /**
      * Sets sid
      */
-    public function setSid(string|null $sid = null)
+    public function setSid($sid)
     {
         if (is_null($sid)) {
             throw new \InvalidArgumentException('non-nullable sid cannot be null');

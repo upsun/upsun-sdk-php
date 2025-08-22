@@ -236,7 +236,7 @@ final class ConfigurationOfAWorkerContainerInstance implements ModelInterface, A
     /**
      * Sets commands
      */
-    public function setCommands(string|null $commands = null)
+    public function setCommands($commands)
     {
         if (is_null($commands)) {
             throw new \InvalidArgumentException('non-nullable commands cannot be null');
@@ -259,7 +259,7 @@ final class ConfigurationOfAWorkerContainerInstance implements ModelInterface, A
     /**
      * Sets disk
      */
-    public function setDisk(string|null $disk = null)
+    public function setDisk($disk)
     {
         if (is_null($disk)) {
             array_push($this->openAPINullablesSetToNull, 'disk');

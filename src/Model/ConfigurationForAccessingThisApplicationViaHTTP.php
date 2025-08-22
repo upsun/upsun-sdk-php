@@ -295,7 +295,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
     /**
      * Sets locations
      */
-    public function setLocations(string|null $locations = null)
+    public function setLocations($locations)
     {
         if (is_null($locations)) {
             throw new \InvalidArgumentException('non-nullable locations cannot be null');
@@ -318,7 +318,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
     /**
      * Sets commands
      */
-    public function setCommands(string|null $commands = null)
+    public function setCommands($commands)
     {
         if (is_null($commands)) {
             throw new \InvalidArgumentException('non-nullable commands cannot be null');
@@ -341,7 +341,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
     /**
      * Sets upstream
      */
-    public function setUpstream(string|null $upstream = null)
+    public function setUpstream($upstream)
     {
         if (is_null($upstream)) {
             throw new \InvalidArgumentException('non-nullable upstream cannot be null');
@@ -364,7 +364,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
     /**
      * Sets document_root
      */
-    public function setDocumentRoot(string|null $document_root = null)
+    public function setDocumentRoot($document_root)
     {
         if (is_null($document_root)) {
             array_push($this->openAPINullablesSetToNull, 'document_root');
@@ -394,7 +394,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
     /**
      * Sets passthru
      */
-    public function setPassthru(string|null $passthru = null)
+    public function setPassthru($passthru)
     {
         if (is_null($passthru)) {
             array_push($this->openAPINullablesSetToNull, 'passthru');
@@ -424,7 +424,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
     /**
      * Sets index_files
      */
-    public function setIndexFiles(string|null $index_files = null)
+    public function setIndexFiles($index_files)
     {
         if (is_null($index_files)) {
             array_push($this->openAPINullablesSetToNull, 'index_files');
@@ -454,7 +454,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
     /**
      * Sets whitelist
      */
-    public function setWhitelist(string|null $whitelist = null)
+    public function setWhitelist($whitelist)
     {
         if (is_null($whitelist)) {
             array_push($this->openAPINullablesSetToNull, 'whitelist');
@@ -484,7 +484,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
     /**
      * Sets blacklist
      */
-    public function setBlacklist(string|null $blacklist = null)
+    public function setBlacklist($blacklist)
     {
         if (is_null($blacklist)) {
             array_push($this->openAPINullablesSetToNull, 'blacklist');
@@ -514,7 +514,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
     /**
      * Sets expires
      */
-    public function setExpires(string|null $expires = null)
+    public function setExpires($expires)
     {
         if (is_null($expires)) {
             array_push($this->openAPINullablesSetToNull, 'expires');
@@ -544,7 +544,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
     /**
      * Sets move_to_root
      */
-    public function setMoveToRoot(string|null $move_to_root = null)
+    public function setMoveToRoot($move_to_root)
     {
         if (is_null($move_to_root)) {
             throw new \InvalidArgumentException('non-nullable move_to_root cannot be null');

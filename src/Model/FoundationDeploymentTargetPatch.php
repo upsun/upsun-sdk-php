@@ -277,7 +277,7 @@ final class FoundationDeploymentTargetPatch implements ModelInterface, ArrayAcce
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -310,7 +310,7 @@ final class FoundationDeploymentTargetPatch implements ModelInterface, ArrayAcce
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -333,7 +333,7 @@ final class FoundationDeploymentTargetPatch implements ModelInterface, ArrayAcce
     /**
      * Sets hosts
      */
-    public function setHosts(string|null $hosts = null)
+    public function setHosts($hosts)
     {
         if (is_null($hosts)) {
             array_push($this->openAPINullablesSetToNull, 'hosts');
@@ -363,7 +363,7 @@ final class FoundationDeploymentTargetPatch implements ModelInterface, ArrayAcce
     /**
      * Sets use_dedicated_grid
      */
-    public function setUseDedicatedGrid(string|null $use_dedicated_grid = null)
+    public function setUseDedicatedGrid($use_dedicated_grid)
     {
         if (is_null($use_dedicated_grid)) {
             throw new \InvalidArgumentException('non-nullable use_dedicated_grid cannot be null');

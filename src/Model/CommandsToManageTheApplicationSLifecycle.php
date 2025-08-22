@@ -233,7 +233,7 @@ final class CommandsToManageTheApplicationSLifecycle implements ModelInterface, 
     /**
      * Sets pre_start
      */
-    public function setPreStart(string|null $pre_start = null)
+    public function setPreStart($pre_start)
     {
         if (is_null($pre_start)) {
             array_push($this->openAPINullablesSetToNull, 'pre_start');
@@ -263,7 +263,7 @@ final class CommandsToManageTheApplicationSLifecycle implements ModelInterface, 
     /**
      * Sets start
      */
-    public function setStart(string|null $start = null)
+    public function setStart($start)
     {
         if (is_null($start)) {
             array_push($this->openAPINullablesSetToNull, 'start');

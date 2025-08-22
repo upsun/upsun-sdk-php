@@ -254,7 +254,7 @@ final class GetTypeAllowance200ResponseCurrencies implements ModelInterface, Arr
     /**
      * Sets eur
      */
-    public function setEur(string|null $eur = null)
+    public function setEur($eur)
     {
         if (is_null($eur)) {
             throw new \InvalidArgumentException('non-nullable eur cannot be null');
@@ -277,7 +277,7 @@ final class GetTypeAllowance200ResponseCurrencies implements ModelInterface, Arr
     /**
      * Sets usd
      */
-    public function setUsd(string|null $usd = null)
+    public function setUsd($usd)
     {
         if (is_null($usd)) {
             throw new \InvalidArgumentException('non-nullable usd cannot be null');
@@ -300,7 +300,7 @@ final class GetTypeAllowance200ResponseCurrencies implements ModelInterface, Arr
     /**
      * Sets gbp
      */
-    public function setGbp(string|null $gbp = null)
+    public function setGbp($gbp)
     {
         if (is_null($gbp)) {
             throw new \InvalidArgumentException('non-nullable gbp cannot be null');
@@ -323,7 +323,7 @@ final class GetTypeAllowance200ResponseCurrencies implements ModelInterface, Arr
     /**
      * Sets aud
      */
-    public function setAud(string|null $aud = null)
+    public function setAud($aud)
     {
         if (is_null($aud)) {
             throw new \InvalidArgumentException('non-nullable aud cannot be null');
@@ -346,7 +346,7 @@ final class GetTypeAllowance200ResponseCurrencies implements ModelInterface, Arr
     /**
      * Sets cad
      */
-    public function setCad(string|null $cad = null)
+    public function setCad($cad)
     {
         if (is_null($cad)) {
             throw new \InvalidArgumentException('non-nullable cad cannot be null');

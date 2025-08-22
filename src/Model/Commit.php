@@ -279,7 +279,7 @@ final class Commit implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets sha
      */
-    public function setSha(string|null $sha = null)
+    public function setSha($sha)
     {
         if (is_null($sha)) {
             throw new \InvalidArgumentException('non-nullable sha cannot be null');
@@ -302,7 +302,7 @@ final class Commit implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets author
      */
-    public function setAuthor(string|null $author = null)
+    public function setAuthor($author)
     {
         if (is_null($author)) {
             throw new \InvalidArgumentException('non-nullable author cannot be null');
@@ -325,7 +325,7 @@ final class Commit implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets committer
      */
-    public function setCommitter(string|null $committer = null)
+    public function setCommitter($committer)
     {
         if (is_null($committer)) {
             throw new \InvalidArgumentException('non-nullable committer cannot be null');
@@ -348,7 +348,7 @@ final class Commit implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets message
      */
-    public function setMessage(string|null $message = null)
+    public function setMessage($message)
     {
         if (is_null($message)) {
             throw new \InvalidArgumentException('non-nullable message cannot be null');
@@ -371,7 +371,7 @@ final class Commit implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets tree
      */
-    public function setTree(string|null $tree = null)
+    public function setTree($tree)
     {
         if (is_null($tree)) {
             throw new \InvalidArgumentException('non-nullable tree cannot be null');
@@ -394,7 +394,7 @@ final class Commit implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets parents
      */
-    public function setParents(string|null $parents = null)
+    public function setParents($parents)
     {
         if (is_null($parents)) {
             throw new \InvalidArgumentException('non-nullable parents cannot be null');

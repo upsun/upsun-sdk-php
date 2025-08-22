@@ -226,7 +226,7 @@ final class UpdateUsageAlertRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets config
      */
-    public function setConfig(string|null $config = null)
+    public function setConfig($config)
     {
         if (is_null($config)) {
             throw new \InvalidArgumentException('non-nullable config cannot be null');

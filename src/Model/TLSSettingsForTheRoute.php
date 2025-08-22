@@ -307,7 +307,7 @@ final class TLSSettingsForTheRoute implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets strict_transport_security
      */
-    public function setStrictTransportSecurity(string|null $strict_transport_security = null)
+    public function setStrictTransportSecurity($strict_transport_security)
     {
         if (is_null($strict_transport_security)) {
             throw new \InvalidArgumentException('non-nullable strict_transport_security cannot be null');
@@ -330,7 +330,7 @@ final class TLSSettingsForTheRoute implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets min_version
      */
-    public function setMinVersion(string|null $min_version = null)
+    public function setMinVersion($min_version)
     {
         if (is_null($min_version)) {
             array_push($this->openAPINullablesSetToNull, 'min_version');
@@ -370,7 +370,7 @@ final class TLSSettingsForTheRoute implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets client_authentication
      */
-    public function setClientAuthentication(string|null $client_authentication = null)
+    public function setClientAuthentication($client_authentication)
     {
         if (is_null($client_authentication)) {
             array_push($this->openAPINullablesSetToNull, 'client_authentication');
@@ -410,7 +410,7 @@ final class TLSSettingsForTheRoute implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets client_certificate_authorities
      */
-    public function setClientCertificateAuthorities(string|null $client_certificate_authorities = null)
+    public function setClientCertificateAuthorities($client_certificate_authorities)
     {
         if (is_null($client_certificate_authorities)) {
             throw new \InvalidArgumentException('non-nullable client_certificate_authorities cannot be null');

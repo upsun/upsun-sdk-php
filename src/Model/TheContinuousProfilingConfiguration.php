@@ -229,7 +229,7 @@ final class TheContinuousProfilingConfiguration implements ModelInterface, Array
     /**
      * Sets supported_runtimes
      */
-    public function setSupportedRuntimes(string|null $supported_runtimes = null)
+    public function setSupportedRuntimes($supported_runtimes)
     {
         if (is_null($supported_runtimes)) {
             throw new \InvalidArgumentException('non-nullable supported_runtimes cannot be null');

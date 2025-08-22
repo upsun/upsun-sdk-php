@@ -249,7 +249,7 @@ final class EnvironmentSourceOperation implements ModelInterface, ArrayAccess, \
     /**
      * Sets app
      */
-    public function setApp(string|null $app = null)
+    public function setApp($app)
     {
         if (is_null($app)) {
             throw new \InvalidArgumentException('non-nullable app cannot be null');
@@ -272,7 +272,7 @@ final class EnvironmentSourceOperation implements ModelInterface, ArrayAccess, \
     /**
      * Sets operation
      */
-    public function setOperation(string|null $operation = null)
+    public function setOperation($operation)
     {
         if (is_null($operation)) {
             throw new \InvalidArgumentException('non-nullable operation cannot be null');
@@ -295,7 +295,7 @@ final class EnvironmentSourceOperation implements ModelInterface, ArrayAccess, \
     /**
      * Sets command
      */
-    public function setCommand(string|null $command = null)
+    public function setCommand($command)
     {
         if (is_null($command)) {
             throw new \InvalidArgumentException('non-nullable command cannot be null');

@@ -255,7 +255,7 @@ final class InvoicePDF implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets url
      */
-    public function setUrl(string|null $url = null)
+    public function setUrl($url)
     {
         if (is_null($url)) {
             throw new \InvalidArgumentException('non-nullable url cannot be null');
@@ -278,7 +278,7 @@ final class InvoicePDF implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      */
-    public function setStatus(string|null $status = null)
+    public function setStatus($status)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');

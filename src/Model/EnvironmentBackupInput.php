@@ -229,7 +229,7 @@ final class EnvironmentBackupInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets safe
      */
-    public function setSafe(string|null $safe = null)
+    public function setSafe($safe)
     {
         if (is_null($safe)) {
             throw new \InvalidArgumentException('non-nullable safe cannot be null');

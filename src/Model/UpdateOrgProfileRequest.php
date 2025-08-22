@@ -261,7 +261,7 @@ final class UpdateOrgProfileRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets default_catalog
      */
-    public function setDefaultCatalog(string|null $default_catalog = null)
+    public function setDefaultCatalog($default_catalog)
     {
         if (is_null($default_catalog)) {
             throw new \InvalidArgumentException('non-nullable default_catalog cannot be null');
@@ -284,7 +284,7 @@ final class UpdateOrgProfileRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets project_options_url
      */
-    public function setProjectOptionsUrl(string|null $project_options_url = null)
+    public function setProjectOptionsUrl($project_options_url)
     {
         if (is_null($project_options_url)) {
             throw new \InvalidArgumentException('non-nullable project_options_url cannot be null');
@@ -307,7 +307,7 @@ final class UpdateOrgProfileRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets security_contact
      */
-    public function setSecurityContact(string|null $security_contact = null)
+    public function setSecurityContact($security_contact)
     {
         if (is_null($security_contact)) {
             throw new \InvalidArgumentException('non-nullable security_contact cannot be null');
@@ -330,7 +330,7 @@ final class UpdateOrgProfileRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets company_name
      */
-    public function setCompanyName(string|null $company_name = null)
+    public function setCompanyName($company_name)
     {
         if (is_null($company_name)) {
             throw new \InvalidArgumentException('non-nullable company_name cannot be null');
@@ -353,7 +353,7 @@ final class UpdateOrgProfileRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets vat_number
      */
-    public function setVatNumber(string|null $vat_number = null)
+    public function setVatNumber($vat_number)
     {
         if (is_null($vat_number)) {
             throw new \InvalidArgumentException('non-nullable vat_number cannot be null');
@@ -376,7 +376,7 @@ final class UpdateOrgProfileRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets billing_contact
      */
-    public function setBillingContact(string|null $billing_contact = null)
+    public function setBillingContact($billing_contact)
     {
         if (is_null($billing_contact)) {
             throw new \InvalidArgumentException('non-nullable billing_contact cannot be null');

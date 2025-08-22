@@ -240,7 +240,7 @@ final class CanCreateNewOrgSubscription200Response implements ModelInterface, Ar
     /**
      * Sets can_create
      */
-    public function setCanCreate(string|null $can_create = null)
+    public function setCanCreate($can_create)
     {
         if (is_null($can_create)) {
             throw new \InvalidArgumentException('non-nullable can_create cannot be null');
@@ -263,7 +263,7 @@ final class CanCreateNewOrgSubscription200Response implements ModelInterface, Ar
     /**
      * Sets message
      */
-    public function setMessage(string|null $message = null)
+    public function setMessage($message)
     {
         if (is_null($message)) {
             throw new \InvalidArgumentException('non-nullable message cannot be null');
@@ -286,7 +286,7 @@ final class CanCreateNewOrgSubscription200Response implements ModelInterface, Ar
     /**
      * Sets required_action
      */
-    public function setRequiredAction(string|null $required_action = null)
+    public function setRequiredAction($required_action)
     {
         if (is_null($required_action)) {
             array_push($this->openAPINullablesSetToNull, 'required_action');

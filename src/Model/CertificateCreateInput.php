@@ -253,7 +253,7 @@ final class CertificateCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets certificate
      */
-    public function setCertificate(string|null $certificate = null)
+    public function setCertificate($certificate)
     {
         if (is_null($certificate)) {
             throw new \InvalidArgumentException('non-nullable certificate cannot be null');
@@ -276,7 +276,7 @@ final class CertificateCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets key
      */
-    public function setKey(string|null $key = null)
+    public function setKey($key)
     {
         if (is_null($key)) {
             throw new \InvalidArgumentException('non-nullable key cannot be null');
@@ -299,7 +299,7 @@ final class CertificateCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets chain
      */
-    public function setChain(string|null $chain = null)
+    public function setChain($chain)
     {
         if (is_null($chain)) {
             throw new \InvalidArgumentException('non-nullable chain cannot be null');
@@ -322,7 +322,7 @@ final class CertificateCreateInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets is_invalid
      */
-    public function setIsInvalid(string|null $is_invalid = null)
+    public function setIsInvalid($is_invalid)
     {
         if (is_null($is_invalid)) {
             throw new \InvalidArgumentException('non-nullable is_invalid cannot be null');

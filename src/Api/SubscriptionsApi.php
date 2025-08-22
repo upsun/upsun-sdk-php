@@ -121,7 +121,7 @@ final class SubscriptionsApi
      * @throws InvalidArgumentException
      */
     public function canCreateNewOrgSubscription(
-        $organization_id
+        string $organization_id
     ): \Upsun\Model\CanCreateNewOrgSubscription200Response {
         list($response) = $this->canCreateNewOrgSubscriptionWithHttpInfo($organization_id);
         return $response;
@@ -131,7 +131,7 @@ final class SubscriptionsApi
      * Checks if the user is able to create a new project.
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function canCreateNewOrgSubscriptionWithHttpInfo(
         string $organization_id
@@ -390,8 +390,8 @@ final class SubscriptionsApi
      * @throws InvalidArgumentException
      */
     public function createOrgSubscription(
-        $organization_id,
-        $create_org_subscription_request
+        string $organization_id,
+        \Upsun\Model\CreateOrgSubscriptionRequest $create_org_subscription_request
     ): \Upsun\Model\Subscription {
         list($response) = $this->createOrgSubscriptionWithHttpInfo($organization_id, $create_org_subscription_request);
         return $response;
@@ -401,7 +401,7 @@ final class SubscriptionsApi
      * Create subscription
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createOrgSubscriptionWithHttpInfo(
         string $organization_id,
@@ -690,8 +690,8 @@ final class SubscriptionsApi
      * @throws InvalidArgumentException
      */
     public function deleteOrgSubscription(
-        $organization_id,
-        $subscription_id
+        string $organization_id,
+        string $subscription_id
     ): void {
         $this->deleteOrgSubscriptionWithHttpInfo($organization_id, $subscription_id);
     }
@@ -700,7 +700,7 @@ final class SubscriptionsApi
      * Delete subscription
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteOrgSubscriptionWithHttpInfo(
         string $organization_id,
@@ -920,12 +920,12 @@ final class SubscriptionsApi
      * @throws InvalidArgumentException
      */
     public function estimateNewOrgSubscription(
-        $organization_id,
-        $plan,
-        $environments,
-        $storage,
-        $user_licenses,
-        $format = null
+        string $organization_id,
+        string $plan,
+        int $environments,
+        int $storage,
+        int $user_licenses,
+        string $format = null
     ): \Upsun\Model\EstimationObject {
         list($response) = $this->estimateNewOrgSubscriptionWithHttpInfo($organization_id, $plan, $environments, $storage, $user_licenses, $format);
         return $response;
@@ -935,7 +935,7 @@ final class SubscriptionsApi
      * Estimate the price of a new subscription
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function estimateNewOrgSubscriptionWithHttpInfo(
         string $organization_id,
@@ -1293,13 +1293,13 @@ final class SubscriptionsApi
      * @throws InvalidArgumentException
      */
     public function estimateOrgSubscription(
-        $organization_id,
-        $subscription_id,
-        $plan,
-        $environments = null,
-        $storage = null,
-        $user_licenses = null,
-        $format = null
+        string $organization_id,
+        string $subscription_id,
+        string $plan,
+        int $environments = null,
+        int $storage = null,
+        int $user_licenses = null,
+        string $format = null
     ): \Upsun\Model\EstimationObject {
         list($response) = $this->estimateOrgSubscriptionWithHttpInfo($organization_id, $subscription_id, $plan, $environments, $storage, $user_licenses, $format);
         return $response;
@@ -1309,7 +1309,7 @@ final class SubscriptionsApi
      * Estimate the price of a subscription
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function estimateOrgSubscriptionWithHttpInfo(
         string $organization_id,
@@ -1653,8 +1653,8 @@ final class SubscriptionsApi
      * @throws InvalidArgumentException
      */
     public function getOrgSubscription(
-        $organization_id,
-        $subscription_id
+        string $organization_id,
+        string $subscription_id
     ): \Upsun\Model\Subscription {
         list($response) = $this->getOrgSubscriptionWithHttpInfo($organization_id, $subscription_id);
         return $response;
@@ -1664,7 +1664,7 @@ final class SubscriptionsApi
      * Get subscription
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getOrgSubscriptionWithHttpInfo(
         string $organization_id,
@@ -1941,10 +1941,10 @@ final class SubscriptionsApi
      * @throws InvalidArgumentException
      */
     public function getOrgSubscriptionCurrentUsage(
-        $organization_id,
-        $subscription_id,
-        $usage_groups = null,
-        $include_not_charged = null
+        string $organization_id,
+        string $subscription_id,
+        string $usage_groups = null,
+        bool $include_not_charged = null
     ): \Upsun\Model\SubscriptionCurrentUsageObject {
         list($response) = $this->getOrgSubscriptionCurrentUsageWithHttpInfo($organization_id, $subscription_id, $usage_groups, $include_not_charged);
         return $response;
@@ -1954,7 +1954,7 @@ final class SubscriptionsApi
      * Get current usage for a subscription
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getOrgSubscriptionCurrentUsageWithHttpInfo(
         string $organization_id,
@@ -2247,17 +2247,17 @@ final class SubscriptionsApi
      * @throws InvalidArgumentException
      */
     public function listOrgSubscriptions(
-        $organization_id,
-        $filter_status = null,
-        $filter_id = null,
-        $filter_project_id = null,
-        $filter_project_title = null,
-        $filter_region = null,
-        $filter_updated_at = null,
-        $page_size = null,
-        $page_before = null,
-        $page_after = null,
-        $sort = null
+        string $organization_id,
+        string $filter_status = null,
+        string $filter_id = null,
+        \Upsun\Model\StringFilter $filter_project_id = null,
+        \Upsun\Model\StringFilter $filter_project_title = null,
+        \Upsun\Model\StringFilter $filter_region = null,
+        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
     ): \Upsun\Model\ListOrgSubscriptions200Response {
         list($response) = $this->listOrgSubscriptionsWithHttpInfo($organization_id, $filter_status, $filter_id, $filter_project_id, $filter_project_title, $filter_region, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
         return $response;
@@ -2267,7 +2267,7 @@ final class SubscriptionsApi
      * List subscriptions
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listOrgSubscriptionsWithHttpInfo(
         string $organization_id,
@@ -2683,8 +2683,8 @@ final class SubscriptionsApi
      * @throws InvalidArgumentException
      */
     public function listSubscriptionAddons(
-        $organization_id,
-        $subscription_id
+        string $organization_id,
+        string $subscription_id
     ): \Upsun\Model\SubscriptionAddonsObject {
         list($response) = $this->listSubscriptionAddonsWithHttpInfo($organization_id, $subscription_id);
         return $response;
@@ -2694,7 +2694,7 @@ final class SubscriptionsApi
      * List addons for a subscription
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listSubscriptionAddonsWithHttpInfo(
         string $organization_id,
@@ -2957,9 +2957,9 @@ final class SubscriptionsApi
      * @throws InvalidArgumentException
      */
     public function updateOrgSubscription(
-        $organization_id,
-        $subscription_id,
-        $update_org_subscription_request = null
+        string $organization_id,
+        string $subscription_id,
+        \Upsun\Model\UpdateOrgSubscriptionRequest $update_org_subscription_request = null
     ): \Upsun\Model\Subscription {
         list($response) = $this->updateOrgSubscriptionWithHttpInfo($organization_id, $subscription_id, $update_org_subscription_request);
         return $response;
@@ -2969,7 +2969,7 @@ final class SubscriptionsApi
      * Update subscription
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateOrgSubscriptionWithHttpInfo(
         string $organization_id,

@@ -233,7 +233,7 @@ final class OrganizationEstimationObjectUserLicenses implements ModelInterface, 
     /**
      * Sets base
      */
-    public function setBase(string|null $base = null)
+    public function setBase($base)
     {
         if (is_null($base)) {
             throw new \InvalidArgumentException('non-nullable base cannot be null');
@@ -256,7 +256,7 @@ final class OrganizationEstimationObjectUserLicenses implements ModelInterface, 
     /**
      * Sets user_management
      */
-    public function setUserManagement(string|null $user_management = null)
+    public function setUserManagement($user_management)
     {
         if (is_null($user_management)) {
             throw new \InvalidArgumentException('non-nullable user_management cannot be null');

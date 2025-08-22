@@ -121,8 +121,8 @@ final class InvoicesApi
      * @throws InvalidArgumentException
      */
     public function getOrgInvoice(
-        $invoice_id,
-        $organization_id
+        string $invoice_id,
+        string $organization_id
     ): \Upsun\Model\Invoice {
         list($response) = $this->getOrgInvoiceWithHttpInfo($invoice_id, $organization_id);
         return $response;
@@ -132,7 +132,7 @@ final class InvoicesApi
      * Get invoice
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getOrgInvoiceWithHttpInfo(
         string $invoice_id,
@@ -409,11 +409,11 @@ final class InvoicesApi
      * @throws InvalidArgumentException
      */
     public function listOrgInvoices(
-        $organization_id,
-        $filter_status = null,
-        $filter_type = null,
-        $filter_order_id = null,
-        $page = null
+        string $organization_id,
+        string $filter_status = null,
+        string $filter_type = null,
+        string $filter_order_id = null,
+        int $page = null
     ): \Upsun\Model\ListOrgInvoices200Response {
         list($response) = $this->listOrgInvoicesWithHttpInfo($organization_id, $filter_status, $filter_type, $filter_order_id, $page);
         return $response;
@@ -423,7 +423,7 @@ final class InvoicesApi
      * List invoices
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listOrgInvoicesWithHttpInfo(
         string $organization_id,

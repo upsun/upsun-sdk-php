@@ -119,11 +119,13 @@ final class ReferencesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return array<string,\Upsun\Model\OrganizationReference>
      */
     public function listReferencedOrgs(
-        $in,
-        $sig
-    ): array<string,\Upsun\Model\OrganizationReference> {
+        string $in,
+        string $sig
+    ): array {
         list($response) = $this->listReferencedOrgsWithHttpInfo($in, $sig);
         return $response;
     }
@@ -132,7 +134,7 @@ final class ReferencesApi
      * List referenced organizations
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listReferencedOrgsWithHttpInfo(
         string $in,
@@ -413,11 +415,13 @@ final class ReferencesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return array<string,\Upsun\Model\ProjectReference>
      */
     public function listReferencedProjects(
-        $in,
-        $sig
-    ): array<string,\Upsun\Model\ProjectReference> {
+        string $in,
+        string $sig
+    ): array {
         list($response) = $this->listReferencedProjectsWithHttpInfo($in, $sig);
         return $response;
     }
@@ -426,7 +430,7 @@ final class ReferencesApi
      * List referenced projects
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listReferencedProjectsWithHttpInfo(
         string $in,
@@ -721,11 +725,13 @@ final class ReferencesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return array<string,\Upsun\Model\RegionReference>
      */
     public function listReferencedRegions(
-        $in,
-        $sig
-    ): array<string,\Upsun\Model\RegionReference> {
+        string $in,
+        string $sig
+    ): array {
         list($response) = $this->listReferencedRegionsWithHttpInfo($in, $sig);
         return $response;
     }
@@ -734,7 +740,7 @@ final class ReferencesApi
      * List referenced regions
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listReferencedRegionsWithHttpInfo(
         string $in,
@@ -1029,11 +1035,13 @@ final class ReferencesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return array<string,\Upsun\Model\TeamReference>
      */
     public function listReferencedTeams(
-        $in,
-        $sig
-    ): array<string,\Upsun\Model\TeamReference> {
+        string $in,
+        string $sig
+    ): array {
         list($response) = $this->listReferencedTeamsWithHttpInfo($in, $sig);
         return $response;
     }
@@ -1042,7 +1050,7 @@ final class ReferencesApi
      * List referenced teams
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listReferencedTeamsWithHttpInfo(
         string $in,
@@ -1309,11 +1317,13 @@ final class ReferencesApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return array<string,\Upsun\Model\UserReference>
      */
     public function listReferencedUsers(
-        $in,
-        $sig
-    ): array<string,\Upsun\Model\UserReference> {
+        string $in,
+        string $sig
+    ): array {
         list($response) = $this->listReferencedUsersWithHttpInfo($in, $sig);
         return $response;
     }
@@ -1322,7 +1332,7 @@ final class ReferencesApi
      * List referenced users
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listReferencedUsersWithHttpInfo(
         string $in,

@@ -362,7 +362,7 @@ final class Organization implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets id
      */
-    public function setId(string|null $id = null)
+    public function setId($id)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -385,7 +385,7 @@ final class Organization implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -418,7 +418,7 @@ final class Organization implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets owner_id
      */
-    public function setOwnerId(string|null $owner_id = null)
+    public function setOwnerId($owner_id)
     {
         if (is_null($owner_id)) {
             throw new \InvalidArgumentException('non-nullable owner_id cannot be null');
@@ -441,7 +441,7 @@ final class Organization implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets namespace
      */
-    public function setNamespace(string|null $namespace = null)
+    public function setNamespace($namespace)
     {
         if (is_null($namespace)) {
             throw new \InvalidArgumentException('non-nullable namespace cannot be null');
@@ -464,7 +464,7 @@ final class Organization implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -487,7 +487,7 @@ final class Organization implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets label
      */
-    public function setLabel(string|null $label = null)
+    public function setLabel($label)
     {
         if (is_null($label)) {
             throw new \InvalidArgumentException('non-nullable label cannot be null');
@@ -510,7 +510,7 @@ final class Organization implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets country
      */
-    public function setCountry(string|null $country = null)
+    public function setCountry($country)
     {
         if (is_null($country)) {
             throw new \InvalidArgumentException('non-nullable country cannot be null');
@@ -539,7 +539,7 @@ final class Organization implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets capabilities
      */
-    public function setCapabilities(string|null $capabilities = null)
+    public function setCapabilities($capabilities)
     {
         if (is_null($capabilities)) {
             throw new \InvalidArgumentException('non-nullable capabilities cannot be null');
@@ -564,7 +564,7 @@ final class Organization implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets vendor
      */
-    public function setVendor(string|null $vendor = null)
+    public function setVendor($vendor)
     {
         if (is_null($vendor)) {
             throw new \InvalidArgumentException('non-nullable vendor cannot be null');
@@ -587,7 +587,7 @@ final class Organization implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets status
      */
-    public function setStatus(string|null $status = null)
+    public function setStatus($status)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
@@ -620,7 +620,7 @@ final class Organization implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets created_at
      */
-    public function setCreatedAt(string|null $created_at = null)
+    public function setCreatedAt($created_at)
     {
         if (is_null($created_at)) {
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
@@ -643,7 +643,7 @@ final class Organization implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt(string|null $updated_at = null)
+    public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
@@ -666,7 +666,7 @@ final class Organization implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets _links
      */
-    public function setLinks(string|null $_links = null)
+    public function setLinks($_links)
     {
         if (is_null($_links)) {
             throw new \InvalidArgumentException('non-nullable _links cannot be null');

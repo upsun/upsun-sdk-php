@@ -281,7 +281,7 @@ final class Blob implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets sha
      */
-    public function setSha(string|null $sha = null)
+    public function setSha($sha)
     {
         if (is_null($sha)) {
             throw new \InvalidArgumentException('non-nullable sha cannot be null');
@@ -304,7 +304,7 @@ final class Blob implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets size
      */
-    public function setSize(string|null $size = null)
+    public function setSize($size)
     {
         if (is_null($size)) {
             throw new \InvalidArgumentException('non-nullable size cannot be null');
@@ -327,7 +327,7 @@ final class Blob implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets encoding
      */
-    public function setEncoding(string|null $encoding = null)
+    public function setEncoding($encoding)
     {
         if (is_null($encoding)) {
             throw new \InvalidArgumentException('non-nullable encoding cannot be null');
@@ -360,7 +360,7 @@ final class Blob implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets content
      */
-    public function setContent(string|null $content = null)
+    public function setContent($content)
     {
         if (is_null($content)) {
             throw new \InvalidArgumentException('non-nullable content cannot be null');

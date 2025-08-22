@@ -400,7 +400,7 @@ final class Deployment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets created_at
      */
-    public function setCreatedAt(string|null $created_at = null)
+    public function setCreatedAt($created_at)
     {
         if (is_null($created_at)) {
             array_push($this->openAPINullablesSetToNull, 'created_at');
@@ -430,7 +430,7 @@ final class Deployment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt(string|null $updated_at = null)
+    public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
             array_push($this->openAPINullablesSetToNull, 'updated_at');
@@ -460,7 +460,7 @@ final class Deployment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets fingerprint
      */
-    public function setFingerprint(string|null $fingerprint = null)
+    public function setFingerprint($fingerprint)
     {
         if (is_null($fingerprint)) {
             throw new \InvalidArgumentException('non-nullable fingerprint cannot be null');
@@ -483,7 +483,7 @@ final class Deployment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets cluster_name
      */
-    public function setClusterName(string|null $cluster_name = null)
+    public function setClusterName($cluster_name)
     {
         if (is_null($cluster_name)) {
             throw new \InvalidArgumentException('non-nullable cluster_name cannot be null');
@@ -506,7 +506,7 @@ final class Deployment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets project_info
      */
-    public function setProjectInfo(string|null $project_info = null)
+    public function setProjectInfo($project_info)
     {
         if (is_null($project_info)) {
             throw new \InvalidArgumentException('non-nullable project_info cannot be null');
@@ -529,7 +529,7 @@ final class Deployment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets environment_info
      */
-    public function setEnvironmentInfo(string|null $environment_info = null)
+    public function setEnvironmentInfo($environment_info)
     {
         if (is_null($environment_info)) {
             throw new \InvalidArgumentException('non-nullable environment_info cannot be null');
@@ -552,7 +552,7 @@ final class Deployment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets deployment_target
      */
-    public function setDeploymentTarget(string|null $deployment_target = null)
+    public function setDeploymentTarget($deployment_target)
     {
         if (is_null($deployment_target)) {
             throw new \InvalidArgumentException('non-nullable deployment_target cannot be null');
@@ -575,7 +575,7 @@ final class Deployment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets vpn
      */
-    public function setVpn(string|null $vpn = null)
+    public function setVpn($vpn)
     {
         if (is_null($vpn)) {
             array_push($this->openAPINullablesSetToNull, 'vpn');
@@ -605,7 +605,7 @@ final class Deployment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets http_access
      */
-    public function setHttpAccess(string|null $http_access = null)
+    public function setHttpAccess($http_access)
     {
         if (is_null($http_access)) {
             throw new \InvalidArgumentException('non-nullable http_access cannot be null');
@@ -628,7 +628,7 @@ final class Deployment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets enable_smtp
      */
-    public function setEnableSmtp(string|null $enable_smtp = null)
+    public function setEnableSmtp($enable_smtp)
     {
         if (is_null($enable_smtp)) {
             throw new \InvalidArgumentException('non-nullable enable_smtp cannot be null');
@@ -651,7 +651,7 @@ final class Deployment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets restrict_robots
      */
-    public function setRestrictRobots(string|null $restrict_robots = null)
+    public function setRestrictRobots($restrict_robots)
     {
         if (is_null($restrict_robots)) {
             throw new \InvalidArgumentException('non-nullable restrict_robots cannot be null');
@@ -674,7 +674,7 @@ final class Deployment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets variables
      */
-    public function setVariables(string|null $variables = null)
+    public function setVariables($variables)
     {
         if (is_null($variables)) {
             throw new \InvalidArgumentException('non-nullable variables cannot be null');
@@ -697,7 +697,7 @@ final class Deployment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets access
      */
-    public function setAccess(string|null $access = null)
+    public function setAccess($access)
     {
         if (is_null($access)) {
             throw new \InvalidArgumentException('non-nullable access cannot be null');
@@ -720,7 +720,7 @@ final class Deployment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets subscription
      */
-    public function setSubscription(string|null $subscription = null)
+    public function setSubscription($subscription)
     {
         if (is_null($subscription)) {
             throw new \InvalidArgumentException('non-nullable subscription cannot be null');
@@ -743,7 +743,7 @@ final class Deployment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets services
      */
-    public function setServices(string|null $services = null)
+    public function setServices($services)
     {
         if (is_null($services)) {
             throw new \InvalidArgumentException('non-nullable services cannot be null');
@@ -766,7 +766,7 @@ final class Deployment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets routes
      */
-    public function setRoutes(string|null $routes = null)
+    public function setRoutes($routes)
     {
         if (is_null($routes)) {
             throw new \InvalidArgumentException('non-nullable routes cannot be null');
@@ -789,7 +789,7 @@ final class Deployment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets webapps
      */
-    public function setWebapps(string|null $webapps = null)
+    public function setWebapps($webapps)
     {
         if (is_null($webapps)) {
             throw new \InvalidArgumentException('non-nullable webapps cannot be null');
@@ -812,7 +812,7 @@ final class Deployment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets workers
      */
-    public function setWorkers(string|null $workers = null)
+    public function setWorkers($workers)
     {
         if (is_null($workers)) {
             throw new \InvalidArgumentException('non-nullable workers cannot be null');
@@ -835,7 +835,7 @@ final class Deployment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets container_profiles
      */
-    public function setContainerProfiles(string|null $container_profiles = null)
+    public function setContainerProfiles($container_profiles)
     {
         if (is_null($container_profiles)) {
             throw new \InvalidArgumentException('non-nullable container_profiles cannot be null');

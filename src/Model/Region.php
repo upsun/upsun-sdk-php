@@ -303,7 +303,7 @@ final class Region implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      */
-    public function setId(string|null $id = null)
+    public function setId($id)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -326,7 +326,7 @@ final class Region implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets label
      */
-    public function setLabel(string|null $label = null)
+    public function setLabel($label)
     {
         if (is_null($label)) {
             throw new \InvalidArgumentException('non-nullable label cannot be null');
@@ -349,7 +349,7 @@ final class Region implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets zone
      */
-    public function setZone(string|null $zone = null)
+    public function setZone($zone)
     {
         if (is_null($zone)) {
             throw new \InvalidArgumentException('non-nullable zone cannot be null');
@@ -372,7 +372,7 @@ final class Region implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets selection_label
      */
-    public function setSelectionLabel(string|null $selection_label = null)
+    public function setSelectionLabel($selection_label)
     {
         if (is_null($selection_label)) {
             throw new \InvalidArgumentException('non-nullable selection_label cannot be null');
@@ -395,7 +395,7 @@ final class Region implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets project_label
      */
-    public function setProjectLabel(string|null $project_label = null)
+    public function setProjectLabel($project_label)
     {
         if (is_null($project_label)) {
             throw new \InvalidArgumentException('non-nullable project_label cannot be null');
@@ -418,7 +418,7 @@ final class Region implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets timezone
      */
-    public function setTimezone(string|null $timezone = null)
+    public function setTimezone($timezone)
     {
         if (is_null($timezone)) {
             throw new \InvalidArgumentException('non-nullable timezone cannot be null');
@@ -441,7 +441,7 @@ final class Region implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets available
      */
-    public function setAvailable(string|null $available = null)
+    public function setAvailable($available)
     {
         if (is_null($available)) {
             throw new \InvalidArgumentException('non-nullable available cannot be null');
@@ -464,7 +464,7 @@ final class Region implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets private
      */
-    public function setPrivate(string|null $private = null)
+    public function setPrivate($private)
     {
         if (is_null($private)) {
             throw new \InvalidArgumentException('non-nullable private cannot be null');
@@ -487,7 +487,7 @@ final class Region implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets endpoint
      */
-    public function setEndpoint(string|null $endpoint = null)
+    public function setEndpoint($endpoint)
     {
         if (is_null($endpoint)) {
             throw new \InvalidArgumentException('non-nullable endpoint cannot be null');
@@ -510,7 +510,7 @@ final class Region implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets provider
      */
-    public function setProvider(string|null $provider = null)
+    public function setProvider($provider)
     {
         if (is_null($provider)) {
             throw new \InvalidArgumentException('non-nullable provider cannot be null');
@@ -533,7 +533,7 @@ final class Region implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets datacenter
      */
-    public function setDatacenter(string|null $datacenter = null)
+    public function setDatacenter($datacenter)
     {
         if (is_null($datacenter)) {
             throw new \InvalidArgumentException('non-nullable datacenter cannot be null');
@@ -556,7 +556,7 @@ final class Region implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets environmental_impact
      */
-    public function setEnvironmentalImpact(string|null $environmental_impact = null)
+    public function setEnvironmentalImpact($environmental_impact)
     {
         if (is_null($environmental_impact)) {
             throw new \InvalidArgumentException('non-nullable environmental_impact cannot be null');

@@ -239,7 +239,7 @@ final class TheObjectTheReferencePointsTo implements ModelInterface, ArrayAccess
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -262,7 +262,7 @@ final class TheObjectTheReferencePointsTo implements ModelInterface, ArrayAccess
     /**
      * Sets sha
      */
-    public function setSha(string|null $sha = null)
+    public function setSha($sha)
     {
         if (is_null($sha)) {
             throw new \InvalidArgumentException('non-nullable sha cannot be null');

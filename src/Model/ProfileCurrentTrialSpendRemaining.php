@@ -254,7 +254,7 @@ final class ProfileCurrentTrialSpendRemaining implements ModelInterface, ArrayAc
     /**
      * Sets formatted
      */
-    public function setFormatted(string|null $formatted = null)
+    public function setFormatted($formatted)
     {
         if (is_null($formatted)) {
             throw new \InvalidArgumentException('non-nullable formatted cannot be null');
@@ -277,7 +277,7 @@ final class ProfileCurrentTrialSpendRemaining implements ModelInterface, ArrayAc
     /**
      * Sets amount
      */
-    public function setAmount(string|null $amount = null)
+    public function setAmount($amount)
     {
         if (is_null($amount)) {
             throw new \InvalidArgumentException('non-nullable amount cannot be null');
@@ -300,7 +300,7 @@ final class ProfileCurrentTrialSpendRemaining implements ModelInterface, ArrayAc
     /**
      * Sets currency
      */
-    public function setCurrency(string|null $currency = null)
+    public function setCurrency($currency)
     {
         if (is_null($currency)) {
             throw new \InvalidArgumentException('non-nullable currency cannot be null');
@@ -323,7 +323,7 @@ final class ProfileCurrentTrialSpendRemaining implements ModelInterface, ArrayAc
     /**
      * Sets currency_symbol
      */
-    public function setCurrencySymbol(string|null $currency_symbol = null)
+    public function setCurrencySymbol($currency_symbol)
     {
         if (is_null($currency_symbol)) {
             throw new \InvalidArgumentException('non-nullable currency_symbol cannot be null');
@@ -346,7 +346,7 @@ final class ProfileCurrentTrialSpendRemaining implements ModelInterface, ArrayAc
     /**
      * Sets unlimited
      */
-    public function setUnlimited(string|null $unlimited = null)
+    public function setUnlimited($unlimited)
     {
         if (is_null($unlimited)) {
             throw new \InvalidArgumentException('non-nullable unlimited cannot be null');

@@ -276,7 +276,7 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
     /**
      * Sets source
      */
-    public function setSource(string|null $source = null)
+    public function setSource($source)
     {
         if (is_null($source)) {
             throw new \InvalidArgumentException('non-nullable source cannot be null');
@@ -309,7 +309,7 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
     /**
      * Sets source_path
      */
-    public function setSourcePath(string|null $source_path = null)
+    public function setSourcePath($source_path)
     {
         if (is_null($source_path)) {
             throw new \InvalidArgumentException('non-nullable source_path cannot be null');
@@ -332,7 +332,7 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
     /**
      * Sets service
      */
-    public function setService(string|null $service = null)
+    public function setService($service)
     {
         if (is_null($service)) {
             array_push($this->openAPINullablesSetToNull, 'service');

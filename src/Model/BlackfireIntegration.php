@@ -269,7 +269,7 @@ final class BlackfireIntegration implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets created_at
      */
-    public function setCreatedAt(string|null $created_at = null)
+    public function setCreatedAt($created_at)
     {
         if (is_null($created_at)) {
             array_push($this->openAPINullablesSetToNull, 'created_at');
@@ -299,7 +299,7 @@ final class BlackfireIntegration implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt(string|null $updated_at = null)
+    public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
             array_push($this->openAPINullablesSetToNull, 'updated_at');
@@ -329,7 +329,7 @@ final class BlackfireIntegration implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -352,7 +352,7 @@ final class BlackfireIntegration implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets environments_credentials
      */
-    public function setEnvironmentsCredentials(string|null $environments_credentials = null)
+    public function setEnvironmentsCredentials($environments_credentials)
     {
         if (is_null($environments_credentials)) {
             throw new \InvalidArgumentException('non-nullable environments_credentials cannot be null');
@@ -375,7 +375,7 @@ final class BlackfireIntegration implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets continuous_profiling
      */
-    public function setContinuousProfiling(string|null $continuous_profiling = null)
+    public function setContinuousProfiling($continuous_profiling)
     {
         if (is_null($continuous_profiling)) {
             throw new \InvalidArgumentException('non-nullable continuous_profiling cannot be null');

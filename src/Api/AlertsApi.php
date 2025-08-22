@@ -121,8 +121,8 @@ final class AlertsApi
      * @throws InvalidArgumentException
      */
     public function createUsageAlert(
-        $subscription_id,
-        $create_usage_alert_request = null
+        string $subscription_id,
+        \Upsun\Model\CreateUsageAlertRequest $create_usage_alert_request = null
     ): \Upsun\Model\Alert {
         list($response) = $this->createUsageAlertWithHttpInfo($subscription_id, $create_usage_alert_request);
         return $response;
@@ -132,7 +132,7 @@ final class AlertsApi
      * Create a usage alert.
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createUsageAlertWithHttpInfo(
         string $subscription_id,
@@ -373,8 +373,8 @@ final class AlertsApi
      * @throws InvalidArgumentException
      */
     public function deleteUsageAlert(
-        $subscription_id,
-        $usage_id
+        string $subscription_id,
+        string $usage_id
     ): void {
         $this->deleteUsageAlertWithHttpInfo($subscription_id, $usage_id);
     }
@@ -383,7 +383,7 @@ final class AlertsApi
      * Delete a usage alert.
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteUsageAlertWithHttpInfo(
         string $subscription_id,
@@ -587,7 +587,7 @@ final class AlertsApi
      * @throws InvalidArgumentException
      */
     public function getUsageAlerts(
-        $subscription_id
+        string $subscription_id
     ): \Upsun\Model\GetUsageAlerts200Response {
         list($response) = $this->getUsageAlertsWithHttpInfo($subscription_id);
         return $response;
@@ -597,7 +597,7 @@ final class AlertsApi
      * Get usage alerts for a subscription
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getUsageAlertsWithHttpInfo(
         string $subscription_id
@@ -828,9 +828,9 @@ final class AlertsApi
      * @throws InvalidArgumentException
      */
     public function updateUsageAlert(
-        $subscription_id,
-        $usage_id,
-        $update_usage_alert_request = null
+        string $subscription_id,
+        string $usage_id,
+        \Upsun\Model\UpdateUsageAlertRequest $update_usage_alert_request = null
     ): \Upsun\Model\Alert {
         list($response) = $this->updateUsageAlertWithHttpInfo($subscription_id, $usage_id, $update_usage_alert_request);
         return $response;
@@ -840,7 +840,7 @@ final class AlertsApi
      * Update a usage alert.
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateUsageAlertWithHttpInfo(
         string $subscription_id,

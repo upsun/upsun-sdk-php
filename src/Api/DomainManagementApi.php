@@ -121,8 +121,8 @@ final class DomainManagementApi
      * @throws InvalidArgumentException
      */
     public function createProjectsDomains(
-        $project_id,
-        $domain_create_input
+        string $project_id,
+        \Upsun\Model\DomainCreateInput $domain_create_input
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->createProjectsDomainsWithHttpInfo($project_id, $domain_create_input);
         return $response;
@@ -132,7 +132,7 @@ final class DomainManagementApi
      * Add a project domain
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createProjectsDomainsWithHttpInfo(
         string $project_id,
@@ -379,9 +379,9 @@ final class DomainManagementApi
      * @throws InvalidArgumentException
      */
     public function createProjectsEnvironmentsDomains(
-        $project_id,
-        $environment_id,
-        $domain_create_input
+        string $project_id,
+        string $environment_id,
+        \Upsun\Model\DomainCreateInput $domain_create_input
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->createProjectsEnvironmentsDomainsWithHttpInfo($project_id, $environment_id, $domain_create_input);
         return $response;
@@ -391,7 +391,7 @@ final class DomainManagementApi
      * Add an environment domain
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createProjectsEnvironmentsDomainsWithHttpInfo(
         string $project_id,
@@ -656,8 +656,8 @@ final class DomainManagementApi
      * @throws InvalidArgumentException
      */
     public function deleteProjectsDomains(
-        $project_id,
-        $domain_id
+        string $project_id,
+        string $domain_id
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsDomainsWithHttpInfo($project_id, $domain_id);
         return $response;
@@ -667,7 +667,7 @@ final class DomainManagementApi
      * Delete a project domain
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsDomainsWithHttpInfo(
         string $project_id,
@@ -916,9 +916,9 @@ final class DomainManagementApi
      * @throws InvalidArgumentException
      */
     public function deleteProjectsEnvironmentsDomains(
-        $project_id,
-        $environment_id,
-        $domain_id
+        string $project_id,
+        string $environment_id,
+        string $domain_id
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsEnvironmentsDomainsWithHttpInfo($project_id, $environment_id, $domain_id);
         return $response;
@@ -928,7 +928,7 @@ final class DomainManagementApi
      * Delete an environment domain
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsEnvironmentsDomainsWithHttpInfo(
         string $project_id,
@@ -1195,8 +1195,8 @@ final class DomainManagementApi
      * @throws InvalidArgumentException
      */
     public function getProjectsDomains(
-        $project_id,
-        $domain_id
+        string $project_id,
+        string $domain_id
     ): \Upsun\Model\Domain {
         list($response) = $this->getProjectsDomainsWithHttpInfo($project_id, $domain_id);
         return $response;
@@ -1206,7 +1206,7 @@ final class DomainManagementApi
      * Get a project domain
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsDomainsWithHttpInfo(
         string $project_id,
@@ -1455,9 +1455,9 @@ final class DomainManagementApi
      * @throws InvalidArgumentException
      */
     public function getProjectsEnvironmentsDomains(
-        $project_id,
-        $environment_id,
-        $domain_id
+        string $project_id,
+        string $environment_id,
+        string $domain_id
     ): \Upsun\Model\Domain {
         list($response) = $this->getProjectsEnvironmentsDomainsWithHttpInfo($project_id, $environment_id, $domain_id);
         return $response;
@@ -1467,7 +1467,7 @@ final class DomainManagementApi
      * Get an environment domain
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsDomainsWithHttpInfo(
         string $project_id,
@@ -1732,10 +1732,12 @@ final class DomainManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return \Upsun\Model\Domain[]
      */
     public function listProjectsDomains(
-        $project_id
-    ): \Upsun\Model\Domain[] {
+        string $project_id
+    ): array {
         list($response) = $this->listProjectsDomainsWithHttpInfo($project_id);
         return $response;
     }
@@ -1744,7 +1746,7 @@ final class DomainManagementApi
      * Get list of project domains
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listProjectsDomainsWithHttpInfo(
         string $project_id
@@ -1973,11 +1975,13 @@ final class DomainManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return \Upsun\Model\Domain[]
      */
     public function listProjectsEnvironmentsDomains(
-        $project_id,
-        $environment_id
-    ): \Upsun\Model\Domain[] {
+        string $project_id,
+        string $environment_id
+    ): array {
         list($response) = $this->listProjectsEnvironmentsDomainsWithHttpInfo($project_id, $environment_id);
         return $response;
     }
@@ -1986,7 +1990,7 @@ final class DomainManagementApi
      * Get a list of environment domains
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsDomainsWithHttpInfo(
         string $project_id,
@@ -2235,9 +2239,9 @@ final class DomainManagementApi
      * @throws InvalidArgumentException
      */
     public function updateProjectsDomains(
-        $project_id,
-        $domain_id,
-        $domain_patch
+        string $project_id,
+        string $domain_id,
+        \Upsun\Model\DomainPatch $domain_patch
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsDomainsWithHttpInfo($project_id, $domain_id, $domain_patch);
         return $response;
@@ -2247,7 +2251,7 @@ final class DomainManagementApi
      * Update a project domain
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsDomainsWithHttpInfo(
         string $project_id,
@@ -2512,10 +2516,10 @@ final class DomainManagementApi
      * @throws InvalidArgumentException
      */
     public function updateProjectsEnvironmentsDomains(
-        $project_id,
-        $environment_id,
-        $domain_id,
-        $domain_patch
+        string $project_id,
+        string $environment_id,
+        string $domain_id,
+        \Upsun\Model\DomainPatch $domain_patch
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsEnvironmentsDomainsWithHttpInfo($project_id, $environment_id, $domain_id, $domain_patch);
         return $response;
@@ -2525,7 +2529,7 @@ final class DomainManagementApi
      * Update an environment domain
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsEnvironmentsDomainsWithHttpInfo(
         string $project_id,

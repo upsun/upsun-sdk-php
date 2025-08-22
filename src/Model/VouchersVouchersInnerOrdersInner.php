@@ -268,7 +268,7 @@ final class VouchersVouchersInnerOrdersInner implements ModelInterface, ArrayAcc
     /**
      * Sets order_id
      */
-    public function setOrderId(string|null $order_id = null)
+    public function setOrderId($order_id)
     {
         if (is_null($order_id)) {
             throw new \InvalidArgumentException('non-nullable order_id cannot be null');
@@ -291,7 +291,7 @@ final class VouchersVouchersInnerOrdersInner implements ModelInterface, ArrayAcc
     /**
      * Sets status
      */
-    public function setStatus(string|null $status = null)
+    public function setStatus($status)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
@@ -314,7 +314,7 @@ final class VouchersVouchersInnerOrdersInner implements ModelInterface, ArrayAcc
     /**
      * Sets billing_period_start
      */
-    public function setBillingPeriodStart(string|null $billing_period_start = null)
+    public function setBillingPeriodStart($billing_period_start)
     {
         if (is_null($billing_period_start)) {
             throw new \InvalidArgumentException('non-nullable billing_period_start cannot be null');
@@ -337,7 +337,7 @@ final class VouchersVouchersInnerOrdersInner implements ModelInterface, ArrayAcc
     /**
      * Sets billing_period_end
      */
-    public function setBillingPeriodEnd(string|null $billing_period_end = null)
+    public function setBillingPeriodEnd($billing_period_end)
     {
         if (is_null($billing_period_end)) {
             throw new \InvalidArgumentException('non-nullable billing_period_end cannot be null');
@@ -360,7 +360,7 @@ final class VouchersVouchersInnerOrdersInner implements ModelInterface, ArrayAcc
     /**
      * Sets order_total
      */
-    public function setOrderTotal(string|null $order_total = null)
+    public function setOrderTotal($order_total)
     {
         if (is_null($order_total)) {
             throw new \InvalidArgumentException('non-nullable order_total cannot be null');
@@ -383,7 +383,7 @@ final class VouchersVouchersInnerOrdersInner implements ModelInterface, ArrayAcc
     /**
      * Sets order_discount
      */
-    public function setOrderDiscount(string|null $order_discount = null)
+    public function setOrderDiscount($order_discount)
     {
         if (is_null($order_discount)) {
             throw new \InvalidArgumentException('non-nullable order_discount cannot be null');
@@ -406,7 +406,7 @@ final class VouchersVouchersInnerOrdersInner implements ModelInterface, ArrayAcc
     /**
      * Sets currency
      */
-    public function setCurrency(string|null $currency = null)
+    public function setCurrency($currency)
     {
         if (is_null($currency)) {
             throw new \InvalidArgumentException('non-nullable currency cannot be null');

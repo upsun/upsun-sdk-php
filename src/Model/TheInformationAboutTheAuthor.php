@@ -249,7 +249,7 @@ final class TheInformationAboutTheAuthor implements ModelInterface, ArrayAccess,
     /**
      * Sets date
      */
-    public function setDate(string|null $date = null)
+    public function setDate($date)
     {
         if (is_null($date)) {
             throw new \InvalidArgumentException('non-nullable date cannot be null');
@@ -272,7 +272,7 @@ final class TheInformationAboutTheAuthor implements ModelInterface, ArrayAccess,
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -295,7 +295,7 @@ final class TheInformationAboutTheAuthor implements ModelInterface, ArrayAccess,
     /**
      * Sets email
      */
-    public function setEmail(string|null $email = null)
+    public function setEmail($email)
     {
         if (is_null($email)) {
             throw new \InvalidArgumentException('non-nullable email cannot be null');

@@ -233,7 +233,7 @@ final class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -256,7 +256,7 @@ final class Plan implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets label
      */
-    public function setLabel(string|null $label = null)
+    public function setLabel($label)
     {
         if (is_null($label)) {
             throw new \InvalidArgumentException('non-nullable label cannot be null');

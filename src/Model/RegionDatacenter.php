@@ -240,7 +240,7 @@ final class RegionDatacenter implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -263,7 +263,7 @@ final class RegionDatacenter implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets label
      */
-    public function setLabel(string|null $label = null)
+    public function setLabel($label)
     {
         if (is_null($label)) {
             throw new \InvalidArgumentException('non-nullable label cannot be null');
@@ -286,7 +286,7 @@ final class RegionDatacenter implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets location
      */
-    public function setLocation(string|null $location = null)
+    public function setLocation($location)
     {
         if (is_null($location)) {
             throw new \InvalidArgumentException('non-nullable location cannot be null');

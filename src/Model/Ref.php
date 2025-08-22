@@ -249,7 +249,7 @@ final class Ref implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets ref
      */
-    public function setRef(string|null $ref = null)
+    public function setRef($ref)
     {
         if (is_null($ref)) {
             throw new \InvalidArgumentException('non-nullable ref cannot be null');
@@ -272,7 +272,7 @@ final class Ref implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets object
      */
-    public function setObject(string|null $object = null)
+    public function setObject($object)
     {
         if (is_null($object)) {
             throw new \InvalidArgumentException('non-nullable object cannot be null');
@@ -295,7 +295,7 @@ final class Ref implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets sha
      */
-    public function setSha(string|null $sha = null)
+    public function setSha($sha)
     {
         if (is_null($sha)) {
             throw new \InvalidArgumentException('non-nullable sha cannot be null');

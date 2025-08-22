@@ -306,7 +306,7 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -329,7 +329,7 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets title
      */
-    public function setTitle(string|null $title = null)
+    public function setTitle($title)
     {
         if (is_null($title)) {
             throw new \InvalidArgumentException('non-nullable title cannot be null');
@@ -352,7 +352,7 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets attributes
      */
-    public function setAttributes(string|null $attributes = null)
+    public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
             throw new \InvalidArgumentException('non-nullable attributes cannot be null');
@@ -375,7 +375,7 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -408,7 +408,7 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets parent
      */
-    public function setParent(string|null $parent = null)
+    public function setParent($parent)
     {
         if (is_null($parent)) {
             array_push($this->openAPINullablesSetToNull, 'parent');
@@ -438,7 +438,7 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets clone_parent_on_create
      */
-    public function setCloneParentOnCreate(string|null $clone_parent_on_create = null)
+    public function setCloneParentOnCreate($clone_parent_on_create)
     {
         if (is_null($clone_parent_on_create)) {
             throw new \InvalidArgumentException('non-nullable clone_parent_on_create cannot be null');
@@ -461,7 +461,7 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets http_access
      */
-    public function setHttpAccess(string|null $http_access = null)
+    public function setHttpAccess($http_access)
     {
         if (is_null($http_access)) {
             throw new \InvalidArgumentException('non-nullable http_access cannot be null');
@@ -484,7 +484,7 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets enable_smtp
      */
-    public function setEnableSmtp(string|null $enable_smtp = null)
+    public function setEnableSmtp($enable_smtp)
     {
         if (is_null($enable_smtp)) {
             throw new \InvalidArgumentException('non-nullable enable_smtp cannot be null');
@@ -507,7 +507,7 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets restrict_robots
      */
-    public function setRestrictRobots(string|null $restrict_robots = null)
+    public function setRestrictRobots($restrict_robots)
     {
         if (is_null($restrict_robots)) {
             throw new \InvalidArgumentException('non-nullable restrict_robots cannot be null');

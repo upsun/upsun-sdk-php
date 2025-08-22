@@ -121,8 +121,8 @@ final class OrganizationInvitationsApi
      * @throws InvalidArgumentException
      */
     public function cancelOrgInvite(
-        $organization_id,
-        $invitation_id
+        string $organization_id,
+        string $invitation_id
     ): void {
         $this->cancelOrgInviteWithHttpInfo($organization_id, $invitation_id);
     }
@@ -131,7 +131,7 @@ final class OrganizationInvitationsApi
      * Cancel a pending invitation to an organization
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function cancelOrgInviteWithHttpInfo(
         string $organization_id,
@@ -343,8 +343,8 @@ final class OrganizationInvitationsApi
      * @throws InvalidArgumentException
      */
     public function createOrgInvite(
-        $organization_id,
-        $create_org_invite_request = null
+        string $organization_id,
+        \Upsun\Model\CreateOrgInviteRequest $create_org_invite_request = null
     ): \Upsun\Model\OrganizationInvitation {
         list($response) = $this->createOrgInviteWithHttpInfo($organization_id, $create_org_invite_request);
         return $response;
@@ -354,7 +354,7 @@ final class OrganizationInvitationsApi
      * Invite user to an organization by email
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createOrgInviteWithHttpInfo(
         string $organization_id,
@@ -635,15 +635,17 @@ final class OrganizationInvitationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return \Upsun\Model\OrganizationInvitation[]
      */
     public function listOrgInvites(
-        $organization_id,
-        $filter_state = null,
-        $page_size = null,
-        $page_before = null,
-        $page_after = null,
-        $sort = null
-    ): \Upsun\Model\OrganizationInvitation[] {
+        string $organization_id,
+        \Upsun\Model\StringFilter $filter_state = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): array {
         list($response) = $this->listOrgInvitesWithHttpInfo($organization_id, $filter_state, $page_size, $page_before, $page_after, $sort);
         return $response;
     }
@@ -652,7 +654,7 @@ final class OrganizationInvitationsApi
      * List invitations to an organization
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listOrgInvitesWithHttpInfo(
         string $organization_id,

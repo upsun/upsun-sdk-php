@@ -121,8 +121,8 @@ final class CertManagementApi
      * @throws InvalidArgumentException
      */
     public function createProjectsCertificates(
-        $project_id,
-        $certificate_create_input
+        string $project_id,
+        \Upsun\Model\CertificateCreateInput $certificate_create_input
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->createProjectsCertificatesWithHttpInfo($project_id, $certificate_create_input);
         return $response;
@@ -132,7 +132,7 @@ final class CertManagementApi
      * Add an SSL certificate
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createProjectsCertificatesWithHttpInfo(
         string $project_id,
@@ -379,8 +379,8 @@ final class CertManagementApi
      * @throws InvalidArgumentException
      */
     public function deleteProjectsCertificates(
-        $project_id,
-        $certificate_id
+        string $project_id,
+        string $certificate_id
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsCertificatesWithHttpInfo($project_id, $certificate_id);
         return $response;
@@ -390,7 +390,7 @@ final class CertManagementApi
      * Delete an SSL certificate
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsCertificatesWithHttpInfo(
         string $project_id,
@@ -639,8 +639,8 @@ final class CertManagementApi
      * @throws InvalidArgumentException
      */
     public function getProjectsCertificates(
-        $project_id,
-        $certificate_id
+        string $project_id,
+        string $certificate_id
     ): \Upsun\Model\Certificate {
         list($response) = $this->getProjectsCertificatesWithHttpInfo($project_id, $certificate_id);
         return $response;
@@ -650,7 +650,7 @@ final class CertManagementApi
      * Get an SSL certificate
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsCertificatesWithHttpInfo(
         string $project_id,
@@ -897,10 +897,12 @@ final class CertManagementApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return \Upsun\Model\Certificate[]
      */
     public function listProjectsCertificates(
-        $project_id
-    ): \Upsun\Model\Certificate[] {
+        string $project_id
+    ): array {
         list($response) = $this->listProjectsCertificatesWithHttpInfo($project_id);
         return $response;
     }
@@ -909,7 +911,7 @@ final class CertManagementApi
      * Get list of SSL certificates
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listProjectsCertificatesWithHttpInfo(
         string $project_id
@@ -1140,9 +1142,9 @@ final class CertManagementApi
      * @throws InvalidArgumentException
      */
     public function updateProjectsCertificates(
-        $project_id,
-        $certificate_id,
-        $certificate_patch
+        string $project_id,
+        string $certificate_id,
+        \Upsun\Model\CertificatePatch $certificate_patch
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsCertificatesWithHttpInfo($project_id, $certificate_id, $certificate_patch);
         return $response;
@@ -1152,7 +1154,7 @@ final class CertManagementApi
      * Update an SSL certificate
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsCertificatesWithHttpInfo(
         string $project_id,

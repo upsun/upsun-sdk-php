@@ -249,7 +249,7 @@ final class PerServiceResourcesOverridesValue implements ModelInterface, ArrayAc
     /**
      * Sets cpu
      */
-    public function setCpu(string|null $cpu = null)
+    public function setCpu($cpu)
     {
         if (is_null($cpu)) {
             array_push($this->openAPINullablesSetToNull, 'cpu');
@@ -279,7 +279,7 @@ final class PerServiceResourcesOverridesValue implements ModelInterface, ArrayAc
     /**
      * Sets memory
      */
-    public function setMemory(string|null $memory = null)
+    public function setMemory($memory)
     {
         if (is_null($memory)) {
             array_push($this->openAPINullablesSetToNull, 'memory');
@@ -309,7 +309,7 @@ final class PerServiceResourcesOverridesValue implements ModelInterface, ArrayAc
     /**
      * Sets disk
      */
-    public function setDisk(string|null $disk = null)
+    public function setDisk($disk)
     {
         if (is_null($disk)) {
             array_push($this->openAPINullablesSetToNull, 'disk');

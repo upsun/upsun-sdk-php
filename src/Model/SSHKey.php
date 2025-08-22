@@ -261,7 +261,7 @@ final class SSHKey implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets key_id
      */
-    public function setKeyId(string|null $key_id = null)
+    public function setKeyId($key_id)
     {
         if (is_null($key_id)) {
             throw new \InvalidArgumentException('non-nullable key_id cannot be null');
@@ -284,7 +284,7 @@ final class SSHKey implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets uid
      */
-    public function setUid(string|null $uid = null)
+    public function setUid($uid)
     {
         if (is_null($uid)) {
             throw new \InvalidArgumentException('non-nullable uid cannot be null');
@@ -307,7 +307,7 @@ final class SSHKey implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets fingerprint
      */
-    public function setFingerprint(string|null $fingerprint = null)
+    public function setFingerprint($fingerprint)
     {
         if (is_null($fingerprint)) {
             throw new \InvalidArgumentException('non-nullable fingerprint cannot be null');
@@ -330,7 +330,7 @@ final class SSHKey implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets title
      */
-    public function setTitle(string|null $title = null)
+    public function setTitle($title)
     {
         if (is_null($title)) {
             throw new \InvalidArgumentException('non-nullable title cannot be null');
@@ -353,7 +353,7 @@ final class SSHKey implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets value
      */
-    public function setValue(string|null $value = null)
+    public function setValue($value)
     {
         if (is_null($value)) {
             throw new \InvalidArgumentException('non-nullable value cannot be null');
@@ -376,7 +376,7 @@ final class SSHKey implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets changed
      */
-    public function setChanged(string|null $changed = null)
+    public function setChanged($changed)
     {
         if (is_null($changed)) {
             throw new \InvalidArgumentException('non-nullable changed cannot be null');

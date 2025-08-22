@@ -281,7 +281,7 @@ final class OrganizationSSOConfig implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets provider_type
      */
-    public function setProviderType(string|null $provider_type = null)
+    public function setProviderType($provider_type)
     {
         if (is_null($provider_type)) {
             throw new \InvalidArgumentException('non-nullable provider_type cannot be null');
@@ -314,7 +314,7 @@ final class OrganizationSSOConfig implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets domain
      */
-    public function setDomain(string|null $domain = null)
+    public function setDomain($domain)
     {
         if (is_null($domain)) {
             throw new \InvalidArgumentException('non-nullable domain cannot be null');
@@ -337,7 +337,7 @@ final class OrganizationSSOConfig implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets organization_id
      */
-    public function setOrganizationId(string|null $organization_id = null)
+    public function setOrganizationId($organization_id)
     {
         if (is_null($organization_id)) {
             throw new \InvalidArgumentException('non-nullable organization_id cannot be null');
@@ -360,7 +360,7 @@ final class OrganizationSSOConfig implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets enforced
      */
-    public function setEnforced(string|null $enforced = null)
+    public function setEnforced($enforced)
     {
         if (is_null($enforced)) {
             throw new \InvalidArgumentException('non-nullable enforced cannot be null');
@@ -383,7 +383,7 @@ final class OrganizationSSOConfig implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets created_at
      */
-    public function setCreatedAt(string|null $created_at = null)
+    public function setCreatedAt($created_at)
     {
         if (is_null($created_at)) {
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
@@ -406,7 +406,7 @@ final class OrganizationSSOConfig implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt(string|null $updated_at = null)
+    public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');

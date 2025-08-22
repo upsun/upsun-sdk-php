@@ -290,7 +290,7 @@ final class ThePathsToRedirectValue1 implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets regexp
      */
-    public function setRegexp(string|null $regexp = null)
+    public function setRegexp($regexp)
     {
         if (is_null($regexp)) {
             throw new \InvalidArgumentException('non-nullable regexp cannot be null');
@@ -313,7 +313,7 @@ final class ThePathsToRedirectValue1 implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets to
      */
-    public function setTo(string|null $to = null)
+    public function setTo($to)
     {
         if (is_null($to)) {
             throw new \InvalidArgumentException('non-nullable to cannot be null');
@@ -336,7 +336,7 @@ final class ThePathsToRedirectValue1 implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets prefix
      */
-    public function setPrefix(string|null $prefix = null)
+    public function setPrefix($prefix)
     {
         if (is_null($prefix)) {
             array_push($this->openAPINullablesSetToNull, 'prefix');
@@ -366,7 +366,7 @@ final class ThePathsToRedirectValue1 implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets append_suffix
      */
-    public function setAppendSuffix(string|null $append_suffix = null)
+    public function setAppendSuffix($append_suffix)
     {
         if (is_null($append_suffix)) {
             array_push($this->openAPINullablesSetToNull, 'append_suffix');
@@ -396,7 +396,7 @@ final class ThePathsToRedirectValue1 implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets code
      */
-    public function setCode(string|null $code = null)
+    public function setCode($code)
     {
         if (is_null($code)) {
             throw new \InvalidArgumentException('non-nullable code cannot be null');
@@ -429,7 +429,7 @@ final class ThePathsToRedirectValue1 implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets expires
      */
-    public function setExpires(string|null $expires = null)
+    public function setExpires($expires)
     {
         if (is_null($expires)) {
             array_push($this->openAPINullablesSetToNull, 'expires');

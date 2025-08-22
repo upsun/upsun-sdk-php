@@ -233,7 +233,7 @@ final class GetOrgPrepaymentInfo200Response implements ModelInterface, ArrayAcce
     /**
      * Sets prepayment
      */
-    public function setPrepayment(string|null $prepayment = null)
+    public function setPrepayment($prepayment)
     {
         if (is_null($prepayment)) {
             throw new \InvalidArgumentException('non-nullable prepayment cannot be null');
@@ -256,7 +256,7 @@ final class GetOrgPrepaymentInfo200Response implements ModelInterface, ArrayAcce
     /**
      * Sets _links
      */
-    public function setLinks(string|null $_links = null)
+    public function setLinks($_links)
     {
         if (is_null($_links)) {
             throw new \InvalidArgumentException('non-nullable _links cannot be null');

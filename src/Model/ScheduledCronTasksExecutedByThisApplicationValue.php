@@ -263,7 +263,7 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements ModelInt
     /**
      * Sets spec
      */
-    public function setSpec(string|null $spec = null)
+    public function setSpec($spec)
     {
         if (is_null($spec)) {
             throw new \InvalidArgumentException('non-nullable spec cannot be null');
@@ -286,7 +286,7 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements ModelInt
     /**
      * Sets commands
      */
-    public function setCommands(string|null $commands = null)
+    public function setCommands($commands)
     {
         if (is_null($commands)) {
             throw new \InvalidArgumentException('non-nullable commands cannot be null');
@@ -309,7 +309,7 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements ModelInt
     /**
      * Sets shutdown_timeout
      */
-    public function setShutdownTimeout(string|null $shutdown_timeout = null)
+    public function setShutdownTimeout($shutdown_timeout)
     {
         if (is_null($shutdown_timeout)) {
             array_push($this->openAPINullablesSetToNull, 'shutdown_timeout');
@@ -339,7 +339,7 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements ModelInt
     /**
      * Sets timeout
      */
-    public function setTimeout(string|null $timeout = null)
+    public function setTimeout($timeout)
     {
         if (is_null($timeout)) {
             throw new \InvalidArgumentException('non-nullable timeout cannot be null');
@@ -362,7 +362,7 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements ModelInt
     /**
      * Sets cmd
      */
-    public function setCmd(string|null $cmd = null)
+    public function setCmd($cmd)
     {
         if (is_null($cmd)) {
             throw new \InvalidArgumentException('non-nullable cmd cannot be null');

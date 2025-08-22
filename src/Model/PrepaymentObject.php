@@ -226,7 +226,7 @@ final class PrepaymentObject implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets prepayment
      */
-    public function setPrepayment(string|null $prepayment = null)
+    public function setPrepayment($prepayment)
     {
         if (is_null($prepayment)) {
             throw new \InvalidArgumentException('non-nullable prepayment cannot be null');

@@ -340,7 +340,7 @@ final class BitbucketServerIntegrationCreateInput implements ModelInterface, Arr
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -363,7 +363,7 @@ final class BitbucketServerIntegrationCreateInput implements ModelInterface, Arr
     /**
      * Sets fetch_branches
      */
-    public function setFetchBranches(string|null $fetch_branches = null)
+    public function setFetchBranches($fetch_branches)
     {
         if (is_null($fetch_branches)) {
             throw new \InvalidArgumentException('non-nullable fetch_branches cannot be null');
@@ -386,7 +386,7 @@ final class BitbucketServerIntegrationCreateInput implements ModelInterface, Arr
     /**
      * Sets prune_branches
      */
-    public function setPruneBranches(string|null $prune_branches = null)
+    public function setPruneBranches($prune_branches)
     {
         if (is_null($prune_branches)) {
             throw new \InvalidArgumentException('non-nullable prune_branches cannot be null');
@@ -409,7 +409,7 @@ final class BitbucketServerIntegrationCreateInput implements ModelInterface, Arr
     /**
      * Sets environment_init_resources
      */
-    public function setEnvironmentInitResources(string|null $environment_init_resources = null)
+    public function setEnvironmentInitResources($environment_init_resources)
     {
         if (is_null($environment_init_resources)) {
             throw new \InvalidArgumentException('non-nullable environment_init_resources cannot be null');
@@ -442,7 +442,7 @@ final class BitbucketServerIntegrationCreateInput implements ModelInterface, Arr
     /**
      * Sets url
      */
-    public function setUrl(string|null $url = null)
+    public function setUrl($url)
     {
         if (is_null($url)) {
             throw new \InvalidArgumentException('non-nullable url cannot be null');
@@ -465,7 +465,7 @@ final class BitbucketServerIntegrationCreateInput implements ModelInterface, Arr
     /**
      * Sets username
      */
-    public function setUsername(string|null $username = null)
+    public function setUsername($username)
     {
         if (is_null($username)) {
             throw new \InvalidArgumentException('non-nullable username cannot be null');
@@ -488,7 +488,7 @@ final class BitbucketServerIntegrationCreateInput implements ModelInterface, Arr
     /**
      * Sets token
      */
-    public function setToken(string|null $token = null)
+    public function setToken($token)
     {
         if (is_null($token)) {
             throw new \InvalidArgumentException('non-nullable token cannot be null');
@@ -511,7 +511,7 @@ final class BitbucketServerIntegrationCreateInput implements ModelInterface, Arr
     /**
      * Sets project
      */
-    public function setProject(string|null $project = null)
+    public function setProject($project)
     {
         if (is_null($project)) {
             throw new \InvalidArgumentException('non-nullable project cannot be null');
@@ -534,7 +534,7 @@ final class BitbucketServerIntegrationCreateInput implements ModelInterface, Arr
     /**
      * Sets repository
      */
-    public function setRepository(string|null $repository = null)
+    public function setRepository($repository)
     {
         if (is_null($repository)) {
             throw new \InvalidArgumentException('non-nullable repository cannot be null');
@@ -557,7 +557,7 @@ final class BitbucketServerIntegrationCreateInput implements ModelInterface, Arr
     /**
      * Sets build_pull_requests
      */
-    public function setBuildPullRequests(string|null $build_pull_requests = null)
+    public function setBuildPullRequests($build_pull_requests)
     {
         if (is_null($build_pull_requests)) {
             throw new \InvalidArgumentException('non-nullable build_pull_requests cannot be null');
@@ -580,7 +580,7 @@ final class BitbucketServerIntegrationCreateInput implements ModelInterface, Arr
     /**
      * Sets pull_requests_clone_parent_data
      */
-    public function setPullRequestsCloneParentData(string|null $pull_requests_clone_parent_data = null)
+    public function setPullRequestsCloneParentData($pull_requests_clone_parent_data)
     {
         if (is_null($pull_requests_clone_parent_data)) {
             throw new \InvalidArgumentException('non-nullable pull_requests_clone_parent_data cannot be null');

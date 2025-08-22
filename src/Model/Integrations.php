@@ -243,7 +243,7 @@ final class Integrations implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets enabled
      */
-    public function setEnabled(string|null $enabled = null)
+    public function setEnabled($enabled)
     {
         if (is_null($enabled)) {
             throw new \InvalidArgumentException('non-nullable enabled cannot be null');
@@ -266,7 +266,7 @@ final class Integrations implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets config
      */
-    public function setConfig(string|null $config = null)
+    public function setConfig($config)
     {
         if (is_null($config)) {
             throw new \InvalidArgumentException('non-nullable config cannot be null');
@@ -289,7 +289,7 @@ final class Integrations implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets allowed_integrations
      */
-    public function setAllowedIntegrations(string|null $allowed_integrations = null)
+    public function setAllowedIntegrations($allowed_integrations)
     {
         if (is_null($allowed_integrations)) {
             throw new \InvalidArgumentException('non-nullable allowed_integrations cannot be null');

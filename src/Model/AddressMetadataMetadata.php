@@ -240,7 +240,7 @@ final class AddressMetadataMetadata implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets required_fields
      */
-    public function setRequiredFields(string|null $required_fields = null)
+    public function setRequiredFields($required_fields)
     {
         if (is_null($required_fields)) {
             throw new \InvalidArgumentException('non-nullable required_fields cannot be null');
@@ -263,7 +263,7 @@ final class AddressMetadataMetadata implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets field_labels
      */
-    public function setFieldLabels(string|null $field_labels = null)
+    public function setFieldLabels($field_labels)
     {
         if (is_null($field_labels)) {
             throw new \InvalidArgumentException('non-nullable field_labels cannot be null');
@@ -286,7 +286,7 @@ final class AddressMetadataMetadata implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets show_vat
      */
-    public function setShowVat(string|null $show_vat = null)
+    public function setShowVat($show_vat)
     {
         if (is_null($show_vat)) {
             throw new \InvalidArgumentException('non-nullable show_vat cannot be null');

@@ -233,7 +233,7 @@ final class ListRegions200Response implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets regions
      */
-    public function setRegions(string|null $regions = null)
+    public function setRegions($regions)
     {
         if (is_null($regions)) {
             throw new \InvalidArgumentException('non-nullable regions cannot be null');
@@ -256,7 +256,7 @@ final class ListRegions200Response implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets _links
      */
-    public function setLinks(string|null $_links = null)
+    public function setLinks($_links)
     {
         if (is_null($_links)) {
             throw new \InvalidArgumentException('non-nullable _links cannot be null');

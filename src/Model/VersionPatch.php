@@ -226,7 +226,7 @@ final class VersionPatch implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets routing
      */
-    public function setRouting(string|null $routing = null)
+    public function setRouting($routing)
     {
         if (is_null($routing)) {
             throw new \InvalidArgumentException('non-nullable routing cannot be null');

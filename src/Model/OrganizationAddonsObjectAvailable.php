@@ -233,7 +233,7 @@ final class OrganizationAddonsObjectAvailable implements ModelInterface, ArrayAc
     /**
      * Sets user_management
      */
-    public function setUserManagement(string|null $user_management = null)
+    public function setUserManagement($user_management)
     {
         if (is_null($user_management)) {
             throw new \InvalidArgumentException('non-nullable user_management cannot be null');
@@ -256,7 +256,7 @@ final class OrganizationAddonsObjectAvailable implements ModelInterface, ArrayAc
     /**
      * Sets support_level
      */
-    public function setSupportLevel(string|null $support_level = null)
+    public function setSupportLevel($support_level)
     {
         if (is_null($support_level)) {
             throw new \InvalidArgumentException('non-nullable support_level cannot be null');

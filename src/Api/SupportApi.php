@@ -121,7 +121,7 @@ final class SupportApi
      * @throws InvalidArgumentException
      */
     public function createTicket(
-        $create_ticket_request = null
+        \Upsun\Model\CreateTicketRequest $create_ticket_request = null
     ): \Upsun\Model\Ticket {
         list($response) = $this->createTicketWithHttpInfo($create_ticket_request);
         return $response;
@@ -131,7 +131,7 @@ final class SupportApi
      * Create a new support ticket
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createTicketWithHttpInfo(
         \Upsun\Model\CreateTicketRequest $create_ticket_request = null
@@ -352,11 +352,13 @@ final class SupportApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return \Upsun\Model\ListTicketCategories200ResponseInner[]
      */
     public function listTicketCategories(
-        $subscription_id = null,
-        $organization_id = null
-    ): \Upsun\Model\ListTicketCategories200ResponseInner[] {
+        string $subscription_id = null,
+        string $organization_id = null
+    ): array {
         list($response) = $this->listTicketCategoriesWithHttpInfo($subscription_id, $organization_id);
         return $response;
     }
@@ -365,7 +367,7 @@ final class SupportApi
      * List support ticket categories
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listTicketCategoriesWithHttpInfo(
         string $subscription_id = null,
@@ -606,11 +608,13 @@ final class SupportApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return \Upsun\Model\ListTicketPriorities200ResponseInner[]
      */
     public function listTicketPriorities(
-        $subscription_id = null,
-        $category = null
-    ): \Upsun\Model\ListTicketPriorities200ResponseInner[] {
+        string $subscription_id = null,
+        string $category = null
+    ): array {
         list($response) = $this->listTicketPrioritiesWithHttpInfo($subscription_id, $category);
         return $response;
     }
@@ -619,7 +623,7 @@ final class SupportApi
      * List support ticket priorities
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listTicketPrioritiesWithHttpInfo(
         string $subscription_id = null,
@@ -862,8 +866,8 @@ final class SupportApi
      * @throws InvalidArgumentException
      */
     public function updateTicket(
-        $ticket_id,
-        $update_ticket_request = null
+        string $ticket_id,
+        \Upsun\Model\UpdateTicketRequest $update_ticket_request = null
     ): \Upsun\Model\Ticket {
         list($response) = $this->updateTicketWithHttpInfo($ticket_id, $update_ticket_request);
         return $response;
@@ -873,7 +877,7 @@ final class SupportApi
      * Update a ticket
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateTicketWithHttpInfo(
         string $ticket_id,

@@ -279,7 +279,7 @@ final class ProjectInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets title
      */
-    public function setTitle(string|null $title = null)
+    public function setTitle($title)
     {
         if (is_null($title)) {
             throw new \InvalidArgumentException('non-nullable title cannot be null');
@@ -302,7 +302,7 @@ final class ProjectInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -325,7 +325,7 @@ final class ProjectInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets namespace
      */
-    public function setNamespace(string|null $namespace = null)
+    public function setNamespace($namespace)
     {
         if (is_null($namespace)) {
             array_push($this->openAPINullablesSetToNull, 'namespace');
@@ -355,7 +355,7 @@ final class ProjectInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets organization
      */
-    public function setOrganization(string|null $organization = null)
+    public function setOrganization($organization)
     {
         if (is_null($organization)) {
             array_push($this->openAPINullablesSetToNull, 'organization');
@@ -385,7 +385,7 @@ final class ProjectInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets capabilities
      */
-    public function setCapabilities(string|null $capabilities = null)
+    public function setCapabilities($capabilities)
     {
         if (is_null($capabilities)) {
             throw new \InvalidArgumentException('non-nullable capabilities cannot be null');
@@ -408,7 +408,7 @@ final class ProjectInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets settings
      */
-    public function setSettings(string|null $settings = null)
+    public function setSettings($settings)
     {
         if (is_null($settings)) {
             throw new \InvalidArgumentException('non-nullable settings cannot be null');

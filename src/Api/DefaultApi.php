@@ -121,19 +121,19 @@ final class DefaultApi
      * @throws InvalidArgumentException
      */
     public function listTickets(
-        $filter_ticket_id = null,
-        $filter_created = null,
-        $filter_updated = null,
-        $filter_type = null,
-        $filter_priority = null,
-        $filter_status = null,
-        $filter_requester_id = null,
-        $filter_submitter_id = null,
-        $filter_assignee_id = null,
-        $filter_has_incidents = null,
-        $filter_due = null,
-        $search = null,
-        $page = null
+        int $filter_ticket_id = null,
+        \DateTime $filter_created = null,
+        \DateTime $filter_updated = null,
+        string $filter_type = null,
+        string $filter_priority = null,
+        string $filter_status = null,
+        string $filter_requester_id = null,
+        string $filter_submitter_id = null,
+        string $filter_assignee_id = null,
+        bool $filter_has_incidents = null,
+        \DateTime $filter_due = null,
+        string $search = null,
+        int $page = null
     ): \Upsun\Model\ListTickets200Response {
         list($response) = $this->listTicketsWithHttpInfo($filter_ticket_id, $filter_created, $filter_updated, $filter_type, $filter_priority, $filter_status, $filter_requester_id, $filter_submitter_id, $filter_assignee_id, $filter_has_incidents, $filter_due, $search, $page);
         return $response;
@@ -143,7 +143,7 @@ final class DefaultApi
      * List support tickets
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listTicketsWithHttpInfo(
         int $filter_ticket_id = null,

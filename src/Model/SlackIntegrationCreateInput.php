@@ -249,7 +249,7 @@ final class SlackIntegrationCreateInput implements ModelInterface, ArrayAccess, 
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -272,7 +272,7 @@ final class SlackIntegrationCreateInput implements ModelInterface, ArrayAccess, 
     /**
      * Sets token
      */
-    public function setToken(string|null $token = null)
+    public function setToken($token)
     {
         if (is_null($token)) {
             throw new \InvalidArgumentException('non-nullable token cannot be null');
@@ -295,7 +295,7 @@ final class SlackIntegrationCreateInput implements ModelInterface, ArrayAccess, 
     /**
      * Sets channel
      */
-    public function setChannel(string|null $channel = null)
+    public function setChannel($channel)
     {
         if (is_null($channel)) {
             throw new \InvalidArgumentException('non-nullable channel cannot be null');

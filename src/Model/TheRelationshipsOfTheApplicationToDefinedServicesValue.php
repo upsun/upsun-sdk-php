@@ -239,7 +239,7 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Mo
     /**
      * Sets service
      */
-    public function setService(string|null $service = null)
+    public function setService($service)
     {
         if (is_null($service)) {
             array_push($this->openAPINullablesSetToNull, 'service');
@@ -269,7 +269,7 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Mo
     /**
      * Sets endpoint
      */
-    public function setEndpoint(string|null $endpoint = null)
+    public function setEndpoint($endpoint)
     {
         if (is_null($endpoint)) {
             array_push($this->openAPINullablesSetToNull, 'endpoint');

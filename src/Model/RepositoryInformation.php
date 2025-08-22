@@ -239,7 +239,7 @@ final class RepositoryInformation implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets url
      */
-    public function setUrl(string|null $url = null)
+    public function setUrl($url)
     {
         if (is_null($url)) {
             throw new \InvalidArgumentException('non-nullable url cannot be null');
@@ -262,7 +262,7 @@ final class RepositoryInformation implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets client_ssh_key
      */
-    public function setClientSshKey(string|null $client_ssh_key = null)
+    public function setClientSshKey($client_ssh_key)
     {
         if (is_null($client_ssh_key)) {
             array_push($this->openAPINullablesSetToNull, 'client_ssh_key');

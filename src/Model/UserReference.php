@@ -275,7 +275,7 @@ final class UserReference implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets id
      */
-    public function setId(string|null $id = null)
+    public function setId($id)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -298,7 +298,7 @@ final class UserReference implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets username
      */
-    public function setUsername(string|null $username = null)
+    public function setUsername($username)
     {
         if (is_null($username)) {
             throw new \InvalidArgumentException('non-nullable username cannot be null');
@@ -321,7 +321,7 @@ final class UserReference implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets email
      */
-    public function setEmail(string|null $email = null)
+    public function setEmail($email)
     {
         if (is_null($email)) {
             throw new \InvalidArgumentException('non-nullable email cannot be null');
@@ -344,7 +344,7 @@ final class UserReference implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets first_name
      */
-    public function setFirstName(string|null $first_name = null)
+    public function setFirstName($first_name)
     {
         if (is_null($first_name)) {
             throw new \InvalidArgumentException('non-nullable first_name cannot be null');
@@ -367,7 +367,7 @@ final class UserReference implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets last_name
      */
-    public function setLastName(string|null $last_name = null)
+    public function setLastName($last_name)
     {
         if (is_null($last_name)) {
             throw new \InvalidArgumentException('non-nullable last_name cannot be null');
@@ -390,7 +390,7 @@ final class UserReference implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets picture
      */
-    public function setPicture(string|null $picture = null)
+    public function setPicture($picture)
     {
         if (is_null($picture)) {
             throw new \InvalidArgumentException('non-nullable picture cannot be null');
@@ -413,7 +413,7 @@ final class UserReference implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets mfa_enabled
      */
-    public function setMfaEnabled(string|null $mfa_enabled = null)
+    public function setMfaEnabled($mfa_enabled)
     {
         if (is_null($mfa_enabled)) {
             throw new \InvalidArgumentException('non-nullable mfa_enabled cannot be null');
@@ -436,7 +436,7 @@ final class UserReference implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets sso_enabled
      */
-    public function setSsoEnabled(string|null $sso_enabled = null)
+    public function setSsoEnabled($sso_enabled)
     {
         if (is_null($sso_enabled)) {
             throw new \InvalidArgumentException('non-nullable sso_enabled cannot be null');

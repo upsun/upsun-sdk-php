@@ -259,7 +259,7 @@ final class CacheConfiguration implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets enabled
      */
-    public function setEnabled(string|null $enabled = null)
+    public function setEnabled($enabled)
     {
         if (is_null($enabled)) {
             throw new \InvalidArgumentException('non-nullable enabled cannot be null');
@@ -282,7 +282,7 @@ final class CacheConfiguration implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets default_ttl
      */
-    public function setDefaultTtl(string|null $default_ttl = null)
+    public function setDefaultTtl($default_ttl)
     {
         if (is_null($default_ttl)) {
             throw new \InvalidArgumentException('non-nullable default_ttl cannot be null');
@@ -305,7 +305,7 @@ final class CacheConfiguration implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets cookies
      */
-    public function setCookies(string|null $cookies = null)
+    public function setCookies($cookies)
     {
         if (is_null($cookies)) {
             throw new \InvalidArgumentException('non-nullable cookies cannot be null');
@@ -328,7 +328,7 @@ final class CacheConfiguration implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets headers
      */
-    public function setHeaders(string|null $headers = null)
+    public function setHeaders($headers)
     {
         if (is_null($headers)) {
             throw new \InvalidArgumentException('non-nullable headers cannot be null');

@@ -945,7 +945,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets initialize
      */
-    public function setInitialize(string|null $initialize = null)
+    public function setInitialize($initialize)
     {
         if (is_null($initialize)) {
             throw new \InvalidArgumentException('non-nullable initialize cannot be null');
@@ -968,7 +968,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets product_name
      */
-    public function setProductName(string|null $product_name = null)
+    public function setProductName($product_name)
     {
         if (is_null($product_name)) {
             throw new \InvalidArgumentException('non-nullable product_name cannot be null');
@@ -991,7 +991,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets product_code
      */
-    public function setProductCode(string|null $product_code = null)
+    public function setProductCode($product_code)
     {
         if (is_null($product_code)) {
             throw new \InvalidArgumentException('non-nullable product_code cannot be null');
@@ -1014,7 +1014,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets ui_uri_template
      */
-    public function setUiUriTemplate(string|null $ui_uri_template = null)
+    public function setUiUriTemplate($ui_uri_template)
     {
         if (is_null($ui_uri_template)) {
             throw new \InvalidArgumentException('non-nullable ui_uri_template cannot be null');
@@ -1037,7 +1037,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets variables_prefix
      */
-    public function setVariablesPrefix(string|null $variables_prefix = null)
+    public function setVariablesPrefix($variables_prefix)
     {
         if (is_null($variables_prefix)) {
             throw new \InvalidArgumentException('non-nullable variables_prefix cannot be null');
@@ -1060,7 +1060,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets bot_email
      */
-    public function setBotEmail(string|null $bot_email = null)
+    public function setBotEmail($bot_email)
     {
         if (is_null($bot_email)) {
             throw new \InvalidArgumentException('non-nullable bot_email cannot be null');
@@ -1083,7 +1083,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets application_config_file
      */
-    public function setApplicationConfigFile(string|null $application_config_file = null)
+    public function setApplicationConfigFile($application_config_file)
     {
         if (is_null($application_config_file)) {
             throw new \InvalidArgumentException('non-nullable application_config_file cannot be null');
@@ -1106,7 +1106,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets project_config_dir
      */
-    public function setProjectConfigDir(string|null $project_config_dir = null)
+    public function setProjectConfigDir($project_config_dir)
     {
         if (is_null($project_config_dir)) {
             throw new \InvalidArgumentException('non-nullable project_config_dir cannot be null');
@@ -1129,7 +1129,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets use_drupal_defaults
      */
-    public function setUseDrupalDefaults(string|null $use_drupal_defaults = null)
+    public function setUseDrupalDefaults($use_drupal_defaults)
     {
         if (is_null($use_drupal_defaults)) {
             throw new \InvalidArgumentException('non-nullable use_drupal_defaults cannot be null');
@@ -1152,7 +1152,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets use_legacy_subdomains
      */
-    public function setUseLegacySubdomains(string|null $use_legacy_subdomains = null)
+    public function setUseLegacySubdomains($use_legacy_subdomains)
     {
         if (is_null($use_legacy_subdomains)) {
             throw new \InvalidArgumentException('non-nullable use_legacy_subdomains cannot be null');
@@ -1175,7 +1175,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets development_service_size
      */
-    public function setDevelopmentServiceSize(string|null $development_service_size = null)
+    public function setDevelopmentServiceSize($development_service_size)
     {
         if (is_null($development_service_size)) {
             throw new \InvalidArgumentException('non-nullable development_service_size cannot be null');
@@ -1208,7 +1208,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets development_application_size
      */
-    public function setDevelopmentApplicationSize(string|null $development_application_size = null)
+    public function setDevelopmentApplicationSize($development_application_size)
     {
         if (is_null($development_application_size)) {
             throw new \InvalidArgumentException('non-nullable development_application_size cannot be null');
@@ -1241,7 +1241,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enable_certificate_provisioning
      */
-    public function setEnableCertificateProvisioning(string|null $enable_certificate_provisioning = null)
+    public function setEnableCertificateProvisioning($enable_certificate_provisioning)
     {
         if (is_null($enable_certificate_provisioning)) {
             throw new \InvalidArgumentException('non-nullable enable_certificate_provisioning cannot be null');
@@ -1264,7 +1264,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets certificate_style
      */
-    public function setCertificateStyle(string|null $certificate_style = null)
+    public function setCertificateStyle($certificate_style)
     {
         if (is_null($certificate_style)) {
             throw new \InvalidArgumentException('non-nullable certificate_style cannot be null');
@@ -1297,7 +1297,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets certificate_renewal_activity
      */
-    public function setCertificateRenewalActivity(string|null $certificate_renewal_activity = null)
+    public function setCertificateRenewalActivity($certificate_renewal_activity)
     {
         if (is_null($certificate_renewal_activity)) {
             throw new \InvalidArgumentException('non-nullable certificate_renewal_activity cannot be null');
@@ -1320,7 +1320,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets development_domain_template
      */
-    public function setDevelopmentDomainTemplate(string|null $development_domain_template = null)
+    public function setDevelopmentDomainTemplate($development_domain_template)
     {
         if (is_null($development_domain_template)) {
             array_push($this->openAPINullablesSetToNull, 'development_domain_template');
@@ -1350,7 +1350,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enable_state_api_deployments
      */
-    public function setEnableStateApiDeployments(string|null $enable_state_api_deployments = null)
+    public function setEnableStateApiDeployments($enable_state_api_deployments)
     {
         if (is_null($enable_state_api_deployments)) {
             throw new \InvalidArgumentException('non-nullable enable_state_api_deployments cannot be null');
@@ -1373,7 +1373,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets temporary_disk_size
      */
-    public function setTemporaryDiskSize(string|null $temporary_disk_size = null)
+    public function setTemporaryDiskSize($temporary_disk_size)
     {
         if (is_null($temporary_disk_size)) {
             array_push($this->openAPINullablesSetToNull, 'temporary_disk_size');
@@ -1403,7 +1403,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets local_disk_size
      */
-    public function setLocalDiskSize(string|null $local_disk_size = null)
+    public function setLocalDiskSize($local_disk_size)
     {
         if (is_null($local_disk_size)) {
             array_push($this->openAPINullablesSetToNull, 'local_disk_size');
@@ -1433,7 +1433,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets cron_minimum_interval
      */
-    public function setCronMinimumInterval(string|null $cron_minimum_interval = null)
+    public function setCronMinimumInterval($cron_minimum_interval)
     {
         if (is_null($cron_minimum_interval)) {
             throw new \InvalidArgumentException('non-nullable cron_minimum_interval cannot be null');
@@ -1456,7 +1456,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets cron_maximum_jitter
      */
-    public function setCronMaximumJitter(string|null $cron_maximum_jitter = null)
+    public function setCronMaximumJitter($cron_maximum_jitter)
     {
         if (is_null($cron_maximum_jitter)) {
             throw new \InvalidArgumentException('non-nullable cron_maximum_jitter cannot be null');
@@ -1479,7 +1479,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets concurrency_limits
      */
-    public function setConcurrencyLimits(string|null $concurrency_limits = null)
+    public function setConcurrencyLimits($concurrency_limits)
     {
         if (is_null($concurrency_limits)) {
             throw new \InvalidArgumentException('non-nullable concurrency_limits cannot be null');
@@ -1502,7 +1502,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets flexible_build_cache
      */
-    public function setFlexibleBuildCache(string|null $flexible_build_cache = null)
+    public function setFlexibleBuildCache($flexible_build_cache)
     {
         if (is_null($flexible_build_cache)) {
             throw new \InvalidArgumentException('non-nullable flexible_build_cache cannot be null');
@@ -1525,7 +1525,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets strict_configuration
      */
-    public function setStrictConfiguration(string|null $strict_configuration = null)
+    public function setStrictConfiguration($strict_configuration)
     {
         if (is_null($strict_configuration)) {
             throw new \InvalidArgumentException('non-nullable strict_configuration cannot be null');
@@ -1548,7 +1548,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets has_sleepy_crons
      */
-    public function setHasSleepyCrons(string|null $has_sleepy_crons = null)
+    public function setHasSleepyCrons($has_sleepy_crons)
     {
         if (is_null($has_sleepy_crons)) {
             throw new \InvalidArgumentException('non-nullable has_sleepy_crons cannot be null');
@@ -1571,7 +1571,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets crons_in_git
      */
-    public function setCronsInGit(string|null $crons_in_git = null)
+    public function setCronsInGit($crons_in_git)
     {
         if (is_null($crons_in_git)) {
             throw new \InvalidArgumentException('non-nullable crons_in_git cannot be null');
@@ -1594,7 +1594,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets custom_error_template
      */
-    public function setCustomErrorTemplate(string|null $custom_error_template = null)
+    public function setCustomErrorTemplate($custom_error_template)
     {
         if (is_null($custom_error_template)) {
             array_push($this->openAPINullablesSetToNull, 'custom_error_template');
@@ -1624,7 +1624,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets app_error_page_template
      */
-    public function setAppErrorPageTemplate(string|null $app_error_page_template = null)
+    public function setAppErrorPageTemplate($app_error_page_template)
     {
         if (is_null($app_error_page_template)) {
             array_push($this->openAPINullablesSetToNull, 'app_error_page_template');
@@ -1654,7 +1654,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets environment_name_strategy
      */
-    public function setEnvironmentNameStrategy(string|null $environment_name_strategy = null)
+    public function setEnvironmentNameStrategy($environment_name_strategy)
     {
         if (is_null($environment_name_strategy)) {
             throw new \InvalidArgumentException('non-nullable environment_name_strategy cannot be null');
@@ -1687,7 +1687,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets data_retention
      */
-    public function setDataRetention(string|null $data_retention = null)
+    public function setDataRetention($data_retention)
     {
         if (is_null($data_retention)) {
             array_push($this->openAPINullablesSetToNull, 'data_retention');
@@ -1717,7 +1717,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enable_codesource_integration_push
      */
-    public function setEnableCodesourceIntegrationPush(string|null $enable_codesource_integration_push = null)
+    public function setEnableCodesourceIntegrationPush($enable_codesource_integration_push)
     {
         if (is_null($enable_codesource_integration_push)) {
             throw new \InvalidArgumentException('non-nullable enable_codesource_integration_push cannot be null');
@@ -1740,7 +1740,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enforce_mfa
      */
-    public function setEnforceMfa(string|null $enforce_mfa = null)
+    public function setEnforceMfa($enforce_mfa)
     {
         if (is_null($enforce_mfa)) {
             throw new \InvalidArgumentException('non-nullable enforce_mfa cannot be null');
@@ -1763,7 +1763,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets systemd
      */
-    public function setSystemd(string|null $systemd = null)
+    public function setSystemd($systemd)
     {
         if (is_null($systemd)) {
             throw new \InvalidArgumentException('non-nullable systemd cannot be null');
@@ -1786,7 +1786,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets router_gen2
      */
-    public function setRouterGen2(string|null $router_gen2 = null)
+    public function setRouterGen2($router_gen2)
     {
         if (is_null($router_gen2)) {
             throw new \InvalidArgumentException('non-nullable router_gen2 cannot be null');
@@ -1809,7 +1809,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets build_resources
      */
-    public function setBuildResources(string|null $build_resources = null)
+    public function setBuildResources($build_resources)
     {
         if (is_null($build_resources)) {
             throw new \InvalidArgumentException('non-nullable build_resources cannot be null');
@@ -1832,7 +1832,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets outbound_restrictions_default_policy
      */
-    public function setOutboundRestrictionsDefaultPolicy(string|null $outbound_restrictions_default_policy = null)
+    public function setOutboundRestrictionsDefaultPolicy($outbound_restrictions_default_policy)
     {
         if (is_null($outbound_restrictions_default_policy)) {
             throw new \InvalidArgumentException('non-nullable outbound_restrictions_default_policy cannot be null');
@@ -1865,7 +1865,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets self_upgrade
      */
-    public function setSelfUpgrade(string|null $self_upgrade = null)
+    public function setSelfUpgrade($self_upgrade)
     {
         if (is_null($self_upgrade)) {
             throw new \InvalidArgumentException('non-nullable self_upgrade cannot be null');
@@ -1888,7 +1888,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets additional_hosts
      */
-    public function setAdditionalHosts(string|null $additional_hosts = null)
+    public function setAdditionalHosts($additional_hosts)
     {
         if (is_null($additional_hosts)) {
             throw new \InvalidArgumentException('non-nullable additional_hosts cannot be null');
@@ -1911,7 +1911,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets max_allowed_routes
      */
-    public function setMaxAllowedRoutes(string|null $max_allowed_routes = null)
+    public function setMaxAllowedRoutes($max_allowed_routes)
     {
         if (is_null($max_allowed_routes)) {
             throw new \InvalidArgumentException('non-nullable max_allowed_routes cannot be null');
@@ -1934,7 +1934,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets max_allowed_redirects_paths
      */
-    public function setMaxAllowedRedirectsPaths(string|null $max_allowed_redirects_paths = null)
+    public function setMaxAllowedRedirectsPaths($max_allowed_redirects_paths)
     {
         if (is_null($max_allowed_redirects_paths)) {
             throw new \InvalidArgumentException('non-nullable max_allowed_redirects_paths cannot be null');
@@ -1957,7 +1957,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enable_incremental_backups
      */
-    public function setEnableIncrementalBackups(string|null $enable_incremental_backups = null)
+    public function setEnableIncrementalBackups($enable_incremental_backups)
     {
         if (is_null($enable_incremental_backups)) {
             throw new \InvalidArgumentException('non-nullable enable_incremental_backups cannot be null');
@@ -1980,7 +1980,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets sizing_api_enabled
      */
-    public function setSizingApiEnabled(string|null $sizing_api_enabled = null)
+    public function setSizingApiEnabled($sizing_api_enabled)
     {
         if (is_null($sizing_api_enabled)) {
             throw new \InvalidArgumentException('non-nullable sizing_api_enabled cannot be null');
@@ -2003,7 +2003,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enable_cache_grace_period
      */
-    public function setEnableCacheGracePeriod(string|null $enable_cache_grace_period = null)
+    public function setEnableCacheGracePeriod($enable_cache_grace_period)
     {
         if (is_null($enable_cache_grace_period)) {
             throw new \InvalidArgumentException('non-nullable enable_cache_grace_period cannot be null');
@@ -2026,7 +2026,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enable_zero_downtime_deployments
      */
-    public function setEnableZeroDowntimeDeployments(string|null $enable_zero_downtime_deployments = null)
+    public function setEnableZeroDowntimeDeployments($enable_zero_downtime_deployments)
     {
         if (is_null($enable_zero_downtime_deployments)) {
             throw new \InvalidArgumentException('non-nullable enable_zero_downtime_deployments cannot be null');
@@ -2049,7 +2049,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enable_admin_agent
      */
-    public function setEnableAdminAgent(string|null $enable_admin_agent = null)
+    public function setEnableAdminAgent($enable_admin_agent)
     {
         if (is_null($enable_admin_agent)) {
             throw new \InvalidArgumentException('non-nullable enable_admin_agent cannot be null');
@@ -2072,7 +2072,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets certifier_url
      */
-    public function setCertifierUrl(string|null $certifier_url = null)
+    public function setCertifierUrl($certifier_url)
     {
         if (is_null($certifier_url)) {
             throw new \InvalidArgumentException('non-nullable certifier_url cannot be null');
@@ -2095,7 +2095,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets centralized_permissions
      */
-    public function setCentralizedPermissions(string|null $centralized_permissions = null)
+    public function setCentralizedPermissions($centralized_permissions)
     {
         if (is_null($centralized_permissions)) {
             throw new \InvalidArgumentException('non-nullable centralized_permissions cannot be null');
@@ -2118,7 +2118,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets glue_server_max_request_size
      */
-    public function setGlueServerMaxRequestSize(string|null $glue_server_max_request_size = null)
+    public function setGlueServerMaxRequestSize($glue_server_max_request_size)
     {
         if (is_null($glue_server_max_request_size)) {
             throw new \InvalidArgumentException('non-nullable glue_server_max_request_size cannot be null');
@@ -2141,7 +2141,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets persistent_endpoints_ssh
      */
-    public function setPersistentEndpointsSsh(string|null $persistent_endpoints_ssh = null)
+    public function setPersistentEndpointsSsh($persistent_endpoints_ssh)
     {
         if (is_null($persistent_endpoints_ssh)) {
             throw new \InvalidArgumentException('non-nullable persistent_endpoints_ssh cannot be null');
@@ -2164,7 +2164,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets persistent_endpoints_ssl_certificates
      */
-    public function setPersistentEndpointsSslCertificates(string|null $persistent_endpoints_ssl_certificates = null)
+    public function setPersistentEndpointsSslCertificates($persistent_endpoints_ssl_certificates)
     {
         if (is_null($persistent_endpoints_ssl_certificates)) {
             throw new \InvalidArgumentException('non-nullable persistent_endpoints_ssl_certificates cannot be null');
@@ -2187,7 +2187,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enable_disk_health_monitoring
      */
-    public function setEnableDiskHealthMonitoring(string|null $enable_disk_health_monitoring = null)
+    public function setEnableDiskHealthMonitoring($enable_disk_health_monitoring)
     {
         if (is_null($enable_disk_health_monitoring)) {
             throw new \InvalidArgumentException('non-nullable enable_disk_health_monitoring cannot be null');
@@ -2210,7 +2210,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enable_paused_environments
      */
-    public function setEnablePausedEnvironments(string|null $enable_paused_environments = null)
+    public function setEnablePausedEnvironments($enable_paused_environments)
     {
         if (is_null($enable_paused_environments)) {
             throw new \InvalidArgumentException('non-nullable enable_paused_environments cannot be null');
@@ -2233,7 +2233,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enable_unified_configuration
      */
-    public function setEnableUnifiedConfiguration(string|null $enable_unified_configuration = null)
+    public function setEnableUnifiedConfiguration($enable_unified_configuration)
     {
         if (is_null($enable_unified_configuration)) {
             throw new \InvalidArgumentException('non-nullable enable_unified_configuration cannot be null');
@@ -2256,7 +2256,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enable_routes_tracing
      */
-    public function setEnableRoutesTracing(string|null $enable_routes_tracing = null)
+    public function setEnableRoutesTracing($enable_routes_tracing)
     {
         if (is_null($enable_routes_tracing)) {
             throw new \InvalidArgumentException('non-nullable enable_routes_tracing cannot be null');
@@ -2279,7 +2279,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets image_deployment_validation
      */
-    public function setImageDeploymentValidation(string|null $image_deployment_validation = null)
+    public function setImageDeploymentValidation($image_deployment_validation)
     {
         if (is_null($image_deployment_validation)) {
             throw new \InvalidArgumentException('non-nullable image_deployment_validation cannot be null');
@@ -2302,7 +2302,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets support_generic_images
      */
-    public function setSupportGenericImages(string|null $support_generic_images = null)
+    public function setSupportGenericImages($support_generic_images)
     {
         if (is_null($support_generic_images)) {
             throw new \InvalidArgumentException('non-nullable support_generic_images cannot be null');
@@ -2325,7 +2325,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enable_github_app_token_exchange
      */
-    public function setEnableGithubAppTokenExchange(string|null $enable_github_app_token_exchange = null)
+    public function setEnableGithubAppTokenExchange($enable_github_app_token_exchange)
     {
         if (is_null($enable_github_app_token_exchange)) {
             throw new \InvalidArgumentException('non-nullable enable_github_app_token_exchange cannot be null');
@@ -2348,7 +2348,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets continuous_profiling
      */
-    public function setContinuousProfiling(string|null $continuous_profiling = null)
+    public function setContinuousProfiling($continuous_profiling)
     {
         if (is_null($continuous_profiling)) {
             throw new \InvalidArgumentException('non-nullable continuous_profiling cannot be null');
@@ -2371,7 +2371,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets disable_agent_error_reporter
      */
-    public function setDisableAgentErrorReporter(string|null $disable_agent_error_reporter = null)
+    public function setDisableAgentErrorReporter($disable_agent_error_reporter)
     {
         if (is_null($disable_agent_error_reporter)) {
             throw new \InvalidArgumentException('non-nullable disable_agent_error_reporter cannot be null');
@@ -2394,7 +2394,7 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets requires_domain_ownership
      */
-    public function setRequiresDomainOwnership(string|null $requires_domain_ownership = null)
+    public function setRequiresDomainOwnership($requires_domain_ownership)
     {
         if (is_null($requires_domain_ownership)) {
             throw new \InvalidArgumentException('non-nullable requires_domain_ownership cannot be null');

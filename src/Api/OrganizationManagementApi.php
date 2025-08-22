@@ -121,7 +121,7 @@ final class OrganizationManagementApi
      * @throws InvalidArgumentException
      */
     public function estimateOrg(
-        $organization_id
+        string $organization_id
     ): \Upsun\Model\OrganizationEstimationObject {
         list($response) = $this->estimateOrgWithHttpInfo($organization_id);
         return $response;
@@ -131,7 +131,7 @@ final class OrganizationManagementApi
      * Estimate total spend
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function estimateOrgWithHttpInfo(
         string $organization_id
@@ -390,7 +390,7 @@ final class OrganizationManagementApi
      * @throws InvalidArgumentException
      */
     public function getOrgBillingAlertConfig(
-        $organization_id
+        string $organization_id
     ): \Upsun\Model\OrganizationAlertConfig {
         list($response) = $this->getOrgBillingAlertConfigWithHttpInfo($organization_id);
         return $response;
@@ -400,7 +400,7 @@ final class OrganizationManagementApi
      * Get billing alert configuration
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getOrgBillingAlertConfigWithHttpInfo(
         string $organization_id
@@ -659,7 +659,7 @@ final class OrganizationManagementApi
      * @throws InvalidArgumentException
      */
     public function getOrgPrepaymentInfo(
-        $organization_id
+        string $organization_id
     ): \Upsun\Model\GetOrgPrepaymentInfo200Response {
         list($response) = $this->getOrgPrepaymentInfoWithHttpInfo($organization_id);
         return $response;
@@ -669,7 +669,7 @@ final class OrganizationManagementApi
      * Get organization prepayment information
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getOrgPrepaymentInfoWithHttpInfo(
         string $organization_id
@@ -928,7 +928,7 @@ final class OrganizationManagementApi
      * @throws InvalidArgumentException
      */
     public function listOrgPrepaymentTransactions(
-        $organization_id
+        string $organization_id
     ): \Upsun\Model\ListOrgPrepaymentTransactions200Response {
         list($response) = $this->listOrgPrepaymentTransactionsWithHttpInfo($organization_id);
         return $response;
@@ -938,7 +938,7 @@ final class OrganizationManagementApi
      * List organization prepayment transactions
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listOrgPrepaymentTransactionsWithHttpInfo(
         string $organization_id
@@ -1197,8 +1197,8 @@ final class OrganizationManagementApi
      * @throws InvalidArgumentException
      */
     public function updateOrgBillingAlertConfig(
-        $organization_id,
-        $update_org_billing_alert_config_request = null
+        string $organization_id,
+        \Upsun\Model\UpdateOrgBillingAlertConfigRequest $update_org_billing_alert_config_request = null
     ): \Upsun\Model\OrganizationAlertConfig {
         list($response) = $this->updateOrgBillingAlertConfigWithHttpInfo($organization_id, $update_org_billing_alert_config_request);
         return $response;
@@ -1208,7 +1208,7 @@ final class OrganizationManagementApi
      * Update billing alert configuration
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateOrgBillingAlertConfigWithHttpInfo(
         string $organization_id,

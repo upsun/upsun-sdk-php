@@ -359,7 +359,7 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets id
      */
-    public function setId(string|null $id = null)
+    public function setId($id)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -382,7 +382,7 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -405,7 +405,7 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets title
      */
-    public function setTitle(string|null $title = null)
+    public function setTitle($title)
     {
         if (is_null($title)) {
             throw new \InvalidArgumentException('non-nullable title cannot be null');
@@ -428,7 +428,7 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets cluster
      */
-    public function setCluster(string|null $cluster = null)
+    public function setCluster($cluster)
     {
         if (is_null($cluster)) {
             throw new \InvalidArgumentException('non-nullable cluster cannot be null');
@@ -451,7 +451,7 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets cluster_label
      */
-    public function setClusterLabel(string|null $cluster_label = null)
+    public function setClusterLabel($cluster_label)
     {
         if (is_null($cluster_label)) {
             throw new \InvalidArgumentException('non-nullable cluster_label cannot be null');
@@ -474,7 +474,7 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets region
      */
-    public function setRegion(string|null $region = null)
+    public function setRegion($region)
     {
         if (is_null($region)) {
             throw new \InvalidArgumentException('non-nullable region cannot be null');
@@ -497,7 +497,7 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets region_label
      */
-    public function setRegionLabel(string|null $region_label = null)
+    public function setRegionLabel($region_label)
     {
         if (is_null($region_label)) {
             throw new \InvalidArgumentException('non-nullable region_label cannot be null');
@@ -520,7 +520,7 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets uri
      */
-    public function setUri(string|null $uri = null)
+    public function setUri($uri)
     {
         if (is_null($uri)) {
             throw new \InvalidArgumentException('non-nullable uri cannot be null');
@@ -543,7 +543,7 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets endpoint
      */
-    public function setEndpoint(string|null $endpoint = null)
+    public function setEndpoint($endpoint)
     {
         if (is_null($endpoint)) {
             throw new \InvalidArgumentException('non-nullable endpoint cannot be null');
@@ -566,7 +566,7 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets license_id
      */
-    public function setLicenseId(string|null $license_id = null)
+    public function setLicenseId($license_id)
     {
         if (is_null($license_id)) {
             throw new \InvalidArgumentException('non-nullable license_id cannot be null');
@@ -589,7 +589,7 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets owner
      */
-    public function setOwner(string|null $owner = null)
+    public function setOwner($owner)
     {
         if (is_null($owner)) {
             throw new \InvalidArgumentException('non-nullable owner cannot be null');
@@ -612,7 +612,7 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets owner_info
      */
-    public function setOwnerInfo(string|null $owner_info = null)
+    public function setOwnerInfo($owner_info)
     {
         if (is_null($owner_info)) {
             throw new \InvalidArgumentException('non-nullable owner_info cannot be null');
@@ -635,7 +635,7 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets plan
      */
-    public function setPlan(string|null $plan = null)
+    public function setPlan($plan)
     {
         if (is_null($plan)) {
             throw new \InvalidArgumentException('non-nullable plan cannot be null');
@@ -658,7 +658,7 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets subscription_id
      */
-    public function setSubscriptionId(string|null $subscription_id = null)
+    public function setSubscriptionId($subscription_id)
     {
         if (is_null($subscription_id)) {
             throw new \InvalidArgumentException('non-nullable subscription_id cannot be null');
@@ -681,7 +681,7 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets status
      */
-    public function setStatus(string|null $status = null)
+    public function setStatus($status)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
@@ -704,7 +704,7 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets vendor
      */
-    public function setVendor(string|null $vendor = null)
+    public function setVendor($vendor)
     {
         if (is_null($vendor)) {
             throw new \InvalidArgumentException('non-nullable vendor cannot be null');
@@ -727,7 +727,7 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets vendor_label
      */
-    public function setVendorLabel(string|null $vendor_label = null)
+    public function setVendorLabel($vendor_label)
     {
         if (is_null($vendor_label)) {
             throw new \InvalidArgumentException('non-nullable vendor_label cannot be null');
@@ -750,7 +750,7 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets vendor_website
      */
-    public function setVendorWebsite(string|null $vendor_website = null)
+    public function setVendorWebsite($vendor_website)
     {
         if (is_null($vendor_website)) {
             throw new \InvalidArgumentException('non-nullable vendor_website cannot be null');
@@ -773,7 +773,7 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets vendor_resources
      */
-    public function setVendorResources(string|null $vendor_resources = null)
+    public function setVendorResources($vendor_resources)
     {
         if (is_null($vendor_resources)) {
             throw new \InvalidArgumentException('non-nullable vendor_resources cannot be null');
@@ -796,7 +796,7 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets created_at
      */
-    public function setCreatedAt(string|null $created_at = null)
+    public function setCreatedAt($created_at)
     {
         if (is_null($created_at)) {
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');

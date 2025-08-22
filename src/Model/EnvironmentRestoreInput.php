@@ -269,7 +269,7 @@ final class EnvironmentRestoreInput implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets environment_name
      */
-    public function setEnvironmentName(string|null $environment_name = null)
+    public function setEnvironmentName($environment_name)
     {
         if (is_null($environment_name)) {
             array_push($this->openAPINullablesSetToNull, 'environment_name');
@@ -299,7 +299,7 @@ final class EnvironmentRestoreInput implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets branch_from
      */
-    public function setBranchFrom(string|null $branch_from = null)
+    public function setBranchFrom($branch_from)
     {
         if (is_null($branch_from)) {
             array_push($this->openAPINullablesSetToNull, 'branch_from');
@@ -329,7 +329,7 @@ final class EnvironmentRestoreInput implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets restore_code
      */
-    public function setRestoreCode(string|null $restore_code = null)
+    public function setRestoreCode($restore_code)
     {
         if (is_null($restore_code)) {
             throw new \InvalidArgumentException('non-nullable restore_code cannot be null');
@@ -352,7 +352,7 @@ final class EnvironmentRestoreInput implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets restore_resources
      */
-    public function setRestoreResources(string|null $restore_resources = null)
+    public function setRestoreResources($restore_resources)
     {
         if (is_null($restore_resources)) {
             throw new \InvalidArgumentException('non-nullable restore_resources cannot be null');
@@ -375,7 +375,7 @@ final class EnvironmentRestoreInput implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets resources
      */
-    public function setResources(string|null $resources = null)
+    public function setResources($resources)
     {
         if (is_null($resources)) {
             array_push($this->openAPINullablesSetToNull, 'resources');

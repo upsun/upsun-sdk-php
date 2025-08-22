@@ -249,7 +249,7 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
     /**
      * Sets path
      */
-    public function setPath(string|null $path = null)
+    public function setPath($path)
     {
         if (is_null($path)) {
             throw new \InvalidArgumentException('non-nullable path cannot be null');
@@ -272,7 +272,7 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
     /**
      * Sets mode
      */
-    public function setMode(string|null $mode = null)
+    public function setMode($mode)
     {
         if (is_null($mode)) {
             throw new \InvalidArgumentException('non-nullable mode cannot be null');
@@ -295,7 +295,7 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
     /**
      * Sets contents
      */
-    public function setContents(string|null $contents = null)
+    public function setContents($contents)
     {
         if (is_null($contents)) {
             throw new \InvalidArgumentException('non-nullable contents cannot be null');

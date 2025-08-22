@@ -425,7 +425,7 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets version
      */
-    public function setVersion(string|null $version = null)
+    public function setVersion($version)
     {
         if (is_null($version)) {
             throw new \InvalidArgumentException('non-nullable version cannot be null');
@@ -458,7 +458,7 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets aggressive
      */
-    public function setAggressive(string|null $aggressive = null)
+    public function setAggressive($aggressive)
     {
         if (is_null($aggressive)) {
             throw new \InvalidArgumentException('non-nullable aggressive cannot be null');
@@ -491,7 +491,7 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets modeconfig
      */
-    public function setModeconfig(string|null $modeconfig = null)
+    public function setModeconfig($modeconfig)
     {
         if (is_null($modeconfig)) {
             throw new \InvalidArgumentException('non-nullable modeconfig cannot be null');
@@ -524,7 +524,7 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets authentication
      */
-    public function setAuthentication(string|null $authentication = null)
+    public function setAuthentication($authentication)
     {
         if (is_null($authentication)) {
             throw new \InvalidArgumentException('non-nullable authentication cannot be null');
@@ -547,7 +547,7 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets gateway_ip
      */
-    public function setGatewayIp(string|null $gateway_ip = null)
+    public function setGatewayIp($gateway_ip)
     {
         if (is_null($gateway_ip)) {
             throw new \InvalidArgumentException('non-nullable gateway_ip cannot be null');
@@ -570,7 +570,7 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets identity
      */
-    public function setIdentity(string|null $identity = null)
+    public function setIdentity($identity)
     {
         if (is_null($identity)) {
             array_push($this->openAPINullablesSetToNull, 'identity');
@@ -600,7 +600,7 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets second_identity
      */
-    public function setSecondIdentity(string|null $second_identity = null)
+    public function setSecondIdentity($second_identity)
     {
         if (is_null($second_identity)) {
             array_push($this->openAPINullablesSetToNull, 'second_identity');
@@ -630,7 +630,7 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets remote_identity
      */
-    public function setRemoteIdentity(string|null $remote_identity = null)
+    public function setRemoteIdentity($remote_identity)
     {
         if (is_null($remote_identity)) {
             array_push($this->openAPINullablesSetToNull, 'remote_identity');
@@ -660,7 +660,7 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets remote_subnets
      */
-    public function setRemoteSubnets(string|null $remote_subnets = null)
+    public function setRemoteSubnets($remote_subnets)
     {
         if (is_null($remote_subnets)) {
             throw new \InvalidArgumentException('non-nullable remote_subnets cannot be null');
@@ -683,7 +683,7 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets ike
      */
-    public function setIke(string|null $ike = null)
+    public function setIke($ike)
     {
         if (is_null($ike)) {
             throw new \InvalidArgumentException('non-nullable ike cannot be null');
@@ -706,7 +706,7 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets esp
      */
-    public function setEsp(string|null $esp = null)
+    public function setEsp($esp)
     {
         if (is_null($esp)) {
             throw new \InvalidArgumentException('non-nullable esp cannot be null');
@@ -729,7 +729,7 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets ikelifetime
      */
-    public function setIkelifetime(string|null $ikelifetime = null)
+    public function setIkelifetime($ikelifetime)
     {
         if (is_null($ikelifetime)) {
             throw new \InvalidArgumentException('non-nullable ikelifetime cannot be null');
@@ -752,7 +752,7 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets lifetime
      */
-    public function setLifetime(string|null $lifetime = null)
+    public function setLifetime($lifetime)
     {
         if (is_null($lifetime)) {
             throw new \InvalidArgumentException('non-nullable lifetime cannot be null');
@@ -775,7 +775,7 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets margintime
      */
-    public function setMargintime(string|null $margintime = null)
+    public function setMargintime($margintime)
     {
         if (is_null($margintime)) {
             throw new \InvalidArgumentException('non-nullable margintime cannot be null');

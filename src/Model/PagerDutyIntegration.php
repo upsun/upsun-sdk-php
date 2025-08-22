@@ -259,7 +259,7 @@ final class PagerDutyIntegration implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets created_at
      */
-    public function setCreatedAt(string|null $created_at = null)
+    public function setCreatedAt($created_at)
     {
         if (is_null($created_at)) {
             array_push($this->openAPINullablesSetToNull, 'created_at');
@@ -289,7 +289,7 @@ final class PagerDutyIntegration implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt(string|null $updated_at = null)
+    public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
             array_push($this->openAPINullablesSetToNull, 'updated_at');
@@ -319,7 +319,7 @@ final class PagerDutyIntegration implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -342,7 +342,7 @@ final class PagerDutyIntegration implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets routing_key
      */
-    public function setRoutingKey(string|null $routing_key = null)
+    public function setRoutingKey($routing_key)
     {
         if (is_null($routing_key)) {
             throw new \InvalidArgumentException('non-nullable routing_key cannot be null');

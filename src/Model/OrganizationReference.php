@@ -268,7 +268,7 @@ final class OrganizationReference implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets id
      */
-    public function setId(string|null $id = null)
+    public function setId($id)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -291,7 +291,7 @@ final class OrganizationReference implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets owner_id
      */
-    public function setOwnerId(string|null $owner_id = null)
+    public function setOwnerId($owner_id)
     {
         if (is_null($owner_id)) {
             throw new \InvalidArgumentException('non-nullable owner_id cannot be null');
@@ -314,7 +314,7 @@ final class OrganizationReference implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -337,7 +337,7 @@ final class OrganizationReference implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets label
      */
-    public function setLabel(string|null $label = null)
+    public function setLabel($label)
     {
         if (is_null($label)) {
             throw new \InvalidArgumentException('non-nullable label cannot be null');
@@ -360,7 +360,7 @@ final class OrganizationReference implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets vendor
      */
-    public function setVendor(string|null $vendor = null)
+    public function setVendor($vendor)
     {
         if (is_null($vendor)) {
             throw new \InvalidArgumentException('non-nullable vendor cannot be null');
@@ -383,7 +383,7 @@ final class OrganizationReference implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets created_at
      */
-    public function setCreatedAt(string|null $created_at = null)
+    public function setCreatedAt($created_at)
     {
         if (is_null($created_at)) {
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
@@ -406,7 +406,7 @@ final class OrganizationReference implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt(string|null $updated_at = null)
+    public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');

@@ -233,7 +233,7 @@ final class UpdateTeamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets label
      */
-    public function setLabel(string|null $label = null)
+    public function setLabel($label)
     {
         if (is_null($label)) {
             throw new \InvalidArgumentException('non-nullable label cannot be null');
@@ -256,7 +256,7 @@ final class UpdateTeamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets project_permissions
      */
-    public function setProjectPermissions(string|null $project_permissions = null)
+    public function setProjectPermissions($project_permissions)
     {
         if (is_null($project_permissions)) {
             throw new \InvalidArgumentException('non-nullable project_permissions cannot be null');

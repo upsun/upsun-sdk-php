@@ -121,8 +121,8 @@ final class DeploymentTargetApi
      * @throws InvalidArgumentException
      */
     public function createProjectsDeployments(
-        $project_id,
-        $deployment_target_create_input
+        string $project_id,
+        \Upsun\Model\DeploymentTargetCreateInput $deployment_target_create_input
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->createProjectsDeploymentsWithHttpInfo($project_id, $deployment_target_create_input);
         return $response;
@@ -132,7 +132,7 @@ final class DeploymentTargetApi
      * Create a project deployment target
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createProjectsDeploymentsWithHttpInfo(
         string $project_id,
@@ -379,8 +379,8 @@ final class DeploymentTargetApi
      * @throws InvalidArgumentException
      */
     public function deleteProjectsDeployments(
-        $project_id,
-        $deployment_target_configuration_id
+        string $project_id,
+        string $deployment_target_configuration_id
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsDeploymentsWithHttpInfo($project_id, $deployment_target_configuration_id);
         return $response;
@@ -390,7 +390,7 @@ final class DeploymentTargetApi
      * Delete a single project deployment target
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsDeploymentsWithHttpInfo(
         string $project_id,
@@ -639,8 +639,8 @@ final class DeploymentTargetApi
      * @throws InvalidArgumentException
      */
     public function getProjectsDeployments(
-        $project_id,
-        $deployment_target_configuration_id
+        string $project_id,
+        string $deployment_target_configuration_id
     ): \Upsun\Model\DeploymentTarget {
         list($response) = $this->getProjectsDeploymentsWithHttpInfo($project_id, $deployment_target_configuration_id);
         return $response;
@@ -650,7 +650,7 @@ final class DeploymentTargetApi
      * Get a single project deployment target
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsDeploymentsWithHttpInfo(
         string $project_id,
@@ -897,10 +897,12 @@ final class DeploymentTargetApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return \Upsun\Model\DeploymentTarget[]
      */
     public function listProjectsDeployments(
-        $project_id
-    ): \Upsun\Model\DeploymentTarget[] {
+        string $project_id
+    ): array {
         list($response) = $this->listProjectsDeploymentsWithHttpInfo($project_id);
         return $response;
     }
@@ -909,7 +911,7 @@ final class DeploymentTargetApi
      * Get project deployment target info
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listProjectsDeploymentsWithHttpInfo(
         string $project_id
@@ -1140,9 +1142,9 @@ final class DeploymentTargetApi
      * @throws InvalidArgumentException
      */
     public function updateProjectsDeployments(
-        $project_id,
-        $deployment_target_configuration_id,
-        $deployment_target_patch
+        string $project_id,
+        string $deployment_target_configuration_id,
+        \Upsun\Model\DeploymentTargetPatch $deployment_target_patch
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsDeploymentsWithHttpInfo($project_id, $deployment_target_configuration_id, $deployment_target_patch);
         return $response;
@@ -1152,7 +1154,7 @@ final class DeploymentTargetApi
      * Update a project deployment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsDeploymentsWithHttpInfo(
         string $project_id,

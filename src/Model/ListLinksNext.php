@@ -226,7 +226,7 @@ final class ListLinksNext implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets href
      */
-    public function setHref(string|null $href = null)
+    public function setHref($href)
     {
         if (is_null($href)) {
             throw new \InvalidArgumentException('non-nullable href cannot be null');

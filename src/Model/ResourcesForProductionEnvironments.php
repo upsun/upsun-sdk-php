@@ -259,7 +259,7 @@ final class ResourcesForProductionEnvironments implements ModelInterface, ArrayA
     /**
      * Sets legacy_development
      */
-    public function setLegacyDevelopment(string|null $legacy_development = null)
+    public function setLegacyDevelopment($legacy_development)
     {
         if (is_null($legacy_development)) {
             throw new \InvalidArgumentException('non-nullable legacy_development cannot be null');
@@ -282,7 +282,7 @@ final class ResourcesForProductionEnvironments implements ModelInterface, ArrayA
     /**
      * Sets max_cpu
      */
-    public function setMaxCpu(string|null $max_cpu = null)
+    public function setMaxCpu($max_cpu)
     {
         if (is_null($max_cpu)) {
             array_push($this->openAPINullablesSetToNull, 'max_cpu');
@@ -312,7 +312,7 @@ final class ResourcesForProductionEnvironments implements ModelInterface, ArrayA
     /**
      * Sets max_memory
      */
-    public function setMaxMemory(string|null $max_memory = null)
+    public function setMaxMemory($max_memory)
     {
         if (is_null($max_memory)) {
             array_push($this->openAPINullablesSetToNull, 'max_memory');
@@ -342,7 +342,7 @@ final class ResourcesForProductionEnvironments implements ModelInterface, ArrayA
     /**
      * Sets max_environments
      */
-    public function setMaxEnvironments(string|null $max_environments = null)
+    public function setMaxEnvironments($max_environments)
     {
         if (is_null($max_environments)) {
             array_push($this->openAPINullablesSetToNull, 'max_environments');

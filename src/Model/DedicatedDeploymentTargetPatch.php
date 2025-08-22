@@ -270,7 +270,7 @@ final class DedicatedDeploymentTargetPatch implements ModelInterface, ArrayAcces
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -303,7 +303,7 @@ final class DedicatedDeploymentTargetPatch implements ModelInterface, ArrayAcces
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -326,7 +326,7 @@ final class DedicatedDeploymentTargetPatch implements ModelInterface, ArrayAcces
     /**
      * Sets enforced_mounts
      */
-    public function setEnforcedMounts(string|null $enforced_mounts = null)
+    public function setEnforcedMounts($enforced_mounts)
     {
         if (is_null($enforced_mounts)) {
             throw new \InvalidArgumentException('non-nullable enforced_mounts cannot be null');

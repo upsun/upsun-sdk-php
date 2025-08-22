@@ -246,7 +246,7 @@ final class CreateTeamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets organization_id
      */
-    public function setOrganizationId(string|null $organization_id = null)
+    public function setOrganizationId($organization_id)
     {
         if (is_null($organization_id)) {
             throw new \InvalidArgumentException('non-nullable organization_id cannot be null');
@@ -269,7 +269,7 @@ final class CreateTeamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets label
      */
-    public function setLabel(string|null $label = null)
+    public function setLabel($label)
     {
         if (is_null($label)) {
             throw new \InvalidArgumentException('non-nullable label cannot be null');
@@ -292,7 +292,7 @@ final class CreateTeamRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets project_permissions
      */
-    public function setProjectPermissions(string|null $project_permissions = null)
+    public function setProjectPermissions($project_permissions)
     {
         if (is_null($project_permissions)) {
             throw new \InvalidArgumentException('non-nullable project_permissions cannot be null');

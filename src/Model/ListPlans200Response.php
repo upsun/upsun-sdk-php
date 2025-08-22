@@ -240,7 +240,7 @@ final class ListPlans200Response implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets count
      */
-    public function setCount(string|null $count = null)
+    public function setCount($count)
     {
         if (is_null($count)) {
             throw new \InvalidArgumentException('non-nullable count cannot be null');
@@ -263,7 +263,7 @@ final class ListPlans200Response implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets plans
      */
-    public function setPlans(string|null $plans = null)
+    public function setPlans($plans)
     {
         if (is_null($plans)) {
             throw new \InvalidArgumentException('non-nullable plans cannot be null');
@@ -286,7 +286,7 @@ final class ListPlans200Response implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets _links
      */
-    public function setLinks(string|null $_links = null)
+    public function setLinks($_links)
     {
         if (is_null($_links)) {
             throw new \InvalidArgumentException('non-nullable _links cannot be null');

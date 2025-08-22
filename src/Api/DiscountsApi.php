@@ -121,7 +121,7 @@ final class DiscountsApi
      * @throws InvalidArgumentException
      */
     public function getDiscount(
-        $id
+        string $id
     ): \Upsun\Model\Discount {
         list($response) = $this->getDiscountWithHttpInfo($id);
         return $response;
@@ -131,7 +131,7 @@ final class DiscountsApi
      * Get an organization discount
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getDiscountWithHttpInfo(
         string $id
@@ -372,7 +372,7 @@ final class DiscountsApi
      * Get the value of the First Project Incentive discount
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getTypeAllowanceWithHttpInfo(
         
@@ -589,7 +589,7 @@ final class DiscountsApi
      * @throws InvalidArgumentException
      */
     public function listOrgDiscounts(
-        $organization_id
+        string $organization_id
     ): \Upsun\Model\ListOrgDiscounts200Response {
         list($response) = $this->listOrgDiscountsWithHttpInfo($organization_id);
         return $response;
@@ -599,7 +599,7 @@ final class DiscountsApi
      * List organization discounts
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listOrgDiscountsWithHttpInfo(
         string $organization_id

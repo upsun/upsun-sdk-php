@@ -296,7 +296,7 @@ final class GetAddress200Response implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets country
      */
-    public function setCountry(string|null $country = null)
+    public function setCountry($country)
     {
         if (is_null($country)) {
             throw new \InvalidArgumentException('non-nullable country cannot be null');
@@ -319,7 +319,7 @@ final class GetAddress200Response implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets name_line
      */
-    public function setNameLine(string|null $name_line = null)
+    public function setNameLine($name_line)
     {
         if (is_null($name_line)) {
             throw new \InvalidArgumentException('non-nullable name_line cannot be null');
@@ -342,7 +342,7 @@ final class GetAddress200Response implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets premise
      */
-    public function setPremise(string|null $premise = null)
+    public function setPremise($premise)
     {
         if (is_null($premise)) {
             throw new \InvalidArgumentException('non-nullable premise cannot be null');
@@ -365,7 +365,7 @@ final class GetAddress200Response implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets sub_premise
      */
-    public function setSubPremise(string|null $sub_premise = null)
+    public function setSubPremise($sub_premise)
     {
         if (is_null($sub_premise)) {
             throw new \InvalidArgumentException('non-nullable sub_premise cannot be null');
@@ -388,7 +388,7 @@ final class GetAddress200Response implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets thoroughfare
      */
-    public function setThoroughfare(string|null $thoroughfare = null)
+    public function setThoroughfare($thoroughfare)
     {
         if (is_null($thoroughfare)) {
             throw new \InvalidArgumentException('non-nullable thoroughfare cannot be null');
@@ -411,7 +411,7 @@ final class GetAddress200Response implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets administrative_area
      */
-    public function setAdministrativeArea(string|null $administrative_area = null)
+    public function setAdministrativeArea($administrative_area)
     {
         if (is_null($administrative_area)) {
             throw new \InvalidArgumentException('non-nullable administrative_area cannot be null');
@@ -434,7 +434,7 @@ final class GetAddress200Response implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets sub_administrative_area
      */
-    public function setSubAdministrativeArea(string|null $sub_administrative_area = null)
+    public function setSubAdministrativeArea($sub_administrative_area)
     {
         if (is_null($sub_administrative_area)) {
             throw new \InvalidArgumentException('non-nullable sub_administrative_area cannot be null');
@@ -457,7 +457,7 @@ final class GetAddress200Response implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets locality
      */
-    public function setLocality(string|null $locality = null)
+    public function setLocality($locality)
     {
         if (is_null($locality)) {
             throw new \InvalidArgumentException('non-nullable locality cannot be null');
@@ -480,7 +480,7 @@ final class GetAddress200Response implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets dependent_locality
      */
-    public function setDependentLocality(string|null $dependent_locality = null)
+    public function setDependentLocality($dependent_locality)
     {
         if (is_null($dependent_locality)) {
             throw new \InvalidArgumentException('non-nullable dependent_locality cannot be null');
@@ -503,7 +503,7 @@ final class GetAddress200Response implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets postal_code
      */
-    public function setPostalCode(string|null $postal_code = null)
+    public function setPostalCode($postal_code)
     {
         if (is_null($postal_code)) {
             throw new \InvalidArgumentException('non-nullable postal_code cannot be null');
@@ -526,7 +526,7 @@ final class GetAddress200Response implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets metadata
      */
-    public function setMetadata(string|null $metadata = null)
+    public function setMetadata($metadata)
     {
         if (is_null($metadata)) {
             throw new \InvalidArgumentException('non-nullable metadata cannot be null');

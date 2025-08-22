@@ -233,7 +233,7 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Mode
     /**
      * Sets action
      */
-    public function setAction(string|null $action = null)
+    public function setAction($action)
     {
         if (is_null($action)) {
             throw new \InvalidArgumentException('non-nullable action cannot be null');
@@ -256,7 +256,7 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Mode
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');

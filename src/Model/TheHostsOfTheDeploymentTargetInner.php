@@ -271,7 +271,7 @@ final class TheHostsOfTheDeploymentTargetInner implements ModelInterface, ArrayA
     /**
      * Sets id
      */
-    public function setId(string|null $id = null)
+    public function setId($id)
     {
         if (is_null($id)) {
             array_push($this->openAPINullablesSetToNull, 'id');
@@ -301,7 +301,7 @@ final class TheHostsOfTheDeploymentTargetInner implements ModelInterface, ArrayA
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -334,7 +334,7 @@ final class TheHostsOfTheDeploymentTargetInner implements ModelInterface, ArrayA
     /**
      * Sets services
      */
-    public function setServices(string|null $services = null)
+    public function setServices($services)
     {
         if (is_null($services)) {
             array_push($this->openAPINullablesSetToNull, 'services');

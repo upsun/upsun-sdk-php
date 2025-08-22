@@ -239,7 +239,7 @@ final class ConfirmTotpEnrollmentRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets secret
      */
-    public function setSecret(string|null $secret = null)
+    public function setSecret($secret)
     {
         if (is_null($secret)) {
             throw new \InvalidArgumentException('non-nullable secret cannot be null');
@@ -262,7 +262,7 @@ final class ConfirmTotpEnrollmentRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets passcode
      */
-    public function setPasscode(string|null $passcode = null)
+    public function setPasscode($passcode)
     {
         if (is_null($passcode)) {
             throw new \InvalidArgumentException('non-nullable passcode cannot be null');

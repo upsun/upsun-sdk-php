@@ -268,7 +268,7 @@ final class ProjectPatch implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets attributes
      */
-    public function setAttributes(string|null $attributes = null)
+    public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
             throw new \InvalidArgumentException('non-nullable attributes cannot be null');
@@ -291,7 +291,7 @@ final class ProjectPatch implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets title
      */
-    public function setTitle(string|null $title = null)
+    public function setTitle($title)
     {
         if (is_null($title)) {
             throw new \InvalidArgumentException('non-nullable title cannot be null');
@@ -314,7 +314,7 @@ final class ProjectPatch implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets description
      */
-    public function setDescription(string|null $description = null)
+    public function setDescription($description)
     {
         if (is_null($description)) {
             throw new \InvalidArgumentException('non-nullable description cannot be null');
@@ -337,7 +337,7 @@ final class ProjectPatch implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets default_branch
      */
-    public function setDefaultBranch(string|null $default_branch = null)
+    public function setDefaultBranch($default_branch)
     {
         if (is_null($default_branch)) {
             array_push($this->openAPINullablesSetToNull, 'default_branch');
@@ -367,7 +367,7 @@ final class ProjectPatch implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets timezone
      */
-    public function setTimezone(string|null $timezone = null)
+    public function setTimezone($timezone)
     {
         if (is_null($timezone)) {
             throw new \InvalidArgumentException('non-nullable timezone cannot be null');
@@ -390,7 +390,7 @@ final class ProjectPatch implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets region
      */
-    public function setRegion(string|null $region = null)
+    public function setRegion($region)
     {
         if (is_null($region)) {
             throw new \InvalidArgumentException('non-nullable region cannot be null');
@@ -413,7 +413,7 @@ final class ProjectPatch implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets default_domain
      */
-    public function setDefaultDomain(string|null $default_domain = null)
+    public function setDefaultDomain($default_domain)
     {
         if (is_null($default_domain)) {
             array_push($this->openAPINullablesSetToNull, 'default_domain');

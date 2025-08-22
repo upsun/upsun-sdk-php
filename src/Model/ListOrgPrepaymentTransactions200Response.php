@@ -240,7 +240,7 @@ final class ListOrgPrepaymentTransactions200Response implements ModelInterface, 
     /**
      * Sets count
      */
-    public function setCount(string|null $count = null)
+    public function setCount($count)
     {
         if (is_null($count)) {
             throw new \InvalidArgumentException('non-nullable count cannot be null');
@@ -263,7 +263,7 @@ final class ListOrgPrepaymentTransactions200Response implements ModelInterface, 
     /**
      * Sets transactions
      */
-    public function setTransactions(string|null $transactions = null)
+    public function setTransactions($transactions)
     {
         if (is_null($transactions)) {
             throw new \InvalidArgumentException('non-nullable transactions cannot be null');
@@ -286,7 +286,7 @@ final class ListOrgPrepaymentTransactions200Response implements ModelInterface, 
     /**
      * Sets _links
      */
-    public function setLinks(string|null $_links = null)
+    public function setLinks($_links)
     {
         if (is_null($_links)) {
             throw new \InvalidArgumentException('non-nullable _links cannot be null');

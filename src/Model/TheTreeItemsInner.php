@@ -287,7 +287,7 @@ final class TheTreeItemsInner implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets path
      */
-    public function setPath(string|null $path = null)
+    public function setPath($path)
     {
         if (is_null($path)) {
             throw new \InvalidArgumentException('non-nullable path cannot be null');
@@ -310,7 +310,7 @@ final class TheTreeItemsInner implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets mode
      */
-    public function setMode(string|null $mode = null)
+    public function setMode($mode)
     {
         if (is_null($mode)) {
             throw new \InvalidArgumentException('non-nullable mode cannot be null');
@@ -343,7 +343,7 @@ final class TheTreeItemsInner implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -366,7 +366,7 @@ final class TheTreeItemsInner implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets sha
      */
-    public function setSha(string|null $sha = null)
+    public function setSha($sha)
     {
         if (is_null($sha)) {
             array_push($this->openAPINullablesSetToNull, 'sha');

@@ -249,7 +249,7 @@ final class BuildResources implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets enabled
      */
-    public function setEnabled(string|null $enabled = null)
+    public function setEnabled($enabled)
     {
         if (is_null($enabled)) {
             throw new \InvalidArgumentException('non-nullable enabled cannot be null');
@@ -272,7 +272,7 @@ final class BuildResources implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets max_cpu
      */
-    public function setMaxCpu(string|null $max_cpu = null)
+    public function setMaxCpu($max_cpu)
     {
         if (is_null($max_cpu)) {
             throw new \InvalidArgumentException('non-nullable max_cpu cannot be null');
@@ -295,7 +295,7 @@ final class BuildResources implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets max_memory
      */
-    public function setMaxMemory(string|null $max_memory = null)
+    public function setMaxMemory($max_memory)
     {
         if (is_null($max_memory)) {
             throw new \InvalidArgumentException('non-nullable max_memory cannot be null');

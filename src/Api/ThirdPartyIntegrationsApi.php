@@ -121,8 +121,8 @@ final class ThirdPartyIntegrationsApi
      * @throws InvalidArgumentException
      */
     public function createProjectsIntegrations(
-        $project_id,
-        $integration_create_input
+        string $project_id,
+        \Upsun\Model\IntegrationCreateInput $integration_create_input
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->createProjectsIntegrationsWithHttpInfo($project_id, $integration_create_input);
         return $response;
@@ -132,7 +132,7 @@ final class ThirdPartyIntegrationsApi
      * Integrate project with a third-party service
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createProjectsIntegrationsWithHttpInfo(
         string $project_id,
@@ -379,8 +379,8 @@ final class ThirdPartyIntegrationsApi
      * @throws InvalidArgumentException
      */
     public function deleteProjectsIntegrations(
-        $project_id,
-        $integration_id
+        string $project_id,
+        string $integration_id
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsIntegrationsWithHttpInfo($project_id, $integration_id);
         return $response;
@@ -390,7 +390,7 @@ final class ThirdPartyIntegrationsApi
      * Delete an existing third-party integration
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsIntegrationsWithHttpInfo(
         string $project_id,
@@ -639,8 +639,8 @@ final class ThirdPartyIntegrationsApi
      * @throws InvalidArgumentException
      */
     public function getProjectsIntegrations(
-        $project_id,
-        $integration_id
+        string $project_id,
+        string $integration_id
     ): \Upsun\Model\Integration {
         list($response) = $this->getProjectsIntegrationsWithHttpInfo($project_id, $integration_id);
         return $response;
@@ -650,7 +650,7 @@ final class ThirdPartyIntegrationsApi
      * Get information about an existing third-party integration
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsIntegrationsWithHttpInfo(
         string $project_id,
@@ -897,10 +897,12 @@ final class ThirdPartyIntegrationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return \Upsun\Model\Integration[]
      */
     public function listProjectsIntegrations(
-        $project_id
-    ): \Upsun\Model\Integration[] {
+        string $project_id
+    ): array {
         list($response) = $this->listProjectsIntegrationsWithHttpInfo($project_id);
         return $response;
     }
@@ -909,7 +911,7 @@ final class ThirdPartyIntegrationsApi
      * Get list of existing integrations for a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listProjectsIntegrationsWithHttpInfo(
         string $project_id
@@ -1140,9 +1142,9 @@ final class ThirdPartyIntegrationsApi
      * @throws InvalidArgumentException
      */
     public function updateProjectsIntegrations(
-        $project_id,
-        $integration_id,
-        $integration_patch
+        string $project_id,
+        string $integration_id,
+        \Upsun\Model\IntegrationPatch $integration_patch
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsIntegrationsWithHttpInfo($project_id, $integration_id, $integration_patch);
         return $response;
@@ -1152,7 +1154,7 @@ final class ThirdPartyIntegrationsApi
      * Update an existing third-party integration
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsIntegrationsWithHttpInfo(
         string $project_id,

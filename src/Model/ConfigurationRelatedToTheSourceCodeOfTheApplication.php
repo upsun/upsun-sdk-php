@@ -239,7 +239,7 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements Model
     /**
      * Sets root
      */
-    public function setRoot(string|null $root = null)
+    public function setRoot($root)
     {
         if (is_null($root)) {
             array_push($this->openAPINullablesSetToNull, 'root');
@@ -269,7 +269,7 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements Model
     /**
      * Sets operations
      */
-    public function setOperations(string|null $operations = null)
+    public function setOperations($operations)
     {
         if (is_null($operations)) {
             throw new \InvalidArgumentException('non-nullable operations cannot be null');

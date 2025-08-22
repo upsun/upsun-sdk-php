@@ -314,7 +314,7 @@ final class ProjectCapabilities implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets custom_domains
      */
-    public function setCustomDomains(string|null $custom_domains = null)
+    public function setCustomDomains($custom_domains)
     {
         if (is_null($custom_domains)) {
             throw new \InvalidArgumentException('non-nullable custom_domains cannot be null');
@@ -337,7 +337,7 @@ final class ProjectCapabilities implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets source_operations
      */
-    public function setSourceOperations(string|null $source_operations = null)
+    public function setSourceOperations($source_operations)
     {
         if (is_null($source_operations)) {
             throw new \InvalidArgumentException('non-nullable source_operations cannot be null');
@@ -360,7 +360,7 @@ final class ProjectCapabilities implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets runtime_operations
      */
-    public function setRuntimeOperations(string|null $runtime_operations = null)
+    public function setRuntimeOperations($runtime_operations)
     {
         if (is_null($runtime_operations)) {
             throw new \InvalidArgumentException('non-nullable runtime_operations cannot be null');
@@ -383,7 +383,7 @@ final class ProjectCapabilities implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets outbound_firewall
      */
-    public function setOutboundFirewall(string|null $outbound_firewall = null)
+    public function setOutboundFirewall($outbound_firewall)
     {
         if (is_null($outbound_firewall)) {
             throw new \InvalidArgumentException('non-nullable outbound_firewall cannot be null');
@@ -406,7 +406,7 @@ final class ProjectCapabilities implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets metrics
      */
-    public function setMetrics(string|null $metrics = null)
+    public function setMetrics($metrics)
     {
         if (is_null($metrics)) {
             throw new \InvalidArgumentException('non-nullable metrics cannot be null');
@@ -429,7 +429,7 @@ final class ProjectCapabilities implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets logs_forwarding
      */
-    public function setLogsForwarding(string|null $logs_forwarding = null)
+    public function setLogsForwarding($logs_forwarding)
     {
         if (is_null($logs_forwarding)) {
             throw new \InvalidArgumentException('non-nullable logs_forwarding cannot be null');
@@ -452,7 +452,7 @@ final class ProjectCapabilities implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets images
      */
-    public function setImages(string|null $images = null)
+    public function setImages($images)
     {
         if (is_null($images)) {
             throw new \InvalidArgumentException('non-nullable images cannot be null');
@@ -475,7 +475,7 @@ final class ProjectCapabilities implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets instance_limit
      */
-    public function setInstanceLimit(string|null $instance_limit = null)
+    public function setInstanceLimit($instance_limit)
     {
         if (is_null($instance_limit)) {
             throw new \InvalidArgumentException('non-nullable instance_limit cannot be null');
@@ -498,7 +498,7 @@ final class ProjectCapabilities implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets build_resources
      */
-    public function setBuildResources(string|null $build_resources = null)
+    public function setBuildResources($build_resources)
     {
         if (is_null($build_resources)) {
             throw new \InvalidArgumentException('non-nullable build_resources cannot be null');
@@ -521,7 +521,7 @@ final class ProjectCapabilities implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets data_retention
      */
-    public function setDataRetention(string|null $data_retention = null)
+    public function setDataRetention($data_retention)
     {
         if (is_null($data_retention)) {
             throw new \InvalidArgumentException('non-nullable data_retention cannot be null');
@@ -544,7 +544,7 @@ final class ProjectCapabilities implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets integrations
      */
-    public function setIntegrations(string|null $integrations = null)
+    public function setIntegrations($integrations)
     {
         if (is_null($integrations)) {
             throw new \InvalidArgumentException('non-nullable integrations cannot be null');

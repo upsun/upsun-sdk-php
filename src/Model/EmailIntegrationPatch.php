@@ -246,7 +246,7 @@ final class EmailIntegrationPatch implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -269,7 +269,7 @@ final class EmailIntegrationPatch implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets from_address
      */
-    public function setFromAddress(string|null $from_address = null)
+    public function setFromAddress($from_address)
     {
         if (is_null($from_address)) {
             array_push($this->openAPINullablesSetToNull, 'from_address');
@@ -299,7 +299,7 @@ final class EmailIntegrationPatch implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets recipients
      */
-    public function setRecipients(string|null $recipients = null)
+    public function setRecipients($recipients)
     {
         if (is_null($recipients)) {
             throw new \InvalidArgumentException('non-nullable recipients cannot be null');

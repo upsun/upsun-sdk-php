@@ -121,9 +121,9 @@ final class EnvironmentBackupsApi
      * @throws InvalidArgumentException
      */
     public function backupEnvironment(
-        $project_id,
-        $environment_id,
-        $environment_backup_input
+        string $project_id,
+        string $environment_id,
+        \Upsun\Model\EnvironmentBackupInput $environment_backup_input
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->backupEnvironmentWithHttpInfo($project_id, $environment_id, $environment_backup_input);
         return $response;
@@ -133,7 +133,7 @@ final class EnvironmentBackupsApi
      * Create snapshot of environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function backupEnvironmentWithHttpInfo(
         string $project_id,
@@ -398,9 +398,9 @@ final class EnvironmentBackupsApi
      * @throws InvalidArgumentException
      */
     public function deleteProjectsEnvironmentsBackups(
-        $project_id,
-        $environment_id,
-        $backup_id
+        string $project_id,
+        string $environment_id,
+        string $backup_id
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsEnvironmentsBackupsWithHttpInfo($project_id, $environment_id, $backup_id);
         return $response;
@@ -410,7 +410,7 @@ final class EnvironmentBackupsApi
      * Delete an environment snapshot
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsEnvironmentsBackupsWithHttpInfo(
         string $project_id,
@@ -677,9 +677,9 @@ final class EnvironmentBackupsApi
      * @throws InvalidArgumentException
      */
     public function getProjectsEnvironmentsBackups(
-        $project_id,
-        $environment_id,
-        $backup_id
+        string $project_id,
+        string $environment_id,
+        string $backup_id
     ): \Upsun\Model\Backup {
         list($response) = $this->getProjectsEnvironmentsBackupsWithHttpInfo($project_id, $environment_id, $backup_id);
         return $response;
@@ -689,7 +689,7 @@ final class EnvironmentBackupsApi
      * Get an environment snapshot&#39;s info
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsBackupsWithHttpInfo(
         string $project_id,
@@ -954,11 +954,13 @@ final class EnvironmentBackupsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return \Upsun\Model\Backup[]
      */
     public function listProjectsEnvironmentsBackups(
-        $project_id,
-        $environment_id
-    ): \Upsun\Model\Backup[] {
+        string $project_id,
+        string $environment_id
+    ): array {
         list($response) = $this->listProjectsEnvironmentsBackupsWithHttpInfo($project_id, $environment_id);
         return $response;
     }
@@ -967,7 +969,7 @@ final class EnvironmentBackupsApi
      * Get an environment&#39;s snapshot list
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsBackupsWithHttpInfo(
         string $project_id,
@@ -1216,10 +1218,10 @@ final class EnvironmentBackupsApi
      * @throws InvalidArgumentException
      */
     public function restoreBackup(
-        $project_id,
-        $environment_id,
-        $backup_id,
-        $environment_restore_input
+        string $project_id,
+        string $environment_id,
+        string $backup_id,
+        \Upsun\Model\EnvironmentRestoreInput $environment_restore_input
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->restoreBackupWithHttpInfo($project_id, $environment_id, $backup_id, $environment_restore_input);
         return $response;
@@ -1229,7 +1231,7 @@ final class EnvironmentBackupsApi
      * Restore an environment snapshot
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function restoreBackupWithHttpInfo(
         string $project_id,

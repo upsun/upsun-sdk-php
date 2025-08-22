@@ -255,7 +255,7 @@ final class Resources4 implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets init
      */
-    public function setInit(string|null $init = null)
+    public function setInit($init)
     {
         if (is_null($init)) {
             array_push($this->openAPINullablesSetToNull, 'init');

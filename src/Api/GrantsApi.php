@@ -121,10 +121,10 @@ final class GrantsApi
      * @throws InvalidArgumentException
      */
     public function listUserExtendedAccess(
-        $user_id,
-        $filter_resource_type = null,
-        $filter_organization_id = null,
-        $filter_permissions = null
+        string $user_id,
+        \Upsun\Model\StringFilter $filter_resource_type = null,
+        \Upsun\Model\StringFilter $filter_organization_id = null,
+        \Upsun\Model\StringFilter $filter_permissions = null
     ): \Upsun\Model\ListUserExtendedAccess200Response {
         list($response) = $this->listUserExtendedAccessWithHttpInfo($user_id, $filter_resource_type, $filter_organization_id, $filter_permissions);
         return $response;
@@ -134,7 +134,7 @@ final class GrantsApi
      * List extended access of a user
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listUserExtendedAccessWithHttpInfo(
         string $user_id,

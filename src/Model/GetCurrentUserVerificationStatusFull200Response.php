@@ -233,7 +233,7 @@ final class GetCurrentUserVerificationStatusFull200Response implements ModelInte
     /**
      * Sets state
      */
-    public function setState(string|null $state = null)
+    public function setState($state)
     {
         if (is_null($state)) {
             throw new \InvalidArgumentException('non-nullable state cannot be null');
@@ -256,7 +256,7 @@ final class GetCurrentUserVerificationStatusFull200Response implements ModelInte
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');

@@ -247,7 +247,7 @@ final class ArrayFilter implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets eq
      */
-    public function setEq(string|null $eq = null)
+    public function setEq($eq)
     {
         if (is_null($eq)) {
             throw new \InvalidArgumentException('non-nullable eq cannot be null');
@@ -270,7 +270,7 @@ final class ArrayFilter implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets ne
      */
-    public function setNe(string|null $ne = null)
+    public function setNe($ne)
     {
         if (is_null($ne)) {
             throw new \InvalidArgumentException('non-nullable ne cannot be null');
@@ -293,7 +293,7 @@ final class ArrayFilter implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets in
      */
-    public function setIn(string|null $in = null)
+    public function setIn($in)
     {
         if (is_null($in)) {
             throw new \InvalidArgumentException('non-nullable in cannot be null');
@@ -316,7 +316,7 @@ final class ArrayFilter implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets nin
      */
-    public function setNin(string|null $nin = null)
+    public function setNin($nin)
     {
         if (is_null($nin)) {
             throw new \InvalidArgumentException('non-nullable nin cannot be null');

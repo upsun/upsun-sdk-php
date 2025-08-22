@@ -226,7 +226,7 @@ final class ListOrgInvoices200Response implements ModelInterface, ArrayAccess, \
     /**
      * Sets items
      */
-    public function setItems(string|null $items = null)
+    public function setItems($items)
     {
         if (is_null($items)) {
             throw new \InvalidArgumentException('non-nullable items cannot be null');

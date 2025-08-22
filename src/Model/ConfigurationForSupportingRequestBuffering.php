@@ -239,7 +239,7 @@ final class ConfigurationForSupportingRequestBuffering implements ModelInterface
     /**
      * Sets enabled
      */
-    public function setEnabled(string|null $enabled = null)
+    public function setEnabled($enabled)
     {
         if (is_null($enabled)) {
             throw new \InvalidArgumentException('non-nullable enabled cannot be null');
@@ -262,7 +262,7 @@ final class ConfigurationForSupportingRequestBuffering implements ModelInterface
     /**
      * Sets max_request_size
      */
-    public function setMaxRequestSize(string|null $max_request_size = null)
+    public function setMaxRequestSize($max_request_size)
     {
         if (is_null($max_request_size)) {
             array_push($this->openAPINullablesSetToNull, 'max_request_size');

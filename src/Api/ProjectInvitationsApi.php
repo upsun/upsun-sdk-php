@@ -121,8 +121,8 @@ final class ProjectInvitationsApi
      * @throws InvalidArgumentException
      */
     public function cancelProjectInvite(
-        $project_id,
-        $invitation_id
+        string $project_id,
+        string $invitation_id
     ): void {
         $this->cancelProjectInviteWithHttpInfo($project_id, $invitation_id);
     }
@@ -131,7 +131,7 @@ final class ProjectInvitationsApi
      * Cancel a pending invitation to a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function cancelProjectInviteWithHttpInfo(
         string $project_id,
@@ -343,8 +343,8 @@ final class ProjectInvitationsApi
      * @throws InvalidArgumentException
      */
     public function createProjectInvite(
-        $project_id,
-        $create_project_invite_request = null
+        string $project_id,
+        \Upsun\Model\CreateProjectInviteRequest $create_project_invite_request = null
     ): \Upsun\Model\ProjectInvitation {
         list($response) = $this->createProjectInviteWithHttpInfo($project_id, $create_project_invite_request);
         return $response;
@@ -354,7 +354,7 @@ final class ProjectInvitationsApi
      * Invite user to a project by email
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createProjectInviteWithHttpInfo(
         string $project_id,
@@ -663,15 +663,17 @@ final class ProjectInvitationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return \Upsun\Model\ProjectInvitation[]
      */
     public function listProjectInvites(
-        $project_id,
-        $filter_state = null,
-        $page_size = null,
-        $page_before = null,
-        $page_after = null,
-        $sort = null
-    ): \Upsun\Model\ProjectInvitation[] {
+        string $project_id,
+        \Upsun\Model\StringFilter $filter_state = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
+    ): array {
         list($response) = $this->listProjectInvitesWithHttpInfo($project_id, $filter_state, $page_size, $page_before, $page_after, $sort);
         return $response;
     }
@@ -680,7 +682,7 @@ final class ProjectInvitationsApi
      * List invitations to a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listProjectInvitesWithHttpInfo(
         string $project_id,

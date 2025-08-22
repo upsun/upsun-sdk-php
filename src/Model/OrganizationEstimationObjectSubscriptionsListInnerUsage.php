@@ -247,7 +247,7 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements M
     /**
      * Sets cpu
      */
-    public function setCpu(string|null $cpu = null)
+    public function setCpu($cpu)
     {
         if (is_null($cpu)) {
             throw new \InvalidArgumentException('non-nullable cpu cannot be null');
@@ -270,7 +270,7 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements M
     /**
      * Sets memory
      */
-    public function setMemory(string|null $memory = null)
+    public function setMemory($memory)
     {
         if (is_null($memory)) {
             throw new \InvalidArgumentException('non-nullable memory cannot be null');
@@ -293,7 +293,7 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements M
     /**
      * Sets storage
      */
-    public function setStorage(string|null $storage = null)
+    public function setStorage($storage)
     {
         if (is_null($storage)) {
             throw new \InvalidArgumentException('non-nullable storage cannot be null');
@@ -316,7 +316,7 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements M
     /**
      * Sets environments
      */
-    public function setEnvironments(string|null $environments = null)
+    public function setEnvironments($environments)
     {
         if (is_null($environments)) {
             throw new \InvalidArgumentException('non-nullable environments cannot be null');

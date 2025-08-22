@@ -121,9 +121,9 @@ final class DeploymentApi
      * @throws InvalidArgumentException
      */
     public function getProjectsEnvironmentsDeployments(
-        $project_id,
-        $environment_id,
-        $deployment_id
+        string $project_id,
+        string $environment_id,
+        string $deployment_id
     ): \Upsun\Model\Deployment {
         list($response) = $this->getProjectsEnvironmentsDeploymentsWithHttpInfo($project_id, $environment_id, $deployment_id);
         return $response;
@@ -133,7 +133,7 @@ final class DeploymentApi
      * Get a single environment deployment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsDeploymentsWithHttpInfo(
         string $project_id,
@@ -398,11 +398,13 @@ final class DeploymentApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return \Upsun\Model\Deployment[]
      */
     public function listProjectsEnvironmentsDeployments(
-        $project_id,
-        $environment_id
-    ): \Upsun\Model\Deployment[] {
+        string $project_id,
+        string $environment_id
+    ): array {
         list($response) = $this->listProjectsEnvironmentsDeploymentsWithHttpInfo($project_id, $environment_id);
         return $response;
     }
@@ -411,7 +413,7 @@ final class DeploymentApi
      * Get an environment&#39;s deployment information
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsDeploymentsWithHttpInfo(
         string $project_id,

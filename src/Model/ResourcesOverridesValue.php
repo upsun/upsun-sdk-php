@@ -269,7 +269,7 @@ final class ResourcesOverridesValue implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets services
      */
-    public function setServices(string|null $services = null)
+    public function setServices($services)
     {
         if (is_null($services)) {
             throw new \InvalidArgumentException('non-nullable services cannot be null');
@@ -292,7 +292,7 @@ final class ResourcesOverridesValue implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets starts_at
      */
-    public function setStartsAt(string|null $starts_at = null)
+    public function setStartsAt($starts_at)
     {
         if (is_null($starts_at)) {
             array_push($this->openAPINullablesSetToNull, 'starts_at');
@@ -322,7 +322,7 @@ final class ResourcesOverridesValue implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets ends_at
      */
-    public function setEndsAt(string|null $ends_at = null)
+    public function setEndsAt($ends_at)
     {
         if (is_null($ends_at)) {
             array_push($this->openAPINullablesSetToNull, 'ends_at');
@@ -352,7 +352,7 @@ final class ResourcesOverridesValue implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets redeployed_start
      */
-    public function setRedeployedStart(string|null $redeployed_start = null)
+    public function setRedeployedStart($redeployed_start)
     {
         if (is_null($redeployed_start)) {
             throw new \InvalidArgumentException('non-nullable redeployed_start cannot be null');
@@ -375,7 +375,7 @@ final class ResourcesOverridesValue implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets redeployed_end
      */
-    public function setRedeployedEnd(string|null $redeployed_end = null)
+    public function setRedeployedEnd($redeployed_end)
     {
         if (is_null($redeployed_end)) {
             throw new \InvalidArgumentException('non-nullable redeployed_end cannot be null');

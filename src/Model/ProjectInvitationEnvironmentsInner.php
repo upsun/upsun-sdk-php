@@ -271,7 +271,7 @@ final class ProjectInvitationEnvironmentsInner implements ModelInterface, ArrayA
     /**
      * Sets id
      */
-    public function setId(string|null $id = null)
+    public function setId($id)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -294,7 +294,7 @@ final class ProjectInvitationEnvironmentsInner implements ModelInterface, ArrayA
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -317,7 +317,7 @@ final class ProjectInvitationEnvironmentsInner implements ModelInterface, ArrayA
     /**
      * Sets role
      */
-    public function setRole(string|null $role = null)
+    public function setRole($role)
     {
         if (is_null($role)) {
             throw new \InvalidArgumentException('non-nullable role cannot be null');
@@ -350,7 +350,7 @@ final class ProjectInvitationEnvironmentsInner implements ModelInterface, ArrayA
     /**
      * Sets title
      */
-    public function setTitle(string|null $title = null)
+    public function setTitle($title)
     {
         if (is_null($title)) {
             throw new \InvalidArgumentException('non-nullable title cannot be null');

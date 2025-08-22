@@ -233,7 +233,7 @@ final class BuildResources2 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets cpu
      */
-    public function setCpu(string|null $cpu = null)
+    public function setCpu($cpu)
     {
         if (is_null($cpu)) {
             throw new \InvalidArgumentException('non-nullable cpu cannot be null');
@@ -256,7 +256,7 @@ final class BuildResources2 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets memory
      */
-    public function setMemory(string|null $memory = null)
+    public function setMemory($memory)
     {
         if (is_null($memory)) {
             throw new \InvalidArgumentException('non-nullable memory cannot be null');

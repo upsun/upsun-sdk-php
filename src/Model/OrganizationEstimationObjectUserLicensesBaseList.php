@@ -233,7 +233,7 @@ final class OrganizationEstimationObjectUserLicensesBaseList implements ModelInt
     /**
      * Sets admin_user
      */
-    public function setAdminUser(string|null $admin_user = null)
+    public function setAdminUser($admin_user)
     {
         if (is_null($admin_user)) {
             throw new \InvalidArgumentException('non-nullable admin_user cannot be null');
@@ -256,7 +256,7 @@ final class OrganizationEstimationObjectUserLicensesBaseList implements ModelInt
     /**
      * Sets viewer_user
      */
-    public function setViewerUser(string|null $viewer_user = null)
+    public function setViewerUser($viewer_user)
     {
         if (is_null($viewer_user)) {
             throw new \InvalidArgumentException('non-nullable viewer_user cannot be null');

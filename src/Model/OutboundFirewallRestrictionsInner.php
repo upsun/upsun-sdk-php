@@ -279,7 +279,7 @@ final class OutboundFirewallRestrictionsInner implements ModelInterface, ArrayAc
     /**
      * Sets protocol
      */
-    public function setProtocol(string|null $protocol = null)
+    public function setProtocol($protocol)
     {
         if (is_null($protocol)) {
             throw new \InvalidArgumentException('non-nullable protocol cannot be null');
@@ -312,7 +312,7 @@ final class OutboundFirewallRestrictionsInner implements ModelInterface, ArrayAc
     /**
      * Sets ips
      */
-    public function setIps(string|null $ips = null)
+    public function setIps($ips)
     {
         if (is_null($ips)) {
             throw new \InvalidArgumentException('non-nullable ips cannot be null');
@@ -335,7 +335,7 @@ final class OutboundFirewallRestrictionsInner implements ModelInterface, ArrayAc
     /**
      * Sets domains
      */
-    public function setDomains(string|null $domains = null)
+    public function setDomains($domains)
     {
         if (is_null($domains)) {
             throw new \InvalidArgumentException('non-nullable domains cannot be null');
@@ -358,7 +358,7 @@ final class OutboundFirewallRestrictionsInner implements ModelInterface, ArrayAc
     /**
      * Sets ports
      */
-    public function setPorts(string|null $ports = null)
+    public function setPorts($ports)
     {
         if (is_null($ports)) {
             throw new \InvalidArgumentException('non-nullable ports cannot be null');

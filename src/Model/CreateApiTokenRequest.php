@@ -229,7 +229,7 @@ final class CreateApiTokenRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');

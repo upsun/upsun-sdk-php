@@ -121,8 +121,8 @@ final class OrganizationProjectsApi
      * @throws InvalidArgumentException
      */
     public function getOrgProject(
-        $organization_id,
-        $project_id
+        string $organization_id,
+        string $project_id
     ): \Upsun\Model\OrganizationProject {
         list($response) = $this->getOrgProjectWithHttpInfo($organization_id, $project_id);
         return $response;
@@ -132,7 +132,7 @@ final class OrganizationProjectsApi
      * Get project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getOrgProjectWithHttpInfo(
         string $organization_id,
@@ -409,16 +409,16 @@ final class OrganizationProjectsApi
      * @throws InvalidArgumentException
      */
     public function listOrgProjects(
-        $organization_id,
-        $filter_id = null,
-        $filter_title = null,
-        $filter_status = null,
-        $filter_updated_at = null,
-        $filter_created_at = null,
-        $page_size = null,
-        $page_before = null,
-        $page_after = null,
-        $sort = null
+        string $organization_id,
+        \Upsun\Model\StringFilter $filter_id = null,
+        \Upsun\Model\StringFilter $filter_title = null,
+        \Upsun\Model\StringFilter $filter_status = null,
+        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
+        \Upsun\Model\DateTimeFilter $filter_created_at = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
     ): \Upsun\Model\ListOrgProjects200Response {
         list($response) = $this->listOrgProjectsWithHttpInfo($organization_id, $filter_id, $filter_title, $filter_status, $filter_updated_at, $filter_created_at, $page_size, $page_before, $page_after, $sort);
         return $response;
@@ -428,7 +428,7 @@ final class OrganizationProjectsApi
      * List projects
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listOrgProjectsWithHttpInfo(
         string $organization_id,

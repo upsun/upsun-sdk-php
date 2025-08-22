@@ -282,7 +282,7 @@ final class UsageGroupCurrentUsageProperties implements ModelInterface, ArrayAcc
     /**
      * Sets title
      */
-    public function setTitle(string|null $title = null)
+    public function setTitle($title)
     {
         if (is_null($title)) {
             throw new \InvalidArgumentException('non-nullable title cannot be null');
@@ -305,7 +305,7 @@ final class UsageGroupCurrentUsageProperties implements ModelInterface, ArrayAcc
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -328,7 +328,7 @@ final class UsageGroupCurrentUsageProperties implements ModelInterface, ArrayAcc
     /**
      * Sets current_usage
      */
-    public function setCurrentUsage(string|null $current_usage = null)
+    public function setCurrentUsage($current_usage)
     {
         if (is_null($current_usage)) {
             throw new \InvalidArgumentException('non-nullable current_usage cannot be null');
@@ -351,7 +351,7 @@ final class UsageGroupCurrentUsageProperties implements ModelInterface, ArrayAcc
     /**
      * Sets current_usage_formatted
      */
-    public function setCurrentUsageFormatted(string|null $current_usage_formatted = null)
+    public function setCurrentUsageFormatted($current_usage_formatted)
     {
         if (is_null($current_usage_formatted)) {
             throw new \InvalidArgumentException('non-nullable current_usage_formatted cannot be null');
@@ -374,7 +374,7 @@ final class UsageGroupCurrentUsageProperties implements ModelInterface, ArrayAcc
     /**
      * Sets not_charged
      */
-    public function setNotCharged(string|null $not_charged = null)
+    public function setNotCharged($not_charged)
     {
         if (is_null($not_charged)) {
             throw new \InvalidArgumentException('non-nullable not_charged cannot be null');
@@ -397,7 +397,7 @@ final class UsageGroupCurrentUsageProperties implements ModelInterface, ArrayAcc
     /**
      * Sets free_quantity
      */
-    public function setFreeQuantity(string|null $free_quantity = null)
+    public function setFreeQuantity($free_quantity)
     {
         if (is_null($free_quantity)) {
             throw new \InvalidArgumentException('non-nullable free_quantity cannot be null');
@@ -420,7 +420,7 @@ final class UsageGroupCurrentUsageProperties implements ModelInterface, ArrayAcc
     /**
      * Sets free_quantity_formatted
      */
-    public function setFreeQuantityFormatted(string|null $free_quantity_formatted = null)
+    public function setFreeQuantityFormatted($free_quantity_formatted)
     {
         if (is_null($free_quantity_formatted)) {
             throw new \InvalidArgumentException('non-nullable free_quantity_formatted cannot be null');
@@ -443,7 +443,7 @@ final class UsageGroupCurrentUsageProperties implements ModelInterface, ArrayAcc
     /**
      * Sets daily_average
      */
-    public function setDailyAverage(string|null $daily_average = null)
+    public function setDailyAverage($daily_average)
     {
         if (is_null($daily_average)) {
             throw new \InvalidArgumentException('non-nullable daily_average cannot be null');
@@ -466,7 +466,7 @@ final class UsageGroupCurrentUsageProperties implements ModelInterface, ArrayAcc
     /**
      * Sets daily_average_formatted
      */
-    public function setDailyAverageFormatted(string|null $daily_average_formatted = null)
+    public function setDailyAverageFormatted($daily_average_formatted)
     {
         if (is_null($daily_average_formatted)) {
             throw new \InvalidArgumentException('non-nullable daily_average_formatted cannot be null');

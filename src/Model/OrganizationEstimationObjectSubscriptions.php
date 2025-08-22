@@ -233,7 +233,7 @@ final class OrganizationEstimationObjectSubscriptions implements ModelInterface,
     /**
      * Sets total
      */
-    public function setTotal(string|null $total = null)
+    public function setTotal($total)
     {
         if (is_null($total)) {
             throw new \InvalidArgumentException('non-nullable total cannot be null');
@@ -256,7 +256,7 @@ final class OrganizationEstimationObjectSubscriptions implements ModelInterface,
     /**
      * Sets list
      */
-    public function setList(string|null $list = null)
+    public function setList($list)
     {
         if (is_null($list)) {
             throw new \InvalidArgumentException('non-nullable list cannot be null');

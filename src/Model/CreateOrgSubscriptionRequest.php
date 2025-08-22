@@ -271,7 +271,7 @@ final class CreateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets plan
      */
-    public function setPlan(string|null $plan = null)
+    public function setPlan($plan)
     {
         if (is_null($plan)) {
             throw new \InvalidArgumentException('non-nullable plan cannot be null');
@@ -294,7 +294,7 @@ final class CreateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets project_region
      */
-    public function setProjectRegion(string|null $project_region = null)
+    public function setProjectRegion($project_region)
     {
         if (is_null($project_region)) {
             throw new \InvalidArgumentException('non-nullable project_region cannot be null');
@@ -317,7 +317,7 @@ final class CreateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets project_title
      */
-    public function setProjectTitle(string|null $project_title = null)
+    public function setProjectTitle($project_title)
     {
         if (is_null($project_title)) {
             throw new \InvalidArgumentException('non-nullable project_title cannot be null');
@@ -340,7 +340,7 @@ final class CreateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets options_url
      */
-    public function setOptionsUrl(string|null $options_url = null)
+    public function setOptionsUrl($options_url)
     {
         if (is_null($options_url)) {
             throw new \InvalidArgumentException('non-nullable options_url cannot be null');
@@ -363,7 +363,7 @@ final class CreateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets default_branch
      */
-    public function setDefaultBranch(string|null $default_branch = null)
+    public function setDefaultBranch($default_branch)
     {
         if (is_null($default_branch)) {
             throw new \InvalidArgumentException('non-nullable default_branch cannot be null');
@@ -386,7 +386,7 @@ final class CreateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets environments
      */
-    public function setEnvironments(string|null $environments = null)
+    public function setEnvironments($environments)
     {
         if (is_null($environments)) {
             throw new \InvalidArgumentException('non-nullable environments cannot be null');
@@ -409,7 +409,7 @@ final class CreateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets storage
      */
-    public function setStorage(string|null $storage = null)
+    public function setStorage($storage)
     {
         if (is_null($storage)) {
             throw new \InvalidArgumentException('non-nullable storage cannot be null');

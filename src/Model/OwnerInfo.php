@@ -240,7 +240,7 @@ final class OwnerInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -263,7 +263,7 @@ final class OwnerInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets username
      */
-    public function setUsername(string|null $username = null)
+    public function setUsername($username)
     {
         if (is_null($username)) {
             throw new \InvalidArgumentException('non-nullable username cannot be null');
@@ -286,7 +286,7 @@ final class OwnerInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets display_name
      */
-    public function setDisplayName(string|null $display_name = null)
+    public function setDisplayName($display_name)
     {
         if (is_null($display_name)) {
             throw new \InvalidArgumentException('non-nullable display_name cannot be null');

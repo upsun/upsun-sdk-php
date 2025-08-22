@@ -453,7 +453,7 @@ final class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets created_at
      */
-    public function setCreatedAt(string|null $created_at = null)
+    public function setCreatedAt($created_at)
     {
         if (is_null($created_at)) {
             array_push($this->openAPINullablesSetToNull, 'created_at');
@@ -483,7 +483,7 @@ final class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt(string|null $updated_at = null)
+    public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
             array_push($this->openAPINullablesSetToNull, 'updated_at');
@@ -513,7 +513,7 @@ final class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -536,7 +536,7 @@ final class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets parameters
      */
-    public function setParameters(string|null $parameters = null)
+    public function setParameters($parameters)
     {
         if (is_null($parameters)) {
             throw new \InvalidArgumentException('non-nullable parameters cannot be null');
@@ -559,7 +559,7 @@ final class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets project
      */
-    public function setProject(string|null $project = null)
+    public function setProject($project)
     {
         if (is_null($project)) {
             throw new \InvalidArgumentException('non-nullable project cannot be null');
@@ -582,7 +582,7 @@ final class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets integration
      */
-    public function setIntegration(string|null $integration = null)
+    public function setIntegration($integration)
     {
         if (is_null($integration)) {
             throw new \InvalidArgumentException('non-nullable integration cannot be null');
@@ -605,7 +605,7 @@ final class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets environments
      */
-    public function setEnvironments(string|null $environments = null)
+    public function setEnvironments($environments)
     {
         if (is_null($environments)) {
             throw new \InvalidArgumentException('non-nullable environments cannot be null');
@@ -628,7 +628,7 @@ final class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets state
      */
-    public function setState(string|null $state = null)
+    public function setState($state)
     {
         if (is_null($state)) {
             throw new \InvalidArgumentException('non-nullable state cannot be null');
@@ -661,7 +661,7 @@ final class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets result
      */
-    public function setResult(string|null $result = null)
+    public function setResult($result)
     {
         if (is_null($result)) {
             array_push($this->openAPINullablesSetToNull, 'result');
@@ -701,7 +701,7 @@ final class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets started_at
      */
-    public function setStartedAt(string|null $started_at = null)
+    public function setStartedAt($started_at)
     {
         if (is_null($started_at)) {
             array_push($this->openAPINullablesSetToNull, 'started_at');
@@ -731,7 +731,7 @@ final class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets completed_at
      */
-    public function setCompletedAt(string|null $completed_at = null)
+    public function setCompletedAt($completed_at)
     {
         if (is_null($completed_at)) {
             array_push($this->openAPINullablesSetToNull, 'completed_at');
@@ -761,7 +761,7 @@ final class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets completion_percent
      */
-    public function setCompletionPercent(string|null $completion_percent = null)
+    public function setCompletionPercent($completion_percent)
     {
         if (is_null($completion_percent)) {
             throw new \InvalidArgumentException('non-nullable completion_percent cannot be null');
@@ -784,7 +784,7 @@ final class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets cancelled_at
      */
-    public function setCancelledAt(string|null $cancelled_at = null)
+    public function setCancelledAt($cancelled_at)
     {
         if (is_null($cancelled_at)) {
             array_push($this->openAPINullablesSetToNull, 'cancelled_at');
@@ -814,7 +814,7 @@ final class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets timings
      */
-    public function setTimings(string|null $timings = null)
+    public function setTimings($timings)
     {
         if (is_null($timings)) {
             throw new \InvalidArgumentException('non-nullable timings cannot be null');
@@ -841,7 +841,7 @@ final class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @deprecated
      */
-    public function setLog(string|null $log = null)
+    public function setLog($log)
     {
         if (is_null($log)) {
             throw new \InvalidArgumentException('non-nullable log cannot be null');
@@ -864,7 +864,7 @@ final class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets payload
      */
-    public function setPayload(string|null $payload = null)
+    public function setPayload($payload)
     {
         if (is_null($payload)) {
             throw new \InvalidArgumentException('non-nullable payload cannot be null');
@@ -887,7 +887,7 @@ final class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets description
      */
-    public function setDescription(string|null $description = null)
+    public function setDescription($description)
     {
         if (is_null($description)) {
             array_push($this->openAPINullablesSetToNull, 'description');
@@ -917,7 +917,7 @@ final class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets text
      */
-    public function setText(string|null $text = null)
+    public function setText($text)
     {
         if (is_null($text)) {
             array_push($this->openAPINullablesSetToNull, 'text');
@@ -947,7 +947,7 @@ final class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets expires_at
      */
-    public function setExpiresAt(string|null $expires_at = null)
+    public function setExpiresAt($expires_at)
     {
         if (is_null($expires_at)) {
             array_push($this->openAPINullablesSetToNull, 'expires_at');

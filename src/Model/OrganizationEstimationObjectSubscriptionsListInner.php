@@ -247,7 +247,7 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements ModelI
     /**
      * Sets license_id
      */
-    public function setLicenseId(string|null $license_id = null)
+    public function setLicenseId($license_id)
     {
         if (is_null($license_id)) {
             throw new \InvalidArgumentException('non-nullable license_id cannot be null');
@@ -270,7 +270,7 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements ModelI
     /**
      * Sets project_title
      */
-    public function setProjectTitle(string|null $project_title = null)
+    public function setProjectTitle($project_title)
     {
         if (is_null($project_title)) {
             throw new \InvalidArgumentException('non-nullable project_title cannot be null');
@@ -293,7 +293,7 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements ModelI
     /**
      * Sets total
      */
-    public function setTotal(string|null $total = null)
+    public function setTotal($total)
     {
         if (is_null($total)) {
             throw new \InvalidArgumentException('non-nullable total cannot be null');
@@ -316,7 +316,7 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements ModelI
     /**
      * Sets usage
      */
-    public function setUsage(string|null $usage = null)
+    public function setUsage($usage)
     {
         if (is_null($usage)) {
             throw new \InvalidArgumentException('non-nullable usage cannot be null');

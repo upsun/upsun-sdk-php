@@ -249,7 +249,7 @@ final class TheEnvironmentDeploymentState implements ModelInterface, ArrayAccess
     /**
      * Sets last_deployment_successful
      */
-    public function setLastDeploymentSuccessful(string|null $last_deployment_successful = null)
+    public function setLastDeploymentSuccessful($last_deployment_successful)
     {
         if (is_null($last_deployment_successful)) {
             throw new \InvalidArgumentException('non-nullable last_deployment_successful cannot be null');
@@ -272,7 +272,7 @@ final class TheEnvironmentDeploymentState implements ModelInterface, ArrayAccess
     /**
      * Sets last_deployment_at
      */
-    public function setLastDeploymentAt(string|null $last_deployment_at = null)
+    public function setLastDeploymentAt($last_deployment_at)
     {
         if (is_null($last_deployment_at)) {
             array_push($this->openAPINullablesSetToNull, 'last_deployment_at');
@@ -302,7 +302,7 @@ final class TheEnvironmentDeploymentState implements ModelInterface, ArrayAccess
     /**
      * Sets crons
      */
-    public function setCrons(string|null $crons = null)
+    public function setCrons($crons)
     {
         if (is_null($crons)) {
             throw new \InvalidArgumentException('non-nullable crons cannot be null');

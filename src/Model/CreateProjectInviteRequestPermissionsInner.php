@@ -281,7 +281,7 @@ final class CreateProjectInviteRequestPermissionsInner implements ModelInterface
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -314,7 +314,7 @@ final class CreateProjectInviteRequestPermissionsInner implements ModelInterface
     /**
      * Sets role
      */
-    public function setRole(string|null $role = null)
+    public function setRole($role)
     {
         if (is_null($role)) {
             throw new \InvalidArgumentException('non-nullable role cannot be null');

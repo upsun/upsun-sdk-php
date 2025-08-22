@@ -351,7 +351,7 @@ final class ServicesValue implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -374,7 +374,7 @@ final class ServicesValue implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets size
      */
-    public function setSize(string|null $size = null)
+    public function setSize($size)
     {
         if (is_null($size)) {
             throw new \InvalidArgumentException('non-nullable size cannot be null');
@@ -407,7 +407,7 @@ final class ServicesValue implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets disk
      */
-    public function setDisk(string|null $disk = null)
+    public function setDisk($disk)
     {
         if (is_null($disk)) {
             array_push($this->openAPINullablesSetToNull, 'disk');
@@ -437,7 +437,7 @@ final class ServicesValue implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets access
      */
-    public function setAccess(string|null $access = null)
+    public function setAccess($access)
     {
         if (is_null($access)) {
             throw new \InvalidArgumentException('non-nullable access cannot be null');
@@ -460,7 +460,7 @@ final class ServicesValue implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets configuration
      */
-    public function setConfiguration(string|null $configuration = null)
+    public function setConfiguration($configuration)
     {
         if (is_null($configuration)) {
             throw new \InvalidArgumentException('non-nullable configuration cannot be null');
@@ -483,7 +483,7 @@ final class ServicesValue implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets relationships
      */
-    public function setRelationships(string|null $relationships = null)
+    public function setRelationships($relationships)
     {
         if (is_null($relationships)) {
             throw new \InvalidArgumentException('non-nullable relationships cannot be null');
@@ -506,7 +506,7 @@ final class ServicesValue implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets firewall
      */
-    public function setFirewall(string|null $firewall = null)
+    public function setFirewall($firewall)
     {
         if (is_null($firewall)) {
             array_push($this->openAPINullablesSetToNull, 'firewall');
@@ -536,7 +536,7 @@ final class ServicesValue implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets resources
      */
-    public function setResources(string|null $resources = null)
+    public function setResources($resources)
     {
         if (is_null($resources)) {
             array_push($this->openAPINullablesSetToNull, 'resources');
@@ -566,7 +566,7 @@ final class ServicesValue implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets container_profile
      */
-    public function setContainerProfile(string|null $container_profile = null)
+    public function setContainerProfile($container_profile)
     {
         if (is_null($container_profile)) {
             array_push($this->openAPINullablesSetToNull, 'container_profile');
@@ -596,7 +596,7 @@ final class ServicesValue implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets endpoints
      */
-    public function setEndpoints(string|null $endpoints = null)
+    public function setEndpoints($endpoints)
     {
         if (is_null($endpoints)) {
             array_push($this->openAPINullablesSetToNull, 'endpoints');

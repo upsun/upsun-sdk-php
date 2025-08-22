@@ -339,7 +339,7 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets id
      */
-    public function setId(string|null $id = null)
+    public function setId($id)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -362,7 +362,7 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets state
      */
-    public function setState(string|null $state = null)
+    public function setState($state)
     {
         if (is_null($state)) {
             throw new \InvalidArgumentException('non-nullable state cannot be null');
@@ -395,7 +395,7 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets project_id
      */
-    public function setProjectId(string|null $project_id = null)
+    public function setProjectId($project_id)
     {
         if (is_null($project_id)) {
             throw new \InvalidArgumentException('non-nullable project_id cannot be null');
@@ -418,7 +418,7 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets role
      */
-    public function setRole(string|null $role = null)
+    public function setRole($role)
     {
         if (is_null($role)) {
             throw new \InvalidArgumentException('non-nullable role cannot be null');
@@ -451,7 +451,7 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets email
      */
-    public function setEmail(string|null $email = null)
+    public function setEmail($email)
     {
         if (is_null($email)) {
             throw new \InvalidArgumentException('non-nullable email cannot be null');
@@ -474,7 +474,7 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets owner
      */
-    public function setOwner(string|null $owner = null)
+    public function setOwner($owner)
     {
         if (is_null($owner)) {
             throw new \InvalidArgumentException('non-nullable owner cannot be null');
@@ -497,7 +497,7 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets created_at
      */
-    public function setCreatedAt(string|null $created_at = null)
+    public function setCreatedAt($created_at)
     {
         if (is_null($created_at)) {
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
@@ -520,7 +520,7 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt(string|null $updated_at = null)
+    public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
@@ -543,7 +543,7 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets finished_at
      */
-    public function setFinishedAt(string|null $finished_at = null)
+    public function setFinishedAt($finished_at)
     {
         if (is_null($finished_at)) {
             array_push($this->openAPINullablesSetToNull, 'finished_at');
@@ -573,7 +573,7 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets environments
      */
-    public function setEnvironments(string|null $environments = null)
+    public function setEnvironments($environments)
     {
         if (is_null($environments)) {
             throw new \InvalidArgumentException('non-nullable environments cannot be null');

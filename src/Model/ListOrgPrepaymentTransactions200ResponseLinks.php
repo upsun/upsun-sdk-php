@@ -247,7 +247,7 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements ModelInterf
     /**
      * Sets self
      */
-    public function setSelf(string|null $self = null)
+    public function setSelf($self)
     {
         if (is_null($self)) {
             throw new \InvalidArgumentException('non-nullable self cannot be null');
@@ -270,7 +270,7 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements ModelInterf
     /**
      * Sets previous
      */
-    public function setPrevious(string|null $previous = null)
+    public function setPrevious($previous)
     {
         if (is_null($previous)) {
             throw new \InvalidArgumentException('non-nullable previous cannot be null');
@@ -293,7 +293,7 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements ModelInterf
     /**
      * Sets next
      */
-    public function setNext(string|null $next = null)
+    public function setNext($next)
     {
         if (is_null($next)) {
             throw new \InvalidArgumentException('non-nullable next cannot be null');
@@ -316,7 +316,7 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements ModelInterf
     /**
      * Sets prepayment
      */
-    public function setPrepayment(string|null $prepayment = null)
+    public function setPrepayment($prepayment)
     {
         if (is_null($prepayment)) {
             throw new \InvalidArgumentException('non-nullable prepayment cannot be null');

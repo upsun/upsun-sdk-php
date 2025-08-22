@@ -240,7 +240,7 @@ final class ListTickets200Response implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets count
      */
-    public function setCount(string|null $count = null)
+    public function setCount($count)
     {
         if (is_null($count)) {
             throw new \InvalidArgumentException('non-nullable count cannot be null');
@@ -263,7 +263,7 @@ final class ListTickets200Response implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets tickets
      */
-    public function setTickets(string|null $tickets = null)
+    public function setTickets($tickets)
     {
         if (is_null($tickets)) {
             throw new \InvalidArgumentException('non-nullable tickets cannot be null');
@@ -286,7 +286,7 @@ final class ListTickets200Response implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets _links
      */
-    public function setLinks(string|null $_links = null)
+    public function setLinks($_links)
     {
         if (is_null($_links)) {
             throw new \InvalidArgumentException('non-nullable _links cannot be null');

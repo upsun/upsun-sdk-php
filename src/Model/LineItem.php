@@ -312,7 +312,7 @@ final class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -345,7 +345,7 @@ final class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets license_id
      */
-    public function setLicenseId(string|null $license_id = null)
+    public function setLicenseId($license_id)
     {
         if (is_null($license_id)) {
             array_push($this->openAPINullablesSetToNull, 'license_id');
@@ -375,7 +375,7 @@ final class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets project_id
      */
-    public function setProjectId(string|null $project_id = null)
+    public function setProjectId($project_id)
     {
         if (is_null($project_id)) {
             array_push($this->openAPINullablesSetToNull, 'project_id');
@@ -405,7 +405,7 @@ final class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets product
      */
-    public function setProduct(string|null $product = null)
+    public function setProduct($product)
     {
         if (is_null($product)) {
             throw new \InvalidArgumentException('non-nullable product cannot be null');
@@ -428,7 +428,7 @@ final class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets sku
      */
-    public function setSku(string|null $sku = null)
+    public function setSku($sku)
     {
         if (is_null($sku)) {
             throw new \InvalidArgumentException('non-nullable sku cannot be null');
@@ -451,7 +451,7 @@ final class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets total
      */
-    public function setTotal(string|null $total = null)
+    public function setTotal($total)
     {
         if (is_null($total)) {
             throw new \InvalidArgumentException('non-nullable total cannot be null');
@@ -474,7 +474,7 @@ final class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets total_formatted
      */
-    public function setTotalFormatted(string|null $total_formatted = null)
+    public function setTotalFormatted($total_formatted)
     {
         if (is_null($total_formatted)) {
             throw new \InvalidArgumentException('non-nullable total_formatted cannot be null');
@@ -497,7 +497,7 @@ final class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets components
      */
-    public function setComponents(string|null $components = null)
+    public function setComponents($components)
     {
         if (is_null($components)) {
             throw new \InvalidArgumentException('non-nullable components cannot be null');
@@ -520,7 +520,7 @@ final class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets exclude_from_invoice
      */
-    public function setExcludeFromInvoice(string|null $exclude_from_invoice = null)
+    public function setExcludeFromInvoice($exclude_from_invoice)
     {
         if (is_null($exclude_from_invoice)) {
             throw new \InvalidArgumentException('non-nullable exclude_from_invoice cannot be null');

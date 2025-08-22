@@ -226,7 +226,7 @@ final class CreateProfilePicture200Response implements ModelInterface, ArrayAcce
     /**
      * Sets url
      */
-    public function setUrl(string|null $url = null)
+    public function setUrl($url)
     {
         if (is_null($url)) {
             throw new \InvalidArgumentException('non-nullable url cannot be null');

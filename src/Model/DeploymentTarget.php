@@ -430,7 +430,7 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -463,7 +463,7 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -486,7 +486,7 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets deploy_host
      */
-    public function setDeployHost(string|null $deploy_host = null)
+    public function setDeployHost($deploy_host)
     {
         if (is_null($deploy_host)) {
             array_push($this->openAPINullablesSetToNull, 'deploy_host');
@@ -516,7 +516,7 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets deploy_port
      */
-    public function setDeployPort(string|null $deploy_port = null)
+    public function setDeployPort($deploy_port)
     {
         if (is_null($deploy_port)) {
             array_push($this->openAPINullablesSetToNull, 'deploy_port');
@@ -546,7 +546,7 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets ssh_host
      */
-    public function setSshHost(string|null $ssh_host = null)
+    public function setSshHost($ssh_host)
     {
         if (is_null($ssh_host)) {
             array_push($this->openAPINullablesSetToNull, 'ssh_host');
@@ -576,7 +576,7 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets hosts
      */
-    public function setHosts(string|null $hosts = null)
+    public function setHosts($hosts)
     {
         if (is_null($hosts)) {
             array_push($this->openAPINullablesSetToNull, 'hosts');
@@ -606,7 +606,7 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets auto_mounts
      */
-    public function setAutoMounts(string|null $auto_mounts = null)
+    public function setAutoMounts($auto_mounts)
     {
         if (is_null($auto_mounts)) {
             throw new \InvalidArgumentException('non-nullable auto_mounts cannot be null');
@@ -629,7 +629,7 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets excluded_mounts
      */
-    public function setExcludedMounts(string|null $excluded_mounts = null)
+    public function setExcludedMounts($excluded_mounts)
     {
         if (is_null($excluded_mounts)) {
             throw new \InvalidArgumentException('non-nullable excluded_mounts cannot be null');
@@ -652,7 +652,7 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets enforced_mounts
      */
-    public function setEnforcedMounts(string|null $enforced_mounts = null)
+    public function setEnforcedMounts($enforced_mounts)
     {
         if (is_null($enforced_mounts)) {
             throw new \InvalidArgumentException('non-nullable enforced_mounts cannot be null');
@@ -675,7 +675,7 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets auto_crons
      */
-    public function setAutoCrons(string|null $auto_crons = null)
+    public function setAutoCrons($auto_crons)
     {
         if (is_null($auto_crons)) {
             throw new \InvalidArgumentException('non-nullable auto_crons cannot be null');
@@ -698,7 +698,7 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets auto_nginx
      */
-    public function setAutoNginx(string|null $auto_nginx = null)
+    public function setAutoNginx($auto_nginx)
     {
         if (is_null($auto_nginx)) {
             throw new \InvalidArgumentException('non-nullable auto_nginx cannot be null');
@@ -721,7 +721,7 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets maintenance_mode
      */
-    public function setMaintenanceMode(string|null $maintenance_mode = null)
+    public function setMaintenanceMode($maintenance_mode)
     {
         if (is_null($maintenance_mode)) {
             throw new \InvalidArgumentException('non-nullable maintenance_mode cannot be null');
@@ -744,7 +744,7 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets guardrails_phase
      */
-    public function setGuardrailsPhase(string|null $guardrails_phase = null)
+    public function setGuardrailsPhase($guardrails_phase)
     {
         if (is_null($guardrails_phase)) {
             throw new \InvalidArgumentException('non-nullable guardrails_phase cannot be null');
@@ -767,7 +767,7 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets docroots
      */
-    public function setDocroots(string|null $docroots = null)
+    public function setDocroots($docroots)
     {
         if (is_null($docroots)) {
             throw new \InvalidArgumentException('non-nullable docroots cannot be null');
@@ -790,7 +790,7 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets site_urls
      */
-    public function setSiteUrls(string|null $site_urls = null)
+    public function setSiteUrls($site_urls)
     {
         if (is_null($site_urls)) {
             throw new \InvalidArgumentException('non-nullable site_urls cannot be null');
@@ -813,7 +813,7 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets ssh_hosts
      */
-    public function setSshHosts(string|null $ssh_hosts = null)
+    public function setSshHosts($ssh_hosts)
     {
         if (is_null($ssh_hosts)) {
             throw new \InvalidArgumentException('non-nullable ssh_hosts cannot be null');
@@ -840,7 +840,7 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @deprecated
      */
-    public function setEnterpriseEnvironmentsMapping(string|null $enterprise_environments_mapping = null)
+    public function setEnterpriseEnvironmentsMapping($enterprise_environments_mapping)
     {
         if (is_null($enterprise_environments_mapping)) {
             throw new \InvalidArgumentException('non-nullable enterprise_environments_mapping cannot be null');
@@ -863,7 +863,7 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets use_dedicated_grid
      */
-    public function setUseDedicatedGrid(string|null $use_dedicated_grid = null)
+    public function setUseDedicatedGrid($use_dedicated_grid)
     {
         if (is_null($use_dedicated_grid)) {
             throw new \InvalidArgumentException('non-nullable use_dedicated_grid cannot be null');
@@ -886,7 +886,7 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets storage_type
      */
-    public function setStorageType(string|null $storage_type = null)
+    public function setStorageType($storage_type)
     {
         if (is_null($storage_type)) {
             array_push($this->openAPINullablesSetToNull, 'storage_type');

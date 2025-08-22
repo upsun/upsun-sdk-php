@@ -240,7 +240,7 @@ final class DiscountCommitment implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets months
      */
-    public function setMonths(string|null $months = null)
+    public function setMonths($months)
     {
         if (is_null($months)) {
             throw new \InvalidArgumentException('non-nullable months cannot be null');
@@ -263,7 +263,7 @@ final class DiscountCommitment implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets amount
      */
-    public function setAmount(string|null $amount = null)
+    public function setAmount($amount)
     {
         if (is_null($amount)) {
             throw new \InvalidArgumentException('non-nullable amount cannot be null');
@@ -286,7 +286,7 @@ final class DiscountCommitment implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets net
      */
-    public function setNet(string|null $net = null)
+    public function setNet($net)
     {
         if (is_null($net)) {
             throw new \InvalidArgumentException('non-nullable net cannot be null');

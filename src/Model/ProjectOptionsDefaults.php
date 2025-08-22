@@ -247,7 +247,7 @@ final class ProjectOptionsDefaults implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets settings
      */
-    public function setSettings(string|null $settings = null)
+    public function setSettings($settings)
     {
         if (is_null($settings)) {
             throw new \InvalidArgumentException('non-nullable settings cannot be null');
@@ -270,7 +270,7 @@ final class ProjectOptionsDefaults implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets variables
      */
-    public function setVariables(string|null $variables = null)
+    public function setVariables($variables)
     {
         if (is_null($variables)) {
             throw new \InvalidArgumentException('non-nullable variables cannot be null');
@@ -293,7 +293,7 @@ final class ProjectOptionsDefaults implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets access
      */
-    public function setAccess(string|null $access = null)
+    public function setAccess($access)
     {
         if (is_null($access)) {
             throw new \InvalidArgumentException('non-nullable access cannot be null');
@@ -316,7 +316,7 @@ final class ProjectOptionsDefaults implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets capabilities
      */
-    public function setCapabilities(string|null $capabilities = null)
+    public function setCapabilities($capabilities)
     {
         if (is_null($capabilities)) {
             throw new \InvalidArgumentException('non-nullable capabilities cannot be null');

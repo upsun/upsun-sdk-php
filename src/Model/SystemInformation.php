@@ -249,7 +249,7 @@ final class SystemInformation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets version
      */
-    public function setVersion(string|null $version = null)
+    public function setVersion($version)
     {
         if (is_null($version)) {
             throw new \InvalidArgumentException('non-nullable version cannot be null');
@@ -272,7 +272,7 @@ final class SystemInformation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets image
      */
-    public function setImage(string|null $image = null)
+    public function setImage($image)
     {
         if (is_null($image)) {
             throw new \InvalidArgumentException('non-nullable image cannot be null');
@@ -295,7 +295,7 @@ final class SystemInformation implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets started_at
      */
-    public function setStartedAt(string|null $started_at = null)
+    public function setStartedAt($started_at)
     {
         if (is_null($started_at)) {
             throw new \InvalidArgumentException('non-nullable started_at cannot be null');

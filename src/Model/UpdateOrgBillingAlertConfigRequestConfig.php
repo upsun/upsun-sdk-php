@@ -233,7 +233,7 @@ final class UpdateOrgBillingAlertConfigRequestConfig implements ModelInterface, 
     /**
      * Sets threshold
      */
-    public function setThreshold(string|null $threshold = null)
+    public function setThreshold($threshold)
     {
         if (is_null($threshold)) {
             throw new \InvalidArgumentException('non-nullable threshold cannot be null');
@@ -256,7 +256,7 @@ final class UpdateOrgBillingAlertConfigRequestConfig implements ModelInterface, 
     /**
      * Sets mode
      */
-    public function setMode(string|null $mode = null)
+    public function setMode($mode)
     {
         if (is_null($mode)) {
             throw new \InvalidArgumentException('non-nullable mode cannot be null');

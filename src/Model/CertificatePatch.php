@@ -233,7 +233,7 @@ final class CertificatePatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets chain
      */
-    public function setChain(string|null $chain = null)
+    public function setChain($chain)
     {
         if (is_null($chain)) {
             throw new \InvalidArgumentException('non-nullable chain cannot be null');
@@ -256,7 +256,7 @@ final class CertificatePatch implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets is_invalid
      */
-    public function setIsInvalid(string|null $is_invalid = null)
+    public function setIsInvalid($is_invalid)
     {
         if (is_null($is_invalid)) {
             throw new \InvalidArgumentException('non-nullable is_invalid cannot be null');

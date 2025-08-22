@@ -121,10 +121,10 @@ final class RuntimeOperationsApi
      * @throws InvalidArgumentException
      */
     public function runOperation(
-        $project_id,
-        $environment_id,
-        $deployment_id,
-        $environment_operation_input
+        string $project_id,
+        string $environment_id,
+        string $deployment_id,
+        \Upsun\Model\EnvironmentOperationInput $environment_operation_input
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->runOperationWithHttpInfo($project_id, $environment_id, $deployment_id, $environment_operation_input);
         return $response;
@@ -134,7 +134,7 @@ final class RuntimeOperationsApi
      * Execute a runtime operation
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function runOperationWithHttpInfo(
         string $project_id,

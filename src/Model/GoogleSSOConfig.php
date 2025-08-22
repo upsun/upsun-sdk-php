@@ -253,7 +253,7 @@ final class GoogleSSOConfig implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets provider_type
      */
-    public function setProviderType(string|null $provider_type = null)
+    public function setProviderType($provider_type)
     {
         if (is_null($provider_type)) {
             throw new \InvalidArgumentException('non-nullable provider_type cannot be null');
@@ -286,7 +286,7 @@ final class GoogleSSOConfig implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets domain
      */
-    public function setDomain(string|null $domain = null)
+    public function setDomain($domain)
     {
         if (is_null($domain)) {
             throw new \InvalidArgumentException('non-nullable domain cannot be null');

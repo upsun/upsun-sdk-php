@@ -249,7 +249,7 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
     /**
      * Sets build
      */
-    public function setBuild(string|null $build = null)
+    public function setBuild($build)
     {
         if (is_null($build)) {
             array_push($this->openAPINullablesSetToNull, 'build');
@@ -279,7 +279,7 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
     /**
      * Sets deploy
      */
-    public function setDeploy(string|null $deploy = null)
+    public function setDeploy($deploy)
     {
         if (is_null($deploy)) {
             array_push($this->openAPINullablesSetToNull, 'deploy');
@@ -309,7 +309,7 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
     /**
      * Sets post_deploy
      */
-    public function setPostDeploy(string|null $post_deploy = null)
+    public function setPostDeploy($post_deploy)
     {
         if (is_null($post_deploy)) {
             array_push($this->openAPINullablesSetToNull, 'post_deploy');

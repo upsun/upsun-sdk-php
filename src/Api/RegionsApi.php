@@ -121,7 +121,7 @@ final class RegionsApi
      * @throws InvalidArgumentException
      */
     public function getRegion(
-        $region_id
+        string $region_id
     ): \Upsun\Model\Region {
         list($response) = $this->getRegionWithHttpInfo($region_id);
         return $response;
@@ -131,7 +131,7 @@ final class RegionsApi
      * Get region
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getRegionWithHttpInfo(
         string $region_id
@@ -390,13 +390,13 @@ final class RegionsApi
      * @throws InvalidArgumentException
      */
     public function listRegions(
-        $filter_available = null,
-        $filter_private = null,
-        $filter_zone = null,
-        $page_size = null,
-        $page_before = null,
-        $page_after = null,
-        $sort = null
+        \Upsun\Model\StringFilter $filter_available = null,
+        \Upsun\Model\StringFilter $filter_private = null,
+        \Upsun\Model\StringFilter $filter_zone = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
     ): \Upsun\Model\ListRegions200Response {
         list($response) = $this->listRegionsWithHttpInfo($filter_available, $filter_private, $filter_zone, $page_size, $page_before, $page_after, $sort);
         return $response;
@@ -406,7 +406,7 @@ final class RegionsApi
      * List regions
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listRegionsWithHttpInfo(
         \Upsun\Model\StringFilter $filter_available = null,

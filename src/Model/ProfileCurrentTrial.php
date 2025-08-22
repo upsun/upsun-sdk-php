@@ -316,7 +316,7 @@ final class ProfileCurrentTrial implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets active
      */
-    public function setActive(string|null $active = null)
+    public function setActive($active)
     {
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
@@ -339,7 +339,7 @@ final class ProfileCurrentTrial implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets created
      */
-    public function setCreated(string|null $created = null)
+    public function setCreated($created)
     {
         if (is_null($created)) {
             throw new \InvalidArgumentException('non-nullable created cannot be null');
@@ -362,7 +362,7 @@ final class ProfileCurrentTrial implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets description
      */
-    public function setDescription(string|null $description = null)
+    public function setDescription($description)
     {
         if (is_null($description)) {
             throw new \InvalidArgumentException('non-nullable description cannot be null');
@@ -385,7 +385,7 @@ final class ProfileCurrentTrial implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets expiration
      */
-    public function setExpiration(string|null $expiration = null)
+    public function setExpiration($expiration)
     {
         if (is_null($expiration)) {
             throw new \InvalidArgumentException('non-nullable expiration cannot be null');
@@ -408,7 +408,7 @@ final class ProfileCurrentTrial implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets current
      */
-    public function setCurrent(string|null $current = null)
+    public function setCurrent($current)
     {
         if (is_null($current)) {
             throw new \InvalidArgumentException('non-nullable current cannot be null');
@@ -431,7 +431,7 @@ final class ProfileCurrentTrial implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets spend
      */
-    public function setSpend(string|null $spend = null)
+    public function setSpend($spend)
     {
         if (is_null($spend)) {
             throw new \InvalidArgumentException('non-nullable spend cannot be null');
@@ -454,7 +454,7 @@ final class ProfileCurrentTrial implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets spend_remaining
      */
-    public function setSpendRemaining(string|null $spend_remaining = null)
+    public function setSpendRemaining($spend_remaining)
     {
         if (is_null($spend_remaining)) {
             throw new \InvalidArgumentException('non-nullable spend_remaining cannot be null');
@@ -477,7 +477,7 @@ final class ProfileCurrentTrial implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets projects
      */
-    public function setProjects(string|null $projects = null)
+    public function setProjects($projects)
     {
         if (is_null($projects)) {
             throw new \InvalidArgumentException('non-nullable projects cannot be null');
@@ -504,7 +504,7 @@ final class ProfileCurrentTrial implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @deprecated
      */
-    public function setPendingVerification(string|null $pending_verification = null)
+    public function setPendingVerification($pending_verification)
     {
         if (is_null($pending_verification)) {
             array_push($this->openAPINullablesSetToNull, 'pending_verification');
@@ -544,7 +544,7 @@ final class ProfileCurrentTrial implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets model
      */
-    public function setModel(string|null $model = null)
+    public function setModel($model)
     {
         if (is_null($model)) {
             throw new \InvalidArgumentException('non-nullable model cannot be null');
@@ -567,7 +567,7 @@ final class ProfileCurrentTrial implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets days_remaining
      */
-    public function setDaysRemaining(string|null $days_remaining = null)
+    public function setDaysRemaining($days_remaining)
     {
         if (is_null($days_remaining)) {
             throw new \InvalidArgumentException('non-nullable days_remaining cannot be null');

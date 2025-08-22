@@ -226,7 +226,7 @@ final class AddressMetadata implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets metadata
      */
-    public function setMetadata(string|null $metadata = null)
+    public function setMetadata($metadata)
     {
         if (is_null($metadata)) {
             throw new \InvalidArgumentException('non-nullable metadata cannot be null');

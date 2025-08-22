@@ -121,9 +121,9 @@ final class RoutingApi
      * @throws InvalidArgumentException
      */
     public function createProjectsEnvironmentsRoutes(
-        $project_id,
-        $environment_id,
-        $route_create_input
+        string $project_id,
+        string $environment_id,
+        \Upsun\Model\RouteCreateInput $route_create_input
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->createProjectsEnvironmentsRoutesWithHttpInfo($project_id, $environment_id, $route_create_input);
         return $response;
@@ -133,7 +133,7 @@ final class RoutingApi
      * Create a new route
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createProjectsEnvironmentsRoutesWithHttpInfo(
         string $project_id,
@@ -398,9 +398,9 @@ final class RoutingApi
      * @throws InvalidArgumentException
      */
     public function deleteProjectsEnvironmentsRoutes(
-        $project_id,
-        $environment_id,
-        $route_id
+        string $project_id,
+        string $environment_id,
+        string $route_id
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsEnvironmentsRoutesWithHttpInfo($project_id, $environment_id, $route_id);
         return $response;
@@ -410,7 +410,7 @@ final class RoutingApi
      * Delete a route
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsEnvironmentsRoutesWithHttpInfo(
         string $project_id,
@@ -677,9 +677,9 @@ final class RoutingApi
      * @throws InvalidArgumentException
      */
     public function getProjectsEnvironmentsRoutes(
-        $project_id,
-        $environment_id,
-        $route_id
+        string $project_id,
+        string $environment_id,
+        string $route_id
     ): \Upsun\Model\Route {
         list($response) = $this->getProjectsEnvironmentsRoutesWithHttpInfo($project_id, $environment_id, $route_id);
         return $response;
@@ -689,7 +689,7 @@ final class RoutingApi
      * Get a route&#39;s info
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsRoutesWithHttpInfo(
         string $project_id,
@@ -954,11 +954,13 @@ final class RoutingApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return \Upsun\Model\Route[]
      */
     public function listProjectsEnvironmentsRoutes(
-        $project_id,
-        $environment_id
-    ): \Upsun\Model\Route[] {
+        string $project_id,
+        string $environment_id
+    ): array {
         list($response) = $this->listProjectsEnvironmentsRoutesWithHttpInfo($project_id, $environment_id);
         return $response;
     }
@@ -967,7 +969,7 @@ final class RoutingApi
      * Get list of routes
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsRoutesWithHttpInfo(
         string $project_id,
@@ -1216,10 +1218,10 @@ final class RoutingApi
      * @throws InvalidArgumentException
      */
     public function updateProjectsEnvironmentsRoutes(
-        $project_id,
-        $environment_id,
-        $route_id,
-        $route_patch
+        string $project_id,
+        string $environment_id,
+        string $route_id,
+        \Upsun\Model\RoutePatch $route_patch
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsEnvironmentsRoutesWithHttpInfo($project_id, $environment_id, $route_id, $route_patch);
         return $response;
@@ -1229,7 +1231,7 @@ final class RoutingApi
      * Update a route
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsEnvironmentsRoutesWithHttpInfo(
         string $project_id,

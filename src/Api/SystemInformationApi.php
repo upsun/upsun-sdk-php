@@ -121,7 +121,7 @@ final class SystemInformationApi
      * @throws InvalidArgumentException
      */
     public function actionProjectsSystemRestart(
-        $project_id
+        string $project_id
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->actionProjectsSystemRestartWithHttpInfo($project_id);
         return $response;
@@ -131,7 +131,7 @@ final class SystemInformationApi
      * Restart the Git server
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function actionProjectsSystemRestartWithHttpInfo(
         string $project_id
@@ -362,7 +362,7 @@ final class SystemInformationApi
      * @throws InvalidArgumentException
      */
     public function getProjectsSystem(
-        $project_id
+        string $project_id
     ): \Upsun\Model\SystemInformation {
         list($response) = $this->getProjectsSystemWithHttpInfo($project_id);
         return $response;
@@ -372,7 +372,7 @@ final class SystemInformationApi
      * Get information about the Git server.
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsSystemWithHttpInfo(
         string $project_id

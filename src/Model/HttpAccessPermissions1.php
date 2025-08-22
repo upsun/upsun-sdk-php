@@ -240,7 +240,7 @@ final class HttpAccessPermissions1 implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets is_enabled
      */
-    public function setIsEnabled(string|null $is_enabled = null)
+    public function setIsEnabled($is_enabled)
     {
         if (is_null($is_enabled)) {
             throw new \InvalidArgumentException('non-nullable is_enabled cannot be null');
@@ -263,7 +263,7 @@ final class HttpAccessPermissions1 implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets addresses
      */
-    public function setAddresses(string|null $addresses = null)
+    public function setAddresses($addresses)
     {
         if (is_null($addresses)) {
             throw new \InvalidArgumentException('non-nullable addresses cannot be null');
@@ -286,7 +286,7 @@ final class HttpAccessPermissions1 implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets basic_auth
      */
-    public function setBasicAuth(string|null $basic_auth = null)
+    public function setBasicAuth($basic_auth)
     {
         if (is_null($basic_auth)) {
             throw new \InvalidArgumentException('non-nullable basic_auth cannot be null');

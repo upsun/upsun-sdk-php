@@ -121,7 +121,7 @@ final class OrganizationsApi
      * @throws InvalidArgumentException
      */
     public function createOrg(
-        $create_org_request
+        \Upsun\Model\CreateOrgRequest $create_org_request
     ): \Upsun\Model\Organization {
         list($response) = $this->createOrgWithHttpInfo($create_org_request);
         return $response;
@@ -131,7 +131,7 @@ final class OrganizationsApi
      * Create organization
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createOrgWithHttpInfo(
         \Upsun\Model\CreateOrgRequest $create_org_request
@@ -388,7 +388,7 @@ final class OrganizationsApi
      * @throws InvalidArgumentException
      */
     public function deleteOrg(
-        $organization_id
+        string $organization_id
     ): void {
         $this->deleteOrgWithHttpInfo($organization_id);
     }
@@ -397,7 +397,7 @@ final class OrganizationsApi
      * Delete organization
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteOrgWithHttpInfo(
         string $organization_id
@@ -607,7 +607,7 @@ final class OrganizationsApi
      * @throws InvalidArgumentException
      */
     public function getOrg(
-        $organization_id
+        string $organization_id
     ): \Upsun\Model\Organization {
         list($response) = $this->getOrgWithHttpInfo($organization_id);
         return $response;
@@ -617,7 +617,7 @@ final class OrganizationsApi
      * Get organization
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getOrgWithHttpInfo(
         string $organization_id
@@ -876,18 +876,18 @@ final class OrganizationsApi
      * @throws InvalidArgumentException
      */
     public function listOrgs(
-        $filter_id = null,
-        $filter_owner_id = null,
-        $filter_name = null,
-        $filter_label = null,
-        $filter_vendor = null,
-        $filter_capabilities = null,
-        $filter_status = null,
-        $filter_updated_at = null,
-        $page_size = null,
-        $page_before = null,
-        $page_after = null,
-        $sort = null
+        \Upsun\Model\StringFilter $filter_id = null,
+        \Upsun\Model\StringFilter $filter_owner_id = null,
+        \Upsun\Model\StringFilter $filter_name = null,
+        \Upsun\Model\StringFilter $filter_label = null,
+        \Upsun\Model\StringFilter $filter_vendor = null,
+        \Upsun\Model\ArrayFilter $filter_capabilities = null,
+        \Upsun\Model\StringFilter $filter_status = null,
+        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
     ): \Upsun\Model\ListOrgs200Response {
         list($response) = $this->listOrgsWithHttpInfo($filter_id, $filter_owner_id, $filter_name, $filter_label, $filter_vendor, $filter_capabilities, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
         return $response;
@@ -897,7 +897,7 @@ final class OrganizationsApi
      * List organizations
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listOrgsWithHttpInfo(
         \Upsun\Model\StringFilter $filter_id = null,
@@ -1325,15 +1325,15 @@ final class OrganizationsApi
      * @throws InvalidArgumentException
      */
     public function listUserOrgs(
-        $user_id,
-        $filter_id = null,
-        $filter_vendor = null,
-        $filter_status = null,
-        $filter_updated_at = null,
-        $page_size = null,
-        $page_before = null,
-        $page_after = null,
-        $sort = null
+        string $user_id,
+        \Upsun\Model\StringFilter $filter_id = null,
+        \Upsun\Model\StringFilter $filter_vendor = null,
+        \Upsun\Model\StringFilter $filter_status = null,
+        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
     ): \Upsun\Model\ListUserOrgs200Response {
         list($response) = $this->listUserOrgsWithHttpInfo($user_id, $filter_id, $filter_vendor, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
         return $response;
@@ -1343,7 +1343,7 @@ final class OrganizationsApi
      * User organizations
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listUserOrgsWithHttpInfo(
         string $user_id,
@@ -1729,8 +1729,8 @@ final class OrganizationsApi
      * @throws InvalidArgumentException
      */
     public function updateOrg(
-        $organization_id,
-        $update_org_request = null
+        string $organization_id,
+        \Upsun\Model\UpdateOrgRequest $update_org_request = null
     ): \Upsun\Model\Organization {
         list($response) = $this->updateOrgWithHttpInfo($organization_id, $update_org_request);
         return $response;
@@ -1740,7 +1740,7 @@ final class OrganizationsApi
      * Update organization
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateOrgWithHttpInfo(
         string $organization_id,

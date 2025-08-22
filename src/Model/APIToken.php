@@ -268,7 +268,7 @@ final class APIToken implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      */
-    public function setId(string|null $id = null)
+    public function setId($id)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -291,7 +291,7 @@ final class APIToken implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -314,7 +314,7 @@ final class APIToken implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets mfa_on_creation
      */
-    public function setMfaOnCreation(string|null $mfa_on_creation = null)
+    public function setMfaOnCreation($mfa_on_creation)
     {
         if (is_null($mfa_on_creation)) {
             throw new \InvalidArgumentException('non-nullable mfa_on_creation cannot be null');
@@ -337,7 +337,7 @@ final class APIToken implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets token
      */
-    public function setToken(string|null $token = null)
+    public function setToken($token)
     {
         if (is_null($token)) {
             throw new \InvalidArgumentException('non-nullable token cannot be null');
@@ -360,7 +360,7 @@ final class APIToken implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets created_at
      */
-    public function setCreatedAt(string|null $created_at = null)
+    public function setCreatedAt($created_at)
     {
         if (is_null($created_at)) {
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
@@ -383,7 +383,7 @@ final class APIToken implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt(string|null $updated_at = null)
+    public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
@@ -406,7 +406,7 @@ final class APIToken implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets last_used_at
      */
-    public function setLastUsedAt(string|null $last_used_at = null)
+    public function setLastUsedAt($last_used_at)
     {
         if (is_null($last_used_at)) {
             array_push($this->openAPINullablesSetToNull, 'last_used_at');

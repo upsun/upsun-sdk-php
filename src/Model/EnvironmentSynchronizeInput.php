@@ -259,7 +259,7 @@ final class EnvironmentSynchronizeInput implements ModelInterface, ArrayAccess, 
     /**
      * Sets synchronize_code
      */
-    public function setSynchronizeCode(string|null $synchronize_code = null)
+    public function setSynchronizeCode($synchronize_code)
     {
         if (is_null($synchronize_code)) {
             throw new \InvalidArgumentException('non-nullable synchronize_code cannot be null');
@@ -282,7 +282,7 @@ final class EnvironmentSynchronizeInput implements ModelInterface, ArrayAccess, 
     /**
      * Sets rebase
      */
-    public function setRebase(string|null $rebase = null)
+    public function setRebase($rebase)
     {
         if (is_null($rebase)) {
             throw new \InvalidArgumentException('non-nullable rebase cannot be null');
@@ -305,7 +305,7 @@ final class EnvironmentSynchronizeInput implements ModelInterface, ArrayAccess, 
     /**
      * Sets synchronize_data
      */
-    public function setSynchronizeData(string|null $synchronize_data = null)
+    public function setSynchronizeData($synchronize_data)
     {
         if (is_null($synchronize_data)) {
             throw new \InvalidArgumentException('non-nullable synchronize_data cannot be null');
@@ -328,7 +328,7 @@ final class EnvironmentSynchronizeInput implements ModelInterface, ArrayAccess, 
     /**
      * Sets synchronize_resources
      */
-    public function setSynchronizeResources(string|null $synchronize_resources = null)
+    public function setSynchronizeResources($synchronize_resources)
     {
         if (is_null($synchronize_resources)) {
             throw new \InvalidArgumentException('non-nullable synchronize_resources cannot be null');

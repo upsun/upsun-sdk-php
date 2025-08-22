@@ -240,7 +240,7 @@ final class DiscountDiscount implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets monthly
      */
-    public function setMonthly(string|null $monthly = null)
+    public function setMonthly($monthly)
     {
         if (is_null($monthly)) {
             throw new \InvalidArgumentException('non-nullable monthly cannot be null');
@@ -263,7 +263,7 @@ final class DiscountDiscount implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets commitment_period
      */
-    public function setCommitmentPeriod(string|null $commitment_period = null)
+    public function setCommitmentPeriod($commitment_period)
     {
         if (is_null($commitment_period)) {
             array_push($this->openAPINullablesSetToNull, 'commitment_period');
@@ -293,7 +293,7 @@ final class DiscountDiscount implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets contract_total
      */
-    public function setContractTotal(string|null $contract_total = null)
+    public function setContractTotal($contract_total)
     {
         if (is_null($contract_total)) {
             array_push($this->openAPINullablesSetToNull, 'contract_total');

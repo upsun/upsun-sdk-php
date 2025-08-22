@@ -233,7 +233,7 @@ final class OrganizationEstimationObjectUserLicensesBaseListViewerUser implement
     /**
      * Sets count
      */
-    public function setCount(string|null $count = null)
+    public function setCount($count)
     {
         if (is_null($count)) {
             throw new \InvalidArgumentException('non-nullable count cannot be null');
@@ -256,7 +256,7 @@ final class OrganizationEstimationObjectUserLicensesBaseListViewerUser implement
     /**
      * Sets total
      */
-    public function setTotal(string|null $total = null)
+    public function setTotal($total)
     {
         if (is_null($total)) {
             throw new \InvalidArgumentException('non-nullable total cannot be null');

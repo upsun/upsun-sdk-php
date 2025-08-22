@@ -226,7 +226,7 @@ final class CreateUsageAlertRequestConfig implements ModelInterface, ArrayAccess
     /**
      * Sets threshold
      */
-    public function setThreshold(string|null $threshold = null)
+    public function setThreshold($threshold)
     {
         if (is_null($threshold)) {
             throw new \InvalidArgumentException('non-nullable threshold cannot be null');

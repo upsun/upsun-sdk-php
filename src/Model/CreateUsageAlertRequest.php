@@ -233,7 +233,7 @@ final class CreateUsageAlertRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets id
      */
-    public function setId(string|null $id = null)
+    public function setId($id)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -256,7 +256,7 @@ final class CreateUsageAlertRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets config
      */
-    public function setConfig(string|null $config = null)
+    public function setConfig($config)
     {
         if (is_null($config)) {
             throw new \InvalidArgumentException('non-nullable config cannot be null');

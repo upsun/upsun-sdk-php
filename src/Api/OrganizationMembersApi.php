@@ -121,8 +121,8 @@ final class OrganizationMembersApi
      * @throws InvalidArgumentException
      */
     public function createOrgMember(
-        $organization_id,
-        $create_org_member_request
+        string $organization_id,
+        \Upsun\Model\CreateOrgMemberRequest $create_org_member_request
     ): \Upsun\Model\OrganizationMember {
         list($response) = $this->createOrgMemberWithHttpInfo($organization_id, $create_org_member_request);
         return $response;
@@ -132,7 +132,7 @@ final class OrganizationMembersApi
      * Create organization member
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createOrgMemberWithHttpInfo(
         string $organization_id,
@@ -421,8 +421,8 @@ final class OrganizationMembersApi
      * @throws InvalidArgumentException
      */
     public function deleteOrgMember(
-        $organization_id,
-        $user_id
+        string $organization_id,
+        string $user_id
     ): void {
         $this->deleteOrgMemberWithHttpInfo($organization_id, $user_id);
     }
@@ -431,7 +431,7 @@ final class OrganizationMembersApi
      * Delete organization member
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteOrgMemberWithHttpInfo(
         string $organization_id,
@@ -651,8 +651,8 @@ final class OrganizationMembersApi
      * @throws InvalidArgumentException
      */
     public function getOrgMember(
-        $organization_id,
-        $user_id
+        string $organization_id,
+        string $user_id
     ): \Upsun\Model\OrganizationMember {
         list($response) = $this->getOrgMemberWithHttpInfo($organization_id, $user_id);
         return $response;
@@ -662,7 +662,7 @@ final class OrganizationMembersApi
      * Get organization member
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getOrgMemberWithHttpInfo(
         string $organization_id,
@@ -939,12 +939,12 @@ final class OrganizationMembersApi
      * @throws InvalidArgumentException
      */
     public function listOrgMembers(
-        $organization_id,
-        $filter_permissions = null,
-        $page_size = null,
-        $page_before = null,
-        $page_after = null,
-        $sort = null
+        string $organization_id,
+        \Upsun\Model\ArrayFilter $filter_permissions = null,
+        int $page_size = null,
+        string $page_before = null,
+        string $page_after = null,
+        string $sort = null
     ): \Upsun\Model\ListOrgMembers200Response {
         list($response) = $this->listOrgMembersWithHttpInfo($organization_id, $filter_permissions, $page_size, $page_before, $page_after, $sort);
         return $response;
@@ -954,7 +954,7 @@ final class OrganizationMembersApi
      * List organization members
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listOrgMembersWithHttpInfo(
         string $organization_id,
@@ -1309,9 +1309,9 @@ final class OrganizationMembersApi
      * @throws InvalidArgumentException
      */
     public function updateOrgMember(
-        $organization_id,
-        $user_id,
-        $update_org_member_request = null
+        string $organization_id,
+        string $user_id,
+        \Upsun\Model\UpdateOrgMemberRequest $update_org_member_request = null
     ): \Upsun\Model\OrganizationMember {
         list($response) = $this->updateOrgMemberWithHttpInfo($organization_id, $user_id, $update_org_member_request);
         return $response;
@@ -1321,7 +1321,7 @@ final class OrganizationMembersApi
      * Update organization member
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateOrgMemberWithHttpInfo(
         string $organization_id,

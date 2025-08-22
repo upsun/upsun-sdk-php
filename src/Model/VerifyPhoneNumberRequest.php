@@ -263,7 +263,7 @@ final class VerifyPhoneNumberRequest implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets channel
      */
-    public function setChannel(string|null $channel = null)
+    public function setChannel($channel)
     {
         if (is_null($channel)) {
             throw new \InvalidArgumentException('non-nullable channel cannot be null');
@@ -296,7 +296,7 @@ final class VerifyPhoneNumberRequest implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets phone_number
      */
-    public function setPhoneNumber(string|null $phone_number = null)
+    public function setPhoneNumber($phone_number)
     {
         if (is_null($phone_number)) {
             throw new \InvalidArgumentException('non-nullable phone_number cannot be null');

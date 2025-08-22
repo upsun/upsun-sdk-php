@@ -236,7 +236,7 @@ final class TheCommandsDefinition implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets start
      */
-    public function setStart(string|null $start = null)
+    public function setStart($start)
     {
         if (is_null($start)) {
             throw new \InvalidArgumentException('non-nullable start cannot be null');
@@ -259,7 +259,7 @@ final class TheCommandsDefinition implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets stop
      */
-    public function setStop(string|null $stop = null)
+    public function setStop($stop)
     {
         if (is_null($stop)) {
             array_push($this->openAPINullablesSetToNull, 'stop');

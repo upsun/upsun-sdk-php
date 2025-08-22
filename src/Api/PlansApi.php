@@ -131,7 +131,7 @@ final class PlansApi
      * List available plans
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listPlansWithHttpInfo(
         

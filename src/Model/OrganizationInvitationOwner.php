@@ -233,7 +233,7 @@ final class OrganizationInvitationOwner implements ModelInterface, ArrayAccess, 
     /**
      * Sets id
      */
-    public function setId(string|null $id = null)
+    public function setId($id)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -256,7 +256,7 @@ final class OrganizationInvitationOwner implements ModelInterface, ArrayAccess, 
     /**
      * Sets display_name
      */
-    public function setDisplayName(string|null $display_name = null)
+    public function setDisplayName($display_name)
     {
         if (is_null($display_name)) {
             throw new \InvalidArgumentException('non-nullable display_name cannot be null');

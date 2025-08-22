@@ -131,7 +131,7 @@ final class UsersApi
      * Get the current user
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getCurrentUserWithHttpInfo(
         
@@ -372,7 +372,7 @@ final class UsersApi
      * Get current logged-in user info
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getCurrentUserDeprecatedWithHttpInfo(
         
@@ -599,7 +599,7 @@ final class UsersApi
      * Check if phone verification is required
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getCurrentUserVerificationStatusWithHttpInfo(
         
@@ -826,7 +826,7 @@ final class UsersApi
      * Check if verification is required
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getCurrentUserVerificationStatusFullWithHttpInfo(
         
@@ -1043,7 +1043,7 @@ final class UsersApi
      * @throws InvalidArgumentException
      */
     public function getUser(
-        $user_id
+        string $user_id
     ): \Upsun\Model\User {
         list($response) = $this->getUserWithHttpInfo($user_id);
         return $response;
@@ -1053,7 +1053,7 @@ final class UsersApi
      * Get a user
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getUserWithHttpInfo(
         string $user_id
@@ -1298,7 +1298,7 @@ final class UsersApi
      * @throws InvalidArgumentException
      */
     public function getUserByEmailAddress(
-        $email
+        string $email
     ): \Upsun\Model\User {
         list($response) = $this->getUserByEmailAddressWithHttpInfo($email);
         return $response;
@@ -1308,7 +1308,7 @@ final class UsersApi
      * Get a user by email
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getUserByEmailAddressWithHttpInfo(
         string $email
@@ -1553,7 +1553,7 @@ final class UsersApi
      * @throws InvalidArgumentException
      */
     public function getUserByUsername(
-        $username
+        string $username
     ): \Upsun\Model\User {
         list($response) = $this->getUserByUsernameWithHttpInfo($username);
         return $response;
@@ -1563,7 +1563,7 @@ final class UsersApi
      * Get a user by username
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getUserByUsernameWithHttpInfo(
         string $username
@@ -1808,8 +1808,8 @@ final class UsersApi
      * @throws InvalidArgumentException
      */
     public function resetEmailAddress(
-        $user_id,
-        $reset_email_address_request = null
+        string $user_id,
+        \Upsun\Model\ResetEmailAddressRequest $reset_email_address_request = null
     ): void {
         $this->resetEmailAddressWithHttpInfo($user_id, $reset_email_address_request);
     }
@@ -1818,7 +1818,7 @@ final class UsersApi
      * Reset email address
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function resetEmailAddressWithHttpInfo(
         string $user_id,
@@ -2038,7 +2038,7 @@ final class UsersApi
      * @throws InvalidArgumentException
      */
     public function resetPassword(
-        $user_id
+        string $user_id
     ): void {
         $this->resetPasswordWithHttpInfo($user_id);
     }
@@ -2047,7 +2047,7 @@ final class UsersApi
      * Reset user password
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function resetPasswordWithHttpInfo(
         string $user_id
@@ -2241,8 +2241,8 @@ final class UsersApi
      * @throws InvalidArgumentException
      */
     public function updateUser(
-        $user_id,
-        $update_user_request = null
+        string $user_id,
+        \Upsun\Model\UpdateUserRequest $update_user_request = null
     ): \Upsun\Model\User {
         list($response) = $this->updateUserWithHttpInfo($user_id, $update_user_request);
         return $response;
@@ -2252,7 +2252,7 @@ final class UsersApi
      * Update a user
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateUserWithHttpInfo(
         string $user_id,

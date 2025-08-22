@@ -233,7 +233,7 @@ final class HealthSlackNotificationIntegrationConfigurations implements ModelInt
     /**
      * Sets enabled
      */
-    public function setEnabled(string|null $enabled = null)
+    public function setEnabled($enabled)
     {
         if (is_null($enabled)) {
             throw new \InvalidArgumentException('non-nullable enabled cannot be null');
@@ -256,7 +256,7 @@ final class HealthSlackNotificationIntegrationConfigurations implements ModelInt
     /**
      * Sets role
      */
-    public function setRole(string|null $role = null)
+    public function setRole($role)
     {
         if (is_null($role)) {
             throw new \InvalidArgumentException('non-nullable role cannot be null');

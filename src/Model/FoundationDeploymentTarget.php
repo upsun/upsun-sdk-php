@@ -293,7 +293,7 @@ final class FoundationDeploymentTarget implements ModelInterface, ArrayAccess, \
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -326,7 +326,7 @@ final class FoundationDeploymentTarget implements ModelInterface, ArrayAccess, \
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -349,7 +349,7 @@ final class FoundationDeploymentTarget implements ModelInterface, ArrayAccess, \
     /**
      * Sets hosts
      */
-    public function setHosts(string|null $hosts = null)
+    public function setHosts($hosts)
     {
         if (is_null($hosts)) {
             array_push($this->openAPINullablesSetToNull, 'hosts');
@@ -379,7 +379,7 @@ final class FoundationDeploymentTarget implements ModelInterface, ArrayAccess, \
     /**
      * Sets use_dedicated_grid
      */
-    public function setUseDedicatedGrid(string|null $use_dedicated_grid = null)
+    public function setUseDedicatedGrid($use_dedicated_grid)
     {
         if (is_null($use_dedicated_grid)) {
             throw new \InvalidArgumentException('non-nullable use_dedicated_grid cannot be null');
@@ -402,7 +402,7 @@ final class FoundationDeploymentTarget implements ModelInterface, ArrayAccess, \
     /**
      * Sets storage_type
      */
-    public function setStorageType(string|null $storage_type = null)
+    public function setStorageType($storage_type)
     {
         if (is_null($storage_type)) {
             array_push($this->openAPINullablesSetToNull, 'storage_type');

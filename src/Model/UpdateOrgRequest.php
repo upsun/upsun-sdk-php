@@ -244,7 +244,7 @@ final class UpdateOrgRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -267,7 +267,7 @@ final class UpdateOrgRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets label
      */
-    public function setLabel(string|null $label = null)
+    public function setLabel($label)
     {
         if (is_null($label)) {
             throw new \InvalidArgumentException('non-nullable label cannot be null');
@@ -290,7 +290,7 @@ final class UpdateOrgRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets country
      */
-    public function setCountry(string|null $country = null)
+    public function setCountry($country)
     {
         if (is_null($country)) {
             throw new \InvalidArgumentException('non-nullable country cannot be null');

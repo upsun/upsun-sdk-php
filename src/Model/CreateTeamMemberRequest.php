@@ -229,7 +229,7 @@ final class CreateTeamMemberRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets user_id
      */
-    public function setUserId(string|null $user_id = null)
+    public function setUserId($user_id)
     {
         if (is_null($user_id)) {
             throw new \InvalidArgumentException('non-nullable user_id cannot be null');

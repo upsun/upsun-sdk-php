@@ -239,7 +239,7 @@ final class EnvironmentSourceOperationInput implements ModelInterface, ArrayAcce
     /**
      * Sets operation
      */
-    public function setOperation(string|null $operation = null)
+    public function setOperation($operation)
     {
         if (is_null($operation)) {
             throw new \InvalidArgumentException('non-nullable operation cannot be null');
@@ -262,7 +262,7 @@ final class EnvironmentSourceOperationInput implements ModelInterface, ArrayAcce
     /**
      * Sets variables
      */
-    public function setVariables(string|null $variables = null)
+    public function setVariables($variables)
     {
         if (is_null($variables)) {
             throw new \InvalidArgumentException('non-nullable variables cannot be null');

@@ -269,7 +269,7 @@ final class EmailIntegration implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets created_at
      */
-    public function setCreatedAt(string|null $created_at = null)
+    public function setCreatedAt($created_at)
     {
         if (is_null($created_at)) {
             array_push($this->openAPINullablesSetToNull, 'created_at');
@@ -299,7 +299,7 @@ final class EmailIntegration implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt(string|null $updated_at = null)
+    public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
             array_push($this->openAPINullablesSetToNull, 'updated_at');
@@ -329,7 +329,7 @@ final class EmailIntegration implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -352,7 +352,7 @@ final class EmailIntegration implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets from_address
      */
-    public function setFromAddress(string|null $from_address = null)
+    public function setFromAddress($from_address)
     {
         if (is_null($from_address)) {
             array_push($this->openAPINullablesSetToNull, 'from_address');
@@ -382,7 +382,7 @@ final class EmailIntegration implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets recipients
      */
-    public function setRecipients(string|null $recipients = null)
+    public function setRecipients($recipients)
     {
         if (is_null($recipients)) {
             throw new \InvalidArgumentException('non-nullable recipients cannot be null');

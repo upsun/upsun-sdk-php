@@ -229,7 +229,7 @@ final class OperationsThatCanBeAppliedToTheSourceCodeValue implements ModelInter
     /**
      * Sets command
      */
-    public function setCommand(string|null $command = null)
+    public function setCommand($command)
     {
         if (is_null($command)) {
             array_push($this->openAPINullablesSetToNull, 'command');

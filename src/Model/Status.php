@@ -239,7 +239,7 @@ final class Status implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets code
      */
-    public function setCode(string|null $code = null)
+    public function setCode($code)
     {
         if (is_null($code)) {
             throw new \InvalidArgumentException('non-nullable code cannot be null');
@@ -262,7 +262,7 @@ final class Status implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets message
      */
-    public function setMessage(string|null $message = null)
+    public function setMessage($message)
     {
         if (is_null($message)) {
             throw new \InvalidArgumentException('non-nullable message cannot be null');

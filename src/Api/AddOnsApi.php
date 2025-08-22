@@ -121,7 +121,7 @@ final class AddOnsApi
      * @throws InvalidArgumentException
      */
     public function getOrgAddons(
-        $organization_id
+        string $organization_id
     ): \Upsun\Model\OrganizationAddonsObject {
         list($response) = $this->getOrgAddonsWithHttpInfo($organization_id);
         return $response;
@@ -131,7 +131,7 @@ final class AddOnsApi
      * Get add-ons
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getOrgAddonsWithHttpInfo(
         string $organization_id

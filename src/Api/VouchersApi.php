@@ -121,8 +121,8 @@ final class VouchersApi
      * @throws InvalidArgumentException
      */
     public function applyOrgVoucher(
-        $organization_id,
-        $apply_org_voucher_request
+        string $organization_id,
+        \Upsun\Model\ApplyOrgVoucherRequest $apply_org_voucher_request
     ): void {
         $this->applyOrgVoucherWithHttpInfo($organization_id, $apply_org_voucher_request);
     }
@@ -131,7 +131,7 @@ final class VouchersApi
      * Apply voucher
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function applyOrgVoucherWithHttpInfo(
         string $organization_id,
@@ -349,7 +349,7 @@ final class VouchersApi
      * @throws InvalidArgumentException
      */
     public function listOrgVouchers(
-        $organization_id
+        string $organization_id
     ): \Upsun\Model\Vouchers {
         list($response) = $this->listOrgVouchersWithHttpInfo($organization_id);
         return $response;
@@ -359,7 +359,7 @@ final class VouchersApi
      * List vouchers
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listOrgVouchersWithHttpInfo(
         string $organization_id

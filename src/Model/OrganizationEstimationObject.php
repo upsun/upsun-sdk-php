@@ -268,7 +268,7 @@ final class OrganizationEstimationObject implements ModelInterface, ArrayAccess,
     /**
      * Sets total
      */
-    public function setTotal(string|null $total = null)
+    public function setTotal($total)
     {
         if (is_null($total)) {
             throw new \InvalidArgumentException('non-nullable total cannot be null');
@@ -291,7 +291,7 @@ final class OrganizationEstimationObject implements ModelInterface, ArrayAccess,
     /**
      * Sets sub_total
      */
-    public function setSubTotal(string|null $sub_total = null)
+    public function setSubTotal($sub_total)
     {
         if (is_null($sub_total)) {
             throw new \InvalidArgumentException('non-nullable sub_total cannot be null');
@@ -314,7 +314,7 @@ final class OrganizationEstimationObject implements ModelInterface, ArrayAccess,
     /**
      * Sets vouchers
      */
-    public function setVouchers(string|null $vouchers = null)
+    public function setVouchers($vouchers)
     {
         if (is_null($vouchers)) {
             throw new \InvalidArgumentException('non-nullable vouchers cannot be null');
@@ -337,7 +337,7 @@ final class OrganizationEstimationObject implements ModelInterface, ArrayAccess,
     /**
      * Sets user_licenses
      */
-    public function setUserLicenses(string|null $user_licenses = null)
+    public function setUserLicenses($user_licenses)
     {
         if (is_null($user_licenses)) {
             throw new \InvalidArgumentException('non-nullable user_licenses cannot be null');
@@ -360,7 +360,7 @@ final class OrganizationEstimationObject implements ModelInterface, ArrayAccess,
     /**
      * Sets user_management
      */
-    public function setUserManagement(string|null $user_management = null)
+    public function setUserManagement($user_management)
     {
         if (is_null($user_management)) {
             throw new \InvalidArgumentException('non-nullable user_management cannot be null');
@@ -383,7 +383,7 @@ final class OrganizationEstimationObject implements ModelInterface, ArrayAccess,
     /**
      * Sets support_level
      */
-    public function setSupportLevel(string|null $support_level = null)
+    public function setSupportLevel($support_level)
     {
         if (is_null($support_level)) {
             throw new \InvalidArgumentException('non-nullable support_level cannot be null');
@@ -406,7 +406,7 @@ final class OrganizationEstimationObject implements ModelInterface, ArrayAccess,
     /**
      * Sets subscriptions
      */
-    public function setSubscriptions(string|null $subscriptions = null)
+    public function setSubscriptions($subscriptions)
     {
         if (is_null($subscriptions)) {
             throw new \InvalidArgumentException('non-nullable subscriptions cannot be null');

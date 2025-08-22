@@ -291,7 +291,7 @@ final class EnvironmentBranchInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets title
      */
-    public function setTitle(string|null $title = null)
+    public function setTitle($title)
     {
         if (is_null($title)) {
             throw new \InvalidArgumentException('non-nullable title cannot be null');
@@ -314,7 +314,7 @@ final class EnvironmentBranchInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -337,7 +337,7 @@ final class EnvironmentBranchInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets clone_parent
      */
-    public function setCloneParent(string|null $clone_parent = null)
+    public function setCloneParent($clone_parent)
     {
         if (is_null($clone_parent)) {
             throw new \InvalidArgumentException('non-nullable clone_parent cannot be null');
@@ -360,7 +360,7 @@ final class EnvironmentBranchInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -393,7 +393,7 @@ final class EnvironmentBranchInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets resources
      */
-    public function setResources(string|null $resources = null)
+    public function setResources($resources)
     {
         if (is_null($resources)) {
             array_push($this->openAPINullablesSetToNull, 'resources');

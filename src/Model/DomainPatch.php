@@ -233,7 +233,7 @@ final class DomainPatch implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets attributes
      */
-    public function setAttributes(string|null $attributes = null)
+    public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
             throw new \InvalidArgumentException('non-nullable attributes cannot be null');
@@ -256,7 +256,7 @@ final class DomainPatch implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets is_default
      */
-    public function setIsDefault(string|null $is_default = null)
+    public function setIsDefault($is_default)
     {
         if (is_null($is_default)) {
             throw new \InvalidArgumentException('non-nullable is_default cannot be null');

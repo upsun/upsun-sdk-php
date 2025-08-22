@@ -233,7 +233,7 @@ final class TeamCounts implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets member_count
      */
-    public function setMemberCount(string|null $member_count = null)
+    public function setMemberCount($member_count)
     {
         if (is_null($member_count)) {
             throw new \InvalidArgumentException('non-nullable member_count cannot be null');
@@ -256,7 +256,7 @@ final class TeamCounts implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets project_count
      */
-    public function setProjectCount(string|null $project_count = null)
+    public function setProjectCount($project_count)
     {
         if (is_null($project_count)) {
             throw new \InvalidArgumentException('non-nullable project_count cannot be null');

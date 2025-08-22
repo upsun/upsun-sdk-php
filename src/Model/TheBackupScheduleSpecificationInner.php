@@ -239,7 +239,7 @@ final class TheBackupScheduleSpecificationInner implements ModelInterface, Array
     /**
      * Sets interval
      */
-    public function setInterval(string|null $interval = null)
+    public function setInterval($interval)
     {
         if (is_null($interval)) {
             throw new \InvalidArgumentException('non-nullable interval cannot be null');
@@ -262,7 +262,7 @@ final class TheBackupScheduleSpecificationInner implements ModelInterface, Array
     /**
      * Sets count
      */
-    public function setCount(string|null $count = null)
+    public function setCount($count)
     {
         if (is_null($count)) {
             throw new \InvalidArgumentException('non-nullable count cannot be null');

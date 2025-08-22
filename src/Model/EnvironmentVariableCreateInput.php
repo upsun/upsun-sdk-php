@@ -288,7 +288,7 @@ final class EnvironmentVariableCreateInput implements ModelInterface, ArrayAcces
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -311,7 +311,7 @@ final class EnvironmentVariableCreateInput implements ModelInterface, ArrayAcces
     /**
      * Sets attributes
      */
-    public function setAttributes(string|null $attributes = null)
+    public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
             throw new \InvalidArgumentException('non-nullable attributes cannot be null');
@@ -334,7 +334,7 @@ final class EnvironmentVariableCreateInput implements ModelInterface, ArrayAcces
     /**
      * Sets value
      */
-    public function setValue(string|null $value = null)
+    public function setValue($value)
     {
         if (is_null($value)) {
             throw new \InvalidArgumentException('non-nullable value cannot be null');
@@ -357,7 +357,7 @@ final class EnvironmentVariableCreateInput implements ModelInterface, ArrayAcces
     /**
      * Sets is_json
      */
-    public function setIsJson(string|null $is_json = null)
+    public function setIsJson($is_json)
     {
         if (is_null($is_json)) {
             throw new \InvalidArgumentException('non-nullable is_json cannot be null');
@@ -380,7 +380,7 @@ final class EnvironmentVariableCreateInput implements ModelInterface, ArrayAcces
     /**
      * Sets is_sensitive
      */
-    public function setIsSensitive(string|null $is_sensitive = null)
+    public function setIsSensitive($is_sensitive)
     {
         if (is_null($is_sensitive)) {
             throw new \InvalidArgumentException('non-nullable is_sensitive cannot be null');
@@ -403,7 +403,7 @@ final class EnvironmentVariableCreateInput implements ModelInterface, ArrayAcces
     /**
      * Sets visible_build
      */
-    public function setVisibleBuild(string|null $visible_build = null)
+    public function setVisibleBuild($visible_build)
     {
         if (is_null($visible_build)) {
             throw new \InvalidArgumentException('non-nullable visible_build cannot be null');
@@ -426,7 +426,7 @@ final class EnvironmentVariableCreateInput implements ModelInterface, ArrayAcces
     /**
      * Sets visible_runtime
      */
-    public function setVisibleRuntime(string|null $visible_runtime = null)
+    public function setVisibleRuntime($visible_runtime)
     {
         if (is_null($visible_runtime)) {
             throw new \InvalidArgumentException('non-nullable visible_runtime cannot be null');
@@ -449,7 +449,7 @@ final class EnvironmentVariableCreateInput implements ModelInterface, ArrayAcces
     /**
      * Sets is_enabled
      */
-    public function setIsEnabled(string|null $is_enabled = null)
+    public function setIsEnabled($is_enabled)
     {
         if (is_null($is_enabled)) {
             throw new \InvalidArgumentException('non-nullable is_enabled cannot be null');
@@ -472,7 +472,7 @@ final class EnvironmentVariableCreateInput implements ModelInterface, ArrayAcces
     /**
      * Sets is_inheritable
      */
-    public function setIsInheritable(string|null $is_inheritable = null)
+    public function setIsInheritable($is_inheritable)
     {
         if (is_null($is_inheritable)) {
             throw new \InvalidArgumentException('non-nullable is_inheritable cannot be null');

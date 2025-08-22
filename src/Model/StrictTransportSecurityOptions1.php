@@ -240,7 +240,7 @@ final class StrictTransportSecurityOptions1 implements ModelInterface, ArrayAcce
     /**
      * Sets enabled
      */
-    public function setEnabled(string|null $enabled = null)
+    public function setEnabled($enabled)
     {
         if (is_null($enabled)) {
             array_push($this->openAPINullablesSetToNull, 'enabled');
@@ -270,7 +270,7 @@ final class StrictTransportSecurityOptions1 implements ModelInterface, ArrayAcce
     /**
      * Sets include_subdomains
      */
-    public function setIncludeSubdomains(string|null $include_subdomains = null)
+    public function setIncludeSubdomains($include_subdomains)
     {
         if (is_null($include_subdomains)) {
             array_push($this->openAPINullablesSetToNull, 'include_subdomains');
@@ -300,7 +300,7 @@ final class StrictTransportSecurityOptions1 implements ModelInterface, ArrayAcce
     /**
      * Sets preload
      */
-    public function setPreload(string|null $preload = null)
+    public function setPreload($preload)
     {
         if (is_null($preload)) {
             array_push($this->openAPINullablesSetToNull, 'preload');

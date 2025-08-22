@@ -121,8 +121,8 @@ final class APITokensApi
      * @throws InvalidArgumentException
      */
     public function createApiToken(
-        $user_id,
-        $create_api_token_request = null
+        string $user_id,
+        \Upsun\Model\CreateApiTokenRequest $create_api_token_request = null
     ): \Upsun\Model\APIToken {
         list($response) = $this->createApiTokenWithHttpInfo($user_id, $create_api_token_request);
         return $response;
@@ -132,7 +132,7 @@ final class APITokensApi
      * Create an API token
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createApiTokenWithHttpInfo(
         string $user_id,
@@ -415,8 +415,8 @@ final class APITokensApi
      * @throws InvalidArgumentException
      */
     public function deleteApiToken(
-        $user_id,
-        $token_id
+        string $user_id,
+        string $token_id
     ): void {
         $this->deleteApiTokenWithHttpInfo($user_id, $token_id);
     }
@@ -425,7 +425,7 @@ final class APITokensApi
      * Delete an API token
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteApiTokenWithHttpInfo(
         string $user_id,
@@ -637,8 +637,8 @@ final class APITokensApi
      * @throws InvalidArgumentException
      */
     public function getApiToken(
-        $user_id,
-        $token_id
+        string $user_id,
+        string $token_id
     ): \Upsun\Model\APIToken {
         list($response) = $this->getApiTokenWithHttpInfo($user_id, $token_id);
         return $response;
@@ -648,7 +648,7 @@ final class APITokensApi
      * Get an API token
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getApiTokenWithHttpInfo(
         string $user_id,
@@ -909,10 +909,12 @@ final class APITokensApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return \Upsun\Model\APIToken[]
      */
     public function listApiTokens(
-        $user_id
-    ): \Upsun\Model\APIToken[] {
+        string $user_id
+    ): array {
         list($response) = $this->listApiTokensWithHttpInfo($user_id);
         return $response;
     }
@@ -921,7 +923,7 @@ final class APITokensApi
      * List a user&#39;s API tokens
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listApiTokensWithHttpInfo(
         string $user_id

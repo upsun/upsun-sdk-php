@@ -247,7 +247,7 @@ final class CurrencyAmount implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets formatted
      */
-    public function setFormatted(string|null $formatted = null)
+    public function setFormatted($formatted)
     {
         if (is_null($formatted)) {
             throw new \InvalidArgumentException('non-nullable formatted cannot be null');
@@ -270,7 +270,7 @@ final class CurrencyAmount implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets amount
      */
-    public function setAmount(string|null $amount = null)
+    public function setAmount($amount)
     {
         if (is_null($amount)) {
             throw new \InvalidArgumentException('non-nullable amount cannot be null');
@@ -293,7 +293,7 @@ final class CurrencyAmount implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets currency_code
      */
-    public function setCurrencyCode(string|null $currency_code = null)
+    public function setCurrencyCode($currency_code)
     {
         if (is_null($currency_code)) {
             throw new \InvalidArgumentException('non-nullable currency_code cannot be null');
@@ -316,7 +316,7 @@ final class CurrencyAmount implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets currency_symbol
      */
-    public function setCurrencySymbol(string|null $currency_symbol = null)
+    public function setCurrencySymbol($currency_symbol)
     {
         if (is_null($currency_symbol)) {
             throw new \InvalidArgumentException('non-nullable currency_symbol cannot be null');

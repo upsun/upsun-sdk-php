@@ -239,7 +239,7 @@ final class ConfigurationForPreFlightChecks implements ModelInterface, ArrayAcce
     /**
      * Sets enabled
      */
-    public function setEnabled(string|null $enabled = null)
+    public function setEnabled($enabled)
     {
         if (is_null($enabled)) {
             throw new \InvalidArgumentException('non-nullable enabled cannot be null');
@@ -262,7 +262,7 @@ final class ConfigurationForPreFlightChecks implements ModelInterface, ArrayAcce
     /**
      * Sets ignored_rules
      */
-    public function setIgnoredRules(string|null $ignored_rules = null)
+    public function setIgnoredRules($ignored_rules)
     {
         if (is_null($ignored_rules)) {
             throw new \InvalidArgumentException('non-nullable ignored_rules cannot be null');

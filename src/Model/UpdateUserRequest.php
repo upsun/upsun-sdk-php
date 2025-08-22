@@ -276,7 +276,7 @@ final class UpdateUserRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets username
      */
-    public function setUsername(string|null $username = null)
+    public function setUsername($username)
     {
         if (is_null($username)) {
             throw new \InvalidArgumentException('non-nullable username cannot be null');
@@ -299,7 +299,7 @@ final class UpdateUserRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets first_name
      */
-    public function setFirstName(string|null $first_name = null)
+    public function setFirstName($first_name)
     {
         if (is_null($first_name)) {
             throw new \InvalidArgumentException('non-nullable first_name cannot be null');
@@ -322,7 +322,7 @@ final class UpdateUserRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets last_name
      */
-    public function setLastName(string|null $last_name = null)
+    public function setLastName($last_name)
     {
         if (is_null($last_name)) {
             throw new \InvalidArgumentException('non-nullable last_name cannot be null');
@@ -345,7 +345,7 @@ final class UpdateUserRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets picture
      */
-    public function setPicture(string|null $picture = null)
+    public function setPicture($picture)
     {
         if (is_null($picture)) {
             throw new \InvalidArgumentException('non-nullable picture cannot be null');
@@ -368,7 +368,7 @@ final class UpdateUserRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets company
      */
-    public function setCompany(string|null $company = null)
+    public function setCompany($company)
     {
         if (is_null($company)) {
             throw new \InvalidArgumentException('non-nullable company cannot be null');
@@ -391,7 +391,7 @@ final class UpdateUserRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets website
      */
-    public function setWebsite(string|null $website = null)
+    public function setWebsite($website)
     {
         if (is_null($website)) {
             throw new \InvalidArgumentException('non-nullable website cannot be null');
@@ -414,7 +414,7 @@ final class UpdateUserRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets country
      */
-    public function setCountry(string|null $country = null)
+    public function setCountry($country)
     {
         if (is_null($country)) {
             throw new \InvalidArgumentException('non-nullable country cannot be null');

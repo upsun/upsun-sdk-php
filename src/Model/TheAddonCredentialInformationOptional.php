@@ -239,7 +239,7 @@ final class TheAddonCredentialInformationOptional implements ModelInterface, Arr
     /**
      * Sets addon_key
      */
-    public function setAddonKey(string|null $addon_key = null)
+    public function setAddonKey($addon_key)
     {
         if (is_null($addon_key)) {
             throw new \InvalidArgumentException('non-nullable addon_key cannot be null');
@@ -262,7 +262,7 @@ final class TheAddonCredentialInformationOptional implements ModelInterface, Arr
     /**
      * Sets client_key
      */
-    public function setClientKey(string|null $client_key = null)
+    public function setClientKey($client_key)
     {
         if (is_null($client_key)) {
             throw new \InvalidArgumentException('non-nullable client_key cannot be null');

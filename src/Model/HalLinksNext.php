@@ -233,7 +233,7 @@ final class HalLinksNext implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets title
      */
-    public function setTitle(string|null $title = null)
+    public function setTitle($title)
     {
         if (is_null($title)) {
             throw new \InvalidArgumentException('non-nullable title cannot be null');
@@ -256,7 +256,7 @@ final class HalLinksNext implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets href
      */
-    public function setHref(string|null $href = null)
+    public function setHref($href)
     {
         if (is_null($href)) {
             throw new \InvalidArgumentException('non-nullable href cannot be null');

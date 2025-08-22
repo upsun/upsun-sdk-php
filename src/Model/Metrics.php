@@ -229,7 +229,7 @@ final class Metrics implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets max_range
      */
-    public function setMaxRange(string|null $max_range = null)
+    public function setMaxRange($max_range)
     {
         if (is_null($max_range)) {
             throw new \InvalidArgumentException('non-nullable max_range cannot be null');

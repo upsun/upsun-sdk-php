@@ -263,7 +263,7 @@ final class TheCronsDeploymentState implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets enabled
      */
-    public function setEnabled(string|null $enabled = null)
+    public function setEnabled($enabled)
     {
         if (is_null($enabled)) {
             throw new \InvalidArgumentException('non-nullable enabled cannot be null');
@@ -286,7 +286,7 @@ final class TheCronsDeploymentState implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets status
      */
-    public function setStatus(string|null $status = null)
+    public function setStatus($status)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');

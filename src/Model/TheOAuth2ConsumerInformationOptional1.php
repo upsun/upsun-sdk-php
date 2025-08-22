@@ -239,7 +239,7 @@ final class TheOAuth2ConsumerInformationOptional1 implements ModelInterface, Arr
     /**
      * Sets key
      */
-    public function setKey(string|null $key = null)
+    public function setKey($key)
     {
         if (is_null($key)) {
             throw new \InvalidArgumentException('non-nullable key cannot be null');
@@ -262,7 +262,7 @@ final class TheOAuth2ConsumerInformationOptional1 implements ModelInterface, Arr
     /**
      * Sets secret
      */
-    public function setSecret(string|null $secret = null)
+    public function setSecret($secret)
     {
         if (is_null($secret)) {
             throw new \InvalidArgumentException('non-nullable secret cannot be null');

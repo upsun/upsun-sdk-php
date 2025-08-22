@@ -369,7 +369,7 @@ final class Project implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets created_at
      */
-    public function setCreatedAt(string|null $created_at = null)
+    public function setCreatedAt($created_at)
     {
         if (is_null($created_at)) {
             array_push($this->openAPINullablesSetToNull, 'created_at');
@@ -399,7 +399,7 @@ final class Project implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt(string|null $updated_at = null)
+    public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
             array_push($this->openAPINullablesSetToNull, 'updated_at');
@@ -429,7 +429,7 @@ final class Project implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets attributes
      */
-    public function setAttributes(string|null $attributes = null)
+    public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
             throw new \InvalidArgumentException('non-nullable attributes cannot be null');
@@ -452,7 +452,7 @@ final class Project implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets title
      */
-    public function setTitle(string|null $title = null)
+    public function setTitle($title)
     {
         if (is_null($title)) {
             throw new \InvalidArgumentException('non-nullable title cannot be null');
@@ -475,7 +475,7 @@ final class Project implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets description
      */
-    public function setDescription(string|null $description = null)
+    public function setDescription($description)
     {
         if (is_null($description)) {
             throw new \InvalidArgumentException('non-nullable description cannot be null');
@@ -502,7 +502,7 @@ final class Project implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @deprecated
      */
-    public function setOwner(string|null $owner = null)
+    public function setOwner($owner)
     {
         if (is_null($owner)) {
             throw new \InvalidArgumentException('non-nullable owner cannot be null');
@@ -525,7 +525,7 @@ final class Project implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets namespace
      */
-    public function setNamespace(string|null $namespace = null)
+    public function setNamespace($namespace)
     {
         if (is_null($namespace)) {
             array_push($this->openAPINullablesSetToNull, 'namespace');
@@ -555,7 +555,7 @@ final class Project implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets organization
      */
-    public function setOrganization(string|null $organization = null)
+    public function setOrganization($organization)
     {
         if (is_null($organization)) {
             array_push($this->openAPINullablesSetToNull, 'organization');
@@ -585,7 +585,7 @@ final class Project implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets default_branch
      */
-    public function setDefaultBranch(string|null $default_branch = null)
+    public function setDefaultBranch($default_branch)
     {
         if (is_null($default_branch)) {
             array_push($this->openAPINullablesSetToNull, 'default_branch');
@@ -615,7 +615,7 @@ final class Project implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      */
-    public function setStatus(string|null $status = null)
+    public function setStatus($status)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
@@ -638,7 +638,7 @@ final class Project implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets timezone
      */
-    public function setTimezone(string|null $timezone = null)
+    public function setTimezone($timezone)
     {
         if (is_null($timezone)) {
             throw new \InvalidArgumentException('non-nullable timezone cannot be null');
@@ -661,7 +661,7 @@ final class Project implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets region
      */
-    public function setRegion(string|null $region = null)
+    public function setRegion($region)
     {
         if (is_null($region)) {
             throw new \InvalidArgumentException('non-nullable region cannot be null');
@@ -684,7 +684,7 @@ final class Project implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets repository
      */
-    public function setRepository(string|null $repository = null)
+    public function setRepository($repository)
     {
         if (is_null($repository)) {
             throw new \InvalidArgumentException('non-nullable repository cannot be null');
@@ -707,7 +707,7 @@ final class Project implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets default_domain
      */
-    public function setDefaultDomain(string|null $default_domain = null)
+    public function setDefaultDomain($default_domain)
     {
         if (is_null($default_domain)) {
             array_push($this->openAPINullablesSetToNull, 'default_domain');
@@ -737,7 +737,7 @@ final class Project implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets subscription
      */
-    public function setSubscription(string|null $subscription = null)
+    public function setSubscription($subscription)
     {
         if (is_null($subscription)) {
             throw new \InvalidArgumentException('non-nullable subscription cannot be null');

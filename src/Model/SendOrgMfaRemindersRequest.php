@@ -226,7 +226,7 @@ final class SendOrgMfaRemindersRequest implements ModelInterface, ArrayAccess, \
     /**
      * Sets user_ids
      */
-    public function setUserIds(string|null $user_ids = null)
+    public function setUserIds($user_ids)
     {
         if (is_null($user_ids)) {
             throw new \InvalidArgumentException('non-nullable user_ids cannot be null');

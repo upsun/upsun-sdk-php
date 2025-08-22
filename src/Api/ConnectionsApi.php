@@ -121,8 +121,8 @@ final class ConnectionsApi
      * @throws InvalidArgumentException
      */
     public function deleteLoginConnection(
-        $provider,
-        $user_id
+        string $provider,
+        string $user_id
     ): void {
         $this->deleteLoginConnectionWithHttpInfo($provider, $user_id);
     }
@@ -131,7 +131,7 @@ final class ConnectionsApi
      * Delete a federated login connection
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteLoginConnectionWithHttpInfo(
         string $provider,
@@ -343,8 +343,8 @@ final class ConnectionsApi
      * @throws InvalidArgumentException
      */
     public function getLoginConnection(
-        $provider,
-        $user_id
+        string $provider,
+        string $user_id
     ): \Upsun\Model\Connection {
         list($response) = $this->getLoginConnectionWithHttpInfo($provider, $user_id);
         return $response;
@@ -354,7 +354,7 @@ final class ConnectionsApi
      * Get a federated login connection
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getLoginConnectionWithHttpInfo(
         string $provider,
@@ -615,10 +615,12 @@ final class ConnectionsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return \Upsun\Model\Connection[]
      */
     public function listLoginConnections(
-        $user_id
-    ): \Upsun\Model\Connection[] {
+        string $user_id
+    ): array {
         list($response) = $this->listLoginConnectionsWithHttpInfo($user_id);
         return $response;
     }
@@ -627,7 +629,7 @@ final class ConnectionsApi
      * List federated login connections
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listLoginConnectionsWithHttpInfo(
         string $user_id

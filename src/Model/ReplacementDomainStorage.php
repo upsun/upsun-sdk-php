@@ -290,7 +290,7 @@ final class ReplacementDomainStorage implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets created_at
      */
-    public function setCreatedAt(string|null $created_at = null)
+    public function setCreatedAt($created_at)
     {
         if (is_null($created_at)) {
             array_push($this->openAPINullablesSetToNull, 'created_at');
@@ -320,7 +320,7 @@ final class ReplacementDomainStorage implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt(string|null $updated_at = null)
+    public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
             array_push($this->openAPINullablesSetToNull, 'updated_at');
@@ -350,7 +350,7 @@ final class ReplacementDomainStorage implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -373,7 +373,7 @@ final class ReplacementDomainStorage implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets project
      */
-    public function setProject(string|null $project = null)
+    public function setProject($project)
     {
         if (is_null($project)) {
             throw new \InvalidArgumentException('non-nullable project cannot be null');
@@ -396,7 +396,7 @@ final class ReplacementDomainStorage implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -419,7 +419,7 @@ final class ReplacementDomainStorage implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets registered_name
      */
-    public function setRegisteredName(string|null $registered_name = null)
+    public function setRegisteredName($registered_name)
     {
         if (is_null($registered_name)) {
             throw new \InvalidArgumentException('non-nullable registered_name cannot be null');
@@ -442,7 +442,7 @@ final class ReplacementDomainStorage implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets attributes
      */
-    public function setAttributes(string|null $attributes = null)
+    public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
             throw new \InvalidArgumentException('non-nullable attributes cannot be null');
@@ -465,7 +465,7 @@ final class ReplacementDomainStorage implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets replacement_for
      */
-    public function setReplacementFor(string|null $replacement_for = null)
+    public function setReplacementFor($replacement_for)
     {
         if (is_null($replacement_for)) {
             throw new \InvalidArgumentException('non-nullable replacement_for cannot be null');

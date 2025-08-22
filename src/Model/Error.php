@@ -254,7 +254,7 @@ final class Error implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      */
-    public function setStatus(string|null $status = null)
+    public function setStatus($status)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
@@ -277,7 +277,7 @@ final class Error implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets message
      */
-    public function setMessage(string|null $message = null)
+    public function setMessage($message)
     {
         if (is_null($message)) {
             throw new \InvalidArgumentException('non-nullable message cannot be null');
@@ -300,7 +300,7 @@ final class Error implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets code
      */
-    public function setCode(string|null $code = null)
+    public function setCode($code)
     {
         if (is_null($code)) {
             throw new \InvalidArgumentException('non-nullable code cannot be null');
@@ -323,7 +323,7 @@ final class Error implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets detail
      */
-    public function setDetail(string|null $detail = null)
+    public function setDetail($detail)
     {
         if (is_null($detail)) {
             throw new \InvalidArgumentException('non-nullable detail cannot be null');
@@ -346,7 +346,7 @@ final class Error implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets title
      */
-    public function setTitle(string|null $title = null)
+    public function setTitle($title)
     {
         if (is_null($title)) {
             throw new \InvalidArgumentException('non-nullable title cannot be null');

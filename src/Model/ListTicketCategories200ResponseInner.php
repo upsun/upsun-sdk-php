@@ -233,7 +233,7 @@ final class ListTicketCategories200ResponseInner implements ModelInterface, Arra
     /**
      * Sets id
      */
-    public function setId(string|null $id = null)
+    public function setId($id)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -256,7 +256,7 @@ final class ListTicketCategories200ResponseInner implements ModelInterface, Arra
     /**
      * Sets label
      */
-    public function setLabel(string|null $label = null)
+    public function setLabel($label)
     {
         if (is_null($label)) {
             throw new \InvalidArgumentException('non-nullable label cannot be null');

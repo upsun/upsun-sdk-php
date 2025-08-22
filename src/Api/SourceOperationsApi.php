@@ -119,11 +119,13 @@ final class SourceOperationsApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return \Upsun\Model\EnvironmentSourceOperation[]
      */
     public function listProjectsEnvironmentsSourceOperations(
-        $project_id,
-        $environment_id
-    ): \Upsun\Model\EnvironmentSourceOperation[] {
+        string $project_id,
+        string $environment_id
+    ): array {
         list($response) = $this->listProjectsEnvironmentsSourceOperationsWithHttpInfo($project_id, $environment_id);
         return $response;
     }
@@ -132,7 +134,7 @@ final class SourceOperationsApi
      * List source operations
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsSourceOperationsWithHttpInfo(
         string $project_id,
@@ -381,9 +383,9 @@ final class SourceOperationsApi
      * @throws InvalidArgumentException
      */
     public function runSourceOperation(
-        $project_id,
-        $environment_id,
-        $environment_source_operation_input
+        string $project_id,
+        string $environment_id,
+        \Upsun\Model\EnvironmentSourceOperationInput $environment_source_operation_input
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->runSourceOperationWithHttpInfo($project_id, $environment_id, $environment_source_operation_input);
         return $response;
@@ -393,7 +395,7 @@ final class SourceOperationsApi
      * Trigger a source operation
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function runSourceOperationWithHttpInfo(
         string $project_id,

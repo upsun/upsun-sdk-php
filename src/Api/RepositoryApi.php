@@ -121,8 +121,8 @@ final class RepositoryApi
      * @throws InvalidArgumentException
      */
     public function getProjectsGitBlobs(
-        $project_id,
-        $repository_blob_id
+        string $project_id,
+        string $repository_blob_id
     ): \Upsun\Model\Blob {
         list($response) = $this->getProjectsGitBlobsWithHttpInfo($project_id, $repository_blob_id);
         return $response;
@@ -132,7 +132,7 @@ final class RepositoryApi
      * Get a blob object
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsGitBlobsWithHttpInfo(
         string $project_id,
@@ -381,8 +381,8 @@ final class RepositoryApi
      * @throws InvalidArgumentException
      */
     public function getProjectsGitCommits(
-        $project_id,
-        $repository_commit_id
+        string $project_id,
+        string $repository_commit_id
     ): \Upsun\Model\Commit {
         list($response) = $this->getProjectsGitCommitsWithHttpInfo($project_id, $repository_commit_id);
         return $response;
@@ -392,7 +392,7 @@ final class RepositoryApi
      * Get a commit object
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsGitCommitsWithHttpInfo(
         string $project_id,
@@ -641,8 +641,8 @@ final class RepositoryApi
      * @throws InvalidArgumentException
      */
     public function getProjectsGitRefs(
-        $project_id,
-        $repository_ref_id
+        string $project_id,
+        string $repository_ref_id
     ): \Upsun\Model\Ref {
         list($response) = $this->getProjectsGitRefsWithHttpInfo($project_id, $repository_ref_id);
         return $response;
@@ -652,7 +652,7 @@ final class RepositoryApi
      * Get a ref object
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsGitRefsWithHttpInfo(
         string $project_id,
@@ -901,8 +901,8 @@ final class RepositoryApi
      * @throws InvalidArgumentException
      */
     public function getProjectsGitTrees(
-        $project_id,
-        $repository_tree_id
+        string $project_id,
+        string $repository_tree_id
     ): \Upsun\Model\Tree {
         list($response) = $this->getProjectsGitTreesWithHttpInfo($project_id, $repository_tree_id);
         return $response;
@@ -912,7 +912,7 @@ final class RepositoryApi
      * Get a tree object
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsGitTreesWithHttpInfo(
         string $project_id,
@@ -1159,10 +1159,12 @@ final class RepositoryApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return \Upsun\Model\Ref[]
      */
     public function listProjectsGitRefs(
-        $project_id
-    ): \Upsun\Model\Ref[] {
+        string $project_id
+    ): array {
         list($response) = $this->listProjectsGitRefsWithHttpInfo($project_id);
         return $response;
     }
@@ -1171,7 +1173,7 @@ final class RepositoryApi
      * Get list of repository refs
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listProjectsGitRefsWithHttpInfo(
         string $project_id

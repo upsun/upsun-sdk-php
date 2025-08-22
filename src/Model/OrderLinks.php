@@ -226,7 +226,7 @@ final class OrderLinks implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets invoices
      */
-    public function setInvoices(string|null $invoices = null)
+    public function setInvoices($invoices)
     {
         if (is_null($invoices)) {
             throw new \InvalidArgumentException('non-nullable invoices cannot be null');

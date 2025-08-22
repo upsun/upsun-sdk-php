@@ -233,7 +233,7 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
     /**
      * Sets standard_management_user
      */
-    public function setStandardManagementUser(string|null $standard_management_user = null)
+    public function setStandardManagementUser($standard_management_user)
     {
         if (is_null($standard_management_user)) {
             throw new \InvalidArgumentException('non-nullable standard_management_user cannot be null');
@@ -256,7 +256,7 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
     /**
      * Sets advanced_management_user
      */
-    public function setAdvancedManagementUser(string|null $advanced_management_user = null)
+    public function setAdvancedManagementUser($advanced_management_user)
     {
         if (is_null($advanced_management_user)) {
             throw new \InvalidArgumentException('non-nullable advanced_management_user cannot be null');

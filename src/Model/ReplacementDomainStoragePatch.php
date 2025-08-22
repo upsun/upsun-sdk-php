@@ -226,7 +226,7 @@ final class ReplacementDomainStoragePatch implements ModelInterface, ArrayAccess
     /**
      * Sets attributes
      */
-    public function setAttributes(string|null $attributes = null)
+    public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
             throw new \InvalidArgumentException('non-nullable attributes cannot be null');

@@ -249,7 +249,7 @@ final class TheIssuerOfTheCertificateInner implements ModelInterface, ArrayAcces
     /**
      * Sets oid
      */
-    public function setOid(string|null $oid = null)
+    public function setOid($oid)
     {
         if (is_null($oid)) {
             throw new \InvalidArgumentException('non-nullable oid cannot be null');
@@ -272,7 +272,7 @@ final class TheIssuerOfTheCertificateInner implements ModelInterface, ArrayAcces
     /**
      * Sets alias
      */
-    public function setAlias(string|null $alias = null)
+    public function setAlias($alias)
     {
         if (is_null($alias)) {
             array_push($this->openAPINullablesSetToNull, 'alias');
@@ -302,7 +302,7 @@ final class TheIssuerOfTheCertificateInner implements ModelInterface, ArrayAcces
     /**
      * Sets value
      */
-    public function setValue(string|null $value = null)
+    public function setValue($value)
     {
         if (is_null($value)) {
             throw new \InvalidArgumentException('non-nullable value cannot be null');

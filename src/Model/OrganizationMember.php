@@ -329,7 +329,7 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @deprecated
      */
-    public function setId(string|null $id = null)
+    public function setId($id)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -352,7 +352,7 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets organization_id
      */
-    public function setOrganizationId(string|null $organization_id = null)
+    public function setOrganizationId($organization_id)
     {
         if (is_null($organization_id)) {
             throw new \InvalidArgumentException('non-nullable organization_id cannot be null');
@@ -375,7 +375,7 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets user_id
      */
-    public function setUserId(string|null $user_id = null)
+    public function setUserId($user_id)
     {
         if (is_null($user_id)) {
             throw new \InvalidArgumentException('non-nullable user_id cannot be null');
@@ -398,7 +398,7 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets permissions
      */
-    public function setPermissions(string|null $permissions = null)
+    public function setPermissions($permissions)
     {
         if (is_null($permissions)) {
             throw new \InvalidArgumentException('non-nullable permissions cannot be null');
@@ -430,7 +430,7 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets level
      */
-    public function setLevel(string|null $level = null)
+    public function setLevel($level)
     {
         if (is_null($level)) {
             throw new \InvalidArgumentException('non-nullable level cannot be null');
@@ -463,7 +463,7 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets owner
      */
-    public function setOwner(string|null $owner = null)
+    public function setOwner($owner)
     {
         if (is_null($owner)) {
             throw new \InvalidArgumentException('non-nullable owner cannot be null');
@@ -486,7 +486,7 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets created_at
      */
-    public function setCreatedAt(string|null $created_at = null)
+    public function setCreatedAt($created_at)
     {
         if (is_null($created_at)) {
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
@@ -509,7 +509,7 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt(string|null $updated_at = null)
+    public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
@@ -532,7 +532,7 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets _links
      */
-    public function setLinks(string|null $_links = null)
+    public function setLinks($_links)
     {
         if (is_null($_links)) {
             throw new \InvalidArgumentException('non-nullable _links cannot be null');

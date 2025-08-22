@@ -239,7 +239,7 @@ final class Tree implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets sha
      */
-    public function setSha(string|null $sha = null)
+    public function setSha($sha)
     {
         if (is_null($sha)) {
             throw new \InvalidArgumentException('non-nullable sha cannot be null');
@@ -262,7 +262,7 @@ final class Tree implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets tree
      */
-    public function setTree(string|null $tree = null)
+    public function setTree($tree)
     {
         if (is_null($tree)) {
             throw new \InvalidArgumentException('non-nullable tree cannot be null');

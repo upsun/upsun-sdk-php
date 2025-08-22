@@ -121,8 +121,8 @@ final class OrdersApi
      * @throws InvalidArgumentException
      */
     public function createAuthorizationCredentials(
-        $organization_id,
-        $order_id
+        string $organization_id,
+        string $order_id
     ): \Upsun\Model\CreateAuthorizationCredentials200Response {
         list($response) = $this->createAuthorizationCredentialsWithHttpInfo($organization_id, $order_id);
         return $response;
@@ -132,7 +132,7 @@ final class OrdersApi
      * Create confirmation credentials for for 3D-Secure
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createAuthorizationCredentialsWithHttpInfo(
         string $organization_id,
@@ -423,7 +423,7 @@ final class OrdersApi
      * @throws InvalidArgumentException
      */
     public function downloadInvoice(
-        $token
+        string $token
     ): void {
         $this->downloadInvoiceWithHttpInfo($token);
     }
@@ -432,7 +432,7 @@ final class OrdersApi
      * Download an invoice.
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function downloadInvoiceWithHttpInfo(
         string $token
@@ -621,9 +621,9 @@ final class OrdersApi
      * @throws InvalidArgumentException
      */
     public function getOrgOrder(
-        $organization_id,
-        $order_id,
-        $mode = null
+        string $organization_id,
+        string $order_id,
+        string $mode = null
     ): \Upsun\Model\Order {
         list($response) = $this->getOrgOrderWithHttpInfo($organization_id, $order_id, $mode);
         return $response;
@@ -633,7 +633,7 @@ final class OrdersApi
      * Get order
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getOrgOrderWithHttpInfo(
         string $organization_id,
@@ -925,11 +925,11 @@ final class OrdersApi
      * @throws InvalidArgumentException
      */
     public function listOrgOrders(
-        $organization_id,
-        $filter_status = null,
-        $filter_total = null,
-        $page = null,
-        $mode = null
+        string $organization_id,
+        string $filter_status = null,
+        int $filter_total = null,
+        int $page = null,
+        string $mode = null
     ): \Upsun\Model\ListOrgOrders200Response {
         list($response) = $this->listOrgOrdersWithHttpInfo($organization_id, $filter_status, $filter_total, $page, $mode);
         return $response;
@@ -939,7 +939,7 @@ final class OrdersApi
      * List orders
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listOrgOrdersWithHttpInfo(
         string $organization_id,

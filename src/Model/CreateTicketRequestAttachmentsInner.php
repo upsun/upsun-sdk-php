@@ -233,7 +233,7 @@ final class CreateTicketRequestAttachmentsInner implements ModelInterface, Array
     /**
      * Sets filename
      */
-    public function setFilename(string|null $filename = null)
+    public function setFilename($filename)
     {
         if (is_null($filename)) {
             throw new \InvalidArgumentException('non-nullable filename cannot be null');
@@ -256,7 +256,7 @@ final class CreateTicketRequestAttachmentsInner implements ModelInterface, Array
     /**
      * Sets data
      */
-    public function setData(string|null $data = null)
+    public function setData($data)
     {
         if (is_null($data)) {
             throw new \InvalidArgumentException('non-nullable data cannot be null');

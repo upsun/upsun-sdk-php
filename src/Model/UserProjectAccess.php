@@ -306,7 +306,7 @@ final class UserProjectAccess implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets user_id
      */
-    public function setUserId(string|null $user_id = null)
+    public function setUserId($user_id)
     {
         if (is_null($user_id)) {
             throw new \InvalidArgumentException('non-nullable user_id cannot be null');
@@ -329,7 +329,7 @@ final class UserProjectAccess implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets organization_id
      */
-    public function setOrganizationId(string|null $organization_id = null)
+    public function setOrganizationId($organization_id)
     {
         if (is_null($organization_id)) {
             throw new \InvalidArgumentException('non-nullable organization_id cannot be null');
@@ -352,7 +352,7 @@ final class UserProjectAccess implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets project_id
      */
-    public function setProjectId(string|null $project_id = null)
+    public function setProjectId($project_id)
     {
         if (is_null($project_id)) {
             throw new \InvalidArgumentException('non-nullable project_id cannot be null');
@@ -375,7 +375,7 @@ final class UserProjectAccess implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets project_title
      */
-    public function setProjectTitle(string|null $project_title = null)
+    public function setProjectTitle($project_title)
     {
         if (is_null($project_title)) {
             throw new \InvalidArgumentException('non-nullable project_title cannot be null');
@@ -398,7 +398,7 @@ final class UserProjectAccess implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets permissions
      */
-    public function setPermissions(string|null $permissions = null)
+    public function setPermissions($permissions)
     {
         if (is_null($permissions)) {
             throw new \InvalidArgumentException('non-nullable permissions cannot be null');
@@ -430,7 +430,7 @@ final class UserProjectAccess implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets granted_at
      */
-    public function setGrantedAt(string|null $granted_at = null)
+    public function setGrantedAt($granted_at)
     {
         if (is_null($granted_at)) {
             throw new \InvalidArgumentException('non-nullable granted_at cannot be null');
@@ -453,7 +453,7 @@ final class UserProjectAccess implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt(string|null $updated_at = null)
+    public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
@@ -476,7 +476,7 @@ final class UserProjectAccess implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets _links
      */
-    public function setLinks(string|null $_links = null)
+    public function setLinks($_links)
     {
         if (is_null($_links)) {
             throw new \InvalidArgumentException('non-nullable _links cannot be null');

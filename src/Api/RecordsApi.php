@@ -121,15 +121,15 @@ final class RecordsApi
      * @throws InvalidArgumentException
      */
     public function listOrgPlanRecords(
-        $organization_id,
-        $filter_subscription_id = null,
-        $filter_plan = null,
-        $filter_status = null,
-        $filter_start = null,
-        $filter_end = null,
-        $filter_started_at = null,
-        $filter_ended_at = null,
-        $page = null
+        string $organization_id,
+        string $filter_subscription_id = null,
+        string $filter_plan = null,
+        string $filter_status = null,
+        \DateTime $filter_start = null,
+        \DateTime $filter_end = null,
+        \DateTime $filter_started_at = null,
+        \DateTime $filter_ended_at = null,
+        int $page = null
     ): \Upsun\Model\ListOrgPlanRecords200Response {
         list($response) = $this->listOrgPlanRecordsWithHttpInfo($organization_id, $filter_subscription_id, $filter_plan, $filter_status, $filter_start, $filter_end, $filter_started_at, $filter_ended_at, $page);
         return $response;
@@ -139,7 +139,7 @@ final class RecordsApi
      * List plan records
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listOrgPlanRecordsWithHttpInfo(
         string $organization_id,
@@ -518,12 +518,12 @@ final class RecordsApi
      * @throws InvalidArgumentException
      */
     public function listOrgUsageRecords(
-        $organization_id,
-        $filter_subscription_id = null,
-        $filter_usage_group = null,
-        $filter_start = null,
-        $filter_started_at = null,
-        $page = null
+        string $organization_id,
+        string $filter_subscription_id = null,
+        string $filter_usage_group = null,
+        \DateTime $filter_start = null,
+        \DateTime $filter_started_at = null,
+        int $page = null
     ): \Upsun\Model\ListOrgUsageRecords200Response {
         list($response) = $this->listOrgUsageRecordsWithHttpInfo($organization_id, $filter_subscription_id, $filter_usage_group, $filter_start, $filter_started_at, $page);
         return $response;
@@ -533,7 +533,7 @@ final class RecordsApi
      * List usage records
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listOrgUsageRecordsWithHttpInfo(
         string $organization_id,

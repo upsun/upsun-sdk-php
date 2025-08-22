@@ -121,7 +121,7 @@ final class UserProfilesApi
      * @throws InvalidArgumentException
      */
     public function createProfilePicture(
-        $uuid
+        string $uuid
     ): \Upsun\Model\CreateProfilePicture200Response {
         list($response) = $this->createProfilePictureWithHttpInfo($uuid);
         return $response;
@@ -131,7 +131,7 @@ final class UserProfilesApi
      * Create a user profile picture
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createProfilePictureWithHttpInfo(
         string $uuid
@@ -362,7 +362,7 @@ final class UserProfilesApi
      * @throws InvalidArgumentException
      */
     public function deleteProfilePicture(
-        $uuid
+        string $uuid
     ): void {
         $this->deleteProfilePictureWithHttpInfo($uuid);
     }
@@ -371,7 +371,7 @@ final class UserProfilesApi
      * Delete a user profile picture
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteProfilePictureWithHttpInfo(
         string $uuid
@@ -557,7 +557,7 @@ final class UserProfilesApi
      * @throws InvalidArgumentException
      */
     public function getAddress(
-        $user_id
+        string $user_id
     ): \Upsun\Model\GetAddress200Response {
         list($response) = $this->getAddressWithHttpInfo($user_id);
         return $response;
@@ -567,7 +567,7 @@ final class UserProfilesApi
      * Get a user address
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getAddressWithHttpInfo(
         string $user_id
@@ -798,7 +798,7 @@ final class UserProfilesApi
      * @throws InvalidArgumentException
      */
     public function getProfile(
-        $user_id
+        string $user_id
     ): \Upsun\Model\Profile {
         list($response) = $this->getProfileWithHttpInfo($user_id);
         return $response;
@@ -808,7 +808,7 @@ final class UserProfilesApi
      * Get a single user profile
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProfileWithHttpInfo(
         string $user_id
@@ -1049,7 +1049,7 @@ final class UserProfilesApi
      * List user profiles
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listProfilesWithHttpInfo(
         
@@ -1266,8 +1266,8 @@ final class UserProfilesApi
      * @throws InvalidArgumentException
      */
     public function updateAddress(
-        $user_id,
-        $address = null
+        string $user_id,
+        \Upsun\Model\Address $address = null
     ): \Upsun\Model\GetAddress200Response {
         list($response) = $this->updateAddressWithHttpInfo($user_id, $address);
         return $response;
@@ -1277,7 +1277,7 @@ final class UserProfilesApi
      * Update a user address
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateAddressWithHttpInfo(
         string $user_id,
@@ -1518,8 +1518,8 @@ final class UserProfilesApi
      * @throws InvalidArgumentException
      */
     public function updateProfile(
-        $user_id,
-        $update_profile_request = null
+        string $user_id,
+        \Upsun\Model\UpdateProfileRequest $update_profile_request = null
     ): \Upsun\Model\Profile {
         list($response) = $this->updateProfileWithHttpInfo($user_id, $update_profile_request);
         return $response;
@@ -1529,7 +1529,7 @@ final class UserProfilesApi
      * Update a user profile
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateProfileWithHttpInfo(
         string $user_id,

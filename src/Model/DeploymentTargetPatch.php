@@ -305,7 +305,7 @@ final class DeploymentTargetPatch implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -338,7 +338,7 @@ final class DeploymentTargetPatch implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -361,7 +361,7 @@ final class DeploymentTargetPatch implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets enforced_mounts
      */
-    public function setEnforcedMounts(string|null $enforced_mounts = null)
+    public function setEnforcedMounts($enforced_mounts)
     {
         if (is_null($enforced_mounts)) {
             throw new \InvalidArgumentException('non-nullable enforced_mounts cannot be null');
@@ -384,7 +384,7 @@ final class DeploymentTargetPatch implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets site_urls
      */
-    public function setSiteUrls(string|null $site_urls = null)
+    public function setSiteUrls($site_urls)
     {
         if (is_null($site_urls)) {
             throw new \InvalidArgumentException('non-nullable site_urls cannot be null');
@@ -407,7 +407,7 @@ final class DeploymentTargetPatch implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets ssh_hosts
      */
-    public function setSshHosts(string|null $ssh_hosts = null)
+    public function setSshHosts($ssh_hosts)
     {
         if (is_null($ssh_hosts)) {
             throw new \InvalidArgumentException('non-nullable ssh_hosts cannot be null');
@@ -434,7 +434,7 @@ final class DeploymentTargetPatch implements ModelInterface, ArrayAccess, \JsonS
      *
      * @deprecated
      */
-    public function setEnterpriseEnvironmentsMapping(string|null $enterprise_environments_mapping = null)
+    public function setEnterpriseEnvironmentsMapping($enterprise_environments_mapping)
     {
         if (is_null($enterprise_environments_mapping)) {
             throw new \InvalidArgumentException('non-nullable enterprise_environments_mapping cannot be null');
@@ -457,7 +457,7 @@ final class DeploymentTargetPatch implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets hosts
      */
-    public function setHosts(string|null $hosts = null)
+    public function setHosts($hosts)
     {
         if (is_null($hosts)) {
             array_push($this->openAPINullablesSetToNull, 'hosts');
@@ -487,7 +487,7 @@ final class DeploymentTargetPatch implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets use_dedicated_grid
      */
-    public function setUseDedicatedGrid(string|null $use_dedicated_grid = null)
+    public function setUseDedicatedGrid($use_dedicated_grid)
     {
         if (is_null($use_dedicated_grid)) {
             throw new \InvalidArgumentException('non-nullable use_dedicated_grid cannot be null');

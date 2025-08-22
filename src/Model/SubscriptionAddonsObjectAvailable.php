@@ -233,7 +233,7 @@ final class SubscriptionAddonsObjectAvailable implements ModelInterface, ArrayAc
     /**
      * Sets continuous_profiling
      */
-    public function setContinuousProfiling(string|null $continuous_profiling = null)
+    public function setContinuousProfiling($continuous_profiling)
     {
         if (is_null($continuous_profiling)) {
             throw new \InvalidArgumentException('non-nullable continuous_profiling cannot be null');
@@ -256,7 +256,7 @@ final class SubscriptionAddonsObjectAvailable implements ModelInterface, ArrayAc
     /**
      * Sets project_support_level
      */
-    public function setProjectSupportLevel(string|null $project_support_level = null)
+    public function setProjectSupportLevel($project_support_level)
     {
         if (is_null($project_support_level)) {
             throw new \InvalidArgumentException('non-nullable project_support_level cannot be null');

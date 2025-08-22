@@ -254,7 +254,7 @@ final class Usage implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      */
-    public function setId(string|null $id = null)
+    public function setId($id)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -277,7 +277,7 @@ final class Usage implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets subscription_id
      */
-    public function setSubscriptionId(string|null $subscription_id = null)
+    public function setSubscriptionId($subscription_id)
     {
         if (is_null($subscription_id)) {
             throw new \InvalidArgumentException('non-nullable subscription_id cannot be null');
@@ -300,7 +300,7 @@ final class Usage implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets usage_group
      */
-    public function setUsageGroup(string|null $usage_group = null)
+    public function setUsageGroup($usage_group)
     {
         if (is_null($usage_group)) {
             throw new \InvalidArgumentException('non-nullable usage_group cannot be null');
@@ -323,7 +323,7 @@ final class Usage implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets quantity
      */
-    public function setQuantity(string|null $quantity = null)
+    public function setQuantity($quantity)
     {
         if (is_null($quantity)) {
             throw new \InvalidArgumentException('non-nullable quantity cannot be null');
@@ -346,7 +346,7 @@ final class Usage implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets start
      */
-    public function setStart(string|null $start = null)
+    public function setStart($start)
     {
         if (is_null($start)) {
             throw new \InvalidArgumentException('non-nullable start cannot be null');

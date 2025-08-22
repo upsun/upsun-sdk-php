@@ -233,7 +233,7 @@ final class GetOrgPrepaymentInfo200ResponseLinks implements ModelInterface, Arra
     /**
      * Sets self
      */
-    public function setSelf(string|null $self = null)
+    public function setSelf($self)
     {
         if (is_null($self)) {
             throw new \InvalidArgumentException('non-nullable self cannot be null');
@@ -256,7 +256,7 @@ final class GetOrgPrepaymentInfo200ResponseLinks implements ModelInterface, Arra
     /**
      * Sets transactions
      */
-    public function setTransactions(string|null $transactions = null)
+    public function setTransactions($transactions)
     {
         if (is_null($transactions)) {
             throw new \InvalidArgumentException('non-nullable transactions cannot be null');

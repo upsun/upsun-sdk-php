@@ -239,7 +239,7 @@ final class PagerDutyIntegrationPatch implements ModelInterface, ArrayAccess, \J
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -262,7 +262,7 @@ final class PagerDutyIntegrationPatch implements ModelInterface, ArrayAccess, \J
     /**
      * Sets routing_key
      */
-    public function setRoutingKey(string|null $routing_key = null)
+    public function setRoutingKey($routing_key)
     {
         if (is_null($routing_key)) {
             throw new \InvalidArgumentException('non-nullable routing_key cannot be null');

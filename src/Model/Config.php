@@ -338,7 +338,7 @@ final class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets newrelic
      */
-    public function setNewrelic(string|null $newrelic = null)
+    public function setNewrelic($newrelic)
     {
         if (is_null($newrelic)) {
             throw new \InvalidArgumentException('non-nullable newrelic cannot be null');
@@ -361,7 +361,7 @@ final class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets sumologic
      */
-    public function setSumologic(string|null $sumologic = null)
+    public function setSumologic($sumologic)
     {
         if (is_null($sumologic)) {
             throw new \InvalidArgumentException('non-nullable sumologic cannot be null');
@@ -384,7 +384,7 @@ final class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets splunk
      */
-    public function setSplunk(string|null $splunk = null)
+    public function setSplunk($splunk)
     {
         if (is_null($splunk)) {
             throw new \InvalidArgumentException('non-nullable splunk cannot be null');
@@ -407,7 +407,7 @@ final class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets httplog
      */
-    public function setHttplog(string|null $httplog = null)
+    public function setHttplog($httplog)
     {
         if (is_null($httplog)) {
             throw new \InvalidArgumentException('non-nullable httplog cannot be null');
@@ -430,7 +430,7 @@ final class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets syslog
      */
-    public function setSyslog(string|null $syslog = null)
+    public function setSyslog($syslog)
     {
         if (is_null($syslog)) {
             throw new \InvalidArgumentException('non-nullable syslog cannot be null');
@@ -453,7 +453,7 @@ final class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets webhook
      */
-    public function setWebhook(string|null $webhook = null)
+    public function setWebhook($webhook)
     {
         if (is_null($webhook)) {
             throw new \InvalidArgumentException('non-nullable webhook cannot be null');
@@ -476,7 +476,7 @@ final class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets script
      */
-    public function setScript(string|null $script = null)
+    public function setScript($script)
     {
         if (is_null($script)) {
             throw new \InvalidArgumentException('non-nullable script cannot be null');
@@ -499,7 +499,7 @@ final class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets github
      */
-    public function setGithub(string|null $github = null)
+    public function setGithub($github)
     {
         if (is_null($github)) {
             throw new \InvalidArgumentException('non-nullable github cannot be null');
@@ -522,7 +522,7 @@ final class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets gitlab
      */
-    public function setGitlab(string|null $gitlab = null)
+    public function setGitlab($gitlab)
     {
         if (is_null($gitlab)) {
             throw new \InvalidArgumentException('non-nullable gitlab cannot be null');
@@ -545,7 +545,7 @@ final class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets bitbucket
      */
-    public function setBitbucket(string|null $bitbucket = null)
+    public function setBitbucket($bitbucket)
     {
         if (is_null($bitbucket)) {
             throw new \InvalidArgumentException('non-nullable bitbucket cannot be null');
@@ -568,7 +568,7 @@ final class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets bitbucket_server
      */
-    public function setBitbucketServer(string|null $bitbucket_server = null)
+    public function setBitbucketServer($bitbucket_server)
     {
         if (is_null($bitbucket_server)) {
             throw new \InvalidArgumentException('non-nullable bitbucket_server cannot be null');
@@ -591,7 +591,7 @@ final class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets health_email
      */
-    public function setHealthEmail(string|null $health_email = null)
+    public function setHealthEmail($health_email)
     {
         if (is_null($health_email)) {
             throw new \InvalidArgumentException('non-nullable health_email cannot be null');
@@ -614,7 +614,7 @@ final class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets health_webhook
      */
-    public function setHealthWebhook(string|null $health_webhook = null)
+    public function setHealthWebhook($health_webhook)
     {
         if (is_null($health_webhook)) {
             throw new \InvalidArgumentException('non-nullable health_webhook cannot be null');
@@ -637,7 +637,7 @@ final class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets health_pagerduty
      */
-    public function setHealthPagerduty(string|null $health_pagerduty = null)
+    public function setHealthPagerduty($health_pagerduty)
     {
         if (is_null($health_pagerduty)) {
             throw new \InvalidArgumentException('non-nullable health_pagerduty cannot be null');
@@ -660,7 +660,7 @@ final class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets health_slack
      */
-    public function setHealthSlack(string|null $health_slack = null)
+    public function setHealthSlack($health_slack)
     {
         if (is_null($health_slack)) {
             throw new \InvalidArgumentException('non-nullable health_slack cannot be null');
@@ -683,7 +683,7 @@ final class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets cdn_fastly
      */
-    public function setCdnFastly(string|null $cdn_fastly = null)
+    public function setCdnFastly($cdn_fastly)
     {
         if (is_null($cdn_fastly)) {
             throw new \InvalidArgumentException('non-nullable cdn_fastly cannot be null');
@@ -706,7 +706,7 @@ final class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets blackfire
      */
-    public function setBlackfire(string|null $blackfire = null)
+    public function setBlackfire($blackfire)
     {
         if (is_null($blackfire)) {
             throw new \InvalidArgumentException('non-nullable blackfire cannot be null');

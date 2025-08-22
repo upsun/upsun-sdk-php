@@ -229,7 +229,7 @@ final class ConfigurationAboutTheTrafficRoutedToThisVersion implements ModelInte
     /**
      * Sets percentage
      */
-    public function setPercentage(string|null $percentage = null)
+    public function setPercentage($percentage)
     {
         if (is_null($percentage)) {
             throw new \InvalidArgumentException('non-nullable percentage cannot be null');

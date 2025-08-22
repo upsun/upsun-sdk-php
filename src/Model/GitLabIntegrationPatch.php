@@ -324,7 +324,7 @@ final class GitLabIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -347,7 +347,7 @@ final class GitLabIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets fetch_branches
      */
-    public function setFetchBranches(string|null $fetch_branches = null)
+    public function setFetchBranches($fetch_branches)
     {
         if (is_null($fetch_branches)) {
             throw new \InvalidArgumentException('non-nullable fetch_branches cannot be null');
@@ -370,7 +370,7 @@ final class GitLabIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets prune_branches
      */
-    public function setPruneBranches(string|null $prune_branches = null)
+    public function setPruneBranches($prune_branches)
     {
         if (is_null($prune_branches)) {
             throw new \InvalidArgumentException('non-nullable prune_branches cannot be null');
@@ -393,7 +393,7 @@ final class GitLabIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets environment_init_resources
      */
-    public function setEnvironmentInitResources(string|null $environment_init_resources = null)
+    public function setEnvironmentInitResources($environment_init_resources)
     {
         if (is_null($environment_init_resources)) {
             throw new \InvalidArgumentException('non-nullable environment_init_resources cannot be null');
@@ -426,7 +426,7 @@ final class GitLabIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets token
      */
-    public function setToken(string|null $token = null)
+    public function setToken($token)
     {
         if (is_null($token)) {
             throw new \InvalidArgumentException('non-nullable token cannot be null');
@@ -449,7 +449,7 @@ final class GitLabIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets base_url
      */
-    public function setBaseUrl(string|null $base_url = null)
+    public function setBaseUrl($base_url)
     {
         if (is_null($base_url)) {
             throw new \InvalidArgumentException('non-nullable base_url cannot be null');
@@ -472,7 +472,7 @@ final class GitLabIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets project
      */
-    public function setProject(string|null $project = null)
+    public function setProject($project)
     {
         if (is_null($project)) {
             throw new \InvalidArgumentException('non-nullable project cannot be null');
@@ -495,7 +495,7 @@ final class GitLabIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets build_merge_requests
      */
-    public function setBuildMergeRequests(string|null $build_merge_requests = null)
+    public function setBuildMergeRequests($build_merge_requests)
     {
         if (is_null($build_merge_requests)) {
             throw new \InvalidArgumentException('non-nullable build_merge_requests cannot be null');
@@ -518,7 +518,7 @@ final class GitLabIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets build_wip_merge_requests
      */
-    public function setBuildWipMergeRequests(string|null $build_wip_merge_requests = null)
+    public function setBuildWipMergeRequests($build_wip_merge_requests)
     {
         if (is_null($build_wip_merge_requests)) {
             throw new \InvalidArgumentException('non-nullable build_wip_merge_requests cannot be null');
@@ -541,7 +541,7 @@ final class GitLabIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets merge_requests_clone_parent_data
      */
-    public function setMergeRequestsCloneParentData(string|null $merge_requests_clone_parent_data = null)
+    public function setMergeRequestsCloneParentData($merge_requests_clone_parent_data)
     {
         if (is_null($merge_requests_clone_parent_data)) {
             throw new \InvalidArgumentException('non-nullable merge_requests_clone_parent_data cannot be null');

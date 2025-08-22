@@ -259,7 +259,7 @@ final class TheMinimumResourcesForThisService implements ModelInterface, ArrayAc
     /**
      * Sets cpu
      */
-    public function setCpu(string|null $cpu = null)
+    public function setCpu($cpu)
     {
         if (is_null($cpu)) {
             throw new \InvalidArgumentException('non-nullable cpu cannot be null');
@@ -282,7 +282,7 @@ final class TheMinimumResourcesForThisService implements ModelInterface, ArrayAc
     /**
      * Sets memory
      */
-    public function setMemory(string|null $memory = null)
+    public function setMemory($memory)
     {
         if (is_null($memory)) {
             throw new \InvalidArgumentException('non-nullable memory cannot be null');
@@ -305,7 +305,7 @@ final class TheMinimumResourcesForThisService implements ModelInterface, ArrayAc
     /**
      * Sets disk
      */
-    public function setDisk(string|null $disk = null)
+    public function setDisk($disk)
     {
         if (is_null($disk)) {
             array_push($this->openAPINullablesSetToNull, 'disk');
@@ -335,7 +335,7 @@ final class TheMinimumResourcesForThisService implements ModelInterface, ArrayAc
     /**
      * Sets profile_size
      */
-    public function setProfileSize(string|null $profile_size = null)
+    public function setProfileSize($profile_size)
     {
         if (is_null($profile_size)) {
             array_push($this->openAPINullablesSetToNull, 'profile_size');

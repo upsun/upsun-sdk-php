@@ -261,7 +261,7 @@ final class Alert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      */
-    public function setId(string|null $id = null)
+    public function setId($id)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -284,7 +284,7 @@ final class Alert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets active
      */
-    public function setActive(string|null $active = null)
+    public function setActive($active)
     {
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
@@ -307,7 +307,7 @@ final class Alert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets alerts_sent
      */
-    public function setAlertsSent(string|null $alerts_sent = null)
+    public function setAlertsSent($alerts_sent)
     {
         if (is_null($alerts_sent)) {
             throw new \InvalidArgumentException('non-nullable alerts_sent cannot be null');
@@ -330,7 +330,7 @@ final class Alert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets last_alert_at
      */
-    public function setLastAlertAt(string|null $last_alert_at = null)
+    public function setLastAlertAt($last_alert_at)
     {
         if (is_null($last_alert_at)) {
             throw new \InvalidArgumentException('non-nullable last_alert_at cannot be null');
@@ -353,7 +353,7 @@ final class Alert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt(string|null $updated_at = null)
+    public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
@@ -376,7 +376,7 @@ final class Alert implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets config
      */
-    public function setConfig(string|null $config = null)
+    public function setConfig($config)
     {
         if (is_null($config)) {
             throw new \InvalidArgumentException('non-nullable config cannot be null');

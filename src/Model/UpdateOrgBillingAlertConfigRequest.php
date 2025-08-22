@@ -233,7 +233,7 @@ final class UpdateOrgBillingAlertConfigRequest implements ModelInterface, ArrayA
     /**
      * Sets active
      */
-    public function setActive(string|null $active = null)
+    public function setActive($active)
     {
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
@@ -256,7 +256,7 @@ final class UpdateOrgBillingAlertConfigRequest implements ModelInterface, ArrayA
     /**
      * Sets config
      */
-    public function setConfig(string|null $config = null)
+    public function setConfig($config)
     {
         if (is_null($config)) {
             throw new \InvalidArgumentException('non-nullable config cannot be null');

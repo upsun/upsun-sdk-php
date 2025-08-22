@@ -261,7 +261,7 @@ final class AddressGrantsInner implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets permission
      */
-    public function setPermission(string|null $permission = null)
+    public function setPermission($permission)
     {
         if (is_null($permission)) {
             throw new \InvalidArgumentException('non-nullable permission cannot be null');
@@ -294,7 +294,7 @@ final class AddressGrantsInner implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets address
      */
-    public function setAddress(string|null $address = null)
+    public function setAddress($address)
     {
         if (is_null($address)) {
             throw new \InvalidArgumentException('non-nullable address cannot be null');

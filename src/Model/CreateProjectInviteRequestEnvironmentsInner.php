@@ -257,7 +257,7 @@ final class CreateProjectInviteRequestEnvironmentsInner implements ModelInterfac
     /**
      * Sets id
      */
-    public function setId(string|null $id = null)
+    public function setId($id)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -280,7 +280,7 @@ final class CreateProjectInviteRequestEnvironmentsInner implements ModelInterfac
     /**
      * Sets role
      */
-    public function setRole(string|null $role = null)
+    public function setRole($role)
     {
         if (is_null($role)) {
             throw new \InvalidArgumentException('non-nullable role cannot be null');

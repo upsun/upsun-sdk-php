@@ -254,7 +254,7 @@ final class SpecificOverridesValue implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets expires
      */
-    public function setExpires(string|null $expires = null)
+    public function setExpires($expires)
     {
         if (is_null($expires)) {
             array_push($this->openAPINullablesSetToNull, 'expires');
@@ -284,7 +284,7 @@ final class SpecificOverridesValue implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets passthru
      */
-    public function setPassthru(string|null $passthru = null)
+    public function setPassthru($passthru)
     {
         if (is_null($passthru)) {
             throw new \InvalidArgumentException('non-nullable passthru cannot be null');
@@ -307,7 +307,7 @@ final class SpecificOverridesValue implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets scripts
      */
-    public function setScripts(string|null $scripts = null)
+    public function setScripts($scripts)
     {
         if (is_null($scripts)) {
             throw new \InvalidArgumentException('non-nullable scripts cannot be null');
@@ -330,7 +330,7 @@ final class SpecificOverridesValue implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets allow
      */
-    public function setAllow(string|null $allow = null)
+    public function setAllow($allow)
     {
         if (is_null($allow)) {
             throw new \InvalidArgumentException('non-nullable allow cannot be null');
@@ -353,7 +353,7 @@ final class SpecificOverridesValue implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets headers
      */
-    public function setHeaders(string|null $headers = null)
+    public function setHeaders($headers)
     {
         if (is_null($headers)) {
             throw new \InvalidArgumentException('non-nullable headers cannot be null');

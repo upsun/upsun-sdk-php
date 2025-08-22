@@ -226,7 +226,7 @@ final class VouchersLinks implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets self
      */
-    public function setSelf(string|null $self = null)
+    public function setSelf($self)
     {
         if (is_null($self)) {
             throw new \InvalidArgumentException('non-nullable self cannot be null');

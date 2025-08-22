@@ -239,7 +239,7 @@ final class TheConfigurationOfTheRedirects implements ModelInterface, ArrayAcces
     /**
      * Sets expires
      */
-    public function setExpires(string|null $expires = null)
+    public function setExpires($expires)
     {
         if (is_null($expires)) {
             throw new \InvalidArgumentException('non-nullable expires cannot be null');
@@ -262,7 +262,7 @@ final class TheConfigurationOfTheRedirects implements ModelInterface, ArrayAcces
     /**
      * Sets paths
      */
-    public function setPaths(string|null $paths = null)
+    public function setPaths($paths)
     {
         if (is_null($paths)) {
             throw new \InvalidArgumentException('non-nullable paths cannot be null');

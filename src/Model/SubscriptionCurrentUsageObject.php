@@ -310,7 +310,7 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
     /**
      * Sets cpu_app
      */
-    public function setCpuApp(string|null $cpu_app = null)
+    public function setCpuApp($cpu_app)
     {
         if (is_null($cpu_app)) {
             throw new \InvalidArgumentException('non-nullable cpu_app cannot be null');
@@ -333,7 +333,7 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
     /**
      * Sets storage_app_services
      */
-    public function setStorageAppServices(string|null $storage_app_services = null)
+    public function setStorageAppServices($storage_app_services)
     {
         if (is_null($storage_app_services)) {
             throw new \InvalidArgumentException('non-nullable storage_app_services cannot be null');
@@ -356,7 +356,7 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
     /**
      * Sets memory_app
      */
-    public function setMemoryApp(string|null $memory_app = null)
+    public function setMemoryApp($memory_app)
     {
         if (is_null($memory_app)) {
             throw new \InvalidArgumentException('non-nullable memory_app cannot be null');
@@ -379,7 +379,7 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
     /**
      * Sets cpu_services
      */
-    public function setCpuServices(string|null $cpu_services = null)
+    public function setCpuServices($cpu_services)
     {
         if (is_null($cpu_services)) {
             throw new \InvalidArgumentException('non-nullable cpu_services cannot be null');
@@ -402,7 +402,7 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
     /**
      * Sets memory_services
      */
-    public function setMemoryServices(string|null $memory_services = null)
+    public function setMemoryServices($memory_services)
     {
         if (is_null($memory_services)) {
             throw new \InvalidArgumentException('non-nullable memory_services cannot be null');
@@ -425,7 +425,7 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
     /**
      * Sets backup_storage
      */
-    public function setBackupStorage(string|null $backup_storage = null)
+    public function setBackupStorage($backup_storage)
     {
         if (is_null($backup_storage)) {
             throw new \InvalidArgumentException('non-nullable backup_storage cannot be null');
@@ -448,7 +448,7 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
     /**
      * Sets build_cpu
      */
-    public function setBuildCpu(string|null $build_cpu = null)
+    public function setBuildCpu($build_cpu)
     {
         if (is_null($build_cpu)) {
             throw new \InvalidArgumentException('non-nullable build_cpu cannot be null');
@@ -471,7 +471,7 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
     /**
      * Sets build_memory
      */
-    public function setBuildMemory(string|null $build_memory = null)
+    public function setBuildMemory($build_memory)
     {
         if (is_null($build_memory)) {
             throw new \InvalidArgumentException('non-nullable build_memory cannot be null');
@@ -494,7 +494,7 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
     /**
      * Sets egress_bandwidth
      */
-    public function setEgressBandwidth(string|null $egress_bandwidth = null)
+    public function setEgressBandwidth($egress_bandwidth)
     {
         if (is_null($egress_bandwidth)) {
             throw new \InvalidArgumentException('non-nullable egress_bandwidth cannot be null');
@@ -517,7 +517,7 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
     /**
      * Sets ingress_requests
      */
-    public function setIngressRequests(string|null $ingress_requests = null)
+    public function setIngressRequests($ingress_requests)
     {
         if (is_null($ingress_requests)) {
             throw new \InvalidArgumentException('non-nullable ingress_requests cannot be null');
@@ -540,7 +540,7 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
     /**
      * Sets logs_fwd_content_size
      */
-    public function setLogsFwdContentSize(string|null $logs_fwd_content_size = null)
+    public function setLogsFwdContentSize($logs_fwd_content_size)
     {
         if (is_null($logs_fwd_content_size)) {
             throw new \InvalidArgumentException('non-nullable logs_fwd_content_size cannot be null');
@@ -563,7 +563,7 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
     /**
      * Sets fastly_bandwidth
      */
-    public function setFastlyBandwidth(string|null $fastly_bandwidth = null)
+    public function setFastlyBandwidth($fastly_bandwidth)
     {
         if (is_null($fastly_bandwidth)) {
             throw new \InvalidArgumentException('non-nullable fastly_bandwidth cannot be null');
@@ -586,7 +586,7 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
     /**
      * Sets fastly_requests
      */
-    public function setFastlyRequests(string|null $fastly_requests = null)
+    public function setFastlyRequests($fastly_requests)
     {
         if (is_null($fastly_requests)) {
             throw new \InvalidArgumentException('non-nullable fastly_requests cannot be null');

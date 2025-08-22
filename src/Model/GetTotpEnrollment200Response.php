@@ -247,7 +247,7 @@ final class GetTotpEnrollment200Response implements ModelInterface, ArrayAccess,
     /**
      * Sets issuer
      */
-    public function setIssuer(string|null $issuer = null)
+    public function setIssuer($issuer)
     {
         if (is_null($issuer)) {
             throw new \InvalidArgumentException('non-nullable issuer cannot be null');
@@ -270,7 +270,7 @@ final class GetTotpEnrollment200Response implements ModelInterface, ArrayAccess,
     /**
      * Sets account_name
      */
-    public function setAccountName(string|null $account_name = null)
+    public function setAccountName($account_name)
     {
         if (is_null($account_name)) {
             throw new \InvalidArgumentException('non-nullable account_name cannot be null');
@@ -293,7 +293,7 @@ final class GetTotpEnrollment200Response implements ModelInterface, ArrayAccess,
     /**
      * Sets secret
      */
-    public function setSecret(string|null $secret = null)
+    public function setSecret($secret)
     {
         if (is_null($secret)) {
             throw new \InvalidArgumentException('non-nullable secret cannot be null');
@@ -316,7 +316,7 @@ final class GetTotpEnrollment200Response implements ModelInterface, ArrayAccess,
     /**
      * Sets qr_code
      */
-    public function setQrCode(string|null $qr_code = null)
+    public function setQrCode($qr_code)
     {
         if (is_null($qr_code)) {
             throw new \InvalidArgumentException('non-nullable qr_code cannot be null');

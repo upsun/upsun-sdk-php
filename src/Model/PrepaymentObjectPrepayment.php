@@ -254,7 +254,7 @@ final class PrepaymentObjectPrepayment implements ModelInterface, ArrayAccess, \
     /**
      * Sets organization_id
      */
-    public function setOrganizationId(string|null $organization_id = null)
+    public function setOrganizationId($organization_id)
     {
         if (is_null($organization_id)) {
             throw new \InvalidArgumentException('non-nullable organization_id cannot be null');
@@ -277,7 +277,7 @@ final class PrepaymentObjectPrepayment implements ModelInterface, ArrayAccess, \
     /**
      * Sets balance
      */
-    public function setBalance(string|null $balance = null)
+    public function setBalance($balance)
     {
         if (is_null($balance)) {
             throw new \InvalidArgumentException('non-nullable balance cannot be null');
@@ -300,7 +300,7 @@ final class PrepaymentObjectPrepayment implements ModelInterface, ArrayAccess, \
     /**
      * Sets last_updated_at
      */
-    public function setLastUpdatedAt(string|null $last_updated_at = null)
+    public function setLastUpdatedAt($last_updated_at)
     {
         if (is_null($last_updated_at)) {
             array_push($this->openAPINullablesSetToNull, 'last_updated_at');
@@ -330,7 +330,7 @@ final class PrepaymentObjectPrepayment implements ModelInterface, ArrayAccess, \
     /**
      * Sets sufficient
      */
-    public function setSufficient(string|null $sufficient = null)
+    public function setSufficient($sufficient)
     {
         if (is_null($sufficient)) {
             throw new \InvalidArgumentException('non-nullable sufficient cannot be null');
@@ -353,7 +353,7 @@ final class PrepaymentObjectPrepayment implements ModelInterface, ArrayAccess, \
     /**
      * Sets fallback
      */
-    public function setFallback(string|null $fallback = null)
+    public function setFallback($fallback)
     {
         if (is_null($fallback)) {
             array_push($this->openAPINullablesSetToNull, 'fallback');

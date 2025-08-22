@@ -249,7 +249,7 @@ final class ResourcesLimits implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets container_profiles
      */
-    public function setContainerProfiles(string|null $container_profiles = null)
+    public function setContainerProfiles($container_profiles)
     {
         if (is_null($container_profiles)) {
             throw new \InvalidArgumentException('non-nullable container_profiles cannot be null');
@@ -272,7 +272,7 @@ final class ResourcesLimits implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets production
      */
-    public function setProduction(string|null $production = null)
+    public function setProduction($production)
     {
         if (is_null($production)) {
             throw new \InvalidArgumentException('non-nullable production cannot be null');
@@ -295,7 +295,7 @@ final class ResourcesLimits implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets development
      */
-    public function setDevelopment(string|null $development = null)
+    public function setDevelopment($development)
     {
         if (is_null($development)) {
             throw new \InvalidArgumentException('non-nullable development cannot be null');

@@ -346,7 +346,7 @@ final class Discount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      */
-    public function setId(string|null $id = null)
+    public function setId($id)
     {
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
@@ -369,7 +369,7 @@ final class Discount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets organization_id
      */
-    public function setOrganizationId(string|null $organization_id = null)
+    public function setOrganizationId($organization_id)
     {
         if (is_null($organization_id)) {
             throw new \InvalidArgumentException('non-nullable organization_id cannot be null');
@@ -392,7 +392,7 @@ final class Discount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -425,7 +425,7 @@ final class Discount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type_label
      */
-    public function setTypeLabel(string|null $type_label = null)
+    public function setTypeLabel($type_label)
     {
         if (is_null($type_label)) {
             throw new \InvalidArgumentException('non-nullable type_label cannot be null');
@@ -448,7 +448,7 @@ final class Discount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      */
-    public function setStatus(string|null $status = null)
+    public function setStatus($status)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
@@ -481,7 +481,7 @@ final class Discount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets commitment
      */
-    public function setCommitment(string|null $commitment = null)
+    public function setCommitment($commitment)
     {
         if (is_null($commitment)) {
             array_push($this->openAPINullablesSetToNull, 'commitment');
@@ -511,7 +511,7 @@ final class Discount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets total_months
      */
-    public function setTotalMonths(string|null $total_months = null)
+    public function setTotalMonths($total_months)
     {
         if (is_null($total_months)) {
             array_push($this->openAPINullablesSetToNull, 'total_months');
@@ -541,7 +541,7 @@ final class Discount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets discount
      */
-    public function setDiscount(string|null $discount = null)
+    public function setDiscount($discount)
     {
         if (is_null($discount)) {
             throw new \InvalidArgumentException('non-nullable discount cannot be null');
@@ -564,7 +564,7 @@ final class Discount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets config
      */
-    public function setConfig(string|null $config = null)
+    public function setConfig($config)
     {
         if (is_null($config)) {
             throw new \InvalidArgumentException('non-nullable config cannot be null');
@@ -587,7 +587,7 @@ final class Discount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets start_at
      */
-    public function setStartAt(string|null $start_at = null)
+    public function setStartAt($start_at)
     {
         if (is_null($start_at)) {
             throw new \InvalidArgumentException('non-nullable start_at cannot be null');
@@ -610,7 +610,7 @@ final class Discount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets end_at
      */
-    public function setEndAt(string|null $end_at = null)
+    public function setEndAt($end_at)
     {
         if (is_null($end_at)) {
             array_push($this->openAPINullablesSetToNull, 'end_at');

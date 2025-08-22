@@ -233,7 +233,7 @@ final class RestrictedAndDeniedImageTypes implements ModelInterface, ArrayAccess
     /**
      * Sets only
      */
-    public function setOnly(string|null $only = null)
+    public function setOnly($only)
     {
         if (is_null($only)) {
             throw new \InvalidArgumentException('non-nullable only cannot be null');
@@ -256,7 +256,7 @@ final class RestrictedAndDeniedImageTypes implements ModelInterface, ArrayAccess
     /**
      * Sets exclude
      */
-    public function setExclude(string|null $exclude = null)
+    public function setExclude($exclude)
     {
         if (is_null($exclude)) {
             throw new \InvalidArgumentException('non-nullable exclude cannot be null');

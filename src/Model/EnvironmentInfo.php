@@ -309,7 +309,7 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -332,7 +332,7 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets status
      */
-    public function setStatus(string|null $status = null)
+    public function setStatus($status)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
@@ -355,7 +355,7 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets is_main
      */
-    public function setIsMain(string|null $is_main = null)
+    public function setIsMain($is_main)
     {
         if (is_null($is_main)) {
             throw new \InvalidArgumentException('non-nullable is_main cannot be null');
@@ -378,7 +378,7 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets is_production
      */
-    public function setIsProduction(string|null $is_production = null)
+    public function setIsProduction($is_production)
     {
         if (is_null($is_production)) {
             throw new \InvalidArgumentException('non-nullable is_production cannot be null');
@@ -401,7 +401,7 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets constraints
      */
-    public function setConstraints(string|null $constraints = null)
+    public function setConstraints($constraints)
     {
         if (is_null($constraints)) {
             throw new \InvalidArgumentException('non-nullable constraints cannot be null');
@@ -424,7 +424,7 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets reference
      */
-    public function setReference(string|null $reference = null)
+    public function setReference($reference)
     {
         if (is_null($reference)) {
             throw new \InvalidArgumentException('non-nullable reference cannot be null');
@@ -447,7 +447,7 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets machine_name
      */
-    public function setMachineName(string|null $machine_name = null)
+    public function setMachineName($machine_name)
     {
         if (is_null($machine_name)) {
             throw new \InvalidArgumentException('non-nullable machine_name cannot be null');
@@ -470,7 +470,7 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets environment_type
      */
-    public function setEnvironmentType(string|null $environment_type = null)
+    public function setEnvironmentType($environment_type)
     {
         if (is_null($environment_type)) {
             throw new \InvalidArgumentException('non-nullable environment_type cannot be null');
@@ -493,7 +493,7 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets links
      */
-    public function setLinks(string|null $links = null)
+    public function setLinks($links)
     {
         if (is_null($links)) {
             throw new \InvalidArgumentException('non-nullable links cannot be null');

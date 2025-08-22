@@ -229,7 +229,7 @@ final class BlackfireIntegrationCreateInput implements ModelInterface, ArrayAcce
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');

@@ -268,7 +268,7 @@ final class Vouchers implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets uuid
      */
-    public function setUuid(string|null $uuid = null)
+    public function setUuid($uuid)
     {
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
@@ -291,7 +291,7 @@ final class Vouchers implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets vouchers_total
      */
-    public function setVouchersTotal(string|null $vouchers_total = null)
+    public function setVouchersTotal($vouchers_total)
     {
         if (is_null($vouchers_total)) {
             throw new \InvalidArgumentException('non-nullable vouchers_total cannot be null');
@@ -314,7 +314,7 @@ final class Vouchers implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets vouchers_applied
      */
-    public function setVouchersApplied(string|null $vouchers_applied = null)
+    public function setVouchersApplied($vouchers_applied)
     {
         if (is_null($vouchers_applied)) {
             throw new \InvalidArgumentException('non-nullable vouchers_applied cannot be null');
@@ -337,7 +337,7 @@ final class Vouchers implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets vouchers_remaining_balance
      */
-    public function setVouchersRemainingBalance(string|null $vouchers_remaining_balance = null)
+    public function setVouchersRemainingBalance($vouchers_remaining_balance)
     {
         if (is_null($vouchers_remaining_balance)) {
             throw new \InvalidArgumentException('non-nullable vouchers_remaining_balance cannot be null');
@@ -360,7 +360,7 @@ final class Vouchers implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets currency
      */
-    public function setCurrency(string|null $currency = null)
+    public function setCurrency($currency)
     {
         if (is_null($currency)) {
             throw new \InvalidArgumentException('non-nullable currency cannot be null');
@@ -383,7 +383,7 @@ final class Vouchers implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets vouchers
      */
-    public function setVouchers(string|null $vouchers = null)
+    public function setVouchers($vouchers)
     {
         if (is_null($vouchers)) {
             throw new \InvalidArgumentException('non-nullable vouchers cannot be null');
@@ -406,7 +406,7 @@ final class Vouchers implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets _links
      */
-    public function setLinks(string|null $_links = null)
+    public function setLinks($_links)
     {
         if (is_null($_links)) {
             throw new \InvalidArgumentException('non-nullable _links cannot be null');

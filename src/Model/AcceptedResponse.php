@@ -239,7 +239,7 @@ final class AcceptedResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets status
      */
-    public function setStatus(string|null $status = null)
+    public function setStatus($status)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
@@ -262,7 +262,7 @@ final class AcceptedResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets code
      */
-    public function setCode(string|null $code = null)
+    public function setCode($code)
     {
         if (is_null($code)) {
             throw new \InvalidArgumentException('non-nullable code cannot be null');

@@ -240,7 +240,7 @@ final class HalLinks implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets self
      */
-    public function setSelf(string|null $self = null)
+    public function setSelf($self)
     {
         if (is_null($self)) {
             throw new \InvalidArgumentException('non-nullable self cannot be null');
@@ -263,7 +263,7 @@ final class HalLinks implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets previous
      */
-    public function setPrevious(string|null $previous = null)
+    public function setPrevious($previous)
     {
         if (is_null($previous)) {
             throw new \InvalidArgumentException('non-nullable previous cannot be null');
@@ -286,7 +286,7 @@ final class HalLinks implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets next
      */
-    public function setNext(string|null $next = null)
+    public function setNext($next)
     {
         if (is_null($next)) {
             throw new \InvalidArgumentException('non-nullable next cannot be null');

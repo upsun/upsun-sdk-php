@@ -239,7 +239,7 @@ final class BlackfireEnvironmentsCredentialsValue implements ModelInterface, Arr
     /**
      * Sets server_uuid
      */
-    public function setServerUuid(string|null $server_uuid = null)
+    public function setServerUuid($server_uuid)
     {
         if (is_null($server_uuid)) {
             throw new \InvalidArgumentException('non-nullable server_uuid cannot be null');
@@ -262,7 +262,7 @@ final class BlackfireEnvironmentsCredentialsValue implements ModelInterface, Arr
     /**
      * Sets server_token
      */
-    public function setServerToken(string|null $server_token = null)
+    public function setServerToken($server_token)
     {
         if (is_null($server_token)) {
             throw new \InvalidArgumentException('non-nullable server_token cannot be null');

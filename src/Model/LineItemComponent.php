@@ -247,7 +247,7 @@ final class LineItemComponent implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets amount
      */
-    public function setAmount(string|null $amount = null)
+    public function setAmount($amount)
     {
         if (is_null($amount)) {
             throw new \InvalidArgumentException('non-nullable amount cannot be null');
@@ -270,7 +270,7 @@ final class LineItemComponent implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets amount_formatted
      */
-    public function setAmountFormatted(string|null $amount_formatted = null)
+    public function setAmountFormatted($amount_formatted)
     {
         if (is_null($amount_formatted)) {
             throw new \InvalidArgumentException('non-nullable amount_formatted cannot be null');
@@ -293,7 +293,7 @@ final class LineItemComponent implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets display_title
      */
-    public function setDisplayTitle(string|null $display_title = null)
+    public function setDisplayTitle($display_title)
     {
         if (is_null($display_title)) {
             throw new \InvalidArgumentException('non-nullable display_title cannot be null');
@@ -316,7 +316,7 @@ final class LineItemComponent implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets currency
      */
-    public function setCurrency(string|null $currency = null)
+    public function setCurrency($currency)
     {
         if (is_null($currency)) {
             throw new \InvalidArgumentException('non-nullable currency cannot be null');

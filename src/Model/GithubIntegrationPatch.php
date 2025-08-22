@@ -331,7 +331,7 @@ final class GithubIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -354,7 +354,7 @@ final class GithubIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets fetch_branches
      */
-    public function setFetchBranches(string|null $fetch_branches = null)
+    public function setFetchBranches($fetch_branches)
     {
         if (is_null($fetch_branches)) {
             throw new \InvalidArgumentException('non-nullable fetch_branches cannot be null');
@@ -377,7 +377,7 @@ final class GithubIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets prune_branches
      */
-    public function setPruneBranches(string|null $prune_branches = null)
+    public function setPruneBranches($prune_branches)
     {
         if (is_null($prune_branches)) {
             throw new \InvalidArgumentException('non-nullable prune_branches cannot be null');
@@ -400,7 +400,7 @@ final class GithubIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets environment_init_resources
      */
-    public function setEnvironmentInitResources(string|null $environment_init_resources = null)
+    public function setEnvironmentInitResources($environment_init_resources)
     {
         if (is_null($environment_init_resources)) {
             throw new \InvalidArgumentException('non-nullable environment_init_resources cannot be null');
@@ -433,7 +433,7 @@ final class GithubIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets token
      */
-    public function setToken(string|null $token = null)
+    public function setToken($token)
     {
         if (is_null($token)) {
             throw new \InvalidArgumentException('non-nullable token cannot be null');
@@ -456,7 +456,7 @@ final class GithubIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets base_url
      */
-    public function setBaseUrl(string|null $base_url = null)
+    public function setBaseUrl($base_url)
     {
         if (is_null($base_url)) {
             array_push($this->openAPINullablesSetToNull, 'base_url');
@@ -486,7 +486,7 @@ final class GithubIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets repository
      */
-    public function setRepository(string|null $repository = null)
+    public function setRepository($repository)
     {
         if (is_null($repository)) {
             throw new \InvalidArgumentException('non-nullable repository cannot be null');
@@ -509,7 +509,7 @@ final class GithubIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets build_pull_requests
      */
-    public function setBuildPullRequests(string|null $build_pull_requests = null)
+    public function setBuildPullRequests($build_pull_requests)
     {
         if (is_null($build_pull_requests)) {
             throw new \InvalidArgumentException('non-nullable build_pull_requests cannot be null');
@@ -532,7 +532,7 @@ final class GithubIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets build_draft_pull_requests
      */
-    public function setBuildDraftPullRequests(string|null $build_draft_pull_requests = null)
+    public function setBuildDraftPullRequests($build_draft_pull_requests)
     {
         if (is_null($build_draft_pull_requests)) {
             throw new \InvalidArgumentException('non-nullable build_draft_pull_requests cannot be null');
@@ -555,7 +555,7 @@ final class GithubIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets build_pull_requests_post_merge
      */
-    public function setBuildPullRequestsPostMerge(string|null $build_pull_requests_post_merge = null)
+    public function setBuildPullRequestsPostMerge($build_pull_requests_post_merge)
     {
         if (is_null($build_pull_requests_post_merge)) {
             throw new \InvalidArgumentException('non-nullable build_pull_requests_post_merge cannot be null');
@@ -578,7 +578,7 @@ final class GithubIntegrationPatch implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets pull_requests_clone_parent_data
      */
-    public function setPullRequestsCloneParentData(string|null $pull_requests_clone_parent_data = null)
+    public function setPullRequestsCloneParentData($pull_requests_clone_parent_data)
     {
         if (is_null($pull_requests_clone_parent_data)) {
             throw new \InvalidArgumentException('non-nullable pull_requests_clone_parent_data cannot be null');

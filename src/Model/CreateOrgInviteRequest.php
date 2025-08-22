@@ -267,7 +267,7 @@ final class CreateOrgInviteRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets email
      */
-    public function setEmail(string|null $email = null)
+    public function setEmail($email)
     {
         if (is_null($email)) {
             throw new \InvalidArgumentException('non-nullable email cannot be null');
@@ -290,7 +290,7 @@ final class CreateOrgInviteRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets permissions
      */
-    public function setPermissions(string|null $permissions = null)
+    public function setPermissions($permissions)
     {
         if (is_null($permissions)) {
             throw new \InvalidArgumentException('non-nullable permissions cannot be null');
@@ -322,7 +322,7 @@ final class CreateOrgInviteRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets force
      */
-    public function setForce(string|null $force = null)
+    public function setForce($force)
     {
         if (is_null($force)) {
             throw new \InvalidArgumentException('non-nullable force cannot be null');

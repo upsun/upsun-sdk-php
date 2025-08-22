@@ -226,7 +226,7 @@ final class OrganizationMFAEnforcement implements ModelInterface, ArrayAccess, \
     /**
      * Sets enforce_mfa
      */
-    public function setEnforceMfa(string|null $enforce_mfa = null)
+    public function setEnforceMfa($enforce_mfa)
     {
         if (is_null($enforce_mfa)) {
             throw new \InvalidArgumentException('non-nullable enforce_mfa cannot be null');

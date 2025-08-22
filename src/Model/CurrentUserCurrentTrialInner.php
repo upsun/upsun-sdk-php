@@ -247,7 +247,7 @@ final class CurrentUserCurrentTrialInner implements ModelInterface, ArrayAccess,
     /**
      * Sets created
      */
-    public function setCreated(string|null $created = null)
+    public function setCreated($created)
     {
         if (is_null($created)) {
             throw new \InvalidArgumentException('non-nullable created cannot be null');
@@ -270,7 +270,7 @@ final class CurrentUserCurrentTrialInner implements ModelInterface, ArrayAccess,
     /**
      * Sets description
      */
-    public function setDescription(string|null $description = null)
+    public function setDescription($description)
     {
         if (is_null($description)) {
             throw new \InvalidArgumentException('non-nullable description cannot be null');
@@ -293,7 +293,7 @@ final class CurrentUserCurrentTrialInner implements ModelInterface, ArrayAccess,
     /**
      * Sets spend_remaining
      */
-    public function setSpendRemaining(string|null $spend_remaining = null)
+    public function setSpendRemaining($spend_remaining)
     {
         if (is_null($spend_remaining)) {
             throw new \InvalidArgumentException('non-nullable spend_remaining cannot be null');
@@ -316,7 +316,7 @@ final class CurrentUserCurrentTrialInner implements ModelInterface, ArrayAccess,
     /**
      * Sets expiration
      */
-    public function setExpiration(string|null $expiration = null)
+    public function setExpiration($expiration)
     {
         if (is_null($expiration)) {
             throw new \InvalidArgumentException('non-nullable expiration cannot be null');

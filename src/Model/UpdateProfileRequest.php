@@ -310,7 +310,7 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets display_name
      */
-    public function setDisplayName(string|null $display_name = null)
+    public function setDisplayName($display_name)
     {
         if (is_null($display_name)) {
             throw new \InvalidArgumentException('non-nullable display_name cannot be null');
@@ -333,7 +333,7 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets username
      */
-    public function setUsername(string|null $username = null)
+    public function setUsername($username)
     {
         if (is_null($username)) {
             throw new \InvalidArgumentException('non-nullable username cannot be null');
@@ -356,7 +356,7 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets current_password
      */
-    public function setCurrentPassword(string|null $current_password = null)
+    public function setCurrentPassword($current_password)
     {
         if (is_null($current_password)) {
             throw new \InvalidArgumentException('non-nullable current_password cannot be null');
@@ -379,7 +379,7 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets password
      */
-    public function setPassword(string|null $password = null)
+    public function setPassword($password)
     {
         if (is_null($password)) {
             throw new \InvalidArgumentException('non-nullable password cannot be null');
@@ -402,7 +402,7 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets company_type
      */
-    public function setCompanyType(string|null $company_type = null)
+    public function setCompanyType($company_type)
     {
         if (is_null($company_type)) {
             throw new \InvalidArgumentException('non-nullable company_type cannot be null');
@@ -425,7 +425,7 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets company_name
      */
-    public function setCompanyName(string|null $company_name = null)
+    public function setCompanyName($company_name)
     {
         if (is_null($company_name)) {
             throw new \InvalidArgumentException('non-nullable company_name cannot be null');
@@ -448,7 +448,7 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets vat_number
      */
-    public function setVatNumber(string|null $vat_number = null)
+    public function setVatNumber($vat_number)
     {
         if (is_null($vat_number)) {
             throw new \InvalidArgumentException('non-nullable vat_number cannot be null');
@@ -471,7 +471,7 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets company_role
      */
-    public function setCompanyRole(string|null $company_role = null)
+    public function setCompanyRole($company_role)
     {
         if (is_null($company_role)) {
             throw new \InvalidArgumentException('non-nullable company_role cannot be null');
@@ -494,7 +494,7 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets marketing
      */
-    public function setMarketing(string|null $marketing = null)
+    public function setMarketing($marketing)
     {
         if (is_null($marketing)) {
             throw new \InvalidArgumentException('non-nullable marketing cannot be null');
@@ -517,7 +517,7 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets ui_colorscheme
      */
-    public function setUiColorscheme(string|null $ui_colorscheme = null)
+    public function setUiColorscheme($ui_colorscheme)
     {
         if (is_null($ui_colorscheme)) {
             throw new \InvalidArgumentException('non-nullable ui_colorscheme cannot be null');
@@ -540,7 +540,7 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets default_catalog
      */
-    public function setDefaultCatalog(string|null $default_catalog = null)
+    public function setDefaultCatalog($default_catalog)
     {
         if (is_null($default_catalog)) {
             throw new \InvalidArgumentException('non-nullable default_catalog cannot be null');
@@ -563,7 +563,7 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets project_options_url
      */
-    public function setProjectOptionsUrl(string|null $project_options_url = null)
+    public function setProjectOptionsUrl($project_options_url)
     {
         if (is_null($project_options_url)) {
             throw new \InvalidArgumentException('non-nullable project_options_url cannot be null');
@@ -586,7 +586,7 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets picture
      */
-    public function setPicture(string|null $picture = null)
+    public function setPicture($picture)
     {
         if (is_null($picture)) {
             throw new \InvalidArgumentException('non-nullable picture cannot be null');

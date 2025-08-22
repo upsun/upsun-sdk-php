@@ -247,7 +247,7 @@ final class TeamMember implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets team_id
      */
-    public function setTeamId(string|null $team_id = null)
+    public function setTeamId($team_id)
     {
         if (is_null($team_id)) {
             throw new \InvalidArgumentException('non-nullable team_id cannot be null');
@@ -270,7 +270,7 @@ final class TeamMember implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets user_id
      */
-    public function setUserId(string|null $user_id = null)
+    public function setUserId($user_id)
     {
         if (is_null($user_id)) {
             throw new \InvalidArgumentException('non-nullable user_id cannot be null');
@@ -293,7 +293,7 @@ final class TeamMember implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets created_at
      */
-    public function setCreatedAt(string|null $created_at = null)
+    public function setCreatedAt($created_at)
     {
         if (is_null($created_at)) {
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
@@ -316,7 +316,7 @@ final class TeamMember implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt(string|null $updated_at = null)
+    public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');

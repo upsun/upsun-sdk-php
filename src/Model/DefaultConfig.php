@@ -239,7 +239,7 @@ final class DefaultConfig implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets manual_count
      */
-    public function setManualCount(string|null $manual_count = null)
+    public function setManualCount($manual_count)
     {
         if (is_null($manual_count)) {
             throw new \InvalidArgumentException('non-nullable manual_count cannot be null');
@@ -262,7 +262,7 @@ final class DefaultConfig implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets schedule
      */
-    public function setSchedule(string|null $schedule = null)
+    public function setSchedule($schedule)
     {
         if (is_null($schedule)) {
             throw new \InvalidArgumentException('non-nullable schedule cannot be null');

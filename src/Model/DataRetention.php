@@ -229,7 +229,7 @@ final class DataRetention implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets enabled
      */
-    public function setEnabled(string|null $enabled = null)
+    public function setEnabled($enabled)
     {
         if (is_null($enabled)) {
             throw new \InvalidArgumentException('non-nullable enabled cannot be null');

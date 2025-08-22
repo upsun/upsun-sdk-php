@@ -270,7 +270,7 @@ final class GrantUserProjectAccessRequestInner implements ModelInterface, ArrayA
     /**
      * Sets project_id
      */
-    public function setProjectId(string|null $project_id = null)
+    public function setProjectId($project_id)
     {
         if (is_null($project_id)) {
             throw new \InvalidArgumentException('non-nullable project_id cannot be null');
@@ -293,7 +293,7 @@ final class GrantUserProjectAccessRequestInner implements ModelInterface, ArrayA
     /**
      * Sets permissions
      */
-    public function setPermissions(string|null $permissions = null)
+    public function setPermissions($permissions)
     {
         if (is_null($permissions)) {
             throw new \InvalidArgumentException('non-nullable permissions cannot be null');

@@ -229,7 +229,7 @@ final class ImagesValueValue implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets available
      */
-    public function setAvailable(string|null $available = null)
+    public function setAvailable($available)
     {
         if (is_null($available)) {
             throw new \InvalidArgumentException('non-nullable available cannot be null');

@@ -262,7 +262,7 @@ final class UpdateTicketRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets status
      */
-    public function setStatus(string|null $status = null)
+    public function setStatus($status)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
@@ -295,7 +295,7 @@ final class UpdateTicketRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets collaborator_ids
      */
-    public function setCollaboratorIds(string|null $collaborator_ids = null)
+    public function setCollaboratorIds($collaborator_ids)
     {
         if (is_null($collaborator_ids)) {
             throw new \InvalidArgumentException('non-nullable collaborator_ids cannot be null');
@@ -318,7 +318,7 @@ final class UpdateTicketRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets collaborators_replace
      */
-    public function setCollaboratorsReplace(string|null $collaborators_replace = null)
+    public function setCollaboratorsReplace($collaborators_replace)
     {
         if (is_null($collaborators_replace)) {
             throw new \InvalidArgumentException('non-nullable collaborators_replace cannot be null');

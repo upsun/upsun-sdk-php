@@ -121,7 +121,7 @@ final class ProjectApi
      * @throws InvalidArgumentException
      */
     public function actionProjectsClearBuildCache(
-        $project_id
+        string $project_id
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->actionProjectsClearBuildCacheWithHttpInfo($project_id);
         return $response;
@@ -131,7 +131,7 @@ final class ProjectApi
      * Clear project build cache
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function actionProjectsClearBuildCacheWithHttpInfo(
         string $project_id
@@ -362,7 +362,7 @@ final class ProjectApi
      * @throws InvalidArgumentException
      */
     public function deleteProjects(
-        $project_id
+        string $project_id
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsWithHttpInfo($project_id);
         return $response;
@@ -372,7 +372,7 @@ final class ProjectApi
      * Delete a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsWithHttpInfo(
         string $project_id
@@ -603,7 +603,7 @@ final class ProjectApi
      * @throws InvalidArgumentException
      */
     public function getProjects(
-        $project_id
+        string $project_id
     ): \Upsun\Model\Project {
         list($response) = $this->getProjectsWithHttpInfo($project_id);
         return $response;
@@ -613,7 +613,7 @@ final class ProjectApi
      * Get a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsWithHttpInfo(
         string $project_id
@@ -844,7 +844,7 @@ final class ProjectApi
      * @throws InvalidArgumentException
      */
     public function getProjectsCapabilities(
-        $project_id
+        string $project_id
     ): \Upsun\Model\ProjectCapabilities {
         list($response) = $this->getProjectsCapabilitiesWithHttpInfo($project_id);
         return $response;
@@ -854,7 +854,7 @@ final class ProjectApi
      * Get a project&#39;s capabilities
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsCapabilitiesWithHttpInfo(
         string $project_id
@@ -1085,8 +1085,8 @@ final class ProjectApi
      * @throws InvalidArgumentException
      */
     public function updateProjects(
-        $project_id,
-        $project_patch
+        string $project_id,
+        \Upsun\Model\ProjectPatch $project_patch
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsWithHttpInfo($project_id, $project_patch);
         return $response;
@@ -1096,7 +1096,7 @@ final class ProjectApi
      * Update a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsWithHttpInfo(
         string $project_id,

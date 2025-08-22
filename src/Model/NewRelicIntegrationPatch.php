@@ -263,7 +263,7 @@ final class NewRelicIntegrationPatch implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -286,7 +286,7 @@ final class NewRelicIntegrationPatch implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets extra
      */
-    public function setExtra(string|null $extra = null)
+    public function setExtra($extra)
     {
         if (is_null($extra)) {
             throw new \InvalidArgumentException('non-nullable extra cannot be null');
@@ -309,7 +309,7 @@ final class NewRelicIntegrationPatch implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets url
      */
-    public function setUrl(string|null $url = null)
+    public function setUrl($url)
     {
         if (is_null($url)) {
             throw new \InvalidArgumentException('non-nullable url cannot be null');
@@ -332,7 +332,7 @@ final class NewRelicIntegrationPatch implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets license_key
      */
-    public function setLicenseKey(string|null $license_key = null)
+    public function setLicenseKey($license_key)
     {
         if (is_null($license_key)) {
             throw new \InvalidArgumentException('non-nullable license_key cannot be null');
@@ -355,7 +355,7 @@ final class NewRelicIntegrationPatch implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets tls_verify
      */
-    public function setTlsVerify(string|null $tls_verify = null)
+    public function setTlsVerify($tls_verify)
     {
         if (is_null($tls_verify)) {
             throw new \InvalidArgumentException('non-nullable tls_verify cannot be null');

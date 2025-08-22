@@ -269,7 +269,7 @@ final class EnvironmentInitializeInput implements ModelInterface, ArrayAccess, \
     /**
      * Sets profile
      */
-    public function setProfile(string|null $profile = null)
+    public function setProfile($profile)
     {
         if (is_null($profile)) {
             throw new \InvalidArgumentException('non-nullable profile cannot be null');
@@ -292,7 +292,7 @@ final class EnvironmentInitializeInput implements ModelInterface, ArrayAccess, \
     /**
      * Sets repository
      */
-    public function setRepository(string|null $repository = null)
+    public function setRepository($repository)
     {
         if (is_null($repository)) {
             throw new \InvalidArgumentException('non-nullable repository cannot be null');
@@ -315,7 +315,7 @@ final class EnvironmentInitializeInput implements ModelInterface, ArrayAccess, \
     /**
      * Sets config
      */
-    public function setConfig(string|null $config = null)
+    public function setConfig($config)
     {
         if (is_null($config)) {
             array_push($this->openAPINullablesSetToNull, 'config');
@@ -345,7 +345,7 @@ final class EnvironmentInitializeInput implements ModelInterface, ArrayAccess, \
     /**
      * Sets files
      */
-    public function setFiles(string|null $files = null)
+    public function setFiles($files)
     {
         if (is_null($files)) {
             throw new \InvalidArgumentException('non-nullable files cannot be null');
@@ -368,7 +368,7 @@ final class EnvironmentInitializeInput implements ModelInterface, ArrayAccess, \
     /**
      * Sets resources
      */
-    public function setResources(string|null $resources = null)
+    public function setResources($resources)
     {
         if (is_null($resources)) {
             array_push($this->openAPINullablesSetToNull, 'resources');

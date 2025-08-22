@@ -239,7 +239,7 @@ final class TheBuildConfigurationOfTheApplication implements ModelInterface, Arr
     /**
      * Sets flavor
      */
-    public function setFlavor(string|null $flavor = null)
+    public function setFlavor($flavor)
     {
         if (is_null($flavor)) {
             array_push($this->openAPINullablesSetToNull, 'flavor');
@@ -269,7 +269,7 @@ final class TheBuildConfigurationOfTheApplication implements ModelInterface, Arr
     /**
      * Sets caches
      */
-    public function setCaches(string|null $caches = null)
+    public function setCaches($caches)
     {
         if (is_null($caches)) {
             throw new \InvalidArgumentException('non-nullable caches cannot be null');

@@ -121,9 +121,9 @@ final class EnvironmentActivityApi
      * @throws InvalidArgumentException
      */
     public function actionProjectsEnvironmentsActivitiesCancel(
-        $project_id,
-        $environment_id,
-        $activity_id
+        string $project_id,
+        string $environment_id,
+        string $activity_id
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->actionProjectsEnvironmentsActivitiesCancelWithHttpInfo($project_id, $environment_id, $activity_id);
         return $response;
@@ -133,7 +133,7 @@ final class EnvironmentActivityApi
      * Cancel an environment activity
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function actionProjectsEnvironmentsActivitiesCancelWithHttpInfo(
         string $project_id,
@@ -400,9 +400,9 @@ final class EnvironmentActivityApi
      * @throws InvalidArgumentException
      */
     public function getProjectsEnvironmentsActivities(
-        $project_id,
-        $environment_id,
-        $activity_id
+        string $project_id,
+        string $environment_id,
+        string $activity_id
     ): \Upsun\Model\Activity {
         list($response) = $this->getProjectsEnvironmentsActivitiesWithHttpInfo($project_id, $environment_id, $activity_id);
         return $response;
@@ -412,7 +412,7 @@ final class EnvironmentActivityApi
      * Get an environment activity log entry
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsActivitiesWithHttpInfo(
         string $project_id,
@@ -677,11 +677,13 @@ final class EnvironmentActivityApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
+     *
+     * @return \Upsun\Model\Activity[]
      */
     public function listProjectsEnvironmentsActivities(
-        $project_id,
-        $environment_id
-    ): \Upsun\Model\Activity[] {
+        string $project_id,
+        string $environment_id
+    ): array {
         list($response) = $this->listProjectsEnvironmentsActivitiesWithHttpInfo($project_id, $environment_id);
         return $response;
     }
@@ -690,7 +692,7 @@ final class EnvironmentActivityApi
      * Get environment activity log
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsActivitiesWithHttpInfo(
         string $project_id,

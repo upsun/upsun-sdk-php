@@ -250,7 +250,7 @@ final class DomainCreateInput implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -273,7 +273,7 @@ final class DomainCreateInput implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets attributes
      */
-    public function setAttributes(string|null $attributes = null)
+    public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
             throw new \InvalidArgumentException('non-nullable attributes cannot be null');
@@ -296,7 +296,7 @@ final class DomainCreateInput implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets is_default
      */
-    public function setIsDefault(string|null $is_default = null)
+    public function setIsDefault($is_default)
     {
         if (is_null($is_default)) {
             throw new \InvalidArgumentException('non-nullable is_default cannot be null');
@@ -319,7 +319,7 @@ final class DomainCreateInput implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets replacement_for
      */
-    public function setReplacementFor(string|null $replacement_for = null)
+    public function setReplacementFor($replacement_for)
     {
         if (is_null($replacement_for)) {
             throw new \InvalidArgumentException('non-nullable replacement_for cannot be null');

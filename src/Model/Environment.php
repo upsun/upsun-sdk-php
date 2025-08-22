@@ -591,7 +591,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets created_at
      */
-    public function setCreatedAt(string|null $created_at = null)
+    public function setCreatedAt($created_at)
     {
         if (is_null($created_at)) {
             array_push($this->openAPINullablesSetToNull, 'created_at');
@@ -621,7 +621,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt(string|null $updated_at = null)
+    public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
             array_push($this->openAPINullablesSetToNull, 'updated_at');
@@ -651,7 +651,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets name
      */
-    public function setName(string|null $name = null)
+    public function setName($name)
     {
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -674,7 +674,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets machine_name
      */
-    public function setMachineName(string|null $machine_name = null)
+    public function setMachineName($machine_name)
     {
         if (is_null($machine_name)) {
             throw new \InvalidArgumentException('non-nullable machine_name cannot be null');
@@ -697,7 +697,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets title
      */
-    public function setTitle(string|null $title = null)
+    public function setTitle($title)
     {
         if (is_null($title)) {
             throw new \InvalidArgumentException('non-nullable title cannot be null');
@@ -720,7 +720,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets attributes
      */
-    public function setAttributes(string|null $attributes = null)
+    public function setAttributes($attributes)
     {
         if (is_null($attributes)) {
             throw new \InvalidArgumentException('non-nullable attributes cannot be null');
@@ -743,7 +743,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets type
      */
-    public function setType(string|null $type = null)
+    public function setType($type)
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
@@ -776,7 +776,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets parent
      */
-    public function setParent(string|null $parent = null)
+    public function setParent($parent)
     {
         if (is_null($parent)) {
             array_push($this->openAPINullablesSetToNull, 'parent');
@@ -806,7 +806,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets default_domain
      */
-    public function setDefaultDomain(string|null $default_domain = null)
+    public function setDefaultDomain($default_domain)
     {
         if (is_null($default_domain)) {
             array_push($this->openAPINullablesSetToNull, 'default_domain');
@@ -836,7 +836,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets has_domains
      */
-    public function setHasDomains(string|null $has_domains = null)
+    public function setHasDomains($has_domains)
     {
         if (is_null($has_domains)) {
             throw new \InvalidArgumentException('non-nullable has_domains cannot be null');
@@ -859,7 +859,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets clone_parent_on_create
      */
-    public function setCloneParentOnCreate(string|null $clone_parent_on_create = null)
+    public function setCloneParentOnCreate($clone_parent_on_create)
     {
         if (is_null($clone_parent_on_create)) {
             throw new \InvalidArgumentException('non-nullable clone_parent_on_create cannot be null');
@@ -882,7 +882,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets deployment_target
      */
-    public function setDeploymentTarget(string|null $deployment_target = null)
+    public function setDeploymentTarget($deployment_target)
     {
         if (is_null($deployment_target)) {
             array_push($this->openAPINullablesSetToNull, 'deployment_target');
@@ -912,7 +912,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets is_pr
      */
-    public function setIsPr(string|null $is_pr = null)
+    public function setIsPr($is_pr)
     {
         if (is_null($is_pr)) {
             throw new \InvalidArgumentException('non-nullable is_pr cannot be null');
@@ -935,7 +935,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets has_remote
      */
-    public function setHasRemote(string|null $has_remote = null)
+    public function setHasRemote($has_remote)
     {
         if (is_null($has_remote)) {
             throw new \InvalidArgumentException('non-nullable has_remote cannot be null');
@@ -958,7 +958,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets status
      */
-    public function setStatus(string|null $status = null)
+    public function setStatus($status)
     {
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
@@ -991,7 +991,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets http_access
      */
-    public function setHttpAccess(string|null $http_access = null)
+    public function setHttpAccess($http_access)
     {
         if (is_null($http_access)) {
             throw new \InvalidArgumentException('non-nullable http_access cannot be null');
@@ -1014,7 +1014,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets enable_smtp
      */
-    public function setEnableSmtp(string|null $enable_smtp = null)
+    public function setEnableSmtp($enable_smtp)
     {
         if (is_null($enable_smtp)) {
             throw new \InvalidArgumentException('non-nullable enable_smtp cannot be null');
@@ -1037,7 +1037,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets restrict_robots
      */
-    public function setRestrictRobots(string|null $restrict_robots = null)
+    public function setRestrictRobots($restrict_robots)
     {
         if (is_null($restrict_robots)) {
             throw new \InvalidArgumentException('non-nullable restrict_robots cannot be null');
@@ -1060,7 +1060,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets edge_hostname
      */
-    public function setEdgeHostname(string|null $edge_hostname = null)
+    public function setEdgeHostname($edge_hostname)
     {
         if (is_null($edge_hostname)) {
             throw new \InvalidArgumentException('non-nullable edge_hostname cannot be null');
@@ -1083,7 +1083,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets deployment_state
      */
-    public function setDeploymentState(string|null $deployment_state = null)
+    public function setDeploymentState($deployment_state)
     {
         if (is_null($deployment_state)) {
             array_push($this->openAPINullablesSetToNull, 'deployment_state');
@@ -1113,7 +1113,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets resources_overrides
      */
-    public function setResourcesOverrides(string|null $resources_overrides = null)
+    public function setResourcesOverrides($resources_overrides)
     {
         if (is_null($resources_overrides)) {
             throw new \InvalidArgumentException('non-nullable resources_overrides cannot be null');
@@ -1136,7 +1136,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets max_instance_count
      */
-    public function setMaxInstanceCount(string|null $max_instance_count = null)
+    public function setMaxInstanceCount($max_instance_count)
     {
         if (is_null($max_instance_count)) {
             array_push($this->openAPINullablesSetToNull, 'max_instance_count');
@@ -1166,7 +1166,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets last_active_at
      */
-    public function setLastActiveAt(string|null $last_active_at = null)
+    public function setLastActiveAt($last_active_at)
     {
         if (is_null($last_active_at)) {
             array_push($this->openAPINullablesSetToNull, 'last_active_at');
@@ -1196,7 +1196,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets last_backup_at
      */
-    public function setLastBackupAt(string|null $last_backup_at = null)
+    public function setLastBackupAt($last_backup_at)
     {
         if (is_null($last_backup_at)) {
             array_push($this->openAPINullablesSetToNull, 'last_backup_at');
@@ -1226,7 +1226,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets project
      */
-    public function setProject(string|null $project = null)
+    public function setProject($project)
     {
         if (is_null($project)) {
             throw new \InvalidArgumentException('non-nullable project cannot be null');
@@ -1249,7 +1249,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets is_main
      */
-    public function setIsMain(string|null $is_main = null)
+    public function setIsMain($is_main)
     {
         if (is_null($is_main)) {
             throw new \InvalidArgumentException('non-nullable is_main cannot be null');
@@ -1272,7 +1272,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets is_dirty
      */
-    public function setIsDirty(string|null $is_dirty = null)
+    public function setIsDirty($is_dirty)
     {
         if (is_null($is_dirty)) {
             throw new \InvalidArgumentException('non-nullable is_dirty cannot be null');
@@ -1295,7 +1295,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets has_code
      */
-    public function setHasCode(string|null $has_code = null)
+    public function setHasCode($has_code)
     {
         if (is_null($has_code)) {
             throw new \InvalidArgumentException('non-nullable has_code cannot be null');
@@ -1318,7 +1318,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets head_commit
      */
-    public function setHeadCommit(string|null $head_commit = null)
+    public function setHeadCommit($head_commit)
     {
         if (is_null($head_commit)) {
             array_push($this->openAPINullablesSetToNull, 'head_commit');
@@ -1348,7 +1348,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets merge_info
      */
-    public function setMergeInfo(string|null $merge_info = null)
+    public function setMergeInfo($merge_info)
     {
         if (is_null($merge_info)) {
             throw new \InvalidArgumentException('non-nullable merge_info cannot be null');
@@ -1371,7 +1371,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets has_deployment
      */
-    public function setHasDeployment(string|null $has_deployment = null)
+    public function setHasDeployment($has_deployment)
     {
         if (is_null($has_deployment)) {
             throw new \InvalidArgumentException('non-nullable has_deployment cannot be null');
@@ -1394,7 +1394,7 @@ final class Environment implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets supports_restrict_robots
      */
-    public function setSupportsRestrictRobots(string|null $supports_restrict_robots = null)
+    public function setSupportsRestrictRobots($supports_restrict_robots)
     {
         if (is_null($supports_restrict_robots)) {
             throw new \InvalidArgumentException('non-nullable supports_restrict_robots cannot be null');

@@ -329,7 +329,7 @@ final class Certificate implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets created_at
      */
-    public function setCreatedAt(string|null $created_at = null)
+    public function setCreatedAt($created_at)
     {
         if (is_null($created_at)) {
             array_push($this->openAPINullablesSetToNull, 'created_at');
@@ -359,7 +359,7 @@ final class Certificate implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets updated_at
      */
-    public function setUpdatedAt(string|null $updated_at = null)
+    public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
             array_push($this->openAPINullablesSetToNull, 'updated_at');
@@ -389,7 +389,7 @@ final class Certificate implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets certificate
      */
-    public function setCertificate(string|null $certificate = null)
+    public function setCertificate($certificate)
     {
         if (is_null($certificate)) {
             throw new \InvalidArgumentException('non-nullable certificate cannot be null');
@@ -412,7 +412,7 @@ final class Certificate implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets chain
      */
-    public function setChain(string|null $chain = null)
+    public function setChain($chain)
     {
         if (is_null($chain)) {
             throw new \InvalidArgumentException('non-nullable chain cannot be null');
@@ -435,7 +435,7 @@ final class Certificate implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets is_provisioned
      */
-    public function setIsProvisioned(string|null $is_provisioned = null)
+    public function setIsProvisioned($is_provisioned)
     {
         if (is_null($is_provisioned)) {
             throw new \InvalidArgumentException('non-nullable is_provisioned cannot be null');
@@ -458,7 +458,7 @@ final class Certificate implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets is_invalid
      */
-    public function setIsInvalid(string|null $is_invalid = null)
+    public function setIsInvalid($is_invalid)
     {
         if (is_null($is_invalid)) {
             throw new \InvalidArgumentException('non-nullable is_invalid cannot be null');
@@ -481,7 +481,7 @@ final class Certificate implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets is_root
      */
-    public function setIsRoot(string|null $is_root = null)
+    public function setIsRoot($is_root)
     {
         if (is_null($is_root)) {
             throw new \InvalidArgumentException('non-nullable is_root cannot be null');
@@ -504,7 +504,7 @@ final class Certificate implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets domains
      */
-    public function setDomains(string|null $domains = null)
+    public function setDomains($domains)
     {
         if (is_null($domains)) {
             throw new \InvalidArgumentException('non-nullable domains cannot be null');
@@ -527,7 +527,7 @@ final class Certificate implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets auth_type
      */
-    public function setAuthType(string|null $auth_type = null)
+    public function setAuthType($auth_type)
     {
         if (is_null($auth_type)) {
             throw new \InvalidArgumentException('non-nullable auth_type cannot be null');
@@ -550,7 +550,7 @@ final class Certificate implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets issuer
      */
-    public function setIssuer(string|null $issuer = null)
+    public function setIssuer($issuer)
     {
         if (is_null($issuer)) {
             throw new \InvalidArgumentException('non-nullable issuer cannot be null');
@@ -573,7 +573,7 @@ final class Certificate implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets expires_at
      */
-    public function setExpiresAt(string|null $expires_at = null)
+    public function setExpiresAt($expires_at)
     {
         if (is_null($expires_at)) {
             throw new \InvalidArgumentException('non-nullable expires_at cannot be null');
