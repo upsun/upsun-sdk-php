@@ -118,7 +118,7 @@ final class ProjectApi
      * Clear project build cache
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function actionProjectsClearBuildCache(
         string $project_id
@@ -359,7 +359,7 @@ final class ProjectApi
      * Delete a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteProjects(
         string $project_id
@@ -600,7 +600,7 @@ final class ProjectApi
      * Get a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjects(
         string $project_id
@@ -841,7 +841,7 @@ final class ProjectApi
      * Get a project&#39;s capabilities
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsCapabilities(
         string $project_id
@@ -1082,7 +1082,7 @@ final class ProjectApi
      * Update a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateProjects(
         string $project_id,

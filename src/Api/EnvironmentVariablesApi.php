@@ -118,7 +118,7 @@ final class EnvironmentVariablesApi
      * Add an environment variable
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createProjectsEnvironmentsVariables(
         string $project_id,
@@ -395,7 +395,7 @@ final class EnvironmentVariablesApi
      * Delete an environment variable
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsEnvironmentsVariables(
         string $project_id,
@@ -674,7 +674,7 @@ final class EnvironmentVariablesApi
      * Get an environment variable
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsVariables(
         string $project_id,
@@ -953,7 +953,7 @@ final class EnvironmentVariablesApi
      * Get list of environment variables
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\EnvironmentVariable[]
      */
@@ -1215,7 +1215,7 @@ final class EnvironmentVariablesApi
      * Update an environment variable
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsEnvironmentsVariables(
         string $project_id,

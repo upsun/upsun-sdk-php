@@ -118,7 +118,7 @@ final class OrganizationMembersApi
      * Create organization member
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createOrgMember(
         string $organization_id,
@@ -418,7 +418,7 @@ final class OrganizationMembersApi
      * Delete organization member
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteOrgMember(
         string $organization_id,
@@ -648,7 +648,7 @@ final class OrganizationMembersApi
      * Get organization member
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getOrgMember(
         string $organization_id,
@@ -936,7 +936,7 @@ final class OrganizationMembersApi
      * List organization members
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listOrgMembers(
         string $organization_id,
@@ -1306,7 +1306,7 @@ final class OrganizationMembersApi
      * Update organization member
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateOrgMember(
         string $organization_id,

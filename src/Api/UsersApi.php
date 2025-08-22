@@ -118,7 +118,7 @@ final class UsersApi
      * Get the current user
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getCurrentUser(
         
@@ -359,7 +359,7 @@ final class UsersApi
      * Get current logged-in user info
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getCurrentUserDeprecated(
         
@@ -586,7 +586,7 @@ final class UsersApi
      * Check if phone verification is required
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getCurrentUserVerificationStatus(
         
@@ -813,7 +813,7 @@ final class UsersApi
      * Check if verification is required
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getCurrentUserVerificationStatusFull(
         
@@ -1040,7 +1040,7 @@ final class UsersApi
      * Get a user
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getUser(
         string $user_id
@@ -1295,7 +1295,7 @@ final class UsersApi
      * Get a user by email
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getUserByEmailAddress(
         string $email
@@ -1550,7 +1550,7 @@ final class UsersApi
      * Get a user by username
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getUserByUsername(
         string $username
@@ -1805,7 +1805,7 @@ final class UsersApi
      * Reset email address
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function resetEmailAddress(
         string $user_id,
@@ -2035,7 +2035,7 @@ final class UsersApi
      * Reset user password
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function resetPassword(
         string $user_id
@@ -2238,7 +2238,7 @@ final class UsersApi
      * Update a user
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateUser(
         string $user_id,

@@ -118,7 +118,7 @@ final class DeploymentTargetApi
      * Create a project deployment target
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createProjectsDeployments(
         string $project_id,
@@ -376,7 +376,7 @@ final class DeploymentTargetApi
      * Delete a single project deployment target
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsDeployments(
         string $project_id,
@@ -636,7 +636,7 @@ final class DeploymentTargetApi
      * Get a single project deployment target
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsDeployments(
         string $project_id,
@@ -896,7 +896,7 @@ final class DeploymentTargetApi
      * Get project deployment target info
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\DeploymentTarget[]
      */
@@ -1139,7 +1139,7 @@ final class DeploymentTargetApi
      * Update a project deployment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsDeployments(
         string $project_id,

@@ -118,7 +118,7 @@ final class SSHKeysApi
      * Add a new public SSH key to a user
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createSshKey(
         \Upsun\Model\CreateSshKeyRequest $create_ssh_key_request = null
@@ -351,7 +351,7 @@ final class SSHKeysApi
      * Delete an SSH key
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteSshKey(
         int $key_id
@@ -546,7 +546,7 @@ final class SSHKeysApi
      * Get an SSH key
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getSshKey(
         int $key_id

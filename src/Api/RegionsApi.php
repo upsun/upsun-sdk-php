@@ -118,7 +118,7 @@ final class RegionsApi
      * Get region
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getRegion(
         string $region_id
@@ -387,7 +387,7 @@ final class RegionsApi
      * List regions
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listRegions(
         \Upsun\Model\StringFilter $filter_available = null,
@@ -762,8 +762,6 @@ final class RegionsApi
         $operationHost = $this->config->getHost();
 
         $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-
-        var_dump($uri, $headers, $httpBody);
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }

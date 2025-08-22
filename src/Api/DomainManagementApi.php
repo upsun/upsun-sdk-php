@@ -118,7 +118,7 @@ final class DomainManagementApi
      * Add a project domain
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createProjectsDomains(
         string $project_id,
@@ -376,7 +376,7 @@ final class DomainManagementApi
      * Add an environment domain
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createProjectsEnvironmentsDomains(
         string $project_id,
@@ -653,7 +653,7 @@ final class DomainManagementApi
      * Delete a project domain
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsDomains(
         string $project_id,
@@ -913,7 +913,7 @@ final class DomainManagementApi
      * Delete an environment domain
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsEnvironmentsDomains(
         string $project_id,
@@ -1192,7 +1192,7 @@ final class DomainManagementApi
      * Get a project domain
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsDomains(
         string $project_id,
@@ -1452,7 +1452,7 @@ final class DomainManagementApi
      * Get an environment domain
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsDomains(
         string $project_id,
@@ -1731,7 +1731,7 @@ final class DomainManagementApi
      * Get list of project domains
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\Domain[]
      */
@@ -1974,7 +1974,7 @@ final class DomainManagementApi
      * Get a list of environment domains
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\Domain[]
      */
@@ -2236,7 +2236,7 @@ final class DomainManagementApi
      * Update a project domain
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsDomains(
         string $project_id,
@@ -2513,7 +2513,7 @@ final class DomainManagementApi
      * Update an environment domain
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsEnvironmentsDomains(
         string $project_id,

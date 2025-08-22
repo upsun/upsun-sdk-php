@@ -118,7 +118,7 @@ final class MFAApi
      * Confirm TOTP enrollment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function confirmTotpEnrollment(
         string $user_id,
@@ -412,7 +412,7 @@ final class MFAApi
      * Disable organization MFA enforcement
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function disableOrgMfaEnforcement(
         string $organization_id
@@ -615,7 +615,7 @@ final class MFAApi
      * Enable organization MFA enforcement
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function enableOrgMfaEnforcement(
         string $organization_id
@@ -818,7 +818,7 @@ final class MFAApi
      * Get organization MFA settings
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getOrgMfaEnforcement(
         string $organization_id
@@ -1073,7 +1073,7 @@ final class MFAApi
      * Get information about TOTP enrollment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getTotpEnrollment(
         string $user_id
@@ -1328,7 +1328,7 @@ final class MFAApi
      * Re-create recovery codes
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function recreateRecoveryCodes(
         string $user_id
@@ -1583,7 +1583,7 @@ final class MFAApi
      * Send MFA reminders to organization members
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return array<string,\Upsun\Model\SendOrgMfaReminders200ResponseValue>
      */
@@ -1865,7 +1865,7 @@ final class MFAApi
      * Withdraw TOTP enrollment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function withdrawTotpEnrollment(
         string $user_id

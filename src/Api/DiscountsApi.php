@@ -118,7 +118,7 @@ final class DiscountsApi
      * Get an organization discount
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getDiscount(
         string $id
@@ -359,7 +359,7 @@ final class DiscountsApi
      * Get the value of the First Project Incentive discount
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getTypeAllowance(
         
@@ -586,7 +586,7 @@ final class DiscountsApi
      * List organization discounts
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listOrgDiscounts(
         string $organization_id

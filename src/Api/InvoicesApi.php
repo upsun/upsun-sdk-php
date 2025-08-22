@@ -118,7 +118,7 @@ final class InvoicesApi
      * Get invoice
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getOrgInvoice(
         string $invoice_id,
@@ -406,7 +406,7 @@ final class InvoicesApi
      * List invoices
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listOrgInvoices(
         string $organization_id,

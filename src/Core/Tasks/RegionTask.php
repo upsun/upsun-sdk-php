@@ -48,9 +48,9 @@ class RegionTask extends TaskBase
     ): ListRegions200Response|Error {
         $this->refreshToken();
         return $this->api->listRegions(
-            new StringFilter($filter_available),
-            new StringFilter($filter_private),
-            new StringFilter($filter_zone),
+            $filter_available !== null ? new StringFilter($filter_available) : null,
+            $filter_private !== null ? new StringFilter($filter_private) : null,
+            $filter_zone !== null ? new StringFilter($filter_zone) : null,
             $pageSize,
             $pageBefore,
             $pageAfter,

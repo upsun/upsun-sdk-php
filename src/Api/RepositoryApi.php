@@ -118,7 +118,7 @@ final class RepositoryApi
      * Get a blob object
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsGitBlobs(
         string $project_id,
@@ -378,7 +378,7 @@ final class RepositoryApi
      * Get a commit object
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsGitCommits(
         string $project_id,
@@ -638,7 +638,7 @@ final class RepositoryApi
      * Get a ref object
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsGitRefs(
         string $project_id,
@@ -898,7 +898,7 @@ final class RepositoryApi
      * Get a tree object
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsGitTrees(
         string $project_id,
@@ -1158,7 +1158,7 @@ final class RepositoryApi
      * Get list of repository refs
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\Ref[]
      */

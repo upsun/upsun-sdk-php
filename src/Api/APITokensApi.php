@@ -118,7 +118,7 @@ final class APITokensApi
      * Create an API token
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createApiToken(
         string $user_id,
@@ -412,7 +412,7 @@ final class APITokensApi
      * Delete an API token
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteApiToken(
         string $user_id,
@@ -634,7 +634,7 @@ final class APITokensApi
      * Get an API token
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getApiToken(
         string $user_id,
@@ -908,7 +908,7 @@ final class APITokensApi
      * List a user&#39;s API tokens
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\APIToken[]
      */

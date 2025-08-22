@@ -118,7 +118,7 @@ final class RoutingApi
      * Create a new route
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createProjectsEnvironmentsRoutes(
         string $project_id,
@@ -395,7 +395,7 @@ final class RoutingApi
      * Delete a route
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsEnvironmentsRoutes(
         string $project_id,
@@ -674,7 +674,7 @@ final class RoutingApi
      * Get a route&#39;s info
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsRoutes(
         string $project_id,
@@ -953,7 +953,7 @@ final class RoutingApi
      * Get list of routes
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\Route[]
      */
@@ -1215,7 +1215,7 @@ final class RoutingApi
      * Update a route
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsEnvironmentsRoutes(
         string $project_id,

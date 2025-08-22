@@ -118,7 +118,7 @@ final class UserAccessApi
      * Get user access for a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectUserAccess(
         string $project_id,
@@ -406,7 +406,7 @@ final class UserAccessApi
      * Get project access for a user
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getUserProjectAccess(
         string $user_id,
@@ -694,7 +694,7 @@ final class UserAccessApi
      * Grant user access to a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function grantProjectUserAccess(
         string $project_id,
@@ -922,7 +922,7 @@ final class UserAccessApi
      * Grant project access to a user
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function grantUserProjectAccess(
         string $user_id,
@@ -1150,7 +1150,7 @@ final class UserAccessApi
      * List user access for a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listProjectUserAccess(
         string $project_id,
@@ -1490,7 +1490,7 @@ final class UserAccessApi
      * List project access for a user
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listUserProjectAccess(
         string $user_id,
@@ -1846,7 +1846,7 @@ final class UserAccessApi
      * Remove user access for a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function removeProjectUserAccess(
         string $project_id,
@@ -2084,7 +2084,7 @@ final class UserAccessApi
      * Remove project access for a user
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function removeUserProjectAccess(
         string $user_id,
@@ -2322,7 +2322,7 @@ final class UserAccessApi
      * Update user access for a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateProjectUserAccess(
         string $project_id,
@@ -2571,7 +2571,7 @@ final class UserAccessApi
      * Update project access for a user
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateUserProjectAccess(
         string $user_id,

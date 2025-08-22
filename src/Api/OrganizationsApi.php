@@ -118,7 +118,7 @@ final class OrganizationsApi
      * Create organization
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createOrg(
         \Upsun\Model\CreateOrgRequest $create_org_request
@@ -385,7 +385,7 @@ final class OrganizationsApi
      * Delete organization
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteOrg(
         string $organization_id
@@ -604,7 +604,7 @@ final class OrganizationsApi
      * Get organization
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getOrg(
         string $organization_id
@@ -873,7 +873,7 @@ final class OrganizationsApi
      * List organizations
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listOrgs(
         \Upsun\Model\StringFilter $filter_id = null,
@@ -1322,7 +1322,7 @@ final class OrganizationsApi
      * User organizations
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listUserOrgs(
         string $user_id,
@@ -1726,7 +1726,7 @@ final class OrganizationsApi
      * Update organization
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateOrg(
         string $organization_id,

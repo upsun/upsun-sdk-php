@@ -118,7 +118,7 @@ final class RuntimeOperationsApi
      * Execute a runtime operation
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function runOperation(
         string $project_id,

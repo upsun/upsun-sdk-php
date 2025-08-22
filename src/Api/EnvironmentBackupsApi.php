@@ -118,7 +118,7 @@ final class EnvironmentBackupsApi
      * Create snapshot of environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function backupEnvironment(
         string $project_id,
@@ -395,7 +395,7 @@ final class EnvironmentBackupsApi
      * Delete an environment snapshot
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsEnvironmentsBackups(
         string $project_id,
@@ -674,7 +674,7 @@ final class EnvironmentBackupsApi
      * Get an environment snapshot&#39;s info
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsBackups(
         string $project_id,
@@ -953,7 +953,7 @@ final class EnvironmentBackupsApi
      * Get an environment&#39;s snapshot list
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\Backup[]
      */
@@ -1215,7 +1215,7 @@ final class EnvironmentBackupsApi
      * Restore an environment snapshot
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function restoreBackup(
         string $project_id,

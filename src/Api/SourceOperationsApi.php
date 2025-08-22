@@ -118,7 +118,7 @@ final class SourceOperationsApi
      * List source operations
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\EnvironmentSourceOperation[]
      */
@@ -380,7 +380,7 @@ final class SourceOperationsApi
      * Trigger a source operation
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function runSourceOperation(
         string $project_id,

@@ -118,7 +118,7 @@ final class GrantsApi
      * List extended access of a user
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listUserExtendedAccess(
         string $user_id,

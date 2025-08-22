@@ -118,7 +118,7 @@ final class TeamsApi
      * Create team
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createTeam(
         \Upsun\Model\CreateTeamRequest $create_team_request
@@ -385,7 +385,7 @@ final class TeamsApi
      * Create team member
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createTeamMember(
         string $team_id,
@@ -685,7 +685,7 @@ final class TeamsApi
      * Delete team
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteTeam(
         string $team_id
@@ -896,7 +896,7 @@ final class TeamsApi
      * Delete team member
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteTeamMember(
         string $team_id,
@@ -1126,7 +1126,7 @@ final class TeamsApi
      * Get team
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getTeam(
         string $team_id
@@ -1395,7 +1395,7 @@ final class TeamsApi
      * Get team member
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getTeamMember(
         string $team_id,
@@ -1683,7 +1683,7 @@ final class TeamsApi
      * List team members
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listTeamMembers(
         string $team_id,
@@ -2000,7 +2000,7 @@ final class TeamsApi
      * List teams
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listTeams(
         \Upsun\Model\StringFilter $filter_organization_id = null,
@@ -2355,7 +2355,7 @@ final class TeamsApi
      * User teams
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listUserTeams(
         string $user_id,
@@ -2727,7 +2727,7 @@ final class TeamsApi
      * Update team
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateTeam(
         string $team_id,

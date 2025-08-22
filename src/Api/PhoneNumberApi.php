@@ -118,7 +118,7 @@ final class PhoneNumberApi
      * Confirm phone number
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function confirmPhoneNumber(
         string $sid,
@@ -367,7 +367,7 @@ final class PhoneNumberApi
      * Verify phone number
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function verifyPhoneNumber(
         string $user_id,

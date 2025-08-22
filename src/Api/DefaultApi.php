@@ -118,7 +118,7 @@ final class DefaultApi
      * List support tickets
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listTickets(
         int $filter_ticket_id = null,

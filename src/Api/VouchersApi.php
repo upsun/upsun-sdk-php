@@ -118,7 +118,7 @@ final class VouchersApi
      * Apply voucher
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function applyOrgVoucher(
         string $organization_id,
@@ -346,7 +346,7 @@ final class VouchersApi
      * List vouchers
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listOrgVouchers(
         string $organization_id

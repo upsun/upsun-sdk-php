@@ -118,7 +118,7 @@ final class UserProfilesApi
      * Create a user profile picture
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createProfilePicture(
         string $uuid
@@ -359,7 +359,7 @@ final class UserProfilesApi
      * Delete a user profile picture
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteProfilePicture(
         string $uuid
@@ -554,7 +554,7 @@ final class UserProfilesApi
      * Get a user address
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getAddress(
         string $user_id
@@ -795,7 +795,7 @@ final class UserProfilesApi
      * Get a single user profile
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProfile(
         string $user_id
@@ -1036,7 +1036,7 @@ final class UserProfilesApi
      * List user profiles
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listProfiles(
         
@@ -1263,7 +1263,7 @@ final class UserProfilesApi
      * Update a user address
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateAddress(
         string $user_id,
@@ -1515,7 +1515,7 @@ final class UserProfilesApi
      * Update a user profile
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateProfile(
         string $user_id,

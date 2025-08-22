@@ -118,7 +118,7 @@ final class ProjectSettingsApi
      * Get list of project settings
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsSettings(
         string $project_id
@@ -359,7 +359,7 @@ final class ProjectSettingsApi
      * Update a project setting
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsSettings(
         string $project_id,

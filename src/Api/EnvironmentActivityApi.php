@@ -118,7 +118,7 @@ final class EnvironmentActivityApi
      * Cancel an environment activity
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function actionProjectsEnvironmentsActivitiesCancel(
         string $project_id,
@@ -397,7 +397,7 @@ final class EnvironmentActivityApi
      * Get an environment activity log entry
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsActivities(
         string $project_id,
@@ -676,7 +676,7 @@ final class EnvironmentActivityApi
      * Get environment activity log
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\Activity[]
      */

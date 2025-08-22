@@ -118,7 +118,7 @@ final class ProfilesApi
      * Get address
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getOrgAddress(
         string $organization_id
@@ -387,7 +387,7 @@ final class ProfilesApi
      * Get profile
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getOrgProfile(
         string $organization_id
@@ -656,7 +656,7 @@ final class ProfilesApi
      * Update address
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateOrgAddress(
         string $organization_id,
@@ -950,7 +950,7 @@ final class ProfilesApi
      * Update profile
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateOrgProfile(
         string $organization_id,

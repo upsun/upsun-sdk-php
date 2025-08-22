@@ -118,7 +118,7 @@ final class ReferencesApi
      * List referenced organizations
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return array<string,\Upsun\Model\OrganizationReference>
      */
@@ -414,7 +414,7 @@ final class ReferencesApi
      * List referenced projects
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return array<string,\Upsun\Model\ProjectReference>
      */
@@ -724,7 +724,7 @@ final class ReferencesApi
      * List referenced regions
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return array<string,\Upsun\Model\RegionReference>
      */
@@ -1034,7 +1034,7 @@ final class ReferencesApi
      * List referenced teams
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return array<string,\Upsun\Model\TeamReference>
      */
@@ -1316,7 +1316,7 @@ final class ReferencesApi
      * List referenced users
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return array<string,\Upsun\Model\UserReference>
      */

@@ -118,7 +118,7 @@ final class ThirdPartyIntegrationsApi
      * Integrate project with a third-party service
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createProjectsIntegrations(
         string $project_id,
@@ -376,7 +376,7 @@ final class ThirdPartyIntegrationsApi
      * Delete an existing third-party integration
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsIntegrations(
         string $project_id,
@@ -636,7 +636,7 @@ final class ThirdPartyIntegrationsApi
      * Get information about an existing third-party integration
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsIntegrations(
         string $project_id,
@@ -896,7 +896,7 @@ final class ThirdPartyIntegrationsApi
      * Get list of existing integrations for a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\Integration[]
      */
@@ -1139,7 +1139,7 @@ final class ThirdPartyIntegrationsApi
      * Update an existing third-party integration
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsIntegrations(
         string $project_id,

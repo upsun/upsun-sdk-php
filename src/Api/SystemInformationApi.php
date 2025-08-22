@@ -118,7 +118,7 @@ final class SystemInformationApi
      * Restart the Git server
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function actionProjectsSystemRestart(
         string $project_id
@@ -359,7 +359,7 @@ final class SystemInformationApi
      * Get information about the Git server.
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsSystem(
         string $project_id

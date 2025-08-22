@@ -118,7 +118,7 @@ final class SupportApi
      * Create a new support ticket
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createTicket(
         \Upsun\Model\CreateTicketRequest $create_ticket_request = null
@@ -351,7 +351,7 @@ final class SupportApi
      * List support ticket categories
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\ListTicketCategories200ResponseInner[]
      */
@@ -607,7 +607,7 @@ final class SupportApi
      * List support ticket priorities
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\ListTicketPriorities200ResponseInner[]
      */
@@ -863,7 +863,7 @@ final class SupportApi
      * Update a ticket
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateTicket(
         string $ticket_id,

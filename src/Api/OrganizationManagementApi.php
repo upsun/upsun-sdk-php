@@ -118,7 +118,7 @@ final class OrganizationManagementApi
      * Estimate total spend
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function estimateOrg(
         string $organization_id
@@ -387,7 +387,7 @@ final class OrganizationManagementApi
      * Get billing alert configuration
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getOrgBillingAlertConfig(
         string $organization_id
@@ -656,7 +656,7 @@ final class OrganizationManagementApi
      * Get organization prepayment information
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getOrgPrepaymentInfo(
         string $organization_id
@@ -925,7 +925,7 @@ final class OrganizationManagementApi
      * List organization prepayment transactions
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listOrgPrepaymentTransactions(
         string $organization_id
@@ -1194,7 +1194,7 @@ final class OrganizationManagementApi
      * Update billing alert configuration
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateOrgBillingAlertConfig(
         string $organization_id,

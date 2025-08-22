@@ -118,7 +118,7 @@ final class EnvironmentTypeApi
      * Get environment type links
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getEnvironmentType(
         string $project_id,
@@ -378,7 +378,7 @@ final class EnvironmentTypeApi
      * Get environment types
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\EnvironmentType[]
      */

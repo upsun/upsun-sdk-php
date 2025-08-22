@@ -118,7 +118,7 @@ final class OrganizationProjectsApi
      * Get project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getOrgProject(
         string $organization_id,
@@ -406,7 +406,7 @@ final class OrganizationProjectsApi
      * List projects
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listOrgProjects(
         string $organization_id,

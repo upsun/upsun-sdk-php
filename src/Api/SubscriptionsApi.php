@@ -118,7 +118,7 @@ final class SubscriptionsApi
      * Checks if the user is able to create a new project.
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function canCreateNewOrgSubscription(
         string $organization_id
@@ -387,7 +387,7 @@ final class SubscriptionsApi
      * Create subscription
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createOrgSubscription(
         string $organization_id,
@@ -687,7 +687,7 @@ final class SubscriptionsApi
      * Delete subscription
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteOrgSubscription(
         string $organization_id,
@@ -917,7 +917,7 @@ final class SubscriptionsApi
      * Estimate the price of a new subscription
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function estimateNewOrgSubscription(
         string $organization_id,
@@ -1290,7 +1290,7 @@ final class SubscriptionsApi
      * Estimate the price of a subscription
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function estimateOrgSubscription(
         string $organization_id,
@@ -1650,7 +1650,7 @@ final class SubscriptionsApi
      * Get subscription
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getOrgSubscription(
         string $organization_id,
@@ -1938,7 +1938,7 @@ final class SubscriptionsApi
      * Get current usage for a subscription
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getOrgSubscriptionCurrentUsage(
         string $organization_id,
@@ -2244,7 +2244,7 @@ final class SubscriptionsApi
      * List subscriptions
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listOrgSubscriptions(
         string $organization_id,
@@ -2680,7 +2680,7 @@ final class SubscriptionsApi
      * List addons for a subscription
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listSubscriptionAddons(
         string $organization_id,
@@ -2954,7 +2954,7 @@ final class SubscriptionsApi
      * Update subscription
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateOrgSubscription(
         string $organization_id,

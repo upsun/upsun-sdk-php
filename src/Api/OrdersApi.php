@@ -118,7 +118,7 @@ final class OrdersApi
      * Create confirmation credentials for for 3D-Secure
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createAuthorizationCredentials(
         string $organization_id,
@@ -420,7 +420,7 @@ final class OrdersApi
      * Download an invoice.
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function downloadInvoice(
         string $token
@@ -618,7 +618,7 @@ final class OrdersApi
      * Get order
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getOrgOrder(
         string $organization_id,
@@ -922,7 +922,7 @@ final class OrdersApi
      * List orders
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listOrgOrders(
         string $organization_id,

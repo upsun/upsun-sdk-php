@@ -118,7 +118,7 @@ final class ConnectionsApi
      * Delete a federated login connection
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteLoginConnection(
         string $provider,
@@ -340,7 +340,7 @@ final class ConnectionsApi
      * Get a federated login connection
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getLoginConnection(
         string $provider,
@@ -614,7 +614,7 @@ final class ConnectionsApi
      * List federated login connections
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\Connection[]
      */

@@ -118,7 +118,7 @@ final class EnvironmentApi
      * Activate an environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function activateEnvironment(
         string $project_id,
@@ -395,7 +395,7 @@ final class EnvironmentApi
      * Branch an environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function branchEnvironment(
         string $project_id,
@@ -672,7 +672,7 @@ final class EnvironmentApi
      * Create versions associated with the environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createProjectsEnvironmentsVersions(
         string $project_id,
@@ -949,7 +949,7 @@ final class EnvironmentApi
      * Deactivate an environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deactivateEnvironment(
         string $project_id,
@@ -1209,7 +1209,7 @@ final class EnvironmentApi
      * Delete an environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteEnvironment(
         string $project_id,
@@ -1469,7 +1469,7 @@ final class EnvironmentApi
      * Delete the version
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsEnvironmentsVersions(
         string $project_id,
@@ -1748,7 +1748,7 @@ final class EnvironmentApi
      * Get an environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getEnvironment(
         string $project_id,
@@ -2008,7 +2008,7 @@ final class EnvironmentApi
      * List the version
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsVersions(
         string $project_id,
@@ -2287,7 +2287,7 @@ final class EnvironmentApi
      * Initialize a new environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function initializeEnvironment(
         string $project_id,
@@ -2564,7 +2564,7 @@ final class EnvironmentApi
      * Get list of project environments
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\Environment[]
      */
@@ -2807,7 +2807,7 @@ final class EnvironmentApi
      * List versions associated with the environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\Version[]
      */
@@ -3069,7 +3069,7 @@ final class EnvironmentApi
      * Merge an environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function mergeEnvironment(
         string $project_id,
@@ -3346,7 +3346,7 @@ final class EnvironmentApi
      * Pause an environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function pauseEnvironment(
         string $project_id,
@@ -3606,7 +3606,7 @@ final class EnvironmentApi
      * Redeploy an environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function redeployEnvironment(
         string $project_id,
@@ -3866,7 +3866,7 @@ final class EnvironmentApi
      * Resume a paused environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function resumeEnvironment(
         string $project_id,
@@ -4126,7 +4126,7 @@ final class EnvironmentApi
      * Synchronize a child environment with its parent
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function synchronizeEnvironment(
         string $project_id,
@@ -4403,7 +4403,7 @@ final class EnvironmentApi
      * Update an environment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateEnvironment(
         string $project_id,
@@ -4680,7 +4680,7 @@ final class EnvironmentApi
      * Update the version
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsEnvironmentsVersions(
         string $project_id,

@@ -118,7 +118,7 @@ final class DeploymentApi
      * Get a single environment deployment
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsDeployments(
         string $project_id,
@@ -397,7 +397,7 @@ final class DeploymentApi
      * Get an environment&#39;s deployment information
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\Deployment[]
      */

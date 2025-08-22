@@ -118,7 +118,7 @@ final class ProjectActivityApi
      * Cancel a project activity
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function actionProjectsActivitiesCancel(
         string $project_id,
@@ -378,7 +378,7 @@ final class ProjectActivityApi
      * Get a project activity log entry
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsActivities(
         string $project_id,
@@ -638,7 +638,7 @@ final class ProjectActivityApi
      * Get project activity log
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\Activity[]
      */

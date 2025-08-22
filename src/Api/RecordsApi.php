@@ -118,7 +118,7 @@ final class RecordsApi
      * List plan records
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listOrgPlanRecords(
         string $organization_id,
@@ -515,7 +515,7 @@ final class RecordsApi
      * List usage records
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listOrgUsageRecords(
         string $organization_id,

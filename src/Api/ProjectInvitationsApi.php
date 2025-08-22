@@ -118,7 +118,7 @@ final class ProjectInvitationsApi
      * Cancel a pending invitation to a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function cancelProjectInvite(
         string $project_id,
@@ -340,7 +340,7 @@ final class ProjectInvitationsApi
      * Invite user to a project by email
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createProjectInvite(
         string $project_id,
@@ -662,7 +662,7 @@ final class ProjectInvitationsApi
      * List invitations to a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\ProjectInvitation[]
      */

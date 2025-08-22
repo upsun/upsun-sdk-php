@@ -118,7 +118,7 @@ final class AddOnsApi
      * Get add-ons
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getOrgAddons(
         string $organization_id

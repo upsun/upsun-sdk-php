@@ -118,7 +118,7 @@ final class TeamAccessApi
      * Get team access for a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectTeamAccess(
         string $project_id,
@@ -406,7 +406,7 @@ final class TeamAccessApi
      * Get project access for a team
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getTeamProjectAccess(
         string $team_id,
@@ -694,7 +694,7 @@ final class TeamAccessApi
      * Grant team access to a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function grantProjectTeamAccess(
         string $project_id,
@@ -922,7 +922,7 @@ final class TeamAccessApi
      * Grant project access to a team
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function grantTeamProjectAccess(
         string $team_id,
@@ -1150,7 +1150,7 @@ final class TeamAccessApi
      * List team access for a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listProjectTeamAccess(
         string $project_id,
@@ -1490,7 +1490,7 @@ final class TeamAccessApi
      * List project access for a team
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function listTeamProjectAccess(
         string $team_id,
@@ -1830,7 +1830,7 @@ final class TeamAccessApi
      * Remove team access for a project
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function removeProjectTeamAccess(
         string $project_id,
@@ -2068,7 +2068,7 @@ final class TeamAccessApi
      * Remove project access for a team
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function removeTeamProjectAccess(
         string $team_id,

@@ -118,7 +118,7 @@ final class CertManagementApi
      * Add an SSL certificate
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createProjectsCertificates(
         string $project_id,
@@ -376,7 +376,7 @@ final class CertManagementApi
      * Delete an SSL certificate
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsCertificates(
         string $project_id,
@@ -636,7 +636,7 @@ final class CertManagementApi
      * Get an SSL certificate
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getProjectsCertificates(
         string $project_id,
@@ -896,7 +896,7 @@ final class CertManagementApi
      * Get list of SSL certificates
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\Certificate[]
      */
@@ -1139,7 +1139,7 @@ final class CertManagementApi
      * Update an SSL certificate
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsCertificates(
         string $project_id,

@@ -118,7 +118,7 @@ final class OrganizationInvitationsApi
      * Cancel a pending invitation to an organization
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function cancelOrgInvite(
         string $organization_id,
@@ -340,7 +340,7 @@ final class OrganizationInvitationsApi
      * Invite user to an organization by email
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createOrgInvite(
         string $organization_id,
@@ -634,7 +634,7 @@ final class OrganizationInvitationsApi
      * List invitations to an organization
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\OrganizationInvitation[]
      */

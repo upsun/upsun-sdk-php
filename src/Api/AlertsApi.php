@@ -118,7 +118,7 @@ final class AlertsApi
      * Create a usage alert.
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function createUsageAlert(
         string $subscription_id,
@@ -370,7 +370,7 @@ final class AlertsApi
      * Delete a usage alert.
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function deleteUsageAlert(
         string $subscription_id,
@@ -584,7 +584,7 @@ final class AlertsApi
      * Get usage alerts for a subscription
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function getUsageAlerts(
         string $subscription_id
@@ -825,7 +825,7 @@ final class AlertsApi
      * Update a usage alert.
      *
      * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|Exception
      */
     public function updateUsageAlert(
         string $subscription_id,
