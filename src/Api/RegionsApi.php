@@ -640,7 +640,7 @@ final class RegionsApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[available]'] = $filter_available->toHeaderValue();
+                $queryParams['filter[available]'] = $filter_available->getEq();
             }
         }
         
