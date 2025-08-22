@@ -375,8 +375,8 @@ final class CreateOrgInviteRequest implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
-        //return ObjectSerializer::sanitizeForSerialization($this);
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+        return ObjectSerializer::sanitizeForSerialization($this);
+        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

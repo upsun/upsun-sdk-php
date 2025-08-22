@@ -347,8 +347,8 @@ final class AddressGrantsInner implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
-        //return ObjectSerializer::sanitizeForSerialization($this);
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+        return ObjectSerializer::sanitizeForSerialization($this);
+        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**
