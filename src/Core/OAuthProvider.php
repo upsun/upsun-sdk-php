@@ -19,7 +19,8 @@ class OAuthProvider
         private readonly string $tokenEndpoint,
         private readonly string $clientId,
         private readonly string $clientSecret
-    ) {}
+    ) {
+    }
 
     public function exchangeCodeForToken(): bool
     {

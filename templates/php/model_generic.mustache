@@ -479,6 +479,7 @@ final class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
+        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Upsun\Core\Tasks;
+namespace Tests\Upsun\Core;
 
 use Upsun\ApiException;
 use Upsun\Api\DeploymentTargetApi;
@@ -186,6 +186,7 @@ class ProjectTaskTest extends TestCase
 
     public function testDelete()
     {
+        $orgId = 'test-org';
         $projectId = 'test-project';
         $expectedResponse = new AcceptedResponse();
 
@@ -194,7 +195,7 @@ class ProjectTaskTest extends TestCase
             ->with($projectId)
             ->willReturn($expectedResponse);
 
-        $result = $this->projectTask->delete($projectId);
+        $result = $this->projectTask->delete($orgId, $projectId);
         $this->assertSame($expectedResponse, $result);
     }
 

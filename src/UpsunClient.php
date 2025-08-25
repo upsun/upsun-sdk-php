@@ -71,6 +71,13 @@ use Upsun\Core\Tasks\UserTask;
 use Upsun\Core\Tasks\VariableTask;
 use Upsun\Core\Tasks\WorkerTask;
 
+/**
+ * Upsun Client to interact with the API.
+ *
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ */
 class UpsunClient
 {
     public HttplugClient $apiClient;
@@ -107,7 +114,7 @@ class UpsunClient
 
         $this->apiClient = new HttplugClient();
 
-        $httpClient = Psr18ClientDiscovery::find(); // découvre automatiquement curl-client
+        $httpClient = Psr18ClientDiscovery::find();
         $requestFactory = Psr17FactoryDiscovery::findRequestFactory();
 
         $this->auth = new OAuthProvider(

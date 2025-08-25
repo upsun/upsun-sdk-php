@@ -3,6 +3,7 @@
 namespace Upsun\Core\Tasks;
 
 use DateTime;
+use Exception;
 use Upsun\ApiException;
 use Upsun\Api\DefaultApi;
 use Upsun\Api\SupportApi;
@@ -12,6 +13,13 @@ use Upsun\Model\Ticket;
 use Upsun\Model\UpdateTicketRequest;
 use Upsun\UpsunClient;
 
+/**
+ * SupportTicketTask class.
+ *
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ */
 class SupportTicketTask extends TaskBase
 {
     public function __construct(
@@ -25,7 +33,7 @@ class SupportTicketTask extends TaskBase
     /**
      * Lists support tickets
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function list(
         ?int $filterTicketId = null,
@@ -63,7 +71,7 @@ class SupportTicketTask extends TaskBase
     /**
      * Creates a new support ticket
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function create(?array $createTicketRequest = null): Ticket
     {
@@ -75,7 +83,7 @@ class SupportTicketTask extends TaskBase
     /**
      * Lists support ticket categories
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listCategories(?string $projectId = null, ?string $organizationId = null): array
     {
@@ -86,7 +94,7 @@ class SupportTicketTask extends TaskBase
     /**
      * Lists support ticket priorities
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listPriorities(?string $projectId = null, ?string $category = null): array
     {
@@ -97,7 +105,7 @@ class SupportTicketTask extends TaskBase
     /**
      * Updates a ticket
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function update(string $ticket_id, ?array $updateTicketRequest = null): Ticket
     {

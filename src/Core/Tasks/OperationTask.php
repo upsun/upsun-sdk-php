@@ -8,6 +8,13 @@ use Upsun\Model\AcceptedResponse;
 use Upsun\Model\EnvironmentOperationInput;
 use Upsun\UpsunClient;
 
+/**
+ * OperationTask class.
+ *
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ */
 class OperationTask extends TaskBase
 {
     public function __construct(

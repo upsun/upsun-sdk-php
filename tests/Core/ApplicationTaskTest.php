@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Core\Tasks;
+namespace Tests\Unit\Core;
 
 use PHPUnit\Framework\TestCase;
 use Upsun\Api\DeploymentApi;

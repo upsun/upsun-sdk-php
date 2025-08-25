@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use Exception;
 use InvalidArgumentException;
 use Upsun\ApiException;
 use Upsun\Api\APITokensApi;
@@ -39,6 +40,13 @@ use Upsun\Model\VerifyPhoneNumber200Response;
 use Upsun\Model\VerifyPhoneNumberRequest;
 use Upsun\UpsunClient;
 
+/**
+ * UserTask class.
+ *
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ */
 class UserTask extends TaskBase
 {
     public function __construct(
@@ -59,7 +67,7 @@ class UserTask extends TaskBase
      * Get the current user
      *
      * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function me(): Error|User
     {
@@ -71,7 +79,7 @@ class UserTask extends TaskBase
      * Checks if phone verification is required
      *
      * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getCurrentUserVerificationStatus(): GetCurrentUserVerificationStatus200Response
     {
@@ -83,7 +91,7 @@ class UserTask extends TaskBase
      * Checks if verification is required
      *
      * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getCurrentUserVerificationStatusFull(): GetCurrentUserVerificationStatusFull200Response
     {
@@ -95,7 +103,7 @@ class UserTask extends TaskBase
      * Gets a user
      *
      * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function get(string $id): Error|User
     {
@@ -106,7 +114,7 @@ class UserTask extends TaskBase
     /**
      * Gets a user by email
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
      */
     public function getByEmailAddress(string $email): User|Error
@@ -118,7 +126,7 @@ class UserTask extends TaskBase
     /**
      * Gets a user by username
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
      */
     public function getByUsername(string $username): User|Error
@@ -131,7 +139,7 @@ class UserTask extends TaskBase
      * Resets email address
      *
      * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function resetEmailAddress(
         string $userId,
@@ -145,7 +153,7 @@ class UserTask extends TaskBase
      * Resets user password
      *
      * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function resetPassword(string $userId): void
     {
@@ -157,7 +165,7 @@ class UserTask extends TaskBase
      * Updates a user
      *
      * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function update(string $userId, ?array $update_user_data = []): User|Error
     {
@@ -169,7 +177,7 @@ class UserTask extends TaskBase
     /**
      * Gets user access for a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getProjectUserAccess(string $projectId, string $userId): Error|UserProjectAccess
     {
@@ -180,7 +188,7 @@ class UserTask extends TaskBase
     /**
      * Gets project access for a user
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getUserProjectAccess(string $userId, string $projectId): Error|UserProjectAccess
     {
@@ -191,7 +199,7 @@ class UserTask extends TaskBase
     /**
      * Grants user access to a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function grantProjectUserAccess(string $projectId, array $grantProjectUserAccessRequestInner): void
     {
@@ -202,7 +210,7 @@ class UserTask extends TaskBase
     /**
      * Grants project access to a user
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function grantUserProjectAccess(string $userId, array $grantUserProjectAccessRequest): void
     {
@@ -213,7 +221,7 @@ class UserTask extends TaskBase
     /**
      * Lists user access for a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listProjectUserAccess(
         string $projectId,
@@ -229,7 +237,7 @@ class UserTask extends TaskBase
     /**
      * Lists project access for a user
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listUserProjectAccess(
         string $userId,
@@ -253,7 +261,7 @@ class UserTask extends TaskBase
     /**
      * Removes user access for a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function removeProjectUserAccess(string $projectId, string $userId): void
     {
@@ -264,7 +272,7 @@ class UserTask extends TaskBase
     /**
      * Removes project access for a user
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function removeUserProjectAccess(string $userId, string $projectId): void
     {
@@ -275,7 +283,7 @@ class UserTask extends TaskBase
     /**
      * Updates user access for a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function updateProjectUserAccess(
         string $projectId,
@@ -290,7 +298,7 @@ class UserTask extends TaskBase
     /**
      * Updates project access for a user
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function updateUserProjectAccess(
         string $userId,
@@ -316,7 +324,7 @@ class UserTask extends TaskBase
      * Deletes a user profile picture
      *
      * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function deleteProfilePicture(string $uuid): void
     {
@@ -328,7 +336,7 @@ class UserTask extends TaskBase
      * Gets a user address
      *
      * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getAddress(string $userId): GetAddress200Response
     {
@@ -340,7 +348,7 @@ class UserTask extends TaskBase
      * Gets a single user profile
      *
      * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getProfile(string $userId): Profile
     {
@@ -352,7 +360,7 @@ class UserTask extends TaskBase
      * Lists current user profiles
      *
      * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listProfiles(): ListProfiles200Response
     {
@@ -364,7 +372,7 @@ class UserTask extends TaskBase
      * Updates a user address
      *
      * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function updateAddress(string $userId, ?Address $address = null): GetAddress200Response
     {
@@ -376,7 +384,7 @@ class UserTask extends TaskBase
      * Updates a user profile
      *
      * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function updateProfile(string $userId, ?array $updateProfileData = []): Profile
     {
@@ -388,7 +396,7 @@ class UserTask extends TaskBase
     /**
      * Creates an API token
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function createApiToken(string $userId, ?array $createApiTokenRequest = null): Error|APIToken
     {
@@ -400,7 +408,7 @@ class UserTask extends TaskBase
     /**
      * Deletes an API token
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function deleteApiToken(string $userId, string $token_id): void
     {
@@ -411,7 +419,7 @@ class UserTask extends TaskBase
     /**
      * Gets an API token
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getApiToken(string $userId, string $token_id): Error|APIToken
     {
@@ -422,9 +430,9 @@ class UserTask extends TaskBase
     /**
      * Lists a user's API tokens
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function listApiTokens(string $userId): Error|array
+    public function listApiTokens(string $userId): APIToken
     {
         $this->refreshToken();
         return $this->tokensApi->createApiToken($userId);
@@ -433,7 +441,7 @@ class UserTask extends TaskBase
     /**
      * Deletes a federated login connection
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function deleteLoginConnection(string $provider, string $userId): void
     {
@@ -444,7 +452,7 @@ class UserTask extends TaskBase
     /**
      * Gets a federated login connection
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getLoginConnection(string $provider, string $userId): Error|Connection
     {
@@ -455,7 +463,7 @@ class UserTask extends TaskBase
     /**
      * Lists federated login connections
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listLoginConnections(string $userId): array|Error
     {
@@ -466,7 +474,7 @@ class UserTask extends TaskBase
     /**
      * Lists extended access of a user
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listExtendedAccess(
         string $userId,
@@ -486,7 +494,7 @@ class UserTask extends TaskBase
     /**
      * Confirms TOTP enrollment
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function confirmTotpEnrollment(
         string $userId,
@@ -504,7 +512,7 @@ class UserTask extends TaskBase
      *
      * @param string $userId The ID of the user. (required)
      * @return GetTotpEnrollment200Response|Error
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getTotpEnrollment(string $userId): GetTotpEnrollment200Response|Error
     {
@@ -515,7 +523,7 @@ class UserTask extends TaskBase
     /**
      * Re-creates recovery codes
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function recreateRecoveryCodes(string $userId): ConfirmTotpEnrollment200Response|Error
     {
@@ -526,7 +534,7 @@ class UserTask extends TaskBase
     /**
      * Withdraws TOTP enrollment
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function withdrawTotpEnrollment(string $userId): void
     {
@@ -537,7 +545,7 @@ class UserTask extends TaskBase
     /**
      * Confirms phone number
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function confirmPhoneNumber(string $sid, string $userId, ?array $confirmPhoneNumberRequest = null): void
     {
@@ -549,7 +557,7 @@ class UserTask extends TaskBase
     /**
      * Verifies phone number
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function verifyPhoneNumber(
         string $userId,

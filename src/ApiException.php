@@ -2,7 +2,6 @@
 
 namespace Upsun;
 
-use Exception;
 use Http\Client\Exception\RequestException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;

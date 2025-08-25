@@ -9,6 +9,13 @@ use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;
 use Upsun\UpsunClient;
 
+/**
+ * ActivityTask class.
+ *
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ */
 class ActivityTask extends TaskBase
 {
     public function __construct(

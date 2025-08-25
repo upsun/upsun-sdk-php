@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use Exception;
 use Upsun\ApiException;
 use Upsun\Api\RoutingApi;
 use Upsun\Model\AcceptedResponse;
@@ -10,6 +11,13 @@ use Upsun\Model\RouteCreateInput;
 use Upsun\Model\RoutePatch;
 use Upsun\UpsunClient;
 
+/**
+ * RouteTask class.
+ *
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ */
 class RouteTask extends TaskBase
 {
     public function __construct(
@@ -22,7 +30,7 @@ class RouteTask extends TaskBase
     /**
      * Creates a new route
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function create(string $projectId, string $environmentId, array $routeCreateInput): AcceptedResponse
     {
@@ -34,7 +42,7 @@ class RouteTask extends TaskBase
     /**
      * Deletes a route
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function delete(string $projectId, string $environmentId, string $routeId): AcceptedResponse
     {
@@ -45,7 +53,7 @@ class RouteTask extends TaskBase
     /**
      * Gets a route info
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function get(string $projectId, string $environmentId, string $routeId): Route
     {
@@ -56,7 +64,7 @@ class RouteTask extends TaskBase
     /**
      * Lists routes
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function list(string $projectId, string $environmentId): ?array
     {
@@ -67,7 +75,7 @@ class RouteTask extends TaskBase
     /**
      * Updates a route
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function update(
         string $projectId,

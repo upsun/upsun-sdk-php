@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Upsun\Core\Tasks;
+namespace Tests\Unit\Upsun\Core;
 
 use Upsun\ApiException;
 use Upsun\Api\OrganizationInvitationsApi;

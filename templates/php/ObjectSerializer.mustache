@@ -1,9 +1,9 @@
 <?php
 
-namespace Upsun;
+namespace {{invokerPackage}};
 
 use GuzzleHttp\Psr7\Utils;
-use Upsun\Model\ModelInterface;
+use {{modelPackage}}\ModelInterface;
 
 /**
  * ObjectSerializer Class Doc Comment
@@ -62,7 +62,7 @@ class ObjectSerializer
                         && !in_array(
                             $openAPIType,
                             [
-                                '\DateTime', '\SplFileObject', 'array', 'bool', 'boolean', 'byte', 'float', 'int', 'integer', 'mixed', 'number', 'object', 'string', 'void'
+                                {{&primitives}}
                             ],
                             true
                         )
@@ -426,7 +426,7 @@ class ObjectSerializer
         }
 
         /** @psalm-suppress ParadoxicalCondition */
-        if (in_array($class, ['\DateTime', '\SplFileObject', 'array', 'bool', 'boolean', 'byte', 'float', 'int', 'integer', 'mixed', 'number', 'object', 'string', 'void'], true)) {
+        if (in_array($class, [{{&primitives}}], true)) {
             settype($data, $class);
             return $data;
         }
@@ -448,7 +448,7 @@ class ObjectSerializer
             // If a discriminator is defined and points to a valid subclass, use it.
             $discriminator = $class::DISCRIMINATOR;
             if (!empty($discriminator) && isset($data->{$discriminator}) && is_string($data->{$discriminator})) {
-                $subclass = '\Upsun\Model\\' . $data->{$discriminator};
+                $subclass = '\{{invokerPackage}}\Model\\' . $data->{$discriminator};
                 if (is_subclass_of($subclass, $class)) {
                     $class = $subclass;
                 }

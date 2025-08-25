@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use Exception;
 use Upsun\ApiException;
 use Upsun\Api\EnvironmentVariablesApi;
 use Upsun\Api\ProjectVariablesApi;
@@ -14,6 +15,13 @@ use Upsun\Model\ProjectVariableCreateInput;
 use Upsun\Model\ProjectVariablePatch;
 use Upsun\UpsunClient;
 
+/**
+ * VariableTask class.
+ *
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ */
 class VariableTask extends TaskBase
 {
     public function __construct(
@@ -27,7 +35,7 @@ class VariableTask extends TaskBase
     /**
      * Adds a project variable
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function createProjectVariable(string $projectId, array $projectVariableCreateInput): AcceptedResponse
     {
@@ -39,7 +47,7 @@ class VariableTask extends TaskBase
     /**
      * Deletes a project variable
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function deleteProjectVariable(string $projectId, string $projectVariableId): AcceptedResponse
     {
@@ -50,7 +58,7 @@ class VariableTask extends TaskBase
     /**
      * Gets a project variable
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getProjectVariable(string $projectId, string $projectVariableId): ProjectVariable
     {
@@ -61,7 +69,7 @@ class VariableTask extends TaskBase
     /**
      * Gets list of project variables
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listProjectVariables(string $projectId): array
     {
@@ -72,7 +80,7 @@ class VariableTask extends TaskBase
     /**
      * Updates a project variable
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function updateProjectVariable(
         string $projectId,
@@ -91,7 +99,7 @@ class VariableTask extends TaskBase
     /**
      * Adds an environment variable
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function createEnvironmentVariable(
         string $projectId,
@@ -110,7 +118,7 @@ class VariableTask extends TaskBase
     /**
      * Deletes an environment variable
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function deleteEnvironmentVariable(
         string $projectId,
@@ -128,7 +136,7 @@ class VariableTask extends TaskBase
     /**
      * Gets an environment variable
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getEnvironmentVariable(
         string $projectId,
@@ -146,7 +154,7 @@ class VariableTask extends TaskBase
     /**
      * Lists environment variables
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listEnvironmentVariables(string $projectId, string $environmentId): array
     {
@@ -157,7 +165,7 @@ class VariableTask extends TaskBase
     /**
      * Updates an environment variable
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function updateEnvironmentVariable(
         string $projectId,

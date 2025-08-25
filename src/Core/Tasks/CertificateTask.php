@@ -10,6 +10,13 @@ use Upsun\Model\CertificateCreateInput;
 use Upsun\Model\CertificatePatch;
 use Upsun\UpsunClient;
 
+/**
+ * CertificateTask class.
+ *
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ */
 class CertificateTask extends TaskBase
 {
     public function __construct(

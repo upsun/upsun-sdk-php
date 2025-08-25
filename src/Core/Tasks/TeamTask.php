@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use Exception;
 use Upsun\ApiException;
 use Upsun\Api\TeamAccessApi;
 use Upsun\Api\TeamsApi;
@@ -18,6 +19,13 @@ use Upsun\Model\TeamMember;
 use Upsun\Model\TeamProjectAccess;
 use Upsun\UpsunClient;
 
+/**
+ * TeamTask class.
+ *
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ */
 class TeamTask extends TaskBase
 {
     public function __construct(
@@ -31,7 +39,7 @@ class TeamTask extends TaskBase
     /**
      * Creates team
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function create(array $createTeamRequest): Team|Error
     {
@@ -43,7 +51,7 @@ class TeamTask extends TaskBase
     /**
      * Creates team member
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function createMember(string $teamId, array $createTeamMemberRequest): Error|TeamMember
     {
@@ -55,7 +63,7 @@ class TeamTask extends TaskBase
     /**
      * Deletes team
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function delete(string $teamId): void
     {
@@ -66,7 +74,7 @@ class TeamTask extends TaskBase
     /**
      * Deletes team member
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function deleteMember(string $teamId, string $userId): void
     {
@@ -77,7 +85,7 @@ class TeamTask extends TaskBase
     /**
      * Gets team
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function get(string $teamId): Team|Error
     {
@@ -88,7 +96,7 @@ class TeamTask extends TaskBase
     /**
      * Gets team member
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getMember(string $teamId, string $userId): Error|TeamMember
     {
@@ -99,7 +107,7 @@ class TeamTask extends TaskBase
     /**
      * Lists team members
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listMembers(
         string $teamId,
@@ -114,7 +122,7 @@ class TeamTask extends TaskBase
     /**
      * Lists teams
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function list(
         ?array $filterOrganizationId = null,
@@ -140,7 +148,7 @@ class TeamTask extends TaskBase
     /**
      * Lists User teams
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listUserTeams(
         string $userId,
@@ -166,7 +174,7 @@ class TeamTask extends TaskBase
     /**
      * Updates team
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function update(string $teamId, ?array $updateTeamRequest = null): Team|Error
     {
@@ -177,7 +185,7 @@ class TeamTask extends TaskBase
     /**
      * Gets team access for a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getProjectTeamAccess(string $projectId, string $teamId): Error|TeamProjectAccess
     {
@@ -189,7 +197,7 @@ class TeamTask extends TaskBase
     /**
      * Gets project access for a team
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getTeamProjectAccess(string $teamId, string $projectId): Error|TeamProjectAccess
     {
@@ -200,7 +208,7 @@ class TeamTask extends TaskBase
     /**
      * Grants team access to a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function grantProjectTeamAccess(string $projectId, array $grantProjectTeamAccessRequestInner): void
     {
@@ -211,7 +219,7 @@ class TeamTask extends TaskBase
     /**
      * Grants project access to a team
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function grantTeamProjectAccess(string $teamId, array $grantTeamProjectAccessRequestInner): void
     {
@@ -222,7 +230,7 @@ class TeamTask extends TaskBase
     /**
      * Lists team access for a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listProjectTeamAccess(
         string $projectId,
@@ -238,7 +246,7 @@ class TeamTask extends TaskBase
     /**
      * Lists project access for a team
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listTeamProjectAccess(
         string $teamId,
@@ -254,7 +262,7 @@ class TeamTask extends TaskBase
     /**
      * Removes team access for a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function removeProjectTeamAccess(string $projectId, string $teamId): void
     {
@@ -265,7 +273,7 @@ class TeamTask extends TaskBase
     /**
      * Removes project access for a team
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function removeTeamProjectAccess(string $teamId, string $projectId): void
     {

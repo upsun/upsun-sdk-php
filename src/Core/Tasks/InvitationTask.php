@@ -14,6 +14,13 @@ use Upsun\Model\ProjectInvitation;
 use Upsun\Model\StringFilter;
 use Upsun\UpsunClient;
 
+/**
+ * InvitationTask class.
+ *
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ */
 class InvitationTask extends TaskBase
 {
     public function __construct(

@@ -10,6 +10,13 @@ use Upsun\Model\EnvironmentBackupInput;
 use Upsun\Model\EnvironmentRestoreInput;
 use Upsun\UpsunClient;
 
+/**
+ * BackupTask class.
+ *
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ */
 class BackupTask extends TaskBase
 {
     public function __construct(

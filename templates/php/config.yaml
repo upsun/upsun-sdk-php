@@ -11,7 +11,7 @@ additionalProperties:
   apiPackage: Api
   modelPackage: Model
   srcBasePath: src
-  testPath: tests
+  testBasePath: tests
   composerVendor: upsun
   composerProject: upsun-sdk-php
   licenseName: Apache-2.0
@@ -19,8 +19,10 @@ additionalProperties:
   artifactUrl: https://github.com/upsun/upsun-sdk-php
   developerOrganization: Upsun
   developerOrganizationUrl: https://www.upsun.com
-  appDescription: Upsun SDK for PHP. This SDK maps the Upsun CLI commands. For more information, read [the documentation](https://docs.upsun.com).
+  appDescription: The official **Upsun SDK for PHP**. This SDK provides a PHP interface that maps to the Upsun CLI commands. For more information, read [the documentation](https://docs.upsun.com).
   escapedInvokerPackage: "Upsun\\"
   coreTestPath: ./tests/Core
   generateInterfaces: true
+  projectName: Upsun SDK PHP
+  authorizationUrl: https://auth.upsun.com/oauth2/token
 generateSupportingFiles: true

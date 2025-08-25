@@ -8,6 +8,13 @@ use Upsun\Model\Deployment;
 use Upsun\Model\WebApplicationsValue;
 use Upsun\UpsunClient;
 
+/**
+ * ApplicationTask class.
+ *
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ */
 class ApplicationTask extends TaskBase
 {
     public function __construct(

@@ -1,0 +1,195 @@
+> [!CAUTION]
+> **This project is owned by the Upsun Advocacy team. It is in an early stage of development [experimental] and should be used with caution by Upsun customers/community. <br /><br />
+> This project is not officially supported by Upsun and does not fall under any Support plans. Use this repository at your own risk — it is provided without guarantees or warranties!**
+>
+> Don’t hesitate to join our [Discord](https://discord.com/invite/platformsh) to share your thoughts about this project.
+
+# {{projectName}}
+
+The official **Upsun SDK for PHP**. This SDK provides a PHP interface that maps to the Upsun CLI commands. 
+For more information, read [the documentation](https://docs.upsun.com).
+
+## Installation
+
+Install the SDK via Composer:
+
+```bash
+composer require {{invokerPackage}}/{{artifactId}}
+```
+
+Then include Composer's autoloader in your PHP application:
+
+```php
+require __DIR__ . '/vendor/autoload.php';
+```
+
+## Authentication
+
+You will need an [Upsun API token](https://docs.upsun.com/administration/cli/api-tokens.html) to use this SDK. 
+Store it securely, preferably in an environment variable.
+
+```php
+use Upsun\UpsunConfig;
+use Upsun\UpsunClient;
+
+$config = new UpsunConfig(apiToken: getenv('UPSUN_API_TOKEN'));
+$client = new UpsunClient($config);
+```
+
+## Usage
+
+### Example: List organizations
+
+```php
+$organizations = $client->organization->list();
+```
+
+### Example: List projects in an organization
+
+```php
+$projects = $client->organization->listProjects('<organizationId>');
+```
+
+### Example: Get a project
+
+```php
+$project = $client->project->get('<projectId>');
+```
+
+### Example: Create a project in a specific organization
+```php
+$project = $client->project->create(
+    <organizationId>,
+    [
+        'owner' => '<upsunUserId>',
+        'project_title' => 'Project title',
+        'project_region' => 'eu-5.platform.sh',
+        'default_branch' => 'main',
+    ]
+);
+```
+
+### Example: Update a project
+
+```php
+$projectData = [
+    'title' => 'title',
+    'description' => 'description' // see vendor/upsun/upsun-sdk-php/src/Model/Project.php for more option
+];
+$response = $client->project->update(<projectId>, $projectData);
+```
+
+### Example: Delete a project
+
+```php
+$client->organization->deleteProject(<organizationId>, <projectId>);
+```
+
+---
+
+## Development
+
+Clone the repository and install dependencies:
+
+```bash
+git clone git@github.com:upsun/upsun-sdk-php.git
+composer install
+```
+
+## Architecture of this SDK
+
+The SDK is built as follows:
+
+* From the [JSON specs of our API](https://proxy.upsun.com/docs/openapispec-platformsh.json)
+* Using [``@openapitools/openapi-generator-cli``](https://www.npmjs.com/package/%40openapitools/openapi-generator-cli)
+* Which generates:
+  * PHP **Models** (in `src/Model/`)
+  * PHP **APIs** (in `src/Api/`)
+* Higher-level PHP **Tasks** (in `src/Tasks/`)
+
+![Architecture of the SDK](./assets/images/sdk-schema.png)
+
+### Regenerating API & Model classes
+
+API and Model classes are generated using [openapi-generator-cli](https://openapi-generator.tech) 
+from the [Upsun OpenAPI spec](https://proxy.upsun.com/docs/openapispec-platformsh.json).
+
+```bash
+npm install @openapitools/openapi-generator-cli --save-dev
+npx openapi-generator-cli generate -c templates/php/config.yaml
+```
+
+## Contributing
+
+Contributions are welcome!<br>
+Please open a [pull request](https://github.com/upsun/upsun-sdk-php/compare) or an [issue](https://github.com/upsun/upsun-sdk-php/issues/new)
+for any improvements, bug fixes, or new features.
+
+---
+
+## API Endpoints
+
+All URIs are relative to *{{basePath}}*
+
+Class | Method | HTTP request | Description
+------------ | ------------- | ------------- | -------------
+{{#apiInfo}}{{#apis}}{{#operations}}{{#operation}}*{{classname}}* | [**{{operationId}}**]({{apiDocPath}}/{{classname}}.md#{{operationIdLowerCase}}) | **{{httpMethod}}** {{path}} | {{summary}}
+{{/operation}}{{/operations}}{{/apis}}{{/apiInfo}}
+## Models
+
+{{#models}}{{#model}}- [{{{classname}}}]({{modelDocPath}}/{{{classname}}}.md){{/model}}
+{{/models}}
+
+## Authorization
+{{^authMethods}}Endpoints do not require authorization.{{/authMethods}}
+{{#hasAuthMethods}}Authentication schemes defined for the API:{{/hasAuthMethods}}
+{{#authMethods}}
+### {{{name}}}
+{{#isApiKey}}
+
+- **Type**: API key
+- **API key parameter name**: {{{keyParamName}}}
+- **Location**: {{#isKeyInQuery}}URL query string{{/isKeyInQuery}}{{#isKeyInHeader}}HTTP header{{/isKeyInHeader}}
+
+{{/isApiKey}}
+{{#isBasic}}
+{{#isBasicBasic}}
+
+- **Type**: HTTP basic authentication
+{{/isBasicBasic}}
+{{#isBasicBearer}}
+
+- **Type**: Bearer authentication{{#bearerFormat}} ({{{.}}}){{/bearerFormat}}
+{{/isBasicBearer}}
+{{#isHttpSignature}}
+
+- **Type**: HTTP signature authentication
+{{/isHttpSignature}}
+{{/isBasic}}
+{{#isOAuth}}
+
+- **Type**: `OAuth`
+- **Flow**: `{{{flow}}}`
+- **Authorization URL**: `{{authorizationUrl}}`
+- **Scopes**: {{^scopes}}N/A{{/scopes}}
+{{#scopes}}
+    - **{{{scope}}}**: {{{description}}}
+{{/scopes}}
+{{/isOAuth}}
+
+{{/authMethods}}
+## Tests
+
+To run the tests, use:
+
+```bash
+composer install
+vendor/bin/phpunit
+```
+
+## License
+
+This project is licensed under the Apache 2.0 License. See the [LICENSE](./LICENSE) file for details.
+
+
+
