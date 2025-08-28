@@ -75,7 +75,9 @@ class ProjectTask extends TaskBase
      */
     public function delete(string $organizationId, string $projectId): void
     {
-        $this->subscriptionsApi->deleteOrgSubscription($organizationId, $projectId);
+        $project = $this->get($projectId);
+
+        $this->subscriptionsApi->deleteOrgSubscription($organizationId, $project->getSubscriptionId());
     }
 
     /**
