@@ -25,7 +25,6 @@ abstract class AbstractApi
         private readonly RequestFactoryInterface $requestFactory,
         private string $baseUri
     ) {
-        $this->baseUri = rtrim($baseUri, '/');
     }
 
     protected function getAuthorizationHeader(): string
@@ -38,11 +37,19 @@ abstract class AbstractApi
         string $uri,
         array $headers = []
     ): RequestInterface {
-        $fullUri = $this->baseUri . '/' . ltrim($uri, '/');
+        if (preg_match('#^https?://#i', $uri)) {
+            $fullUri = $uri;
+        } else {
+            $fullUri = $this->baseUri . '/' . ltrim($uri, '/');
+        }
+
         $headers['Authorization'] = $this->getAuthorizationHeader();
 
         $request = $this->requestFactory->createRequest($method, $fullUri);
 
+        foreach ($headers as $name => $value) {
+            $request = $request->withHeader($name, $value);
+        }
 
         return $request;
     }
