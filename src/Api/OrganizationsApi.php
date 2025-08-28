@@ -831,7 +831,7 @@ final class OrganizationsApi extends AbstractApi
         $multipart = false;
 
 
-
+        var_dump('getOrgRequest ' . $organization_id);
         // path params
         if ($organization_id !== null) {
             $resourcePath = str_replace(
@@ -841,7 +841,8 @@ final class OrganizationsApi extends AbstractApi
             );
         }
 
-
+        var_dump('resourcePath ' . $resourcePath);
+        
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
             '',
