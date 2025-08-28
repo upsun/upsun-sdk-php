@@ -639,6 +639,7 @@ final class OrganizationsApi extends AbstractApi
     public function getOrgWithHttpInfo(
         string $organization_id
     ): array {
+        var_dump('dans organizationApi.getOrgHttpInfo ' . $organization_id );
         $request = $this->getOrgRequest($organization_id);
 
         try {
