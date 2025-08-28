@@ -331,7 +331,7 @@ class ObjectSerializer
         mixed $data,
         string $class,
         ?array $httpHeaders = null
-    ): object|array|null {
+    ): object|array|string|int|float|bool|null {
         if (null === $data) {
             return null;
         }
