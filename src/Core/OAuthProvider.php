@@ -85,6 +85,10 @@ class OAuthProvider
             $response = $this->httpClient->sendRequest($request);
             $data = json_decode((string)$response->getBody(), true);
 
+            $content = (string) $response->getBody();
+            error_log("OAuth refresh response: " . $content);
+            error_log("OAuth token endpoint: " . $this->tokenEndpoint);
+            
             $this->storeTokenData($data);
         } catch (ClientExceptionInterface $e) {
             throw new Exception('Token refresh failed: ' . $e->getMessage());
