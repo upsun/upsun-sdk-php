@@ -36,7 +36,6 @@ class RegionTask extends TaskBase
      */
     public function get(string $regionId): Region|Error
     {
-        $this->refreshToken();
         return $this->api->getRegion($regionId);
     }
 
@@ -54,7 +53,6 @@ class RegionTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): ListRegions200Response|Error {
-        $this->refreshToken();
 
         return $this->api->listRegions(
             $filter_available !== null ? new StringFilter($filter_available) : null,

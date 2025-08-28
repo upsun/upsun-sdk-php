@@ -17,9 +17,4 @@ abstract class TaskBase
         public UpsunClient $client,
     ) {
     }
-
-    public function refreshToken(): void
-    {
-        $this->client->apiConfig->setAccessToken($this->client->auth->getAccessToken());
-    }
 }

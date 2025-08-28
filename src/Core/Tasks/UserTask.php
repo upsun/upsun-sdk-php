@@ -71,7 +71,6 @@ class UserTask extends TaskBase
      */
     public function me(): Error|User
     {
-        $this->refreshToken();
         return $this->api->getCurrentUser();
     }
 
@@ -83,7 +82,6 @@ class UserTask extends TaskBase
      */
     public function getCurrentUserVerificationStatus(): GetCurrentUserVerificationStatus200Response
     {
-        $this->refreshToken();
         return $this->api->getCurrentUserVerificationStatus();
     }
 
@@ -95,7 +93,6 @@ class UserTask extends TaskBase
      */
     public function getCurrentUserVerificationStatusFull(): GetCurrentUserVerificationStatusFull200Response
     {
-        $this->refreshToken();
         return $this->api->getCurrentUserVerificationStatusFull();
     }
 
@@ -107,7 +104,6 @@ class UserTask extends TaskBase
      */
     public function get(string $id): Error|User
     {
-        $this->refreshToken();
         return $this->api->getUser($id);
     }
 
@@ -119,7 +115,6 @@ class UserTask extends TaskBase
      */
     public function getByEmailAddress(string $email): User|Error
     {
-        $this->refreshToken();
         return $this->api->getUserByEmailAddress($email);
     }
 
@@ -131,7 +126,6 @@ class UserTask extends TaskBase
      */
     public function getByUsername(string $username): User|Error
     {
-        $this->refreshToken();
         return $this->api->getUserByUsername($username);
     }
 
@@ -145,7 +139,6 @@ class UserTask extends TaskBase
         string $userId,
         ?ResetEmailAddressRequest $resetEmailAddressRequest = null
     ): void {
-        $this->refreshToken();
         $this->api->resetEmailAddress($userId, $resetEmailAddressRequest);
     }
 
@@ -157,7 +150,6 @@ class UserTask extends TaskBase
      */
     public function resetPassword(string $userId): void
     {
-        $this->refreshToken();
         $this->api->resetPassword($userId);
     }
 
@@ -169,7 +161,6 @@ class UserTask extends TaskBase
      */
     public function update(string $userId, ?array $update_user_data = []): User|Error
     {
-        $this->refreshToken();
         $update_user_request = new UpdateUserRequest($update_user_data);
         return $this->api->updateUser($userId, $update_user_request);
     }
@@ -181,7 +172,6 @@ class UserTask extends TaskBase
      */
     public function getProjectUserAccess(string $projectId, string $userId): Error|UserProjectAccess
     {
-        $this->refreshToken();
         return $this->accessApi->getProjectUserAccess($projectId, $userId);
     }
 
@@ -192,7 +182,6 @@ class UserTask extends TaskBase
      */
     public function getUserProjectAccess(string $userId, string $projectId): Error|UserProjectAccess
     {
-        $this->refreshToken();
         return $this->accessApi->getUserProjectAccess($userId, $projectId);
     }
 
@@ -203,7 +192,6 @@ class UserTask extends TaskBase
      */
     public function grantProjectUserAccess(string $projectId, array $grantProjectUserAccessRequestInner): void
     {
-        $this->refreshToken();
         $this->accessApi->grantProjectUserAccess($projectId, $grantProjectUserAccessRequestInner);
     }
 
@@ -214,7 +202,6 @@ class UserTask extends TaskBase
      */
     public function grantUserProjectAccess(string $userId, array $grantUserProjectAccessRequest): void
     {
-        $this->refreshToken();
         $this->accessApi->grantUserProjectAccess($userId, $grantUserProjectAccessRequest);
     }
 
@@ -230,7 +217,6 @@ class UserTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): ListProjectUserAccess200Response|Error {
-        $this->refreshToken();
         return $this->accessApi->listProjectUserAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 
@@ -247,7 +233,6 @@ class UserTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): ListProjectUserAccess200Response|Error {
-        $this->refreshToken();
         return $this->accessApi->listUserProjectAccess(
             $userId,
             $filterOrganizationId,
@@ -265,7 +250,6 @@ class UserTask extends TaskBase
      */
     public function removeProjectUserAccess(string $projectId, string $userId): void
     {
-        $this->refreshToken();
         $this->accessApi->removeProjectUserAccess($projectId, $userId);
     }
 
@@ -276,7 +260,6 @@ class UserTask extends TaskBase
      */
     public function removeUserProjectAccess(string $userId, string $projectId): void
     {
-        $this->refreshToken();
         $this->accessApi->removeUserProjectAccess($userId, $projectId);
     }
 
@@ -290,7 +273,6 @@ class UserTask extends TaskBase
         string $userId,
         ?array $updateProjectUserAccessRequest = null
     ): void {
-        $this->refreshToken();
         $updateProjectUserAccessRequest = new UpdateProjectUserAccessRequest($updateProjectUserAccessRequest);
         $this->accessApi->updateProjectUserAccess($projectId, $userId, $updateProjectUserAccessRequest);
     }
@@ -305,7 +287,6 @@ class UserTask extends TaskBase
         string $projectId,
         ?array $updateProjectUserAccessRequest = null
     ): void {
-        $this->refreshToken();
         $updateProjectUserAccessRequest = new UpdateProjectUserAccessRequest($updateProjectUserAccessRequest);
         $this->accessApi->updateUserProjectAccess($projectId, $userId, $updateProjectUserAccessRequest);
     }
@@ -328,7 +309,6 @@ class UserTask extends TaskBase
      */
     public function deleteProfilePicture(string $uuid): void
     {
-        $this->refreshToken();
         $this->profilesApi->deleteProfilePicture($uuid);
     }
 
@@ -340,7 +320,6 @@ class UserTask extends TaskBase
      */
     public function getAddress(string $userId): GetAddress200Response
     {
-        $this->refreshToken();
         return $this->profilesApi->getAddress($userId);
     }
 
@@ -352,7 +331,6 @@ class UserTask extends TaskBase
      */
     public function getProfile(string $userId): Profile
     {
-        $this->refreshToken();
         return $this->profilesApi->getProfile($userId);
     }
 
@@ -364,7 +342,6 @@ class UserTask extends TaskBase
      */
     public function listProfiles(): ListProfiles200Response
     {
-        $this->refreshToken();
         return $this->profilesApi->listProfiles();
     }
 
@@ -376,7 +353,6 @@ class UserTask extends TaskBase
      */
     public function updateAddress(string $userId, ?Address $address = null): GetAddress200Response
     {
-        $this->refreshToken();
         return $this->profilesApi->updateAddress($userId, $address);
     }
 
@@ -388,7 +364,6 @@ class UserTask extends TaskBase
      */
     public function updateProfile(string $userId, ?array $updateProfileData = []): Profile
     {
-        $this->refreshToken();
         $update_profile_request = new UpdateProfileRequest($updateProfileData);
         return $this->profilesApi->updateProfile($userId, $update_profile_request);
     }
@@ -400,7 +375,6 @@ class UserTask extends TaskBase
      */
     public function createApiToken(string $userId, ?array $createApiTokenRequest = null): Error|APIToken
     {
-        $this->refreshToken();
         $createApiTokenRequest = new CreateApiTokenRequest($createApiTokenRequest);
         return $this->tokensApi->createApiToken($userId, $createApiTokenRequest);
     }
@@ -412,7 +386,6 @@ class UserTask extends TaskBase
      */
     public function deleteApiToken(string $userId, string $token_id): void
     {
-        $this->refreshToken();
         $this->tokensApi->deleteApiToken($userId, $token_id);
     }
 
@@ -423,7 +396,6 @@ class UserTask extends TaskBase
      */
     public function getApiToken(string $userId, string $token_id): Error|APIToken
     {
-        $this->refreshToken();
         return $this->tokensApi->getApiToken($userId, $token_id);
     }
 
@@ -434,7 +406,6 @@ class UserTask extends TaskBase
      */
     public function listApiTokens(string $userId): APIToken
     {
-        $this->refreshToken();
         return $this->tokensApi->createApiToken($userId);
     }
 
@@ -445,7 +416,6 @@ class UserTask extends TaskBase
      */
     public function deleteLoginConnection(string $provider, string $userId): void
     {
-        $this->refreshToken();
         $this->connectionsApi->deleteLoginConnection($provider, $userId);
     }
 
@@ -456,7 +426,6 @@ class UserTask extends TaskBase
      */
     public function getLoginConnection(string $provider, string $userId): Error|Connection
     {
-        $this->refreshToken();
         return $this->connectionsApi->getLoginConnection($provider, $userId);
     }
 
@@ -467,7 +436,6 @@ class UserTask extends TaskBase
      */
     public function listLoginConnections(string $userId): array|Error
     {
-        $this->refreshToken();
         return $this->connectionsApi->listLoginConnections($userId);
     }
 
@@ -482,7 +450,6 @@ class UserTask extends TaskBase
         ?array $filterOrganizationId = null,
         ?array $filterPermissions = null
     ): ListUserExtendedAccess200Response|Error {
-        $this->refreshToken();
         return $this->grantsApi->listUserExtendedAccess(
             $userId,
             new StringFilter($filterResourceType),
@@ -500,7 +467,6 @@ class UserTask extends TaskBase
         string $userId,
         ?array $confirmTotpEnrollmentRequest = null
     ): ConfirmTotpEnrollment200Response|Error {
-        $this->refreshToken();
         $confirmTotpEnrollmentRequest = new ConfirmTotpEnrollmentRequest($confirmTotpEnrollmentRequest);
         return $this->mfaApi->confirmTotpEnrollment($userId, $confirmTotpEnrollmentRequest);
     }
@@ -516,7 +482,6 @@ class UserTask extends TaskBase
      */
     public function getTotpEnrollment(string $userId): GetTotpEnrollment200Response|Error
     {
-        $this->refreshToken();
         return $this->mfaApi->getTotpEnrollment($userId);
     }
 
@@ -527,7 +492,6 @@ class UserTask extends TaskBase
      */
     public function recreateRecoveryCodes(string $userId): ConfirmTotpEnrollment200Response|Error
     {
-        $this->refreshToken();
         return $this->mfaApi->recreateRecoveryCodes($userId);
     }
 
@@ -538,7 +502,6 @@ class UserTask extends TaskBase
      */
     public function withdrawTotpEnrollment(string $userId): void
     {
-        $this->refreshToken();
         $this->mfaApi->withdrawTotpEnrollment($userId);
     }
 
@@ -549,7 +512,6 @@ class UserTask extends TaskBase
      */
     public function confirmPhoneNumber(string $sid, string $userId, ?array $confirmPhoneNumberRequest = null): void
     {
-        $this->refreshToken();
         $confirmPhoneNumberRequest = new ConfirmPhoneNumberRequest($confirmPhoneNumberRequest);
         $this->phoneNumberApi->confirmPhoneNumber($sid, $userId, $confirmPhoneNumberRequest);
     }
@@ -563,7 +525,6 @@ class UserTask extends TaskBase
         string $userId,
         ?array $verifyPhoneNumberRequest = null
     ): VerifyPhoneNumber200Response|Error {
-        $this->refreshToken();
         $verifyPhoneNumberRequest = new VerifyPhoneNumberRequest($verifyPhoneNumberRequest);
         return $this->phoneNumberApi->verifyPhoneNumber($userId, $verifyPhoneNumberRequest);
     }

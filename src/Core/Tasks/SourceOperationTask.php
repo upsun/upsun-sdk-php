@@ -32,7 +32,6 @@ class SourceOperationTask extends TaskBase
      */
     public function list(string $projectId, string $environmentId): array
     {
-        $this->refreshToken();
         return $this->api->listProjectsEnvironmentsSourceOperations($projectId, $environmentId);
     }
 
@@ -46,7 +45,6 @@ class SourceOperationTask extends TaskBase
         string $environmentId,
         array $environmentSourceOperationInput
     ): AcceptedResponse {
-        $this->refreshToken();
         $environmentSourceOperationInput = new EnvironmentSourceOperationInput($environmentSourceOperationInput);
         return $this->api->runSourceOperation($projectId, $environmentId, $environmentSourceOperationInput);
     }

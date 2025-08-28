@@ -37,7 +37,6 @@ class DomainTask extends TaskBase
         array $domainCreateInput,
         ?string $environmentId = null
     ): AcceptedResponse {
-        $this->refreshToken();
         $domainCreateInput = new DomainCreateInput($domainCreateInput);
         if (!$environmentId) {
             return $this->api->createProjectsDomains($projectId, $domainCreateInput);
@@ -57,7 +56,6 @@ class DomainTask extends TaskBase
      */
     public function delete(string $projectId, string $domainId, ?string $environmentId = null): AcceptedResponse
     {
-        $this->refreshToken();
         if (!$environmentId) {
             return $this->api->deleteProjectsDomains($projectId, $domainId);
         } else {
@@ -72,7 +70,6 @@ class DomainTask extends TaskBase
      */
     public function get(string $projectId, string $domainId, ?string $environmentId = null): Domain
     {
-        $this->refreshToken();
         if (!$environmentId) {
             return $this->api->getProjectsDomains($projectId, $domainId);
         } else {
@@ -87,7 +84,6 @@ class DomainTask extends TaskBase
      */
     public function list(string $projectId, ?string $environmentId = null): array
     {
-        $this->refreshToken();
         if (!$environmentId) {
             return $this->api->listProjectsDomains($projectId);
         } else {
@@ -106,7 +102,6 @@ class DomainTask extends TaskBase
         array $domainPatch,
         ?string $environmentId = null
     ): AcceptedResponse {
-        $this->refreshToken();
         $domainPatch = new DomainPatch($domainPatch);
         if (!$environmentId) {
             return $this->api->updateProjectsDomains($projectId, $domainId, $domainPatch);

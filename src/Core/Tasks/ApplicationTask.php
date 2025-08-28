@@ -32,7 +32,6 @@ class ApplicationTask extends TaskBase
      */
     public function list(string $projectId, string $environmentId): array
     {
-        $this->refreshToken();
         $deployments = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);
         $deployments = reset($deployments);
 
@@ -46,7 +45,6 @@ class ApplicationTask extends TaskBase
      */
     public function get(string $projectId, string $environmentId, string $app_id): WebApplicationsValue|null
     {
-        $this->refreshToken();
         $environment = $this->client->environment->get($projectId, $environmentId);
         if ($environment->getDeploymentState() && $environment->getDeploymentState()->getLastDeploymentSuccessful()) {
             $deployment = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);

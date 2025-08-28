@@ -34,7 +34,6 @@ class CertificateTask extends TaskBase
      */
     public function create(string $projectId, array $certificateCreateInput): AcceptedResponse
     {
-        $this->refreshToken();
         $certificateCreateInput = new CertificateCreateInput($certificateCreateInput);
         return $this->api->createProjectsCertificates($projectId, $certificateCreateInput);
     }
@@ -46,7 +45,6 @@ class CertificateTask extends TaskBase
      */
     public function delete(string $projectId, string $certificateId): AcceptedResponse
     {
-        $this->refreshToken();
         return $this->api->deleteProjectsCertificates($projectId, $certificateId);
     }
 
@@ -57,7 +55,6 @@ class CertificateTask extends TaskBase
      */
     public function get(string $projectId, string $certificateId): Certificate
     {
-        $this->refreshToken();
         return $this->api->getProjectsCertificates($projectId, $certificateId);
     }
 
@@ -68,7 +65,6 @@ class CertificateTask extends TaskBase
      */
     public function list(string $projectId): array
     {
-        $this->refreshToken();
         return $this->api->listProjectsCertificates($projectId);
     }
 
@@ -79,7 +75,6 @@ class CertificateTask extends TaskBase
      */
     public function update(string $projectId, string $certificateId, array $certificatePatch): AcceptedResponse
     {
-        $this->refreshToken();
         $certificatePatch = new CertificatePatch($certificatePatch);
         return $this->api->updateProjectsCertificates($projectId, $certificateId, $certificatePatch);
     }

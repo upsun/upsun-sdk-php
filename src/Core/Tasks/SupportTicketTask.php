@@ -50,7 +50,6 @@ class SupportTicketTask extends TaskBase
         ?string $search = null,
         ?int $page = null
     ): ListTickets200Response {
-        $this->refreshToken();
         return $this->defaultApi->listTickets(
             $filterTicketId,
             $filterCreated,
@@ -75,7 +74,6 @@ class SupportTicketTask extends TaskBase
      */
     public function create(?array $createTicketRequest = null): Ticket
     {
-        $this->refreshToken();
         $createTicketRequest = new CreateTicketRequest($createTicketRequest);
         return $this->supportApi->createTicket($createTicketRequest);
     }
@@ -87,7 +85,6 @@ class SupportTicketTask extends TaskBase
      */
     public function listCategories(?string $projectId = null, ?string $organizationId = null): array
     {
-        $this->refreshToken();
         return $this->supportApi->listTicketCategories($projectId, $organizationId);
     }
 
@@ -98,7 +95,6 @@ class SupportTicketTask extends TaskBase
      */
     public function listPriorities(?string $projectId = null, ?string $category = null): array
     {
-        $this->refreshToken();
         return $this->supportApi->listTicketPriorities($projectId, $category);
     }
 
@@ -109,7 +105,6 @@ class SupportTicketTask extends TaskBase
      */
     public function update(string $ticket_id, ?array $updateTicketRequest = null): Ticket
     {
-        $this->refreshToken();
         $updateTicketRequest = new UpdateTicketRequest($updateTicketRequest);
         return $this->supportApi->updateTicket($ticket_id, $updateTicketRequest);
     }

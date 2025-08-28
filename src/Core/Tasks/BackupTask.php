@@ -37,7 +37,6 @@ class BackupTask extends TaskBase
         string $environmentId,
         array $environmentBackupInput
     ): AcceptedResponse {
-        $this->refreshToken();
         $environmentBackupInput = new EnvironmentBackupInput($environmentBackupInput);
         return $this->api->backupEnvironment($projectId, $environmentId, $environmentBackupInput);
     }
@@ -49,7 +48,6 @@ class BackupTask extends TaskBase
      */
     public function delete(string $projectId, string $environmentId, string $backupId): AcceptedResponse
     {
-        $this->refreshToken();
         return $this->api->deleteProjectsEnvironmentsBackups($projectId, $environmentId, $backupId);
     }
 
@@ -60,7 +58,6 @@ class BackupTask extends TaskBase
      */
     public function get(string $projectId, string $environmentId, string $backupId): Backup
     {
-        $this->refreshToken();
         return $this->api->getProjectsEnvironmentsBackups($projectId, $environmentId, $backupId);
     }
 
@@ -71,7 +68,6 @@ class BackupTask extends TaskBase
      */
     public function list(string $projectId, string $environmentId): array
     {
-        $this->refreshToken();
         return $this->api->listProjectsEnvironmentsBackups($projectId, $environmentId);
     }
 
@@ -86,7 +82,6 @@ class BackupTask extends TaskBase
         string $backupId,
         array $environmentRestoreInput
     ): AcceptedResponse {
-        $this->refreshToken();
         $environmentRestoreInput = new EnvironmentRestoreInput($environmentRestoreInput);
         return $this->api->restoreBackup($projectId, $environmentId, $backupId, $environmentRestoreInput);
     }

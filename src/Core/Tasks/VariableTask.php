@@ -39,7 +39,6 @@ class VariableTask extends TaskBase
      */
     public function createProjectVariable(string $projectId, array $projectVariableCreateInput): AcceptedResponse
     {
-        $this->refreshToken();
         $projectVariableCreateInput = new ProjectVariableCreateInput($projectVariableCreateInput);
         return $this->projectVariablesApi->createProjectsVariables($projectId, $projectVariableCreateInput);
     }
@@ -51,7 +50,6 @@ class VariableTask extends TaskBase
      */
     public function deleteProjectVariable(string $projectId, string $projectVariableId): AcceptedResponse
     {
-        $this->refreshToken();
         return $this->projectVariablesApi->deleteProjectsVariables($projectId, $projectVariableId);
     }
 
@@ -62,7 +60,6 @@ class VariableTask extends TaskBase
      */
     public function getProjectVariable(string $projectId, string $projectVariableId): ProjectVariable
     {
-        $this->refreshToken();
         return $this->projectVariablesApi->getProjectsVariables($projectId, $projectVariableId);
     }
 
@@ -73,7 +70,6 @@ class VariableTask extends TaskBase
      */
     public function listProjectVariables(string $projectId): array
     {
-        $this->refreshToken();
         return $this->projectVariablesApi->listProjectsVariables($projectId);
     }
 
@@ -87,7 +83,6 @@ class VariableTask extends TaskBase
         string $projectVariableId,
         array $projectVariablePatch
     ): AcceptedResponse {
-        $this->refreshToken();
         $projectVariablePatch = new ProjectVariablePatch($projectVariablePatch);
         return $this->projectVariablesApi->updateProjectsVariables(
             $projectId,
@@ -106,7 +101,6 @@ class VariableTask extends TaskBase
         string $environmentId,
         array $environmentVariableCreateInput
     ): AcceptedResponse {
-        $this->refreshToken();
         $environmentVariableCreateInput = new EnvironmentVariableCreateInput($environmentVariableCreateInput);
         return $this->environmentVariablesApi->deleteProjectsEnvironmentsVariables(
             $projectId,
@@ -125,7 +119,6 @@ class VariableTask extends TaskBase
         string $environmentId,
         string $variableId
     ): AcceptedResponse {
-        $this->refreshToken();
         return $this->environmentVariablesApi->deleteProjectsEnvironmentsVariables(
             $projectId,
             $environmentId,
@@ -143,7 +136,6 @@ class VariableTask extends TaskBase
         string $environmentId,
         string $variableId
     ): EnvironmentVariable {
-        $this->refreshToken();
         return $this->environmentVariablesApi->getProjectsEnvironmentsVariables(
             $projectId,
             $environmentId,
@@ -158,7 +150,6 @@ class VariableTask extends TaskBase
      */
     public function listEnvironmentVariables(string $projectId, string $environmentId): array
     {
-        $this->refreshToken();
         return $this->environmentVariablesApi->listProjectsEnvironmentsVariables($projectId, $environmentId);
     }
 
@@ -173,7 +164,6 @@ class VariableTask extends TaskBase
         string $variableId,
         array $environmentVariablePatch
     ): AcceptedResponse {
-        $this->refreshToken();
         $environmentVariablePatch = new EnvironmentVariablePatch($environmentVariablePatch);
         return $this->environmentVariablesApi->updateProjectsEnvironmentsVariables(
             $projectId,

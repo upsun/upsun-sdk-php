@@ -34,7 +34,6 @@ class ActivityTask extends TaskBase
      */
     public function cancel(string $projectId, string $activityId, ?string $environmentId = null): AcceptedResponse
     {
-        $this->refreshToken();
         if (!$environmentId) {
             return $this->prjApi->actionProjectsActivitiesCancel($projectId, $activityId);
         } else {
@@ -53,7 +52,6 @@ class ActivityTask extends TaskBase
      */
     public function get(string $projectId, string $activityId, ?string $environmentId = null): Activity
     {
-        $this->refreshToken();
         if (!$environmentId) {
             return $this->prjApi->getProjectsActivities($projectId, $activityId);
         } else {
@@ -68,7 +66,6 @@ class ActivityTask extends TaskBase
      */
     public function list(string $projectId, ?string $environmentId = null): array
     {
-        $this->refreshToken();
         if (!$environmentId) {
             return $this->prjApi->listProjectsActivities($projectId);
         } else {

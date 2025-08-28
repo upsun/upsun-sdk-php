@@ -43,7 +43,6 @@ class TeamTask extends TaskBase
      */
     public function create(array $createTeamRequest): Team|Error
     {
-        $this->refreshToken();
         $createTeamRequest = new CreateTeamRequest($createTeamRequest);
         return $this->teamsApi->createTeam($createTeamRequest);
     }
@@ -55,7 +54,6 @@ class TeamTask extends TaskBase
      */
     public function createMember(string $teamId, array $createTeamMemberRequest): Error|TeamMember
     {
-        $this->refreshToken();
         $createTeamMemberRequest = new CreateTeamMemberRequest($createTeamMemberRequest);
         return $this->teamsApi->createTeamMember($teamId, $createTeamMemberRequest);
     }
@@ -67,7 +65,6 @@ class TeamTask extends TaskBase
      */
     public function delete(string $teamId): void
     {
-        $this->refreshToken();
         $this->teamsApi->deleteTeam($teamId);
     }
 
@@ -78,7 +75,6 @@ class TeamTask extends TaskBase
      */
     public function deleteMember(string $teamId, string $userId): void
     {
-        $this->refreshToken();
         $this->teamsApi->deleteTeamMember($teamId, $userId);
     }
 
@@ -89,7 +85,6 @@ class TeamTask extends TaskBase
      */
     public function get(string $teamId): Team|Error
     {
-        $this->refreshToken();
         return $this->teamsApi->getTeam($teamId);
     }
 
@@ -100,7 +95,6 @@ class TeamTask extends TaskBase
      */
     public function getMember(string $teamId, string $userId): Error|TeamMember
     {
-        $this->refreshToken();
         return $this->teamsApi->getTeamMember($teamId, $userId);
     }
 
@@ -115,7 +109,6 @@ class TeamTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): Error|ListTeamMembers200Response {
-        $this->refreshToken();
         return $this->teamsApi->listTeamMembers($teamId, $pageBefore, $pageAfter, $sort);
     }
 
@@ -133,7 +126,6 @@ class TeamTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): Error|ListTeams200Response {
-        $this->refreshToken();
         return $this->teamsApi->listTeams(
             new StringFilter($filterOrganizationId),
             new StringFilter($filterId),
@@ -159,7 +151,6 @@ class TeamTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): Error|ListTeams200Response {
-        $this->refreshToken();
         return $this->teamsApi->listUserTeams(
             $userId,
             new StringFilter($filterOrganizationId),
@@ -178,7 +169,6 @@ class TeamTask extends TaskBase
      */
     public function update(string $teamId, ?array $updateTeamRequest = null): Team|Error
     {
-        $this->refreshToken();
         return $this->teamsApi->updateTeam($teamId, $updateTeamRequest);
     }
 
@@ -189,7 +179,6 @@ class TeamTask extends TaskBase
      */
     public function getProjectTeamAccess(string $projectId, string $teamId): Error|TeamProjectAccess
     {
-        $this->refreshToken();
         return $this->accessApi->getProjectTeamAccess($projectId, $teamId);
     }
 
@@ -201,7 +190,6 @@ class TeamTask extends TaskBase
      */
     public function getTeamProjectAccess(string $teamId, string $projectId): Error|TeamProjectAccess
     {
-        $this->refreshToken();
         return $this->accessApi->getTeamProjectAccess($teamId, $projectId);
     }
 
@@ -212,7 +200,6 @@ class TeamTask extends TaskBase
      */
     public function grantProjectTeamAccess(string $projectId, array $grantProjectTeamAccessRequestInner): void
     {
-        $this->refreshToken();
         $this->accessApi->grantProjectTeamAccess($projectId, $grantProjectTeamAccessRequestInner);
     }
 
@@ -223,7 +210,6 @@ class TeamTask extends TaskBase
      */
     public function grantTeamProjectAccess(string $teamId, array $grantTeamProjectAccessRequestInner): void
     {
-        $this->refreshToken();
         $this->accessApi->grantTeamProjectAccess($teamId, $grantTeamProjectAccessRequestInner);
     }
 
@@ -239,7 +225,6 @@ class TeamTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): Error|ListTeamProjectAccess200Response {
-        $this->refreshToken();
         return $this->accessApi->listProjectTeamAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 
@@ -255,7 +240,6 @@ class TeamTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): Error|ListTeamProjectAccess200Response {
-        $this->refreshToken();
         return $this->accessApi->listTeamProjectAccess($teamId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 
@@ -266,7 +250,6 @@ class TeamTask extends TaskBase
      */
     public function removeProjectTeamAccess(string $projectId, string $teamId): void
     {
-        $this->refreshToken();
         $this->accessApi->removeProjectTeamAccess($projectId, $teamId);
     }
 
@@ -277,7 +260,6 @@ class TeamTask extends TaskBase
      */
     public function removeTeamProjectAccess(string $teamId, string $projectId): void
     {
-        $this->refreshToken();
         $this->accessApi->removeTeamProjectAccess($teamId, $projectId);
     }
 }

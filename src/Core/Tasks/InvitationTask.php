@@ -40,7 +40,6 @@ class InvitationTask extends TaskBase
      */
     public function cancelOrgInvite(string $organizationId, string $invitationId): void
     {
-        $this->refreshToken();
         $this->orgInvApi->cancelOrgInvite($organizationId, $invitationId);
     }
 
@@ -55,8 +54,6 @@ class InvitationTask extends TaskBase
         array $permissions,
         ?bool $force = true
     ): Error|OrganizationInvitation {
-        $this->refreshToken();
-
         $inviteRequest = new CreateOrgInviteRequest([
             'email' => $email,
             'permissions' => $permissions,
@@ -78,7 +75,6 @@ class InvitationTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): Error|array {
-        $this->refreshToken();
         return $this->orgInvApi->listOrgInvites(
             $organizationId,
             new StringFilter($filterState),
@@ -97,7 +93,6 @@ class InvitationTask extends TaskBase
      */
     public function cancelProjectInvite(string $projectId, string $invitationId): void
     {
-        $this->refreshToken();
         $this->prjInvApi->cancelProjectInvite($projectId, $invitationId);
     }
 
@@ -111,7 +106,6 @@ class InvitationTask extends TaskBase
         string $projectId,
         ?array $createProjectInviteRequest = null
     ): ProjectInvitation|Error {
-        $this->refreshToken();
         $createProjectInviteRequest = new CreateProjectInviteRequest($createProjectInviteRequest);
         return $this->prjInvApi->createProjectInvite($projectId, $createProjectInviteRequest);
     }
@@ -129,7 +123,6 @@ class InvitationTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): Error|array {
-        $this->refreshToken();
         return $this->prjInvApi->listProjectInvites(
             $projectId,
             new StringFilter($filterState),

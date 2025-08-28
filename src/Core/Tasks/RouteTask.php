@@ -34,7 +34,6 @@ class RouteTask extends TaskBase
      */
     public function create(string $projectId, string $environmentId, array $routeCreateInput): AcceptedResponse
     {
-        $this->refreshToken();
         $routeCreateInput = new RouteCreateInput($routeCreateInput);
         return $this->api->createProjectsEnvironmentsRoutes($projectId, $environmentId, $routeCreateInput);
     }
@@ -46,7 +45,6 @@ class RouteTask extends TaskBase
      */
     public function delete(string $projectId, string $environmentId, string $routeId): AcceptedResponse
     {
-        $this->refreshToken();
         return $this->api->deleteProjectsEnvironmentsRoutes($projectId, $environmentId, $routeId);
     }
 
@@ -57,7 +55,6 @@ class RouteTask extends TaskBase
      */
     public function get(string $projectId, string $environmentId, string $routeId): Route
     {
-        $this->refreshToken();
         return $this->api->getProjectsEnvironmentsRoutes($projectId, $environmentId, $routeId);
     }
 
@@ -68,7 +65,6 @@ class RouteTask extends TaskBase
      */
     public function list(string $projectId, string $environmentId): ?array
     {
-        $this->refreshToken();
         return $this->api->listProjectsEnvironmentsRoutes($projectId, $environmentId);
     }
 
@@ -83,7 +79,6 @@ class RouteTask extends TaskBase
         string $routeId,
         array $routePatch
     ): AcceptedResponse {
-        $this->refreshToken();
         $routePatch = new RoutePatch($routePatch);
         return $this->api->updateProjectsEnvironmentsRoutes($projectId, $environmentId, $routeId, $routePatch);
     }

@@ -36,7 +36,6 @@ class OperationTask extends TaskBase
         string $deploymentId,
         array $environmentOperationInput
     ): AcceptedResponse {
-        $this->refreshToken();
         $environmentOperationInput = new EnvironmentOperationInput($environmentOperationInput);
         return $this->api->runOperation($projectId, $environmentId, $deploymentId, $environmentOperationInput);
     }
