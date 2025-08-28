@@ -3,12 +3,12 @@
 namespace Upsun\Core;
 
 use Exception;
+use Nyholm\Psr7\Stream;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nyholm\Psr7\Stream;
 
-class OAuthProvider
+class OAuthProvider_old
 {
     private ?string $typeToken = null;
     private ?string $accessToken = null;
@@ -25,8 +25,6 @@ class OAuthProvider
     }
 
     /**
-     * Exchange API token for access token
-     *
      * @throws Exception
      */
     public function exchangeCodeForToken(): bool
@@ -38,7 +36,7 @@ class OAuthProvider
             ]);
 
             $request = $this->requestFactory->createRequest('POST', $this->tokenEndpoint)
-                ->withHeader('Authorization', 'Basic ' . base64_encode(':'))
+                ->withHeader('Authorization', 'Basic ' . base64_encode('platform-api-user:'))
                 ->withHeader('Content-Type', 'application/x-www-form-urlencoded')
                 ->withBody(Stream::create($body));
 
@@ -61,8 +59,6 @@ class OAuthProvider
     }
 
     /**
-     * Refresh access token using refresh token
-     *
      * @throws Exception
      */
     private function refreshAccessToken(): void
@@ -116,13 +112,17 @@ class OAuthProvider
     }
 
     /**
-     * Force token refresh, bypassing expiry check
+     * Force token refresh - bypasses the normal expiry check
+     * Useful for retry logic when we get a 401 error
      *
      * @throws Exception
      */
     public function forceRefresh(): void
     {
+        // Force token expiry to trigger refresh
         $this->tokenExpiry = 0;
+
+        // Get fresh token (this will trigger ensureValidToken -> refreshAccessToken)
         $this->getAccessToken();
     }
 }

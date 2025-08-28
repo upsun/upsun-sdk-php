@@ -639,9 +639,8 @@ final class OrganizationsApi extends AbstractApi
     public function getOrgWithHttpInfo(
         string $organization_id
     ): array {
-        var_dump('dans organizationApi.getOrgHttpInfo ' . $organization_id );
         $request = $this->getOrgRequest($organization_id);
-        var_dump($request->getUri());
+
         try {
             try {
                 $this->refreshToken();
@@ -831,7 +830,7 @@ final class OrganizationsApi extends AbstractApi
         $multipart = false;
 
 
-        var_dump('getOrgRequest ' . $organization_id);
+
         // path params
         if ($organization_id !== null) {
             $resourcePath = str_replace(
@@ -841,8 +840,7 @@ final class OrganizationsApi extends AbstractApi
             );
         }
 
-        var_dump('resourcePath ' . $resourcePath);
-        
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
             '',

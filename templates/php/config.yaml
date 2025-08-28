@@ -30,3 +30,7 @@ files:
     templateType: SupportingFiles
     destinationFilename: AbstractApi.php
     folder: src/Api
+  oauth_provider.mustache:
+    templateType: SupportingFiles
+    destinationFilename: OAuthProvider.php
+    folder: src/Core
