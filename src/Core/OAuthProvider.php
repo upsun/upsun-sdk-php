@@ -3,6 +3,7 @@
 namespace Upsun\Core;
 
 use Exception;
+use Nyholm\Psr7\Stream;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -37,7 +38,7 @@ class OAuthProvider
             $request = $this->requestFactory->createRequest('POST', $this->tokenEndpoint)
                 ->withHeader('Authorization', 'Basic ' . base64_encode('platform-api-user:'))
                 ->withHeader('Content-Type', 'application/x-www-form-urlencoded')
-                ->withBody(\Nyholm\Psr7\Stream::create($body));
+                ->withBody(Stream::create($body));
 
             $response = $this->httpClient->sendRequest($request);
             $data = json_decode((string)$response->getBody(), true);
@@ -75,7 +76,7 @@ class OAuthProvider
 
             $request = $this->requestFactory->createRequest('POST', $this->tokenEndpoint)
                 ->withHeader('Content-Type', 'application/x-www-form-urlencoded')
-                ->withBody(\Nyholm\Psr7\Stream::create($body));
+                ->withBody(Stream::create($body));
 
             $response = $this->httpClient->sendRequest($request);
             $data = json_decode((string)$response->getBody(), true);
