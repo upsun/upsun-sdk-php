@@ -651,14 +651,6 @@ final class OrganizationsApi extends AbstractApi
                     $request->getHeaders(),
                     (string) $request->getBody()
                 );
-
-                var_dump((string) $response->getBody());
-                
-                
-                
-                
-                
-                
             } catch (HttpException $e) {
                 $response = $e->getResponse();
                 throw new ApiException(
@@ -682,7 +674,7 @@ final class OrganizationsApi extends AbstractApi
 
             $statusCode = $response->getStatusCode();
 
-var_dump($statusCode);
+
             switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
