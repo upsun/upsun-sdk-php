@@ -44,12 +44,12 @@ class OAuthProvider
                 ->withBody(Stream::create($body));
 
             $response = $this->httpClient->sendRequest($request);
-
+            
             // Check response status
             if ($response->getStatusCode() !== 200) {
                 throw new Exception('Token exchange failed with status: ' . $response->getStatusCode());
             }
-
+            
             $responseBody = (string)$response->getBody();
             $data = json_decode($responseBody, true);
 
@@ -69,7 +69,7 @@ class OAuthProvider
 
             $this->storeTokenData($data);
             $this->hasInitialToken = true;
-
+            
             return true;
         } catch (ClientExceptionInterface $e) {
             throw new Exception('Token exchange failed: ' . $e->getMessage());
@@ -91,15 +91,10 @@ class OAuthProvider
      */
     private function refreshAccessToken(): void
     {
-        // If no refresh token and no initial token yet, try to get initial token
-        if (!$this->refreshToken && !$this->hasInitialToken) {
+        // If no refresh token, try to get a new access token with API token
+        if (!$this->refreshToken) {
             $this->exchangeCodeForToken();
             return;
-        }
-
-        // If no refresh token but we had an initial token, we can't refresh
-        if (!$this->refreshToken) {
-            throw new Exception('No refresh token available and initial token has expired');
         }
 
         try {
@@ -114,12 +109,12 @@ class OAuthProvider
                 ->withBody(Stream::create($body));
 
             $response = $this->httpClient->sendRequest($request);
-
+            
             // Check response status
             if ($response->getStatusCode() !== 200) {
                 throw new Exception('Token refresh failed with status: ' . $response->getStatusCode());
             }
-
+            
             $responseBody = (string)$response->getBody();
             $data = json_decode($responseBody, true);
 
@@ -149,27 +144,19 @@ class OAuthProvider
 
         // No token at all - get initial token
         if (!$this->accessToken) {
-            if (!$this->hasInitialToken) {
-                $this->exchangeCodeForToken();
-            } else {
-                throw new Exception('Access token expired and no refresh method available');
-            }
+            $this->exchangeCodeForToken();
             return;
         }
 
         // Token is expired or about to expire
         if (time() > ($this->tokenExpiry - $buffer)) {
             if ($this->refreshToken) {
+                // We have a refresh token, use it
                 $this->refreshAccessToken();
             } else {
-                // No refresh token available - this might fail if API token can only be used once
-                if ($this->hasInitialToken) {
-                    throw new Exception(
-                        'Token expired and no refresh token available. API token may have been consumed.'
-                    );
-                } else {
-                    $this->exchangeCodeForToken();
-                }
+                // No refresh token - API tokens are typically long-lived
+                // Try to get a new token with the same API token
+                $this->exchangeCodeForToken();
             }
         }
     }
