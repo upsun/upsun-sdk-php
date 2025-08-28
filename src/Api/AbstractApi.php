@@ -55,7 +55,7 @@ abstract class AbstractApi
     ): ResponseInterface {
         $request = $this->createAuthenticatedRequest($method, $uri, $headers);
 
-
+        var_dump($request->getUri(), $request->getBody(), $request->getHeaders());
         try {
             return $this->httpClient->sendRequest($request);
         } catch (ClientExceptionInterface $e) {
