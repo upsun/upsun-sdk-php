@@ -45,6 +45,9 @@ class OAuthProvider
             $response = $this->httpClient->sendRequest($request);
             $data = json_decode((string)$response->getBody(), true);
 
+            var_dump('exchangeCodeForToken');
+            var_dump($data);
+            
             $this->storeTokenData($data);
             return true;
         } catch (ClientExceptionInterface $e) {
