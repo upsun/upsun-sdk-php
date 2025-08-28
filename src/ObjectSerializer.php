@@ -280,7 +280,7 @@ class ObjectSerializer
      * If it's a datetime object, format it in ISO8601
      * If it's a boolean, convert it to "true" or "false".
      */
-    public static function toString(float|int|bool|\DateTime $value): string
+    public static function toString(string|float|int|bool|\DateTime $value): string
     {
         if ($value instanceof \DateTime) { // datetime in ISO8601 format
             return $value->format(self::$dateTimeFormat);
