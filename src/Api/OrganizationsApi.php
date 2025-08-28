@@ -641,7 +641,7 @@ final class OrganizationsApi extends AbstractApi
     ): array {
         var_dump('dans organizationApi.getOrgHttpInfo ' . $organization_id );
         $request = $this->getOrgRequest($organization_id);
-
+        var_dump($request->getUri());
         try {
             try {
                 $this->refreshToken();
