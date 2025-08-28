@@ -25,6 +25,7 @@ additionalProperties:
   generateInterfaces: true
   projectName: Upsun SDK PHP
   authorizationUrl: https://auth.upsun.com/oauth2/token
+  basicUser: "platform-api-user"
 files:
   abstract_api.mustache:
     templateType: SupportingFiles

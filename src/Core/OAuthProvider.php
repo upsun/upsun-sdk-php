@@ -38,7 +38,7 @@ class OAuthProvider
             ]);
 
             $request = $this->requestFactory->createRequest('POST', $this->tokenEndpoint)
-                ->withHeader('Authorization', 'Basic ' . base64_encode(':'))
+                ->withHeader('Authorization', 'Basic ' . base64_encode('platform-api-user:'))
                 ->withHeader('Content-Type', 'application/x-www-form-urlencoded')
                 ->withBody(Stream::create($body));
 
