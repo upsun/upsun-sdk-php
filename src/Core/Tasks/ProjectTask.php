@@ -75,7 +75,6 @@ class ProjectTask extends TaskBase
      */
     public function delete(string $organizationId, string $projectId): void
     {
-        $this->refreshToken();
         $this->subscriptionsApi->deleteOrgSubscription($organizationId, $projectId);
     }
 
@@ -87,7 +86,6 @@ class ProjectTask extends TaskBase
      */
     public function get(string $projectId): OrganizationProject
     {
-        $this->refreshToken();
         $project = $this->api->getProjects($projectId);
         $orgId = $project->getOrganization();
         return $this->organizationProjectsApi->getOrgProject($orgId, $projectId);
@@ -100,7 +98,6 @@ class ProjectTask extends TaskBase
      */
     public function create(string $organizationId, array $projectData): Error|Subscription
     {
-        $this->refreshToken();
         $createProjectData = new CreateOrgSubscriptionRequest($projectData);
         return $this->subscriptionsApi->createOrgSubscription($organizationId, $createProjectData);
     }
@@ -113,7 +110,6 @@ class ProjectTask extends TaskBase
      */
     public function canCreate(string $organizationId): CanCreateNewOrgSubscription200Response|Error
     {
-        $this->refreshToken();
         return $this->subscriptionsApi->canCreateNewOrgSubscription($organizationId);
     }
 
@@ -125,7 +121,6 @@ class ProjectTask extends TaskBase
      */
     public function getCapabilities(string $projectId): ProjectCapabilities
     {
-        $this->refreshToken();
         return $this->api->getProjectsCapabilities($projectId);
     }
 
@@ -137,7 +132,6 @@ class ProjectTask extends TaskBase
      */
     public function update(string $projectId, array $projectData): AcceptedResponse
     {
-        $this->refreshToken();
         $project_patch = new ProjectPatch($projectData);
         return $this->api->updateProjects($projectId, $project_patch);
     }
@@ -196,7 +190,6 @@ class ProjectTask extends TaskBase
      */
     public function getSettings(string $projectId): ProjectSettings
     {
-        $this->refreshToken();
         return $this->settingsApi->getProjectsSettings($projectId);
     }
 
@@ -207,7 +200,6 @@ class ProjectTask extends TaskBase
      */
     public function updateSettings(string $projectId, array $projectSettingsPatch): AcceptedResponse
     {
-        $this->refreshToken();
         $projectSettingsPatch = new ProjectSettingsPatch($projectSettingsPatch);
         return $this->settingsApi->updateProjectsSettings($projectId, $projectSettingsPatch);
     }
@@ -296,7 +288,6 @@ class ProjectTask extends TaskBase
      */
     public function createDeployment(string $projectId, array $deploymentTargetCreateInput): AcceptedResponse
     {
-        $this->refreshToken();
         $deploymentTargetCreateInput = new DeploymentTargetCreateInput($deploymentTargetCreateInput);
         return $this->deploymentTargetApi->createProjectsDeployments($projectId, $deploymentTargetCreateInput);
     }
@@ -308,7 +299,6 @@ class ProjectTask extends TaskBase
      */
     public function deleteDeployment(string $projectId, string $deploymentTargetConfigurationId): AcceptedResponse
     {
-        $this->refreshToken();
         return $this->deploymentTargetApi->deleteProjectsDeployments($projectId, $deploymentTargetConfigurationId);
     }
 
@@ -319,7 +309,6 @@ class ProjectTask extends TaskBase
      */
     public function getDeployment(string $projectId, string $deploymentTargetConfigurationId): DeploymentTarget
     {
-        $this->refreshToken();
         return $this->deploymentTargetApi->getProjectsDeployments($projectId, $deploymentTargetConfigurationId);
     }
 
@@ -330,7 +319,6 @@ class ProjectTask extends TaskBase
      */
     public function listDeployments(string $projectId): array
     {
-        $this->refreshToken();
         return $this->deploymentTargetApi->listProjectsDeployments($projectId);
     }
 
@@ -344,7 +332,6 @@ class ProjectTask extends TaskBase
         string $deploymentTargetConfigurationId,
         array $deploymentTargetPatch
     ): AcceptedResponse {
-        $this->refreshToken();
         $deploymentTargetPatch = new DeploymentTargetPatch($deploymentTargetPatch);
         return $this->deploymentTargetApi->updateProjectsDeployments(
             $projectId,
@@ -360,7 +347,6 @@ class ProjectTask extends TaskBase
      */
     public function getGitBlob(string $projectId, string $repositoryBlobId): Blob
     {
-        $this->refreshToken();
         return $this->repositoryApi->getProjectsGitBlobs($projectId, $repositoryBlobId);
     }
 
@@ -371,7 +357,6 @@ class ProjectTask extends TaskBase
      */
     public function getGitCommit(string $projectId, string $repositoryCommitId): Commit
     {
-        $this->refreshToken();
         return $this->repositoryApi->getProjectsGitCommits($projectId, $repositoryCommitId);
     }
 
@@ -382,7 +367,6 @@ class ProjectTask extends TaskBase
      */
     public function getGitRef(string $projectId, string $repositoryRefId): Ref
     {
-        $this->refreshToken();
         return $this->repositoryApi->getProjectsGitRefs($projectId, $repositoryRefId);
     }
 
@@ -393,7 +377,6 @@ class ProjectTask extends TaskBase
      */
     public function getGitTree(string $projectId, string $repositoryTreeId): Tree
     {
-        $this->refreshToken();
         return $this->repositoryApi->getProjectsGitTrees($projectId, $repositoryTreeId);
     }
 
@@ -405,7 +388,6 @@ class ProjectTask extends TaskBase
      */
     public function listGitRefs(string $projectId): array
     {
-        $this->refreshToken();
         return $this->repositoryApi->listProjectsGitRefs($projectId);
     }
 
@@ -416,7 +398,6 @@ class ProjectTask extends TaskBase
      */
     public function restartGitServer(string $projectId): AcceptedResponse
     {
-        $this->refreshToken();
         return $this->systemInfoApi->actionProjectsSystemRestart($projectId);
     }
 
@@ -427,7 +408,6 @@ class ProjectTask extends TaskBase
      */
     public function getGitInfo(string $projectId): SystemInformation
     {
-        $this->refreshToken();
         return $this->systemInfoApi->getProjectsSystem($projectId);
     }
 
@@ -438,7 +418,6 @@ class ProjectTask extends TaskBase
      */
     public function createIntegration(string $projectId, array $integrationCreateInput): AcceptedResponse
     {
-        $this->refreshToken();
         $integrationCreateInput = new IntegrationCreateInput($integrationCreateInput);
         return $this->thirdPartyIntegrationsApi->createProjectsIntegrations($projectId, $integrationCreateInput);
     }
@@ -450,7 +429,6 @@ class ProjectTask extends TaskBase
      */
     public function deleteIntegration(string $projectId, string $integrationId): AcceptedResponse
     {
-        $this->refreshToken();
         return $this->thirdPartyIntegrationsApi->deleteProjectsIntegrations($projectId, $integrationId);
     }
 
@@ -461,7 +439,6 @@ class ProjectTask extends TaskBase
      */
     public function getIntegration(string $projectId, string $integrationId): Integration
     {
-        $this->refreshToken();
         return $this->thirdPartyIntegrationsApi->getProjectsIntegrations($projectId, $integrationId);
     }
 
@@ -472,7 +449,6 @@ class ProjectTask extends TaskBase
      */
     public function listIntegrations(string $projectId): array
     {
-        $this->refreshToken();
         return $this->thirdPartyIntegrationsApi->listProjectsIntegrations($projectId);
     }
 
@@ -486,7 +462,6 @@ class ProjectTask extends TaskBase
         string $integrationId,
         array $integrationPatch
     ): AcceptedResponse {
-        $this->refreshToken();
         $integrationPatch = new IntegrationPatch($integrationPatch);
         return $this->thirdPartyIntegrationsApi->updateProjectsIntegrations(
             $projectId,
@@ -532,7 +507,6 @@ class ProjectTask extends TaskBase
      */
     public function listDomains(string $projectId): array
     {
-        $this->refreshToken();
         return $this->client->domain->list($projectId);
     }
 

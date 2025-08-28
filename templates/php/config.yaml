@@ -1,10 +1,10 @@
 generatorName: php
 inputSpec: ./schema/openapispec-platformsh.json
 outputDir: .
-
+packageName: upsun-client
 templateDir: ./templates/php
-
 library: psr-18
+generateSupportingFiles: true
 
 additionalProperties:
   invokerPackage: Upsun
@@ -25,4 +25,8 @@ additionalProperties:
   generateInterfaces: true
   projectName: Upsun SDK PHP
   authorizationUrl: https://auth.upsun.com/oauth2/token
-generateSupportingFiles: true
+files:
+  abstract_api.mustache:
+    templateType: SupportingFiles
+    destinationFilename: AbstractApi.php
+    folder: src/Api

@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use Exception;
 use Upsun\ApiException;
 use Upsun\Api\CertManagementApi;
 use Upsun\Model\AcceptedResponse;
@@ -29,7 +30,7 @@ class CertificateTask extends TaskBase
     /**
      * Adds an SSL certificate
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function create(string $projectId, array $certificateCreateInput): AcceptedResponse
     {
@@ -41,7 +42,7 @@ class CertificateTask extends TaskBase
     /**
      * Deletes an SSL certificate
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function delete(string $projectId, string $certificateId): AcceptedResponse
     {
@@ -52,7 +53,7 @@ class CertificateTask extends TaskBase
     /**
      * Gets an SSL certificate
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function get(string $projectId, string $certificateId): Certificate
     {
@@ -63,7 +64,7 @@ class CertificateTask extends TaskBase
     /**
      * Gets list of SSL certificates
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function list(string $projectId): array
     {
@@ -74,7 +75,7 @@ class CertificateTask extends TaskBase
     /**
      * Updates an SSL certificate
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function update(string $projectId, string $certificateId, array $certificatePatch): AcceptedResponse
     {

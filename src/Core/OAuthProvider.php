@@ -2,6 +2,7 @@
 
 namespace Upsun\Core;
 
+use Exception;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -22,6 +23,9 @@ class OAuthProvider
     ) {
     }
 
+    /**
+     * @throws Exception
+     */
     public function exchangeCodeForToken(): bool
     {
         try {
@@ -41,7 +45,7 @@ class OAuthProvider
             $this->storeTokenData($data);
             return true;
         } catch (ClientExceptionInterface $e) {
-            throw new \Exception('Token exchange failed: ' . $e->getMessage());
+            throw new Exception('Token exchange failed: ' . $e->getMessage());
         }
     }
 
@@ -53,10 +57,13 @@ class OAuthProvider
         $this->tokenExpiry = time() + ($data['expires_in'] ?? 0);
     }
 
+    /**
+     * @throws Exception
+     */
     private function refreshAccessToken(): void
     {
         if (!$this->refreshToken) {
-            throw new \Exception('No refresh token available');
+            throw new Exception('No refresh token available');
         }
 
         try {
@@ -75,7 +82,7 @@ class OAuthProvider
 
             $this->storeTokenData($data);
         } catch (ClientExceptionInterface $e) {
-            throw new \Exception('Token refresh failed: ' . $e->getMessage());
+            throw new Exception('Token refresh failed: ' . $e->getMessage());
         }
     }
 
@@ -101,5 +108,20 @@ class OAuthProvider
     {
         $this->ensureValidToken();
         return $this->accessToken;
+    }
+
+    /**
+     * Force token refresh - bypasses the normal expiry check
+     * Useful for retry logic when we get a 401 error
+     *
+     * @throws Exception
+     */
+    public function forceRefresh(): void
+    {
+        // Force token expiry to trigger refresh
+        $this->tokenExpiry = 0;
+
+        // Get fresh token (this will trigger ensureValidToken -> refreshAccessToken)
+        $this->getAccessToken();
     }
 }

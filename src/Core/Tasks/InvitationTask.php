@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use Exception;
 use InvalidArgumentException;
 use Upsun\ApiException;
 use Upsun\Api\OrganizationInvitationsApi;
@@ -35,7 +36,7 @@ class InvitationTask extends TaskBase
      * Cancels a pending invitation to an organization
      *
      * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function cancelOrgInvite(string $organizationId, string $invitationId): void
     {
@@ -67,7 +68,7 @@ class InvitationTask extends TaskBase
     /**
      * Lists invitations to an organization
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listOrgInvites(
         string $organizationId,
@@ -92,7 +93,7 @@ class InvitationTask extends TaskBase
      * Cancels a pending invitation to a project
      *
      * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function cancelProjectInvite(string $projectId, string $invitationId): void
     {
@@ -104,7 +105,7 @@ class InvitationTask extends TaskBase
      * Invites user to a project by email
      *
      * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function createProjectInvite(
         string $projectId,
@@ -118,7 +119,7 @@ class InvitationTask extends TaskBase
     /**
      * Lists invitations to a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listProjectInvites(
         string $projectId,

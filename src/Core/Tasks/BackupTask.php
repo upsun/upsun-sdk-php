@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use Exception;
 use Upsun\ApiException;
 use Upsun\Api\EnvironmentBackupsApi;
 use Upsun\Model\AcceptedResponse;
@@ -29,7 +30,7 @@ class BackupTask extends TaskBase
     /**
      * Creates snapshot of environment
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function backup(
         string $projectId,

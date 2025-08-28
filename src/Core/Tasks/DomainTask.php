@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use Exception;
 use Upsun\ApiException;
 use Upsun\Api\DomainManagementApi;
 use Upsun\Model\AcceptedResponse;
@@ -29,7 +30,7 @@ class DomainTask extends TaskBase
     /**
      * Adds a project (or environment) domain
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function create(
         string $projectId,
@@ -52,7 +53,7 @@ class DomainTask extends TaskBase
     /**
      * Deletes a project (or environment) domain
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function delete(string $projectId, string $domainId, ?string $environmentId = null): AcceptedResponse
     {
@@ -67,7 +68,7 @@ class DomainTask extends TaskBase
     /**
      * Gets a project (or environment) domain
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function get(string $projectId, string $domainId, ?string $environmentId = null): Domain
     {
@@ -82,7 +83,7 @@ class DomainTask extends TaskBase
     /**
      * Gets list of project (or environment) domains
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function list(string $projectId, ?string $environmentId = null): array
     {
@@ -97,7 +98,7 @@ class DomainTask extends TaskBase
     /**
      * Updates a project (or environment) domain
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function update(
         string $projectId,
