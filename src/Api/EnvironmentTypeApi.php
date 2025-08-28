@@ -63,10 +63,10 @@ final class EnvironmentTypeApi extends AbstractApi
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
+        ?RequestFactoryInterface $requestFactory = null,
         ?Configuration $config = null,
         ?HttpAsyncClient $httpAsyncClient = null,
         ?UriFactoryInterface $uriFactory = null,
-        ?RequestFactoryInterface $requestFactory = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
         ?array $plugins = null,

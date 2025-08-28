@@ -128,111 +128,111 @@ class UpsunClient
         // Initialize the commands tasks.
         $this->activity = new ActivityTask(
             $this,
-            new ProjectActivityApi($this->auth, $this->apiClient, $this->apiConfig),
-            new EnvironmentActivityApi($this->auth, $this->apiClient, $this->apiConfig)
+            new ProjectActivityApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new EnvironmentActivityApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
         $this->application = new ApplicationTask(
             $this,
-            new DeploymentApi($this->auth, $this->apiClient, $this->apiConfig)
+            new DeploymentApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
         $this->backup = new BackupTask(
             $this,
-            new EnvironmentBackupsApi($this->auth, $this->apiClient, $this->apiConfig)
+            new EnvironmentBackupsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
         $this->certificate = new CertificateTask(
             $this,
-            new CertManagementApi($this->auth, $this->apiClient, $this->apiConfig)
+            new CertManagementApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
         $this->domain = new DomainTask(
             $this,
-            new DomainManagementApi($this->auth, $this->apiClient, $this->apiConfig)
+            new DomainManagementApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
         $this->environment = new EnvironmentTask(
             $this,
-            new EnvironmentApi($this->auth, $this->apiClient, $this->apiConfig),
-            new EnvironmentTypeApi($this->auth, $this->apiClient, $this->apiConfig),
-            new DeploymentApi($this->auth, $this->apiClient, $this->apiConfig),
+            new EnvironmentApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new EnvironmentTypeApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new DeploymentApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
         );
         $this->invitations = new InvitationTask(
             $this,
-            new OrganizationInvitationsApi($this->auth, $this->apiClient, $this->apiConfig),
-            new ProjectInvitationsApi($this->auth, $this->apiClient, $this->apiConfig),
+            new OrganizationInvitationsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new ProjectInvitationsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
         );
         $this->metrics = new MetricsTask($this);
         $this->mount = new MountTask($this);
         $this->operation = new OperationTask(
             $this,
-            new RuntimeOperationsApi($this->auth, $this->apiClient, $this->apiConfig)
+            new RuntimeOperationsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
         $this->organization = new OrganizationTask(
             $this,
             new HeaderSelector(),
-            new OrganizationsApi($this->auth, $this->apiClient, $this->apiConfig),
-            new OrganizationProjectsApi($this->auth, $this->apiClient, $this->apiConfig),
-            new OrganizationMembersApi($this->auth, $this->apiClient, $this->apiConfig),
-            new SubscriptionsApi($this->auth, $this->apiClient, $this->apiConfig),
-            new InvoicesApi($this->auth, $this->apiClient, $this->apiConfig),
-            new MFAApi($this->auth, $this->apiClient, $this->apiConfig),
-            new OrdersApi($this->auth, $this->apiClient, $this->apiConfig),
-            new ProfilesApi($this->auth, $this->apiClient, $this->apiConfig),
-            new RecordsApi($this->auth, $this->apiClient, $this->apiConfig),
-            new VouchersApi($this->auth, $this->apiClient, $this->apiConfig),
+            new OrganizationsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new OrganizationProjectsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new OrganizationMembersApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new SubscriptionsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new InvoicesApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new MFAApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new OrdersApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new ProfilesApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new RecordsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new VouchersApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
         );
         $this->project = new ProjectTask(
             $this,
-            new ProjectApi($this->auth, $this->apiClient, $this->apiConfig),
-            new ProjectSettingsApi($this->auth, $this->apiClient, $this->apiConfig),
-            new DeploymentTargetApi($this->auth, $this->apiClient, $this->apiConfig),
-            new RepositoryApi($this->auth, $this->apiClient, $this->apiConfig),
-            new SystemInformationApi($this->auth, $this->apiClient, $this->apiConfig),
-            new ThirdPartyIntegrationsApi($this->auth, $this->apiClient, $this->apiConfig),
-            new SubscriptionsApi($this->auth, $this->apiClient, $this->apiConfig),
-            new OrganizationProjectsApi($this->auth, $this->apiClient, $this->apiConfig)
+            new ProjectApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new ProjectSettingsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new DeploymentTargetApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new RepositoryApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new SystemInformationApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new ThirdPartyIntegrationsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new SubscriptionsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new OrganizationProjectsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
         $this->region = new RegionTask(
             $this,
-            new RegionsApi($this->auth, $this->apiClient, $this->apiConfig)
+            new RegionsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
         $this->resource = new ResourcesTask(
             $this
         );
         $this->route = new RouteTask(
             $this,
-            new RoutingApi($this->auth, $this->apiClient, $this->apiConfig)
+            new RoutingApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
         $this->sourceOperation = new SourceOperationTask(
             $this,
-            new SourceOperationsApi($this->auth, $this->apiClient, $this->apiConfig)
+            new SourceOperationsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
         $this->team = new TeamTask(
             $this,
-            new TeamsApi($this->auth, $this->apiClient, $this->apiConfig),
-            new TeamAccessApi($this->auth, $this->apiClient, $this->apiConfig),
+            new TeamsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new TeamAccessApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
         );
         $this->supportTicket = new SupportTicketTask(
             $this,
-            new DefaultApi($this->auth, $this->apiClient, $this->apiConfig),
-            new SupportApi($this->auth, $this->apiClient, $this->apiConfig)
+            new DefaultApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new SupportApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
         $this->user = new UserTask(
             $this,
-            new UsersApi($this->auth, $this->apiClient, $this->apiConfig),
-            new UserProfilesApi($this->auth, $this->apiClient, $this->apiConfig),
-            new UserAccessApi($this->auth, $this->apiClient, $this->apiConfig),
-            new APITokensApi($this->auth, $this->apiClient, $this->apiConfig),
-            new ConnectionsApi($this->auth, $this->apiClient, $this->apiConfig),
-            new GrantsApi($this->auth, $this->apiClient, $this->apiConfig),
-            new MFAApi($this->auth, $this->apiClient, $this->apiConfig),
-            new PhoneNumberApi($this->auth, $this->apiClient, $this->apiConfig),
+            new UsersApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new UserProfilesApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new UserAccessApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new APITokensApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new ConnectionsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new GrantsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new MFAApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new PhoneNumberApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
         );
         $this->variables = new VariableTask(
             $this,
-            new ProjectVariablesApi($this->auth, $this->apiClient, $this->apiConfig),
-            new EnvironmentVariablesApi($this->auth, $this->apiClient, $this->apiConfig),
+            new ProjectVariablesApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new EnvironmentVariablesApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
         );
         $this->worker = new WorkerTask(
             $this,
-            new DeploymentApi($this->auth, $this->apiClient, $this->apiConfig)
+            new DeploymentApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
     }
 
