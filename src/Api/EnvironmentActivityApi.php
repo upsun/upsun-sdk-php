@@ -968,6 +968,14 @@ final class EnvironmentActivityApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
+        if ($this->requestFactory instanceof RequestFactory) {
+            return $this->requestFactory->createRequest(
+                $method,
+                $uri,
+                $headers,
+                $body
+            );
+        }
 
         if (is_string($body) && '' !== $body && null === $this->streamFactory) {
             throw new \RuntimeException(
