@@ -155,7 +155,7 @@ final class BlackfireIntegrationConfigurations implements ModelInterface, ArrayA
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

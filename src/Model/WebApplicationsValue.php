@@ -323,7 +323,7 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

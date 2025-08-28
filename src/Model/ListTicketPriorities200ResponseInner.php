@@ -167,7 +167,7 @@ final class ListTicketPriorities200ResponseInner implements ModelInterface, Arra
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

@@ -185,7 +185,7 @@ final class SumologicIntegration implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

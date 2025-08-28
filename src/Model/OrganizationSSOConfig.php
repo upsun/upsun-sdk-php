@@ -179,7 +179,7 @@ final class OrganizationSSOConfig implements ModelInterface, ArrayAccess, \JsonS
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

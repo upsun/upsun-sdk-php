@@ -155,7 +155,7 @@ final class TheConfigurationOfTheRedirects1 implements ModelInterface, ArrayAcce
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

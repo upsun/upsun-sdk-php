@@ -167,7 +167,7 @@ final class OrderBillingPeriodLabel implements ModelInterface, ArrayAccess, \Jso
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

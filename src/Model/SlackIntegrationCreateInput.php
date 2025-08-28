@@ -161,7 +161,7 @@ final class SlackIntegrationCreateInput implements ModelInterface, ArrayAccess, 
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

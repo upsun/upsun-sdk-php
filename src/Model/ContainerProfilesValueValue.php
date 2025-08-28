@@ -155,7 +155,7 @@ final class ContainerProfilesValueValue implements ModelInterface, ArrayAccess, 
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

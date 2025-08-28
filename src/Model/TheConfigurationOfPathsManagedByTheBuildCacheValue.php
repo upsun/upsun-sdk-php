@@ -167,7 +167,7 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements ModelI
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

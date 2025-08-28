@@ -179,7 +179,7 @@ final class NewRelicIntegration implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

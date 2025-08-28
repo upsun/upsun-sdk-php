@@ -233,7 +233,7 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

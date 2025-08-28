@@ -138,7 +138,7 @@ final class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return {{#parentSchema}}parent::getters() + {{/parentSchema}}self::$getters;
     }

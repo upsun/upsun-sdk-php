@@ -167,7 +167,7 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements M
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

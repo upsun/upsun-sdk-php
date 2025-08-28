@@ -149,7 +149,7 @@ final class OrganizationLinksVouchers implements ModelInterface, ArrayAccess, \J
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

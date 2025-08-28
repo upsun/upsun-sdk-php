@@ -197,7 +197,7 @@ final class UsageGroupCurrentUsageProperties implements ModelInterface, ArrayAcc
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

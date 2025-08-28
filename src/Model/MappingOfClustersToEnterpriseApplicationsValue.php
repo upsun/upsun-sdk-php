@@ -155,7 +155,7 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements ModelInter
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

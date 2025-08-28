@@ -161,7 +161,7 @@ final class DedicatedDeploymentTargetPatch implements ModelInterface, ArrayAcces
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

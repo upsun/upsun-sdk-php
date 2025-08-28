@@ -161,7 +161,7 @@ final class CanCreateNewOrgSubscription200Response implements ModelInterface, Ar
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

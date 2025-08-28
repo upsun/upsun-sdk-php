@@ -155,7 +155,7 @@ final class SplunkLogForwardingIntegrationConfigurations implements ModelInterfa
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

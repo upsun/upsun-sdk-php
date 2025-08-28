@@ -191,7 +191,7 @@ final class RedirectRoutePatch implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

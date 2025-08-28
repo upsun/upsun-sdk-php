@@ -155,7 +155,7 @@ final class HealthEmailNotificationIntegrationConfigurations implements ModelInt
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

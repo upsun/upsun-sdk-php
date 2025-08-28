@@ -149,7 +149,7 @@ final class ResetEmailAddressRequest implements ModelInterface, ArrayAccess, \Js
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

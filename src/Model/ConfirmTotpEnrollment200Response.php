@@ -149,7 +149,7 @@ final class ConfirmTotpEnrollment200Response implements ModelInterface, ArrayAcc
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

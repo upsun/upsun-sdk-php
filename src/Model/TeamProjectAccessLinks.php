@@ -161,7 +161,7 @@ final class TeamProjectAccessLinks implements ModelInterface, ArrayAccess, \Json
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

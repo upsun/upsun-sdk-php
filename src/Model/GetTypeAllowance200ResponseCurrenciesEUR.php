@@ -167,7 +167,7 @@ final class GetTypeAllowance200ResponseCurrenciesEUR implements ModelInterface, 
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

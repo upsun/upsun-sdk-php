@@ -149,7 +149,7 @@ final class GetCurrentUserVerificationStatus200Response implements ModelInterfac
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

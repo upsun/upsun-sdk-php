@@ -155,7 +155,7 @@ final class TheOAuth2ConsumerInformationOptional1 implements ModelInterface, Arr
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }

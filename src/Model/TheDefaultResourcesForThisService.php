@@ -167,7 +167,7 @@ final class TheDefaultResourcesForThisService implements ModelInterface, ArrayAc
      *
      * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }
