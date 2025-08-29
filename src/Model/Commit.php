@@ -18,6 +18,48 @@ final class Commit implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Commit';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'sha' => 'string',
+        'author' => '\Upsun\Model\TheInformationAboutTheAuthor',
+        'committer' => '\Upsun\Model\TheInformationAboutTheCommitter',
+        'message' => 'string',
+        'tree' => 'string',
+        'parents' => 'string[]'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'sha' => null,
+        'author' => null,
+        'committer' => null,
+        'message' => null,
+        'tree' => null,
+        'parents' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'sha' => 'sha',
+        'author' => 'author',
+        'committer' => 'committer',
+        'message' => 'message',
+        'tree' => 'tree',
+        'parents' => 'parents'
+    ];
+    
     public function __construct(
         public readonly string $sha = null,
         public readonly \Upsun\Model\TheInformationAboutTheAuthor $author = null,
@@ -43,6 +85,14 @@ final class Commit implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

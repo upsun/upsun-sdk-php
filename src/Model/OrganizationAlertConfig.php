@@ -18,6 +18,48 @@ final class OrganizationAlertConfig implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationAlertConfig';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'id' => 'string',
+        'active' => 'bool',
+        'alerts_sent' => 'float',
+        'last_alert_at' => 'string',
+        'updated_at' => 'string',
+        'config' => '\Upsun\Model\OrganizationAlertConfigConfig'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'id' => null,
+        'active' => null,
+        'alerts_sent' => null,
+        'last_alert_at' => null,
+        'updated_at' => null,
+        'config' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'id' => 'id',
+        'active' => 'active',
+        'alerts_sent' => 'alerts_sent',
+        'last_alert_at' => 'last_alert_at',
+        'updated_at' => 'updated_at',
+        'config' => 'config'
+    ];
+    
     public function __construct(
         public readonly string|null $id = null,
         public readonly bool|null $active = null,
@@ -43,6 +85,14 @@ final class OrganizationAlertConfig implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

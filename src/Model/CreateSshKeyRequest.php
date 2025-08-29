@@ -18,6 +18,39 @@ final class CreateSshKeyRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'create_ssh_key_request';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'value' => 'string',
+        'title' => 'string',
+        'uuid' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'value' => null,
+        'title' => null,
+        'uuid' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'value' => 'value',
+        'title' => 'title',
+        'uuid' => 'uuid'
+    ];
+    
     public function __construct(
         public readonly string $value = null,
         public readonly string|null $title = null,
@@ -37,6 +70,14 @@ final class CreateSshKeyRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

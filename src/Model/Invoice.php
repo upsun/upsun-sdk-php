@@ -18,6 +18,78 @@ final class Invoice implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Invoice';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'id' => 'string',
+        'invoice_number' => 'string',
+        'type' => 'string',
+        'order_id' => 'string',
+        'related_invoice_id' => 'string',
+        'status' => 'string',
+        'owner' => 'string',
+        'invoice_date' => '\DateTime',
+        'invoice_due' => '\DateTime',
+        'created' => '\DateTime',
+        'changed' => '\DateTime',
+        'company' => 'string',
+        'total' => 'float',
+        'address' => '\Upsun\Model\Address',
+        'notes' => 'string',
+        'invoice_pdf' => '\Upsun\Model\InvoicePDF'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'id' => null,
+        'invoice_number' => null,
+        'type' => null,
+        'order_id' => null,
+        'related_invoice_id' => null,
+        'status' => null,
+        'owner' => 'ulid',
+        'invoice_date' => 'date-time',
+        'invoice_due' => 'date-time',
+        'created' => 'date-time',
+        'changed' => 'date-time',
+        'company' => null,
+        'total' => 'double',
+        'address' => null,
+        'notes' => null,
+        'invoice_pdf' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'id' => 'id',
+        'invoice_number' => 'invoice_number',
+        'type' => 'type',
+        'order_id' => 'order_id',
+        'related_invoice_id' => 'related_invoice_id',
+        'status' => 'status',
+        'owner' => 'owner',
+        'invoice_date' => 'invoice_date',
+        'invoice_due' => 'invoice_due',
+        'created' => 'created',
+        'changed' => 'changed',
+        'company' => 'company',
+        'total' => 'total',
+        'address' => 'address',
+        'notes' => 'notes',
+        'invoice_pdf' => 'invoice_pdf'
+    ];
+    
     public function __construct(
         public readonly string|null $id = null,
         public readonly string|null $invoice_number = null,
@@ -63,6 +135,14 @@ final class Invoice implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

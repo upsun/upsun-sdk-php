@@ -18,6 +18,39 @@ final class TheEnvironmentDeploymentState implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_environment_deployment_state';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'last_deployment_successful' => 'bool',
+        'last_deployment_at' => '\DateTime',
+        'crons' => '\Upsun\Model\TheCronsDeploymentState'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'last_deployment_successful' => null,
+        'last_deployment_at' => 'date-time',
+        'crons' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'last_deployment_successful' => 'last_deployment_successful',
+        'last_deployment_at' => 'last_deployment_at',
+        'crons' => 'crons'
+    ];
+    
     public function __construct(
         public readonly bool $last_deployment_successful = null,
         public readonly \DateTime $last_deployment_at = null,
@@ -37,6 +70,14 @@ final class TheEnvironmentDeploymentState implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

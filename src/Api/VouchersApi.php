@@ -708,24 +708,39 @@ final class VouchersApi extends AbstractApi
         ResponseInterface $response
     ): array {
         if ($dataType === '\SplFileObject') {
-            $result = $response->getBody(); //stream goes to serializer
+            $content = $response->getBody(); //stream goes to serializer
         } else {
             $content = (string) $response->getBody();
-            
-            switch ($dataType) {
-                case 'string':
-                    $result = $content;
-                    break;
-                default:
-                    $decoded = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    $result = new $dataType(...get_object_vars($decoded));
+            if ($dataType !== 'string') {
+                try {
+                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                } catch (\JsonException $exception) {
+                    throw new ApiException(
+                        sprintf(
+                            'Error JSON decoding server response (%s)',
+                            $request->getUri()
+                        ),
+                        $request,
+                        $response
+                    );
+                }
             }
         }
 
         return [
-            $result,
+            ObjectSerializer::deserialize($content, $dataType, []),
             $response->getStatusCode(),
             $response->getHeaders()
         ];
+    }
+
+    private function responseWithinRangeCode(
+        string $rangeCode,
+        int $statusCode
+    ): bool {
+        $left = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
+
+        return $statusCode >= $left && $statusCode <= $right;
     }
 }

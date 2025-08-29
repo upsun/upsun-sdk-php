@@ -18,6 +18,36 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Js
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'create_authorization_credentials_200_response_redirect_to_url';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'return_url' => 'string',
+        'url' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'return_url' => null,
+        'url' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'return_url' => 'return_url',
+        'url' => 'url'
+    ];
+    
     public function __construct(
         public readonly string|null $return_url = null,
         public readonly string|null $url = null
@@ -35,6 +65,14 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Js
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

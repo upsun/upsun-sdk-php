@@ -18,6 +18,39 @@ final class StrictTransportSecurityOptions1 implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Strict_Transport_Security_options__1';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'enabled' => 'bool',
+        'include_subdomains' => 'bool',
+        'preload' => 'bool'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'enabled' => null,
+        'include_subdomains' => null,
+        'preload' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'enabled' => 'enabled',
+        'include_subdomains' => 'include_subdomains',
+        'preload' => 'preload'
+    ];
+    
     public function __construct(
         public readonly bool|null $enabled = null,
         public readonly bool|null $include_subdomains = null,
@@ -37,6 +70,14 @@ final class StrictTransportSecurityOptions1 implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

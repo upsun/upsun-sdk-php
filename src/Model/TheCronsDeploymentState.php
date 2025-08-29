@@ -18,6 +18,36 @@ final class TheCronsDeploymentState implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_crons_deployment_state';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'enabled' => 'bool',
+        'status' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'enabled' => null,
+        'status' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'enabled' => 'enabled',
+        'status' => 'status'
+    ];
+    
     public function __construct(
         public readonly bool $enabled = null,
         public readonly string $status = null
@@ -35,6 +65,14 @@ final class TheCronsDeploymentState implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

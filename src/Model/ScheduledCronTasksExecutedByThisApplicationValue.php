@@ -18,6 +18,45 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Scheduled_cron_tasks_executed_by_this_application__value';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'spec' => 'string',
+        'commands' => '\Upsun\Model\TheCommandsDefinition',
+        'shutdown_timeout' => 'int',
+        'timeout' => 'int',
+        'cmd' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'spec' => null,
+        'commands' => null,
+        'shutdown_timeout' => null,
+        'timeout' => null,
+        'cmd' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'spec' => 'spec',
+        'commands' => 'commands',
+        'shutdown_timeout' => 'shutdown_timeout',
+        'timeout' => 'timeout',
+        'cmd' => 'cmd'
+    ];
+    
     public function __construct(
         public readonly string $spec = null,
         public readonly \Upsun\Model\TheCommandsDefinition $commands = null,
@@ -41,6 +80,14 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

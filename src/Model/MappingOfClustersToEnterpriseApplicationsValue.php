@@ -18,6 +18,36 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerial
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Mapping_of_clusters_to_Enterprise_applications_value';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'active_docroot' => 'string',
+        'docroot_versions' => 'string[]'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'active_docroot' => null,
+        'docroot_versions' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'active_docroot' => 'active_docroot',
+        'docroot_versions' => 'docroot_versions'
+    ];
+    
     public function __construct(
         public readonly string $active_docroot = null,
         public readonly ?array $docroot_versions = null
@@ -35,6 +65,14 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerial
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

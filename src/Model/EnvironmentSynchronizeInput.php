@@ -18,6 +18,42 @@ final class EnvironmentSynchronizeInput implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'EnvironmentSynchronizeInput';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'synchronize_code' => 'bool',
+        'rebase' => 'bool',
+        'synchronize_data' => 'bool',
+        'synchronize_resources' => 'bool'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'synchronize_code' => null,
+        'rebase' => null,
+        'synchronize_data' => null,
+        'synchronize_resources' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'synchronize_code' => 'synchronize_code',
+        'rebase' => 'rebase',
+        'synchronize_data' => 'synchronize_data',
+        'synchronize_resources' => 'synchronize_resources'
+    ];
+    
     public function __construct(
         public readonly bool $synchronize_code = null,
         public readonly bool $rebase = null,
@@ -39,6 +75,14 @@ final class EnvironmentSynchronizeInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

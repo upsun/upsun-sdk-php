@@ -18,6 +18,39 @@ final class ListTeams200Response implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'list_teams_200_response';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'items' => '\Upsun\Model\Team[]',
+        'count' => 'int',
+        '_links' => '\Upsun\Model\ListLinks'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'items' => null,
+        'count' => null,
+        '_links' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'items' => 'items',
+        'count' => 'count',
+        '_links' => '_links'
+    ];
+    
     public function __construct(
         public readonly ?array $items = null,
         public readonly int|null $count = null,
@@ -37,6 +70,14 @@ final class ListTeams200Response implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

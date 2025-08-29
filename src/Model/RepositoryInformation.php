@@ -18,6 +18,36 @@ final class RepositoryInformation implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Repository_information';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'url' => 'string',
+        'client_ssh_key' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'url' => null,
+        'client_ssh_key' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'url' => 'url',
+        'client_ssh_key' => 'client_ssh_key'
+    ];
+    
     public function __construct(
         public readonly string $url = null,
         public readonly string $client_ssh_key = null
@@ -35,6 +65,14 @@ final class RepositoryInformation implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

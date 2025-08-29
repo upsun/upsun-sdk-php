@@ -18,6 +18,63 @@ final class GithubIntegrationPatch implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'GithubIntegrationPatch';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'type' => 'string',
+        'fetch_branches' => 'bool',
+        'prune_branches' => 'bool',
+        'environment_init_resources' => 'string',
+        'token' => 'string',
+        'base_url' => 'string',
+        'repository' => 'string',
+        'build_pull_requests' => 'bool',
+        'build_draft_pull_requests' => 'bool',
+        'build_pull_requests_post_merge' => 'bool',
+        'pull_requests_clone_parent_data' => 'bool'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'type' => null,
+        'fetch_branches' => null,
+        'prune_branches' => null,
+        'environment_init_resources' => null,
+        'token' => null,
+        'base_url' => null,
+        'repository' => null,
+        'build_pull_requests' => null,
+        'build_draft_pull_requests' => null,
+        'build_pull_requests_post_merge' => null,
+        'pull_requests_clone_parent_data' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'type' => 'type',
+        'fetch_branches' => 'fetch_branches',
+        'prune_branches' => 'prune_branches',
+        'environment_init_resources' => 'environment_init_resources',
+        'token' => 'token',
+        'base_url' => 'base_url',
+        'repository' => 'repository',
+        'build_pull_requests' => 'build_pull_requests',
+        'build_draft_pull_requests' => 'build_draft_pull_requests',
+        'build_pull_requests_post_merge' => 'build_pull_requests_post_merge',
+        'pull_requests_clone_parent_data' => 'pull_requests_clone_parent_data'
+    ];
+    
     public function __construct(
         public readonly string $type = null,
         public readonly bool|null $fetch_branches = null,
@@ -53,6 +110,14 @@ final class GithubIntegrationPatch implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

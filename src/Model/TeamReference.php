@@ -18,6 +18,51 @@ final class TeamReference implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'TeamReference';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'id' => 'string',
+        'organization_id' => 'string',
+        'label' => 'string',
+        'project_permissions' => 'string[]',
+        'counts' => '\Upsun\Model\TeamCounts',
+        'created_at' => '\DateTime',
+        'updated_at' => '\DateTime'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'id' => 'ulid',
+        'organization_id' => 'ulid',
+        'label' => null,
+        'project_permissions' => null,
+        'counts' => null,
+        'created_at' => 'date-time',
+        'updated_at' => 'date-time'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'id' => 'id',
+        'organization_id' => 'organization_id',
+        'label' => 'label',
+        'project_permissions' => 'project_permissions',
+        'counts' => 'counts',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at'
+    ];
+    
     public function __construct(
         public readonly string|null $id = null,
         public readonly string|null $organization_id = null,
@@ -45,6 +90,14 @@ final class TeamReference implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

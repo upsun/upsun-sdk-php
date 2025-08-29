@@ -18,6 +18,45 @@ final class CreateProjectInviteRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'create_project_invite_request';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'role' => 'string',
+        'email' => 'string',
+        'permissions' => '\Upsun\Model\CreateProjectInviteRequestPermissionsInner[]',
+        'environments' => '\Upsun\Model\CreateProjectInviteRequestEnvironmentsInner[]',
+        'force' => 'bool'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'role' => null,
+        'email' => 'email',
+        'permissions' => null,
+        'environments' => null,
+        'force' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'role' => 'role',
+        'email' => 'email',
+        'permissions' => 'permissions',
+        'environments' => 'environments',
+        'force' => 'force'
+    ];
+    
     public function __construct(
         public readonly string|null $role = null,
         public readonly string $email = null,
@@ -41,6 +80,14 @@ final class CreateProjectInviteRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

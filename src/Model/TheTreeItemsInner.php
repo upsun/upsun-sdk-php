@@ -18,6 +18,42 @@ final class TheTreeItemsInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_tree_items_inner';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'path' => 'string',
+        'mode' => 'string',
+        'type' => 'string',
+        'sha' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'path' => null,
+        'mode' => null,
+        'type' => null,
+        'sha' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'path' => 'path',
+        'mode' => 'mode',
+        'type' => 'type',
+        'sha' => 'sha'
+    ];
+    
     public function __construct(
         public readonly string $path = null,
         public readonly string $mode = null,
@@ -39,6 +75,14 @@ final class TheTreeItemsInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

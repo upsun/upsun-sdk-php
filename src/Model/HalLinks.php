@@ -18,6 +18,39 @@ final class HalLinks implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'HalLinks';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'self' => '\Upsun\Model\HalLinksSelf',
+        'previous' => '\Upsun\Model\HalLinksPrevious',
+        'next' => '\Upsun\Model\HalLinksNext'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'self' => null,
+        'previous' => null,
+        'next' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'self' => 'self',
+        'previous' => 'previous',
+        'next' => 'next'
+    ];
+    
     public function __construct(
         public readonly \Upsun\Model\HalLinksSelf|null $self = null,
         public readonly \Upsun\Model\HalLinksPrevious|null $previous = null,
@@ -37,6 +70,14 @@ final class HalLinks implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

@@ -18,6 +18,39 @@ final class CreateTeamRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'create_team_request';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'organization_id' => 'string',
+        'label' => 'string',
+        'project_permissions' => 'string[]'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'organization_id' => 'ulid',
+        'label' => null,
+        'project_permissions' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'organization_id' => 'organization_id',
+        'label' => 'label',
+        'project_permissions' => 'project_permissions'
+    ];
+    
     public function __construct(
         public readonly string $organization_id = null,
         public readonly string $label = null,
@@ -37,6 +70,14 @@ final class CreateTeamRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

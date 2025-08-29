@@ -18,6 +18,39 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSe
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Operations_that_can_be_triggered_on_this_application_value';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'commands' => '\Upsun\Model\TheCommandsDefinition',
+        'timeout' => 'int',
+        'role' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'commands' => null,
+        'timeout' => null,
+        'role' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'commands' => 'commands',
+        'timeout' => 'timeout',
+        'role' => 'role'
+    ];
+    
     public function __construct(
         public readonly \Upsun\Model\TheCommandsDefinition $commands = null,
         public readonly int $timeout = null,
@@ -37,6 +70,14 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSe
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

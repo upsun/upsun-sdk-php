@@ -18,6 +18,102 @@ final class Subscription implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Subscription';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'id' => 'string',
+        'status' => 'string',
+        'created_at' => '\DateTime',
+        'updated_at' => '\DateTime',
+        'owner' => 'string',
+        'owner_info' => '\Upsun\Model\OwnerInfo',
+        'vendor' => 'string',
+        'plan' => 'string',
+        'environments' => 'int',
+        'storage' => 'int',
+        'user_licenses' => 'int',
+        'project_id' => 'string',
+        'project_endpoint' => 'string',
+        'project_title' => 'string',
+        'project_region' => 'string',
+        'project_region_label' => 'string',
+        'project_ui' => 'string',
+        'project_options' => '\Upsun\Model\ProjectOptions',
+        'agency_site' => 'bool',
+        'invoiced' => 'bool',
+        'hipaa' => 'bool',
+        'is_trial_plan' => 'bool',
+        'services' => 'object[]',
+        'green' => 'bool'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'id' => null,
+        'status' => null,
+        'created_at' => 'date-time',
+        'updated_at' => 'date-time',
+        'owner' => 'uuid',
+        'owner_info' => null,
+        'vendor' => null,
+        'plan' => null,
+        'environments' => null,
+        'storage' => null,
+        'user_licenses' => null,
+        'project_id' => null,
+        'project_endpoint' => null,
+        'project_title' => null,
+        'project_region' => null,
+        'project_region_label' => null,
+        'project_ui' => null,
+        'project_options' => null,
+        'agency_site' => null,
+        'invoiced' => null,
+        'hipaa' => null,
+        'is_trial_plan' => null,
+        'services' => null,
+        'green' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'id' => 'id',
+        'status' => 'status',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'owner' => 'owner',
+        'owner_info' => 'owner_info',
+        'vendor' => 'vendor',
+        'plan' => 'plan',
+        'environments' => 'environments',
+        'storage' => 'storage',
+        'user_licenses' => 'user_licenses',
+        'project_id' => 'project_id',
+        'project_endpoint' => 'project_endpoint',
+        'project_title' => 'project_title',
+        'project_region' => 'project_region',
+        'project_region_label' => 'project_region_label',
+        'project_ui' => 'project_ui',
+        'project_options' => 'project_options',
+        'agency_site' => 'agency_site',
+        'invoiced' => 'invoiced',
+        'hipaa' => 'hipaa',
+        'is_trial_plan' => 'is_trial_plan',
+        'services' => 'services',
+        'green' => 'green'
+    ];
+    
     public function __construct(
         public readonly string|null $id = null,
         public readonly string|null $status = null,
@@ -79,6 +175,14 @@ final class Subscription implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

@@ -18,6 +18,90 @@ final class CurrentUserProjectsInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'CurrentUser_projects_inner';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'id' => 'string',
+        'name' => 'string',
+        'title' => 'string',
+        'cluster' => 'string',
+        'cluster_label' => 'string',
+        'region' => 'string',
+        'region_label' => 'string',
+        'uri' => 'string',
+        'endpoint' => 'string',
+        'license_id' => 'int',
+        'owner' => 'string',
+        'owner_info' => '\Upsun\Model\OwnerInfo',
+        'plan' => 'string',
+        'subscription_id' => 'int',
+        'status' => 'string',
+        'vendor' => 'string',
+        'vendor_label' => 'string',
+        'vendor_website' => 'string',
+        'vendor_resources' => 'string',
+        'created_at' => '\DateTime'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'id' => null,
+        'name' => null,
+        'title' => null,
+        'cluster' => null,
+        'cluster_label' => null,
+        'region' => null,
+        'region_label' => null,
+        'uri' => null,
+        'endpoint' => null,
+        'license_id' => null,
+        'owner' => 'uuid',
+        'owner_info' => null,
+        'plan' => null,
+        'subscription_id' => null,
+        'status' => null,
+        'vendor' => null,
+        'vendor_label' => null,
+        'vendor_website' => 'url',
+        'vendor_resources' => null,
+        'created_at' => 'date-time'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'id' => 'id',
+        'name' => 'name',
+        'title' => 'title',
+        'cluster' => 'cluster',
+        'cluster_label' => 'cluster_label',
+        'region' => 'region',
+        'region_label' => 'region_label',
+        'uri' => 'uri',
+        'endpoint' => 'endpoint',
+        'license_id' => 'license_id',
+        'owner' => 'owner',
+        'owner_info' => 'owner_info',
+        'plan' => 'plan',
+        'subscription_id' => 'subscription_id',
+        'status' => 'status',
+        'vendor' => 'vendor',
+        'vendor_label' => 'vendor_label',
+        'vendor_website' => 'vendor_website',
+        'vendor_resources' => 'vendor_resources',
+        'created_at' => 'created_at'
+    ];
+    
     public function __construct(
         public readonly string|null $id = null,
         public readonly string|null $name = null,
@@ -71,6 +155,14 @@ final class CurrentUserProjectsInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

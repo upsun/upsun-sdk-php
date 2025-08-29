@@ -18,6 +18,42 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationEstimationObject_subscriptions_list_inner_usage';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'cpu' => 'float',
+        'memory' => 'float',
+        'storage' => 'float',
+        'environments' => 'int'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'cpu' => null,
+        'memory' => null,
+        'storage' => null,
+        'environments' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'cpu' => 'cpu',
+        'memory' => 'memory',
+        'storage' => 'storage',
+        'environments' => 'environments'
+    ];
+    
     public function __construct(
         public readonly float|null $cpu = null,
         public readonly float|null $memory = null,
@@ -39,6 +75,14 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

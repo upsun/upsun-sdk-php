@@ -18,6 +18,66 @@ final class Subscription1 implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Subscription_1';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'license_uri' => 'string',
+        'plan' => 'string',
+        'environments' => 'int',
+        'storage' => 'int',
+        'included_users' => 'int',
+        'subscription_management_uri' => 'string',
+        'restricted' => 'bool',
+        'suspended' => 'bool',
+        'user_licenses' => 'int',
+        'resources' => '\Upsun\Model\ResourcesLimits',
+        'resource_validation_url' => 'string',
+        'image_types' => '\Upsun\Model\RestrictedAndDeniedImageTypes'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'license_uri' => null,
+        'plan' => null,
+        'environments' => null,
+        'storage' => null,
+        'included_users' => null,
+        'subscription_management_uri' => null,
+        'restricted' => null,
+        'suspended' => null,
+        'user_licenses' => null,
+        'resources' => null,
+        'resource_validation_url' => null,
+        'image_types' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'license_uri' => 'license_uri',
+        'plan' => 'plan',
+        'environments' => 'environments',
+        'storage' => 'storage',
+        'included_users' => 'included_users',
+        'subscription_management_uri' => 'subscription_management_uri',
+        'restricted' => 'restricted',
+        'suspended' => 'suspended',
+        'user_licenses' => 'user_licenses',
+        'resources' => 'resources',
+        'resource_validation_url' => 'resource_validation_url',
+        'image_types' => 'image_types'
+    ];
+    
     public function __construct(
         public readonly string $license_uri = null,
         public readonly string|null $plan = null,
@@ -55,6 +115,14 @@ final class Subscription1 implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

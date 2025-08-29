@@ -18,6 +18,51 @@ final class TeamProjectAccess implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'TeamProjectAccess';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'team_id' => 'string',
+        'organization_id' => 'string',
+        'project_id' => 'string',
+        'project_title' => 'string',
+        'granted_at' => '\DateTime',
+        'updated_at' => '\DateTime',
+        '_links' => '\Upsun\Model\TeamProjectAccessLinks'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'team_id' => 'ulid',
+        'organization_id' => 'ulid',
+        'project_id' => null,
+        'project_title' => null,
+        'granted_at' => 'date-time',
+        'updated_at' => 'date-time',
+        '_links' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'team_id' => 'team_id',
+        'organization_id' => 'organization_id',
+        'project_id' => 'project_id',
+        'project_title' => 'project_title',
+        'granted_at' => 'granted_at',
+        'updated_at' => 'updated_at',
+        '_links' => '_links'
+    ];
+    
     public function __construct(
         public readonly string|null $team_id = null,
         public readonly string|null $organization_id = null,
@@ -45,6 +90,14 @@ final class TeamProjectAccess implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

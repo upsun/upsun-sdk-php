@@ -18,6 +18,39 @@ final class ResourcesLimits implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Resources_limits';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'container_profiles' => 'bool',
+        'production' => '\Upsun\Model\ResourcesForProductionEnvironments',
+        'development' => '\Upsun\Model\ResourcesForDevelopmentEnvironments'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'container_profiles' => null,
+        'production' => null,
+        'development' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'container_profiles' => 'container_profiles',
+        'production' => 'production',
+        'development' => 'development'
+    ];
+    
     public function __construct(
         public readonly bool $container_profiles = null,
         public readonly \Upsun\Model\ResourcesForProductionEnvironments $production = null,
@@ -37,6 +70,14 @@ final class ResourcesLimits implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

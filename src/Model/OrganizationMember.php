@@ -18,6 +18,57 @@ final class OrganizationMember implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationMember';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'id' => 'string',
+        'organization_id' => 'string',
+        'user_id' => 'string',
+        'permissions' => 'string[]',
+        'level' => 'string',
+        'owner' => 'bool',
+        'created_at' => '\DateTime',
+        'updated_at' => '\DateTime',
+        '_links' => '\Upsun\Model\OrganizationMemberLinks'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'id' => 'uuid',
+        'organization_id' => 'ulid',
+        'user_id' => 'uuid',
+        'permissions' => null,
+        'level' => null,
+        'owner' => null,
+        'created_at' => 'date-time',
+        'updated_at' => 'date-time',
+        '_links' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'id' => 'id',
+        'organization_id' => 'organization_id',
+        'user_id' => 'user_id',
+        'permissions' => 'permissions',
+        'level' => 'level',
+        'owner' => 'owner',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        '_links' => '_links'
+    ];
+    
     public function __construct(
         public readonly string|null $id = null,
         public readonly string|null $organization_id = null,
@@ -49,6 +100,14 @@ final class OrganizationMember implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

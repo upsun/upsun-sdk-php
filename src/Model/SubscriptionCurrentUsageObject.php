@@ -18,6 +18,69 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'SubscriptionCurrentUsageObject';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'cpu_app' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+        'storage_app_services' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+        'memory_app' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+        'cpu_services' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+        'memory_services' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+        'backup_storage' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+        'build_cpu' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+        'build_memory' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+        'egress_bandwidth' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+        'ingress_requests' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+        'logs_fwd_content_size' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+        'fastly_bandwidth' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+        'fastly_requests' => '\Upsun\Model\UsageGroupCurrentUsageProperties'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'cpu_app' => null,
+        'storage_app_services' => null,
+        'memory_app' => null,
+        'cpu_services' => null,
+        'memory_services' => null,
+        'backup_storage' => null,
+        'build_cpu' => null,
+        'build_memory' => null,
+        'egress_bandwidth' => null,
+        'ingress_requests' => null,
+        'logs_fwd_content_size' => null,
+        'fastly_bandwidth' => null,
+        'fastly_requests' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'cpu_app' => 'cpu_app',
+        'storage_app_services' => 'storage_app_services',
+        'memory_app' => 'memory_app',
+        'cpu_services' => 'cpu_services',
+        'memory_services' => 'memory_services',
+        'backup_storage' => 'backup_storage',
+        'build_cpu' => 'build_cpu',
+        'build_memory' => 'build_memory',
+        'egress_bandwidth' => 'egress_bandwidth',
+        'ingress_requests' => 'ingress_requests',
+        'logs_fwd_content_size' => 'logs_fwd_content_size',
+        'fastly_bandwidth' => 'fastly_bandwidth',
+        'fastly_requests' => 'fastly_requests'
+    ];
+    
     public function __construct(
         public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $cpu_app = null,
         public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $storage_app_services = null,
@@ -57,6 +120,14 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

@@ -18,6 +18,36 @@ final class TheBuildConfigurationOfTheApplication implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_build_configuration_of_the_application_';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'flavor' => 'string',
+        'caches' => 'array<string,\Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue>'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'flavor' => null,
+        'caches' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'flavor' => 'flavor',
+        'caches' => 'caches'
+    ];
+    
     public function __construct(
         public readonly string $flavor = null,
         public readonly ?array $caches = null
@@ -35,6 +65,14 @@ final class TheBuildConfigurationOfTheApplication implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

@@ -18,6 +18,42 @@ final class VouchersVouchersInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Vouchers_vouchers_inner';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'code' => 'string',
+        'amount' => 'string',
+        'currency' => 'string',
+        'orders' => '\Upsun\Model\VouchersVouchersInnerOrdersInner[]'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'code' => null,
+        'amount' => null,
+        'currency' => null,
+        'orders' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'code' => 'code',
+        'amount' => 'amount',
+        'currency' => 'currency',
+        'orders' => 'orders'
+    ];
+    
     public function __construct(
         public readonly string|null $code = null,
         public readonly string|null $amount = null,
@@ -39,6 +75,14 @@ final class VouchersVouchersInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

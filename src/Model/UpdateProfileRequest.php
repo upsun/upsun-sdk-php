@@ -18,6 +18,69 @@ final class UpdateProfileRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'update_profile_request';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'display_name' => 'string',
+        'username' => 'string',
+        'current_password' => 'string',
+        'password' => 'string',
+        'company_type' => 'string',
+        'company_name' => 'string',
+        'vat_number' => 'string',
+        'company_role' => 'string',
+        'marketing' => 'bool',
+        'ui_colorscheme' => 'string',
+        'default_catalog' => 'string',
+        'project_options_url' => 'string',
+        'picture' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'display_name' => null,
+        'username' => null,
+        'current_password' => null,
+        'password' => null,
+        'company_type' => null,
+        'company_name' => null,
+        'vat_number' => null,
+        'company_role' => null,
+        'marketing' => null,
+        'ui_colorscheme' => null,
+        'default_catalog' => null,
+        'project_options_url' => null,
+        'picture' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'display_name' => 'display_name',
+        'username' => 'username',
+        'current_password' => 'current_password',
+        'password' => 'password',
+        'company_type' => 'company_type',
+        'company_name' => 'company_name',
+        'vat_number' => 'vat_number',
+        'company_role' => 'company_role',
+        'marketing' => 'marketing',
+        'ui_colorscheme' => 'ui_colorscheme',
+        'default_catalog' => 'default_catalog',
+        'project_options_url' => 'project_options_url',
+        'picture' => 'picture'
+    ];
+    
     public function __construct(
         public readonly string|null $display_name = null,
         public readonly string|null $username = null,
@@ -57,6 +120,14 @@ final class UpdateProfileRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

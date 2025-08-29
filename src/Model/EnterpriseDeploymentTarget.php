@@ -18,6 +18,54 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'EnterpriseDeploymentTarget';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'type' => 'string',
+        'name' => 'string',
+        'deploy_host' => 'string',
+        'docroots' => 'array<string,\Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue>',
+        'site_urls' => 'object',
+        'ssh_hosts' => 'string[]',
+        'maintenance_mode' => 'bool',
+        'enterprise_environments_mapping' => 'object'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'type' => null,
+        'name' => null,
+        'deploy_host' => null,
+        'docroots' => null,
+        'site_urls' => null,
+        'ssh_hosts' => null,
+        'maintenance_mode' => null,
+        'enterprise_environments_mapping' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'type' => 'type',
+        'name' => 'name',
+        'deploy_host' => 'deploy_host',
+        'docroots' => 'docroots',
+        'site_urls' => 'site_urls',
+        'ssh_hosts' => 'ssh_hosts',
+        'maintenance_mode' => 'maintenance_mode',
+        'enterprise_environments_mapping' => 'enterprise_environments_mapping'
+    ];
+    
     public function __construct(
         public readonly string $type = null,
         public readonly string $name = null,
@@ -47,6 +95,14 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

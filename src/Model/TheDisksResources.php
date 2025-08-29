@@ -18,6 +18,39 @@ final class TheDisksResources implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_disks_resources';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'temporary' => 'int',
+        'instance' => 'int',
+        'storage' => 'int'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'temporary' => null,
+        'instance' => null,
+        'storage' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'temporary' => 'temporary',
+        'instance' => 'instance',
+        'storage' => 'storage'
+    ];
+    
     public function __construct(
         public readonly int $temporary = null,
         public readonly int $instance = null,
@@ -37,6 +70,14 @@ final class TheDisksResources implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

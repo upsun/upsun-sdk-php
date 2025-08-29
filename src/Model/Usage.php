@@ -18,6 +18,45 @@ final class Usage implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Usage';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'id' => 'string',
+        'subscription_id' => 'string',
+        'usage_group' => 'string',
+        'quantity' => 'float',
+        'start' => '\DateTime'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'id' => null,
+        'subscription_id' => null,
+        'usage_group' => null,
+        'quantity' => null,
+        'start' => 'date-time'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'id' => 'id',
+        'subscription_id' => 'subscription_id',
+        'usage_group' => 'usage_group',
+        'quantity' => 'quantity',
+        'start' => 'start'
+    ];
+    
     public function __construct(
         public readonly string|null $id = null,
         public readonly string|null $subscription_id = null,
@@ -41,6 +80,14 @@ final class Usage implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

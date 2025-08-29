@@ -18,6 +18,36 @@ final class ConfigurationForPreFlightChecks implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Configuration_for_pre_flight_checks_';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'enabled' => 'bool',
+        'ignored_rules' => 'string[]'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'enabled' => null,
+        'ignored_rules' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'enabled' => 'enabled',
+        'ignored_rules' => 'ignored_rules'
+    ];
+    
     public function __construct(
         public readonly bool $enabled = null,
         public readonly ?array $ignored_rules = null
@@ -35,6 +65,14 @@ final class ConfigurationForPreFlightChecks implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

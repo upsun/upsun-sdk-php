@@ -18,6 +18,51 @@ final class OrganizationEstimationObject implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationEstimationObject';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'total' => 'string',
+        'sub_total' => 'string',
+        'vouchers' => 'string',
+        'user_licenses' => '\Upsun\Model\OrganizationEstimationObjectUserLicenses',
+        'user_management' => 'string',
+        'support_level' => 'string',
+        'subscriptions' => '\Upsun\Model\OrganizationEstimationObjectSubscriptions'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'total' => null,
+        'sub_total' => null,
+        'vouchers' => null,
+        'user_licenses' => null,
+        'user_management' => null,
+        'support_level' => null,
+        'subscriptions' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'total' => 'total',
+        'sub_total' => 'sub_total',
+        'vouchers' => 'vouchers',
+        'user_licenses' => 'user_licenses',
+        'user_management' => 'user_management',
+        'support_level' => 'support_level',
+        'subscriptions' => 'subscriptions'
+    ];
+    
     public function __construct(
         public readonly string|null $total = null,
         public readonly string|null $sub_total = null,
@@ -45,6 +90,14 @@ final class OrganizationEstimationObject implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

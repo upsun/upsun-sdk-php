@@ -18,6 +18,36 @@ final class SubscriptionAddonsObjectUpgradesAvailable implements JsonSerializabl
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'SubscriptionAddonsObject_upgrades_available';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'continuous_profiling' => 'string[]',
+        'project_support_level' => 'string[]'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'continuous_profiling' => null,
+        'project_support_level' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'continuous_profiling' => 'continuous_profiling',
+        'project_support_level' => 'project_support_level'
+    ];
+    
     public function __construct(
         public readonly ?array $continuous_profiling = null,
         public readonly ?array $project_support_level = null
@@ -35,6 +65,14 @@ final class SubscriptionAddonsObjectUpgradesAvailable implements JsonSerializabl
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

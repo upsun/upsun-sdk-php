@@ -18,6 +18,42 @@ final class DomainCreateInput implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'DomainCreateInput';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'name' => 'string',
+        'attributes' => 'array<string,string>',
+        'is_default' => 'bool',
+        'replacement_for' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'name' => null,
+        'attributes' => null,
+        'is_default' => null,
+        'replacement_for' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'name' => 'name',
+        'attributes' => 'attributes',
+        'is_default' => 'is_default',
+        'replacement_for' => 'replacement_for'
+    ];
+    
     public function __construct(
         public readonly string $name = null,
         public readonly ?array $attributes = null,
@@ -39,6 +75,14 @@ final class DomainCreateInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

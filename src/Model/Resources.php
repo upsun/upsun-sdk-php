@@ -18,6 +18,48 @@ final class Resources implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Resources';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'base_memory' => 'int',
+        'memory_ratio' => 'int',
+        'profile_size' => 'string',
+        'minimum' => '\Upsun\Model\TheMinimumResourcesForThisService',
+        'default' => '\Upsun\Model\TheDefaultResourcesForThisService',
+        'disk' => '\Upsun\Model\TheDisksResources'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'base_memory' => null,
+        'memory_ratio' => null,
+        'profile_size' => null,
+        'minimum' => null,
+        'default' => null,
+        'disk' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'base_memory' => 'base_memory',
+        'memory_ratio' => 'memory_ratio',
+        'profile_size' => 'profile_size',
+        'minimum' => 'minimum',
+        'default' => 'default',
+        'disk' => 'disk'
+    ];
+    
     public function __construct(
         public readonly int $base_memory = null,
         public readonly int $memory_ratio = null,
@@ -43,6 +85,14 @@ final class Resources implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

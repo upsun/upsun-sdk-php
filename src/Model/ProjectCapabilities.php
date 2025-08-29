@@ -18,6 +18,63 @@ final class ProjectCapabilities implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'ProjectCapabilities';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'custom_domains' => '\Upsun\Model\CustomDomains',
+        'source_operations' => '\Upsun\Model\SourceOperations',
+        'runtime_operations' => '\Upsun\Model\RuntimeOperations',
+        'outbound_firewall' => '\Upsun\Model\OutboundFirewall',
+        'metrics' => '\Upsun\Model\Metrics',
+        'logs_forwarding' => '\Upsun\Model\LogsForwarding',
+        'images' => 'array<string,array<string,\Upsun\Model\ImagesValueValue>>',
+        'instance_limit' => 'int',
+        'build_resources' => '\Upsun\Model\BuildResources',
+        'data_retention' => '\Upsun\Model\DataRetention',
+        'integrations' => '\Upsun\Model\Integrations'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'custom_domains' => null,
+        'source_operations' => null,
+        'runtime_operations' => null,
+        'outbound_firewall' => null,
+        'metrics' => null,
+        'logs_forwarding' => null,
+        'images' => null,
+        'instance_limit' => null,
+        'build_resources' => null,
+        'data_retention' => null,
+        'integrations' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'custom_domains' => 'custom_domains',
+        'source_operations' => 'source_operations',
+        'runtime_operations' => 'runtime_operations',
+        'outbound_firewall' => 'outbound_firewall',
+        'metrics' => 'metrics',
+        'logs_forwarding' => 'logs_forwarding',
+        'images' => 'images',
+        'instance_limit' => 'instance_limit',
+        'build_resources' => 'build_resources',
+        'data_retention' => 'data_retention',
+        'integrations' => 'integrations'
+    ];
+    
     public function __construct(
         public readonly \Upsun\Model\CustomDomains|null $custom_domains = null,
         public readonly \Upsun\Model\SourceOperations|null $source_operations = null,
@@ -53,6 +110,14 @@ final class ProjectCapabilities implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

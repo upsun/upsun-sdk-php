@@ -18,6 +18,36 @@ final class BlackfireEnvironmentsCredentialsValue implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Blackfire_environments_credentials_value';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'server_uuid' => 'string',
+        'server_token' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'server_uuid' => null,
+        'server_token' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'server_uuid' => 'server_uuid',
+        'server_token' => 'server_token'
+    ];
+    
     public function __construct(
         public readonly string $server_uuid = null,
         public readonly string $server_token = null
@@ -35,6 +65,14 @@ final class BlackfireEnvironmentsCredentialsValue implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

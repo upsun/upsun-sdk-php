@@ -18,6 +18,42 @@ final class TLSSettingsForTheRoute1 implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'TLS_settings_for_the_route__1';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'strict_transport_security' => '\Upsun\Model\StrictTransportSecurityOptions1',
+        'min_version' => 'string',
+        'client_authentication' => 'string',
+        'client_certificate_authorities' => 'string[]'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'strict_transport_security' => null,
+        'min_version' => null,
+        'client_authentication' => null,
+        'client_certificate_authorities' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'strict_transport_security' => 'strict_transport_security',
+        'min_version' => 'min_version',
+        'client_authentication' => 'client_authentication',
+        'client_certificate_authorities' => 'client_certificate_authorities'
+    ];
+    
     public function __construct(
         public readonly \Upsun\Model\StrictTransportSecurityOptions1|null $strict_transport_security = null,
         public readonly string|null $min_version = null,
@@ -39,6 +75,14 @@ final class TLSSettingsForTheRoute1 implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

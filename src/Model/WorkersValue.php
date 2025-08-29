@@ -18,6 +18,102 @@ final class WorkersValue implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Workers_value';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'resources' => '\Upsun\Model\Resources',
+        'size' => 'string',
+        'disk' => 'int',
+        'access' => 'array<string,string>',
+        'relationships' => 'array<string,\Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue>',
+        'additional_hosts' => 'array<string,string>',
+        'mounts' => 'array<string,\Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue>',
+        'timezone' => 'string',
+        'variables' => 'array<string,array<string,mixed>>',
+        'firewall' => '\Upsun\Model\Firewall',
+        'container_profile' => 'string',
+        'operations' => 'array<string,\Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue>',
+        'name' => 'string',
+        'type' => 'string',
+        'preflight' => '\Upsun\Model\ConfigurationForPreFlightChecks',
+        'tree_id' => 'string',
+        'app_dir' => 'string',
+        'endpoints' => 'object',
+        'runtime' => 'object',
+        'worker' => '\Upsun\Model\ConfigurationOfAWorkerContainerInstance',
+        'app' => 'string',
+        'stack' => 'object[]',
+        'instance_count' => 'int',
+        'slug_id' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'resources' => null,
+        'size' => null,
+        'disk' => null,
+        'access' => null,
+        'relationships' => null,
+        'additional_hosts' => null,
+        'mounts' => null,
+        'timezone' => null,
+        'variables' => null,
+        'firewall' => null,
+        'container_profile' => null,
+        'operations' => null,
+        'name' => null,
+        'type' => null,
+        'preflight' => null,
+        'tree_id' => null,
+        'app_dir' => null,
+        'endpoints' => null,
+        'runtime' => null,
+        'worker' => null,
+        'app' => null,
+        'stack' => null,
+        'instance_count' => null,
+        'slug_id' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'resources' => 'resources',
+        'size' => 'size',
+        'disk' => 'disk',
+        'access' => 'access',
+        'relationships' => 'relationships',
+        'additional_hosts' => 'additional_hosts',
+        'mounts' => 'mounts',
+        'timezone' => 'timezone',
+        'variables' => 'variables',
+        'firewall' => 'firewall',
+        'container_profile' => 'container_profile',
+        'operations' => 'operations',
+        'name' => 'name',
+        'type' => 'type',
+        'preflight' => 'preflight',
+        'tree_id' => 'tree_id',
+        'app_dir' => 'app_dir',
+        'endpoints' => 'endpoints',
+        'runtime' => 'runtime',
+        'worker' => 'worker',
+        'app' => 'app',
+        'stack' => 'stack',
+        'instance_count' => 'instance_count',
+        'slug_id' => 'slug_id'
+    ];
+    
     public function __construct(
         public readonly \Upsun\Model\Resources $resources = null,
         public readonly string $size = null,
@@ -79,6 +175,14 @@ final class WorkersValue implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

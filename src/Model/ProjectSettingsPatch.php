@@ -18,6 +18,39 @@ final class ProjectSettingsPatch implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'ProjectSettingsPatch';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'initialize' => 'object',
+        'data_retention' => 'array<string,\Upsun\Model\DataRetentionConfigurationValue1>',
+        'build_resources' => '\Upsun\Model\BuildResources2'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'initialize' => null,
+        'data_retention' => null,
+        'build_resources' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'initialize' => 'initialize',
+        'data_retention' => 'data_retention',
+        'build_resources' => 'build_resources'
+    ];
+    
     public function __construct(
         public readonly object|null $initialize = null,
         public readonly ?array $data_retention = null,
@@ -37,6 +70,14 @@ final class ProjectSettingsPatch implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

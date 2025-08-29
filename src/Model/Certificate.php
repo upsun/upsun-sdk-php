@@ -18,6 +18,63 @@ final class Certificate implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Certificate';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'created_at' => '\DateTime',
+        'updated_at' => '\DateTime',
+        'certificate' => 'string',
+        'chain' => 'string[]',
+        'is_provisioned' => 'bool',
+        'is_invalid' => 'bool',
+        'is_root' => 'bool',
+        'domains' => 'string[]',
+        'auth_type' => 'string[]',
+        'issuer' => '\Upsun\Model\TheIssuerOfTheCertificateInner[]',
+        'expires_at' => '\DateTime'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'created_at' => 'date-time',
+        'updated_at' => 'date-time',
+        'certificate' => null,
+        'chain' => null,
+        'is_provisioned' => null,
+        'is_invalid' => null,
+        'is_root' => null,
+        'domains' => null,
+        'auth_type' => null,
+        'issuer' => null,
+        'expires_at' => 'date-time'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'certificate' => 'certificate',
+        'chain' => 'chain',
+        'is_provisioned' => 'is_provisioned',
+        'is_invalid' => 'is_invalid',
+        'is_root' => 'is_root',
+        'domains' => 'domains',
+        'auth_type' => 'auth_type',
+        'issuer' => 'issuer',
+        'expires_at' => 'expires_at'
+    ];
+    
     public function __construct(
         public readonly \DateTime $created_at = null,
         public readonly \DateTime $updated_at = null,
@@ -53,6 +110,14 @@ final class Certificate implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

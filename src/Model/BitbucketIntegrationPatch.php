@@ -18,6 +18,60 @@ final class BitbucketIntegrationPatch implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'BitbucketIntegrationPatch';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'type' => 'string',
+        'fetch_branches' => 'bool',
+        'prune_branches' => 'bool',
+        'environment_init_resources' => 'string',
+        'app_credentials' => '\Upsun\Model\TheOAuth2ConsumerInformationOptional1',
+        'addon_credentials' => '\Upsun\Model\TheAddonCredentialInformationOptional1',
+        'repository' => 'string',
+        'build_pull_requests' => 'bool',
+        'pull_requests_clone_parent_data' => 'bool',
+        'resync_pull_requests' => 'bool'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'type' => null,
+        'fetch_branches' => null,
+        'prune_branches' => null,
+        'environment_init_resources' => null,
+        'app_credentials' => null,
+        'addon_credentials' => null,
+        'repository' => null,
+        'build_pull_requests' => null,
+        'pull_requests_clone_parent_data' => null,
+        'resync_pull_requests' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'type' => 'type',
+        'fetch_branches' => 'fetch_branches',
+        'prune_branches' => 'prune_branches',
+        'environment_init_resources' => 'environment_init_resources',
+        'app_credentials' => 'app_credentials',
+        'addon_credentials' => 'addon_credentials',
+        'repository' => 'repository',
+        'build_pull_requests' => 'build_pull_requests',
+        'pull_requests_clone_parent_data' => 'pull_requests_clone_parent_data',
+        'resync_pull_requests' => 'resync_pull_requests'
+    ];
+    
     public function __construct(
         public readonly string $type = null,
         public readonly bool|null $fetch_branches = null,
@@ -51,6 +105,14 @@ final class BitbucketIntegrationPatch implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

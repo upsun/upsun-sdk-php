@@ -18,6 +18,51 @@ final class UpdateUserRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'update_user_request';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'username' => 'string',
+        'first_name' => 'string',
+        'last_name' => 'string',
+        'picture' => 'string',
+        'company' => 'string',
+        'website' => 'string',
+        'country' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'username' => null,
+        'first_name' => null,
+        'last_name' => null,
+        'picture' => 'uri',
+        'company' => null,
+        'website' => 'uri',
+        'country' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'username' => 'username',
+        'first_name' => 'first_name',
+        'last_name' => 'last_name',
+        'picture' => 'picture',
+        'company' => 'company',
+        'website' => 'website',
+        'country' => 'country'
+    ];
+    
     public function __construct(
         public readonly string|null $username = null,
         public readonly string|null $first_name = null,
@@ -45,6 +90,14 @@ final class UpdateUserRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

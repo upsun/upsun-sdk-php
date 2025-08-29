@@ -18,6 +18,42 @@ final class ProjectOptionsDefaults implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'ProjectOptions_defaults';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'settings' => 'object',
+        'variables' => 'object',
+        'access' => 'object',
+        'capabilities' => 'object'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'settings' => null,
+        'variables' => null,
+        'access' => null,
+        'capabilities' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'settings' => 'settings',
+        'variables' => 'variables',
+        'access' => 'access',
+        'capabilities' => 'capabilities'
+    ];
+    
     public function __construct(
         public readonly object|null $settings = null,
         public readonly object|null $variables = null,
@@ -39,6 +75,14 @@ final class ProjectOptionsDefaults implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

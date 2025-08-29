@@ -18,6 +18,210 @@ final class ProjectSettings implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'ProjectSettings';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'initialize' => 'object',
+        'product_name' => 'string',
+        'product_code' => 'string',
+        'ui_uri_template' => 'string',
+        'variables_prefix' => 'string',
+        'bot_email' => 'string',
+        'application_config_file' => 'string',
+        'project_config_dir' => 'string',
+        'use_drupal_defaults' => 'bool',
+        'use_legacy_subdomains' => 'bool',
+        'development_service_size' => 'string',
+        'development_application_size' => 'string',
+        'enable_certificate_provisioning' => 'bool',
+        'certificate_style' => 'string',
+        'certificate_renewal_activity' => 'bool',
+        'development_domain_template' => 'string',
+        'enable_state_api_deployments' => 'bool',
+        'temporary_disk_size' => 'int',
+        'local_disk_size' => 'int',
+        'cron_minimum_interval' => 'int',
+        'cron_maximum_jitter' => 'int',
+        'concurrency_limits' => 'array<string,int>',
+        'flexible_build_cache' => 'bool',
+        'strict_configuration' => 'bool',
+        'has_sleepy_crons' => 'bool',
+        'crons_in_git' => 'bool',
+        'custom_error_template' => 'string',
+        'app_error_page_template' => 'string',
+        'environment_name_strategy' => 'string',
+        'data_retention' => 'array<string,\Upsun\Model\DataRetentionConfigurationValue>',
+        'enable_codesource_integration_push' => 'bool',
+        'enforce_mfa' => 'bool',
+        'systemd' => 'bool',
+        'router_gen2' => 'bool',
+        'build_resources' => '\Upsun\Model\BuildResources1',
+        'outbound_restrictions_default_policy' => 'string',
+        'self_upgrade' => 'bool',
+        'additional_hosts' => 'array<string,string>',
+        'max_allowed_routes' => 'int',
+        'max_allowed_redirects_paths' => 'int',
+        'enable_incremental_backups' => 'bool',
+        'sizing_api_enabled' => 'bool',
+        'enable_cache_grace_period' => 'bool',
+        'enable_zero_downtime_deployments' => 'bool',
+        'enable_admin_agent' => 'bool',
+        'certifier_url' => 'string',
+        'centralized_permissions' => 'bool',
+        'glue_server_max_request_size' => 'int',
+        'persistent_endpoints_ssh' => 'bool',
+        'persistent_endpoints_ssl_certificates' => 'bool',
+        'enable_disk_health_monitoring' => 'bool',
+        'enable_paused_environments' => 'bool',
+        'enable_unified_configuration' => 'bool',
+        'enable_routes_tracing' => 'bool',
+        'image_deployment_validation' => 'bool',
+        'support_generic_images' => 'bool',
+        'enable_github_app_token_exchange' => 'bool',
+        'continuous_profiling' => '\Upsun\Model\TheContinuousProfilingConfiguration',
+        'disable_agent_error_reporter' => 'bool',
+        'requires_domain_ownership' => 'bool'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'initialize' => null,
+        'product_name' => null,
+        'product_code' => null,
+        'ui_uri_template' => null,
+        'variables_prefix' => null,
+        'bot_email' => null,
+        'application_config_file' => null,
+        'project_config_dir' => null,
+        'use_drupal_defaults' => null,
+        'use_legacy_subdomains' => null,
+        'development_service_size' => null,
+        'development_application_size' => null,
+        'enable_certificate_provisioning' => null,
+        'certificate_style' => null,
+        'certificate_renewal_activity' => null,
+        'development_domain_template' => null,
+        'enable_state_api_deployments' => null,
+        'temporary_disk_size' => null,
+        'local_disk_size' => null,
+        'cron_minimum_interval' => null,
+        'cron_maximum_jitter' => null,
+        'concurrency_limits' => null,
+        'flexible_build_cache' => null,
+        'strict_configuration' => null,
+        'has_sleepy_crons' => null,
+        'crons_in_git' => null,
+        'custom_error_template' => null,
+        'app_error_page_template' => null,
+        'environment_name_strategy' => null,
+        'data_retention' => null,
+        'enable_codesource_integration_push' => null,
+        'enforce_mfa' => null,
+        'systemd' => null,
+        'router_gen2' => null,
+        'build_resources' => null,
+        'outbound_restrictions_default_policy' => null,
+        'self_upgrade' => null,
+        'additional_hosts' => null,
+        'max_allowed_routes' => null,
+        'max_allowed_redirects_paths' => null,
+        'enable_incremental_backups' => null,
+        'sizing_api_enabled' => null,
+        'enable_cache_grace_period' => null,
+        'enable_zero_downtime_deployments' => null,
+        'enable_admin_agent' => null,
+        'certifier_url' => null,
+        'centralized_permissions' => null,
+        'glue_server_max_request_size' => null,
+        'persistent_endpoints_ssh' => null,
+        'persistent_endpoints_ssl_certificates' => null,
+        'enable_disk_health_monitoring' => null,
+        'enable_paused_environments' => null,
+        'enable_unified_configuration' => null,
+        'enable_routes_tracing' => null,
+        'image_deployment_validation' => null,
+        'support_generic_images' => null,
+        'enable_github_app_token_exchange' => null,
+        'continuous_profiling' => null,
+        'disable_agent_error_reporter' => null,
+        'requires_domain_ownership' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'initialize' => 'initialize',
+        'product_name' => 'product_name',
+        'product_code' => 'product_code',
+        'ui_uri_template' => 'ui_uri_template',
+        'variables_prefix' => 'variables_prefix',
+        'bot_email' => 'bot_email',
+        'application_config_file' => 'application_config_file',
+        'project_config_dir' => 'project_config_dir',
+        'use_drupal_defaults' => 'use_drupal_defaults',
+        'use_legacy_subdomains' => 'use_legacy_subdomains',
+        'development_service_size' => 'development_service_size',
+        'development_application_size' => 'development_application_size',
+        'enable_certificate_provisioning' => 'enable_certificate_provisioning',
+        'certificate_style' => 'certificate_style',
+        'certificate_renewal_activity' => 'certificate_renewal_activity',
+        'development_domain_template' => 'development_domain_template',
+        'enable_state_api_deployments' => 'enable_state_api_deployments',
+        'temporary_disk_size' => 'temporary_disk_size',
+        'local_disk_size' => 'local_disk_size',
+        'cron_minimum_interval' => 'cron_minimum_interval',
+        'cron_maximum_jitter' => 'cron_maximum_jitter',
+        'concurrency_limits' => 'concurrency_limits',
+        'flexible_build_cache' => 'flexible_build_cache',
+        'strict_configuration' => 'strict_configuration',
+        'has_sleepy_crons' => 'has_sleepy_crons',
+        'crons_in_git' => 'crons_in_git',
+        'custom_error_template' => 'custom_error_template',
+        'app_error_page_template' => 'app_error_page_template',
+        'environment_name_strategy' => 'environment_name_strategy',
+        'data_retention' => 'data_retention',
+        'enable_codesource_integration_push' => 'enable_codesource_integration_push',
+        'enforce_mfa' => 'enforce_mfa',
+        'systemd' => 'systemd',
+        'router_gen2' => 'router_gen2',
+        'build_resources' => 'build_resources',
+        'outbound_restrictions_default_policy' => 'outbound_restrictions_default_policy',
+        'self_upgrade' => 'self_upgrade',
+        'additional_hosts' => 'additional_hosts',
+        'max_allowed_routes' => 'max_allowed_routes',
+        'max_allowed_redirects_paths' => 'max_allowed_redirects_paths',
+        'enable_incremental_backups' => 'enable_incremental_backups',
+        'sizing_api_enabled' => 'sizing_api_enabled',
+        'enable_cache_grace_period' => 'enable_cache_grace_period',
+        'enable_zero_downtime_deployments' => 'enable_zero_downtime_deployments',
+        'enable_admin_agent' => 'enable_admin_agent',
+        'certifier_url' => 'certifier_url',
+        'centralized_permissions' => 'centralized_permissions',
+        'glue_server_max_request_size' => 'glue_server_max_request_size',
+        'persistent_endpoints_ssh' => 'persistent_endpoints_ssh',
+        'persistent_endpoints_ssl_certificates' => 'persistent_endpoints_ssl_certificates',
+        'enable_disk_health_monitoring' => 'enable_disk_health_monitoring',
+        'enable_paused_environments' => 'enable_paused_environments',
+        'enable_unified_configuration' => 'enable_unified_configuration',
+        'enable_routes_tracing' => 'enable_routes_tracing',
+        'image_deployment_validation' => 'image_deployment_validation',
+        'support_generic_images' => 'support_generic_images',
+        'enable_github_app_token_exchange' => 'enable_github_app_token_exchange',
+        'continuous_profiling' => 'continuous_profiling',
+        'disable_agent_error_reporter' => 'disable_agent_error_reporter',
+        'requires_domain_ownership' => 'requires_domain_ownership'
+    ];
+    
     public function __construct(
         public readonly object $initialize = null,
         public readonly string $product_name = null,
@@ -151,6 +355,14 @@ final class ProjectSettings implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

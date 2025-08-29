@@ -18,6 +18,39 @@ final class CreateOrgInviteRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'create_org_invite_request';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'email' => 'string',
+        'permissions' => 'string[]',
+        'force' => 'bool'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'email' => 'email',
+        'permissions' => null,
+        'force' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'email' => 'email',
+        'permissions' => 'permissions',
+        'force' => 'force'
+    ];
+    
     public function __construct(
         public readonly string $email = null,
         public readonly ?array $permissions = null,
@@ -37,6 +70,14 @@ final class CreateOrgInviteRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

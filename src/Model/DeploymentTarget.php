@@ -18,6 +18,87 @@ final class DeploymentTarget implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'DeploymentTarget';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'type' => 'string',
+        'name' => 'string',
+        'deploy_host' => 'string',
+        'deploy_port' => 'int',
+        'ssh_host' => 'string',
+        'hosts' => '\Upsun\Model\TheHostsOfTheDeploymentTargetInner[]',
+        'auto_mounts' => 'bool',
+        'excluded_mounts' => 'string[]',
+        'enforced_mounts' => 'object',
+        'auto_crons' => 'bool',
+        'auto_nginx' => 'bool',
+        'maintenance_mode' => 'bool',
+        'guardrails_phase' => 'int',
+        'docroots' => 'array<string,\Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue>',
+        'site_urls' => 'object',
+        'ssh_hosts' => 'string[]',
+        'enterprise_environments_mapping' => 'object',
+        'use_dedicated_grid' => 'bool',
+        'storage_type' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'type' => null,
+        'name' => null,
+        'deploy_host' => null,
+        'deploy_port' => null,
+        'ssh_host' => null,
+        'hosts' => null,
+        'auto_mounts' => null,
+        'excluded_mounts' => null,
+        'enforced_mounts' => null,
+        'auto_crons' => null,
+        'auto_nginx' => null,
+        'maintenance_mode' => null,
+        'guardrails_phase' => null,
+        'docroots' => null,
+        'site_urls' => null,
+        'ssh_hosts' => null,
+        'enterprise_environments_mapping' => null,
+        'use_dedicated_grid' => null,
+        'storage_type' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'type' => 'type',
+        'name' => 'name',
+        'deploy_host' => 'deploy_host',
+        'deploy_port' => 'deploy_port',
+        'ssh_host' => 'ssh_host',
+        'hosts' => 'hosts',
+        'auto_mounts' => 'auto_mounts',
+        'excluded_mounts' => 'excluded_mounts',
+        'enforced_mounts' => 'enforced_mounts',
+        'auto_crons' => 'auto_crons',
+        'auto_nginx' => 'auto_nginx',
+        'maintenance_mode' => 'maintenance_mode',
+        'guardrails_phase' => 'guardrails_phase',
+        'docroots' => 'docroots',
+        'site_urls' => 'site_urls',
+        'ssh_hosts' => 'ssh_hosts',
+        'enterprise_environments_mapping' => 'enterprise_environments_mapping',
+        'use_dedicated_grid' => 'use_dedicated_grid',
+        'storage_type' => 'storage_type'
+    ];
+    
     public function __construct(
         public readonly string $type = null,
         public readonly string $name = null,
@@ -69,6 +150,14 @@ final class DeploymentTarget implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

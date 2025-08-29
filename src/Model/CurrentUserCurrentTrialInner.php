@@ -18,6 +18,42 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'CurrentUser_current_trial_inner';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'created' => '\DateTime',
+        'description' => 'string',
+        'spend_remaining' => 'string',
+        'expiration' => '\DateTime'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'created' => 'date-time',
+        'description' => null,
+        'spend_remaining' => null,
+        'expiration' => 'date-time'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'created' => 'created',
+        'description' => 'description',
+        'spend_remaining' => 'spend_remaining',
+        'expiration' => 'expiration'
+    ];
+    
     public function __construct(
         public readonly \DateTime|null $created = null,
         public readonly string|null $description = null,
@@ -39,6 +75,14 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

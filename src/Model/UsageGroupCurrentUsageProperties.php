@@ -18,6 +18,57 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'UsageGroupCurrentUsageProperties';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'title' => 'string',
+        'type' => 'bool',
+        'current_usage' => 'float',
+        'current_usage_formatted' => 'string',
+        'not_charged' => 'bool',
+        'free_quantity' => 'float',
+        'free_quantity_formatted' => 'string',
+        'daily_average' => 'float',
+        'daily_average_formatted' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'title' => null,
+        'type' => null,
+        'current_usage' => null,
+        'current_usage_formatted' => null,
+        'not_charged' => null,
+        'free_quantity' => null,
+        'free_quantity_formatted' => null,
+        'daily_average' => null,
+        'daily_average_formatted' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'title' => 'title',
+        'type' => 'type',
+        'current_usage' => 'current_usage',
+        'current_usage_formatted' => 'current_usage_formatted',
+        'not_charged' => 'not_charged',
+        'free_quantity' => 'free_quantity',
+        'free_quantity_formatted' => 'free_quantity_formatted',
+        'daily_average' => 'daily_average',
+        'daily_average_formatted' => 'daily_average_formatted'
+    ];
+    
     public function __construct(
         public readonly string|null $title = null,
         public readonly bool|null $type = null,
@@ -49,6 +100,14 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

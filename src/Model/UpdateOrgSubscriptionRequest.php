@@ -18,6 +18,66 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'update_org_subscription_request';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'project_title' => 'string',
+        'plan' => 'string',
+        'timezone' => 'string',
+        'environments' => 'int',
+        'storage' => 'int',
+        'big_dev' => 'string',
+        'big_dev_service' => 'string',
+        'backups' => 'string',
+        'observability_suite' => 'string',
+        'blackfire' => 'string',
+        'continuous_profiling' => 'string',
+        'project_support_level' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'project_title' => null,
+        'plan' => null,
+        'timezone' => null,
+        'environments' => null,
+        'storage' => null,
+        'big_dev' => null,
+        'big_dev_service' => null,
+        'backups' => null,
+        'observability_suite' => null,
+        'blackfire' => null,
+        'continuous_profiling' => null,
+        'project_support_level' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'project_title' => 'project_title',
+        'plan' => 'plan',
+        'timezone' => 'timezone',
+        'environments' => 'environments',
+        'storage' => 'storage',
+        'big_dev' => 'big_dev',
+        'big_dev_service' => 'big_dev_service',
+        'backups' => 'backups',
+        'observability_suite' => 'observability_suite',
+        'blackfire' => 'blackfire',
+        'continuous_profiling' => 'continuous_profiling',
+        'project_support_level' => 'project_support_level'
+    ];
+    
     public function __construct(
         public readonly string|null $project_title = null,
         public readonly string|null $plan = null,
@@ -55,6 +115,14 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

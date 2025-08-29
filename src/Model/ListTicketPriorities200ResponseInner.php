@@ -18,6 +18,42 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'list_ticket_priorities_200_response_inner';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'id' => 'string',
+        'label' => 'string',
+        'short_description' => 'string',
+        'description' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'id' => null,
+        'label' => null,
+        'short_description' => null,
+        'description' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'id' => 'id',
+        'label' => 'label',
+        'short_description' => 'short_description',
+        'description' => 'description'
+    ];
+    
     public function __construct(
         public readonly string|null $id = null,
         public readonly string|null $label = null,
@@ -39,6 +75,14 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

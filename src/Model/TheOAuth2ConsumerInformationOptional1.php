@@ -18,6 +18,36 @@ final class TheOAuth2ConsumerInformationOptional1 implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_OAuth2_consumer_information__optional___1';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'key' => 'string',
+        'secret' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'key' => null,
+        'secret' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'key' => 'key',
+        'secret' => 'secret'
+    ];
+    
     public function __construct(
         public readonly string $key = null,
         public readonly string $secret = null
@@ -35,6 +65,14 @@ final class TheOAuth2ConsumerInformationOptional1 implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

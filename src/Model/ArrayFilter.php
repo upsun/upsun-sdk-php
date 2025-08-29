@@ -18,6 +18,42 @@ final class ArrayFilter implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'ArrayFilter';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'eq' => 'string',
+        'ne' => 'string',
+        'in' => 'string',
+        'nin' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'eq' => null,
+        'ne' => null,
+        'in' => null,
+        'nin' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'eq' => 'eq',
+        'ne' => 'ne',
+        'in' => 'in',
+        'nin' => 'nin'
+    ];
+    
     public function __construct(
         public readonly string|null $eq = null,
         public readonly string|null $ne = null,
@@ -39,6 +75,14 @@ final class ArrayFilter implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

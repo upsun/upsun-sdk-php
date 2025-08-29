@@ -18,6 +18,39 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'A_list_of_files_to_add_to_the_repository_during_initialization_inner';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'path' => 'string',
+        'mode' => 'int',
+        'contents' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'path' => null,
+        'mode' => null,
+        'contents' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'path' => 'path',
+        'mode' => 'mode',
+        'contents' => 'contents'
+    ];
+    
     public function __construct(
         public readonly string $path = null,
         public readonly int $mode = null,
@@ -37,6 +70,14 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

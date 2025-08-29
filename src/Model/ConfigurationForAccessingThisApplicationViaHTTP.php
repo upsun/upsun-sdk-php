@@ -18,6 +18,60 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Configuration_for_accessing_this_application_via_HTTP_';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'locations' => 'array<string,\Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue>',
+        'commands' => '\Upsun\Model\CommandsToManageTheApplicationSLifecycle',
+        'upstream' => '\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication',
+        'document_root' => 'string',
+        'passthru' => 'string',
+        'index_files' => 'string[]',
+        'whitelist' => 'string[]',
+        'blacklist' => 'string[]',
+        'expires' => 'string',
+        'move_to_root' => 'bool'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'locations' => null,
+        'commands' => null,
+        'upstream' => null,
+        'document_root' => null,
+        'passthru' => null,
+        'index_files' => null,
+        'whitelist' => null,
+        'blacklist' => null,
+        'expires' => null,
+        'move_to_root' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'locations' => 'locations',
+        'commands' => 'commands',
+        'upstream' => 'upstream',
+        'document_root' => 'document_root',
+        'passthru' => 'passthru',
+        'index_files' => 'index_files',
+        'whitelist' => 'whitelist',
+        'blacklist' => 'blacklist',
+        'expires' => 'expires',
+        'move_to_root' => 'move_to_root'
+    ];
+    
     public function __construct(
         public readonly ?array $locations = null,
         public readonly \Upsun\Model\CommandsToManageTheApplicationSLifecycle|null $commands = null,
@@ -51,6 +105,14 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

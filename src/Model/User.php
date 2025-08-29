@@ -18,6 +18,78 @@ final class User implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'User';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'id' => 'string',
+        'deactivated' => 'bool',
+        'namespace' => 'string',
+        'username' => 'string',
+        'email' => 'string',
+        'email_verified' => 'bool',
+        'first_name' => 'string',
+        'last_name' => 'string',
+        'picture' => 'string',
+        'company' => 'string',
+        'website' => 'string',
+        'country' => 'string',
+        'created_at' => '\DateTime',
+        'updated_at' => '\DateTime',
+        'consented_at' => '\DateTime',
+        'consent_method' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'id' => 'uuid',
+        'deactivated' => null,
+        'namespace' => null,
+        'username' => null,
+        'email' => 'email',
+        'email_verified' => null,
+        'first_name' => null,
+        'last_name' => null,
+        'picture' => 'uri',
+        'company' => null,
+        'website' => 'uri',
+        'country' => null,
+        'created_at' => 'date-time',
+        'updated_at' => 'date-time',
+        'consented_at' => 'date-time',
+        'consent_method' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'id' => 'id',
+        'deactivated' => 'deactivated',
+        'namespace' => 'namespace',
+        'username' => 'username',
+        'email' => 'email',
+        'email_verified' => 'email_verified',
+        'first_name' => 'first_name',
+        'last_name' => 'last_name',
+        'picture' => 'picture',
+        'company' => 'company',
+        'website' => 'website',
+        'country' => 'country',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'consented_at' => 'consented_at',
+        'consent_method' => 'consent_method'
+    ];
+    
     public function __construct(
         public readonly string $id = null,
         public readonly bool $deactivated = null,
@@ -63,6 +135,14 @@ final class User implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

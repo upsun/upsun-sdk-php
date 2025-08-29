@@ -18,6 +18,63 @@ final class GetAddress200Response implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'get_address_200_response';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'country' => 'string',
+        'name_line' => 'string',
+        'premise' => 'string',
+        'sub_premise' => 'string',
+        'thoroughfare' => 'string',
+        'administrative_area' => 'string',
+        'sub_administrative_area' => 'string',
+        'locality' => 'string',
+        'dependent_locality' => 'string',
+        'postal_code' => 'string',
+        'metadata' => '\Upsun\Model\AddressMetadataMetadata'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'country' => 'ISO ALPHA-2',
+        'name_line' => null,
+        'premise' => null,
+        'sub_premise' => null,
+        'thoroughfare' => null,
+        'administrative_area' => 'ISO ALPHA-2',
+        'sub_administrative_area' => null,
+        'locality' => null,
+        'dependent_locality' => null,
+        'postal_code' => null,
+        'metadata' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'country' => 'country',
+        'name_line' => 'name_line',
+        'premise' => 'premise',
+        'sub_premise' => 'sub_premise',
+        'thoroughfare' => 'thoroughfare',
+        'administrative_area' => 'administrative_area',
+        'sub_administrative_area' => 'sub_administrative_area',
+        'locality' => 'locality',
+        'dependent_locality' => 'dependent_locality',
+        'postal_code' => 'postal_code',
+        'metadata' => 'metadata'
+    ];
+    
     public function __construct(
         public readonly string|null $country = null,
         public readonly string|null $name_line = null,
@@ -53,6 +110,14 @@ final class GetAddress200Response implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

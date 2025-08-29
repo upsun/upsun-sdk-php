@@ -18,6 +18,51 @@ final class DateTimeFilter implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'DateTimeFilter';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'eq' => 'string',
+        'ne' => 'string',
+        'between' => 'string',
+        'gt' => 'string',
+        'gte' => 'string',
+        'lt' => 'string',
+        'lte' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'eq' => null,
+        'ne' => null,
+        'between' => null,
+        'gt' => null,
+        'gte' => null,
+        'lt' => null,
+        'lte' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'eq' => 'eq',
+        'ne' => 'ne',
+        'between' => 'between',
+        'gt' => 'gt',
+        'gte' => 'gte',
+        'lt' => 'lt',
+        'lte' => 'lte'
+    ];
+    
     public function __construct(
         public readonly string|null $eq = null,
         public readonly string|null $ne = null,
@@ -45,6 +90,14 @@ final class DateTimeFilter implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

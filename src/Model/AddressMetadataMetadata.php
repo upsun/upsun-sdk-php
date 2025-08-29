@@ -18,6 +18,39 @@ final class AddressMetadataMetadata implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'AddressMetadata_metadata';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'required_fields' => 'string[]',
+        'field_labels' => 'object',
+        'show_vat' => 'bool'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'required_fields' => null,
+        'field_labels' => null,
+        'show_vat' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'required_fields' => 'required_fields',
+        'field_labels' => 'field_labels',
+        'show_vat' => 'show_vat'
+    ];
+    
     public function __construct(
         public readonly ?array $required_fields = null,
         public readonly object|null $field_labels = null,
@@ -37,6 +70,14 @@ final class AddressMetadataMetadata implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

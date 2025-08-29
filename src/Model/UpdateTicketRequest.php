@@ -18,6 +18,39 @@ final class UpdateTicketRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'update_ticket_request';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'status' => 'string',
+        'collaborator_ids' => 'string[]',
+        'collaborators_replace' => 'bool'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'status' => null,
+        'collaborator_ids' => null,
+        'collaborators_replace' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'status' => 'status',
+        'collaborator_ids' => 'collaborator_ids',
+        'collaborators_replace' => 'collaborators_replace'
+    ];
+    
     public function __construct(
         public readonly string|null $status = null,
         public readonly ?array $collaborator_ids = null,
@@ -37,6 +70,14 @@ final class UpdateTicketRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

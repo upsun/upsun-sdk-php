@@ -18,6 +18,51 @@ final class APIToken implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'APIToken';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'id' => 'string',
+        'name' => 'string',
+        'mfa_on_creation' => 'bool',
+        'token' => 'string',
+        'created_at' => '\DateTime',
+        'updated_at' => '\DateTime',
+        'last_used_at' => '\DateTime'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'id' => 'uuid',
+        'name' => null,
+        'mfa_on_creation' => null,
+        'token' => null,
+        'created_at' => 'date-time',
+        'updated_at' => 'date-time',
+        'last_used_at' => 'date-time'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'id' => 'id',
+        'name' => 'name',
+        'mfa_on_creation' => 'mfa_on_creation',
+        'token' => 'token',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'last_used_at' => 'last_used_at'
+    ];
+    
     public function __construct(
         public readonly string|null $id = null,
         public readonly string|null $name = null,
@@ -45,6 +90,14 @@ final class APIToken implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

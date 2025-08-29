@@ -18,6 +18,36 @@ final class OrganizationAddonsObjectCurrent implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationAddonsObject_current';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'user_management' => 'array<string,float>',
+        'support_level' => 'array<string,float>'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'user_management' => null,
+        'support_level' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'user_management' => 'user_management',
+        'support_level' => 'support_level'
+    ];
+    
     public function __construct(
         public readonly ?array $user_management = null,
         public readonly ?array $support_level = null
@@ -35,6 +65,14 @@ final class OrganizationAddonsObjectCurrent implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

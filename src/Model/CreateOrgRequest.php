@@ -18,6 +18,45 @@ final class CreateOrgRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'create_org_request';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'type' => 'string',
+        'owner_id' => 'string',
+        'name' => 'string',
+        'label' => 'string',
+        'country' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'type' => null,
+        'owner_id' => 'uuid',
+        'name' => null,
+        'label' => null,
+        'country' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'type' => 'type',
+        'owner_id' => 'owner_id',
+        'name' => 'name',
+        'label' => 'label',
+        'country' => 'country'
+    ];
+    
     public function __construct(
         public readonly string|null $type = null,
         public readonly string|null $owner_id = null,
@@ -41,6 +80,14 @@ final class CreateOrgRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

@@ -18,6 +18,42 @@ final class TheDefaultResourcesForThisService implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_default_resources_for_this_service';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'cpu' => 'float',
+        'memory' => 'int',
+        'disk' => 'int',
+        'profile_size' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'cpu' => 'float',
+        'memory' => null,
+        'disk' => null,
+        'profile_size' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'cpu' => 'cpu',
+        'memory' => 'memory',
+        'disk' => 'disk',
+        'profile_size' => 'profile_size'
+    ];
+    
     public function __construct(
         public readonly float $cpu = null,
         public readonly int $memory = null,
@@ -39,6 +75,14 @@ final class TheDefaultResourcesForThisService implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

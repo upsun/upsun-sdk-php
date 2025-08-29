@@ -18,6 +18,63 @@ final class CreateTicketRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'create_ticket_request';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'subject' => 'string',
+        'description' => 'string',
+        'requester_id' => 'string',
+        'priority' => 'string',
+        'subscription_id' => 'string',
+        'organization_id' => 'string',
+        'affected_url' => 'string',
+        'followup_tid' => 'string',
+        'category' => 'string',
+        'attachments' => '\Upsun\Model\CreateTicketRequestAttachmentsInner[]',
+        'collaborator_ids' => 'string[]'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'subject' => null,
+        'description' => null,
+        'requester_id' => 'uuid',
+        'priority' => null,
+        'subscription_id' => null,
+        'organization_id' => null,
+        'affected_url' => 'url',
+        'followup_tid' => null,
+        'category' => null,
+        'attachments' => null,
+        'collaborator_ids' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'subject' => 'subject',
+        'description' => 'description',
+        'requester_id' => 'requester_id',
+        'priority' => 'priority',
+        'subscription_id' => 'subscription_id',
+        'organization_id' => 'organization_id',
+        'affected_url' => 'affected_url',
+        'followup_tid' => 'followup_tid',
+        'category' => 'category',
+        'attachments' => 'attachments',
+        'collaborator_ids' => 'collaborator_ids'
+    ];
+    
     public function __construct(
         public readonly string $subject = null,
         public readonly string $description = null,
@@ -53,6 +110,14 @@ final class CreateTicketRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

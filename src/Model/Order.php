@@ -18,6 +18,90 @@ final class Order implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Order';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'id' => 'string',
+        'status' => 'string',
+        'owner' => 'string',
+        'address' => '\Upsun\Model\Address',
+        'company' => 'string',
+        'vat_number' => 'string',
+        'billing_period_start' => '\DateTime',
+        'billing_period_end' => '\DateTime',
+        'billing_period_label' => '\Upsun\Model\OrderBillingPeriodLabel',
+        'billing_period_duration' => 'int',
+        'paid_on' => '\DateTime',
+        'total' => 'int',
+        'total_formatted' => 'int',
+        'components' => '\Upsun\Model\Components',
+        'currency' => 'string',
+        'invoice_url' => 'string',
+        'last_refreshed' => '\DateTime',
+        'invoiced' => 'bool',
+        'line_items' => '\Upsun\Model\LineItem[]',
+        '_links' => '\Upsun\Model\OrderLinks'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'id' => null,
+        'status' => null,
+        'owner' => 'uuid',
+        'address' => null,
+        'company' => null,
+        'vat_number' => null,
+        'billing_period_start' => 'date-time',
+        'billing_period_end' => 'date-time',
+        'billing_period_label' => null,
+        'billing_period_duration' => null,
+        'paid_on' => 'date-time',
+        'total' => null,
+        'total_formatted' => null,
+        'components' => null,
+        'currency' => null,
+        'invoice_url' => null,
+        'last_refreshed' => 'date-time',
+        'invoiced' => null,
+        'line_items' => null,
+        '_links' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'id' => 'id',
+        'status' => 'status',
+        'owner' => 'owner',
+        'address' => 'address',
+        'company' => 'company',
+        'vat_number' => 'vat_number',
+        'billing_period_start' => 'billing_period_start',
+        'billing_period_end' => 'billing_period_end',
+        'billing_period_label' => 'billing_period_label',
+        'billing_period_duration' => 'billing_period_duration',
+        'paid_on' => 'paid_on',
+        'total' => 'total',
+        'total_formatted' => 'total_formatted',
+        'components' => 'components',
+        'currency' => 'currency',
+        'invoice_url' => 'invoice_url',
+        'last_refreshed' => 'last_refreshed',
+        'invoiced' => 'invoiced',
+        'line_items' => 'line_items',
+        '_links' => '_links'
+    ];
+    
     public function __construct(
         public readonly string|null $id = null,
         public readonly string|null $status = null,
@@ -71,6 +155,14 @@ final class Order implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

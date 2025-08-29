@@ -18,6 +18,42 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSeriali
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'list_org_prepayment_transactions_200_response__links';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'self' => '\Upsun\Model\ListLinksSelf',
+        'previous' => '\Upsun\Model\ListLinksPrevious',
+        'next' => '\Upsun\Model\ListLinksNext',
+        'prepayment' => '\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'self' => null,
+        'previous' => null,
+        'next' => null,
+        'prepayment' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'self' => 'self',
+        'previous' => 'previous',
+        'next' => 'next',
+        'prepayment' => 'prepayment'
+    ];
+    
     public function __construct(
         public readonly \Upsun\Model\ListLinksSelf|null $self = null,
         public readonly \Upsun\Model\ListLinksPrevious|null $previous = null,
@@ -39,6 +75,14 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSeriali
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

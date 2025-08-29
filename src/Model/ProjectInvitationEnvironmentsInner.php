@@ -18,6 +18,42 @@ final class ProjectInvitationEnvironmentsInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'ProjectInvitation_environments_inner';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'id' => 'string',
+        'type' => 'string',
+        'role' => 'string',
+        'title' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'id' => null,
+        'type' => null,
+        'role' => null,
+        'title' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'id' => 'id',
+        'type' => 'type',
+        'role' => 'role',
+        'title' => 'title'
+    ];
+    
     public function __construct(
         public readonly string|null $id = null,
         public readonly string|null $type = null,
@@ -39,6 +75,14 @@ final class ProjectInvitationEnvironmentsInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

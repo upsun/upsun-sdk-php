@@ -18,6 +18,51 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'create_org_subscription_request';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'plan' => 'string',
+        'project_region' => 'string',
+        'project_title' => 'string',
+        'options_url' => 'string',
+        'default_branch' => 'string',
+        'environments' => 'int',
+        'storage' => 'int'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'plan' => null,
+        'project_region' => null,
+        'project_title' => null,
+        'options_url' => null,
+        'default_branch' => null,
+        'environments' => null,
+        'storage' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'plan' => 'plan',
+        'project_region' => 'project_region',
+        'project_title' => 'project_title',
+        'options_url' => 'options_url',
+        'default_branch' => 'default_branch',
+        'environments' => 'environments',
+        'storage' => 'storage'
+    ];
+    
     public function __construct(
         public readonly string|null $plan = null,
         public readonly string $project_region = null,
@@ -45,6 +90,14 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

@@ -18,6 +18,39 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Hooks_executed_at_various_point_in_the_lifecycle_of_the_application_';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'build' => 'string',
+        'deploy' => 'string',
+        'post_deploy' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'build' => null,
+        'deploy' => null,
+        'post_deploy' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'build' => 'build',
+        'deploy' => 'deploy',
+        'post_deploy' => 'post_deploy'
+    ];
+    
     public function __construct(
         public readonly string $build = null,
         public readonly string $deploy = null,
@@ -37,6 +70,14 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

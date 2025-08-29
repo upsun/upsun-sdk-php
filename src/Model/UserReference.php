@@ -18,6 +18,54 @@ final class UserReference implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'UserReference';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'id' => 'string',
+        'username' => 'string',
+        'email' => 'string',
+        'first_name' => 'string',
+        'last_name' => 'string',
+        'picture' => 'string',
+        'mfa_enabled' => 'bool',
+        'sso_enabled' => 'bool'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'id' => 'uuid',
+        'username' => null,
+        'email' => 'email',
+        'first_name' => null,
+        'last_name' => null,
+        'picture' => 'uri',
+        'mfa_enabled' => null,
+        'sso_enabled' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'id' => 'id',
+        'username' => 'username',
+        'email' => 'email',
+        'first_name' => 'first_name',
+        'last_name' => 'last_name',
+        'picture' => 'picture',
+        'mfa_enabled' => 'mfa_enabled',
+        'sso_enabled' => 'sso_enabled'
+    ];
+    
     public function __construct(
         public readonly string|null $id = null,
         public readonly string|null $username = null,
@@ -47,6 +95,14 @@ final class UserReference implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

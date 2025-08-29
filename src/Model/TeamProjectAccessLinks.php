@@ -18,6 +18,39 @@ final class TeamProjectAccessLinks implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'TeamProjectAccess__links';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'self' => '\Upsun\Model\TeamProjectAccessLinksSelf',
+        'update' => '\Upsun\Model\TeamProjectAccessLinksUpdate',
+        'delete' => '\Upsun\Model\TeamProjectAccessLinksDelete'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'self' => null,
+        'update' => null,
+        'delete' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'self' => 'self',
+        'update' => 'update',
+        'delete' => 'delete'
+    ];
+    
     public function __construct(
         public readonly \Upsun\Model\TeamProjectAccessLinksSelf|null $self = null,
         public readonly \Upsun\Model\TeamProjectAccessLinksUpdate|null $update = null,
@@ -37,6 +70,14 @@ final class TeamProjectAccessLinks implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

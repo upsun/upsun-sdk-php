@@ -18,6 +18,39 @@ final class HttpAccessPermissions1 implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Http_access_permissions_1';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'is_enabled' => 'bool',
+        'addresses' => '\Upsun\Model\AddressGrantsInner[]',
+        'basic_auth' => 'array<string,string>'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'is_enabled' => null,
+        'addresses' => null,
+        'basic_auth' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'is_enabled' => 'is_enabled',
+        'addresses' => 'addresses',
+        'basic_auth' => 'basic_auth'
+    ];
+    
     public function __construct(
         public readonly bool|null $is_enabled = null,
         public readonly ?array $addresses = null,
@@ -37,6 +70,14 @@ final class HttpAccessPermissions1 implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

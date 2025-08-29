@@ -18,6 +18,51 @@ final class Vouchers implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Vouchers';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'uuid' => 'string',
+        'vouchers_total' => 'string',
+        'vouchers_applied' => 'string',
+        'vouchers_remaining_balance' => 'string',
+        'currency' => 'string',
+        'vouchers' => '\Upsun\Model\VouchersVouchersInner[]',
+        '_links' => '\Upsun\Model\VouchersLinks'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'uuid' => 'uuid',
+        'vouchers_total' => null,
+        'vouchers_applied' => null,
+        'vouchers_remaining_balance' => null,
+        'currency' => null,
+        'vouchers' => null,
+        '_links' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'uuid' => 'uuid',
+        'vouchers_total' => 'vouchers_total',
+        'vouchers_applied' => 'vouchers_applied',
+        'vouchers_remaining_balance' => 'vouchers_remaining_balance',
+        'currency' => 'currency',
+        'vouchers' => 'vouchers',
+        '_links' => '_links'
+    ];
+    
     public function __construct(
         public readonly string|null $uuid = null,
         public readonly string|null $vouchers_total = null,
@@ -45,6 +90,14 @@ final class Vouchers implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

@@ -18,6 +18,36 @@ final class DataRetentionConfigurationValue1 implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Data_retention_configuration_value_1';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'max_backups' => 'int',
+        'default_config' => '\Upsun\Model\DefaultConfig1'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'max_backups' => null,
+        'default_config' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'max_backups' => 'max_backups',
+        'default_config' => 'default_config'
+    ];
+    
     public function __construct(
         public readonly int|null $max_backups = null,
         public readonly \Upsun\Model\DefaultConfig1 $default_config = null
@@ -35,6 +65,14 @@ final class DataRetentionConfigurationValue1 implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

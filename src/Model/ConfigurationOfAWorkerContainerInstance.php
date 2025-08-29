@@ -18,6 +18,36 @@ final class ConfigurationOfAWorkerContainerInstance implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Configuration_of_a_worker_container_instance_';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'commands' => '\Upsun\Model\TheCommandsToManageTheWorker',
+        'disk' => 'int'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'commands' => null,
+        'disk' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'commands' => 'commands',
+        'disk' => 'disk'
+    ];
+    
     public function __construct(
         public readonly \Upsun\Model\TheCommandsToManageTheWorker $commands = null,
         public readonly int|null $disk = null
@@ -35,6 +65,14 @@ final class ConfigurationOfAWorkerContainerInstance implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

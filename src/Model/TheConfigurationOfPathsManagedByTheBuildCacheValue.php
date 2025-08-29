@@ -18,6 +18,42 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_configuration_of_paths_managed_by_the_build_cache__value';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'directory' => 'string',
+        'watch' => 'string[]',
+        'allow_stale' => 'bool',
+        'share_between_apps' => 'bool'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'directory' => null,
+        'watch' => null,
+        'allow_stale' => null,
+        'share_between_apps' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'directory' => 'directory',
+        'watch' => 'watch',
+        'allow_stale' => 'allow_stale',
+        'share_between_apps' => 'share_between_apps'
+    ];
+    
     public function __construct(
         public readonly string $directory = null,
         public readonly ?array $watch = null,
@@ -39,6 +75,14 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

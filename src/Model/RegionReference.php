@@ -18,6 +18,78 @@ final class RegionReference implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'RegionReference';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'id' => 'string',
+        'label' => 'string',
+        'zone' => 'string',
+        'selection_label' => 'string',
+        'project_label' => 'string',
+        'timezone' => 'string',
+        'available' => 'bool',
+        'private' => 'bool',
+        'endpoint' => 'string',
+        'code' => 'string',
+        'provider' => 'object',
+        'datacenter' => 'object',
+        'envimpact' => 'object',
+        'compliance' => 'object',
+        'created_at' => '\DateTime',
+        'updated_at' => '\DateTime'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'id' => null,
+        'label' => null,
+        'zone' => null,
+        'selection_label' => null,
+        'project_label' => null,
+        'timezone' => null,
+        'available' => null,
+        'private' => null,
+        'endpoint' => null,
+        'code' => null,
+        'provider' => null,
+        'datacenter' => null,
+        'envimpact' => null,
+        'compliance' => null,
+        'created_at' => 'date-time',
+        'updated_at' => 'date-time'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'id' => 'id',
+        'label' => 'label',
+        'zone' => 'zone',
+        'selection_label' => 'selection_label',
+        'project_label' => 'project_label',
+        'timezone' => 'timezone',
+        'available' => 'available',
+        'private' => 'private',
+        'endpoint' => 'endpoint',
+        'code' => 'code',
+        'provider' => 'provider',
+        'datacenter' => 'datacenter',
+        'envimpact' => 'envimpact',
+        'compliance' => 'compliance',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at'
+    ];
+    
     public function __construct(
         public readonly string $id = null,
         public readonly string $label = null,
@@ -63,6 +135,14 @@ final class RegionReference implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

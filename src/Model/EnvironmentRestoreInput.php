@@ -18,6 +18,45 @@ final class EnvironmentRestoreInput implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'EnvironmentRestoreInput';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'environment_name' => 'string',
+        'branch_from' => 'string',
+        'restore_code' => 'bool',
+        'restore_resources' => 'bool',
+        'resources' => '\Upsun\Model\Resources5'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'environment_name' => null,
+        'branch_from' => null,
+        'restore_code' => null,
+        'restore_resources' => null,
+        'resources' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'environment_name' => 'environment_name',
+        'branch_from' => 'branch_from',
+        'restore_code' => 'restore_code',
+        'restore_resources' => 'restore_resources',
+        'resources' => 'resources'
+    ];
+    
     public function __construct(
         public readonly string $environment_name = null,
         public readonly string $branch_from = null,
@@ -41,6 +80,14 @@ final class EnvironmentRestoreInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

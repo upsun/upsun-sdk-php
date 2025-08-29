@@ -18,6 +18,45 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'PrepaymentObject_prepayment';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'organization_id' => 'string',
+        'balance' => '\Upsun\Model\PrepaymentObjectPrepaymentBalance',
+        'last_updated_at' => 'string',
+        'sufficient' => 'bool',
+        'fallback' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'organization_id' => null,
+        'balance' => null,
+        'last_updated_at' => null,
+        'sufficient' => null,
+        'fallback' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'organization_id' => 'organization_id',
+        'balance' => 'balance',
+        'last_updated_at' => 'last_updated_at',
+        'sufficient' => 'sufficient',
+        'fallback' => 'fallback'
+    ];
+    
     public function __construct(
         public readonly string|null $organization_id = null,
         public readonly \Upsun\Model\PrepaymentObjectPrepaymentBalance|null $balance = null,
@@ -41,6 +80,14 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

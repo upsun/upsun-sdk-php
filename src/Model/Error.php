@@ -18,6 +18,45 @@ final class Error implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Error';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'status' => 'string',
+        'message' => 'string',
+        'code' => 'float',
+        'detail' => 'object',
+        'title' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'status' => null,
+        'message' => null,
+        'code' => null,
+        'detail' => null,
+        'title' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'status' => 'status',
+        'message' => 'message',
+        'code' => 'code',
+        'detail' => 'detail',
+        'title' => 'title'
+    ];
+    
     public function __construct(
         public readonly string|null $status = null,
         public readonly string|null $message = null,
@@ -41,6 +80,14 @@ final class Error implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

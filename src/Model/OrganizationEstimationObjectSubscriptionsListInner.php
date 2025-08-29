@@ -18,6 +18,42 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationEstimationObject_subscriptions_list_inner';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'license_id' => 'string',
+        'project_title' => 'string',
+        'total' => 'string',
+        'usage' => '\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'license_id' => null,
+        'project_title' => null,
+        'total' => null,
+        'usage' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'license_id' => 'license_id',
+        'project_title' => 'project_title',
+        'total' => 'total',
+        'usage' => 'usage'
+    ];
+    
     public function __construct(
         public readonly string|null $license_id = null,
         public readonly string|null $project_title = null,
@@ -39,6 +75,14 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

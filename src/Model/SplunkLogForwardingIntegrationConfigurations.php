@@ -18,6 +18,36 @@ final class SplunkLogForwardingIntegrationConfigurations implements JsonSerializ
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Splunk_log_forwarding_integration_configurations';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'enabled' => 'bool',
+        'role' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'enabled' => null,
+        'role' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'enabled' => 'enabled',
+        'role' => 'role'
+    ];
+    
     public function __construct(
         public readonly bool|null $enabled = null,
         public readonly string|null $role = null
@@ -35,6 +65,14 @@ final class SplunkLogForwardingIntegrationConfigurations implements JsonSerializ
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

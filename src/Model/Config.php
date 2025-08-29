@@ -18,6 +18,81 @@ final class Config implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Config';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'newrelic' => '\Upsun\Model\NewRelicLogForwardingIntegrationConfigurations',
+        'sumologic' => '\Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations',
+        'splunk' => '\Upsun\Model\SplunkLogForwardingIntegrationConfigurations',
+        'httplog' => '\Upsun\Model\HTTPLogForwardingIntegrationConfigurations',
+        'syslog' => '\Upsun\Model\SyslogLogForwardingIntegrationConfigurations',
+        'webhook' => '\Upsun\Model\WebhookIntegrationConfigurations',
+        'script' => '\Upsun\Model\ScriptIntegrationConfigurations',
+        'github' => '\Upsun\Model\GitHubIntegrationConfigurations',
+        'gitlab' => '\Upsun\Model\GitLabIntegrationConfigurations',
+        'bitbucket' => '\Upsun\Model\BitbucketIntegrationConfigurations',
+        'bitbucket_server' => '\Upsun\Model\BitbucketServerIntegrationConfigurations',
+        'health_email' => '\Upsun\Model\HealthEmailNotificationIntegrationConfigurations',
+        'health_webhook' => '\Upsun\Model\HealthWebhookNotificationIntegrationConfigurations',
+        'health_pagerduty' => '\Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations',
+        'health_slack' => '\Upsun\Model\HealthSlackNotificationIntegrationConfigurations',
+        'cdn_fastly' => '\Upsun\Model\FastlyCDNIntegrationConfigurations',
+        'blackfire' => '\Upsun\Model\BlackfireIntegrationConfigurations'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'newrelic' => null,
+        'sumologic' => null,
+        'splunk' => null,
+        'httplog' => null,
+        'syslog' => null,
+        'webhook' => null,
+        'script' => null,
+        'github' => null,
+        'gitlab' => null,
+        'bitbucket' => null,
+        'bitbucket_server' => null,
+        'health_email' => null,
+        'health_webhook' => null,
+        'health_pagerduty' => null,
+        'health_slack' => null,
+        'cdn_fastly' => null,
+        'blackfire' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'newrelic' => 'newrelic',
+        'sumologic' => 'sumologic',
+        'splunk' => 'splunk',
+        'httplog' => 'httplog',
+        'syslog' => 'syslog',
+        'webhook' => 'webhook',
+        'script' => 'script',
+        'github' => 'github',
+        'gitlab' => 'gitlab',
+        'bitbucket' => 'bitbucket',
+        'bitbucket_server' => 'bitbucket_server',
+        'health_email' => 'health.email',
+        'health_webhook' => 'health.webhook',
+        'health_pagerduty' => 'health.pagerduty',
+        'health_slack' => 'health.slack',
+        'cdn_fastly' => 'cdn.fastly',
+        'blackfire' => 'blackfire'
+    ];
+    
     public function __construct(
         public readonly \Upsun\Model\NewRelicLogForwardingIntegrationConfigurations|null $newrelic = null,
         public readonly \Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations|null $sumologic = null,
@@ -65,6 +140,14 @@ final class Config implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

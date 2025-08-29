@@ -18,6 +18,36 @@ final class AccessControlDefinitionForThisEnviromentInner implements JsonSeriali
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Access_control_definition_for_this_enviroment_inner';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'entity_id' => 'string',
+        'role' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'entity_id' => null,
+        'role' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'entity_id' => 'entity_id',
+        'role' => 'role'
+    ];
+    
     public function __construct(
         public readonly string $entity_id = null,
         public readonly string $role = null
@@ -35,6 +65,14 @@ final class AccessControlDefinitionForThisEnviromentInner implements JsonSeriali
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

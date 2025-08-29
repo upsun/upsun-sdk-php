@@ -18,6 +18,69 @@ final class OrganizationProject implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationProject';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'id' => 'string',
+        'organization_id' => 'string',
+        'subscription_id' => 'string',
+        'region' => 'string',
+        'title' => 'string',
+        'type' => '\Upsun\Model\OrganizationProjectType',
+        'plan' => '\Upsun\Model\OrganizationProjectPlan',
+        'access_migration_status' => 'string',
+        'status' => '\Upsun\Model\OrganizationProjectStatus',
+        'vendor' => 'string',
+        'created_at' => '\DateTime',
+        'updated_at' => '\DateTime',
+        '_links' => '\Upsun\Model\OrganizationProjectLinks'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'id' => null,
+        'organization_id' => 'ulid',
+        'subscription_id' => null,
+        'region' => null,
+        'title' => null,
+        'type' => null,
+        'plan' => null,
+        'access_migration_status' => null,
+        'status' => null,
+        'vendor' => null,
+        'created_at' => 'date-time',
+        'updated_at' => 'date-time',
+        '_links' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'id' => 'id',
+        'organization_id' => 'organization_id',
+        'subscription_id' => 'subscription_id',
+        'region' => 'region',
+        'title' => 'title',
+        'type' => 'type',
+        'plan' => 'plan',
+        'access_migration_status' => 'access_migration_status',
+        'status' => 'status',
+        'vendor' => 'vendor',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        '_links' => '_links'
+    ];
+    
     public function __construct(
         public readonly string|null $id = null,
         public readonly string|null $organization_id = null,
@@ -57,6 +120,14 @@ final class OrganizationProject implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

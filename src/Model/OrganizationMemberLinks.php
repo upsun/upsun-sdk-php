@@ -18,6 +18,39 @@ final class OrganizationMemberLinks implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationMember__links';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'self' => '\Upsun\Model\OrganizationMemberLinksSelf',
+        'update' => '\Upsun\Model\OrganizationMemberLinksUpdate',
+        'delete' => '\Upsun\Model\OrganizationMemberLinksDelete'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'self' => null,
+        'update' => null,
+        'delete' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'self' => 'self',
+        'update' => 'update',
+        'delete' => 'delete'
+    ];
+    
     public function __construct(
         public readonly \Upsun\Model\OrganizationMemberLinksSelf|null $self = null,
         public readonly \Upsun\Model\OrganizationMemberLinksUpdate|null $update = null,
@@ -37,6 +70,14 @@ final class OrganizationMemberLinks implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

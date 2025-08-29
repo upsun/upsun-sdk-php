@@ -18,6 +18,75 @@ final class CurrentUser implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'CurrentUser';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'id' => 'string',
+        'uuid' => 'string',
+        'username' => 'string',
+        'display_name' => 'string',
+        'status' => 'int',
+        'mail' => 'string',
+        'ssh_keys' => '\Upsun\Model\SSHKey[]',
+        'has_key' => 'bool',
+        'projects' => '\Upsun\Model\CurrentUserProjectsInner[]',
+        'sequence' => 'int',
+        'roles' => 'string[]',
+        'picture' => 'string',
+        'tickets' => 'object',
+        'trial' => 'bool',
+        'current_trial' => '\Upsun\Model\CurrentUserCurrentTrialInner[]'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'id' => 'uuid',
+        'uuid' => 'uuid',
+        'username' => null,
+        'display_name' => null,
+        'status' => null,
+        'mail' => 'email',
+        'ssh_keys' => null,
+        'has_key' => null,
+        'projects' => null,
+        'sequence' => null,
+        'roles' => null,
+        'picture' => 'url',
+        'tickets' => null,
+        'trial' => null,
+        'current_trial' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'id' => 'id',
+        'uuid' => 'uuid',
+        'username' => 'username',
+        'display_name' => 'display_name',
+        'status' => 'status',
+        'mail' => 'mail',
+        'ssh_keys' => 'ssh_keys',
+        'has_key' => 'has_key',
+        'projects' => 'projects',
+        'sequence' => 'sequence',
+        'roles' => 'roles',
+        'picture' => 'picture',
+        'tickets' => 'tickets',
+        'trial' => 'trial',
+        'current_trial' => 'current_trial'
+    ];
+    
     public function __construct(
         public readonly string|null $id = null,
         public readonly string|null $uuid = null,
@@ -61,6 +130,14 @@ final class CurrentUser implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

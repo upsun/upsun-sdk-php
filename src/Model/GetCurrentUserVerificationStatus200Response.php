@@ -18,6 +18,33 @@ final class GetCurrentUserVerificationStatus200Response implements JsonSerializa
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'get_current_user_verification_status_200_response';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'verify_phone' => 'bool'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'verify_phone' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'verify_phone' => 'verify_phone'
+    ];
+    
     public function __construct(
         public readonly bool|null $verify_phone = null
     ) {
@@ -33,6 +60,14 @@ final class GetCurrentUserVerificationStatus200Response implements JsonSerializa
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

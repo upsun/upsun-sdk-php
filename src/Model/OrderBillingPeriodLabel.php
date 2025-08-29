@@ -18,6 +18,42 @@ final class OrderBillingPeriodLabel implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Order_billing_period_label';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'formatted' => 'string',
+        'month' => 'string',
+        'year' => 'string',
+        'next_month' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'formatted' => null,
+        'month' => null,
+        'year' => null,
+        'next_month' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'formatted' => 'formatted',
+        'month' => 'month',
+        'year' => 'year',
+        'next_month' => 'next_month'
+    ];
+    
     public function __construct(
         public readonly string|null $formatted = null,
         public readonly string|null $month = null,
@@ -39,6 +75,14 @@ final class OrderBillingPeriodLabel implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

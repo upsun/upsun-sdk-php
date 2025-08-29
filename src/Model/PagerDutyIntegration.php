@@ -18,6 +18,42 @@ final class PagerDutyIntegration implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'PagerDutyIntegration';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'created_at' => '\DateTime',
+        'updated_at' => '\DateTime',
+        'type' => 'string',
+        'routing_key' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'created_at' => 'date-time',
+        'updated_at' => 'date-time',
+        'type' => null,
+        'routing_key' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'type' => 'type',
+        'routing_key' => 'routing_key'
+    ];
+    
     public function __construct(
         public readonly \DateTime $created_at = null,
         public readonly \DateTime $updated_at = null,
@@ -39,6 +75,14 @@ final class PagerDutyIntegration implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

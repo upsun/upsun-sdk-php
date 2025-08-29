@@ -18,6 +18,171 @@ final class Integration implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Integration';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'created_at' => '\DateTime',
+        'updated_at' => '\DateTime',
+        'type' => 'string',
+        'fetch_branches' => 'bool',
+        'prune_branches' => 'bool',
+        'environment_init_resources' => 'string',
+        'app_credentials' => '\Upsun\Model\TheOAuth2ConsumerInformationOptional',
+        'addon_credentials' => '\Upsun\Model\TheAddonCredentialInformationOptional',
+        'repository' => 'string',
+        'build_pull_requests' => 'bool',
+        'pull_requests_clone_parent_data' => 'bool',
+        'resync_pull_requests' => 'bool',
+        'url' => 'string',
+        'username' => 'string',
+        'project' => 'string',
+        'environments_credentials' => 'array<string,\Upsun\Model\BlackfireEnvironmentsCredentialsValue>',
+        'continuous_profiling' => 'bool',
+        'events' => 'string[]',
+        'environments' => 'string[]',
+        'excluded_environments' => 'string[]',
+        'states' => 'string[]',
+        'result' => 'string',
+        'service_id' => 'string',
+        'base_url' => 'string',
+        'build_draft_pull_requests' => 'bool',
+        'build_pull_requests_post_merge' => 'bool',
+        'token_type' => 'string',
+        'build_merge_requests' => 'bool',
+        'build_wip_merge_requests' => 'bool',
+        'merge_requests_clone_parent_data' => 'bool',
+        'from_address' => 'string',
+        'recipients' => 'string[]',
+        'routing_key' => 'string',
+        'channel' => 'string',
+        'extra' => 'array<string,string>',
+        'headers' => 'array<string,string>',
+        'tls_verify' => 'bool',
+        'script' => 'string',
+        'index' => 'string',
+        'sourcetype' => 'string',
+        'category' => 'string',
+        'host' => 'string',
+        'port' => 'int',
+        'protocol' => 'string',
+        'facility' => 'int',
+        'message_format' => 'string',
+        'shared_key' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'created_at' => 'date-time',
+        'updated_at' => 'date-time',
+        'type' => null,
+        'fetch_branches' => null,
+        'prune_branches' => null,
+        'environment_init_resources' => null,
+        'app_credentials' => null,
+        'addon_credentials' => null,
+        'repository' => null,
+        'build_pull_requests' => null,
+        'pull_requests_clone_parent_data' => null,
+        'resync_pull_requests' => null,
+        'url' => null,
+        'username' => null,
+        'project' => null,
+        'environments_credentials' => null,
+        'continuous_profiling' => null,
+        'events' => null,
+        'environments' => null,
+        'excluded_environments' => null,
+        'states' => null,
+        'result' => null,
+        'service_id' => null,
+        'base_url' => null,
+        'build_draft_pull_requests' => null,
+        'build_pull_requests_post_merge' => null,
+        'token_type' => null,
+        'build_merge_requests' => null,
+        'build_wip_merge_requests' => null,
+        'merge_requests_clone_parent_data' => null,
+        'from_address' => null,
+        'recipients' => null,
+        'routing_key' => null,
+        'channel' => null,
+        'extra' => null,
+        'headers' => null,
+        'tls_verify' => null,
+        'script' => null,
+        'index' => null,
+        'sourcetype' => null,
+        'category' => null,
+        'host' => null,
+        'port' => null,
+        'protocol' => null,
+        'facility' => null,
+        'message_format' => null,
+        'shared_key' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'type' => 'type',
+        'fetch_branches' => 'fetch_branches',
+        'prune_branches' => 'prune_branches',
+        'environment_init_resources' => 'environment_init_resources',
+        'app_credentials' => 'app_credentials',
+        'addon_credentials' => 'addon_credentials',
+        'repository' => 'repository',
+        'build_pull_requests' => 'build_pull_requests',
+        'pull_requests_clone_parent_data' => 'pull_requests_clone_parent_data',
+        'resync_pull_requests' => 'resync_pull_requests',
+        'url' => 'url',
+        'username' => 'username',
+        'project' => 'project',
+        'environments_credentials' => 'environments_credentials',
+        'continuous_profiling' => 'continuous_profiling',
+        'events' => 'events',
+        'environments' => 'environments',
+        'excluded_environments' => 'excluded_environments',
+        'states' => 'states',
+        'result' => 'result',
+        'service_id' => 'service_id',
+        'base_url' => 'base_url',
+        'build_draft_pull_requests' => 'build_draft_pull_requests',
+        'build_pull_requests_post_merge' => 'build_pull_requests_post_merge',
+        'token_type' => 'token_type',
+        'build_merge_requests' => 'build_merge_requests',
+        'build_wip_merge_requests' => 'build_wip_merge_requests',
+        'merge_requests_clone_parent_data' => 'merge_requests_clone_parent_data',
+        'from_address' => 'from_address',
+        'recipients' => 'recipients',
+        'routing_key' => 'routing_key',
+        'channel' => 'channel',
+        'extra' => 'extra',
+        'headers' => 'headers',
+        'tls_verify' => 'tls_verify',
+        'script' => 'script',
+        'index' => 'index',
+        'sourcetype' => 'sourcetype',
+        'category' => 'category',
+        'host' => 'host',
+        'port' => 'port',
+        'protocol' => 'protocol',
+        'facility' => 'facility',
+        'message_format' => 'message_format',
+        'shared_key' => 'shared_key'
+    ];
+    
     public function __construct(
         public readonly \DateTime $created_at = null,
         public readonly \DateTime $updated_at = null,
@@ -125,6 +290,14 @@ final class Integration implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

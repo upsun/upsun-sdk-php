@@ -18,6 +18,48 @@ final class TicketJiraInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Ticket_jira_inner';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'id' => 'int',
+        'ticket_id' => 'int',
+        'issue_id' => 'int',
+        'issue_key' => 'string',
+        'created_at' => 'float',
+        'updated_at' => 'float'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'id' => null,
+        'ticket_id' => null,
+        'issue_id' => null,
+        'issue_key' => null,
+        'created_at' => 'float',
+        'updated_at' => 'float'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'id' => 'id',
+        'ticket_id' => 'ticket_id',
+        'issue_id' => 'issue_id',
+        'issue_key' => 'issue_key',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at'
+    ];
+    
     public function __construct(
         public readonly int|null $id = null,
         public readonly int|null $ticket_id = null,
@@ -43,6 +85,14 @@ final class TicketJiraInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

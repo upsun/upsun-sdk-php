@@ -18,6 +18,48 @@ final class ThePathsToRedirectValue1 implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_paths_to_redirect_value_1';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'regexp' => 'bool',
+        'to' => 'string',
+        'prefix' => 'bool',
+        'append_suffix' => 'bool',
+        'code' => 'int',
+        'expires' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'regexp' => null,
+        'to' => null,
+        'prefix' => null,
+        'append_suffix' => null,
+        'code' => null,
+        'expires' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'regexp' => 'regexp',
+        'to' => 'to',
+        'prefix' => 'prefix',
+        'append_suffix' => 'append_suffix',
+        'code' => 'code',
+        'expires' => 'expires'
+    ];
+    
     public function __construct(
         public readonly bool|null $regexp = null,
         public readonly string $to = null,
@@ -43,6 +85,14 @@ final class ThePathsToRedirectValue1 implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

@@ -18,6 +18,33 @@ final class OperationsThatCanBeAppliedToTheSourceCodeValue implements JsonSerial
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Operations_that_can_be_applied_to_the_source_code__value';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'command' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'command' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'command' => 'command'
+    ];
+    
     public function __construct(
         public readonly string $command = null
     ) {
@@ -33,6 +60,14 @@ final class OperationsThatCanBeAppliedToTheSourceCodeValue implements JsonSerial
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

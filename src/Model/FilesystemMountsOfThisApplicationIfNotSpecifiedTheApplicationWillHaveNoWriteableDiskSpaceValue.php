@@ -18,6 +18,39 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Filesystem_mounts_of_this_application___If_not_specified_the_application_will_have_no_writeable_disk_space__value';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'source' => 'string',
+        'source_path' => 'string',
+        'service' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'source' => null,
+        'source_path' => null,
+        'service' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'source' => 'source',
+        'source_path' => 'source_path',
+        'service' => 'service'
+    ];
+    
     public function __construct(
         public readonly string $source = null,
         public readonly string $source_path = null,
@@ -37,6 +70,14 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

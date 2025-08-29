@@ -18,6 +18,75 @@ final class Project implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Project';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'created_at' => '\DateTime',
+        'updated_at' => '\DateTime',
+        'attributes' => 'array<string,string>',
+        'title' => 'string',
+        'description' => 'string',
+        'owner' => 'string',
+        'namespace' => 'string',
+        'organization' => 'string',
+        'default_branch' => 'string',
+        'status' => '\Upsun\Model\Status',
+        'timezone' => 'string',
+        'region' => 'string',
+        'repository' => '\Upsun\Model\RepositoryInformation',
+        'default_domain' => 'string',
+        'subscription' => '\Upsun\Model\SubscriptionInformation'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'created_at' => 'date-time',
+        'updated_at' => 'date-time',
+        'attributes' => null,
+        'title' => null,
+        'description' => null,
+        'owner' => null,
+        'namespace' => null,
+        'organization' => null,
+        'default_branch' => null,
+        'status' => null,
+        'timezone' => null,
+        'region' => null,
+        'repository' => null,
+        'default_domain' => null,
+        'subscription' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'attributes' => 'attributes',
+        'title' => 'title',
+        'description' => 'description',
+        'owner' => 'owner',
+        'namespace' => 'namespace',
+        'organization' => 'organization',
+        'default_branch' => 'default_branch',
+        'status' => 'status',
+        'timezone' => 'timezone',
+        'region' => 'region',
+        'repository' => 'repository',
+        'default_domain' => 'default_domain',
+        'subscription' => 'subscription'
+    ];
+    
     public function __construct(
         public readonly \DateTime $created_at = null,
         public readonly \DateTime $updated_at = null,
@@ -61,6 +130,14 @@ final class Project implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

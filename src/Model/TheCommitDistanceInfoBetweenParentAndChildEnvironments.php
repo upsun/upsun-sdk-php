@@ -18,6 +18,39 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_commit_distance_info_between_parent_and_child_environments';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'commits_ahead' => 'int',
+        'commits_behind' => 'int',
+        'parent_ref' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'commits_ahead' => null,
+        'commits_behind' => null,
+        'parent_ref' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'commits_ahead' => 'commits_ahead',
+        'commits_behind' => 'commits_behind',
+        'parent_ref' => 'parent_ref'
+    ];
+    
     public function __construct(
         public readonly int $commits_ahead = null,
         public readonly int $commits_behind = null,
@@ -37,6 +70,14 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

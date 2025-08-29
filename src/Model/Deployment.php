@@ -18,6 +18,87 @@ final class Deployment implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Deployment';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'created_at' => '\DateTime',
+        'updated_at' => '\DateTime',
+        'fingerprint' => 'string',
+        'cluster_name' => 'string',
+        'project_info' => '\Upsun\Model\ProjectInfo',
+        'environment_info' => '\Upsun\Model\EnvironmentInfo',
+        'deployment_target' => 'string',
+        'vpn' => '\Upsun\Model\VPNConfiguration',
+        'http_access' => '\Upsun\Model\HttpAccessPermissions',
+        'enable_smtp' => 'bool',
+        'restrict_robots' => 'bool',
+        'variables' => '\Upsun\Model\TheVariablesApplyingToThisEnvironmentInner[]',
+        'access' => '\Upsun\Model\AccessControlDefinitionForThisEnviromentInner[]',
+        'subscription' => '\Upsun\Model\Subscription1',
+        'services' => 'array<string,\Upsun\Model\ServicesValue>',
+        'routes' => 'array<string,\Upsun\Model\RoutesValue>',
+        'webapps' => 'array<string,\Upsun\Model\WebApplicationsValue>',
+        'workers' => 'array<string,\Upsun\Model\WorkersValue>',
+        'container_profiles' => 'array<string,array<string,\Upsun\Model\ContainerProfilesValueValue>>'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'created_at' => 'date-time',
+        'updated_at' => 'date-time',
+        'fingerprint' => null,
+        'cluster_name' => null,
+        'project_info' => null,
+        'environment_info' => null,
+        'deployment_target' => null,
+        'vpn' => null,
+        'http_access' => null,
+        'enable_smtp' => null,
+        'restrict_robots' => null,
+        'variables' => null,
+        'access' => null,
+        'subscription' => null,
+        'services' => null,
+        'routes' => null,
+        'webapps' => null,
+        'workers' => null,
+        'container_profiles' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'fingerprint' => 'fingerprint',
+        'cluster_name' => 'cluster_name',
+        'project_info' => 'project_info',
+        'environment_info' => 'environment_info',
+        'deployment_target' => 'deployment_target',
+        'vpn' => 'vpn',
+        'http_access' => 'http_access',
+        'enable_smtp' => 'enable_smtp',
+        'restrict_robots' => 'restrict_robots',
+        'variables' => 'variables',
+        'access' => 'access',
+        'subscription' => 'subscription',
+        'services' => 'services',
+        'routes' => 'routes',
+        'webapps' => 'webapps',
+        'workers' => 'workers',
+        'container_profiles' => 'container_profiles'
+    ];
+    
     public function __construct(
         public readonly \DateTime|null $created_at = null,
         public readonly \DateTime|null $updated_at = null,
@@ -69,6 +150,14 @@ final class Deployment implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

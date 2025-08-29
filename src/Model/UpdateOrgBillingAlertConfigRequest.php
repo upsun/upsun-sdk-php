@@ -18,6 +18,36 @@ final class UpdateOrgBillingAlertConfigRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'update_org_billing_alert_config_request';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'active' => 'bool',
+        'config' => '\Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'active' => null,
+        'config' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'active' => 'active',
+        'config' => 'config'
+    ];
+    
     public function __construct(
         public readonly bool|null $active = null,
         public readonly \Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig|null $config = null
@@ -35,6 +65,14 @@ final class UpdateOrgBillingAlertConfigRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

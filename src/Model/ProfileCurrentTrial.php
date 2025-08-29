@@ -18,6 +18,63 @@ final class ProfileCurrentTrial implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Profile_current_trial';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'active' => 'bool',
+        'created' => '\DateTime',
+        'description' => 'string',
+        'expiration' => '\DateTime',
+        'current' => '\Upsun\Model\ProfileCurrentTrialCurrent',
+        'spend' => '\Upsun\Model\ProfileCurrentTrialSpend',
+        'spend_remaining' => '\Upsun\Model\ProfileCurrentTrialSpendRemaining',
+        'projects' => '\Upsun\Model\ProfileCurrentTrialProjects',
+        'pending_verification' => 'string',
+        'model' => 'string',
+        'days_remaining' => 'int'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'active' => null,
+        'created' => 'date-time',
+        'description' => null,
+        'expiration' => 'date-time',
+        'current' => null,
+        'spend' => null,
+        'spend_remaining' => null,
+        'projects' => null,
+        'pending_verification' => null,
+        'model' => null,
+        'days_remaining' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'active' => 'active',
+        'created' => 'created',
+        'description' => 'description',
+        'expiration' => 'expiration',
+        'current' => 'current',
+        'spend' => 'spend',
+        'spend_remaining' => 'spend_remaining',
+        'projects' => 'projects',
+        'pending_verification' => 'pending_verification',
+        'model' => 'model',
+        'days_remaining' => 'days_remaining'
+    ];
+    
     public function __construct(
         public readonly bool|null $active = null,
         public readonly \DateTime|null $created = null,
@@ -53,6 +110,14 @@ final class ProfileCurrentTrial implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

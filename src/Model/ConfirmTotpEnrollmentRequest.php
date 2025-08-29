@@ -18,6 +18,36 @@ final class ConfirmTotpEnrollmentRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'confirm_totp_enrollment_request';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'secret' => 'string',
+        'passcode' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'secret' => null,
+        'passcode' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'secret' => 'secret',
+        'passcode' => 'passcode'
+    ];
+    
     public function __construct(
         public readonly string $secret = null,
         public readonly string $passcode = null
@@ -35,6 +65,14 @@ final class ConfirmTotpEnrollmentRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

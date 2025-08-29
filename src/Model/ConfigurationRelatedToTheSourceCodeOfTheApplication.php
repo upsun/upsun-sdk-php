@@ -18,6 +18,36 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonS
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Configuration_related_to_the_source_code_of_the_application_';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'root' => 'string',
+        'operations' => 'array<string,\Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue>'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'root' => null,
+        'operations' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'root' => 'root',
+        'operations' => 'operations'
+    ];
+    
     public function __construct(
         public readonly string $root = null,
         public readonly ?array $operations = null
@@ -35,6 +65,14 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonS
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

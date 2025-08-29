@@ -18,6 +18,57 @@ final class EnvironmentPatch implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'EnvironmentPatch';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'name' => 'string',
+        'title' => 'string',
+        'attributes' => 'array<string,string>',
+        'type' => 'string',
+        'parent' => 'string',
+        'clone_parent_on_create' => 'bool',
+        'http_access' => '\Upsun\Model\HttpAccessPermissions1',
+        'enable_smtp' => 'bool',
+        'restrict_robots' => 'bool'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'name' => null,
+        'title' => null,
+        'attributes' => null,
+        'type' => null,
+        'parent' => null,
+        'clone_parent_on_create' => null,
+        'http_access' => null,
+        'enable_smtp' => null,
+        'restrict_robots' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'name' => 'name',
+        'title' => 'title',
+        'attributes' => 'attributes',
+        'type' => 'type',
+        'parent' => 'parent',
+        'clone_parent_on_create' => 'clone_parent_on_create',
+        'http_access' => 'http_access',
+        'enable_smtp' => 'enable_smtp',
+        'restrict_robots' => 'restrict_robots'
+    ];
+    
     public function __construct(
         public readonly string|null $name = null,
         public readonly string|null $title = null,
@@ -49,6 +100,14 @@ final class EnvironmentPatch implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

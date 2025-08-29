@@ -18,6 +18,42 @@ final class CacheConfiguration1 implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Cache_configuration__1';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'enabled' => 'bool',
+        'default_ttl' => 'int',
+        'cookies' => 'string[]',
+        'headers' => 'string[]'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'enabled' => null,
+        'default_ttl' => null,
+        'cookies' => null,
+        'headers' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'enabled' => 'enabled',
+        'default_ttl' => 'default_ttl',
+        'cookies' => 'cookies',
+        'headers' => 'headers'
+    ];
+    
     public function __construct(
         public readonly bool $enabled = null,
         public readonly int|null $default_ttl = null,
@@ -39,6 +75,14 @@ final class CacheConfiguration1 implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

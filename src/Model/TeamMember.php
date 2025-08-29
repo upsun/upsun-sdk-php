@@ -18,6 +18,42 @@ final class TeamMember implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'TeamMember';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'team_id' => 'string',
+        'user_id' => 'string',
+        'created_at' => '\DateTime',
+        'updated_at' => '\DateTime'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'team_id' => 'ulid',
+        'user_id' => 'uuid',
+        'created_at' => 'date-time',
+        'updated_at' => 'date-time'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'team_id' => 'team_id',
+        'user_id' => 'user_id',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at'
+    ];
+    
     public function __construct(
         public readonly string|null $team_id = null,
         public readonly string|null $user_id = null,
@@ -39,6 +75,14 @@ final class TeamMember implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

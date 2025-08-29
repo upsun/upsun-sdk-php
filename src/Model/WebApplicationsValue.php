@@ -18,6 +18,120 @@ final class WebApplicationsValue implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Web_applications_value';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'resources' => '\Upsun\Model\Resources',
+        'size' => 'string',
+        'disk' => 'int',
+        'access' => 'array<string,string>',
+        'relationships' => 'array<string,\Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue>',
+        'additional_hosts' => 'array<string,string>',
+        'mounts' => 'array<string,\Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue>',
+        'timezone' => 'string',
+        'variables' => 'array<string,array<string,mixed>>',
+        'firewall' => '\Upsun\Model\Firewall',
+        'container_profile' => 'string',
+        'operations' => 'array<string,\Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue>',
+        'name' => 'string',
+        'type' => 'string',
+        'preflight' => '\Upsun\Model\ConfigurationForPreFlightChecks',
+        'tree_id' => 'string',
+        'app_dir' => 'string',
+        'endpoints' => 'object',
+        'runtime' => 'object',
+        'web' => '\Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP',
+        'hooks' => '\Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication',
+        'crons' => 'array<string,\Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue>',
+        'source' => '\Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication',
+        'build' => '\Upsun\Model\TheBuildConfigurationOfTheApplication',
+        'dependencies' => 'array<string,object>',
+        'stack' => 'object[]',
+        'is_across_submodule' => 'bool',
+        'instance_count' => 'int',
+        'config_id' => 'string',
+        'slug_id' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'resources' => null,
+        'size' => null,
+        'disk' => null,
+        'access' => null,
+        'relationships' => null,
+        'additional_hosts' => null,
+        'mounts' => null,
+        'timezone' => null,
+        'variables' => null,
+        'firewall' => null,
+        'container_profile' => null,
+        'operations' => null,
+        'name' => null,
+        'type' => null,
+        'preflight' => null,
+        'tree_id' => null,
+        'app_dir' => null,
+        'endpoints' => null,
+        'runtime' => null,
+        'web' => null,
+        'hooks' => null,
+        'crons' => null,
+        'source' => null,
+        'build' => null,
+        'dependencies' => null,
+        'stack' => null,
+        'is_across_submodule' => null,
+        'instance_count' => null,
+        'config_id' => null,
+        'slug_id' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'resources' => 'resources',
+        'size' => 'size',
+        'disk' => 'disk',
+        'access' => 'access',
+        'relationships' => 'relationships',
+        'additional_hosts' => 'additional_hosts',
+        'mounts' => 'mounts',
+        'timezone' => 'timezone',
+        'variables' => 'variables',
+        'firewall' => 'firewall',
+        'container_profile' => 'container_profile',
+        'operations' => 'operations',
+        'name' => 'name',
+        'type' => 'type',
+        'preflight' => 'preflight',
+        'tree_id' => 'tree_id',
+        'app_dir' => 'app_dir',
+        'endpoints' => 'endpoints',
+        'runtime' => 'runtime',
+        'web' => 'web',
+        'hooks' => 'hooks',
+        'crons' => 'crons',
+        'source' => 'source',
+        'build' => 'build',
+        'dependencies' => 'dependencies',
+        'stack' => 'stack',
+        'is_across_submodule' => 'is_across_submodule',
+        'instance_count' => 'instance_count',
+        'config_id' => 'config_id',
+        'slug_id' => 'slug_id'
+    ];
+    
     public function __construct(
         public readonly \Upsun\Model\Resources $resources = null,
         public readonly string $size = null,
@@ -91,6 +205,14 @@ final class WebApplicationsValue implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

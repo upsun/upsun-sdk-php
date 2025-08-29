@@ -18,6 +18,51 @@ final class SplunkIntegrationPatch implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'SplunkIntegrationPatch';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'type' => 'string',
+        'extra' => 'array<string,string>',
+        'url' => 'string',
+        'index' => 'string',
+        'token' => 'string',
+        'sourcetype' => 'string',
+        'tls_verify' => 'bool'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'type' => null,
+        'extra' => null,
+        'url' => null,
+        'index' => null,
+        'token' => null,
+        'sourcetype' => null,
+        'tls_verify' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'type' => 'type',
+        'extra' => 'extra',
+        'url' => 'url',
+        'index' => 'index',
+        'token' => 'token',
+        'sourcetype' => 'sourcetype',
+        'tls_verify' => 'tls_verify'
+    ];
+    
     public function __construct(
         public readonly string $type = null,
         public readonly ?array $extra = null,
@@ -45,6 +90,14 @@ final class SplunkIntegrationPatch implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

@@ -18,6 +18,75 @@ final class Backup implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Backup';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'created_at' => '\DateTime',
+        'updated_at' => '\DateTime',
+        'id' => 'string',
+        'attributes' => 'array<string,string>',
+        'status' => 'string',
+        'expires_at' => '\DateTime',
+        'index' => 'int',
+        'commit_id' => 'string',
+        'environment' => 'string',
+        'safe' => 'bool',
+        'size_of_volumes' => 'int',
+        'size_used' => 'int',
+        'deployment' => 'string',
+        'restorable' => 'bool',
+        'automated' => 'bool'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'created_at' => 'date-time',
+        'updated_at' => 'date-time',
+        'id' => null,
+        'attributes' => null,
+        'status' => null,
+        'expires_at' => 'date-time',
+        'index' => null,
+        'commit_id' => null,
+        'environment' => null,
+        'safe' => null,
+        'size_of_volumes' => null,
+        'size_used' => null,
+        'deployment' => null,
+        'restorable' => null,
+        'automated' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'id' => 'id',
+        'attributes' => 'attributes',
+        'status' => 'status',
+        'expires_at' => 'expires_at',
+        'index' => 'index',
+        'commit_id' => 'commit_id',
+        'environment' => 'environment',
+        'safe' => 'safe',
+        'size_of_volumes' => 'size_of_volumes',
+        'size_used' => 'size_used',
+        'deployment' => 'deployment',
+        'restorable' => 'restorable',
+        'automated' => 'automated'
+    ];
+    
     public function __construct(
         public readonly \DateTime $created_at = null,
         public readonly \DateTime $updated_at = null,
@@ -61,6 +130,14 @@ final class Backup implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

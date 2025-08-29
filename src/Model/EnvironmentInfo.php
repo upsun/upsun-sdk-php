@@ -18,6 +18,57 @@ final class EnvironmentInfo implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Environment_Info';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'name' => 'string',
+        'status' => 'string',
+        'is_main' => 'bool',
+        'is_production' => 'bool',
+        'constraints' => 'object',
+        'reference' => 'string',
+        'machine_name' => 'string',
+        'environment_type' => 'string',
+        'links' => 'object'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'name' => null,
+        'status' => null,
+        'is_main' => null,
+        'is_production' => null,
+        'constraints' => null,
+        'reference' => null,
+        'machine_name' => null,
+        'environment_type' => null,
+        'links' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'name' => 'name',
+        'status' => 'status',
+        'is_main' => 'is_main',
+        'is_production' => 'is_production',
+        'constraints' => 'constraints',
+        'reference' => 'reference',
+        'machine_name' => 'machine_name',
+        'environment_type' => 'environment_type',
+        'links' => 'links'
+    ];
+    
     public function __construct(
         public readonly string $name = null,
         public readonly string $status = null,
@@ -49,6 +100,14 @@ final class EnvironmentInfo implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

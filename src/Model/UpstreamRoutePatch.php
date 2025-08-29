@@ -18,6 +18,60 @@ final class UpstreamRoutePatch implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'UpstreamRoutePatch';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'primary' => 'bool',
+        'id' => 'string',
+        'production_url' => 'string',
+        'attributes' => 'array<string,string>',
+        'type' => 'string',
+        'tls' => '\Upsun\Model\TLSSettingsForTheRoute1',
+        'cache' => '\Upsun\Model\CacheConfiguration1',
+        'ssi' => '\Upsun\Model\ServerSideIncludeConfiguration',
+        'upstream' => 'string',
+        'redirects' => '\Upsun\Model\TheConfigurationOfTheRedirects1'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'primary' => null,
+        'id' => null,
+        'production_url' => null,
+        'attributes' => null,
+        'type' => null,
+        'tls' => null,
+        'cache' => null,
+        'ssi' => null,
+        'upstream' => null,
+        'redirects' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'primary' => 'primary',
+        'id' => 'id',
+        'production_url' => 'production_url',
+        'attributes' => 'attributes',
+        'type' => 'type',
+        'tls' => 'tls',
+        'cache' => 'cache',
+        'ssi' => 'ssi',
+        'upstream' => 'upstream',
+        'redirects' => 'redirects'
+    ];
+    
     public function __construct(
         public readonly bool|null $primary = null,
         public readonly string|null $id = null,
@@ -51,6 +105,14 @@ final class UpstreamRoutePatch implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

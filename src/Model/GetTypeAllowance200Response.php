@@ -18,6 +18,33 @@ final class GetTypeAllowance200Response implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'get_type_allowance_200_response';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'currencies' => '\Upsun\Model\GetTypeAllowance200ResponseCurrencies'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'currencies' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'currencies' => 'currencies'
+    ];
+    
     public function __construct(
         public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrencies|null $currencies = null
     ) {
@@ -33,6 +60,14 @@ final class GetTypeAllowance200Response implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

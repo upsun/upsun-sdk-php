@@ -18,6 +18,39 @@ final class TheInformationAboutTheCommitter implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_information_about_the_committer';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'date' => '\DateTime',
+        'name' => 'string',
+        'email' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'date' => 'date-time',
+        'name' => null,
+        'email' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'date' => 'date',
+        'name' => 'name',
+        'email' => 'email'
+    ];
+    
     public function __construct(
         public readonly \DateTime $date = null,
         public readonly string $name = null,
@@ -37,6 +70,14 @@ final class TheInformationAboutTheCommitter implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

@@ -18,6 +18,39 @@ final class OrganizationEstimationObjectUserLicensesUserManagement implements Js
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationEstimationObject_user_licenses_user_management';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'count' => 'int',
+        'total' => 'string',
+        'list' => '\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'count' => null,
+        'total' => null,
+        'list' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'count' => 'count',
+        'total' => 'total',
+        'list' => 'list'
+    ];
+    
     public function __construct(
         public readonly int|null $count = null,
         public readonly string|null $total = null,
@@ -37,6 +70,14 @@ final class OrganizationEstimationObjectUserLicensesUserManagement implements Js
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

@@ -18,6 +18,33 @@ final class VersionCreateInput implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'VersionCreateInput';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'routing' => '\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'routing' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'routing' => 'routing'
+    ];
+    
     public function __construct(
         public readonly \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1|null $routing = null
     ) {
@@ -33,6 +60,14 @@ final class VersionCreateInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

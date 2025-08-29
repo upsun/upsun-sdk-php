@@ -18,6 +18,36 @@ final class TheAddonCredentialInformationOptional implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_addon_credential_information__optional__';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'addon_key' => 'string',
+        'client_key' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'addon_key' => null,
+        'client_key' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'addon_key' => 'addon_key',
+        'client_key' => 'client_key'
+    ];
+    
     public function __construct(
         public readonly string $addon_key = null,
         public readonly string $client_key = null
@@ -35,6 +65,14 @@ final class TheAddonCredentialInformationOptional implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

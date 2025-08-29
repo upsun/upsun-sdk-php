@@ -18,6 +18,57 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_specification_of_the_web_locations_served_by_this_application__value';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'root' => 'string',
+        'expires' => 'string',
+        'passthru' => 'string',
+        'scripts' => 'bool',
+        'index' => 'string[]',
+        'allow' => 'bool',
+        'headers' => 'array<string,string>',
+        'rules' => 'array<string,\Upsun\Model\SpecificOverridesValue>',
+        'request_buffering' => '\Upsun\Model\ConfigurationForSupportingRequestBuffering'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'root' => null,
+        'expires' => null,
+        'passthru' => null,
+        'scripts' => null,
+        'index' => null,
+        'allow' => null,
+        'headers' => null,
+        'rules' => null,
+        'request_buffering' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'root' => 'root',
+        'expires' => 'expires',
+        'passthru' => 'passthru',
+        'scripts' => 'scripts',
+        'index' => 'index',
+        'allow' => 'allow',
+        'headers' => 'headers',
+        'rules' => 'rules',
+        'request_buffering' => 'request_buffering'
+    ];
+    
     public function __construct(
         public readonly string $root = null,
         public readonly string $expires = null,
@@ -49,6 +100,14 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

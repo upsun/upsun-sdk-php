@@ -18,6 +18,51 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'list_user_extended_access_200_response_items_inner';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'user_id' => 'string',
+        'resource_id' => 'string',
+        'resource_type' => 'string',
+        'organization_id' => 'string',
+        'permissions' => 'string[]',
+        'granted_at' => '\DateTime',
+        'updated_at' => '\DateTime'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'user_id' => 'uuid',
+        'resource_id' => null,
+        'resource_type' => null,
+        'organization_id' => null,
+        'permissions' => null,
+        'granted_at' => 'date-time',
+        'updated_at' => 'date-time'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'user_id' => 'user_id',
+        'resource_id' => 'resource_id',
+        'resource_type' => 'resource_type',
+        'organization_id' => 'organization_id',
+        'permissions' => 'permissions',
+        'granted_at' => 'granted_at',
+        'updated_at' => 'updated_at'
+    ];
+    
     public function __construct(
         public readonly string|null $user_id = null,
         public readonly string|null $resource_id = null,
@@ -45,6 +90,14 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

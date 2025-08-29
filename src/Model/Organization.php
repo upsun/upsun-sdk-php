@@ -18,6 +18,69 @@ final class Organization implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Organization';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'id' => 'string',
+        'type' => 'string',
+        'owner_id' => 'string',
+        'namespace' => 'string',
+        'name' => 'string',
+        'label' => 'string',
+        'country' => 'string',
+        'capabilities' => 'string[]',
+        'vendor' => 'string',
+        'status' => 'string',
+        'created_at' => '\DateTime',
+        'updated_at' => '\DateTime',
+        '_links' => '\Upsun\Model\OrganizationLinks'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'id' => 'ulid',
+        'type' => null,
+        'owner_id' => 'uuid',
+        'namespace' => null,
+        'name' => null,
+        'label' => null,
+        'country' => null,
+        'capabilities' => null,
+        'vendor' => null,
+        'status' => null,
+        'created_at' => 'date-time',
+        'updated_at' => 'date-time',
+        '_links' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'id' => 'id',
+        'type' => 'type',
+        'owner_id' => 'owner_id',
+        'namespace' => 'namespace',
+        'name' => 'name',
+        'label' => 'label',
+        'country' => 'country',
+        'capabilities' => 'capabilities',
+        'vendor' => 'vendor',
+        'status' => 'status',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        '_links' => '_links'
+    ];
+    
     public function __construct(
         public readonly string|null $id = null,
         public readonly string|null $type = null,
@@ -57,6 +120,14 @@ final class Organization implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

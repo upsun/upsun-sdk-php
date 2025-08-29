@@ -18,6 +18,45 @@ final class ResourcesOverridesValue implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Resources_overrides_value';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'services' => 'array<string,\Upsun\Model\PerServiceResourcesOverridesValue>',
+        'starts_at' => '\DateTime',
+        'ends_at' => '\DateTime',
+        'redeployed_start' => 'bool',
+        'redeployed_end' => 'bool'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'services' => null,
+        'starts_at' => 'date-time',
+        'ends_at' => 'date-time',
+        'redeployed_start' => null,
+        'redeployed_end' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'services' => 'services',
+        'starts_at' => 'starts_at',
+        'ends_at' => 'ends_at',
+        'redeployed_start' => 'redeployed_start',
+        'redeployed_end' => 'redeployed_end'
+    ];
+    
     public function __construct(
         public readonly ?array $services = null,
         public readonly \DateTime $starts_at = null,
@@ -41,6 +80,14 @@ final class ResourcesOverridesValue implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

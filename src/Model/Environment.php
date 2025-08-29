@@ -18,6 +18,126 @@ final class Environment implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Environment';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'created_at' => '\DateTime',
+        'updated_at' => '\DateTime',
+        'name' => 'string',
+        'machine_name' => 'string',
+        'title' => 'string',
+        'attributes' => 'array<string,string>',
+        'type' => 'string',
+        'parent' => 'string',
+        'default_domain' => 'string',
+        'has_domains' => 'bool',
+        'clone_parent_on_create' => 'bool',
+        'deployment_target' => 'string',
+        'is_pr' => 'bool',
+        'has_remote' => 'bool',
+        'status' => 'string',
+        'http_access' => '\Upsun\Model\HttpAccessPermissions',
+        'enable_smtp' => 'bool',
+        'restrict_robots' => 'bool',
+        'edge_hostname' => 'string',
+        'deployment_state' => '\Upsun\Model\TheEnvironmentDeploymentState',
+        'resources_overrides' => 'array<string,\Upsun\Model\ResourcesOverridesValue>',
+        'max_instance_count' => 'int',
+        'last_active_at' => '\DateTime',
+        'last_backup_at' => '\DateTime',
+        'project' => 'string',
+        'is_main' => 'bool',
+        'is_dirty' => 'bool',
+        'has_code' => 'bool',
+        'head_commit' => 'string',
+        'merge_info' => '\Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments',
+        'has_deployment' => 'bool',
+        'supports_restrict_robots' => 'bool'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'created_at' => 'date-time',
+        'updated_at' => 'date-time',
+        'name' => null,
+        'machine_name' => null,
+        'title' => null,
+        'attributes' => null,
+        'type' => null,
+        'parent' => null,
+        'default_domain' => null,
+        'has_domains' => null,
+        'clone_parent_on_create' => null,
+        'deployment_target' => null,
+        'is_pr' => null,
+        'has_remote' => null,
+        'status' => null,
+        'http_access' => null,
+        'enable_smtp' => null,
+        'restrict_robots' => null,
+        'edge_hostname' => null,
+        'deployment_state' => null,
+        'resources_overrides' => null,
+        'max_instance_count' => null,
+        'last_active_at' => 'date-time',
+        'last_backup_at' => 'date-time',
+        'project' => null,
+        'is_main' => null,
+        'is_dirty' => null,
+        'has_code' => null,
+        'head_commit' => null,
+        'merge_info' => null,
+        'has_deployment' => null,
+        'supports_restrict_robots' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'name' => 'name',
+        'machine_name' => 'machine_name',
+        'title' => 'title',
+        'attributes' => 'attributes',
+        'type' => 'type',
+        'parent' => 'parent',
+        'default_domain' => 'default_domain',
+        'has_domains' => 'has_domains',
+        'clone_parent_on_create' => 'clone_parent_on_create',
+        'deployment_target' => 'deployment_target',
+        'is_pr' => 'is_pr',
+        'has_remote' => 'has_remote',
+        'status' => 'status',
+        'http_access' => 'http_access',
+        'enable_smtp' => 'enable_smtp',
+        'restrict_robots' => 'restrict_robots',
+        'edge_hostname' => 'edge_hostname',
+        'deployment_state' => 'deployment_state',
+        'resources_overrides' => 'resources_overrides',
+        'max_instance_count' => 'max_instance_count',
+        'last_active_at' => 'last_active_at',
+        'last_backup_at' => 'last_backup_at',
+        'project' => 'project',
+        'is_main' => 'is_main',
+        'is_dirty' => 'is_dirty',
+        'has_code' => 'has_code',
+        'head_commit' => 'head_commit',
+        'merge_info' => 'merge_info',
+        'has_deployment' => 'has_deployment',
+        'supports_restrict_robots' => 'supports_restrict_robots'
+    ];
+    
     public function __construct(
         public readonly \DateTime $created_at = null,
         public readonly \DateTime $updated_at = null,
@@ -95,6 +215,14 @@ final class Environment implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

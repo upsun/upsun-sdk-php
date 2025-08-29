@@ -18,6 +18,75 @@ final class OrganizationLinks implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Organization__links';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'self' => '\Upsun\Model\OrganizationLinksSelf',
+        'update' => '\Upsun\Model\OrganizationLinksUpdate',
+        'delete' => '\Upsun\Model\OrganizationLinksDelete',
+        'members' => '\Upsun\Model\OrganizationLinksMembers',
+        'create_member' => '\Upsun\Model\OrganizationLinksCreateMember',
+        'address' => '\Upsun\Model\OrganizationLinksAddress',
+        'profile' => '\Upsun\Model\OrganizationLinksProfile',
+        'payment_source' => '\Upsun\Model\OrganizationLinksPaymentSource',
+        'orders' => '\Upsun\Model\OrganizationLinksOrders',
+        'vouchers' => '\Upsun\Model\OrganizationLinksVouchers',
+        'apply_voucher' => '\Upsun\Model\OrganizationLinksApplyVoucher',
+        'subscriptions' => '\Upsun\Model\OrganizationLinksSubscriptions',
+        'create_subscription' => '\Upsun\Model\OrganizationLinksCreateSubscription',
+        'estimate_subscription' => '\Upsun\Model\OrganizationLinksEstimateSubscription',
+        'mfa_enforcement' => '\Upsun\Model\OrganizationLinksMfaEnforcement'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'self' => null,
+        'update' => null,
+        'delete' => null,
+        'members' => null,
+        'create_member' => null,
+        'address' => null,
+        'profile' => null,
+        'payment_source' => null,
+        'orders' => null,
+        'vouchers' => null,
+        'apply_voucher' => null,
+        'subscriptions' => null,
+        'create_subscription' => null,
+        'estimate_subscription' => null,
+        'mfa_enforcement' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'self' => 'self',
+        'update' => 'update',
+        'delete' => 'delete',
+        'members' => 'members',
+        'create_member' => 'create-member',
+        'address' => 'address',
+        'profile' => 'profile',
+        'payment_source' => 'payment-source',
+        'orders' => 'orders',
+        'vouchers' => 'vouchers',
+        'apply_voucher' => 'apply-voucher',
+        'subscriptions' => 'subscriptions',
+        'create_subscription' => 'create-subscription',
+        'estimate_subscription' => 'estimate-subscription',
+        'mfa_enforcement' => 'mfa-enforcement'
+    ];
+    
     public function __construct(
         public readonly \Upsun\Model\OrganizationLinksSelf|null $self = null,
         public readonly \Upsun\Model\OrganizationLinksUpdate|null $update = null,
@@ -61,6 +130,14 @@ final class OrganizationLinks implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

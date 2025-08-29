@@ -18,6 +18,36 @@ final class OrganizationEstimationObjectUserLicensesBaseList implements JsonSeri
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationEstimationObject_user_licenses_base_list';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'admin_user' => '\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser',
+        'viewer_user' => '\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'admin_user' => null,
+        'viewer_user' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'admin_user' => 'admin_user',
+        'viewer_user' => 'viewer_user'
+    ];
+    
     public function __construct(
         public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser|null $admin_user = null,
         public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser|null $viewer_user = null
@@ -35,6 +65,14 @@ final class OrganizationEstimationObjectUserLicensesBaseList implements JsonSeri
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

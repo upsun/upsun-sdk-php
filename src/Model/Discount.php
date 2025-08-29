@@ -18,6 +18,63 @@ final class Discount implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Discount';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'id' => 'int',
+        'organization_id' => 'string',
+        'type' => 'string',
+        'type_label' => 'string',
+        'status' => 'string',
+        'commitment' => '\Upsun\Model\DiscountCommitment',
+        'total_months' => 'int',
+        'discount' => '\Upsun\Model\DiscountDiscount',
+        'config' => 'object',
+        'start_at' => '\DateTime',
+        'end_at' => '\DateTime'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'id' => null,
+        'organization_id' => null,
+        'type' => null,
+        'type_label' => null,
+        'status' => null,
+        'commitment' => null,
+        'total_months' => null,
+        'discount' => null,
+        'config' => null,
+        'start_at' => 'date-time',
+        'end_at' => 'date-time'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'id' => 'id',
+        'organization_id' => 'organization_id',
+        'type' => 'type',
+        'type_label' => 'type_label',
+        'status' => 'status',
+        'commitment' => 'commitment',
+        'total_months' => 'total_months',
+        'discount' => 'discount',
+        'config' => 'config',
+        'start_at' => 'start_at',
+        'end_at' => 'end_at'
+    ];
+    
     public function __construct(
         public readonly int|null $id = null,
         public readonly string|null $organization_id = null,
@@ -53,6 +110,14 @@ final class Discount implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

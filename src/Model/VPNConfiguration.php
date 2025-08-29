@@ -18,6 +18,72 @@ final class VPNConfiguration implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'VPN_configuration';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'version' => 'int',
+        'aggressive' => 'string',
+        'modeconfig' => 'string',
+        'authentication' => 'string',
+        'gateway_ip' => 'string',
+        'identity' => 'string',
+        'second_identity' => 'string',
+        'remote_identity' => 'string',
+        'remote_subnets' => 'string[]',
+        'ike' => 'string',
+        'esp' => 'string',
+        'ikelifetime' => 'string',
+        'lifetime' => 'string',
+        'margintime' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'version' => null,
+        'aggressive' => null,
+        'modeconfig' => null,
+        'authentication' => null,
+        'gateway_ip' => null,
+        'identity' => null,
+        'second_identity' => null,
+        'remote_identity' => null,
+        'remote_subnets' => null,
+        'ike' => null,
+        'esp' => null,
+        'ikelifetime' => null,
+        'lifetime' => null,
+        'margintime' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'version' => 'version',
+        'aggressive' => 'aggressive',
+        'modeconfig' => 'modeconfig',
+        'authentication' => 'authentication',
+        'gateway_ip' => 'gateway_ip',
+        'identity' => 'identity',
+        'second_identity' => 'second_identity',
+        'remote_identity' => 'remote_identity',
+        'remote_subnets' => 'remote_subnets',
+        'ike' => 'ike',
+        'esp' => 'esp',
+        'ikelifetime' => 'ikelifetime',
+        'lifetime' => 'lifetime',
+        'margintime' => 'margintime'
+    ];
+    
     public function __construct(
         public readonly int $version = null,
         public readonly string $aggressive = null,
@@ -59,6 +125,14 @@ final class VPNConfiguration implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

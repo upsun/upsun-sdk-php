@@ -18,6 +18,48 @@ final class SSHKey implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'SSHKey';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'key_id' => 'int',
+        'uid' => 'int',
+        'fingerprint' => 'string',
+        'title' => 'string',
+        'value' => 'string',
+        'changed' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'key_id' => null,
+        'uid' => null,
+        'fingerprint' => null,
+        'title' => null,
+        'value' => null,
+        'changed' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'key_id' => 'key_id',
+        'uid' => 'uid',
+        'fingerprint' => 'fingerprint',
+        'title' => 'title',
+        'value' => 'value',
+        'changed' => 'changed'
+    ];
+    
     public function __construct(
         public readonly int|null $key_id = null,
         public readonly int|null $uid = null,
@@ -43,6 +85,14 @@ final class SSHKey implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

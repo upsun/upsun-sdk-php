@@ -18,6 +18,39 @@ final class EnvironmentSourceOperation implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'EnvironmentSourceOperation';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'app' => 'string',
+        'operation' => 'string',
+        'command' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'app' => null,
+        'operation' => null,
+        'command' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'app' => 'app',
+        'operation' => 'operation',
+        'command' => 'command'
+    ];
+    
     public function __construct(
         public readonly string $app = null,
         public readonly string $operation = null,
@@ -37,6 +70,14 @@ final class EnvironmentSourceOperation implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

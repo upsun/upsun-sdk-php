@@ -18,6 +18,42 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Profile_current_trial_projects_total';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'amount' => 'int',
+        'currency_code' => 'string',
+        'currency_symbol' => 'string',
+        'formatted' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'amount' => null,
+        'currency_code' => null,
+        'currency_symbol' => null,
+        'formatted' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'amount' => 'amount',
+        'currency_code' => 'currency_code',
+        'currency_symbol' => 'currency_symbol',
+        'formatted' => 'formatted'
+    ];
+    
     public function __construct(
         public readonly int|null $amount = null,
         public readonly string|null $currency_code = null,
@@ -39,6 +75,14 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

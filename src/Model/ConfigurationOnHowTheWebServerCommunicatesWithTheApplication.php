@@ -18,6 +18,36 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Configuration_on_how_the_web_server_communicates_with_the_application_';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'socket_family' => 'string',
+        'protocol' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'socket_family' => null,
+        'protocol' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'socket_family' => 'socket_family',
+        'protocol' => 'protocol'
+    ];
+    
     public function __construct(
         public readonly string $socket_family = null,
         public readonly string $protocol = null
@@ -35,6 +65,14 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

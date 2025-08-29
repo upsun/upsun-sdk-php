@@ -18,6 +18,60 @@ final class ServicesValue implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Services_value';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'type' => 'string',
+        'size' => 'string',
+        'disk' => 'int',
+        'access' => 'object',
+        'configuration' => 'object',
+        'relationships' => 'array<string,string>',
+        'firewall' => '\Upsun\Model\Firewall',
+        'resources' => '\Upsun\Model\Resources',
+        'container_profile' => 'string',
+        'endpoints' => 'object'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'type' => null,
+        'size' => null,
+        'disk' => null,
+        'access' => null,
+        'configuration' => null,
+        'relationships' => null,
+        'firewall' => null,
+        'resources' => null,
+        'container_profile' => null,
+        'endpoints' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'type' => 'type',
+        'size' => 'size',
+        'disk' => 'disk',
+        'access' => 'access',
+        'configuration' => 'configuration',
+        'relationships' => 'relationships',
+        'firewall' => 'firewall',
+        'resources' => 'resources',
+        'container_profile' => 'container_profile',
+        'endpoints' => 'endpoints'
+    ];
+    
     public function __construct(
         public readonly string $type = null,
         public readonly string $size = null,
@@ -51,6 +105,14 @@ final class ServicesValue implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

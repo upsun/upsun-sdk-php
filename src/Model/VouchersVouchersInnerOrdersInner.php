@@ -18,6 +18,51 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Vouchers_vouchers_inner_orders_inner';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'order_id' => 'string',
+        'status' => 'string',
+        'billing_period_start' => 'string',
+        'billing_period_end' => 'string',
+        'order_total' => 'string',
+        'order_discount' => 'string',
+        'currency' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'order_id' => null,
+        'status' => null,
+        'billing_period_start' => null,
+        'billing_period_end' => null,
+        'order_total' => null,
+        'order_discount' => null,
+        'currency' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'order_id' => 'order_id',
+        'status' => 'status',
+        'billing_period_start' => 'billing_period_start',
+        'billing_period_end' => 'billing_period_end',
+        'order_total' => 'order_total',
+        'order_discount' => 'order_discount',
+        'currency' => 'currency'
+    ];
+    
     public function __construct(
         public readonly string|null $order_id = null,
         public readonly string|null $status = null,
@@ -45,6 +90,14 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

@@ -18,6 +18,87 @@ final class Activity implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Activity';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'created_at' => '\DateTime',
+        'updated_at' => '\DateTime',
+        'type' => 'string',
+        'parameters' => 'object',
+        'project' => 'string',
+        'integration' => 'string',
+        'environments' => 'string[]',
+        'state' => 'string',
+        'result' => 'string',
+        'started_at' => '\DateTime',
+        'completed_at' => '\DateTime',
+        'completion_percent' => 'int',
+        'cancelled_at' => '\DateTime',
+        'timings' => 'array<string,float>',
+        'log' => 'string',
+        'payload' => 'object',
+        'description' => 'string',
+        'text' => 'string',
+        'expires_at' => '\DateTime'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'created_at' => 'date-time',
+        'updated_at' => 'date-time',
+        'type' => null,
+        'parameters' => null,
+        'project' => null,
+        'integration' => null,
+        'environments' => null,
+        'state' => null,
+        'result' => null,
+        'started_at' => 'date-time',
+        'completed_at' => 'date-time',
+        'completion_percent' => null,
+        'cancelled_at' => 'date-time',
+        'timings' => 'float',
+        'log' => null,
+        'payload' => null,
+        'description' => null,
+        'text' => null,
+        'expires_at' => 'date-time'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'type' => 'type',
+        'parameters' => 'parameters',
+        'project' => 'project',
+        'integration' => 'integration',
+        'environments' => 'environments',
+        'state' => 'state',
+        'result' => 'result',
+        'started_at' => 'started_at',
+        'completed_at' => 'completed_at',
+        'completion_percent' => 'completion_percent',
+        'cancelled_at' => 'cancelled_at',
+        'timings' => 'timings',
+        'log' => 'log',
+        'payload' => 'payload',
+        'description' => 'description',
+        'text' => 'text',
+        'expires_at' => 'expires_at'
+    ];
+    
     public function __construct(
         public readonly \DateTime $created_at = null,
         public readonly \DateTime $updated_at = null,
@@ -69,6 +150,14 @@ final class Activity implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

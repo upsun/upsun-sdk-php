@@ -18,6 +18,99 @@ final class Profile implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Profile';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'id' => 'string',
+        'display_name' => 'string',
+        'email' => 'string',
+        'username' => 'string',
+        'type' => 'string',
+        'picture' => 'string',
+        'company_type' => 'string',
+        'company_name' => 'string',
+        'currency' => 'string',
+        'vat_number' => 'string',
+        'company_role' => 'string',
+        'website_url' => 'string',
+        'new_ui' => 'bool',
+        'ui_colorscheme' => 'string',
+        'default_catalog' => 'string',
+        'project_options_url' => 'string',
+        'marketing' => 'bool',
+        'created_at' => '\DateTime',
+        'updated_at' => '\DateTime',
+        'billing_contact' => 'string',
+        'security_contact' => 'string',
+        'current_trial' => '\Upsun\Model\ProfileCurrentTrial',
+        'invoiced' => 'bool'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'id' => 'uuid',
+        'display_name' => null,
+        'email' => 'email',
+        'username' => null,
+        'type' => null,
+        'picture' => 'url',
+        'company_type' => null,
+        'company_name' => null,
+        'currency' => null,
+        'vat_number' => null,
+        'company_role' => null,
+        'website_url' => null,
+        'new_ui' => null,
+        'ui_colorscheme' => null,
+        'default_catalog' => null,
+        'project_options_url' => null,
+        'marketing' => null,
+        'created_at' => 'date-time',
+        'updated_at' => 'date-time',
+        'billing_contact' => 'email',
+        'security_contact' => 'email',
+        'current_trial' => null,
+        'invoiced' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'id' => 'id',
+        'display_name' => 'display_name',
+        'email' => 'email',
+        'username' => 'username',
+        'type' => 'type',
+        'picture' => 'picture',
+        'company_type' => 'company_type',
+        'company_name' => 'company_name',
+        'currency' => 'currency',
+        'vat_number' => 'vat_number',
+        'company_role' => 'company_role',
+        'website_url' => 'website_url',
+        'new_ui' => 'new_ui',
+        'ui_colorscheme' => 'ui_colorscheme',
+        'default_catalog' => 'default_catalog',
+        'project_options_url' => 'project_options_url',
+        'marketing' => 'marketing',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'billing_contact' => 'billing_contact',
+        'security_contact' => 'security_contact',
+        'current_trial' => 'current_trial',
+        'invoiced' => 'invoiced'
+    ];
+    
     public function __construct(
         public readonly string|null $id = null,
         public readonly string|null $display_name = null,
@@ -77,6 +170,14 @@ final class Profile implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

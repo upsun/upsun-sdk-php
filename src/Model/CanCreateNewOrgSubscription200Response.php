@@ -18,6 +18,39 @@ final class CanCreateNewOrgSubscription200Response implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'can_create_new_org_subscription_200_response';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'can_create' => 'bool',
+        'message' => 'string',
+        'required_action' => '\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'can_create' => null,
+        'message' => null,
+        'required_action' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'can_create' => 'can_create',
+        'message' => 'message',
+        'required_action' => 'required_action'
+    ];
+    
     public function __construct(
         public readonly bool|null $can_create = null,
         public readonly string|null $message = null,
@@ -37,6 +70,14 @@ final class CanCreateNewOrgSubscription200Response implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

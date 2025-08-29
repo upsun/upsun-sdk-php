@@ -18,6 +18,48 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_variables_applying_to_this_environment_inner';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'name' => 'string',
+        'value' => 'string',
+        'is_sensitive' => 'bool',
+        'is_json' => 'bool',
+        'visible_build' => 'bool',
+        'visible_runtime' => 'bool'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'name' => null,
+        'value' => null,
+        'is_sensitive' => null,
+        'is_json' => null,
+        'visible_build' => null,
+        'visible_runtime' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'name' => 'name',
+        'value' => 'value',
+        'is_sensitive' => 'is_sensitive',
+        'is_json' => 'is_json',
+        'visible_build' => 'visible_build',
+        'visible_runtime' => 'visible_runtime'
+    ];
+    
     public function __construct(
         public readonly string $name = null,
         public readonly string|null $value = null,
@@ -43,6 +85,14 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

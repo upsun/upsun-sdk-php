@@ -18,6 +18,48 @@ final class ProjectInfo implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Project_Info';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'title' => 'string',
+        'name' => 'string',
+        'namespace' => 'string',
+        'organization' => 'string',
+        'capabilities' => 'object',
+        'settings' => 'object'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'title' => null,
+        'name' => null,
+        'namespace' => null,
+        'organization' => null,
+        'capabilities' => null,
+        'settings' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'title' => 'title',
+        'name' => 'name',
+        'namespace' => 'namespace',
+        'organization' => 'organization',
+        'capabilities' => 'capabilities',
+        'settings' => 'settings'
+    ];
+    
     public function __construct(
         public readonly string $title = null,
         public readonly string $name = null,
@@ -43,6 +85,14 @@ final class ProjectInfo implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

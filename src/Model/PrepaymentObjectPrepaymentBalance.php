@@ -18,6 +18,42 @@ final class PrepaymentObjectPrepaymentBalance implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'PrepaymentObject_prepayment_balance';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'formatted' => 'string',
+        'amount' => 'float',
+        'currency_code' => 'string',
+        'currency_symbol' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'formatted' => null,
+        'amount' => null,
+        'currency_code' => null,
+        'currency_symbol' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'formatted' => 'formatted',
+        'amount' => 'amount',
+        'currency_code' => 'currency_code',
+        'currency_symbol' => 'currency_symbol'
+    ];
+    
     public function __construct(
         public readonly string|null $formatted = null,
         public readonly float|null $amount = null,
@@ -39,6 +75,14 @@ final class PrepaymentObjectPrepaymentBalance implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

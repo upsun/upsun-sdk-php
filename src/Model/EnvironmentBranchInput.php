@@ -18,6 +18,45 @@ final class EnvironmentBranchInput implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'EnvironmentBranchInput';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'title' => 'string',
+        'name' => 'string',
+        'clone_parent' => 'bool',
+        'type' => 'string',
+        'resources' => '\Upsun\Model\Resources2'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'title' => null,
+        'name' => null,
+        'clone_parent' => null,
+        'type' => null,
+        'resources' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'title' => 'title',
+        'name' => 'name',
+        'clone_parent' => 'clone_parent',
+        'type' => 'type',
+        'resources' => 'resources'
+    ];
+    
     public function __construct(
         public readonly string $title = null,
         public readonly string $name = null,
@@ -41,6 +80,14 @@ final class EnvironmentBranchInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

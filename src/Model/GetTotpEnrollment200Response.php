@@ -18,6 +18,42 @@ final class GetTotpEnrollment200Response implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'get_totp_enrollment_200_response';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'issuer' => 'string',
+        'account_name' => 'string',
+        'secret' => 'string',
+        'qr_code' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'issuer' => 'uri',
+        'account_name' => null,
+        'secret' => null,
+        'qr_code' => 'byte'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'issuer' => 'issuer',
+        'account_name' => 'account_name',
+        'secret' => 'secret',
+        'qr_code' => 'qr_code'
+    ];
+    
     public function __construct(
         public readonly string|null $issuer = null,
         public readonly string|null $account_name = null,
@@ -39,6 +75,14 @@ final class GetTotpEnrollment200Response implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

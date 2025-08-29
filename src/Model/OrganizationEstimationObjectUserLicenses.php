@@ -18,6 +18,36 @@ final class OrganizationEstimationObjectUserLicenses implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationEstimationObject_user_licenses';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'base' => '\Upsun\Model\OrganizationEstimationObjectUserLicensesBase',
+        'user_management' => '\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'base' => null,
+        'user_management' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'base' => 'base',
+        'user_management' => 'user_management'
+    ];
+    
     public function __construct(
         public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBase|null $base = null,
         public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement|null $user_management = null
@@ -35,6 +65,14 @@ final class OrganizationEstimationObjectUserLicenses implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

@@ -18,6 +18,51 @@ final class Connection implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Connection';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'provider' => 'string',
+        'provider_type' => 'string',
+        'is_mandatory' => 'bool',
+        'subject' => 'string',
+        'email_address' => 'string',
+        'created_at' => '\DateTime',
+        'updated_at' => '\DateTime'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'provider' => null,
+        'provider_type' => null,
+        'is_mandatory' => null,
+        'subject' => null,
+        'email_address' => null,
+        'created_at' => 'date-time',
+        'updated_at' => 'date-time'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'provider' => 'provider',
+        'provider_type' => 'provider_type',
+        'is_mandatory' => 'is_mandatory',
+        'subject' => 'subject',
+        'email_address' => 'email_address',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at'
+    ];
+    
     public function __construct(
         public readonly string|null $provider = null,
         public readonly string|null $provider_type = null,
@@ -45,6 +90,14 @@ final class Connection implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

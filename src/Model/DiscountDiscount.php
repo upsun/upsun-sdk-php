@@ -18,6 +18,39 @@ final class DiscountDiscount implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Discount_discount';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'monthly' => '\Upsun\Model\CurrencyAmount',
+        'commitment_period' => '\Upsun\Model\CurrencyAmountNullable',
+        'contract_total' => '\Upsun\Model\CurrencyAmountNullable'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'monthly' => null,
+        'commitment_period' => null,
+        'contract_total' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'monthly' => 'monthly',
+        'commitment_period' => 'commitment_period',
+        'contract_total' => 'contract_total'
+    ];
+    
     public function __construct(
         public readonly \Upsun\Model\CurrencyAmount|null $monthly = null,
         public readonly \Upsun\Model\CurrencyAmountNullable|null $commitment_period = null,
@@ -37,6 +70,14 @@ final class DiscountDiscount implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

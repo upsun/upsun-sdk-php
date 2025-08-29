@@ -18,6 +18,60 @@ final class SyslogIntegrationPatch implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'SyslogIntegrationPatch';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'type' => 'string',
+        'extra' => 'array<string,string>',
+        'host' => 'string',
+        'port' => 'int',
+        'protocol' => 'string',
+        'facility' => 'int',
+        'message_format' => 'string',
+        'auth_token' => 'string',
+        'auth_mode' => 'string',
+        'tls_verify' => 'bool'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'type' => null,
+        'extra' => null,
+        'host' => null,
+        'port' => null,
+        'protocol' => null,
+        'facility' => null,
+        'message_format' => null,
+        'auth_token' => null,
+        'auth_mode' => null,
+        'tls_verify' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'type' => 'type',
+        'extra' => 'extra',
+        'host' => 'host',
+        'port' => 'port',
+        'protocol' => 'protocol',
+        'facility' => 'facility',
+        'message_format' => 'message_format',
+        'auth_token' => 'auth_token',
+        'auth_mode' => 'auth_mode',
+        'tls_verify' => 'tls_verify'
+    ];
+    
     public function __construct(
         public readonly string $type = null,
         public readonly ?array $extra = null,
@@ -51,6 +105,14 @@ final class SyslogIntegrationPatch implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

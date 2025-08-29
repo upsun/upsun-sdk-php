@@ -18,6 +18,135 @@ final class Ticket implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Ticket';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'ticket_id' => 'int',
+        'created' => '\DateTime',
+        'updated' => '\DateTime',
+        'type' => 'string',
+        'subject' => 'string',
+        'description' => 'string',
+        'priority' => 'string',
+        'followup_tid' => 'string',
+        'status' => 'string',
+        'recipient' => 'string',
+        'requester_id' => 'string',
+        'submitter_id' => 'string',
+        'assignee_id' => 'string',
+        'organization_id' => 'string',
+        'collaborator_ids' => 'string[]',
+        'has_incidents' => 'bool',
+        'due' => '\DateTime',
+        'tags' => 'string[]',
+        'subscription_id' => 'string',
+        'ticket_group' => 'string',
+        'support_plan' => 'string',
+        'affected_url' => 'string',
+        'queue' => 'string',
+        'issue_type' => 'string',
+        'resolution_time' => '\DateTime',
+        'response_time' => '\DateTime',
+        'project_url' => 'string',
+        'region' => 'string',
+        'category' => 'string',
+        'environment' => 'string',
+        'ticket_sharing_status' => 'string',
+        'application_ticket_url' => 'string',
+        'infrastructure_ticket_url' => 'string',
+        'jira' => '\Upsun\Model\TicketJiraInner[]',
+        'zd_ticket_url' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'ticket_id' => null,
+        'created' => 'date-time',
+        'updated' => 'date-time',
+        'type' => null,
+        'subject' => null,
+        'description' => null,
+        'priority' => null,
+        'followup_tid' => null,
+        'status' => null,
+        'recipient' => null,
+        'requester_id' => 'uuid',
+        'submitter_id' => 'uuid',
+        'assignee_id' => 'uuid',
+        'organization_id' => null,
+        'collaborator_ids' => null,
+        'has_incidents' => null,
+        'due' => 'date-time',
+        'tags' => null,
+        'subscription_id' => null,
+        'ticket_group' => null,
+        'support_plan' => null,
+        'affected_url' => 'url',
+        'queue' => null,
+        'issue_type' => null,
+        'resolution_time' => 'date-time',
+        'response_time' => 'date-time',
+        'project_url' => 'url',
+        'region' => null,
+        'category' => null,
+        'environment' => null,
+        'ticket_sharing_status' => null,
+        'application_ticket_url' => 'url',
+        'infrastructure_ticket_url' => 'url',
+        'jira' => null,
+        'zd_ticket_url' => 'url'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'ticket_id' => 'ticket_id',
+        'created' => 'created',
+        'updated' => 'updated',
+        'type' => 'type',
+        'subject' => 'subject',
+        'description' => 'description',
+        'priority' => 'priority',
+        'followup_tid' => 'followup_tid',
+        'status' => 'status',
+        'recipient' => 'recipient',
+        'requester_id' => 'requester_id',
+        'submitter_id' => 'submitter_id',
+        'assignee_id' => 'assignee_id',
+        'organization_id' => 'organization_id',
+        'collaborator_ids' => 'collaborator_ids',
+        'has_incidents' => 'has_incidents',
+        'due' => 'due',
+        'tags' => 'tags',
+        'subscription_id' => 'subscription_id',
+        'ticket_group' => 'ticket_group',
+        'support_plan' => 'support_plan',
+        'affected_url' => 'affected_url',
+        'queue' => 'queue',
+        'issue_type' => 'issue_type',
+        'resolution_time' => 'resolution_time',
+        'response_time' => 'response_time',
+        'project_url' => 'project_url',
+        'region' => 'region',
+        'category' => 'category',
+        'environment' => 'environment',
+        'ticket_sharing_status' => 'ticket_sharing_status',
+        'application_ticket_url' => 'application_ticket_url',
+        'infrastructure_ticket_url' => 'infrastructure_ticket_url',
+        'jira' => 'jira',
+        'zd_ticket_url' => 'zd_ticket_url'
+    ];
+    
     public function __construct(
         public readonly int|null $ticket_id = null,
         public readonly \DateTime|null $created = null,
@@ -101,6 +230,14 @@ final class Ticket implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

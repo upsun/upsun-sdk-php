@@ -18,6 +18,45 @@ final class ProjectOptions implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'ProjectOptions';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'defaults' => '\Upsun\Model\ProjectOptionsDefaults',
+        'enforced' => '\Upsun\Model\ProjectOptionsEnforced',
+        'regions' => 'string[]',
+        'plans' => 'string[]',
+        'billing' => 'object'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'defaults' => null,
+        'enforced' => null,
+        'regions' => null,
+        'plans' => null,
+        'billing' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'defaults' => 'defaults',
+        'enforced' => 'enforced',
+        'regions' => 'regions',
+        'plans' => 'plans',
+        'billing' => 'billing'
+    ];
+    
     public function __construct(
         public readonly \Upsun\Model\ProjectOptionsDefaults|null $defaults = null,
         public readonly \Upsun\Model\ProjectOptionsEnforced|null $enforced = null,
@@ -41,6 +80,14 @@ final class ProjectOptions implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

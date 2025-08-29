@@ -18,6 +18,36 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Js
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_relationships_of_the_application_to_defined_services__value';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'service' => 'string',
+        'endpoint' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'service' => null,
+        'endpoint' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'service' => 'service',
+        'endpoint' => 'endpoint'
+    ];
+    
     public function __construct(
         public readonly string $service = null,
         public readonly string $endpoint = null
@@ -35,6 +65,14 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Js
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

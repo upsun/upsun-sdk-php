@@ -18,6 +18,48 @@ final class EstimationObject implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'EstimationObject';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'plan' => 'string',
+        'user_licenses' => 'string',
+        'environments' => 'string',
+        'storage' => 'string',
+        'total' => 'string',
+        'options' => 'object'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'plan' => null,
+        'user_licenses' => null,
+        'environments' => null,
+        'storage' => null,
+        'total' => null,
+        'options' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'plan' => 'plan',
+        'user_licenses' => 'user_licenses',
+        'environments' => 'environments',
+        'storage' => 'storage',
+        'total' => 'total',
+        'options' => 'options'
+    ];
+    
     public function __construct(
         public readonly string|null $plan = null,
         public readonly string|null $user_licenses = null,
@@ -43,6 +85,14 @@ final class EstimationObject implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

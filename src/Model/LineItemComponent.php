@@ -18,6 +18,42 @@ final class LineItemComponent implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'LineItemComponent';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'amount' => 'float',
+        'amount_formatted' => 'string',
+        'display_title' => 'string',
+        'currency' => 'string'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'amount' => null,
+        'amount_formatted' => null,
+        'display_title' => null,
+        'currency' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'amount' => 'amount',
+        'amount_formatted' => 'amount_formatted',
+        'display_title' => 'display_title',
+        'currency' => 'currency'
+    ];
+    
     public function __construct(
         public readonly float|null $amount = null,
         public readonly string|null $amount_formatted = null,
@@ -39,6 +75,14 @@ final class LineItemComponent implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

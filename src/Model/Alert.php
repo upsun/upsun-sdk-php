@@ -18,6 +18,48 @@ final class Alert implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Alert';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'id' => 'string',
+        'active' => 'bool',
+        'alerts_sent' => 'int',
+        'last_alert_at' => '\DateTime',
+        'updated_at' => '\DateTime',
+        'config' => 'object'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'id' => null,
+        'active' => null,
+        'alerts_sent' => null,
+        'last_alert_at' => 'date-time',
+        'updated_at' => 'date-time',
+        'config' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'id' => 'id',
+        'active' => 'active',
+        'alerts_sent' => 'alerts_sent',
+        'last_alert_at' => 'last_alert_at',
+        'updated_at' => 'updated_at',
+        'config' => 'config'
+    ];
+    
     public function __construct(
         public readonly string|null $id = null,
         public readonly bool|null $active = null,
@@ -43,6 +85,14 @@ final class Alert implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 

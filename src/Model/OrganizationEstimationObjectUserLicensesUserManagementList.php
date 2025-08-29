@@ -18,6 +18,36 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
 {
     public const DISCRIMINATOR = null;
 
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationEstimationObject_user_licenses_user_management_list';
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    private static array $openAPITypes = [
+        'standard_management_user' => '\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser',
+        'advanced_management_user' => '\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser'
+    ];
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    private static array $openAPIFormats = [
+        'standard_management_user' => null,
+        'advanced_management_user' => null
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    private static array $attributeMap = [
+        'standard_management_user' => 'standard_management_user',
+        'advanced_management_user' => 'advanced_management_user'
+    ];
+    
     public function __construct(
         public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser|null $standard_management_user = null,
         public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser|null $advanced_management_user = null
@@ -35,6 +65,14 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return true; // All properties in this model are nullable
     }
 }
 
