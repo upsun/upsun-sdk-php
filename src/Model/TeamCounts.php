@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class TeamCounts implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly int|null $member_count;
     public readonly int|null $project_count;
 

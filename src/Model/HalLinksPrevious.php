@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class HalLinksPrevious implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $title;
     public readonly string|null $href;
 

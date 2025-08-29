@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Resources implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly int $base_memory;
     public readonly int $memory_ratio;
     public readonly string $profile_size;

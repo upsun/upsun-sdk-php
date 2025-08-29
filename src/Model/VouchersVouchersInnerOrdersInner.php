@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class VouchersVouchersInnerOrdersInner implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $order_id;
     public readonly string|null $status;
     public readonly string|null $billing_period_start;

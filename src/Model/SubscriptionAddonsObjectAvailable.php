@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class SubscriptionAddonsObjectAvailable implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     /**
      * @var float[]|null
      */

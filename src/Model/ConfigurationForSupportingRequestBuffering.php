@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ConfigurationForSupportingRequestBuffering implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly bool $enabled;
     public readonly string $max_request_size;
 

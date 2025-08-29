@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class UserProjectAccess implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $user_id;
     public readonly string|null $organization_id;
     public readonly string|null $project_id;

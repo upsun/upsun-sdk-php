@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class TheBackupScheduleSpecificationInner implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $interval;
     public readonly int $count;
 

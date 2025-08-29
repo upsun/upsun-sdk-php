@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class SpecificOverridesValue implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $expires;
     public readonly string|null $passthru;
     public readonly bool|null $scripts;

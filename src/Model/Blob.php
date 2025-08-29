@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Blob implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $sha;
     public readonly int $size;
     public readonly string $encoding;

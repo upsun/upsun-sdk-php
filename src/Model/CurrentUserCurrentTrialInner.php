@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class CurrentUserCurrentTrialInner implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \DateTime|null $created;
     public readonly string|null $description;
     public readonly string|null $spend_remaining;

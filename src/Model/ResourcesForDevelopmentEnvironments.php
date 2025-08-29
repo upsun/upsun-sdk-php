@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ResourcesForDevelopmentEnvironments implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly bool $legacy_development;
     public readonly float $max_cpu;
     public readonly int $max_memory;

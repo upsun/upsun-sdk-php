@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class OrganizationReference implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $id;
     public readonly string|null $owner_id;
     public readonly string|null $name;

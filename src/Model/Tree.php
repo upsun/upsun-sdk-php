@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Tree implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $sha;
     /**
      * @var \Upsun\Model\TheTreeItemsInner[]|null

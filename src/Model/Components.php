@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Components implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly object|null $voucher_vat_baseprice;
 
     public function __construct(

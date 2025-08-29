@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class UserReference implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $id;
     public readonly string|null $username;
     public readonly string|null $email;

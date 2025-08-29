@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Metrics implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $max_range;
 
     public function __construct(

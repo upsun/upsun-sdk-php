@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class EnvironmentInfo implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $name;
     public readonly string $status;
     public readonly bool $is_main;

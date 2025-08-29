@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ConfirmTotpEnrollment200Response implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     /**
      * @var string[]|null
      */

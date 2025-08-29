@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class CreateProjectInviteRequestPermissionsInner implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $type;
     public readonly string|null $role;
 

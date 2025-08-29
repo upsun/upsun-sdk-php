@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class OrganizationEstimationObjectUserLicensesBaseListAdminUser implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly int|null $count;
     public readonly string|null $total;
 

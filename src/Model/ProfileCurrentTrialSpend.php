@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ProfileCurrentTrialSpend implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $formatted;
     public readonly string|null $amount;
     public readonly string|null $currency;

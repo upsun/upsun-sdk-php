@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class EnvironmentType implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     /**
      * @var string[]|null
      */

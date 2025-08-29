@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class PrepaymentObject implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \Upsun\Model\PrepaymentObjectPrepayment|null $prepayment;
 
     public function __construct(

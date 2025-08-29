@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $root;
     public readonly string $expires;
     public readonly string $passthru;

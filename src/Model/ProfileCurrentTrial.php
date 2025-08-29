@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ProfileCurrentTrial implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly bool|null $active;
     public readonly \DateTime|null $created;
     public readonly string|null $description;

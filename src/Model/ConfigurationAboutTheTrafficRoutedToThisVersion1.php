@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ConfigurationAboutTheTrafficRoutedToThisVersion1 implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly int|null $percentage;
 
     public function __construct(

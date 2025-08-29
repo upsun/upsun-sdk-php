@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class PlanRecords implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $id;
     public readonly string|null $owner;
     public readonly string|null $subscription_id;

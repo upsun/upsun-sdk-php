@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Vouchers implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $uuid;
     public readonly string|null $vouchers_total;
     public readonly string|null $vouchers_applied;

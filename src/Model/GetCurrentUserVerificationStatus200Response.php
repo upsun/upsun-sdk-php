@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class GetCurrentUserVerificationStatus200Response implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly bool|null $verify_phone;
 
     public function __construct(

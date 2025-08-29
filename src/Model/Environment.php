@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Environment implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \DateTime $created_at;
     public readonly \DateTime $updated_at;
     public readonly string $name;

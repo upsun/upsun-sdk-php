@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class CreateApiTokenRequest implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $name;
 
     public function __construct(

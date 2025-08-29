@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class VerifyPhoneNumber200Response implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $sid;
 
     public function __construct(

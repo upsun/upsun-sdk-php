@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $user_id;
     public readonly string|null $resource_id;
     public readonly string|null $resource_type;

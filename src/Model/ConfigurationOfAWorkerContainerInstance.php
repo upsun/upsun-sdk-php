@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ConfigurationOfAWorkerContainerInstance implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \Upsun\Model\TheCommandsToManageTheWorker $commands;
     public readonly int|null $disk;
 

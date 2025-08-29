@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Deployment implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \DateTime|null $created_at;
     public readonly \DateTime|null $updated_at;
     public readonly string|null $fingerprint;

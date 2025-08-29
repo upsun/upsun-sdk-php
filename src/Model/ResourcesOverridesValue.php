@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ResourcesOverridesValue implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     /**
      * @var \Upsun\Model\PerServiceResourcesOverridesValue[]|null
      */

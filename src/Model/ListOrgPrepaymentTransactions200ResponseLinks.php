@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \Upsun\Model\ListLinksSelf|null $self;
     public readonly \Upsun\Model\ListLinksPrevious|null $previous;
     public readonly \Upsun\Model\ListLinksNext|null $next;

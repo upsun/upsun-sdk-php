@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ProjectOptions implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \Upsun\Model\ProjectOptionsDefaults|null $defaults;
     public readonly \Upsun\Model\ProjectOptionsEnforced|null $enforced;
     /**

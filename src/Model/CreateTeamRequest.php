@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class CreateTeamRequest implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $organization_id;
     public readonly string $label;
     /**

@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class SubscriptionCurrentUsageObject implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $cpu_app;
     public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $storage_app_services;
     public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $memory_app;

@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class SubscriptionInformation implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $license_uri;
     public readonly string|null $plan;
     public readonly int|null $environments;

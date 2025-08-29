@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class UpdateUserRequest implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $username;
     public readonly string|null $first_name;
     public readonly string|null $last_name;

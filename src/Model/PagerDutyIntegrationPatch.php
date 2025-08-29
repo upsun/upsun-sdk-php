@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class PagerDutyIntegrationPatch implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $type;
     public readonly string $routing_key;
 

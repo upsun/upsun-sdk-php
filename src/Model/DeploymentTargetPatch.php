@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class DeploymentTargetPatch implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $type;
     public readonly string $name;
     public readonly object|null $enforced_mounts;

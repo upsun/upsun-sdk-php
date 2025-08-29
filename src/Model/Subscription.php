@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Subscription implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $id;
     public readonly string|null $status;
     public readonly \DateTime|null $created_at;

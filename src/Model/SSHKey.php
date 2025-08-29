@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class SSHKey implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly int|null $key_id;
     public readonly int|null $uid;
     public readonly string|null $fingerprint;

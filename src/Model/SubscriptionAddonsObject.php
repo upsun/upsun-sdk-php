@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class SubscriptionAddonsObject implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \Upsun\Model\SubscriptionAddonsObjectAvailable|null $available;
     public readonly \Upsun\Model\SubscriptionAddonsObjectCurrent|null $current;
     public readonly \Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable|null $upgrades_available;

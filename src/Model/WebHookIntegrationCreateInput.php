@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class WebHookIntegrationCreateInput implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $type;
     /**
      * @var string[]|null

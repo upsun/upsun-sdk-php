@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly int|null $amount;
     public readonly string|null $currency_code;
     public readonly string|null $currency_symbol;

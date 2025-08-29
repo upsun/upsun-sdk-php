@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class EnvironmentSynchronizeInput implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly bool $synchronize_code;
     public readonly bool $rebase;
     public readonly bool $synchronize_data;

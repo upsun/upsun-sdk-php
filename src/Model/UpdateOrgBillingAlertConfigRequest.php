@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class UpdateOrgBillingAlertConfigRequest implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly bool|null $active;
     public readonly \Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig|null $config;
 

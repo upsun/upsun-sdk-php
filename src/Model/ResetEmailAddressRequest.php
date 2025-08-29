@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ResetEmailAddressRequest implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $email_address;
 
     public function __construct(

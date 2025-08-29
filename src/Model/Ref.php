@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Ref implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $ref;
     public readonly \Upsun\Model\TheObjectTheReferencePointsTo $object;
     public readonly string $sha;

@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class OrganizationMemberLinksDelete implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $href;
     public readonly string|null $method;
 

@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class AddressMetadata implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \Upsun\Model\AddressMetadataMetadata|null $metadata;
 
     public function __construct(

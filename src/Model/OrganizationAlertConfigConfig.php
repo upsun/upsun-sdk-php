@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class OrganizationAlertConfigConfig implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \Upsun\Model\OrganizationAlertConfigConfigThreshold|null $threshold;
     public readonly string|null $mode;
 

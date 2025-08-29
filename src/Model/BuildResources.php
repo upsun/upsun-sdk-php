@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class BuildResources implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly bool $enabled;
     public readonly float $max_cpu;
     public readonly int $max_memory;

@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Alert implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $id;
     public readonly bool|null $active;
     public readonly int|null $alerts_sent;

@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class CreateOrgInviteRequest implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $email;
     /**
      * @var string[]|null

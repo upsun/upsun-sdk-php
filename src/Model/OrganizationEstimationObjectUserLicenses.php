@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class OrganizationEstimationObjectUserLicenses implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBase|null $base;
     public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement|null $user_management;
 

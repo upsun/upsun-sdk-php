@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class UpdateOrgBillingAlertConfigRequestConfig implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly int|null $threshold;
     public readonly string|null $mode;
 

@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class TheTreeItemsInner implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $path;
     public readonly string $mode;
     public readonly string $type;

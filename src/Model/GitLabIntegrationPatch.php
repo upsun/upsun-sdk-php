@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class GitLabIntegrationPatch implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $type;
     public readonly bool|null $fetch_branches;
     public readonly bool|null $prune_branches;

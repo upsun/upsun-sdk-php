@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class TheCommandsToManageTheWorker implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $pre_start;
     public readonly string $start;
 

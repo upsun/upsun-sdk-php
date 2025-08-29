@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Plan implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $name;
     public readonly string|null $label;
 

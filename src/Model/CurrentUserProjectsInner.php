@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class CurrentUserProjectsInner implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $id;
     public readonly string|null $name;
     public readonly string|null $title;

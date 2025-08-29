@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class TheConfigurationOfTheRedirects1 implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $expires;
     /**
      * @var \Upsun\Model\ThePathsToRedirectValue1[]|null

@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Commit implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $sha;
     public readonly \Upsun\Model\TheInformationAboutTheAuthor $author;
     public readonly \Upsun\Model\TheInformationAboutTheCommitter $committer;

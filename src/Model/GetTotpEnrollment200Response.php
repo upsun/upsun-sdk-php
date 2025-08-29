@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class GetTotpEnrollment200Response implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $issuer;
     public readonly string|null $account_name;
     public readonly string|null $secret;

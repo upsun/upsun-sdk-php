@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class CacheConfiguration1 implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly bool $enabled;
     public readonly int|null $default_ttl;
     /**

@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class TheOAuth2ConsumerInformationOptional1 implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $key;
     public readonly string $secret;
 

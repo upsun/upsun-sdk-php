@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class OrganizationProjectLinks implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \Upsun\Model\OrganizationProjectLinksSelf|null $self;
     public readonly \Upsun\Model\OrganizationProjectLinksUpdate|null $update;
     public readonly \Upsun\Model\OrganizationProjectLinksDelete|null $delete;

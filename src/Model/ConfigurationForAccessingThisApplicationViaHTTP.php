@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     /**
      * @var \Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue[]|null
      */

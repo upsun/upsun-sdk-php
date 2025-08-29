@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class TheEnvironmentDeploymentState implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly bool $last_deployment_successful;
     public readonly \DateTime $last_deployment_at;
     public readonly \Upsun\Model\TheCronsDeploymentState $crons;

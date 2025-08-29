@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class RoutePatch implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly bool|null $primary;
     public readonly string|null $id;
     public readonly string|null $production_url;

@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ProjectReference implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $id;
     public readonly string $organization_id;
     public readonly string $subscription_id;

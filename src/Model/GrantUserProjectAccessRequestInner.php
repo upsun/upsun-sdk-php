@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class GrantUserProjectAccessRequestInner implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $project_id;
     /**
      * @var string[]|null

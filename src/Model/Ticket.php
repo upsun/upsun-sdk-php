@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Ticket implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly int|null $ticket_id;
     public readonly \DateTime|null $created;
     public readonly \DateTime|null $updated;

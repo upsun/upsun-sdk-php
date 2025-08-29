@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $socket_family;
     public readonly string $protocol;
 

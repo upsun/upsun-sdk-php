@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class EnvironmentActivateInput implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \Upsun\Model\Resources1 $resources;
 
     public function __construct(

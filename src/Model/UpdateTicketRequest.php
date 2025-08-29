@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class UpdateTicketRequest implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $status;
     /**
      * @var string[]|null

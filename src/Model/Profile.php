@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Profile implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $id;
     public readonly string|null $display_name;
     public readonly string|null $email;

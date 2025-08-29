@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ListTeams200Response implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     /**
      * @var \Upsun\Model\Team[]|null
      */

@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $directory;
     /**
      * @var string[]|null

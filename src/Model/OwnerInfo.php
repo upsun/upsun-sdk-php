@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class OwnerInfo implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $type;
     public readonly string|null $username;
     public readonly string|null $display_name;

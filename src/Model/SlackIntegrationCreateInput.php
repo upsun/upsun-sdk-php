@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class SlackIntegrationCreateInput implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $type;
     public readonly string $token;
     public readonly string $channel;

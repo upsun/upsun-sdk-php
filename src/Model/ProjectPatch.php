@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ProjectPatch implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     /**
      * @var string[]|null
      */

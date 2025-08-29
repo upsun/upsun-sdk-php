@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ListPlans200Response implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly int|null $count;
     /**
      * @var \Upsun\Model\Plan[]|null

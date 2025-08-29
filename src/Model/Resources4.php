@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Resources4 implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $init;
 
     public function __construct(

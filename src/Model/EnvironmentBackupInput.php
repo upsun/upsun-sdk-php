@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class EnvironmentBackupInput implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly bool $safe;
 
     public function __construct(

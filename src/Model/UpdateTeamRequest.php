@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class UpdateTeamRequest implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $label;
     /**
      * @var string[]|null

@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class EnvironmentSourceOperation implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $app;
     public readonly string $operation;
     public readonly string $command;

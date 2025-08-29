@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class OrganizationAddonsObject implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \Upsun\Model\OrganizationAddonsObjectAvailable|null $available;
     public readonly \Upsun\Model\OrganizationAddonsObjectCurrent|null $current;
     public readonly \Upsun\Model\OrganizationAddonsObjectUpgradesAvailable|null $upgrades_available;

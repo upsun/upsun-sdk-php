@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly int $commits_ahead;
     public readonly int $commits_behind;
     public readonly string $parent_ref;

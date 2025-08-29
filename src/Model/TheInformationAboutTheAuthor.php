@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class TheInformationAboutTheAuthor implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \DateTime $date;
     public readonly string $name;
     public readonly string $email;

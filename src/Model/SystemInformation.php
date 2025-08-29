@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class SystemInformation implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $version;
     public readonly string $image;
     public readonly \DateTime $started_at;

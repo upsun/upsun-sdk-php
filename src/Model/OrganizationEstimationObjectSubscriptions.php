@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class OrganizationEstimationObjectSubscriptions implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $total;
     /**
      * @var \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner[]|null

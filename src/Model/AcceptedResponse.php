@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class AcceptedResponse implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $status;
     public readonly int $code;
 

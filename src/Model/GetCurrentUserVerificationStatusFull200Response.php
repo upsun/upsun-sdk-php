@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class GetCurrentUserVerificationStatusFull200Response implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly bool|null $state;
     public readonly string|null $type;
 

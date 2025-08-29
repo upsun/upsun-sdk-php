@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class EnvironmentSourceOperationInput implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $operation;
     /**
      * @var array<string,mixed>[]|null

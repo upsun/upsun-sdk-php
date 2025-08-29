@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ResourcesLimits implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly bool $container_profiles;
     public readonly \Upsun\Model\ResourcesForProductionEnvironments $production;
     public readonly \Upsun\Model\ResourcesForDevelopmentEnvironments $development;

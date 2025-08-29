@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class RegionEnvironmentalImpact implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $zone;
     public readonly string|null $carbon_intensity;
     public readonly bool|null $green;

@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class CanCreateNewOrgSubscription200Response implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly bool|null $can_create;
     public readonly string|null $message;
     public readonly \Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction|null $required_action;

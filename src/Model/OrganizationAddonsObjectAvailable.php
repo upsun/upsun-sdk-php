@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class OrganizationAddonsObjectAvailable implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     /**
      * @var float[]|null
      */

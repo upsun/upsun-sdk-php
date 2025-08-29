@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $path;
     public readonly int $mode;
     public readonly string $contents;

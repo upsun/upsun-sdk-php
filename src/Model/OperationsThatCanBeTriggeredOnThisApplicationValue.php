@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \Upsun\Model\TheCommandsDefinition $commands;
     public readonly int $timeout;
     public readonly string $role;

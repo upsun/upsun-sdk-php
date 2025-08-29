@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ProfileCurrentTrialProjects implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $id;
     public readonly string|null $name;
     public readonly \Upsun\Model\ProfileCurrentTrialProjectsTotal|null $total;

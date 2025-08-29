@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ProjectCapabilities implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \Upsun\Model\CustomDomains|null $custom_domains;
     public readonly \Upsun\Model\SourceOperations|null $source_operations;
     public readonly \Upsun\Model\RuntimeOperations|null $runtime_operations;

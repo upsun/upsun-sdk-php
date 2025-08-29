@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class DataRetentionConfigurationValue1 implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly int|null $max_backups;
     public readonly \Upsun\Model\DefaultConfig1 $default_config;
 

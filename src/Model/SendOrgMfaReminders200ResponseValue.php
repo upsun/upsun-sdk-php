@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class SendOrgMfaReminders200ResponseValue implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly int|null $code;
     public readonly string|null $message;
 

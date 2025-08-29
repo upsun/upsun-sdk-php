@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class APIToken implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $id;
     public readonly string|null $name;
     public readonly bool|null $mfa_on_creation;

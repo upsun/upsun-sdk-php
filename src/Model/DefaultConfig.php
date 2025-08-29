@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class DefaultConfig implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly int $manual_count;
     /**
      * @var \Upsun\Model\TheBackupScheduleSpecificationInner[]|null

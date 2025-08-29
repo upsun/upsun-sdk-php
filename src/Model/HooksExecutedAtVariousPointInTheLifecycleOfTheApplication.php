@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $build;
     public readonly string $deploy;
     public readonly string $post_deploy;

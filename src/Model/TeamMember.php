@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class TeamMember implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $team_id;
     public readonly string|null $user_id;
     public readonly \DateTime|null $created_at;

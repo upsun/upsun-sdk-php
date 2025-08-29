@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class CurrentUser implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $id;
     public readonly string|null $uuid;
     public readonly string|null $username;

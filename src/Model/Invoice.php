@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Invoice implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $id;
     public readonly string|null $invoice_number;
     public readonly string|null $type;

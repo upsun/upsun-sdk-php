@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class HealthWebHookIntegrationPatch implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $type;
     public readonly string|null $shared_key;
     public readonly string $url;

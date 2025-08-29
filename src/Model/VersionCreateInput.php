@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class VersionCreateInput implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1|null $routing;
 
     public function __construct(

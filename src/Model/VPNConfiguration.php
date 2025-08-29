@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class VPNConfiguration implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly int $version;
     public readonly string $aggressive;
     public readonly string $modeconfig;

@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class CreateProjectInviteRequest implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $role;
     public readonly string $email;
     /**

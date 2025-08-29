@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class OrganizationEstimationObject implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $total;
     public readonly string|null $sub_total;
     public readonly string|null $vouchers;

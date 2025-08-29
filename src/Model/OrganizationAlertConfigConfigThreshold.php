@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class OrganizationAlertConfigConfigThreshold implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $formatted;
     public readonly float|null $amount;
     public readonly string|null $currency_code;

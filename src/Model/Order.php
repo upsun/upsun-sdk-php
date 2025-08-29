@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Order implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $id;
     public readonly string|null $status;
     public readonly string|null $owner;

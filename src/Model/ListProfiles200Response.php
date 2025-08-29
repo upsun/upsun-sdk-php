@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ListProfiles200Response implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly int|null $count;
     /**
      * @var \Upsun\Model\Profile[]|null

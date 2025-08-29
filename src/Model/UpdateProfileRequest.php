@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class UpdateProfileRequest implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $display_name;
     public readonly string|null $username;
     public readonly string|null $current_password;

@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class UpdateOrgSubscriptionRequest implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $project_title;
     public readonly string|null $plan;
     public readonly string|null $timezone;

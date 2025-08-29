@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ListOrgInvoices200Response implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     /**
      * @var \Upsun\Model\Invoice[]|null
      */

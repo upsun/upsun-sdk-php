@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class StringFilter implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $eq;
     public readonly string|null $ne;
     public readonly string|null $in;

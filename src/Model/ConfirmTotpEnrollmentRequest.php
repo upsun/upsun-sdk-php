@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ConfirmTotpEnrollmentRequest implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $secret;
     public readonly string $passcode;
 

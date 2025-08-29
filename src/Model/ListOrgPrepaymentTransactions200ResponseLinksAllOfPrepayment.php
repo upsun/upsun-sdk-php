@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $href;
 
     public function __construct(

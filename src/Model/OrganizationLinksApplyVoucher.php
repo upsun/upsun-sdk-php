@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class OrganizationLinksApplyVoucher implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $href;
     public readonly string|null $method;
 

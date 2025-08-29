@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class CreateTicketRequest implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $subject;
     public readonly string $description;
     public readonly string|null $requester_id;

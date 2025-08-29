@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class RegionReference implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $id;
     public readonly string $label;
     public readonly string $zone;

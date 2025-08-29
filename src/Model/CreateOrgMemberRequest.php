@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class CreateOrgMemberRequest implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $user_id;
     /**
      * @var string[]|null

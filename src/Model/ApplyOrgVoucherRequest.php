@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ApplyOrgVoucherRequest implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $code;
 
     public function __construct(

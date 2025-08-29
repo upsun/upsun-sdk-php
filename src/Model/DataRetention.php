@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class DataRetention implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly bool $enabled;
 
     public function __construct(

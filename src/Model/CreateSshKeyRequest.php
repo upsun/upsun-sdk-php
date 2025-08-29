@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class CreateSshKeyRequest implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $value;
     public readonly string|null $title;
     public readonly string|null $uuid;

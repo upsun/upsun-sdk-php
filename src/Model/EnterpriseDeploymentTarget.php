@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class EnterpriseDeploymentTarget implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $type;
     public readonly string $name;
     public readonly string $deploy_host;

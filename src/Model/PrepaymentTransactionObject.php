@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class PrepaymentTransactionObject implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $order_id;
     public readonly string|null $message;
     public readonly string|null $status;

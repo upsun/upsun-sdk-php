@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class UpdateUsageAlertRequest implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \Upsun\Model\CreateUsageAlertRequestConfig|null $config;
 
     public function __construct(

@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class TicketJiraInner implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly int|null $id;
     public readonly int|null $ticket_id;
     public readonly int|null $issue_id;

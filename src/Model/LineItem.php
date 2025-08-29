@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class LineItem implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $type;
     public readonly float|null $license_id;
     public readonly string|null $project_id;

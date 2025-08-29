@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class GrantProjectTeamAccessRequestInner implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $team_id;
 
     public function __construct(

@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ProjectOptionsEnforced implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly object|null $settings;
     public readonly object|null $capabilities;
 

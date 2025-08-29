@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $spec;
     public readonly \Upsun\Model\TheCommandsDefinition $commands;
     public readonly int|null $shutdown_timeout;

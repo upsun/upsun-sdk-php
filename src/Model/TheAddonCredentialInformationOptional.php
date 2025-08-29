@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class TheAddonCredentialInformationOptional implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $addon_key;
     public readonly string $client_key;
 

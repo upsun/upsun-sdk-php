@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ProjectSettings implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly object $initialize;
     public readonly string $product_name;
     public readonly string $product_code;

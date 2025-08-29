@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class WorkersValue implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \Upsun\Model\Resources $resources;
     public readonly string $size;
     public readonly int $disk;

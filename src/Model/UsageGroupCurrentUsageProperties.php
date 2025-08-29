@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class UsageGroupCurrentUsageProperties implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $title;
     public readonly bool|null $type;
     public readonly float|null $current_usage;

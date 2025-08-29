@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class OutboundFirewallRestrictionsInner implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $protocol;
     /**
      * @var string[]|null

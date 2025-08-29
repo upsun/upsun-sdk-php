@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class CommandsToManageTheApplicationSLifecycle implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $pre_start;
     public readonly string|null $start;
 

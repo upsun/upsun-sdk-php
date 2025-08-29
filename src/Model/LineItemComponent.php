@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class LineItemComponent implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly float|null $amount;
     public readonly string|null $amount_formatted;
     public readonly string|null $display_title;

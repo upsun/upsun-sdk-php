@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class HttpAccessPermissions implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly bool $is_enabled;
     /**
      * @var \Upsun\Model\AddressGrantsInner[]|null

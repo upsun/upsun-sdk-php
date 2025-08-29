@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class CreateOrgSubscriptionRequest implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $plan;
     public readonly string $project_region;
     public readonly string|null $project_title;

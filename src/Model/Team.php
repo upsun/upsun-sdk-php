@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Team implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $id;
     public readonly string|null $organization_id;
     public readonly string|null $label;

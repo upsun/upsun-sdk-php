@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Version implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $commit;
     public readonly bool $locked;
     public readonly \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion $routing;

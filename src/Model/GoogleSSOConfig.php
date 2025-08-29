@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class GoogleSSOConfig implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $provider_type;
     public readonly string|null $domain;
 

@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class OrganizationLinksSubscriptions implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $href;
 
     public function __construct(

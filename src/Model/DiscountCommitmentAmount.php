@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class DiscountCommitmentAmount implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \Upsun\Model\CurrencyAmount|null $monthly;
     public readonly \Upsun\Model\CurrencyAmount|null $commitment_period;
     public readonly \Upsun\Model\CurrencyAmount|null $contract_total;

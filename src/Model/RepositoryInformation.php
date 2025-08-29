@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class RepositoryInformation implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $url;
     public readonly string $client_ssh_key;
 

@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $name;
     public readonly string|null $value;
     public readonly bool $is_sensitive;

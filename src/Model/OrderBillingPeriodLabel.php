@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class OrderBillingPeriodLabel implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $formatted;
     public readonly string|null $month;
     public readonly string|null $year;

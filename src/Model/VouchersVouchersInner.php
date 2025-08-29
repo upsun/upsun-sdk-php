@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class VouchersVouchersInner implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $code;
     public readonly string|null $amount;
     public readonly string|null $currency;

@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ProjectInfo implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $title;
     public readonly string $name;
     public readonly string $namespace;

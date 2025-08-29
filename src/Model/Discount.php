@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Discount implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly int|null $id;
     public readonly string|null $organization_id;
     public readonly string|null $type;

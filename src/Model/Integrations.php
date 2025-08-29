@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Integrations implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly bool $enabled;
     public readonly \Upsun\Model\Config|null $config;
     /**

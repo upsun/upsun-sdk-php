@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class EnvironmentRestoreInput implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $environment_name;
     public readonly string $branch_from;
     public readonly bool $restore_code;

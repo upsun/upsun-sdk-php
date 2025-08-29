@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Config implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \Upsun\Model\NewRelicLogForwardingIntegrationConfigurations|null $newrelic;
     public readonly \Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations|null $sumologic;
     public readonly \Upsun\Model\SplunkLogForwardingIntegrationConfigurations|null $splunk;

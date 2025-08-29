@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class InvoicePDF implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $url;
     public readonly string|null $status;
 

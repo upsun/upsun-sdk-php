@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class VerifyPhoneNumberRequest implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $channel;
     public readonly string $phone_number;
 

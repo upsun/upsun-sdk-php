@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class BlackfireIntegrationPatch implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $type;
 
     public function __construct(

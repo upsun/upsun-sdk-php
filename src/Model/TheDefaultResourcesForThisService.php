@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class TheDefaultResourcesForThisService implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly float $cpu;
     public readonly int $memory;
     public readonly int $disk;

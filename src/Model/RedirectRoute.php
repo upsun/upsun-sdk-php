@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class RedirectRoute implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly bool $primary;
     public readonly string $id;
     public readonly string $production_url;

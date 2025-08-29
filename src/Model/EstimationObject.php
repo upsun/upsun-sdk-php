@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class EstimationObject implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $plan;
     public readonly string|null $user_licenses;
     public readonly string|null $environments;

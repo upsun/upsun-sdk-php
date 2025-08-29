@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $source;
     public readonly string $source_path;
     public readonly string|null $service;

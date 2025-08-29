@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Error implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $status;
     public readonly string|null $message;
     public readonly float|null $code;

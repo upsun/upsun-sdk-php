@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class TeamProjectAccessLinks implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \Upsun\Model\TeamProjectAccessLinksSelf|null $self;
     public readonly \Upsun\Model\TeamProjectAccessLinksUpdate|null $update;
     public readonly \Upsun\Model\TeamProjectAccessLinksDelete|null $delete;

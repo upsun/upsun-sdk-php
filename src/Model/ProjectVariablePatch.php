@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ProjectVariablePatch implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $name;
     /**
      * @var string[]|null

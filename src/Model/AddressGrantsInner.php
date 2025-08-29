@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class AddressGrantsInner implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $permission;
     public readonly string $address;
 

@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ServicesValue implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $type;
     public readonly string $size;
     public readonly int $disk;

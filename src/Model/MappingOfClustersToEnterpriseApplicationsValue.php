@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $active_docroot;
     /**
      * @var string[]|null

@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ProdDomainStorageCreateInput implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $name;
     /**
      * @var string[]|null

@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Connection implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $provider;
     public readonly string|null $provider_type;
     public readonly bool|null $is_mandatory;

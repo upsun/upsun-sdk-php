@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class TheObjectTheReferencePointsTo implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $type;
     public readonly string $sha;
 

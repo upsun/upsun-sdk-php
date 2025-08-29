@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly int|null $count;
     /**
      * @var \Upsun\Model\PrepaymentTransactionObject[]|null

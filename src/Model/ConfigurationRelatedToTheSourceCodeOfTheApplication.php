@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $root;
     /**
      * @var \Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue[]|null

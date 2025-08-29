@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class BlackfireEnvironmentsCredentialsValue implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $server_uuid;
     public readonly string $server_token;
 

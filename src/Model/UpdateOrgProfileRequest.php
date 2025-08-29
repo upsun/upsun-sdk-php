@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class UpdateOrgProfileRequest implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $default_catalog;
     public readonly string|null $project_options_url;
     public readonly string|null $security_contact;

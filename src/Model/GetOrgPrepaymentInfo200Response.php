@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class GetOrgPrepaymentInfo200Response implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \Upsun\Model\PrepaymentObject|null $prepayment;
     public readonly \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks|null $_links;
 

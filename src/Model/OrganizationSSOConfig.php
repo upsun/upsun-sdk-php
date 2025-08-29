@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class OrganizationSSOConfig implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $provider_type;
     public readonly string|null $domain;
     public readonly string|null $organization_id;

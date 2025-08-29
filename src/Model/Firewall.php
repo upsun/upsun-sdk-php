@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Firewall implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     /**
      * @var \Upsun\Model\OutboundFirewallRestrictionsInner[]|null
      */

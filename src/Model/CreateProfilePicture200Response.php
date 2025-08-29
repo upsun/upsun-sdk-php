@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class CreateProfilePicture200Response implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $url;
 
     public function __construct(

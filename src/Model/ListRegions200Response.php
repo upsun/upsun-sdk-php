@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ListRegions200Response implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     /**
      * @var \Upsun\Model\Region[]|null
      */

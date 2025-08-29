@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class NewRelicLogForwardingIntegrationConfigurations implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly bool|null $enabled;
     public readonly string|null $role;
 

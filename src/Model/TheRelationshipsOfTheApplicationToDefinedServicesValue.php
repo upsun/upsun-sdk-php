@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $service;
     public readonly string $endpoint;
 

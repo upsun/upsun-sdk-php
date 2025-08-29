@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Status implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $code;
     public readonly string $message;
 

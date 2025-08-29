@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class EnvironmentBranchInput implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $title;
     public readonly string $name;
     public readonly bool $clone_parent;

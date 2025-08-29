@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class Usage implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $id;
     public readonly string|null $subscription_id;
     public readonly string|null $usage_group;

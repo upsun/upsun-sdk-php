@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class AccessControlDefinitionForThisEnviromentInner implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $entity_id;
     public readonly string $role;
 

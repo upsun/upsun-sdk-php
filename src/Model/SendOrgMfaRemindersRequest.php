@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class SendOrgMfaRemindersRequest implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     /**
      * @var string[]|null
      */

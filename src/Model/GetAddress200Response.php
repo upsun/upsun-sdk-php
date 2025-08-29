@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class GetAddress200Response implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $country;
     public readonly string|null $name_line;
     public readonly string|null $premise;

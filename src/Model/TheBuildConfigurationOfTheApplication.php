@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class TheBuildConfigurationOfTheApplication implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $flavor;
     /**
      * @var \Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue[]|null

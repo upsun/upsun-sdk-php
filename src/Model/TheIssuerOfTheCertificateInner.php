@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class TheIssuerOfTheCertificateInner implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $oid;
     public readonly string $alias;
     public readonly string $value;

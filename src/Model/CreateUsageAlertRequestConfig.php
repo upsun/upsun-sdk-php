@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class CreateUsageAlertRequestConfig implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly int|null $threshold;
 
     public function __construct(

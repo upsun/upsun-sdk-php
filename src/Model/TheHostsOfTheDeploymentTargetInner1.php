@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class TheHostsOfTheDeploymentTargetInner1 implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $id;
     public readonly string $type;
     /**

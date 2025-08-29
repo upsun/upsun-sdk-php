@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class TheCommandsDefinition implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $start;
     public readonly string|null $stop;
 

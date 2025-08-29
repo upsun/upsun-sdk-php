@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class StrictTransportSecurityOptions1 implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly bool|null $enabled;
     public readonly bool|null $include_subdomains;
     public readonly bool|null $preload;

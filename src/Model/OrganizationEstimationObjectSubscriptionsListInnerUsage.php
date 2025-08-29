@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly float|null $cpu;
     public readonly float|null $memory;
     public readonly float|null $storage;

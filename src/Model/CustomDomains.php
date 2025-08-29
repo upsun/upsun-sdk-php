@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class CustomDomains implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly bool $enabled;
     public readonly int $environments_with_domains_limit;
 

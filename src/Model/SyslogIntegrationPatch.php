@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class SyslogIntegrationPatch implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $type;
     /**
      * @var string[]|null

@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class HalLinks implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly \Upsun\Model\HalLinksSelf|null $self;
     public readonly \Upsun\Model\HalLinksPrevious|null $previous;
     public readonly \Upsun\Model\HalLinksNext|null $next;

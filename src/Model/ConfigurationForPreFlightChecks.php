@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ConfigurationForPreFlightChecks implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly bool $enabled;
     /**
      * @var string[]|null

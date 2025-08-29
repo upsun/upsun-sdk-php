@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class CreateTicketRequestAttachmentsInner implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $filename;
     public readonly string|null $data;
 

@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ProjectSettingsPatch implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly object|null $initialize;
     /**
      * @var \Upsun\Model\DataRetentionConfigurationValue1[]|null

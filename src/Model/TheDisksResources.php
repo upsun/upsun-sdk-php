@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class TheDisksResources implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly int $temporary;
     public readonly int $instance;
     public readonly int $storage;

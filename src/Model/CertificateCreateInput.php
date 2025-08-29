@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class CertificateCreateInput implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $certificate;
     public readonly string $key;
     /**

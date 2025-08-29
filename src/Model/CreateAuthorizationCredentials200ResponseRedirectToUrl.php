@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $return_url;
     public readonly string|null $url;
 

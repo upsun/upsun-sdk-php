@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class EnvironmentInitializeInput implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string $profile;
     public readonly string $repository;
     public readonly string $config;

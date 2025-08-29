@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class PrepaymentObjectPrepayment implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     public readonly string|null $organization_id;
     public readonly \Upsun\Model\PrepaymentObjectPrepaymentBalance|null $balance;
     public readonly string|null $last_updated_at;

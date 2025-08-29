@@ -16,6 +16,8 @@ use JsonSerializable;
 
 final class ListOrgSubscriptions200Response implements JsonSerializable
 {
+    protected const DISCRIMINATOR = null;
+
     /**
      * @var \Upsun\Model\Subscription[]|null
      */
