@@ -10,13 +10,12 @@ use Nyholm\Psr7\Stream;
 
 class OAuthProvider
 {
-    private int $tokenExchangeCount = 0;
-
     private ?string $typeToken = null;
     private ?string $accessToken = null;
     private ?string $refreshToken = null;
     private int $tokenExpiry = 0;
     private bool $hasInitialToken = false;
+    private bool $isExchanged = false; 
 
     public function __construct(
         private ClientInterface $httpClient,
@@ -27,16 +26,13 @@ class OAuthProvider
     ) {
     }
 
-    /**
-     * Exchange API token for access token
-     *
-     * @throws Exception
-     */
     public function exchangeCodeForToken(): bool
     {
-        try {
-            $this->tokenExchangeCount++; // incrémente à chaque appel
+        if ($this->isExchanged && $this->hasValidToken()) {
+            return true;
+        }
 
+        try {
             $body = http_build_query([
                 'grant_type' => 'api_token',
                 'api_token' => $this->clientSecret,
@@ -46,11 +42,12 @@ class OAuthProvider
                 ->withHeader('Authorization', 'Basic ' . base64_encode('platform-api-user:'))
                 ->withHeader('Content-Type', 'application/x-www-form-urlencoded')
                 ->withBody(Stream::create($body));
-            
+
+
             $response = $this->httpClient->sendRequest($request);
 
             if ($response->getStatusCode() !== 200) {
-                throw new Exception('Token exchange failed with status: ' . $response->getStatusCode() . ' nb appel=' . $this->tokenExchangeCount );
+                throw new Exception('Token exchange failed with status: ' . $response->getStatusCode() . );
             }
 
             $data = json_decode((string)$response->getBody(), true);
@@ -65,16 +62,12 @@ class OAuthProvider
 
             $this->storeTokenData($data);
             $this->hasInitialToken = true;
+            $this->isExchanged = true;
 
             return true;
         } catch (ClientExceptionInterface $e) {
             throw new Exception('Token exchange failed: ' . $e->getMessage());
         }
-    }
-
-    public function getTokenExchangeCount(): int
-    {
-        return $this->tokenExchangeCount;
     }
 
     private function storeTokenData(array $data): void
@@ -85,11 +78,6 @@ class OAuthProvider
         $this->tokenExpiry = time() + ($data['expires_in'] ?? 0);
     }
 
-    /**
-     * Refresh access token using refresh token
-     *
-     * @throws Exception
-     */
     public function refreshAccessToken(): void
     {
         if (!$this->refreshToken) {
@@ -155,12 +143,6 @@ class OAuthProvider
         return 'Bearer ' . $this->accessToken;
     }
 
-    public function getAccessToken(): ?string
-    {
-        $this->ensureValidToken();
-        return $this->accessToken;
-    }
-
     public function forceRefresh(): void
     {
         $this->tokenExpiry = 0;
@@ -170,23 +152,5 @@ class OAuthProvider
     public function hasValidToken(): bool
     {
         return $this->accessToken && time() < ($this->tokenExpiry - 60);
-    }
-
-    public function getTokenInfo(): array
-    {
-        return [
-            'has_access_token' => !empty($this->accessToken),
-            'has_refresh_token' => !empty($this->refreshToken),
-            'expires_at' => $this->tokenExpiry,
-            'expires_in' => max(0, $this->tokenExpiry - time()),
-            'is_expired' => time() > $this->tokenExpiry,
-            'has_initial_token' => $this->hasInitialToken,
-        ];
-    }
-
-    public function debugTokenStatus(): void
-    {
-        $info = $this->getTokenInfo();
-        error_log('OAuthProvider Token Status: ' . json_encode($info));
     }
 }
