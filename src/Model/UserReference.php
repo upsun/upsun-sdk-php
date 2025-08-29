@@ -18,69 +18,19 @@ final class UserReference implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $id;
-    public readonly string|null $username;
-    public readonly string|null $email;
-    public readonly string|null $first_name;
-    public readonly string|null $last_name;
-    public readonly string|null $picture;
-    public readonly bool|null $mfa_enabled;
-    public readonly bool|null $sso_enabled;
-
     public function __construct(
-        string|null $id = null,
-        string|null $username = null,
-        string|null $email = null,
-        string|null $first_name = null,
-        string|null $last_name = null,
-        string|null $picture = null,
-        bool|null $mfa_enabled = null,
-        bool|null $sso_enabled = null
+        public readonly string|null $id = null,
+        public readonly string|null $username = null,
+        public readonly string|null $email = null,
+        public readonly string|null $first_name = null,
+        public readonly string|null $last_name = null,
+        public readonly string|null $picture = null,
+        public readonly bool|null $mfa_enabled = null,
+        public readonly bool|null $sso_enabled = null
     ) {
-        $this->id = $id;
-        $this->username = $username;
-        $this->email = $email;
-        $this->first_name = $first_name;
-        $this->last_name = $last_name;
-        $this->picture = $picture;
-        $this->mfa_enabled = $mfa_enabled;
-        $this->sso_enabled = $sso_enabled;
     }
 
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getUsername(): string|null
-    {
-        return $this->username;
-    }
-    public function getEmail(): string|null
-    {
-        return $this->email;
-    }
-    public function getFirstName(): string|null
-    {
-        return $this->first_name;
-    }
-    public function getLastName(): string|null
-    {
-        return $this->last_name;
-    }
-    public function getPicture(): string|null
-    {
-        return $this->picture;
-    }
-    public function getMfaEnabled(): bool|null
-    {
-        return $this->mfa_enabled;
-    }
-    public function getSsoEnabled(): bool|null
-    {
-        return $this->sso_enabled;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

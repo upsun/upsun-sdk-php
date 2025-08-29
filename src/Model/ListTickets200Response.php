@@ -18,40 +18,14 @@ final class ListTickets200Response implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly int|null $count;
-    /**
-     * @var \Upsun\Model\Ticket[]|null
-     */
-    public readonly ?array $tickets;
-    public readonly \Upsun\Model\HalLinks|null $_links;
-
     public function __construct(
-        int|null $count = null,
-        ?array $tickets = null,
-        \Upsun\Model\HalLinks|null $_links = null
+        public readonly int|null $count = null,
+        public readonly ?array $tickets = null,
+        public readonly \Upsun\Model\HalLinks|null $_links = null
     ) {
-        $this->count = $count;
-        $this->tickets = $tickets;
-        $this->_links = $_links;
     }
 
-    public function getCount(): int|null
-    {
-        return $this->count;
-    }
-    /**
-     * @return \Upsun\Model\Ticket[]|null
-     */
-    public function getTickets(): ?array
-    {
-        return $this->tickets;
-    }
-    public function getLinks(): \Upsun\Model\HalLinks|null
-    {
-        return $this->_links;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'count' => $this->count,

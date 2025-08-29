@@ -18,20 +18,12 @@ final class UpdateUsageAlertRequest implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\CreateUsageAlertRequestConfig|null $config;
-
     public function __construct(
-        \Upsun\Model\CreateUsageAlertRequestConfig|null $config = null
+        public readonly \Upsun\Model\CreateUsageAlertRequestConfig|null $config = null
     ) {
-        $this->config = $config;
     }
 
-    public function getConfig(): \Upsun\Model\CreateUsageAlertRequestConfig|null
-    {
-        return $this->config;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'config' => $this->config,

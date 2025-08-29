@@ -18,27 +18,13 @@ final class RepositoryInformation implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $url;
-    public readonly string $client_ssh_key;
-
     public function __construct(
-        string $url = null,
-        string $client_ssh_key = null
+        public readonly string $url = null,
+        public readonly string $client_ssh_key = null
     ) {
-        $this->url = $url;
-        $this->client_ssh_key = $client_ssh_key;
     }
 
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-    public function getClientSshKey(): string
-    {
-        return $this->client_ssh_key;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'url' => $this->url,

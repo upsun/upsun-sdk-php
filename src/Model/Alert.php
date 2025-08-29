@@ -18,55 +18,17 @@ final class Alert implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $id;
-    public readonly bool|null $active;
-    public readonly int|null $alerts_sent;
-    public readonly \DateTime|null $last_alert_at;
-    public readonly \DateTime|null $updated_at;
-    public readonly object|null $config;
-
     public function __construct(
-        string|null $id = null,
-        bool|null $active = null,
-        int|null $alerts_sent = null,
-        \DateTime|null $last_alert_at = null,
-        \DateTime|null $updated_at = null,
-        object|null $config = null
+        public readonly string|null $id = null,
+        public readonly bool|null $active = null,
+        public readonly int|null $alerts_sent = null,
+        public readonly \DateTime|null $last_alert_at = null,
+        public readonly \DateTime|null $updated_at = null,
+        public readonly object|null $config = null
     ) {
-        $this->id = $id;
-        $this->active = $active;
-        $this->alerts_sent = $alerts_sent;
-        $this->last_alert_at = $last_alert_at;
-        $this->updated_at = $updated_at;
-        $this->config = $config;
     }
 
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getActive(): bool|null
-    {
-        return $this->active;
-    }
-    public function getAlertsSent(): int|null
-    {
-        return $this->alerts_sent;
-    }
-    public function getLastAlertAt(): \DateTime|null
-    {
-        return $this->last_alert_at;
-    }
-    public function getUpdatedAt(): \DateTime|null
-    {
-        return $this->updated_at;
-    }
-    public function getConfig(): object|null
-    {
-        return $this->config;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

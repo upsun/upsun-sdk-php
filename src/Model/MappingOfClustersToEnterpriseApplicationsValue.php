@@ -18,33 +18,13 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerial
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $active_docroot;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $docroot_versions;
-
     public function __construct(
-        string $active_docroot = null,
-        ?array $docroot_versions = null
+        public readonly string $active_docroot = null,
+        public readonly ?array $docroot_versions = null
     ) {
-        $this->active_docroot = $active_docroot;
-        $this->docroot_versions = $docroot_versions;
     }
 
-    public function getActiveDocroot(): string
-    {
-        return $this->active_docroot;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getDocrootVersions(): ?array
-    {
-        return $this->docroot_versions;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'active_docroot' => $this->active_docroot,

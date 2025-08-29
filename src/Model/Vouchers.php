@@ -18,68 +18,18 @@ final class Vouchers implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $uuid;
-    public readonly string|null $vouchers_total;
-    public readonly string|null $vouchers_applied;
-    public readonly string|null $vouchers_remaining_balance;
-    public readonly string|null $currency;
-    /**
-     * @var \Upsun\Model\VouchersVouchersInner[]|null
-     */
-    public readonly ?array $vouchers;
-    public readonly \Upsun\Model\VouchersLinks|null $_links;
-
     public function __construct(
-        string|null $uuid = null,
-        string|null $vouchers_total = null,
-        string|null $vouchers_applied = null,
-        string|null $vouchers_remaining_balance = null,
-        string|null $currency = null,
-        ?array $vouchers = null,
-        \Upsun\Model\VouchersLinks|null $_links = null
+        public readonly string|null $uuid = null,
+        public readonly string|null $vouchers_total = null,
+        public readonly string|null $vouchers_applied = null,
+        public readonly string|null $vouchers_remaining_balance = null,
+        public readonly string|null $currency = null,
+        public readonly ?array $vouchers = null,
+        public readonly \Upsun\Model\VouchersLinks|null $_links = null
     ) {
-        $this->uuid = $uuid;
-        $this->vouchers_total = $vouchers_total;
-        $this->vouchers_applied = $vouchers_applied;
-        $this->vouchers_remaining_balance = $vouchers_remaining_balance;
-        $this->currency = $currency;
-        $this->vouchers = $vouchers;
-        $this->_links = $_links;
     }
 
-    public function getUuid(): string|null
-    {
-        return $this->uuid;
-    }
-    public function getVouchersTotal(): string|null
-    {
-        return $this->vouchers_total;
-    }
-    public function getVouchersApplied(): string|null
-    {
-        return $this->vouchers_applied;
-    }
-    public function getVouchersRemainingBalance(): string|null
-    {
-        return $this->vouchers_remaining_balance;
-    }
-    public function getCurrency(): string|null
-    {
-        return $this->currency;
-    }
-    /**
-     * @return \Upsun\Model\VouchersVouchersInner[]|null
-     */
-    public function getVouchers(): ?array
-    {
-        return $this->vouchers;
-    }
-    public function getLinks(): \Upsun\Model\VouchersLinks|null
-    {
-        return $this->_links;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'uuid' => $this->uuid,

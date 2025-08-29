@@ -18,34 +18,14 @@ final class RegionDatacenter implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $name;
-    public readonly string|null $label;
-    public readonly string|null $location;
-
     public function __construct(
-        string|null $name = null,
-        string|null $label = null,
-        string|null $location = null
+        public readonly string|null $name = null,
+        public readonly string|null $label = null,
+        public readonly string|null $location = null
     ) {
-        $this->name = $name;
-        $this->label = $label;
-        $this->location = $location;
     }
 
-    public function getName(): string|null
-    {
-        return $this->name;
-    }
-    public function getLabel(): string|null
-    {
-        return $this->label;
-    }
-    public function getLocation(): string|null
-    {
-        return $this->location;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'name' => $this->name,

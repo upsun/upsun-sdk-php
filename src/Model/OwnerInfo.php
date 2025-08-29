@@ -18,34 +18,14 @@ final class OwnerInfo implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $type;
-    public readonly string|null $username;
-    public readonly string|null $display_name;
-
     public function __construct(
-        string|null $type = null,
-        string|null $username = null,
-        string|null $display_name = null
+        public readonly string|null $type = null,
+        public readonly string|null $username = null,
+        public readonly string|null $display_name = null
     ) {
-        $this->type = $type;
-        $this->username = $username;
-        $this->display_name = $display_name;
     }
 
-    public function getType(): string|null
-    {
-        return $this->type;
-    }
-    public function getUsername(): string|null
-    {
-        return $this->username;
-    }
-    public function getDisplayName(): string|null
-    {
-        return $this->display_name;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->type,

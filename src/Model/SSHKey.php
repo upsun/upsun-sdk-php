@@ -18,55 +18,17 @@ final class SSHKey implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly int|null $key_id;
-    public readonly int|null $uid;
-    public readonly string|null $fingerprint;
-    public readonly string|null $title;
-    public readonly string|null $value;
-    public readonly string|null $changed;
-
     public function __construct(
-        int|null $key_id = null,
-        int|null $uid = null,
-        string|null $fingerprint = null,
-        string|null $title = null,
-        string|null $value = null,
-        string|null $changed = null
+        public readonly int|null $key_id = null,
+        public readonly int|null $uid = null,
+        public readonly string|null $fingerprint = null,
+        public readonly string|null $title = null,
+        public readonly string|null $value = null,
+        public readonly string|null $changed = null
     ) {
-        $this->key_id = $key_id;
-        $this->uid = $uid;
-        $this->fingerprint = $fingerprint;
-        $this->title = $title;
-        $this->value = $value;
-        $this->changed = $changed;
     }
 
-    public function getKeyId(): int|null
-    {
-        return $this->key_id;
-    }
-    public function getUid(): int|null
-    {
-        return $this->uid;
-    }
-    public function getFingerprint(): string|null
-    {
-        return $this->fingerprint;
-    }
-    public function getTitle(): string|null
-    {
-        return $this->title;
-    }
-    public function getValue(): string|null
-    {
-        return $this->value;
-    }
-    public function getChanged(): string|null
-    {
-        return $this->changed;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'key_id' => $this->key_id,

@@ -18,41 +18,15 @@ final class ResourcesForProductionEnvironments implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly bool $legacy_development;
-    public readonly float $max_cpu;
-    public readonly int $max_memory;
-    public readonly int $max_environments;
-
     public function __construct(
-        bool $legacy_development = null,
-        float $max_cpu = null,
-        int $max_memory = null,
-        int $max_environments = null
+        public readonly bool $legacy_development = null,
+        public readonly float $max_cpu = null,
+        public readonly int $max_memory = null,
+        public readonly int $max_environments = null
     ) {
-        $this->legacy_development = $legacy_development;
-        $this->max_cpu = $max_cpu;
-        $this->max_memory = $max_memory;
-        $this->max_environments = $max_environments;
     }
 
-    public function getLegacyDevelopment(): bool
-    {
-        return $this->legacy_development;
-    }
-    public function getMaxCpu(): float
-    {
-        return $this->max_cpu;
-    }
-    public function getMaxMemory(): int
-    {
-        return $this->max_memory;
-    }
-    public function getMaxEnvironments(): int
-    {
-        return $this->max_environments;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'legacy_development' => $this->legacy_development,

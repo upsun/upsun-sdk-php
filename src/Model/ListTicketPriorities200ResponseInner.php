@@ -18,41 +18,15 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $id;
-    public readonly string|null $label;
-    public readonly string|null $short_description;
-    public readonly string|null $description;
-
     public function __construct(
-        string|null $id = null,
-        string|null $label = null,
-        string|null $short_description = null,
-        string|null $description = null
+        public readonly string|null $id = null,
+        public readonly string|null $label = null,
+        public readonly string|null $short_description = null,
+        public readonly string|null $description = null
     ) {
-        $this->id = $id;
-        $this->label = $label;
-        $this->short_description = $short_description;
-        $this->description = $description;
     }
 
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getLabel(): string|null
-    {
-        return $this->label;
-    }
-    public function getShortDescription(): string|null
-    {
-        return $this->short_description;
-    }
-    public function getDescription(): string|null
-    {
-        return $this->description;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

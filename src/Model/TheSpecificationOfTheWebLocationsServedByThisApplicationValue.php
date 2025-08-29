@@ -18,94 +18,20 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $root;
-    public readonly string $expires;
-    public readonly string $passthru;
-    public readonly bool $scripts;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $index;
-    public readonly bool $allow;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $headers;
-    /**
-     * @var \Upsun\Model\SpecificOverridesValue[]|null
-     */
-    public readonly ?array $rules;
-    public readonly \Upsun\Model\ConfigurationForSupportingRequestBuffering|null $request_buffering;
-
     public function __construct(
-        string $root = null,
-        string $expires = null,
-        string $passthru = null,
-        bool $scripts = null,
-        ?array $index = null,
-        bool $allow = null,
-        ?array $headers = null,
-        ?array $rules = null,
-        \Upsun\Model\ConfigurationForSupportingRequestBuffering|null $request_buffering = null
+        public readonly string $root = null,
+        public readonly string $expires = null,
+        public readonly string $passthru = null,
+        public readonly bool $scripts = null,
+        public readonly ?array $index = null,
+        public readonly bool $allow = null,
+        public readonly ?array $headers = null,
+        public readonly ?array $rules = null,
+        public readonly \Upsun\Model\ConfigurationForSupportingRequestBuffering|null $request_buffering = null
     ) {
-        $this->root = $root;
-        $this->expires = $expires;
-        $this->passthru = $passthru;
-        $this->scripts = $scripts;
-        $this->index = $index;
-        $this->allow = $allow;
-        $this->headers = $headers;
-        $this->rules = $rules;
-        $this->request_buffering = $request_buffering;
     }
 
-    public function getRoot(): string
-    {
-        return $this->root;
-    }
-    public function getExpires(): string
-    {
-        return $this->expires;
-    }
-    public function getPassthru(): string
-    {
-        return $this->passthru;
-    }
-    public function getScripts(): bool
-    {
-        return $this->scripts;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getIndex(): ?array
-    {
-        return $this->index;
-    }
-    public function getAllow(): bool
-    {
-        return $this->allow;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getHeaders(): ?array
-    {
-        return $this->headers;
-    }
-    /**
-     * @return \Upsun\Model\SpecificOverridesValue[]|null
-     */
-    public function getRules(): ?array
-    {
-        return $this->rules;
-    }
-    public function getRequestBuffering(): \Upsun\Model\ConfigurationForSupportingRequestBuffering|null
-    {
-        return $this->request_buffering;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'root' => $this->root,

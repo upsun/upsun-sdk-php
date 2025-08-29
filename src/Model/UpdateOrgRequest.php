@@ -18,34 +18,14 @@ final class UpdateOrgRequest implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $name;
-    public readonly string|null $label;
-    public readonly string|null $country;
-
     public function __construct(
-        string|null $name = null,
-        string|null $label = null,
-        string|null $country = null
+        public readonly string|null $name = null,
+        public readonly string|null $label = null,
+        public readonly string|null $country = null
     ) {
-        $this->name = $name;
-        $this->label = $label;
-        $this->country = $country;
     }
 
-    public function getName(): string|null
-    {
-        return $this->name;
-    }
-    public function getLabel(): string|null
-    {
-        return $this->label;
-    }
-    public function getCountry(): string|null
-    {
-        return $this->country;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'name' => $this->name,

@@ -18,39 +18,13 @@ final class SubscriptionAddonsObjectAvailable implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    /**
-     * @var float[]|null
-     */
-    public readonly ?array $continuous_profiling;
-    /**
-     * @var float[]|null
-     */
-    public readonly ?array $project_support_level;
-
     public function __construct(
-        ?array $continuous_profiling = null,
-        ?array $project_support_level = null
+        public readonly ?array $continuous_profiling = null,
+        public readonly ?array $project_support_level = null
     ) {
-        $this->continuous_profiling = $continuous_profiling;
-        $this->project_support_level = $project_support_level;
     }
 
-    /**
-     * @return float[]|null
-     */
-    public function getContinuousProfiling(): ?array
-    {
-        return $this->continuous_profiling;
-    }
-    /**
-     * @return float[]|null
-     */
-    public function getProjectSupportLevel(): ?array
-    {
-        return $this->project_support_level;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'continuous_profiling' => $this->continuous_profiling,

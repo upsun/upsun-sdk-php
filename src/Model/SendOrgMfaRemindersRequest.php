@@ -18,26 +18,12 @@ final class SendOrgMfaRemindersRequest implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $user_ids;
-
     public function __construct(
-        ?array $user_ids = null
+        public readonly ?array $user_ids = null
     ) {
-        $this->user_ids = $user_ids;
     }
 
-    /**
-     * @return string[]|null
-     */
-    public function getUserIds(): ?array
-    {
-        return $this->user_ids;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'user_ids' => $this->user_ids,

@@ -18,34 +18,14 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly int $commits_ahead;
-    public readonly int $commits_behind;
-    public readonly string $parent_ref;
-
     public function __construct(
-        int $commits_ahead = null,
-        int $commits_behind = null,
-        string $parent_ref = null
+        public readonly int $commits_ahead = null,
+        public readonly int $commits_behind = null,
+        public readonly string $parent_ref = null
     ) {
-        $this->commits_ahead = $commits_ahead;
-        $this->commits_behind = $commits_behind;
-        $this->parent_ref = $parent_ref;
     }
 
-    public function getCommitsAhead(): int
-    {
-        return $this->commits_ahead;
-    }
-    public function getCommitsBehind(): int
-    {
-        return $this->commits_behind;
-    }
-    public function getParentRef(): string
-    {
-        return $this->parent_ref;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'commits_ahead' => $this->commits_ahead,

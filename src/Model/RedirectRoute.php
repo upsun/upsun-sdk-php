@@ -18,75 +18,19 @@ final class RedirectRoute implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly bool $primary;
-    public readonly string $id;
-    public readonly string $production_url;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $attributes;
-    public readonly string $type;
-    public readonly \Upsun\Model\TLSSettingsForTheRoute $tls;
-    public readonly string $to;
-    public readonly \Upsun\Model\TheConfigurationOfTheRedirects $redirects;
-
     public function __construct(
-        bool $primary = null,
-        string $id = null,
-        string $production_url = null,
-        ?array $attributes = null,
-        string $type = null,
-        \Upsun\Model\TLSSettingsForTheRoute $tls = null,
-        string $to = null,
-        \Upsun\Model\TheConfigurationOfTheRedirects $redirects = null
+        public readonly bool $primary = null,
+        public readonly string $id = null,
+        public readonly string $production_url = null,
+        public readonly ?array $attributes = null,
+        public readonly string $type = null,
+        public readonly \Upsun\Model\TLSSettingsForTheRoute $tls = null,
+        public readonly string $to = null,
+        public readonly \Upsun\Model\TheConfigurationOfTheRedirects $redirects = null
     ) {
-        $this->primary = $primary;
-        $this->id = $id;
-        $this->production_url = $production_url;
-        $this->attributes = $attributes;
-        $this->type = $type;
-        $this->tls = $tls;
-        $this->to = $to;
-        $this->redirects = $redirects;
     }
 
-    public function getPrimary(): bool
-    {
-        return $this->primary;
-    }
-    public function getId(): string
-    {
-        return $this->id;
-    }
-    public function getProductionUrl(): string
-    {
-        return $this->production_url;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getAttributes(): ?array
-    {
-        return $this->attributes;
-    }
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    public function getTls(): \Upsun\Model\TLSSettingsForTheRoute
-    {
-        return $this->tls;
-    }
-    public function getTo(): string
-    {
-        return $this->to;
-    }
-    public function getRedirects(): \Upsun\Model\TheConfigurationOfTheRedirects
-    {
-        return $this->redirects;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'primary' => $this->primary,

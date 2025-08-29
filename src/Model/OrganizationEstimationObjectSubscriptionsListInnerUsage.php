@@ -18,41 +18,15 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly float|null $cpu;
-    public readonly float|null $memory;
-    public readonly float|null $storage;
-    public readonly int|null $environments;
-
     public function __construct(
-        float|null $cpu = null,
-        float|null $memory = null,
-        float|null $storage = null,
-        int|null $environments = null
+        public readonly float|null $cpu = null,
+        public readonly float|null $memory = null,
+        public readonly float|null $storage = null,
+        public readonly int|null $environments = null
     ) {
-        $this->cpu = $cpu;
-        $this->memory = $memory;
-        $this->storage = $storage;
-        $this->environments = $environments;
     }
 
-    public function getCpu(): float|null
-    {
-        return $this->cpu;
-    }
-    public function getMemory(): float|null
-    {
-        return $this->memory;
-    }
-    public function getStorage(): float|null
-    {
-        return $this->storage;
-    }
-    public function getEnvironments(): int|null
-    {
-        return $this->environments;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'cpu' => $this->cpu,

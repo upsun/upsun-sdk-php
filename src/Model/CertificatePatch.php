@@ -18,33 +18,13 @@ final class CertificatePatch implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $chain;
-    public readonly bool|null $is_invalid;
-
     public function __construct(
-        ?array $chain = null,
-        bool|null $is_invalid = null
+        public readonly ?array $chain = null,
+        public readonly bool|null $is_invalid = null
     ) {
-        $this->chain = $chain;
-        $this->is_invalid = $is_invalid;
     }
 
-    /**
-     * @return string[]|null
-     */
-    public function getChain(): ?array
-    {
-        return $this->chain;
-    }
-    public function getIsInvalid(): bool|null
-    {
-        return $this->is_invalid;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'chain' => $this->chain,

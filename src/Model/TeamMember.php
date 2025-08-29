@@ -18,41 +18,15 @@ final class TeamMember implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $team_id;
-    public readonly string|null $user_id;
-    public readonly \DateTime|null $created_at;
-    public readonly \DateTime|null $updated_at;
-
     public function __construct(
-        string|null $team_id = null,
-        string|null $user_id = null,
-        \DateTime|null $created_at = null,
-        \DateTime|null $updated_at = null
+        public readonly string|null $team_id = null,
+        public readonly string|null $user_id = null,
+        public readonly \DateTime|null $created_at = null,
+        public readonly \DateTime|null $updated_at = null
     ) {
-        $this->team_id = $team_id;
-        $this->user_id = $user_id;
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
     }
 
-    public function getTeamId(): string|null
-    {
-        return $this->team_id;
-    }
-    public function getUserId(): string|null
-    {
-        return $this->user_id;
-    }
-    public function getCreatedAt(): \DateTime|null
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime|null
-    {
-        return $this->updated_at;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'team_id' => $this->team_id,

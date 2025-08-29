@@ -18,132 +18,28 @@ final class Config implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\NewRelicLogForwardingIntegrationConfigurations|null $newrelic;
-    public readonly \Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations|null $sumologic;
-    public readonly \Upsun\Model\SplunkLogForwardingIntegrationConfigurations|null $splunk;
-    public readonly \Upsun\Model\HTTPLogForwardingIntegrationConfigurations|null $httplog;
-    public readonly \Upsun\Model\SyslogLogForwardingIntegrationConfigurations|null $syslog;
-    public readonly \Upsun\Model\WebhookIntegrationConfigurations|null $webhook;
-    public readonly \Upsun\Model\ScriptIntegrationConfigurations|null $script;
-    public readonly \Upsun\Model\GitHubIntegrationConfigurations|null $github;
-    public readonly \Upsun\Model\GitLabIntegrationConfigurations|null $gitlab;
-    public readonly \Upsun\Model\BitbucketIntegrationConfigurations|null $bitbucket;
-    public readonly \Upsun\Model\BitbucketServerIntegrationConfigurations|null $bitbucket_server;
-    public readonly \Upsun\Model\HealthEmailNotificationIntegrationConfigurations|null $health_email;
-    public readonly \Upsun\Model\HealthWebhookNotificationIntegrationConfigurations|null $health_webhook;
-    public readonly \Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations|null $health_pagerduty;
-    public readonly \Upsun\Model\HealthSlackNotificationIntegrationConfigurations|null $health_slack;
-    public readonly \Upsun\Model\FastlyCDNIntegrationConfigurations|null $cdn_fastly;
-    public readonly \Upsun\Model\BlackfireIntegrationConfigurations|null $blackfire;
-
     public function __construct(
-        \Upsun\Model\NewRelicLogForwardingIntegrationConfigurations|null $newrelic = null,
-        \Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations|null $sumologic = null,
-        \Upsun\Model\SplunkLogForwardingIntegrationConfigurations|null $splunk = null,
-        \Upsun\Model\HTTPLogForwardingIntegrationConfigurations|null $httplog = null,
-        \Upsun\Model\SyslogLogForwardingIntegrationConfigurations|null $syslog = null,
-        \Upsun\Model\WebhookIntegrationConfigurations|null $webhook = null,
-        \Upsun\Model\ScriptIntegrationConfigurations|null $script = null,
-        \Upsun\Model\GitHubIntegrationConfigurations|null $github = null,
-        \Upsun\Model\GitLabIntegrationConfigurations|null $gitlab = null,
-        \Upsun\Model\BitbucketIntegrationConfigurations|null $bitbucket = null,
-        \Upsun\Model\BitbucketServerIntegrationConfigurations|null $bitbucket_server = null,
-        \Upsun\Model\HealthEmailNotificationIntegrationConfigurations|null $health_email = null,
-        \Upsun\Model\HealthWebhookNotificationIntegrationConfigurations|null $health_webhook = null,
-        \Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations|null $health_pagerduty = null,
-        \Upsun\Model\HealthSlackNotificationIntegrationConfigurations|null $health_slack = null,
-        \Upsun\Model\FastlyCDNIntegrationConfigurations|null $cdn_fastly = null,
-        \Upsun\Model\BlackfireIntegrationConfigurations|null $blackfire = null
+        public readonly \Upsun\Model\NewRelicLogForwardingIntegrationConfigurations|null $newrelic = null,
+        public readonly \Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations|null $sumologic = null,
+        public readonly \Upsun\Model\SplunkLogForwardingIntegrationConfigurations|null $splunk = null,
+        public readonly \Upsun\Model\HTTPLogForwardingIntegrationConfigurations|null $httplog = null,
+        public readonly \Upsun\Model\SyslogLogForwardingIntegrationConfigurations|null $syslog = null,
+        public readonly \Upsun\Model\WebhookIntegrationConfigurations|null $webhook = null,
+        public readonly \Upsun\Model\ScriptIntegrationConfigurations|null $script = null,
+        public readonly \Upsun\Model\GitHubIntegrationConfigurations|null $github = null,
+        public readonly \Upsun\Model\GitLabIntegrationConfigurations|null $gitlab = null,
+        public readonly \Upsun\Model\BitbucketIntegrationConfigurations|null $bitbucket = null,
+        public readonly \Upsun\Model\BitbucketServerIntegrationConfigurations|null $bitbucket_server = null,
+        public readonly \Upsun\Model\HealthEmailNotificationIntegrationConfigurations|null $health_email = null,
+        public readonly \Upsun\Model\HealthWebhookNotificationIntegrationConfigurations|null $health_webhook = null,
+        public readonly \Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations|null $health_pagerduty = null,
+        public readonly \Upsun\Model\HealthSlackNotificationIntegrationConfigurations|null $health_slack = null,
+        public readonly \Upsun\Model\FastlyCDNIntegrationConfigurations|null $cdn_fastly = null,
+        public readonly \Upsun\Model\BlackfireIntegrationConfigurations|null $blackfire = null
     ) {
-        $this->newrelic = $newrelic;
-        $this->sumologic = $sumologic;
-        $this->splunk = $splunk;
-        $this->httplog = $httplog;
-        $this->syslog = $syslog;
-        $this->webhook = $webhook;
-        $this->script = $script;
-        $this->github = $github;
-        $this->gitlab = $gitlab;
-        $this->bitbucket = $bitbucket;
-        $this->bitbucket_server = $bitbucket_server;
-        $this->health_email = $health_email;
-        $this->health_webhook = $health_webhook;
-        $this->health_pagerduty = $health_pagerduty;
-        $this->health_slack = $health_slack;
-        $this->cdn_fastly = $cdn_fastly;
-        $this->blackfire = $blackfire;
     }
 
-    public function getNewrelic(): \Upsun\Model\NewRelicLogForwardingIntegrationConfigurations|null
-    {
-        return $this->newrelic;
-    }
-    public function getSumologic(): \Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations|null
-    {
-        return $this->sumologic;
-    }
-    public function getSplunk(): \Upsun\Model\SplunkLogForwardingIntegrationConfigurations|null
-    {
-        return $this->splunk;
-    }
-    public function getHttplog(): \Upsun\Model\HTTPLogForwardingIntegrationConfigurations|null
-    {
-        return $this->httplog;
-    }
-    public function getSyslog(): \Upsun\Model\SyslogLogForwardingIntegrationConfigurations|null
-    {
-        return $this->syslog;
-    }
-    public function getWebhook(): \Upsun\Model\WebhookIntegrationConfigurations|null
-    {
-        return $this->webhook;
-    }
-    public function getScript(): \Upsun\Model\ScriptIntegrationConfigurations|null
-    {
-        return $this->script;
-    }
-    public function getGithub(): \Upsun\Model\GitHubIntegrationConfigurations|null
-    {
-        return $this->github;
-    }
-    public function getGitlab(): \Upsun\Model\GitLabIntegrationConfigurations|null
-    {
-        return $this->gitlab;
-    }
-    public function getBitbucket(): \Upsun\Model\BitbucketIntegrationConfigurations|null
-    {
-        return $this->bitbucket;
-    }
-    public function getBitbucketServer(): \Upsun\Model\BitbucketServerIntegrationConfigurations|null
-    {
-        return $this->bitbucket_server;
-    }
-    public function getHealthEmail(): \Upsun\Model\HealthEmailNotificationIntegrationConfigurations|null
-    {
-        return $this->health_email;
-    }
-    public function getHealthWebhook(): \Upsun\Model\HealthWebhookNotificationIntegrationConfigurations|null
-    {
-        return $this->health_webhook;
-    }
-    public function getHealthPagerduty(): \Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations|null
-    {
-        return $this->health_pagerduty;
-    }
-    public function getHealthSlack(): \Upsun\Model\HealthSlackNotificationIntegrationConfigurations|null
-    {
-        return $this->health_slack;
-    }
-    public function getCdnFastly(): \Upsun\Model\FastlyCDNIntegrationConfigurations|null
-    {
-        return $this->cdn_fastly;
-    }
-    public function getBlackfire(): \Upsun\Model\BlackfireIntegrationConfigurations|null
-    {
-        return $this->blackfire;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'newrelic' => $this->newrelic,

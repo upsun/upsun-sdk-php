@@ -18,34 +18,14 @@ final class StrictTransportSecurityOptions1 implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly bool|null $enabled;
-    public readonly bool|null $include_subdomains;
-    public readonly bool|null $preload;
-
     public function __construct(
-        bool|null $enabled = null,
-        bool|null $include_subdomains = null,
-        bool|null $preload = null
+        public readonly bool|null $enabled = null,
+        public readonly bool|null $include_subdomains = null,
+        public readonly bool|null $preload = null
     ) {
-        $this->enabled = $enabled;
-        $this->include_subdomains = $include_subdomains;
-        $this->preload = $preload;
     }
 
-    public function getEnabled(): bool|null
-    {
-        return $this->enabled;
-    }
-    public function getIncludeSubdomains(): bool|null
-    {
-        return $this->include_subdomains;
-    }
-    public function getPreload(): bool|null
-    {
-        return $this->preload;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'enabled' => $this->enabled,

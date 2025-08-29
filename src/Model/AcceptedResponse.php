@@ -18,27 +18,13 @@ final class AcceptedResponse implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $status;
-    public readonly int $code;
-
     public function __construct(
-        string $status = null,
-        int $code = null
+        public readonly string $status = null,
+        public readonly int $code = null
     ) {
-        $this->status = $status;
-        $this->code = $code;
     }
 
-    public function getStatus(): string
-    {
-        return $this->status;
-    }
-    public function getCode(): int
-    {
-        return $this->code;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'status' => $this->status,

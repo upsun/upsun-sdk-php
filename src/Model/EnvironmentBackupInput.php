@@ -18,20 +18,12 @@ final class EnvironmentBackupInput implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly bool $safe;
-
     public function __construct(
-        bool $safe = null
+        public readonly bool $safe = null
     ) {
-        $this->safe = $safe;
     }
 
-    public function getSafe(): bool
-    {
-        return $this->safe;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'safe' => $this->safe,

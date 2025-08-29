@@ -18,124 +18,26 @@ final class Project implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $attributes;
-    public readonly string $title;
-    public readonly string $description;
-    public readonly string $owner;
-    public readonly string $namespace;
-    public readonly string $organization;
-    public readonly string $default_branch;
-    public readonly \Upsun\Model\Status $status;
-    public readonly string $timezone;
-    public readonly string $region;
-    public readonly \Upsun\Model\RepositoryInformation $repository;
-    public readonly string $default_domain;
-    public readonly \Upsun\Model\SubscriptionInformation $subscription;
-
     public function __construct(
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
-        ?array $attributes = null,
-        string $title = null,
-        string $description = null,
-        string $owner = null,
-        string $namespace = null,
-        string $organization = null,
-        string $default_branch = null,
-        \Upsun\Model\Status $status = null,
-        string $timezone = null,
-        string $region = null,
-        \Upsun\Model\RepositoryInformation $repository = null,
-        string $default_domain = null,
-        \Upsun\Model\SubscriptionInformation $subscription = null
+        public readonly \DateTime $created_at = null,
+        public readonly \DateTime $updated_at = null,
+        public readonly ?array $attributes = null,
+        public readonly string $title = null,
+        public readonly string $description = null,
+        public readonly string $owner = null,
+        public readonly string $namespace = null,
+        public readonly string $organization = null,
+        public readonly string $default_branch = null,
+        public readonly \Upsun\Model\Status $status = null,
+        public readonly string $timezone = null,
+        public readonly string $region = null,
+        public readonly \Upsun\Model\RepositoryInformation $repository = null,
+        public readonly string $default_domain = null,
+        public readonly \Upsun\Model\SubscriptionInformation $subscription = null
     ) {
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
-        $this->attributes = $attributes;
-        $this->title = $title;
-        $this->description = $description;
-        $this->owner = $owner;
-        $this->namespace = $namespace;
-        $this->organization = $organization;
-        $this->default_branch = $default_branch;
-        $this->status = $status;
-        $this->timezone = $timezone;
-        $this->region = $region;
-        $this->repository = $repository;
-        $this->default_domain = $default_domain;
-        $this->subscription = $subscription;
     }
 
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->updated_at;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getAttributes(): ?array
-    {
-        return $this->attributes;
-    }
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-    public function getOwner(): string
-    {
-        return $this->owner;
-    }
-    public function getNamespace(): string
-    {
-        return $this->namespace;
-    }
-    public function getOrganization(): string
-    {
-        return $this->organization;
-    }
-    public function getDefaultBranch(): string
-    {
-        return $this->default_branch;
-    }
-    public function getStatus(): \Upsun\Model\Status
-    {
-        return $this->status;
-    }
-    public function getTimezone(): string
-    {
-        return $this->timezone;
-    }
-    public function getRegion(): string
-    {
-        return $this->region;
-    }
-    public function getRepository(): \Upsun\Model\RepositoryInformation
-    {
-        return $this->repository;
-    }
-    public function getDefaultDomain(): string
-    {
-        return $this->default_domain;
-    }
-    public function getSubscription(): \Upsun\Model\SubscriptionInformation
-    {
-        return $this->subscription;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'created_at' => $this->created_at,

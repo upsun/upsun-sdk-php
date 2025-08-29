@@ -18,48 +18,16 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $spec;
-    public readonly \Upsun\Model\TheCommandsDefinition $commands;
-    public readonly int|null $shutdown_timeout;
-    public readonly int $timeout;
-    public readonly string|null $cmd;
-
     public function __construct(
-        string $spec = null,
-        \Upsun\Model\TheCommandsDefinition $commands = null,
-        int|null $shutdown_timeout = null,
-        int $timeout = null,
-        string|null $cmd = null
+        public readonly string $spec = null,
+        public readonly \Upsun\Model\TheCommandsDefinition $commands = null,
+        public readonly int|null $shutdown_timeout = null,
+        public readonly int $timeout = null,
+        public readonly string|null $cmd = null
     ) {
-        $this->spec = $spec;
-        $this->commands = $commands;
-        $this->shutdown_timeout = $shutdown_timeout;
-        $this->timeout = $timeout;
-        $this->cmd = $cmd;
     }
 
-    public function getSpec(): string
-    {
-        return $this->spec;
-    }
-    public function getCommands(): \Upsun\Model\TheCommandsDefinition
-    {
-        return $this->commands;
-    }
-    public function getShutdownTimeout(): int|null
-    {
-        return $this->shutdown_timeout;
-    }
-    public function getTimeout(): int
-    {
-        return $this->timeout;
-    }
-    public function getCmd(): string|null
-    {
-        return $this->cmd;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'spec' => $this->spec,

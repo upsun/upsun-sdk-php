@@ -18,20 +18,12 @@ final class Resources4 implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $init;
-
     public function __construct(
-        string $init = null
+        public readonly string $init = null
     ) {
-        $this->init = $init;
     }
 
-    public function getInit(): string
-    {
-        return $this->init;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'init' => $this->init,

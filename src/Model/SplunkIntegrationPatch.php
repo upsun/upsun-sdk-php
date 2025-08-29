@@ -18,68 +18,18 @@ final class SplunkIntegrationPatch implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $type;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $extra;
-    public readonly string $url;
-    public readonly string $index;
-    public readonly string $token;
-    public readonly string|null $sourcetype;
-    public readonly bool|null $tls_verify;
-
     public function __construct(
-        string $type = null,
-        ?array $extra = null,
-        string $url = null,
-        string $index = null,
-        string $token = null,
-        string|null $sourcetype = null,
-        bool|null $tls_verify = null
+        public readonly string $type = null,
+        public readonly ?array $extra = null,
+        public readonly string $url = null,
+        public readonly string $index = null,
+        public readonly string $token = null,
+        public readonly string|null $sourcetype = null,
+        public readonly bool|null $tls_verify = null
     ) {
-        $this->type = $type;
-        $this->extra = $extra;
-        $this->url = $url;
-        $this->index = $index;
-        $this->token = $token;
-        $this->sourcetype = $sourcetype;
-        $this->tls_verify = $tls_verify;
     }
 
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getExtra(): ?array
-    {
-        return $this->extra;
-    }
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-    public function getIndex(): string
-    {
-        return $this->index;
-    }
-    public function getToken(): string
-    {
-        return $this->token;
-    }
-    public function getSourcetype(): string|null
-    {
-        return $this->sourcetype;
-    }
-    public function getTlsVerify(): bool|null
-    {
-        return $this->tls_verify;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->type,

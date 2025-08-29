@@ -18,97 +18,23 @@ final class Region implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $id;
-    public readonly string|null $label;
-    public readonly string|null $zone;
-    public readonly string|null $selection_label;
-    public readonly string|null $project_label;
-    public readonly string|null $timezone;
-    public readonly bool|null $available;
-    public readonly bool|null $private;
-    public readonly string|null $endpoint;
-    public readonly \Upsun\Model\RegionProvider|null $provider;
-    public readonly \Upsun\Model\RegionDatacenter|null $datacenter;
-    public readonly \Upsun\Model\RegionEnvironmentalImpact|null $environmental_impact;
-
     public function __construct(
-        string|null $id = null,
-        string|null $label = null,
-        string|null $zone = null,
-        string|null $selection_label = null,
-        string|null $project_label = null,
-        string|null $timezone = null,
-        bool|null $available = null,
-        bool|null $private = null,
-        string|null $endpoint = null,
-        \Upsun\Model\RegionProvider|null $provider = null,
-        \Upsun\Model\RegionDatacenter|null $datacenter = null,
-        \Upsun\Model\RegionEnvironmentalImpact|null $environmental_impact = null
+        public readonly string|null $id = null,
+        public readonly string|null $label = null,
+        public readonly string|null $zone = null,
+        public readonly string|null $selection_label = null,
+        public readonly string|null $project_label = null,
+        public readonly string|null $timezone = null,
+        public readonly bool|null $available = null,
+        public readonly bool|null $private = null,
+        public readonly string|null $endpoint = null,
+        public readonly \Upsun\Model\RegionProvider|null $provider = null,
+        public readonly \Upsun\Model\RegionDatacenter|null $datacenter = null,
+        public readonly \Upsun\Model\RegionEnvironmentalImpact|null $environmental_impact = null
     ) {
-        $this->id = $id;
-        $this->label = $label;
-        $this->zone = $zone;
-        $this->selection_label = $selection_label;
-        $this->project_label = $project_label;
-        $this->timezone = $timezone;
-        $this->available = $available;
-        $this->private = $private;
-        $this->endpoint = $endpoint;
-        $this->provider = $provider;
-        $this->datacenter = $datacenter;
-        $this->environmental_impact = $environmental_impact;
     }
 
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getLabel(): string|null
-    {
-        return $this->label;
-    }
-    public function getZone(): string|null
-    {
-        return $this->zone;
-    }
-    public function getSelectionLabel(): string|null
-    {
-        return $this->selection_label;
-    }
-    public function getProjectLabel(): string|null
-    {
-        return $this->project_label;
-    }
-    public function getTimezone(): string|null
-    {
-        return $this->timezone;
-    }
-    public function getAvailable(): bool|null
-    {
-        return $this->available;
-    }
-    public function getPrivate(): bool|null
-    {
-        return $this->private;
-    }
-    public function getEndpoint(): string|null
-    {
-        return $this->endpoint;
-    }
-    public function getProvider(): \Upsun\Model\RegionProvider|null
-    {
-        return $this->provider;
-    }
-    public function getDatacenter(): \Upsun\Model\RegionDatacenter|null
-    {
-        return $this->datacenter;
-    }
-    public function getEnvironmentalImpact(): \Upsun\Model\RegionEnvironmentalImpact|null
-    {
-        return $this->environmental_impact;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

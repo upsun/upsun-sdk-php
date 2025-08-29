@@ -18,40 +18,14 @@ final class ProjectSettingsPatch implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly object|null $initialize;
-    /**
-     * @var \Upsun\Model\DataRetentionConfigurationValue1[]|null
-     */
-    public readonly ?array $data_retention;
-    public readonly \Upsun\Model\BuildResources2|null $build_resources;
-
     public function __construct(
-        object|null $initialize = null,
-        ?array $data_retention = null,
-        \Upsun\Model\BuildResources2|null $build_resources = null
+        public readonly object|null $initialize = null,
+        public readonly ?array $data_retention = null,
+        public readonly \Upsun\Model\BuildResources2|null $build_resources = null
     ) {
-        $this->initialize = $initialize;
-        $this->data_retention = $data_retention;
-        $this->build_resources = $build_resources;
     }
 
-    public function getInitialize(): object|null
-    {
-        return $this->initialize;
-    }
-    /**
-     * @return \Upsun\Model\DataRetentionConfigurationValue1[]|null
-     */
-    public function getDataRetention(): ?array
-    {
-        return $this->data_retention;
-    }
-    public function getBuildResources(): \Upsun\Model\BuildResources2|null
-    {
-        return $this->build_resources;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'initialize' => $this->initialize,

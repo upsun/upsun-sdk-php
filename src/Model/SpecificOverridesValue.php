@@ -18,54 +18,16 @@ final class SpecificOverridesValue implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $expires;
-    public readonly string|null $passthru;
-    public readonly bool|null $scripts;
-    public readonly bool|null $allow;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $headers;
-
     public function __construct(
-        string|null $expires = null,
-        string|null $passthru = null,
-        bool|null $scripts = null,
-        bool|null $allow = null,
-        ?array $headers = null
+        public readonly string|null $expires = null,
+        public readonly string|null $passthru = null,
+        public readonly bool|null $scripts = null,
+        public readonly bool|null $allow = null,
+        public readonly ?array $headers = null
     ) {
-        $this->expires = $expires;
-        $this->passthru = $passthru;
-        $this->scripts = $scripts;
-        $this->allow = $allow;
-        $this->headers = $headers;
     }
 
-    public function getExpires(): string|null
-    {
-        return $this->expires;
-    }
-    public function getPassthru(): string|null
-    {
-        return $this->passthru;
-    }
-    public function getScripts(): bool|null
-    {
-        return $this->scripts;
-    }
-    public function getAllow(): bool|null
-    {
-        return $this->allow;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getHeaders(): ?array
-    {
-        return $this->headers;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'expires' => $this->expires,

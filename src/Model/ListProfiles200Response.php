@@ -18,40 +18,14 @@ final class ListProfiles200Response implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly int|null $count;
-    /**
-     * @var \Upsun\Model\Profile[]|null
-     */
-    public readonly ?array $profiles;
-    public readonly \Upsun\Model\HalLinks|null $_links;
-
     public function __construct(
-        int|null $count = null,
-        ?array $profiles = null,
-        \Upsun\Model\HalLinks|null $_links = null
+        public readonly int|null $count = null,
+        public readonly ?array $profiles = null,
+        public readonly \Upsun\Model\HalLinks|null $_links = null
     ) {
-        $this->count = $count;
-        $this->profiles = $profiles;
-        $this->_links = $_links;
     }
 
-    public function getCount(): int|null
-    {
-        return $this->count;
-    }
-    /**
-     * @return \Upsun\Model\Profile[]|null
-     */
-    public function getProfiles(): ?array
-    {
-        return $this->profiles;
-    }
-    public function getLinks(): \Upsun\Model\HalLinks|null
-    {
-        return $this->_links;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'count' => $this->count,

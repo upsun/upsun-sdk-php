@@ -18,27 +18,13 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $socket_family;
-    public readonly string $protocol;
-
     public function __construct(
-        string $socket_family = null,
-        string $protocol = null
+        public readonly string $socket_family = null,
+        public readonly string $protocol = null
     ) {
-        $this->socket_family = $socket_family;
-        $this->protocol = $protocol;
     }
 
-    public function getSocketFamily(): string
-    {
-        return $this->socket_family;
-    }
-    public function getProtocol(): string
-    {
-        return $this->protocol;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'socket_family' => $this->socket_family,

@@ -18,39 +18,13 @@ final class GetUsageAlerts200Response implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    /**
-     * @var \Upsun\Model\Alert[]|null
-     */
-    public readonly ?array $available;
-    /**
-     * @var \Upsun\Model\Alert[]|null
-     */
-    public readonly ?array $current;
-
     public function __construct(
-        ?array $available = null,
-        ?array $current = null
+        public readonly ?array $available = null,
+        public readonly ?array $current = null
     ) {
-        $this->available = $available;
-        $this->current = $current;
     }
 
-    /**
-     * @return \Upsun\Model\Alert[]|null
-     */
-    public function getAvailable(): ?array
-    {
-        return $this->available;
-    }
-    /**
-     * @return \Upsun\Model\Alert[]|null
-     */
-    public function getCurrent(): ?array
-    {
-        return $this->current;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'available' => $this->available,

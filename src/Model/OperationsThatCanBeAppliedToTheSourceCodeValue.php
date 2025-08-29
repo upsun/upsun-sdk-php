@@ -18,20 +18,12 @@ final class OperationsThatCanBeAppliedToTheSourceCodeValue implements JsonSerial
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $command;
-
     public function __construct(
-        string $command = null
+        public readonly string $command = null
     ) {
-        $this->command = $command;
     }
 
-    public function getCommand(): string
-    {
-        return $this->command;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'command' => $this->command,

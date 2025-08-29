@@ -18,48 +18,16 @@ final class EnvironmentBranchInput implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $title;
-    public readonly string $name;
-    public readonly bool $clone_parent;
-    public readonly string $type;
-    public readonly \Upsun\Model\Resources2 $resources;
-
     public function __construct(
-        string $title = null,
-        string $name = null,
-        bool $clone_parent = null,
-        string $type = null,
-        \Upsun\Model\Resources2 $resources = null
+        public readonly string $title = null,
+        public readonly string $name = null,
+        public readonly bool $clone_parent = null,
+        public readonly string $type = null,
+        public readonly \Upsun\Model\Resources2 $resources = null
     ) {
-        $this->title = $title;
-        $this->name = $name;
-        $this->clone_parent = $clone_parent;
-        $this->type = $type;
-        $this->resources = $resources;
     }
 
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-    public function getName(): string
-    {
-        return $this->name;
-    }
-    public function getCloneParent(): bool
-    {
-        return $this->clone_parent;
-    }
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    public function getResources(): \Upsun\Model\Resources2
-    {
-        return $this->resources;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'title' => $this->title,

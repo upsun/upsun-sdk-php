@@ -18,142 +18,26 @@ final class CurrentUser implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $id;
-    public readonly string|null $uuid;
-    public readonly string|null $username;
-    public readonly string|null $display_name;
-    public readonly int|null $status;
-    public readonly string|null $mail;
-    /**
-     * @var \Upsun\Model\SSHKey[]|null
-     */
-    public readonly ?array $ssh_keys;
-    public readonly bool|null $has_key;
-    /**
-     * @var \Upsun\Model\CurrentUserProjectsInner[]|null
-     */
-    public readonly ?array $projects;
-    public readonly int|null $sequence;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $roles;
-    public readonly string|null $picture;
-    public readonly object|null $tickets;
-    public readonly bool|null $trial;
-    /**
-     * @var \Upsun\Model\CurrentUserCurrentTrialInner[]|null
-     */
-    public readonly ?array $current_trial;
-
     public function __construct(
-        string|null $id = null,
-        string|null $uuid = null,
-        string|null $username = null,
-        string|null $display_name = null,
-        int|null $status = null,
-        string|null $mail = null,
-        ?array $ssh_keys = null,
-        bool|null $has_key = null,
-        ?array $projects = null,
-        int|null $sequence = null,
-        ?array $roles = null,
-        string|null $picture = null,
-        object|null $tickets = null,
-        bool|null $trial = null,
-        ?array $current_trial = null
+        public readonly string|null $id = null,
+        public readonly string|null $uuid = null,
+        public readonly string|null $username = null,
+        public readonly string|null $display_name = null,
+        public readonly int|null $status = null,
+        public readonly string|null $mail = null,
+        public readonly ?array $ssh_keys = null,
+        public readonly bool|null $has_key = null,
+        public readonly ?array $projects = null,
+        public readonly int|null $sequence = null,
+        public readonly ?array $roles = null,
+        public readonly string|null $picture = null,
+        public readonly object|null $tickets = null,
+        public readonly bool|null $trial = null,
+        public readonly ?array $current_trial = null
     ) {
-        $this->id = $id;
-        $this->uuid = $uuid;
-        $this->username = $username;
-        $this->display_name = $display_name;
-        $this->status = $status;
-        $this->mail = $mail;
-        $this->ssh_keys = $ssh_keys;
-        $this->has_key = $has_key;
-        $this->projects = $projects;
-        $this->sequence = $sequence;
-        $this->roles = $roles;
-        $this->picture = $picture;
-        $this->tickets = $tickets;
-        $this->trial = $trial;
-        $this->current_trial = $current_trial;
     }
 
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getUuid(): string|null
-    {
-        return $this->uuid;
-    }
-    public function getUsername(): string|null
-    {
-        return $this->username;
-    }
-    public function getDisplayName(): string|null
-    {
-        return $this->display_name;
-    }
-    public function getStatus(): int|null
-    {
-        return $this->status;
-    }
-    public function getMail(): string|null
-    {
-        return $this->mail;
-    }
-    /**
-     * @return \Upsun\Model\SSHKey[]|null
-     */
-    public function getSshKeys(): ?array
-    {
-        return $this->ssh_keys;
-    }
-    public function getHasKey(): bool|null
-    {
-        return $this->has_key;
-    }
-    /**
-     * @return \Upsun\Model\CurrentUserProjectsInner[]|null
-     */
-    public function getProjects(): ?array
-    {
-        return $this->projects;
-    }
-    public function getSequence(): int|null
-    {
-        return $this->sequence;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getRoles(): ?array
-    {
-        return $this->roles;
-    }
-    public function getPicture(): string|null
-    {
-        return $this->picture;
-    }
-    public function getTickets(): object|null
-    {
-        return $this->tickets;
-    }
-    public function getTrial(): bool|null
-    {
-        return $this->trial;
-    }
-    /**
-     * @return \Upsun\Model\CurrentUserCurrentTrialInner[]|null
-     */
-    public function getCurrentTrial(): ?array
-    {
-        return $this->current_trial;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

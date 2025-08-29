@@ -18,27 +18,13 @@ final class EnvironmentOperationInput implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $service;
-    public readonly string $operation;
-
     public function __construct(
-        string $service = null,
-        string $operation = null
+        public readonly string $service = null,
+        public readonly string $operation = null
     ) {
-        $this->service = $service;
-        $this->operation = $operation;
     }
 
-    public function getService(): string
-    {
-        return $this->service;
-    }
-    public function getOperation(): string
-    {
-        return $this->operation;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'service' => $this->service,

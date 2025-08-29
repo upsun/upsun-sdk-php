@@ -18,82 +18,20 @@ final class PlanRecords implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $id;
-    public readonly string|null $owner;
-    public readonly string|null $subscription_id;
-    public readonly string|null $sku;
-    public readonly string|null $plan;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $options;
-    public readonly \DateTime|null $start;
-    public readonly \DateTime|null $end;
-    public readonly string|null $status;
-
     public function __construct(
-        string|null $id = null,
-        string|null $owner = null,
-        string|null $subscription_id = null,
-        string|null $sku = null,
-        string|null $plan = null,
-        ?array $options = null,
-        \DateTime|null $start = null,
-        \DateTime|null $end = null,
-        string|null $status = null
+        public readonly string|null $id = null,
+        public readonly string|null $owner = null,
+        public readonly string|null $subscription_id = null,
+        public readonly string|null $sku = null,
+        public readonly string|null $plan = null,
+        public readonly ?array $options = null,
+        public readonly \DateTime|null $start = null,
+        public readonly \DateTime|null $end = null,
+        public readonly string|null $status = null
     ) {
-        $this->id = $id;
-        $this->owner = $owner;
-        $this->subscription_id = $subscription_id;
-        $this->sku = $sku;
-        $this->plan = $plan;
-        $this->options = $options;
-        $this->start = $start;
-        $this->end = $end;
-        $this->status = $status;
     }
 
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getOwner(): string|null
-    {
-        return $this->owner;
-    }
-    public function getSubscriptionId(): string|null
-    {
-        return $this->subscription_id;
-    }
-    public function getSku(): string|null
-    {
-        return $this->sku;
-    }
-    public function getPlan(): string|null
-    {
-        return $this->plan;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getOptions(): ?array
-    {
-        return $this->options;
-    }
-    public function getStart(): \DateTime|null
-    {
-        return $this->start;
-    }
-    public function getEnd(): \DateTime|null
-    {
-        return $this->end;
-    }
-    public function getStatus(): string|null
-    {
-        return $this->status;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

@@ -18,39 +18,13 @@ final class OrganizationAddonsObjectUpgradesAvailable implements JsonSerializabl
 {
     protected const DISCRIMINATOR = null;
 
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $user_management;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $support_level;
-
     public function __construct(
-        ?array $user_management = null,
-        ?array $support_level = null
+        public readonly ?array $user_management = null,
+        public readonly ?array $support_level = null
     ) {
-        $this->user_management = $user_management;
-        $this->support_level = $support_level;
     }
 
-    /**
-     * @return string[]|null
-     */
-    public function getUserManagement(): ?array
-    {
-        return $this->user_management;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getSupportLevel(): ?array
-    {
-        return $this->support_level;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'user_management' => $this->user_management,

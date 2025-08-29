@@ -18,26 +18,12 @@ final class ListOrgInvoices200Response implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    /**
-     * @var \Upsun\Model\Invoice[]|null
-     */
-    public readonly ?array $items;
-
     public function __construct(
-        ?array $items = null
+        public readonly ?array $items = null
     ) {
-        $this->items = $items;
     }
 
-    /**
-     * @return \Upsun\Model\Invoice[]|null
-     */
-    public function getItems(): ?array
-    {
-        return $this->items;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'items' => $this->items,

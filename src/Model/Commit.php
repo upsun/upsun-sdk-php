@@ -18,61 +18,17 @@ final class Commit implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $sha;
-    public readonly \Upsun\Model\TheInformationAboutTheAuthor $author;
-    public readonly \Upsun\Model\TheInformationAboutTheCommitter $committer;
-    public readonly string $message;
-    public readonly string $tree;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $parents;
-
     public function __construct(
-        string $sha = null,
-        \Upsun\Model\TheInformationAboutTheAuthor $author = null,
-        \Upsun\Model\TheInformationAboutTheCommitter $committer = null,
-        string $message = null,
-        string $tree = null,
-        ?array $parents = null
+        public readonly string $sha = null,
+        public readonly \Upsun\Model\TheInformationAboutTheAuthor $author = null,
+        public readonly \Upsun\Model\TheInformationAboutTheCommitter $committer = null,
+        public readonly string $message = null,
+        public readonly string $tree = null,
+        public readonly ?array $parents = null
     ) {
-        $this->sha = $sha;
-        $this->author = $author;
-        $this->committer = $committer;
-        $this->message = $message;
-        $this->tree = $tree;
-        $this->parents = $parents;
     }
 
-    public function getSha(): string
-    {
-        return $this->sha;
-    }
-    public function getAuthor(): \Upsun\Model\TheInformationAboutTheAuthor
-    {
-        return $this->author;
-    }
-    public function getCommitter(): \Upsun\Model\TheInformationAboutTheCommitter
-    {
-        return $this->committer;
-    }
-    public function getMessage(): string
-    {
-        return $this->message;
-    }
-    public function getTree(): string
-    {
-        return $this->tree;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getParents(): ?array
-    {
-        return $this->parents;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'sha' => $this->sha,

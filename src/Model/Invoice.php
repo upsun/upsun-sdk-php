@@ -18,125 +18,27 @@ final class Invoice implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $id;
-    public readonly string|null $invoice_number;
-    public readonly string|null $type;
-    public readonly string|null $order_id;
-    public readonly string|null $related_invoice_id;
-    public readonly string|null $status;
-    public readonly string|null $owner;
-    public readonly \DateTime|null $invoice_date;
-    public readonly \DateTime|null $invoice_due;
-    public readonly \DateTime|null $created;
-    public readonly \DateTime|null $changed;
-    public readonly string|null $company;
-    public readonly float|null $total;
-    public readonly \Upsun\Model\Address|null $address;
-    public readonly string|null $notes;
-    public readonly \Upsun\Model\InvoicePDF|null $invoice_pdf;
-
     public function __construct(
-        string|null $id = null,
-        string|null $invoice_number = null,
-        string|null $type = null,
-        string|null $order_id = null,
-        string|null $related_invoice_id = null,
-        string|null $status = null,
-        string|null $owner = null,
-        \DateTime|null $invoice_date = null,
-        \DateTime|null $invoice_due = null,
-        \DateTime|null $created = null,
-        \DateTime|null $changed = null,
-        string|null $company = null,
-        float|null $total = null,
-        \Upsun\Model\Address|null $address = null,
-        string|null $notes = null,
-        \Upsun\Model\InvoicePDF|null $invoice_pdf = null
+        public readonly string|null $id = null,
+        public readonly string|null $invoice_number = null,
+        public readonly string|null $type = null,
+        public readonly string|null $order_id = null,
+        public readonly string|null $related_invoice_id = null,
+        public readonly string|null $status = null,
+        public readonly string|null $owner = null,
+        public readonly \DateTime|null $invoice_date = null,
+        public readonly \DateTime|null $invoice_due = null,
+        public readonly \DateTime|null $created = null,
+        public readonly \DateTime|null $changed = null,
+        public readonly string|null $company = null,
+        public readonly float|null $total = null,
+        public readonly \Upsun\Model\Address|null $address = null,
+        public readonly string|null $notes = null,
+        public readonly \Upsun\Model\InvoicePDF|null $invoice_pdf = null
     ) {
-        $this->id = $id;
-        $this->invoice_number = $invoice_number;
-        $this->type = $type;
-        $this->order_id = $order_id;
-        $this->related_invoice_id = $related_invoice_id;
-        $this->status = $status;
-        $this->owner = $owner;
-        $this->invoice_date = $invoice_date;
-        $this->invoice_due = $invoice_due;
-        $this->created = $created;
-        $this->changed = $changed;
-        $this->company = $company;
-        $this->total = $total;
-        $this->address = $address;
-        $this->notes = $notes;
-        $this->invoice_pdf = $invoice_pdf;
     }
 
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getInvoiceNumber(): string|null
-    {
-        return $this->invoice_number;
-    }
-    public function getType(): string|null
-    {
-        return $this->type;
-    }
-    public function getOrderId(): string|null
-    {
-        return $this->order_id;
-    }
-    public function getRelatedInvoiceId(): string|null
-    {
-        return $this->related_invoice_id;
-    }
-    public function getStatus(): string|null
-    {
-        return $this->status;
-    }
-    public function getOwner(): string|null
-    {
-        return $this->owner;
-    }
-    public function getInvoiceDate(): \DateTime|null
-    {
-        return $this->invoice_date;
-    }
-    public function getInvoiceDue(): \DateTime|null
-    {
-        return $this->invoice_due;
-    }
-    public function getCreated(): \DateTime|null
-    {
-        return $this->created;
-    }
-    public function getChanged(): \DateTime|null
-    {
-        return $this->changed;
-    }
-    public function getCompany(): string|null
-    {
-        return $this->company;
-    }
-    public function getTotal(): float|null
-    {
-        return $this->total;
-    }
-    public function getAddress(): \Upsun\Model\Address|null
-    {
-        return $this->address;
-    }
-    public function getNotes(): string|null
-    {
-        return $this->notes;
-    }
-    public function getInvoicePdf(): \Upsun\Model\InvoicePDF|null
-    {
-        return $this->invoice_pdf;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

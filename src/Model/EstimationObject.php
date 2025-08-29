@@ -18,55 +18,17 @@ final class EstimationObject implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $plan;
-    public readonly string|null $user_licenses;
-    public readonly string|null $environments;
-    public readonly string|null $storage;
-    public readonly string|null $total;
-    public readonly object|null $options;
-
     public function __construct(
-        string|null $plan = null,
-        string|null $user_licenses = null,
-        string|null $environments = null,
-        string|null $storage = null,
-        string|null $total = null,
-        object|null $options = null
+        public readonly string|null $plan = null,
+        public readonly string|null $user_licenses = null,
+        public readonly string|null $environments = null,
+        public readonly string|null $storage = null,
+        public readonly string|null $total = null,
+        public readonly object|null $options = null
     ) {
-        $this->plan = $plan;
-        $this->user_licenses = $user_licenses;
-        $this->environments = $environments;
-        $this->storage = $storage;
-        $this->total = $total;
-        $this->options = $options;
     }
 
-    public function getPlan(): string|null
-    {
-        return $this->plan;
-    }
-    public function getUserLicenses(): string|null
-    {
-        return $this->user_licenses;
-    }
-    public function getEnvironments(): string|null
-    {
-        return $this->environments;
-    }
-    public function getStorage(): string|null
-    {
-        return $this->storage;
-    }
-    public function getTotal(): string|null
-    {
-        return $this->total;
-    }
-    public function getOptions(): object|null
-    {
-        return $this->options;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'plan' => $this->plan,

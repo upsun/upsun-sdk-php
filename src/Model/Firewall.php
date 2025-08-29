@@ -18,26 +18,12 @@ final class Firewall implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    /**
-     * @var \Upsun\Model\OutboundFirewallRestrictionsInner[]|null
-     */
-    public readonly ?array $outbound;
-
     public function __construct(
-        ?array $outbound = null
+        public readonly ?array $outbound = null
     ) {
-        $this->outbound = $outbound;
     }
 
-    /**
-     * @return \Upsun\Model\OutboundFirewallRestrictionsInner[]|null
-     */
-    public function getOutbound(): ?array
-    {
-        return $this->outbound;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'outbound' => $this->outbound,

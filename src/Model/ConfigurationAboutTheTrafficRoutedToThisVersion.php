@@ -18,20 +18,12 @@ final class ConfigurationAboutTheTrafficRoutedToThisVersion implements JsonSeria
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly int $percentage;
-
     public function __construct(
-        int $percentage = null
+        public readonly int $percentage = null
     ) {
-        $this->percentage = $percentage;
     }
 
-    public function getPercentage(): int
-    {
-        return $this->percentage;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'percentage' => $this->percentage,

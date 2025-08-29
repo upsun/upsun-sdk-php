@@ -18,62 +18,18 @@ final class TeamProjectAccess implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $team_id;
-    public readonly string|null $organization_id;
-    public readonly string|null $project_id;
-    public readonly string|null $project_title;
-    public readonly \DateTime|null $granted_at;
-    public readonly \DateTime|null $updated_at;
-    public readonly \Upsun\Model\TeamProjectAccessLinks|null $_links;
-
     public function __construct(
-        string|null $team_id = null,
-        string|null $organization_id = null,
-        string|null $project_id = null,
-        string|null $project_title = null,
-        \DateTime|null $granted_at = null,
-        \DateTime|null $updated_at = null,
-        \Upsun\Model\TeamProjectAccessLinks|null $_links = null
+        public readonly string|null $team_id = null,
+        public readonly string|null $organization_id = null,
+        public readonly string|null $project_id = null,
+        public readonly string|null $project_title = null,
+        public readonly \DateTime|null $granted_at = null,
+        public readonly \DateTime|null $updated_at = null,
+        public readonly \Upsun\Model\TeamProjectAccessLinks|null $_links = null
     ) {
-        $this->team_id = $team_id;
-        $this->organization_id = $organization_id;
-        $this->project_id = $project_id;
-        $this->project_title = $project_title;
-        $this->granted_at = $granted_at;
-        $this->updated_at = $updated_at;
-        $this->_links = $_links;
     }
 
-    public function getTeamId(): string|null
-    {
-        return $this->team_id;
-    }
-    public function getOrganizationId(): string|null
-    {
-        return $this->organization_id;
-    }
-    public function getProjectId(): string|null
-    {
-        return $this->project_id;
-    }
-    public function getProjectTitle(): string|null
-    {
-        return $this->project_title;
-    }
-    public function getGrantedAt(): \DateTime|null
-    {
-        return $this->granted_at;
-    }
-    public function getUpdatedAt(): \DateTime|null
-    {
-        return $this->updated_at;
-    }
-    public function getLinks(): \Upsun\Model\TeamProjectAccessLinks|null
-    {
-        return $this->_links;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'team_id' => $this->team_id,

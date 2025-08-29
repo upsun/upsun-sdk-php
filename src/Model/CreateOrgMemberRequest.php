@@ -18,33 +18,13 @@ final class CreateOrgMemberRequest implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $user_id;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $permissions;
-
     public function __construct(
-        string $user_id = null,
-        ?array $permissions = null
+        public readonly string $user_id = null,
+        public readonly ?array $permissions = null
     ) {
-        $this->user_id = $user_id;
-        $this->permissions = $permissions;
     }
 
-    public function getUserId(): string
-    {
-        return $this->user_id;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getPermissions(): ?array
-    {
-        return $this->permissions;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'user_id' => $this->user_id,

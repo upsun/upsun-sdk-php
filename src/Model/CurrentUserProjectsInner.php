@@ -18,153 +18,31 @@ final class CurrentUserProjectsInner implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $id;
-    public readonly string|null $name;
-    public readonly string|null $title;
-    public readonly string|null $cluster;
-    public readonly string|null $cluster_label;
-    public readonly string|null $region;
-    public readonly string|null $region_label;
-    public readonly string|null $uri;
-    public readonly string|null $endpoint;
-    public readonly int|null $license_id;
-    public readonly string|null $owner;
-    public readonly \Upsun\Model\OwnerInfo|null $owner_info;
-    public readonly string|null $plan;
-    public readonly int|null $subscription_id;
-    public readonly string|null $status;
-    public readonly string|null $vendor;
-    public readonly string|null $vendor_label;
-    public readonly string|null $vendor_website;
-    public readonly string|null $vendor_resources;
-    public readonly \DateTime|null $created_at;
-
     public function __construct(
-        string|null $id = null,
-        string|null $name = null,
-        string|null $title = null,
-        string|null $cluster = null,
-        string|null $cluster_label = null,
-        string|null $region = null,
-        string|null $region_label = null,
-        string|null $uri = null,
-        string|null $endpoint = null,
-        int|null $license_id = null,
-        string|null $owner = null,
-        \Upsun\Model\OwnerInfo|null $owner_info = null,
-        string|null $plan = null,
-        int|null $subscription_id = null,
-        string|null $status = null,
-        string|null $vendor = null,
-        string|null $vendor_label = null,
-        string|null $vendor_website = null,
-        string|null $vendor_resources = null,
-        \DateTime|null $created_at = null
+        public readonly string|null $id = null,
+        public readonly string|null $name = null,
+        public readonly string|null $title = null,
+        public readonly string|null $cluster = null,
+        public readonly string|null $cluster_label = null,
+        public readonly string|null $region = null,
+        public readonly string|null $region_label = null,
+        public readonly string|null $uri = null,
+        public readonly string|null $endpoint = null,
+        public readonly int|null $license_id = null,
+        public readonly string|null $owner = null,
+        public readonly \Upsun\Model\OwnerInfo|null $owner_info = null,
+        public readonly string|null $plan = null,
+        public readonly int|null $subscription_id = null,
+        public readonly string|null $status = null,
+        public readonly string|null $vendor = null,
+        public readonly string|null $vendor_label = null,
+        public readonly string|null $vendor_website = null,
+        public readonly string|null $vendor_resources = null,
+        public readonly \DateTime|null $created_at = null
     ) {
-        $this->id = $id;
-        $this->name = $name;
-        $this->title = $title;
-        $this->cluster = $cluster;
-        $this->cluster_label = $cluster_label;
-        $this->region = $region;
-        $this->region_label = $region_label;
-        $this->uri = $uri;
-        $this->endpoint = $endpoint;
-        $this->license_id = $license_id;
-        $this->owner = $owner;
-        $this->owner_info = $owner_info;
-        $this->plan = $plan;
-        $this->subscription_id = $subscription_id;
-        $this->status = $status;
-        $this->vendor = $vendor;
-        $this->vendor_label = $vendor_label;
-        $this->vendor_website = $vendor_website;
-        $this->vendor_resources = $vendor_resources;
-        $this->created_at = $created_at;
     }
 
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getName(): string|null
-    {
-        return $this->name;
-    }
-    public function getTitle(): string|null
-    {
-        return $this->title;
-    }
-    public function getCluster(): string|null
-    {
-        return $this->cluster;
-    }
-    public function getClusterLabel(): string|null
-    {
-        return $this->cluster_label;
-    }
-    public function getRegion(): string|null
-    {
-        return $this->region;
-    }
-    public function getRegionLabel(): string|null
-    {
-        return $this->region_label;
-    }
-    public function getUri(): string|null
-    {
-        return $this->uri;
-    }
-    public function getEndpoint(): string|null
-    {
-        return $this->endpoint;
-    }
-    public function getLicenseId(): int|null
-    {
-        return $this->license_id;
-    }
-    public function getOwner(): string|null
-    {
-        return $this->owner;
-    }
-    public function getOwnerInfo(): \Upsun\Model\OwnerInfo|null
-    {
-        return $this->owner_info;
-    }
-    public function getPlan(): string|null
-    {
-        return $this->plan;
-    }
-    public function getSubscriptionId(): int|null
-    {
-        return $this->subscription_id;
-    }
-    public function getStatus(): string|null
-    {
-        return $this->status;
-    }
-    public function getVendor(): string|null
-    {
-        return $this->vendor;
-    }
-    public function getVendorLabel(): string|null
-    {
-        return $this->vendor_label;
-    }
-    public function getVendorWebsite(): string|null
-    {
-        return $this->vendor_website;
-    }
-    public function getVendorResources(): string|null
-    {
-        return $this->vendor_resources;
-    }
-    public function getCreatedAt(): \DateTime|null
-    {
-        return $this->created_at;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

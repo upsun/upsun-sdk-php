@@ -18,59 +18,15 @@ final class OutboundFirewallRestrictionsInner implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $protocol;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $ips;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $domains;
-    /**
-     * @var int[]|null
-     */
-    public readonly ?array $ports;
-
     public function __construct(
-        string $protocol = null,
-        ?array $ips = null,
-        ?array $domains = null,
-        ?array $ports = null
+        public readonly string $protocol = null,
+        public readonly ?array $ips = null,
+        public readonly ?array $domains = null,
+        public readonly ?array $ports = null
     ) {
-        $this->protocol = $protocol;
-        $this->ips = $ips;
-        $this->domains = $domains;
-        $this->ports = $ports;
     }
 
-    public function getProtocol(): string
-    {
-        return $this->protocol;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getIps(): ?array
-    {
-        return $this->ips;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getDomains(): ?array
-    {
-        return $this->domains;
-    }
-    /**
-     * @return int[]|null
-     */
-    public function getPorts(): ?array
-    {
-        return $this->ports;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'protocol' => $this->protocol,

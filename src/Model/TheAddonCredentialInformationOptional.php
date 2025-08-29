@@ -18,27 +18,13 @@ final class TheAddonCredentialInformationOptional implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $addon_key;
-    public readonly string $client_key;
-
     public function __construct(
-        string $addon_key = null,
-        string $client_key = null
+        public readonly string $addon_key = null,
+        public readonly string $client_key = null
     ) {
-        $this->addon_key = $addon_key;
-        $this->client_key = $client_key;
     }
 
-    public function getAddonKey(): string
-    {
-        return $this->addon_key;
-    }
-    public function getClientKey(): string
-    {
-        return $this->client_key;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'addon_key' => $this->addon_key,

@@ -18,62 +18,18 @@ final class OrganizationReference implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $id;
-    public readonly string|null $owner_id;
-    public readonly string|null $name;
-    public readonly string|null $label;
-    public readonly string|null $vendor;
-    public readonly \DateTime|null $created_at;
-    public readonly \DateTime|null $updated_at;
-
     public function __construct(
-        string|null $id = null,
-        string|null $owner_id = null,
-        string|null $name = null,
-        string|null $label = null,
-        string|null $vendor = null,
-        \DateTime|null $created_at = null,
-        \DateTime|null $updated_at = null
+        public readonly string|null $id = null,
+        public readonly string|null $owner_id = null,
+        public readonly string|null $name = null,
+        public readonly string|null $label = null,
+        public readonly string|null $vendor = null,
+        public readonly \DateTime|null $created_at = null,
+        public readonly \DateTime|null $updated_at = null
     ) {
-        $this->id = $id;
-        $this->owner_id = $owner_id;
-        $this->name = $name;
-        $this->label = $label;
-        $this->vendor = $vendor;
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
     }
 
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getOwnerId(): string|null
-    {
-        return $this->owner_id;
-    }
-    public function getName(): string|null
-    {
-        return $this->name;
-    }
-    public function getLabel(): string|null
-    {
-        return $this->label;
-    }
-    public function getVendor(): string|null
-    {
-        return $this->vendor;
-    }
-    public function getCreatedAt(): \DateTime|null
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime|null
-    {
-        return $this->updated_at;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

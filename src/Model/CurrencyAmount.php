@@ -18,41 +18,15 @@ final class CurrencyAmount implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $formatted;
-    public readonly float|null $amount;
-    public readonly string|null $currency_code;
-    public readonly string|null $currency_symbol;
-
     public function __construct(
-        string|null $formatted = null,
-        float|null $amount = null,
-        string|null $currency_code = null,
-        string|null $currency_symbol = null
+        public readonly string|null $formatted = null,
+        public readonly float|null $amount = null,
+        public readonly string|null $currency_code = null,
+        public readonly string|null $currency_symbol = null
     ) {
-        $this->formatted = $formatted;
-        $this->amount = $amount;
-        $this->currency_code = $currency_code;
-        $this->currency_symbol = $currency_symbol;
     }
 
-    public function getFormatted(): string|null
-    {
-        return $this->formatted;
-    }
-    public function getAmount(): float|null
-    {
-        return $this->amount;
-    }
-    public function getCurrencyCode(): string|null
-    {
-        return $this->currency_code;
-    }
-    public function getCurrencySymbol(): string|null
-    {
-        return $this->currency_symbol;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'formatted' => $this->formatted,

@@ -18,97 +18,23 @@ final class SubscriptionInformation implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $license_uri;
-    public readonly string|null $plan;
-    public readonly int|null $environments;
-    public readonly int $storage;
-    public readonly int $included_users;
-    public readonly string $subscription_management_uri;
-    public readonly bool $restricted;
-    public readonly bool $suspended;
-    public readonly int $user_licenses;
-    public readonly \Upsun\Model\ResourcesLimits|null $resources;
-    public readonly string|null $resource_validation_url;
-    public readonly \Upsun\Model\RestrictedAndDeniedImageTypes|null $image_types;
-
     public function __construct(
-        string $license_uri = null,
-        string|null $plan = null,
-        int|null $environments = null,
-        int $storage = null,
-        int $included_users = null,
-        string $subscription_management_uri = null,
-        bool $restricted = null,
-        bool $suspended = null,
-        int $user_licenses = null,
-        \Upsun\Model\ResourcesLimits|null $resources = null,
-        string|null $resource_validation_url = null,
-        \Upsun\Model\RestrictedAndDeniedImageTypes|null $image_types = null
+        public readonly string $license_uri = null,
+        public readonly string|null $plan = null,
+        public readonly int|null $environments = null,
+        public readonly int $storage = null,
+        public readonly int $included_users = null,
+        public readonly string $subscription_management_uri = null,
+        public readonly bool $restricted = null,
+        public readonly bool $suspended = null,
+        public readonly int $user_licenses = null,
+        public readonly \Upsun\Model\ResourcesLimits|null $resources = null,
+        public readonly string|null $resource_validation_url = null,
+        public readonly \Upsun\Model\RestrictedAndDeniedImageTypes|null $image_types = null
     ) {
-        $this->license_uri = $license_uri;
-        $this->plan = $plan;
-        $this->environments = $environments;
-        $this->storage = $storage;
-        $this->included_users = $included_users;
-        $this->subscription_management_uri = $subscription_management_uri;
-        $this->restricted = $restricted;
-        $this->suspended = $suspended;
-        $this->user_licenses = $user_licenses;
-        $this->resources = $resources;
-        $this->resource_validation_url = $resource_validation_url;
-        $this->image_types = $image_types;
     }
 
-    public function getLicenseUri(): string
-    {
-        return $this->license_uri;
-    }
-    public function getPlan(): string|null
-    {
-        return $this->plan;
-    }
-    public function getEnvironments(): int|null
-    {
-        return $this->environments;
-    }
-    public function getStorage(): int
-    {
-        return $this->storage;
-    }
-    public function getIncludedUsers(): int
-    {
-        return $this->included_users;
-    }
-    public function getSubscriptionManagementUri(): string
-    {
-        return $this->subscription_management_uri;
-    }
-    public function getRestricted(): bool
-    {
-        return $this->restricted;
-    }
-    public function getSuspended(): bool
-    {
-        return $this->suspended;
-    }
-    public function getUserLicenses(): int
-    {
-        return $this->user_licenses;
-    }
-    public function getResources(): \Upsun\Model\ResourcesLimits|null
-    {
-        return $this->resources;
-    }
-    public function getResourceValidationUrl(): string|null
-    {
-        return $this->resource_validation_url;
-    }
-    public function getImageTypes(): \Upsun\Model\RestrictedAndDeniedImageTypes|null
-    {
-        return $this->image_types;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'license_uri' => $this->license_uri,

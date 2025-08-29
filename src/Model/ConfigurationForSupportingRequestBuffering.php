@@ -18,27 +18,13 @@ final class ConfigurationForSupportingRequestBuffering implements JsonSerializab
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly bool $enabled;
-    public readonly string $max_request_size;
-
     public function __construct(
-        bool $enabled = null,
-        string $max_request_size = null
+        public readonly bool $enabled = null,
+        public readonly string $max_request_size = null
     ) {
-        $this->enabled = $enabled;
-        $this->max_request_size = $max_request_size;
     }
 
-    public function getEnabled(): bool
-    {
-        return $this->enabled;
-    }
-    public function getMaxRequestSize(): string
-    {
-        return $this->max_request_size;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'enabled' => $this->enabled,

@@ -18,41 +18,15 @@ final class GetTotpEnrollment200Response implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $issuer;
-    public readonly string|null $account_name;
-    public readonly string|null $secret;
-    public readonly string|null $qr_code;
-
     public function __construct(
-        string|null $issuer = null,
-        string|null $account_name = null,
-        string|null $secret = null,
-        string|null $qr_code = null
+        public readonly string|null $issuer = null,
+        public readonly string|null $account_name = null,
+        public readonly string|null $secret = null,
+        public readonly string|null $qr_code = null
     ) {
-        $this->issuer = $issuer;
-        $this->account_name = $account_name;
-        $this->secret = $secret;
-        $this->qr_code = $qr_code;
     }
 
-    public function getIssuer(): string|null
-    {
-        return $this->issuer;
-    }
-    public function getAccountName(): string|null
-    {
-        return $this->account_name;
-    }
-    public function getSecret(): string|null
-    {
-        return $this->secret;
-    }
-    public function getQrCode(): string|null
-    {
-        return $this->qr_code;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'issuer' => $this->issuer,

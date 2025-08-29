@@ -18,60 +18,16 @@ final class CreateProjectInviteRequest implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $role;
-    public readonly string $email;
-    /**
-     * @var \Upsun\Model\CreateProjectInviteRequestPermissionsInner[]|null
-     */
-    public readonly ?array $permissions;
-    /**
-     * @var \Upsun\Model\CreateProjectInviteRequestEnvironmentsInner[]|null
-     */
-    public readonly ?array $environments;
-    public readonly bool|null $force;
-
     public function __construct(
-        string|null $role = null,
-        string $email = null,
-        ?array $permissions = null,
-        ?array $environments = null,
-        bool|null $force = null
+        public readonly string|null $role = null,
+        public readonly string $email = null,
+        public readonly ?array $permissions = null,
+        public readonly ?array $environments = null,
+        public readonly bool|null $force = null
     ) {
-        $this->role = $role;
-        $this->email = $email;
-        $this->permissions = $permissions;
-        $this->environments = $environments;
-        $this->force = $force;
     }
 
-    public function getRole(): string|null
-    {
-        return $this->role;
-    }
-    public function getEmail(): string
-    {
-        return $this->email;
-    }
-    /**
-     * @return \Upsun\Model\CreateProjectInviteRequestPermissionsInner[]|null
-     */
-    public function getPermissions(): ?array
-    {
-        return $this->permissions;
-    }
-    /**
-     * @return \Upsun\Model\CreateProjectInviteRequestEnvironmentsInner[]|null
-     */
-    public function getEnvironments(): ?array
-    {
-        return $this->environments;
-    }
-    public function getForce(): bool|null
-    {
-        return $this->force;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'role' => $this->role,

@@ -18,20 +18,12 @@ final class CreateProfilePicture200Response implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $url;
-
     public function __construct(
-        string|null $url = null
+        public readonly string|null $url = null
     ) {
-        $this->url = $url;
     }
 
-    public function getUrl(): string|null
-    {
-        return $this->url;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'url' => $this->url,

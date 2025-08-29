@@ -18,20 +18,12 @@ final class OrganizationMFAEnforcement implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly bool|null $enforce_mfa;
-
     public function __construct(
-        bool|null $enforce_mfa = null
+        public readonly bool|null $enforce_mfa = null
     ) {
-        $this->enforce_mfa = $enforce_mfa;
     }
 
-    public function getEnforceMfa(): bool|null
-    {
-        return $this->enforce_mfa;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'enforce_mfa' => $this->enforce_mfa,

@@ -18,27 +18,13 @@ final class TheBackupScheduleSpecificationInner implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $interval;
-    public readonly int $count;
-
     public function __construct(
-        string $interval = null,
-        int $count = null
+        public readonly string $interval = null,
+        public readonly int $count = null
     ) {
-        $this->interval = $interval;
-        $this->count = $count;
     }
 
-    public function getInterval(): string
-    {
-        return $this->interval;
-    }
-    public function getCount(): int
-    {
-        return $this->count;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'interval' => $this->interval,

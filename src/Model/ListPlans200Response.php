@@ -18,40 +18,14 @@ final class ListPlans200Response implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly int|null $count;
-    /**
-     * @var \Upsun\Model\Plan[]|null
-     */
-    public readonly ?array $plans;
-    public readonly \Upsun\Model\HalLinks|null $_links;
-
     public function __construct(
-        int|null $count = null,
-        ?array $plans = null,
-        \Upsun\Model\HalLinks|null $_links = null
+        public readonly int|null $count = null,
+        public readonly ?array $plans = null,
+        public readonly \Upsun\Model\HalLinks|null $_links = null
     ) {
-        $this->count = $count;
-        $this->plans = $plans;
-        $this->_links = $_links;
     }
 
-    public function getCount(): int|null
-    {
-        return $this->count;
-    }
-    /**
-     * @return \Upsun\Model\Plan[]|null
-     */
-    public function getPlans(): ?array
-    {
-        return $this->plans;
-    }
-    public function getLinks(): \Upsun\Model\HalLinks|null
-    {
-        return $this->_links;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'count' => $this->count,

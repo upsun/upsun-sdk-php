@@ -18,34 +18,14 @@ final class SubscriptionAddonsObject implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\SubscriptionAddonsObjectAvailable|null $available;
-    public readonly \Upsun\Model\SubscriptionAddonsObjectCurrent|null $current;
-    public readonly \Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable|null $upgrades_available;
-
     public function __construct(
-        \Upsun\Model\SubscriptionAddonsObjectAvailable|null $available = null,
-        \Upsun\Model\SubscriptionAddonsObjectCurrent|null $current = null,
-        \Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable|null $upgrades_available = null
+        public readonly \Upsun\Model\SubscriptionAddonsObjectAvailable|null $available = null,
+        public readonly \Upsun\Model\SubscriptionAddonsObjectCurrent|null $current = null,
+        public readonly \Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable|null $upgrades_available = null
     ) {
-        $this->available = $available;
-        $this->current = $current;
-        $this->upgrades_available = $upgrades_available;
     }
 
-    public function getAvailable(): \Upsun\Model\SubscriptionAddonsObjectAvailable|null
-    {
-        return $this->available;
-    }
-    public function getCurrent(): \Upsun\Model\SubscriptionAddonsObjectCurrent|null
-    {
-        return $this->current;
-    }
-    public function getUpgradesAvailable(): \Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable|null
-    {
-        return $this->upgrades_available;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'available' => $this->available,

@@ -18,40 +18,14 @@ final class CreateOrgInviteRequest implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $email;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $permissions;
-    public readonly bool|null $force;
-
     public function __construct(
-        string $email = null,
-        ?array $permissions = null,
-        bool|null $force = null
+        public readonly string $email = null,
+        public readonly ?array $permissions = null,
+        public readonly bool|null $force = null
     ) {
-        $this->email = $email;
-        $this->permissions = $permissions;
-        $this->force = $force;
     }
 
-    public function getEmail(): string
-    {
-        return $this->email;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getPermissions(): ?array
-    {
-        return $this->permissions;
-    }
-    public function getForce(): bool|null
-    {
-        return $this->force;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'email' => $this->email,

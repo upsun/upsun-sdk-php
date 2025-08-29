@@ -18,27 +18,13 @@ final class RegionProvider implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $name;
-    public readonly string|null $logo;
-
     public function __construct(
-        string|null $name = null,
-        string|null $logo = null
+        public readonly string|null $name = null,
+        public readonly string|null $logo = null
     ) {
-        $this->name = $name;
-        $this->logo = $logo;
     }
 
-    public function getName(): string|null
-    {
-        return $this->name;
-    }
-    public function getLogo(): string|null
-    {
-        return $this->logo;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'name' => $this->name,

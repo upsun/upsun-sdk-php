@@ -18,125 +18,27 @@ final class User implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $id;
-    public readonly bool $deactivated;
-    public readonly string $namespace;
-    public readonly string $username;
-    public readonly string $email;
-    public readonly bool $email_verified;
-    public readonly string $first_name;
-    public readonly string $last_name;
-    public readonly string $picture;
-    public readonly string $company;
-    public readonly string $website;
-    public readonly string $country;
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
-    public readonly \DateTime|null $consented_at;
-    public readonly string|null $consent_method;
-
     public function __construct(
-        string $id = null,
-        bool $deactivated = null,
-        string $namespace = null,
-        string $username = null,
-        string $email = null,
-        bool $email_verified = null,
-        string $first_name = null,
-        string $last_name = null,
-        string $picture = null,
-        string $company = null,
-        string $website = null,
-        string $country = null,
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
-        \DateTime|null $consented_at = null,
-        string|null $consent_method = null
+        public readonly string $id = null,
+        public readonly bool $deactivated = null,
+        public readonly string $namespace = null,
+        public readonly string $username = null,
+        public readonly string $email = null,
+        public readonly bool $email_verified = null,
+        public readonly string $first_name = null,
+        public readonly string $last_name = null,
+        public readonly string $picture = null,
+        public readonly string $company = null,
+        public readonly string $website = null,
+        public readonly string $country = null,
+        public readonly \DateTime $created_at = null,
+        public readonly \DateTime $updated_at = null,
+        public readonly \DateTime|null $consented_at = null,
+        public readonly string|null $consent_method = null
     ) {
-        $this->id = $id;
-        $this->deactivated = $deactivated;
-        $this->namespace = $namespace;
-        $this->username = $username;
-        $this->email = $email;
-        $this->email_verified = $email_verified;
-        $this->first_name = $first_name;
-        $this->last_name = $last_name;
-        $this->picture = $picture;
-        $this->company = $company;
-        $this->website = $website;
-        $this->country = $country;
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
-        $this->consented_at = $consented_at;
-        $this->consent_method = $consent_method;
     }
 
-    public function getId(): string
-    {
-        return $this->id;
-    }
-    public function getDeactivated(): bool
-    {
-        return $this->deactivated;
-    }
-    public function getNamespace(): string
-    {
-        return $this->namespace;
-    }
-    public function getUsername(): string
-    {
-        return $this->username;
-    }
-    public function getEmail(): string
-    {
-        return $this->email;
-    }
-    public function getEmailVerified(): bool
-    {
-        return $this->email_verified;
-    }
-    public function getFirstName(): string
-    {
-        return $this->first_name;
-    }
-    public function getLastName(): string
-    {
-        return $this->last_name;
-    }
-    public function getPicture(): string
-    {
-        return $this->picture;
-    }
-    public function getCompany(): string
-    {
-        return $this->company;
-    }
-    public function getWebsite(): string
-    {
-        return $this->website;
-    }
-    public function getCountry(): string
-    {
-        return $this->country;
-    }
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->updated_at;
-    }
-    public function getConsentedAt(): \DateTime|null
-    {
-        return $this->consented_at;
-    }
-    public function getConsentMethod(): string|null
-    {
-        return $this->consent_method;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

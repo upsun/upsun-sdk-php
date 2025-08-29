@@ -18,69 +18,19 @@ final class StringFilter implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $eq;
-    public readonly string|null $ne;
-    public readonly string|null $in;
-    public readonly string|null $nin;
-    public readonly string|null $between;
-    public readonly string|null $contains;
-    public readonly string|null $starts;
-    public readonly string|null $ends;
-
     public function __construct(
-        string|null $eq = null,
-        string|null $ne = null,
-        string|null $in = null,
-        string|null $nin = null,
-        string|null $between = null,
-        string|null $contains = null,
-        string|null $starts = null,
-        string|null $ends = null
+        public readonly string|null $eq = null,
+        public readonly string|null $ne = null,
+        public readonly string|null $in = null,
+        public readonly string|null $nin = null,
+        public readonly string|null $between = null,
+        public readonly string|null $contains = null,
+        public readonly string|null $starts = null,
+        public readonly string|null $ends = null
     ) {
-        $this->eq = $eq;
-        $this->ne = $ne;
-        $this->in = $in;
-        $this->nin = $nin;
-        $this->between = $between;
-        $this->contains = $contains;
-        $this->starts = $starts;
-        $this->ends = $ends;
     }
 
-    public function getEq(): string|null
-    {
-        return $this->eq;
-    }
-    public function getNe(): string|null
-    {
-        return $this->ne;
-    }
-    public function getIn(): string|null
-    {
-        return $this->in;
-    }
-    public function getNin(): string|null
-    {
-        return $this->nin;
-    }
-    public function getBetween(): string|null
-    {
-        return $this->between;
-    }
-    public function getContains(): string|null
-    {
-        return $this->contains;
-    }
-    public function getStarts(): string|null
-    {
-        return $this->starts;
-    }
-    public function getEnds(): string|null
-    {
-        return $this->ends;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'eq' => $this->eq,

@@ -18,20 +18,12 @@ final class ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment impleme
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $href;
-
     public function __construct(
-        string|null $href = null
+        public readonly string|null $href = null
     ) {
-        $this->href = $href;
     }
 
-    public function getHref(): string|null
-    {
-        return $this->href;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'href' => $this->href,

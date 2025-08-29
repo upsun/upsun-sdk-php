@@ -18,34 +18,14 @@ final class OrganizationAddonsObject implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\OrganizationAddonsObjectAvailable|null $available;
-    public readonly \Upsun\Model\OrganizationAddonsObjectCurrent|null $current;
-    public readonly \Upsun\Model\OrganizationAddonsObjectUpgradesAvailable|null $upgrades_available;
-
     public function __construct(
-        \Upsun\Model\OrganizationAddonsObjectAvailable|null $available = null,
-        \Upsun\Model\OrganizationAddonsObjectCurrent|null $current = null,
-        \Upsun\Model\OrganizationAddonsObjectUpgradesAvailable|null $upgrades_available = null
+        public readonly \Upsun\Model\OrganizationAddonsObjectAvailable|null $available = null,
+        public readonly \Upsun\Model\OrganizationAddonsObjectCurrent|null $current = null,
+        public readonly \Upsun\Model\OrganizationAddonsObjectUpgradesAvailable|null $upgrades_available = null
     ) {
-        $this->available = $available;
-        $this->current = $current;
-        $this->upgrades_available = $upgrades_available;
     }
 
-    public function getAvailable(): \Upsun\Model\OrganizationAddonsObjectAvailable|null
-    {
-        return $this->available;
-    }
-    public function getCurrent(): \Upsun\Model\OrganizationAddonsObjectCurrent|null
-    {
-        return $this->current;
-    }
-    public function getUpgradesAvailable(): \Upsun\Model\OrganizationAddonsObjectUpgradesAvailable|null
-    {
-        return $this->upgrades_available;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'available' => $this->available,

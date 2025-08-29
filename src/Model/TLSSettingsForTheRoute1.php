@@ -18,47 +18,15 @@ final class TLSSettingsForTheRoute1 implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\StrictTransportSecurityOptions1|null $strict_transport_security;
-    public readonly string|null $min_version;
-    public readonly string|null $client_authentication;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $client_certificate_authorities;
-
     public function __construct(
-        \Upsun\Model\StrictTransportSecurityOptions1|null $strict_transport_security = null,
-        string|null $min_version = null,
-        string|null $client_authentication = null,
-        ?array $client_certificate_authorities = null
+        public readonly \Upsun\Model\StrictTransportSecurityOptions1|null $strict_transport_security = null,
+        public readonly string|null $min_version = null,
+        public readonly string|null $client_authentication = null,
+        public readonly ?array $client_certificate_authorities = null
     ) {
-        $this->strict_transport_security = $strict_transport_security;
-        $this->min_version = $min_version;
-        $this->client_authentication = $client_authentication;
-        $this->client_certificate_authorities = $client_certificate_authorities;
     }
 
-    public function getStrictTransportSecurity(): \Upsun\Model\StrictTransportSecurityOptions1|null
-    {
-        return $this->strict_transport_security;
-    }
-    public function getMinVersion(): string|null
-    {
-        return $this->min_version;
-    }
-    public function getClientAuthentication(): string|null
-    {
-        return $this->client_authentication;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getClientCertificateAuthorities(): ?array
-    {
-        return $this->client_certificate_authorities;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'strict_transport_security' => $this->strict_transport_security,

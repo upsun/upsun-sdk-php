@@ -18,34 +18,14 @@ final class DiscountCommitmentAmount implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\CurrencyAmount|null $monthly;
-    public readonly \Upsun\Model\CurrencyAmount|null $commitment_period;
-    public readonly \Upsun\Model\CurrencyAmount|null $contract_total;
-
     public function __construct(
-        \Upsun\Model\CurrencyAmount|null $monthly = null,
-        \Upsun\Model\CurrencyAmount|null $commitment_period = null,
-        \Upsun\Model\CurrencyAmount|null $contract_total = null
+        public readonly \Upsun\Model\CurrencyAmount|null $monthly = null,
+        public readonly \Upsun\Model\CurrencyAmount|null $commitment_period = null,
+        public readonly \Upsun\Model\CurrencyAmount|null $contract_total = null
     ) {
-        $this->monthly = $monthly;
-        $this->commitment_period = $commitment_period;
-        $this->contract_total = $contract_total;
     }
 
-    public function getMonthly(): \Upsun\Model\CurrencyAmount|null
-    {
-        return $this->monthly;
-    }
-    public function getCommitmentPeriod(): \Upsun\Model\CurrencyAmount|null
-    {
-        return $this->commitment_period;
-    }
-    public function getContractTotal(): \Upsun\Model\CurrencyAmount|null
-    {
-        return $this->contract_total;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'monthly' => $this->monthly,

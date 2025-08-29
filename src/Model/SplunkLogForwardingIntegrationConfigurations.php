@@ -18,27 +18,13 @@ final class SplunkLogForwardingIntegrationConfigurations implements JsonSerializ
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly bool|null $enabled;
-    public readonly string|null $role;
-
     public function __construct(
-        bool|null $enabled = null,
-        string|null $role = null
+        public readonly bool|null $enabled = null,
+        public readonly string|null $role = null
     ) {
-        $this->enabled = $enabled;
-        $this->role = $role;
     }
 
-    public function getEnabled(): bool|null
-    {
-        return $this->enabled;
-    }
-    public function getRole(): string|null
-    {
-        return $this->role;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'enabled' => $this->enabled,

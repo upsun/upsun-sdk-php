@@ -18,27 +18,13 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Json
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $action;
-    public readonly string|null $type;
-
     public function __construct(
-        string|null $action = null,
-        string|null $type = null
+        public readonly string|null $action = null,
+        public readonly string|null $type = null
     ) {
-        $this->action = $action;
-        $this->type = $type;
     }
 
-    public function getAction(): string|null
-    {
-        return $this->action;
-    }
-    public function getType(): string|null
-    {
-        return $this->type;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'action' => $this->action,

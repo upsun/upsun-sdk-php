@@ -18,47 +18,15 @@ final class FoundationDeploymentTargetPatch implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $type;
-    public readonly string $name;
-    /**
-     * @var \Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]|null
-     */
-    public readonly ?array $hosts;
-    public readonly bool|null $use_dedicated_grid;
-
     public function __construct(
-        string $type = null,
-        string $name = null,
-        ?array $hosts = null,
-        bool|null $use_dedicated_grid = null
+        public readonly string $type = null,
+        public readonly string $name = null,
+        public readonly ?array $hosts = null,
+        public readonly bool|null $use_dedicated_grid = null
     ) {
-        $this->type = $type;
-        $this->name = $name;
-        $this->hosts = $hosts;
-        $this->use_dedicated_grid = $use_dedicated_grid;
     }
 
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    public function getName(): string
-    {
-        return $this->name;
-    }
-    /**
-     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]|null
-     */
-    public function getHosts(): ?array
-    {
-        return $this->hosts;
-    }
-    public function getUseDedicatedGrid(): bool|null
-    {
-        return $this->use_dedicated_grid;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->type,

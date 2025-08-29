@@ -18,47 +18,15 @@ final class VouchersVouchersInner implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $code;
-    public readonly string|null $amount;
-    public readonly string|null $currency;
-    /**
-     * @var \Upsun\Model\VouchersVouchersInnerOrdersInner[]|null
-     */
-    public readonly ?array $orders;
-
     public function __construct(
-        string|null $code = null,
-        string|null $amount = null,
-        string|null $currency = null,
-        ?array $orders = null
+        public readonly string|null $code = null,
+        public readonly string|null $amount = null,
+        public readonly string|null $currency = null,
+        public readonly ?array $orders = null
     ) {
-        $this->code = $code;
-        $this->amount = $amount;
-        $this->currency = $currency;
-        $this->orders = $orders;
     }
 
-    public function getCode(): string|null
-    {
-        return $this->code;
-    }
-    public function getAmount(): string|null
-    {
-        return $this->amount;
-    }
-    public function getCurrency(): string|null
-    {
-        return $this->currency;
-    }
-    /**
-     * @return \Upsun\Model\VouchersVouchersInnerOrdersInner[]|null
-     */
-    public function getOrders(): ?array
-    {
-        return $this->orders;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'code' => $this->code,

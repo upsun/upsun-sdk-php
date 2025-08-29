@@ -18,125 +18,27 @@ final class RegionReference implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $id;
-    public readonly string $label;
-    public readonly string $zone;
-    public readonly string $selection_label;
-    public readonly string $project_label;
-    public readonly string $timezone;
-    public readonly bool $available;
-    public readonly bool|null $private;
-    public readonly string $endpoint;
-    public readonly string|null $code;
-    public readonly object $provider;
-    public readonly object $datacenter;
-    public readonly object|null $envimpact;
-    public readonly object $compliance;
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
-
     public function __construct(
-        string $id = null,
-        string $label = null,
-        string $zone = null,
-        string $selection_label = null,
-        string $project_label = null,
-        string $timezone = null,
-        bool $available = null,
-        bool|null $private = null,
-        string $endpoint = null,
-        string|null $code = null,
-        object $provider = null,
-        object $datacenter = null,
-        object|null $envimpact = null,
-        object $compliance = null,
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null
+        public readonly string $id = null,
+        public readonly string $label = null,
+        public readonly string $zone = null,
+        public readonly string $selection_label = null,
+        public readonly string $project_label = null,
+        public readonly string $timezone = null,
+        public readonly bool $available = null,
+        public readonly bool|null $private = null,
+        public readonly string $endpoint = null,
+        public readonly string|null $code = null,
+        public readonly object $provider = null,
+        public readonly object $datacenter = null,
+        public readonly object|null $envimpact = null,
+        public readonly object $compliance = null,
+        public readonly \DateTime $created_at = null,
+        public readonly \DateTime $updated_at = null
     ) {
-        $this->id = $id;
-        $this->label = $label;
-        $this->zone = $zone;
-        $this->selection_label = $selection_label;
-        $this->project_label = $project_label;
-        $this->timezone = $timezone;
-        $this->available = $available;
-        $this->private = $private;
-        $this->endpoint = $endpoint;
-        $this->code = $code;
-        $this->provider = $provider;
-        $this->datacenter = $datacenter;
-        $this->envimpact = $envimpact;
-        $this->compliance = $compliance;
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
     }
 
-    public function getId(): string
-    {
-        return $this->id;
-    }
-    public function getLabel(): string
-    {
-        return $this->label;
-    }
-    public function getZone(): string
-    {
-        return $this->zone;
-    }
-    public function getSelectionLabel(): string
-    {
-        return $this->selection_label;
-    }
-    public function getProjectLabel(): string
-    {
-        return $this->project_label;
-    }
-    public function getTimezone(): string
-    {
-        return $this->timezone;
-    }
-    public function getAvailable(): bool
-    {
-        return $this->available;
-    }
-    public function getPrivate(): bool|null
-    {
-        return $this->private;
-    }
-    public function getEndpoint(): string
-    {
-        return $this->endpoint;
-    }
-    public function getCode(): string|null
-    {
-        return $this->code;
-    }
-    public function getProvider(): object
-    {
-        return $this->provider;
-    }
-    public function getDatacenter(): object
-    {
-        return $this->datacenter;
-    }
-    public function getEnvimpact(): object|null
-    {
-        return $this->envimpact;
-    }
-    public function getCompliance(): object
-    {
-        return $this->compliance;
-    }
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->updated_at;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

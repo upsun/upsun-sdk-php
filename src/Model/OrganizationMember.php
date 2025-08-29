@@ -18,82 +18,20 @@ final class OrganizationMember implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $id;
-    public readonly string|null $organization_id;
-    public readonly string|null $user_id;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $permissions;
-    public readonly string|null $level;
-    public readonly bool|null $owner;
-    public readonly \DateTime|null $created_at;
-    public readonly \DateTime|null $updated_at;
-    public readonly \Upsun\Model\OrganizationMemberLinks|null $_links;
-
     public function __construct(
-        string|null $id = null,
-        string|null $organization_id = null,
-        string|null $user_id = null,
-        ?array $permissions = null,
-        string|null $level = null,
-        bool|null $owner = null,
-        \DateTime|null $created_at = null,
-        \DateTime|null $updated_at = null,
-        \Upsun\Model\OrganizationMemberLinks|null $_links = null
+        public readonly string|null $id = null,
+        public readonly string|null $organization_id = null,
+        public readonly string|null $user_id = null,
+        public readonly ?array $permissions = null,
+        public readonly string|null $level = null,
+        public readonly bool|null $owner = null,
+        public readonly \DateTime|null $created_at = null,
+        public readonly \DateTime|null $updated_at = null,
+        public readonly \Upsun\Model\OrganizationMemberLinks|null $_links = null
     ) {
-        $this->id = $id;
-        $this->organization_id = $organization_id;
-        $this->user_id = $user_id;
-        $this->permissions = $permissions;
-        $this->level = $level;
-        $this->owner = $owner;
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
-        $this->_links = $_links;
     }
 
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getOrganizationId(): string|null
-    {
-        return $this->organization_id;
-    }
-    public function getUserId(): string|null
-    {
-        return $this->user_id;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getPermissions(): ?array
-    {
-        return $this->permissions;
-    }
-    public function getLevel(): string|null
-    {
-        return $this->level;
-    }
-    public function getOwner(): bool|null
-    {
-        return $this->owner;
-    }
-    public function getCreatedAt(): \DateTime|null
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime|null
-    {
-        return $this->updated_at;
-    }
-    public function getLinks(): \Upsun\Model\OrganizationMemberLinks|null
-    {
-        return $this->_links;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

@@ -18,62 +18,18 @@ final class PrepaymentTransactionObject implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $order_id;
-    public readonly string|null $message;
-    public readonly string|null $status;
-    public readonly \Upsun\Model\PrepaymentObjectPrepaymentBalance|null $amount;
-    public readonly string|null $created;
-    public readonly string|null $updated;
-    public readonly string|null $expire_date;
-
     public function __construct(
-        string|null $order_id = null,
-        string|null $message = null,
-        string|null $status = null,
-        \Upsun\Model\PrepaymentObjectPrepaymentBalance|null $amount = null,
-        string|null $created = null,
-        string|null $updated = null,
-        string|null $expire_date = null
+        public readonly string|null $order_id = null,
+        public readonly string|null $message = null,
+        public readonly string|null $status = null,
+        public readonly \Upsun\Model\PrepaymentObjectPrepaymentBalance|null $amount = null,
+        public readonly string|null $created = null,
+        public readonly string|null $updated = null,
+        public readonly string|null $expire_date = null
     ) {
-        $this->order_id = $order_id;
-        $this->message = $message;
-        $this->status = $status;
-        $this->amount = $amount;
-        $this->created = $created;
-        $this->updated = $updated;
-        $this->expire_date = $expire_date;
     }
 
-    public function getOrderId(): string|null
-    {
-        return $this->order_id;
-    }
-    public function getMessage(): string|null
-    {
-        return $this->message;
-    }
-    public function getStatus(): string|null
-    {
-        return $this->status;
-    }
-    public function getAmount(): \Upsun\Model\PrepaymentObjectPrepaymentBalance|null
-    {
-        return $this->amount;
-    }
-    public function getCreated(): string|null
-    {
-        return $this->created;
-    }
-    public function getUpdated(): string|null
-    {
-        return $this->updated;
-    }
-    public function getExpireDate(): string|null
-    {
-        return $this->expire_date;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'order_id' => $this->order_id,

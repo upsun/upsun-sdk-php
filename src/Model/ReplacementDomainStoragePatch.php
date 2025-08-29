@@ -18,26 +18,12 @@ final class ReplacementDomainStoragePatch implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $attributes;
-
     public function __construct(
-        ?array $attributes = null
+        public readonly ?array $attributes = null
     ) {
-        $this->attributes = $attributes;
     }
 
-    /**
-     * @return string[]|null
-     */
-    public function getAttributes(): ?array
-    {
-        return $this->attributes;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'attributes' => $this->attributes,

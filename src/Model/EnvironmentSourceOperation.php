@@ -18,34 +18,14 @@ final class EnvironmentSourceOperation implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $app;
-    public readonly string $operation;
-    public readonly string $command;
-
     public function __construct(
-        string $app = null,
-        string $operation = null,
-        string $command = null
+        public readonly string $app = null,
+        public readonly string $operation = null,
+        public readonly string $command = null
     ) {
-        $this->app = $app;
-        $this->operation = $operation;
-        $this->command = $command;
     }
 
-    public function getApp(): string
-    {
-        return $this->app;
-    }
-    public function getOperation(): string
-    {
-        return $this->operation;
-    }
-    public function getCommand(): string
-    {
-        return $this->command;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'app' => $this->app,

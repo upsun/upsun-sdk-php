@@ -18,33 +18,13 @@ final class TheConfigurationOfTheRedirects implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $expires;
-    /**
-     * @var \Upsun\Model\ThePathsToRedirectValue[]|null
-     */
-    public readonly ?array $paths;
-
     public function __construct(
-        string $expires = null,
-        ?array $paths = null
+        public readonly string $expires = null,
+        public readonly ?array $paths = null
     ) {
-        $this->expires = $expires;
-        $this->paths = $paths;
     }
 
-    public function getExpires(): string
-    {
-        return $this->expires;
-    }
-    /**
-     * @return \Upsun\Model\ThePathsToRedirectValue[]|null
-     */
-    public function getPaths(): ?array
-    {
-        return $this->paths;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'expires' => $this->expires,

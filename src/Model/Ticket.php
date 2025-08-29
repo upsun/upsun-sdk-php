@@ -18,276 +18,46 @@ final class Ticket implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly int|null $ticket_id;
-    public readonly \DateTime|null $created;
-    public readonly \DateTime|null $updated;
-    public readonly string|null $type;
-    public readonly string|null $subject;
-    public readonly string|null $description;
-    public readonly string|null $priority;
-    public readonly string|null $followup_tid;
-    public readonly string|null $status;
-    public readonly string|null $recipient;
-    public readonly string|null $requester_id;
-    public readonly string|null $submitter_id;
-    public readonly string|null $assignee_id;
-    public readonly string|null $organization_id;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $collaborator_ids;
-    public readonly bool|null $has_incidents;
-    public readonly \DateTime|null $due;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $tags;
-    public readonly string|null $subscription_id;
-    public readonly string|null $ticket_group;
-    public readonly string|null $support_plan;
-    public readonly string|null $affected_url;
-    public readonly string|null $queue;
-    public readonly string|null $issue_type;
-    public readonly \DateTime|null $resolution_time;
-    public readonly \DateTime|null $response_time;
-    public readonly string|null $project_url;
-    public readonly string|null $region;
-    public readonly string|null $category;
-    public readonly string|null $environment;
-    public readonly string|null $ticket_sharing_status;
-    public readonly string|null $application_ticket_url;
-    public readonly string|null $infrastructure_ticket_url;
-    /**
-     * @var \Upsun\Model\TicketJiraInner[]|null
-     */
-    public readonly ?array $jira;
-    public readonly string|null $zd_ticket_url;
-
     public function __construct(
-        int|null $ticket_id = null,
-        \DateTime|null $created = null,
-        \DateTime|null $updated = null,
-        string|null $type = null,
-        string|null $subject = null,
-        string|null $description = null,
-        string|null $priority = null,
-        string|null $followup_tid = null,
-        string|null $status = null,
-        string|null $recipient = null,
-        string|null $requester_id = null,
-        string|null $submitter_id = null,
-        string|null $assignee_id = null,
-        string|null $organization_id = null,
-        ?array $collaborator_ids = null,
-        bool|null $has_incidents = null,
-        \DateTime|null $due = null,
-        ?array $tags = null,
-        string|null $subscription_id = null,
-        string|null $ticket_group = null,
-        string|null $support_plan = null,
-        string|null $affected_url = null,
-        string|null $queue = null,
-        string|null $issue_type = null,
-        \DateTime|null $resolution_time = null,
-        \DateTime|null $response_time = null,
-        string|null $project_url = null,
-        string|null $region = null,
-        string|null $category = null,
-        string|null $environment = null,
-        string|null $ticket_sharing_status = null,
-        string|null $application_ticket_url = null,
-        string|null $infrastructure_ticket_url = null,
-        ?array $jira = null,
-        string|null $zd_ticket_url = null
+        public readonly int|null $ticket_id = null,
+        public readonly \DateTime|null $created = null,
+        public readonly \DateTime|null $updated = null,
+        public readonly string|null $type = null,
+        public readonly string|null $subject = null,
+        public readonly string|null $description = null,
+        public readonly string|null $priority = null,
+        public readonly string|null $followup_tid = null,
+        public readonly string|null $status = null,
+        public readonly string|null $recipient = null,
+        public readonly string|null $requester_id = null,
+        public readonly string|null $submitter_id = null,
+        public readonly string|null $assignee_id = null,
+        public readonly string|null $organization_id = null,
+        public readonly ?array $collaborator_ids = null,
+        public readonly bool|null $has_incidents = null,
+        public readonly \DateTime|null $due = null,
+        public readonly ?array $tags = null,
+        public readonly string|null $subscription_id = null,
+        public readonly string|null $ticket_group = null,
+        public readonly string|null $support_plan = null,
+        public readonly string|null $affected_url = null,
+        public readonly string|null $queue = null,
+        public readonly string|null $issue_type = null,
+        public readonly \DateTime|null $resolution_time = null,
+        public readonly \DateTime|null $response_time = null,
+        public readonly string|null $project_url = null,
+        public readonly string|null $region = null,
+        public readonly string|null $category = null,
+        public readonly string|null $environment = null,
+        public readonly string|null $ticket_sharing_status = null,
+        public readonly string|null $application_ticket_url = null,
+        public readonly string|null $infrastructure_ticket_url = null,
+        public readonly ?array $jira = null,
+        public readonly string|null $zd_ticket_url = null
     ) {
-        $this->ticket_id = $ticket_id;
-        $this->created = $created;
-        $this->updated = $updated;
-        $this->type = $type;
-        $this->subject = $subject;
-        $this->description = $description;
-        $this->priority = $priority;
-        $this->followup_tid = $followup_tid;
-        $this->status = $status;
-        $this->recipient = $recipient;
-        $this->requester_id = $requester_id;
-        $this->submitter_id = $submitter_id;
-        $this->assignee_id = $assignee_id;
-        $this->organization_id = $organization_id;
-        $this->collaborator_ids = $collaborator_ids;
-        $this->has_incidents = $has_incidents;
-        $this->due = $due;
-        $this->tags = $tags;
-        $this->subscription_id = $subscription_id;
-        $this->ticket_group = $ticket_group;
-        $this->support_plan = $support_plan;
-        $this->affected_url = $affected_url;
-        $this->queue = $queue;
-        $this->issue_type = $issue_type;
-        $this->resolution_time = $resolution_time;
-        $this->response_time = $response_time;
-        $this->project_url = $project_url;
-        $this->region = $region;
-        $this->category = $category;
-        $this->environment = $environment;
-        $this->ticket_sharing_status = $ticket_sharing_status;
-        $this->application_ticket_url = $application_ticket_url;
-        $this->infrastructure_ticket_url = $infrastructure_ticket_url;
-        $this->jira = $jira;
-        $this->zd_ticket_url = $zd_ticket_url;
     }
 
-    public function getTicketId(): int|null
-    {
-        return $this->ticket_id;
-    }
-    public function getCreated(): \DateTime|null
-    {
-        return $this->created;
-    }
-    public function getUpdated(): \DateTime|null
-    {
-        return $this->updated;
-    }
-    public function getType(): string|null
-    {
-        return $this->type;
-    }
-    public function getSubject(): string|null
-    {
-        return $this->subject;
-    }
-    public function getDescription(): string|null
-    {
-        return $this->description;
-    }
-    public function getPriority(): string|null
-    {
-        return $this->priority;
-    }
-    public function getFollowupTid(): string|null
-    {
-        return $this->followup_tid;
-    }
-    public function getStatus(): string|null
-    {
-        return $this->status;
-    }
-    public function getRecipient(): string|null
-    {
-        return $this->recipient;
-    }
-    public function getRequesterId(): string|null
-    {
-        return $this->requester_id;
-    }
-    public function getSubmitterId(): string|null
-    {
-        return $this->submitter_id;
-    }
-    public function getAssigneeId(): string|null
-    {
-        return $this->assignee_id;
-    }
-    public function getOrganizationId(): string|null
-    {
-        return $this->organization_id;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getCollaboratorIds(): ?array
-    {
-        return $this->collaborator_ids;
-    }
-    public function getHasIncidents(): bool|null
-    {
-        return $this->has_incidents;
-    }
-    public function getDue(): \DateTime|null
-    {
-        return $this->due;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getTags(): ?array
-    {
-        return $this->tags;
-    }
-    public function getSubscriptionId(): string|null
-    {
-        return $this->subscription_id;
-    }
-    public function getTicketGroup(): string|null
-    {
-        return $this->ticket_group;
-    }
-    public function getSupportPlan(): string|null
-    {
-        return $this->support_plan;
-    }
-    public function getAffectedUrl(): string|null
-    {
-        return $this->affected_url;
-    }
-    public function getQueue(): string|null
-    {
-        return $this->queue;
-    }
-    public function getIssueType(): string|null
-    {
-        return $this->issue_type;
-    }
-    public function getResolutionTime(): \DateTime|null
-    {
-        return $this->resolution_time;
-    }
-    public function getResponseTime(): \DateTime|null
-    {
-        return $this->response_time;
-    }
-    public function getProjectUrl(): string|null
-    {
-        return $this->project_url;
-    }
-    public function getRegion(): string|null
-    {
-        return $this->region;
-    }
-    public function getCategory(): string|null
-    {
-        return $this->category;
-    }
-    public function getEnvironment(): string|null
-    {
-        return $this->environment;
-    }
-    public function getTicketSharingStatus(): string|null
-    {
-        return $this->ticket_sharing_status;
-    }
-    public function getApplicationTicketUrl(): string|null
-    {
-        return $this->application_ticket_url;
-    }
-    public function getInfrastructureTicketUrl(): string|null
-    {
-        return $this->infrastructure_ticket_url;
-    }
-    /**
-     * @return \Upsun\Model\TicketJiraInner[]|null
-     */
-    public function getJira(): ?array
-    {
-        return $this->jira;
-    }
-    public function getZdTicketUrl(): string|null
-    {
-        return $this->zd_ticket_url;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'ticket_id' => $this->ticket_id,

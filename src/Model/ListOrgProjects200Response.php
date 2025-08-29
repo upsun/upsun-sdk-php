@@ -18,33 +18,13 @@ final class ListOrgProjects200Response implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    /**
-     * @var \Upsun\Model\OrganizationProject[]|null
-     */
-    public readonly ?array $items;
-    public readonly \Upsun\Model\ListLinks|null $_links;
-
     public function __construct(
-        ?array $items = null,
-        \Upsun\Model\ListLinks|null $_links = null
+        public readonly ?array $items = null,
+        public readonly \Upsun\Model\ListLinks|null $_links = null
     ) {
-        $this->items = $items;
-        $this->_links = $_links;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationProject[]|null
-     */
-    public function getItems(): ?array
-    {
-        return $this->items;
-    }
-    public function getLinks(): \Upsun\Model\ListLinks|null
-    {
-        return $this->_links;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'items' => $this->items,

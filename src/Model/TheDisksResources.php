@@ -18,34 +18,14 @@ final class TheDisksResources implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly int $temporary;
-    public readonly int $instance;
-    public readonly int $storage;
-
     public function __construct(
-        int $temporary = null,
-        int $instance = null,
-        int $storage = null
+        public readonly int $temporary = null,
+        public readonly int $instance = null,
+        public readonly int $storage = null
     ) {
-        $this->temporary = $temporary;
-        $this->instance = $instance;
-        $this->storage = $storage;
     }
 
-    public function getTemporary(): int
-    {
-        return $this->temporary;
-    }
-    public function getInstance(): int
-    {
-        return $this->instance;
-    }
-    public function getStorage(): int
-    {
-        return $this->storage;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'temporary' => $this->temporary,

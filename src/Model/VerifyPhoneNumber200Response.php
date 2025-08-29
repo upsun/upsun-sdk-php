@@ -18,20 +18,12 @@ final class VerifyPhoneNumber200Response implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $sid;
-
     public function __construct(
-        string|null $sid = null
+        public readonly string|null $sid = null
     ) {
-        $this->sid = $sid;
     }
 
-    public function getSid(): string|null
-    {
-        return $this->sid;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'sid' => $this->sid,

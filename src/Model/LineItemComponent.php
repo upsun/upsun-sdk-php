@@ -18,41 +18,15 @@ final class LineItemComponent implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly float|null $amount;
-    public readonly string|null $amount_formatted;
-    public readonly string|null $display_title;
-    public readonly string|null $currency;
-
     public function __construct(
-        float|null $amount = null,
-        string|null $amount_formatted = null,
-        string|null $display_title = null,
-        string|null $currency = null
+        public readonly float|null $amount = null,
+        public readonly string|null $amount_formatted = null,
+        public readonly string|null $display_title = null,
+        public readonly string|null $currency = null
     ) {
-        $this->amount = $amount;
-        $this->amount_formatted = $amount_formatted;
-        $this->display_title = $display_title;
-        $this->currency = $currency;
     }
 
-    public function getAmount(): float|null
-    {
-        return $this->amount;
-    }
-    public function getAmountFormatted(): string|null
-    {
-        return $this->amount_formatted;
-    }
-    public function getDisplayTitle(): string|null
-    {
-        return $this->display_title;
-    }
-    public function getCurrency(): string|null
-    {
-        return $this->currency;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'amount' => $this->amount,

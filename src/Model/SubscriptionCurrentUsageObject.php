@@ -18,104 +18,24 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $cpu_app;
-    public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $storage_app_services;
-    public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $memory_app;
-    public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $cpu_services;
-    public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $memory_services;
-    public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $backup_storage;
-    public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $build_cpu;
-    public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $build_memory;
-    public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $egress_bandwidth;
-    public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $ingress_requests;
-    public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $logs_fwd_content_size;
-    public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $fastly_bandwidth;
-    public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $fastly_requests;
-
     public function __construct(
-        \Upsun\Model\UsageGroupCurrentUsageProperties|null $cpu_app = null,
-        \Upsun\Model\UsageGroupCurrentUsageProperties|null $storage_app_services = null,
-        \Upsun\Model\UsageGroupCurrentUsageProperties|null $memory_app = null,
-        \Upsun\Model\UsageGroupCurrentUsageProperties|null $cpu_services = null,
-        \Upsun\Model\UsageGroupCurrentUsageProperties|null $memory_services = null,
-        \Upsun\Model\UsageGroupCurrentUsageProperties|null $backup_storage = null,
-        \Upsun\Model\UsageGroupCurrentUsageProperties|null $build_cpu = null,
-        \Upsun\Model\UsageGroupCurrentUsageProperties|null $build_memory = null,
-        \Upsun\Model\UsageGroupCurrentUsageProperties|null $egress_bandwidth = null,
-        \Upsun\Model\UsageGroupCurrentUsageProperties|null $ingress_requests = null,
-        \Upsun\Model\UsageGroupCurrentUsageProperties|null $logs_fwd_content_size = null,
-        \Upsun\Model\UsageGroupCurrentUsageProperties|null $fastly_bandwidth = null,
-        \Upsun\Model\UsageGroupCurrentUsageProperties|null $fastly_requests = null
+        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $cpu_app = null,
+        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $storage_app_services = null,
+        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $memory_app = null,
+        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $cpu_services = null,
+        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $memory_services = null,
+        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $backup_storage = null,
+        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $build_cpu = null,
+        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $build_memory = null,
+        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $egress_bandwidth = null,
+        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $ingress_requests = null,
+        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $logs_fwd_content_size = null,
+        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $fastly_bandwidth = null,
+        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $fastly_requests = null
     ) {
-        $this->cpu_app = $cpu_app;
-        $this->storage_app_services = $storage_app_services;
-        $this->memory_app = $memory_app;
-        $this->cpu_services = $cpu_services;
-        $this->memory_services = $memory_services;
-        $this->backup_storage = $backup_storage;
-        $this->build_cpu = $build_cpu;
-        $this->build_memory = $build_memory;
-        $this->egress_bandwidth = $egress_bandwidth;
-        $this->ingress_requests = $ingress_requests;
-        $this->logs_fwd_content_size = $logs_fwd_content_size;
-        $this->fastly_bandwidth = $fastly_bandwidth;
-        $this->fastly_requests = $fastly_requests;
     }
 
-    public function getCpuApp(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
-    {
-        return $this->cpu_app;
-    }
-    public function getStorageAppServices(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
-    {
-        return $this->storage_app_services;
-    }
-    public function getMemoryApp(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
-    {
-        return $this->memory_app;
-    }
-    public function getCpuServices(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
-    {
-        return $this->cpu_services;
-    }
-    public function getMemoryServices(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
-    {
-        return $this->memory_services;
-    }
-    public function getBackupStorage(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
-    {
-        return $this->backup_storage;
-    }
-    public function getBuildCpu(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
-    {
-        return $this->build_cpu;
-    }
-    public function getBuildMemory(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
-    {
-        return $this->build_memory;
-    }
-    public function getEgressBandwidth(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
-    {
-        return $this->egress_bandwidth;
-    }
-    public function getIngressRequests(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
-    {
-        return $this->ingress_requests;
-    }
-    public function getLogsFwdContentSize(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
-    {
-        return $this->logs_fwd_content_size;
-    }
-    public function getFastlyBandwidth(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
-    {
-        return $this->fastly_bandwidth;
-    }
-    public function getFastlyRequests(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
-    {
-        return $this->fastly_requests;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'cpu_app' => $this->cpu_app,

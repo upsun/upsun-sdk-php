@@ -18,170 +18,30 @@ final class DeploymentTarget implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $type;
-    public readonly string $name;
-    public readonly string $deploy_host;
-    public readonly int $deploy_port;
-    public readonly string $ssh_host;
-    /**
-     * @var \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]|null
-     */
-    public readonly ?array $hosts;
-    public readonly bool $auto_mounts;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $excluded_mounts;
-    public readonly object $enforced_mounts;
-    public readonly bool $auto_crons;
-    public readonly bool $auto_nginx;
-    public readonly bool $maintenance_mode;
-    public readonly int $guardrails_phase;
-    /**
-     * @var \Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue[]|null
-     */
-    public readonly ?array $docroots;
-    public readonly object $site_urls;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $ssh_hosts;
-    public readonly object|null $enterprise_environments_mapping;
-    public readonly bool $use_dedicated_grid;
-    public readonly string $storage_type;
-
     public function __construct(
-        string $type = null,
-        string $name = null,
-        string $deploy_host = null,
-        int $deploy_port = null,
-        string $ssh_host = null,
-        ?array $hosts = null,
-        bool $auto_mounts = null,
-        ?array $excluded_mounts = null,
-        object $enforced_mounts = null,
-        bool $auto_crons = null,
-        bool $auto_nginx = null,
-        bool $maintenance_mode = null,
-        int $guardrails_phase = null,
-        ?array $docroots = null,
-        object $site_urls = null,
-        ?array $ssh_hosts = null,
-        object|null $enterprise_environments_mapping = null,
-        bool $use_dedicated_grid = null,
-        string $storage_type = null
+        public readonly string $type = null,
+        public readonly string $name = null,
+        public readonly string $deploy_host = null,
+        public readonly int $deploy_port = null,
+        public readonly string $ssh_host = null,
+        public readonly ?array $hosts = null,
+        public readonly bool $auto_mounts = null,
+        public readonly ?array $excluded_mounts = null,
+        public readonly object $enforced_mounts = null,
+        public readonly bool $auto_crons = null,
+        public readonly bool $auto_nginx = null,
+        public readonly bool $maintenance_mode = null,
+        public readonly int $guardrails_phase = null,
+        public readonly ?array $docroots = null,
+        public readonly object $site_urls = null,
+        public readonly ?array $ssh_hosts = null,
+        public readonly object|null $enterprise_environments_mapping = null,
+        public readonly bool $use_dedicated_grid = null,
+        public readonly string $storage_type = null
     ) {
-        $this->type = $type;
-        $this->name = $name;
-        $this->deploy_host = $deploy_host;
-        $this->deploy_port = $deploy_port;
-        $this->ssh_host = $ssh_host;
-        $this->hosts = $hosts;
-        $this->auto_mounts = $auto_mounts;
-        $this->excluded_mounts = $excluded_mounts;
-        $this->enforced_mounts = $enforced_mounts;
-        $this->auto_crons = $auto_crons;
-        $this->auto_nginx = $auto_nginx;
-        $this->maintenance_mode = $maintenance_mode;
-        $this->guardrails_phase = $guardrails_phase;
-        $this->docroots = $docroots;
-        $this->site_urls = $site_urls;
-        $this->ssh_hosts = $ssh_hosts;
-        $this->enterprise_environments_mapping = $enterprise_environments_mapping;
-        $this->use_dedicated_grid = $use_dedicated_grid;
-        $this->storage_type = $storage_type;
     }
 
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    public function getName(): string
-    {
-        return $this->name;
-    }
-    public function getDeployHost(): string
-    {
-        return $this->deploy_host;
-    }
-    public function getDeployPort(): int
-    {
-        return $this->deploy_port;
-    }
-    public function getSshHost(): string
-    {
-        return $this->ssh_host;
-    }
-    /**
-     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]|null
-     */
-    public function getHosts(): ?array
-    {
-        return $this->hosts;
-    }
-    public function getAutoMounts(): bool
-    {
-        return $this->auto_mounts;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getExcludedMounts(): ?array
-    {
-        return $this->excluded_mounts;
-    }
-    public function getEnforcedMounts(): object
-    {
-        return $this->enforced_mounts;
-    }
-    public function getAutoCrons(): bool
-    {
-        return $this->auto_crons;
-    }
-    public function getAutoNginx(): bool
-    {
-        return $this->auto_nginx;
-    }
-    public function getMaintenanceMode(): bool
-    {
-        return $this->maintenance_mode;
-    }
-    public function getGuardrailsPhase(): int
-    {
-        return $this->guardrails_phase;
-    }
-    /**
-     * @return \Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue[]|null
-     */
-    public function getDocroots(): ?array
-    {
-        return $this->docroots;
-    }
-    public function getSiteUrls(): object
-    {
-        return $this->site_urls;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getSshHosts(): ?array
-    {
-        return $this->ssh_hosts;
-    }
-    public function getEnterpriseEnvironmentsMapping(): object|null
-    {
-        return $this->enterprise_environments_mapping;
-    }
-    public function getUseDedicatedGrid(): bool
-    {
-        return $this->use_dedicated_grid;
-    }
-    public function getStorageType(): string
-    {
-        return $this->storage_type;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->type,

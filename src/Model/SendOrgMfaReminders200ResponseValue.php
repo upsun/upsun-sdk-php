@@ -18,27 +18,13 @@ final class SendOrgMfaReminders200ResponseValue implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly int|null $code;
-    public readonly string|null $message;
-
     public function __construct(
-        int|null $code = null,
-        string|null $message = null
+        public readonly int|null $code = null,
+        public readonly string|null $message = null
     ) {
-        $this->code = $code;
-        $this->message = $message;
     }
 
-    public function getCode(): int|null
-    {
-        return $this->code;
-    }
-    public function getMessage(): string|null
-    {
-        return $this->message;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'code' => $this->code,

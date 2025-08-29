@@ -18,40 +18,14 @@ final class ListOrgMembers200Response implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly int|null $count;
-    /**
-     * @var \Upsun\Model\OrganizationMember[]|null
-     */
-    public readonly ?array $items;
-    public readonly \Upsun\Model\ListLinks|null $_links;
-
     public function __construct(
-        int|null $count = null,
-        ?array $items = null,
-        \Upsun\Model\ListLinks|null $_links = null
+        public readonly int|null $count = null,
+        public readonly ?array $items = null,
+        public readonly \Upsun\Model\ListLinks|null $_links = null
     ) {
-        $this->count = $count;
-        $this->items = $items;
-        $this->_links = $_links;
     }
 
-    public function getCount(): int|null
-    {
-        return $this->count;
-    }
-    /**
-     * @return \Upsun\Model\OrganizationMember[]|null
-     */
-    public function getItems(): ?array
-    {
-        return $this->items;
-    }
-    public function getLinks(): \Upsun\Model\ListLinks|null
-    {
-        return $this->_links;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'count' => $this->count,

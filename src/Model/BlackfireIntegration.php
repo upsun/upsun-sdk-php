@@ -18,54 +18,16 @@ final class BlackfireIntegration implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
-    public readonly string $type;
-    /**
-     * @var \Upsun\Model\BlackfireEnvironmentsCredentialsValue[]|null
-     */
-    public readonly ?array $environments_credentials;
-    public readonly bool $continuous_profiling;
-
     public function __construct(
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
-        string $type = null,
-        ?array $environments_credentials = null,
-        bool $continuous_profiling = null
+        public readonly \DateTime $created_at = null,
+        public readonly \DateTime $updated_at = null,
+        public readonly string $type = null,
+        public readonly ?array $environments_credentials = null,
+        public readonly bool $continuous_profiling = null
     ) {
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
-        $this->type = $type;
-        $this->environments_credentials = $environments_credentials;
-        $this->continuous_profiling = $continuous_profiling;
     }
 
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->updated_at;
-    }
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    /**
-     * @return \Upsun\Model\BlackfireEnvironmentsCredentialsValue[]|null
-     */
-    public function getEnvironmentsCredentials(): ?array
-    {
-        return $this->environments_credentials;
-    }
-    public function getContinuousProfiling(): bool
-    {
-        return $this->continuous_profiling;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'created_at' => $this->created_at,

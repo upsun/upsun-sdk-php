@@ -18,20 +18,12 @@ final class ResetEmailAddressRequest implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $email_address;
-
     public function __construct(
-        string $email_address = null
+        public readonly string $email_address = null
     ) {
-        $this->email_address = $email_address;
     }
 
-    public function getEmailAddress(): string
-    {
-        return $this->email_address;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'email_address' => $this->email_address,

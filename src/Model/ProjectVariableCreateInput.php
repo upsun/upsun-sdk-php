@@ -18,68 +18,18 @@ final class ProjectVariableCreateInput implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $name;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $attributes;
-    public readonly string $value;
-    public readonly bool|null $is_json;
-    public readonly bool|null $is_sensitive;
-    public readonly bool|null $visible_build;
-    public readonly bool|null $visible_runtime;
-
     public function __construct(
-        string $name = null,
-        ?array $attributes = null,
-        string $value = null,
-        bool|null $is_json = null,
-        bool|null $is_sensitive = null,
-        bool|null $visible_build = null,
-        bool|null $visible_runtime = null
+        public readonly string $name = null,
+        public readonly ?array $attributes = null,
+        public readonly string $value = null,
+        public readonly bool|null $is_json = null,
+        public readonly bool|null $is_sensitive = null,
+        public readonly bool|null $visible_build = null,
+        public readonly bool|null $visible_runtime = null
     ) {
-        $this->name = $name;
-        $this->attributes = $attributes;
-        $this->value = $value;
-        $this->is_json = $is_json;
-        $this->is_sensitive = $is_sensitive;
-        $this->visible_build = $visible_build;
-        $this->visible_runtime = $visible_runtime;
     }
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getAttributes(): ?array
-    {
-        return $this->attributes;
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function getIsJson(): bool|null
-    {
-        return $this->is_json;
-    }
-    public function getIsSensitive(): bool|null
-    {
-        return $this->is_sensitive;
-    }
-    public function getVisibleBuild(): bool|null
-    {
-        return $this->visible_build;
-    }
-    public function getVisibleRuntime(): bool|null
-    {
-        return $this->visible_runtime;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'name' => $this->name,

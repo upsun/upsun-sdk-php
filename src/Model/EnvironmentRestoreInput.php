@@ -18,48 +18,16 @@ final class EnvironmentRestoreInput implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $environment_name;
-    public readonly string $branch_from;
-    public readonly bool $restore_code;
-    public readonly bool $restore_resources;
-    public readonly \Upsun\Model\Resources5 $resources;
-
     public function __construct(
-        string $environment_name = null,
-        string $branch_from = null,
-        bool $restore_code = null,
-        bool $restore_resources = null,
-        \Upsun\Model\Resources5 $resources = null
+        public readonly string $environment_name = null,
+        public readonly string $branch_from = null,
+        public readonly bool $restore_code = null,
+        public readonly bool $restore_resources = null,
+        public readonly \Upsun\Model\Resources5 $resources = null
     ) {
-        $this->environment_name = $environment_name;
-        $this->branch_from = $branch_from;
-        $this->restore_code = $restore_code;
-        $this->restore_resources = $restore_resources;
-        $this->resources = $resources;
     }
 
-    public function getEnvironmentName(): string
-    {
-        return $this->environment_name;
-    }
-    public function getBranchFrom(): string
-    {
-        return $this->branch_from;
-    }
-    public function getRestoreCode(): bool
-    {
-        return $this->restore_code;
-    }
-    public function getRestoreResources(): bool
-    {
-        return $this->restore_resources;
-    }
-    public function getResources(): \Upsun\Model\Resources5
-    {
-        return $this->resources;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'environment_name' => $this->environment_name,

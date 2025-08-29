@@ -18,20 +18,12 @@ final class Components implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly object|null $voucher_vat_baseprice;
-
     public function __construct(
-        object|null $voucher_vat_baseprice = null
+        public readonly object|null $voucher_vat_baseprice = null
     ) {
-        $this->voucher_vat_baseprice = $voucher_vat_baseprice;
     }
 
-    public function getVoucherVatBaseprice(): object|null
-    {
-        return $this->voucher_vat_baseprice;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'voucher_vat_baseprice' => $this->voucher_vat_baseprice,

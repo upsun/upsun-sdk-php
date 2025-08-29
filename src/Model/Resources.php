@@ -18,55 +18,17 @@ final class Resources implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly int $base_memory;
-    public readonly int $memory_ratio;
-    public readonly string $profile_size;
-    public readonly \Upsun\Model\TheMinimumResourcesForThisService $minimum;
-    public readonly \Upsun\Model\TheDefaultResourcesForThisService $default;
-    public readonly \Upsun\Model\TheDisksResources $disk;
-
     public function __construct(
-        int $base_memory = null,
-        int $memory_ratio = null,
-        string $profile_size = null,
-        \Upsun\Model\TheMinimumResourcesForThisService $minimum = null,
-        \Upsun\Model\TheDefaultResourcesForThisService $default = null,
-        \Upsun\Model\TheDisksResources $disk = null
+        public readonly int $base_memory = null,
+        public readonly int $memory_ratio = null,
+        public readonly string $profile_size = null,
+        public readonly \Upsun\Model\TheMinimumResourcesForThisService $minimum = null,
+        public readonly \Upsun\Model\TheDefaultResourcesForThisService $default = null,
+        public readonly \Upsun\Model\TheDisksResources $disk = null
     ) {
-        $this->base_memory = $base_memory;
-        $this->memory_ratio = $memory_ratio;
-        $this->profile_size = $profile_size;
-        $this->minimum = $minimum;
-        $this->default = $default;
-        $this->disk = $disk;
     }
 
-    public function getBaseMemory(): int
-    {
-        return $this->base_memory;
-    }
-    public function getMemoryRatio(): int
-    {
-        return $this->memory_ratio;
-    }
-    public function getProfileSize(): string
-    {
-        return $this->profile_size;
-    }
-    public function getMinimum(): \Upsun\Model\TheMinimumResourcesForThisService
-    {
-        return $this->minimum;
-    }
-    public function getDefault(): \Upsun\Model\TheDefaultResourcesForThisService
-    {
-        return $this->default;
-    }
-    public function getDisk(): \Upsun\Model\TheDisksResources
-    {
-        return $this->disk;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'base_memory' => $this->base_memory,

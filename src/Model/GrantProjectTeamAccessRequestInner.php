@@ -18,20 +18,12 @@ final class GrantProjectTeamAccessRequestInner implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $team_id;
-
     public function __construct(
-        string $team_id = null
+        public readonly string $team_id = null
     ) {
-        $this->team_id = $team_id;
     }
 
-    public function getTeamId(): string
-    {
-        return $this->team_id;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'team_id' => $this->team_id,

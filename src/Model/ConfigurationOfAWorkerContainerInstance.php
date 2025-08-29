@@ -18,27 +18,13 @@ final class ConfigurationOfAWorkerContainerInstance implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\TheCommandsToManageTheWorker $commands;
-    public readonly int|null $disk;
-
     public function __construct(
-        \Upsun\Model\TheCommandsToManageTheWorker $commands = null,
-        int|null $disk = null
+        public readonly \Upsun\Model\TheCommandsToManageTheWorker $commands = null,
+        public readonly int|null $disk = null
     ) {
-        $this->commands = $commands;
-        $this->disk = $disk;
     }
 
-    public function getCommands(): \Upsun\Model\TheCommandsToManageTheWorker
-    {
-        return $this->commands;
-    }
-    public function getDisk(): int|null
-    {
-        return $this->disk;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'commands' => $this->commands,

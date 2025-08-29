@@ -18,47 +18,15 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $directory;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $watch;
-    public readonly bool $allow_stale;
-    public readonly bool $share_between_apps;
-
     public function __construct(
-        string $directory = null,
-        ?array $watch = null,
-        bool $allow_stale = null,
-        bool $share_between_apps = null
+        public readonly string $directory = null,
+        public readonly ?array $watch = null,
+        public readonly bool $allow_stale = null,
+        public readonly bool $share_between_apps = null
     ) {
-        $this->directory = $directory;
-        $this->watch = $watch;
-        $this->allow_stale = $allow_stale;
-        $this->share_between_apps = $share_between_apps;
     }
 
-    public function getDirectory(): string
-    {
-        return $this->directory;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getWatch(): ?array
-    {
-        return $this->watch;
-    }
-    public function getAllowStale(): bool
-    {
-        return $this->allow_stale;
-    }
-    public function getShareBetweenApps(): bool
-    {
-        return $this->share_between_apps;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'directory' => $this->directory,

@@ -18,48 +18,16 @@ final class Error implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $status;
-    public readonly string|null $message;
-    public readonly float|null $code;
-    public readonly object|null $detail;
-    public readonly string|null $title;
-
     public function __construct(
-        string|null $status = null,
-        string|null $message = null,
-        float|null $code = null,
-        object|null $detail = null,
-        string|null $title = null
+        public readonly string|null $status = null,
+        public readonly string|null $message = null,
+        public readonly float|null $code = null,
+        public readonly object|null $detail = null,
+        public readonly string|null $title = null
     ) {
-        $this->status = $status;
-        $this->message = $message;
-        $this->code = $code;
-        $this->detail = $detail;
-        $this->title = $title;
     }
 
-    public function getStatus(): string|null
-    {
-        return $this->status;
-    }
-    public function getMessage(): string|null
-    {
-        return $this->message;
-    }
-    public function getCode(): float|null
-    {
-        return $this->code;
-    }
-    public function getDetail(): object|null
-    {
-        return $this->detail;
-    }
-    public function getTitle(): string|null
-    {
-        return $this->title;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'status' => $this->status,

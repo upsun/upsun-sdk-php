@@ -18,76 +18,20 @@ final class EnvironmentInfo implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $name;
-    public readonly string $status;
-    public readonly bool $is_main;
-    public readonly bool $is_production;
-    public readonly object $constraints;
-    public readonly string $reference;
-    public readonly string $machine_name;
-    public readonly string $environment_type;
-    public readonly object $links;
-
     public function __construct(
-        string $name = null,
-        string $status = null,
-        bool $is_main = null,
-        bool $is_production = null,
-        object $constraints = null,
-        string $reference = null,
-        string $machine_name = null,
-        string $environment_type = null,
-        object $links = null
+        public readonly string $name = null,
+        public readonly string $status = null,
+        public readonly bool $is_main = null,
+        public readonly bool $is_production = null,
+        public readonly object $constraints = null,
+        public readonly string $reference = null,
+        public readonly string $machine_name = null,
+        public readonly string $environment_type = null,
+        public readonly object $links = null
     ) {
-        $this->name = $name;
-        $this->status = $status;
-        $this->is_main = $is_main;
-        $this->is_production = $is_production;
-        $this->constraints = $constraints;
-        $this->reference = $reference;
-        $this->machine_name = $machine_name;
-        $this->environment_type = $environment_type;
-        $this->links = $links;
     }
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-    public function getStatus(): string
-    {
-        return $this->status;
-    }
-    public function getIsMain(): bool
-    {
-        return $this->is_main;
-    }
-    public function getIsProduction(): bool
-    {
-        return $this->is_production;
-    }
-    public function getConstraints(): object
-    {
-        return $this->constraints;
-    }
-    public function getReference(): string
-    {
-        return $this->reference;
-    }
-    public function getMachineName(): string
-    {
-        return $this->machine_name;
-    }
-    public function getEnvironmentType(): string
-    {
-        return $this->environment_type;
-    }
-    public function getLinks(): object
-    {
-        return $this->links;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'name' => $this->name,

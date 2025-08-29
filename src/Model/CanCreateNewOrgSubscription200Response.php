@@ -18,34 +18,14 @@ final class CanCreateNewOrgSubscription200Response implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly bool|null $can_create;
-    public readonly string|null $message;
-    public readonly \Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction|null $required_action;
-
     public function __construct(
-        bool|null $can_create = null,
-        string|null $message = null,
-        \Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction|null $required_action = null
+        public readonly bool|null $can_create = null,
+        public readonly string|null $message = null,
+        public readonly \Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction|null $required_action = null
     ) {
-        $this->can_create = $can_create;
-        $this->message = $message;
-        $this->required_action = $required_action;
     }
 
-    public function getCanCreate(): bool|null
-    {
-        return $this->can_create;
-    }
-    public function getMessage(): string|null
-    {
-        return $this->message;
-    }
-    public function getRequiredAction(): \Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction|null
-    {
-        return $this->required_action;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'can_create' => $this->can_create,

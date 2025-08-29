@@ -18,46 +18,14 @@ final class HttpAccessPermissions implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly bool $is_enabled;
-    /**
-     * @var \Upsun\Model\AddressGrantsInner[]|null
-     */
-    public readonly ?array $addresses;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $basic_auth;
-
     public function __construct(
-        bool $is_enabled = null,
-        ?array $addresses = null,
-        ?array $basic_auth = null
+        public readonly bool $is_enabled = null,
+        public readonly ?array $addresses = null,
+        public readonly ?array $basic_auth = null
     ) {
-        $this->is_enabled = $is_enabled;
-        $this->addresses = $addresses;
-        $this->basic_auth = $basic_auth;
     }
 
-    public function getIsEnabled(): bool
-    {
-        return $this->is_enabled;
-    }
-    /**
-     * @return \Upsun\Model\AddressGrantsInner[]|null
-     */
-    public function getAddresses(): ?array
-    {
-        return $this->addresses;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getBasicAuth(): ?array
-    {
-        return $this->basic_auth;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'is_enabled' => $this->is_enabled,

@@ -18,83 +18,21 @@ final class ProjectReference implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $id;
-    public readonly string $organization_id;
-    public readonly string $subscription_id;
-    public readonly string $region;
-    public readonly string $title;
-    public readonly \Upsun\Model\OrganizationProjectType $type;
-    public readonly \Upsun\Model\OrganizationProjectPlan $plan;
-    public readonly \Upsun\Model\OrganizationProjectStatus $status;
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
-
     public function __construct(
-        string $id = null,
-        string $organization_id = null,
-        string $subscription_id = null,
-        string $region = null,
-        string $title = null,
-        \Upsun\Model\OrganizationProjectType $type = null,
-        \Upsun\Model\OrganizationProjectPlan $plan = null,
-        \Upsun\Model\OrganizationProjectStatus $status = null,
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null
+        public readonly string $id = null,
+        public readonly string $organization_id = null,
+        public readonly string $subscription_id = null,
+        public readonly string $region = null,
+        public readonly string $title = null,
+        public readonly \Upsun\Model\OrganizationProjectType $type = null,
+        public readonly \Upsun\Model\OrganizationProjectPlan $plan = null,
+        public readonly \Upsun\Model\OrganizationProjectStatus $status = null,
+        public readonly \DateTime $created_at = null,
+        public readonly \DateTime $updated_at = null
     ) {
-        $this->id = $id;
-        $this->organization_id = $organization_id;
-        $this->subscription_id = $subscription_id;
-        $this->region = $region;
-        $this->title = $title;
-        $this->type = $type;
-        $this->plan = $plan;
-        $this->status = $status;
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
     }
 
-    public function getId(): string
-    {
-        return $this->id;
-    }
-    public function getOrganizationId(): string
-    {
-        return $this->organization_id;
-    }
-    public function getSubscriptionId(): string
-    {
-        return $this->subscription_id;
-    }
-    public function getRegion(): string
-    {
-        return $this->region;
-    }
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-    public function getType(): \Upsun\Model\OrganizationProjectType
-    {
-        return $this->type;
-    }
-    public function getPlan(): \Upsun\Model\OrganizationProjectPlan
-    {
-        return $this->plan;
-    }
-    public function getStatus(): \Upsun\Model\OrganizationProjectStatus
-    {
-        return $this->status;
-    }
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->updated_at;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

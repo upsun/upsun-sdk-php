@@ -18,82 +18,20 @@ final class EnvironmentPatch implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $name;
-    public readonly string|null $title;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $attributes;
-    public readonly string|null $type;
-    public readonly string|null $parent;
-    public readonly bool|null $clone_parent_on_create;
-    public readonly \Upsun\Model\HttpAccessPermissions1|null $http_access;
-    public readonly bool|null $enable_smtp;
-    public readonly bool|null $restrict_robots;
-
     public function __construct(
-        string|null $name = null,
-        string|null $title = null,
-        ?array $attributes = null,
-        string|null $type = null,
-        string|null $parent = null,
-        bool|null $clone_parent_on_create = null,
-        \Upsun\Model\HttpAccessPermissions1|null $http_access = null,
-        bool|null $enable_smtp = null,
-        bool|null $restrict_robots = null
+        public readonly string|null $name = null,
+        public readonly string|null $title = null,
+        public readonly ?array $attributes = null,
+        public readonly string|null $type = null,
+        public readonly string|null $parent = null,
+        public readonly bool|null $clone_parent_on_create = null,
+        public readonly \Upsun\Model\HttpAccessPermissions1|null $http_access = null,
+        public readonly bool|null $enable_smtp = null,
+        public readonly bool|null $restrict_robots = null
     ) {
-        $this->name = $name;
-        $this->title = $title;
-        $this->attributes = $attributes;
-        $this->type = $type;
-        $this->parent = $parent;
-        $this->clone_parent_on_create = $clone_parent_on_create;
-        $this->http_access = $http_access;
-        $this->enable_smtp = $enable_smtp;
-        $this->restrict_robots = $restrict_robots;
     }
 
-    public function getName(): string|null
-    {
-        return $this->name;
-    }
-    public function getTitle(): string|null
-    {
-        return $this->title;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getAttributes(): ?array
-    {
-        return $this->attributes;
-    }
-    public function getType(): string|null
-    {
-        return $this->type;
-    }
-    public function getParent(): string|null
-    {
-        return $this->parent;
-    }
-    public function getCloneParentOnCreate(): bool|null
-    {
-        return $this->clone_parent_on_create;
-    }
-    public function getHttpAccess(): \Upsun\Model\HttpAccessPermissions1|null
-    {
-        return $this->http_access;
-    }
-    public function getEnableSmtp(): bool|null
-    {
-        return $this->enable_smtp;
-    }
-    public function getRestrictRobots(): bool|null
-    {
-        return $this->restrict_robots;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'name' => $this->name,

@@ -18,41 +18,15 @@ final class ArrayFilter implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $eq;
-    public readonly string|null $ne;
-    public readonly string|null $in;
-    public readonly string|null $nin;
-
     public function __construct(
-        string|null $eq = null,
-        string|null $ne = null,
-        string|null $in = null,
-        string|null $nin = null
+        public readonly string|null $eq = null,
+        public readonly string|null $ne = null,
+        public readonly string|null $in = null,
+        public readonly string|null $nin = null
     ) {
-        $this->eq = $eq;
-        $this->ne = $ne;
-        $this->in = $in;
-        $this->nin = $nin;
     }
 
-    public function getEq(): string|null
-    {
-        return $this->eq;
-    }
-    public function getNe(): string|null
-    {
-        return $this->ne;
-    }
-    public function getIn(): string|null
-    {
-        return $this->in;
-    }
-    public function getNin(): string|null
-    {
-        return $this->nin;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'eq' => $this->eq,

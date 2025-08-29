@@ -18,40 +18,14 @@ final class UpdateTicketRequest implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $status;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $collaborator_ids;
-    public readonly bool|null $collaborators_replace;
-
     public function __construct(
-        string|null $status = null,
-        ?array $collaborator_ids = null,
-        bool|null $collaborators_replace = null
+        public readonly string|null $status = null,
+        public readonly ?array $collaborator_ids = null,
+        public readonly bool|null $collaborators_replace = null
     ) {
-        $this->status = $status;
-        $this->collaborator_ids = $collaborator_ids;
-        $this->collaborators_replace = $collaborators_replace;
     }
 
-    public function getStatus(): string|null
-    {
-        return $this->status;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getCollaboratorIds(): ?array
-    {
-        return $this->collaborator_ids;
-    }
-    public function getCollaboratorsReplace(): bool|null
-    {
-        return $this->collaborators_replace;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'status' => $this->status,

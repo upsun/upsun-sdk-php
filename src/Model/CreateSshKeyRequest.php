@@ -18,34 +18,14 @@ final class CreateSshKeyRequest implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $value;
-    public readonly string|null $title;
-    public readonly string|null $uuid;
-
     public function __construct(
-        string $value = null,
-        string|null $title = null,
-        string|null $uuid = null
+        public readonly string $value = null,
+        public readonly string|null $title = null,
+        public readonly string|null $uuid = null
     ) {
-        $this->value = $value;
-        $this->title = $title;
-        $this->uuid = $uuid;
     }
 
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function getTitle(): string|null
-    {
-        return $this->title;
-    }
-    public function getUuid(): string|null
-    {
-        return $this->uuid;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'value' => $this->value,

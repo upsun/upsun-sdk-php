@@ -18,97 +18,23 @@ final class BitbucketServerIntegration implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
-    public readonly string $type;
-    public readonly bool $fetch_branches;
-    public readonly bool $prune_branches;
-    public readonly string $environment_init_resources;
-    public readonly string $url;
-    public readonly string $username;
-    public readonly string $project;
-    public readonly string $repository;
-    public readonly bool $build_pull_requests;
-    public readonly bool $pull_requests_clone_parent_data;
-
     public function __construct(
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
-        string $type = null,
-        bool $fetch_branches = null,
-        bool $prune_branches = null,
-        string $environment_init_resources = null,
-        string $url = null,
-        string $username = null,
-        string $project = null,
-        string $repository = null,
-        bool $build_pull_requests = null,
-        bool $pull_requests_clone_parent_data = null
+        public readonly \DateTime $created_at = null,
+        public readonly \DateTime $updated_at = null,
+        public readonly string $type = null,
+        public readonly bool $fetch_branches = null,
+        public readonly bool $prune_branches = null,
+        public readonly string $environment_init_resources = null,
+        public readonly string $url = null,
+        public readonly string $username = null,
+        public readonly string $project = null,
+        public readonly string $repository = null,
+        public readonly bool $build_pull_requests = null,
+        public readonly bool $pull_requests_clone_parent_data = null
     ) {
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
-        $this->type = $type;
-        $this->fetch_branches = $fetch_branches;
-        $this->prune_branches = $prune_branches;
-        $this->environment_init_resources = $environment_init_resources;
-        $this->url = $url;
-        $this->username = $username;
-        $this->project = $project;
-        $this->repository = $repository;
-        $this->build_pull_requests = $build_pull_requests;
-        $this->pull_requests_clone_parent_data = $pull_requests_clone_parent_data;
     }
 
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->updated_at;
-    }
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    public function getFetchBranches(): bool
-    {
-        return $this->fetch_branches;
-    }
-    public function getPruneBranches(): bool
-    {
-        return $this->prune_branches;
-    }
-    public function getEnvironmentInitResources(): string
-    {
-        return $this->environment_init_resources;
-    }
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-    public function getUsername(): string
-    {
-        return $this->username;
-    }
-    public function getProject(): string
-    {
-        return $this->project;
-    }
-    public function getRepository(): string
-    {
-        return $this->repository;
-    }
-    public function getBuildPullRequests(): bool
-    {
-        return $this->build_pull_requests;
-    }
-    public function getPullRequestsCloneParentData(): bool
-    {
-        return $this->pull_requests_clone_parent_data;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'created_at' => $this->created_at,

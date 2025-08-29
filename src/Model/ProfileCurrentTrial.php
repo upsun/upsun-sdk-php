@@ -18,90 +18,22 @@ final class ProfileCurrentTrial implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly bool|null $active;
-    public readonly \DateTime|null $created;
-    public readonly string|null $description;
-    public readonly \DateTime|null $expiration;
-    public readonly \Upsun\Model\ProfileCurrentTrialCurrent|null $current;
-    public readonly \Upsun\Model\ProfileCurrentTrialSpend|null $spend;
-    public readonly \Upsun\Model\ProfileCurrentTrialSpendRemaining|null $spend_remaining;
-    public readonly \Upsun\Model\ProfileCurrentTrialProjects|null $projects;
-    public readonly string|null $pending_verification;
-    public readonly string|null $model;
-    public readonly int|null $days_remaining;
-
     public function __construct(
-        bool|null $active = null,
-        \DateTime|null $created = null,
-        string|null $description = null,
-        \DateTime|null $expiration = null,
-        \Upsun\Model\ProfileCurrentTrialCurrent|null $current = null,
-        \Upsun\Model\ProfileCurrentTrialSpend|null $spend = null,
-        \Upsun\Model\ProfileCurrentTrialSpendRemaining|null $spend_remaining = null,
-        \Upsun\Model\ProfileCurrentTrialProjects|null $projects = null,
-        string|null $pending_verification = null,
-        string|null $model = null,
-        int|null $days_remaining = null
+        public readonly bool|null $active = null,
+        public readonly \DateTime|null $created = null,
+        public readonly string|null $description = null,
+        public readonly \DateTime|null $expiration = null,
+        public readonly \Upsun\Model\ProfileCurrentTrialCurrent|null $current = null,
+        public readonly \Upsun\Model\ProfileCurrentTrialSpend|null $spend = null,
+        public readonly \Upsun\Model\ProfileCurrentTrialSpendRemaining|null $spend_remaining = null,
+        public readonly \Upsun\Model\ProfileCurrentTrialProjects|null $projects = null,
+        public readonly string|null $pending_verification = null,
+        public readonly string|null $model = null,
+        public readonly int|null $days_remaining = null
     ) {
-        $this->active = $active;
-        $this->created = $created;
-        $this->description = $description;
-        $this->expiration = $expiration;
-        $this->current = $current;
-        $this->spend = $spend;
-        $this->spend_remaining = $spend_remaining;
-        $this->projects = $projects;
-        $this->pending_verification = $pending_verification;
-        $this->model = $model;
-        $this->days_remaining = $days_remaining;
     }
 
-    public function getActive(): bool|null
-    {
-        return $this->active;
-    }
-    public function getCreated(): \DateTime|null
-    {
-        return $this->created;
-    }
-    public function getDescription(): string|null
-    {
-        return $this->description;
-    }
-    public function getExpiration(): \DateTime|null
-    {
-        return $this->expiration;
-    }
-    public function getCurrent(): \Upsun\Model\ProfileCurrentTrialCurrent|null
-    {
-        return $this->current;
-    }
-    public function getSpend(): \Upsun\Model\ProfileCurrentTrialSpend|null
-    {
-        return $this->spend;
-    }
-    public function getSpendRemaining(): \Upsun\Model\ProfileCurrentTrialSpendRemaining|null
-    {
-        return $this->spend_remaining;
-    }
-    public function getProjects(): \Upsun\Model\ProfileCurrentTrialProjects|null
-    {
-        return $this->projects;
-    }
-    public function getPendingVerification(): string|null
-    {
-        return $this->pending_verification;
-    }
-    public function getModel(): string|null
-    {
-        return $this->model;
-    }
-    public function getDaysRemaining(): int|null
-    {
-        return $this->days_remaining;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'active' => $this->active,

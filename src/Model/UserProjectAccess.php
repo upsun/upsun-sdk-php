@@ -18,75 +18,19 @@ final class UserProjectAccess implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $user_id;
-    public readonly string|null $organization_id;
-    public readonly string|null $project_id;
-    public readonly string|null $project_title;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $permissions;
-    public readonly \DateTime|null $granted_at;
-    public readonly \DateTime|null $updated_at;
-    public readonly \Upsun\Model\TeamProjectAccessLinks|null $_links;
-
     public function __construct(
-        string|null $user_id = null,
-        string|null $organization_id = null,
-        string|null $project_id = null,
-        string|null $project_title = null,
-        ?array $permissions = null,
-        \DateTime|null $granted_at = null,
-        \DateTime|null $updated_at = null,
-        \Upsun\Model\TeamProjectAccessLinks|null $_links = null
+        public readonly string|null $user_id = null,
+        public readonly string|null $organization_id = null,
+        public readonly string|null $project_id = null,
+        public readonly string|null $project_title = null,
+        public readonly ?array $permissions = null,
+        public readonly \DateTime|null $granted_at = null,
+        public readonly \DateTime|null $updated_at = null,
+        public readonly \Upsun\Model\TeamProjectAccessLinks|null $_links = null
     ) {
-        $this->user_id = $user_id;
-        $this->organization_id = $organization_id;
-        $this->project_id = $project_id;
-        $this->project_title = $project_title;
-        $this->permissions = $permissions;
-        $this->granted_at = $granted_at;
-        $this->updated_at = $updated_at;
-        $this->_links = $_links;
     }
 
-    public function getUserId(): string|null
-    {
-        return $this->user_id;
-    }
-    public function getOrganizationId(): string|null
-    {
-        return $this->organization_id;
-    }
-    public function getProjectId(): string|null
-    {
-        return $this->project_id;
-    }
-    public function getProjectTitle(): string|null
-    {
-        return $this->project_title;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getPermissions(): ?array
-    {
-        return $this->permissions;
-    }
-    public function getGrantedAt(): \DateTime|null
-    {
-        return $this->granted_at;
-    }
-    public function getUpdatedAt(): \DateTime|null
-    {
-        return $this->updated_at;
-    }
-    public function getLinks(): \Upsun\Model\TeamProjectAccessLinks|null
-    {
-        return $this->_links;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'user_id' => $this->user_id,

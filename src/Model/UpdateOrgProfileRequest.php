@@ -18,55 +18,17 @@ final class UpdateOrgProfileRequest implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $default_catalog;
-    public readonly string|null $project_options_url;
-    public readonly string|null $security_contact;
-    public readonly string|null $company_name;
-    public readonly string|null $vat_number;
-    public readonly string|null $billing_contact;
-
     public function __construct(
-        string|null $default_catalog = null,
-        string|null $project_options_url = null,
-        string|null $security_contact = null,
-        string|null $company_name = null,
-        string|null $vat_number = null,
-        string|null $billing_contact = null
+        public readonly string|null $default_catalog = null,
+        public readonly string|null $project_options_url = null,
+        public readonly string|null $security_contact = null,
+        public readonly string|null $company_name = null,
+        public readonly string|null $vat_number = null,
+        public readonly string|null $billing_contact = null
     ) {
-        $this->default_catalog = $default_catalog;
-        $this->project_options_url = $project_options_url;
-        $this->security_contact = $security_contact;
-        $this->company_name = $company_name;
-        $this->vat_number = $vat_number;
-        $this->billing_contact = $billing_contact;
     }
 
-    public function getDefaultCatalog(): string|null
-    {
-        return $this->default_catalog;
-    }
-    public function getProjectOptionsUrl(): string|null
-    {
-        return $this->project_options_url;
-    }
-    public function getSecurityContact(): string|null
-    {
-        return $this->security_contact;
-    }
-    public function getCompanyName(): string|null
-    {
-        return $this->company_name;
-    }
-    public function getVatNumber(): string|null
-    {
-        return $this->vat_number;
-    }
-    public function getBillingContact(): string|null
-    {
-        return $this->billing_contact;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'default_catalog' => $this->default_catalog,

@@ -2,52 +2,19 @@ final class {{classname}} implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    {{#vars}}
-    {{#isContainer}}
-    /**
-     * @var {{{items.dataType}}}[]|null
-     */
-    public readonly ?array ${{name}};
-    {{/isContainer}}
-    {{^isContainer}}
-    public readonly {{{dataType}}}{{^required}}|null{{/required}} ${{name}};
-    {{/isContainer}}
-    {{/vars}}
-
     public function __construct(
         {{#vars}}
         {{#isContainer}}
-        ?array ${{name}} = null{{^-last}},{{/-last}}
+        public readonly ?array ${{name}} = null{{^-last}},{{/-last}}
         {{/isContainer}}
         {{^isContainer}}
-        {{{dataType}}}{{^required}}|null{{/required}} ${{name}} = null{{^-last}},{{/-last}}
+        public readonly {{{dataType}}}{{^required}}|null{{/required}} ${{name}} = null{{^-last}},{{/-last}}
         {{/isContainer}}
         {{/vars}}
     ) {
-        {{#vars}}
-        $this->{{name}} = ${{name}};
-        {{/vars}}
     }
 
-    {{#vars}}
-    {{#isContainer}}
-    /**
-     * @return {{{items.dataType}}}[]|null
-     */
-    public function {{getter}}(): ?array
-    {
-        return $this->{{name}};
-    }
-    {{/isContainer}}
-    {{^isContainer}}
-    public function {{getter}}(): {{{dataType}}}{{^required}}|null{{/required}}
-    {
-        return $this->{{name}};
-    }
-    {{/isContainer}}
-    {{/vars}}
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             {{#vars}}

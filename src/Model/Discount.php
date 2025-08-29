@@ -18,90 +18,22 @@ final class Discount implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly int|null $id;
-    public readonly string|null $organization_id;
-    public readonly string|null $type;
-    public readonly string|null $type_label;
-    public readonly string|null $status;
-    public readonly \Upsun\Model\DiscountCommitment|null $commitment;
-    public readonly int|null $total_months;
-    public readonly \Upsun\Model\DiscountDiscount|null $discount;
-    public readonly object|null $config;
-    public readonly \DateTime|null $start_at;
-    public readonly \DateTime|null $end_at;
-
     public function __construct(
-        int|null $id = null,
-        string|null $organization_id = null,
-        string|null $type = null,
-        string|null $type_label = null,
-        string|null $status = null,
-        \Upsun\Model\DiscountCommitment|null $commitment = null,
-        int|null $total_months = null,
-        \Upsun\Model\DiscountDiscount|null $discount = null,
-        object|null $config = null,
-        \DateTime|null $start_at = null,
-        \DateTime|null $end_at = null
+        public readonly int|null $id = null,
+        public readonly string|null $organization_id = null,
+        public readonly string|null $type = null,
+        public readonly string|null $type_label = null,
+        public readonly string|null $status = null,
+        public readonly \Upsun\Model\DiscountCommitment|null $commitment = null,
+        public readonly int|null $total_months = null,
+        public readonly \Upsun\Model\DiscountDiscount|null $discount = null,
+        public readonly object|null $config = null,
+        public readonly \DateTime|null $start_at = null,
+        public readonly \DateTime|null $end_at = null
     ) {
-        $this->id = $id;
-        $this->organization_id = $organization_id;
-        $this->type = $type;
-        $this->type_label = $type_label;
-        $this->status = $status;
-        $this->commitment = $commitment;
-        $this->total_months = $total_months;
-        $this->discount = $discount;
-        $this->config = $config;
-        $this->start_at = $start_at;
-        $this->end_at = $end_at;
     }
 
-    public function getId(): int|null
-    {
-        return $this->id;
-    }
-    public function getOrganizationId(): string|null
-    {
-        return $this->organization_id;
-    }
-    public function getType(): string|null
-    {
-        return $this->type;
-    }
-    public function getTypeLabel(): string|null
-    {
-        return $this->type_label;
-    }
-    public function getStatus(): string|null
-    {
-        return $this->status;
-    }
-    public function getCommitment(): \Upsun\Model\DiscountCommitment|null
-    {
-        return $this->commitment;
-    }
-    public function getTotalMonths(): int|null
-    {
-        return $this->total_months;
-    }
-    public function getDiscount(): \Upsun\Model\DiscountDiscount|null
-    {
-        return $this->discount;
-    }
-    public function getConfig(): object|null
-    {
-        return $this->config;
-    }
-    public function getStartAt(): \DateTime|null
-    {
-        return $this->start_at;
-    }
-    public function getEndAt(): \DateTime|null
-    {
-        return $this->end_at;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

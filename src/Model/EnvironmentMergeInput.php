@@ -18,20 +18,12 @@ final class EnvironmentMergeInput implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\Resources4 $resources;
-
     public function __construct(
-        \Upsun\Model\Resources4 $resources = null
+        public readonly \Upsun\Model\Resources4 $resources = null
     ) {
-        $this->resources = $resources;
     }
 
-    public function getResources(): \Upsun\Model\Resources4
-    {
-        return $this->resources;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'resources' => $this->resources,

@@ -18,27 +18,13 @@ final class ConfirmTotpEnrollmentRequest implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $secret;
-    public readonly string $passcode;
-
     public function __construct(
-        string $secret = null,
-        string $passcode = null
+        public readonly string $secret = null,
+        public readonly string $passcode = null
     ) {
-        $this->secret = $secret;
-        $this->passcode = $passcode;
     }
 
-    public function getSecret(): string
-    {
-        return $this->secret;
-    }
-    public function getPasscode(): string
-    {
-        return $this->passcode;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'secret' => $this->secret,

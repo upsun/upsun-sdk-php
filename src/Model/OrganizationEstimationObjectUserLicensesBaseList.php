@@ -18,27 +18,13 @@ final class OrganizationEstimationObjectUserLicensesBaseList implements JsonSeri
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser|null $admin_user;
-    public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser|null $viewer_user;
-
     public function __construct(
-        \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser|null $admin_user = null,
-        \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser|null $viewer_user = null
+        public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser|null $admin_user = null,
+        public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser|null $viewer_user = null
     ) {
-        $this->admin_user = $admin_user;
-        $this->viewer_user = $viewer_user;
     }
 
-    public function getAdminUser(): \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser|null
-    {
-        return $this->admin_user;
-    }
-    public function getViewerUser(): \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser|null
-    {
-        return $this->viewer_user;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'admin_user' => $this->admin_user,

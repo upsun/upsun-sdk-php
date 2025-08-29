@@ -18,33 +18,13 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonS
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $root;
-    /**
-     * @var \Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue[]|null
-     */
-    public readonly ?array $operations;
-
     public function __construct(
-        string $root = null,
-        ?array $operations = null
+        public readonly string $root = null,
+        public readonly ?array $operations = null
     ) {
-        $this->root = $root;
-        $this->operations = $operations;
     }
 
-    public function getRoot(): string
-    {
-        return $this->root;
-    }
-    /**
-     * @return \Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue[]|null
-     */
-    public function getOperations(): ?array
-    {
-        return $this->operations;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'root' => $this->root,

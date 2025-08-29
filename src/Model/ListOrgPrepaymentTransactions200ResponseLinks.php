@@ -18,41 +18,15 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSeriali
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\ListLinksSelf|null $self;
-    public readonly \Upsun\Model\ListLinksPrevious|null $previous;
-    public readonly \Upsun\Model\ListLinksNext|null $next;
-    public readonly \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment|null $prepayment;
-
     public function __construct(
-        \Upsun\Model\ListLinksSelf|null $self = null,
-        \Upsun\Model\ListLinksPrevious|null $previous = null,
-        \Upsun\Model\ListLinksNext|null $next = null,
-        \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment|null $prepayment = null
+        public readonly \Upsun\Model\ListLinksSelf|null $self = null,
+        public readonly \Upsun\Model\ListLinksPrevious|null $previous = null,
+        public readonly \Upsun\Model\ListLinksNext|null $next = null,
+        public readonly \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment|null $prepayment = null
     ) {
-        $this->self = $self;
-        $this->previous = $previous;
-        $this->next = $next;
-        $this->prepayment = $prepayment;
     }
 
-    public function getSelf(): \Upsun\Model\ListLinksSelf|null
-    {
-        return $this->self;
-    }
-    public function getPrevious(): \Upsun\Model\ListLinksPrevious|null
-    {
-        return $this->previous;
-    }
-    public function getNext(): \Upsun\Model\ListLinksNext|null
-    {
-        return $this->next;
-    }
-    public function getPrepayment(): \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment|null
-    {
-        return $this->prepayment;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'self' => $this->self,

@@ -18,26 +18,12 @@ final class ConfirmTotpEnrollment200Response implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $recovery_codes;
-
     public function __construct(
-        ?array $recovery_codes = null
+        public readonly ?array $recovery_codes = null
     ) {
-        $this->recovery_codes = $recovery_codes;
     }
 
-    /**
-     * @return string[]|null
-     */
-    public function getRecoveryCodes(): ?array
-    {
-        return $this->recovery_codes;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'recovery_codes' => $this->recovery_codes,

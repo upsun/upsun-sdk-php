@@ -18,34 +18,14 @@ final class SystemInformation implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $version;
-    public readonly string $image;
-    public readonly \DateTime $started_at;
-
     public function __construct(
-        string $version = null,
-        string $image = null,
-        \DateTime $started_at = null
+        public readonly string $version = null,
+        public readonly string $image = null,
+        public readonly \DateTime $started_at = null
     ) {
-        $this->version = $version;
-        $this->image = $image;
-        $this->started_at = $started_at;
     }
 
-    public function getVersion(): string
-    {
-        return $this->version;
-    }
-    public function getImage(): string
-    {
-        return $this->image;
-    }
-    public function getStartedAt(): \DateTime
-    {
-        return $this->started_at;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'version' => $this->version,

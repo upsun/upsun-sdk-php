@@ -18,33 +18,13 @@ final class TheBuildConfigurationOfTheApplication implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $flavor;
-    /**
-     * @var \Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue[]|null
-     */
-    public readonly ?array $caches;
-
     public function __construct(
-        string $flavor = null,
-        ?array $caches = null
+        public readonly string $flavor = null,
+        public readonly ?array $caches = null
     ) {
-        $this->flavor = $flavor;
-        $this->caches = $caches;
     }
 
-    public function getFlavor(): string
-    {
-        return $this->flavor;
-    }
-    /**
-     * @return \Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue[]|null
-     */
-    public function getCaches(): ?array
-    {
-        return $this->caches;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'flavor' => $this->flavor,

@@ -18,27 +18,13 @@ final class AddressGrantsInner implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $permission;
-    public readonly string $address;
-
     public function __construct(
-        string $permission = null,
-        string $address = null
+        public readonly string $permission = null,
+        public readonly string $address = null
     ) {
-        $this->permission = $permission;
-        $this->address = $address;
     }
 
-    public function getPermission(): string
-    {
-        return $this->permission;
-    }
-    public function getAddress(): string
-    {
-        return $this->address;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'permission' => $this->permission,

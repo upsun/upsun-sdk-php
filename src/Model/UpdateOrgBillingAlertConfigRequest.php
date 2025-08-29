@@ -18,27 +18,13 @@ final class UpdateOrgBillingAlertConfigRequest implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly bool|null $active;
-    public readonly \Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig|null $config;
-
     public function __construct(
-        bool|null $active = null,
-        \Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig|null $config = null
+        public readonly bool|null $active = null,
+        public readonly \Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig|null $config = null
     ) {
-        $this->active = $active;
-        $this->config = $config;
     }
 
-    public function getActive(): bool|null
-    {
-        return $this->active;
-    }
-    public function getConfig(): \Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig|null
-    {
-        return $this->config;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'active' => $this->active,

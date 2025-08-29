@@ -18,27 +18,13 @@ final class Status implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $code;
-    public readonly string $message;
-
     public function __construct(
-        string $code = null,
-        string $message = null
+        public readonly string $code = null,
+        public readonly string $message = null
     ) {
-        $this->code = $code;
-        $this->message = $message;
     }
 
-    public function getCode(): string
-    {
-        return $this->code;
-    }
-    public function getMessage(): string
-    {
-        return $this->message;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'code' => $this->code,

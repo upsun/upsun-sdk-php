@@ -18,40 +18,14 @@ final class TheHostsOfTheDeploymentTargetInner1 implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $id;
-    public readonly string $type;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $services;
-
     public function __construct(
-        string $id = null,
-        string $type = null,
-        ?array $services = null
+        public readonly string $id = null,
+        public readonly string $type = null,
+        public readonly ?array $services = null
     ) {
-        $this->id = $id;
-        $this->type = $type;
-        $this->services = $services;
     }
 
-    public function getId(): string
-    {
-        return $this->id;
-    }
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getServices(): ?array
-    {
-        return $this->services;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

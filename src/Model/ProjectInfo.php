@@ -18,55 +18,17 @@ final class ProjectInfo implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $title;
-    public readonly string $name;
-    public readonly string $namespace;
-    public readonly string $organization;
-    public readonly object $capabilities;
-    public readonly object $settings;
-
     public function __construct(
-        string $title = null,
-        string $name = null,
-        string $namespace = null,
-        string $organization = null,
-        object $capabilities = null,
-        object $settings = null
+        public readonly string $title = null,
+        public readonly string $name = null,
+        public readonly string $namespace = null,
+        public readonly string $organization = null,
+        public readonly object $capabilities = null,
+        public readonly object $settings = null
     ) {
-        $this->title = $title;
-        $this->name = $name;
-        $this->namespace = $namespace;
-        $this->organization = $organization;
-        $this->capabilities = $capabilities;
-        $this->settings = $settings;
     }
 
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-    public function getName(): string
-    {
-        return $this->name;
-    }
-    public function getNamespace(): string
-    {
-        return $this->namespace;
-    }
-    public function getOrganization(): string
-    {
-        return $this->organization;
-    }
-    public function getCapabilities(): object
-    {
-        return $this->capabilities;
-    }
-    public function getSettings(): object
-    {
-        return $this->settings;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'title' => $this->title,

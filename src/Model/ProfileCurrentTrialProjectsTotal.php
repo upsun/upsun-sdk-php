@@ -18,41 +18,15 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly int|null $amount;
-    public readonly string|null $currency_code;
-    public readonly string|null $currency_symbol;
-    public readonly string|null $formatted;
-
     public function __construct(
-        int|null $amount = null,
-        string|null $currency_code = null,
-        string|null $currency_symbol = null,
-        string|null $formatted = null
+        public readonly int|null $amount = null,
+        public readonly string|null $currency_code = null,
+        public readonly string|null $currency_symbol = null,
+        public readonly string|null $formatted = null
     ) {
-        $this->amount = $amount;
-        $this->currency_code = $currency_code;
-        $this->currency_symbol = $currency_symbol;
-        $this->formatted = $formatted;
     }
 
-    public function getAmount(): int|null
-    {
-        return $this->amount;
-    }
-    public function getCurrencyCode(): string|null
-    {
-        return $this->currency_code;
-    }
-    public function getCurrencySymbol(): string|null
-    {
-        return $this->currency_symbol;
-    }
-    public function getFormatted(): string|null
-    {
-        return $this->formatted;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'amount' => $this->amount,

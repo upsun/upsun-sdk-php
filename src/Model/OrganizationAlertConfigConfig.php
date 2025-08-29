@@ -18,27 +18,13 @@ final class OrganizationAlertConfigConfig implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\OrganizationAlertConfigConfigThreshold|null $threshold;
-    public readonly string|null $mode;
-
     public function __construct(
-        \Upsun\Model\OrganizationAlertConfigConfigThreshold|null $threshold = null,
-        string|null $mode = null
+        public readonly \Upsun\Model\OrganizationAlertConfigConfigThreshold|null $threshold = null,
+        public readonly string|null $mode = null
     ) {
-        $this->threshold = $threshold;
-        $this->mode = $mode;
     }
 
-    public function getThreshold(): \Upsun\Model\OrganizationAlertConfigConfigThreshold|null
-    {
-        return $this->threshold;
-    }
-    public function getMode(): string|null
-    {
-        return $this->mode;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'threshold' => $this->threshold,

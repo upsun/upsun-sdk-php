@@ -18,27 +18,13 @@ final class UpdateOrgBillingAlertConfigRequestConfig implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly int|null $threshold;
-    public readonly string|null $mode;
-
     public function __construct(
-        int|null $threshold = null,
-        string|null $mode = null
+        public readonly int|null $threshold = null,
+        public readonly string|null $mode = null
     ) {
-        $this->threshold = $threshold;
-        $this->mode = $mode;
     }
 
-    public function getThreshold(): int|null
-    {
-        return $this->threshold;
-    }
-    public function getMode(): string|null
-    {
-        return $this->mode;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'threshold' => $this->threshold,

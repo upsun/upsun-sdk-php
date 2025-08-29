@@ -18,34 +18,14 @@ final class TeamProjectAccessLinks implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\TeamProjectAccessLinksSelf|null $self;
-    public readonly \Upsun\Model\TeamProjectAccessLinksUpdate|null $update;
-    public readonly \Upsun\Model\TeamProjectAccessLinksDelete|null $delete;
-
     public function __construct(
-        \Upsun\Model\TeamProjectAccessLinksSelf|null $self = null,
-        \Upsun\Model\TeamProjectAccessLinksUpdate|null $update = null,
-        \Upsun\Model\TeamProjectAccessLinksDelete|null $delete = null
+        public readonly \Upsun\Model\TeamProjectAccessLinksSelf|null $self = null,
+        public readonly \Upsun\Model\TeamProjectAccessLinksUpdate|null $update = null,
+        public readonly \Upsun\Model\TeamProjectAccessLinksDelete|null $delete = null
     ) {
-        $this->self = $self;
-        $this->update = $update;
-        $this->delete = $delete;
     }
 
-    public function getSelf(): \Upsun\Model\TeamProjectAccessLinksSelf|null
-    {
-        return $this->self;
-    }
-    public function getUpdate(): \Upsun\Model\TeamProjectAccessLinksUpdate|null
-    {
-        return $this->update;
-    }
-    public function getDelete(): \Upsun\Model\TeamProjectAccessLinksDelete|null
-    {
-        return $this->delete;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'self' => $this->self,

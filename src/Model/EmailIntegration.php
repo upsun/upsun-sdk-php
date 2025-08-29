@@ -18,54 +18,16 @@ final class EmailIntegration implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
-    public readonly string $type;
-    public readonly string $from_address;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $recipients;
-
     public function __construct(
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
-        string $type = null,
-        string $from_address = null,
-        ?array $recipients = null
+        public readonly \DateTime $created_at = null,
+        public readonly \DateTime $updated_at = null,
+        public readonly string $type = null,
+        public readonly string $from_address = null,
+        public readonly ?array $recipients = null
     ) {
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
-        $this->type = $type;
-        $this->from_address = $from_address;
-        $this->recipients = $recipients;
     }
 
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->updated_at;
-    }
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    public function getFromAddress(): string
-    {
-        return $this->from_address;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getRecipients(): ?array
-    {
-        return $this->recipients;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'created_at' => $this->created_at,

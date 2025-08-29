@@ -18,60 +18,16 @@ final class ProjectOptions implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\ProjectOptionsDefaults|null $defaults;
-    public readonly \Upsun\Model\ProjectOptionsEnforced|null $enforced;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $regions;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $plans;
-    public readonly object|null $billing;
-
     public function __construct(
-        \Upsun\Model\ProjectOptionsDefaults|null $defaults = null,
-        \Upsun\Model\ProjectOptionsEnforced|null $enforced = null,
-        ?array $regions = null,
-        ?array $plans = null,
-        object|null $billing = null
+        public readonly \Upsun\Model\ProjectOptionsDefaults|null $defaults = null,
+        public readonly \Upsun\Model\ProjectOptionsEnforced|null $enforced = null,
+        public readonly ?array $regions = null,
+        public readonly ?array $plans = null,
+        public readonly object|null $billing = null
     ) {
-        $this->defaults = $defaults;
-        $this->enforced = $enforced;
-        $this->regions = $regions;
-        $this->plans = $plans;
-        $this->billing = $billing;
     }
 
-    public function getDefaults(): \Upsun\Model\ProjectOptionsDefaults|null
-    {
-        return $this->defaults;
-    }
-    public function getEnforced(): \Upsun\Model\ProjectOptionsEnforced|null
-    {
-        return $this->enforced;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getRegions(): ?array
-    {
-        return $this->regions;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getPlans(): ?array
-    {
-        return $this->plans;
-    }
-    public function getBilling(): object|null
-    {
-        return $this->billing;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'defaults' => $this->defaults,

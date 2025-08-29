@@ -18,48 +18,16 @@ final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $formatted;
-    public readonly string|null $amount;
-    public readonly string|null $currency;
-    public readonly string|null $currency_symbol;
-    public readonly bool|null $unlimited;
-
     public function __construct(
-        string|null $formatted = null,
-        string|null $amount = null,
-        string|null $currency = null,
-        string|null $currency_symbol = null,
-        bool|null $unlimited = null
+        public readonly string|null $formatted = null,
+        public readonly string|null $amount = null,
+        public readonly string|null $currency = null,
+        public readonly string|null $currency_symbol = null,
+        public readonly bool|null $unlimited = null
     ) {
-        $this->formatted = $formatted;
-        $this->amount = $amount;
-        $this->currency = $currency;
-        $this->currency_symbol = $currency_symbol;
-        $this->unlimited = $unlimited;
     }
 
-    public function getFormatted(): string|null
-    {
-        return $this->formatted;
-    }
-    public function getAmount(): string|null
-    {
-        return $this->amount;
-    }
-    public function getCurrency(): string|null
-    {
-        return $this->currency;
-    }
-    public function getCurrencySymbol(): string|null
-    {
-        return $this->currency_symbol;
-    }
-    public function getUnlimited(): bool|null
-    {
-        return $this->unlimited;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'formatted' => $this->formatted,

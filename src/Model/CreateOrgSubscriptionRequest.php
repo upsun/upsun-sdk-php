@@ -18,62 +18,18 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $plan;
-    public readonly string $project_region;
-    public readonly string|null $project_title;
-    public readonly string|null $options_url;
-    public readonly string|null $default_branch;
-    public readonly int|null $environments;
-    public readonly int|null $storage;
-
     public function __construct(
-        string|null $plan = null,
-        string $project_region = null,
-        string|null $project_title = null,
-        string|null $options_url = null,
-        string|null $default_branch = null,
-        int|null $environments = null,
-        int|null $storage = null
+        public readonly string|null $plan = null,
+        public readonly string $project_region = null,
+        public readonly string|null $project_title = null,
+        public readonly string|null $options_url = null,
+        public readonly string|null $default_branch = null,
+        public readonly int|null $environments = null,
+        public readonly int|null $storage = null
     ) {
-        $this->plan = $plan;
-        $this->project_region = $project_region;
-        $this->project_title = $project_title;
-        $this->options_url = $options_url;
-        $this->default_branch = $default_branch;
-        $this->environments = $environments;
-        $this->storage = $storage;
     }
 
-    public function getPlan(): string|null
-    {
-        return $this->plan;
-    }
-    public function getProjectRegion(): string
-    {
-        return $this->project_region;
-    }
-    public function getProjectTitle(): string|null
-    {
-        return $this->project_title;
-    }
-    public function getOptionsUrl(): string|null
-    {
-        return $this->options_url;
-    }
-    public function getDefaultBranch(): string|null
-    {
-        return $this->default_branch;
-    }
-    public function getEnvironments(): int|null
-    {
-        return $this->environments;
-    }
-    public function getStorage(): int|null
-    {
-        return $this->storage;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'plan' => $this->plan,

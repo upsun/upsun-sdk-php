@@ -18,159 +18,31 @@ final class Order implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $id;
-    public readonly string|null $status;
-    public readonly string|null $owner;
-    public readonly \Upsun\Model\Address|null $address;
-    public readonly string|null $company;
-    public readonly string|null $vat_number;
-    public readonly \DateTime|null $billing_period_start;
-    public readonly \DateTime|null $billing_period_end;
-    public readonly \Upsun\Model\OrderBillingPeriodLabel|null $billing_period_label;
-    public readonly int|null $billing_period_duration;
-    public readonly \DateTime|null $paid_on;
-    public readonly int|null $total;
-    public readonly int|null $total_formatted;
-    public readonly \Upsun\Model\Components|null $components;
-    public readonly string|null $currency;
-    public readonly string|null $invoice_url;
-    public readonly \DateTime|null $last_refreshed;
-    public readonly bool|null $invoiced;
-    /**
-     * @var \Upsun\Model\LineItem[]|null
-     */
-    public readonly ?array $line_items;
-    public readonly \Upsun\Model\OrderLinks|null $_links;
-
     public function __construct(
-        string|null $id = null,
-        string|null $status = null,
-        string|null $owner = null,
-        \Upsun\Model\Address|null $address = null,
-        string|null $company = null,
-        string|null $vat_number = null,
-        \DateTime|null $billing_period_start = null,
-        \DateTime|null $billing_period_end = null,
-        \Upsun\Model\OrderBillingPeriodLabel|null $billing_period_label = null,
-        int|null $billing_period_duration = null,
-        \DateTime|null $paid_on = null,
-        int|null $total = null,
-        int|null $total_formatted = null,
-        \Upsun\Model\Components|null $components = null,
-        string|null $currency = null,
-        string|null $invoice_url = null,
-        \DateTime|null $last_refreshed = null,
-        bool|null $invoiced = null,
-        ?array $line_items = null,
-        \Upsun\Model\OrderLinks|null $_links = null
+        public readonly string|null $id = null,
+        public readonly string|null $status = null,
+        public readonly string|null $owner = null,
+        public readonly \Upsun\Model\Address|null $address = null,
+        public readonly string|null $company = null,
+        public readonly string|null $vat_number = null,
+        public readonly \DateTime|null $billing_period_start = null,
+        public readonly \DateTime|null $billing_period_end = null,
+        public readonly \Upsun\Model\OrderBillingPeriodLabel|null $billing_period_label = null,
+        public readonly int|null $billing_period_duration = null,
+        public readonly \DateTime|null $paid_on = null,
+        public readonly int|null $total = null,
+        public readonly int|null $total_formatted = null,
+        public readonly \Upsun\Model\Components|null $components = null,
+        public readonly string|null $currency = null,
+        public readonly string|null $invoice_url = null,
+        public readonly \DateTime|null $last_refreshed = null,
+        public readonly bool|null $invoiced = null,
+        public readonly ?array $line_items = null,
+        public readonly \Upsun\Model\OrderLinks|null $_links = null
     ) {
-        $this->id = $id;
-        $this->status = $status;
-        $this->owner = $owner;
-        $this->address = $address;
-        $this->company = $company;
-        $this->vat_number = $vat_number;
-        $this->billing_period_start = $billing_period_start;
-        $this->billing_period_end = $billing_period_end;
-        $this->billing_period_label = $billing_period_label;
-        $this->billing_period_duration = $billing_period_duration;
-        $this->paid_on = $paid_on;
-        $this->total = $total;
-        $this->total_formatted = $total_formatted;
-        $this->components = $components;
-        $this->currency = $currency;
-        $this->invoice_url = $invoice_url;
-        $this->last_refreshed = $last_refreshed;
-        $this->invoiced = $invoiced;
-        $this->line_items = $line_items;
-        $this->_links = $_links;
     }
 
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getStatus(): string|null
-    {
-        return $this->status;
-    }
-    public function getOwner(): string|null
-    {
-        return $this->owner;
-    }
-    public function getAddress(): \Upsun\Model\Address|null
-    {
-        return $this->address;
-    }
-    public function getCompany(): string|null
-    {
-        return $this->company;
-    }
-    public function getVatNumber(): string|null
-    {
-        return $this->vat_number;
-    }
-    public function getBillingPeriodStart(): \DateTime|null
-    {
-        return $this->billing_period_start;
-    }
-    public function getBillingPeriodEnd(): \DateTime|null
-    {
-        return $this->billing_period_end;
-    }
-    public function getBillingPeriodLabel(): \Upsun\Model\OrderBillingPeriodLabel|null
-    {
-        return $this->billing_period_label;
-    }
-    public function getBillingPeriodDuration(): int|null
-    {
-        return $this->billing_period_duration;
-    }
-    public function getPaidOn(): \DateTime|null
-    {
-        return $this->paid_on;
-    }
-    public function getTotal(): int|null
-    {
-        return $this->total;
-    }
-    public function getTotalFormatted(): int|null
-    {
-        return $this->total_formatted;
-    }
-    public function getComponents(): \Upsun\Model\Components|null
-    {
-        return $this->components;
-    }
-    public function getCurrency(): string|null
-    {
-        return $this->currency;
-    }
-    public function getInvoiceUrl(): string|null
-    {
-        return $this->invoice_url;
-    }
-    public function getLastRefreshed(): \DateTime|null
-    {
-        return $this->last_refreshed;
-    }
-    public function getInvoiced(): bool|null
-    {
-        return $this->invoiced;
-    }
-    /**
-     * @return \Upsun\Model\LineItem[]|null
-     */
-    public function getLineItems(): ?array
-    {
-        return $this->line_items;
-    }
-    public function getLinks(): \Upsun\Model\OrderLinks|null
-    {
-        return $this->_links;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

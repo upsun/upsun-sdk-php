@@ -18,20 +18,12 @@ final class CreateUsageAlertRequestConfig implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly int|null $threshold;
-
     public function __construct(
-        int|null $threshold = null
+        public readonly int|null $threshold = null
     ) {
-        $this->threshold = $threshold;
     }
 
-    public function getThreshold(): int|null
-    {
-        return $this->threshold;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'threshold' => $this->threshold,

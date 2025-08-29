@@ -18,377 +18,57 @@ final class IntegrationPatch implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $type;
-    public readonly bool|null $fetch_branches;
-    public readonly bool|null $prune_branches;
-    public readonly string|null $environment_init_resources;
-    public readonly \Upsun\Model\TheOAuth2ConsumerInformationOptional1|null $app_credentials;
-    public readonly \Upsun\Model\TheAddonCredentialInformationOptional1|null $addon_credentials;
-    public readonly string $repository;
-    public readonly bool|null $build_pull_requests;
-    public readonly bool|null $pull_requests_clone_parent_data;
-    public readonly bool|null $resync_pull_requests;
-    public readonly string $url;
-    public readonly string $username;
-    public readonly string $token;
-    public readonly string $project;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $events;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $environments;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $excluded_environments;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $states;
-    public readonly string|null $result;
-    public readonly string $service_id;
-    public readonly string|null $base_url;
-    public readonly bool|null $build_draft_pull_requests;
-    public readonly bool|null $build_pull_requests_post_merge;
-    public readonly bool|null $build_merge_requests;
-    public readonly bool|null $build_wip_merge_requests;
-    public readonly bool|null $merge_requests_clone_parent_data;
-    public readonly string|null $from_address;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $recipients;
-    public readonly string $routing_key;
-    public readonly string $channel;
-    public readonly string|null $shared_key;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $extra;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $headers;
-    public readonly bool|null $tls_verify;
-    public readonly string $license_key;
-    public readonly string $script;
-    public readonly string $index;
-    public readonly string|null $sourcetype;
-    public readonly string|null $category;
-    public readonly string|null $host;
-    public readonly int|null $port;
-    public readonly string|null $protocol;
-    public readonly int|null $facility;
-    public readonly string|null $message_format;
-    public readonly string|null $auth_token;
-    public readonly string|null $auth_mode;
-
     public function __construct(
-        string $type = null,
-        bool|null $fetch_branches = null,
-        bool|null $prune_branches = null,
-        string|null $environment_init_resources = null,
-        \Upsun\Model\TheOAuth2ConsumerInformationOptional1|null $app_credentials = null,
-        \Upsun\Model\TheAddonCredentialInformationOptional1|null $addon_credentials = null,
-        string $repository = null,
-        bool|null $build_pull_requests = null,
-        bool|null $pull_requests_clone_parent_data = null,
-        bool|null $resync_pull_requests = null,
-        string $url = null,
-        string $username = null,
-        string $token = null,
-        string $project = null,
-        ?array $events = null,
-        ?array $environments = null,
-        ?array $excluded_environments = null,
-        ?array $states = null,
-        string|null $result = null,
-        string $service_id = null,
-        string|null $base_url = null,
-        bool|null $build_draft_pull_requests = null,
-        bool|null $build_pull_requests_post_merge = null,
-        bool|null $build_merge_requests = null,
-        bool|null $build_wip_merge_requests = null,
-        bool|null $merge_requests_clone_parent_data = null,
-        string|null $from_address = null,
-        ?array $recipients = null,
-        string $routing_key = null,
-        string $channel = null,
-        string|null $shared_key = null,
-        ?array $extra = null,
-        ?array $headers = null,
-        bool|null $tls_verify = null,
-        string $license_key = null,
-        string $script = null,
-        string $index = null,
-        string|null $sourcetype = null,
-        string|null $category = null,
-        string|null $host = null,
-        int|null $port = null,
-        string|null $protocol = null,
-        int|null $facility = null,
-        string|null $message_format = null,
-        string|null $auth_token = null,
-        string|null $auth_mode = null
+        public readonly string $type = null,
+        public readonly bool|null $fetch_branches = null,
+        public readonly bool|null $prune_branches = null,
+        public readonly string|null $environment_init_resources = null,
+        public readonly \Upsun\Model\TheOAuth2ConsumerInformationOptional1|null $app_credentials = null,
+        public readonly \Upsun\Model\TheAddonCredentialInformationOptional1|null $addon_credentials = null,
+        public readonly string $repository = null,
+        public readonly bool|null $build_pull_requests = null,
+        public readonly bool|null $pull_requests_clone_parent_data = null,
+        public readonly bool|null $resync_pull_requests = null,
+        public readonly string $url = null,
+        public readonly string $username = null,
+        public readonly string $token = null,
+        public readonly string $project = null,
+        public readonly ?array $events = null,
+        public readonly ?array $environments = null,
+        public readonly ?array $excluded_environments = null,
+        public readonly ?array $states = null,
+        public readonly string|null $result = null,
+        public readonly string $service_id = null,
+        public readonly string|null $base_url = null,
+        public readonly bool|null $build_draft_pull_requests = null,
+        public readonly bool|null $build_pull_requests_post_merge = null,
+        public readonly bool|null $build_merge_requests = null,
+        public readonly bool|null $build_wip_merge_requests = null,
+        public readonly bool|null $merge_requests_clone_parent_data = null,
+        public readonly string|null $from_address = null,
+        public readonly ?array $recipients = null,
+        public readonly string $routing_key = null,
+        public readonly string $channel = null,
+        public readonly string|null $shared_key = null,
+        public readonly ?array $extra = null,
+        public readonly ?array $headers = null,
+        public readonly bool|null $tls_verify = null,
+        public readonly string $license_key = null,
+        public readonly string $script = null,
+        public readonly string $index = null,
+        public readonly string|null $sourcetype = null,
+        public readonly string|null $category = null,
+        public readonly string|null $host = null,
+        public readonly int|null $port = null,
+        public readonly string|null $protocol = null,
+        public readonly int|null $facility = null,
+        public readonly string|null $message_format = null,
+        public readonly string|null $auth_token = null,
+        public readonly string|null $auth_mode = null
     ) {
-        $this->type = $type;
-        $this->fetch_branches = $fetch_branches;
-        $this->prune_branches = $prune_branches;
-        $this->environment_init_resources = $environment_init_resources;
-        $this->app_credentials = $app_credentials;
-        $this->addon_credentials = $addon_credentials;
-        $this->repository = $repository;
-        $this->build_pull_requests = $build_pull_requests;
-        $this->pull_requests_clone_parent_data = $pull_requests_clone_parent_data;
-        $this->resync_pull_requests = $resync_pull_requests;
-        $this->url = $url;
-        $this->username = $username;
-        $this->token = $token;
-        $this->project = $project;
-        $this->events = $events;
-        $this->environments = $environments;
-        $this->excluded_environments = $excluded_environments;
-        $this->states = $states;
-        $this->result = $result;
-        $this->service_id = $service_id;
-        $this->base_url = $base_url;
-        $this->build_draft_pull_requests = $build_draft_pull_requests;
-        $this->build_pull_requests_post_merge = $build_pull_requests_post_merge;
-        $this->build_merge_requests = $build_merge_requests;
-        $this->build_wip_merge_requests = $build_wip_merge_requests;
-        $this->merge_requests_clone_parent_data = $merge_requests_clone_parent_data;
-        $this->from_address = $from_address;
-        $this->recipients = $recipients;
-        $this->routing_key = $routing_key;
-        $this->channel = $channel;
-        $this->shared_key = $shared_key;
-        $this->extra = $extra;
-        $this->headers = $headers;
-        $this->tls_verify = $tls_verify;
-        $this->license_key = $license_key;
-        $this->script = $script;
-        $this->index = $index;
-        $this->sourcetype = $sourcetype;
-        $this->category = $category;
-        $this->host = $host;
-        $this->port = $port;
-        $this->protocol = $protocol;
-        $this->facility = $facility;
-        $this->message_format = $message_format;
-        $this->auth_token = $auth_token;
-        $this->auth_mode = $auth_mode;
     }
 
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    public function getFetchBranches(): bool|null
-    {
-        return $this->fetch_branches;
-    }
-    public function getPruneBranches(): bool|null
-    {
-        return $this->prune_branches;
-    }
-    public function getEnvironmentInitResources(): string|null
-    {
-        return $this->environment_init_resources;
-    }
-    public function getAppCredentials(): \Upsun\Model\TheOAuth2ConsumerInformationOptional1|null
-    {
-        return $this->app_credentials;
-    }
-    public function getAddonCredentials(): \Upsun\Model\TheAddonCredentialInformationOptional1|null
-    {
-        return $this->addon_credentials;
-    }
-    public function getRepository(): string
-    {
-        return $this->repository;
-    }
-    public function getBuildPullRequests(): bool|null
-    {
-        return $this->build_pull_requests;
-    }
-    public function getPullRequestsCloneParentData(): bool|null
-    {
-        return $this->pull_requests_clone_parent_data;
-    }
-    public function getResyncPullRequests(): bool|null
-    {
-        return $this->resync_pull_requests;
-    }
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-    public function getUsername(): string
-    {
-        return $this->username;
-    }
-    public function getToken(): string
-    {
-        return $this->token;
-    }
-    public function getProject(): string
-    {
-        return $this->project;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getEvents(): ?array
-    {
-        return $this->events;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getEnvironments(): ?array
-    {
-        return $this->environments;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getExcludedEnvironments(): ?array
-    {
-        return $this->excluded_environments;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getStates(): ?array
-    {
-        return $this->states;
-    }
-    public function getResult(): string|null
-    {
-        return $this->result;
-    }
-    public function getServiceId(): string
-    {
-        return $this->service_id;
-    }
-    public function getBaseUrl(): string|null
-    {
-        return $this->base_url;
-    }
-    public function getBuildDraftPullRequests(): bool|null
-    {
-        return $this->build_draft_pull_requests;
-    }
-    public function getBuildPullRequestsPostMerge(): bool|null
-    {
-        return $this->build_pull_requests_post_merge;
-    }
-    public function getBuildMergeRequests(): bool|null
-    {
-        return $this->build_merge_requests;
-    }
-    public function getBuildWipMergeRequests(): bool|null
-    {
-        return $this->build_wip_merge_requests;
-    }
-    public function getMergeRequestsCloneParentData(): bool|null
-    {
-        return $this->merge_requests_clone_parent_data;
-    }
-    public function getFromAddress(): string|null
-    {
-        return $this->from_address;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getRecipients(): ?array
-    {
-        return $this->recipients;
-    }
-    public function getRoutingKey(): string
-    {
-        return $this->routing_key;
-    }
-    public function getChannel(): string
-    {
-        return $this->channel;
-    }
-    public function getSharedKey(): string|null
-    {
-        return $this->shared_key;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getExtra(): ?array
-    {
-        return $this->extra;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getHeaders(): ?array
-    {
-        return $this->headers;
-    }
-    public function getTlsVerify(): bool|null
-    {
-        return $this->tls_verify;
-    }
-    public function getLicenseKey(): string
-    {
-        return $this->license_key;
-    }
-    public function getScript(): string
-    {
-        return $this->script;
-    }
-    public function getIndex(): string
-    {
-        return $this->index;
-    }
-    public function getSourcetype(): string|null
-    {
-        return $this->sourcetype;
-    }
-    public function getCategory(): string|null
-    {
-        return $this->category;
-    }
-    public function getHost(): string|null
-    {
-        return $this->host;
-    }
-    public function getPort(): int|null
-    {
-        return $this->port;
-    }
-    public function getProtocol(): string|null
-    {
-        return $this->protocol;
-    }
-    public function getFacility(): int|null
-    {
-        return $this->facility;
-    }
-    public function getMessageFormat(): string|null
-    {
-        return $this->message_format;
-    }
-    public function getAuthToken(): string|null
-    {
-        return $this->auth_token;
-    }
-    public function getAuthMode(): string|null
-    {
-        return $this->auth_mode;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->type,

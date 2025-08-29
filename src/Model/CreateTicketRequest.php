@@ -18,102 +18,22 @@ final class CreateTicketRequest implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $subject;
-    public readonly string $description;
-    public readonly string|null $requester_id;
-    public readonly string|null $priority;
-    public readonly string|null $subscription_id;
-    public readonly string|null $organization_id;
-    public readonly string|null $affected_url;
-    public readonly string|null $followup_tid;
-    public readonly string|null $category;
-    /**
-     * @var \Upsun\Model\CreateTicketRequestAttachmentsInner[]|null
-     */
-    public readonly ?array $attachments;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $collaborator_ids;
-
     public function __construct(
-        string $subject = null,
-        string $description = null,
-        string|null $requester_id = null,
-        string|null $priority = null,
-        string|null $subscription_id = null,
-        string|null $organization_id = null,
-        string|null $affected_url = null,
-        string|null $followup_tid = null,
-        string|null $category = null,
-        ?array $attachments = null,
-        ?array $collaborator_ids = null
+        public readonly string $subject = null,
+        public readonly string $description = null,
+        public readonly string|null $requester_id = null,
+        public readonly string|null $priority = null,
+        public readonly string|null $subscription_id = null,
+        public readonly string|null $organization_id = null,
+        public readonly string|null $affected_url = null,
+        public readonly string|null $followup_tid = null,
+        public readonly string|null $category = null,
+        public readonly ?array $attachments = null,
+        public readonly ?array $collaborator_ids = null
     ) {
-        $this->subject = $subject;
-        $this->description = $description;
-        $this->requester_id = $requester_id;
-        $this->priority = $priority;
-        $this->subscription_id = $subscription_id;
-        $this->organization_id = $organization_id;
-        $this->affected_url = $affected_url;
-        $this->followup_tid = $followup_tid;
-        $this->category = $category;
-        $this->attachments = $attachments;
-        $this->collaborator_ids = $collaborator_ids;
     }
 
-    public function getSubject(): string
-    {
-        return $this->subject;
-    }
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-    public function getRequesterId(): string|null
-    {
-        return $this->requester_id;
-    }
-    public function getPriority(): string|null
-    {
-        return $this->priority;
-    }
-    public function getSubscriptionId(): string|null
-    {
-        return $this->subscription_id;
-    }
-    public function getOrganizationId(): string|null
-    {
-        return $this->organization_id;
-    }
-    public function getAffectedUrl(): string|null
-    {
-        return $this->affected_url;
-    }
-    public function getFollowupTid(): string|null
-    {
-        return $this->followup_tid;
-    }
-    public function getCategory(): string|null
-    {
-        return $this->category;
-    }
-    /**
-     * @return \Upsun\Model\CreateTicketRequestAttachmentsInner[]|null
-     */
-    public function getAttachments(): ?array
-    {
-        return $this->attachments;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getCollaboratorIds(): ?array
-    {
-        return $this->collaborator_ids;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'subject' => $this->subject,

@@ -18,107 +18,21 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
 {
     protected const DISCRIMINATOR = null;
 
-    /**
-     * @var \Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue[]|null
-     */
-    public readonly ?array $locations;
-    public readonly \Upsun\Model\CommandsToManageTheApplicationSLifecycle|null $commands;
-    public readonly \Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication|null $upstream;
-    public readonly string|null $document_root;
-    public readonly string|null $passthru;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $index_files;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $whitelist;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $blacklist;
-    public readonly string|null $expires;
-    public readonly bool $move_to_root;
-
     public function __construct(
-        ?array $locations = null,
-        \Upsun\Model\CommandsToManageTheApplicationSLifecycle|null $commands = null,
-        \Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication|null $upstream = null,
-        string|null $document_root = null,
-        string|null $passthru = null,
-        ?array $index_files = null,
-        ?array $whitelist = null,
-        ?array $blacklist = null,
-        string|null $expires = null,
-        bool $move_to_root = null
+        public readonly ?array $locations = null,
+        public readonly \Upsun\Model\CommandsToManageTheApplicationSLifecycle|null $commands = null,
+        public readonly \Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication|null $upstream = null,
+        public readonly string|null $document_root = null,
+        public readonly string|null $passthru = null,
+        public readonly ?array $index_files = null,
+        public readonly ?array $whitelist = null,
+        public readonly ?array $blacklist = null,
+        public readonly string|null $expires = null,
+        public readonly bool $move_to_root = null
     ) {
-        $this->locations = $locations;
-        $this->commands = $commands;
-        $this->upstream = $upstream;
-        $this->document_root = $document_root;
-        $this->passthru = $passthru;
-        $this->index_files = $index_files;
-        $this->whitelist = $whitelist;
-        $this->blacklist = $blacklist;
-        $this->expires = $expires;
-        $this->move_to_root = $move_to_root;
     }
 
-    /**
-     * @return \Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue[]|null
-     */
-    public function getLocations(): ?array
-    {
-        return $this->locations;
-    }
-    public function getCommands(): \Upsun\Model\CommandsToManageTheApplicationSLifecycle|null
-    {
-        return $this->commands;
-    }
-    public function getUpstream(): \Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication|null
-    {
-        return $this->upstream;
-    }
-    public function getDocumentRoot(): string|null
-    {
-        return $this->document_root;
-    }
-    public function getPassthru(): string|null
-    {
-        return $this->passthru;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getIndexFiles(): ?array
-    {
-        return $this->index_files;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getWhitelist(): ?array
-    {
-        return $this->whitelist;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getBlacklist(): ?array
-    {
-        return $this->blacklist;
-    }
-    public function getExpires(): string|null
-    {
-        return $this->expires;
-    }
-    public function getMoveToRoot(): bool
-    {
-        return $this->move_to_root;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'locations' => $this->locations,

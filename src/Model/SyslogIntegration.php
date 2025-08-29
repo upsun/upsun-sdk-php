@@ -18,89 +18,21 @@ final class SyslogIntegration implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
-    public readonly string $type;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $extra;
-    public readonly string $host;
-    public readonly int $port;
-    public readonly string $protocol;
-    public readonly int $facility;
-    public readonly string $message_format;
-    public readonly bool $tls_verify;
-
     public function __construct(
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
-        string $type = null,
-        ?array $extra = null,
-        string $host = null,
-        int $port = null,
-        string $protocol = null,
-        int $facility = null,
-        string $message_format = null,
-        bool $tls_verify = null
+        public readonly \DateTime $created_at = null,
+        public readonly \DateTime $updated_at = null,
+        public readonly string $type = null,
+        public readonly ?array $extra = null,
+        public readonly string $host = null,
+        public readonly int $port = null,
+        public readonly string $protocol = null,
+        public readonly int $facility = null,
+        public readonly string $message_format = null,
+        public readonly bool $tls_verify = null
     ) {
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
-        $this->type = $type;
-        $this->extra = $extra;
-        $this->host = $host;
-        $this->port = $port;
-        $this->protocol = $protocol;
-        $this->facility = $facility;
-        $this->message_format = $message_format;
-        $this->tls_verify = $tls_verify;
     }
 
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->updated_at;
-    }
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getExtra(): ?array
-    {
-        return $this->extra;
-    }
-    public function getHost(): string
-    {
-        return $this->host;
-    }
-    public function getPort(): int
-    {
-        return $this->port;
-    }
-    public function getProtocol(): string
-    {
-        return $this->protocol;
-    }
-    public function getFacility(): int
-    {
-        return $this->facility;
-    }
-    public function getMessageFormat(): string
-    {
-        return $this->message_format;
-    }
-    public function getTlsVerify(): bool
-    {
-        return $this->tls_verify;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'created_at' => $this->created_at,

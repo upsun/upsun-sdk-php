@@ -18,27 +18,13 @@ final class CreateProjectInviteRequestPermissionsInner implements JsonSerializab
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $type;
-    public readonly string|null $role;
-
     public function __construct(
-        string|null $type = null,
-        string|null $role = null
+        public readonly string|null $type = null,
+        public readonly string|null $role = null
     ) {
-        $this->type = $type;
-        $this->role = $role;
     }
 
-    public function getType(): string|null
-    {
-        return $this->type;
-    }
-    public function getRole(): string|null
-    {
-        return $this->role;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->type,

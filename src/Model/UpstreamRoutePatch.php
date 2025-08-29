@@ -18,89 +18,21 @@ final class UpstreamRoutePatch implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly bool|null $primary;
-    public readonly string|null $id;
-    public readonly string|null $production_url;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $attributes;
-    public readonly string $type;
-    public readonly \Upsun\Model\TLSSettingsForTheRoute1|null $tls;
-    public readonly \Upsun\Model\CacheConfiguration1|null $cache;
-    public readonly \Upsun\Model\ServerSideIncludeConfiguration|null $ssi;
-    public readonly string $upstream;
-    public readonly \Upsun\Model\TheConfigurationOfTheRedirects1|null $redirects;
-
     public function __construct(
-        bool|null $primary = null,
-        string|null $id = null,
-        string|null $production_url = null,
-        ?array $attributes = null,
-        string $type = null,
-        \Upsun\Model\TLSSettingsForTheRoute1|null $tls = null,
-        \Upsun\Model\CacheConfiguration1|null $cache = null,
-        \Upsun\Model\ServerSideIncludeConfiguration|null $ssi = null,
-        string $upstream = null,
-        \Upsun\Model\TheConfigurationOfTheRedirects1|null $redirects = null
+        public readonly bool|null $primary = null,
+        public readonly string|null $id = null,
+        public readonly string|null $production_url = null,
+        public readonly ?array $attributes = null,
+        public readonly string $type = null,
+        public readonly \Upsun\Model\TLSSettingsForTheRoute1|null $tls = null,
+        public readonly \Upsun\Model\CacheConfiguration1|null $cache = null,
+        public readonly \Upsun\Model\ServerSideIncludeConfiguration|null $ssi = null,
+        public readonly string $upstream = null,
+        public readonly \Upsun\Model\TheConfigurationOfTheRedirects1|null $redirects = null
     ) {
-        $this->primary = $primary;
-        $this->id = $id;
-        $this->production_url = $production_url;
-        $this->attributes = $attributes;
-        $this->type = $type;
-        $this->tls = $tls;
-        $this->cache = $cache;
-        $this->ssi = $ssi;
-        $this->upstream = $upstream;
-        $this->redirects = $redirects;
     }
 
-    public function getPrimary(): bool|null
-    {
-        return $this->primary;
-    }
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getProductionUrl(): string|null
-    {
-        return $this->production_url;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getAttributes(): ?array
-    {
-        return $this->attributes;
-    }
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    public function getTls(): \Upsun\Model\TLSSettingsForTheRoute1|null
-    {
-        return $this->tls;
-    }
-    public function getCache(): \Upsun\Model\CacheConfiguration1|null
-    {
-        return $this->cache;
-    }
-    public function getSsi(): \Upsun\Model\ServerSideIncludeConfiguration|null
-    {
-        return $this->ssi;
-    }
-    public function getUpstream(): string
-    {
-        return $this->upstream;
-    }
-    public function getRedirects(): \Upsun\Model\TheConfigurationOfTheRedirects1|null
-    {
-        return $this->redirects;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'primary' => $this->primary,

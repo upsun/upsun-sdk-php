@@ -18,27 +18,13 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser|null $standard_management_user;
-    public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser|null $advanced_management_user;
-
     public function __construct(
-        \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser|null $standard_management_user = null,
-        \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser|null $advanced_management_user = null
+        public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser|null $standard_management_user = null,
+        public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser|null $advanced_management_user = null
     ) {
-        $this->standard_management_user = $standard_management_user;
-        $this->advanced_management_user = $advanced_management_user;
     }
 
-    public function getStandardManagementUser(): \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser|null
-    {
-        return $this->standard_management_user;
-    }
-    public function getAdvancedManagementUser(): \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser|null
-    {
-        return $this->advanced_management_user;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'standard_management_user' => $this->standard_management_user,

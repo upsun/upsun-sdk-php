@@ -18,20 +18,12 @@ final class BlackfireIntegrationPatch implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $type;
-
     public function __construct(
-        string $type = null
+        public readonly string $type = null
     ) {
-        $this->type = $type;
     }
 
-    public function getType(): string
-    {
-        return $this->type;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->type,

@@ -18,41 +18,15 @@ final class ProjectInvitationEnvironmentsInner implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $id;
-    public readonly string|null $type;
-    public readonly string|null $role;
-    public readonly string|null $title;
-
     public function __construct(
-        string|null $id = null,
-        string|null $type = null,
-        string|null $role = null,
-        string|null $title = null
+        public readonly string|null $id = null,
+        public readonly string|null $type = null,
+        public readonly string|null $role = null,
+        public readonly string|null $title = null
     ) {
-        $this->id = $id;
-        $this->type = $type;
-        $this->role = $role;
-        $this->title = $title;
     }
 
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getType(): string|null
-    {
-        return $this->type;
-    }
-    public function getRole(): string|null
-    {
-        return $this->role;
-    }
-    public function getTitle(): string|null
-    {
-        return $this->title;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

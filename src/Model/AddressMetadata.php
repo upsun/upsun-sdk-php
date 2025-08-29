@@ -18,20 +18,12 @@ final class AddressMetadata implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\AddressMetadataMetadata|null $metadata;
-
     public function __construct(
-        \Upsun\Model\AddressMetadataMetadata|null $metadata = null
+        public readonly \Upsun\Model\AddressMetadataMetadata|null $metadata = null
     ) {
-        $this->metadata = $metadata;
     }
 
-    public function getMetadata(): \Upsun\Model\AddressMetadataMetadata|null
-    {
-        return $this->metadata;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'metadata' => $this->metadata,

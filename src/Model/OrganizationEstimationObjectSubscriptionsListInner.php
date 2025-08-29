@@ -18,41 +18,15 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $license_id;
-    public readonly string|null $project_title;
-    public readonly string|null $total;
-    public readonly \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage|null $usage;
-
     public function __construct(
-        string|null $license_id = null,
-        string|null $project_title = null,
-        string|null $total = null,
-        \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage|null $usage = null
+        public readonly string|null $license_id = null,
+        public readonly string|null $project_title = null,
+        public readonly string|null $total = null,
+        public readonly \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage|null $usage = null
     ) {
-        $this->license_id = $license_id;
-        $this->project_title = $project_title;
-        $this->total = $total;
-        $this->usage = $usage;
     }
 
-    public function getLicenseId(): string|null
-    {
-        return $this->license_id;
-    }
-    public function getProjectTitle(): string|null
-    {
-        return $this->project_title;
-    }
-    public function getTotal(): string|null
-    {
-        return $this->total;
-    }
-    public function getUsage(): \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage|null
-    {
-        return $this->usage;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'license_id' => $this->license_id,

@@ -18,20 +18,12 @@ final class PrepaymentObject implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\PrepaymentObjectPrepayment|null $prepayment;
-
     public function __construct(
-        \Upsun\Model\PrepaymentObjectPrepayment|null $prepayment = null
+        public readonly \Upsun\Model\PrepaymentObjectPrepayment|null $prepayment = null
     ) {
-        $this->prepayment = $prepayment;
     }
 
-    public function getPrepayment(): \Upsun\Model\PrepaymentObjectPrepayment|null
-    {
-        return $this->prepayment;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'prepayment' => $this->prepayment,

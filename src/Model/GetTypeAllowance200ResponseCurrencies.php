@@ -18,48 +18,16 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR|null $eur;
-    public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD|null $usd;
-    public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP|null $gbp;
-    public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD|null $aud;
-    public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD|null $cad;
-
     public function __construct(
-        \Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR|null $eur = null,
-        \Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD|null $usd = null,
-        \Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP|null $gbp = null,
-        \Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD|null $aud = null,
-        \Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD|null $cad = null
+        public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR|null $eur = null,
+        public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD|null $usd = null,
+        public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP|null $gbp = null,
+        public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD|null $aud = null,
+        public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD|null $cad = null
     ) {
-        $this->eur = $eur;
-        $this->usd = $usd;
-        $this->gbp = $gbp;
-        $this->aud = $aud;
-        $this->cad = $cad;
     }
 
-    public function getEur(): \Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR|null
-    {
-        return $this->eur;
-    }
-    public function getUsd(): \Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD|null
-    {
-        return $this->usd;
-    }
-    public function getGbp(): \Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP|null
-    {
-        return $this->gbp;
-    }
-    public function getAud(): \Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD|null
-    {
-        return $this->aud;
-    }
-    public function getCad(): \Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD|null
-    {
-        return $this->cad;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'eur' => $this->eur,

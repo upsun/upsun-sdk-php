@@ -18,20 +18,12 @@ final class ConfirmPhoneNumberRequest implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $code;
-
     public function __construct(
-        string $code = null
+        public readonly string $code = null
     ) {
-        $this->code = $code;
     }
 
-    public function getCode(): string
-    {
-        return $this->code;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'code' => $this->code,

@@ -18,27 +18,13 @@ final class InvoicePDF implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $url;
-    public readonly string|null $status;
-
     public function __construct(
-        string|null $url = null,
-        string|null $status = null
+        public readonly string|null $url = null,
+        public readonly string|null $status = null
     ) {
-        $this->url = $url;
-        $this->status = $status;
     }
 
-    public function getUrl(): string|null
-    {
-        return $this->url;
-    }
-    public function getStatus(): string|null
-    {
-        return $this->status;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'url' => $this->url,

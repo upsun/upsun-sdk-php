@@ -18,27 +18,13 @@ final class AccessControlDefinitionForThisEnviromentInner implements JsonSeriali
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $entity_id;
-    public readonly string $role;
-
     public function __construct(
-        string $entity_id = null,
-        string $role = null
+        public readonly string $entity_id = null,
+        public readonly string $role = null
     ) {
-        $this->entity_id = $entity_id;
-        $this->role = $role;
     }
 
-    public function getEntityId(): string
-    {
-        return $this->entity_id;
-    }
-    public function getRole(): string
-    {
-        return $this->role;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'entity_id' => $this->entity_id,

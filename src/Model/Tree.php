@@ -18,33 +18,13 @@ final class Tree implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $sha;
-    /**
-     * @var \Upsun\Model\TheTreeItemsInner[]|null
-     */
-    public readonly ?array $tree;
-
     public function __construct(
-        string $sha = null,
-        ?array $tree = null
+        public readonly string $sha = null,
+        public readonly ?array $tree = null
     ) {
-        $this->sha = $sha;
-        $this->tree = $tree;
     }
 
-    public function getSha(): string
-    {
-        return $this->sha;
-    }
-    /**
-     * @return \Upsun\Model\TheTreeItemsInner[]|null
-     */
-    public function getTree(): ?array
-    {
-        return $this->tree;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'sha' => $this->sha,

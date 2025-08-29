@@ -18,83 +18,21 @@ final class Address implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $country;
-    public readonly string|null $name_line;
-    public readonly string|null $premise;
-    public readonly string|null $sub_premise;
-    public readonly string|null $thoroughfare;
-    public readonly string|null $administrative_area;
-    public readonly string|null $sub_administrative_area;
-    public readonly string|null $locality;
-    public readonly string|null $dependent_locality;
-    public readonly string|null $postal_code;
-
     public function __construct(
-        string|null $country = null,
-        string|null $name_line = null,
-        string|null $premise = null,
-        string|null $sub_premise = null,
-        string|null $thoroughfare = null,
-        string|null $administrative_area = null,
-        string|null $sub_administrative_area = null,
-        string|null $locality = null,
-        string|null $dependent_locality = null,
-        string|null $postal_code = null
+        public readonly string|null $country = null,
+        public readonly string|null $name_line = null,
+        public readonly string|null $premise = null,
+        public readonly string|null $sub_premise = null,
+        public readonly string|null $thoroughfare = null,
+        public readonly string|null $administrative_area = null,
+        public readonly string|null $sub_administrative_area = null,
+        public readonly string|null $locality = null,
+        public readonly string|null $dependent_locality = null,
+        public readonly string|null $postal_code = null
     ) {
-        $this->country = $country;
-        $this->name_line = $name_line;
-        $this->premise = $premise;
-        $this->sub_premise = $sub_premise;
-        $this->thoroughfare = $thoroughfare;
-        $this->administrative_area = $administrative_area;
-        $this->sub_administrative_area = $sub_administrative_area;
-        $this->locality = $locality;
-        $this->dependent_locality = $dependent_locality;
-        $this->postal_code = $postal_code;
     }
 
-    public function getCountry(): string|null
-    {
-        return $this->country;
-    }
-    public function getNameLine(): string|null
-    {
-        return $this->name_line;
-    }
-    public function getPremise(): string|null
-    {
-        return $this->premise;
-    }
-    public function getSubPremise(): string|null
-    {
-        return $this->sub_premise;
-    }
-    public function getThoroughfare(): string|null
-    {
-        return $this->thoroughfare;
-    }
-    public function getAdministrativeArea(): string|null
-    {
-        return $this->administrative_area;
-    }
-    public function getSubAdministrativeArea(): string|null
-    {
-        return $this->sub_administrative_area;
-    }
-    public function getLocality(): string|null
-    {
-        return $this->locality;
-    }
-    public function getDependentLocality(): string|null
-    {
-        return $this->dependent_locality;
-    }
-    public function getPostalCode(): string|null
-    {
-        return $this->postal_code;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'country' => $this->country,

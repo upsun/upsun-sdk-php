@@ -18,27 +18,13 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Js
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $service;
-    public readonly string $endpoint;
-
     public function __construct(
-        string $service = null,
-        string $endpoint = null
+        public readonly string $service = null,
+        public readonly string $endpoint = null
     ) {
-        $this->service = $service;
-        $this->endpoint = $endpoint;
     }
 
-    public function getService(): string
-    {
-        return $this->service;
-    }
-    public function getEndpoint(): string
-    {
-        return $this->endpoint;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'service' => $this->service,

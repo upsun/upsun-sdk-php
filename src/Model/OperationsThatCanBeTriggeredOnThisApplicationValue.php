@@ -18,34 +18,14 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSe
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\TheCommandsDefinition $commands;
-    public readonly int $timeout;
-    public readonly string $role;
-
     public function __construct(
-        \Upsun\Model\TheCommandsDefinition $commands = null,
-        int $timeout = null,
-        string $role = null
+        public readonly \Upsun\Model\TheCommandsDefinition $commands = null,
+        public readonly int $timeout = null,
+        public readonly string $role = null
     ) {
-        $this->commands = $commands;
-        $this->timeout = $timeout;
-        $this->role = $role;
     }
 
-    public function getCommands(): \Upsun\Model\TheCommandsDefinition
-    {
-        return $this->commands;
-    }
-    public function getTimeout(): int
-    {
-        return $this->timeout;
-    }
-    public function getRole(): string
-    {
-        return $this->role;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'commands' => $this->commands,

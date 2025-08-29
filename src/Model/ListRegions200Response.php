@@ -18,33 +18,13 @@ final class ListRegions200Response implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    /**
-     * @var \Upsun\Model\Region[]|null
-     */
-    public readonly ?array $regions;
-    public readonly \Upsun\Model\ListLinks|null $_links;
-
     public function __construct(
-        ?array $regions = null,
-        \Upsun\Model\ListLinks|null $_links = null
+        public readonly ?array $regions = null,
+        public readonly \Upsun\Model\ListLinks|null $_links = null
     ) {
-        $this->regions = $regions;
-        $this->_links = $_links;
     }
 
-    /**
-     * @return \Upsun\Model\Region[]|null
-     */
-    public function getRegions(): ?array
-    {
-        return $this->regions;
-    }
-    public function getLinks(): \Upsun\Model\ListLinks|null
-    {
-        return $this->_links;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'regions' => $this->regions,

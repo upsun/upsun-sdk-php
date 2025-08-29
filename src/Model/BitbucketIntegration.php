@@ -18,97 +18,23 @@ final class BitbucketIntegration implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
-    public readonly string $type;
-    public readonly bool $fetch_branches;
-    public readonly bool $prune_branches;
-    public readonly string $environment_init_resources;
-    public readonly \Upsun\Model\TheOAuth2ConsumerInformationOptional|null $app_credentials;
-    public readonly \Upsun\Model\TheAddonCredentialInformationOptional|null $addon_credentials;
-    public readonly string $repository;
-    public readonly bool $build_pull_requests;
-    public readonly bool $pull_requests_clone_parent_data;
-    public readonly bool $resync_pull_requests;
-
     public function __construct(
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
-        string $type = null,
-        bool $fetch_branches = null,
-        bool $prune_branches = null,
-        string $environment_init_resources = null,
-        \Upsun\Model\TheOAuth2ConsumerInformationOptional|null $app_credentials = null,
-        \Upsun\Model\TheAddonCredentialInformationOptional|null $addon_credentials = null,
-        string $repository = null,
-        bool $build_pull_requests = null,
-        bool $pull_requests_clone_parent_data = null,
-        bool $resync_pull_requests = null
+        public readonly \DateTime $created_at = null,
+        public readonly \DateTime $updated_at = null,
+        public readonly string $type = null,
+        public readonly bool $fetch_branches = null,
+        public readonly bool $prune_branches = null,
+        public readonly string $environment_init_resources = null,
+        public readonly \Upsun\Model\TheOAuth2ConsumerInformationOptional|null $app_credentials = null,
+        public readonly \Upsun\Model\TheAddonCredentialInformationOptional|null $addon_credentials = null,
+        public readonly string $repository = null,
+        public readonly bool $build_pull_requests = null,
+        public readonly bool $pull_requests_clone_parent_data = null,
+        public readonly bool $resync_pull_requests = null
     ) {
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
-        $this->type = $type;
-        $this->fetch_branches = $fetch_branches;
-        $this->prune_branches = $prune_branches;
-        $this->environment_init_resources = $environment_init_resources;
-        $this->app_credentials = $app_credentials;
-        $this->addon_credentials = $addon_credentials;
-        $this->repository = $repository;
-        $this->build_pull_requests = $build_pull_requests;
-        $this->pull_requests_clone_parent_data = $pull_requests_clone_parent_data;
-        $this->resync_pull_requests = $resync_pull_requests;
     }
 
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->updated_at;
-    }
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    public function getFetchBranches(): bool
-    {
-        return $this->fetch_branches;
-    }
-    public function getPruneBranches(): bool
-    {
-        return $this->prune_branches;
-    }
-    public function getEnvironmentInitResources(): string
-    {
-        return $this->environment_init_resources;
-    }
-    public function getAppCredentials(): \Upsun\Model\TheOAuth2ConsumerInformationOptional|null
-    {
-        return $this->app_credentials;
-    }
-    public function getAddonCredentials(): \Upsun\Model\TheAddonCredentialInformationOptional|null
-    {
-        return $this->addon_credentials;
-    }
-    public function getRepository(): string
-    {
-        return $this->repository;
-    }
-    public function getBuildPullRequests(): bool
-    {
-        return $this->build_pull_requests;
-    }
-    public function getPullRequestsCloneParentData(): bool
-    {
-        return $this->pull_requests_clone_parent_data;
-    }
-    public function getResyncPullRequests(): bool
-    {
-        return $this->resync_pull_requests;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'created_at' => $this->created_at,

@@ -18,40 +18,14 @@ final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly int|null $count;
-    /**
-     * @var \Upsun\Model\PrepaymentTransactionObject[]|null
-     */
-    public readonly ?array $transactions;
-    public readonly \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks|null $_links;
-
     public function __construct(
-        int|null $count = null,
-        ?array $transactions = null,
-        \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks|null $_links = null
+        public readonly int|null $count = null,
+        public readonly ?array $transactions = null,
+        public readonly \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks|null $_links = null
     ) {
-        $this->count = $count;
-        $this->transactions = $transactions;
-        $this->_links = $_links;
     }
 
-    public function getCount(): int|null
-    {
-        return $this->count;
-    }
-    /**
-     * @return \Upsun\Model\PrepaymentTransactionObject[]|null
-     */
-    public function getTransactions(): ?array
-    {
-        return $this->transactions;
-    }
-    public function getLinks(): \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks|null
-    {
-        return $this->_links;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'count' => $this->count,

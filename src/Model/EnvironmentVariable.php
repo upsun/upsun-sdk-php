@@ -18,117 +18,25 @@ final class EnvironmentVariable implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
-    public readonly string $name;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $attributes;
-    public readonly string|null $value;
-    public readonly bool $is_json;
-    public readonly bool $is_sensitive;
-    public readonly bool $visible_build;
-    public readonly bool $visible_runtime;
-    public readonly string $project;
-    public readonly string $environment;
-    public readonly bool $inherited;
-    public readonly bool $is_enabled;
-    public readonly bool $is_inheritable;
-
     public function __construct(
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
-        string $name = null,
-        ?array $attributes = null,
-        string|null $value = null,
-        bool $is_json = null,
-        bool $is_sensitive = null,
-        bool $visible_build = null,
-        bool $visible_runtime = null,
-        string $project = null,
-        string $environment = null,
-        bool $inherited = null,
-        bool $is_enabled = null,
-        bool $is_inheritable = null
+        public readonly \DateTime $created_at = null,
+        public readonly \DateTime $updated_at = null,
+        public readonly string $name = null,
+        public readonly ?array $attributes = null,
+        public readonly string|null $value = null,
+        public readonly bool $is_json = null,
+        public readonly bool $is_sensitive = null,
+        public readonly bool $visible_build = null,
+        public readonly bool $visible_runtime = null,
+        public readonly string $project = null,
+        public readonly string $environment = null,
+        public readonly bool $inherited = null,
+        public readonly bool $is_enabled = null,
+        public readonly bool $is_inheritable = null
     ) {
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
-        $this->name = $name;
-        $this->attributes = $attributes;
-        $this->value = $value;
-        $this->is_json = $is_json;
-        $this->is_sensitive = $is_sensitive;
-        $this->visible_build = $visible_build;
-        $this->visible_runtime = $visible_runtime;
-        $this->project = $project;
-        $this->environment = $environment;
-        $this->inherited = $inherited;
-        $this->is_enabled = $is_enabled;
-        $this->is_inheritable = $is_inheritable;
     }
 
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->updated_at;
-    }
-    public function getName(): string
-    {
-        return $this->name;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getAttributes(): ?array
-    {
-        return $this->attributes;
-    }
-    public function getValue(): string|null
-    {
-        return $this->value;
-    }
-    public function getIsJson(): bool
-    {
-        return $this->is_json;
-    }
-    public function getIsSensitive(): bool
-    {
-        return $this->is_sensitive;
-    }
-    public function getVisibleBuild(): bool
-    {
-        return $this->visible_build;
-    }
-    public function getVisibleRuntime(): bool
-    {
-        return $this->visible_runtime;
-    }
-    public function getProject(): string
-    {
-        return $this->project;
-    }
-    public function getEnvironment(): string
-    {
-        return $this->environment;
-    }
-    public function getInherited(): bool
-    {
-        return $this->inherited;
-    }
-    public function getIsEnabled(): bool
-    {
-        return $this->is_enabled;
-    }
-    public function getIsInheritable(): bool
-    {
-        return $this->is_inheritable;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'created_at' => $this->created_at,

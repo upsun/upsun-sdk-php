@@ -18,62 +18,18 @@ final class APIToken implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $id;
-    public readonly string|null $name;
-    public readonly bool|null $mfa_on_creation;
-    public readonly string|null $token;
-    public readonly \DateTime|null $created_at;
-    public readonly \DateTime|null $updated_at;
-    public readonly \DateTime|null $last_used_at;
-
     public function __construct(
-        string|null $id = null,
-        string|null $name = null,
-        bool|null $mfa_on_creation = null,
-        string|null $token = null,
-        \DateTime|null $created_at = null,
-        \DateTime|null $updated_at = null,
-        \DateTime|null $last_used_at = null
+        public readonly string|null $id = null,
+        public readonly string|null $name = null,
+        public readonly bool|null $mfa_on_creation = null,
+        public readonly string|null $token = null,
+        public readonly \DateTime|null $created_at = null,
+        public readonly \DateTime|null $updated_at = null,
+        public readonly \DateTime|null $last_used_at = null
     ) {
-        $this->id = $id;
-        $this->name = $name;
-        $this->mfa_on_creation = $mfa_on_creation;
-        $this->token = $token;
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
-        $this->last_used_at = $last_used_at;
     }
 
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getName(): string|null
-    {
-        return $this->name;
-    }
-    public function getMfaOnCreation(): bool|null
-    {
-        return $this->mfa_on_creation;
-    }
-    public function getToken(): string|null
-    {
-        return $this->token;
-    }
-    public function getCreatedAt(): \DateTime|null
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime|null
-    {
-        return $this->updated_at;
-    }
-    public function getLastUsedAt(): \DateTime|null
-    {
-        return $this->last_used_at;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

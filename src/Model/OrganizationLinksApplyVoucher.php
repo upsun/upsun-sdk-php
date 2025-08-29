@@ -18,27 +18,13 @@ final class OrganizationLinksApplyVoucher implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $href;
-    public readonly string|null $method;
-
     public function __construct(
-        string|null $href = null,
-        string|null $method = null
+        public readonly string|null $href = null,
+        public readonly string|null $method = null
     ) {
-        $this->href = $href;
-        $this->method = $method;
     }
 
-    public function getHref(): string|null
-    {
-        return $this->href;
-    }
-    public function getMethod(): string|null
-    {
-        return $this->method;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'href' => $this->href,

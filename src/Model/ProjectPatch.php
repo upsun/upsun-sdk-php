@@ -18,68 +18,18 @@ final class ProjectPatch implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $attributes;
-    public readonly string|null $title;
-    public readonly string|null $description;
-    public readonly string|null $default_branch;
-    public readonly string|null $timezone;
-    public readonly string|null $region;
-    public readonly string|null $default_domain;
-
     public function __construct(
-        ?array $attributes = null,
-        string|null $title = null,
-        string|null $description = null,
-        string|null $default_branch = null,
-        string|null $timezone = null,
-        string|null $region = null,
-        string|null $default_domain = null
+        public readonly ?array $attributes = null,
+        public readonly string|null $title = null,
+        public readonly string|null $description = null,
+        public readonly string|null $default_branch = null,
+        public readonly string|null $timezone = null,
+        public readonly string|null $region = null,
+        public readonly string|null $default_domain = null
     ) {
-        $this->attributes = $attributes;
-        $this->title = $title;
-        $this->description = $description;
-        $this->default_branch = $default_branch;
-        $this->timezone = $timezone;
-        $this->region = $region;
-        $this->default_domain = $default_domain;
     }
 
-    /**
-     * @return string[]|null
-     */
-    public function getAttributes(): ?array
-    {
-        return $this->attributes;
-    }
-    public function getTitle(): string|null
-    {
-        return $this->title;
-    }
-    public function getDescription(): string|null
-    {
-        return $this->description;
-    }
-    public function getDefaultBranch(): string|null
-    {
-        return $this->default_branch;
-    }
-    public function getTimezone(): string|null
-    {
-        return $this->timezone;
-    }
-    public function getRegion(): string|null
-    {
-        return $this->region;
-    }
-    public function getDefaultDomain(): string|null
-    {
-        return $this->default_domain;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'attributes' => $this->attributes,

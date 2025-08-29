@@ -18,20 +18,12 @@ final class TheOAuth2ConsumerInformationOptional implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $key;
-
     public function __construct(
-        string $key = null
+        public readonly string $key = null
     ) {
-        $this->key = $key;
     }
 
-    public function getKey(): string
-    {
-        return $this->key;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'key' => $this->key,

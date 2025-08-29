@@ -18,34 +18,14 @@ final class OrganizationEstimationObjectUserLicensesBase implements JsonSerializ
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly int|null $count;
-    public readonly string|null $total;
-    public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList|null $list;
-
     public function __construct(
-        int|null $count = null,
-        string|null $total = null,
-        \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList|null $list = null
+        public readonly int|null $count = null,
+        public readonly string|null $total = null,
+        public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList|null $list = null
     ) {
-        $this->count = $count;
-        $this->total = $total;
-        $this->list = $list;
     }
 
-    public function getCount(): int|null
-    {
-        return $this->count;
-    }
-    public function getTotal(): string|null
-    {
-        return $this->total;
-    }
-    public function getList(): \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList|null
-    {
-        return $this->list;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'count' => $this->count,

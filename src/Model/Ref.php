@@ -18,34 +18,14 @@ final class Ref implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $ref;
-    public readonly \Upsun\Model\TheObjectTheReferencePointsTo $object;
-    public readonly string $sha;
-
     public function __construct(
-        string $ref = null,
-        \Upsun\Model\TheObjectTheReferencePointsTo $object = null,
-        string $sha = null
+        public readonly string $ref = null,
+        public readonly \Upsun\Model\TheObjectTheReferencePointsTo $object = null,
+        public readonly string $sha = null
     ) {
-        $this->ref = $ref;
-        $this->object = $object;
-        $this->sha = $sha;
     }
 
-    public function getRef(): string
-    {
-        return $this->ref;
-    }
-    public function getObject(): \Upsun\Model\TheObjectTheReferencePointsTo
-    {
-        return $this->object;
-    }
-    public function getSha(): string
-    {
-        return $this->sha;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'ref' => $this->ref,

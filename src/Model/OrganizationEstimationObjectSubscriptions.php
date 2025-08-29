@@ -18,33 +18,13 @@ final class OrganizationEstimationObjectSubscriptions implements JsonSerializabl
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $total;
-    /**
-     * @var \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner[]|null
-     */
-    public readonly ?array $list;
-
     public function __construct(
-        string|null $total = null,
-        ?array $list = null
+        public readonly string|null $total = null,
+        public readonly ?array $list = null
     ) {
-        $this->total = $total;
-        $this->list = $list;
     }
 
-    public function getTotal(): string|null
-    {
-        return $this->total;
-    }
-    /**
-     * @return \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner[]|null
-     */
-    public function getList(): ?array
-    {
-        return $this->list;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'total' => $this->total,

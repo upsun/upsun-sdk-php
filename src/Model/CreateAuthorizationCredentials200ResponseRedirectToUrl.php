@@ -18,27 +18,13 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Js
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $return_url;
-    public readonly string|null $url;
-
     public function __construct(
-        string|null $return_url = null,
-        string|null $url = null
+        public readonly string|null $return_url = null,
+        public readonly string|null $url = null
     ) {
-        $this->return_url = $return_url;
-        $this->url = $url;
     }
 
-    public function getReturnUrl(): string|null
-    {
-        return $this->return_url;
-    }
-    public function getUrl(): string|null
-    {
-        return $this->url;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'return_url' => $this->return_url,

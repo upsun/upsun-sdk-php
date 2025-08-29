@@ -18,62 +18,18 @@ final class OrganizationEstimationObject implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $total;
-    public readonly string|null $sub_total;
-    public readonly string|null $vouchers;
-    public readonly \Upsun\Model\OrganizationEstimationObjectUserLicenses|null $user_licenses;
-    public readonly string|null $user_management;
-    public readonly string|null $support_level;
-    public readonly \Upsun\Model\OrganizationEstimationObjectSubscriptions|null $subscriptions;
-
     public function __construct(
-        string|null $total = null,
-        string|null $sub_total = null,
-        string|null $vouchers = null,
-        \Upsun\Model\OrganizationEstimationObjectUserLicenses|null $user_licenses = null,
-        string|null $user_management = null,
-        string|null $support_level = null,
-        \Upsun\Model\OrganizationEstimationObjectSubscriptions|null $subscriptions = null
+        public readonly string|null $total = null,
+        public readonly string|null $sub_total = null,
+        public readonly string|null $vouchers = null,
+        public readonly \Upsun\Model\OrganizationEstimationObjectUserLicenses|null $user_licenses = null,
+        public readonly string|null $user_management = null,
+        public readonly string|null $support_level = null,
+        public readonly \Upsun\Model\OrganizationEstimationObjectSubscriptions|null $subscriptions = null
     ) {
-        $this->total = $total;
-        $this->sub_total = $sub_total;
-        $this->vouchers = $vouchers;
-        $this->user_licenses = $user_licenses;
-        $this->user_management = $user_management;
-        $this->support_level = $support_level;
-        $this->subscriptions = $subscriptions;
     }
 
-    public function getTotal(): string|null
-    {
-        return $this->total;
-    }
-    public function getSubTotal(): string|null
-    {
-        return $this->sub_total;
-    }
-    public function getVouchers(): string|null
-    {
-        return $this->vouchers;
-    }
-    public function getUserLicenses(): \Upsun\Model\OrganizationEstimationObjectUserLicenses|null
-    {
-        return $this->user_licenses;
-    }
-    public function getUserManagement(): string|null
-    {
-        return $this->user_management;
-    }
-    public function getSupportLevel(): string|null
-    {
-        return $this->support_level;
-    }
-    public function getSubscriptions(): \Upsun\Model\OrganizationEstimationObjectSubscriptions|null
-    {
-        return $this->subscriptions;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'total' => $this->total,

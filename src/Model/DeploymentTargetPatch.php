@@ -18,81 +18,19 @@ final class DeploymentTargetPatch implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $type;
-    public readonly string $name;
-    public readonly object|null $enforced_mounts;
-    public readonly object|null $site_urls;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $ssh_hosts;
-    public readonly object|null $enterprise_environments_mapping;
-    /**
-     * @var \Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]|null
-     */
-    public readonly ?array $hosts;
-    public readonly bool|null $use_dedicated_grid;
-
     public function __construct(
-        string $type = null,
-        string $name = null,
-        object|null $enforced_mounts = null,
-        object|null $site_urls = null,
-        ?array $ssh_hosts = null,
-        object|null $enterprise_environments_mapping = null,
-        ?array $hosts = null,
-        bool|null $use_dedicated_grid = null
+        public readonly string $type = null,
+        public readonly string $name = null,
+        public readonly object|null $enforced_mounts = null,
+        public readonly object|null $site_urls = null,
+        public readonly ?array $ssh_hosts = null,
+        public readonly object|null $enterprise_environments_mapping = null,
+        public readonly ?array $hosts = null,
+        public readonly bool|null $use_dedicated_grid = null
     ) {
-        $this->type = $type;
-        $this->name = $name;
-        $this->enforced_mounts = $enforced_mounts;
-        $this->site_urls = $site_urls;
-        $this->ssh_hosts = $ssh_hosts;
-        $this->enterprise_environments_mapping = $enterprise_environments_mapping;
-        $this->hosts = $hosts;
-        $this->use_dedicated_grid = $use_dedicated_grid;
     }
 
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    public function getName(): string
-    {
-        return $this->name;
-    }
-    public function getEnforcedMounts(): object|null
-    {
-        return $this->enforced_mounts;
-    }
-    public function getSiteUrls(): object|null
-    {
-        return $this->site_urls;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getSshHosts(): ?array
-    {
-        return $this->ssh_hosts;
-    }
-    public function getEnterpriseEnvironmentsMapping(): object|null
-    {
-        return $this->enterprise_environments_mapping;
-    }
-    /**
-     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]|null
-     */
-    public function getHosts(): ?array
-    {
-        return $this->hosts;
-    }
-    public function getUseDedicatedGrid(): bool|null
-    {
-        return $this->use_dedicated_grid;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->type,

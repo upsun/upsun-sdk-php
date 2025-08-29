@@ -18,34 +18,14 @@ final class PerServiceResourcesOverridesValue implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly float $cpu;
-    public readonly int $memory;
-    public readonly int $disk;
-
     public function __construct(
-        float $cpu = null,
-        int $memory = null,
-        int $disk = null
+        public readonly float $cpu = null,
+        public readonly int $memory = null,
+        public readonly int $disk = null
     ) {
-        $this->cpu = $cpu;
-        $this->memory = $memory;
-        $this->disk = $disk;
     }
 
-    public function getCpu(): float
-    {
-        return $this->cpu;
-    }
-    public function getMemory(): int
-    {
-        return $this->memory;
-    }
-    public function getDisk(): int
-    {
-        return $this->disk;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'cpu' => $this->cpu,

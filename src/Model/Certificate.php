@@ -18,114 +18,22 @@ final class Certificate implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
-    public readonly string $certificate;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $chain;
-    public readonly bool $is_provisioned;
-    public readonly bool $is_invalid;
-    public readonly bool $is_root;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $domains;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $auth_type;
-    /**
-     * @var \Upsun\Model\TheIssuerOfTheCertificateInner[]|null
-     */
-    public readonly ?array $issuer;
-    public readonly \DateTime $expires_at;
-
     public function __construct(
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
-        string $certificate = null,
-        ?array $chain = null,
-        bool $is_provisioned = null,
-        bool $is_invalid = null,
-        bool $is_root = null,
-        ?array $domains = null,
-        ?array $auth_type = null,
-        ?array $issuer = null,
-        \DateTime $expires_at = null
+        public readonly \DateTime $created_at = null,
+        public readonly \DateTime $updated_at = null,
+        public readonly string $certificate = null,
+        public readonly ?array $chain = null,
+        public readonly bool $is_provisioned = null,
+        public readonly bool $is_invalid = null,
+        public readonly bool $is_root = null,
+        public readonly ?array $domains = null,
+        public readonly ?array $auth_type = null,
+        public readonly ?array $issuer = null,
+        public readonly \DateTime $expires_at = null
     ) {
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
-        $this->certificate = $certificate;
-        $this->chain = $chain;
-        $this->is_provisioned = $is_provisioned;
-        $this->is_invalid = $is_invalid;
-        $this->is_root = $is_root;
-        $this->domains = $domains;
-        $this->auth_type = $auth_type;
-        $this->issuer = $issuer;
-        $this->expires_at = $expires_at;
     }
 
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->updated_at;
-    }
-    public function getCertificate(): string
-    {
-        return $this->certificate;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getChain(): ?array
-    {
-        return $this->chain;
-    }
-    public function getIsProvisioned(): bool
-    {
-        return $this->is_provisioned;
-    }
-    public function getIsInvalid(): bool
-    {
-        return $this->is_invalid;
-    }
-    public function getIsRoot(): bool
-    {
-        return $this->is_root;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getDomains(): ?array
-    {
-        return $this->domains;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getAuthType(): ?array
-    {
-        return $this->auth_type;
-    }
-    /**
-     * @return \Upsun\Model\TheIssuerOfTheCertificateInner[]|null
-     */
-    public function getIssuer(): ?array
-    {
-        return $this->issuer;
-    }
-    public function getExpiresAt(): \DateTime
-    {
-        return $this->expires_at;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'created_at' => $this->created_at,

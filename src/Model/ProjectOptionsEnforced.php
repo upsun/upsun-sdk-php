@@ -18,27 +18,13 @@ final class ProjectOptionsEnforced implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly object|null $settings;
-    public readonly object|null $capabilities;
-
     public function __construct(
-        object|null $settings = null,
-        object|null $capabilities = null
+        public readonly object|null $settings = null,
+        public readonly object|null $capabilities = null
     ) {
-        $this->settings = $settings;
-        $this->capabilities = $capabilities;
     }
 
-    public function getSettings(): object|null
-    {
-        return $this->settings;
-    }
-    public function getCapabilities(): object|null
-    {
-        return $this->capabilities;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'settings' => $this->settings,

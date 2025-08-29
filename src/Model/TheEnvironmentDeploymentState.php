@@ -18,34 +18,14 @@ final class TheEnvironmentDeploymentState implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly bool $last_deployment_successful;
-    public readonly \DateTime $last_deployment_at;
-    public readonly \Upsun\Model\TheCronsDeploymentState $crons;
-
     public function __construct(
-        bool $last_deployment_successful = null,
-        \DateTime $last_deployment_at = null,
-        \Upsun\Model\TheCronsDeploymentState $crons = null
+        public readonly bool $last_deployment_successful = null,
+        public readonly \DateTime $last_deployment_at = null,
+        public readonly \Upsun\Model\TheCronsDeploymentState $crons = null
     ) {
-        $this->last_deployment_successful = $last_deployment_successful;
-        $this->last_deployment_at = $last_deployment_at;
-        $this->crons = $crons;
     }
 
-    public function getLastDeploymentSuccessful(): bool
-    {
-        return $this->last_deployment_successful;
-    }
-    public function getLastDeploymentAt(): \DateTime
-    {
-        return $this->last_deployment_at;
-    }
-    public function getCrons(): \Upsun\Model\TheCronsDeploymentState
-    {
-        return $this->crons;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'last_deployment_successful' => $this->last_deployment_successful,

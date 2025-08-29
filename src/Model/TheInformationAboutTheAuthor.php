@@ -18,34 +18,14 @@ final class TheInformationAboutTheAuthor implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \DateTime $date;
-    public readonly string $name;
-    public readonly string $email;
-
     public function __construct(
-        \DateTime $date = null,
-        string $name = null,
-        string $email = null
+        public readonly \DateTime $date = null,
+        public readonly string $name = null,
+        public readonly string $email = null
     ) {
-        $this->date = $date;
-        $this->name = $name;
-        $this->email = $email;
     }
 
-    public function getDate(): \DateTime
-    {
-        return $this->date;
-    }
-    public function getName(): string
-    {
-        return $this->name;
-    }
-    public function getEmail(): string
-    {
-        return $this->email;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'date' => $this->date,

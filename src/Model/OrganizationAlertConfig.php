@@ -18,55 +18,17 @@ final class OrganizationAlertConfig implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $id;
-    public readonly bool|null $active;
-    public readonly float|null $alerts_sent;
-    public readonly string|null $last_alert_at;
-    public readonly string|null $updated_at;
-    public readonly \Upsun\Model\OrganizationAlertConfigConfig|null $config;
-
     public function __construct(
-        string|null $id = null,
-        bool|null $active = null,
-        float|null $alerts_sent = null,
-        string|null $last_alert_at = null,
-        string|null $updated_at = null,
-        \Upsun\Model\OrganizationAlertConfigConfig|null $config = null
+        public readonly string|null $id = null,
+        public readonly bool|null $active = null,
+        public readonly float|null $alerts_sent = null,
+        public readonly string|null $last_alert_at = null,
+        public readonly string|null $updated_at = null,
+        public readonly \Upsun\Model\OrganizationAlertConfigConfig|null $config = null
     ) {
-        $this->id = $id;
-        $this->active = $active;
-        $this->alerts_sent = $alerts_sent;
-        $this->last_alert_at = $last_alert_at;
-        $this->updated_at = $updated_at;
-        $this->config = $config;
     }
 
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getActive(): bool|null
-    {
-        return $this->active;
-    }
-    public function getAlertsSent(): float|null
-    {
-        return $this->alerts_sent;
-    }
-    public function getLastAlertAt(): string|null
-    {
-        return $this->last_alert_at;
-    }
-    public function getUpdatedAt(): string|null
-    {
-        return $this->updated_at;
-    }
-    public function getConfig(): \Upsun\Model\OrganizationAlertConfigConfig|null
-    {
-        return $this->config;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

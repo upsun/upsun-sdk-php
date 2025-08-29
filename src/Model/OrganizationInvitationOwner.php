@@ -18,27 +18,13 @@ final class OrganizationInvitationOwner implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $id;
-    public readonly string|null $display_name;
-
     public function __construct(
-        string|null $id = null,
-        string|null $display_name = null
+        public readonly string|null $id = null,
+        public readonly string|null $display_name = null
     ) {
-        $this->id = $id;
-        $this->display_name = $display_name;
     }
 
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getDisplayName(): string|null
-    {
-        return $this->display_name;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

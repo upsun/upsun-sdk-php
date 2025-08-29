@@ -18,27 +18,13 @@ final class CustomDomains implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly bool $enabled;
-    public readonly int $environments_with_domains_limit;
-
     public function __construct(
-        bool $enabled = null,
-        int $environments_with_domains_limit = null
+        public readonly bool $enabled = null,
+        public readonly int $environments_with_domains_limit = null
     ) {
-        $this->enabled = $enabled;
-        $this->environments_with_domains_limit = $environments_with_domains_limit;
     }
 
-    public function getEnabled(): bool
-    {
-        return $this->enabled;
-    }
-    public function getEnvironmentsWithDomainsLimit(): int
-    {
-        return $this->environments_with_domains_limit;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'enabled' => $this->enabled,

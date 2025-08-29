@@ -18,93 +18,19 @@ final class WebHookIntegrationCreateInput implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $type;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $events;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $environments;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $excluded_environments;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $states;
-    public readonly string|null $result;
-    public readonly string|null $shared_key;
-    public readonly string $url;
-
     public function __construct(
-        string $type = null,
-        ?array $events = null,
-        ?array $environments = null,
-        ?array $excluded_environments = null,
-        ?array $states = null,
-        string|null $result = null,
-        string|null $shared_key = null,
-        string $url = null
+        public readonly string $type = null,
+        public readonly ?array $events = null,
+        public readonly ?array $environments = null,
+        public readonly ?array $excluded_environments = null,
+        public readonly ?array $states = null,
+        public readonly string|null $result = null,
+        public readonly string|null $shared_key = null,
+        public readonly string $url = null
     ) {
-        $this->type = $type;
-        $this->events = $events;
-        $this->environments = $environments;
-        $this->excluded_environments = $excluded_environments;
-        $this->states = $states;
-        $this->result = $result;
-        $this->shared_key = $shared_key;
-        $this->url = $url;
     }
 
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getEvents(): ?array
-    {
-        return $this->events;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getEnvironments(): ?array
-    {
-        return $this->environments;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getExcludedEnvironments(): ?array
-    {
-        return $this->excluded_environments;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getStates(): ?array
-    {
-        return $this->states;
-    }
-    public function getResult(): string|null
-    {
-        return $this->result;
-    }
-    public function getSharedKey(): string|null
-    {
-        return $this->shared_key;
-    }
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->type,

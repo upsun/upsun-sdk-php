@@ -18,124 +18,26 @@ final class Backup implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
-    public readonly string $id;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $attributes;
-    public readonly string $status;
-    public readonly \DateTime $expires_at;
-    public readonly int $index;
-    public readonly string $commit_id;
-    public readonly string $environment;
-    public readonly bool $safe;
-    public readonly int $size_of_volumes;
-    public readonly int $size_used;
-    public readonly string $deployment;
-    public readonly bool $restorable;
-    public readonly bool $automated;
-
     public function __construct(
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
-        string $id = null,
-        ?array $attributes = null,
-        string $status = null,
-        \DateTime $expires_at = null,
-        int $index = null,
-        string $commit_id = null,
-        string $environment = null,
-        bool $safe = null,
-        int $size_of_volumes = null,
-        int $size_used = null,
-        string $deployment = null,
-        bool $restorable = null,
-        bool $automated = null
+        public readonly \DateTime $created_at = null,
+        public readonly \DateTime $updated_at = null,
+        public readonly string $id = null,
+        public readonly ?array $attributes = null,
+        public readonly string $status = null,
+        public readonly \DateTime $expires_at = null,
+        public readonly int $index = null,
+        public readonly string $commit_id = null,
+        public readonly string $environment = null,
+        public readonly bool $safe = null,
+        public readonly int $size_of_volumes = null,
+        public readonly int $size_used = null,
+        public readonly string $deployment = null,
+        public readonly bool $restorable = null,
+        public readonly bool $automated = null
     ) {
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
-        $this->id = $id;
-        $this->attributes = $attributes;
-        $this->status = $status;
-        $this->expires_at = $expires_at;
-        $this->index = $index;
-        $this->commit_id = $commit_id;
-        $this->environment = $environment;
-        $this->safe = $safe;
-        $this->size_of_volumes = $size_of_volumes;
-        $this->size_used = $size_used;
-        $this->deployment = $deployment;
-        $this->restorable = $restorable;
-        $this->automated = $automated;
     }
 
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->updated_at;
-    }
-    public function getId(): string
-    {
-        return $this->id;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getAttributes(): ?array
-    {
-        return $this->attributes;
-    }
-    public function getStatus(): string
-    {
-        return $this->status;
-    }
-    public function getExpiresAt(): \DateTime
-    {
-        return $this->expires_at;
-    }
-    public function getIndex(): int
-    {
-        return $this->index;
-    }
-    public function getCommitId(): string
-    {
-        return $this->commit_id;
-    }
-    public function getEnvironment(): string
-    {
-        return $this->environment;
-    }
-    public function getSafe(): bool
-    {
-        return $this->safe;
-    }
-    public function getSizeOfVolumes(): int
-    {
-        return $this->size_of_volumes;
-    }
-    public function getSizeUsed(): int
-    {
-        return $this->size_used;
-    }
-    public function getDeployment(): string
-    {
-        return $this->deployment;
-    }
-    public function getRestorable(): bool
-    {
-        return $this->restorable;
-    }
-    public function getAutomated(): bool
-    {
-        return $this->automated;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'created_at' => $this->created_at,

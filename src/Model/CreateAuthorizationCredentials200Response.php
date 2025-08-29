@@ -18,27 +18,13 @@ final class CreateAuthorizationCredentials200Response implements JsonSerializabl
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl|null $redirect_to_url;
-    public readonly string|null $type;
-
     public function __construct(
-        \Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl|null $redirect_to_url = null,
-        string|null $type = null
+        public readonly \Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl|null $redirect_to_url = null,
+        public readonly string|null $type = null
     ) {
-        $this->redirect_to_url = $redirect_to_url;
-        $this->type = $type;
     }
 
-    public function getRedirectToUrl(): \Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl|null
-    {
-        return $this->redirect_to_url;
-    }
-    public function getType(): string|null
-    {
-        return $this->type;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'redirect_to_url' => $this->redirect_to_url,

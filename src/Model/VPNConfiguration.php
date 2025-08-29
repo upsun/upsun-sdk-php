@@ -18,117 +18,25 @@ final class VPNConfiguration implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly int $version;
-    public readonly string $aggressive;
-    public readonly string $modeconfig;
-    public readonly string $authentication;
-    public readonly string $gateway_ip;
-    public readonly string $identity;
-    public readonly string $second_identity;
-    public readonly string $remote_identity;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $remote_subnets;
-    public readonly string $ike;
-    public readonly string $esp;
-    public readonly string $ikelifetime;
-    public readonly string $lifetime;
-    public readonly string $margintime;
-
     public function __construct(
-        int $version = null,
-        string $aggressive = null,
-        string $modeconfig = null,
-        string $authentication = null,
-        string $gateway_ip = null,
-        string $identity = null,
-        string $second_identity = null,
-        string $remote_identity = null,
-        ?array $remote_subnets = null,
-        string $ike = null,
-        string $esp = null,
-        string $ikelifetime = null,
-        string $lifetime = null,
-        string $margintime = null
+        public readonly int $version = null,
+        public readonly string $aggressive = null,
+        public readonly string $modeconfig = null,
+        public readonly string $authentication = null,
+        public readonly string $gateway_ip = null,
+        public readonly string $identity = null,
+        public readonly string $second_identity = null,
+        public readonly string $remote_identity = null,
+        public readonly ?array $remote_subnets = null,
+        public readonly string $ike = null,
+        public readonly string $esp = null,
+        public readonly string $ikelifetime = null,
+        public readonly string $lifetime = null,
+        public readonly string $margintime = null
     ) {
-        $this->version = $version;
-        $this->aggressive = $aggressive;
-        $this->modeconfig = $modeconfig;
-        $this->authentication = $authentication;
-        $this->gateway_ip = $gateway_ip;
-        $this->identity = $identity;
-        $this->second_identity = $second_identity;
-        $this->remote_identity = $remote_identity;
-        $this->remote_subnets = $remote_subnets;
-        $this->ike = $ike;
-        $this->esp = $esp;
-        $this->ikelifetime = $ikelifetime;
-        $this->lifetime = $lifetime;
-        $this->margintime = $margintime;
     }
 
-    public function getVersion(): int
-    {
-        return $this->version;
-    }
-    public function getAggressive(): string
-    {
-        return $this->aggressive;
-    }
-    public function getModeconfig(): string
-    {
-        return $this->modeconfig;
-    }
-    public function getAuthentication(): string
-    {
-        return $this->authentication;
-    }
-    public function getGatewayIp(): string
-    {
-        return $this->gateway_ip;
-    }
-    public function getIdentity(): string
-    {
-        return $this->identity;
-    }
-    public function getSecondIdentity(): string
-    {
-        return $this->second_identity;
-    }
-    public function getRemoteIdentity(): string
-    {
-        return $this->remote_identity;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getRemoteSubnets(): ?array
-    {
-        return $this->remote_subnets;
-    }
-    public function getIke(): string
-    {
-        return $this->ike;
-    }
-    public function getEsp(): string
-    {
-        return $this->esp;
-    }
-    public function getIkelifetime(): string
-    {
-        return $this->ikelifetime;
-    }
-    public function getLifetime(): string
-    {
-        return $this->lifetime;
-    }
-    public function getMargintime(): string
-    {
-        return $this->margintime;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'version' => $this->version,

@@ -18,81 +18,19 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $type;
-    public readonly string $name;
-    public readonly string $deploy_host;
-    /**
-     * @var \Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue[]|null
-     */
-    public readonly ?array $docroots;
-    public readonly object $site_urls;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $ssh_hosts;
-    public readonly bool $maintenance_mode;
-    public readonly object|null $enterprise_environments_mapping;
-
     public function __construct(
-        string $type = null,
-        string $name = null,
-        string $deploy_host = null,
-        ?array $docroots = null,
-        object $site_urls = null,
-        ?array $ssh_hosts = null,
-        bool $maintenance_mode = null,
-        object|null $enterprise_environments_mapping = null
+        public readonly string $type = null,
+        public readonly string $name = null,
+        public readonly string $deploy_host = null,
+        public readonly ?array $docroots = null,
+        public readonly object $site_urls = null,
+        public readonly ?array $ssh_hosts = null,
+        public readonly bool $maintenance_mode = null,
+        public readonly object|null $enterprise_environments_mapping = null
     ) {
-        $this->type = $type;
-        $this->name = $name;
-        $this->deploy_host = $deploy_host;
-        $this->docroots = $docroots;
-        $this->site_urls = $site_urls;
-        $this->ssh_hosts = $ssh_hosts;
-        $this->maintenance_mode = $maintenance_mode;
-        $this->enterprise_environments_mapping = $enterprise_environments_mapping;
     }
 
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    public function getName(): string
-    {
-        return $this->name;
-    }
-    public function getDeployHost(): string
-    {
-        return $this->deploy_host;
-    }
-    /**
-     * @return \Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue[]|null
-     */
-    public function getDocroots(): ?array
-    {
-        return $this->docroots;
-    }
-    public function getSiteUrls(): object
-    {
-        return $this->site_urls;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getSshHosts(): ?array
-    {
-        return $this->ssh_hosts;
-    }
-    public function getMaintenanceMode(): bool
-    {
-        return $this->maintenance_mode;
-    }
-    public function getEnterpriseEnvironmentsMapping(): object|null
-    {
-        return $this->enterprise_environments_mapping;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->type,

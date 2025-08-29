@@ -18,27 +18,13 @@ final class TheCommandsDefinition implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $start;
-    public readonly string|null $stop;
-
     public function __construct(
-        string $start = null,
-        string|null $stop = null
+        public readonly string $start = null,
+        public readonly string|null $stop = null
     ) {
-        $this->start = $start;
-        $this->stop = $stop;
     }
 
-    public function getStart(): string
-    {
-        return $this->start;
-    }
-    public function getStop(): string|null
-    {
-        return $this->stop;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'start' => $this->start,

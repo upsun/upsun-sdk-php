@@ -18,158 +18,30 @@ final class Activity implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
-    public readonly string $type;
-    public readonly object $parameters;
-    public readonly string $project;
-    public readonly string|null $integration;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $environments;
-    public readonly string $state;
-    public readonly string $result;
-    public readonly \DateTime $started_at;
-    public readonly \DateTime $completed_at;
-    public readonly int $completion_percent;
-    public readonly \DateTime $cancelled_at;
-    /**
-     * @var float[]|null
-     */
-    public readonly ?array $timings;
-    public readonly string $log;
-    public readonly object $payload;
-    public readonly string $description;
-    public readonly string $text;
-    public readonly \DateTime $expires_at;
-
     public function __construct(
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
-        string $type = null,
-        object $parameters = null,
-        string $project = null,
-        string|null $integration = null,
-        ?array $environments = null,
-        string $state = null,
-        string $result = null,
-        \DateTime $started_at = null,
-        \DateTime $completed_at = null,
-        int $completion_percent = null,
-        \DateTime $cancelled_at = null,
-        ?array $timings = null,
-        string $log = null,
-        object $payload = null,
-        string $description = null,
-        string $text = null,
-        \DateTime $expires_at = null
+        public readonly \DateTime $created_at = null,
+        public readonly \DateTime $updated_at = null,
+        public readonly string $type = null,
+        public readonly object $parameters = null,
+        public readonly string $project = null,
+        public readonly string|null $integration = null,
+        public readonly ?array $environments = null,
+        public readonly string $state = null,
+        public readonly string $result = null,
+        public readonly \DateTime $started_at = null,
+        public readonly \DateTime $completed_at = null,
+        public readonly int $completion_percent = null,
+        public readonly \DateTime $cancelled_at = null,
+        public readonly ?array $timings = null,
+        public readonly string $log = null,
+        public readonly object $payload = null,
+        public readonly string $description = null,
+        public readonly string $text = null,
+        public readonly \DateTime $expires_at = null
     ) {
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
-        $this->type = $type;
-        $this->parameters = $parameters;
-        $this->project = $project;
-        $this->integration = $integration;
-        $this->environments = $environments;
-        $this->state = $state;
-        $this->result = $result;
-        $this->started_at = $started_at;
-        $this->completed_at = $completed_at;
-        $this->completion_percent = $completion_percent;
-        $this->cancelled_at = $cancelled_at;
-        $this->timings = $timings;
-        $this->log = $log;
-        $this->payload = $payload;
-        $this->description = $description;
-        $this->text = $text;
-        $this->expires_at = $expires_at;
     }
 
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->updated_at;
-    }
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    public function getParameters(): object
-    {
-        return $this->parameters;
-    }
-    public function getProject(): string
-    {
-        return $this->project;
-    }
-    public function getIntegration(): string|null
-    {
-        return $this->integration;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getEnvironments(): ?array
-    {
-        return $this->environments;
-    }
-    public function getState(): string
-    {
-        return $this->state;
-    }
-    public function getResult(): string
-    {
-        return $this->result;
-    }
-    public function getStartedAt(): \DateTime
-    {
-        return $this->started_at;
-    }
-    public function getCompletedAt(): \DateTime
-    {
-        return $this->completed_at;
-    }
-    public function getCompletionPercent(): int
-    {
-        return $this->completion_percent;
-    }
-    public function getCancelledAt(): \DateTime
-    {
-        return $this->cancelled_at;
-    }
-    /**
-     * @return float[]|null
-     */
-    public function getTimings(): ?array
-    {
-        return $this->timings;
-    }
-    public function getLog(): string
-    {
-        return $this->log;
-    }
-    public function getPayload(): object
-    {
-        return $this->payload;
-    }
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-    public function getText(): string
-    {
-        return $this->text;
-    }
-    public function getExpiresAt(): \DateTime
-    {
-        return $this->expires_at;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'created_at' => $this->created_at,

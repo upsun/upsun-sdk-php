@@ -18,34 +18,14 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $source;
-    public readonly string $source_path;
-    public readonly string|null $service;
-
     public function __construct(
-        string $source = null,
-        string $source_path = null,
-        string|null $service = null
+        public readonly string $source = null,
+        public readonly string $source_path = null,
+        public readonly string|null $service = null
     ) {
-        $this->source = $source;
-        $this->source_path = $source_path;
-        $this->service = $service;
     }
 
-    public function getSource(): string
-    {
-        return $this->source;
-    }
-    public function getSourcePath(): string
-    {
-        return $this->source_path;
-    }
-    public function getService(): string|null
-    {
-        return $this->service;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'source' => $this->source,

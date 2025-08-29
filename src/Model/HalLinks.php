@@ -18,34 +18,14 @@ final class HalLinks implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\HalLinksSelf|null $self;
-    public readonly \Upsun\Model\HalLinksPrevious|null $previous;
-    public readonly \Upsun\Model\HalLinksNext|null $next;
-
     public function __construct(
-        \Upsun\Model\HalLinksSelf|null $self = null,
-        \Upsun\Model\HalLinksPrevious|null $previous = null,
-        \Upsun\Model\HalLinksNext|null $next = null
+        public readonly \Upsun\Model\HalLinksSelf|null $self = null,
+        public readonly \Upsun\Model\HalLinksPrevious|null $previous = null,
+        public readonly \Upsun\Model\HalLinksNext|null $next = null
     ) {
-        $this->self = $self;
-        $this->previous = $previous;
-        $this->next = $next;
     }
 
-    public function getSelf(): \Upsun\Model\HalLinksSelf|null
-    {
-        return $this->self;
-    }
-    public function getPrevious(): \Upsun\Model\HalLinksPrevious|null
-    {
-        return $this->previous;
-    }
-    public function getNext(): \Upsun\Model\HalLinksNext|null
-    {
-        return $this->next;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'self' => $this->self,

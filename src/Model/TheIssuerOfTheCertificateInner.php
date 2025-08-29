@@ -18,34 +18,14 @@ final class TheIssuerOfTheCertificateInner implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $oid;
-    public readonly string $alias;
-    public readonly string $value;
-
     public function __construct(
-        string $oid = null,
-        string $alias = null,
-        string $value = null
+        public readonly string $oid = null,
+        public readonly string $alias = null,
+        public readonly string $value = null
     ) {
-        $this->oid = $oid;
-        $this->alias = $alias;
-        $this->value = $value;
     }
 
-    public function getOid(): string
-    {
-        return $this->oid;
-    }
-    public function getAlias(): string
-    {
-        return $this->alias;
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'oid' => $this->oid,

@@ -18,40 +18,14 @@ final class CreateTeamRequest implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $organization_id;
-    public readonly string $label;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $project_permissions;
-
     public function __construct(
-        string $organization_id = null,
-        string $label = null,
-        ?array $project_permissions = null
+        public readonly string $organization_id = null,
+        public readonly string $label = null,
+        public readonly ?array $project_permissions = null
     ) {
-        $this->organization_id = $organization_id;
-        $this->label = $label;
-        $this->project_permissions = $project_permissions;
     }
 
-    public function getOrganizationId(): string
-    {
-        return $this->organization_id;
-    }
-    public function getLabel(): string
-    {
-        return $this->label;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getProjectPermissions(): ?array
-    {
-        return $this->project_permissions;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'organization_id' => $this->organization_id,

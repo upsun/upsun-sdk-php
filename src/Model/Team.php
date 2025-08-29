@@ -18,68 +18,18 @@ final class Team implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $id;
-    public readonly string|null $organization_id;
-    public readonly string|null $label;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $project_permissions;
-    public readonly \Upsun\Model\TeamCounts|null $counts;
-    public readonly \DateTime|null $created_at;
-    public readonly \DateTime|null $updated_at;
-
     public function __construct(
-        string|null $id = null,
-        string|null $organization_id = null,
-        string|null $label = null,
-        ?array $project_permissions = null,
-        \Upsun\Model\TeamCounts|null $counts = null,
-        \DateTime|null $created_at = null,
-        \DateTime|null $updated_at = null
+        public readonly string|null $id = null,
+        public readonly string|null $organization_id = null,
+        public readonly string|null $label = null,
+        public readonly ?array $project_permissions = null,
+        public readonly \Upsun\Model\TeamCounts|null $counts = null,
+        public readonly \DateTime|null $created_at = null,
+        public readonly \DateTime|null $updated_at = null
     ) {
-        $this->id = $id;
-        $this->organization_id = $organization_id;
-        $this->label = $label;
-        $this->project_permissions = $project_permissions;
-        $this->counts = $counts;
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
     }
 
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getOrganizationId(): string|null
-    {
-        return $this->organization_id;
-    }
-    public function getLabel(): string|null
-    {
-        return $this->label;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getProjectPermissions(): ?array
-    {
-        return $this->project_permissions;
-    }
-    public function getCounts(): \Upsun\Model\TeamCounts|null
-    {
-        return $this->counts;
-    }
-    public function getCreatedAt(): \DateTime|null
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime|null
-    {
-        return $this->updated_at;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

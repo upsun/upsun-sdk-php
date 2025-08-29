@@ -18,27 +18,13 @@ final class BuildResources1 implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly float $cpu;
-    public readonly int $memory;
-
     public function __construct(
-        float $cpu = null,
-        int $memory = null
+        public readonly float $cpu = null,
+        public readonly int $memory = null
     ) {
-        $this->cpu = $cpu;
-        $this->memory = $memory;
     }
 
-    public function getCpu(): float
-    {
-        return $this->cpu;
-    }
-    public function getMemory(): int
-    {
-        return $this->memory;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'cpu' => $this->cpu,

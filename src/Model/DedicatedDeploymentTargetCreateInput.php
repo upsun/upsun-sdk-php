@@ -18,34 +18,14 @@ final class DedicatedDeploymentTargetCreateInput implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $type;
-    public readonly string $name;
-    public readonly object|null $enforced_mounts;
-
     public function __construct(
-        string $type = null,
-        string $name = null,
-        object|null $enforced_mounts = null
+        public readonly string $type = null,
+        public readonly string $name = null,
+        public readonly object|null $enforced_mounts = null
     ) {
-        $this->type = $type;
-        $this->name = $name;
-        $this->enforced_mounts = $enforced_mounts;
     }
 
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    public function getName(): string
-    {
-        return $this->name;
-    }
-    public function getEnforcedMounts(): object|null
-    {
-        return $this->enforced_mounts;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->type,

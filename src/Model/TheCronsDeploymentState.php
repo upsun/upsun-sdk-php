@@ -18,27 +18,13 @@ final class TheCronsDeploymentState implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly bool $enabled;
-    public readonly string $status;
-
     public function __construct(
-        bool $enabled = null,
-        string $status = null
+        public readonly bool $enabled = null,
+        public readonly string $status = null
     ) {
-        $this->enabled = $enabled;
-        $this->status = $status;
     }
 
-    public function getEnabled(): bool
-    {
-        return $this->enabled;
-    }
-    public function getStatus(): string
-    {
-        return $this->status;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'enabled' => $this->enabled,

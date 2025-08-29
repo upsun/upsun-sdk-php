@@ -18,27 +18,13 @@ final class OrganizationEstimationObjectUserLicenses implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBase|null $base;
-    public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement|null $user_management;
-
     public function __construct(
-        \Upsun\Model\OrganizationEstimationObjectUserLicensesBase|null $base = null,
-        \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement|null $user_management = null
+        public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBase|null $base = null,
+        public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement|null $user_management = null
     ) {
-        $this->base = $base;
-        $this->user_management = $user_management;
     }
 
-    public function getBase(): \Upsun\Model\OrganizationEstimationObjectUserLicensesBase|null
-    {
-        return $this->base;
-    }
-    public function getUserManagement(): \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement|null
-    {
-        return $this->user_management;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'base' => $this->base,

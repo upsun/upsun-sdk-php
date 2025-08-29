@@ -18,97 +18,23 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $project_title;
-    public readonly string|null $plan;
-    public readonly string|null $timezone;
-    public readonly int|null $environments;
-    public readonly int|null $storage;
-    public readonly string|null $big_dev;
-    public readonly string|null $big_dev_service;
-    public readonly string|null $backups;
-    public readonly string|null $observability_suite;
-    public readonly string|null $blackfire;
-    public readonly string|null $continuous_profiling;
-    public readonly string|null $project_support_level;
-
     public function __construct(
-        string|null $project_title = null,
-        string|null $plan = null,
-        string|null $timezone = null,
-        int|null $environments = null,
-        int|null $storage = null,
-        string|null $big_dev = null,
-        string|null $big_dev_service = null,
-        string|null $backups = null,
-        string|null $observability_suite = null,
-        string|null $blackfire = null,
-        string|null $continuous_profiling = null,
-        string|null $project_support_level = null
+        public readonly string|null $project_title = null,
+        public readonly string|null $plan = null,
+        public readonly string|null $timezone = null,
+        public readonly int|null $environments = null,
+        public readonly int|null $storage = null,
+        public readonly string|null $big_dev = null,
+        public readonly string|null $big_dev_service = null,
+        public readonly string|null $backups = null,
+        public readonly string|null $observability_suite = null,
+        public readonly string|null $blackfire = null,
+        public readonly string|null $continuous_profiling = null,
+        public readonly string|null $project_support_level = null
     ) {
-        $this->project_title = $project_title;
-        $this->plan = $plan;
-        $this->timezone = $timezone;
-        $this->environments = $environments;
-        $this->storage = $storage;
-        $this->big_dev = $big_dev;
-        $this->big_dev_service = $big_dev_service;
-        $this->backups = $backups;
-        $this->observability_suite = $observability_suite;
-        $this->blackfire = $blackfire;
-        $this->continuous_profiling = $continuous_profiling;
-        $this->project_support_level = $project_support_level;
     }
 
-    public function getProjectTitle(): string|null
-    {
-        return $this->project_title;
-    }
-    public function getPlan(): string|null
-    {
-        return $this->plan;
-    }
-    public function getTimezone(): string|null
-    {
-        return $this->timezone;
-    }
-    public function getEnvironments(): int|null
-    {
-        return $this->environments;
-    }
-    public function getStorage(): int|null
-    {
-        return $this->storage;
-    }
-    public function getBigDev(): string|null
-    {
-        return $this->big_dev;
-    }
-    public function getBigDevService(): string|null
-    {
-        return $this->big_dev_service;
-    }
-    public function getBackups(): string|null
-    {
-        return $this->backups;
-    }
-    public function getObservabilitySuite(): string|null
-    {
-        return $this->observability_suite;
-    }
-    public function getBlackfire(): string|null
-    {
-        return $this->blackfire;
-    }
-    public function getContinuousProfiling(): string|null
-    {
-        return $this->continuous_profiling;
-    }
-    public function getProjectSupportLevel(): string|null
-    {
-        return $this->project_support_level;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'project_title' => $this->project_title,

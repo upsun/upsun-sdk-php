@@ -18,20 +18,12 @@ final class GetCurrentUserVerificationStatus200Response implements JsonSerializa
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly bool|null $verify_phone;
-
     public function __construct(
-        bool|null $verify_phone = null
+        public readonly bool|null $verify_phone = null
     ) {
-        $this->verify_phone = $verify_phone;
     }
 
-    public function getVerifyPhone(): bool|null
-    {
-        return $this->verify_phone;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'verify_phone' => $this->verify_phone,

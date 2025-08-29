@@ -18,20 +18,12 @@ final class CreateApiTokenRequest implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $name;
-
     public function __construct(
-        string $name = null
+        public readonly string $name = null
     ) {
-        $this->name = $name;
     }
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'name' => $this->name,

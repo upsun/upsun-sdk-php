@@ -18,41 +18,15 @@ final class TheTreeItemsInner implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $path;
-    public readonly string $mode;
-    public readonly string $type;
-    public readonly string $sha;
-
     public function __construct(
-        string $path = null,
-        string $mode = null,
-        string $type = null,
-        string $sha = null
+        public readonly string $path = null,
+        public readonly string $mode = null,
+        public readonly string $type = null,
+        public readonly string $sha = null
     ) {
-        $this->path = $path;
-        $this->mode = $mode;
-        $this->type = $type;
-        $this->sha = $sha;
     }
 
-    public function getPath(): string
-    {
-        return $this->path;
-    }
-    public function getMode(): string
-    {
-        return $this->mode;
-    }
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    public function getSha(): string
-    {
-        return $this->sha;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'path' => $this->path,

@@ -18,55 +18,17 @@ final class OrganizationSSOConfig implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $provider_type;
-    public readonly string|null $domain;
-    public readonly string|null $organization_id;
-    public readonly bool|null $enforced;
-    public readonly \DateTime|null $created_at;
-    public readonly \DateTime|null $updated_at;
-
     public function __construct(
-        string|null $provider_type = null,
-        string|null $domain = null,
-        string|null $organization_id = null,
-        bool|null $enforced = null,
-        \DateTime|null $created_at = null,
-        \DateTime|null $updated_at = null
+        public readonly string|null $provider_type = null,
+        public readonly string|null $domain = null,
+        public readonly string|null $organization_id = null,
+        public readonly bool|null $enforced = null,
+        public readonly \DateTime|null $created_at = null,
+        public readonly \DateTime|null $updated_at = null
     ) {
-        $this->provider_type = $provider_type;
-        $this->domain = $domain;
-        $this->organization_id = $organization_id;
-        $this->enforced = $enforced;
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
     }
 
-    public function getProviderType(): string|null
-    {
-        return $this->provider_type;
-    }
-    public function getDomain(): string|null
-    {
-        return $this->domain;
-    }
-    public function getOrganizationId(): string|null
-    {
-        return $this->organization_id;
-    }
-    public function getEnforced(): bool|null
-    {
-        return $this->enforced;
-    }
-    public function getCreatedAt(): \DateTime|null
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime|null
-    {
-        return $this->updated_at;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'provider_type' => $this->provider_type,

@@ -18,104 +18,24 @@ final class UpdateProfileRequest implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $display_name;
-    public readonly string|null $username;
-    public readonly string|null $current_password;
-    public readonly string|null $password;
-    public readonly string|null $company_type;
-    public readonly string|null $company_name;
-    public readonly string|null $vat_number;
-    public readonly string|null $company_role;
-    public readonly bool|null $marketing;
-    public readonly string|null $ui_colorscheme;
-    public readonly string|null $default_catalog;
-    public readonly string|null $project_options_url;
-    public readonly string|null $picture;
-
     public function __construct(
-        string|null $display_name = null,
-        string|null $username = null,
-        string|null $current_password = null,
-        string|null $password = null,
-        string|null $company_type = null,
-        string|null $company_name = null,
-        string|null $vat_number = null,
-        string|null $company_role = null,
-        bool|null $marketing = null,
-        string|null $ui_colorscheme = null,
-        string|null $default_catalog = null,
-        string|null $project_options_url = null,
-        string|null $picture = null
+        public readonly string|null $display_name = null,
+        public readonly string|null $username = null,
+        public readonly string|null $current_password = null,
+        public readonly string|null $password = null,
+        public readonly string|null $company_type = null,
+        public readonly string|null $company_name = null,
+        public readonly string|null $vat_number = null,
+        public readonly string|null $company_role = null,
+        public readonly bool|null $marketing = null,
+        public readonly string|null $ui_colorscheme = null,
+        public readonly string|null $default_catalog = null,
+        public readonly string|null $project_options_url = null,
+        public readonly string|null $picture = null
     ) {
-        $this->display_name = $display_name;
-        $this->username = $username;
-        $this->current_password = $current_password;
-        $this->password = $password;
-        $this->company_type = $company_type;
-        $this->company_name = $company_name;
-        $this->vat_number = $vat_number;
-        $this->company_role = $company_role;
-        $this->marketing = $marketing;
-        $this->ui_colorscheme = $ui_colorscheme;
-        $this->default_catalog = $default_catalog;
-        $this->project_options_url = $project_options_url;
-        $this->picture = $picture;
     }
 
-    public function getDisplayName(): string|null
-    {
-        return $this->display_name;
-    }
-    public function getUsername(): string|null
-    {
-        return $this->username;
-    }
-    public function getCurrentPassword(): string|null
-    {
-        return $this->current_password;
-    }
-    public function getPassword(): string|null
-    {
-        return $this->password;
-    }
-    public function getCompanyType(): string|null
-    {
-        return $this->company_type;
-    }
-    public function getCompanyName(): string|null
-    {
-        return $this->company_name;
-    }
-    public function getVatNumber(): string|null
-    {
-        return $this->vat_number;
-    }
-    public function getCompanyRole(): string|null
-    {
-        return $this->company_role;
-    }
-    public function getMarketing(): bool|null
-    {
-        return $this->marketing;
-    }
-    public function getUiColorscheme(): string|null
-    {
-        return $this->ui_colorscheme;
-    }
-    public function getDefaultCatalog(): string|null
-    {
-        return $this->default_catalog;
-    }
-    public function getProjectOptionsUrl(): string|null
-    {
-        return $this->project_options_url;
-    }
-    public function getPicture(): string|null
-    {
-        return $this->picture;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'display_name' => $this->display_name,

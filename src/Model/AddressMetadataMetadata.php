@@ -18,40 +18,14 @@ final class AddressMetadataMetadata implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $required_fields;
-    public readonly object|null $field_labels;
-    public readonly bool|null $show_vat;
-
     public function __construct(
-        ?array $required_fields = null,
-        object|null $field_labels = null,
-        bool|null $show_vat = null
+        public readonly ?array $required_fields = null,
+        public readonly object|null $field_labels = null,
+        public readonly bool|null $show_vat = null
     ) {
-        $this->required_fields = $required_fields;
-        $this->field_labels = $field_labels;
-        $this->show_vat = $show_vat;
     }
 
-    /**
-     * @return string[]|null
-     */
-    public function getRequiredFields(): ?array
-    {
-        return $this->required_fields;
-    }
-    public function getFieldLabels(): object|null
-    {
-        return $this->field_labels;
-    }
-    public function getShowVat(): bool|null
-    {
-        return $this->show_vat;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'required_fields' => $this->required_fields,

@@ -18,187 +18,35 @@ final class Subscription implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $id;
-    public readonly string|null $status;
-    public readonly \DateTime|null $created_at;
-    public readonly \DateTime|null $updated_at;
-    public readonly string|null $owner;
-    public readonly \Upsun\Model\OwnerInfo|null $owner_info;
-    public readonly string|null $vendor;
-    public readonly string|null $plan;
-    public readonly int|null $environments;
-    public readonly int|null $storage;
-    public readonly int|null $user_licenses;
-    public readonly string|null $project_id;
-    public readonly string|null $project_endpoint;
-    public readonly string|null $project_title;
-    public readonly string|null $project_region;
-    public readonly string|null $project_region_label;
-    public readonly string|null $project_ui;
-    public readonly \Upsun\Model\ProjectOptions|null $project_options;
-    public readonly bool|null $agency_site;
-    public readonly bool|null $invoiced;
-    public readonly bool|null $hipaa;
-    public readonly bool|null $is_trial_plan;
-    /**
-     * @var object[]|null
-     */
-    public readonly ?array $services;
-    public readonly bool|null $green;
-
     public function __construct(
-        string|null $id = null,
-        string|null $status = null,
-        \DateTime|null $created_at = null,
-        \DateTime|null $updated_at = null,
-        string|null $owner = null,
-        \Upsun\Model\OwnerInfo|null $owner_info = null,
-        string|null $vendor = null,
-        string|null $plan = null,
-        int|null $environments = null,
-        int|null $storage = null,
-        int|null $user_licenses = null,
-        string|null $project_id = null,
-        string|null $project_endpoint = null,
-        string|null $project_title = null,
-        string|null $project_region = null,
-        string|null $project_region_label = null,
-        string|null $project_ui = null,
-        \Upsun\Model\ProjectOptions|null $project_options = null,
-        bool|null $agency_site = null,
-        bool|null $invoiced = null,
-        bool|null $hipaa = null,
-        bool|null $is_trial_plan = null,
-        ?array $services = null,
-        bool|null $green = null
+        public readonly string|null $id = null,
+        public readonly string|null $status = null,
+        public readonly \DateTime|null $created_at = null,
+        public readonly \DateTime|null $updated_at = null,
+        public readonly string|null $owner = null,
+        public readonly \Upsun\Model\OwnerInfo|null $owner_info = null,
+        public readonly string|null $vendor = null,
+        public readonly string|null $plan = null,
+        public readonly int|null $environments = null,
+        public readonly int|null $storage = null,
+        public readonly int|null $user_licenses = null,
+        public readonly string|null $project_id = null,
+        public readonly string|null $project_endpoint = null,
+        public readonly string|null $project_title = null,
+        public readonly string|null $project_region = null,
+        public readonly string|null $project_region_label = null,
+        public readonly string|null $project_ui = null,
+        public readonly \Upsun\Model\ProjectOptions|null $project_options = null,
+        public readonly bool|null $agency_site = null,
+        public readonly bool|null $invoiced = null,
+        public readonly bool|null $hipaa = null,
+        public readonly bool|null $is_trial_plan = null,
+        public readonly ?array $services = null,
+        public readonly bool|null $green = null
     ) {
-        $this->id = $id;
-        $this->status = $status;
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
-        $this->owner = $owner;
-        $this->owner_info = $owner_info;
-        $this->vendor = $vendor;
-        $this->plan = $plan;
-        $this->environments = $environments;
-        $this->storage = $storage;
-        $this->user_licenses = $user_licenses;
-        $this->project_id = $project_id;
-        $this->project_endpoint = $project_endpoint;
-        $this->project_title = $project_title;
-        $this->project_region = $project_region;
-        $this->project_region_label = $project_region_label;
-        $this->project_ui = $project_ui;
-        $this->project_options = $project_options;
-        $this->agency_site = $agency_site;
-        $this->invoiced = $invoiced;
-        $this->hipaa = $hipaa;
-        $this->is_trial_plan = $is_trial_plan;
-        $this->services = $services;
-        $this->green = $green;
     }
 
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getStatus(): string|null
-    {
-        return $this->status;
-    }
-    public function getCreatedAt(): \DateTime|null
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime|null
-    {
-        return $this->updated_at;
-    }
-    public function getOwner(): string|null
-    {
-        return $this->owner;
-    }
-    public function getOwnerInfo(): \Upsun\Model\OwnerInfo|null
-    {
-        return $this->owner_info;
-    }
-    public function getVendor(): string|null
-    {
-        return $this->vendor;
-    }
-    public function getPlan(): string|null
-    {
-        return $this->plan;
-    }
-    public function getEnvironments(): int|null
-    {
-        return $this->environments;
-    }
-    public function getStorage(): int|null
-    {
-        return $this->storage;
-    }
-    public function getUserLicenses(): int|null
-    {
-        return $this->user_licenses;
-    }
-    public function getProjectId(): string|null
-    {
-        return $this->project_id;
-    }
-    public function getProjectEndpoint(): string|null
-    {
-        return $this->project_endpoint;
-    }
-    public function getProjectTitle(): string|null
-    {
-        return $this->project_title;
-    }
-    public function getProjectRegion(): string|null
-    {
-        return $this->project_region;
-    }
-    public function getProjectRegionLabel(): string|null
-    {
-        return $this->project_region_label;
-    }
-    public function getProjectUi(): string|null
-    {
-        return $this->project_ui;
-    }
-    public function getProjectOptions(): \Upsun\Model\ProjectOptions|null
-    {
-        return $this->project_options;
-    }
-    public function getAgencySite(): bool|null
-    {
-        return $this->agency_site;
-    }
-    public function getInvoiced(): bool|null
-    {
-        return $this->invoiced;
-    }
-    public function getHipaa(): bool|null
-    {
-        return $this->hipaa;
-    }
-    public function getIsTrialPlan(): bool|null
-    {
-        return $this->is_trial_plan;
-    }
-    /**
-     * @return object[]|null
-     */
-    public function getServices(): ?array
-    {
-        return $this->services;
-    }
-    public function getGreen(): bool|null
-    {
-        return $this->green;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

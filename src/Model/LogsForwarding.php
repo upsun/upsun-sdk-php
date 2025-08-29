@@ -18,20 +18,12 @@ final class LogsForwarding implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly int $max_extra_payload_size;
-
     public function __construct(
-        int $max_extra_payload_size = null
+        public readonly int $max_extra_payload_size = null
     ) {
-        $this->max_extra_payload_size = $max_extra_payload_size;
     }
 
-    public function getMaxExtraPayloadSize(): int
-    {
-        return $this->max_extra_payload_size;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'max_extra_payload_size' => $this->max_extra_payload_size,

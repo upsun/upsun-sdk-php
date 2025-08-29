@@ -18,54 +18,16 @@ final class EnvironmentInitializeInput implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $profile;
-    public readonly string $repository;
-    public readonly string $config;
-    /**
-     * @var \Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner[]|null
-     */
-    public readonly ?array $files;
-    public readonly \Upsun\Model\Resources3 $resources;
-
     public function __construct(
-        string $profile = null,
-        string $repository = null,
-        string $config = null,
-        ?array $files = null,
-        \Upsun\Model\Resources3 $resources = null
+        public readonly string $profile = null,
+        public readonly string $repository = null,
+        public readonly string $config = null,
+        public readonly ?array $files = null,
+        public readonly \Upsun\Model\Resources3 $resources = null
     ) {
-        $this->profile = $profile;
-        $this->repository = $repository;
-        $this->config = $config;
-        $this->files = $files;
-        $this->resources = $resources;
     }
 
-    public function getProfile(): string
-    {
-        return $this->profile;
-    }
-    public function getRepository(): string
-    {
-        return $this->repository;
-    }
-    public function getConfig(): string
-    {
-        return $this->config;
-    }
-    /**
-     * @return \Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner[]|null
-     */
-    public function getFiles(): ?array
-    {
-        return $this->files;
-    }
-    public function getResources(): \Upsun\Model\Resources3
-    {
-        return $this->resources;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'profile' => $this->profile,

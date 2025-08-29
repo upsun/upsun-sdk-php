@@ -18,34 +18,14 @@ final class ProfileCurrentTrialProjects implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $id;
-    public readonly string|null $name;
-    public readonly \Upsun\Model\ProfileCurrentTrialProjectsTotal|null $total;
-
     public function __construct(
-        string|null $id = null,
-        string|null $name = null,
-        \Upsun\Model\ProfileCurrentTrialProjectsTotal|null $total = null
+        public readonly string|null $id = null,
+        public readonly string|null $name = null,
+        public readonly \Upsun\Model\ProfileCurrentTrialProjectsTotal|null $total = null
     ) {
-        $this->id = $id;
-        $this->name = $name;
-        $this->total = $total;
     }
 
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getName(): string|null
-    {
-        return $this->name;
-    }
-    public function getTotal(): \Upsun\Model\ProfileCurrentTrialProjectsTotal|null
-    {
-        return $this->total;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

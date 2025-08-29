@@ -18,55 +18,17 @@ final class TicketJiraInner implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly int|null $id;
-    public readonly int|null $ticket_id;
-    public readonly int|null $issue_id;
-    public readonly string|null $issue_key;
-    public readonly float|null $created_at;
-    public readonly float|null $updated_at;
-
     public function __construct(
-        int|null $id = null,
-        int|null $ticket_id = null,
-        int|null $issue_id = null,
-        string|null $issue_key = null,
-        float|null $created_at = null,
-        float|null $updated_at = null
+        public readonly int|null $id = null,
+        public readonly int|null $ticket_id = null,
+        public readonly int|null $issue_id = null,
+        public readonly string|null $issue_key = null,
+        public readonly float|null $created_at = null,
+        public readonly float|null $updated_at = null
     ) {
-        $this->id = $id;
-        $this->ticket_id = $ticket_id;
-        $this->issue_id = $issue_id;
-        $this->issue_key = $issue_key;
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
     }
 
-    public function getId(): int|null
-    {
-        return $this->id;
-    }
-    public function getTicketId(): int|null
-    {
-        return $this->ticket_id;
-    }
-    public function getIssueId(): int|null
-    {
-        return $this->issue_id;
-    }
-    public function getIssueKey(): string|null
-    {
-        return $this->issue_key;
-    }
-    public function getCreatedAt(): float|null
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): float|null
-    {
-        return $this->updated_at;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

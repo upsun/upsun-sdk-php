@@ -18,20 +18,12 @@ final class ImagesValueValue implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly bool $available;
-
     public function __construct(
-        bool $available = null
+        public readonly bool $available = null
     ) {
-        $this->available = $available;
     }
 
-    public function getAvailable(): bool
-    {
-        return $this->available;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'available' => $this->available,

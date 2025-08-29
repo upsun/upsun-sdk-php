@@ -18,27 +18,13 @@ final class TeamCounts implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly int|null $member_count;
-    public readonly int|null $project_count;
-
     public function __construct(
-        int|null $member_count = null,
-        int|null $project_count = null
+        public readonly int|null $member_count = null,
+        public readonly int|null $project_count = null
     ) {
-        $this->member_count = $member_count;
-        $this->project_count = $project_count;
     }
 
-    public function getMemberCount(): int|null
-    {
-        return $this->member_count;
-    }
-    public function getProjectCount(): int|null
-    {
-        return $this->project_count;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'member_count' => $this->member_count,

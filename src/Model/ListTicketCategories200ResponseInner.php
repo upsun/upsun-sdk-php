@@ -18,27 +18,13 @@ final class ListTicketCategories200ResponseInner implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $id;
-    public readonly string|null $label;
-
     public function __construct(
-        string|null $id = null,
-        string|null $label = null
+        public readonly string|null $id = null,
+        public readonly string|null $label = null
     ) {
-        $this->id = $id;
-        $this->label = $label;
     }
 
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getLabel(): string|null
-    {
-        return $this->label;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

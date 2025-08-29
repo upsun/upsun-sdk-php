@@ -18,20 +18,12 @@ final class CreateTeamMemberRequest implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $user_id;
-
     public function __construct(
-        string $user_id = null
+        public readonly string $user_id = null
     ) {
-        $this->user_id = $user_id;
     }
 
-    public function getUserId(): string
-    {
-        return $this->user_id;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'user_id' => $this->user_id,

@@ -18,27 +18,13 @@ final class DataRetentionConfigurationValue1 implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly int|null $max_backups;
-    public readonly \Upsun\Model\DefaultConfig1 $default_config;
-
     public function __construct(
-        int|null $max_backups = null,
-        \Upsun\Model\DefaultConfig1 $default_config = null
+        public readonly int|null $max_backups = null,
+        public readonly \Upsun\Model\DefaultConfig1 $default_config = null
     ) {
-        $this->max_backups = $max_backups;
-        $this->default_config = $default_config;
     }
 
-    public function getMaxBackups(): int|null
-    {
-        return $this->max_backups;
-    }
-    public function getDefaultConfig(): \Upsun\Model\DefaultConfig1
-    {
-        return $this->default_config;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'max_backups' => $this->max_backups,

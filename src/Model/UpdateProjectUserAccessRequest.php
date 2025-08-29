@@ -18,26 +18,12 @@ final class UpdateProjectUserAccessRequest implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $permissions;
-
     public function __construct(
-        ?array $permissions = null
+        public readonly ?array $permissions = null
     ) {
-        $this->permissions = $permissions;
     }
 
-    /**
-     * @return string[]|null
-     */
-    public function getPermissions(): ?array
-    {
-        return $this->permissions;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'permissions' => $this->permissions,

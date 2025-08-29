@@ -18,27 +18,13 @@ final class GetCurrentUserVerificationStatusFull200Response implements JsonSeria
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly bool|null $state;
-    public readonly string|null $type;
-
     public function __construct(
-        bool|null $state = null,
-        string|null $type = null
+        public readonly bool|null $state = null,
+        public readonly string|null $type = null
     ) {
-        $this->state = $state;
-        $this->type = $type;
     }
 
-    public function getState(): bool|null
-    {
-        return $this->state;
-    }
-    public function getType(): string|null
-    {
-        return $this->type;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'state' => $this->state,

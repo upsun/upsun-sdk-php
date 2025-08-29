@@ -18,27 +18,13 @@ final class CreateTicketRequestAttachmentsInner implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $filename;
-    public readonly string|null $data;
-
     public function __construct(
-        string|null $filename = null,
-        string|null $data = null
+        public readonly string|null $filename = null,
+        public readonly string|null $data = null
     ) {
-        $this->filename = $filename;
-        $this->data = $data;
     }
 
-    public function getFilename(): string|null
-    {
-        return $this->filename;
-    }
-    public function getData(): string|null
-    {
-        return $this->data;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'filename' => $this->filename,

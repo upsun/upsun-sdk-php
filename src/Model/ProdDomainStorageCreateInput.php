@@ -18,40 +18,14 @@ final class ProdDomainStorageCreateInput implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $name;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $attributes;
-    public readonly bool|null $is_default;
-
     public function __construct(
-        string $name = null,
-        ?array $attributes = null,
-        bool|null $is_default = null
+        public readonly string $name = null,
+        public readonly ?array $attributes = null,
+        public readonly bool|null $is_default = null
     ) {
-        $this->name = $name;
-        $this->attributes = $attributes;
-        $this->is_default = $is_default;
     }
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getAttributes(): ?array
-    {
-        return $this->attributes;
-    }
-    public function getIsDefault(): bool|null
-    {
-        return $this->is_default;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'name' => $this->name,

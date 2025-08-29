@@ -18,20 +18,12 @@ final class VouchersLinks implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf|null $self;
-
     public function __construct(
-        \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf|null $self = null
+        public readonly \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf|null $self = null
     ) {
-        $this->self = $self;
     }
 
-    public function getSelf(): \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf|null
-    {
-        return $this->self;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'self' => $this->self,

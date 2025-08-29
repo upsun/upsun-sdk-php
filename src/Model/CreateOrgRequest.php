@@ -18,48 +18,16 @@ final class CreateOrgRequest implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $type;
-    public readonly string|null $owner_id;
-    public readonly string|null $name;
-    public readonly string $label;
-    public readonly string|null $country;
-
     public function __construct(
-        string|null $type = null,
-        string|null $owner_id = null,
-        string|null $name = null,
-        string $label = null,
-        string|null $country = null
+        public readonly string|null $type = null,
+        public readonly string|null $owner_id = null,
+        public readonly string|null $name = null,
+        public readonly string $label = null,
+        public readonly string|null $country = null
     ) {
-        $this->type = $type;
-        $this->owner_id = $owner_id;
-        $this->name = $name;
-        $this->label = $label;
-        $this->country = $country;
     }
 
-    public function getType(): string|null
-    {
-        return $this->type;
-    }
-    public function getOwnerId(): string|null
-    {
-        return $this->owner_id;
-    }
-    public function getName(): string|null
-    {
-        return $this->name;
-    }
-    public function getLabel(): string
-    {
-        return $this->label;
-    }
-    public function getCountry(): string|null
-    {
-        return $this->country;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->type,

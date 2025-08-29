@@ -18,104 +18,24 @@ final class OrganizationProject implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $id;
-    public readonly string|null $organization_id;
-    public readonly string|null $subscription_id;
-    public readonly string|null $region;
-    public readonly string|null $title;
-    public readonly \Upsun\Model\OrganizationProjectType|null $type;
-    public readonly \Upsun\Model\OrganizationProjectPlan|null $plan;
-    public readonly string|null $access_migration_status;
-    public readonly \Upsun\Model\OrganizationProjectStatus|null $status;
-    public readonly string|null $vendor;
-    public readonly \DateTime|null $created_at;
-    public readonly \DateTime|null $updated_at;
-    public readonly \Upsun\Model\OrganizationProjectLinks|null $_links;
-
     public function __construct(
-        string|null $id = null,
-        string|null $organization_id = null,
-        string|null $subscription_id = null,
-        string|null $region = null,
-        string|null $title = null,
-        \Upsun\Model\OrganizationProjectType|null $type = null,
-        \Upsun\Model\OrganizationProjectPlan|null $plan = null,
-        string|null $access_migration_status = null,
-        \Upsun\Model\OrganizationProjectStatus|null $status = null,
-        string|null $vendor = null,
-        \DateTime|null $created_at = null,
-        \DateTime|null $updated_at = null,
-        \Upsun\Model\OrganizationProjectLinks|null $_links = null
+        public readonly string|null $id = null,
+        public readonly string|null $organization_id = null,
+        public readonly string|null $subscription_id = null,
+        public readonly string|null $region = null,
+        public readonly string|null $title = null,
+        public readonly \Upsun\Model\OrganizationProjectType|null $type = null,
+        public readonly \Upsun\Model\OrganizationProjectPlan|null $plan = null,
+        public readonly string|null $access_migration_status = null,
+        public readonly \Upsun\Model\OrganizationProjectStatus|null $status = null,
+        public readonly string|null $vendor = null,
+        public readonly \DateTime|null $created_at = null,
+        public readonly \DateTime|null $updated_at = null,
+        public readonly \Upsun\Model\OrganizationProjectLinks|null $_links = null
     ) {
-        $this->id = $id;
-        $this->organization_id = $organization_id;
-        $this->subscription_id = $subscription_id;
-        $this->region = $region;
-        $this->title = $title;
-        $this->type = $type;
-        $this->plan = $plan;
-        $this->access_migration_status = $access_migration_status;
-        $this->status = $status;
-        $this->vendor = $vendor;
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
-        $this->_links = $_links;
     }
 
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getOrganizationId(): string|null
-    {
-        return $this->organization_id;
-    }
-    public function getSubscriptionId(): string|null
-    {
-        return $this->subscription_id;
-    }
-    public function getRegion(): string|null
-    {
-        return $this->region;
-    }
-    public function getTitle(): string|null
-    {
-        return $this->title;
-    }
-    public function getType(): \Upsun\Model\OrganizationProjectType|null
-    {
-        return $this->type;
-    }
-    public function getPlan(): \Upsun\Model\OrganizationProjectPlan|null
-    {
-        return $this->plan;
-    }
-    public function getAccessMigrationStatus(): string|null
-    {
-        return $this->access_migration_status;
-    }
-    public function getStatus(): \Upsun\Model\OrganizationProjectStatus|null
-    {
-        return $this->status;
-    }
-    public function getVendor(): string|null
-    {
-        return $this->vendor;
-    }
-    public function getCreatedAt(): \DateTime|null
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime|null
-    {
-        return $this->updated_at;
-    }
-    public function getLinks(): \Upsun\Model\OrganizationProjectLinks|null
-    {
-        return $this->_links;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

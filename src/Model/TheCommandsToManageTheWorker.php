@@ -18,27 +18,13 @@ final class TheCommandsToManageTheWorker implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $pre_start;
-    public readonly string $start;
-
     public function __construct(
-        string|null $pre_start = null,
-        string $start = null
+        public readonly string|null $pre_start = null,
+        public readonly string $start = null
     ) {
-        $this->pre_start = $pre_start;
-        $this->start = $start;
     }
 
-    public function getPreStart(): string|null
-    {
-        return $this->pre_start;
-    }
-    public function getStart(): string
-    {
-        return $this->start;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'pre_start' => $this->pre_start,

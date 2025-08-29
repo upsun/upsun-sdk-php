@@ -18,55 +18,17 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $name;
-    public readonly string|null $value;
-    public readonly bool $is_sensitive;
-    public readonly bool $is_json;
-    public readonly bool $visible_build;
-    public readonly bool $visible_runtime;
-
     public function __construct(
-        string $name = null,
-        string|null $value = null,
-        bool $is_sensitive = null,
-        bool $is_json = null,
-        bool $visible_build = null,
-        bool $visible_runtime = null
+        public readonly string $name = null,
+        public readonly string|null $value = null,
+        public readonly bool $is_sensitive = null,
+        public readonly bool $is_json = null,
+        public readonly bool $visible_build = null,
+        public readonly bool $visible_runtime = null
     ) {
-        $this->name = $name;
-        $this->value = $value;
-        $this->is_sensitive = $is_sensitive;
-        $this->is_json = $is_json;
-        $this->visible_build = $visible_build;
-        $this->visible_runtime = $visible_runtime;
     }
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-    public function getValue(): string|null
-    {
-        return $this->value;
-    }
-    public function getIsSensitive(): bool
-    {
-        return $this->is_sensitive;
-    }
-    public function getIsJson(): bool
-    {
-        return $this->is_json;
-    }
-    public function getVisibleBuild(): bool
-    {
-        return $this->visible_build;
-    }
-    public function getVisibleRuntime(): bool
-    {
-        return $this->visible_runtime;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'name' => $this->name,

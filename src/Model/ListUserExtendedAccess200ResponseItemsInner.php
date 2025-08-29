@@ -18,68 +18,18 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $user_id;
-    public readonly string|null $resource_id;
-    public readonly string|null $resource_type;
-    public readonly string|null $organization_id;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $permissions;
-    public readonly \DateTime|null $granted_at;
-    public readonly \DateTime|null $updated_at;
-
     public function __construct(
-        string|null $user_id = null,
-        string|null $resource_id = null,
-        string|null $resource_type = null,
-        string|null $organization_id = null,
-        ?array $permissions = null,
-        \DateTime|null $granted_at = null,
-        \DateTime|null $updated_at = null
+        public readonly string|null $user_id = null,
+        public readonly string|null $resource_id = null,
+        public readonly string|null $resource_type = null,
+        public readonly string|null $organization_id = null,
+        public readonly ?array $permissions = null,
+        public readonly \DateTime|null $granted_at = null,
+        public readonly \DateTime|null $updated_at = null
     ) {
-        $this->user_id = $user_id;
-        $this->resource_id = $resource_id;
-        $this->resource_type = $resource_type;
-        $this->organization_id = $organization_id;
-        $this->permissions = $permissions;
-        $this->granted_at = $granted_at;
-        $this->updated_at = $updated_at;
     }
 
-    public function getUserId(): string|null
-    {
-        return $this->user_id;
-    }
-    public function getResourceId(): string|null
-    {
-        return $this->resource_id;
-    }
-    public function getResourceType(): string|null
-    {
-        return $this->resource_type;
-    }
-    public function getOrganizationId(): string|null
-    {
-        return $this->organization_id;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getPermissions(): ?array
-    {
-        return $this->permissions;
-    }
-    public function getGrantedAt(): \DateTime|null
-    {
-        return $this->granted_at;
-    }
-    public function getUpdatedAt(): \DateTime|null
-    {
-        return $this->updated_at;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'user_id' => $this->user_id,

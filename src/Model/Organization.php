@@ -18,110 +18,24 @@ final class Organization implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $id;
-    public readonly string|null $type;
-    public readonly string|null $owner_id;
-    public readonly string|null $namespace;
-    public readonly string|null $name;
-    public readonly string|null $label;
-    public readonly string|null $country;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $capabilities;
-    public readonly string|null $vendor;
-    public readonly string|null $status;
-    public readonly \DateTime|null $created_at;
-    public readonly \DateTime|null $updated_at;
-    public readonly \Upsun\Model\OrganizationLinks|null $_links;
-
     public function __construct(
-        string|null $id = null,
-        string|null $type = null,
-        string|null $owner_id = null,
-        string|null $namespace = null,
-        string|null $name = null,
-        string|null $label = null,
-        string|null $country = null,
-        ?array $capabilities = null,
-        string|null $vendor = null,
-        string|null $status = null,
-        \DateTime|null $created_at = null,
-        \DateTime|null $updated_at = null,
-        \Upsun\Model\OrganizationLinks|null $_links = null
+        public readonly string|null $id = null,
+        public readonly string|null $type = null,
+        public readonly string|null $owner_id = null,
+        public readonly string|null $namespace = null,
+        public readonly string|null $name = null,
+        public readonly string|null $label = null,
+        public readonly string|null $country = null,
+        public readonly ?array $capabilities = null,
+        public readonly string|null $vendor = null,
+        public readonly string|null $status = null,
+        public readonly \DateTime|null $created_at = null,
+        public readonly \DateTime|null $updated_at = null,
+        public readonly \Upsun\Model\OrganizationLinks|null $_links = null
     ) {
-        $this->id = $id;
-        $this->type = $type;
-        $this->owner_id = $owner_id;
-        $this->namespace = $namespace;
-        $this->name = $name;
-        $this->label = $label;
-        $this->country = $country;
-        $this->capabilities = $capabilities;
-        $this->vendor = $vendor;
-        $this->status = $status;
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
-        $this->_links = $_links;
     }
 
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getType(): string|null
-    {
-        return $this->type;
-    }
-    public function getOwnerId(): string|null
-    {
-        return $this->owner_id;
-    }
-    public function getNamespace(): string|null
-    {
-        return $this->namespace;
-    }
-    public function getName(): string|null
-    {
-        return $this->name;
-    }
-    public function getLabel(): string|null
-    {
-        return $this->label;
-    }
-    public function getCountry(): string|null
-    {
-        return $this->country;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getCapabilities(): ?array
-    {
-        return $this->capabilities;
-    }
-    public function getVendor(): string|null
-    {
-        return $this->vendor;
-    }
-    public function getStatus(): string|null
-    {
-        return $this->status;
-    }
-    public function getCreatedAt(): \DateTime|null
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime|null
-    {
-        return $this->updated_at;
-    }
-    public function getLinks(): \Upsun\Model\OrganizationLinks|null
-    {
-        return $this->_links;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

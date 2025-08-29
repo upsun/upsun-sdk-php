@@ -18,76 +18,20 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $title;
-    public readonly bool|null $type;
-    public readonly float|null $current_usage;
-    public readonly string|null $current_usage_formatted;
-    public readonly bool|null $not_charged;
-    public readonly float|null $free_quantity;
-    public readonly string|null $free_quantity_formatted;
-    public readonly float|null $daily_average;
-    public readonly string|null $daily_average_formatted;
-
     public function __construct(
-        string|null $title = null,
-        bool|null $type = null,
-        float|null $current_usage = null,
-        string|null $current_usage_formatted = null,
-        bool|null $not_charged = null,
-        float|null $free_quantity = null,
-        string|null $free_quantity_formatted = null,
-        float|null $daily_average = null,
-        string|null $daily_average_formatted = null
+        public readonly string|null $title = null,
+        public readonly bool|null $type = null,
+        public readonly float|null $current_usage = null,
+        public readonly string|null $current_usage_formatted = null,
+        public readonly bool|null $not_charged = null,
+        public readonly float|null $free_quantity = null,
+        public readonly string|null $free_quantity_formatted = null,
+        public readonly float|null $daily_average = null,
+        public readonly string|null $daily_average_formatted = null
     ) {
-        $this->title = $title;
-        $this->type = $type;
-        $this->current_usage = $current_usage;
-        $this->current_usage_formatted = $current_usage_formatted;
-        $this->not_charged = $not_charged;
-        $this->free_quantity = $free_quantity;
-        $this->free_quantity_formatted = $free_quantity_formatted;
-        $this->daily_average = $daily_average;
-        $this->daily_average_formatted = $daily_average_formatted;
     }
 
-    public function getTitle(): string|null
-    {
-        return $this->title;
-    }
-    public function getType(): bool|null
-    {
-        return $this->type;
-    }
-    public function getCurrentUsage(): float|null
-    {
-        return $this->current_usage;
-    }
-    public function getCurrentUsageFormatted(): string|null
-    {
-        return $this->current_usage_formatted;
-    }
-    public function getNotCharged(): bool|null
-    {
-        return $this->not_charged;
-    }
-    public function getFreeQuantity(): float|null
-    {
-        return $this->free_quantity;
-    }
-    public function getFreeQuantityFormatted(): string|null
-    {
-        return $this->free_quantity_formatted;
-    }
-    public function getDailyAverage(): float|null
-    {
-        return $this->daily_average;
-    }
-    public function getDailyAverageFormatted(): string|null
-    {
-        return $this->daily_average_formatted;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'title' => $this->title,

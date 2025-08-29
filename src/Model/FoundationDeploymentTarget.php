@@ -18,54 +18,16 @@ final class FoundationDeploymentTarget implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $type;
-    public readonly string $name;
-    /**
-     * @var \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]|null
-     */
-    public readonly ?array $hosts;
-    public readonly bool $use_dedicated_grid;
-    public readonly string $storage_type;
-
     public function __construct(
-        string $type = null,
-        string $name = null,
-        ?array $hosts = null,
-        bool $use_dedicated_grid = null,
-        string $storage_type = null
+        public readonly string $type = null,
+        public readonly string $name = null,
+        public readonly ?array $hosts = null,
+        public readonly bool $use_dedicated_grid = null,
+        public readonly string $storage_type = null
     ) {
-        $this->type = $type;
-        $this->name = $name;
-        $this->hosts = $hosts;
-        $this->use_dedicated_grid = $use_dedicated_grid;
-        $this->storage_type = $storage_type;
     }
 
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    public function getName(): string
-    {
-        return $this->name;
-    }
-    /**
-     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]|null
-     */
-    public function getHosts(): ?array
-    {
-        return $this->hosts;
-    }
-    public function getUseDedicatedGrid(): bool
-    {
-        return $this->use_dedicated_grid;
-    }
-    public function getStorageType(): string
-    {
-        return $this->storage_type;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->type,

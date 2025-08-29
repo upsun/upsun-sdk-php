@@ -18,27 +18,13 @@ final class GetOrgPrepaymentInfo200ResponseLinks implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf|null $self;
-    public readonly \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions|null $transactions;
-
     public function __construct(
-        \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf|null $self = null,
-        \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions|null $transactions = null
+        public readonly \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf|null $self = null,
+        public readonly \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions|null $transactions = null
     ) {
-        $this->self = $self;
-        $this->transactions = $transactions;
     }
 
-    public function getSelf(): \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf|null
-    {
-        return $this->self;
-    }
-    public function getTransactions(): \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions|null
-    {
-        return $this->transactions;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'self' => $this->self,

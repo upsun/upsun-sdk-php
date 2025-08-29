@@ -18,20 +18,12 @@ final class Metrics implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $max_range;
-
     public function __construct(
-        string $max_range = null
+        public readonly string $max_range = null
     ) {
-        $this->max_range = $max_range;
     }
 
-    public function getMaxRange(): string
-    {
-        return $this->max_range;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'max_range' => $this->max_range,

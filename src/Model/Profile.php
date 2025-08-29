@@ -18,174 +18,34 @@ final class Profile implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $id;
-    public readonly string|null $display_name;
-    public readonly string|null $email;
-    public readonly string|null $username;
-    public readonly string|null $type;
-    public readonly string|null $picture;
-    public readonly string|null $company_type;
-    public readonly string|null $company_name;
-    public readonly string|null $currency;
-    public readonly string|null $vat_number;
-    public readonly string|null $company_role;
-    public readonly string|null $website_url;
-    public readonly bool|null $new_ui;
-    public readonly string|null $ui_colorscheme;
-    public readonly string|null $default_catalog;
-    public readonly string|null $project_options_url;
-    public readonly bool|null $marketing;
-    public readonly \DateTime|null $created_at;
-    public readonly \DateTime|null $updated_at;
-    public readonly string|null $billing_contact;
-    public readonly string|null $security_contact;
-    public readonly \Upsun\Model\ProfileCurrentTrial|null $current_trial;
-    public readonly bool|null $invoiced;
-
     public function __construct(
-        string|null $id = null,
-        string|null $display_name = null,
-        string|null $email = null,
-        string|null $username = null,
-        string|null $type = null,
-        string|null $picture = null,
-        string|null $company_type = null,
-        string|null $company_name = null,
-        string|null $currency = null,
-        string|null $vat_number = null,
-        string|null $company_role = null,
-        string|null $website_url = null,
-        bool|null $new_ui = null,
-        string|null $ui_colorscheme = null,
-        string|null $default_catalog = null,
-        string|null $project_options_url = null,
-        bool|null $marketing = null,
-        \DateTime|null $created_at = null,
-        \DateTime|null $updated_at = null,
-        string|null $billing_contact = null,
-        string|null $security_contact = null,
-        \Upsun\Model\ProfileCurrentTrial|null $current_trial = null,
-        bool|null $invoiced = null
+        public readonly string|null $id = null,
+        public readonly string|null $display_name = null,
+        public readonly string|null $email = null,
+        public readonly string|null $username = null,
+        public readonly string|null $type = null,
+        public readonly string|null $picture = null,
+        public readonly string|null $company_type = null,
+        public readonly string|null $company_name = null,
+        public readonly string|null $currency = null,
+        public readonly string|null $vat_number = null,
+        public readonly string|null $company_role = null,
+        public readonly string|null $website_url = null,
+        public readonly bool|null $new_ui = null,
+        public readonly string|null $ui_colorscheme = null,
+        public readonly string|null $default_catalog = null,
+        public readonly string|null $project_options_url = null,
+        public readonly bool|null $marketing = null,
+        public readonly \DateTime|null $created_at = null,
+        public readonly \DateTime|null $updated_at = null,
+        public readonly string|null $billing_contact = null,
+        public readonly string|null $security_contact = null,
+        public readonly \Upsun\Model\ProfileCurrentTrial|null $current_trial = null,
+        public readonly bool|null $invoiced = null
     ) {
-        $this->id = $id;
-        $this->display_name = $display_name;
-        $this->email = $email;
-        $this->username = $username;
-        $this->type = $type;
-        $this->picture = $picture;
-        $this->company_type = $company_type;
-        $this->company_name = $company_name;
-        $this->currency = $currency;
-        $this->vat_number = $vat_number;
-        $this->company_role = $company_role;
-        $this->website_url = $website_url;
-        $this->new_ui = $new_ui;
-        $this->ui_colorscheme = $ui_colorscheme;
-        $this->default_catalog = $default_catalog;
-        $this->project_options_url = $project_options_url;
-        $this->marketing = $marketing;
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
-        $this->billing_contact = $billing_contact;
-        $this->security_contact = $security_contact;
-        $this->current_trial = $current_trial;
-        $this->invoiced = $invoiced;
     }
 
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getDisplayName(): string|null
-    {
-        return $this->display_name;
-    }
-    public function getEmail(): string|null
-    {
-        return $this->email;
-    }
-    public function getUsername(): string|null
-    {
-        return $this->username;
-    }
-    public function getType(): string|null
-    {
-        return $this->type;
-    }
-    public function getPicture(): string|null
-    {
-        return $this->picture;
-    }
-    public function getCompanyType(): string|null
-    {
-        return $this->company_type;
-    }
-    public function getCompanyName(): string|null
-    {
-        return $this->company_name;
-    }
-    public function getCurrency(): string|null
-    {
-        return $this->currency;
-    }
-    public function getVatNumber(): string|null
-    {
-        return $this->vat_number;
-    }
-    public function getCompanyRole(): string|null
-    {
-        return $this->company_role;
-    }
-    public function getWebsiteUrl(): string|null
-    {
-        return $this->website_url;
-    }
-    public function getNewUi(): bool|null
-    {
-        return $this->new_ui;
-    }
-    public function getUiColorscheme(): string|null
-    {
-        return $this->ui_colorscheme;
-    }
-    public function getDefaultCatalog(): string|null
-    {
-        return $this->default_catalog;
-    }
-    public function getProjectOptionsUrl(): string|null
-    {
-        return $this->project_options_url;
-    }
-    public function getMarketing(): bool|null
-    {
-        return $this->marketing;
-    }
-    public function getCreatedAt(): \DateTime|null
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime|null
-    {
-        return $this->updated_at;
-    }
-    public function getBillingContact(): string|null
-    {
-        return $this->billing_contact;
-    }
-    public function getSecurityContact(): string|null
-    {
-        return $this->security_contact;
-    }
-    public function getCurrentTrial(): \Upsun\Model\ProfileCurrentTrial|null
-    {
-        return $this->current_trial;
-    }
-    public function getInvoiced(): bool|null
-    {
-        return $this->invoiced;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

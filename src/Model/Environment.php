@@ -18,249 +18,43 @@ final class Environment implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
-    public readonly string $name;
-    public readonly string $machine_name;
-    public readonly string $title;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $attributes;
-    public readonly string $type;
-    public readonly string $parent;
-    public readonly string $default_domain;
-    public readonly bool $has_domains;
-    public readonly bool $clone_parent_on_create;
-    public readonly string $deployment_target;
-    public readonly bool $is_pr;
-    public readonly bool $has_remote;
-    public readonly string $status;
-    public readonly \Upsun\Model\HttpAccessPermissions $http_access;
-    public readonly bool $enable_smtp;
-    public readonly bool $restrict_robots;
-    public readonly string $edge_hostname;
-    public readonly \Upsun\Model\TheEnvironmentDeploymentState $deployment_state;
-    /**
-     * @var \Upsun\Model\ResourcesOverridesValue[]|null
-     */
-    public readonly ?array $resources_overrides;
-    public readonly int $max_instance_count;
-    public readonly \DateTime $last_active_at;
-    public readonly \DateTime $last_backup_at;
-    public readonly string $project;
-    public readonly bool $is_main;
-    public readonly bool $is_dirty;
-    public readonly bool $has_code;
-    public readonly string $head_commit;
-    public readonly \Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments $merge_info;
-    public readonly bool $has_deployment;
-    public readonly bool $supports_restrict_robots;
-
     public function __construct(
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
-        string $name = null,
-        string $machine_name = null,
-        string $title = null,
-        ?array $attributes = null,
-        string $type = null,
-        string $parent = null,
-        string $default_domain = null,
-        bool $has_domains = null,
-        bool $clone_parent_on_create = null,
-        string $deployment_target = null,
-        bool $is_pr = null,
-        bool $has_remote = null,
-        string $status = null,
-        \Upsun\Model\HttpAccessPermissions $http_access = null,
-        bool $enable_smtp = null,
-        bool $restrict_robots = null,
-        string $edge_hostname = null,
-        \Upsun\Model\TheEnvironmentDeploymentState $deployment_state = null,
-        ?array $resources_overrides = null,
-        int $max_instance_count = null,
-        \DateTime $last_active_at = null,
-        \DateTime $last_backup_at = null,
-        string $project = null,
-        bool $is_main = null,
-        bool $is_dirty = null,
-        bool $has_code = null,
-        string $head_commit = null,
-        \Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments $merge_info = null,
-        bool $has_deployment = null,
-        bool $supports_restrict_robots = null
+        public readonly \DateTime $created_at = null,
+        public readonly \DateTime $updated_at = null,
+        public readonly string $name = null,
+        public readonly string $machine_name = null,
+        public readonly string $title = null,
+        public readonly ?array $attributes = null,
+        public readonly string $type = null,
+        public readonly string $parent = null,
+        public readonly string $default_domain = null,
+        public readonly bool $has_domains = null,
+        public readonly bool $clone_parent_on_create = null,
+        public readonly string $deployment_target = null,
+        public readonly bool $is_pr = null,
+        public readonly bool $has_remote = null,
+        public readonly string $status = null,
+        public readonly \Upsun\Model\HttpAccessPermissions $http_access = null,
+        public readonly bool $enable_smtp = null,
+        public readonly bool $restrict_robots = null,
+        public readonly string $edge_hostname = null,
+        public readonly \Upsun\Model\TheEnvironmentDeploymentState $deployment_state = null,
+        public readonly ?array $resources_overrides = null,
+        public readonly int $max_instance_count = null,
+        public readonly \DateTime $last_active_at = null,
+        public readonly \DateTime $last_backup_at = null,
+        public readonly string $project = null,
+        public readonly bool $is_main = null,
+        public readonly bool $is_dirty = null,
+        public readonly bool $has_code = null,
+        public readonly string $head_commit = null,
+        public readonly \Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments $merge_info = null,
+        public readonly bool $has_deployment = null,
+        public readonly bool $supports_restrict_robots = null
     ) {
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
-        $this->name = $name;
-        $this->machine_name = $machine_name;
-        $this->title = $title;
-        $this->attributes = $attributes;
-        $this->type = $type;
-        $this->parent = $parent;
-        $this->default_domain = $default_domain;
-        $this->has_domains = $has_domains;
-        $this->clone_parent_on_create = $clone_parent_on_create;
-        $this->deployment_target = $deployment_target;
-        $this->is_pr = $is_pr;
-        $this->has_remote = $has_remote;
-        $this->status = $status;
-        $this->http_access = $http_access;
-        $this->enable_smtp = $enable_smtp;
-        $this->restrict_robots = $restrict_robots;
-        $this->edge_hostname = $edge_hostname;
-        $this->deployment_state = $deployment_state;
-        $this->resources_overrides = $resources_overrides;
-        $this->max_instance_count = $max_instance_count;
-        $this->last_active_at = $last_active_at;
-        $this->last_backup_at = $last_backup_at;
-        $this->project = $project;
-        $this->is_main = $is_main;
-        $this->is_dirty = $is_dirty;
-        $this->has_code = $has_code;
-        $this->head_commit = $head_commit;
-        $this->merge_info = $merge_info;
-        $this->has_deployment = $has_deployment;
-        $this->supports_restrict_robots = $supports_restrict_robots;
     }
 
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->updated_at;
-    }
-    public function getName(): string
-    {
-        return $this->name;
-    }
-    public function getMachineName(): string
-    {
-        return $this->machine_name;
-    }
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getAttributes(): ?array
-    {
-        return $this->attributes;
-    }
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    public function getParent(): string
-    {
-        return $this->parent;
-    }
-    public function getDefaultDomain(): string
-    {
-        return $this->default_domain;
-    }
-    public function getHasDomains(): bool
-    {
-        return $this->has_domains;
-    }
-    public function getCloneParentOnCreate(): bool
-    {
-        return $this->clone_parent_on_create;
-    }
-    public function getDeploymentTarget(): string
-    {
-        return $this->deployment_target;
-    }
-    public function getIsPr(): bool
-    {
-        return $this->is_pr;
-    }
-    public function getHasRemote(): bool
-    {
-        return $this->has_remote;
-    }
-    public function getStatus(): string
-    {
-        return $this->status;
-    }
-    public function getHttpAccess(): \Upsun\Model\HttpAccessPermissions
-    {
-        return $this->http_access;
-    }
-    public function getEnableSmtp(): bool
-    {
-        return $this->enable_smtp;
-    }
-    public function getRestrictRobots(): bool
-    {
-        return $this->restrict_robots;
-    }
-    public function getEdgeHostname(): string
-    {
-        return $this->edge_hostname;
-    }
-    public function getDeploymentState(): \Upsun\Model\TheEnvironmentDeploymentState
-    {
-        return $this->deployment_state;
-    }
-    /**
-     * @return \Upsun\Model\ResourcesOverridesValue[]|null
-     */
-    public function getResourcesOverrides(): ?array
-    {
-        return $this->resources_overrides;
-    }
-    public function getMaxInstanceCount(): int
-    {
-        return $this->max_instance_count;
-    }
-    public function getLastActiveAt(): \DateTime
-    {
-        return $this->last_active_at;
-    }
-    public function getLastBackupAt(): \DateTime
-    {
-        return $this->last_backup_at;
-    }
-    public function getProject(): string
-    {
-        return $this->project;
-    }
-    public function getIsMain(): bool
-    {
-        return $this->is_main;
-    }
-    public function getIsDirty(): bool
-    {
-        return $this->is_dirty;
-    }
-    public function getHasCode(): bool
-    {
-        return $this->has_code;
-    }
-    public function getHeadCommit(): string
-    {
-        return $this->head_commit;
-    }
-    public function getMergeInfo(): \Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments
-    {
-        return $this->merge_info;
-    }
-    public function getHasDeployment(): bool
-    {
-        return $this->has_deployment;
-    }
-    public function getSupportsRestrictRobots(): bool
-    {
-        return $this->supports_restrict_robots;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'created_at' => $this->created_at,

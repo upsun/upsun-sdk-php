@@ -18,27 +18,13 @@ final class BlackfireEnvironmentsCredentialsValue implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $server_uuid;
-    public readonly string $server_token;
-
     public function __construct(
-        string $server_uuid = null,
-        string $server_token = null
+        public readonly string $server_uuid = null,
+        public readonly string $server_token = null
     ) {
-        $this->server_uuid = $server_uuid;
-        $this->server_token = $server_token;
     }
 
-    public function getServerUuid(): string
-    {
-        return $this->server_uuid;
-    }
-    public function getServerToken(): string
-    {
-        return $this->server_token;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'server_uuid' => $this->server_uuid,

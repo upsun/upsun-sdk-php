@@ -18,27 +18,13 @@ final class TheObjectTheReferencePointsTo implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $type;
-    public readonly string $sha;
-
     public function __construct(
-        string $type = null,
-        string $sha = null
+        public readonly string $type = null,
+        public readonly string $sha = null
     ) {
-        $this->type = $type;
-        $this->sha = $sha;
     }
 
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    public function getSha(): string
-    {
-        return $this->sha;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->type,

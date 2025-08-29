@@ -18,41 +18,15 @@ final class EnvironmentSynchronizeInput implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly bool $synchronize_code;
-    public readonly bool $rebase;
-    public readonly bool $synchronize_data;
-    public readonly bool $synchronize_resources;
-
     public function __construct(
-        bool $synchronize_code = null,
-        bool $rebase = null,
-        bool $synchronize_data = null,
-        bool $synchronize_resources = null
+        public readonly bool $synchronize_code = null,
+        public readonly bool $rebase = null,
+        public readonly bool $synchronize_data = null,
+        public readonly bool $synchronize_resources = null
     ) {
-        $this->synchronize_code = $synchronize_code;
-        $this->rebase = $rebase;
-        $this->synchronize_data = $synchronize_data;
-        $this->synchronize_resources = $synchronize_resources;
     }
 
-    public function getSynchronizeCode(): bool
-    {
-        return $this->synchronize_code;
-    }
-    public function getRebase(): bool
-    {
-        return $this->rebase;
-    }
-    public function getSynchronizeData(): bool
-    {
-        return $this->synchronize_data;
-    }
-    public function getSynchronizeResources(): bool
-    {
-        return $this->synchronize_resources;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'synchronize_code' => $this->synchronize_code,

@@ -18,47 +18,15 @@ final class DomainCreateInput implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $name;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $attributes;
-    public readonly bool|null $is_default;
-    public readonly string|null $replacement_for;
-
     public function __construct(
-        string $name = null,
-        ?array $attributes = null,
-        bool|null $is_default = null,
-        string|null $replacement_for = null
+        public readonly string $name = null,
+        public readonly ?array $attributes = null,
+        public readonly bool|null $is_default = null,
+        public readonly string|null $replacement_for = null
     ) {
-        $this->name = $name;
-        $this->attributes = $attributes;
-        $this->is_default = $is_default;
-        $this->replacement_for = $replacement_for;
     }
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getAttributes(): ?array
-    {
-        return $this->attributes;
-    }
-    public function getIsDefault(): bool|null
-    {
-        return $this->is_default;
-    }
-    public function getReplacementFor(): string|null
-    {
-        return $this->replacement_for;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'name' => $this->name,

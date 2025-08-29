@@ -18,34 +18,14 @@ final class HealthWebHookIntegrationPatch implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $type;
-    public readonly string|null $shared_key;
-    public readonly string $url;
-
     public function __construct(
-        string $type = null,
-        string|null $shared_key = null,
-        string $url = null
+        public readonly string $type = null,
+        public readonly string|null $shared_key = null,
+        public readonly string $url = null
     ) {
-        $this->type = $type;
-        $this->shared_key = $shared_key;
-        $this->url = $url;
     }
 
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    public function getSharedKey(): string|null
-    {
-        return $this->shared_key;
-    }
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->type,

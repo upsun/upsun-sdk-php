@@ -18,82 +18,20 @@ final class LineItem implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $type;
-    public readonly float|null $license_id;
-    public readonly string|null $project_id;
-    public readonly string|null $product;
-    public readonly string|null $sku;
-    public readonly float|null $total;
-    public readonly string|null $total_formatted;
-    /**
-     * @var \Upsun\Model\LineItemComponent[]|null
-     */
-    public readonly ?array $components;
-    public readonly bool|null $exclude_from_invoice;
-
     public function __construct(
-        string|null $type = null,
-        float|null $license_id = null,
-        string|null $project_id = null,
-        string|null $product = null,
-        string|null $sku = null,
-        float|null $total = null,
-        string|null $total_formatted = null,
-        ?array $components = null,
-        bool|null $exclude_from_invoice = null
+        public readonly string|null $type = null,
+        public readonly float|null $license_id = null,
+        public readonly string|null $project_id = null,
+        public readonly string|null $product = null,
+        public readonly string|null $sku = null,
+        public readonly float|null $total = null,
+        public readonly string|null $total_formatted = null,
+        public readonly ?array $components = null,
+        public readonly bool|null $exclude_from_invoice = null
     ) {
-        $this->type = $type;
-        $this->license_id = $license_id;
-        $this->project_id = $project_id;
-        $this->product = $product;
-        $this->sku = $sku;
-        $this->total = $total;
-        $this->total_formatted = $total_formatted;
-        $this->components = $components;
-        $this->exclude_from_invoice = $exclude_from_invoice;
     }
 
-    public function getType(): string|null
-    {
-        return $this->type;
-    }
-    public function getLicenseId(): float|null
-    {
-        return $this->license_id;
-    }
-    public function getProjectId(): string|null
-    {
-        return $this->project_id;
-    }
-    public function getProduct(): string|null
-    {
-        return $this->product;
-    }
-    public function getSku(): string|null
-    {
-        return $this->sku;
-    }
-    public function getTotal(): float|null
-    {
-        return $this->total;
-    }
-    public function getTotalFormatted(): string|null
-    {
-        return $this->total_formatted;
-    }
-    /**
-     * @return \Upsun\Model\LineItemComponent[]|null
-     */
-    public function getComponents(): ?array
-    {
-        return $this->components;
-    }
-    public function getExcludeFromInvoice(): bool|null
-    {
-        return $this->exclude_from_invoice;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->type,

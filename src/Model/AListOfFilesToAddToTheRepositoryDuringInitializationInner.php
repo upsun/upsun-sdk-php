@@ -18,34 +18,14 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $path;
-    public readonly int $mode;
-    public readonly string $contents;
-
     public function __construct(
-        string $path = null,
-        int $mode = null,
-        string $contents = null
+        public readonly string $path = null,
+        public readonly int $mode = null,
+        public readonly string $contents = null
     ) {
-        $this->path = $path;
-        $this->mode = $mode;
-        $this->contents = $contents;
     }
 
-    public function getPath(): string
-    {
-        return $this->path;
-    }
-    public function getMode(): int
-    {
-        return $this->mode;
-    }
-    public function getContents(): string
-    {
-        return $this->contents;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'path' => $this->path,

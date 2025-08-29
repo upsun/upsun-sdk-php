@@ -18,82 +18,20 @@ final class OrganizationInvitation implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $id;
-    public readonly string|null $state;
-    public readonly string|null $organization_id;
-    public readonly string|null $email;
-    public readonly \Upsun\Model\OrganizationInvitationOwner|null $owner;
-    public readonly \DateTime|null $created_at;
-    public readonly \DateTime|null $updated_at;
-    public readonly \DateTime|null $finished_at;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $permissions;
-
     public function __construct(
-        string|null $id = null,
-        string|null $state = null,
-        string|null $organization_id = null,
-        string|null $email = null,
-        \Upsun\Model\OrganizationInvitationOwner|null $owner = null,
-        \DateTime|null $created_at = null,
-        \DateTime|null $updated_at = null,
-        \DateTime|null $finished_at = null,
-        ?array $permissions = null
+        public readonly string|null $id = null,
+        public readonly string|null $state = null,
+        public readonly string|null $organization_id = null,
+        public readonly string|null $email = null,
+        public readonly \Upsun\Model\OrganizationInvitationOwner|null $owner = null,
+        public readonly \DateTime|null $created_at = null,
+        public readonly \DateTime|null $updated_at = null,
+        public readonly \DateTime|null $finished_at = null,
+        public readonly ?array $permissions = null
     ) {
-        $this->id = $id;
-        $this->state = $state;
-        $this->organization_id = $organization_id;
-        $this->email = $email;
-        $this->owner = $owner;
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
-        $this->finished_at = $finished_at;
-        $this->permissions = $permissions;
     }
 
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getState(): string|null
-    {
-        return $this->state;
-    }
-    public function getOrganizationId(): string|null
-    {
-        return $this->organization_id;
-    }
-    public function getEmail(): string|null
-    {
-        return $this->email;
-    }
-    public function getOwner(): \Upsun\Model\OrganizationInvitationOwner|null
-    {
-        return $this->owner;
-    }
-    public function getCreatedAt(): \DateTime|null
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime|null
-    {
-        return $this->updated_at;
-    }
-    public function getFinishedAt(): \DateTime|null
-    {
-        return $this->finished_at;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getPermissions(): ?array
-    {
-        return $this->permissions;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

@@ -18,96 +18,22 @@ final class ProjectCapabilities implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\CustomDomains|null $custom_domains;
-    public readonly \Upsun\Model\SourceOperations|null $source_operations;
-    public readonly \Upsun\Model\RuntimeOperations|null $runtime_operations;
-    public readonly \Upsun\Model\OutboundFirewall|null $outbound_firewall;
-    public readonly \Upsun\Model\Metrics $metrics;
-    public readonly \Upsun\Model\LogsForwarding $logs_forwarding;
-    /**
-     * @var array<string,\Upsun\Model\ImagesValueValue>[]|null
-     */
-    public readonly ?array $images;
-    public readonly int $instance_limit;
-    public readonly \Upsun\Model\BuildResources $build_resources;
-    public readonly \Upsun\Model\DataRetention $data_retention;
-    public readonly \Upsun\Model\Integrations|null $integrations;
-
     public function __construct(
-        \Upsun\Model\CustomDomains|null $custom_domains = null,
-        \Upsun\Model\SourceOperations|null $source_operations = null,
-        \Upsun\Model\RuntimeOperations|null $runtime_operations = null,
-        \Upsun\Model\OutboundFirewall|null $outbound_firewall = null,
-        \Upsun\Model\Metrics $metrics = null,
-        \Upsun\Model\LogsForwarding $logs_forwarding = null,
-        ?array $images = null,
-        int $instance_limit = null,
-        \Upsun\Model\BuildResources $build_resources = null,
-        \Upsun\Model\DataRetention $data_retention = null,
-        \Upsun\Model\Integrations|null $integrations = null
+        public readonly \Upsun\Model\CustomDomains|null $custom_domains = null,
+        public readonly \Upsun\Model\SourceOperations|null $source_operations = null,
+        public readonly \Upsun\Model\RuntimeOperations|null $runtime_operations = null,
+        public readonly \Upsun\Model\OutboundFirewall|null $outbound_firewall = null,
+        public readonly \Upsun\Model\Metrics $metrics = null,
+        public readonly \Upsun\Model\LogsForwarding $logs_forwarding = null,
+        public readonly ?array $images = null,
+        public readonly int $instance_limit = null,
+        public readonly \Upsun\Model\BuildResources $build_resources = null,
+        public readonly \Upsun\Model\DataRetention $data_retention = null,
+        public readonly \Upsun\Model\Integrations|null $integrations = null
     ) {
-        $this->custom_domains = $custom_domains;
-        $this->source_operations = $source_operations;
-        $this->runtime_operations = $runtime_operations;
-        $this->outbound_firewall = $outbound_firewall;
-        $this->metrics = $metrics;
-        $this->logs_forwarding = $logs_forwarding;
-        $this->images = $images;
-        $this->instance_limit = $instance_limit;
-        $this->build_resources = $build_resources;
-        $this->data_retention = $data_retention;
-        $this->integrations = $integrations;
     }
 
-    public function getCustomDomains(): \Upsun\Model\CustomDomains|null
-    {
-        return $this->custom_domains;
-    }
-    public function getSourceOperations(): \Upsun\Model\SourceOperations|null
-    {
-        return $this->source_operations;
-    }
-    public function getRuntimeOperations(): \Upsun\Model\RuntimeOperations|null
-    {
-        return $this->runtime_operations;
-    }
-    public function getOutboundFirewall(): \Upsun\Model\OutboundFirewall|null
-    {
-        return $this->outbound_firewall;
-    }
-    public function getMetrics(): \Upsun\Model\Metrics
-    {
-        return $this->metrics;
-    }
-    public function getLogsForwarding(): \Upsun\Model\LogsForwarding
-    {
-        return $this->logs_forwarding;
-    }
-    /**
-     * @return array<string,\Upsun\Model\ImagesValueValue>[]|null
-     */
-    public function getImages(): ?array
-    {
-        return $this->images;
-    }
-    public function getInstanceLimit(): int
-    {
-        return $this->instance_limit;
-    }
-    public function getBuildResources(): \Upsun\Model\BuildResources
-    {
-        return $this->build_resources;
-    }
-    public function getDataRetention(): \Upsun\Model\DataRetention
-    {
-        return $this->data_retention;
-    }
-    public function getIntegrations(): \Upsun\Model\Integrations|null
-    {
-        return $this->integrations;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'custom_domains' => $this->custom_domains,

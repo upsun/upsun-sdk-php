@@ -18,34 +18,14 @@ final class Version implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $commit;
-    public readonly bool $locked;
-    public readonly \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion $routing;
-
     public function __construct(
-        string $commit = null,
-        bool $locked = null,
-        \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion $routing = null
+        public readonly string $commit = null,
+        public readonly bool $locked = null,
+        public readonly \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion $routing = null
     ) {
-        $this->commit = $commit;
-        $this->locked = $locked;
-        $this->routing = $routing;
     }
 
-    public function getCommit(): string
-    {
-        return $this->commit;
-    }
-    public function getLocked(): bool
-    {
-        return $this->locked;
-    }
-    public function getRouting(): \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion
-    {
-        return $this->routing;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'commit' => $this->commit,

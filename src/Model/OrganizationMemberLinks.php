@@ -18,34 +18,14 @@ final class OrganizationMemberLinks implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\OrganizationMemberLinksSelf|null $self;
-    public readonly \Upsun\Model\OrganizationMemberLinksUpdate|null $update;
-    public readonly \Upsun\Model\OrganizationMemberLinksDelete|null $delete;
-
     public function __construct(
-        \Upsun\Model\OrganizationMemberLinksSelf|null $self = null,
-        \Upsun\Model\OrganizationMemberLinksUpdate|null $update = null,
-        \Upsun\Model\OrganizationMemberLinksDelete|null $delete = null
+        public readonly \Upsun\Model\OrganizationMemberLinksSelf|null $self = null,
+        public readonly \Upsun\Model\OrganizationMemberLinksUpdate|null $update = null,
+        public readonly \Upsun\Model\OrganizationMemberLinksDelete|null $delete = null
     ) {
-        $this->self = $self;
-        $this->update = $update;
-        $this->delete = $delete;
     }
 
-    public function getSelf(): \Upsun\Model\OrganizationMemberLinksSelf|null
-    {
-        return $this->self;
-    }
-    public function getUpdate(): \Upsun\Model\OrganizationMemberLinksUpdate|null
-    {
-        return $this->update;
-    }
-    public function getDelete(): \Upsun\Model\OrganizationMemberLinksDelete|null
-    {
-        return $this->delete;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'self' => $this->self,

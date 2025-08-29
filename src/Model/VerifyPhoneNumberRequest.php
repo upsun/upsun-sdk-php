@@ -18,27 +18,13 @@ final class VerifyPhoneNumberRequest implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $channel;
-    public readonly string $phone_number;
-
     public function __construct(
-        string $channel = null,
-        string $phone_number = null
+        public readonly string $channel = null,
+        public readonly string $phone_number = null
     ) {
-        $this->channel = $channel;
-        $this->phone_number = $phone_number;
     }
 
-    public function getChannel(): string
-    {
-        return $this->channel;
-    }
-    public function getPhoneNumber(): string
-    {
-        return $this->phone_number;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'channel' => $this->channel,

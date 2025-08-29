@@ -18,34 +18,14 @@ final class RegionEnvironmentalImpact implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $zone;
-    public readonly string|null $carbon_intensity;
-    public readonly bool|null $green;
-
     public function __construct(
-        string|null $zone = null,
-        string|null $carbon_intensity = null,
-        bool|null $green = null
+        public readonly string|null $zone = null,
+        public readonly string|null $carbon_intensity = null,
+        public readonly bool|null $green = null
     ) {
-        $this->zone = $zone;
-        $this->carbon_intensity = $carbon_intensity;
-        $this->green = $green;
     }
 
-    public function getZone(): string|null
-    {
-        return $this->zone;
-    }
-    public function getCarbonIntensity(): string|null
-    {
-        return $this->carbon_intensity;
-    }
-    public function getGreen(): bool|null
-    {
-        return $this->green;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'zone' => $this->zone,

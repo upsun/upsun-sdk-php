@@ -18,41 +18,15 @@ final class Blob implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $sha;
-    public readonly int $size;
-    public readonly string $encoding;
-    public readonly string $content;
-
     public function __construct(
-        string $sha = null,
-        int $size = null,
-        string $encoding = null,
-        string $content = null
+        public readonly string $sha = null,
+        public readonly int $size = null,
+        public readonly string $encoding = null,
+        public readonly string $content = null
     ) {
-        $this->sha = $sha;
-        $this->size = $size;
-        $this->encoding = $encoding;
-        $this->content = $content;
     }
 
-    public function getSha(): string
-    {
-        return $this->sha;
-    }
-    public function getSize(): int
-    {
-        return $this->size;
-    }
-    public function getEncoding(): string
-    {
-        return $this->encoding;
-    }
-    public function getContent(): string
-    {
-        return $this->content;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'sha' => $this->sha,

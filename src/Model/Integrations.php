@@ -18,40 +18,14 @@ final class Integrations implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly bool $enabled;
-    public readonly \Upsun\Model\Config|null $config;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $allowed_integrations;
-
     public function __construct(
-        bool $enabled = null,
-        \Upsun\Model\Config|null $config = null,
-        ?array $allowed_integrations = null
+        public readonly bool $enabled = null,
+        public readonly \Upsun\Model\Config|null $config = null,
+        public readonly ?array $allowed_integrations = null
     ) {
-        $this->enabled = $enabled;
-        $this->config = $config;
-        $this->allowed_integrations = $allowed_integrations;
     }
 
-    public function getEnabled(): bool
-    {
-        return $this->enabled;
-    }
-    public function getConfig(): \Upsun\Model\Config|null
-    {
-        return $this->config;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getAllowedIntegrations(): ?array
-    {
-        return $this->allowed_integrations;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'enabled' => $this->enabled,

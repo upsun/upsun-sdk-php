@@ -18,34 +18,14 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $build;
-    public readonly string $deploy;
-    public readonly string $post_deploy;
-
     public function __construct(
-        string $build = null,
-        string $deploy = null,
-        string $post_deploy = null
+        public readonly string $build = null,
+        public readonly string $deploy = null,
+        public readonly string $post_deploy = null
     ) {
-        $this->build = $build;
-        $this->deploy = $deploy;
-        $this->post_deploy = $post_deploy;
     }
 
-    public function getBuild(): string
-    {
-        return $this->build;
-    }
-    public function getDeploy(): string
-    {
-        return $this->deploy;
-    }
-    public function getPostDeploy(): string
-    {
-        return $this->post_deploy;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'build' => $this->build,

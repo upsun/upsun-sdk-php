@@ -18,27 +18,13 @@ final class PagerDutyIntegrationCreateInput implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $type;
-    public readonly string $routing_key;
-
     public function __construct(
-        string $type = null,
-        string $routing_key = null
+        public readonly string $type = null,
+        public readonly string $routing_key = null
     ) {
-        $this->type = $type;
-        $this->routing_key = $routing_key;
     }
 
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    public function getRoutingKey(): string
-    {
-        return $this->routing_key;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->type,

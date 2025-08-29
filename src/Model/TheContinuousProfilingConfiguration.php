@@ -18,26 +18,12 @@ final class TheContinuousProfilingConfiguration implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $supported_runtimes;
-
     public function __construct(
-        ?array $supported_runtimes = null
+        public readonly ?array $supported_runtimes = null
     ) {
-        $this->supported_runtimes = $supported_runtimes;
     }
 
-    /**
-     * @return string[]|null
-     */
-    public function getSupportedRuntimes(): ?array
-    {
-        return $this->supported_runtimes;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'supported_runtimes' => $this->supported_runtimes,

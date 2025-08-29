@@ -18,60 +18,16 @@ final class HttpLogIntegrationCreateInput implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $type;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $extra;
-    public readonly string $url;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $headers;
-    public readonly bool|null $tls_verify;
-
     public function __construct(
-        string $type = null,
-        ?array $extra = null,
-        string $url = null,
-        ?array $headers = null,
-        bool|null $tls_verify = null
+        public readonly string $type = null,
+        public readonly ?array $extra = null,
+        public readonly string $url = null,
+        public readonly ?array $headers = null,
+        public readonly bool|null $tls_verify = null
     ) {
-        $this->type = $type;
-        $this->extra = $extra;
-        $this->url = $url;
-        $this->headers = $headers;
-        $this->tls_verify = $tls_verify;
     }
 
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getExtra(): ?array
-    {
-        return $this->extra;
-    }
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getHeaders(): ?array
-    {
-        return $this->headers;
-    }
-    public function getTlsVerify(): bool|null
-    {
-        return $this->tls_verify;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->type,

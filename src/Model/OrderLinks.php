@@ -18,20 +18,12 @@ final class OrderLinks implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\OrderLinksInvoices|null $invoices;
-
     public function __construct(
-        \Upsun\Model\OrderLinksInvoices|null $invoices = null
+        public readonly \Upsun\Model\OrderLinksInvoices|null $invoices = null
     ) {
-        $this->invoices = $invoices;
     }
 
-    public function getInvoices(): \Upsun\Model\OrderLinksInvoices|null
-    {
-        return $this->invoices;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'invoices' => $this->invoices,

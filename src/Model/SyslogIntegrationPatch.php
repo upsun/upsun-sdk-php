@@ -18,89 +18,21 @@ final class SyslogIntegrationPatch implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $type;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $extra;
-    public readonly string|null $host;
-    public readonly int|null $port;
-    public readonly string|null $protocol;
-    public readonly int|null $facility;
-    public readonly string|null $message_format;
-    public readonly string|null $auth_token;
-    public readonly string|null $auth_mode;
-    public readonly bool|null $tls_verify;
-
     public function __construct(
-        string $type = null,
-        ?array $extra = null,
-        string|null $host = null,
-        int|null $port = null,
-        string|null $protocol = null,
-        int|null $facility = null,
-        string|null $message_format = null,
-        string|null $auth_token = null,
-        string|null $auth_mode = null,
-        bool|null $tls_verify = null
+        public readonly string $type = null,
+        public readonly ?array $extra = null,
+        public readonly string|null $host = null,
+        public readonly int|null $port = null,
+        public readonly string|null $protocol = null,
+        public readonly int|null $facility = null,
+        public readonly string|null $message_format = null,
+        public readonly string|null $auth_token = null,
+        public readonly string|null $auth_mode = null,
+        public readonly bool|null $tls_verify = null
     ) {
-        $this->type = $type;
-        $this->extra = $extra;
-        $this->host = $host;
-        $this->port = $port;
-        $this->protocol = $protocol;
-        $this->facility = $facility;
-        $this->message_format = $message_format;
-        $this->auth_token = $auth_token;
-        $this->auth_mode = $auth_mode;
-        $this->tls_verify = $tls_verify;
     }
 
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getExtra(): ?array
-    {
-        return $this->extra;
-    }
-    public function getHost(): string|null
-    {
-        return $this->host;
-    }
-    public function getPort(): int|null
-    {
-        return $this->port;
-    }
-    public function getProtocol(): string|null
-    {
-        return $this->protocol;
-    }
-    public function getFacility(): int|null
-    {
-        return $this->facility;
-    }
-    public function getMessageFormat(): string|null
-    {
-        return $this->message_format;
-    }
-    public function getAuthToken(): string|null
-    {
-        return $this->auth_token;
-    }
-    public function getAuthMode(): string|null
-    {
-        return $this->auth_mode;
-    }
-    public function getTlsVerify(): bool|null
-    {
-        return $this->tls_verify;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->type,

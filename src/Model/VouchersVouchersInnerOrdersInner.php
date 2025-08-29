@@ -18,62 +18,18 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $order_id;
-    public readonly string|null $status;
-    public readonly string|null $billing_period_start;
-    public readonly string|null $billing_period_end;
-    public readonly string|null $order_total;
-    public readonly string|null $order_discount;
-    public readonly string|null $currency;
-
     public function __construct(
-        string|null $order_id = null,
-        string|null $status = null,
-        string|null $billing_period_start = null,
-        string|null $billing_period_end = null,
-        string|null $order_total = null,
-        string|null $order_discount = null,
-        string|null $currency = null
+        public readonly string|null $order_id = null,
+        public readonly string|null $status = null,
+        public readonly string|null $billing_period_start = null,
+        public readonly string|null $billing_period_end = null,
+        public readonly string|null $order_total = null,
+        public readonly string|null $order_discount = null,
+        public readonly string|null $currency = null
     ) {
-        $this->order_id = $order_id;
-        $this->status = $status;
-        $this->billing_period_start = $billing_period_start;
-        $this->billing_period_end = $billing_period_end;
-        $this->order_total = $order_total;
-        $this->order_discount = $order_discount;
-        $this->currency = $currency;
     }
 
-    public function getOrderId(): string|null
-    {
-        return $this->order_id;
-    }
-    public function getStatus(): string|null
-    {
-        return $this->status;
-    }
-    public function getBillingPeriodStart(): string|null
-    {
-        return $this->billing_period_start;
-    }
-    public function getBillingPeriodEnd(): string|null
-    {
-        return $this->billing_period_end;
-    }
-    public function getOrderTotal(): string|null
-    {
-        return $this->order_total;
-    }
-    public function getOrderDiscount(): string|null
-    {
-        return $this->order_discount;
-    }
-    public function getCurrency(): string|null
-    {
-        return $this->currency;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'order_id' => $this->order_id,

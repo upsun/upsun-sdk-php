@@ -18,20 +18,12 @@ final class ServerSideIncludeConfiguration implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly bool $enabled;
-
     public function __construct(
-        bool $enabled = null
+        public readonly bool $enabled = null
     ) {
-        $this->enabled = $enabled;
     }
 
-    public function getEnabled(): bool
-    {
-        return $this->enabled;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'enabled' => $this->enabled,

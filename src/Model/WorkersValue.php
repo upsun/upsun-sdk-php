@@ -18,223 +18,35 @@ final class WorkersValue implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\Resources $resources;
-    public readonly string $size;
-    public readonly int $disk;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $access;
-    /**
-     * @var \Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue[]|null
-     */
-    public readonly ?array $relationships;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $additional_hosts;
-    /**
-     * @var \Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue[]|null
-     */
-    public readonly ?array $mounts;
-    public readonly string $timezone;
-    /**
-     * @var array<string,mixed>[]|null
-     */
-    public readonly ?array $variables;
-    public readonly \Upsun\Model\Firewall $firewall;
-    public readonly string $container_profile;
-    /**
-     * @var \Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue[]|null
-     */
-    public readonly ?array $operations;
-    public readonly string $name;
-    public readonly string $type;
-    public readonly \Upsun\Model\ConfigurationForPreFlightChecks $preflight;
-    public readonly string $tree_id;
-    public readonly string $app_dir;
-    public readonly object $endpoints;
-    public readonly object $runtime;
-    public readonly \Upsun\Model\ConfigurationOfAWorkerContainerInstance $worker;
-    public readonly string $app;
-    /**
-     * @var object[]|null
-     */
-    public readonly ?array $stack;
-    public readonly int $instance_count;
-    public readonly string $slug_id;
-
     public function __construct(
-        \Upsun\Model\Resources $resources = null,
-        string $size = null,
-        int $disk = null,
-        ?array $access = null,
-        ?array $relationships = null,
-        ?array $additional_hosts = null,
-        ?array $mounts = null,
-        string $timezone = null,
-        ?array $variables = null,
-        \Upsun\Model\Firewall $firewall = null,
-        string $container_profile = null,
-        ?array $operations = null,
-        string $name = null,
-        string $type = null,
-        \Upsun\Model\ConfigurationForPreFlightChecks $preflight = null,
-        string $tree_id = null,
-        string $app_dir = null,
-        object $endpoints = null,
-        object $runtime = null,
-        \Upsun\Model\ConfigurationOfAWorkerContainerInstance $worker = null,
-        string $app = null,
-        ?array $stack = null,
-        int $instance_count = null,
-        string $slug_id = null
+        public readonly \Upsun\Model\Resources $resources = null,
+        public readonly string $size = null,
+        public readonly int $disk = null,
+        public readonly ?array $access = null,
+        public readonly ?array $relationships = null,
+        public readonly ?array $additional_hosts = null,
+        public readonly ?array $mounts = null,
+        public readonly string $timezone = null,
+        public readonly ?array $variables = null,
+        public readonly \Upsun\Model\Firewall $firewall = null,
+        public readonly string $container_profile = null,
+        public readonly ?array $operations = null,
+        public readonly string $name = null,
+        public readonly string $type = null,
+        public readonly \Upsun\Model\ConfigurationForPreFlightChecks $preflight = null,
+        public readonly string $tree_id = null,
+        public readonly string $app_dir = null,
+        public readonly object $endpoints = null,
+        public readonly object $runtime = null,
+        public readonly \Upsun\Model\ConfigurationOfAWorkerContainerInstance $worker = null,
+        public readonly string $app = null,
+        public readonly ?array $stack = null,
+        public readonly int $instance_count = null,
+        public readonly string $slug_id = null
     ) {
-        $this->resources = $resources;
-        $this->size = $size;
-        $this->disk = $disk;
-        $this->access = $access;
-        $this->relationships = $relationships;
-        $this->additional_hosts = $additional_hosts;
-        $this->mounts = $mounts;
-        $this->timezone = $timezone;
-        $this->variables = $variables;
-        $this->firewall = $firewall;
-        $this->container_profile = $container_profile;
-        $this->operations = $operations;
-        $this->name = $name;
-        $this->type = $type;
-        $this->preflight = $preflight;
-        $this->tree_id = $tree_id;
-        $this->app_dir = $app_dir;
-        $this->endpoints = $endpoints;
-        $this->runtime = $runtime;
-        $this->worker = $worker;
-        $this->app = $app;
-        $this->stack = $stack;
-        $this->instance_count = $instance_count;
-        $this->slug_id = $slug_id;
     }
 
-    public function getResources(): \Upsun\Model\Resources
-    {
-        return $this->resources;
-    }
-    public function getSize(): string
-    {
-        return $this->size;
-    }
-    public function getDisk(): int
-    {
-        return $this->disk;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getAccess(): ?array
-    {
-        return $this->access;
-    }
-    /**
-     * @return \Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue[]|null
-     */
-    public function getRelationships(): ?array
-    {
-        return $this->relationships;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getAdditionalHosts(): ?array
-    {
-        return $this->additional_hosts;
-    }
-    /**
-     * @return \Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue[]|null
-     */
-    public function getMounts(): ?array
-    {
-        return $this->mounts;
-    }
-    public function getTimezone(): string
-    {
-        return $this->timezone;
-    }
-    /**
-     * @return array<string,mixed>[]|null
-     */
-    public function getVariables(): ?array
-    {
-        return $this->variables;
-    }
-    public function getFirewall(): \Upsun\Model\Firewall
-    {
-        return $this->firewall;
-    }
-    public function getContainerProfile(): string
-    {
-        return $this->container_profile;
-    }
-    /**
-     * @return \Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue[]|null
-     */
-    public function getOperations(): ?array
-    {
-        return $this->operations;
-    }
-    public function getName(): string
-    {
-        return $this->name;
-    }
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    public function getPreflight(): \Upsun\Model\ConfigurationForPreFlightChecks
-    {
-        return $this->preflight;
-    }
-    public function getTreeId(): string
-    {
-        return $this->tree_id;
-    }
-    public function getAppDir(): string
-    {
-        return $this->app_dir;
-    }
-    public function getEndpoints(): object
-    {
-        return $this->endpoints;
-    }
-    public function getRuntime(): object
-    {
-        return $this->runtime;
-    }
-    public function getWorker(): \Upsun\Model\ConfigurationOfAWorkerContainerInstance
-    {
-        return $this->worker;
-    }
-    public function getApp(): string
-    {
-        return $this->app;
-    }
-    /**
-     * @return object[]|null
-     */
-    public function getStack(): ?array
-    {
-        return $this->stack;
-    }
-    public function getInstanceCount(): int
-    {
-        return $this->instance_count;
-    }
-    public function getSlugId(): string
-    {
-        return $this->slug_id;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'resources' => $this->resources,

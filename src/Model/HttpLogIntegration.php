@@ -18,74 +18,18 @@ final class HttpLogIntegration implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
-    public readonly string $type;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $extra;
-    public readonly string $url;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $headers;
-    public readonly bool $tls_verify;
-
     public function __construct(
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
-        string $type = null,
-        ?array $extra = null,
-        string $url = null,
-        ?array $headers = null,
-        bool $tls_verify = null
+        public readonly \DateTime $created_at = null,
+        public readonly \DateTime $updated_at = null,
+        public readonly string $type = null,
+        public readonly ?array $extra = null,
+        public readonly string $url = null,
+        public readonly ?array $headers = null,
+        public readonly bool $tls_verify = null
     ) {
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
-        $this->type = $type;
-        $this->extra = $extra;
-        $this->url = $url;
-        $this->headers = $headers;
-        $this->tls_verify = $tls_verify;
     }
 
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->updated_at;
-    }
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getExtra(): ?array
-    {
-        return $this->extra;
-    }
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getHeaders(): ?array
-    {
-        return $this->headers;
-    }
-    public function getTlsVerify(): bool
-    {
-        return $this->tls_verify;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'created_at' => $this->created_at,

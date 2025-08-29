@@ -18,34 +18,14 @@ final class BuildResources implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly bool $enabled;
-    public readonly float $max_cpu;
-    public readonly int $max_memory;
-
     public function __construct(
-        bool $enabled = null,
-        float $max_cpu = null,
-        int $max_memory = null
+        public readonly bool $enabled = null,
+        public readonly float $max_cpu = null,
+        public readonly int $max_memory = null
     ) {
-        $this->enabled = $enabled;
-        $this->max_cpu = $max_cpu;
-        $this->max_memory = $max_memory;
     }
 
-    public function getEnabled(): bool
-    {
-        return $this->enabled;
-    }
-    public function getMaxCpu(): float
-    {
-        return $this->max_cpu;
-    }
-    public function getMaxMemory(): int
-    {
-        return $this->max_memory;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'enabled' => $this->enabled,

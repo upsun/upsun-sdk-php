@@ -18,62 +18,18 @@ final class UpdateUserRequest implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $username;
-    public readonly string|null $first_name;
-    public readonly string|null $last_name;
-    public readonly string|null $picture;
-    public readonly string|null $company;
-    public readonly string|null $website;
-    public readonly string|null $country;
-
     public function __construct(
-        string|null $username = null,
-        string|null $first_name = null,
-        string|null $last_name = null,
-        string|null $picture = null,
-        string|null $company = null,
-        string|null $website = null,
-        string|null $country = null
+        public readonly string|null $username = null,
+        public readonly string|null $first_name = null,
+        public readonly string|null $last_name = null,
+        public readonly string|null $picture = null,
+        public readonly string|null $company = null,
+        public readonly string|null $website = null,
+        public readonly string|null $country = null
     ) {
-        $this->username = $username;
-        $this->first_name = $first_name;
-        $this->last_name = $last_name;
-        $this->picture = $picture;
-        $this->company = $company;
-        $this->website = $website;
-        $this->country = $country;
     }
 
-    public function getUsername(): string|null
-    {
-        return $this->username;
-    }
-    public function getFirstName(): string|null
-    {
-        return $this->first_name;
-    }
-    public function getLastName(): string|null
-    {
-        return $this->last_name;
-    }
-    public function getPicture(): string|null
-    {
-        return $this->picture;
-    }
-    public function getCompany(): string|null
-    {
-        return $this->company;
-    }
-    public function getWebsite(): string|null
-    {
-        return $this->website;
-    }
-    public function getCountry(): string|null
-    {
-        return $this->country;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'username' => $this->username,

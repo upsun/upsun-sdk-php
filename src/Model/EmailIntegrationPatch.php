@@ -18,40 +18,14 @@ final class EmailIntegrationPatch implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $type;
-    public readonly string|null $from_address;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $recipients;
-
     public function __construct(
-        string $type = null,
-        string|null $from_address = null,
-        ?array $recipients = null
+        public readonly string $type = null,
+        public readonly string|null $from_address = null,
+        public readonly ?array $recipients = null
     ) {
-        $this->type = $type;
-        $this->from_address = $from_address;
-        $this->recipients = $recipients;
     }
 
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    public function getFromAddress(): string|null
-    {
-        return $this->from_address;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getRecipients(): ?array
-    {
-        return $this->recipients;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->type,

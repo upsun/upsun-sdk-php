@@ -18,54 +18,16 @@ final class ResourcesOverridesValue implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    /**
-     * @var \Upsun\Model\PerServiceResourcesOverridesValue[]|null
-     */
-    public readonly ?array $services;
-    public readonly \DateTime $starts_at;
-    public readonly \DateTime $ends_at;
-    public readonly bool $redeployed_start;
-    public readonly bool $redeployed_end;
-
     public function __construct(
-        ?array $services = null,
-        \DateTime $starts_at = null,
-        \DateTime $ends_at = null,
-        bool $redeployed_start = null,
-        bool $redeployed_end = null
+        public readonly ?array $services = null,
+        public readonly \DateTime $starts_at = null,
+        public readonly \DateTime $ends_at = null,
+        public readonly bool $redeployed_start = null,
+        public readonly bool $redeployed_end = null
     ) {
-        $this->services = $services;
-        $this->starts_at = $starts_at;
-        $this->ends_at = $ends_at;
-        $this->redeployed_start = $redeployed_start;
-        $this->redeployed_end = $redeployed_end;
     }
 
-    /**
-     * @return \Upsun\Model\PerServiceResourcesOverridesValue[]|null
-     */
-    public function getServices(): ?array
-    {
-        return $this->services;
-    }
-    public function getStartsAt(): \DateTime
-    {
-        return $this->starts_at;
-    }
-    public function getEndsAt(): \DateTime
-    {
-        return $this->ends_at;
-    }
-    public function getRedeployedStart(): bool
-    {
-        return $this->redeployed_start;
-    }
-    public function getRedeployedEnd(): bool
-    {
-        return $this->redeployed_end;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'services' => $this->services,

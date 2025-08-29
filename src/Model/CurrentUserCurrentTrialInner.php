@@ -18,41 +18,15 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \DateTime|null $created;
-    public readonly string|null $description;
-    public readonly string|null $spend_remaining;
-    public readonly \DateTime|null $expiration;
-
     public function __construct(
-        \DateTime|null $created = null,
-        string|null $description = null,
-        string|null $spend_remaining = null,
-        \DateTime|null $expiration = null
+        public readonly \DateTime|null $created = null,
+        public readonly string|null $description = null,
+        public readonly string|null $spend_remaining = null,
+        public readonly \DateTime|null $expiration = null
     ) {
-        $this->created = $created;
-        $this->description = $description;
-        $this->spend_remaining = $spend_remaining;
-        $this->expiration = $expiration;
     }
 
-    public function getCreated(): \DateTime|null
-    {
-        return $this->created;
-    }
-    public function getDescription(): string|null
-    {
-        return $this->description;
-    }
-    public function getSpendRemaining(): string|null
-    {
-        return $this->spend_remaining;
-    }
-    public function getExpiration(): \DateTime|null
-    {
-        return $this->expiration;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'created' => $this->created,

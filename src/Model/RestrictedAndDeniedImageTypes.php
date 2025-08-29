@@ -18,39 +18,13 @@ final class RestrictedAndDeniedImageTypes implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $only;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $exclude;
-
     public function __construct(
-        ?array $only = null,
-        ?array $exclude = null
+        public readonly ?array $only = null,
+        public readonly ?array $exclude = null
     ) {
-        $this->only = $only;
-        $this->exclude = $exclude;
     }
 
-    /**
-     * @return string[]|null
-     */
-    public function getOnly(): ?array
-    {
-        return $this->only;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getExclude(): ?array
-    {
-        return $this->exclude;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'only' => $this->only,

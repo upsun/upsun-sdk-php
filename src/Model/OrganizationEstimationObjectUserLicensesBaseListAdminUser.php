@@ -18,27 +18,13 @@ final class OrganizationEstimationObjectUserLicensesBaseListAdminUser implements
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly int|null $count;
-    public readonly string|null $total;
-
     public function __construct(
-        int|null $count = null,
-        string|null $total = null
+        public readonly int|null $count = null,
+        public readonly string|null $total = null
     ) {
-        $this->count = $count;
-        $this->total = $total;
     }
 
-    public function getCount(): int|null
-    {
-        return $this->count;
-    }
-    public function getTotal(): string|null
-    {
-        return $this->total;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'count' => $this->count,

@@ -18,48 +18,16 @@ final class OrganizationProjectLinks implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\OrganizationProjectLinksSelf|null $self;
-    public readonly \Upsun\Model\OrganizationProjectLinksUpdate|null $update;
-    public readonly \Upsun\Model\OrganizationProjectLinksDelete|null $delete;
-    public readonly \Upsun\Model\OrganizationProjectLinksSubscription|null $subscription;
-    public readonly \Upsun\Model\OrganizationProjectLinksApi|null $api;
-
     public function __construct(
-        \Upsun\Model\OrganizationProjectLinksSelf|null $self = null,
-        \Upsun\Model\OrganizationProjectLinksUpdate|null $update = null,
-        \Upsun\Model\OrganizationProjectLinksDelete|null $delete = null,
-        \Upsun\Model\OrganizationProjectLinksSubscription|null $subscription = null,
-        \Upsun\Model\OrganizationProjectLinksApi|null $api = null
+        public readonly \Upsun\Model\OrganizationProjectLinksSelf|null $self = null,
+        public readonly \Upsun\Model\OrganizationProjectLinksUpdate|null $update = null,
+        public readonly \Upsun\Model\OrganizationProjectLinksDelete|null $delete = null,
+        public readonly \Upsun\Model\OrganizationProjectLinksSubscription|null $subscription = null,
+        public readonly \Upsun\Model\OrganizationProjectLinksApi|null $api = null
     ) {
-        $this->self = $self;
-        $this->update = $update;
-        $this->delete = $delete;
-        $this->subscription = $subscription;
-        $this->api = $api;
     }
 
-    public function getSelf(): \Upsun\Model\OrganizationProjectLinksSelf|null
-    {
-        return $this->self;
-    }
-    public function getUpdate(): \Upsun\Model\OrganizationProjectLinksUpdate|null
-    {
-        return $this->update;
-    }
-    public function getDelete(): \Upsun\Model\OrganizationProjectLinksDelete|null
-    {
-        return $this->delete;
-    }
-    public function getSubscription(): \Upsun\Model\OrganizationProjectLinksSubscription|null
-    {
-        return $this->subscription;
-    }
-    public function getApi(): \Upsun\Model\OrganizationProjectLinksApi|null
-    {
-        return $this->api;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'self' => $this->self,

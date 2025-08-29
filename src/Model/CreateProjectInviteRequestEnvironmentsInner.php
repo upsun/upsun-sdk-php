@@ -18,27 +18,13 @@ final class CreateProjectInviteRequestEnvironmentsInner implements JsonSerializa
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $id;
-    public readonly string|null $role;
-
     public function __construct(
-        string|null $id = null,
-        string|null $role = null
+        public readonly string|null $id = null,
+        public readonly string|null $role = null
     ) {
-        $this->id = $id;
-        $this->role = $role;
     }
 
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getRole(): string|null
-    {
-        return $this->role;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

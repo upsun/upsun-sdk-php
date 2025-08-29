@@ -18,83 +18,21 @@ final class GitLabIntegrationPatch implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $type;
-    public readonly bool|null $fetch_branches;
-    public readonly bool|null $prune_branches;
-    public readonly string|null $environment_init_resources;
-    public readonly string $token;
-    public readonly string|null $base_url;
-    public readonly string $project;
-    public readonly bool|null $build_merge_requests;
-    public readonly bool|null $build_wip_merge_requests;
-    public readonly bool|null $merge_requests_clone_parent_data;
-
     public function __construct(
-        string $type = null,
-        bool|null $fetch_branches = null,
-        bool|null $prune_branches = null,
-        string|null $environment_init_resources = null,
-        string $token = null,
-        string|null $base_url = null,
-        string $project = null,
-        bool|null $build_merge_requests = null,
-        bool|null $build_wip_merge_requests = null,
-        bool|null $merge_requests_clone_parent_data = null
+        public readonly string $type = null,
+        public readonly bool|null $fetch_branches = null,
+        public readonly bool|null $prune_branches = null,
+        public readonly string|null $environment_init_resources = null,
+        public readonly string $token = null,
+        public readonly string|null $base_url = null,
+        public readonly string $project = null,
+        public readonly bool|null $build_merge_requests = null,
+        public readonly bool|null $build_wip_merge_requests = null,
+        public readonly bool|null $merge_requests_clone_parent_data = null
     ) {
-        $this->type = $type;
-        $this->fetch_branches = $fetch_branches;
-        $this->prune_branches = $prune_branches;
-        $this->environment_init_resources = $environment_init_resources;
-        $this->token = $token;
-        $this->base_url = $base_url;
-        $this->project = $project;
-        $this->build_merge_requests = $build_merge_requests;
-        $this->build_wip_merge_requests = $build_wip_merge_requests;
-        $this->merge_requests_clone_parent_data = $merge_requests_clone_parent_data;
     }
 
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    public function getFetchBranches(): bool|null
-    {
-        return $this->fetch_branches;
-    }
-    public function getPruneBranches(): bool|null
-    {
-        return $this->prune_branches;
-    }
-    public function getEnvironmentInitResources(): string|null
-    {
-        return $this->environment_init_resources;
-    }
-    public function getToken(): string
-    {
-        return $this->token;
-    }
-    public function getBaseUrl(): string|null
-    {
-        return $this->base_url;
-    }
-    public function getProject(): string
-    {
-        return $this->project;
-    }
-    public function getBuildMergeRequests(): bool|null
-    {
-        return $this->build_merge_requests;
-    }
-    public function getBuildWipMergeRequests(): bool|null
-    {
-        return $this->build_wip_merge_requests;
-    }
-    public function getMergeRequestsCloneParentData(): bool|null
-    {
-        return $this->merge_requests_clone_parent_data;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->type,

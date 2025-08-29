@@ -18,27 +18,13 @@ final class GoogleSSOConfig implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $provider_type;
-    public readonly string|null $domain;
-
     public function __construct(
-        string|null $provider_type = null,
-        string|null $domain = null
+        public readonly string|null $provider_type = null,
+        public readonly string|null $domain = null
     ) {
-        $this->provider_type = $provider_type;
-        $this->domain = $domain;
     }
 
-    public function getProviderType(): string|null
-    {
-        return $this->provider_type;
-    }
-    public function getDomain(): string|null
-    {
-        return $this->domain;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'provider_type' => $this->provider_type,

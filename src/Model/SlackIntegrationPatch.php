@@ -18,34 +18,14 @@ final class SlackIntegrationPatch implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $type;
-    public readonly string $token;
-    public readonly string $channel;
-
     public function __construct(
-        string $type = null,
-        string $token = null,
-        string $channel = null
+        public readonly string $type = null,
+        public readonly string $token = null,
+        public readonly string $channel = null
     ) {
-        $this->type = $type;
-        $this->token = $token;
-        $this->channel = $channel;
     }
 
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    public function getToken(): string
-    {
-        return $this->token;
-    }
-    public function getChannel(): string
-    {
-        return $this->channel;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->type,

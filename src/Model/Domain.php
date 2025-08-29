@@ -18,82 +18,20 @@ final class Domain implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
-    public readonly string $type;
-    public readonly string|null $project;
-    public readonly string $name;
-    public readonly string|null $registered_name;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $attributes;
-    public readonly bool|null $is_default;
-    public readonly string|null $replacement_for;
-
     public function __construct(
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
-        string $type = null,
-        string|null $project = null,
-        string $name = null,
-        string|null $registered_name = null,
-        ?array $attributes = null,
-        bool|null $is_default = null,
-        string|null $replacement_for = null
+        public readonly \DateTime $created_at = null,
+        public readonly \DateTime $updated_at = null,
+        public readonly string $type = null,
+        public readonly string|null $project = null,
+        public readonly string $name = null,
+        public readonly string|null $registered_name = null,
+        public readonly ?array $attributes = null,
+        public readonly bool|null $is_default = null,
+        public readonly string|null $replacement_for = null
     ) {
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
-        $this->type = $type;
-        $this->project = $project;
-        $this->name = $name;
-        $this->registered_name = $registered_name;
-        $this->attributes = $attributes;
-        $this->is_default = $is_default;
-        $this->replacement_for = $replacement_for;
     }
 
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->updated_at;
-    }
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    public function getProject(): string|null
-    {
-        return $this->project;
-    }
-    public function getName(): string
-    {
-        return $this->name;
-    }
-    public function getRegisteredName(): string|null
-    {
-        return $this->registered_name;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getAttributes(): ?array
-    {
-        return $this->attributes;
-    }
-    public function getIsDefault(): bool|null
-    {
-        return $this->is_default;
-    }
-    public function getReplacementFor(): string|null
-    {
-        return $this->replacement_for;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'created_at' => $this->created_at,

@@ -18,55 +18,17 @@ final class ThePathsToRedirectValue implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly bool $regexp;
-    public readonly string $to;
-    public readonly bool $prefix;
-    public readonly bool $append_suffix;
-    public readonly int $code;
-    public readonly string $expires;
-
     public function __construct(
-        bool $regexp = null,
-        string $to = null,
-        bool $prefix = null,
-        bool $append_suffix = null,
-        int $code = null,
-        string $expires = null
+        public readonly bool $regexp = null,
+        public readonly string $to = null,
+        public readonly bool $prefix = null,
+        public readonly bool $append_suffix = null,
+        public readonly int $code = null,
+        public readonly string $expires = null
     ) {
-        $this->regexp = $regexp;
-        $this->to = $to;
-        $this->prefix = $prefix;
-        $this->append_suffix = $append_suffix;
-        $this->code = $code;
-        $this->expires = $expires;
     }
 
-    public function getRegexp(): bool
-    {
-        return $this->regexp;
-    }
-    public function getTo(): string
-    {
-        return $this->to;
-    }
-    public function getPrefix(): bool
-    {
-        return $this->prefix;
-    }
-    public function getAppendSuffix(): bool
-    {
-        return $this->append_suffix;
-    }
-    public function getCode(): int
-    {
-        return $this->code;
-    }
-    public function getExpires(): string
-    {
-        return $this->expires;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'regexp' => $this->regexp,

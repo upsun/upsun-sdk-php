@@ -18,62 +18,18 @@ final class Connection implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $provider;
-    public readonly string|null $provider_type;
-    public readonly bool|null $is_mandatory;
-    public readonly string|null $subject;
-    public readonly string|null $email_address;
-    public readonly \DateTime|null $created_at;
-    public readonly \DateTime|null $updated_at;
-
     public function __construct(
-        string|null $provider = null,
-        string|null $provider_type = null,
-        bool|null $is_mandatory = null,
-        string|null $subject = null,
-        string|null $email_address = null,
-        \DateTime|null $created_at = null,
-        \DateTime|null $updated_at = null
+        public readonly string|null $provider = null,
+        public readonly string|null $provider_type = null,
+        public readonly bool|null $is_mandatory = null,
+        public readonly string|null $subject = null,
+        public readonly string|null $email_address = null,
+        public readonly \DateTime|null $created_at = null,
+        public readonly \DateTime|null $updated_at = null
     ) {
-        $this->provider = $provider;
-        $this->provider_type = $provider_type;
-        $this->is_mandatory = $is_mandatory;
-        $this->subject = $subject;
-        $this->email_address = $email_address;
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
     }
 
-    public function getProvider(): string|null
-    {
-        return $this->provider;
-    }
-    public function getProviderType(): string|null
-    {
-        return $this->provider_type;
-    }
-    public function getIsMandatory(): bool|null
-    {
-        return $this->is_mandatory;
-    }
-    public function getSubject(): string|null
-    {
-        return $this->subject;
-    }
-    public function getEmailAddress(): string|null
-    {
-        return $this->email_address;
-    }
-    public function getCreatedAt(): \DateTime|null
-    {
-        return $this->created_at;
-    }
-    public function getUpdatedAt(): \DateTime|null
-    {
-        return $this->updated_at;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'provider' => $this->provider,

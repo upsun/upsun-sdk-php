@@ -18,41 +18,15 @@ final class TheMinimumResourcesForThisService implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly float $cpu;
-    public readonly int $memory;
-    public readonly int $disk;
-    public readonly string $profile_size;
-
     public function __construct(
-        float $cpu = null,
-        int $memory = null,
-        int $disk = null,
-        string $profile_size = null
+        public readonly float $cpu = null,
+        public readonly int $memory = null,
+        public readonly int $disk = null,
+        public readonly string $profile_size = null
     ) {
-        $this->cpu = $cpu;
-        $this->memory = $memory;
-        $this->disk = $disk;
-        $this->profile_size = $profile_size;
     }
 
-    public function getCpu(): float
-    {
-        return $this->cpu;
-    }
-    public function getMemory(): int
-    {
-        return $this->memory;
-    }
-    public function getDisk(): int
-    {
-        return $this->disk;
-    }
-    public function getProfileSize(): string
-    {
-        return $this->profile_size;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'cpu' => $this->cpu,

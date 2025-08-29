@@ -18,47 +18,15 @@ final class CertificateCreateInput implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $certificate;
-    public readonly string $key;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $chain;
-    public readonly bool|null $is_invalid;
-
     public function __construct(
-        string $certificate = null,
-        string $key = null,
-        ?array $chain = null,
-        bool|null $is_invalid = null
+        public readonly string $certificate = null,
+        public readonly string $key = null,
+        public readonly ?array $chain = null,
+        public readonly bool|null $is_invalid = null
     ) {
-        $this->certificate = $certificate;
-        $this->key = $key;
-        $this->chain = $chain;
-        $this->is_invalid = $is_invalid;
     }
 
-    public function getCertificate(): string
-    {
-        return $this->certificate;
-    }
-    public function getKey(): string
-    {
-        return $this->key;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getChain(): ?array
-    {
-        return $this->chain;
-    }
-    public function getIsInvalid(): bool|null
-    {
-        return $this->is_invalid;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'certificate' => $this->certificate,

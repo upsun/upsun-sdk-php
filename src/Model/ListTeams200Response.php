@@ -18,40 +18,14 @@ final class ListTeams200Response implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    /**
-     * @var \Upsun\Model\Team[]|null
-     */
-    public readonly ?array $items;
-    public readonly int|null $count;
-    public readonly \Upsun\Model\ListLinks|null $_links;
-
     public function __construct(
-        ?array $items = null,
-        int|null $count = null,
-        \Upsun\Model\ListLinks|null $_links = null
+        public readonly ?array $items = null,
+        public readonly int|null $count = null,
+        public readonly \Upsun\Model\ListLinks|null $_links = null
     ) {
-        $this->items = $items;
-        $this->count = $count;
-        $this->_links = $_links;
     }
 
-    /**
-     * @return \Upsun\Model\Team[]|null
-     */
-    public function getItems(): ?array
-    {
-        return $this->items;
-    }
-    public function getCount(): int|null
-    {
-        return $this->count;
-    }
-    public function getLinks(): \Upsun\Model\ListLinks|null
-    {
-        return $this->_links;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'items' => $this->items,

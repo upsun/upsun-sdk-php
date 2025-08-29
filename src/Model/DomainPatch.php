@@ -18,33 +18,13 @@ final class DomainPatch implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $attributes;
-    public readonly bool|null $is_default;
-
     public function __construct(
-        ?array $attributes = null,
-        bool|null $is_default = null
+        public readonly ?array $attributes = null,
+        public readonly bool|null $is_default = null
     ) {
-        $this->attributes = $attributes;
-        $this->is_default = $is_default;
     }
 
-    /**
-     * @return string[]|null
-     */
-    public function getAttributes(): ?array
-    {
-        return $this->attributes;
-    }
-    public function getIsDefault(): bool|null
-    {
-        return $this->is_default;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'attributes' => $this->attributes,

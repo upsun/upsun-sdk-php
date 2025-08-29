@@ -18,89 +18,21 @@ final class ServicesValue implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string $type;
-    public readonly string $size;
-    public readonly int $disk;
-    public readonly object $access;
-    public readonly object $configuration;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $relationships;
-    public readonly \Upsun\Model\Firewall $firewall;
-    public readonly \Upsun\Model\Resources $resources;
-    public readonly string $container_profile;
-    public readonly object $endpoints;
-
     public function __construct(
-        string $type = null,
-        string $size = null,
-        int $disk = null,
-        object $access = null,
-        object $configuration = null,
-        ?array $relationships = null,
-        \Upsun\Model\Firewall $firewall = null,
-        \Upsun\Model\Resources $resources = null,
-        string $container_profile = null,
-        object $endpoints = null
+        public readonly string $type = null,
+        public readonly string $size = null,
+        public readonly int $disk = null,
+        public readonly object $access = null,
+        public readonly object $configuration = null,
+        public readonly ?array $relationships = null,
+        public readonly \Upsun\Model\Firewall $firewall = null,
+        public readonly \Upsun\Model\Resources $resources = null,
+        public readonly string $container_profile = null,
+        public readonly object $endpoints = null
     ) {
-        $this->type = $type;
-        $this->size = $size;
-        $this->disk = $disk;
-        $this->access = $access;
-        $this->configuration = $configuration;
-        $this->relationships = $relationships;
-        $this->firewall = $firewall;
-        $this->resources = $resources;
-        $this->container_profile = $container_profile;
-        $this->endpoints = $endpoints;
     }
 
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    public function getSize(): string
-    {
-        return $this->size;
-    }
-    public function getDisk(): int
-    {
-        return $this->disk;
-    }
-    public function getAccess(): object
-    {
-        return $this->access;
-    }
-    public function getConfiguration(): object
-    {
-        return $this->configuration;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getRelationships(): ?array
-    {
-        return $this->relationships;
-    }
-    public function getFirewall(): \Upsun\Model\Firewall
-    {
-        return $this->firewall;
-    }
-    public function getResources(): \Upsun\Model\Resources
-    {
-        return $this->resources;
-    }
-    public function getContainerProfile(): string
-    {
-        return $this->container_profile;
-    }
-    public function getEndpoints(): object
-    {
-        return $this->endpoints;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->type,

@@ -18,33 +18,13 @@ final class ConfigurationForPreFlightChecks implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly bool $enabled;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $ignored_rules;
-
     public function __construct(
-        bool $enabled = null,
-        ?array $ignored_rules = null
+        public readonly bool $enabled = null,
+        public readonly ?array $ignored_rules = null
     ) {
-        $this->enabled = $enabled;
-        $this->ignored_rules = $ignored_rules;
     }
 
-    public function getEnabled(): bool
-    {
-        return $this->enabled;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getIgnoredRules(): ?array
-    {
-        return $this->ignored_rules;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'enabled' => $this->enabled,

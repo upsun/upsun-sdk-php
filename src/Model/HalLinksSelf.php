@@ -18,27 +18,13 @@ final class HalLinksSelf implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $title;
-    public readonly string|null $href;
-
     public function __construct(
-        string|null $title = null,
-        string|null $href = null
+        public readonly string|null $title = null,
+        public readonly string|null $href = null
     ) {
-        $this->title = $title;
-        $this->href = $href;
     }
 
-    public function getTitle(): string|null
-    {
-        return $this->title;
-    }
-    public function getHref(): string|null
-    {
-        return $this->href;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'title' => $this->title,

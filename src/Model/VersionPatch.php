@@ -18,20 +18,12 @@ final class VersionPatch implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1|null $routing;
-
     public function __construct(
-        \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1|null $routing = null
+        public readonly \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1|null $routing = null
     ) {
-        $this->routing = $routing;
     }
 
-    public function getRouting(): \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1|null
-    {
-        return $this->routing;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'routing' => $this->routing,

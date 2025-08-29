@@ -18,48 +18,16 @@ final class Usage implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $id;
-    public readonly string|null $subscription_id;
-    public readonly string|null $usage_group;
-    public readonly float|null $quantity;
-    public readonly \DateTime|null $start;
-
     public function __construct(
-        string|null $id = null,
-        string|null $subscription_id = null,
-        string|null $usage_group = null,
-        float|null $quantity = null,
-        \DateTime|null $start = null
+        public readonly string|null $id = null,
+        public readonly string|null $subscription_id = null,
+        public readonly string|null $usage_group = null,
+        public readonly float|null $quantity = null,
+        public readonly \DateTime|null $start = null
     ) {
-        $this->id = $id;
-        $this->subscription_id = $subscription_id;
-        $this->usage_group = $usage_group;
-        $this->quantity = $quantity;
-        $this->start = $start;
     }
 
-    public function getId(): string|null
-    {
-        return $this->id;
-    }
-    public function getSubscriptionId(): string|null
-    {
-        return $this->subscription_id;
-    }
-    public function getUsageGroup(): string|null
-    {
-        return $this->usage_group;
-    }
-    public function getQuantity(): float|null
-    {
-        return $this->quantity;
-    }
-    public function getStart(): \DateTime|null
-    {
-        return $this->start;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,

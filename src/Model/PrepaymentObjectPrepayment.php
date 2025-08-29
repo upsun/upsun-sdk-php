@@ -18,48 +18,16 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $organization_id;
-    public readonly \Upsun\Model\PrepaymentObjectPrepaymentBalance|null $balance;
-    public readonly string|null $last_updated_at;
-    public readonly bool|null $sufficient;
-    public readonly string|null $fallback;
-
     public function __construct(
-        string|null $organization_id = null,
-        \Upsun\Model\PrepaymentObjectPrepaymentBalance|null $balance = null,
-        string|null $last_updated_at = null,
-        bool|null $sufficient = null,
-        string|null $fallback = null
+        public readonly string|null $organization_id = null,
+        public readonly \Upsun\Model\PrepaymentObjectPrepaymentBalance|null $balance = null,
+        public readonly string|null $last_updated_at = null,
+        public readonly bool|null $sufficient = null,
+        public readonly string|null $fallback = null
     ) {
-        $this->organization_id = $organization_id;
-        $this->balance = $balance;
-        $this->last_updated_at = $last_updated_at;
-        $this->sufficient = $sufficient;
-        $this->fallback = $fallback;
     }
 
-    public function getOrganizationId(): string|null
-    {
-        return $this->organization_id;
-    }
-    public function getBalance(): \Upsun\Model\PrepaymentObjectPrepaymentBalance|null
-    {
-        return $this->balance;
-    }
-    public function getLastUpdatedAt(): string|null
-    {
-        return $this->last_updated_at;
-    }
-    public function getSufficient(): bool|null
-    {
-        return $this->sufficient;
-    }
-    public function getFallback(): string|null
-    {
-        return $this->fallback;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'organization_id' => $this->organization_id,

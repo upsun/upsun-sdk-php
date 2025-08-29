@@ -18,33 +18,13 @@ final class UpdateTeamRequest implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $label;
-    /**
-     * @var string[]|null
-     */
-    public readonly ?array $project_permissions;
-
     public function __construct(
-        string|null $label = null,
-        ?array $project_permissions = null
+        public readonly string|null $label = null,
+        public readonly ?array $project_permissions = null
     ) {
-        $this->label = $label;
-        $this->project_permissions = $project_permissions;
     }
 
-    public function getLabel(): string|null
-    {
-        return $this->label;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getProjectPermissions(): ?array
-    {
-        return $this->project_permissions;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'label' => $this->label,

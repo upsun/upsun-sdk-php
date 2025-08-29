@@ -18,62 +18,18 @@ final class DateTimeFilter implements JsonSerializable
 {
     protected const DISCRIMINATOR = null;
 
-    public readonly string|null $eq;
-    public readonly string|null $ne;
-    public readonly string|null $between;
-    public readonly string|null $gt;
-    public readonly string|null $gte;
-    public readonly string|null $lt;
-    public readonly string|null $lte;
-
     public function __construct(
-        string|null $eq = null,
-        string|null $ne = null,
-        string|null $between = null,
-        string|null $gt = null,
-        string|null $gte = null,
-        string|null $lt = null,
-        string|null $lte = null
+        public readonly string|null $eq = null,
+        public readonly string|null $ne = null,
+        public readonly string|null $between = null,
+        public readonly string|null $gt = null,
+        public readonly string|null $gte = null,
+        public readonly string|null $lt = null,
+        public readonly string|null $lte = null
     ) {
-        $this->eq = $eq;
-        $this->ne = $ne;
-        $this->between = $between;
-        $this->gt = $gt;
-        $this->gte = $gte;
-        $this->lt = $lt;
-        $this->lte = $lte;
     }
 
-    public function getEq(): string|null
-    {
-        return $this->eq;
-    }
-    public function getNe(): string|null
-    {
-        return $this->ne;
-    }
-    public function getBetween(): string|null
-    {
-        return $this->between;
-    }
-    public function getGt(): string|null
-    {
-        return $this->gt;
-    }
-    public function getGte(): string|null
-    {
-        return $this->gte;
-    }
-    public function getLt(): string|null
-    {
-        return $this->lt;
-    }
-    public function getLte(): string|null
-    {
-        return $this->lte;
-    }
-
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'eq' => $this->eq,
