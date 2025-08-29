@@ -43,33 +43,31 @@ class OAuthProvider
                 ->withHeader('Content-Type', 'application/x-www-form-urlencoded')
                 ->withBody(Stream::create($body));
 
+            {{#headersLoop}}
+            foreach ($headers as $name => $value) {
+                $request = $request->withHeader($name, $value);
+            }
+            {{/headersLoop}}
+
             $response = $this->httpClient->sendRequest($request);
-            
-            // Check response status
+
             if ($response->getStatusCode() !== 200) {
                 throw new Exception('Token exchange failed with status: ' . $response->getStatusCode());
             }
-            
-            $responseBody = (string)$response->getBody();
-            $data = json_decode($responseBody, true);
 
-            // Validate JSON response
+            $data = json_decode((string)$response->getBody(), true);
+
             if (json_last_error() !== JSON_ERROR_NONE) {
                 throw new Exception('Invalid JSON response: ' . json_last_error_msg());
             }
 
-            // Validate response structure
-            if (!is_array($data)) {
-                throw new Exception('Invalid token response format. Response: ' . $responseBody);
-            }
-
-            if (!isset($data['access_token']) || empty($data['access_token'])) {
-                throw new Exception('No access token in response. Response: ' . $responseBody);
+            if (!is_array($data) || empty($data['access_token'] ?? null)) {
+                throw new Exception('No access token in response. Response: ' . (string)$response->getBody());
             }
 
             $this->storeTokenData($data);
             $this->hasInitialToken = true;
-            
+
             return true;
         } catch (ClientExceptionInterface $e) {
             throw new Exception('Token exchange failed: ' . $e->getMessage());
@@ -89,9 +87,8 @@ class OAuthProvider
      *
      * @throws Exception
      */
-    private function refreshAccessToken(): void
+    public function refreshAccessToken(): void
     {
-        // If no refresh token, try to get a new access token with API token
         if (!$this->refreshToken) {
             $this->exchangeCodeForToken();
             return;
@@ -108,28 +105,26 @@ class OAuthProvider
                 ->withHeader('Content-Type', 'application/x-www-form-urlencoded')
                 ->withBody(Stream::create($body));
 
+            {{#headersLoop}}
+            foreach ($headers as $name => $value) {
+                $request = $request->withHeader($name, $value);
+            }
+            {{/headersLoop}}
+
             $response = $this->httpClient->sendRequest($request);
-            
-            // Check response status
+
             if ($response->getStatusCode() !== 200) {
                 throw new Exception('Token refresh failed with status: ' . $response->getStatusCode());
             }
-            
-            $responseBody = (string)$response->getBody();
-            $data = json_decode($responseBody, true);
 
-            // Validate JSON response
+            $data = json_decode((string)$response->getBody(), true);
+
             if (json_last_error() !== JSON_ERROR_NONE) {
                 throw new Exception('Invalid JSON response during refresh: ' . json_last_error_msg());
             }
 
-            // Validate response structure
-            if (!is_array($data)) {
-                throw new Exception('Invalid refresh token response format. Response: ' . $responseBody);
-            }
-
-            if (!isset($data['access_token']) || empty($data['access_token'])) {
-                throw new Exception('No access token in refresh response. Response: ' . $responseBody);
+            if (!is_array($data) || empty($data['access_token'] ?? null)) {
+                throw new Exception('No access token in refresh response. Response: ' . (string)$response->getBody());
             }
 
             $this->storeTokenData($data);
@@ -142,20 +137,15 @@ class OAuthProvider
     {
         $buffer = 60;
 
-        // No token at all - get initial token
         if (!$this->accessToken) {
             $this->exchangeCodeForToken();
             return;
         }
 
-        // Token is expired or about to expire
         if (time() > ($this->tokenExpiry - $buffer)) {
             if ($this->refreshToken) {
-                // We have a refresh token, use it
                 $this->refreshAccessToken();
             } else {
-                // No refresh token - API tokens are typically long-lived
-                // Try to get a new token with the same API token
                 $this->exchangeCodeForToken();
             }
         }
@@ -173,28 +163,17 @@ class OAuthProvider
         return $this->accessToken;
     }
 
-    /**
-     * Force token refresh, bypassing expiry check
-     *
-     * @throws Exception
-     */
     public function forceRefresh(): void
     {
         $this->tokenExpiry = 0;
         $this->ensureValidToken();
     }
 
-    /**
-     * Check if we have a valid token without triggering refresh
-     */
     public function hasValidToken(): bool
     {
         return $this->accessToken && time() < ($this->tokenExpiry - 60);
     }
 
-    /**
-     * Get token information for debugging
-     */
     public function getTokenInfo(): array
     {
         return [
@@ -207,9 +186,6 @@ class OAuthProvider
         ];
     }
 
-    /**
-     * Debug token status
-     */
     public function debugTokenStatus(): void
     {
         $info = $this->getTokenInfo();
