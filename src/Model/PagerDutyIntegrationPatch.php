@@ -222,8 +222,10 @@ final class PagerDutyIntegrationPatch implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -243,8 +245,10 @@ final class PagerDutyIntegrationPatch implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets routing_key
+     *
+     * @return string
      */
-    public function getRoutingKey(): string
+    public function getRoutingKey()
     {
         return $this->container['routing_key'];
     }

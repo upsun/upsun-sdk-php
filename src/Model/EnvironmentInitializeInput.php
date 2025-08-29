@@ -252,8 +252,10 @@ final class EnvironmentInitializeInput implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets profile
+     *
+     * @return string
      */
-    public function getProfile(): string
+    public function getProfile()
     {
         return $this->container['profile'];
     }
@@ -273,8 +275,10 @@ final class EnvironmentInitializeInput implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets repository
+     *
+     * @return string
      */
-    public function getRepository(): string
+    public function getRepository()
     {
         return $this->container['repository'];
     }
@@ -294,8 +298,10 @@ final class EnvironmentInitializeInput implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets config
+     *
+     * @return string
      */
-    public function getConfig(): string
+    public function getConfig()
     {
         return $this->container['config'];
     }
@@ -322,8 +328,10 @@ final class EnvironmentInitializeInput implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets files
+     *
+     * @return \Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner[]
      */
-    public function getFiles(): array
+    public function getFiles()
     {
         return $this->container['files'];
     }
@@ -343,8 +351,10 @@ final class EnvironmentInitializeInput implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets resources
+     *
+     * @return \Upsun\Model\Resources3
      */
-    public function getResources(): \Upsun\Model\Resources3
+    public function getResources()
     {
         return $this->container['resources'];
     }

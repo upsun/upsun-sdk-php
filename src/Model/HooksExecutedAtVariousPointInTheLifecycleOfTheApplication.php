@@ -232,8 +232,10 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
 
     /**
      * Gets build
+     *
+     * @return string
      */
-    public function getBuild(): string
+    public function getBuild()
     {
         return $this->container['build'];
     }
@@ -260,8 +262,10 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
 
     /**
      * Gets deploy
+     *
+     * @return string
      */
-    public function getDeploy(): string
+    public function getDeploy()
     {
         return $this->container['deploy'];
     }
@@ -288,8 +292,10 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
 
     /**
      * Gets post_deploy
+     *
+     * @return string
      */
-    public function getPostDeploy(): string
+    public function getPostDeploy()
     {
         return $this->container['post_deploy'];
     }

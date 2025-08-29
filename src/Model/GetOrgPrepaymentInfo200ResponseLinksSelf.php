@@ -209,8 +209,10 @@ final class GetOrgPrepaymentInfo200ResponseLinksSelf implements ModelInterface, 
 
     /**
      * Gets href
+     *
+     * @return string|null
      */
-    public function getHref(): string|null
+    public function getHref()
     {
         return $this->container['href'];
     }

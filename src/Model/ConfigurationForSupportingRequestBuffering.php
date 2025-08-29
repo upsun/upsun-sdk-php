@@ -222,8 +222,10 @@ final class ConfigurationForSupportingRequestBuffering implements ModelInterface
 
     /**
      * Gets enabled
+     *
+     * @return bool
      */
-    public function getEnabled(): bool
+    public function getEnabled()
     {
         return $this->container['enabled'];
     }
@@ -243,8 +245,10 @@ final class ConfigurationForSupportingRequestBuffering implements ModelInterface
 
     /**
      * Gets max_request_size
+     *
+     * @return string
      */
-    public function getMaxRequestSize(): string
+    public function getMaxRequestSize()
     {
         return $this->container['max_request_size'];
     }

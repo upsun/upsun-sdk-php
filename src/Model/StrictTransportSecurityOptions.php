@@ -232,8 +232,10 @@ final class StrictTransportSecurityOptions implements ModelInterface, ArrayAcces
 
     /**
      * Gets enabled
+     *
+     * @return bool
      */
-    public function getEnabled(): bool
+    public function getEnabled()
     {
         return $this->container['enabled'];
     }
@@ -260,8 +262,10 @@ final class StrictTransportSecurityOptions implements ModelInterface, ArrayAcces
 
     /**
      * Gets include_subdomains
+     *
+     * @return bool
      */
-    public function getIncludeSubdomains(): bool
+    public function getIncludeSubdomains()
     {
         return $this->container['include_subdomains'];
     }
@@ -288,8 +292,10 @@ final class StrictTransportSecurityOptions implements ModelInterface, ArrayAcces
 
     /**
      * Gets preload
+     *
+     * @return bool
      */
-    public function getPreload(): bool
+    public function getPreload()
     {
         return $this->container['preload'];
     }

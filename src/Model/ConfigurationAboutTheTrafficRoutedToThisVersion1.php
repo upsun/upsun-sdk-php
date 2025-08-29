@@ -209,8 +209,10 @@ final class ConfigurationAboutTheTrafficRoutedToThisVersion1 implements ModelInt
 
     /**
      * Gets percentage
+     *
+     * @return int|null
      */
-    public function getPercentage(): int|null
+    public function getPercentage()
     {
         return $this->container['percentage'];
     }

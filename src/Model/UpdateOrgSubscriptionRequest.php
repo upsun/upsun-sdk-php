@@ -286,8 +286,10 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
 
     /**
      * Gets project_title
+     *
+     * @return string|null
      */
-    public function getProjectTitle(): string|null
+    public function getProjectTitle()
     {
         return $this->container['project_title'];
     }
@@ -307,8 +309,10 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
 
     /**
      * Gets plan
+     *
+     * @return string|null
      */
-    public function getPlan(): string|null
+    public function getPlan()
     {
         return $this->container['plan'];
     }
@@ -328,8 +332,10 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
 
     /**
      * Gets timezone
+     *
+     * @return string|null
      */
-    public function getTimezone(): string|null
+    public function getTimezone()
     {
         return $this->container['timezone'];
     }
@@ -349,8 +355,10 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
 
     /**
      * Gets environments
+     *
+     * @return int|null
      */
-    public function getEnvironments(): int|null
+    public function getEnvironments()
     {
         return $this->container['environments'];
     }
@@ -370,8 +378,10 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
 
     /**
      * Gets storage
+     *
+     * @return int|null
      */
-    public function getStorage(): int|null
+    public function getStorage()
     {
         return $this->container['storage'];
     }
@@ -391,8 +401,10 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
 
     /**
      * Gets big_dev
+     *
+     * @return string|null
      */
-    public function getBigDev(): string|null
+    public function getBigDev()
     {
         return $this->container['big_dev'];
     }
@@ -412,8 +424,10 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
 
     /**
      * Gets big_dev_service
+     *
+     * @return string|null
      */
-    public function getBigDevService(): string|null
+    public function getBigDevService()
     {
         return $this->container['big_dev_service'];
     }
@@ -433,8 +447,10 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
 
     /**
      * Gets backups
+     *
+     * @return string|null
      */
-    public function getBackups(): string|null
+    public function getBackups()
     {
         return $this->container['backups'];
     }
@@ -454,8 +470,10 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
 
     /**
      * Gets observability_suite
+     *
+     * @return string|null
      */
-    public function getObservabilitySuite(): string|null
+    public function getObservabilitySuite()
     {
         return $this->container['observability_suite'];
     }
@@ -475,8 +493,10 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
 
     /**
      * Gets blackfire
+     *
+     * @return string|null
      */
-    public function getBlackfire(): string|null
+    public function getBlackfire()
     {
         return $this->container['blackfire'];
     }
@@ -496,8 +516,10 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
 
     /**
      * Gets continuous_profiling
+     *
+     * @return string|null
      */
-    public function getContinuousProfiling(): string|null
+    public function getContinuousProfiling()
     {
         return $this->container['continuous_profiling'];
     }
@@ -517,8 +539,10 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
 
     /**
      * Gets project_support_level
+     *
+     * @return string|null
      */
-    public function getProjectSupportLevel(): string|null
+    public function getProjectSupportLevel()
     {
         return $this->container['project_support_level'];
     }

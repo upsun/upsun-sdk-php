@@ -273,8 +273,10 @@ final class ThePathsToRedirectValue1 implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets regexp
+     *
+     * @return bool|null
      */
-    public function getRegexp(): bool|null
+    public function getRegexp()
     {
         return $this->container['regexp'];
     }
@@ -294,8 +296,10 @@ final class ThePathsToRedirectValue1 implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets to
+     *
+     * @return string
      */
-    public function getTo(): string
+    public function getTo()
     {
         return $this->container['to'];
     }
@@ -315,8 +319,10 @@ final class ThePathsToRedirectValue1 implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets prefix
+     *
+     * @return bool|null
      */
-    public function getPrefix(): bool|null
+    public function getPrefix()
     {
         return $this->container['prefix'];
     }
@@ -343,8 +349,10 @@ final class ThePathsToRedirectValue1 implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets append_suffix
+     *
+     * @return bool|null
      */
-    public function getAppendSuffix(): bool|null
+    public function getAppendSuffix()
     {
         return $this->container['append_suffix'];
     }
@@ -371,8 +379,10 @@ final class ThePathsToRedirectValue1 implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets code
+     *
+     * @return int|null
      */
-    public function getCode(): int|null
+    public function getCode()
     {
         return $this->container['code'];
     }
@@ -402,8 +412,10 @@ final class ThePathsToRedirectValue1 implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets expires
+     *
+     * @return string|null
      */
-    public function getExpires(): string|null
+    public function getExpires()
     {
         return $this->container['expires'];
     }

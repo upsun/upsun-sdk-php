@@ -209,8 +209,10 @@ final class ListOrgInvoices200Response implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets items
+     *
+     * @return \Upsun\Model\Invoice[]|null
      */
-    public function getItems(): array|null
+    public function getItems()
     {
         return $this->container['items'];
     }

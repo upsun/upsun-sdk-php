@@ -242,8 +242,10 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements ModelI
 
     /**
      * Gets directory
+     *
+     * @return string
      */
-    public function getDirectory(): string
+    public function getDirectory()
     {
         return $this->container['directory'];
     }
@@ -270,8 +272,10 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements ModelI
 
     /**
      * Gets watch
+     *
+     * @return string[]
      */
-    public function getWatch(): array
+    public function getWatch()
     {
         return $this->container['watch'];
     }
@@ -291,8 +295,10 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements ModelI
 
     /**
      * Gets allow_stale
+     *
+     * @return bool
      */
-    public function getAllowStale(): bool
+    public function getAllowStale()
     {
         return $this->container['allow_stale'];
     }
@@ -312,8 +318,10 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements ModelI
 
     /**
      * Gets share_between_apps
+     *
+     * @return bool
      */
-    public function getShareBetweenApps(): bool
+    public function getShareBetweenApps()
     {
         return $this->container['share_between_apps'];
     }

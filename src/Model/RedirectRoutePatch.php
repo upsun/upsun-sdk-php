@@ -288,8 +288,10 @@ final class RedirectRoutePatch implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets primary
+     *
+     * @return bool|null
      */
-    public function getPrimary(): bool|null
+    public function getPrimary()
     {
         return $this->container['primary'];
     }
@@ -316,8 +318,10 @@ final class RedirectRoutePatch implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -344,8 +348,10 @@ final class RedirectRoutePatch implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets production_url
+     *
+     * @return string|null
      */
-    public function getProductionUrl(): string|null
+    public function getProductionUrl()
     {
         return $this->container['production_url'];
     }
@@ -372,8 +378,10 @@ final class RedirectRoutePatch implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets attributes
+     *
+     * @return array<string,string>|null
      */
-    public function getAttributes(): array|null
+    public function getAttributes()
     {
         return $this->container['attributes'];
     }
@@ -393,8 +401,10 @@ final class RedirectRoutePatch implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -424,8 +434,10 @@ final class RedirectRoutePatch implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets tls
+     *
+     * @return \Upsun\Model\TLSSettingsForTheRoute1|null
      */
-    public function getTls(): \Upsun\Model\TLSSettingsForTheRoute1|null
+    public function getTls()
     {
         return $this->container['tls'];
     }
@@ -445,8 +457,10 @@ final class RedirectRoutePatch implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets to
+     *
+     * @return string
      */
-    public function getTo(): string
+    public function getTo()
     {
         return $this->container['to'];
     }
@@ -466,8 +480,10 @@ final class RedirectRoutePatch implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets redirects
+     *
+     * @return \Upsun\Model\TheConfigurationOfTheRedirects1|null
      */
-    public function getRedirects(): \Upsun\Model\TheConfigurationOfTheRedirects1|null
+    public function getRedirects()
     {
         return $this->container['redirects'];
     }

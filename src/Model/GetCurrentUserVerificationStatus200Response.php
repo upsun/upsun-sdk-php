@@ -209,8 +209,10 @@ final class GetCurrentUserVerificationStatus200Response implements ModelInterfac
 
     /**
      * Gets verify_phone
+     *
+     * @return bool|null
      */
-    public function getVerifyPhone(): bool|null
+    public function getVerifyPhone()
     {
         return $this->container['verify_phone'];
     }

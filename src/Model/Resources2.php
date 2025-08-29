@@ -236,8 +236,10 @@ final class Resources2 implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets init
+     *
+     * @return string
      */
-    public function getInit(): string
+    public function getInit()
     {
         return $this->container['init'];
     }

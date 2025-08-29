@@ -237,8 +237,10 @@ final class OrganizationProjectLinks implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets self
+     *
+     * @return \Upsun\Model\OrganizationProjectLinksSelf|null
      */
-    public function getSelf(): \Upsun\Model\OrganizationProjectLinksSelf|null
+    public function getSelf()
     {
         return $this->container['self'];
     }
@@ -258,8 +260,10 @@ final class OrganizationProjectLinks implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets update
+     *
+     * @return \Upsun\Model\OrganizationProjectLinksUpdate|null
      */
-    public function getUpdate(): \Upsun\Model\OrganizationProjectLinksUpdate|null
+    public function getUpdate()
     {
         return $this->container['update'];
     }
@@ -279,8 +283,10 @@ final class OrganizationProjectLinks implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets delete
+     *
+     * @return \Upsun\Model\OrganizationProjectLinksDelete|null
      */
-    public function getDelete(): \Upsun\Model\OrganizationProjectLinksDelete|null
+    public function getDelete()
     {
         return $this->container['delete'];
     }
@@ -300,8 +306,10 @@ final class OrganizationProjectLinks implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets subscription
+     *
+     * @return \Upsun\Model\OrganizationProjectLinksSubscription|null
      */
-    public function getSubscription(): \Upsun\Model\OrganizationProjectLinksSubscription|null
+    public function getSubscription()
     {
         return $this->container['subscription'];
     }
@@ -321,8 +329,10 @@ final class OrganizationProjectLinks implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets api
+     *
+     * @return \Upsun\Model\OrganizationProjectLinksApi|null
      */
-    public function getApi(): \Upsun\Model\OrganizationProjectLinksApi|null
+    public function getApi()
     {
         return $this->container['api'];
     }

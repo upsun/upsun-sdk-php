@@ -212,8 +212,10 @@ final class GrantTeamProjectAccessRequestInner implements ModelInterface, ArrayA
 
     /**
      * Gets project_id
+     *
+     * @return string
      */
-    public function getProjectId(): string
+    public function getProjectId()
     {
         return $this->container['project_id'];
     }

@@ -244,8 +244,10 @@ final class EstimationObject implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets plan
+     *
+     * @return string|null
      */
-    public function getPlan(): string|null
+    public function getPlan()
     {
         return $this->container['plan'];
     }
@@ -265,8 +267,10 @@ final class EstimationObject implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets user_licenses
+     *
+     * @return string|null
      */
-    public function getUserLicenses(): string|null
+    public function getUserLicenses()
     {
         return $this->container['user_licenses'];
     }
@@ -286,8 +290,10 @@ final class EstimationObject implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets environments
+     *
+     * @return string|null
      */
-    public function getEnvironments(): string|null
+    public function getEnvironments()
     {
         return $this->container['environments'];
     }
@@ -307,8 +313,10 @@ final class EstimationObject implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets storage
+     *
+     * @return string|null
      */
-    public function getStorage(): string|null
+    public function getStorage()
     {
         return $this->container['storage'];
     }
@@ -328,8 +336,10 @@ final class EstimationObject implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets total
+     *
+     * @return string|null
      */
-    public function getTotal(): string|null
+    public function getTotal()
     {
         return $this->container['total'];
     }
@@ -349,8 +359,10 @@ final class EstimationObject implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets options
+     *
+     * @return object|null
      */
-    public function getOptions(): object|null
+    public function getOptions()
     {
         return $this->container['options'];
     }

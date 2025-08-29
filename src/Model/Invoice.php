@@ -366,8 +366,10 @@ final class Invoice implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -387,8 +389,10 @@ final class Invoice implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets invoice_number
+     *
+     * @return string|null
      */
-    public function getInvoiceNumber(): string|null
+    public function getInvoiceNumber()
     {
         return $this->container['invoice_number'];
     }
@@ -408,8 +412,10 @@ final class Invoice implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets type
+     *
+     * @return string|null
      */
-    public function getType(): string|null
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -439,8 +445,10 @@ final class Invoice implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets order_id
+     *
+     * @return string|null
      */
-    public function getOrderId(): string|null
+    public function getOrderId()
     {
         return $this->container['order_id'];
     }
@@ -460,8 +468,10 @@ final class Invoice implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets related_invoice_id
+     *
+     * @return string|null
      */
-    public function getRelatedInvoiceId(): string|null
+    public function getRelatedInvoiceId()
     {
         return $this->container['related_invoice_id'];
     }
@@ -488,8 +498,10 @@ final class Invoice implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets status
+     *
+     * @return string|null
      */
-    public function getStatus(): string|null
+    public function getStatus()
     {
         return $this->container['status'];
     }
@@ -519,8 +531,10 @@ final class Invoice implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets owner
+     *
+     * @return string|null
      */
-    public function getOwner(): string|null
+    public function getOwner()
     {
         return $this->container['owner'];
     }
@@ -540,8 +554,10 @@ final class Invoice implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets invoice_date
+     *
+     * @return \DateTime|null
      */
-    public function getInvoiceDate(): \DateTime|null
+    public function getInvoiceDate()
     {
         return $this->container['invoice_date'];
     }
@@ -568,8 +584,10 @@ final class Invoice implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets invoice_due
+     *
+     * @return \DateTime|null
      */
-    public function getInvoiceDue(): \DateTime|null
+    public function getInvoiceDue()
     {
         return $this->container['invoice_due'];
     }
@@ -596,8 +614,10 @@ final class Invoice implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets created
+     *
+     * @return \DateTime|null
      */
-    public function getCreated(): \DateTime|null
+    public function getCreated()
     {
         return $this->container['created'];
     }
@@ -624,8 +644,10 @@ final class Invoice implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets changed
+     *
+     * @return \DateTime|null
      */
-    public function getChanged(): \DateTime|null
+    public function getChanged()
     {
         return $this->container['changed'];
     }
@@ -652,8 +674,10 @@ final class Invoice implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets company
+     *
+     * @return string|null
      */
-    public function getCompany(): string|null
+    public function getCompany()
     {
         return $this->container['company'];
     }
@@ -673,8 +697,10 @@ final class Invoice implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets total
+     *
+     * @return float|null
      */
-    public function getTotal(): float|null
+    public function getTotal()
     {
         return $this->container['total'];
     }
@@ -694,8 +720,10 @@ final class Invoice implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets address
+     *
+     * @return \Upsun\Model\Address|null
      */
-    public function getAddress(): \Upsun\Model\Address|null
+    public function getAddress()
     {
         return $this->container['address'];
     }
@@ -715,8 +743,10 @@ final class Invoice implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets notes
+     *
+     * @return string|null
      */
-    public function getNotes(): string|null
+    public function getNotes()
     {
         return $this->container['notes'];
     }
@@ -736,8 +766,10 @@ final class Invoice implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets invoice_pdf
+     *
+     * @return \Upsun\Model\InvoicePDF|null
      */
-    public function getInvoicePdf(): \Upsun\Model\InvoicePDF|null
+    public function getInvoicePdf()
     {
         return $this->container['invoice_pdf'];
     }

@@ -236,8 +236,10 @@ final class CertificateCreateInput implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets certificate
+     *
+     * @return string
      */
-    public function getCertificate(): string
+    public function getCertificate()
     {
         return $this->container['certificate'];
     }
@@ -257,8 +259,10 @@ final class CertificateCreateInput implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets key
+     *
+     * @return string
      */
-    public function getKey(): string
+    public function getKey()
     {
         return $this->container['key'];
     }
@@ -278,8 +282,10 @@ final class CertificateCreateInput implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets chain
+     *
+     * @return string[]|null
      */
-    public function getChain(): array|null
+    public function getChain()
     {
         return $this->container['chain'];
     }
@@ -299,8 +305,10 @@ final class CertificateCreateInput implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets is_invalid
+     *
+     * @return bool|null
      */
-    public function getIsInvalid(): bool|null
+    public function getIsInvalid()
     {
         return $this->container['is_invalid'];
     }

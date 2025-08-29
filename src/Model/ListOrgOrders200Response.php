@@ -216,8 +216,10 @@ final class ListOrgOrders200Response implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets items
+     *
+     * @return \Upsun\Model\Order[]|null
      */
-    public function getItems(): array|null
+    public function getItems()
     {
         return $this->container['items'];
     }
@@ -237,8 +239,10 @@ final class ListOrgOrders200Response implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets _links
+     *
+     * @return \Upsun\Model\ListLinks|null
      */
-    public function getLinks(): \Upsun\Model\ListLinks|null
+    public function getLinks()
     {
         return $this->container['_links'];
     }

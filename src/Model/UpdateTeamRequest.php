@@ -216,8 +216,10 @@ final class UpdateTeamRequest implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets label
+     *
+     * @return string|null
      */
-    public function getLabel(): string|null
+    public function getLabel()
     {
         return $this->container['label'];
     }
@@ -237,8 +239,10 @@ final class UpdateTeamRequest implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets project_permissions
+     *
+     * @return string[]|null
      */
-    public function getProjectPermissions(): array|null
+    public function getProjectPermissions()
     {
         return $this->container['project_permissions'];
     }

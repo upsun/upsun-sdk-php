@@ -276,8 +276,10 @@ final class FoundationDeploymentTarget implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -307,8 +309,10 @@ final class FoundationDeploymentTarget implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets name
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -328,8 +332,10 @@ final class FoundationDeploymentTarget implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets hosts
+     *
+     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]
      */
-    public function getHosts(): array
+    public function getHosts()
     {
         return $this->container['hosts'];
     }
@@ -356,8 +362,10 @@ final class FoundationDeploymentTarget implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets use_dedicated_grid
+     *
+     * @return bool
      */
-    public function getUseDedicatedGrid(): bool
+    public function getUseDedicatedGrid()
     {
         return $this->container['use_dedicated_grid'];
     }
@@ -377,8 +385,10 @@ final class FoundationDeploymentTarget implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets storage_type
+     *
+     * @return string
      */
-    public function getStorageType(): string
+    public function getStorageType()
     {
         return $this->container['storage_type'];
     }

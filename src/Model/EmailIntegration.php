@@ -252,8 +252,10 @@ final class EmailIntegration implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -280,8 +282,10 @@ final class EmailIntegration implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -308,8 +312,10 @@ final class EmailIntegration implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -329,8 +335,10 @@ final class EmailIntegration implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets from_address
+     *
+     * @return string
      */
-    public function getFromAddress(): string
+    public function getFromAddress()
     {
         return $this->container['from_address'];
     }
@@ -357,8 +365,10 @@ final class EmailIntegration implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets recipients
+     *
+     * @return string[]
      */
-    public function getRecipients(): array
+    public function getRecipients()
     {
         return $this->container['recipients'];
     }

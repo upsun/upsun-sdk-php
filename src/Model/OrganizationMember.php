@@ -309,9 +309,11 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Gets id
      *
+     * @return string|null
+     *
      * @deprecated
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -333,8 +335,10 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets organization_id
+     *
+     * @return string|null
      */
-    public function getOrganizationId(): string|null
+    public function getOrganizationId()
     {
         return $this->container['organization_id'];
     }
@@ -354,8 +358,10 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets user_id
+     *
+     * @return string|null
      */
-    public function getUserId(): string|null
+    public function getUserId()
     {
         return $this->container['user_id'];
     }
@@ -375,8 +381,10 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets permissions
+     *
+     * @return string[]|null
      */
-    public function getPermissions(): array|null
+    public function getPermissions()
     {
         return $this->container['permissions'];
     }
@@ -405,8 +413,10 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets level
+     *
+     * @return string|null
      */
-    public function getLevel(): string|null
+    public function getLevel()
     {
         return $this->container['level'];
     }
@@ -436,8 +446,10 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets owner
+     *
+     * @return bool|null
      */
-    public function getOwner(): bool|null
+    public function getOwner()
     {
         return $this->container['owner'];
     }
@@ -457,8 +469,10 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime|null
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -478,8 +492,10 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime|null
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -499,8 +515,10 @@ final class OrganizationMember implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets _links
+     *
+     * @return \Upsun\Model\OrganizationMemberLinks|null
      */
-    public function getLinks(): \Upsun\Model\OrganizationMemberLinks|null
+    public function getLinks()
     {
         return $this->container['_links'];
     }

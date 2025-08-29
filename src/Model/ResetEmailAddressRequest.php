@@ -212,8 +212,10 @@ final class ResetEmailAddressRequest implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets email_address
+     *
+     * @return string
      */
-    public function getEmailAddress(): string
+    public function getEmailAddress()
     {
         return $this->container['email_address'];
     }

@@ -258,8 +258,10 @@ final class StringFilter implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets eq
+     *
+     * @return string|null
      */
-    public function getEq(): string|null
+    public function getEq()
     {
         return $this->container['eq'];
     }
@@ -279,8 +281,10 @@ final class StringFilter implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets ne
+     *
+     * @return string|null
      */
-    public function getNe(): string|null
+    public function getNe()
     {
         return $this->container['ne'];
     }
@@ -300,8 +304,10 @@ final class StringFilter implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets in
+     *
+     * @return string|null
      */
-    public function getIn(): string|null
+    public function getIn()
     {
         return $this->container['in'];
     }
@@ -321,8 +327,10 @@ final class StringFilter implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets nin
+     *
+     * @return string|null
      */
-    public function getNin(): string|null
+    public function getNin()
     {
         return $this->container['nin'];
     }
@@ -342,8 +350,10 @@ final class StringFilter implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets between
+     *
+     * @return string|null
      */
-    public function getBetween(): string|null
+    public function getBetween()
     {
         return $this->container['between'];
     }
@@ -363,8 +373,10 @@ final class StringFilter implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets contains
+     *
+     * @return string|null
      */
-    public function getContains(): string|null
+    public function getContains()
     {
         return $this->container['contains'];
     }
@@ -384,8 +396,10 @@ final class StringFilter implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets starts
+     *
+     * @return string|null
      */
-    public function getStarts(): string|null
+    public function getStarts()
     {
         return $this->container['starts'];
     }
@@ -405,8 +419,10 @@ final class StringFilter implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets ends
+     *
+     * @return string|null
      */
-    public function getEnds(): string|null
+    public function getEnds()
     {
         return $this->container['ends'];
     }

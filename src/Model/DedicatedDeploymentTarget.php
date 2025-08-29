@@ -356,8 +356,10 @@ final class DedicatedDeploymentTarget implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -387,8 +389,10 @@ final class DedicatedDeploymentTarget implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets name
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -408,8 +412,10 @@ final class DedicatedDeploymentTarget implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets deploy_host
+     *
+     * @return string
      */
-    public function getDeployHost(): string
+    public function getDeployHost()
     {
         return $this->container['deploy_host'];
     }
@@ -436,8 +442,10 @@ final class DedicatedDeploymentTarget implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets deploy_port
+     *
+     * @return int
      */
-    public function getDeployPort(): int
+    public function getDeployPort()
     {
         return $this->container['deploy_port'];
     }
@@ -464,8 +472,10 @@ final class DedicatedDeploymentTarget implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets ssh_host
+     *
+     * @return string
      */
-    public function getSshHost(): string
+    public function getSshHost()
     {
         return $this->container['ssh_host'];
     }
@@ -492,8 +502,10 @@ final class DedicatedDeploymentTarget implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets hosts
+     *
+     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]
      */
-    public function getHosts(): array
+    public function getHosts()
     {
         return $this->container['hosts'];
     }
@@ -520,8 +532,10 @@ final class DedicatedDeploymentTarget implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets auto_mounts
+     *
+     * @return bool
      */
-    public function getAutoMounts(): bool
+    public function getAutoMounts()
     {
         return $this->container['auto_mounts'];
     }
@@ -541,8 +555,10 @@ final class DedicatedDeploymentTarget implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets excluded_mounts
+     *
+     * @return string[]
      */
-    public function getExcludedMounts(): array
+    public function getExcludedMounts()
     {
         return $this->container['excluded_mounts'];
     }
@@ -562,8 +578,10 @@ final class DedicatedDeploymentTarget implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets enforced_mounts
+     *
+     * @return object
      */
-    public function getEnforcedMounts(): object
+    public function getEnforcedMounts()
     {
         return $this->container['enforced_mounts'];
     }
@@ -583,8 +601,10 @@ final class DedicatedDeploymentTarget implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets auto_crons
+     *
+     * @return bool
      */
-    public function getAutoCrons(): bool
+    public function getAutoCrons()
     {
         return $this->container['auto_crons'];
     }
@@ -604,8 +624,10 @@ final class DedicatedDeploymentTarget implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets auto_nginx
+     *
+     * @return bool
      */
-    public function getAutoNginx(): bool
+    public function getAutoNginx()
     {
         return $this->container['auto_nginx'];
     }
@@ -625,8 +647,10 @@ final class DedicatedDeploymentTarget implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets maintenance_mode
+     *
+     * @return bool
      */
-    public function getMaintenanceMode(): bool
+    public function getMaintenanceMode()
     {
         return $this->container['maintenance_mode'];
     }
@@ -646,8 +670,10 @@ final class DedicatedDeploymentTarget implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets guardrails_phase
+     *
+     * @return int
      */
-    public function getGuardrailsPhase(): int
+    public function getGuardrailsPhase()
     {
         return $this->container['guardrails_phase'];
     }

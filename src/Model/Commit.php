@@ -262,8 +262,10 @@ final class Commit implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets sha
+     *
+     * @return string
      */
-    public function getSha(): string
+    public function getSha()
     {
         return $this->container['sha'];
     }
@@ -283,8 +285,10 @@ final class Commit implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets author
+     *
+     * @return \Upsun\Model\TheInformationAboutTheAuthor
      */
-    public function getAuthor(): \Upsun\Model\TheInformationAboutTheAuthor
+    public function getAuthor()
     {
         return $this->container['author'];
     }
@@ -304,8 +308,10 @@ final class Commit implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets committer
+     *
+     * @return \Upsun\Model\TheInformationAboutTheCommitter
      */
-    public function getCommitter(): \Upsun\Model\TheInformationAboutTheCommitter
+    public function getCommitter()
     {
         return $this->container['committer'];
     }
@@ -325,8 +331,10 @@ final class Commit implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets message
+     *
+     * @return string
      */
-    public function getMessage(): string
+    public function getMessage()
     {
         return $this->container['message'];
     }
@@ -346,8 +354,10 @@ final class Commit implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets tree
+     *
+     * @return string
      */
-    public function getTree(): string
+    public function getTree()
     {
         return $this->container['tree'];
     }
@@ -367,8 +377,10 @@ final class Commit implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets parents
+     *
+     * @return string[]
      */
-    public function getParents(): array
+    public function getParents()
     {
         return $this->container['parents'];
     }

@@ -230,8 +230,10 @@ final class VouchersVouchersInner implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets code
+     *
+     * @return string|null
      */
-    public function getCode(): string|null
+    public function getCode()
     {
         return $this->container['code'];
     }
@@ -251,8 +253,10 @@ final class VouchersVouchersInner implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets amount
+     *
+     * @return string|null
      */
-    public function getAmount(): string|null
+    public function getAmount()
     {
         return $this->container['amount'];
     }
@@ -272,8 +276,10 @@ final class VouchersVouchersInner implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets currency
+     *
+     * @return string|null
      */
-    public function getCurrency(): string|null
+    public function getCurrency()
     {
         return $this->container['currency'];
     }
@@ -293,8 +299,10 @@ final class VouchersVouchersInner implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets orders
+     *
+     * @return \Upsun\Model\VouchersVouchersInnerOrdersInner[]|null
      */
-    public function getOrders(): array|null
+    public function getOrders()
     {
         return $this->container['orders'];
     }

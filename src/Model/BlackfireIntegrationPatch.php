@@ -212,8 +212,10 @@ final class BlackfireIntegrationPatch implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }

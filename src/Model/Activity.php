@@ -436,8 +436,10 @@ final class Activity implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -464,8 +466,10 @@ final class Activity implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -492,8 +496,10 @@ final class Activity implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -513,8 +519,10 @@ final class Activity implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets parameters
+     *
+     * @return object
      */
-    public function getParameters(): object
+    public function getParameters()
     {
         return $this->container['parameters'];
     }
@@ -534,8 +542,10 @@ final class Activity implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets project
+     *
+     * @return string
      */
-    public function getProject(): string
+    public function getProject()
     {
         return $this->container['project'];
     }
@@ -555,8 +565,10 @@ final class Activity implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets integration
+     *
+     * @return string|null
      */
-    public function getIntegration(): string|null
+    public function getIntegration()
     {
         return $this->container['integration'];
     }
@@ -576,8 +588,10 @@ final class Activity implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets environments
+     *
+     * @return string[]|null
      */
-    public function getEnvironments(): array|null
+    public function getEnvironments()
     {
         return $this->container['environments'];
     }
@@ -597,8 +611,10 @@ final class Activity implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets state
+     *
+     * @return string
      */
-    public function getState(): string
+    public function getState()
     {
         return $this->container['state'];
     }
@@ -628,8 +644,10 @@ final class Activity implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets result
+     *
+     * @return string
      */
-    public function getResult(): string
+    public function getResult()
     {
         return $this->container['result'];
     }
@@ -666,8 +684,10 @@ final class Activity implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets started_at
+     *
+     * @return \DateTime
      */
-    public function getStartedAt(): \DateTime
+    public function getStartedAt()
     {
         return $this->container['started_at'];
     }
@@ -694,8 +714,10 @@ final class Activity implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets completed_at
+     *
+     * @return \DateTime
      */
-    public function getCompletedAt(): \DateTime
+    public function getCompletedAt()
     {
         return $this->container['completed_at'];
     }
@@ -722,8 +744,10 @@ final class Activity implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets completion_percent
+     *
+     * @return int
      */
-    public function getCompletionPercent(): int
+    public function getCompletionPercent()
     {
         return $this->container['completion_percent'];
     }
@@ -743,8 +767,10 @@ final class Activity implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets cancelled_at
+     *
+     * @return \DateTime
      */
-    public function getCancelledAt(): \DateTime
+    public function getCancelledAt()
     {
         return $this->container['cancelled_at'];
     }
@@ -771,8 +797,10 @@ final class Activity implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets timings
+     *
+     * @return array<string,float>
      */
-    public function getTimings(): array
+    public function getTimings()
     {
         return $this->container['timings'];
     }
@@ -793,9 +821,11 @@ final class Activity implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets log
      *
+     * @return string
+     *
      * @deprecated
      */
-    public function getLog(): string
+    public function getLog()
     {
         return $this->container['log'];
     }
@@ -817,8 +847,10 @@ final class Activity implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets payload
+     *
+     * @return object
      */
-    public function getPayload(): object
+    public function getPayload()
     {
         return $this->container['payload'];
     }
@@ -838,8 +870,10 @@ final class Activity implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets description
+     *
+     * @return string
      */
-    public function getDescription(): string
+    public function getDescription()
     {
         return $this->container['description'];
     }
@@ -866,8 +900,10 @@ final class Activity implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets text
+     *
+     * @return string
      */
-    public function getText(): string
+    public function getText()
     {
         return $this->container['text'];
     }
@@ -894,8 +930,10 @@ final class Activity implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets expires_at
+     *
+     * @return \DateTime
      */
-    public function getExpiresAt(): \DateTime
+    public function getExpiresAt()
     {
         return $this->container['expires_at'];
     }

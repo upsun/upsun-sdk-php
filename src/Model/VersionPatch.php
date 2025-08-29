@@ -209,8 +209,10 @@ final class VersionPatch implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets routing
+     *
+     * @return \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1|null
      */
-    public function getRouting(): \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1|null
+    public function getRouting()
     {
         return $this->container['routing'];
     }

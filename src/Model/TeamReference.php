@@ -282,8 +282,10 @@ final class TeamReference implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -303,8 +305,10 @@ final class TeamReference implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets organization_id
+     *
+     * @return string|null
      */
-    public function getOrganizationId(): string|null
+    public function getOrganizationId()
     {
         return $this->container['organization_id'];
     }
@@ -324,8 +328,10 @@ final class TeamReference implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets label
+     *
+     * @return string|null
      */
-    public function getLabel(): string|null
+    public function getLabel()
     {
         return $this->container['label'];
     }
@@ -345,8 +351,10 @@ final class TeamReference implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets project_permissions
+     *
+     * @return string[]|null
      */
-    public function getProjectPermissions(): array|null
+    public function getProjectPermissions()
     {
         return $this->container['project_permissions'];
     }
@@ -375,8 +383,10 @@ final class TeamReference implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets counts
+     *
+     * @return \Upsun\Model\TeamCounts|null
      */
-    public function getCounts(): \Upsun\Model\TeamCounts|null
+    public function getCounts()
     {
         return $this->container['counts'];
     }
@@ -396,8 +406,10 @@ final class TeamReference implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime|null
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -417,8 +429,10 @@ final class TeamReference implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime|null
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }

@@ -254,8 +254,10 @@ final class CreateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
 
     /**
      * Gets plan
+     *
+     * @return string|null
      */
-    public function getPlan(): string|null
+    public function getPlan()
     {
         return $this->container['plan'];
     }
@@ -275,8 +277,10 @@ final class CreateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
 
     /**
      * Gets project_region
+     *
+     * @return string
      */
-    public function getProjectRegion(): string
+    public function getProjectRegion()
     {
         return $this->container['project_region'];
     }
@@ -296,8 +300,10 @@ final class CreateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
 
     /**
      * Gets project_title
+     *
+     * @return string|null
      */
-    public function getProjectTitle(): string|null
+    public function getProjectTitle()
     {
         return $this->container['project_title'];
     }
@@ -317,8 +323,10 @@ final class CreateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
 
     /**
      * Gets options_url
+     *
+     * @return string|null
      */
-    public function getOptionsUrl(): string|null
+    public function getOptionsUrl()
     {
         return $this->container['options_url'];
     }
@@ -338,8 +346,10 @@ final class CreateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
 
     /**
      * Gets default_branch
+     *
+     * @return string|null
      */
-    public function getDefaultBranch(): string|null
+    public function getDefaultBranch()
     {
         return $this->container['default_branch'];
     }
@@ -359,8 +369,10 @@ final class CreateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
 
     /**
      * Gets environments
+     *
+     * @return int|null
      */
-    public function getEnvironments(): int|null
+    public function getEnvironments()
     {
         return $this->container['environments'];
     }
@@ -380,8 +392,10 @@ final class CreateOrgSubscriptionRequest implements ModelInterface, ArrayAccess,
 
     /**
      * Gets storage
+     *
+     * @return int|null
      */
-    public function getStorage(): int|null
+    public function getStorage()
     {
         return $this->container['storage'];
     }

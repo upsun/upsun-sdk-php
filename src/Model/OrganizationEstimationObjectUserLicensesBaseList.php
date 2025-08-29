@@ -216,8 +216,10 @@ final class OrganizationEstimationObjectUserLicensesBaseList implements ModelInt
 
     /**
      * Gets admin_user
+     *
+     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser|null
      */
-    public function getAdminUser(): \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser|null
+    public function getAdminUser()
     {
         return $this->container['admin_user'];
     }
@@ -237,8 +239,10 @@ final class OrganizationEstimationObjectUserLicensesBaseList implements ModelInt
 
     /**
      * Gets viewer_user
+     *
+     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser|null
      */
-    public function getViewerUser(): \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser|null
+    public function getViewerUser()
     {
         return $this->container['viewer_user'];
     }

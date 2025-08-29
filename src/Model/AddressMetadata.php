@@ -209,8 +209,10 @@ final class AddressMetadata implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets metadata
+     *
+     * @return \Upsun\Model\AddressMetadataMetadata|null
      */
-    public function getMetadata(): \Upsun\Model\AddressMetadataMetadata|null
+    public function getMetadata()
     {
         return $this->container['metadata'];
     }

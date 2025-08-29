@@ -352,8 +352,10 @@ final class Project implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -380,8 +382,10 @@ final class Project implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -408,8 +412,10 @@ final class Project implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets attributes
+     *
+     * @return array<string,string>
      */
-    public function getAttributes(): array
+    public function getAttributes()
     {
         return $this->container['attributes'];
     }
@@ -429,8 +435,10 @@ final class Project implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets title
+     *
+     * @return string
      */
-    public function getTitle(): string
+    public function getTitle()
     {
         return $this->container['title'];
     }
@@ -450,8 +458,10 @@ final class Project implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets description
+     *
+     * @return string
      */
-    public function getDescription(): string
+    public function getDescription()
     {
         return $this->container['description'];
     }
@@ -472,9 +482,11 @@ final class Project implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets owner
      *
+     * @return string
+     *
      * @deprecated
      */
-    public function getOwner(): string
+    public function getOwner()
     {
         return $this->container['owner'];
     }
@@ -496,8 +508,10 @@ final class Project implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets namespace
+     *
+     * @return string
      */
-    public function getNamespace(): string
+    public function getNamespace()
     {
         return $this->container['namespace'];
     }
@@ -524,8 +538,10 @@ final class Project implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets organization
+     *
+     * @return string
      */
-    public function getOrganization(): string
+    public function getOrganization()
     {
         return $this->container['organization'];
     }
@@ -552,8 +568,10 @@ final class Project implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets default_branch
+     *
+     * @return string
      */
-    public function getDefaultBranch(): string
+    public function getDefaultBranch()
     {
         return $this->container['default_branch'];
     }
@@ -580,8 +598,10 @@ final class Project implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets status
+     *
+     * @return \Upsun\Model\Status
      */
-    public function getStatus(): \Upsun\Model\Status
+    public function getStatus()
     {
         return $this->container['status'];
     }
@@ -601,8 +621,10 @@ final class Project implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets timezone
+     *
+     * @return string
      */
-    public function getTimezone(): string
+    public function getTimezone()
     {
         return $this->container['timezone'];
     }
@@ -622,8 +644,10 @@ final class Project implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets region
+     *
+     * @return string
      */
-    public function getRegion(): string
+    public function getRegion()
     {
         return $this->container['region'];
     }
@@ -643,8 +667,10 @@ final class Project implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets repository
+     *
+     * @return \Upsun\Model\RepositoryInformation
      */
-    public function getRepository(): \Upsun\Model\RepositoryInformation
+    public function getRepository()
     {
         return $this->container['repository'];
     }
@@ -664,8 +690,10 @@ final class Project implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets default_domain
+     *
+     * @return string
      */
-    public function getDefaultDomain(): string
+    public function getDefaultDomain()
     {
         return $this->container['default_domain'];
     }
@@ -692,8 +720,10 @@ final class Project implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets subscription
+     *
+     * @return \Upsun\Model\SubscriptionInformation
      */
-    public function getSubscription(): \Upsun\Model\SubscriptionInformation
+    public function getSubscription()
     {
         return $this->container['subscription'];
     }

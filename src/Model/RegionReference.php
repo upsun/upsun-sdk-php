@@ -353,8 +353,10 @@ final class RegionReference implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets id
+     *
+     * @return string
      */
-    public function getId(): string
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -374,8 +376,10 @@ final class RegionReference implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets label
+     *
+     * @return string
      */
-    public function getLabel(): string
+    public function getLabel()
     {
         return $this->container['label'];
     }
@@ -395,8 +399,10 @@ final class RegionReference implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets zone
+     *
+     * @return string
      */
-    public function getZone(): string
+    public function getZone()
     {
         return $this->container['zone'];
     }
@@ -416,8 +422,10 @@ final class RegionReference implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets selection_label
+     *
+     * @return string
      */
-    public function getSelectionLabel(): string
+    public function getSelectionLabel()
     {
         return $this->container['selection_label'];
     }
@@ -437,8 +445,10 @@ final class RegionReference implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets project_label
+     *
+     * @return string
      */
-    public function getProjectLabel(): string
+    public function getProjectLabel()
     {
         return $this->container['project_label'];
     }
@@ -458,8 +468,10 @@ final class RegionReference implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets timezone
+     *
+     * @return string
      */
-    public function getTimezone(): string
+    public function getTimezone()
     {
         return $this->container['timezone'];
     }
@@ -479,8 +491,10 @@ final class RegionReference implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets available
+     *
+     * @return bool
      */
-    public function getAvailable(): bool
+    public function getAvailable()
     {
         return $this->container['available'];
     }
@@ -500,8 +514,10 @@ final class RegionReference implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets private
+     *
+     * @return bool|null
      */
-    public function getPrivate(): bool|null
+    public function getPrivate()
     {
         return $this->container['private'];
     }
@@ -521,8 +537,10 @@ final class RegionReference implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets endpoint
+     *
+     * @return string
      */
-    public function getEndpoint(): string
+    public function getEndpoint()
     {
         return $this->container['endpoint'];
     }
@@ -542,8 +560,10 @@ final class RegionReference implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets code
+     *
+     * @return string|null
      */
-    public function getCode(): string|null
+    public function getCode()
     {
         return $this->container['code'];
     }
@@ -563,8 +583,10 @@ final class RegionReference implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets provider
+     *
+     * @return object
      */
-    public function getProvider(): object
+    public function getProvider()
     {
         return $this->container['provider'];
     }
@@ -584,8 +606,10 @@ final class RegionReference implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets datacenter
+     *
+     * @return object
      */
-    public function getDatacenter(): object
+    public function getDatacenter()
     {
         return $this->container['datacenter'];
     }
@@ -605,8 +629,10 @@ final class RegionReference implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets envimpact
+     *
+     * @return object|null
      */
-    public function getEnvimpact(): object|null
+    public function getEnvimpact()
     {
         return $this->container['envimpact'];
     }
@@ -626,8 +652,10 @@ final class RegionReference implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets compliance
+     *
+     * @return object
      */
-    public function getCompliance(): object
+    public function getCompliance()
     {
         return $this->container['compliance'];
     }
@@ -647,8 +675,10 @@ final class RegionReference implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -668,8 +698,10 @@ final class RegionReference implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }

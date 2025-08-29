@@ -286,8 +286,10 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
 
     /**
      * Gets root
+     *
+     * @return string
      */
-    public function getRoot(): string
+    public function getRoot()
     {
         return $this->container['root'];
     }
@@ -314,8 +316,10 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
 
     /**
      * Gets expires
+     *
+     * @return string
      */
-    public function getExpires(): string
+    public function getExpires()
     {
         return $this->container['expires'];
     }
@@ -335,8 +339,10 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
 
     /**
      * Gets passthru
+     *
+     * @return string
      */
-    public function getPassthru(): string
+    public function getPassthru()
     {
         return $this->container['passthru'];
     }
@@ -356,8 +362,10 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
 
     /**
      * Gets scripts
+     *
+     * @return bool
      */
-    public function getScripts(): bool
+    public function getScripts()
     {
         return $this->container['scripts'];
     }
@@ -377,8 +385,10 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
 
     /**
      * Gets index
+     *
+     * @return string[]|null
      */
-    public function getIndex(): array|null
+    public function getIndex()
     {
         return $this->container['index'];
     }
@@ -405,8 +415,10 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
 
     /**
      * Gets allow
+     *
+     * @return bool
      */
-    public function getAllow(): bool
+    public function getAllow()
     {
         return $this->container['allow'];
     }
@@ -426,8 +438,10 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
 
     /**
      * Gets headers
+     *
+     * @return array<string,string>
      */
-    public function getHeaders(): array
+    public function getHeaders()
     {
         return $this->container['headers'];
     }
@@ -447,8 +461,10 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
 
     /**
      * Gets rules
+     *
+     * @return array<string,\Upsun\Model\SpecificOverridesValue>
      */
-    public function getRules(): array
+    public function getRules()
     {
         return $this->container['rules'];
     }
@@ -468,8 +484,10 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
 
     /**
      * Gets request_buffering
+     *
+     * @return \Upsun\Model\ConfigurationForSupportingRequestBuffering|null
      */
-    public function getRequestBuffering(): \Upsun\Model\ConfigurationForSupportingRequestBuffering|null
+    public function getRequestBuffering()
     {
         return $this->container['request_buffering'];
     }

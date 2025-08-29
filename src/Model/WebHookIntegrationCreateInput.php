@@ -288,8 +288,10 @@ final class WebHookIntegrationCreateInput implements ModelInterface, ArrayAccess
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -309,8 +311,10 @@ final class WebHookIntegrationCreateInput implements ModelInterface, ArrayAccess
 
     /**
      * Gets events
+     *
+     * @return string[]|null
      */
-    public function getEvents(): array|null
+    public function getEvents()
     {
         return $this->container['events'];
     }
@@ -330,8 +334,10 @@ final class WebHookIntegrationCreateInput implements ModelInterface, ArrayAccess
 
     /**
      * Gets environments
+     *
+     * @return string[]|null
      */
-    public function getEnvironments(): array|null
+    public function getEnvironments()
     {
         return $this->container['environments'];
     }
@@ -351,8 +357,10 @@ final class WebHookIntegrationCreateInput implements ModelInterface, ArrayAccess
 
     /**
      * Gets excluded_environments
+     *
+     * @return string[]|null
      */
-    public function getExcludedEnvironments(): array|null
+    public function getExcludedEnvironments()
     {
         return $this->container['excluded_environments'];
     }
@@ -372,8 +380,10 @@ final class WebHookIntegrationCreateInput implements ModelInterface, ArrayAccess
 
     /**
      * Gets states
+     *
+     * @return string[]|null
      */
-    public function getStates(): array|null
+    public function getStates()
     {
         return $this->container['states'];
     }
@@ -393,8 +403,10 @@ final class WebHookIntegrationCreateInput implements ModelInterface, ArrayAccess
 
     /**
      * Gets result
+     *
+     * @return string|null
      */
-    public function getResult(): string|null
+    public function getResult()
     {
         return $this->container['result'];
     }
@@ -424,8 +436,10 @@ final class WebHookIntegrationCreateInput implements ModelInterface, ArrayAccess
 
     /**
      * Gets shared_key
+     *
+     * @return string|null
      */
-    public function getSharedKey(): string|null
+    public function getSharedKey()
     {
         return $this->container['shared_key'];
     }
@@ -452,8 +466,10 @@ final class WebHookIntegrationCreateInput implements ModelInterface, ArrayAccess
 
     /**
      * Gets url
+     *
+     * @return string
      */
-    public function getUrl(): string
+    public function getUrl()
     {
         return $this->container['url'];
     }

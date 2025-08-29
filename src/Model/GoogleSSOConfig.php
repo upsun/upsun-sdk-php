@@ -236,8 +236,10 @@ final class GoogleSSOConfig implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets provider_type
+     *
+     * @return string|null
      */
-    public function getProviderType(): string|null
+    public function getProviderType()
     {
         return $this->container['provider_type'];
     }
@@ -267,8 +269,10 @@ final class GoogleSSOConfig implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets domain
+     *
+     * @return string|null
      */
-    public function getDomain(): string|null
+    public function getDomain()
     {
         return $this->container['domain'];
     }

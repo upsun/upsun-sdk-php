@@ -279,8 +279,10 @@ final class GetAddress200Response implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets country
+     *
+     * @return string|null
      */
-    public function getCountry(): string|null
+    public function getCountry()
     {
         return $this->container['country'];
     }
@@ -300,8 +302,10 @@ final class GetAddress200Response implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets name_line
+     *
+     * @return string|null
      */
-    public function getNameLine(): string|null
+    public function getNameLine()
     {
         return $this->container['name_line'];
     }
@@ -321,8 +325,10 @@ final class GetAddress200Response implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets premise
+     *
+     * @return string|null
      */
-    public function getPremise(): string|null
+    public function getPremise()
     {
         return $this->container['premise'];
     }
@@ -342,8 +348,10 @@ final class GetAddress200Response implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets sub_premise
+     *
+     * @return string|null
      */
-    public function getSubPremise(): string|null
+    public function getSubPremise()
     {
         return $this->container['sub_premise'];
     }
@@ -363,8 +371,10 @@ final class GetAddress200Response implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets thoroughfare
+     *
+     * @return string|null
      */
-    public function getThoroughfare(): string|null
+    public function getThoroughfare()
     {
         return $this->container['thoroughfare'];
     }
@@ -384,8 +394,10 @@ final class GetAddress200Response implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets administrative_area
+     *
+     * @return string|null
      */
-    public function getAdministrativeArea(): string|null
+    public function getAdministrativeArea()
     {
         return $this->container['administrative_area'];
     }
@@ -405,8 +417,10 @@ final class GetAddress200Response implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets sub_administrative_area
+     *
+     * @return string|null
      */
-    public function getSubAdministrativeArea(): string|null
+    public function getSubAdministrativeArea()
     {
         return $this->container['sub_administrative_area'];
     }
@@ -426,8 +440,10 @@ final class GetAddress200Response implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets locality
+     *
+     * @return string|null
      */
-    public function getLocality(): string|null
+    public function getLocality()
     {
         return $this->container['locality'];
     }
@@ -447,8 +463,10 @@ final class GetAddress200Response implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets dependent_locality
+     *
+     * @return string|null
      */
-    public function getDependentLocality(): string|null
+    public function getDependentLocality()
     {
         return $this->container['dependent_locality'];
     }
@@ -468,8 +486,10 @@ final class GetAddress200Response implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets postal_code
+     *
+     * @return string|null
      */
-    public function getPostalCode(): string|null
+    public function getPostalCode()
     {
         return $this->container['postal_code'];
     }
@@ -489,8 +509,10 @@ final class GetAddress200Response implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets metadata
+     *
+     * @return \Upsun\Model\AddressMetadataMetadata|null
      */
-    public function getMetadata(): \Upsun\Model\AddressMetadataMetadata|null
+    public function getMetadata()
     {
         return $this->container['metadata'];
     }

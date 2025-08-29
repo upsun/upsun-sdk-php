@@ -216,8 +216,10 @@ final class ListRegions200Response implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets regions
+     *
+     * @return \Upsun\Model\Region[]|null
      */
-    public function getRegions(): array|null
+    public function getRegions()
     {
         return $this->container['regions'];
     }
@@ -237,8 +239,10 @@ final class ListRegions200Response implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets _links
+     *
+     * @return \Upsun\Model\ListLinks|null
      */
-    public function getLinks(): \Upsun\Model\ListLinks|null
+    public function getLinks()
     {
         return $this->container['_links'];
     }

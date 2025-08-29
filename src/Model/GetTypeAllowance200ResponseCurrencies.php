@@ -237,8 +237,10 @@ final class GetTypeAllowance200ResponseCurrencies implements ModelInterface, Arr
 
     /**
      * Gets eur
+     *
+     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR|null
      */
-    public function getEur(): \Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR|null
+    public function getEur()
     {
         return $this->container['eur'];
     }
@@ -258,8 +260,10 @@ final class GetTypeAllowance200ResponseCurrencies implements ModelInterface, Arr
 
     /**
      * Gets usd
+     *
+     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD|null
      */
-    public function getUsd(): \Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD|null
+    public function getUsd()
     {
         return $this->container['usd'];
     }
@@ -279,8 +283,10 @@ final class GetTypeAllowance200ResponseCurrencies implements ModelInterface, Arr
 
     /**
      * Gets gbp
+     *
+     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP|null
      */
-    public function getGbp(): \Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP|null
+    public function getGbp()
     {
         return $this->container['gbp'];
     }
@@ -300,8 +306,10 @@ final class GetTypeAllowance200ResponseCurrencies implements ModelInterface, Arr
 
     /**
      * Gets aud
+     *
+     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD|null
      */
-    public function getAud(): \Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD|null
+    public function getAud()
     {
         return $this->container['aud'];
     }
@@ -321,8 +329,10 @@ final class GetTypeAllowance200ResponseCurrencies implements ModelInterface, Arr
 
     /**
      * Gets cad
+     *
+     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD|null
      */
-    public function getCad(): \Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD|null
+    public function getCad()
     {
         return $this->container['cad'];
     }

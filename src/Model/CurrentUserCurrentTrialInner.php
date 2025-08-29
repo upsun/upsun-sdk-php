@@ -230,8 +230,10 @@ final class CurrentUserCurrentTrialInner implements ModelInterface, ArrayAccess,
 
     /**
      * Gets created
+     *
+     * @return \DateTime|null
      */
-    public function getCreated(): \DateTime|null
+    public function getCreated()
     {
         return $this->container['created'];
     }
@@ -251,8 +253,10 @@ final class CurrentUserCurrentTrialInner implements ModelInterface, ArrayAccess,
 
     /**
      * Gets description
+     *
+     * @return string|null
      */
-    public function getDescription(): string|null
+    public function getDescription()
     {
         return $this->container['description'];
     }
@@ -272,8 +276,10 @@ final class CurrentUserCurrentTrialInner implements ModelInterface, ArrayAccess,
 
     /**
      * Gets spend_remaining
+     *
+     * @return string|null
      */
-    public function getSpendRemaining(): string|null
+    public function getSpendRemaining()
     {
         return $this->container['spend_remaining'];
     }
@@ -293,8 +299,10 @@ final class CurrentUserCurrentTrialInner implements ModelInterface, ArrayAccess,
 
     /**
      * Gets expiration
+     *
+     * @return \DateTime|null
      */
-    public function getExpiration(): \DateTime|null
+    public function getExpiration()
     {
         return $this->container['expiration'];
     }

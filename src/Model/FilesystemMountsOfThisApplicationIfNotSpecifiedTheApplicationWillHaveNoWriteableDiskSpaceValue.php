@@ -259,8 +259,10 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
 
     /**
      * Gets source
+     *
+     * @return string
      */
-    public function getSource(): string
+    public function getSource()
     {
         return $this->container['source'];
     }
@@ -290,8 +292,10 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
 
     /**
      * Gets source_path
+     *
+     * @return string
      */
-    public function getSourcePath(): string
+    public function getSourcePath()
     {
         return $this->container['source_path'];
     }
@@ -311,8 +315,10 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
 
     /**
      * Gets service
+     *
+     * @return string|null
      */
-    public function getService(): string|null
+    public function getService()
     {
         return $this->container['service'];
     }

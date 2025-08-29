@@ -223,8 +223,10 @@ final class DiscountCommitment implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets months
+     *
+     * @return int|null
      */
-    public function getMonths(): int|null
+    public function getMonths()
     {
         return $this->container['months'];
     }
@@ -244,8 +246,10 @@ final class DiscountCommitment implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets amount
+     *
+     * @return \Upsun\Model\DiscountCommitmentAmount|null
      */
-    public function getAmount(): \Upsun\Model\DiscountCommitmentAmount|null
+    public function getAmount()
     {
         return $this->container['amount'];
     }
@@ -265,8 +269,10 @@ final class DiscountCommitment implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets net
+     *
+     * @return \Upsun\Model\DiscountCommitmentNet|null
      */
-    public function getNet(): \Upsun\Model\DiscountCommitmentNet|null
+    public function getNet()
     {
         return $this->container['net'];
     }

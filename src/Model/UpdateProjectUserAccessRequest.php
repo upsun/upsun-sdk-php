@@ -243,8 +243,10 @@ final class UpdateProjectUserAccessRequest implements ModelInterface, ArrayAcces
 
     /**
      * Gets permissions
+     *
+     * @return string[]
      */
-    public function getPermissions(): array
+    public function getPermissions()
     {
         return $this->container['permissions'];
     }

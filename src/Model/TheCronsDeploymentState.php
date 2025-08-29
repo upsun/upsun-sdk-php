@@ -246,8 +246,10 @@ final class TheCronsDeploymentState implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets enabled
+     *
+     * @return bool
      */
-    public function getEnabled(): bool
+    public function getEnabled()
     {
         return $this->container['enabled'];
     }
@@ -267,8 +269,10 @@ final class TheCronsDeploymentState implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets status
+     *
+     * @return string
      */
-    public function getStatus(): string
+    public function getStatus()
     {
         return $this->container['status'];
     }

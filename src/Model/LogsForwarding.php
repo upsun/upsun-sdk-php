@@ -212,8 +212,10 @@ final class LogsForwarding implements ModelInterface, ArrayAccess, JsonSerializa
 
     /**
      * Gets max_extra_payload_size
+     *
+     * @return int
      */
-    public function getMaxExtraPayloadSize(): int
+    public function getMaxExtraPayloadSize()
     {
         return $this->container['max_extra_payload_size'];
     }

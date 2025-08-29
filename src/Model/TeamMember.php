@@ -230,8 +230,10 @@ final class TeamMember implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets team_id
+     *
+     * @return string|null
      */
-    public function getTeamId(): string|null
+    public function getTeamId()
     {
         return $this->container['team_id'];
     }
@@ -251,8 +253,10 @@ final class TeamMember implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets user_id
+     *
+     * @return string|null
      */
-    public function getUserId(): string|null
+    public function getUserId()
     {
         return $this->container['user_id'];
     }
@@ -272,8 +276,10 @@ final class TeamMember implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime|null
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -293,8 +299,10 @@ final class TeamMember implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime|null
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }

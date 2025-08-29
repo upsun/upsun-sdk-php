@@ -232,8 +232,10 @@ final class SlackIntegrationPatch implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -253,8 +255,10 @@ final class SlackIntegrationPatch implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets token
+     *
+     * @return string
      */
-    public function getToken(): string
+    public function getToken()
     {
         return $this->container['token'];
     }
@@ -274,8 +278,10 @@ final class SlackIntegrationPatch implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets channel
+     *
+     * @return string
      */
-    public function getChannel(): string
+    public function getChannel()
     {
         return $this->container['channel'];
     }

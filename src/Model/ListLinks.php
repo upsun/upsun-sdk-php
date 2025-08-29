@@ -223,8 +223,10 @@ final class ListLinks implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets self
+     *
+     * @return \Upsun\Model\ListLinksSelf|null
      */
-    public function getSelf(): \Upsun\Model\ListLinksSelf|null
+    public function getSelf()
     {
         return $this->container['self'];
     }
@@ -244,8 +246,10 @@ final class ListLinks implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets previous
+     *
+     * @return \Upsun\Model\ListLinksPrevious|null
      */
-    public function getPrevious(): \Upsun\Model\ListLinksPrevious|null
+    public function getPrevious()
     {
         return $this->container['previous'];
     }
@@ -265,8 +269,10 @@ final class ListLinks implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets next
+     *
+     * @return \Upsun\Model\ListLinksNext|null
      */
-    public function getNext(): \Upsun\Model\ListLinksNext|null
+    public function getNext()
     {
         return $this->container['next'];
     }

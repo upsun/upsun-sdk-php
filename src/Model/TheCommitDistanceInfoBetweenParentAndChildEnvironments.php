@@ -232,8 +232,10 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Mo
 
     /**
      * Gets commits_ahead
+     *
+     * @return int
      */
-    public function getCommitsAhead(): int
+    public function getCommitsAhead()
     {
         return $this->container['commits_ahead'];
     }
@@ -260,8 +262,10 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Mo
 
     /**
      * Gets commits_behind
+     *
+     * @return int
      */
-    public function getCommitsBehind(): int
+    public function getCommitsBehind()
     {
         return $this->container['commits_behind'];
     }
@@ -288,8 +292,10 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Mo
 
     /**
      * Gets parent_ref
+     *
+     * @return string
      */
-    public function getParentRef(): string
+    public function getParentRef()
     {
         return $this->container['parent_ref'];
     }

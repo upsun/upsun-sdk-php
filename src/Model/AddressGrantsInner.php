@@ -244,8 +244,10 @@ final class AddressGrantsInner implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets permission
+     *
+     * @return string
      */
-    public function getPermission(): string
+    public function getPermission()
     {
         return $this->container['permission'];
     }
@@ -275,8 +277,10 @@ final class AddressGrantsInner implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets address
+     *
+     * @return string
      */
-    public function getAddress(): string
+    public function getAddress()
     {
         return $this->container['address'];
     }

@@ -251,8 +251,10 @@ final class Connection implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets provider
+     *
+     * @return string|null
      */
-    public function getProvider(): string|null
+    public function getProvider()
     {
         return $this->container['provider'];
     }
@@ -272,8 +274,10 @@ final class Connection implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets provider_type
+     *
+     * @return string|null
      */
-    public function getProviderType(): string|null
+    public function getProviderType()
     {
         return $this->container['provider_type'];
     }
@@ -293,8 +297,10 @@ final class Connection implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets is_mandatory
+     *
+     * @return bool|null
      */
-    public function getIsMandatory(): bool|null
+    public function getIsMandatory()
     {
         return $this->container['is_mandatory'];
     }
@@ -314,8 +320,10 @@ final class Connection implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets subject
+     *
+     * @return string|null
      */
-    public function getSubject(): string|null
+    public function getSubject()
     {
         return $this->container['subject'];
     }
@@ -335,8 +343,10 @@ final class Connection implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets email_address
+     *
+     * @return string|null
      */
-    public function getEmailAddress(): string|null
+    public function getEmailAddress()
     {
         return $this->container['email_address'];
     }
@@ -356,8 +366,10 @@ final class Connection implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime|null
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -377,8 +389,10 @@ final class Connection implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime|null
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }

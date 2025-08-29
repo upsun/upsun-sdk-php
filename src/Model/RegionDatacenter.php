@@ -223,8 +223,10 @@ final class RegionDatacenter implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets name
+     *
+     * @return string|null
      */
-    public function getName(): string|null
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -244,8 +246,10 @@ final class RegionDatacenter implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets label
+     *
+     * @return string|null
      */
-    public function getLabel(): string|null
+    public function getLabel()
     {
         return $this->container['label'];
     }
@@ -265,8 +269,10 @@ final class RegionDatacenter implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets location
+     *
+     * @return string|null
      */
-    public function getLocation(): string|null
+    public function getLocation()
     {
         return $this->container['location'];
     }

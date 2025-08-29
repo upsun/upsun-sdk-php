@@ -302,8 +302,10 @@ final class ProjectReference implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets id
+     *
+     * @return string
      */
-    public function getId(): string
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -323,8 +325,10 @@ final class ProjectReference implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets organization_id
+     *
+     * @return string
      */
-    public function getOrganizationId(): string
+    public function getOrganizationId()
     {
         return $this->container['organization_id'];
     }
@@ -344,8 +348,10 @@ final class ProjectReference implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets subscription_id
+     *
+     * @return string
      */
-    public function getSubscriptionId(): string
+    public function getSubscriptionId()
     {
         return $this->container['subscription_id'];
     }
@@ -365,8 +371,10 @@ final class ProjectReference implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets region
+     *
+     * @return string
      */
-    public function getRegion(): string
+    public function getRegion()
     {
         return $this->container['region'];
     }
@@ -386,8 +394,10 @@ final class ProjectReference implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets title
+     *
+     * @return string
      */
-    public function getTitle(): string
+    public function getTitle()
     {
         return $this->container['title'];
     }
@@ -407,8 +417,10 @@ final class ProjectReference implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets type
+     *
+     * @return \Upsun\Model\OrganizationProjectType
      */
-    public function getType(): \Upsun\Model\OrganizationProjectType
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -428,8 +440,10 @@ final class ProjectReference implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets plan
+     *
+     * @return \Upsun\Model\OrganizationProjectPlan
      */
-    public function getPlan(): \Upsun\Model\OrganizationProjectPlan
+    public function getPlan()
     {
         return $this->container['plan'];
     }
@@ -449,8 +463,10 @@ final class ProjectReference implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets status
+     *
+     * @return \Upsun\Model\OrganizationProjectStatus
      */
-    public function getStatus(): \Upsun\Model\OrganizationProjectStatus
+    public function getStatus()
     {
         return $this->container['status'];
     }
@@ -470,8 +486,10 @@ final class ProjectReference implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -491,8 +509,10 @@ final class ProjectReference implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }

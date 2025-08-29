@@ -289,8 +289,10 @@ final class ProjectVariable implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -317,8 +319,10 @@ final class ProjectVariable implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -345,8 +349,10 @@ final class ProjectVariable implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets name
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -366,8 +372,10 @@ final class ProjectVariable implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets attributes
+     *
+     * @return array<string,string>
      */
-    public function getAttributes(): array
+    public function getAttributes()
     {
         return $this->container['attributes'];
     }
@@ -387,8 +395,10 @@ final class ProjectVariable implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets value
+     *
+     * @return string|null
      */
-    public function getValue(): string|null
+    public function getValue()
     {
         return $this->container['value'];
     }
@@ -408,8 +418,10 @@ final class ProjectVariable implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets is_json
+     *
+     * @return bool
      */
-    public function getIsJson(): bool
+    public function getIsJson()
     {
         return $this->container['is_json'];
     }
@@ -429,8 +441,10 @@ final class ProjectVariable implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets is_sensitive
+     *
+     * @return bool
      */
-    public function getIsSensitive(): bool
+    public function getIsSensitive()
     {
         return $this->container['is_sensitive'];
     }
@@ -450,8 +464,10 @@ final class ProjectVariable implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets visible_build
+     *
+     * @return bool
      */
-    public function getVisibleBuild(): bool
+    public function getVisibleBuild()
     {
         return $this->container['visible_build'];
     }
@@ -471,8 +487,10 @@ final class ProjectVariable implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets visible_runtime
+     *
+     * @return bool
      */
-    public function getVisibleRuntime(): bool
+    public function getVisibleRuntime()
     {
         return $this->container['visible_runtime'];
     }

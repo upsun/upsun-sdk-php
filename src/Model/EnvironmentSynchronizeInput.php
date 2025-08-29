@@ -242,8 +242,10 @@ final class EnvironmentSynchronizeInput implements ModelInterface, ArrayAccess, 
 
     /**
      * Gets synchronize_code
+     *
+     * @return bool
      */
-    public function getSynchronizeCode(): bool
+    public function getSynchronizeCode()
     {
         return $this->container['synchronize_code'];
     }
@@ -263,8 +265,10 @@ final class EnvironmentSynchronizeInput implements ModelInterface, ArrayAccess, 
 
     /**
      * Gets rebase
+     *
+     * @return bool
      */
-    public function getRebase(): bool
+    public function getRebase()
     {
         return $this->container['rebase'];
     }
@@ -284,8 +288,10 @@ final class EnvironmentSynchronizeInput implements ModelInterface, ArrayAccess, 
 
     /**
      * Gets synchronize_data
+     *
+     * @return bool
      */
-    public function getSynchronizeData(): bool
+    public function getSynchronizeData()
     {
         return $this->container['synchronize_data'];
     }
@@ -305,8 +311,10 @@ final class EnvironmentSynchronizeInput implements ModelInterface, ArrayAccess, 
 
     /**
      * Gets synchronize_resources
+     *
+     * @return bool
      */
-    public function getSynchronizeResources(): bool
+    public function getSynchronizeResources()
     {
         return $this->container['synchronize_resources'];
     }

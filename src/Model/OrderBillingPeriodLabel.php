@@ -230,8 +230,10 @@ final class OrderBillingPeriodLabel implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets formatted
+     *
+     * @return string|null
      */
-    public function getFormatted(): string|null
+    public function getFormatted()
     {
         return $this->container['formatted'];
     }
@@ -251,8 +253,10 @@ final class OrderBillingPeriodLabel implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets month
+     *
+     * @return string|null
      */
-    public function getMonth(): string|null
+    public function getMonth()
     {
         return $this->container['month'];
     }
@@ -272,8 +276,10 @@ final class OrderBillingPeriodLabel implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets year
+     *
+     * @return string|null
      */
-    public function getYear(): string|null
+    public function getYear()
     {
         return $this->container['year'];
     }
@@ -293,8 +299,10 @@ final class OrderBillingPeriodLabel implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets next_month
+     *
+     * @return string|null
      */
-    public function getNextMonth(): string|null
+    public function getNextMonth()
     {
         return $this->container['next_month'];
     }

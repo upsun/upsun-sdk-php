@@ -232,8 +232,10 @@ final class Version implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets commit
+     *
+     * @return string
      */
-    public function getCommit(): string
+    public function getCommit()
     {
         return $this->container['commit'];
     }
@@ -260,8 +262,10 @@ final class Version implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets locked
+     *
+     * @return bool
      */
-    public function getLocked(): bool
+    public function getLocked()
     {
         return $this->container['locked'];
     }
@@ -281,8 +285,10 @@ final class Version implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets routing
+     *
+     * @return \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion
      */
-    public function getRouting(): \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion
+    public function getRouting()
     {
         return $this->container['routing'];
     }

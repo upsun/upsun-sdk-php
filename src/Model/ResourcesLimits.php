@@ -232,8 +232,10 @@ final class ResourcesLimits implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets container_profiles
+     *
+     * @return bool
      */
-    public function getContainerProfiles(): bool
+    public function getContainerProfiles()
     {
         return $this->container['container_profiles'];
     }
@@ -253,8 +255,10 @@ final class ResourcesLimits implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets production
+     *
+     * @return \Upsun\Model\ResourcesForProductionEnvironments
      */
-    public function getProduction(): \Upsun\Model\ResourcesForProductionEnvironments
+    public function getProduction()
     {
         return $this->container['production'];
     }
@@ -274,8 +278,10 @@ final class ResourcesLimits implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets development
+     *
+     * @return \Upsun\Model\ResourcesForDevelopmentEnvironments
      */
-    public function getDevelopment(): \Upsun\Model\ResourcesForDevelopmentEnvironments
+    public function getDevelopment()
     {
         return $this->container['development'];
     }

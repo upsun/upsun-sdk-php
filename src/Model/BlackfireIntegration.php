@@ -252,8 +252,10 @@ final class BlackfireIntegration implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -280,8 +282,10 @@ final class BlackfireIntegration implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -308,8 +312,10 @@ final class BlackfireIntegration implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -329,8 +335,10 @@ final class BlackfireIntegration implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets environments_credentials
+     *
+     * @return array<string,\Upsun\Model\BlackfireEnvironmentsCredentialsValue>
      */
-    public function getEnvironmentsCredentials(): array
+    public function getEnvironmentsCredentials()
     {
         return $this->container['environments_credentials'];
     }
@@ -350,8 +358,10 @@ final class BlackfireIntegration implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets continuous_profiling
+     *
+     * @return bool
      */
-    public function getContinuousProfiling(): bool
+    public function getContinuousProfiling()
     {
         return $this->container['continuous_profiling'];
     }

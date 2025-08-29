@@ -222,8 +222,10 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements ModelInter
 
     /**
      * Gets active_docroot
+     *
+     * @return string
      */
-    public function getActiveDocroot(): string
+    public function getActiveDocroot()
     {
         return $this->container['active_docroot'];
     }
@@ -250,8 +252,10 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements ModelInter
 
     /**
      * Gets docroot_versions
+     *
+     * @return string[]
      */
-    public function getDocrootVersions(): array
+    public function getDocrootVersions()
     {
         return $this->container['docroot_versions'];
     }

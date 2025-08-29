@@ -222,8 +222,10 @@ final class Tree implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets sha
+     *
+     * @return string
      */
-    public function getSha(): string
+    public function getSha()
     {
         return $this->container['sha'];
     }
@@ -243,8 +245,10 @@ final class Tree implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets tree
+     *
+     * @return \Upsun\Model\TheTreeItemsInner[]
      */
-    public function getTree(): array
+    public function getTree()
     {
         return $this->container['tree'];
     }

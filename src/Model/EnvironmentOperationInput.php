@@ -222,8 +222,10 @@ final class EnvironmentOperationInput implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets service
+     *
+     * @return string
      */
-    public function getService(): string
+    public function getService()
     {
         return $this->container['service'];
     }
@@ -243,8 +245,10 @@ final class EnvironmentOperationInput implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets operation
+     *
+     * @return string
      */
-    public function getOperation(): string
+    public function getOperation()
     {
         return $this->container['operation'];
     }

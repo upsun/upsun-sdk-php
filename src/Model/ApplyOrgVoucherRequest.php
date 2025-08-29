@@ -212,8 +212,10 @@ final class ApplyOrgVoucherRequest implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets code
+     *
+     * @return string
      */
-    public function getCode(): string
+    public function getCode()
     {
         return $this->container['code'];
     }

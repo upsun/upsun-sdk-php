@@ -226,8 +226,10 @@ final class CreateSshKeyRequest implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets value
+     *
+     * @return string
      */
-    public function getValue(): string
+    public function getValue()
     {
         return $this->container['value'];
     }
@@ -247,8 +249,10 @@ final class CreateSshKeyRequest implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets title
+     *
+     * @return string|null
      */
-    public function getTitle(): string|null
+    public function getTitle()
     {
         return $this->container['title'];
     }
@@ -268,8 +272,10 @@ final class CreateSshKeyRequest implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets uuid
+     *
+     * @return string|null
      */
-    public function getUuid(): string|null
+    public function getUuid()
     {
         return $this->container['uuid'];
     }

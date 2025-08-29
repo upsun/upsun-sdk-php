@@ -209,8 +209,10 @@ final class VerifyPhoneNumber200Response implements ModelInterface, ArrayAccess,
 
     /**
      * Gets sid
+     *
+     * @return string|null
      */
-    public function getSid(): string|null
+    public function getSid()
     {
         return $this->container['sid'];
     }

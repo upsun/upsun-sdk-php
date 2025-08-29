@@ -237,8 +237,10 @@ final class ProjectOptions implements ModelInterface, ArrayAccess, JsonSerializa
 
     /**
      * Gets defaults
+     *
+     * @return \Upsun\Model\ProjectOptionsDefaults|null
      */
-    public function getDefaults(): \Upsun\Model\ProjectOptionsDefaults|null
+    public function getDefaults()
     {
         return $this->container['defaults'];
     }
@@ -258,8 +260,10 @@ final class ProjectOptions implements ModelInterface, ArrayAccess, JsonSerializa
 
     /**
      * Gets enforced
+     *
+     * @return \Upsun\Model\ProjectOptionsEnforced|null
      */
-    public function getEnforced(): \Upsun\Model\ProjectOptionsEnforced|null
+    public function getEnforced()
     {
         return $this->container['enforced'];
     }
@@ -279,8 +283,10 @@ final class ProjectOptions implements ModelInterface, ArrayAccess, JsonSerializa
 
     /**
      * Gets regions
+     *
+     * @return string[]|null
      */
-    public function getRegions(): array|null
+    public function getRegions()
     {
         return $this->container['regions'];
     }
@@ -300,8 +306,10 @@ final class ProjectOptions implements ModelInterface, ArrayAccess, JsonSerializa
 
     /**
      * Gets plans
+     *
+     * @return string[]|null
      */
-    public function getPlans(): array|null
+    public function getPlans()
     {
         return $this->container['plans'];
     }
@@ -321,8 +329,10 @@ final class ProjectOptions implements ModelInterface, ArrayAccess, JsonSerializa
 
     /**
      * Gets billing
+     *
+     * @return object|null
      */
-    public function getBilling(): object|null
+    public function getBilling()
     {
         return $this->container['billing'];
     }

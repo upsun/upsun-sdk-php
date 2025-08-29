@@ -303,8 +303,10 @@ final class EnterpriseDeploymentTarget implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -334,8 +336,10 @@ final class EnterpriseDeploymentTarget implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets name
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -355,8 +359,10 @@ final class EnterpriseDeploymentTarget implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets deploy_host
+     *
+     * @return string
      */
-    public function getDeployHost(): string
+    public function getDeployHost()
     {
         return $this->container['deploy_host'];
     }
@@ -383,8 +389,10 @@ final class EnterpriseDeploymentTarget implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets docroots
+     *
+     * @return array<string,\Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue>
      */
-    public function getDocroots(): array
+    public function getDocroots()
     {
         return $this->container['docroots'];
     }
@@ -404,8 +412,10 @@ final class EnterpriseDeploymentTarget implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets site_urls
+     *
+     * @return object
      */
-    public function getSiteUrls(): object
+    public function getSiteUrls()
     {
         return $this->container['site_urls'];
     }
@@ -425,8 +435,10 @@ final class EnterpriseDeploymentTarget implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets ssh_hosts
+     *
+     * @return string[]
      */
-    public function getSshHosts(): array
+    public function getSshHosts()
     {
         return $this->container['ssh_hosts'];
     }
@@ -446,8 +458,10 @@ final class EnterpriseDeploymentTarget implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets maintenance_mode
+     *
+     * @return bool
      */
-    public function getMaintenanceMode(): bool
+    public function getMaintenanceMode()
     {
         return $this->container['maintenance_mode'];
     }
@@ -468,9 +482,11 @@ final class EnterpriseDeploymentTarget implements ModelInterface, ArrayAccess, J
     /**
      * Gets enterprise_environments_mapping
      *
+     * @return object|null
+     *
      * @deprecated
      */
-    public function getEnterpriseEnvironmentsMapping(): object|null
+    public function getEnterpriseEnvironmentsMapping()
     {
         return $this->container['enterprise_environments_mapping'];
     }

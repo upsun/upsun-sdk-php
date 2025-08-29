@@ -216,8 +216,10 @@ final class CreateAuthorizationCredentials200Response implements ModelInterface,
 
     /**
      * Gets redirect_to_url
+     *
+     * @return \Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl|null
      */
-    public function getRedirectToUrl(): \Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl|null
+    public function getRedirectToUrl()
     {
         return $this->container['redirect_to_url'];
     }
@@ -237,8 +239,10 @@ final class CreateAuthorizationCredentials200Response implements ModelInterface,
 
     /**
      * Gets type
+     *
+     * @return string|null
      */
-    public function getType(): string|null
+    public function getType()
     {
         return $this->container['type'];
     }

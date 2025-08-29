@@ -222,8 +222,10 @@ final class ConfirmTotpEnrollmentRequest implements ModelInterface, ArrayAccess,
 
     /**
      * Gets secret
+     *
+     * @return string
      */
-    public function getSecret(): string
+    public function getSecret()
     {
         return $this->container['secret'];
     }
@@ -243,8 +245,10 @@ final class ConfirmTotpEnrollmentRequest implements ModelInterface, ArrayAccess,
 
     /**
      * Gets passcode
+     *
+     * @return string
      */
-    public function getPasscode(): string
+    public function getPasscode()
     {
         return $this->container['passcode'];
     }

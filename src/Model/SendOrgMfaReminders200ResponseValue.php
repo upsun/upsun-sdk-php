@@ -216,8 +216,10 @@ final class SendOrgMfaReminders200ResponseValue implements ModelInterface, Array
 
     /**
      * Gets code
+     *
+     * @return int|null
      */
-    public function getCode(): int|null
+    public function getCode()
     {
         return $this->container['code'];
     }
@@ -237,8 +239,10 @@ final class SendOrgMfaReminders200ResponseValue implements ModelInterface, Array
 
     /**
      * Gets message
+     *
+     * @return string|null
      */
-    public function getMessage(): string|null
+    public function getMessage()
     {
         return $this->container['message'];
     }

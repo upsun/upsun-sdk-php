@@ -251,8 +251,10 @@ final class Vouchers implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets uuid
+     *
+     * @return string|null
      */
-    public function getUuid(): string|null
+    public function getUuid()
     {
         return $this->container['uuid'];
     }
@@ -272,8 +274,10 @@ final class Vouchers implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets vouchers_total
+     *
+     * @return string|null
      */
-    public function getVouchersTotal(): string|null
+    public function getVouchersTotal()
     {
         return $this->container['vouchers_total'];
     }
@@ -293,8 +297,10 @@ final class Vouchers implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets vouchers_applied
+     *
+     * @return string|null
      */
-    public function getVouchersApplied(): string|null
+    public function getVouchersApplied()
     {
         return $this->container['vouchers_applied'];
     }
@@ -314,8 +320,10 @@ final class Vouchers implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets vouchers_remaining_balance
+     *
+     * @return string|null
      */
-    public function getVouchersRemainingBalance(): string|null
+    public function getVouchersRemainingBalance()
     {
         return $this->container['vouchers_remaining_balance'];
     }
@@ -335,8 +343,10 @@ final class Vouchers implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets currency
+     *
+     * @return string|null
      */
-    public function getCurrency(): string|null
+    public function getCurrency()
     {
         return $this->container['currency'];
     }
@@ -356,8 +366,10 @@ final class Vouchers implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets vouchers
+     *
+     * @return \Upsun\Model\VouchersVouchersInner[]|null
      */
-    public function getVouchers(): array|null
+    public function getVouchers()
     {
         return $this->container['vouchers'];
     }
@@ -377,8 +389,10 @@ final class Vouchers implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets _links
+     *
+     * @return \Upsun\Model\VouchersLinks|null
      */
-    public function getLinks(): \Upsun\Model\VouchersLinks|null
+    public function getLinks()
     {
         return $this->container['_links'];
     }

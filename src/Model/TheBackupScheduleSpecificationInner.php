@@ -222,8 +222,10 @@ final class TheBackupScheduleSpecificationInner implements ModelInterface, Array
 
     /**
      * Gets interval
+     *
+     * @return string
      */
-    public function getInterval(): string
+    public function getInterval()
     {
         return $this->container['interval'];
     }
@@ -243,8 +245,10 @@ final class TheBackupScheduleSpecificationInner implements ModelInterface, Array
 
     /**
      * Gets count
+     *
+     * @return int
      */
-    public function getCount(): int
+    public function getCount()
     {
         return $this->container['count'];
     }

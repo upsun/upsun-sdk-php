@@ -216,8 +216,10 @@ final class GetCurrentUserVerificationStatusFull200Response implements ModelInte
 
     /**
      * Gets state
+     *
+     * @return bool|null
      */
-    public function getState(): bool|null
+    public function getState()
     {
         return $this->container['state'];
     }
@@ -237,8 +239,10 @@ final class GetCurrentUserVerificationStatusFull200Response implements ModelInte
 
     /**
      * Gets type
+     *
+     * @return string|null
      */
-    public function getType(): string|null
+    public function getType()
     {
         return $this->container['type'];
     }

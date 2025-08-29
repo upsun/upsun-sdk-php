@@ -222,8 +222,10 @@ final class RepositoryInformation implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets url
+     *
+     * @return string
      */
-    public function getUrl(): string
+    public function getUrl()
     {
         return $this->container['url'];
     }
@@ -243,8 +245,10 @@ final class RepositoryInformation implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets client_ssh_key
+     *
+     * @return string
      */
-    public function getClientSshKey(): string
+    public function getClientSshKey()
     {
         return $this->container['client_ssh_key'];
     }

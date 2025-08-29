@@ -271,8 +271,10 @@ final class EnvironmentVariableCreateInput implements ModelInterface, ArrayAcces
 
     /**
      * Gets name
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -292,8 +294,10 @@ final class EnvironmentVariableCreateInput implements ModelInterface, ArrayAcces
 
     /**
      * Gets attributes
+     *
+     * @return array<string,string>|null
      */
-    public function getAttributes(): array|null
+    public function getAttributes()
     {
         return $this->container['attributes'];
     }
@@ -313,8 +317,10 @@ final class EnvironmentVariableCreateInput implements ModelInterface, ArrayAcces
 
     /**
      * Gets value
+     *
+     * @return string
      */
-    public function getValue(): string
+    public function getValue()
     {
         return $this->container['value'];
     }
@@ -334,8 +340,10 @@ final class EnvironmentVariableCreateInput implements ModelInterface, ArrayAcces
 
     /**
      * Gets is_json
+     *
+     * @return bool|null
      */
-    public function getIsJson(): bool|null
+    public function getIsJson()
     {
         return $this->container['is_json'];
     }
@@ -355,8 +363,10 @@ final class EnvironmentVariableCreateInput implements ModelInterface, ArrayAcces
 
     /**
      * Gets is_sensitive
+     *
+     * @return bool|null
      */
-    public function getIsSensitive(): bool|null
+    public function getIsSensitive()
     {
         return $this->container['is_sensitive'];
     }
@@ -376,8 +386,10 @@ final class EnvironmentVariableCreateInput implements ModelInterface, ArrayAcces
 
     /**
      * Gets visible_build
+     *
+     * @return bool|null
      */
-    public function getVisibleBuild(): bool|null
+    public function getVisibleBuild()
     {
         return $this->container['visible_build'];
     }
@@ -397,8 +409,10 @@ final class EnvironmentVariableCreateInput implements ModelInterface, ArrayAcces
 
     /**
      * Gets visible_runtime
+     *
+     * @return bool|null
      */
-    public function getVisibleRuntime(): bool|null
+    public function getVisibleRuntime()
     {
         return $this->container['visible_runtime'];
     }
@@ -418,8 +432,10 @@ final class EnvironmentVariableCreateInput implements ModelInterface, ArrayAcces
 
     /**
      * Gets is_enabled
+     *
+     * @return bool|null
      */
-    public function getIsEnabled(): bool|null
+    public function getIsEnabled()
     {
         return $this->container['is_enabled'];
     }
@@ -439,8 +455,10 @@ final class EnvironmentVariableCreateInput implements ModelInterface, ArrayAcces
 
     /**
      * Gets is_inheritable
+     *
+     * @return bool|null
      */
-    public function getIsInheritable(): bool|null
+    public function getIsInheritable()
     {
         return $this->container['is_inheritable'];
     }

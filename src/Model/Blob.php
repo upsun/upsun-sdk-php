@@ -264,8 +264,10 @@ final class Blob implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets sha
+     *
+     * @return string
      */
-    public function getSha(): string
+    public function getSha()
     {
         return $this->container['sha'];
     }
@@ -285,8 +287,10 @@ final class Blob implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets size
+     *
+     * @return int
      */
-    public function getSize(): int
+    public function getSize()
     {
         return $this->container['size'];
     }
@@ -306,8 +310,10 @@ final class Blob implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets encoding
+     *
+     * @return string
      */
-    public function getEncoding(): string
+    public function getEncoding()
     {
         return $this->container['encoding'];
     }
@@ -337,8 +343,10 @@ final class Blob implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets content
+     *
+     * @return string
      */
-    public function getContent(): string
+    public function getContent()
     {
         return $this->container['content'];
     }

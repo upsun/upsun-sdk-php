@@ -244,8 +244,10 @@ final class SSHKey implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets key_id
+     *
+     * @return int|null
      */
-    public function getKeyId(): int|null
+    public function getKeyId()
     {
         return $this->container['key_id'];
     }
@@ -265,8 +267,10 @@ final class SSHKey implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets uid
+     *
+     * @return int|null
      */
-    public function getUid(): int|null
+    public function getUid()
     {
         return $this->container['uid'];
     }
@@ -286,8 +290,10 @@ final class SSHKey implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets fingerprint
+     *
+     * @return string|null
      */
-    public function getFingerprint(): string|null
+    public function getFingerprint()
     {
         return $this->container['fingerprint'];
     }
@@ -307,8 +313,10 @@ final class SSHKey implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets title
+     *
+     * @return string|null
      */
-    public function getTitle(): string|null
+    public function getTitle()
     {
         return $this->container['title'];
     }
@@ -328,8 +336,10 @@ final class SSHKey implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets value
+     *
+     * @return string|null
      */
-    public function getValue(): string|null
+    public function getValue()
     {
         return $this->container['value'];
     }
@@ -349,8 +359,10 @@ final class SSHKey implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets changed
+     *
+     * @return string|null
      */
-    public function getChanged(): string|null
+    public function getChanged()
     {
         return $this->container['changed'];
     }

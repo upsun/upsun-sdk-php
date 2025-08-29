@@ -212,8 +212,10 @@ final class EnvironmentActivateInput implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets resources
+     *
+     * @return \Upsun\Model\Resources1
      */
-    public function getResources(): \Upsun\Model\Resources1
+    public function getResources()
     {
         return $this->container['resources'];
     }

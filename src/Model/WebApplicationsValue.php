@@ -551,8 +551,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets resources
+     *
+     * @return \Upsun\Model\Resources
      */
-    public function getResources(): \Upsun\Model\Resources
+    public function getResources()
     {
         return $this->container['resources'];
     }
@@ -579,8 +581,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets size
+     *
+     * @return string
      */
-    public function getSize(): string
+    public function getSize()
     {
         return $this->container['size'];
     }
@@ -610,8 +614,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets disk
+     *
+     * @return int
      */
-    public function getDisk(): int
+    public function getDisk()
     {
         return $this->container['disk'];
     }
@@ -638,8 +644,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets access
+     *
+     * @return array<string,string>
      */
-    public function getAccess(): array
+    public function getAccess()
     {
         return $this->container['access'];
     }
@@ -668,8 +676,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets relationships
+     *
+     * @return array<string,\Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue>
      */
-    public function getRelationships(): array
+    public function getRelationships()
     {
         return $this->container['relationships'];
     }
@@ -689,8 +699,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets additional_hosts
+     *
+     * @return array<string,string>
      */
-    public function getAdditionalHosts(): array
+    public function getAdditionalHosts()
     {
         return $this->container['additional_hosts'];
     }
@@ -710,8 +722,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets mounts
+     *
+     * @return array<string,\Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue>
      */
-    public function getMounts(): array
+    public function getMounts()
     {
         return $this->container['mounts'];
     }
@@ -731,8 +745,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets timezone
+     *
+     * @return string
      */
-    public function getTimezone(): string
+    public function getTimezone()
     {
         return $this->container['timezone'];
     }
@@ -759,8 +775,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets variables
+     *
+     * @return array<string,array<string,mixed>>
      */
-    public function getVariables(): array
+    public function getVariables()
     {
         return $this->container['variables'];
     }
@@ -780,8 +798,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets firewall
+     *
+     * @return \Upsun\Model\Firewall
      */
-    public function getFirewall(): \Upsun\Model\Firewall
+    public function getFirewall()
     {
         return $this->container['firewall'];
     }
@@ -808,8 +828,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets container_profile
+     *
+     * @return string
      */
-    public function getContainerProfile(): string
+    public function getContainerProfile()
     {
         return $this->container['container_profile'];
     }
@@ -836,8 +858,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets operations
+     *
+     * @return array<string,\Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue>
      */
-    public function getOperations(): array
+    public function getOperations()
     {
         return $this->container['operations'];
     }
@@ -857,8 +881,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets name
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -878,8 +904,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -899,8 +927,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets preflight
+     *
+     * @return \Upsun\Model\ConfigurationForPreFlightChecks
      */
-    public function getPreflight(): \Upsun\Model\ConfigurationForPreFlightChecks
+    public function getPreflight()
     {
         return $this->container['preflight'];
     }
@@ -920,8 +950,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets tree_id
+     *
+     * @return string
      */
-    public function getTreeId(): string
+    public function getTreeId()
     {
         return $this->container['tree_id'];
     }
@@ -941,8 +973,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets app_dir
+     *
+     * @return string
      */
-    public function getAppDir(): string
+    public function getAppDir()
     {
         return $this->container['app_dir'];
     }
@@ -962,8 +996,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets endpoints
+     *
+     * @return object
      */
-    public function getEndpoints(): object
+    public function getEndpoints()
     {
         return $this->container['endpoints'];
     }
@@ -990,8 +1026,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets runtime
+     *
+     * @return object
      */
-    public function getRuntime(): object
+    public function getRuntime()
     {
         return $this->container['runtime'];
     }
@@ -1011,8 +1049,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets web
+     *
+     * @return \Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP
      */
-    public function getWeb(): \Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP
+    public function getWeb()
     {
         return $this->container['web'];
     }
@@ -1032,8 +1072,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets hooks
+     *
+     * @return \Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication
      */
-    public function getHooks(): \Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication
+    public function getHooks()
     {
         return $this->container['hooks'];
     }
@@ -1053,8 +1095,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets crons
+     *
+     * @return array<string,\Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue>
      */
-    public function getCrons(): array
+    public function getCrons()
     {
         return $this->container['crons'];
     }
@@ -1074,8 +1118,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets source
+     *
+     * @return \Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication
      */
-    public function getSource(): \Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication
+    public function getSource()
     {
         return $this->container['source'];
     }
@@ -1095,8 +1141,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets build
+     *
+     * @return \Upsun\Model\TheBuildConfigurationOfTheApplication
      */
-    public function getBuild(): \Upsun\Model\TheBuildConfigurationOfTheApplication
+    public function getBuild()
     {
         return $this->container['build'];
     }
@@ -1116,8 +1164,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets dependencies
+     *
+     * @return array<string,object>
      */
-    public function getDependencies(): array
+    public function getDependencies()
     {
         return $this->container['dependencies'];
     }
@@ -1137,8 +1187,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets stack
+     *
+     * @return object[]
      */
-    public function getStack(): array
+    public function getStack()
     {
         return $this->container['stack'];
     }
@@ -1165,8 +1217,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets is_across_submodule
+     *
+     * @return bool
      */
-    public function getIsAcrossSubmodule(): bool
+    public function getIsAcrossSubmodule()
     {
         return $this->container['is_across_submodule'];
     }
@@ -1186,8 +1240,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets instance_count
+     *
+     * @return int
      */
-    public function getInstanceCount(): int
+    public function getInstanceCount()
     {
         return $this->container['instance_count'];
     }
@@ -1214,8 +1270,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets config_id
+     *
+     * @return string
      */
-    public function getConfigId(): string
+    public function getConfigId()
     {
         return $this->container['config_id'];
     }
@@ -1235,8 +1293,10 @@ final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets slug_id
+     *
+     * @return string
      */
-    public function getSlugId(): string
+    public function getSlugId()
     {
         return $this->container['slug_id'];
     }

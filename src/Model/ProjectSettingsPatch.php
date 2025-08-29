@@ -223,8 +223,10 @@ final class ProjectSettingsPatch implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets initialize
+     *
+     * @return object|null
      */
-    public function getInitialize(): object|null
+    public function getInitialize()
     {
         return $this->container['initialize'];
     }
@@ -244,8 +246,10 @@ final class ProjectSettingsPatch implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets data_retention
+     *
+     * @return array<string,\Upsun\Model\DataRetentionConfigurationValue1>|null
      */
-    public function getDataRetention(): array|null
+    public function getDataRetention()
     {
         return $this->container['data_retention'];
     }
@@ -272,8 +276,10 @@ final class ProjectSettingsPatch implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets build_resources
+     *
+     * @return \Upsun\Model\BuildResources2|null
      */
-    public function getBuildResources(): \Upsun\Model\BuildResources2|null
+    public function getBuildResources()
     {
         return $this->container['build_resources'];
     }

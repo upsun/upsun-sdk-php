@@ -216,8 +216,10 @@ final class OrganizationEstimationObjectUserLicenses implements ModelInterface, 
 
     /**
      * Gets base
+     *
+     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesBase|null
      */
-    public function getBase(): \Upsun\Model\OrganizationEstimationObjectUserLicensesBase|null
+    public function getBase()
     {
         return $this->container['base'];
     }
@@ -237,8 +239,10 @@ final class OrganizationEstimationObjectUserLicenses implements ModelInterface, 
 
     /**
      * Gets user_management
+     *
+     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement|null
      */
-    public function getUserManagement(): \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement|null
+    public function getUserManagement()
     {
         return $this->container['user_management'];
     }

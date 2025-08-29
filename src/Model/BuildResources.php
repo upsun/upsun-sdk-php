@@ -232,8 +232,10 @@ final class BuildResources implements ModelInterface, ArrayAccess, JsonSerializa
 
     /**
      * Gets enabled
+     *
+     * @return bool
      */
-    public function getEnabled(): bool
+    public function getEnabled()
     {
         return $this->container['enabled'];
     }
@@ -253,8 +255,10 @@ final class BuildResources implements ModelInterface, ArrayAccess, JsonSerializa
 
     /**
      * Gets max_cpu
+     *
+     * @return float
      */
-    public function getMaxCpu(): float
+    public function getMaxCpu()
     {
         return $this->container['max_cpu'];
     }
@@ -274,8 +278,10 @@ final class BuildResources implements ModelInterface, ArrayAccess, JsonSerializa
 
     /**
      * Gets max_memory
+     *
+     * @return int
      */
-    public function getMaxMemory(): int
+    public function getMaxMemory()
     {
         return $this->container['max_memory'];
     }

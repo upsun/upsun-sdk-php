@@ -216,8 +216,10 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Mode
 
     /**
      * Gets action
+     *
+     * @return string|null
      */
-    public function getAction(): string|null
+    public function getAction()
     {
         return $this->container['action'];
     }
@@ -237,8 +239,10 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Mode
 
     /**
      * Gets type
+     *
+     * @return string|null
      */
-    public function getType(): string|null
+    public function getType()
     {
         return $this->container['type'];
     }

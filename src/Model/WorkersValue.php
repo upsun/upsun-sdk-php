@@ -491,8 +491,10 @@ final class WorkersValue implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets resources
+     *
+     * @return \Upsun\Model\Resources
      */
-    public function getResources(): \Upsun\Model\Resources
+    public function getResources()
     {
         return $this->container['resources'];
     }
@@ -519,8 +521,10 @@ final class WorkersValue implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets size
+     *
+     * @return string
      */
-    public function getSize(): string
+    public function getSize()
     {
         return $this->container['size'];
     }
@@ -550,8 +554,10 @@ final class WorkersValue implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets disk
+     *
+     * @return int
      */
-    public function getDisk(): int
+    public function getDisk()
     {
         return $this->container['disk'];
     }
@@ -578,8 +584,10 @@ final class WorkersValue implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets access
+     *
+     * @return array<string,string>
      */
-    public function getAccess(): array
+    public function getAccess()
     {
         return $this->container['access'];
     }
@@ -608,8 +616,10 @@ final class WorkersValue implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets relationships
+     *
+     * @return array<string,\Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue>
      */
-    public function getRelationships(): array
+    public function getRelationships()
     {
         return $this->container['relationships'];
     }
@@ -629,8 +639,10 @@ final class WorkersValue implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets additional_hosts
+     *
+     * @return array<string,string>
      */
-    public function getAdditionalHosts(): array
+    public function getAdditionalHosts()
     {
         return $this->container['additional_hosts'];
     }
@@ -650,8 +662,10 @@ final class WorkersValue implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets mounts
+     *
+     * @return array<string,\Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue>
      */
-    public function getMounts(): array
+    public function getMounts()
     {
         return $this->container['mounts'];
     }
@@ -671,8 +685,10 @@ final class WorkersValue implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets timezone
+     *
+     * @return string
      */
-    public function getTimezone(): string
+    public function getTimezone()
     {
         return $this->container['timezone'];
     }
@@ -699,8 +715,10 @@ final class WorkersValue implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets variables
+     *
+     * @return array<string,array<string,mixed>>
      */
-    public function getVariables(): array
+    public function getVariables()
     {
         return $this->container['variables'];
     }
@@ -720,8 +738,10 @@ final class WorkersValue implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets firewall
+     *
+     * @return \Upsun\Model\Firewall
      */
-    public function getFirewall(): \Upsun\Model\Firewall
+    public function getFirewall()
     {
         return $this->container['firewall'];
     }
@@ -748,8 +768,10 @@ final class WorkersValue implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets container_profile
+     *
+     * @return string
      */
-    public function getContainerProfile(): string
+    public function getContainerProfile()
     {
         return $this->container['container_profile'];
     }
@@ -776,8 +798,10 @@ final class WorkersValue implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets operations
+     *
+     * @return array<string,\Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue>
      */
-    public function getOperations(): array
+    public function getOperations()
     {
         return $this->container['operations'];
     }
@@ -797,8 +821,10 @@ final class WorkersValue implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets name
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -818,8 +844,10 @@ final class WorkersValue implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -839,8 +867,10 @@ final class WorkersValue implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets preflight
+     *
+     * @return \Upsun\Model\ConfigurationForPreFlightChecks
      */
-    public function getPreflight(): \Upsun\Model\ConfigurationForPreFlightChecks
+    public function getPreflight()
     {
         return $this->container['preflight'];
     }
@@ -860,8 +890,10 @@ final class WorkersValue implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets tree_id
+     *
+     * @return string
      */
-    public function getTreeId(): string
+    public function getTreeId()
     {
         return $this->container['tree_id'];
     }
@@ -881,8 +913,10 @@ final class WorkersValue implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets app_dir
+     *
+     * @return string
      */
-    public function getAppDir(): string
+    public function getAppDir()
     {
         return $this->container['app_dir'];
     }
@@ -902,8 +936,10 @@ final class WorkersValue implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets endpoints
+     *
+     * @return object
      */
-    public function getEndpoints(): object
+    public function getEndpoints()
     {
         return $this->container['endpoints'];
     }
@@ -930,8 +966,10 @@ final class WorkersValue implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets runtime
+     *
+     * @return object
      */
-    public function getRuntime(): object
+    public function getRuntime()
     {
         return $this->container['runtime'];
     }
@@ -951,8 +989,10 @@ final class WorkersValue implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets worker
+     *
+     * @return \Upsun\Model\ConfigurationOfAWorkerContainerInstance
      */
-    public function getWorker(): \Upsun\Model\ConfigurationOfAWorkerContainerInstance
+    public function getWorker()
     {
         return $this->container['worker'];
     }
@@ -972,8 +1012,10 @@ final class WorkersValue implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets app
+     *
+     * @return string
      */
-    public function getApp(): string
+    public function getApp()
     {
         return $this->container['app'];
     }
@@ -993,8 +1035,10 @@ final class WorkersValue implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets stack
+     *
+     * @return object[]
      */
-    public function getStack(): array
+    public function getStack()
     {
         return $this->container['stack'];
     }
@@ -1021,8 +1065,10 @@ final class WorkersValue implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets instance_count
+     *
+     * @return int
      */
-    public function getInstanceCount(): int
+    public function getInstanceCount()
     {
         return $this->container['instance_count'];
     }
@@ -1049,8 +1095,10 @@ final class WorkersValue implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets slug_id
+     *
+     * @return string
      */
-    public function getSlugId(): string
+    public function getSlugId()
     {
         return $this->container['slug_id'];
     }

@@ -223,8 +223,10 @@ final class OrganizationAddonsObject implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets available
+     *
+     * @return \Upsun\Model\OrganizationAddonsObjectAvailable|null
      */
-    public function getAvailable(): \Upsun\Model\OrganizationAddonsObjectAvailable|null
+    public function getAvailable()
     {
         return $this->container['available'];
     }
@@ -244,8 +246,10 @@ final class OrganizationAddonsObject implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets current
+     *
+     * @return \Upsun\Model\OrganizationAddonsObjectCurrent|null
      */
-    public function getCurrent(): \Upsun\Model\OrganizationAddonsObjectCurrent|null
+    public function getCurrent()
     {
         return $this->container['current'];
     }
@@ -265,8 +269,10 @@ final class OrganizationAddonsObject implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets upgrades_available
+     *
+     * @return \Upsun\Model\OrganizationAddonsObjectUpgradesAvailable|null
      */
-    public function getUpgradesAvailable(): \Upsun\Model\OrganizationAddonsObjectUpgradesAvailable|null
+    public function getUpgradesAvailable()
     {
         return $this->container['upgrades_available'];
     }

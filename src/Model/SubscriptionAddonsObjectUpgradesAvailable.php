@@ -216,8 +216,10 @@ final class SubscriptionAddonsObjectUpgradesAvailable implements ModelInterface,
 
     /**
      * Gets continuous_profiling
+     *
+     * @return string[]|null
      */
-    public function getContinuousProfiling(): array|null
+    public function getContinuousProfiling()
     {
         return $this->container['continuous_profiling'];
     }
@@ -237,8 +239,10 @@ final class SubscriptionAddonsObjectUpgradesAvailable implements ModelInterface,
 
     /**
      * Gets project_support_level
+     *
+     * @return string[]|null
      */
-    public function getProjectSupportLevel(): array|null
+    public function getProjectSupportLevel()
     {
         return $this->container['project_support_level'];
     }

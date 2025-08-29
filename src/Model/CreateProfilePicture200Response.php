@@ -209,8 +209,10 @@ final class CreateProfilePicture200Response implements ModelInterface, ArrayAcce
 
     /**
      * Gets url
+     *
+     * @return string|null
      */
-    public function getUrl(): string|null
+    public function getUrl()
     {
         return $this->container['url'];
     }

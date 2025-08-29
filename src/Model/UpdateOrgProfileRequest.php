@@ -244,8 +244,10 @@ final class UpdateOrgProfileRequest implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets default_catalog
+     *
+     * @return string|null
      */
-    public function getDefaultCatalog(): string|null
+    public function getDefaultCatalog()
     {
         return $this->container['default_catalog'];
     }
@@ -265,8 +267,10 @@ final class UpdateOrgProfileRequest implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets project_options_url
+     *
+     * @return string|null
      */
-    public function getProjectOptionsUrl(): string|null
+    public function getProjectOptionsUrl()
     {
         return $this->container['project_options_url'];
     }
@@ -286,8 +290,10 @@ final class UpdateOrgProfileRequest implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets security_contact
+     *
+     * @return string|null
      */
-    public function getSecurityContact(): string|null
+    public function getSecurityContact()
     {
         return $this->container['security_contact'];
     }
@@ -307,8 +313,10 @@ final class UpdateOrgProfileRequest implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets company_name
+     *
+     * @return string|null
      */
-    public function getCompanyName(): string|null
+    public function getCompanyName()
     {
         return $this->container['company_name'];
     }
@@ -328,8 +336,10 @@ final class UpdateOrgProfileRequest implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets vat_number
+     *
+     * @return string|null
      */
-    public function getVatNumber(): string|null
+    public function getVatNumber()
     {
         return $this->container['vat_number'];
     }
@@ -349,8 +359,10 @@ final class UpdateOrgProfileRequest implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets billing_contact
+     *
+     * @return string|null
      */
-    public function getBillingContact(): string|null
+    public function getBillingContact()
     {
         return $this->container['billing_contact'];
     }

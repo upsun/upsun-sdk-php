@@ -209,8 +209,10 @@ final class PrepaymentObject implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets prepayment
+     *
+     * @return \Upsun\Model\PrepaymentObjectPrepayment|null
      */
-    public function getPrepayment(): \Upsun\Model\PrepaymentObjectPrepayment|null
+    public function getPrepayment()
     {
         return $this->container['prepayment'];
     }

@@ -329,8 +329,10 @@ final class Discount implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets id
+     *
+     * @return int|null
      */
-    public function getId(): int|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -350,8 +352,10 @@ final class Discount implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets organization_id
+     *
+     * @return string|null
      */
-    public function getOrganizationId(): string|null
+    public function getOrganizationId()
     {
         return $this->container['organization_id'];
     }
@@ -371,8 +375,10 @@ final class Discount implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets type
+     *
+     * @return string|null
      */
-    public function getType(): string|null
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -402,8 +408,10 @@ final class Discount implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets type_label
+     *
+     * @return string|null
      */
-    public function getTypeLabel(): string|null
+    public function getTypeLabel()
     {
         return $this->container['type_label'];
     }
@@ -423,8 +431,10 @@ final class Discount implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets status
+     *
+     * @return string|null
      */
-    public function getStatus(): string|null
+    public function getStatus()
     {
         return $this->container['status'];
     }
@@ -454,8 +464,10 @@ final class Discount implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets commitment
+     *
+     * @return \Upsun\Model\DiscountCommitment|null
      */
-    public function getCommitment(): \Upsun\Model\DiscountCommitment|null
+    public function getCommitment()
     {
         return $this->container['commitment'];
     }
@@ -482,8 +494,10 @@ final class Discount implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets total_months
+     *
+     * @return int|null
      */
-    public function getTotalMonths(): int|null
+    public function getTotalMonths()
     {
         return $this->container['total_months'];
     }
@@ -510,8 +524,10 @@ final class Discount implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets discount
+     *
+     * @return \Upsun\Model\DiscountDiscount|null
      */
-    public function getDiscount(): \Upsun\Model\DiscountDiscount|null
+    public function getDiscount()
     {
         return $this->container['discount'];
     }
@@ -531,8 +547,10 @@ final class Discount implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets config
+     *
+     * @return object|null
      */
-    public function getConfig(): object|null
+    public function getConfig()
     {
         return $this->container['config'];
     }
@@ -552,8 +570,10 @@ final class Discount implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets start_at
+     *
+     * @return \DateTime|null
      */
-    public function getStartAt(): \DateTime|null
+    public function getStartAt()
     {
         return $this->container['start_at'];
     }
@@ -573,8 +593,10 @@ final class Discount implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets end_at
+     *
+     * @return \DateTime|null
      */
-    public function getEndAt(): \DateTime|null
+    public function getEndAt()
     {
         return $this->container['end_at'];
     }

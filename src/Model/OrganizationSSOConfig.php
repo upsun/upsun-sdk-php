@@ -264,8 +264,10 @@ final class OrganizationSSOConfig implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets provider_type
+     *
+     * @return string|null
      */
-    public function getProviderType(): string|null
+    public function getProviderType()
     {
         return $this->container['provider_type'];
     }
@@ -295,8 +297,10 @@ final class OrganizationSSOConfig implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets domain
+     *
+     * @return string|null
      */
-    public function getDomain(): string|null
+    public function getDomain()
     {
         return $this->container['domain'];
     }
@@ -316,8 +320,10 @@ final class OrganizationSSOConfig implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets organization_id
+     *
+     * @return string|null
      */
-    public function getOrganizationId(): string|null
+    public function getOrganizationId()
     {
         return $this->container['organization_id'];
     }
@@ -337,8 +343,10 @@ final class OrganizationSSOConfig implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets enforced
+     *
+     * @return bool|null
      */
-    public function getEnforced(): bool|null
+    public function getEnforced()
     {
         return $this->container['enforced'];
     }
@@ -358,8 +366,10 @@ final class OrganizationSSOConfig implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime|null
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -379,8 +389,10 @@ final class OrganizationSSOConfig implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime|null
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }

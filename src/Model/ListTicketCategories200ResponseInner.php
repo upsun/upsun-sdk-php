@@ -216,8 +216,10 @@ final class ListTicketCategories200ResponseInner implements ModelInterface, Arra
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -237,8 +239,10 @@ final class ListTicketCategories200ResponseInner implements ModelInterface, Arra
 
     /**
      * Gets label
+     *
+     * @return string|null
      */
-    public function getLabel(): string|null
+    public function getLabel()
     {
         return $this->container['label'];
     }

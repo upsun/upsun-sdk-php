@@ -246,8 +246,10 @@ final class NewRelicIntegrationCreateInput implements ModelInterface, ArrayAcces
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -267,8 +269,10 @@ final class NewRelicIntegrationCreateInput implements ModelInterface, ArrayAcces
 
     /**
      * Gets extra
+     *
+     * @return array<string,string>|null
      */
-    public function getExtra(): array|null
+    public function getExtra()
     {
         return $this->container['extra'];
     }
@@ -288,8 +292,10 @@ final class NewRelicIntegrationCreateInput implements ModelInterface, ArrayAcces
 
     /**
      * Gets url
+     *
+     * @return string
      */
-    public function getUrl(): string
+    public function getUrl()
     {
         return $this->container['url'];
     }
@@ -309,8 +315,10 @@ final class NewRelicIntegrationCreateInput implements ModelInterface, ArrayAcces
 
     /**
      * Gets license_key
+     *
+     * @return string
      */
-    public function getLicenseKey(): string
+    public function getLicenseKey()
     {
         return $this->container['license_key'];
     }
@@ -330,8 +338,10 @@ final class NewRelicIntegrationCreateInput implements ModelInterface, ArrayAcces
 
     /**
      * Gets tls_verify
+     *
+     * @return bool|null
      */
-    public function getTlsVerify(): bool|null
+    public function getTlsVerify()
     {
         return $this->container['tls_verify'];
     }

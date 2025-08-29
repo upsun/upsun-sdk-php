@@ -339,8 +339,10 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -367,8 +369,10 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -395,8 +399,10 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets name
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -416,8 +422,10 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets attributes
+     *
+     * @return array<string,string>
      */
-    public function getAttributes(): array
+    public function getAttributes()
     {
         return $this->container['attributes'];
     }
@@ -437,8 +445,10 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets value
+     *
+     * @return string|null
      */
-    public function getValue(): string|null
+    public function getValue()
     {
         return $this->container['value'];
     }
@@ -458,8 +468,10 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets is_json
+     *
+     * @return bool
      */
-    public function getIsJson(): bool
+    public function getIsJson()
     {
         return $this->container['is_json'];
     }
@@ -479,8 +491,10 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets is_sensitive
+     *
+     * @return bool
      */
-    public function getIsSensitive(): bool
+    public function getIsSensitive()
     {
         return $this->container['is_sensitive'];
     }
@@ -500,8 +514,10 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets visible_build
+     *
+     * @return bool
      */
-    public function getVisibleBuild(): bool
+    public function getVisibleBuild()
     {
         return $this->container['visible_build'];
     }
@@ -521,8 +537,10 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets visible_runtime
+     *
+     * @return bool
      */
-    public function getVisibleRuntime(): bool
+    public function getVisibleRuntime()
     {
         return $this->container['visible_runtime'];
     }
@@ -542,8 +560,10 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets project
+     *
+     * @return string
      */
-    public function getProject(): string
+    public function getProject()
     {
         return $this->container['project'];
     }
@@ -563,8 +583,10 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets environment
+     *
+     * @return string
      */
-    public function getEnvironment(): string
+    public function getEnvironment()
     {
         return $this->container['environment'];
     }
@@ -584,8 +606,10 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets inherited
+     *
+     * @return bool
      */
-    public function getInherited(): bool
+    public function getInherited()
     {
         return $this->container['inherited'];
     }
@@ -605,8 +629,10 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets is_enabled
+     *
+     * @return bool
      */
-    public function getIsEnabled(): bool
+    public function getIsEnabled()
     {
         return $this->container['is_enabled'];
     }
@@ -626,8 +652,10 @@ final class EnvironmentVariable implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets is_inheritable
+     *
+     * @return bool
      */
-    public function getIsInheritable(): bool
+    public function getIsInheritable()
     {
         return $this->container['is_inheritable'];
     }

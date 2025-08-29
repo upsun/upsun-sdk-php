@@ -293,8 +293,10 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets display_name
+     *
+     * @return string|null
      */
-    public function getDisplayName(): string|null
+    public function getDisplayName()
     {
         return $this->container['display_name'];
     }
@@ -314,8 +316,10 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets username
+     *
+     * @return string|null
      */
-    public function getUsername(): string|null
+    public function getUsername()
     {
         return $this->container['username'];
     }
@@ -335,8 +339,10 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets current_password
+     *
+     * @return string|null
      */
-    public function getCurrentPassword(): string|null
+    public function getCurrentPassword()
     {
         return $this->container['current_password'];
     }
@@ -356,8 +362,10 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets password
+     *
+     * @return string|null
      */
-    public function getPassword(): string|null
+    public function getPassword()
     {
         return $this->container['password'];
     }
@@ -377,8 +385,10 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets company_type
+     *
+     * @return string|null
      */
-    public function getCompanyType(): string|null
+    public function getCompanyType()
     {
         return $this->container['company_type'];
     }
@@ -398,8 +408,10 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets company_name
+     *
+     * @return string|null
      */
-    public function getCompanyName(): string|null
+    public function getCompanyName()
     {
         return $this->container['company_name'];
     }
@@ -419,8 +431,10 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets vat_number
+     *
+     * @return string|null
      */
-    public function getVatNumber(): string|null
+    public function getVatNumber()
     {
         return $this->container['vat_number'];
     }
@@ -440,8 +454,10 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets company_role
+     *
+     * @return string|null
      */
-    public function getCompanyRole(): string|null
+    public function getCompanyRole()
     {
         return $this->container['company_role'];
     }
@@ -461,8 +477,10 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets marketing
+     *
+     * @return bool|null
      */
-    public function getMarketing(): bool|null
+    public function getMarketing()
     {
         return $this->container['marketing'];
     }
@@ -482,8 +500,10 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets ui_colorscheme
+     *
+     * @return string|null
      */
-    public function getUiColorscheme(): string|null
+    public function getUiColorscheme()
     {
         return $this->container['ui_colorscheme'];
     }
@@ -503,8 +523,10 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets default_catalog
+     *
+     * @return string|null
      */
-    public function getDefaultCatalog(): string|null
+    public function getDefaultCatalog()
     {
         return $this->container['default_catalog'];
     }
@@ -524,8 +546,10 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets project_options_url
+     *
+     * @return string|null
      */
-    public function getProjectOptionsUrl(): string|null
+    public function getProjectOptionsUrl()
     {
         return $this->container['project_options_url'];
     }
@@ -545,8 +569,10 @@ final class UpdateProfileRequest implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets picture
+     *
+     * @return string|null
      */
-    public function getPicture(): string|null
+    public function getPicture()
     {
         return $this->container['picture'];
     }

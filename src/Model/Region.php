@@ -286,8 +286,10 @@ final class Region implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -307,8 +309,10 @@ final class Region implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets label
+     *
+     * @return string|null
      */
-    public function getLabel(): string|null
+    public function getLabel()
     {
         return $this->container['label'];
     }
@@ -328,8 +332,10 @@ final class Region implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets zone
+     *
+     * @return string|null
      */
-    public function getZone(): string|null
+    public function getZone()
     {
         return $this->container['zone'];
     }
@@ -349,8 +355,10 @@ final class Region implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets selection_label
+     *
+     * @return string|null
      */
-    public function getSelectionLabel(): string|null
+    public function getSelectionLabel()
     {
         return $this->container['selection_label'];
     }
@@ -370,8 +378,10 @@ final class Region implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets project_label
+     *
+     * @return string|null
      */
-    public function getProjectLabel(): string|null
+    public function getProjectLabel()
     {
         return $this->container['project_label'];
     }
@@ -391,8 +401,10 @@ final class Region implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets timezone
+     *
+     * @return string|null
      */
-    public function getTimezone(): string|null
+    public function getTimezone()
     {
         return $this->container['timezone'];
     }
@@ -412,8 +424,10 @@ final class Region implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets available
+     *
+     * @return bool|null
      */
-    public function getAvailable(): bool|null
+    public function getAvailable()
     {
         return $this->container['available'];
     }
@@ -433,8 +447,10 @@ final class Region implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets private
+     *
+     * @return bool|null
      */
-    public function getPrivate(): bool|null
+    public function getPrivate()
     {
         return $this->container['private'];
     }
@@ -454,8 +470,10 @@ final class Region implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets endpoint
+     *
+     * @return string|null
      */
-    public function getEndpoint(): string|null
+    public function getEndpoint()
     {
         return $this->container['endpoint'];
     }
@@ -475,8 +493,10 @@ final class Region implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets provider
+     *
+     * @return \Upsun\Model\RegionProvider|null
      */
-    public function getProvider(): \Upsun\Model\RegionProvider|null
+    public function getProvider()
     {
         return $this->container['provider'];
     }
@@ -496,8 +516,10 @@ final class Region implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets datacenter
+     *
+     * @return \Upsun\Model\RegionDatacenter|null
      */
-    public function getDatacenter(): \Upsun\Model\RegionDatacenter|null
+    public function getDatacenter()
     {
         return $this->container['datacenter'];
     }
@@ -517,8 +539,10 @@ final class Region implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets environmental_impact
+     *
+     * @return \Upsun\Model\RegionEnvironmentalImpact|null
      */
-    public function getEnvironmentalImpact(): \Upsun\Model\RegionEnvironmentalImpact|null
+    public function getEnvironmentalImpact()
     {
         return $this->container['environmental_impact'];
     }

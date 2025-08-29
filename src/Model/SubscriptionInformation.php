@@ -341,8 +341,10 @@ final class SubscriptionInformation implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets license_uri
+     *
+     * @return string
      */
-    public function getLicenseUri(): string
+    public function getLicenseUri()
     {
         return $this->container['license_uri'];
     }
@@ -362,8 +364,10 @@ final class SubscriptionInformation implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets plan
+     *
+     * @return string|null
      */
-    public function getPlan(): string|null
+    public function getPlan()
     {
         return $this->container['plan'];
     }
@@ -393,8 +397,10 @@ final class SubscriptionInformation implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets environments
+     *
+     * @return int|null
      */
-    public function getEnvironments(): int|null
+    public function getEnvironments()
     {
         return $this->container['environments'];
     }
@@ -414,8 +420,10 @@ final class SubscriptionInformation implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets storage
+     *
+     * @return int
      */
-    public function getStorage(): int
+    public function getStorage()
     {
         return $this->container['storage'];
     }
@@ -435,8 +443,10 @@ final class SubscriptionInformation implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets included_users
+     *
+     * @return int
      */
-    public function getIncludedUsers(): int
+    public function getIncludedUsers()
     {
         return $this->container['included_users'];
     }
@@ -456,8 +466,10 @@ final class SubscriptionInformation implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets subscription_management_uri
+     *
+     * @return string
      */
-    public function getSubscriptionManagementUri(): string
+    public function getSubscriptionManagementUri()
     {
         return $this->container['subscription_management_uri'];
     }
@@ -477,8 +489,10 @@ final class SubscriptionInformation implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets restricted
+     *
+     * @return bool
      */
-    public function getRestricted(): bool
+    public function getRestricted()
     {
         return $this->container['restricted'];
     }
@@ -498,8 +512,10 @@ final class SubscriptionInformation implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets suspended
+     *
+     * @return bool
      */
-    public function getSuspended(): bool
+    public function getSuspended()
     {
         return $this->container['suspended'];
     }
@@ -519,8 +535,10 @@ final class SubscriptionInformation implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets user_licenses
+     *
+     * @return int
      */
-    public function getUserLicenses(): int
+    public function getUserLicenses()
     {
         return $this->container['user_licenses'];
     }
@@ -540,8 +558,10 @@ final class SubscriptionInformation implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets resources
+     *
+     * @return \Upsun\Model\ResourcesLimits|null
      */
-    public function getResources(): \Upsun\Model\ResourcesLimits|null
+    public function getResources()
     {
         return $this->container['resources'];
     }
@@ -561,8 +581,10 @@ final class SubscriptionInformation implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets resource_validation_url
+     *
+     * @return string|null
      */
-    public function getResourceValidationUrl(): string|null
+    public function getResourceValidationUrl()
     {
         return $this->container['resource_validation_url'];
     }
@@ -582,8 +604,10 @@ final class SubscriptionInformation implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets image_types
+     *
+     * @return \Upsun\Model\RestrictedAndDeniedImageTypes|null
      */
-    public function getImageTypes(): \Upsun\Model\RestrictedAndDeniedImageTypes|null
+    public function getImageTypes()
     {
         return $this->container['image_types'];
     }

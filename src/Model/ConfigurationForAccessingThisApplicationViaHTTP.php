@@ -278,8 +278,10 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
 
     /**
      * Gets locations
+     *
+     * @return array<string,\Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue>
      */
-    public function getLocations(): array
+    public function getLocations()
     {
         return $this->container['locations'];
     }
@@ -299,8 +301,10 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
 
     /**
      * Gets commands
+     *
+     * @return \Upsun\Model\CommandsToManageTheApplicationSLifecycle|null
      */
-    public function getCommands(): \Upsun\Model\CommandsToManageTheApplicationSLifecycle|null
+    public function getCommands()
     {
         return $this->container['commands'];
     }
@@ -320,8 +324,10 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
 
     /**
      * Gets upstream
+     *
+     * @return \Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication|null
      */
-    public function getUpstream(): \Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication|null
+    public function getUpstream()
     {
         return $this->container['upstream'];
     }
@@ -341,8 +347,10 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
 
     /**
      * Gets document_root
+     *
+     * @return string|null
      */
-    public function getDocumentRoot(): string|null
+    public function getDocumentRoot()
     {
         return $this->container['document_root'];
     }
@@ -369,8 +377,10 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
 
     /**
      * Gets passthru
+     *
+     * @return string|null
      */
-    public function getPassthru(): string|null
+    public function getPassthru()
     {
         return $this->container['passthru'];
     }
@@ -397,8 +407,10 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
 
     /**
      * Gets index_files
+     *
+     * @return string[]|null
      */
-    public function getIndexFiles(): array|null
+    public function getIndexFiles()
     {
         return $this->container['index_files'];
     }
@@ -425,8 +437,10 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
 
     /**
      * Gets whitelist
+     *
+     * @return string[]|null
      */
-    public function getWhitelist(): array|null
+    public function getWhitelist()
     {
         return $this->container['whitelist'];
     }
@@ -453,8 +467,10 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
 
     /**
      * Gets blacklist
+     *
+     * @return string[]|null
      */
-    public function getBlacklist(): array|null
+    public function getBlacklist()
     {
         return $this->container['blacklist'];
     }
@@ -481,8 +497,10 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
 
     /**
      * Gets expires
+     *
+     * @return string|null
      */
-    public function getExpires(): string|null
+    public function getExpires()
     {
         return $this->container['expires'];
     }
@@ -509,8 +527,10 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
 
     /**
      * Gets move_to_root
+     *
+     * @return bool
      */
-    public function getMoveToRoot(): bool
+    public function getMoveToRoot()
     {
         return $this->container['move_to_root'];
     }

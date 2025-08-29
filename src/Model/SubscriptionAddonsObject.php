@@ -223,8 +223,10 @@ final class SubscriptionAddonsObject implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets available
+     *
+     * @return \Upsun\Model\SubscriptionAddonsObjectAvailable|null
      */
-    public function getAvailable(): \Upsun\Model\SubscriptionAddonsObjectAvailable|null
+    public function getAvailable()
     {
         return $this->container['available'];
     }
@@ -244,8 +246,10 @@ final class SubscriptionAddonsObject implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets current
+     *
+     * @return \Upsun\Model\SubscriptionAddonsObjectCurrent|null
      */
-    public function getCurrent(): \Upsun\Model\SubscriptionAddonsObjectCurrent|null
+    public function getCurrent()
     {
         return $this->container['current'];
     }
@@ -265,8 +269,10 @@ final class SubscriptionAddonsObject implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets upgrades_available
+     *
+     * @return \Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable|null
      */
-    public function getUpgradesAvailable(): \Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable|null
+    public function getUpgradesAvailable()
     {
         return $this->container['upgrades_available'];
     }

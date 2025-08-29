@@ -784,8 +784,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -812,8 +814,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -840,8 +844,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -861,8 +867,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets fetch_branches
+     *
+     * @return bool
      */
-    public function getFetchBranches(): bool
+    public function getFetchBranches()
     {
         return $this->container['fetch_branches'];
     }
@@ -882,8 +890,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets prune_branches
+     *
+     * @return bool
      */
-    public function getPruneBranches(): bool
+    public function getPruneBranches()
     {
         return $this->container['prune_branches'];
     }
@@ -903,8 +913,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets environment_init_resources
+     *
+     * @return string
      */
-    public function getEnvironmentInitResources(): string
+    public function getEnvironmentInitResources()
     {
         return $this->container['environment_init_resources'];
     }
@@ -934,8 +946,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets app_credentials
+     *
+     * @return \Upsun\Model\TheOAuth2ConsumerInformationOptional|null
      */
-    public function getAppCredentials(): \Upsun\Model\TheOAuth2ConsumerInformationOptional|null
+    public function getAppCredentials()
     {
         return $this->container['app_credentials'];
     }
@@ -962,8 +976,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets addon_credentials
+     *
+     * @return \Upsun\Model\TheAddonCredentialInformationOptional|null
      */
-    public function getAddonCredentials(): \Upsun\Model\TheAddonCredentialInformationOptional|null
+    public function getAddonCredentials()
     {
         return $this->container['addon_credentials'];
     }
@@ -990,8 +1006,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets repository
+     *
+     * @return string
      */
-    public function getRepository(): string
+    public function getRepository()
     {
         return $this->container['repository'];
     }
@@ -1011,8 +1029,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets build_pull_requests
+     *
+     * @return bool
      */
-    public function getBuildPullRequests(): bool
+    public function getBuildPullRequests()
     {
         return $this->container['build_pull_requests'];
     }
@@ -1032,8 +1052,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets pull_requests_clone_parent_data
+     *
+     * @return bool
      */
-    public function getPullRequestsCloneParentData(): bool
+    public function getPullRequestsCloneParentData()
     {
         return $this->container['pull_requests_clone_parent_data'];
     }
@@ -1053,8 +1075,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets resync_pull_requests
+     *
+     * @return bool
      */
-    public function getResyncPullRequests(): bool
+    public function getResyncPullRequests()
     {
         return $this->container['resync_pull_requests'];
     }
@@ -1074,8 +1098,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets url
+     *
+     * @return string
      */
-    public function getUrl(): string
+    public function getUrl()
     {
         return $this->container['url'];
     }
@@ -1095,8 +1121,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets username
+     *
+     * @return string
      */
-    public function getUsername(): string
+    public function getUsername()
     {
         return $this->container['username'];
     }
@@ -1116,8 +1144,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets project
+     *
+     * @return string
      */
-    public function getProject(): string
+    public function getProject()
     {
         return $this->container['project'];
     }
@@ -1137,8 +1167,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets environments_credentials
+     *
+     * @return array<string,\Upsun\Model\BlackfireEnvironmentsCredentialsValue>
      */
-    public function getEnvironmentsCredentials(): array
+    public function getEnvironmentsCredentials()
     {
         return $this->container['environments_credentials'];
     }
@@ -1158,8 +1190,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets continuous_profiling
+     *
+     * @return bool
      */
-    public function getContinuousProfiling(): bool
+    public function getContinuousProfiling()
     {
         return $this->container['continuous_profiling'];
     }
@@ -1179,8 +1213,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets events
+     *
+     * @return string[]
      */
-    public function getEvents(): array
+    public function getEvents()
     {
         return $this->container['events'];
     }
@@ -1200,8 +1236,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets environments
+     *
+     * @return string[]
      */
-    public function getEnvironments(): array
+    public function getEnvironments()
     {
         return $this->container['environments'];
     }
@@ -1221,8 +1259,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets excluded_environments
+     *
+     * @return string[]
      */
-    public function getExcludedEnvironments(): array
+    public function getExcludedEnvironments()
     {
         return $this->container['excluded_environments'];
     }
@@ -1242,8 +1282,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets states
+     *
+     * @return string[]
      */
-    public function getStates(): array
+    public function getStates()
     {
         return $this->container['states'];
     }
@@ -1263,8 +1305,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets result
+     *
+     * @return string
      */
-    public function getResult(): string
+    public function getResult()
     {
         return $this->container['result'];
     }
@@ -1294,8 +1338,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets service_id
+     *
+     * @return string
      */
-    public function getServiceId(): string
+    public function getServiceId()
     {
         return $this->container['service_id'];
     }
@@ -1315,8 +1361,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets base_url
+     *
+     * @return string
      */
-    public function getBaseUrl(): string
+    public function getBaseUrl()
     {
         return $this->container['base_url'];
     }
@@ -1336,8 +1384,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets build_draft_pull_requests
+     *
+     * @return bool
      */
-    public function getBuildDraftPullRequests(): bool
+    public function getBuildDraftPullRequests()
     {
         return $this->container['build_draft_pull_requests'];
     }
@@ -1357,8 +1407,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets build_pull_requests_post_merge
+     *
+     * @return bool
      */
-    public function getBuildPullRequestsPostMerge(): bool
+    public function getBuildPullRequestsPostMerge()
     {
         return $this->container['build_pull_requests_post_merge'];
     }
@@ -1378,8 +1430,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets token_type
+     *
+     * @return string
      */
-    public function getTokenType(): string
+    public function getTokenType()
     {
         return $this->container['token_type'];
     }
@@ -1409,8 +1463,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets build_merge_requests
+     *
+     * @return bool
      */
-    public function getBuildMergeRequests(): bool
+    public function getBuildMergeRequests()
     {
         return $this->container['build_merge_requests'];
     }
@@ -1430,8 +1486,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets build_wip_merge_requests
+     *
+     * @return bool
      */
-    public function getBuildWipMergeRequests(): bool
+    public function getBuildWipMergeRequests()
     {
         return $this->container['build_wip_merge_requests'];
     }
@@ -1451,8 +1509,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets merge_requests_clone_parent_data
+     *
+     * @return bool
      */
-    public function getMergeRequestsCloneParentData(): bool
+    public function getMergeRequestsCloneParentData()
     {
         return $this->container['merge_requests_clone_parent_data'];
     }
@@ -1472,8 +1532,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets from_address
+     *
+     * @return string
      */
-    public function getFromAddress(): string
+    public function getFromAddress()
     {
         return $this->container['from_address'];
     }
@@ -1500,8 +1562,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets recipients
+     *
+     * @return string[]
      */
-    public function getRecipients(): array
+    public function getRecipients()
     {
         return $this->container['recipients'];
     }
@@ -1521,8 +1585,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets routing_key
+     *
+     * @return string
      */
-    public function getRoutingKey(): string
+    public function getRoutingKey()
     {
         return $this->container['routing_key'];
     }
@@ -1542,8 +1608,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets channel
+     *
+     * @return string
      */
-    public function getChannel(): string
+    public function getChannel()
     {
         return $this->container['channel'];
     }
@@ -1563,8 +1631,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets extra
+     *
+     * @return array<string,string>
      */
-    public function getExtra(): array
+    public function getExtra()
     {
         return $this->container['extra'];
     }
@@ -1584,8 +1654,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets headers
+     *
+     * @return array<string,string>
      */
-    public function getHeaders(): array
+    public function getHeaders()
     {
         return $this->container['headers'];
     }
@@ -1605,8 +1677,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets tls_verify
+     *
+     * @return bool
      */
-    public function getTlsVerify(): bool
+    public function getTlsVerify()
     {
         return $this->container['tls_verify'];
     }
@@ -1626,8 +1700,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets script
+     *
+     * @return string
      */
-    public function getScript(): string
+    public function getScript()
     {
         return $this->container['script'];
     }
@@ -1647,8 +1723,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets index
+     *
+     * @return string
      */
-    public function getIndex(): string
+    public function getIndex()
     {
         return $this->container['index'];
     }
@@ -1668,8 +1746,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets sourcetype
+     *
+     * @return string
      */
-    public function getSourcetype(): string
+    public function getSourcetype()
     {
         return $this->container['sourcetype'];
     }
@@ -1689,8 +1769,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets category
+     *
+     * @return string
      */
-    public function getCategory(): string
+    public function getCategory()
     {
         return $this->container['category'];
     }
@@ -1710,8 +1792,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets host
+     *
+     * @return string
      */
-    public function getHost(): string
+    public function getHost()
     {
         return $this->container['host'];
     }
@@ -1731,8 +1815,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets port
+     *
+     * @return int
      */
-    public function getPort(): int
+    public function getPort()
     {
         return $this->container['port'];
     }
@@ -1752,8 +1838,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets protocol
+     *
+     * @return string
      */
-    public function getProtocol(): string
+    public function getProtocol()
     {
         return $this->container['protocol'];
     }
@@ -1783,8 +1871,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets facility
+     *
+     * @return int
      */
-    public function getFacility(): int
+    public function getFacility()
     {
         return $this->container['facility'];
     }
@@ -1804,8 +1894,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets message_format
+     *
+     * @return string
      */
-    public function getMessageFormat(): string
+    public function getMessageFormat()
     {
         return $this->container['message_format'];
     }
@@ -1835,8 +1927,10 @@ final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets shared_key
+     *
+     * @return string
      */
-    public function getSharedKey(): string
+    public function getSharedKey()
     {
         return $this->container['shared_key'];
     }

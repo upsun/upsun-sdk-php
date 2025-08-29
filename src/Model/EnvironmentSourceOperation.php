@@ -232,8 +232,10 @@ final class EnvironmentSourceOperation implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets app
+     *
+     * @return string
      */
-    public function getApp(): string
+    public function getApp()
     {
         return $this->container['app'];
     }
@@ -253,8 +255,10 @@ final class EnvironmentSourceOperation implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets operation
+     *
+     * @return string
      */
-    public function getOperation(): string
+    public function getOperation()
     {
         return $this->container['operation'];
     }
@@ -274,8 +278,10 @@ final class EnvironmentSourceOperation implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets command
+     *
+     * @return string
      */
-    public function getCommand(): string
+    public function getCommand()
     {
         return $this->container['command'];
     }

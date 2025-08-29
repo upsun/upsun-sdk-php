@@ -222,8 +222,10 @@ final class Status implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets code
+     *
+     * @return string
      */
-    public function getCode(): string
+    public function getCode()
     {
         return $this->container['code'];
     }
@@ -243,8 +245,10 @@ final class Status implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets message
+     *
+     * @return string
      */
-    public function getMessage(): string
+    public function getMessage()
     {
         return $this->container['message'];
     }

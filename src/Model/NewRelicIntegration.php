@@ -262,8 +262,10 @@ final class NewRelicIntegration implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -290,8 +292,10 @@ final class NewRelicIntegration implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -318,8 +322,10 @@ final class NewRelicIntegration implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -339,8 +345,10 @@ final class NewRelicIntegration implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets extra
+     *
+     * @return array<string,string>
      */
-    public function getExtra(): array
+    public function getExtra()
     {
         return $this->container['extra'];
     }
@@ -360,8 +368,10 @@ final class NewRelicIntegration implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets url
+     *
+     * @return string
      */
-    public function getUrl(): string
+    public function getUrl()
     {
         return $this->container['url'];
     }
@@ -381,8 +391,10 @@ final class NewRelicIntegration implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets tls_verify
+     *
+     * @return bool
      */
-    public function getTlsVerify(): bool
+    public function getTlsVerify()
     {
         return $this->container['tls_verify'];
     }

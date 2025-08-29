@@ -230,8 +230,10 @@ final class LineItemComponent implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets amount
+     *
+     * @return float|null
      */
-    public function getAmount(): float|null
+    public function getAmount()
     {
         return $this->container['amount'];
     }
@@ -251,8 +253,10 @@ final class LineItemComponent implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets amount_formatted
+     *
+     * @return string|null
      */
-    public function getAmountFormatted(): string|null
+    public function getAmountFormatted()
     {
         return $this->container['amount_formatted'];
     }
@@ -272,8 +276,10 @@ final class LineItemComponent implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets display_title
+     *
+     * @return string|null
      */
-    public function getDisplayTitle(): string|null
+    public function getDisplayTitle()
     {
         return $this->container['display_title'];
     }
@@ -293,8 +299,10 @@ final class LineItemComponent implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets currency
+     *
+     * @return string|null
      */
-    public function getCurrency(): string|null
+    public function getCurrency()
     {
         return $this->container['currency'];
     }

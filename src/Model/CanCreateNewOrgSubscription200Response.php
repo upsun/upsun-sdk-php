@@ -223,8 +223,10 @@ final class CanCreateNewOrgSubscription200Response implements ModelInterface, Ar
 
     /**
      * Gets can_create
+     *
+     * @return bool|null
      */
-    public function getCanCreate(): bool|null
+    public function getCanCreate()
     {
         return $this->container['can_create'];
     }
@@ -244,8 +246,10 @@ final class CanCreateNewOrgSubscription200Response implements ModelInterface, Ar
 
     /**
      * Gets message
+     *
+     * @return string|null
      */
-    public function getMessage(): string|null
+    public function getMessage()
     {
         return $this->container['message'];
     }
@@ -265,8 +269,10 @@ final class CanCreateNewOrgSubscription200Response implements ModelInterface, Ar
 
     /**
      * Gets required_action
+     *
+     * @return \Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction|null
      */
-    public function getRequiredAction(): \Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction|null
+    public function getRequiredAction()
     {
         return $this->container['required_action'];
     }

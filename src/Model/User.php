@@ -388,8 +388,10 @@ final class User implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets id
+     *
+     * @return string
      */
-    public function getId(): string
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -409,8 +411,10 @@ final class User implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets deactivated
+     *
+     * @return bool
      */
-    public function getDeactivated(): bool
+    public function getDeactivated()
     {
         return $this->container['deactivated'];
     }
@@ -430,8 +434,10 @@ final class User implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets namespace
+     *
+     * @return string
      */
-    public function getNamespace(): string
+    public function getNamespace()
     {
         return $this->container['namespace'];
     }
@@ -451,8 +457,10 @@ final class User implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets username
+     *
+     * @return string
      */
-    public function getUsername(): string
+    public function getUsername()
     {
         return $this->container['username'];
     }
@@ -472,8 +480,10 @@ final class User implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets email
+     *
+     * @return string
      */
-    public function getEmail(): string
+    public function getEmail()
     {
         return $this->container['email'];
     }
@@ -493,8 +503,10 @@ final class User implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets email_verified
+     *
+     * @return bool
      */
-    public function getEmailVerified(): bool
+    public function getEmailVerified()
     {
         return $this->container['email_verified'];
     }
@@ -514,8 +526,10 @@ final class User implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets first_name
+     *
+     * @return string
      */
-    public function getFirstName(): string
+    public function getFirstName()
     {
         return $this->container['first_name'];
     }
@@ -535,8 +549,10 @@ final class User implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets last_name
+     *
+     * @return string
      */
-    public function getLastName(): string
+    public function getLastName()
     {
         return $this->container['last_name'];
     }
@@ -556,8 +572,10 @@ final class User implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets picture
+     *
+     * @return string
      */
-    public function getPicture(): string
+    public function getPicture()
     {
         return $this->container['picture'];
     }
@@ -577,8 +595,10 @@ final class User implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets company
+     *
+     * @return string
      */
-    public function getCompany(): string
+    public function getCompany()
     {
         return $this->container['company'];
     }
@@ -598,8 +618,10 @@ final class User implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets website
+     *
+     * @return string
      */
-    public function getWebsite(): string
+    public function getWebsite()
     {
         return $this->container['website'];
     }
@@ -619,8 +641,10 @@ final class User implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets country
+     *
+     * @return string
      */
-    public function getCountry(): string
+    public function getCountry()
     {
         return $this->container['country'];
     }
@@ -651,8 +675,10 @@ final class User implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -672,8 +698,10 @@ final class User implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -693,8 +721,10 @@ final class User implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets consented_at
+     *
+     * @return \DateTime|null
      */
-    public function getConsentedAt(): \DateTime|null
+    public function getConsentedAt()
     {
         return $this->container['consented_at'];
     }
@@ -714,8 +744,10 @@ final class User implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets consent_method
+     *
+     * @return string|null
      */
-    public function getConsentMethod(): string|null
+    public function getConsentMethod()
     {
         return $this->container['consent_method'];
     }

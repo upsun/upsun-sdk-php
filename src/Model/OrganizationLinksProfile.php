@@ -209,8 +209,10 @@ final class OrganizationLinksProfile implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets href
+     *
+     * @return string|null
      */
-    public function getHref(): string|null
+    public function getHref()
     {
         return $this->container['href'];
     }

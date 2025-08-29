@@ -260,8 +260,10 @@ final class FoundationDeploymentTargetPatch implements ModelInterface, ArrayAcce
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -291,8 +293,10 @@ final class FoundationDeploymentTargetPatch implements ModelInterface, ArrayAcce
 
     /**
      * Gets name
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -312,8 +316,10 @@ final class FoundationDeploymentTargetPatch implements ModelInterface, ArrayAcce
 
     /**
      * Gets hosts
+     *
+     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]|null
      */
-    public function getHosts(): array|null
+    public function getHosts()
     {
         return $this->container['hosts'];
     }
@@ -340,8 +346,10 @@ final class FoundationDeploymentTargetPatch implements ModelInterface, ArrayAcce
 
     /**
      * Gets use_dedicated_grid
+     *
+     * @return bool|null
      */
-    public function getUseDedicatedGrid(): bool|null
+    public function getUseDedicatedGrid()
     {
         return $this->container['use_dedicated_grid'];
     }

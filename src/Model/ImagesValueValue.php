@@ -212,8 +212,10 @@ final class ImagesValueValue implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets available
+     *
+     * @return bool
      */
-    public function getAvailable(): bool
+    public function getAvailable()
     {
         return $this->container['available'];
     }

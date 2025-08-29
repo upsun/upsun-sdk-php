@@ -223,8 +223,10 @@ final class ListOrgPrepaymentTransactions200Response implements ModelInterface, 
 
     /**
      * Gets count
+     *
+     * @return int|null
      */
-    public function getCount(): int|null
+    public function getCount()
     {
         return $this->container['count'];
     }
@@ -244,8 +246,10 @@ final class ListOrgPrepaymentTransactions200Response implements ModelInterface, 
 
     /**
      * Gets transactions
+     *
+     * @return \Upsun\Model\PrepaymentTransactionObject[]|null
      */
-    public function getTransactions(): array|null
+    public function getTransactions()
     {
         return $this->container['transactions'];
     }
@@ -265,8 +269,10 @@ final class ListOrgPrepaymentTransactions200Response implements ModelInterface, 
 
     /**
      * Gets _links
+     *
+     * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks|null
      */
-    public function getLinks(): \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks|null
+    public function getLinks()
     {
         return $this->container['_links'];
     }

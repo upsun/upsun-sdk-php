@@ -254,8 +254,10 @@ final class ProjectInvitationEnvironmentsInner implements ModelInterface, ArrayA
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -275,8 +277,10 @@ final class ProjectInvitationEnvironmentsInner implements ModelInterface, ArrayA
 
     /**
      * Gets type
+     *
+     * @return string|null
      */
-    public function getType(): string|null
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -296,8 +300,10 @@ final class ProjectInvitationEnvironmentsInner implements ModelInterface, ArrayA
 
     /**
      * Gets role
+     *
+     * @return string|null
      */
-    public function getRole(): string|null
+    public function getRole()
     {
         return $this->container['role'];
     }
@@ -327,8 +333,10 @@ final class ProjectInvitationEnvironmentsInner implements ModelInterface, ArrayA
 
     /**
      * Gets title
+     *
+     * @return string|null
      */
-    public function getTitle(): string|null
+    public function getTitle()
     {
         return $this->container['title'];
     }

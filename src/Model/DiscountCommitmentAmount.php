@@ -223,8 +223,10 @@ final class DiscountCommitmentAmount implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets monthly
+     *
+     * @return \Upsun\Model\CurrencyAmount|null
      */
-    public function getMonthly(): \Upsun\Model\CurrencyAmount|null
+    public function getMonthly()
     {
         return $this->container['monthly'];
     }
@@ -244,8 +246,10 @@ final class DiscountCommitmentAmount implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets commitment_period
+     *
+     * @return \Upsun\Model\CurrencyAmount|null
      */
-    public function getCommitmentPeriod(): \Upsun\Model\CurrencyAmount|null
+    public function getCommitmentPeriod()
     {
         return $this->container['commitment_period'];
     }
@@ -265,8 +269,10 @@ final class DiscountCommitmentAmount implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets contract_total
+     *
+     * @return \Upsun\Model\CurrencyAmount|null
      */
-    public function getContractTotal(): \Upsun\Model\CurrencyAmount|null
+    public function getContractTotal()
     {
         return $this->container['contract_total'];
     }

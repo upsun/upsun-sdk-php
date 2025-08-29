@@ -321,8 +321,10 @@ final class Config implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets newrelic
+     *
+     * @return \Upsun\Model\NewRelicLogForwardingIntegrationConfigurations|null
      */
-    public function getNewrelic(): \Upsun\Model\NewRelicLogForwardingIntegrationConfigurations|null
+    public function getNewrelic()
     {
         return $this->container['newrelic'];
     }
@@ -342,8 +344,10 @@ final class Config implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets sumologic
+     *
+     * @return \Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations|null
      */
-    public function getSumologic(): \Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations|null
+    public function getSumologic()
     {
         return $this->container['sumologic'];
     }
@@ -363,8 +367,10 @@ final class Config implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets splunk
+     *
+     * @return \Upsun\Model\SplunkLogForwardingIntegrationConfigurations|null
      */
-    public function getSplunk(): \Upsun\Model\SplunkLogForwardingIntegrationConfigurations|null
+    public function getSplunk()
     {
         return $this->container['splunk'];
     }
@@ -384,8 +390,10 @@ final class Config implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets httplog
+     *
+     * @return \Upsun\Model\HTTPLogForwardingIntegrationConfigurations|null
      */
-    public function getHttplog(): \Upsun\Model\HTTPLogForwardingIntegrationConfigurations|null
+    public function getHttplog()
     {
         return $this->container['httplog'];
     }
@@ -405,8 +413,10 @@ final class Config implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets syslog
+     *
+     * @return \Upsun\Model\SyslogLogForwardingIntegrationConfigurations|null
      */
-    public function getSyslog(): \Upsun\Model\SyslogLogForwardingIntegrationConfigurations|null
+    public function getSyslog()
     {
         return $this->container['syslog'];
     }
@@ -426,8 +436,10 @@ final class Config implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets webhook
+     *
+     * @return \Upsun\Model\WebhookIntegrationConfigurations|null
      */
-    public function getWebhook(): \Upsun\Model\WebhookIntegrationConfigurations|null
+    public function getWebhook()
     {
         return $this->container['webhook'];
     }
@@ -447,8 +459,10 @@ final class Config implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets script
+     *
+     * @return \Upsun\Model\ScriptIntegrationConfigurations|null
      */
-    public function getScript(): \Upsun\Model\ScriptIntegrationConfigurations|null
+    public function getScript()
     {
         return $this->container['script'];
     }
@@ -468,8 +482,10 @@ final class Config implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets github
+     *
+     * @return \Upsun\Model\GitHubIntegrationConfigurations|null
      */
-    public function getGithub(): \Upsun\Model\GitHubIntegrationConfigurations|null
+    public function getGithub()
     {
         return $this->container['github'];
     }
@@ -489,8 +505,10 @@ final class Config implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets gitlab
+     *
+     * @return \Upsun\Model\GitLabIntegrationConfigurations|null
      */
-    public function getGitlab(): \Upsun\Model\GitLabIntegrationConfigurations|null
+    public function getGitlab()
     {
         return $this->container['gitlab'];
     }
@@ -510,8 +528,10 @@ final class Config implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets bitbucket
+     *
+     * @return \Upsun\Model\BitbucketIntegrationConfigurations|null
      */
-    public function getBitbucket(): \Upsun\Model\BitbucketIntegrationConfigurations|null
+    public function getBitbucket()
     {
         return $this->container['bitbucket'];
     }
@@ -531,8 +551,10 @@ final class Config implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets bitbucket_server
+     *
+     * @return \Upsun\Model\BitbucketServerIntegrationConfigurations|null
      */
-    public function getBitbucketServer(): \Upsun\Model\BitbucketServerIntegrationConfigurations|null
+    public function getBitbucketServer()
     {
         return $this->container['bitbucket_server'];
     }
@@ -552,8 +574,10 @@ final class Config implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets health_email
+     *
+     * @return \Upsun\Model\HealthEmailNotificationIntegrationConfigurations|null
      */
-    public function getHealthEmail(): \Upsun\Model\HealthEmailNotificationIntegrationConfigurations|null
+    public function getHealthEmail()
     {
         return $this->container['health_email'];
     }
@@ -573,8 +597,10 @@ final class Config implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets health_webhook
+     *
+     * @return \Upsun\Model\HealthWebhookNotificationIntegrationConfigurations|null
      */
-    public function getHealthWebhook(): \Upsun\Model\HealthWebhookNotificationIntegrationConfigurations|null
+    public function getHealthWebhook()
     {
         return $this->container['health_webhook'];
     }
@@ -594,8 +620,10 @@ final class Config implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets health_pagerduty
+     *
+     * @return \Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations|null
      */
-    public function getHealthPagerduty(): \Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations|null
+    public function getHealthPagerduty()
     {
         return $this->container['health_pagerduty'];
     }
@@ -615,8 +643,10 @@ final class Config implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets health_slack
+     *
+     * @return \Upsun\Model\HealthSlackNotificationIntegrationConfigurations|null
      */
-    public function getHealthSlack(): \Upsun\Model\HealthSlackNotificationIntegrationConfigurations|null
+    public function getHealthSlack()
     {
         return $this->container['health_slack'];
     }
@@ -636,8 +666,10 @@ final class Config implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets cdn_fastly
+     *
+     * @return \Upsun\Model\FastlyCDNIntegrationConfigurations|null
      */
-    public function getCdnFastly(): \Upsun\Model\FastlyCDNIntegrationConfigurations|null
+    public function getCdnFastly()
     {
         return $this->container['cdn_fastly'];
     }
@@ -657,8 +689,10 @@ final class Config implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets blackfire
+     *
+     * @return \Upsun\Model\BlackfireIntegrationConfigurations|null
      */
-    public function getBlackfire(): \Upsun\Model\BlackfireIntegrationConfigurations|null
+    public function getBlackfire()
     {
         return $this->container['blackfire'];
     }

@@ -258,8 +258,10 @@ final class UserReference implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -279,8 +281,10 @@ final class UserReference implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets username
+     *
+     * @return string|null
      */
-    public function getUsername(): string|null
+    public function getUsername()
     {
         return $this->container['username'];
     }
@@ -300,8 +304,10 @@ final class UserReference implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets email
+     *
+     * @return string|null
      */
-    public function getEmail(): string|null
+    public function getEmail()
     {
         return $this->container['email'];
     }
@@ -321,8 +327,10 @@ final class UserReference implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets first_name
+     *
+     * @return string|null
      */
-    public function getFirstName(): string|null
+    public function getFirstName()
     {
         return $this->container['first_name'];
     }
@@ -342,8 +350,10 @@ final class UserReference implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets last_name
+     *
+     * @return string|null
      */
-    public function getLastName(): string|null
+    public function getLastName()
     {
         return $this->container['last_name'];
     }
@@ -363,8 +373,10 @@ final class UserReference implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets picture
+     *
+     * @return string|null
      */
-    public function getPicture(): string|null
+    public function getPicture()
     {
         return $this->container['picture'];
     }
@@ -384,8 +396,10 @@ final class UserReference implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets mfa_enabled
+     *
+     * @return bool|null
      */
-    public function getMfaEnabled(): bool|null
+    public function getMfaEnabled()
     {
         return $this->container['mfa_enabled'];
     }
@@ -405,8 +419,10 @@ final class UserReference implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets sso_enabled
+     *
+     * @return bool|null
      */
-    public function getSsoEnabled(): bool|null
+    public function getSsoEnabled()
     {
         return $this->container['sso_enabled'];
     }

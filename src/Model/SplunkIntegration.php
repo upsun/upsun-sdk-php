@@ -282,8 +282,10 @@ final class SplunkIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -310,8 +312,10 @@ final class SplunkIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -338,8 +342,10 @@ final class SplunkIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -359,8 +365,10 @@ final class SplunkIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets extra
+     *
+     * @return array<string,string>
      */
-    public function getExtra(): array
+    public function getExtra()
     {
         return $this->container['extra'];
     }
@@ -380,8 +388,10 @@ final class SplunkIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets url
+     *
+     * @return string
      */
-    public function getUrl(): string
+    public function getUrl()
     {
         return $this->container['url'];
     }
@@ -401,8 +411,10 @@ final class SplunkIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets index
+     *
+     * @return string
      */
-    public function getIndex(): string
+    public function getIndex()
     {
         return $this->container['index'];
     }
@@ -422,8 +434,10 @@ final class SplunkIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets sourcetype
+     *
+     * @return string
      */
-    public function getSourcetype(): string
+    public function getSourcetype()
     {
         return $this->container['sourcetype'];
     }
@@ -443,8 +457,10 @@ final class SplunkIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets tls_verify
+     *
+     * @return bool
      */
-    public function getTlsVerify(): bool
+    public function getTlsVerify()
     {
         return $this->container['tls_verify'];
     }

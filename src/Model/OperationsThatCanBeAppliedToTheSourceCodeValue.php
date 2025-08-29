@@ -212,8 +212,10 @@ final class OperationsThatCanBeAppliedToTheSourceCodeValue implements ModelInter
 
     /**
      * Gets command
+     *
+     * @return string
      */
-    public function getCommand(): string
+    public function getCommand()
     {
         return $this->container['command'];
     }

@@ -273,8 +273,10 @@ final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterfac
 
     /**
      * Gets user_id
+     *
+     * @return string|null
      */
-    public function getUserId(): string|null
+    public function getUserId()
     {
         return $this->container['user_id'];
     }
@@ -294,8 +296,10 @@ final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterfac
 
     /**
      * Gets resource_id
+     *
+     * @return string|null
      */
-    public function getResourceId(): string|null
+    public function getResourceId()
     {
         return $this->container['resource_id'];
     }
@@ -315,8 +319,10 @@ final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterfac
 
     /**
      * Gets resource_type
+     *
+     * @return string|null
      */
-    public function getResourceType(): string|null
+    public function getResourceType()
     {
         return $this->container['resource_type'];
     }
@@ -346,8 +352,10 @@ final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterfac
 
     /**
      * Gets organization_id
+     *
+     * @return string|null
      */
-    public function getOrganizationId(): string|null
+    public function getOrganizationId()
     {
         return $this->container['organization_id'];
     }
@@ -367,8 +375,10 @@ final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterfac
 
     /**
      * Gets permissions
+     *
+     * @return string[]|null
      */
-    public function getPermissions(): array|null
+    public function getPermissions()
     {
         return $this->container['permissions'];
     }
@@ -388,8 +398,10 @@ final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterfac
 
     /**
      * Gets granted_at
+     *
+     * @return \DateTime|null
      */
-    public function getGrantedAt(): \DateTime|null
+    public function getGrantedAt()
     {
         return $this->container['granted_at'];
     }
@@ -409,8 +421,10 @@ final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterfac
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime|null
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }

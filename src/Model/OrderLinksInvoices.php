@@ -209,8 +209,10 @@ final class OrderLinksInvoices implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets href
+     *
+     * @return string|null
      */
-    public function getHref(): string|null
+    public function getHref()
     {
         return $this->container['href'];
     }

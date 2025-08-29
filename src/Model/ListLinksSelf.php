@@ -209,8 +209,10 @@ final class ListLinksSelf implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets href
+     *
+     * @return string|null
      */
-    public function getHref(): string|null
+    public function getHref()
     {
         return $this->container['href'];
     }

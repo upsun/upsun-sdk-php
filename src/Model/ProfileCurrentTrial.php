@@ -299,8 +299,10 @@ final class ProfileCurrentTrial implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets active
+     *
+     * @return bool|null
      */
-    public function getActive(): bool|null
+    public function getActive()
     {
         return $this->container['active'];
     }
@@ -320,8 +322,10 @@ final class ProfileCurrentTrial implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets created
+     *
+     * @return \DateTime|null
      */
-    public function getCreated(): \DateTime|null
+    public function getCreated()
     {
         return $this->container['created'];
     }
@@ -341,8 +345,10 @@ final class ProfileCurrentTrial implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets description
+     *
+     * @return string|null
      */
-    public function getDescription(): string|null
+    public function getDescription()
     {
         return $this->container['description'];
     }
@@ -362,8 +368,10 @@ final class ProfileCurrentTrial implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets expiration
+     *
+     * @return \DateTime|null
      */
-    public function getExpiration(): \DateTime|null
+    public function getExpiration()
     {
         return $this->container['expiration'];
     }
@@ -383,8 +391,10 @@ final class ProfileCurrentTrial implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets current
+     *
+     * @return \Upsun\Model\ProfileCurrentTrialCurrent|null
      */
-    public function getCurrent(): \Upsun\Model\ProfileCurrentTrialCurrent|null
+    public function getCurrent()
     {
         return $this->container['current'];
     }
@@ -404,8 +414,10 @@ final class ProfileCurrentTrial implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets spend
+     *
+     * @return \Upsun\Model\ProfileCurrentTrialSpend|null
      */
-    public function getSpend(): \Upsun\Model\ProfileCurrentTrialSpend|null
+    public function getSpend()
     {
         return $this->container['spend'];
     }
@@ -425,8 +437,10 @@ final class ProfileCurrentTrial implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets spend_remaining
+     *
+     * @return \Upsun\Model\ProfileCurrentTrialSpendRemaining|null
      */
-    public function getSpendRemaining(): \Upsun\Model\ProfileCurrentTrialSpendRemaining|null
+    public function getSpendRemaining()
     {
         return $this->container['spend_remaining'];
     }
@@ -446,8 +460,10 @@ final class ProfileCurrentTrial implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets projects
+     *
+     * @return \Upsun\Model\ProfileCurrentTrialProjects|null
      */
-    public function getProjects(): \Upsun\Model\ProfileCurrentTrialProjects|null
+    public function getProjects()
     {
         return $this->container['projects'];
     }
@@ -468,9 +484,11 @@ final class ProfileCurrentTrial implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Gets pending_verification
      *
+     * @return string|null
+     *
      * @deprecated
      */
-    public function getPendingVerification(): string|null
+    public function getPendingVerification()
     {
         return $this->container['pending_verification'];
     }
@@ -509,8 +527,10 @@ final class ProfileCurrentTrial implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets model
+     *
+     * @return string|null
      */
-    public function getModel(): string|null
+    public function getModel()
     {
         return $this->container['model'];
     }
@@ -530,8 +550,10 @@ final class ProfileCurrentTrial implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets days_remaining
+     *
+     * @return int|null
      */
-    public function getDaysRemaining(): int|null
+    public function getDaysRemaining()
     {
         return $this->container['days_remaining'];
     }

@@ -252,8 +252,10 @@ final class ResourcesOverridesValue implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets services
+     *
+     * @return array<string,\Upsun\Model\PerServiceResourcesOverridesValue>
      */
-    public function getServices(): array
+    public function getServices()
     {
         return $this->container['services'];
     }
@@ -273,8 +275,10 @@ final class ResourcesOverridesValue implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets starts_at
+     *
+     * @return \DateTime
      */
-    public function getStartsAt(): \DateTime
+    public function getStartsAt()
     {
         return $this->container['starts_at'];
     }
@@ -301,8 +305,10 @@ final class ResourcesOverridesValue implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets ends_at
+     *
+     * @return \DateTime
      */
-    public function getEndsAt(): \DateTime
+    public function getEndsAt()
     {
         return $this->container['ends_at'];
     }
@@ -329,8 +335,10 @@ final class ResourcesOverridesValue implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets redeployed_start
+     *
+     * @return bool
      */
-    public function getRedeployedStart(): bool
+    public function getRedeployedStart()
     {
         return $this->container['redeployed_start'];
     }
@@ -350,8 +358,10 @@ final class ResourcesOverridesValue implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets redeployed_end
+     *
+     * @return bool
      */
-    public function getRedeployedEnd(): bool
+    public function getRedeployedEnd()
     {
         return $this->container['redeployed_end'];
     }

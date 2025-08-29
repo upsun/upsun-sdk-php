@@ -212,8 +212,10 @@ final class RuntimeOperations implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets enabled
+     *
+     * @return bool
      */
-    public function getEnabled(): bool
+    public function getEnabled()
     {
         return $this->container['enabled'];
     }

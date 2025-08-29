@@ -262,8 +262,10 @@ final class Resources implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets base_memory
+     *
+     * @return int
      */
-    public function getBaseMemory(): int
+    public function getBaseMemory()
     {
         return $this->container['base_memory'];
     }
@@ -290,8 +292,10 @@ final class Resources implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets memory_ratio
+     *
+     * @return int
      */
-    public function getMemoryRatio(): int
+    public function getMemoryRatio()
     {
         return $this->container['memory_ratio'];
     }
@@ -318,8 +322,10 @@ final class Resources implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets profile_size
+     *
+     * @return string
      */
-    public function getProfileSize(): string
+    public function getProfileSize()
     {
         return $this->container['profile_size'];
     }
@@ -346,8 +352,10 @@ final class Resources implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets minimum
+     *
+     * @return \Upsun\Model\TheMinimumResourcesForThisService
      */
-    public function getMinimum(): \Upsun\Model\TheMinimumResourcesForThisService
+    public function getMinimum()
     {
         return $this->container['minimum'];
     }
@@ -374,8 +382,10 @@ final class Resources implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets default
+     *
+     * @return \Upsun\Model\TheDefaultResourcesForThisService
      */
-    public function getDefault(): \Upsun\Model\TheDefaultResourcesForThisService
+    public function getDefault()
     {
         return $this->container['default'];
     }
@@ -402,8 +412,10 @@ final class Resources implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets disk
+     *
+     * @return \Upsun\Model\TheDisksResources
      */
-    public function getDisk(): \Upsun\Model\TheDisksResources
+    public function getDisk()
     {
         return $this->container['disk'];
     }

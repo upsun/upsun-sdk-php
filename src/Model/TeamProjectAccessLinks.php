@@ -223,8 +223,10 @@ final class TeamProjectAccessLinks implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets self
+     *
+     * @return \Upsun\Model\TeamProjectAccessLinksSelf|null
      */
-    public function getSelf(): \Upsun\Model\TeamProjectAccessLinksSelf|null
+    public function getSelf()
     {
         return $this->container['self'];
     }
@@ -244,8 +246,10 @@ final class TeamProjectAccessLinks implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets update
+     *
+     * @return \Upsun\Model\TeamProjectAccessLinksUpdate|null
      */
-    public function getUpdate(): \Upsun\Model\TeamProjectAccessLinksUpdate|null
+    public function getUpdate()
     {
         return $this->container['update'];
     }
@@ -265,8 +269,10 @@ final class TeamProjectAccessLinks implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets delete
+     *
+     * @return \Upsun\Model\TeamProjectAccessLinksDelete|null
      */
-    public function getDelete(): \Upsun\Model\TeamProjectAccessLinksDelete|null
+    public function getDelete()
     {
         return $this->container['delete'];
     }

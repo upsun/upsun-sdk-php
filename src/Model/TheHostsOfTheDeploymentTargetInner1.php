@@ -251,8 +251,10 @@ final class TheHostsOfTheDeploymentTargetInner1 implements ModelInterface, Array
 
     /**
      * Gets id
+     *
+     * @return string
      */
-    public function getId(): string
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -279,8 +281,10 @@ final class TheHostsOfTheDeploymentTargetInner1 implements ModelInterface, Array
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -310,8 +314,10 @@ final class TheHostsOfTheDeploymentTargetInner1 implements ModelInterface, Array
 
     /**
      * Gets services
+     *
+     * @return string[]|null
      */
-    public function getServices(): array|null
+    public function getServices()
     {
         return $this->container['services'];
     }

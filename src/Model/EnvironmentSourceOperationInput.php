@@ -222,8 +222,10 @@ final class EnvironmentSourceOperationInput implements ModelInterface, ArrayAcce
 
     /**
      * Gets operation
+     *
+     * @return string
      */
-    public function getOperation(): string
+    public function getOperation()
     {
         return $this->container['operation'];
     }
@@ -243,8 +245,10 @@ final class EnvironmentSourceOperationInput implements ModelInterface, ArrayAcce
 
     /**
      * Gets variables
+     *
+     * @return array<string,array<string,mixed>>
      */
-    public function getVariables(): array
+    public function getVariables()
     {
         return $this->container['variables'];
     }

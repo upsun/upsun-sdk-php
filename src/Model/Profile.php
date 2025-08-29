@@ -385,8 +385,10 @@ final class Profile implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -406,8 +408,10 @@ final class Profile implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets display_name
+     *
+     * @return string|null
      */
-    public function getDisplayName(): string|null
+    public function getDisplayName()
     {
         return $this->container['display_name'];
     }
@@ -427,8 +431,10 @@ final class Profile implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets email
+     *
+     * @return string|null
      */
-    public function getEmail(): string|null
+    public function getEmail()
     {
         return $this->container['email'];
     }
@@ -448,8 +454,10 @@ final class Profile implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets username
+     *
+     * @return string|null
      */
-    public function getUsername(): string|null
+    public function getUsername()
     {
         return $this->container['username'];
     }
@@ -469,8 +477,10 @@ final class Profile implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets type
+     *
+     * @return string|null
      */
-    public function getType(): string|null
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -500,8 +510,10 @@ final class Profile implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets picture
+     *
+     * @return string|null
      */
-    public function getPicture(): string|null
+    public function getPicture()
     {
         return $this->container['picture'];
     }
@@ -521,8 +533,10 @@ final class Profile implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets company_type
+     *
+     * @return string|null
      */
-    public function getCompanyType(): string|null
+    public function getCompanyType()
     {
         return $this->container['company_type'];
     }
@@ -542,8 +556,10 @@ final class Profile implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets company_name
+     *
+     * @return string|null
      */
-    public function getCompanyName(): string|null
+    public function getCompanyName()
     {
         return $this->container['company_name'];
     }
@@ -563,8 +579,10 @@ final class Profile implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets currency
+     *
+     * @return string|null
      */
-    public function getCurrency(): string|null
+    public function getCurrency()
     {
         return $this->container['currency'];
     }
@@ -584,8 +602,10 @@ final class Profile implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets vat_number
+     *
+     * @return string|null
      */
-    public function getVatNumber(): string|null
+    public function getVatNumber()
     {
         return $this->container['vat_number'];
     }
@@ -605,8 +625,10 @@ final class Profile implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets company_role
+     *
+     * @return string|null
      */
-    public function getCompanyRole(): string|null
+    public function getCompanyRole()
     {
         return $this->container['company_role'];
     }
@@ -626,8 +648,10 @@ final class Profile implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets website_url
+     *
+     * @return string|null
      */
-    public function getWebsiteUrl(): string|null
+    public function getWebsiteUrl()
     {
         return $this->container['website_url'];
     }
@@ -647,8 +671,10 @@ final class Profile implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets new_ui
+     *
+     * @return bool|null
      */
-    public function getNewUi(): bool|null
+    public function getNewUi()
     {
         return $this->container['new_ui'];
     }
@@ -668,8 +694,10 @@ final class Profile implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets ui_colorscheme
+     *
+     * @return string|null
      */
-    public function getUiColorscheme(): string|null
+    public function getUiColorscheme()
     {
         return $this->container['ui_colorscheme'];
     }
@@ -689,8 +717,10 @@ final class Profile implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets default_catalog
+     *
+     * @return string|null
      */
-    public function getDefaultCatalog(): string|null
+    public function getDefaultCatalog()
     {
         return $this->container['default_catalog'];
     }
@@ -710,8 +740,10 @@ final class Profile implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets project_options_url
+     *
+     * @return string|null
      */
-    public function getProjectOptionsUrl(): string|null
+    public function getProjectOptionsUrl()
     {
         return $this->container['project_options_url'];
     }
@@ -731,8 +763,10 @@ final class Profile implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets marketing
+     *
+     * @return bool|null
      */
-    public function getMarketing(): bool|null
+    public function getMarketing()
     {
         return $this->container['marketing'];
     }
@@ -752,8 +786,10 @@ final class Profile implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime|null
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -773,8 +809,10 @@ final class Profile implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime|null
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -794,8 +832,10 @@ final class Profile implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets billing_contact
+     *
+     * @return string|null
      */
-    public function getBillingContact(): string|null
+    public function getBillingContact()
     {
         return $this->container['billing_contact'];
     }
@@ -815,8 +855,10 @@ final class Profile implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets security_contact
+     *
+     * @return string|null
      */
-    public function getSecurityContact(): string|null
+    public function getSecurityContact()
     {
         return $this->container['security_contact'];
     }
@@ -836,8 +878,10 @@ final class Profile implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets current_trial
+     *
+     * @return \Upsun\Model\ProfileCurrentTrial|null
      */
-    public function getCurrentTrial(): \Upsun\Model\ProfileCurrentTrial|null
+    public function getCurrentTrial()
     {
         return $this->container['current_trial'];
     }
@@ -857,8 +901,10 @@ final class Profile implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets invoiced
+     *
+     * @return bool|null
      */
-    public function getInvoiced(): bool|null
+    public function getInvoiced()
     {
         return $this->container['invoiced'];
     }

@@ -222,8 +222,10 @@ final class TheOAuth2ConsumerInformationOptional1 implements ModelInterface, Arr
 
     /**
      * Gets key
+     *
+     * @return string
      */
-    public function getKey(): string
+    public function getKey()
     {
         return $this->container['key'];
     }
@@ -243,8 +245,10 @@ final class TheOAuth2ConsumerInformationOptional1 implements ModelInterface, Arr
 
     /**
      * Gets secret
+     *
+     * @return string
      */
-    public function getSecret(): string
+    public function getSecret()
     {
         return $this->container['secret'];
     }

@@ -223,8 +223,10 @@ final class HalLinks implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets self
+     *
+     * @return \Upsun\Model\HalLinksSelf|null
      */
-    public function getSelf(): \Upsun\Model\HalLinksSelf|null
+    public function getSelf()
     {
         return $this->container['self'];
     }
@@ -244,8 +246,10 @@ final class HalLinks implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets previous
+     *
+     * @return \Upsun\Model\HalLinksPrevious|null
      */
-    public function getPrevious(): \Upsun\Model\HalLinksPrevious|null
+    public function getPrevious()
     {
         return $this->container['previous'];
     }
@@ -265,8 +269,10 @@ final class HalLinks implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets next
+     *
+     * @return \Upsun\Model\HalLinksNext|null
      */
-    public function getNext(): \Upsun\Model\HalLinksNext|null
+    public function getNext()
     {
         return $this->container['next'];
     }

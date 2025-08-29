@@ -262,8 +262,10 @@ final class OutboundFirewallRestrictionsInner implements ModelInterface, ArrayAc
 
     /**
      * Gets protocol
+     *
+     * @return string
      */
-    public function getProtocol(): string
+    public function getProtocol()
     {
         return $this->container['protocol'];
     }
@@ -293,8 +295,10 @@ final class OutboundFirewallRestrictionsInner implements ModelInterface, ArrayAc
 
     /**
      * Gets ips
+     *
+     * @return string[]
      */
-    public function getIps(): array
+    public function getIps()
     {
         return $this->container['ips'];
     }
@@ -314,8 +318,10 @@ final class OutboundFirewallRestrictionsInner implements ModelInterface, ArrayAc
 
     /**
      * Gets domains
+     *
+     * @return string[]
      */
-    public function getDomains(): array
+    public function getDomains()
     {
         return $this->container['domains'];
     }
@@ -335,8 +341,10 @@ final class OutboundFirewallRestrictionsInner implements ModelInterface, ArrayAc
 
     /**
      * Gets ports
+     *
+     * @return int[]
      */
-    public function getPorts(): array
+    public function getPorts()
     {
         return $this->container['ports'];
     }

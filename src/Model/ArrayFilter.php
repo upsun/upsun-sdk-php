@@ -230,8 +230,10 @@ final class ArrayFilter implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets eq
+     *
+     * @return string|null
      */
-    public function getEq(): string|null
+    public function getEq()
     {
         return $this->container['eq'];
     }
@@ -251,8 +253,10 @@ final class ArrayFilter implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets ne
+     *
+     * @return string|null
      */
-    public function getNe(): string|null
+    public function getNe()
     {
         return $this->container['ne'];
     }
@@ -272,8 +276,10 @@ final class ArrayFilter implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets in
+     *
+     * @return string|null
      */
-    public function getIn(): string|null
+    public function getIn()
     {
         return $this->container['in'];
     }
@@ -293,8 +299,10 @@ final class ArrayFilter implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets nin
+     *
+     * @return string|null
      */
-    public function getNin(): string|null
+    public function getNin()
     {
         return $this->container['nin'];
     }

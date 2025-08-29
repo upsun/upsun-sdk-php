@@ -223,8 +223,10 @@ final class OwnerInfo implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets type
+     *
+     * @return string|null
      */
-    public function getType(): string|null
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -244,8 +246,10 @@ final class OwnerInfo implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets username
+     *
+     * @return string|null
      */
-    public function getUsername(): string|null
+    public function getUsername()
     {
         return $this->container['username'];
     }
@@ -265,8 +269,10 @@ final class OwnerInfo implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets display_name
+     *
+     * @return string|null
      */
-    public function getDisplayName(): string|null
+    public function getDisplayName()
     {
         return $this->container['display_name'];
     }

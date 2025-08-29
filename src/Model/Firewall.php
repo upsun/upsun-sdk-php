@@ -212,8 +212,10 @@ final class Firewall implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets outbound
+     *
+     * @return \Upsun\Model\OutboundFirewallRestrictionsInner[]
      */
-    public function getOutbound(): array
+    public function getOutbound()
     {
         return $this->container['outbound'];
     }

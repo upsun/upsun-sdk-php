@@ -216,8 +216,10 @@ final class GetOrgPrepaymentInfo200Response implements ModelInterface, ArrayAcce
 
     /**
      * Gets prepayment
+     *
+     * @return \Upsun\Model\PrepaymentObject|null
      */
-    public function getPrepayment(): \Upsun\Model\PrepaymentObject|null
+    public function getPrepayment()
     {
         return $this->container['prepayment'];
     }
@@ -237,8 +239,10 @@ final class GetOrgPrepaymentInfo200Response implements ModelInterface, ArrayAcce
 
     /**
      * Gets _links
+     *
+     * @return \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks|null
      */
-    public function getLinks(): \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks|null
+    public function getLinks()
     {
         return $this->container['_links'];
     }

@@ -226,8 +226,10 @@ final class ProdDomainStorageCreateInput implements ModelInterface, ArrayAccess,
 
     /**
      * Gets name
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -247,8 +249,10 @@ final class ProdDomainStorageCreateInput implements ModelInterface, ArrayAccess,
 
     /**
      * Gets attributes
+     *
+     * @return array<string,string>|null
      */
-    public function getAttributes(): array|null
+    public function getAttributes()
     {
         return $this->container['attributes'];
     }
@@ -268,8 +272,10 @@ final class ProdDomainStorageCreateInput implements ModelInterface, ArrayAccess,
 
     /**
      * Gets is_default
+     *
+     * @return bool|null
      */
-    public function getIsDefault(): bool|null
+    public function getIsDefault()
     {
         return $this->container['is_default'];
     }

@@ -351,8 +351,10 @@ final class CreateTicketRequest implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets subject
+     *
+     * @return string
      */
-    public function getSubject(): string
+    public function getSubject()
     {
         return $this->container['subject'];
     }
@@ -372,8 +374,10 @@ final class CreateTicketRequest implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets description
+     *
+     * @return string
      */
-    public function getDescription(): string
+    public function getDescription()
     {
         return $this->container['description'];
     }
@@ -393,8 +397,10 @@ final class CreateTicketRequest implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets requester_id
+     *
+     * @return string|null
      */
-    public function getRequesterId(): string|null
+    public function getRequesterId()
     {
         return $this->container['requester_id'];
     }
@@ -414,8 +420,10 @@ final class CreateTicketRequest implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets priority
+     *
+     * @return string|null
      */
-    public function getPriority(): string|null
+    public function getPriority()
     {
         return $this->container['priority'];
     }
@@ -445,8 +453,10 @@ final class CreateTicketRequest implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets subscription_id
+     *
+     * @return string|null
      */
-    public function getSubscriptionId(): string|null
+    public function getSubscriptionId()
     {
         return $this->container['subscription_id'];
     }
@@ -466,8 +476,10 @@ final class CreateTicketRequest implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets organization_id
+     *
+     * @return string|null
      */
-    public function getOrganizationId(): string|null
+    public function getOrganizationId()
     {
         return $this->container['organization_id'];
     }
@@ -487,8 +499,10 @@ final class CreateTicketRequest implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets affected_url
+     *
+     * @return string|null
      */
-    public function getAffectedUrl(): string|null
+    public function getAffectedUrl()
     {
         return $this->container['affected_url'];
     }
@@ -508,8 +522,10 @@ final class CreateTicketRequest implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets followup_tid
+     *
+     * @return string|null
      */
-    public function getFollowupTid(): string|null
+    public function getFollowupTid()
     {
         return $this->container['followup_tid'];
     }
@@ -529,8 +545,10 @@ final class CreateTicketRequest implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets category
+     *
+     * @return string|null
      */
-    public function getCategory(): string|null
+    public function getCategory()
     {
         return $this->container['category'];
     }
@@ -560,8 +578,10 @@ final class CreateTicketRequest implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets attachments
+     *
+     * @return \Upsun\Model\CreateTicketRequestAttachmentsInner[]|null
      */
-    public function getAttachments(): array|null
+    public function getAttachments()
     {
         return $this->container['attachments'];
     }
@@ -581,8 +601,10 @@ final class CreateTicketRequest implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets collaborator_ids
+     *
+     * @return string[]|null
      */
-    public function getCollaboratorIds(): array|null
+    public function getCollaboratorIds()
     {
         return $this->container['collaborator_ids'];
     }

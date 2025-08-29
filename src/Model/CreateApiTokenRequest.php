@@ -212,8 +212,10 @@ final class CreateApiTokenRequest implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets name
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->container['name'];
     }

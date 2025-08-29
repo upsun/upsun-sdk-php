@@ -237,8 +237,10 @@ final class PrepaymentObjectPrepayment implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets organization_id
+     *
+     * @return string|null
      */
-    public function getOrganizationId(): string|null
+    public function getOrganizationId()
     {
         return $this->container['organization_id'];
     }
@@ -258,8 +260,10 @@ final class PrepaymentObjectPrepayment implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets balance
+     *
+     * @return \Upsun\Model\PrepaymentObjectPrepaymentBalance|null
      */
-    public function getBalance(): \Upsun\Model\PrepaymentObjectPrepaymentBalance|null
+    public function getBalance()
     {
         return $this->container['balance'];
     }
@@ -279,8 +283,10 @@ final class PrepaymentObjectPrepayment implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets last_updated_at
+     *
+     * @return string|null
      */
-    public function getLastUpdatedAt(): string|null
+    public function getLastUpdatedAt()
     {
         return $this->container['last_updated_at'];
     }
@@ -307,8 +313,10 @@ final class PrepaymentObjectPrepayment implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets sufficient
+     *
+     * @return bool|null
      */
-    public function getSufficient(): bool|null
+    public function getSufficient()
     {
         return $this->container['sufficient'];
     }
@@ -328,8 +336,10 @@ final class PrepaymentObjectPrepayment implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets fallback
+     *
+     * @return string|null
      */
-    public function getFallback(): string|null
+    public function getFallback()
     {
         return $this->container['fallback'];
     }

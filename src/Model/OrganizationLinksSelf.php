@@ -209,8 +209,10 @@ final class OrganizationLinksSelf implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets href
+     *
+     * @return string|null
      */
-    public function getHref(): string|null
+    public function getHref()
     {
         return $this->container['href'];
     }

@@ -323,8 +323,10 @@ final class BitbucketServerIntegrationPatch implements ModelInterface, ArrayAcce
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -344,8 +346,10 @@ final class BitbucketServerIntegrationPatch implements ModelInterface, ArrayAcce
 
     /**
      * Gets fetch_branches
+     *
+     * @return bool|null
      */
-    public function getFetchBranches(): bool|null
+    public function getFetchBranches()
     {
         return $this->container['fetch_branches'];
     }
@@ -365,8 +369,10 @@ final class BitbucketServerIntegrationPatch implements ModelInterface, ArrayAcce
 
     /**
      * Gets prune_branches
+     *
+     * @return bool|null
      */
-    public function getPruneBranches(): bool|null
+    public function getPruneBranches()
     {
         return $this->container['prune_branches'];
     }
@@ -386,8 +392,10 @@ final class BitbucketServerIntegrationPatch implements ModelInterface, ArrayAcce
 
     /**
      * Gets environment_init_resources
+     *
+     * @return string|null
      */
-    public function getEnvironmentInitResources(): string|null
+    public function getEnvironmentInitResources()
     {
         return $this->container['environment_init_resources'];
     }
@@ -417,8 +425,10 @@ final class BitbucketServerIntegrationPatch implements ModelInterface, ArrayAcce
 
     /**
      * Gets url
+     *
+     * @return string
      */
-    public function getUrl(): string
+    public function getUrl()
     {
         return $this->container['url'];
     }
@@ -438,8 +448,10 @@ final class BitbucketServerIntegrationPatch implements ModelInterface, ArrayAcce
 
     /**
      * Gets username
+     *
+     * @return string
      */
-    public function getUsername(): string
+    public function getUsername()
     {
         return $this->container['username'];
     }
@@ -459,8 +471,10 @@ final class BitbucketServerIntegrationPatch implements ModelInterface, ArrayAcce
 
     /**
      * Gets token
+     *
+     * @return string
      */
-    public function getToken(): string
+    public function getToken()
     {
         return $this->container['token'];
     }
@@ -480,8 +494,10 @@ final class BitbucketServerIntegrationPatch implements ModelInterface, ArrayAcce
 
     /**
      * Gets project
+     *
+     * @return string
      */
-    public function getProject(): string
+    public function getProject()
     {
         return $this->container['project'];
     }
@@ -501,8 +517,10 @@ final class BitbucketServerIntegrationPatch implements ModelInterface, ArrayAcce
 
     /**
      * Gets repository
+     *
+     * @return string
      */
-    public function getRepository(): string
+    public function getRepository()
     {
         return $this->container['repository'];
     }
@@ -522,8 +540,10 @@ final class BitbucketServerIntegrationPatch implements ModelInterface, ArrayAcce
 
     /**
      * Gets build_pull_requests
+     *
+     * @return bool|null
      */
-    public function getBuildPullRequests(): bool|null
+    public function getBuildPullRequests()
     {
         return $this->container['build_pull_requests'];
     }
@@ -543,8 +563,10 @@ final class BitbucketServerIntegrationPatch implements ModelInterface, ArrayAcce
 
     /**
      * Gets pull_requests_clone_parent_data
+     *
+     * @return bool|null
      */
-    public function getPullRequestsCloneParentData(): bool|null
+    public function getPullRequestsCloneParentData()
     {
         return $this->container['pull_requests_clone_parent_data'];
     }

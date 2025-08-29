@@ -266,8 +266,10 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
 
     /**
      * Gets socket_family
+     *
+     * @return string
      */
-    public function getSocketFamily(): string
+    public function getSocketFamily()
     {
         return $this->container['socket_family'];
     }
@@ -297,8 +299,10 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
 
     /**
      * Gets protocol
+     *
+     * @return string
      */
-    public function getProtocol(): string
+    public function getProtocol()
     {
         return $this->container['protocol'];
     }

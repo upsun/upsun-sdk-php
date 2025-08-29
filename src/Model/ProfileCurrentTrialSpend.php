@@ -230,8 +230,10 @@ final class ProfileCurrentTrialSpend implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets formatted
+     *
+     * @return string|null
      */
-    public function getFormatted(): string|null
+    public function getFormatted()
     {
         return $this->container['formatted'];
     }
@@ -251,8 +253,10 @@ final class ProfileCurrentTrialSpend implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets amount
+     *
+     * @return string|null
      */
-    public function getAmount(): string|null
+    public function getAmount()
     {
         return $this->container['amount'];
     }
@@ -272,8 +276,10 @@ final class ProfileCurrentTrialSpend implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets currency
+     *
+     * @return string|null
      */
-    public function getCurrency(): string|null
+    public function getCurrency()
     {
         return $this->container['currency'];
     }
@@ -293,8 +299,10 @@ final class ProfileCurrentTrialSpend implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets currency_symbol
+     *
+     * @return string|null
      */
-    public function getCurrencySymbol(): string|null
+    public function getCurrencySymbol()
     {
         return $this->container['currency_symbol'];
     }

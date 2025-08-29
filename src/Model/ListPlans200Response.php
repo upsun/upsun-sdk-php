@@ -223,8 +223,10 @@ final class ListPlans200Response implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets count
+     *
+     * @return int|null
      */
-    public function getCount(): int|null
+    public function getCount()
     {
         return $this->container['count'];
     }
@@ -244,8 +246,10 @@ final class ListPlans200Response implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets plans
+     *
+     * @return \Upsun\Model\Plan[]|null
      */
-    public function getPlans(): array|null
+    public function getPlans()
     {
         return $this->container['plans'];
     }
@@ -265,8 +269,10 @@ final class ListPlans200Response implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets _links
+     *
+     * @return \Upsun\Model\HalLinks|null
      */
-    public function getLinks(): \Upsun\Model\HalLinks|null
+    public function getLinks()
     {
         return $this->container['_links'];
     }

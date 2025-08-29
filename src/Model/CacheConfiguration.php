@@ -242,8 +242,10 @@ final class CacheConfiguration implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets enabled
+     *
+     * @return bool
      */
-    public function getEnabled(): bool
+    public function getEnabled()
     {
         return $this->container['enabled'];
     }
@@ -263,8 +265,10 @@ final class CacheConfiguration implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets default_ttl
+     *
+     * @return int
      */
-    public function getDefaultTtl(): int
+    public function getDefaultTtl()
     {
         return $this->container['default_ttl'];
     }
@@ -284,8 +288,10 @@ final class CacheConfiguration implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets cookies
+     *
+     * @return string[]
      */
-    public function getCookies(): array
+    public function getCookies()
     {
         return $this->container['cookies'];
     }
@@ -305,8 +311,10 @@ final class CacheConfiguration implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets headers
+     *
+     * @return string[]
      */
-    public function getHeaders(): array
+    public function getHeaders()
     {
         return $this->container['headers'];
     }

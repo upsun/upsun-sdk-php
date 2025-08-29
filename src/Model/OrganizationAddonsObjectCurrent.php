@@ -216,8 +216,10 @@ final class OrganizationAddonsObjectCurrent implements ModelInterface, ArrayAcce
 
     /**
      * Gets user_management
+     *
+     * @return array<string,float>|null
      */
-    public function getUserManagement(): array|null
+    public function getUserManagement()
     {
         return $this->container['user_management'];
     }
@@ -237,8 +239,10 @@ final class OrganizationAddonsObjectCurrent implements ModelInterface, ArrayAcce
 
     /**
      * Gets support_level
+     *
+     * @return array<string,float>|null
      */
-    public function getSupportLevel(): array|null
+    public function getSupportLevel()
     {
         return $this->container['support_level'];
     }

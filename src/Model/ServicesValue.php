@@ -334,8 +334,10 @@ final class ServicesValue implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -355,8 +357,10 @@ final class ServicesValue implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets size
+     *
+     * @return string
      */
-    public function getSize(): string
+    public function getSize()
     {
         return $this->container['size'];
     }
@@ -386,8 +390,10 @@ final class ServicesValue implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets disk
+     *
+     * @return int
      */
-    public function getDisk(): int
+    public function getDisk()
     {
         return $this->container['disk'];
     }
@@ -414,8 +420,10 @@ final class ServicesValue implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets access
+     *
+     * @return object
      */
-    public function getAccess(): object
+    public function getAccess()
     {
         return $this->container['access'];
     }
@@ -435,8 +443,10 @@ final class ServicesValue implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets configuration
+     *
+     * @return object
      */
-    public function getConfiguration(): object
+    public function getConfiguration()
     {
         return $this->container['configuration'];
     }
@@ -456,8 +466,10 @@ final class ServicesValue implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets relationships
+     *
+     * @return array<string,string>
      */
-    public function getRelationships(): array
+    public function getRelationships()
     {
         return $this->container['relationships'];
     }
@@ -477,8 +489,10 @@ final class ServicesValue implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets firewall
+     *
+     * @return \Upsun\Model\Firewall
      */
-    public function getFirewall(): \Upsun\Model\Firewall
+    public function getFirewall()
     {
         return $this->container['firewall'];
     }
@@ -505,8 +519,10 @@ final class ServicesValue implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets resources
+     *
+     * @return \Upsun\Model\Resources
      */
-    public function getResources(): \Upsun\Model\Resources
+    public function getResources()
     {
         return $this->container['resources'];
     }
@@ -533,8 +549,10 @@ final class ServicesValue implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets container_profile
+     *
+     * @return string
      */
-    public function getContainerProfile(): string
+    public function getContainerProfile()
     {
         return $this->container['container_profile'];
     }
@@ -561,8 +579,10 @@ final class ServicesValue implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets endpoints
+     *
+     * @return object
      */
-    public function getEndpoints(): object
+    public function getEndpoints()
     {
         return $this->container['endpoints'];
     }

@@ -272,8 +272,10 @@ final class HttpLogIntegration implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -300,8 +302,10 @@ final class HttpLogIntegration implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -328,8 +332,10 @@ final class HttpLogIntegration implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -349,8 +355,10 @@ final class HttpLogIntegration implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets extra
+     *
+     * @return array<string,string>
      */
-    public function getExtra(): array
+    public function getExtra()
     {
         return $this->container['extra'];
     }
@@ -370,8 +378,10 @@ final class HttpLogIntegration implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets url
+     *
+     * @return string
      */
-    public function getUrl(): string
+    public function getUrl()
     {
         return $this->container['url'];
     }
@@ -391,8 +401,10 @@ final class HttpLogIntegration implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets headers
+     *
+     * @return array<string,string>
      */
-    public function getHeaders(): array
+    public function getHeaders()
     {
         return $this->container['headers'];
     }
@@ -412,8 +424,10 @@ final class HttpLogIntegration implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets tls_verify
+     *
+     * @return bool
      */
-    public function getTlsVerify(): bool
+    public function getTlsVerify()
     {
         return $this->container['tls_verify'];
     }

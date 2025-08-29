@@ -212,8 +212,10 @@ final class EnvironmentBackupInput implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets safe
+     *
+     * @return bool
      */
-    public function getSafe(): bool
+    public function getSafe()
     {
         return $this->container['safe'];
     }

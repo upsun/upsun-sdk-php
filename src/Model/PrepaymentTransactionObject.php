@@ -251,8 +251,10 @@ final class PrepaymentTransactionObject implements ModelInterface, ArrayAccess, 
 
     /**
      * Gets order_id
+     *
+     * @return string|null
      */
-    public function getOrderId(): string|null
+    public function getOrderId()
     {
         return $this->container['order_id'];
     }
@@ -272,8 +274,10 @@ final class PrepaymentTransactionObject implements ModelInterface, ArrayAccess, 
 
     /**
      * Gets message
+     *
+     * @return string|null
      */
-    public function getMessage(): string|null
+    public function getMessage()
     {
         return $this->container['message'];
     }
@@ -293,8 +297,10 @@ final class PrepaymentTransactionObject implements ModelInterface, ArrayAccess, 
 
     /**
      * Gets status
+     *
+     * @return string|null
      */
-    public function getStatus(): string|null
+    public function getStatus()
     {
         return $this->container['status'];
     }
@@ -314,8 +320,10 @@ final class PrepaymentTransactionObject implements ModelInterface, ArrayAccess, 
 
     /**
      * Gets amount
+     *
+     * @return \Upsun\Model\PrepaymentObjectPrepaymentBalance|null
      */
-    public function getAmount(): \Upsun\Model\PrepaymentObjectPrepaymentBalance|null
+    public function getAmount()
     {
         return $this->container['amount'];
     }
@@ -335,8 +343,10 @@ final class PrepaymentTransactionObject implements ModelInterface, ArrayAccess, 
 
     /**
      * Gets created
+     *
+     * @return string|null
      */
-    public function getCreated(): string|null
+    public function getCreated()
     {
         return $this->container['created'];
     }
@@ -356,8 +366,10 @@ final class PrepaymentTransactionObject implements ModelInterface, ArrayAccess, 
 
     /**
      * Gets updated
+     *
+     * @return string|null
      */
-    public function getUpdated(): string|null
+    public function getUpdated()
     {
         return $this->container['updated'];
     }
@@ -384,8 +396,10 @@ final class PrepaymentTransactionObject implements ModelInterface, ArrayAccess, 
 
     /**
      * Gets expire_date
+     *
+     * @return string|null
      */
-    public function getExpireDate(): string|null
+    public function getExpireDate()
     {
         return $this->container['expire_date'];
     }

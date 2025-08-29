@@ -223,8 +223,10 @@ final class ProfileCurrentTrialProjects implements ModelInterface, ArrayAccess, 
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -244,8 +246,10 @@ final class ProfileCurrentTrialProjects implements ModelInterface, ArrayAccess, 
 
     /**
      * Gets name
+     *
+     * @return string|null
      */
-    public function getName(): string|null
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -265,8 +269,10 @@ final class ProfileCurrentTrialProjects implements ModelInterface, ArrayAccess, 
 
     /**
      * Gets total
+     *
+     * @return \Upsun\Model\ProfileCurrentTrialProjectsTotal|null
      */
-    public function getTotal(): \Upsun\Model\ProfileCurrentTrialProjectsTotal|null
+    public function getTotal()
     {
         return $this->container['total'];
     }

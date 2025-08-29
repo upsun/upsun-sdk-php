@@ -267,8 +267,10 @@ final class CreateOrgRequest implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets type
+     *
+     * @return string|null
      */
-    public function getType(): string|null
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -298,8 +300,10 @@ final class CreateOrgRequest implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets owner_id
+     *
+     * @return string|null
      */
-    public function getOwnerId(): string|null
+    public function getOwnerId()
     {
         return $this->container['owner_id'];
     }
@@ -319,8 +323,10 @@ final class CreateOrgRequest implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets name
+     *
+     * @return string|null
      */
-    public function getName(): string|null
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -340,8 +346,10 @@ final class CreateOrgRequest implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets label
+     *
+     * @return string
      */
-    public function getLabel(): string
+    public function getLabel()
     {
         return $this->container['label'];
     }
@@ -361,8 +369,10 @@ final class CreateOrgRequest implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets country
+     *
+     * @return string|null
      */
-    public function getCountry(): string|null
+    public function getCountry()
     {
         return $this->container['country'];
     }

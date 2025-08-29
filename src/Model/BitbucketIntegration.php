@@ -342,8 +342,10 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -370,8 +372,10 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -398,8 +402,10 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -419,8 +425,10 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets fetch_branches
+     *
+     * @return bool
      */
-    public function getFetchBranches(): bool
+    public function getFetchBranches()
     {
         return $this->container['fetch_branches'];
     }
@@ -440,8 +448,10 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets prune_branches
+     *
+     * @return bool
      */
-    public function getPruneBranches(): bool
+    public function getPruneBranches()
     {
         return $this->container['prune_branches'];
     }
@@ -461,8 +471,10 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets environment_init_resources
+     *
+     * @return string
      */
-    public function getEnvironmentInitResources(): string
+    public function getEnvironmentInitResources()
     {
         return $this->container['environment_init_resources'];
     }
@@ -492,8 +504,10 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets app_credentials
+     *
+     * @return \Upsun\Model\TheOAuth2ConsumerInformationOptional|null
      */
-    public function getAppCredentials(): \Upsun\Model\TheOAuth2ConsumerInformationOptional|null
+    public function getAppCredentials()
     {
         return $this->container['app_credentials'];
     }
@@ -520,8 +534,10 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets addon_credentials
+     *
+     * @return \Upsun\Model\TheAddonCredentialInformationOptional|null
      */
-    public function getAddonCredentials(): \Upsun\Model\TheAddonCredentialInformationOptional|null
+    public function getAddonCredentials()
     {
         return $this->container['addon_credentials'];
     }
@@ -548,8 +564,10 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets repository
+     *
+     * @return string
      */
-    public function getRepository(): string
+    public function getRepository()
     {
         return $this->container['repository'];
     }
@@ -569,8 +587,10 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets build_pull_requests
+     *
+     * @return bool
      */
-    public function getBuildPullRequests(): bool
+    public function getBuildPullRequests()
     {
         return $this->container['build_pull_requests'];
     }
@@ -590,8 +610,10 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets pull_requests_clone_parent_data
+     *
+     * @return bool
      */
-    public function getPullRequestsCloneParentData(): bool
+    public function getPullRequestsCloneParentData()
     {
         return $this->container['pull_requests_clone_parent_data'];
     }
@@ -611,8 +633,10 @@ final class BitbucketIntegration implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets resync_pull_requests
+     *
+     * @return bool
      */
-    public function getResyncPullRequests(): bool
+    public function getResyncPullRequests()
     {
         return $this->container['resync_pull_requests'];
     }

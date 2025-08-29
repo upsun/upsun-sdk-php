@@ -623,8 +623,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets ticket_id
+     *
+     * @return int|null
      */
-    public function getTicketId(): int|null
+    public function getTicketId()
     {
         return $this->container['ticket_id'];
     }
@@ -644,8 +646,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets created
+     *
+     * @return \DateTime|null
      */
-    public function getCreated(): \DateTime|null
+    public function getCreated()
     {
         return $this->container['created'];
     }
@@ -665,8 +669,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets updated
+     *
+     * @return \DateTime|null
      */
-    public function getUpdated(): \DateTime|null
+    public function getUpdated()
     {
         return $this->container['updated'];
     }
@@ -686,8 +692,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets type
+     *
+     * @return string|null
      */
-    public function getType(): string|null
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -717,8 +725,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets subject
+     *
+     * @return string|null
      */
-    public function getSubject(): string|null
+    public function getSubject()
     {
         return $this->container['subject'];
     }
@@ -738,8 +748,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets description
+     *
+     * @return string|null
      */
-    public function getDescription(): string|null
+    public function getDescription()
     {
         return $this->container['description'];
     }
@@ -759,8 +771,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets priority
+     *
+     * @return string|null
      */
-    public function getPriority(): string|null
+    public function getPriority()
     {
         return $this->container['priority'];
     }
@@ -790,8 +804,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets followup_tid
+     *
+     * @return string|null
      */
-    public function getFollowupTid(): string|null
+    public function getFollowupTid()
     {
         return $this->container['followup_tid'];
     }
@@ -811,8 +827,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets status
+     *
+     * @return string|null
      */
-    public function getStatus(): string|null
+    public function getStatus()
     {
         return $this->container['status'];
     }
@@ -842,8 +860,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets recipient
+     *
+     * @return string|null
      */
-    public function getRecipient(): string|null
+    public function getRecipient()
     {
         return $this->container['recipient'];
     }
@@ -863,8 +883,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets requester_id
+     *
+     * @return string|null
      */
-    public function getRequesterId(): string|null
+    public function getRequesterId()
     {
         return $this->container['requester_id'];
     }
@@ -884,8 +906,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets submitter_id
+     *
+     * @return string|null
      */
-    public function getSubmitterId(): string|null
+    public function getSubmitterId()
     {
         return $this->container['submitter_id'];
     }
@@ -905,8 +929,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets assignee_id
+     *
+     * @return string|null
      */
-    public function getAssigneeId(): string|null
+    public function getAssigneeId()
     {
         return $this->container['assignee_id'];
     }
@@ -926,8 +952,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets organization_id
+     *
+     * @return string|null
      */
-    public function getOrganizationId(): string|null
+    public function getOrganizationId()
     {
         return $this->container['organization_id'];
     }
@@ -947,8 +975,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets collaborator_ids
+     *
+     * @return string[]|null
      */
-    public function getCollaboratorIds(): array|null
+    public function getCollaboratorIds()
     {
         return $this->container['collaborator_ids'];
     }
@@ -968,8 +998,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets has_incidents
+     *
+     * @return bool|null
      */
-    public function getHasIncidents(): bool|null
+    public function getHasIncidents()
     {
         return $this->container['has_incidents'];
     }
@@ -989,8 +1021,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets due
+     *
+     * @return \DateTime|null
      */
-    public function getDue(): \DateTime|null
+    public function getDue()
     {
         return $this->container['due'];
     }
@@ -1010,8 +1044,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets tags
+     *
+     * @return string[]|null
      */
-    public function getTags(): array|null
+    public function getTags()
     {
         return $this->container['tags'];
     }
@@ -1031,8 +1067,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets subscription_id
+     *
+     * @return string|null
      */
-    public function getSubscriptionId(): string|null
+    public function getSubscriptionId()
     {
         return $this->container['subscription_id'];
     }
@@ -1052,8 +1090,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets ticket_group
+     *
+     * @return string|null
      */
-    public function getTicketGroup(): string|null
+    public function getTicketGroup()
     {
         return $this->container['ticket_group'];
     }
@@ -1073,8 +1113,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets support_plan
+     *
+     * @return string|null
      */
-    public function getSupportPlan(): string|null
+    public function getSupportPlan()
     {
         return $this->container['support_plan'];
     }
@@ -1094,8 +1136,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets affected_url
+     *
+     * @return string|null
      */
-    public function getAffectedUrl(): string|null
+    public function getAffectedUrl()
     {
         return $this->container['affected_url'];
     }
@@ -1115,8 +1159,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets queue
+     *
+     * @return string|null
      */
-    public function getQueue(): string|null
+    public function getQueue()
     {
         return $this->container['queue'];
     }
@@ -1136,8 +1182,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets issue_type
+     *
+     * @return string|null
      */
-    public function getIssueType(): string|null
+    public function getIssueType()
     {
         return $this->container['issue_type'];
     }
@@ -1157,8 +1205,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets resolution_time
+     *
+     * @return \DateTime|null
      */
-    public function getResolutionTime(): \DateTime|null
+    public function getResolutionTime()
     {
         return $this->container['resolution_time'];
     }
@@ -1178,8 +1228,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets response_time
+     *
+     * @return \DateTime|null
      */
-    public function getResponseTime(): \DateTime|null
+    public function getResponseTime()
     {
         return $this->container['response_time'];
     }
@@ -1199,8 +1251,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets project_url
+     *
+     * @return string|null
      */
-    public function getProjectUrl(): string|null
+    public function getProjectUrl()
     {
         return $this->container['project_url'];
     }
@@ -1220,8 +1274,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets region
+     *
+     * @return string|null
      */
-    public function getRegion(): string|null
+    public function getRegion()
     {
         return $this->container['region'];
     }
@@ -1241,8 +1297,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets category
+     *
+     * @return string|null
      */
-    public function getCategory(): string|null
+    public function getCategory()
     {
         return $this->container['category'];
     }
@@ -1272,8 +1330,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets environment
+     *
+     * @return string|null
      */
-    public function getEnvironment(): string|null
+    public function getEnvironment()
     {
         return $this->container['environment'];
     }
@@ -1303,8 +1363,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets ticket_sharing_status
+     *
+     * @return string|null
      */
-    public function getTicketSharingStatus(): string|null
+    public function getTicketSharingStatus()
     {
         return $this->container['ticket_sharing_status'];
     }
@@ -1334,8 +1396,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets application_ticket_url
+     *
+     * @return string|null
      */
-    public function getApplicationTicketUrl(): string|null
+    public function getApplicationTicketUrl()
     {
         return $this->container['application_ticket_url'];
     }
@@ -1355,8 +1419,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets infrastructure_ticket_url
+     *
+     * @return string|null
      */
-    public function getInfrastructureTicketUrl(): string|null
+    public function getInfrastructureTicketUrl()
     {
         return $this->container['infrastructure_ticket_url'];
     }
@@ -1376,8 +1442,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets jira
+     *
+     * @return \Upsun\Model\TicketJiraInner[]|null
      */
-    public function getJira(): array|null
+    public function getJira()
     {
         return $this->container['jira'];
     }
@@ -1397,8 +1465,10 @@ final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets zd_ticket_url
+     *
+     * @return string|null
      */
-    public function getZdTicketUrl(): string|null
+    public function getZdTicketUrl()
     {
         return $this->container['zd_ticket_url'];
     }

@@ -253,8 +253,10 @@ final class GrantUserProjectAccessRequestInner implements ModelInterface, ArrayA
 
     /**
      * Gets project_id
+     *
+     * @return string
      */
-    public function getProjectId(): string
+    public function getProjectId()
     {
         return $this->container['project_id'];
     }
@@ -274,8 +276,10 @@ final class GrantUserProjectAccessRequestInner implements ModelInterface, ArrayA
 
     /**
      * Gets permissions
+     *
+     * @return string[]
      */
-    public function getPermissions(): array
+    public function getPermissions()
     {
         return $this->container['permissions'];
     }

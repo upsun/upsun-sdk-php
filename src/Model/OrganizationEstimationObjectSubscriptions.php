@@ -216,8 +216,10 @@ final class OrganizationEstimationObjectSubscriptions implements ModelInterface,
 
     /**
      * Gets total
+     *
+     * @return string|null
      */
-    public function getTotal(): string|null
+    public function getTotal()
     {
         return $this->container['total'];
     }
@@ -237,8 +239,10 @@ final class OrganizationEstimationObjectSubscriptions implements ModelInterface,
 
     /**
      * Gets list
+     *
+     * @return \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner[]|null
      */
-    public function getList(): array|null
+    public function getList()
     {
         return $this->container['list'];
     }

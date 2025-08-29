@@ -273,8 +273,10 @@ final class ProdDomainStorage implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -301,8 +303,10 @@ final class ProdDomainStorage implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -329,8 +333,10 @@ final class ProdDomainStorage implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -350,8 +356,10 @@ final class ProdDomainStorage implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets project
+     *
+     * @return string|null
      */
-    public function getProject(): string|null
+    public function getProject()
     {
         return $this->container['project'];
     }
@@ -371,8 +379,10 @@ final class ProdDomainStorage implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets name
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -392,8 +402,10 @@ final class ProdDomainStorage implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets registered_name
+     *
+     * @return string|null
      */
-    public function getRegisteredName(): string|null
+    public function getRegisteredName()
     {
         return $this->container['registered_name'];
     }
@@ -413,8 +425,10 @@ final class ProdDomainStorage implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets attributes
+     *
+     * @return array<string,string>
      */
-    public function getAttributes(): array
+    public function getAttributes()
     {
         return $this->container['attributes'];
     }
@@ -434,8 +448,10 @@ final class ProdDomainStorage implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets is_default
+     *
+     * @return bool|null
      */
-    public function getIsDefault(): bool|null
+    public function getIsDefault()
     {
         return $this->container['is_default'];
     }

@@ -223,8 +223,10 @@ final class OrganizationMemberLinks implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets self
+     *
+     * @return \Upsun\Model\OrganizationMemberLinksSelf|null
      */
-    public function getSelf(): \Upsun\Model\OrganizationMemberLinksSelf|null
+    public function getSelf()
     {
         return $this->container['self'];
     }
@@ -244,8 +246,10 @@ final class OrganizationMemberLinks implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets update
+     *
+     * @return \Upsun\Model\OrganizationMemberLinksUpdate|null
      */
-    public function getUpdate(): \Upsun\Model\OrganizationMemberLinksUpdate|null
+    public function getUpdate()
     {
         return $this->container['update'];
     }
@@ -265,8 +269,10 @@ final class OrganizationMemberLinks implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets delete
+     *
+     * @return \Upsun\Model\OrganizationMemberLinksDelete|null
      */
-    public function getDelete(): \Upsun\Model\OrganizationMemberLinksDelete|null
+    public function getDelete()
     {
         return $this->container['delete'];
     }

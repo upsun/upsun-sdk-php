@@ -212,8 +212,10 @@ final class CreateTeamMemberRequest implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets user_id
+     *
+     * @return string
      */
-    public function getUserId(): string
+    public function getUserId()
     {
         return $this->container['user_id'];
     }

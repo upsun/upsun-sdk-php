@@ -413,8 +413,10 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -444,8 +446,10 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets name
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -465,8 +469,10 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets deploy_host
+     *
+     * @return string
      */
-    public function getDeployHost(): string
+    public function getDeployHost()
     {
         return $this->container['deploy_host'];
     }
@@ -493,8 +499,10 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets deploy_port
+     *
+     * @return int
      */
-    public function getDeployPort(): int
+    public function getDeployPort()
     {
         return $this->container['deploy_port'];
     }
@@ -521,8 +529,10 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets ssh_host
+     *
+     * @return string
      */
-    public function getSshHost(): string
+    public function getSshHost()
     {
         return $this->container['ssh_host'];
     }
@@ -549,8 +559,10 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets hosts
+     *
+     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]
      */
-    public function getHosts(): array
+    public function getHosts()
     {
         return $this->container['hosts'];
     }
@@ -577,8 +589,10 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets auto_mounts
+     *
+     * @return bool
      */
-    public function getAutoMounts(): bool
+    public function getAutoMounts()
     {
         return $this->container['auto_mounts'];
     }
@@ -598,8 +612,10 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets excluded_mounts
+     *
+     * @return string[]
      */
-    public function getExcludedMounts(): array
+    public function getExcludedMounts()
     {
         return $this->container['excluded_mounts'];
     }
@@ -619,8 +635,10 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets enforced_mounts
+     *
+     * @return object
      */
-    public function getEnforcedMounts(): object
+    public function getEnforcedMounts()
     {
         return $this->container['enforced_mounts'];
     }
@@ -640,8 +658,10 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets auto_crons
+     *
+     * @return bool
      */
-    public function getAutoCrons(): bool
+    public function getAutoCrons()
     {
         return $this->container['auto_crons'];
     }
@@ -661,8 +681,10 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets auto_nginx
+     *
+     * @return bool
      */
-    public function getAutoNginx(): bool
+    public function getAutoNginx()
     {
         return $this->container['auto_nginx'];
     }
@@ -682,8 +704,10 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets maintenance_mode
+     *
+     * @return bool
      */
-    public function getMaintenanceMode(): bool
+    public function getMaintenanceMode()
     {
         return $this->container['maintenance_mode'];
     }
@@ -703,8 +727,10 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets guardrails_phase
+     *
+     * @return int
      */
-    public function getGuardrailsPhase(): int
+    public function getGuardrailsPhase()
     {
         return $this->container['guardrails_phase'];
     }
@@ -724,8 +750,10 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets docroots
+     *
+     * @return array<string,\Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue>
      */
-    public function getDocroots(): array
+    public function getDocroots()
     {
         return $this->container['docroots'];
     }
@@ -745,8 +773,10 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets site_urls
+     *
+     * @return object
      */
-    public function getSiteUrls(): object
+    public function getSiteUrls()
     {
         return $this->container['site_urls'];
     }
@@ -766,8 +796,10 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets ssh_hosts
+     *
+     * @return string[]
      */
-    public function getSshHosts(): array
+    public function getSshHosts()
     {
         return $this->container['ssh_hosts'];
     }
@@ -788,9 +820,11 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets enterprise_environments_mapping
      *
+     * @return object|null
+     *
      * @deprecated
      */
-    public function getEnterpriseEnvironmentsMapping(): object|null
+    public function getEnterpriseEnvironmentsMapping()
     {
         return $this->container['enterprise_environments_mapping'];
     }
@@ -812,8 +846,10 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets use_dedicated_grid
+     *
+     * @return bool
      */
-    public function getUseDedicatedGrid(): bool
+    public function getUseDedicatedGrid()
     {
         return $this->container['use_dedicated_grid'];
     }
@@ -833,8 +869,10 @@ final class DeploymentTarget implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets storage_type
+     *
+     * @return string
      */
-    public function getStorageType(): string
+    public function getStorageType()
     {
         return $this->container['storage_type'];
     }

@@ -681,8 +681,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -702,8 +704,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets fetch_branches
+     *
+     * @return bool|null
      */
-    public function getFetchBranches(): bool|null
+    public function getFetchBranches()
     {
         return $this->container['fetch_branches'];
     }
@@ -723,8 +727,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets prune_branches
+     *
+     * @return bool|null
      */
-    public function getPruneBranches(): bool|null
+    public function getPruneBranches()
     {
         return $this->container['prune_branches'];
     }
@@ -744,8 +750,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets environment_init_resources
+     *
+     * @return string|null
      */
-    public function getEnvironmentInitResources(): string|null
+    public function getEnvironmentInitResources()
     {
         return $this->container['environment_init_resources'];
     }
@@ -775,8 +783,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets app_credentials
+     *
+     * @return \Upsun\Model\TheOAuth2ConsumerInformationOptional1|null
      */
-    public function getAppCredentials(): \Upsun\Model\TheOAuth2ConsumerInformationOptional1|null
+    public function getAppCredentials()
     {
         return $this->container['app_credentials'];
     }
@@ -803,8 +813,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets addon_credentials
+     *
+     * @return \Upsun\Model\TheAddonCredentialInformationOptional1|null
      */
-    public function getAddonCredentials(): \Upsun\Model\TheAddonCredentialInformationOptional1|null
+    public function getAddonCredentials()
     {
         return $this->container['addon_credentials'];
     }
@@ -831,8 +843,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets repository
+     *
+     * @return string
      */
-    public function getRepository(): string
+    public function getRepository()
     {
         return $this->container['repository'];
     }
@@ -852,8 +866,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets build_pull_requests
+     *
+     * @return bool|null
      */
-    public function getBuildPullRequests(): bool|null
+    public function getBuildPullRequests()
     {
         return $this->container['build_pull_requests'];
     }
@@ -873,8 +889,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets pull_requests_clone_parent_data
+     *
+     * @return bool|null
      */
-    public function getPullRequestsCloneParentData(): bool|null
+    public function getPullRequestsCloneParentData()
     {
         return $this->container['pull_requests_clone_parent_data'];
     }
@@ -894,8 +912,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets resync_pull_requests
+     *
+     * @return bool|null
      */
-    public function getResyncPullRequests(): bool|null
+    public function getResyncPullRequests()
     {
         return $this->container['resync_pull_requests'];
     }
@@ -915,8 +935,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets url
+     *
+     * @return string
      */
-    public function getUrl(): string
+    public function getUrl()
     {
         return $this->container['url'];
     }
@@ -936,8 +958,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets username
+     *
+     * @return string
      */
-    public function getUsername(): string
+    public function getUsername()
     {
         return $this->container['username'];
     }
@@ -957,8 +981,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets token
+     *
+     * @return string
      */
-    public function getToken(): string
+    public function getToken()
     {
         return $this->container['token'];
     }
@@ -978,8 +1004,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets project
+     *
+     * @return string
      */
-    public function getProject(): string
+    public function getProject()
     {
         return $this->container['project'];
     }
@@ -999,8 +1027,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets events
+     *
+     * @return string[]|null
      */
-    public function getEvents(): array|null
+    public function getEvents()
     {
         return $this->container['events'];
     }
@@ -1020,8 +1050,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets environments
+     *
+     * @return string[]|null
      */
-    public function getEnvironments(): array|null
+    public function getEnvironments()
     {
         return $this->container['environments'];
     }
@@ -1041,8 +1073,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets excluded_environments
+     *
+     * @return string[]|null
      */
-    public function getExcludedEnvironments(): array|null
+    public function getExcludedEnvironments()
     {
         return $this->container['excluded_environments'];
     }
@@ -1062,8 +1096,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets states
+     *
+     * @return string[]|null
      */
-    public function getStates(): array|null
+    public function getStates()
     {
         return $this->container['states'];
     }
@@ -1083,8 +1119,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets result
+     *
+     * @return string|null
      */
-    public function getResult(): string|null
+    public function getResult()
     {
         return $this->container['result'];
     }
@@ -1114,8 +1152,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets service_id
+     *
+     * @return string
      */
-    public function getServiceId(): string
+    public function getServiceId()
     {
         return $this->container['service_id'];
     }
@@ -1135,8 +1175,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets base_url
+     *
+     * @return string|null
      */
-    public function getBaseUrl(): string|null
+    public function getBaseUrl()
     {
         return $this->container['base_url'];
     }
@@ -1156,8 +1198,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets build_draft_pull_requests
+     *
+     * @return bool|null
      */
-    public function getBuildDraftPullRequests(): bool|null
+    public function getBuildDraftPullRequests()
     {
         return $this->container['build_draft_pull_requests'];
     }
@@ -1177,8 +1221,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets build_pull_requests_post_merge
+     *
+     * @return bool|null
      */
-    public function getBuildPullRequestsPostMerge(): bool|null
+    public function getBuildPullRequestsPostMerge()
     {
         return $this->container['build_pull_requests_post_merge'];
     }
@@ -1198,8 +1244,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets build_merge_requests
+     *
+     * @return bool|null
      */
-    public function getBuildMergeRequests(): bool|null
+    public function getBuildMergeRequests()
     {
         return $this->container['build_merge_requests'];
     }
@@ -1219,8 +1267,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets build_wip_merge_requests
+     *
+     * @return bool|null
      */
-    public function getBuildWipMergeRequests(): bool|null
+    public function getBuildWipMergeRequests()
     {
         return $this->container['build_wip_merge_requests'];
     }
@@ -1240,8 +1290,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets merge_requests_clone_parent_data
+     *
+     * @return bool|null
      */
-    public function getMergeRequestsCloneParentData(): bool|null
+    public function getMergeRequestsCloneParentData()
     {
         return $this->container['merge_requests_clone_parent_data'];
     }
@@ -1261,8 +1313,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets from_address
+     *
+     * @return string|null
      */
-    public function getFromAddress(): string|null
+    public function getFromAddress()
     {
         return $this->container['from_address'];
     }
@@ -1289,8 +1343,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets recipients
+     *
+     * @return string[]
      */
-    public function getRecipients(): array
+    public function getRecipients()
     {
         return $this->container['recipients'];
     }
@@ -1310,8 +1366,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets routing_key
+     *
+     * @return string
      */
-    public function getRoutingKey(): string
+    public function getRoutingKey()
     {
         return $this->container['routing_key'];
     }
@@ -1331,8 +1389,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets channel
+     *
+     * @return string
      */
-    public function getChannel(): string
+    public function getChannel()
     {
         return $this->container['channel'];
     }
@@ -1352,8 +1412,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets shared_key
+     *
+     * @return string|null
      */
-    public function getSharedKey(): string|null
+    public function getSharedKey()
     {
         return $this->container['shared_key'];
     }
@@ -1380,8 +1442,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets extra
+     *
+     * @return array<string,string>|null
      */
-    public function getExtra(): array|null
+    public function getExtra()
     {
         return $this->container['extra'];
     }
@@ -1401,8 +1465,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets headers
+     *
+     * @return array<string,string>|null
      */
-    public function getHeaders(): array|null
+    public function getHeaders()
     {
         return $this->container['headers'];
     }
@@ -1422,8 +1488,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets tls_verify
+     *
+     * @return bool|null
      */
-    public function getTlsVerify(): bool|null
+    public function getTlsVerify()
     {
         return $this->container['tls_verify'];
     }
@@ -1443,8 +1511,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets license_key
+     *
+     * @return string
      */
-    public function getLicenseKey(): string
+    public function getLicenseKey()
     {
         return $this->container['license_key'];
     }
@@ -1464,8 +1534,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets script
+     *
+     * @return string
      */
-    public function getScript(): string
+    public function getScript()
     {
         return $this->container['script'];
     }
@@ -1485,8 +1557,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets index
+     *
+     * @return string
      */
-    public function getIndex(): string
+    public function getIndex()
     {
         return $this->container['index'];
     }
@@ -1506,8 +1580,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets sourcetype
+     *
+     * @return string|null
      */
-    public function getSourcetype(): string|null
+    public function getSourcetype()
     {
         return $this->container['sourcetype'];
     }
@@ -1527,8 +1603,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets category
+     *
+     * @return string|null
      */
-    public function getCategory(): string|null
+    public function getCategory()
     {
         return $this->container['category'];
     }
@@ -1548,8 +1626,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets host
+     *
+     * @return string|null
      */
-    public function getHost(): string|null
+    public function getHost()
     {
         return $this->container['host'];
     }
@@ -1569,8 +1649,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets port
+     *
+     * @return int|null
      */
-    public function getPort(): int|null
+    public function getPort()
     {
         return $this->container['port'];
     }
@@ -1590,8 +1672,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets protocol
+     *
+     * @return string|null
      */
-    public function getProtocol(): string|null
+    public function getProtocol()
     {
         return $this->container['protocol'];
     }
@@ -1621,8 +1705,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets facility
+     *
+     * @return int|null
      */
-    public function getFacility(): int|null
+    public function getFacility()
     {
         return $this->container['facility'];
     }
@@ -1642,8 +1728,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets message_format
+     *
+     * @return string|null
      */
-    public function getMessageFormat(): string|null
+    public function getMessageFormat()
     {
         return $this->container['message_format'];
     }
@@ -1673,8 +1761,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets auth_token
+     *
+     * @return string|null
      */
-    public function getAuthToken(): string|null
+    public function getAuthToken()
     {
         return $this->container['auth_token'];
     }
@@ -1694,8 +1784,10 @@ final class IntegrationPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets auth_mode
+     *
+     * @return string|null
      */
-    public function getAuthMode(): string|null
+    public function getAuthMode()
     {
         return $this->container['auth_mode'];
     }

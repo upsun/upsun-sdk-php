@@ -219,8 +219,10 @@ final class ConfigurationOfAWorkerContainerInstance implements ModelInterface, A
 
     /**
      * Gets commands
+     *
+     * @return \Upsun\Model\TheCommandsToManageTheWorker
      */
-    public function getCommands(): \Upsun\Model\TheCommandsToManageTheWorker
+    public function getCommands()
     {
         return $this->container['commands'];
     }
@@ -240,8 +242,10 @@ final class ConfigurationOfAWorkerContainerInstance implements ModelInterface, A
 
     /**
      * Gets disk
+     *
+     * @return int|null
      */
-    public function getDisk(): int|null
+    public function getDisk()
     {
         return $this->container['disk'];
     }

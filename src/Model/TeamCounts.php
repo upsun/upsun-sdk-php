@@ -216,8 +216,10 @@ final class TeamCounts implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets member_count
+     *
+     * @return int|null
      */
-    public function getMemberCount(): int|null
+    public function getMemberCount()
     {
         return $this->container['member_count'];
     }
@@ -237,8 +239,10 @@ final class TeamCounts implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets project_count
+     *
+     * @return int|null
      */
-    public function getProjectCount(): int|null
+    public function getProjectCount()
     {
         return $this->container['project_count'];
     }

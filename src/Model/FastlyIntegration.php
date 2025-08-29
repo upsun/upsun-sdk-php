@@ -316,8 +316,10 @@ final class FastlyIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -344,8 +346,10 @@ final class FastlyIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -372,8 +376,10 @@ final class FastlyIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -393,8 +399,10 @@ final class FastlyIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets events
+     *
+     * @return string[]
      */
-    public function getEvents(): array
+    public function getEvents()
     {
         return $this->container['events'];
     }
@@ -414,8 +422,10 @@ final class FastlyIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets environments
+     *
+     * @return string[]
      */
-    public function getEnvironments(): array
+    public function getEnvironments()
     {
         return $this->container['environments'];
     }
@@ -435,8 +445,10 @@ final class FastlyIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets excluded_environments
+     *
+     * @return string[]
      */
-    public function getExcludedEnvironments(): array
+    public function getExcludedEnvironments()
     {
         return $this->container['excluded_environments'];
     }
@@ -456,8 +468,10 @@ final class FastlyIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets states
+     *
+     * @return string[]
      */
-    public function getStates(): array
+    public function getStates()
     {
         return $this->container['states'];
     }
@@ -477,8 +491,10 @@ final class FastlyIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets result
+     *
+     * @return string
      */
-    public function getResult(): string
+    public function getResult()
     {
         return $this->container['result'];
     }
@@ -508,8 +524,10 @@ final class FastlyIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets service_id
+     *
+     * @return string
      */
-    public function getServiceId(): string
+    public function getServiceId()
     {
         return $this->container['service_id'];
     }

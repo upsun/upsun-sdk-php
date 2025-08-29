@@ -574,8 +574,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -602,8 +604,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -630,8 +634,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets name
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -651,8 +657,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets machine_name
+     *
+     * @return string
      */
-    public function getMachineName(): string
+    public function getMachineName()
     {
         return $this->container['machine_name'];
     }
@@ -672,8 +680,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets title
+     *
+     * @return string
      */
-    public function getTitle(): string
+    public function getTitle()
     {
         return $this->container['title'];
     }
@@ -693,8 +703,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets attributes
+     *
+     * @return array<string,string>
      */
-    public function getAttributes(): array
+    public function getAttributes()
     {
         return $this->container['attributes'];
     }
@@ -714,8 +726,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -745,8 +759,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets parent
+     *
+     * @return string
      */
-    public function getParent(): string
+    public function getParent()
     {
         return $this->container['parent'];
     }
@@ -773,8 +789,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets default_domain
+     *
+     * @return string
      */
-    public function getDefaultDomain(): string
+    public function getDefaultDomain()
     {
         return $this->container['default_domain'];
     }
@@ -801,8 +819,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets has_domains
+     *
+     * @return bool
      */
-    public function getHasDomains(): bool
+    public function getHasDomains()
     {
         return $this->container['has_domains'];
     }
@@ -822,8 +842,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets clone_parent_on_create
+     *
+     * @return bool
      */
-    public function getCloneParentOnCreate(): bool
+    public function getCloneParentOnCreate()
     {
         return $this->container['clone_parent_on_create'];
     }
@@ -843,8 +865,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets deployment_target
+     *
+     * @return string
      */
-    public function getDeploymentTarget(): string
+    public function getDeploymentTarget()
     {
         return $this->container['deployment_target'];
     }
@@ -871,8 +895,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets is_pr
+     *
+     * @return bool
      */
-    public function getIsPr(): bool
+    public function getIsPr()
     {
         return $this->container['is_pr'];
     }
@@ -892,8 +918,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets has_remote
+     *
+     * @return bool
      */
-    public function getHasRemote(): bool
+    public function getHasRemote()
     {
         return $this->container['has_remote'];
     }
@@ -913,8 +941,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets status
+     *
+     * @return string
      */
-    public function getStatus(): string
+    public function getStatus()
     {
         return $this->container['status'];
     }
@@ -944,8 +974,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets http_access
+     *
+     * @return \Upsun\Model\HttpAccessPermissions
      */
-    public function getHttpAccess(): \Upsun\Model\HttpAccessPermissions
+    public function getHttpAccess()
     {
         return $this->container['http_access'];
     }
@@ -965,8 +997,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets enable_smtp
+     *
+     * @return bool
      */
-    public function getEnableSmtp(): bool
+    public function getEnableSmtp()
     {
         return $this->container['enable_smtp'];
     }
@@ -986,8 +1020,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets restrict_robots
+     *
+     * @return bool
      */
-    public function getRestrictRobots(): bool
+    public function getRestrictRobots()
     {
         return $this->container['restrict_robots'];
     }
@@ -1007,8 +1043,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets edge_hostname
+     *
+     * @return string
      */
-    public function getEdgeHostname(): string
+    public function getEdgeHostname()
     {
         return $this->container['edge_hostname'];
     }
@@ -1028,8 +1066,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets deployment_state
+     *
+     * @return \Upsun\Model\TheEnvironmentDeploymentState
      */
-    public function getDeploymentState(): \Upsun\Model\TheEnvironmentDeploymentState
+    public function getDeploymentState()
     {
         return $this->container['deployment_state'];
     }
@@ -1056,8 +1096,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets resources_overrides
+     *
+     * @return array<string,\Upsun\Model\ResourcesOverridesValue>
      */
-    public function getResourcesOverrides(): array
+    public function getResourcesOverrides()
     {
         return $this->container['resources_overrides'];
     }
@@ -1077,8 +1119,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets max_instance_count
+     *
+     * @return int
      */
-    public function getMaxInstanceCount(): int
+    public function getMaxInstanceCount()
     {
         return $this->container['max_instance_count'];
     }
@@ -1105,8 +1149,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets last_active_at
+     *
+     * @return \DateTime
      */
-    public function getLastActiveAt(): \DateTime
+    public function getLastActiveAt()
     {
         return $this->container['last_active_at'];
     }
@@ -1133,8 +1179,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets last_backup_at
+     *
+     * @return \DateTime
      */
-    public function getLastBackupAt(): \DateTime
+    public function getLastBackupAt()
     {
         return $this->container['last_backup_at'];
     }
@@ -1161,8 +1209,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets project
+     *
+     * @return string
      */
-    public function getProject(): string
+    public function getProject()
     {
         return $this->container['project'];
     }
@@ -1182,8 +1232,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets is_main
+     *
+     * @return bool
      */
-    public function getIsMain(): bool
+    public function getIsMain()
     {
         return $this->container['is_main'];
     }
@@ -1203,8 +1255,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets is_dirty
+     *
+     * @return bool
      */
-    public function getIsDirty(): bool
+    public function getIsDirty()
     {
         return $this->container['is_dirty'];
     }
@@ -1224,8 +1278,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets has_code
+     *
+     * @return bool
      */
-    public function getHasCode(): bool
+    public function getHasCode()
     {
         return $this->container['has_code'];
     }
@@ -1245,8 +1301,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets head_commit
+     *
+     * @return string
      */
-    public function getHeadCommit(): string
+    public function getHeadCommit()
     {
         return $this->container['head_commit'];
     }
@@ -1273,8 +1331,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets merge_info
+     *
+     * @return \Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments
      */
-    public function getMergeInfo(): \Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments
+    public function getMergeInfo()
     {
         return $this->container['merge_info'];
     }
@@ -1294,8 +1354,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets has_deployment
+     *
+     * @return bool
      */
-    public function getHasDeployment(): bool
+    public function getHasDeployment()
     {
         return $this->container['has_deployment'];
     }
@@ -1315,8 +1377,10 @@ final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets supports_restrict_robots
+     *
+     * @return bool
      */
-    public function getSupportsRestrictRobots(): bool
+    public function getSupportsRestrictRobots()
     {
         return $this->container['supports_restrict_robots'];
     }

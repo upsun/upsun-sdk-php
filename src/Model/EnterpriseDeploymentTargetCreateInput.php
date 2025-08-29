@@ -267,8 +267,10 @@ final class EnterpriseDeploymentTargetCreateInput implements ModelInterface, Arr
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -298,8 +300,10 @@ final class EnterpriseDeploymentTargetCreateInput implements ModelInterface, Arr
 
     /**
      * Gets name
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -319,8 +323,10 @@ final class EnterpriseDeploymentTargetCreateInput implements ModelInterface, Arr
 
     /**
      * Gets site_urls
+     *
+     * @return object|null
      */
-    public function getSiteUrls(): object|null
+    public function getSiteUrls()
     {
         return $this->container['site_urls'];
     }
@@ -340,8 +346,10 @@ final class EnterpriseDeploymentTargetCreateInput implements ModelInterface, Arr
 
     /**
      * Gets ssh_hosts
+     *
+     * @return string[]|null
      */
-    public function getSshHosts(): array|null
+    public function getSshHosts()
     {
         return $this->container['ssh_hosts'];
     }
@@ -362,9 +370,11 @@ final class EnterpriseDeploymentTargetCreateInput implements ModelInterface, Arr
     /**
      * Gets enterprise_environments_mapping
      *
+     * @return object|null
+     *
      * @deprecated
      */
-    public function getEnterpriseEnvironmentsMapping(): object|null
+    public function getEnterpriseEnvironmentsMapping()
     {
         return $this->container['enterprise_environments_mapping'];
     }

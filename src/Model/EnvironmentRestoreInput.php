@@ -252,8 +252,10 @@ final class EnvironmentRestoreInput implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets environment_name
+     *
+     * @return string
      */
-    public function getEnvironmentName(): string
+    public function getEnvironmentName()
     {
         return $this->container['environment_name'];
     }
@@ -280,8 +282,10 @@ final class EnvironmentRestoreInput implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets branch_from
+     *
+     * @return string
      */
-    public function getBranchFrom(): string
+    public function getBranchFrom()
     {
         return $this->container['branch_from'];
     }
@@ -308,8 +312,10 @@ final class EnvironmentRestoreInput implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets restore_code
+     *
+     * @return bool
      */
-    public function getRestoreCode(): bool
+    public function getRestoreCode()
     {
         return $this->container['restore_code'];
     }
@@ -329,8 +335,10 @@ final class EnvironmentRestoreInput implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets restore_resources
+     *
+     * @return bool
      */
-    public function getRestoreResources(): bool
+    public function getRestoreResources()
     {
         return $this->container['restore_resources'];
     }
@@ -350,8 +358,10 @@ final class EnvironmentRestoreInput implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets resources
+     *
+     * @return \Upsun\Model\Resources5
      */
-    public function getResources(): \Upsun\Model\Resources5
+    public function getResources()
     {
         return $this->container['resources'];
     }

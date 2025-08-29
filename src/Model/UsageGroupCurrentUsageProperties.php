@@ -265,8 +265,10 @@ final class UsageGroupCurrentUsageProperties implements ModelInterface, ArrayAcc
 
     /**
      * Gets title
+     *
+     * @return string|null
      */
-    public function getTitle(): string|null
+    public function getTitle()
     {
         return $this->container['title'];
     }
@@ -286,8 +288,10 @@ final class UsageGroupCurrentUsageProperties implements ModelInterface, ArrayAcc
 
     /**
      * Gets type
+     *
+     * @return bool|null
      */
-    public function getType(): bool|null
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -307,8 +311,10 @@ final class UsageGroupCurrentUsageProperties implements ModelInterface, ArrayAcc
 
     /**
      * Gets current_usage
+     *
+     * @return float|null
      */
-    public function getCurrentUsage(): float|null
+    public function getCurrentUsage()
     {
         return $this->container['current_usage'];
     }
@@ -328,8 +334,10 @@ final class UsageGroupCurrentUsageProperties implements ModelInterface, ArrayAcc
 
     /**
      * Gets current_usage_formatted
+     *
+     * @return string|null
      */
-    public function getCurrentUsageFormatted(): string|null
+    public function getCurrentUsageFormatted()
     {
         return $this->container['current_usage_formatted'];
     }
@@ -349,8 +357,10 @@ final class UsageGroupCurrentUsageProperties implements ModelInterface, ArrayAcc
 
     /**
      * Gets not_charged
+     *
+     * @return bool|null
      */
-    public function getNotCharged(): bool|null
+    public function getNotCharged()
     {
         return $this->container['not_charged'];
     }
@@ -370,8 +380,10 @@ final class UsageGroupCurrentUsageProperties implements ModelInterface, ArrayAcc
 
     /**
      * Gets free_quantity
+     *
+     * @return float|null
      */
-    public function getFreeQuantity(): float|null
+    public function getFreeQuantity()
     {
         return $this->container['free_quantity'];
     }
@@ -391,8 +403,10 @@ final class UsageGroupCurrentUsageProperties implements ModelInterface, ArrayAcc
 
     /**
      * Gets free_quantity_formatted
+     *
+     * @return string|null
      */
-    public function getFreeQuantityFormatted(): string|null
+    public function getFreeQuantityFormatted()
     {
         return $this->container['free_quantity_formatted'];
     }
@@ -412,8 +426,10 @@ final class UsageGroupCurrentUsageProperties implements ModelInterface, ArrayAcc
 
     /**
      * Gets daily_average
+     *
+     * @return float|null
      */
-    public function getDailyAverage(): float|null
+    public function getDailyAverage()
     {
         return $this->container['daily_average'];
     }
@@ -433,8 +449,10 @@ final class UsageGroupCurrentUsageProperties implements ModelInterface, ArrayAcc
 
     /**
      * Gets daily_average_formatted
+     *
+     * @return string|null
      */
-    public function getDailyAverageFormatted(): string|null
+    public function getDailyAverageFormatted()
     {
         return $this->container['daily_average_formatted'];
     }

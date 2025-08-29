@@ -216,8 +216,10 @@ final class ListUserOrgs200Response implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets items
+     *
+     * @return \Upsun\Model\Organization[]|null
      */
-    public function getItems(): array|null
+    public function getItems()
     {
         return $this->container['items'];
     }
@@ -237,8 +239,10 @@ final class ListUserOrgs200Response implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets _links
+     *
+     * @return \Upsun\Model\ListLinks|null
      */
-    public function getLinks(): \Upsun\Model\ListLinks|null
+    public function getLinks()
     {
         return $this->container['_links'];
     }

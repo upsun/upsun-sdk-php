@@ -232,8 +232,10 @@ final class Ref implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets ref
+     *
+     * @return string
      */
-    public function getRef(): string
+    public function getRef()
     {
         return $this->container['ref'];
     }
@@ -253,8 +255,10 @@ final class Ref implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets object
+     *
+     * @return \Upsun\Model\TheObjectTheReferencePointsTo
      */
-    public function getObject(): \Upsun\Model\TheObjectTheReferencePointsTo
+    public function getObject()
     {
         return $this->container['object'];
     }
@@ -274,8 +278,10 @@ final class Ref implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets sha
+     *
+     * @return string
      */
-    public function getSha(): string
+    public function getSha()
     {
         return $this->container['sha'];
     }

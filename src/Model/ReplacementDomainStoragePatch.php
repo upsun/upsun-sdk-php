@@ -209,8 +209,10 @@ final class ReplacementDomainStoragePatch implements ModelInterface, ArrayAccess
 
     /**
      * Gets attributes
+     *
+     * @return array<string,string>|null
      */
-    public function getAttributes(): array|null
+    public function getAttributes()
     {
         return $this->container['attributes'];
     }

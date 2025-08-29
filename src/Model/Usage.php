@@ -237,8 +237,10 @@ final class Usage implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -258,8 +260,10 @@ final class Usage implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets subscription_id
+     *
+     * @return string|null
      */
-    public function getSubscriptionId(): string|null
+    public function getSubscriptionId()
     {
         return $this->container['subscription_id'];
     }
@@ -279,8 +283,10 @@ final class Usage implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets usage_group
+     *
+     * @return string|null
      */
-    public function getUsageGroup(): string|null
+    public function getUsageGroup()
     {
         return $this->container['usage_group'];
     }
@@ -300,8 +306,10 @@ final class Usage implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets quantity
+     *
+     * @return float|null
      */
-    public function getQuantity(): float|null
+    public function getQuantity()
     {
         return $this->container['quantity'];
     }
@@ -321,8 +329,10 @@ final class Usage implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets start
+     *
+     * @return \DateTime|null
      */
-    public function getStart(): \DateTime|null
+    public function getStart()
     {
         return $this->container['start'];
     }

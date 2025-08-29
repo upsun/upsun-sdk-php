@@ -222,8 +222,10 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Mo
 
     /**
      * Gets service
+     *
+     * @return string
      */
-    public function getService(): string
+    public function getService()
     {
         return $this->container['service'];
     }
@@ -250,8 +252,10 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Mo
 
     /**
      * Gets endpoint
+     *
+     * @return string
      */
-    public function getEndpoint(): string
+    public function getEndpoint()
     {
         return $this->container['endpoint'];
     }

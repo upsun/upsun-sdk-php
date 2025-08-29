@@ -216,8 +216,10 @@ final class SubscriptionAddonsObjectCurrent implements ModelInterface, ArrayAcce
 
     /**
      * Gets continuous_profiling
+     *
+     * @return array<string,float>|null
      */
-    public function getContinuousProfiling(): array|null
+    public function getContinuousProfiling()
     {
         return $this->container['continuous_profiling'];
     }
@@ -237,8 +239,10 @@ final class SubscriptionAddonsObjectCurrent implements ModelInterface, ArrayAcce
 
     /**
      * Gets project_support_level
+     *
+     * @return array<string,float>|null
      */
-    public function getProjectSupportLevel(): array|null
+    public function getProjectSupportLevel()
     {
         return $this->container['project_support_level'];
     }

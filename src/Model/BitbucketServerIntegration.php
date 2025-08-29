@@ -348,8 +348,10 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -376,8 +378,10 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -404,8 +408,10 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -425,8 +431,10 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets fetch_branches
+     *
+     * @return bool
      */
-    public function getFetchBranches(): bool
+    public function getFetchBranches()
     {
         return $this->container['fetch_branches'];
     }
@@ -446,8 +454,10 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets prune_branches
+     *
+     * @return bool
      */
-    public function getPruneBranches(): bool
+    public function getPruneBranches()
     {
         return $this->container['prune_branches'];
     }
@@ -467,8 +477,10 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets environment_init_resources
+     *
+     * @return string
      */
-    public function getEnvironmentInitResources(): string
+    public function getEnvironmentInitResources()
     {
         return $this->container['environment_init_resources'];
     }
@@ -498,8 +510,10 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets url
+     *
+     * @return string
      */
-    public function getUrl(): string
+    public function getUrl()
     {
         return $this->container['url'];
     }
@@ -519,8 +533,10 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets username
+     *
+     * @return string
      */
-    public function getUsername(): string
+    public function getUsername()
     {
         return $this->container['username'];
     }
@@ -540,8 +556,10 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets project
+     *
+     * @return string
      */
-    public function getProject(): string
+    public function getProject()
     {
         return $this->container['project'];
     }
@@ -561,8 +579,10 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets repository
+     *
+     * @return string
      */
-    public function getRepository(): string
+    public function getRepository()
     {
         return $this->container['repository'];
     }
@@ -582,8 +602,10 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets build_pull_requests
+     *
+     * @return bool
      */
-    public function getBuildPullRequests(): bool
+    public function getBuildPullRequests()
     {
         return $this->container['build_pull_requests'];
     }
@@ -603,8 +625,10 @@ final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets pull_requests_clone_parent_data
+     *
+     * @return bool
      */
-    public function getPullRequestsCloneParentData(): bool
+    public function getPullRequestsCloneParentData()
     {
         return $this->container['pull_requests_clone_parent_data'];
     }

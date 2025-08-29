@@ -209,8 +209,10 @@ final class OrganizationMFAEnforcement implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets enforce_mfa
+     *
+     * @return bool|null
      */
-    public function getEnforceMfa(): bool|null
+    public function getEnforceMfa()
     {
         return $this->container['enforce_mfa'];
     }

@@ -245,8 +245,10 @@ final class UpdateTicketRequest implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets status
+     *
+     * @return string|null
      */
-    public function getStatus(): string|null
+    public function getStatus()
     {
         return $this->container['status'];
     }
@@ -276,8 +278,10 @@ final class UpdateTicketRequest implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets collaborator_ids
+     *
+     * @return string[]|null
      */
-    public function getCollaboratorIds(): array|null
+    public function getCollaboratorIds()
     {
         return $this->container['collaborator_ids'];
     }
@@ -297,8 +301,10 @@ final class UpdateTicketRequest implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets collaborators_replace
+     *
+     * @return bool|null
      */
-    public function getCollaboratorsReplace(): bool|null
+    public function getCollaboratorsReplace()
     {
         return $this->container['collaborators_replace'];
     }

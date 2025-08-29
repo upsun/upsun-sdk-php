@@ -216,8 +216,10 @@ final class OrganizationAlertConfigConfig implements ModelInterface, ArrayAccess
 
     /**
      * Gets threshold
+     *
+     * @return \Upsun\Model\OrganizationAlertConfigConfigThreshold|null
      */
-    public function getThreshold(): \Upsun\Model\OrganizationAlertConfigConfigThreshold|null
+    public function getThreshold()
     {
         return $this->container['threshold'];
     }
@@ -237,8 +239,10 @@ final class OrganizationAlertConfigConfig implements ModelInterface, ArrayAccess
 
     /**
      * Gets mode
+     *
+     * @return string|null
      */
-    public function getMode(): string|null
+    public function getMode()
     {
         return $this->container['mode'];
     }

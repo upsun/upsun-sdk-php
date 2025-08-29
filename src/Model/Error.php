@@ -237,8 +237,10 @@ final class Error implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets status
+     *
+     * @return string|null
      */
-    public function getStatus(): string|null
+    public function getStatus()
     {
         return $this->container['status'];
     }
@@ -258,8 +260,10 @@ final class Error implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets message
+     *
+     * @return string|null
      */
-    public function getMessage(): string|null
+    public function getMessage()
     {
         return $this->container['message'];
     }
@@ -279,8 +283,10 @@ final class Error implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets code
+     *
+     * @return float|null
      */
-    public function getCode(): float|null
+    public function getCode()
     {
         return $this->container['code'];
     }
@@ -300,8 +306,10 @@ final class Error implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets detail
+     *
+     * @return object|null
      */
-    public function getDetail(): object|null
+    public function getDetail()
     {
         return $this->container['detail'];
     }
@@ -321,8 +329,10 @@ final class Error implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets title
+     *
+     * @return string|null
      */
-    public function getTitle(): string|null
+    public function getTitle()
     {
         return $this->container['title'];
     }

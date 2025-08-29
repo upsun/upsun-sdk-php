@@ -251,8 +251,10 @@ final class ProjectPatch implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets attributes
+     *
+     * @return array<string,string>|null
      */
-    public function getAttributes(): array|null
+    public function getAttributes()
     {
         return $this->container['attributes'];
     }
@@ -272,8 +274,10 @@ final class ProjectPatch implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets title
+     *
+     * @return string|null
      */
-    public function getTitle(): string|null
+    public function getTitle()
     {
         return $this->container['title'];
     }
@@ -293,8 +297,10 @@ final class ProjectPatch implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets description
+     *
+     * @return string|null
      */
-    public function getDescription(): string|null
+    public function getDescription()
     {
         return $this->container['description'];
     }
@@ -314,8 +320,10 @@ final class ProjectPatch implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets default_branch
+     *
+     * @return string|null
      */
-    public function getDefaultBranch(): string|null
+    public function getDefaultBranch()
     {
         return $this->container['default_branch'];
     }
@@ -342,8 +350,10 @@ final class ProjectPatch implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets timezone
+     *
+     * @return string|null
      */
-    public function getTimezone(): string|null
+    public function getTimezone()
     {
         return $this->container['timezone'];
     }
@@ -363,8 +373,10 @@ final class ProjectPatch implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets region
+     *
+     * @return string|null
      */
-    public function getRegion(): string|null
+    public function getRegion()
     {
         return $this->container['region'];
     }
@@ -384,8 +396,10 @@ final class ProjectPatch implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets default_domain
+     *
+     * @return string|null
      */
-    public function getDefaultDomain(): string|null
+    public function getDefaultDomain()
     {
         return $this->container['default_domain'];
     }

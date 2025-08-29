@@ -209,8 +209,10 @@ final class VersionCreateInput implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets routing
+     *
+     * @return \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1|null
      */
-    public function getRouting(): \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1|null
+    public function getRouting()
     {
         return $this->container['routing'];
     }

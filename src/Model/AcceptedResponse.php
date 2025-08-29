@@ -222,8 +222,10 @@ final class AcceptedResponse implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets status
+     *
+     * @return string
      */
-    public function getStatus(): string
+    public function getStatus()
     {
         return $this->container['status'];
     }
@@ -243,8 +245,10 @@ final class AcceptedResponse implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets code
+     *
+     * @return int
      */
-    public function getCode(): int
+    public function getCode()
     {
         return $this->container['code'];
     }

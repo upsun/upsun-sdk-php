@@ -223,8 +223,10 @@ final class AddressMetadataMetadata implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets required_fields
+     *
+     * @return string[]|null
      */
-    public function getRequiredFields(): array|null
+    public function getRequiredFields()
     {
         return $this->container['required_fields'];
     }
@@ -244,8 +246,10 @@ final class AddressMetadataMetadata implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets field_labels
+     *
+     * @return object|null
      */
-    public function getFieldLabels(): object|null
+    public function getFieldLabels()
     {
         return $this->container['field_labels'];
     }
@@ -265,8 +269,10 @@ final class AddressMetadataMetadata implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets show_vat
+     *
+     * @return bool|null
      */
-    public function getShowVat(): bool|null
+    public function getShowVat()
     {
         return $this->container['show_vat'];
     }

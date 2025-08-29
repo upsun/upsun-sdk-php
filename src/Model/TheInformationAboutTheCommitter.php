@@ -232,8 +232,10 @@ final class TheInformationAboutTheCommitter implements ModelInterface, ArrayAcce
 
     /**
      * Gets date
+     *
+     * @return \DateTime
      */
-    public function getDate(): \DateTime
+    public function getDate()
     {
         return $this->container['date'];
     }
@@ -253,8 +255,10 @@ final class TheInformationAboutTheCommitter implements ModelInterface, ArrayAcce
 
     /**
      * Gets name
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -274,8 +278,10 @@ final class TheInformationAboutTheCommitter implements ModelInterface, ArrayAcce
 
     /**
      * Gets email
+     *
+     * @return string
      */
-    public function getEmail(): string
+    public function getEmail()
     {
         return $this->container['email'];
     }

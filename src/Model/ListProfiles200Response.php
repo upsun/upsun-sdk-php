@@ -223,8 +223,10 @@ final class ListProfiles200Response implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets count
+     *
+     * @return int|null
      */
-    public function getCount(): int|null
+    public function getCount()
     {
         return $this->container['count'];
     }
@@ -244,8 +246,10 @@ final class ListProfiles200Response implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets profiles
+     *
+     * @return \Upsun\Model\Profile[]|null
      */
-    public function getProfiles(): array|null
+    public function getProfiles()
     {
         return $this->container['profiles'];
     }
@@ -265,8 +269,10 @@ final class ListProfiles200Response implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets _links
+     *
+     * @return \Upsun\Model\HalLinks|null
      */
-    public function getLinks(): \Upsun\Model\HalLinks|null
+    public function getLinks()
     {
         return $this->container['_links'];
     }

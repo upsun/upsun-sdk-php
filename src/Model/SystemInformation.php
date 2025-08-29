@@ -232,8 +232,10 @@ final class SystemInformation implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets version
+     *
+     * @return string
      */
-    public function getVersion(): string
+    public function getVersion()
     {
         return $this->container['version'];
     }
@@ -253,8 +255,10 @@ final class SystemInformation implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets image
+     *
+     * @return string
      */
-    public function getImage(): string
+    public function getImage()
     {
         return $this->container['image'];
     }
@@ -274,8 +278,10 @@ final class SystemInformation implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets started_at
+     *
+     * @return \DateTime
      */
-    public function getStartedAt(): \DateTime
+    public function getStartedAt()
     {
         return $this->container['started_at'];
     }

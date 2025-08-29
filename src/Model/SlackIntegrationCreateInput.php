@@ -232,8 +232,10 @@ final class SlackIntegrationCreateInput implements ModelInterface, ArrayAccess, 
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -253,8 +255,10 @@ final class SlackIntegrationCreateInput implements ModelInterface, ArrayAccess, 
 
     /**
      * Gets token
+     *
+     * @return string
      */
-    public function getToken(): string
+    public function getToken()
     {
         return $this->container['token'];
     }
@@ -274,8 +278,10 @@ final class SlackIntegrationCreateInput implements ModelInterface, ArrayAccess, 
 
     /**
      * Gets channel
+     *
+     * @return string
      */
-    public function getChannel(): string
+    public function getChannel()
     {
         return $this->container['channel'];
     }

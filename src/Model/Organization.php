@@ -346,8 +346,10 @@ final class Organization implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -367,8 +369,10 @@ final class Organization implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets type
+     *
+     * @return string|null
      */
-    public function getType(): string|null
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -398,8 +402,10 @@ final class Organization implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets owner_id
+     *
+     * @return string|null
      */
-    public function getOwnerId(): string|null
+    public function getOwnerId()
     {
         return $this->container['owner_id'];
     }
@@ -419,8 +425,10 @@ final class Organization implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets namespace
+     *
+     * @return string|null
      */
-    public function getNamespace(): string|null
+    public function getNamespace()
     {
         return $this->container['namespace'];
     }
@@ -440,8 +448,10 @@ final class Organization implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets name
+     *
+     * @return string|null
      */
-    public function getName(): string|null
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -461,8 +471,10 @@ final class Organization implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets label
+     *
+     * @return string|null
      */
-    public function getLabel(): string|null
+    public function getLabel()
     {
         return $this->container['label'];
     }
@@ -482,8 +494,10 @@ final class Organization implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets country
+     *
+     * @return string|null
      */
-    public function getCountry(): string|null
+    public function getCountry()
     {
         return $this->container['country'];
     }
@@ -509,8 +523,10 @@ final class Organization implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets capabilities
+     *
+     * @return string[]|null
      */
-    public function getCapabilities(): array|null
+    public function getCapabilities()
     {
         return $this->container['capabilities'];
     }
@@ -532,8 +548,10 @@ final class Organization implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets vendor
+     *
+     * @return string|null
      */
-    public function getVendor(): string|null
+    public function getVendor()
     {
         return $this->container['vendor'];
     }
@@ -553,8 +571,10 @@ final class Organization implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets status
+     *
+     * @return string|null
      */
-    public function getStatus(): string|null
+    public function getStatus()
     {
         return $this->container['status'];
     }
@@ -584,8 +604,10 @@ final class Organization implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime|null
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -605,8 +627,10 @@ final class Organization implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime|null
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -626,8 +650,10 @@ final class Organization implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets _links
+     *
+     * @return \Upsun\Model\OrganizationLinks|null
      */
-    public function getLinks(): \Upsun\Model\OrganizationLinks|null
+    public function getLinks()
     {
         return $this->container['_links'];
     }

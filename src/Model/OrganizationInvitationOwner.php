@@ -216,8 +216,10 @@ final class OrganizationInvitationOwner implements ModelInterface, ArrayAccess, 
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -237,8 +239,10 @@ final class OrganizationInvitationOwner implements ModelInterface, ArrayAccess, 
 
     /**
      * Gets display_name
+     *
+     * @return string|null
      */
-    public function getDisplayName(): string|null
+    public function getDisplayName()
     {
         return $this->container['display_name'];
     }

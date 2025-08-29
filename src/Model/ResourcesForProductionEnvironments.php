@@ -242,8 +242,10 @@ final class ResourcesForProductionEnvironments implements ModelInterface, ArrayA
 
     /**
      * Gets legacy_development
+     *
+     * @return bool
      */
-    public function getLegacyDevelopment(): bool
+    public function getLegacyDevelopment()
     {
         return $this->container['legacy_development'];
     }
@@ -263,8 +265,10 @@ final class ResourcesForProductionEnvironments implements ModelInterface, ArrayA
 
     /**
      * Gets max_cpu
+     *
+     * @return float
      */
-    public function getMaxCpu(): float
+    public function getMaxCpu()
     {
         return $this->container['max_cpu'];
     }
@@ -291,8 +295,10 @@ final class ResourcesForProductionEnvironments implements ModelInterface, ArrayA
 
     /**
      * Gets max_memory
+     *
+     * @return int
      */
-    public function getMaxMemory(): int
+    public function getMaxMemory()
     {
         return $this->container['max_memory'];
     }
@@ -319,8 +325,10 @@ final class ResourcesForProductionEnvironments implements ModelInterface, ArrayA
 
     /**
      * Gets max_environments
+     *
+     * @return int
      */
-    public function getMaxEnvironments(): int
+    public function getMaxEnvironments()
     {
         return $this->container['max_environments'];
     }

@@ -230,8 +230,10 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements ModelI
 
     /**
      * Gets license_id
+     *
+     * @return string|null
      */
-    public function getLicenseId(): string|null
+    public function getLicenseId()
     {
         return $this->container['license_id'];
     }
@@ -251,8 +253,10 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements ModelI
 
     /**
      * Gets project_title
+     *
+     * @return string|null
      */
-    public function getProjectTitle(): string|null
+    public function getProjectTitle()
     {
         return $this->container['project_title'];
     }
@@ -272,8 +276,10 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements ModelI
 
     /**
      * Gets total
+     *
+     * @return string|null
      */
-    public function getTotal(): string|null
+    public function getTotal()
     {
         return $this->container['total'];
     }
@@ -293,8 +299,10 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements ModelI
 
     /**
      * Gets usage
+     *
+     * @return \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage|null
      */
-    public function getUsage(): \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage|null
+    public function getUsage()
     {
         return $this->container['usage'];
     }

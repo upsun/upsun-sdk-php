@@ -216,8 +216,10 @@ final class GetUsageAlerts200Response implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets available
+     *
+     * @return \Upsun\Model\Alert[]|null
      */
-    public function getAvailable(): array|null
+    public function getAvailable()
     {
         return $this->container['available'];
     }
@@ -237,8 +239,10 @@ final class GetUsageAlerts200Response implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets current
+     *
+     * @return \Upsun\Model\Alert[]|null
      */
-    public function getCurrent(): array|null
+    public function getCurrent()
     {
         return $this->container['current'];
     }

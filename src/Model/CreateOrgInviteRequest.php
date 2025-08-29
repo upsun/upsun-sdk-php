@@ -250,8 +250,10 @@ final class CreateOrgInviteRequest implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets email
+     *
+     * @return string
      */
-    public function getEmail(): string
+    public function getEmail()
     {
         return $this->container['email'];
     }
@@ -271,8 +273,10 @@ final class CreateOrgInviteRequest implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets permissions
+     *
+     * @return string[]
      */
-    public function getPermissions(): array
+    public function getPermissions()
     {
         return $this->container['permissions'];
     }
@@ -301,8 +305,10 @@ final class CreateOrgInviteRequest implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets force
+     *
+     * @return bool|null
      */
-    public function getForce(): bool|null
+    public function getForce()
     {
         return $this->container['force'];
     }

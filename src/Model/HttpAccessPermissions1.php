@@ -223,8 +223,10 @@ final class HttpAccessPermissions1 implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets is_enabled
+     *
+     * @return bool|null
      */
-    public function getIsEnabled(): bool|null
+    public function getIsEnabled()
     {
         return $this->container['is_enabled'];
     }
@@ -244,8 +246,10 @@ final class HttpAccessPermissions1 implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets addresses
+     *
+     * @return \Upsun\Model\AddressGrantsInner[]|null
      */
-    public function getAddresses(): array|null
+    public function getAddresses()
     {
         return $this->container['addresses'];
     }
@@ -265,8 +269,10 @@ final class HttpAccessPermissions1 implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets basic_auth
+     *
+     * @return array<string,string>|null
      */
-    public function getBasicAuth(): array|null
+    public function getBasicAuth()
     {
         return $this->container['basic_auth'];
     }

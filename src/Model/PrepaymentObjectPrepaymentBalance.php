@@ -230,8 +230,10 @@ final class PrepaymentObjectPrepaymentBalance implements ModelInterface, ArrayAc
 
     /**
      * Gets formatted
+     *
+     * @return string|null
      */
-    public function getFormatted(): string|null
+    public function getFormatted()
     {
         return $this->container['formatted'];
     }
@@ -251,8 +253,10 @@ final class PrepaymentObjectPrepaymentBalance implements ModelInterface, ArrayAc
 
     /**
      * Gets amount
+     *
+     * @return float|null
      */
-    public function getAmount(): float|null
+    public function getAmount()
     {
         return $this->container['amount'];
     }
@@ -272,8 +276,10 @@ final class PrepaymentObjectPrepaymentBalance implements ModelInterface, ArrayAc
 
     /**
      * Gets currency_code
+     *
+     * @return string|null
      */
-    public function getCurrencyCode(): string|null
+    public function getCurrencyCode()
     {
         return $this->container['currency_code'];
     }
@@ -293,8 +299,10 @@ final class PrepaymentObjectPrepaymentBalance implements ModelInterface, ArrayAc
 
     /**
      * Gets currency_symbol
+     *
+     * @return string|null
      */
-    public function getCurrencySymbol(): string|null
+    public function getCurrencySymbol()
     {
         return $this->container['currency_symbol'];
     }

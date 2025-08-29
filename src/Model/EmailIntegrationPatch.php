@@ -229,8 +229,10 @@ final class EmailIntegrationPatch implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -250,8 +252,10 @@ final class EmailIntegrationPatch implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets from_address
+     *
+     * @return string|null
      */
-    public function getFromAddress(): string|null
+    public function getFromAddress()
     {
         return $this->container['from_address'];
     }
@@ -278,8 +282,10 @@ final class EmailIntegrationPatch implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets recipients
+     *
+     * @return string[]
      */
-    public function getRecipients(): array
+    public function getRecipients()
     {
         return $this->container['recipients'];
     }

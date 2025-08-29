@@ -273,8 +273,10 @@ final class ReplacementDomainStorage implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -301,8 +303,10 @@ final class ReplacementDomainStorage implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -329,8 +333,10 @@ final class ReplacementDomainStorage implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -350,8 +356,10 @@ final class ReplacementDomainStorage implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets project
+     *
+     * @return string|null
      */
-    public function getProject(): string|null
+    public function getProject()
     {
         return $this->container['project'];
     }
@@ -371,8 +379,10 @@ final class ReplacementDomainStorage implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets name
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -392,8 +402,10 @@ final class ReplacementDomainStorage implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets registered_name
+     *
+     * @return string|null
      */
-    public function getRegisteredName(): string|null
+    public function getRegisteredName()
     {
         return $this->container['registered_name'];
     }
@@ -413,8 +425,10 @@ final class ReplacementDomainStorage implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets attributes
+     *
+     * @return array<string,string>
      */
-    public function getAttributes(): array
+    public function getAttributes()
     {
         return $this->container['attributes'];
     }
@@ -434,8 +448,10 @@ final class ReplacementDomainStorage implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets replacement_for
+     *
+     * @return string|null
      */
-    public function getReplacementFor(): string|null
+    public function getReplacementFor()
     {
         return $this->container['replacement_for'];
     }

@@ -219,8 +219,10 @@ final class TheCommandsToManageTheWorker implements ModelInterface, ArrayAccess,
 
     /**
      * Gets pre_start
+     *
+     * @return string|null
      */
-    public function getPreStart(): string|null
+    public function getPreStart()
     {
         return $this->container['pre_start'];
     }
@@ -247,8 +249,10 @@ final class TheCommandsToManageTheWorker implements ModelInterface, ArrayAccess,
 
     /**
      * Gets start
+     *
+     * @return string
      */
-    public function getStart(): string
+    public function getStart()
     {
         return $this->container['start'];
     }

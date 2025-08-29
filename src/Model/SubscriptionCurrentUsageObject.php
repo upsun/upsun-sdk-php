@@ -293,8 +293,10 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
 
     /**
      * Gets cpu_app
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getCpuApp(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
+    public function getCpuApp()
     {
         return $this->container['cpu_app'];
     }
@@ -314,8 +316,10 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
 
     /**
      * Gets storage_app_services
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getStorageAppServices(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
+    public function getStorageAppServices()
     {
         return $this->container['storage_app_services'];
     }
@@ -335,8 +339,10 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
 
     /**
      * Gets memory_app
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getMemoryApp(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
+    public function getMemoryApp()
     {
         return $this->container['memory_app'];
     }
@@ -356,8 +362,10 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
 
     /**
      * Gets cpu_services
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getCpuServices(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
+    public function getCpuServices()
     {
         return $this->container['cpu_services'];
     }
@@ -377,8 +385,10 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
 
     /**
      * Gets memory_services
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getMemoryServices(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
+    public function getMemoryServices()
     {
         return $this->container['memory_services'];
     }
@@ -398,8 +408,10 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
 
     /**
      * Gets backup_storage
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getBackupStorage(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
+    public function getBackupStorage()
     {
         return $this->container['backup_storage'];
     }
@@ -419,8 +431,10 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
 
     /**
      * Gets build_cpu
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getBuildCpu(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
+    public function getBuildCpu()
     {
         return $this->container['build_cpu'];
     }
@@ -440,8 +454,10 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
 
     /**
      * Gets build_memory
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getBuildMemory(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
+    public function getBuildMemory()
     {
         return $this->container['build_memory'];
     }
@@ -461,8 +477,10 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
 
     /**
      * Gets egress_bandwidth
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getEgressBandwidth(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
+    public function getEgressBandwidth()
     {
         return $this->container['egress_bandwidth'];
     }
@@ -482,8 +500,10 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
 
     /**
      * Gets ingress_requests
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getIngressRequests(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
+    public function getIngressRequests()
     {
         return $this->container['ingress_requests'];
     }
@@ -503,8 +523,10 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
 
     /**
      * Gets logs_fwd_content_size
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getLogsFwdContentSize(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
+    public function getLogsFwdContentSize()
     {
         return $this->container['logs_fwd_content_size'];
     }
@@ -524,8 +546,10 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
 
     /**
      * Gets fastly_bandwidth
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getFastlyBandwidth(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
+    public function getFastlyBandwidth()
     {
         return $this->container['fastly_bandwidth'];
     }
@@ -545,8 +569,10 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAcces
 
     /**
      * Gets fastly_requests
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getFastlyRequests(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
+    public function getFastlyRequests()
     {
         return $this->container['fastly_requests'];
     }

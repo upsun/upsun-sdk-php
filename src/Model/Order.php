@@ -372,8 +372,10 @@ final class Order implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -393,8 +395,10 @@ final class Order implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets status
+     *
+     * @return string|null
      */
-    public function getStatus(): string|null
+    public function getStatus()
     {
         return $this->container['status'];
     }
@@ -424,8 +428,10 @@ final class Order implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets owner
+     *
+     * @return string|null
      */
-    public function getOwner(): string|null
+    public function getOwner()
     {
         return $this->container['owner'];
     }
@@ -445,8 +451,10 @@ final class Order implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets address
+     *
+     * @return \Upsun\Model\Address|null
      */
-    public function getAddress(): \Upsun\Model\Address|null
+    public function getAddress()
     {
         return $this->container['address'];
     }
@@ -466,8 +474,10 @@ final class Order implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets company
+     *
+     * @return string|null
      */
-    public function getCompany(): string|null
+    public function getCompany()
     {
         return $this->container['company'];
     }
@@ -487,8 +497,10 @@ final class Order implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets vat_number
+     *
+     * @return string|null
      */
-    public function getVatNumber(): string|null
+    public function getVatNumber()
     {
         return $this->container['vat_number'];
     }
@@ -508,8 +520,10 @@ final class Order implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets billing_period_start
+     *
+     * @return \DateTime|null
      */
-    public function getBillingPeriodStart(): \DateTime|null
+    public function getBillingPeriodStart()
     {
         return $this->container['billing_period_start'];
     }
@@ -529,8 +543,10 @@ final class Order implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets billing_period_end
+     *
+     * @return \DateTime|null
      */
-    public function getBillingPeriodEnd(): \DateTime|null
+    public function getBillingPeriodEnd()
     {
         return $this->container['billing_period_end'];
     }
@@ -550,8 +566,10 @@ final class Order implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets billing_period_label
+     *
+     * @return \Upsun\Model\OrderBillingPeriodLabel|null
      */
-    public function getBillingPeriodLabel(): \Upsun\Model\OrderBillingPeriodLabel|null
+    public function getBillingPeriodLabel()
     {
         return $this->container['billing_period_label'];
     }
@@ -571,8 +589,10 @@ final class Order implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets billing_period_duration
+     *
+     * @return int|null
      */
-    public function getBillingPeriodDuration(): int|null
+    public function getBillingPeriodDuration()
     {
         return $this->container['billing_period_duration'];
     }
@@ -592,8 +612,10 @@ final class Order implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets paid_on
+     *
+     * @return \DateTime|null
      */
-    public function getPaidOn(): \DateTime|null
+    public function getPaidOn()
     {
         return $this->container['paid_on'];
     }
@@ -620,8 +642,10 @@ final class Order implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets total
+     *
+     * @return int|null
      */
-    public function getTotal(): int|null
+    public function getTotal()
     {
         return $this->container['total'];
     }
@@ -641,8 +665,10 @@ final class Order implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets total_formatted
+     *
+     * @return int|null
      */
-    public function getTotalFormatted(): int|null
+    public function getTotalFormatted()
     {
         return $this->container['total_formatted'];
     }
@@ -662,8 +688,10 @@ final class Order implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets components
+     *
+     * @return \Upsun\Model\Components|null
      */
-    public function getComponents(): \Upsun\Model\Components|null
+    public function getComponents()
     {
         return $this->container['components'];
     }
@@ -683,8 +711,10 @@ final class Order implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets currency
+     *
+     * @return string|null
      */
-    public function getCurrency(): string|null
+    public function getCurrency()
     {
         return $this->container['currency'];
     }
@@ -704,8 +734,10 @@ final class Order implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets invoice_url
+     *
+     * @return string|null
      */
-    public function getInvoiceUrl(): string|null
+    public function getInvoiceUrl()
     {
         return $this->container['invoice_url'];
     }
@@ -725,8 +757,10 @@ final class Order implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets last_refreshed
+     *
+     * @return \DateTime|null
      */
-    public function getLastRefreshed(): \DateTime|null
+    public function getLastRefreshed()
     {
         return $this->container['last_refreshed'];
     }
@@ -746,8 +780,10 @@ final class Order implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets invoiced
+     *
+     * @return bool|null
      */
-    public function getInvoiced(): bool|null
+    public function getInvoiced()
     {
         return $this->container['invoiced'];
     }
@@ -767,8 +803,10 @@ final class Order implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets line_items
+     *
+     * @return \Upsun\Model\LineItem[]|null
      */
-    public function getLineItems(): array|null
+    public function getLineItems()
     {
         return $this->container['line_items'];
     }
@@ -788,8 +826,10 @@ final class Order implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets _links
+     *
+     * @return \Upsun\Model\OrderLinks|null
      */
-    public function getLinks(): \Upsun\Model\OrderLinks|null
+    public function getLinks()
     {
         return $this->container['_links'];
     }

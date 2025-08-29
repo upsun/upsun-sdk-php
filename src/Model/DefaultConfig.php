@@ -222,8 +222,10 @@ final class DefaultConfig implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets manual_count
+     *
+     * @return int
      */
-    public function getManualCount(): int
+    public function getManualCount()
     {
         return $this->container['manual_count'];
     }
@@ -243,8 +245,10 @@ final class DefaultConfig implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets schedule
+     *
+     * @return \Upsun\Model\TheBackupScheduleSpecificationInner[]
      */
-    public function getSchedule(): array
+    public function getSchedule()
     {
         return $this->container['schedule'];
     }

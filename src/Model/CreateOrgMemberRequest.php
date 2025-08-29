@@ -240,8 +240,10 @@ final class CreateOrgMemberRequest implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets user_id
+     *
+     * @return string
      */
-    public function getUserId(): string
+    public function getUserId()
     {
         return $this->container['user_id'];
     }
@@ -261,8 +263,10 @@ final class CreateOrgMemberRequest implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets permissions
+     *
+     * @return string[]|null
      */
-    public function getPermissions(): array|null
+    public function getPermissions()
     {
         return $this->container['permissions'];
     }

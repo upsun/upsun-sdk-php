@@ -251,8 +251,10 @@ final class OrganizationReference implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -272,8 +274,10 @@ final class OrganizationReference implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets owner_id
+     *
+     * @return string|null
      */
-    public function getOwnerId(): string|null
+    public function getOwnerId()
     {
         return $this->container['owner_id'];
     }
@@ -293,8 +297,10 @@ final class OrganizationReference implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets name
+     *
+     * @return string|null
      */
-    public function getName(): string|null
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -314,8 +320,10 @@ final class OrganizationReference implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets label
+     *
+     * @return string|null
      */
-    public function getLabel(): string|null
+    public function getLabel()
     {
         return $this->container['label'];
     }
@@ -335,8 +343,10 @@ final class OrganizationReference implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets vendor
+     *
+     * @return string|null
      */
-    public function getVendor(): string|null
+    public function getVendor()
     {
         return $this->container['vendor'];
     }
@@ -356,8 +366,10 @@ final class OrganizationReference implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime|null
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -377,8 +389,10 @@ final class OrganizationReference implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime|null
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }

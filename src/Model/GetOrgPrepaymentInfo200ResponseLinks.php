@@ -216,8 +216,10 @@ final class GetOrgPrepaymentInfo200ResponseLinks implements ModelInterface, Arra
 
     /**
      * Gets self
+     *
+     * @return \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf|null
      */
-    public function getSelf(): \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf|null
+    public function getSelf()
     {
         return $this->container['self'];
     }
@@ -237,8 +239,10 @@ final class GetOrgPrepaymentInfo200ResponseLinks implements ModelInterface, Arra
 
     /**
      * Gets transactions
+     *
+     * @return \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions|null
      */
-    public function getTransactions(): \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions|null
+    public function getTransactions()
     {
         return $this->container['transactions'];
     }

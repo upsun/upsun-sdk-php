@@ -229,8 +229,10 @@ final class CreateTeamRequest implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets organization_id
+     *
+     * @return string
      */
-    public function getOrganizationId(): string
+    public function getOrganizationId()
     {
         return $this->container['organization_id'];
     }
@@ -250,8 +252,10 @@ final class CreateTeamRequest implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets label
+     *
+     * @return string
      */
-    public function getLabel(): string
+    public function getLabel()
     {
         return $this->container['label'];
     }
@@ -271,8 +275,10 @@ final class CreateTeamRequest implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets project_permissions
+     *
+     * @return string[]|null
      */
-    public function getProjectPermissions(): array|null
+    public function getProjectPermissions()
     {
         return $this->container['project_permissions'];
     }

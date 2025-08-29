@@ -238,8 +238,10 @@ final class InvoicePDF implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets url
+     *
+     * @return string|null
      */
-    public function getUrl(): string|null
+    public function getUrl()
     {
         return $this->container['url'];
     }
@@ -259,8 +261,10 @@ final class InvoicePDF implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets status
+     *
+     * @return string|null
      */
-    public function getStatus(): string|null
+    public function getStatus()
     {
         return $this->container['status'];
     }

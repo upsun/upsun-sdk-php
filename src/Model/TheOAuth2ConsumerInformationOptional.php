@@ -212,8 +212,10 @@ final class TheOAuth2ConsumerInformationOptional implements ModelInterface, Arra
 
     /**
      * Gets key
+     *
+     * @return string
      */
-    public function getKey(): string
+    public function getKey()
     {
         return $this->container['key'];
     }

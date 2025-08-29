@@ -261,8 +261,10 @@ final class UpdateUserRequest implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets username
+     *
+     * @return string|null
      */
-    public function getUsername(): string|null
+    public function getUsername()
     {
         return $this->container['username'];
     }
@@ -282,8 +284,10 @@ final class UpdateUserRequest implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets first_name
+     *
+     * @return string|null
      */
-    public function getFirstName(): string|null
+    public function getFirstName()
     {
         return $this->container['first_name'];
     }
@@ -303,8 +307,10 @@ final class UpdateUserRequest implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets last_name
+     *
+     * @return string|null
      */
-    public function getLastName(): string|null
+    public function getLastName()
     {
         return $this->container['last_name'];
     }
@@ -324,8 +330,10 @@ final class UpdateUserRequest implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets picture
+     *
+     * @return string|null
      */
-    public function getPicture(): string|null
+    public function getPicture()
     {
         return $this->container['picture'];
     }
@@ -345,8 +353,10 @@ final class UpdateUserRequest implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets company
+     *
+     * @return string|null
      */
-    public function getCompany(): string|null
+    public function getCompany()
     {
         return $this->container['company'];
     }
@@ -366,8 +376,10 @@ final class UpdateUserRequest implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets website
+     *
+     * @return string|null
      */
-    public function getWebsite(): string|null
+    public function getWebsite()
     {
         return $this->container['website'];
     }
@@ -387,8 +399,10 @@ final class UpdateUserRequest implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets country
+     *
+     * @return string|null
      */
-    public function getCountry(): string|null
+    public function getCountry()
     {
         return $this->container['country'];
     }

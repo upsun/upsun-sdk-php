@@ -209,8 +209,10 @@ final class UpdateUsageAlertRequest implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets config
+     *
+     * @return \Upsun\Model\CreateUsageAlertRequestConfig|null
      */
-    public function getConfig(): \Upsun\Model\CreateUsageAlertRequestConfig|null
+    public function getConfig()
     {
         return $this->container['config'];
     }

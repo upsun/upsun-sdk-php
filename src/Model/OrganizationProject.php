@@ -317,8 +317,10 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -338,8 +340,10 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets organization_id
+     *
+     * @return string|null
      */
-    public function getOrganizationId(): string|null
+    public function getOrganizationId()
     {
         return $this->container['organization_id'];
     }
@@ -359,8 +363,10 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets subscription_id
+     *
+     * @return string|null
      */
-    public function getSubscriptionId(): string|null
+    public function getSubscriptionId()
     {
         return $this->container['subscription_id'];
     }
@@ -380,8 +386,10 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets region
+     *
+     * @return string|null
      */
-    public function getRegion(): string|null
+    public function getRegion()
     {
         return $this->container['region'];
     }
@@ -401,8 +409,10 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets title
+     *
+     * @return string|null
      */
-    public function getTitle(): string|null
+    public function getTitle()
     {
         return $this->container['title'];
     }
@@ -422,8 +432,10 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets type
+     *
+     * @return \Upsun\Model\OrganizationProjectType|null
      */
-    public function getType(): \Upsun\Model\OrganizationProjectType|null
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -443,8 +455,10 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets plan
+     *
+     * @return \Upsun\Model\OrganizationProjectPlan|null
      */
-    public function getPlan(): \Upsun\Model\OrganizationProjectPlan|null
+    public function getPlan()
     {
         return $this->container['plan'];
     }
@@ -464,8 +478,10 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets access_migration_status
+     *
+     * @return string|null
      */
-    public function getAccessMigrationStatus(): string|null
+    public function getAccessMigrationStatus()
     {
         return $this->container['access_migration_status'];
     }
@@ -495,8 +511,10 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets status
+     *
+     * @return \Upsun\Model\OrganizationProjectStatus|null
      */
-    public function getStatus(): \Upsun\Model\OrganizationProjectStatus|null
+    public function getStatus()
     {
         return $this->container['status'];
     }
@@ -516,8 +534,10 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets vendor
+     *
+     * @return string|null
      */
-    public function getVendor(): string|null
+    public function getVendor()
     {
         return $this->container['vendor'];
     }
@@ -537,8 +557,10 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime|null
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -558,8 +580,10 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime|null
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -579,8 +603,10 @@ final class OrganizationProject implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets _links
+     *
+     * @return \Upsun\Model\OrganizationProjectLinks|null
      */
-    public function getLinks(): \Upsun\Model\OrganizationProjectLinks|null
+    public function getLinks()
     {
         return $this->container['_links'];
     }

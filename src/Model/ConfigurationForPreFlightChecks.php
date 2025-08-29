@@ -222,8 +222,10 @@ final class ConfigurationForPreFlightChecks implements ModelInterface, ArrayAcce
 
     /**
      * Gets enabled
+     *
+     * @return bool
      */
-    public function getEnabled(): bool
+    public function getEnabled()
     {
         return $this->container['enabled'];
     }
@@ -243,8 +245,10 @@ final class ConfigurationForPreFlightChecks implements ModelInterface, ArrayAcce
 
     /**
      * Gets ignored_rules
+     *
+     * @return string[]
      */
-    public function getIgnoredRules(): array
+    public function getIgnoredRules()
     {
         return $this->container['ignored_rules'];
     }

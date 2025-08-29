@@ -291,8 +291,10 @@ final class FastlyIntegrationCreateInput implements ModelInterface, ArrayAccess,
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -312,8 +314,10 @@ final class FastlyIntegrationCreateInput implements ModelInterface, ArrayAccess,
 
     /**
      * Gets events
+     *
+     * @return string[]|null
      */
-    public function getEvents(): array|null
+    public function getEvents()
     {
         return $this->container['events'];
     }
@@ -333,8 +337,10 @@ final class FastlyIntegrationCreateInput implements ModelInterface, ArrayAccess,
 
     /**
      * Gets environments
+     *
+     * @return string[]|null
      */
-    public function getEnvironments(): array|null
+    public function getEnvironments()
     {
         return $this->container['environments'];
     }
@@ -354,8 +360,10 @@ final class FastlyIntegrationCreateInput implements ModelInterface, ArrayAccess,
 
     /**
      * Gets excluded_environments
+     *
+     * @return string[]|null
      */
-    public function getExcludedEnvironments(): array|null
+    public function getExcludedEnvironments()
     {
         return $this->container['excluded_environments'];
     }
@@ -375,8 +383,10 @@ final class FastlyIntegrationCreateInput implements ModelInterface, ArrayAccess,
 
     /**
      * Gets states
+     *
+     * @return string[]|null
      */
-    public function getStates(): array|null
+    public function getStates()
     {
         return $this->container['states'];
     }
@@ -396,8 +406,10 @@ final class FastlyIntegrationCreateInput implements ModelInterface, ArrayAccess,
 
     /**
      * Gets result
+     *
+     * @return string|null
      */
-    public function getResult(): string|null
+    public function getResult()
     {
         return $this->container['result'];
     }
@@ -427,8 +439,10 @@ final class FastlyIntegrationCreateInput implements ModelInterface, ArrayAccess,
 
     /**
      * Gets token
+     *
+     * @return string
      */
-    public function getToken(): string
+    public function getToken()
     {
         return $this->container['token'];
     }
@@ -448,8 +462,10 @@ final class FastlyIntegrationCreateInput implements ModelInterface, ArrayAccess,
 
     /**
      * Gets service_id
+     *
+     * @return string
      */
-    public function getServiceId(): string
+    public function getServiceId()
     {
         return $this->container['service_id'];
     }

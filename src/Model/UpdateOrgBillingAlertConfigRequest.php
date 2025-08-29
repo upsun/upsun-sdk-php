@@ -216,8 +216,10 @@ final class UpdateOrgBillingAlertConfigRequest implements ModelInterface, ArrayA
 
     /**
      * Gets active
+     *
+     * @return bool|null
      */
-    public function getActive(): bool|null
+    public function getActive()
     {
         return $this->container['active'];
     }
@@ -237,8 +239,10 @@ final class UpdateOrgBillingAlertConfigRequest implements ModelInterface, ArrayA
 
     /**
      * Gets config
+     *
+     * @return \Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig|null
      */
-    public function getConfig(): \Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig|null
+    public function getConfig()
     {
         return $this->container['config'];
     }

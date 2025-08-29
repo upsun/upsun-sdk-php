@@ -260,8 +260,10 @@ final class GrantProjectUserAccessRequestInner implements ModelInterface, ArrayA
 
     /**
      * Gets user_id
+     *
+     * @return string
      */
-    public function getUserId(): string
+    public function getUserId()
     {
         return $this->container['user_id'];
     }
@@ -281,8 +283,10 @@ final class GrantProjectUserAccessRequestInner implements ModelInterface, ArrayA
 
     /**
      * Gets permissions
+     *
+     * @return string[]
      */
-    public function getPermissions(): array
+    public function getPermissions()
     {
         return $this->container['permissions'];
     }
@@ -311,8 +315,10 @@ final class GrantProjectUserAccessRequestInner implements ModelInterface, ArrayA
 
     /**
      * Gets auto_add_member
+     *
+     * @return bool|null
      */
-    public function getAutoAddMember(): bool|null
+    public function getAutoAddMember()
     {
         return $this->container['auto_add_member'];
     }

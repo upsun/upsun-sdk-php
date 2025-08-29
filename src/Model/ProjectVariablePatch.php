@@ -251,8 +251,10 @@ final class ProjectVariablePatch implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets name
+     *
+     * @return string|null
      */
-    public function getName(): string|null
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -272,8 +274,10 @@ final class ProjectVariablePatch implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets attributes
+     *
+     * @return array<string,string>|null
      */
-    public function getAttributes(): array|null
+    public function getAttributes()
     {
         return $this->container['attributes'];
     }
@@ -293,8 +297,10 @@ final class ProjectVariablePatch implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets value
+     *
+     * @return string|null
      */
-    public function getValue(): string|null
+    public function getValue()
     {
         return $this->container['value'];
     }
@@ -314,8 +320,10 @@ final class ProjectVariablePatch implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets is_json
+     *
+     * @return bool|null
      */
-    public function getIsJson(): bool|null
+    public function getIsJson()
     {
         return $this->container['is_json'];
     }
@@ -335,8 +343,10 @@ final class ProjectVariablePatch implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets is_sensitive
+     *
+     * @return bool|null
      */
-    public function getIsSensitive(): bool|null
+    public function getIsSensitive()
     {
         return $this->container['is_sensitive'];
     }
@@ -356,8 +366,10 @@ final class ProjectVariablePatch implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets visible_build
+     *
+     * @return bool|null
      */
-    public function getVisibleBuild(): bool|null
+    public function getVisibleBuild()
     {
         return $this->container['visible_build'];
     }
@@ -377,8 +389,10 @@ final class ProjectVariablePatch implements ModelInterface, ArrayAccess, JsonSer
 
     /**
      * Gets visible_runtime
+     *
+     * @return bool|null
      */
-    public function getVisibleRuntime(): bool|null
+    public function getVisibleRuntime()
     {
         return $this->container['visible_runtime'];
     }

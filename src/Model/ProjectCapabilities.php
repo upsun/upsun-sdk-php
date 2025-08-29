@@ -297,8 +297,10 @@ final class ProjectCapabilities implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets custom_domains
+     *
+     * @return \Upsun\Model\CustomDomains|null
      */
-    public function getCustomDomains(): \Upsun\Model\CustomDomains|null
+    public function getCustomDomains()
     {
         return $this->container['custom_domains'];
     }
@@ -318,8 +320,10 @@ final class ProjectCapabilities implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets source_operations
+     *
+     * @return \Upsun\Model\SourceOperations|null
      */
-    public function getSourceOperations(): \Upsun\Model\SourceOperations|null
+    public function getSourceOperations()
     {
         return $this->container['source_operations'];
     }
@@ -339,8 +343,10 @@ final class ProjectCapabilities implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets runtime_operations
+     *
+     * @return \Upsun\Model\RuntimeOperations|null
      */
-    public function getRuntimeOperations(): \Upsun\Model\RuntimeOperations|null
+    public function getRuntimeOperations()
     {
         return $this->container['runtime_operations'];
     }
@@ -360,8 +366,10 @@ final class ProjectCapabilities implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets outbound_firewall
+     *
+     * @return \Upsun\Model\OutboundFirewall|null
      */
-    public function getOutboundFirewall(): \Upsun\Model\OutboundFirewall|null
+    public function getOutboundFirewall()
     {
         return $this->container['outbound_firewall'];
     }
@@ -381,8 +389,10 @@ final class ProjectCapabilities implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets metrics
+     *
+     * @return \Upsun\Model\Metrics
      */
-    public function getMetrics(): \Upsun\Model\Metrics
+    public function getMetrics()
     {
         return $this->container['metrics'];
     }
@@ -402,8 +412,10 @@ final class ProjectCapabilities implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets logs_forwarding
+     *
+     * @return \Upsun\Model\LogsForwarding
      */
-    public function getLogsForwarding(): \Upsun\Model\LogsForwarding
+    public function getLogsForwarding()
     {
         return $this->container['logs_forwarding'];
     }
@@ -423,8 +435,10 @@ final class ProjectCapabilities implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets images
+     *
+     * @return array<string,array<string,\Upsun\Model\ImagesValueValue>>
      */
-    public function getImages(): array
+    public function getImages()
     {
         return $this->container['images'];
     }
@@ -444,8 +458,10 @@ final class ProjectCapabilities implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets instance_limit
+     *
+     * @return int
      */
-    public function getInstanceLimit(): int
+    public function getInstanceLimit()
     {
         return $this->container['instance_limit'];
     }
@@ -465,8 +481,10 @@ final class ProjectCapabilities implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets build_resources
+     *
+     * @return \Upsun\Model\BuildResources
      */
-    public function getBuildResources(): \Upsun\Model\BuildResources
+    public function getBuildResources()
     {
         return $this->container['build_resources'];
     }
@@ -486,8 +504,10 @@ final class ProjectCapabilities implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets data_retention
+     *
+     * @return \Upsun\Model\DataRetention
      */
-    public function getDataRetention(): \Upsun\Model\DataRetention
+    public function getDataRetention()
     {
         return $this->container['data_retention'];
     }
@@ -507,8 +527,10 @@ final class ProjectCapabilities implements ModelInterface, ArrayAccess, JsonSeri
 
     /**
      * Gets integrations
+     *
+     * @return \Upsun\Model\Integrations|null
      */
-    public function getIntegrations(): \Upsun\Model\Integrations|null
+    public function getIntegrations()
     {
         return $this->container['integrations'];
     }

@@ -216,8 +216,10 @@ final class ProdDomainStoragePatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets attributes
+     *
+     * @return array<string,string>|null
      */
-    public function getAttributes(): array|null
+    public function getAttributes()
     {
         return $this->container['attributes'];
     }
@@ -237,8 +239,10 @@ final class ProdDomainStoragePatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets is_default
+     *
+     * @return bool|null
      */
-    public function getIsDefault(): bool|null
+    public function getIsDefault()
     {
         return $this->container['is_default'];
     }

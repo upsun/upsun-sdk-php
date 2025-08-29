@@ -278,8 +278,10 @@ final class TLSSettingsForTheRoute1 implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets strict_transport_security
+     *
+     * @return \Upsun\Model\StrictTransportSecurityOptions1|null
      */
-    public function getStrictTransportSecurity(): \Upsun\Model\StrictTransportSecurityOptions1|null
+    public function getStrictTransportSecurity()
     {
         return $this->container['strict_transport_security'];
     }
@@ -299,8 +301,10 @@ final class TLSSettingsForTheRoute1 implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets min_version
+     *
+     * @return string|null
      */
-    public function getMinVersion(): string|null
+    public function getMinVersion()
     {
         return $this->container['min_version'];
     }
@@ -337,8 +341,10 @@ final class TLSSettingsForTheRoute1 implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets client_authentication
+     *
+     * @return string|null
      */
-    public function getClientAuthentication(): string|null
+    public function getClientAuthentication()
     {
         return $this->container['client_authentication'];
     }
@@ -375,8 +381,10 @@ final class TLSSettingsForTheRoute1 implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets client_certificate_authorities
+     *
+     * @return string[]|null
      */
-    public function getClientCertificateAuthorities(): array|null
+    public function getClientCertificateAuthorities()
     {
         return $this->container['client_certificate_authorities'];
     }

@@ -246,8 +246,10 @@ final class VerifyPhoneNumberRequest implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets channel
+     *
+     * @return string
      */
-    public function getChannel(): string
+    public function getChannel()
     {
         return $this->container['channel'];
     }
@@ -277,8 +279,10 @@ final class VerifyPhoneNumberRequest implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets phone_number
+     *
+     * @return string
      */
-    public function getPhoneNumber(): string
+    public function getPhoneNumber()
     {
         return $this->container['phone_number'];
     }

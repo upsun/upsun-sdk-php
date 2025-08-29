@@ -209,8 +209,10 @@ final class ConfirmTotpEnrollment200Response implements ModelInterface, ArrayAcc
 
     /**
      * Gets recovery_codes
+     *
+     * @return string[]|null
      */
-    public function getRecoveryCodes(): array|null
+    public function getRecoveryCodes()
     {
         return $this->container['recovery_codes'];
     }

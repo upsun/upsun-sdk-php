@@ -230,8 +230,10 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements M
 
     /**
      * Gets cpu
+     *
+     * @return float|null
      */
-    public function getCpu(): float|null
+    public function getCpu()
     {
         return $this->container['cpu'];
     }
@@ -251,8 +253,10 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements M
 
     /**
      * Gets memory
+     *
+     * @return float|null
      */
-    public function getMemory(): float|null
+    public function getMemory()
     {
         return $this->container['memory'];
     }
@@ -272,8 +276,10 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements M
 
     /**
      * Gets storage
+     *
+     * @return float|null
      */
-    public function getStorage(): float|null
+    public function getStorage()
     {
         return $this->container['storage'];
     }
@@ -293,8 +299,10 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements M
 
     /**
      * Gets environments
+     *
+     * @return int|null
      */
-    public function getEnvironments(): int|null
+    public function getEnvironments()
     {
         return $this->container['environments'];
     }

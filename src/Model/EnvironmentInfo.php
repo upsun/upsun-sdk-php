@@ -292,8 +292,10 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets name
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -313,8 +315,10 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets status
+     *
+     * @return string
      */
-    public function getStatus(): string
+    public function getStatus()
     {
         return $this->container['status'];
     }
@@ -334,8 +338,10 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets is_main
+     *
+     * @return bool
      */
-    public function getIsMain(): bool
+    public function getIsMain()
     {
         return $this->container['is_main'];
     }
@@ -355,8 +361,10 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets is_production
+     *
+     * @return bool
      */
-    public function getIsProduction(): bool
+    public function getIsProduction()
     {
         return $this->container['is_production'];
     }
@@ -376,8 +384,10 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets constraints
+     *
+     * @return object
      */
-    public function getConstraints(): object
+    public function getConstraints()
     {
         return $this->container['constraints'];
     }
@@ -397,8 +407,10 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets reference
+     *
+     * @return string
      */
-    public function getReference(): string
+    public function getReference()
     {
         return $this->container['reference'];
     }
@@ -418,8 +430,10 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets machine_name
+     *
+     * @return string
      */
-    public function getMachineName(): string
+    public function getMachineName()
     {
         return $this->container['machine_name'];
     }
@@ -439,8 +453,10 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets environment_type
+     *
+     * @return string
      */
-    public function getEnvironmentType(): string
+    public function getEnvironmentType()
     {
         return $this->container['environment_type'];
     }
@@ -460,8 +476,10 @@ final class EnvironmentInfo implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets links
+     *
+     * @return object
      */
-    public function getLinks(): object
+    public function getLinks()
     {
         return $this->container['links'];
     }

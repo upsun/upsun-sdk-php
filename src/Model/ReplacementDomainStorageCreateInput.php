@@ -226,8 +226,10 @@ final class ReplacementDomainStorageCreateInput implements ModelInterface, Array
 
     /**
      * Gets name
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -247,8 +249,10 @@ final class ReplacementDomainStorageCreateInput implements ModelInterface, Array
 
     /**
      * Gets attributes
+     *
+     * @return array<string,string>|null
      */
-    public function getAttributes(): array|null
+    public function getAttributes()
     {
         return $this->container['attributes'];
     }
@@ -268,8 +272,10 @@ final class ReplacementDomainStorageCreateInput implements ModelInterface, Array
 
     /**
      * Gets replacement_for
+     *
+     * @return string|null
      */
-    public function getReplacementFor(): string|null
+    public function getReplacementFor()
     {
         return $this->container['replacement_for'];
     }

@@ -216,8 +216,10 @@ final class CommandsToManageTheApplicationSLifecycle implements ModelInterface, 
 
     /**
      * Gets pre_start
+     *
+     * @return string|null
      */
-    public function getPreStart(): string|null
+    public function getPreStart()
     {
         return $this->container['pre_start'];
     }
@@ -244,8 +246,10 @@ final class CommandsToManageTheApplicationSLifecycle implements ModelInterface, 
 
     /**
      * Gets start
+     *
+     * @return string|null
      */
-    public function getStart(): string|null
+    public function getStart()
     {
         return $this->container['start'];
     }

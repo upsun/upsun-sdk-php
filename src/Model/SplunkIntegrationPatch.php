@@ -263,8 +263,10 @@ final class SplunkIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -284,8 +286,10 @@ final class SplunkIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets extra
+     *
+     * @return array<string,string>|null
      */
-    public function getExtra(): array|null
+    public function getExtra()
     {
         return $this->container['extra'];
     }
@@ -305,8 +309,10 @@ final class SplunkIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets url
+     *
+     * @return string
      */
-    public function getUrl(): string
+    public function getUrl()
     {
         return $this->container['url'];
     }
@@ -326,8 +332,10 @@ final class SplunkIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets index
+     *
+     * @return string
      */
-    public function getIndex(): string
+    public function getIndex()
     {
         return $this->container['index'];
     }
@@ -347,8 +355,10 @@ final class SplunkIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets token
+     *
+     * @return string
      */
-    public function getToken(): string
+    public function getToken()
     {
         return $this->container['token'];
     }
@@ -368,8 +378,10 @@ final class SplunkIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets sourcetype
+     *
+     * @return string|null
      */
-    public function getSourcetype(): string|null
+    public function getSourcetype()
     {
         return $this->container['sourcetype'];
     }
@@ -389,8 +401,10 @@ final class SplunkIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets tls_verify
+     *
+     * @return bool|null
      */
-    public function getTlsVerify(): bool|null
+    public function getTlsVerify()
     {
         return $this->container['tls_verify'];
     }

@@ -233,8 +233,10 @@ final class DomainCreateInput implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets name
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -254,8 +256,10 @@ final class DomainCreateInput implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets attributes
+     *
+     * @return array<string,string>|null
      */
-    public function getAttributes(): array|null
+    public function getAttributes()
     {
         return $this->container['attributes'];
     }
@@ -275,8 +279,10 @@ final class DomainCreateInput implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets is_default
+     *
+     * @return bool|null
      */
-    public function getIsDefault(): bool|null
+    public function getIsDefault()
     {
         return $this->container['is_default'];
     }
@@ -296,8 +302,10 @@ final class DomainCreateInput implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets replacement_for
+     *
+     * @return string|null
      */
-    public function getReplacementFor(): string|null
+    public function getReplacementFor()
     {
         return $this->container['replacement_for'];
     }

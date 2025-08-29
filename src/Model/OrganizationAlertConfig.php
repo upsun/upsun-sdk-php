@@ -244,8 +244,10 @@ final class OrganizationAlertConfig implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -265,8 +267,10 @@ final class OrganizationAlertConfig implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets active
+     *
+     * @return bool|null
      */
-    public function getActive(): bool|null
+    public function getActive()
     {
         return $this->container['active'];
     }
@@ -286,8 +290,10 @@ final class OrganizationAlertConfig implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets alerts_sent
+     *
+     * @return float|null
      */
-    public function getAlertsSent(): float|null
+    public function getAlertsSent()
     {
         return $this->container['alerts_sent'];
     }
@@ -307,8 +313,10 @@ final class OrganizationAlertConfig implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets last_alert_at
+     *
+     * @return string|null
      */
-    public function getLastAlertAt(): string|null
+    public function getLastAlertAt()
     {
         return $this->container['last_alert_at'];
     }
@@ -335,8 +343,10 @@ final class OrganizationAlertConfig implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets updated_at
+     *
+     * @return string|null
      */
-    public function getUpdatedAt(): string|null
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -363,8 +373,10 @@ final class OrganizationAlertConfig implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets config
+     *
+     * @return \Upsun\Model\OrganizationAlertConfigConfig|null
      */
-    public function getConfig(): \Upsun\Model\OrganizationAlertConfigConfig|null
+    public function getConfig()
     {
         return $this->container['config'];
     }

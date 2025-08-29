@@ -230,8 +230,10 @@ final class ProfileCurrentTrialProjectsTotal implements ModelInterface, ArrayAcc
 
     /**
      * Gets amount
+     *
+     * @return int|null
      */
-    public function getAmount(): int|null
+    public function getAmount()
     {
         return $this->container['amount'];
     }
@@ -251,8 +253,10 @@ final class ProfileCurrentTrialProjectsTotal implements ModelInterface, ArrayAcc
 
     /**
      * Gets currency_code
+     *
+     * @return string|null
      */
-    public function getCurrencyCode(): string|null
+    public function getCurrencyCode()
     {
         return $this->container['currency_code'];
     }
@@ -272,8 +276,10 @@ final class ProfileCurrentTrialProjectsTotal implements ModelInterface, ArrayAcc
 
     /**
      * Gets currency_symbol
+     *
+     * @return string|null
      */
-    public function getCurrencySymbol(): string|null
+    public function getCurrencySymbol()
     {
         return $this->container['currency_symbol'];
     }
@@ -293,8 +299,10 @@ final class ProfileCurrentTrialProjectsTotal implements ModelInterface, ArrayAcc
 
     /**
      * Gets formatted
+     *
+     * @return string|null
      */
-    public function getFormatted(): string|null
+    public function getFormatted()
     {
         return $this->container['formatted'];
     }

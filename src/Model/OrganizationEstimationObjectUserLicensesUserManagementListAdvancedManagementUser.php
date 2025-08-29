@@ -216,8 +216,10 @@ final class OrganizationEstimationObjectUserLicensesUserManagementListAdvancedMa
 
     /**
      * Gets count
+     *
+     * @return int|null
      */
-    public function getCount(): int|null
+    public function getCount()
     {
         return $this->container['count'];
     }
@@ -237,8 +239,10 @@ final class OrganizationEstimationObjectUserLicensesUserManagementListAdvancedMa
 
     /**
      * Gets total
+     *
+     * @return string|null
      */
-    public function getTotal(): string|null
+    public function getTotal()
     {
         return $this->container['total'];
     }

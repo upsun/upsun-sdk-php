@@ -296,8 +296,10 @@ final class ProxyRoute implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets primary
+     *
+     * @return bool
      */
-    public function getPrimary(): bool
+    public function getPrimary()
     {
         return $this->container['primary'];
     }
@@ -324,8 +326,10 @@ final class ProxyRoute implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets id
+     *
+     * @return string
      */
-    public function getId(): string
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -352,8 +356,10 @@ final class ProxyRoute implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets production_url
+     *
+     * @return string
      */
-    public function getProductionUrl(): string
+    public function getProductionUrl()
     {
         return $this->container['production_url'];
     }
@@ -380,8 +386,10 @@ final class ProxyRoute implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets attributes
+     *
+     * @return array<string,string>
      */
-    public function getAttributes(): array
+    public function getAttributes()
     {
         return $this->container['attributes'];
     }
@@ -401,8 +409,10 @@ final class ProxyRoute implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -432,8 +442,10 @@ final class ProxyRoute implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets tls
+     *
+     * @return \Upsun\Model\TLSSettingsForTheRoute
      */
-    public function getTls(): \Upsun\Model\TLSSettingsForTheRoute
+    public function getTls()
     {
         return $this->container['tls'];
     }
@@ -453,8 +465,10 @@ final class ProxyRoute implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets to
+     *
+     * @return string
      */
-    public function getTo(): string
+    public function getTo()
     {
         return $this->container['to'];
     }

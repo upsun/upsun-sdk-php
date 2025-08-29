@@ -230,8 +230,10 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements ModelInterf
 
     /**
      * Gets self
+     *
+     * @return \Upsun\Model\ListLinksSelf|null
      */
-    public function getSelf(): \Upsun\Model\ListLinksSelf|null
+    public function getSelf()
     {
         return $this->container['self'];
     }
@@ -251,8 +253,10 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements ModelInterf
 
     /**
      * Gets previous
+     *
+     * @return \Upsun\Model\ListLinksPrevious|null
      */
-    public function getPrevious(): \Upsun\Model\ListLinksPrevious|null
+    public function getPrevious()
     {
         return $this->container['previous'];
     }
@@ -272,8 +276,10 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements ModelInterf
 
     /**
      * Gets next
+     *
+     * @return \Upsun\Model\ListLinksNext|null
      */
-    public function getNext(): \Upsun\Model\ListLinksNext|null
+    public function getNext()
     {
         return $this->container['next'];
     }
@@ -293,8 +299,10 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements ModelInterf
 
     /**
      * Gets prepayment
+     *
+     * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment|null
      */
-    public function getPrepayment(): \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment|null
+    public function getPrepayment()
     {
         return $this->container['prepayment'];
     }

@@ -209,8 +209,10 @@ final class Components implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets voucher_vat_baseprice
+     *
+     * @return object|null
      */
-    public function getVoucherVatBaseprice(): object|null
+    public function getVoucherVatBaseprice()
     {
         return $this->container['voucher_vat_baseprice'];
     }

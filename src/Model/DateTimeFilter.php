@@ -251,8 +251,10 @@ final class DateTimeFilter implements ModelInterface, ArrayAccess, JsonSerializa
 
     /**
      * Gets eq
+     *
+     * @return string|null
      */
-    public function getEq(): string|null
+    public function getEq()
     {
         return $this->container['eq'];
     }
@@ -272,8 +274,10 @@ final class DateTimeFilter implements ModelInterface, ArrayAccess, JsonSerializa
 
     /**
      * Gets ne
+     *
+     * @return string|null
      */
-    public function getNe(): string|null
+    public function getNe()
     {
         return $this->container['ne'];
     }
@@ -293,8 +297,10 @@ final class DateTimeFilter implements ModelInterface, ArrayAccess, JsonSerializa
 
     /**
      * Gets between
+     *
+     * @return string|null
      */
-    public function getBetween(): string|null
+    public function getBetween()
     {
         return $this->container['between'];
     }
@@ -314,8 +320,10 @@ final class DateTimeFilter implements ModelInterface, ArrayAccess, JsonSerializa
 
     /**
      * Gets gt
+     *
+     * @return string|null
      */
-    public function getGt(): string|null
+    public function getGt()
     {
         return $this->container['gt'];
     }
@@ -335,8 +343,10 @@ final class DateTimeFilter implements ModelInterface, ArrayAccess, JsonSerializa
 
     /**
      * Gets gte
+     *
+     * @return string|null
      */
-    public function getGte(): string|null
+    public function getGte()
     {
         return $this->container['gte'];
     }
@@ -356,8 +366,10 @@ final class DateTimeFilter implements ModelInterface, ArrayAccess, JsonSerializa
 
     /**
      * Gets lt
+     *
+     * @return string|null
      */
-    public function getLt(): string|null
+    public function getLt()
     {
         return $this->container['lt'];
     }
@@ -377,8 +389,10 @@ final class DateTimeFilter implements ModelInterface, ArrayAccess, JsonSerializa
 
     /**
      * Gets lte
+     *
+     * @return string|null
      */
-    public function getLte(): string|null
+    public function getLte()
     {
         return $this->container['lte'];
     }

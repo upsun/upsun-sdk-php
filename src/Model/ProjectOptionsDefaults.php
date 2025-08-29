@@ -230,8 +230,10 @@ final class ProjectOptionsDefaults implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets settings
+     *
+     * @return object|null
      */
-    public function getSettings(): object|null
+    public function getSettings()
     {
         return $this->container['settings'];
     }
@@ -251,8 +253,10 @@ final class ProjectOptionsDefaults implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets variables
+     *
+     * @return object|null
      */
-    public function getVariables(): object|null
+    public function getVariables()
     {
         return $this->container['variables'];
     }
@@ -272,8 +276,10 @@ final class ProjectOptionsDefaults implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets access
+     *
+     * @return object|null
      */
-    public function getAccess(): object|null
+    public function getAccess()
     {
         return $this->container['access'];
     }
@@ -293,8 +299,10 @@ final class ProjectOptionsDefaults implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets capabilities
+     *
+     * @return object|null
      */
-    public function getCapabilities(): object|null
+    public function getCapabilities()
     {
         return $this->container['capabilities'];
     }

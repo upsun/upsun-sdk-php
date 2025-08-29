@@ -289,8 +289,10 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets name
+     *
+     * @return string|null
      */
-    public function getName(): string|null
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -310,8 +312,10 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets title
+     *
+     * @return string|null
      */
-    public function getTitle(): string|null
+    public function getTitle()
     {
         return $this->container['title'];
     }
@@ -331,8 +335,10 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets attributes
+     *
+     * @return array<string,string>|null
      */
-    public function getAttributes(): array|null
+    public function getAttributes()
     {
         return $this->container['attributes'];
     }
@@ -352,8 +358,10 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets type
+     *
+     * @return string|null
      */
-    public function getType(): string|null
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -383,8 +391,10 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets parent
+     *
+     * @return string|null
      */
-    public function getParent(): string|null
+    public function getParent()
     {
         return $this->container['parent'];
     }
@@ -411,8 +421,10 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets clone_parent_on_create
+     *
+     * @return bool|null
      */
-    public function getCloneParentOnCreate(): bool|null
+    public function getCloneParentOnCreate()
     {
         return $this->container['clone_parent_on_create'];
     }
@@ -432,8 +444,10 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets http_access
+     *
+     * @return \Upsun\Model\HttpAccessPermissions1|null
      */
-    public function getHttpAccess(): \Upsun\Model\HttpAccessPermissions1|null
+    public function getHttpAccess()
     {
         return $this->container['http_access'];
     }
@@ -453,8 +467,10 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets enable_smtp
+     *
+     * @return bool|null
      */
-    public function getEnableSmtp(): bool|null
+    public function getEnableSmtp()
     {
         return $this->container['enable_smtp'];
     }
@@ -474,8 +490,10 @@ final class EnvironmentPatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets restrict_robots
+     *
+     * @return bool|null
      */
-    public function getRestrictRobots(): bool|null
+    public function getRestrictRobots()
     {
         return $this->container['restrict_robots'];
     }

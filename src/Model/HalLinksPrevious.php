@@ -216,8 +216,10 @@ final class HalLinksPrevious implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets title
+     *
+     * @return string|null
      */
-    public function getTitle(): string|null
+    public function getTitle()
     {
         return $this->container['title'];
     }
@@ -237,8 +239,10 @@ final class HalLinksPrevious implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets href
+     *
+     * @return string|null
      */
-    public function getHref(): string|null
+    public function getHref()
     {
         return $this->container['href'];
     }

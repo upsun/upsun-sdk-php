@@ -274,8 +274,10 @@ final class EnvironmentBranchInput implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets title
+     *
+     * @return string
      */
-    public function getTitle(): string
+    public function getTitle()
     {
         return $this->container['title'];
     }
@@ -295,8 +297,10 @@ final class EnvironmentBranchInput implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets name
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -316,8 +320,10 @@ final class EnvironmentBranchInput implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets clone_parent
+     *
+     * @return bool
      */
-    public function getCloneParent(): bool
+    public function getCloneParent()
     {
         return $this->container['clone_parent'];
     }
@@ -337,8 +343,10 @@ final class EnvironmentBranchInput implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -368,8 +376,10 @@ final class EnvironmentBranchInput implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets resources
+     *
+     * @return \Upsun\Model\Resources2
      */
-    public function getResources(): \Upsun\Model\Resources2
+    public function getResources()
     {
         return $this->container['resources'];
     }

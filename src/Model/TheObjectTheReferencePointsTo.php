@@ -222,8 +222,10 @@ final class TheObjectTheReferencePointsTo implements ModelInterface, ArrayAccess
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -243,8 +245,10 @@ final class TheObjectTheReferencePointsTo implements ModelInterface, ArrayAccess
 
     /**
      * Gets sha
+     *
+     * @return string
      */
-    public function getSha(): string
+    public function getSha()
     {
         return $this->container['sha'];
     }

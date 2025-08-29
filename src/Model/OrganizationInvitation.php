@@ -310,8 +310,10 @@ final class OrganizationInvitation implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -331,8 +333,10 @@ final class OrganizationInvitation implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets state
+     *
+     * @return string|null
      */
-    public function getState(): string|null
+    public function getState()
     {
         return $this->container['state'];
     }
@@ -362,8 +366,10 @@ final class OrganizationInvitation implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets organization_id
+     *
+     * @return string|null
      */
-    public function getOrganizationId(): string|null
+    public function getOrganizationId()
     {
         return $this->container['organization_id'];
     }
@@ -383,8 +389,10 @@ final class OrganizationInvitation implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets email
+     *
+     * @return string|null
      */
-    public function getEmail(): string|null
+    public function getEmail()
     {
         return $this->container['email'];
     }
@@ -404,8 +412,10 @@ final class OrganizationInvitation implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets owner
+     *
+     * @return \Upsun\Model\OrganizationInvitationOwner|null
      */
-    public function getOwner(): \Upsun\Model\OrganizationInvitationOwner|null
+    public function getOwner()
     {
         return $this->container['owner'];
     }
@@ -425,8 +435,10 @@ final class OrganizationInvitation implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime|null
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -446,8 +458,10 @@ final class OrganizationInvitation implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime|null
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -467,8 +481,10 @@ final class OrganizationInvitation implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets finished_at
+     *
+     * @return \DateTime|null
      */
-    public function getFinishedAt(): \DateTime|null
+    public function getFinishedAt()
     {
         return $this->container['finished_at'];
     }
@@ -495,8 +511,10 @@ final class OrganizationInvitation implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets permissions
+     *
+     * @return string[]|null
      */
-    public function getPermissions(): array|null
+    public function getPermissions()
     {
         return $this->container['permissions'];
     }

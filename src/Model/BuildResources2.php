@@ -216,8 +216,10 @@ final class BuildResources2 implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets cpu
+     *
+     * @return float|null
      */
-    public function getCpu(): float|null
+    public function getCpu()
     {
         return $this->container['cpu'];
     }
@@ -237,8 +239,10 @@ final class BuildResources2 implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets memory
+     *
+     * @return int|null
      */
-    public function getMemory(): int|null
+    public function getMemory()
     {
         return $this->container['memory'];
     }

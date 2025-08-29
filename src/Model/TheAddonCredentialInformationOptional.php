@@ -222,8 +222,10 @@ final class TheAddonCredentialInformationOptional implements ModelInterface, Arr
 
     /**
      * Gets addon_key
+     *
+     * @return string
      */
-    public function getAddonKey(): string
+    public function getAddonKey()
     {
         return $this->container['addon_key'];
     }
@@ -243,8 +245,10 @@ final class TheAddonCredentialInformationOptional implements ModelInterface, Arr
 
     /**
      * Gets client_key
+     *
+     * @return string
      */
-    public function getClientKey(): string
+    public function getClientKey()
     {
         return $this->container['client_key'];
     }

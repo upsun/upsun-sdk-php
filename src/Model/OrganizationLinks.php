@@ -307,8 +307,10 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets self
+     *
+     * @return \Upsun\Model\OrganizationLinksSelf|null
      */
-    public function getSelf(): \Upsun\Model\OrganizationLinksSelf|null
+    public function getSelf()
     {
         return $this->container['self'];
     }
@@ -328,8 +330,10 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets update
+     *
+     * @return \Upsun\Model\OrganizationLinksUpdate|null
      */
-    public function getUpdate(): \Upsun\Model\OrganizationLinksUpdate|null
+    public function getUpdate()
     {
         return $this->container['update'];
     }
@@ -349,8 +353,10 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets delete
+     *
+     * @return \Upsun\Model\OrganizationLinksDelete|null
      */
-    public function getDelete(): \Upsun\Model\OrganizationLinksDelete|null
+    public function getDelete()
     {
         return $this->container['delete'];
     }
@@ -370,8 +376,10 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets members
+     *
+     * @return \Upsun\Model\OrganizationLinksMembers|null
      */
-    public function getMembers(): \Upsun\Model\OrganizationLinksMembers|null
+    public function getMembers()
     {
         return $this->container['members'];
     }
@@ -391,8 +399,10 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets create_member
+     *
+     * @return \Upsun\Model\OrganizationLinksCreateMember|null
      */
-    public function getCreateMember(): \Upsun\Model\OrganizationLinksCreateMember|null
+    public function getCreateMember()
     {
         return $this->container['create_member'];
     }
@@ -412,8 +422,10 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets address
+     *
+     * @return \Upsun\Model\OrganizationLinksAddress|null
      */
-    public function getAddress(): \Upsun\Model\OrganizationLinksAddress|null
+    public function getAddress()
     {
         return $this->container['address'];
     }
@@ -433,8 +445,10 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets profile
+     *
+     * @return \Upsun\Model\OrganizationLinksProfile|null
      */
-    public function getProfile(): \Upsun\Model\OrganizationLinksProfile|null
+    public function getProfile()
     {
         return $this->container['profile'];
     }
@@ -454,8 +468,10 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets payment_source
+     *
+     * @return \Upsun\Model\OrganizationLinksPaymentSource|null
      */
-    public function getPaymentSource(): \Upsun\Model\OrganizationLinksPaymentSource|null
+    public function getPaymentSource()
     {
         return $this->container['payment_source'];
     }
@@ -475,8 +491,10 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets orders
+     *
+     * @return \Upsun\Model\OrganizationLinksOrders|null
      */
-    public function getOrders(): \Upsun\Model\OrganizationLinksOrders|null
+    public function getOrders()
     {
         return $this->container['orders'];
     }
@@ -496,8 +514,10 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets vouchers
+     *
+     * @return \Upsun\Model\OrganizationLinksVouchers|null
      */
-    public function getVouchers(): \Upsun\Model\OrganizationLinksVouchers|null
+    public function getVouchers()
     {
         return $this->container['vouchers'];
     }
@@ -517,8 +537,10 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets apply_voucher
+     *
+     * @return \Upsun\Model\OrganizationLinksApplyVoucher|null
      */
-    public function getApplyVoucher(): \Upsun\Model\OrganizationLinksApplyVoucher|null
+    public function getApplyVoucher()
     {
         return $this->container['apply_voucher'];
     }
@@ -538,8 +560,10 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets subscriptions
+     *
+     * @return \Upsun\Model\OrganizationLinksSubscriptions|null
      */
-    public function getSubscriptions(): \Upsun\Model\OrganizationLinksSubscriptions|null
+    public function getSubscriptions()
     {
         return $this->container['subscriptions'];
     }
@@ -559,8 +583,10 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets create_subscription
+     *
+     * @return \Upsun\Model\OrganizationLinksCreateSubscription|null
      */
-    public function getCreateSubscription(): \Upsun\Model\OrganizationLinksCreateSubscription|null
+    public function getCreateSubscription()
     {
         return $this->container['create_subscription'];
     }
@@ -580,8 +606,10 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets estimate_subscription
+     *
+     * @return \Upsun\Model\OrganizationLinksEstimateSubscription|null
      */
-    public function getEstimateSubscription(): \Upsun\Model\OrganizationLinksEstimateSubscription|null
+    public function getEstimateSubscription()
     {
         return $this->container['estimate_subscription'];
     }
@@ -601,8 +629,10 @@ final class OrganizationLinks implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets mfa_enforcement
+     *
+     * @return \Upsun\Model\OrganizationLinksMfaEnforcement|null
      */
-    public function getMfaEnforcement(): \Upsun\Model\OrganizationLinksMfaEnforcement|null
+    public function getMfaEnforcement()
     {
         return $this->container['mfa_enforcement'];
     }

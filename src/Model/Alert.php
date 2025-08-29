@@ -244,8 +244,10 @@ final class Alert implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -265,8 +267,10 @@ final class Alert implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets active
+     *
+     * @return bool|null
      */
-    public function getActive(): bool|null
+    public function getActive()
     {
         return $this->container['active'];
     }
@@ -286,8 +290,10 @@ final class Alert implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets alerts_sent
+     *
+     * @return int|null
      */
-    public function getAlertsSent(): int|null
+    public function getAlertsSent()
     {
         return $this->container['alerts_sent'];
     }
@@ -307,8 +313,10 @@ final class Alert implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets last_alert_at
+     *
+     * @return \DateTime|null
      */
-    public function getLastAlertAt(): \DateTime|null
+    public function getLastAlertAt()
     {
         return $this->container['last_alert_at'];
     }
@@ -328,8 +336,10 @@ final class Alert implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime|null
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -349,8 +359,10 @@ final class Alert implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets config
+     *
+     * @return object|null
      */
-    public function getConfig(): object|null
+    public function getConfig()
     {
         return $this->container['config'];
     }

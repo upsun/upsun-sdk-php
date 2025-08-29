@@ -223,8 +223,10 @@ final class ListOrgMembers200Response implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets count
+     *
+     * @return int|null
      */
-    public function getCount(): int|null
+    public function getCount()
     {
         return $this->container['count'];
     }
@@ -244,8 +246,10 @@ final class ListOrgMembers200Response implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets items
+     *
+     * @return \Upsun\Model\OrganizationMember[]|null
      */
-    public function getItems(): array|null
+    public function getItems()
     {
         return $this->container['items'];
     }
@@ -265,8 +269,10 @@ final class ListOrgMembers200Response implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets _links
+     *
+     * @return \Upsun\Model\ListLinks|null
      */
-    public function getLinks(): \Upsun\Model\ListLinks|null
+    public function getLinks()
     {
         return $this->container['_links'];
     }

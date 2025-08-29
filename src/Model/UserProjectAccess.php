@@ -289,8 +289,10 @@ final class UserProjectAccess implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets user_id
+     *
+     * @return string|null
      */
-    public function getUserId(): string|null
+    public function getUserId()
     {
         return $this->container['user_id'];
     }
@@ -310,8 +312,10 @@ final class UserProjectAccess implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets organization_id
+     *
+     * @return string|null
      */
-    public function getOrganizationId(): string|null
+    public function getOrganizationId()
     {
         return $this->container['organization_id'];
     }
@@ -331,8 +335,10 @@ final class UserProjectAccess implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets project_id
+     *
+     * @return string|null
      */
-    public function getProjectId(): string|null
+    public function getProjectId()
     {
         return $this->container['project_id'];
     }
@@ -352,8 +358,10 @@ final class UserProjectAccess implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets project_title
+     *
+     * @return string|null
      */
-    public function getProjectTitle(): string|null
+    public function getProjectTitle()
     {
         return $this->container['project_title'];
     }
@@ -373,8 +381,10 @@ final class UserProjectAccess implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets permissions
+     *
+     * @return string[]|null
      */
-    public function getPermissions(): array|null
+    public function getPermissions()
     {
         return $this->container['permissions'];
     }
@@ -403,8 +413,10 @@ final class UserProjectAccess implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets granted_at
+     *
+     * @return \DateTime|null
      */
-    public function getGrantedAt(): \DateTime|null
+    public function getGrantedAt()
     {
         return $this->container['granted_at'];
     }
@@ -424,8 +436,10 @@ final class UserProjectAccess implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime|null
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -445,8 +459,10 @@ final class UserProjectAccess implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets _links
+     *
+     * @return \Upsun\Model\TeamProjectAccessLinks|null
      */
-    public function getLinks(): \Upsun\Model\TeamProjectAccessLinks|null
+    public function getLinks()
     {
         return $this->container['_links'];
     }

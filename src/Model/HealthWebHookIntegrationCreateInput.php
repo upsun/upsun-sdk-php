@@ -229,8 +229,10 @@ final class HealthWebHookIntegrationCreateInput implements ModelInterface, Array
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -250,8 +252,10 @@ final class HealthWebHookIntegrationCreateInput implements ModelInterface, Array
 
     /**
      * Gets shared_key
+     *
+     * @return string|null
      */
-    public function getSharedKey(): string|null
+    public function getSharedKey()
     {
         return $this->container['shared_key'];
     }
@@ -278,8 +282,10 @@ final class HealthWebHookIntegrationCreateInput implements ModelInterface, Array
 
     /**
      * Gets url
+     *
+     * @return string
      */
-    public function getUrl(): string
+    public function getUrl()
     {
         return $this->container['url'];
     }

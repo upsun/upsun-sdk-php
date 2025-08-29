@@ -408,8 +408,10 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets version
+     *
+     * @return int
      */
-    public function getVersion(): int
+    public function getVersion()
     {
         return $this->container['version'];
     }
@@ -439,8 +441,10 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets aggressive
+     *
+     * @return string
      */
-    public function getAggressive(): string
+    public function getAggressive()
     {
         return $this->container['aggressive'];
     }
@@ -470,8 +474,10 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets modeconfig
+     *
+     * @return string
      */
-    public function getModeconfig(): string
+    public function getModeconfig()
     {
         return $this->container['modeconfig'];
     }
@@ -501,8 +507,10 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets authentication
+     *
+     * @return string
      */
-    public function getAuthentication(): string
+    public function getAuthentication()
     {
         return $this->container['authentication'];
     }
@@ -522,8 +530,10 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets gateway_ip
+     *
+     * @return string
      */
-    public function getGatewayIp(): string
+    public function getGatewayIp()
     {
         return $this->container['gateway_ip'];
     }
@@ -543,8 +553,10 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets identity
+     *
+     * @return string
      */
-    public function getIdentity(): string
+    public function getIdentity()
     {
         return $this->container['identity'];
     }
@@ -571,8 +583,10 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets second_identity
+     *
+     * @return string
      */
-    public function getSecondIdentity(): string
+    public function getSecondIdentity()
     {
         return $this->container['second_identity'];
     }
@@ -599,8 +613,10 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets remote_identity
+     *
+     * @return string
      */
-    public function getRemoteIdentity(): string
+    public function getRemoteIdentity()
     {
         return $this->container['remote_identity'];
     }
@@ -627,8 +643,10 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets remote_subnets
+     *
+     * @return string[]
      */
-    public function getRemoteSubnets(): array
+    public function getRemoteSubnets()
     {
         return $this->container['remote_subnets'];
     }
@@ -648,8 +666,10 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets ike
+     *
+     * @return string
      */
-    public function getIke(): string
+    public function getIke()
     {
         return $this->container['ike'];
     }
@@ -669,8 +689,10 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets esp
+     *
+     * @return string
      */
-    public function getEsp(): string
+    public function getEsp()
     {
         return $this->container['esp'];
     }
@@ -690,8 +712,10 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets ikelifetime
+     *
+     * @return string
      */
-    public function getIkelifetime(): string
+    public function getIkelifetime()
     {
         return $this->container['ikelifetime'];
     }
@@ -711,8 +735,10 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets lifetime
+     *
+     * @return string
      */
-    public function getLifetime(): string
+    public function getLifetime()
     {
         return $this->container['lifetime'];
     }
@@ -732,8 +758,10 @@ final class VPNConfiguration implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets margintime
+     *
+     * @return string
      */
-    public function getMargintime(): string
+    public function getMargintime()
     {
         return $this->container['margintime'];
     }

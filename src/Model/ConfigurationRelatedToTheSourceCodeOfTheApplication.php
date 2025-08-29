@@ -222,8 +222,10 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements Model
 
     /**
      * Gets root
+     *
+     * @return string
      */
-    public function getRoot(): string
+    public function getRoot()
     {
         return $this->container['root'];
     }
@@ -250,8 +252,10 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements Model
 
     /**
      * Gets operations
+     *
+     * @return array<string,\Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue>
      */
-    public function getOperations(): array
+    public function getOperations()
     {
         return $this->container['operations'];
     }

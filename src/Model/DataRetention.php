@@ -212,8 +212,10 @@ final class DataRetention implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets enabled
+     *
+     * @return bool
      */
-    public function getEnabled(): bool
+    public function getEnabled()
     {
         return $this->container['enabled'];
     }

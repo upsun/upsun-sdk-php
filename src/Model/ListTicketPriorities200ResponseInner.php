@@ -230,8 +230,10 @@ final class ListTicketPriorities200ResponseInner implements ModelInterface, Arra
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -251,8 +253,10 @@ final class ListTicketPriorities200ResponseInner implements ModelInterface, Arra
 
     /**
      * Gets label
+     *
+     * @return string|null
      */
-    public function getLabel(): string|null
+    public function getLabel()
     {
         return $this->container['label'];
     }
@@ -272,8 +276,10 @@ final class ListTicketPriorities200ResponseInner implements ModelInterface, Arra
 
     /**
      * Gets short_description
+     *
+     * @return string|null
      */
-    public function getShortDescription(): string|null
+    public function getShortDescription()
     {
         return $this->container['short_description'];
     }
@@ -293,8 +299,10 @@ final class ListTicketPriorities200ResponseInner implements ModelInterface, Arra
 
     /**
      * Gets description
+     *
+     * @return string|null
      */
-    public function getDescription(): string|null
+    public function getDescription()
     {
         return $this->container['description'];
     }

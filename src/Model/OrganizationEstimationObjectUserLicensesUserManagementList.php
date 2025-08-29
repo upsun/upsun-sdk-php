@@ -216,8 +216,10 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
 
     /**
      * Gets standard_management_user
+     *
+     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser|null
      */
-    public function getStandardManagementUser(): \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser|null
+    public function getStandardManagementUser()
     {
         return $this->container['standard_management_user'];
     }
@@ -237,8 +239,10 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
 
     /**
      * Gets advanced_management_user
+     *
+     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser|null
      */
-    public function getAdvancedManagementUser(): \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser|null
+    public function getAdvancedManagementUser()
     {
         return $this->container['advanced_management_user'];
     }

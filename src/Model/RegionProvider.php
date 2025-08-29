@@ -216,8 +216,10 @@ final class RegionProvider implements ModelInterface, ArrayAccess, JsonSerializa
 
     /**
      * Gets name
+     *
+     * @return string|null
      */
-    public function getName(): string|null
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -237,8 +239,10 @@ final class RegionProvider implements ModelInterface, ArrayAccess, JsonSerializa
 
     /**
      * Gets logo
+     *
+     * @return string|null
      */
-    public function getLogo(): string|null
+    public function getLogo()
     {
         return $this->container['logo'];
     }

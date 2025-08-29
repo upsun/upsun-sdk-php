@@ -222,8 +222,10 @@ final class TheBuildConfigurationOfTheApplication implements ModelInterface, Arr
 
     /**
      * Gets flavor
+     *
+     * @return string
      */
-    public function getFlavor(): string
+    public function getFlavor()
     {
         return $this->container['flavor'];
     }
@@ -250,8 +252,10 @@ final class TheBuildConfigurationOfTheApplication implements ModelInterface, Arr
 
     /**
      * Gets caches
+     *
+     * @return array<string,\Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue>
      */
-    public function getCaches(): array
+    public function getCaches()
     {
         return $this->container['caches'];
     }

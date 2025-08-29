@@ -237,8 +237,10 @@ final class ProfileCurrentTrialSpendRemaining implements ModelInterface, ArrayAc
 
     /**
      * Gets formatted
+     *
+     * @return string|null
      */
-    public function getFormatted(): string|null
+    public function getFormatted()
     {
         return $this->container['formatted'];
     }
@@ -258,8 +260,10 @@ final class ProfileCurrentTrialSpendRemaining implements ModelInterface, ArrayAc
 
     /**
      * Gets amount
+     *
+     * @return string|null
      */
-    public function getAmount(): string|null
+    public function getAmount()
     {
         return $this->container['amount'];
     }
@@ -279,8 +283,10 @@ final class ProfileCurrentTrialSpendRemaining implements ModelInterface, ArrayAc
 
     /**
      * Gets currency
+     *
+     * @return string|null
      */
-    public function getCurrency(): string|null
+    public function getCurrency()
     {
         return $this->container['currency'];
     }
@@ -300,8 +306,10 @@ final class ProfileCurrentTrialSpendRemaining implements ModelInterface, ArrayAc
 
     /**
      * Gets currency_symbol
+     *
+     * @return string|null
      */
-    public function getCurrencySymbol(): string|null
+    public function getCurrencySymbol()
     {
         return $this->container['currency_symbol'];
     }
@@ -321,8 +329,10 @@ final class ProfileCurrentTrialSpendRemaining implements ModelInterface, ArrayAc
 
     /**
      * Gets unlimited
+     *
+     * @return bool|null
      */
-    public function getUnlimited(): bool|null
+    public function getUnlimited()
     {
         return $this->container['unlimited'];
     }

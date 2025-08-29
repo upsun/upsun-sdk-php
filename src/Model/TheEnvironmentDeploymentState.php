@@ -232,8 +232,10 @@ final class TheEnvironmentDeploymentState implements ModelInterface, ArrayAccess
 
     /**
      * Gets last_deployment_successful
+     *
+     * @return bool
      */
-    public function getLastDeploymentSuccessful(): bool
+    public function getLastDeploymentSuccessful()
     {
         return $this->container['last_deployment_successful'];
     }
@@ -253,8 +255,10 @@ final class TheEnvironmentDeploymentState implements ModelInterface, ArrayAccess
 
     /**
      * Gets last_deployment_at
+     *
+     * @return \DateTime
      */
-    public function getLastDeploymentAt(): \DateTime
+    public function getLastDeploymentAt()
     {
         return $this->container['last_deployment_at'];
     }
@@ -281,8 +285,10 @@ final class TheEnvironmentDeploymentState implements ModelInterface, ArrayAccess
 
     /**
      * Gets crons
+     *
+     * @return \Upsun\Model\TheCronsDeploymentState
      */
-    public function getCrons(): \Upsun\Model\TheCronsDeploymentState
+    public function getCrons()
     {
         return $this->container['crons'];
     }

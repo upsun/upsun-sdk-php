@@ -232,8 +232,10 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
 
     /**
      * Gets path
+     *
+     * @return string
      */
-    public function getPath(): string
+    public function getPath()
     {
         return $this->container['path'];
     }
@@ -253,8 +255,10 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
 
     /**
      * Gets mode
+     *
+     * @return int
      */
-    public function getMode(): int
+    public function getMode()
     {
         return $this->container['mode'];
     }
@@ -274,8 +278,10 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
 
     /**
      * Gets contents
+     *
+     * @return string
      */
-    public function getContents(): string
+    public function getContents()
     {
         return $this->container['contents'];
     }

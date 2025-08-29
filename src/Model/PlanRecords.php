@@ -265,8 +265,10 @@ final class PlanRecords implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -286,8 +288,10 @@ final class PlanRecords implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets owner
+     *
+     * @return string|null
      */
-    public function getOwner(): string|null
+    public function getOwner()
     {
         return $this->container['owner'];
     }
@@ -307,8 +311,10 @@ final class PlanRecords implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets subscription_id
+     *
+     * @return string|null
      */
-    public function getSubscriptionId(): string|null
+    public function getSubscriptionId()
     {
         return $this->container['subscription_id'];
     }
@@ -328,8 +334,10 @@ final class PlanRecords implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets sku
+     *
+     * @return string|null
      */
-    public function getSku(): string|null
+    public function getSku()
     {
         return $this->container['sku'];
     }
@@ -349,8 +357,10 @@ final class PlanRecords implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets plan
+     *
+     * @return string|null
      */
-    public function getPlan(): string|null
+    public function getPlan()
     {
         return $this->container['plan'];
     }
@@ -370,8 +380,10 @@ final class PlanRecords implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets options
+     *
+     * @return string[]|null
      */
-    public function getOptions(): array|null
+    public function getOptions()
     {
         return $this->container['options'];
     }
@@ -391,8 +403,10 @@ final class PlanRecords implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets start
+     *
+     * @return \DateTime|null
      */
-    public function getStart(): \DateTime|null
+    public function getStart()
     {
         return $this->container['start'];
     }
@@ -412,8 +426,10 @@ final class PlanRecords implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets end
+     *
+     * @return \DateTime|null
      */
-    public function getEnd(): \DateTime|null
+    public function getEnd()
     {
         return $this->container['end'];
     }
@@ -440,8 +456,10 @@ final class PlanRecords implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets status
+     *
+     * @return string|null
      */
-    public function getStatus(): string|null
+    public function getStatus()
     {
         return $this->container['status'];
     }

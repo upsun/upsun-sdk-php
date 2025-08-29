@@ -212,8 +212,10 @@ final class EnvironmentType implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets attributes
+     *
+     * @return array<string,string>
      */
-    public function getAttributes(): array
+    public function getAttributes()
     {
         return $this->container['attributes'];
     }

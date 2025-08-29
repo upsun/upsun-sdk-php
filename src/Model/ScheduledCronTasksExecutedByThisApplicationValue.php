@@ -246,8 +246,10 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements ModelInt
 
     /**
      * Gets spec
+     *
+     * @return string
      */
-    public function getSpec(): string
+    public function getSpec()
     {
         return $this->container['spec'];
     }
@@ -267,8 +269,10 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements ModelInt
 
     /**
      * Gets commands
+     *
+     * @return \Upsun\Model\TheCommandsDefinition
      */
-    public function getCommands(): \Upsun\Model\TheCommandsDefinition
+    public function getCommands()
     {
         return $this->container['commands'];
     }
@@ -288,8 +292,10 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements ModelInt
 
     /**
      * Gets shutdown_timeout
+     *
+     * @return int|null
      */
-    public function getShutdownTimeout(): int|null
+    public function getShutdownTimeout()
     {
         return $this->container['shutdown_timeout'];
     }
@@ -316,8 +322,10 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements ModelInt
 
     /**
      * Gets timeout
+     *
+     * @return int
      */
-    public function getTimeout(): int
+    public function getTimeout()
     {
         return $this->container['timeout'];
     }
@@ -337,8 +345,10 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements ModelInt
 
     /**
      * Gets cmd
+     *
+     * @return string|null
      */
-    public function getCmd(): string|null
+    public function getCmd()
     {
         return $this->container['cmd'];
     }

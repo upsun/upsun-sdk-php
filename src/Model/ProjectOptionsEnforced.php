@@ -216,8 +216,10 @@ final class ProjectOptionsEnforced implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets settings
+     *
+     * @return object|null
      */
-    public function getSettings(): object|null
+    public function getSettings()
     {
         return $this->container['settings'];
     }
@@ -237,8 +239,10 @@ final class ProjectOptionsEnforced implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets capabilities
+     *
+     * @return object|null
      */
-    public function getCapabilities(): object|null
+    public function getCapabilities()
     {
         return $this->container['capabilities'];
     }

@@ -230,8 +230,10 @@ final class GetTotpEnrollment200Response implements ModelInterface, ArrayAccess,
 
     /**
      * Gets issuer
+     *
+     * @return string|null
      */
-    public function getIssuer(): string|null
+    public function getIssuer()
     {
         return $this->container['issuer'];
     }
@@ -251,8 +253,10 @@ final class GetTotpEnrollment200Response implements ModelInterface, ArrayAccess,
 
     /**
      * Gets account_name
+     *
+     * @return string|null
      */
-    public function getAccountName(): string|null
+    public function getAccountName()
     {
         return $this->container['account_name'];
     }
@@ -272,8 +276,10 @@ final class GetTotpEnrollment200Response implements ModelInterface, ArrayAccess,
 
     /**
      * Gets secret
+     *
+     * @return string|null
      */
-    public function getSecret(): string|null
+    public function getSecret()
     {
         return $this->container['secret'];
     }
@@ -293,8 +299,10 @@ final class GetTotpEnrollment200Response implements ModelInterface, ArrayAccess,
 
     /**
      * Gets qr_code
+     *
+     * @return string|null
      */
-    public function getQrCode(): string|null
+    public function getQrCode()
     {
         return $this->container['qr_code'];
     }

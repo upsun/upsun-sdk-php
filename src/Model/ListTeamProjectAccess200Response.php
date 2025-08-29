@@ -216,8 +216,10 @@ final class ListTeamProjectAccess200Response implements ModelInterface, ArrayAcc
 
     /**
      * Gets items
+     *
+     * @return \Upsun\Model\TeamProjectAccess[]|null
      */
-    public function getItems(): array|null
+    public function getItems()
     {
         return $this->container['items'];
     }
@@ -237,8 +239,10 @@ final class ListTeamProjectAccess200Response implements ModelInterface, ArrayAcc
 
     /**
      * Gets _links
+     *
+     * @return \Upsun\Model\ListLinks|null
      */
-    public function getLinks(): \Upsun\Model\ListLinks|null
+    public function getLinks()
     {
         return $this->container['_links'];
     }

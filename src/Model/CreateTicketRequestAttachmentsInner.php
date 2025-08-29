@@ -216,8 +216,10 @@ final class CreateTicketRequestAttachmentsInner implements ModelInterface, Array
 
     /**
      * Gets filename
+     *
+     * @return string|null
      */
-    public function getFilename(): string|null
+    public function getFilename()
     {
         return $this->container['filename'];
     }
@@ -237,8 +239,10 @@ final class CreateTicketRequestAttachmentsInner implements ModelInterface, Array
 
     /**
      * Gets data
+     *
+     * @return string|null
      */
-    public function getData(): string|null
+    public function getData()
     {
         return $this->container['data'];
     }

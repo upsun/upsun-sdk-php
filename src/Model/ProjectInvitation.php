@@ -322,8 +322,10 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -343,8 +345,10 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets state
+     *
+     * @return string|null
      */
-    public function getState(): string|null
+    public function getState()
     {
         return $this->container['state'];
     }
@@ -374,8 +378,10 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets project_id
+     *
+     * @return string|null
      */
-    public function getProjectId(): string|null
+    public function getProjectId()
     {
         return $this->container['project_id'];
     }
@@ -395,8 +401,10 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets role
+     *
+     * @return string|null
      */
-    public function getRole(): string|null
+    public function getRole()
     {
         return $this->container['role'];
     }
@@ -426,8 +434,10 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets email
+     *
+     * @return string|null
      */
-    public function getEmail(): string|null
+    public function getEmail()
     {
         return $this->container['email'];
     }
@@ -447,8 +457,10 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets owner
+     *
+     * @return \Upsun\Model\OrganizationInvitationOwner|null
      */
-    public function getOwner(): \Upsun\Model\OrganizationInvitationOwner|null
+    public function getOwner()
     {
         return $this->container['owner'];
     }
@@ -468,8 +480,10 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime|null
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -489,8 +503,10 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime|null
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -510,8 +526,10 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets finished_at
+     *
+     * @return \DateTime|null
      */
-    public function getFinishedAt(): \DateTime|null
+    public function getFinishedAt()
     {
         return $this->container['finished_at'];
     }
@@ -538,8 +556,10 @@ final class ProjectInvitation implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets environments
+     *
+     * @return \Upsun\Model\ProjectInvitationEnvironmentsInner[]|null
      */
-    public function getEnvironments(): array|null
+    public function getEnvironments()
     {
         return $this->container['environments'];
     }

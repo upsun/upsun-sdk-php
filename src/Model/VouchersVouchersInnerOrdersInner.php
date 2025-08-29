@@ -251,8 +251,10 @@ final class VouchersVouchersInnerOrdersInner implements ModelInterface, ArrayAcc
 
     /**
      * Gets order_id
+     *
+     * @return string|null
      */
-    public function getOrderId(): string|null
+    public function getOrderId()
     {
         return $this->container['order_id'];
     }
@@ -272,8 +274,10 @@ final class VouchersVouchersInnerOrdersInner implements ModelInterface, ArrayAcc
 
     /**
      * Gets status
+     *
+     * @return string|null
      */
-    public function getStatus(): string|null
+    public function getStatus()
     {
         return $this->container['status'];
     }
@@ -293,8 +297,10 @@ final class VouchersVouchersInnerOrdersInner implements ModelInterface, ArrayAcc
 
     /**
      * Gets billing_period_start
+     *
+     * @return string|null
      */
-    public function getBillingPeriodStart(): string|null
+    public function getBillingPeriodStart()
     {
         return $this->container['billing_period_start'];
     }
@@ -314,8 +320,10 @@ final class VouchersVouchersInnerOrdersInner implements ModelInterface, ArrayAcc
 
     /**
      * Gets billing_period_end
+     *
+     * @return string|null
      */
-    public function getBillingPeriodEnd(): string|null
+    public function getBillingPeriodEnd()
     {
         return $this->container['billing_period_end'];
     }
@@ -335,8 +343,10 @@ final class VouchersVouchersInnerOrdersInner implements ModelInterface, ArrayAcc
 
     /**
      * Gets order_total
+     *
+     * @return string|null
      */
-    public function getOrderTotal(): string|null
+    public function getOrderTotal()
     {
         return $this->container['order_total'];
     }
@@ -356,8 +366,10 @@ final class VouchersVouchersInnerOrdersInner implements ModelInterface, ArrayAcc
 
     /**
      * Gets order_discount
+     *
+     * @return string|null
      */
-    public function getOrderDiscount(): string|null
+    public function getOrderDiscount()
     {
         return $this->container['order_discount'];
     }
@@ -377,8 +389,10 @@ final class VouchersVouchersInnerOrdersInner implements ModelInterface, ArrayAcc
 
     /**
      * Gets currency
+     *
+     * @return string|null
      */
-    public function getCurrency(): string|null
+    public function getCurrency()
     {
         return $this->container['currency'];
     }

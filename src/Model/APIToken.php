@@ -251,8 +251,10 @@ final class APIToken implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -272,8 +274,10 @@ final class APIToken implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets name
+     *
+     * @return string|null
      */
-    public function getName(): string|null
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -293,8 +297,10 @@ final class APIToken implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets mfa_on_creation
+     *
+     * @return bool|null
      */
-    public function getMfaOnCreation(): bool|null
+    public function getMfaOnCreation()
     {
         return $this->container['mfa_on_creation'];
     }
@@ -314,8 +320,10 @@ final class APIToken implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets token
+     *
+     * @return string|null
      */
-    public function getToken(): string|null
+    public function getToken()
     {
         return $this->container['token'];
     }
@@ -335,8 +343,10 @@ final class APIToken implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime|null
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -356,8 +366,10 @@ final class APIToken implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime|null
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -377,8 +389,10 @@ final class APIToken implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets last_used_at
+     *
+     * @return \DateTime|null
      */
-    public function getLastUsedAt(): \DateTime|null
+    public function getLastUsedAt()
     {
         return $this->container['last_used_at'];
     }

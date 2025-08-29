@@ -304,8 +304,10 @@ final class BitbucketIntegrationCreateInput implements ModelInterface, ArrayAcce
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -325,8 +327,10 @@ final class BitbucketIntegrationCreateInput implements ModelInterface, ArrayAcce
 
     /**
      * Gets fetch_branches
+     *
+     * @return bool|null
      */
-    public function getFetchBranches(): bool|null
+    public function getFetchBranches()
     {
         return $this->container['fetch_branches'];
     }
@@ -346,8 +350,10 @@ final class BitbucketIntegrationCreateInput implements ModelInterface, ArrayAcce
 
     /**
      * Gets prune_branches
+     *
+     * @return bool|null
      */
-    public function getPruneBranches(): bool|null
+    public function getPruneBranches()
     {
         return $this->container['prune_branches'];
     }
@@ -367,8 +373,10 @@ final class BitbucketIntegrationCreateInput implements ModelInterface, ArrayAcce
 
     /**
      * Gets environment_init_resources
+     *
+     * @return string|null
      */
-    public function getEnvironmentInitResources(): string|null
+    public function getEnvironmentInitResources()
     {
         return $this->container['environment_init_resources'];
     }
@@ -398,8 +406,10 @@ final class BitbucketIntegrationCreateInput implements ModelInterface, ArrayAcce
 
     /**
      * Gets app_credentials
+     *
+     * @return \Upsun\Model\TheOAuth2ConsumerInformationOptional1|null
      */
-    public function getAppCredentials(): \Upsun\Model\TheOAuth2ConsumerInformationOptional1|null
+    public function getAppCredentials()
     {
         return $this->container['app_credentials'];
     }
@@ -426,8 +436,10 @@ final class BitbucketIntegrationCreateInput implements ModelInterface, ArrayAcce
 
     /**
      * Gets addon_credentials
+     *
+     * @return \Upsun\Model\TheAddonCredentialInformationOptional1|null
      */
-    public function getAddonCredentials(): \Upsun\Model\TheAddonCredentialInformationOptional1|null
+    public function getAddonCredentials()
     {
         return $this->container['addon_credentials'];
     }
@@ -454,8 +466,10 @@ final class BitbucketIntegrationCreateInput implements ModelInterface, ArrayAcce
 
     /**
      * Gets repository
+     *
+     * @return string
      */
-    public function getRepository(): string
+    public function getRepository()
     {
         return $this->container['repository'];
     }
@@ -475,8 +489,10 @@ final class BitbucketIntegrationCreateInput implements ModelInterface, ArrayAcce
 
     /**
      * Gets build_pull_requests
+     *
+     * @return bool|null
      */
-    public function getBuildPullRequests(): bool|null
+    public function getBuildPullRequests()
     {
         return $this->container['build_pull_requests'];
     }
@@ -496,8 +512,10 @@ final class BitbucketIntegrationCreateInput implements ModelInterface, ArrayAcce
 
     /**
      * Gets pull_requests_clone_parent_data
+     *
+     * @return bool|null
      */
-    public function getPullRequestsCloneParentData(): bool|null
+    public function getPullRequestsCloneParentData()
     {
         return $this->container['pull_requests_clone_parent_data'];
     }
@@ -517,8 +535,10 @@ final class BitbucketIntegrationCreateInput implements ModelInterface, ArrayAcce
 
     /**
      * Gets resync_pull_requests
+     *
+     * @return bool|null
      */
-    public function getResyncPullRequests(): bool|null
+    public function getResyncPullRequests()
     {
         return $this->container['resync_pull_requests'];
     }

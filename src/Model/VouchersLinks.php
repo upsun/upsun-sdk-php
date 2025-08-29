@@ -209,8 +209,10 @@ final class VouchersLinks implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets self
+     *
+     * @return \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf|null
      */
-    public function getSelf(): \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf|null
+    public function getSelf()
     {
         return $this->container['self'];
     }

@@ -253,8 +253,10 @@ final class DedicatedDeploymentTargetPatch implements ModelInterface, ArrayAcces
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -284,8 +286,10 @@ final class DedicatedDeploymentTargetPatch implements ModelInterface, ArrayAcces
 
     /**
      * Gets name
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -305,8 +309,10 @@ final class DedicatedDeploymentTargetPatch implements ModelInterface, ArrayAcces
 
     /**
      * Gets enforced_mounts
+     *
+     * @return object|null
      */
-    public function getEnforcedMounts(): object|null
+    public function getEnforcedMounts()
     {
         return $this->container['enforced_mounts'];
     }

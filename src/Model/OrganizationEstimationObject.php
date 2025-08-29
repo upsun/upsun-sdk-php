@@ -251,8 +251,10 @@ final class OrganizationEstimationObject implements ModelInterface, ArrayAccess,
 
     /**
      * Gets total
+     *
+     * @return string|null
      */
-    public function getTotal(): string|null
+    public function getTotal()
     {
         return $this->container['total'];
     }
@@ -272,8 +274,10 @@ final class OrganizationEstimationObject implements ModelInterface, ArrayAccess,
 
     /**
      * Gets sub_total
+     *
+     * @return string|null
      */
-    public function getSubTotal(): string|null
+    public function getSubTotal()
     {
         return $this->container['sub_total'];
     }
@@ -293,8 +297,10 @@ final class OrganizationEstimationObject implements ModelInterface, ArrayAccess,
 
     /**
      * Gets vouchers
+     *
+     * @return string|null
      */
-    public function getVouchers(): string|null
+    public function getVouchers()
     {
         return $this->container['vouchers'];
     }
@@ -314,8 +320,10 @@ final class OrganizationEstimationObject implements ModelInterface, ArrayAccess,
 
     /**
      * Gets user_licenses
+     *
+     * @return \Upsun\Model\OrganizationEstimationObjectUserLicenses|null
      */
-    public function getUserLicenses(): \Upsun\Model\OrganizationEstimationObjectUserLicenses|null
+    public function getUserLicenses()
     {
         return $this->container['user_licenses'];
     }
@@ -335,8 +343,10 @@ final class OrganizationEstimationObject implements ModelInterface, ArrayAccess,
 
     /**
      * Gets user_management
+     *
+     * @return string|null
      */
-    public function getUserManagement(): string|null
+    public function getUserManagement()
     {
         return $this->container['user_management'];
     }
@@ -356,8 +366,10 @@ final class OrganizationEstimationObject implements ModelInterface, ArrayAccess,
 
     /**
      * Gets support_level
+     *
+     * @return string|null
      */
-    public function getSupportLevel(): string|null
+    public function getSupportLevel()
     {
         return $this->container['support_level'];
     }
@@ -377,8 +389,10 @@ final class OrganizationEstimationObject implements ModelInterface, ArrayAccess,
 
     /**
      * Gets subscriptions
+     *
+     * @return \Upsun\Model\OrganizationEstimationObjectSubscriptions|null
      */
-    public function getSubscriptions(): \Upsun\Model\OrganizationEstimationObjectSubscriptions|null
+    public function getSubscriptions()
     {
         return $this->container['subscriptions'];
     }

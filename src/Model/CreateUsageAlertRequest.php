@@ -216,8 +216,10 @@ final class CreateUsageAlertRequest implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -237,8 +239,10 @@ final class CreateUsageAlertRequest implements ModelInterface, ArrayAccess, Json
 
     /**
      * Gets config
+     *
+     * @return \Upsun\Model\CreateUsageAlertRequestConfig|null
      */
-    public function getConfig(): \Upsun\Model\CreateUsageAlertRequestConfig|null
+    public function getConfig()
     {
         return $this->container['config'];
     }

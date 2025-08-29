@@ -216,8 +216,10 @@ final class UpdateOrgBillingAlertConfigRequestConfig implements ModelInterface, 
 
     /**
      * Gets threshold
+     *
+     * @return int|null
      */
-    public function getThreshold(): int|null
+    public function getThreshold()
     {
         return $this->container['threshold'];
     }
@@ -237,8 +239,10 @@ final class UpdateOrgBillingAlertConfigRequestConfig implements ModelInterface, 
 
     /**
      * Gets mode
+     *
+     * @return string|null
      */
-    public function getMode(): string|null
+    public function getMode()
     {
         return $this->container['mode'];
     }

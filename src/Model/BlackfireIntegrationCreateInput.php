@@ -212,8 +212,10 @@ final class BlackfireIntegrationCreateInput implements ModelInterface, ArrayAcce
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }

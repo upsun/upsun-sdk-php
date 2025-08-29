@@ -232,8 +232,10 @@ final class TheDisksResources implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets temporary
+     *
+     * @return int
      */
-    public function getTemporary(): int
+    public function getTemporary()
     {
         return $this->container['temporary'];
     }
@@ -260,8 +262,10 @@ final class TheDisksResources implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets instance
+     *
+     * @return int
      */
-    public function getInstance(): int
+    public function getInstance()
     {
         return $this->container['instance'];
     }
@@ -288,8 +292,10 @@ final class TheDisksResources implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets storage
+     *
+     * @return int
      */
-    public function getStorage(): int
+    public function getStorage()
     {
         return $this->container['storage'];
     }

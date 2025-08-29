@@ -343,8 +343,10 @@ final class SyslogIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -364,8 +366,10 @@ final class SyslogIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets extra
+     *
+     * @return array<string,string>|null
      */
-    public function getExtra(): array|null
+    public function getExtra()
     {
         return $this->container['extra'];
     }
@@ -385,8 +389,10 @@ final class SyslogIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets host
+     *
+     * @return string|null
      */
-    public function getHost(): string|null
+    public function getHost()
     {
         return $this->container['host'];
     }
@@ -406,8 +412,10 @@ final class SyslogIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets port
+     *
+     * @return int|null
      */
-    public function getPort(): int|null
+    public function getPort()
     {
         return $this->container['port'];
     }
@@ -427,8 +435,10 @@ final class SyslogIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets protocol
+     *
+     * @return string|null
      */
-    public function getProtocol(): string|null
+    public function getProtocol()
     {
         return $this->container['protocol'];
     }
@@ -458,8 +468,10 @@ final class SyslogIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets facility
+     *
+     * @return int|null
      */
-    public function getFacility(): int|null
+    public function getFacility()
     {
         return $this->container['facility'];
     }
@@ -479,8 +491,10 @@ final class SyslogIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets message_format
+     *
+     * @return string|null
      */
-    public function getMessageFormat(): string|null
+    public function getMessageFormat()
     {
         return $this->container['message_format'];
     }
@@ -510,8 +524,10 @@ final class SyslogIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets auth_token
+     *
+     * @return string|null
      */
-    public function getAuthToken(): string|null
+    public function getAuthToken()
     {
         return $this->container['auth_token'];
     }
@@ -531,8 +547,10 @@ final class SyslogIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets auth_mode
+     *
+     * @return string|null
      */
-    public function getAuthMode(): string|null
+    public function getAuthMode()
     {
         return $this->container['auth_mode'];
     }
@@ -562,8 +580,10 @@ final class SyslogIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets tls_verify
+     *
+     * @return bool|null
      */
-    public function getTlsVerify(): bool|null
+    public function getTlsVerify()
     {
         return $this->container['tls_verify'];
     }

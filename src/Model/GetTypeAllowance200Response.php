@@ -209,8 +209,10 @@ final class GetTypeAllowance200Response implements ModelInterface, ArrayAccess, 
 
     /**
      * Gets currencies
+     *
+     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrencies|null
      */
-    public function getCurrencies(): \Upsun\Model\GetTypeAllowance200ResponseCurrencies|null
+    public function getCurrencies()
     {
         return $this->container['currencies'];
     }

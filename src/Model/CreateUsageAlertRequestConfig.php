@@ -209,8 +209,10 @@ final class CreateUsageAlertRequestConfig implements ModelInterface, ArrayAccess
 
     /**
      * Gets threshold
+     *
+     * @return int|null
      */
-    public function getThreshold(): int|null
+    public function getThreshold()
     {
         return $this->container['threshold'];
     }

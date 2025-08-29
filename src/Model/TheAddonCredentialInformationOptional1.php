@@ -232,8 +232,10 @@ final class TheAddonCredentialInformationOptional1 implements ModelInterface, Ar
 
     /**
      * Gets addon_key
+     *
+     * @return string
      */
-    public function getAddonKey(): string
+    public function getAddonKey()
     {
         return $this->container['addon_key'];
     }
@@ -253,8 +255,10 @@ final class TheAddonCredentialInformationOptional1 implements ModelInterface, Ar
 
     /**
      * Gets client_key
+     *
+     * @return string
      */
-    public function getClientKey(): string
+    public function getClientKey()
     {
         return $this->container['client_key'];
     }
@@ -274,8 +278,10 @@ final class TheAddonCredentialInformationOptional1 implements ModelInterface, Ar
 
     /**
      * Gets shared_secret
+     *
+     * @return string
      */
-    public function getSharedSecret(): string
+    public function getSharedSecret()
     {
         return $this->container['shared_secret'];
     }

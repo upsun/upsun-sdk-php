@@ -928,8 +928,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets initialize
+     *
+     * @return object
      */
-    public function getInitialize(): object
+    public function getInitialize()
     {
         return $this->container['initialize'];
     }
@@ -949,8 +951,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets product_name
+     *
+     * @return string
      */
-    public function getProductName(): string
+    public function getProductName()
     {
         return $this->container['product_name'];
     }
@@ -970,8 +974,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets product_code
+     *
+     * @return string
      */
-    public function getProductCode(): string
+    public function getProductCode()
     {
         return $this->container['product_code'];
     }
@@ -991,8 +997,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets ui_uri_template
+     *
+     * @return string
      */
-    public function getUiUriTemplate(): string
+    public function getUiUriTemplate()
     {
         return $this->container['ui_uri_template'];
     }
@@ -1012,8 +1020,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets variables_prefix
+     *
+     * @return string
      */
-    public function getVariablesPrefix(): string
+    public function getVariablesPrefix()
     {
         return $this->container['variables_prefix'];
     }
@@ -1033,8 +1043,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets bot_email
+     *
+     * @return string
      */
-    public function getBotEmail(): string
+    public function getBotEmail()
     {
         return $this->container['bot_email'];
     }
@@ -1054,8 +1066,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets application_config_file
+     *
+     * @return string
      */
-    public function getApplicationConfigFile(): string
+    public function getApplicationConfigFile()
     {
         return $this->container['application_config_file'];
     }
@@ -1075,8 +1089,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets project_config_dir
+     *
+     * @return string
      */
-    public function getProjectConfigDir(): string
+    public function getProjectConfigDir()
     {
         return $this->container['project_config_dir'];
     }
@@ -1096,8 +1112,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets use_drupal_defaults
+     *
+     * @return bool
      */
-    public function getUseDrupalDefaults(): bool
+    public function getUseDrupalDefaults()
     {
         return $this->container['use_drupal_defaults'];
     }
@@ -1117,8 +1135,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets use_legacy_subdomains
+     *
+     * @return bool
      */
-    public function getUseLegacySubdomains(): bool
+    public function getUseLegacySubdomains()
     {
         return $this->container['use_legacy_subdomains'];
     }
@@ -1138,8 +1158,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets development_service_size
+     *
+     * @return string
      */
-    public function getDevelopmentServiceSize(): string
+    public function getDevelopmentServiceSize()
     {
         return $this->container['development_service_size'];
     }
@@ -1169,8 +1191,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets development_application_size
+     *
+     * @return string
      */
-    public function getDevelopmentApplicationSize(): string
+    public function getDevelopmentApplicationSize()
     {
         return $this->container['development_application_size'];
     }
@@ -1200,8 +1224,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets enable_certificate_provisioning
+     *
+     * @return bool
      */
-    public function getEnableCertificateProvisioning(): bool
+    public function getEnableCertificateProvisioning()
     {
         return $this->container['enable_certificate_provisioning'];
     }
@@ -1221,8 +1247,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets certificate_style
+     *
+     * @return string
      */
-    public function getCertificateStyle(): string
+    public function getCertificateStyle()
     {
         return $this->container['certificate_style'];
     }
@@ -1252,8 +1280,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets certificate_renewal_activity
+     *
+     * @return bool
      */
-    public function getCertificateRenewalActivity(): bool
+    public function getCertificateRenewalActivity()
     {
         return $this->container['certificate_renewal_activity'];
     }
@@ -1273,8 +1303,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets development_domain_template
+     *
+     * @return string
      */
-    public function getDevelopmentDomainTemplate(): string
+    public function getDevelopmentDomainTemplate()
     {
         return $this->container['development_domain_template'];
     }
@@ -1301,8 +1333,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets enable_state_api_deployments
+     *
+     * @return bool
      */
-    public function getEnableStateApiDeployments(): bool
+    public function getEnableStateApiDeployments()
     {
         return $this->container['enable_state_api_deployments'];
     }
@@ -1322,8 +1356,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets temporary_disk_size
+     *
+     * @return int
      */
-    public function getTemporaryDiskSize(): int
+    public function getTemporaryDiskSize()
     {
         return $this->container['temporary_disk_size'];
     }
@@ -1350,8 +1386,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets local_disk_size
+     *
+     * @return int
      */
-    public function getLocalDiskSize(): int
+    public function getLocalDiskSize()
     {
         return $this->container['local_disk_size'];
     }
@@ -1378,8 +1416,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets cron_minimum_interval
+     *
+     * @return int
      */
-    public function getCronMinimumInterval(): int
+    public function getCronMinimumInterval()
     {
         return $this->container['cron_minimum_interval'];
     }
@@ -1399,8 +1439,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets cron_maximum_jitter
+     *
+     * @return int
      */
-    public function getCronMaximumJitter(): int
+    public function getCronMaximumJitter()
     {
         return $this->container['cron_maximum_jitter'];
     }
@@ -1420,8 +1462,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets concurrency_limits
+     *
+     * @return array<string,int>
      */
-    public function getConcurrencyLimits(): array
+    public function getConcurrencyLimits()
     {
         return $this->container['concurrency_limits'];
     }
@@ -1441,8 +1485,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets flexible_build_cache
+     *
+     * @return bool
      */
-    public function getFlexibleBuildCache(): bool
+    public function getFlexibleBuildCache()
     {
         return $this->container['flexible_build_cache'];
     }
@@ -1462,8 +1508,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets strict_configuration
+     *
+     * @return bool
      */
-    public function getStrictConfiguration(): bool
+    public function getStrictConfiguration()
     {
         return $this->container['strict_configuration'];
     }
@@ -1483,8 +1531,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets has_sleepy_crons
+     *
+     * @return bool
      */
-    public function getHasSleepyCrons(): bool
+    public function getHasSleepyCrons()
     {
         return $this->container['has_sleepy_crons'];
     }
@@ -1504,8 +1554,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets crons_in_git
+     *
+     * @return bool
      */
-    public function getCronsInGit(): bool
+    public function getCronsInGit()
     {
         return $this->container['crons_in_git'];
     }
@@ -1525,8 +1577,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets custom_error_template
+     *
+     * @return string
      */
-    public function getCustomErrorTemplate(): string
+    public function getCustomErrorTemplate()
     {
         return $this->container['custom_error_template'];
     }
@@ -1553,8 +1607,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets app_error_page_template
+     *
+     * @return string
      */
-    public function getAppErrorPageTemplate(): string
+    public function getAppErrorPageTemplate()
     {
         return $this->container['app_error_page_template'];
     }
@@ -1581,8 +1637,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets environment_name_strategy
+     *
+     * @return string
      */
-    public function getEnvironmentNameStrategy(): string
+    public function getEnvironmentNameStrategy()
     {
         return $this->container['environment_name_strategy'];
     }
@@ -1612,8 +1670,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets data_retention
+     *
+     * @return array<string,\Upsun\Model\DataRetentionConfigurationValue>
      */
-    public function getDataRetention(): array
+    public function getDataRetention()
     {
         return $this->container['data_retention'];
     }
@@ -1640,8 +1700,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets enable_codesource_integration_push
+     *
+     * @return bool
      */
-    public function getEnableCodesourceIntegrationPush(): bool
+    public function getEnableCodesourceIntegrationPush()
     {
         return $this->container['enable_codesource_integration_push'];
     }
@@ -1661,8 +1723,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets enforce_mfa
+     *
+     * @return bool
      */
-    public function getEnforceMfa(): bool
+    public function getEnforceMfa()
     {
         return $this->container['enforce_mfa'];
     }
@@ -1682,8 +1746,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets systemd
+     *
+     * @return bool
      */
-    public function getSystemd(): bool
+    public function getSystemd()
     {
         return $this->container['systemd'];
     }
@@ -1703,8 +1769,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets router_gen2
+     *
+     * @return bool
      */
-    public function getRouterGen2(): bool
+    public function getRouterGen2()
     {
         return $this->container['router_gen2'];
     }
@@ -1724,8 +1792,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets build_resources
+     *
+     * @return \Upsun\Model\BuildResources1
      */
-    public function getBuildResources(): \Upsun\Model\BuildResources1
+    public function getBuildResources()
     {
         return $this->container['build_resources'];
     }
@@ -1745,8 +1815,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets outbound_restrictions_default_policy
+     *
+     * @return string
      */
-    public function getOutboundRestrictionsDefaultPolicy(): string
+    public function getOutboundRestrictionsDefaultPolicy()
     {
         return $this->container['outbound_restrictions_default_policy'];
     }
@@ -1776,8 +1848,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets self_upgrade
+     *
+     * @return bool
      */
-    public function getSelfUpgrade(): bool
+    public function getSelfUpgrade()
     {
         return $this->container['self_upgrade'];
     }
@@ -1797,8 +1871,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets additional_hosts
+     *
+     * @return array<string,string>
      */
-    public function getAdditionalHosts(): array
+    public function getAdditionalHosts()
     {
         return $this->container['additional_hosts'];
     }
@@ -1818,8 +1894,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets max_allowed_routes
+     *
+     * @return int
      */
-    public function getMaxAllowedRoutes(): int
+    public function getMaxAllowedRoutes()
     {
         return $this->container['max_allowed_routes'];
     }
@@ -1839,8 +1917,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets max_allowed_redirects_paths
+     *
+     * @return int
      */
-    public function getMaxAllowedRedirectsPaths(): int
+    public function getMaxAllowedRedirectsPaths()
     {
         return $this->container['max_allowed_redirects_paths'];
     }
@@ -1860,8 +1940,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets enable_incremental_backups
+     *
+     * @return bool
      */
-    public function getEnableIncrementalBackups(): bool
+    public function getEnableIncrementalBackups()
     {
         return $this->container['enable_incremental_backups'];
     }
@@ -1881,8 +1963,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets sizing_api_enabled
+     *
+     * @return bool
      */
-    public function getSizingApiEnabled(): bool
+    public function getSizingApiEnabled()
     {
         return $this->container['sizing_api_enabled'];
     }
@@ -1902,8 +1986,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets enable_cache_grace_period
+     *
+     * @return bool
      */
-    public function getEnableCacheGracePeriod(): bool
+    public function getEnableCacheGracePeriod()
     {
         return $this->container['enable_cache_grace_period'];
     }
@@ -1923,8 +2009,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets enable_zero_downtime_deployments
+     *
+     * @return bool
      */
-    public function getEnableZeroDowntimeDeployments(): bool
+    public function getEnableZeroDowntimeDeployments()
     {
         return $this->container['enable_zero_downtime_deployments'];
     }
@@ -1944,8 +2032,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets enable_admin_agent
+     *
+     * @return bool
      */
-    public function getEnableAdminAgent(): bool
+    public function getEnableAdminAgent()
     {
         return $this->container['enable_admin_agent'];
     }
@@ -1965,8 +2055,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets certifier_url
+     *
+     * @return string
      */
-    public function getCertifierUrl(): string
+    public function getCertifierUrl()
     {
         return $this->container['certifier_url'];
     }
@@ -1986,8 +2078,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets centralized_permissions
+     *
+     * @return bool
      */
-    public function getCentralizedPermissions(): bool
+    public function getCentralizedPermissions()
     {
         return $this->container['centralized_permissions'];
     }
@@ -2007,8 +2101,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets glue_server_max_request_size
+     *
+     * @return int
      */
-    public function getGlueServerMaxRequestSize(): int
+    public function getGlueServerMaxRequestSize()
     {
         return $this->container['glue_server_max_request_size'];
     }
@@ -2028,8 +2124,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets persistent_endpoints_ssh
+     *
+     * @return bool
      */
-    public function getPersistentEndpointsSsh(): bool
+    public function getPersistentEndpointsSsh()
     {
         return $this->container['persistent_endpoints_ssh'];
     }
@@ -2049,8 +2147,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets persistent_endpoints_ssl_certificates
+     *
+     * @return bool
      */
-    public function getPersistentEndpointsSslCertificates(): bool
+    public function getPersistentEndpointsSslCertificates()
     {
         return $this->container['persistent_endpoints_ssl_certificates'];
     }
@@ -2070,8 +2170,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets enable_disk_health_monitoring
+     *
+     * @return bool
      */
-    public function getEnableDiskHealthMonitoring(): bool
+    public function getEnableDiskHealthMonitoring()
     {
         return $this->container['enable_disk_health_monitoring'];
     }
@@ -2091,8 +2193,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets enable_paused_environments
+     *
+     * @return bool
      */
-    public function getEnablePausedEnvironments(): bool
+    public function getEnablePausedEnvironments()
     {
         return $this->container['enable_paused_environments'];
     }
@@ -2112,8 +2216,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets enable_unified_configuration
+     *
+     * @return bool
      */
-    public function getEnableUnifiedConfiguration(): bool
+    public function getEnableUnifiedConfiguration()
     {
         return $this->container['enable_unified_configuration'];
     }
@@ -2133,8 +2239,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets enable_routes_tracing
+     *
+     * @return bool
      */
-    public function getEnableRoutesTracing(): bool
+    public function getEnableRoutesTracing()
     {
         return $this->container['enable_routes_tracing'];
     }
@@ -2154,8 +2262,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets image_deployment_validation
+     *
+     * @return bool
      */
-    public function getImageDeploymentValidation(): bool
+    public function getImageDeploymentValidation()
     {
         return $this->container['image_deployment_validation'];
     }
@@ -2175,8 +2285,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets support_generic_images
+     *
+     * @return bool
      */
-    public function getSupportGenericImages(): bool
+    public function getSupportGenericImages()
     {
         return $this->container['support_generic_images'];
     }
@@ -2196,8 +2308,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets enable_github_app_token_exchange
+     *
+     * @return bool
      */
-    public function getEnableGithubAppTokenExchange(): bool
+    public function getEnableGithubAppTokenExchange()
     {
         return $this->container['enable_github_app_token_exchange'];
     }
@@ -2217,8 +2331,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets continuous_profiling
+     *
+     * @return \Upsun\Model\TheContinuousProfilingConfiguration
      */
-    public function getContinuousProfiling(): \Upsun\Model\TheContinuousProfilingConfiguration
+    public function getContinuousProfiling()
     {
         return $this->container['continuous_profiling'];
     }
@@ -2238,8 +2354,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets disable_agent_error_reporter
+     *
+     * @return bool
      */
-    public function getDisableAgentErrorReporter(): bool
+    public function getDisableAgentErrorReporter()
     {
         return $this->container['disable_agent_error_reporter'];
     }
@@ -2259,8 +2377,10 @@ final class ProjectSettings implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets requires_domain_ownership
+     *
+     * @return bool
      */
-    public function getRequiresDomainOwnership(): bool
+    public function getRequiresDomainOwnership()
     {
         return $this->container['requires_domain_ownership'];
     }

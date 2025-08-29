@@ -246,8 +246,10 @@ final class AccessControlDefinitionForThisEnviromentInner implements ModelInterf
 
     /**
      * Gets entity_id
+     *
+     * @return string
      */
-    public function getEntityId(): string
+    public function getEntityId()
     {
         return $this->container['entity_id'];
     }
@@ -267,8 +269,10 @@ final class AccessControlDefinitionForThisEnviromentInner implements ModelInterf
 
     /**
      * Gets role
+     *
+     * @return string
      */
-    public function getRole(): string
+    public function getRole()
     {
         return $this->container['role'];
     }

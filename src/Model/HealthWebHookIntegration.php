@@ -242,8 +242,10 @@ final class HealthWebHookIntegration implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -270,8 +272,10 @@ final class HealthWebHookIntegration implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -298,8 +302,10 @@ final class HealthWebHookIntegration implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -319,8 +325,10 @@ final class HealthWebHookIntegration implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets url
+     *
+     * @return string
      */
-    public function getUrl(): string
+    public function getUrl()
     {
         return $this->container['url'];
     }

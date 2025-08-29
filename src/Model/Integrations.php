@@ -226,8 +226,10 @@ final class Integrations implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets enabled
+     *
+     * @return bool
      */
-    public function getEnabled(): bool
+    public function getEnabled()
     {
         return $this->container['enabled'];
     }
@@ -247,8 +249,10 @@ final class Integrations implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets config
+     *
+     * @return \Upsun\Model\Config|null
      */
-    public function getConfig(): \Upsun\Model\Config|null
+    public function getConfig()
     {
         return $this->container['config'];
     }
@@ -268,8 +272,10 @@ final class Integrations implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets allowed_integrations
+     *
+     * @return string[]|null
      */
-    public function getAllowedIntegrations(): array|null
+    public function getAllowedIntegrations()
     {
         return $this->container['allowed_integrations'];
     }

@@ -219,8 +219,10 @@ final class TheCommandsDefinition implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets start
+     *
+     * @return string
      */
-    public function getStart(): string
+    public function getStart()
     {
         return $this->container['start'];
     }
@@ -240,8 +242,10 @@ final class TheCommandsDefinition implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets stop
+     *
+     * @return string|null
      */
-    public function getStop(): string|null
+    public function getStop()
     {
         return $this->container['stop'];
     }

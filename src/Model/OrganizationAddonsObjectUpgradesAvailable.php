@@ -216,8 +216,10 @@ final class OrganizationAddonsObjectUpgradesAvailable implements ModelInterface,
 
     /**
      * Gets user_management
+     *
+     * @return string[]|null
      */
-    public function getUserManagement(): array|null
+    public function getUserManagement()
     {
         return $this->container['user_management'];
     }
@@ -237,8 +239,10 @@ final class OrganizationAddonsObjectUpgradesAvailable implements ModelInterface,
 
     /**
      * Gets support_level
+     *
+     * @return string[]|null
      */
-    public function getSupportLevel(): array|null
+    public function getSupportLevel()
     {
         return $this->container['support_level'];
     }

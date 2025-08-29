@@ -264,8 +264,10 @@ final class CreateProjectInviteRequestPermissionsInner implements ModelInterface
 
     /**
      * Gets type
+     *
+     * @return string|null
      */
-    public function getType(): string|null
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -295,8 +297,10 @@ final class CreateProjectInviteRequestPermissionsInner implements ModelInterface
 
     /**
      * Gets role
+     *
+     * @return string|null
      */
-    public function getRole(): string|null
+    public function getRole()
     {
         return $this->container['role'];
     }

@@ -209,8 +209,10 @@ final class OrderLinks implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets invoices
+     *
+     * @return \Upsun\Model\OrderLinksInvoices|null
      */
-    public function getInvoices(): \Upsun\Model\OrderLinksInvoices|null
+    public function getInvoices()
     {
         return $this->container['invoices'];
     }

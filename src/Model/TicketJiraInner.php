@@ -244,8 +244,10 @@ final class TicketJiraInner implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets id
+     *
+     * @return int|null
      */
-    public function getId(): int|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -265,8 +267,10 @@ final class TicketJiraInner implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets ticket_id
+     *
+     * @return int|null
      */
-    public function getTicketId(): int|null
+    public function getTicketId()
     {
         return $this->container['ticket_id'];
     }
@@ -286,8 +290,10 @@ final class TicketJiraInner implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets issue_id
+     *
+     * @return int|null
      */
-    public function getIssueId(): int|null
+    public function getIssueId()
     {
         return $this->container['issue_id'];
     }
@@ -307,8 +313,10 @@ final class TicketJiraInner implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets issue_key
+     *
+     * @return string|null
      */
-    public function getIssueKey(): string|null
+    public function getIssueKey()
     {
         return $this->container['issue_key'];
     }
@@ -328,8 +336,10 @@ final class TicketJiraInner implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets created_at
+     *
+     * @return float|null
      */
-    public function getCreatedAt(): float|null
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -349,8 +359,10 @@ final class TicketJiraInner implements ModelInterface, ArrayAccess, JsonSerializ
 
     /**
      * Gets updated_at
+     *
+     * @return float|null
      */
-    public function getUpdatedAt(): float|null
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }

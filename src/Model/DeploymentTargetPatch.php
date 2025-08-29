@@ -288,8 +288,10 @@ final class DeploymentTargetPatch implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -319,8 +321,10 @@ final class DeploymentTargetPatch implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets name
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -340,8 +344,10 @@ final class DeploymentTargetPatch implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets enforced_mounts
+     *
+     * @return object|null
      */
-    public function getEnforcedMounts(): object|null
+    public function getEnforcedMounts()
     {
         return $this->container['enforced_mounts'];
     }
@@ -361,8 +367,10 @@ final class DeploymentTargetPatch implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets site_urls
+     *
+     * @return object|null
      */
-    public function getSiteUrls(): object|null
+    public function getSiteUrls()
     {
         return $this->container['site_urls'];
     }
@@ -382,8 +390,10 @@ final class DeploymentTargetPatch implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets ssh_hosts
+     *
+     * @return string[]|null
      */
-    public function getSshHosts(): array|null
+    public function getSshHosts()
     {
         return $this->container['ssh_hosts'];
     }
@@ -404,9 +414,11 @@ final class DeploymentTargetPatch implements ModelInterface, ArrayAccess, JsonSe
     /**
      * Gets enterprise_environments_mapping
      *
+     * @return object|null
+     *
      * @deprecated
      */
-    public function getEnterpriseEnvironmentsMapping(): object|null
+    public function getEnterpriseEnvironmentsMapping()
     {
         return $this->container['enterprise_environments_mapping'];
     }
@@ -428,8 +440,10 @@ final class DeploymentTargetPatch implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets hosts
+     *
+     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]|null
      */
-    public function getHosts(): array|null
+    public function getHosts()
     {
         return $this->container['hosts'];
     }
@@ -456,8 +470,10 @@ final class DeploymentTargetPatch implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets use_dedicated_grid
+     *
+     * @return bool|null
      */
-    public function getUseDedicatedGrid(): bool|null
+    public function getUseDedicatedGrid()
     {
         return $this->container['use_dedicated_grid'];
     }

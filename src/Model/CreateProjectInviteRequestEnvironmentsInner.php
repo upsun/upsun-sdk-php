@@ -240,8 +240,10 @@ final class CreateProjectInviteRequestEnvironmentsInner implements ModelInterfac
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -261,8 +263,10 @@ final class CreateProjectInviteRequestEnvironmentsInner implements ModelInterfac
 
     /**
      * Gets role
+     *
+     * @return string|null
      */
-    public function getRole(): string|null
+    public function getRole()
     {
         return $this->container['role'];
     }

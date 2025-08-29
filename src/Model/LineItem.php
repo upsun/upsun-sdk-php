@@ -295,8 +295,10 @@ final class LineItem implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets type
+     *
+     * @return string|null
      */
-    public function getType(): string|null
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -326,8 +328,10 @@ final class LineItem implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets license_id
+     *
+     * @return float|null
      */
-    public function getLicenseId(): float|null
+    public function getLicenseId()
     {
         return $this->container['license_id'];
     }
@@ -354,8 +358,10 @@ final class LineItem implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets project_id
+     *
+     * @return string|null
      */
-    public function getProjectId(): string|null
+    public function getProjectId()
     {
         return $this->container['project_id'];
     }
@@ -382,8 +388,10 @@ final class LineItem implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets product
+     *
+     * @return string|null
      */
-    public function getProduct(): string|null
+    public function getProduct()
     {
         return $this->container['product'];
     }
@@ -403,8 +411,10 @@ final class LineItem implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets sku
+     *
+     * @return string|null
      */
-    public function getSku(): string|null
+    public function getSku()
     {
         return $this->container['sku'];
     }
@@ -424,8 +434,10 @@ final class LineItem implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets total
+     *
+     * @return float|null
      */
-    public function getTotal(): float|null
+    public function getTotal()
     {
         return $this->container['total'];
     }
@@ -445,8 +457,10 @@ final class LineItem implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets total_formatted
+     *
+     * @return string|null
      */
-    public function getTotalFormatted(): string|null
+    public function getTotalFormatted()
     {
         return $this->container['total_formatted'];
     }
@@ -466,8 +480,10 @@ final class LineItem implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets components
+     *
+     * @return array<string,\Upsun\Model\LineItemComponent>|null
      */
-    public function getComponents(): array|null
+    public function getComponents()
     {
         return $this->container['components'];
     }
@@ -487,8 +503,10 @@ final class LineItem implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets exclude_from_invoice
+     *
+     * @return bool|null
      */
-    public function getExcludeFromInvoice(): bool|null
+    public function getExcludeFromInvoice()
     {
         return $this->container['exclude_from_invoice'];
     }

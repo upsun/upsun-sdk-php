@@ -209,8 +209,10 @@ final class SendOrgMfaRemindersRequest implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets user_ids
+     *
+     * @return string[]|null
      */
-    public function getUserIds(): array|null
+    public function getUserIds()
     {
         return $this->container['user_ids'];
     }

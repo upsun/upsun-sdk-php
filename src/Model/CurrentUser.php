@@ -307,8 +307,10 @@ final class CurrentUser implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -328,8 +330,10 @@ final class CurrentUser implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets uuid
+     *
+     * @return string|null
      */
-    public function getUuid(): string|null
+    public function getUuid()
     {
         return $this->container['uuid'];
     }
@@ -349,8 +353,10 @@ final class CurrentUser implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets username
+     *
+     * @return string|null
      */
-    public function getUsername(): string|null
+    public function getUsername()
     {
         return $this->container['username'];
     }
@@ -370,8 +376,10 @@ final class CurrentUser implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets display_name
+     *
+     * @return string|null
      */
-    public function getDisplayName(): string|null
+    public function getDisplayName()
     {
         return $this->container['display_name'];
     }
@@ -391,8 +399,10 @@ final class CurrentUser implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets status
+     *
+     * @return int|null
      */
-    public function getStatus(): int|null
+    public function getStatus()
     {
         return $this->container['status'];
     }
@@ -412,8 +422,10 @@ final class CurrentUser implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets mail
+     *
+     * @return string|null
      */
-    public function getMail(): string|null
+    public function getMail()
     {
         return $this->container['mail'];
     }
@@ -433,8 +445,10 @@ final class CurrentUser implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets ssh_keys
+     *
+     * @return \Upsun\Model\SSHKey[]|null
      */
-    public function getSshKeys(): array|null
+    public function getSshKeys()
     {
         return $this->container['ssh_keys'];
     }
@@ -454,8 +468,10 @@ final class CurrentUser implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets has_key
+     *
+     * @return bool|null
      */
-    public function getHasKey(): bool|null
+    public function getHasKey()
     {
         return $this->container['has_key'];
     }
@@ -475,8 +491,10 @@ final class CurrentUser implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets projects
+     *
+     * @return \Upsun\Model\CurrentUserProjectsInner[]|null
      */
-    public function getProjects(): array|null
+    public function getProjects()
     {
         return $this->container['projects'];
     }
@@ -496,8 +514,10 @@ final class CurrentUser implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets sequence
+     *
+     * @return int|null
      */
-    public function getSequence(): int|null
+    public function getSequence()
     {
         return $this->container['sequence'];
     }
@@ -517,8 +537,10 @@ final class CurrentUser implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets roles
+     *
+     * @return string[]|null
      */
-    public function getRoles(): array|null
+    public function getRoles()
     {
         return $this->container['roles'];
     }
@@ -538,8 +560,10 @@ final class CurrentUser implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets picture
+     *
+     * @return string|null
      */
-    public function getPicture(): string|null
+    public function getPicture()
     {
         return $this->container['picture'];
     }
@@ -559,8 +583,10 @@ final class CurrentUser implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets tickets
+     *
+     * @return object|null
      */
-    public function getTickets(): object|null
+    public function getTickets()
     {
         return $this->container['tickets'];
     }
@@ -580,8 +606,10 @@ final class CurrentUser implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets trial
+     *
+     * @return bool|null
      */
-    public function getTrial(): bool|null
+    public function getTrial()
     {
         return $this->container['trial'];
     }
@@ -601,8 +629,10 @@ final class CurrentUser implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets current_trial
+     *
+     * @return \Upsun\Model\CurrentUserCurrentTrialInner[]|null
      */
-    public function getCurrentTrial(): array|null
+    public function getCurrentTrial()
     {
         return $this->container['current_trial'];
     }

@@ -216,8 +216,10 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Mo
 
     /**
      * Gets return_url
+     *
+     * @return string|null
      */
-    public function getReturnUrl(): string|null
+    public function getReturnUrl()
     {
         return $this->container['return_url'];
     }
@@ -237,8 +239,10 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Mo
 
     /**
      * Gets url
+     *
+     * @return string|null
      */
-    public function getUrl(): string|null
+    public function getUrl()
     {
         return $this->container['url'];
     }

@@ -314,8 +314,10 @@ final class GithubIntegrationCreateInput implements ModelInterface, ArrayAccess,
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -335,8 +337,10 @@ final class GithubIntegrationCreateInput implements ModelInterface, ArrayAccess,
 
     /**
      * Gets fetch_branches
+     *
+     * @return bool|null
      */
-    public function getFetchBranches(): bool|null
+    public function getFetchBranches()
     {
         return $this->container['fetch_branches'];
     }
@@ -356,8 +360,10 @@ final class GithubIntegrationCreateInput implements ModelInterface, ArrayAccess,
 
     /**
      * Gets prune_branches
+     *
+     * @return bool|null
      */
-    public function getPruneBranches(): bool|null
+    public function getPruneBranches()
     {
         return $this->container['prune_branches'];
     }
@@ -377,8 +383,10 @@ final class GithubIntegrationCreateInput implements ModelInterface, ArrayAccess,
 
     /**
      * Gets environment_init_resources
+     *
+     * @return string|null
      */
-    public function getEnvironmentInitResources(): string|null
+    public function getEnvironmentInitResources()
     {
         return $this->container['environment_init_resources'];
     }
@@ -408,8 +416,10 @@ final class GithubIntegrationCreateInput implements ModelInterface, ArrayAccess,
 
     /**
      * Gets token
+     *
+     * @return string
      */
-    public function getToken(): string
+    public function getToken()
     {
         return $this->container['token'];
     }
@@ -429,8 +439,10 @@ final class GithubIntegrationCreateInput implements ModelInterface, ArrayAccess,
 
     /**
      * Gets base_url
+     *
+     * @return string|null
      */
-    public function getBaseUrl(): string|null
+    public function getBaseUrl()
     {
         return $this->container['base_url'];
     }
@@ -457,8 +469,10 @@ final class GithubIntegrationCreateInput implements ModelInterface, ArrayAccess,
 
     /**
      * Gets repository
+     *
+     * @return string
      */
-    public function getRepository(): string
+    public function getRepository()
     {
         return $this->container['repository'];
     }
@@ -478,8 +492,10 @@ final class GithubIntegrationCreateInput implements ModelInterface, ArrayAccess,
 
     /**
      * Gets build_pull_requests
+     *
+     * @return bool|null
      */
-    public function getBuildPullRequests(): bool|null
+    public function getBuildPullRequests()
     {
         return $this->container['build_pull_requests'];
     }
@@ -499,8 +515,10 @@ final class GithubIntegrationCreateInput implements ModelInterface, ArrayAccess,
 
     /**
      * Gets build_draft_pull_requests
+     *
+     * @return bool|null
      */
-    public function getBuildDraftPullRequests(): bool|null
+    public function getBuildDraftPullRequests()
     {
         return $this->container['build_draft_pull_requests'];
     }
@@ -520,8 +538,10 @@ final class GithubIntegrationCreateInput implements ModelInterface, ArrayAccess,
 
     /**
      * Gets build_pull_requests_post_merge
+     *
+     * @return bool|null
      */
-    public function getBuildPullRequestsPostMerge(): bool|null
+    public function getBuildPullRequestsPostMerge()
     {
         return $this->container['build_pull_requests_post_merge'];
     }
@@ -541,8 +561,10 @@ final class GithubIntegrationCreateInput implements ModelInterface, ArrayAccess,
 
     /**
      * Gets pull_requests_clone_parent_data
+     *
+     * @return bool|null
      */
-    public function getPullRequestsCloneParentData(): bool|null
+    public function getPullRequestsCloneParentData()
     {
         return $this->container['pull_requests_clone_parent_data'];
     }

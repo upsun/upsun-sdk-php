@@ -230,8 +230,10 @@ final class UpdateOrgMemberRequest implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets permissions
+     *
+     * @return string[]|null
      */
-    public function getPermissions(): array|null
+    public function getPermissions()
     {
         return $this->container['permissions'];
     }

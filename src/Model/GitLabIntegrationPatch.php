@@ -307,8 +307,10 @@ final class GitLabIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -328,8 +330,10 @@ final class GitLabIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets fetch_branches
+     *
+     * @return bool|null
      */
-    public function getFetchBranches(): bool|null
+    public function getFetchBranches()
     {
         return $this->container['fetch_branches'];
     }
@@ -349,8 +353,10 @@ final class GitLabIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets prune_branches
+     *
+     * @return bool|null
      */
-    public function getPruneBranches(): bool|null
+    public function getPruneBranches()
     {
         return $this->container['prune_branches'];
     }
@@ -370,8 +376,10 @@ final class GitLabIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets environment_init_resources
+     *
+     * @return string|null
      */
-    public function getEnvironmentInitResources(): string|null
+    public function getEnvironmentInitResources()
     {
         return $this->container['environment_init_resources'];
     }
@@ -401,8 +409,10 @@ final class GitLabIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets token
+     *
+     * @return string
      */
-    public function getToken(): string
+    public function getToken()
     {
         return $this->container['token'];
     }
@@ -422,8 +432,10 @@ final class GitLabIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets base_url
+     *
+     * @return string|null
      */
-    public function getBaseUrl(): string|null
+    public function getBaseUrl()
     {
         return $this->container['base_url'];
     }
@@ -443,8 +455,10 @@ final class GitLabIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets project
+     *
+     * @return string
      */
-    public function getProject(): string
+    public function getProject()
     {
         return $this->container['project'];
     }
@@ -464,8 +478,10 @@ final class GitLabIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets build_merge_requests
+     *
+     * @return bool|null
      */
-    public function getBuildMergeRequests(): bool|null
+    public function getBuildMergeRequests()
     {
         return $this->container['build_merge_requests'];
     }
@@ -485,8 +501,10 @@ final class GitLabIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets build_wip_merge_requests
+     *
+     * @return bool|null
      */
-    public function getBuildWipMergeRequests(): bool|null
+    public function getBuildWipMergeRequests()
     {
         return $this->container['build_wip_merge_requests'];
     }
@@ -506,8 +524,10 @@ final class GitLabIntegrationPatch implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets merge_requests_clone_parent_data
+     *
+     * @return bool|null
      */
-    public function getMergeRequestsCloneParentData(): bool|null
+    public function getMergeRequestsCloneParentData()
     {
         return $this->container['merge_requests_clone_parent_data'];
     }

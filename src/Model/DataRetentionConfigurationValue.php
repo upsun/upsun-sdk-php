@@ -222,8 +222,10 @@ final class DataRetentionConfigurationValue implements ModelInterface, ArrayAcce
 
     /**
      * Gets max_backups
+     *
+     * @return int
      */
-    public function getMaxBackups(): int
+    public function getMaxBackups()
     {
         return $this->container['max_backups'];
     }
@@ -243,8 +245,10 @@ final class DataRetentionConfigurationValue implements ModelInterface, ArrayAcce
 
     /**
      * Gets default_config
+     *
+     * @return \Upsun\Model\DefaultConfig
      */
-    public function getDefaultConfig(): \Upsun\Model\DefaultConfig
+    public function getDefaultConfig()
     {
         return $this->container['default_config'];
     }

@@ -212,8 +212,10 @@ final class EnvironmentMergeInput implements ModelInterface, ArrayAccess, JsonSe
 
     /**
      * Gets resources
+     *
+     * @return \Upsun\Model\Resources4
      */
-    public function getResources(): \Upsun\Model\Resources4
+    public function getResources()
     {
         return $this->container['resources'];
     }

@@ -242,8 +242,10 @@ final class TheMinimumResourcesForThisService implements ModelInterface, ArrayAc
 
     /**
      * Gets cpu
+     *
+     * @return float
      */
-    public function getCpu(): float
+    public function getCpu()
     {
         return $this->container['cpu'];
     }
@@ -263,8 +265,10 @@ final class TheMinimumResourcesForThisService implements ModelInterface, ArrayAc
 
     /**
      * Gets memory
+     *
+     * @return int
      */
-    public function getMemory(): int
+    public function getMemory()
     {
         return $this->container['memory'];
     }
@@ -284,8 +288,10 @@ final class TheMinimumResourcesForThisService implements ModelInterface, ArrayAc
 
     /**
      * Gets disk
+     *
+     * @return int
      */
-    public function getDisk(): int
+    public function getDisk()
     {
         return $this->container['disk'];
     }
@@ -312,8 +318,10 @@ final class TheMinimumResourcesForThisService implements ModelInterface, ArrayAc
 
     /**
      * Gets profile_size
+     *
+     * @return string
      */
-    public function getProfileSize(): string
+    public function getProfileSize()
     {
         return $this->container['profile_size'];
     }

@@ -216,8 +216,10 @@ final class RestrictedAndDeniedImageTypes implements ModelInterface, ArrayAccess
 
     /**
      * Gets only
+     *
+     * @return string[]|null
      */
-    public function getOnly(): array|null
+    public function getOnly()
     {
         return $this->container['only'];
     }
@@ -237,8 +239,10 @@ final class RestrictedAndDeniedImageTypes implements ModelInterface, ArrayAccess
 
     /**
      * Gets exclude
+     *
+     * @return string[]|null
      */
-    public function getExclude(): array|null
+    public function getExclude()
     {
         return $this->container['exclude'];
     }

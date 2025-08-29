@@ -374,8 +374,10 @@ final class Backup implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -402,8 +404,10 @@ final class Backup implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -430,8 +434,10 @@ final class Backup implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets id
+     *
+     * @return string
      */
-    public function getId(): string
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -451,8 +457,10 @@ final class Backup implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets attributes
+     *
+     * @return array<string,string>
      */
-    public function getAttributes(): array
+    public function getAttributes()
     {
         return $this->container['attributes'];
     }
@@ -472,8 +480,10 @@ final class Backup implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets status
+     *
+     * @return string
      */
-    public function getStatus(): string
+    public function getStatus()
     {
         return $this->container['status'];
     }
@@ -503,8 +513,10 @@ final class Backup implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets expires_at
+     *
+     * @return \DateTime
      */
-    public function getExpiresAt(): \DateTime
+    public function getExpiresAt()
     {
         return $this->container['expires_at'];
     }
@@ -531,8 +543,10 @@ final class Backup implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets index
+     *
+     * @return int
      */
-    public function getIndex(): int
+    public function getIndex()
     {
         return $this->container['index'];
     }
@@ -559,8 +573,10 @@ final class Backup implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets commit_id
+     *
+     * @return string
      */
-    public function getCommitId(): string
+    public function getCommitId()
     {
         return $this->container['commit_id'];
     }
@@ -580,8 +596,10 @@ final class Backup implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets environment
+     *
+     * @return string
      */
-    public function getEnvironment(): string
+    public function getEnvironment()
     {
         return $this->container['environment'];
     }
@@ -601,8 +619,10 @@ final class Backup implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets safe
+     *
+     * @return bool
      */
-    public function getSafe(): bool
+    public function getSafe()
     {
         return $this->container['safe'];
     }
@@ -622,8 +642,10 @@ final class Backup implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets size_of_volumes
+     *
+     * @return int
      */
-    public function getSizeOfVolumes(): int
+    public function getSizeOfVolumes()
     {
         return $this->container['size_of_volumes'];
     }
@@ -650,8 +672,10 @@ final class Backup implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets size_used
+     *
+     * @return int
      */
-    public function getSizeUsed(): int
+    public function getSizeUsed()
     {
         return $this->container['size_used'];
     }
@@ -678,8 +702,10 @@ final class Backup implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets deployment
+     *
+     * @return string
      */
-    public function getDeployment(): string
+    public function getDeployment()
     {
         return $this->container['deployment'];
     }
@@ -706,8 +732,10 @@ final class Backup implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets restorable
+     *
+     * @return bool
      */
-    public function getRestorable(): bool
+    public function getRestorable()
     {
         return $this->container['restorable'];
     }
@@ -727,8 +755,10 @@ final class Backup implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets automated
+     *
+     * @return bool
      */
-    public function getAutomated(): bool
+    public function getAutomated()
     {
         return $this->container['automated'];
     }

@@ -223,8 +223,10 @@ final class OrganizationEstimationObjectUserLicensesBase implements ModelInterfa
 
     /**
      * Gets count
+     *
+     * @return int|null
      */
-    public function getCount(): int|null
+    public function getCount()
     {
         return $this->container['count'];
     }
@@ -244,8 +246,10 @@ final class OrganizationEstimationObjectUserLicensesBase implements ModelInterfa
 
     /**
      * Gets total
+     *
+     * @return string|null
      */
-    public function getTotal(): string|null
+    public function getTotal()
     {
         return $this->container['total'];
     }
@@ -265,8 +269,10 @@ final class OrganizationEstimationObjectUserLicensesBase implements ModelInterfa
 
     /**
      * Gets list
+     *
+     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList|null
      */
-    public function getList(): \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList|null
+    public function getList()
     {
         return $this->container['list'];
     }

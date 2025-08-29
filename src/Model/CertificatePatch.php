@@ -216,8 +216,10 @@ final class CertificatePatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets chain
+     *
+     * @return string[]|null
      */
-    public function getChain(): array|null
+    public function getChain()
     {
         return $this->container['chain'];
     }
@@ -237,8 +239,10 @@ final class CertificatePatch implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets is_invalid
+     *
+     * @return bool|null
      */
-    public function getIsInvalid(): bool|null
+    public function getIsInvalid()
     {
         return $this->container['is_invalid'];
     }

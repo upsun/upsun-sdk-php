@@ -222,8 +222,10 @@ final class CustomDomains implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets enabled
+     *
+     * @return bool
      */
-    public function getEnabled(): bool
+    public function getEnabled()
     {
         return $this->container['enabled'];
     }
@@ -243,8 +245,10 @@ final class CustomDomains implements ModelInterface, ArrayAccess, JsonSerializab
 
     /**
      * Gets environments_with_domains_limit
+     *
+     * @return int
      */
-    public function getEnvironmentsWithDomainsLimit(): int
+    public function getEnvironmentsWithDomainsLimit()
     {
         return $this->container['environments_with_domains_limit'];
     }

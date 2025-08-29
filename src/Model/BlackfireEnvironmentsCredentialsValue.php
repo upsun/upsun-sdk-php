@@ -222,8 +222,10 @@ final class BlackfireEnvironmentsCredentialsValue implements ModelInterface, Arr
 
     /**
      * Gets server_uuid
+     *
+     * @return string
      */
-    public function getServerUuid(): string
+    public function getServerUuid()
     {
         return $this->container['server_uuid'];
     }
@@ -243,8 +245,10 @@ final class BlackfireEnvironmentsCredentialsValue implements ModelInterface, Arr
 
     /**
      * Gets server_token
+     *
+     * @return string
      */
-    public function getServerToken(): string
+    public function getServerToken()
     {
         return $this->container['server_token'];
     }

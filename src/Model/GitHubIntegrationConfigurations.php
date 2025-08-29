@@ -216,8 +216,10 @@ final class GitHubIntegrationConfigurations implements ModelInterface, ArrayAcce
 
     /**
      * Gets enabled
+     *
+     * @return bool|null
      */
-    public function getEnabled(): bool|null
+    public function getEnabled()
     {
         return $this->container['enabled'];
     }
@@ -237,8 +239,10 @@ final class GitHubIntegrationConfigurations implements ModelInterface, ArrayAcce
 
     /**
      * Gets role
+     *
+     * @return string|null
      */
-    public function getRole(): string|null
+    public function getRole()
     {
         return $this->container['role'];
     }

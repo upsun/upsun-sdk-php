@@ -400,8 +400,10 @@ final class Subscription implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -421,8 +423,10 @@ final class Subscription implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets status
+     *
+     * @return string|null
      */
-    public function getStatus(): string|null
+    public function getStatus()
     {
         return $this->container['status'];
     }
@@ -452,8 +456,10 @@ final class Subscription implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime|null
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -473,8 +479,10 @@ final class Subscription implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime|null
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -494,8 +502,10 @@ final class Subscription implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets owner
+     *
+     * @return string|null
      */
-    public function getOwner(): string|null
+    public function getOwner()
     {
         return $this->container['owner'];
     }
@@ -515,8 +525,10 @@ final class Subscription implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets owner_info
+     *
+     * @return \Upsun\Model\OwnerInfo|null
      */
-    public function getOwnerInfo(): \Upsun\Model\OwnerInfo|null
+    public function getOwnerInfo()
     {
         return $this->container['owner_info'];
     }
@@ -536,8 +548,10 @@ final class Subscription implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets vendor
+     *
+     * @return string|null
      */
-    public function getVendor(): string|null
+    public function getVendor()
     {
         return $this->container['vendor'];
     }
@@ -557,8 +571,10 @@ final class Subscription implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets plan
+     *
+     * @return string|null
      */
-    public function getPlan(): string|null
+    public function getPlan()
     {
         return $this->container['plan'];
     }
@@ -578,8 +594,10 @@ final class Subscription implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets environments
+     *
+     * @return int|null
      */
-    public function getEnvironments(): int|null
+    public function getEnvironments()
     {
         return $this->container['environments'];
     }
@@ -599,8 +617,10 @@ final class Subscription implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets storage
+     *
+     * @return int|null
      */
-    public function getStorage(): int|null
+    public function getStorage()
     {
         return $this->container['storage'];
     }
@@ -620,8 +640,10 @@ final class Subscription implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets user_licenses
+     *
+     * @return int|null
      */
-    public function getUserLicenses(): int|null
+    public function getUserLicenses()
     {
         return $this->container['user_licenses'];
     }
@@ -641,8 +663,10 @@ final class Subscription implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets project_id
+     *
+     * @return string|null
      */
-    public function getProjectId(): string|null
+    public function getProjectId()
     {
         return $this->container['project_id'];
     }
@@ -662,8 +686,10 @@ final class Subscription implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets project_endpoint
+     *
+     * @return string|null
      */
-    public function getProjectEndpoint(): string|null
+    public function getProjectEndpoint()
     {
         return $this->container['project_endpoint'];
     }
@@ -683,8 +709,10 @@ final class Subscription implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets project_title
+     *
+     * @return string|null
      */
-    public function getProjectTitle(): string|null
+    public function getProjectTitle()
     {
         return $this->container['project_title'];
     }
@@ -704,8 +732,10 @@ final class Subscription implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets project_region
+     *
+     * @return string|null
      */
-    public function getProjectRegion(): string|null
+    public function getProjectRegion()
     {
         return $this->container['project_region'];
     }
@@ -725,8 +755,10 @@ final class Subscription implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets project_region_label
+     *
+     * @return string|null
      */
-    public function getProjectRegionLabel(): string|null
+    public function getProjectRegionLabel()
     {
         return $this->container['project_region_label'];
     }
@@ -746,8 +778,10 @@ final class Subscription implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets project_ui
+     *
+     * @return string|null
      */
-    public function getProjectUi(): string|null
+    public function getProjectUi()
     {
         return $this->container['project_ui'];
     }
@@ -767,8 +801,10 @@ final class Subscription implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets project_options
+     *
+     * @return \Upsun\Model\ProjectOptions|null
      */
-    public function getProjectOptions(): \Upsun\Model\ProjectOptions|null
+    public function getProjectOptions()
     {
         return $this->container['project_options'];
     }
@@ -788,8 +824,10 @@ final class Subscription implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets agency_site
+     *
+     * @return bool|null
      */
-    public function getAgencySite(): bool|null
+    public function getAgencySite()
     {
         return $this->container['agency_site'];
     }
@@ -809,8 +847,10 @@ final class Subscription implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets invoiced
+     *
+     * @return bool|null
      */
-    public function getInvoiced(): bool|null
+    public function getInvoiced()
     {
         return $this->container['invoiced'];
     }
@@ -830,8 +870,10 @@ final class Subscription implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets hipaa
+     *
+     * @return bool|null
      */
-    public function getHipaa(): bool|null
+    public function getHipaa()
     {
         return $this->container['hipaa'];
     }
@@ -851,8 +893,10 @@ final class Subscription implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets is_trial_plan
+     *
+     * @return bool|null
      */
-    public function getIsTrialPlan(): bool|null
+    public function getIsTrialPlan()
     {
         return $this->container['is_trial_plan'];
     }
@@ -872,8 +916,10 @@ final class Subscription implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets services
+     *
+     * @return object[]|null
      */
-    public function getServices(): array|null
+    public function getServices()
     {
         return $this->container['services'];
     }
@@ -893,8 +939,10 @@ final class Subscription implements ModelInterface, ArrayAccess, JsonSerializabl
 
     /**
      * Gets green
+     *
+     * @return bool|null
      */
-    public function getGreen(): bool|null
+    public function getGreen()
     {
         return $this->container['green'];
     }

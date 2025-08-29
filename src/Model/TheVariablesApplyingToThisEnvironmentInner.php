@@ -259,8 +259,10 @@ final class TheVariablesApplyingToThisEnvironmentInner implements ModelInterface
 
     /**
      * Gets name
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -280,8 +282,10 @@ final class TheVariablesApplyingToThisEnvironmentInner implements ModelInterface
 
     /**
      * Gets value
+     *
+     * @return string|null
      */
-    public function getValue(): string|null
+    public function getValue()
     {
         return $this->container['value'];
     }
@@ -301,8 +305,10 @@ final class TheVariablesApplyingToThisEnvironmentInner implements ModelInterface
 
     /**
      * Gets is_sensitive
+     *
+     * @return bool
      */
-    public function getIsSensitive(): bool
+    public function getIsSensitive()
     {
         return $this->container['is_sensitive'];
     }
@@ -322,8 +328,10 @@ final class TheVariablesApplyingToThisEnvironmentInner implements ModelInterface
 
     /**
      * Gets is_json
+     *
+     * @return bool
      */
-    public function getIsJson(): bool
+    public function getIsJson()
     {
         return $this->container['is_json'];
     }
@@ -343,8 +351,10 @@ final class TheVariablesApplyingToThisEnvironmentInner implements ModelInterface
 
     /**
      * Gets visible_build
+     *
+     * @return bool
      */
-    public function getVisibleBuild(): bool
+    public function getVisibleBuild()
     {
         return $this->container['visible_build'];
     }
@@ -364,8 +374,10 @@ final class TheVariablesApplyingToThisEnvironmentInner implements ModelInterface
 
     /**
      * Gets visible_runtime
+     *
+     * @return bool
      */
-    public function getVisibleRuntime(): bool
+    public function getVisibleRuntime()
     {
         return $this->container['visible_runtime'];
     }

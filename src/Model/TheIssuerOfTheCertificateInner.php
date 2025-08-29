@@ -232,8 +232,10 @@ final class TheIssuerOfTheCertificateInner implements ModelInterface, ArrayAcces
 
     /**
      * Gets oid
+     *
+     * @return string
      */
-    public function getOid(): string
+    public function getOid()
     {
         return $this->container['oid'];
     }
@@ -253,8 +255,10 @@ final class TheIssuerOfTheCertificateInner implements ModelInterface, ArrayAcces
 
     /**
      * Gets alias
+     *
+     * @return string
      */
-    public function getAlias(): string
+    public function getAlias()
     {
         return $this->container['alias'];
     }
@@ -281,8 +285,10 @@ final class TheIssuerOfTheCertificateInner implements ModelInterface, ArrayAcces
 
     /**
      * Gets value
+     *
+     * @return string
      */
-    public function getValue(): string
+    public function getValue()
     {
         return $this->container['value'];
     }

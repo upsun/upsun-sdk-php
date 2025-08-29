@@ -262,8 +262,10 @@ final class CreateProjectInviteRequest implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets role
+     *
+     * @return string|null
      */
-    public function getRole(): string|null
+    public function getRole()
     {
         return $this->container['role'];
     }
@@ -293,8 +295,10 @@ final class CreateProjectInviteRequest implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets email
+     *
+     * @return string
      */
-    public function getEmail(): string
+    public function getEmail()
     {
         return $this->container['email'];
     }
@@ -314,8 +318,10 @@ final class CreateProjectInviteRequest implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets permissions
+     *
+     * @return \Upsun\Model\CreateProjectInviteRequestPermissionsInner[]|null
      */
-    public function getPermissions(): array|null
+    public function getPermissions()
     {
         return $this->container['permissions'];
     }
@@ -336,9 +342,11 @@ final class CreateProjectInviteRequest implements ModelInterface, ArrayAccess, J
     /**
      * Gets environments
      *
+     * @return \Upsun\Model\CreateProjectInviteRequestEnvironmentsInner[]|null
+     *
      * @deprecated
      */
-    public function getEnvironments(): array|null
+    public function getEnvironments()
     {
         return $this->container['environments'];
     }
@@ -360,8 +368,10 @@ final class CreateProjectInviteRequest implements ModelInterface, ArrayAccess, J
 
     /**
      * Gets force
+     *
+     * @return bool|null
      */
-    public function getForce(): bool|null
+    public function getForce()
     {
         return $this->container['force'];
     }

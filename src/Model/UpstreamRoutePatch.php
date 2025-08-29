@@ -302,8 +302,10 @@ final class UpstreamRoutePatch implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets primary
+     *
+     * @return bool|null
      */
-    public function getPrimary(): bool|null
+    public function getPrimary()
     {
         return $this->container['primary'];
     }
@@ -330,8 +332,10 @@ final class UpstreamRoutePatch implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -358,8 +362,10 @@ final class UpstreamRoutePatch implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets production_url
+     *
+     * @return string|null
      */
-    public function getProductionUrl(): string|null
+    public function getProductionUrl()
     {
         return $this->container['production_url'];
     }
@@ -386,8 +392,10 @@ final class UpstreamRoutePatch implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets attributes
+     *
+     * @return array<string,string>|null
      */
-    public function getAttributes(): array|null
+    public function getAttributes()
     {
         return $this->container['attributes'];
     }
@@ -407,8 +415,10 @@ final class UpstreamRoutePatch implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -438,8 +448,10 @@ final class UpstreamRoutePatch implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets tls
+     *
+     * @return \Upsun\Model\TLSSettingsForTheRoute1|null
      */
-    public function getTls(): \Upsun\Model\TLSSettingsForTheRoute1|null
+    public function getTls()
     {
         return $this->container['tls'];
     }
@@ -459,8 +471,10 @@ final class UpstreamRoutePatch implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets cache
+     *
+     * @return \Upsun\Model\CacheConfiguration1|null
      */
-    public function getCache(): \Upsun\Model\CacheConfiguration1|null
+    public function getCache()
     {
         return $this->container['cache'];
     }
@@ -480,8 +494,10 @@ final class UpstreamRoutePatch implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets ssi
+     *
+     * @return \Upsun\Model\ServerSideIncludeConfiguration|null
      */
-    public function getSsi(): \Upsun\Model\ServerSideIncludeConfiguration|null
+    public function getSsi()
     {
         return $this->container['ssi'];
     }
@@ -501,8 +517,10 @@ final class UpstreamRoutePatch implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets upstream
+     *
+     * @return string
      */
-    public function getUpstream(): string
+    public function getUpstream()
     {
         return $this->container['upstream'];
     }
@@ -522,8 +540,10 @@ final class UpstreamRoutePatch implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets redirects
+     *
+     * @return \Upsun\Model\TheConfigurationOfTheRedirects1|null
      */
-    public function getRedirects(): \Upsun\Model\TheConfigurationOfTheRedirects1|null
+    public function getRedirects()
     {
         return $this->container['redirects'];
     }

@@ -223,8 +223,10 @@ final class ListTickets200Response implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets count
+     *
+     * @return int|null
      */
-    public function getCount(): int|null
+    public function getCount()
     {
         return $this->container['count'];
     }
@@ -244,8 +246,10 @@ final class ListTickets200Response implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets tickets
+     *
+     * @return \Upsun\Model\Ticket[]|null
      */
-    public function getTickets(): array|null
+    public function getTickets()
     {
         return $this->container['tickets'];
     }
@@ -265,8 +269,10 @@ final class ListTickets200Response implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets _links
+     *
+     * @return \Upsun\Model\HalLinks|null
      */
-    public function getLinks(): \Upsun\Model\HalLinks|null
+    public function getLinks()
     {
         return $this->container['_links'];
     }

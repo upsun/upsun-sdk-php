@@ -243,8 +243,10 @@ final class HttpLogIntegrationCreateInput implements ModelInterface, ArrayAccess
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -264,8 +266,10 @@ final class HttpLogIntegrationCreateInput implements ModelInterface, ArrayAccess
 
     /**
      * Gets extra
+     *
+     * @return array<string,string>|null
      */
-    public function getExtra(): array|null
+    public function getExtra()
     {
         return $this->container['extra'];
     }
@@ -285,8 +289,10 @@ final class HttpLogIntegrationCreateInput implements ModelInterface, ArrayAccess
 
     /**
      * Gets url
+     *
+     * @return string
      */
-    public function getUrl(): string
+    public function getUrl()
     {
         return $this->container['url'];
     }
@@ -306,8 +312,10 @@ final class HttpLogIntegrationCreateInput implements ModelInterface, ArrayAccess
 
     /**
      * Gets headers
+     *
+     * @return array<string,string>|null
      */
-    public function getHeaders(): array|null
+    public function getHeaders()
     {
         return $this->container['headers'];
     }
@@ -327,8 +335,10 @@ final class HttpLogIntegrationCreateInput implements ModelInterface, ArrayAccess
 
     /**
      * Gets tls_verify
+     *
+     * @return bool|null
      */
-    public function getTlsVerify(): bool|null
+    public function getTlsVerify()
     {
         return $this->container['tls_verify'];
     }

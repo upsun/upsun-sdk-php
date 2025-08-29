@@ -212,8 +212,10 @@ final class Metrics implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets max_range
+     *
+     * @return string
      */
-    public function getMaxRange(): string
+    public function getMaxRange()
     {
         return $this->container['max_range'];
     }

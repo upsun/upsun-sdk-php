@@ -326,8 +326,10 @@ final class WebHookIntegration implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -354,8 +356,10 @@ final class WebHookIntegration implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -382,8 +386,10 @@ final class WebHookIntegration implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -403,8 +409,10 @@ final class WebHookIntegration implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets events
+     *
+     * @return string[]
      */
-    public function getEvents(): array
+    public function getEvents()
     {
         return $this->container['events'];
     }
@@ -424,8 +432,10 @@ final class WebHookIntegration implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets environments
+     *
+     * @return string[]
      */
-    public function getEnvironments(): array
+    public function getEnvironments()
     {
         return $this->container['environments'];
     }
@@ -445,8 +455,10 @@ final class WebHookIntegration implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets excluded_environments
+     *
+     * @return string[]
      */
-    public function getExcludedEnvironments(): array
+    public function getExcludedEnvironments()
     {
         return $this->container['excluded_environments'];
     }
@@ -466,8 +478,10 @@ final class WebHookIntegration implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets states
+     *
+     * @return string[]
      */
-    public function getStates(): array
+    public function getStates()
     {
         return $this->container['states'];
     }
@@ -487,8 +501,10 @@ final class WebHookIntegration implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets result
+     *
+     * @return string
      */
-    public function getResult(): string
+    public function getResult()
     {
         return $this->container['result'];
     }
@@ -518,8 +534,10 @@ final class WebHookIntegration implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets shared_key
+     *
+     * @return string
      */
-    public function getSharedKey(): string
+    public function getSharedKey()
     {
         return $this->container['shared_key'];
     }
@@ -546,8 +564,10 @@ final class WebHookIntegration implements ModelInterface, ArrayAccess, JsonSeria
 
     /**
      * Gets url
+     *
+     * @return string
      */
-    public function getUrl(): string
+    public function getUrl()
     {
         return $this->container['url'];
     }

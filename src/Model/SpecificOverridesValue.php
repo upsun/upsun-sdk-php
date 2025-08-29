@@ -237,8 +237,10 @@ final class SpecificOverridesValue implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets expires
+     *
+     * @return string|null
      */
-    public function getExpires(): string|null
+    public function getExpires()
     {
         return $this->container['expires'];
     }
@@ -265,8 +267,10 @@ final class SpecificOverridesValue implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets passthru
+     *
+     * @return string|null
      */
-    public function getPassthru(): string|null
+    public function getPassthru()
     {
         return $this->container['passthru'];
     }
@@ -286,8 +290,10 @@ final class SpecificOverridesValue implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets scripts
+     *
+     * @return bool|null
      */
-    public function getScripts(): bool|null
+    public function getScripts()
     {
         return $this->container['scripts'];
     }
@@ -307,8 +313,10 @@ final class SpecificOverridesValue implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets allow
+     *
+     * @return bool|null
      */
-    public function getAllow(): bool|null
+    public function getAllow()
     {
         return $this->container['allow'];
     }
@@ -328,8 +336,10 @@ final class SpecificOverridesValue implements ModelInterface, ArrayAccess, JsonS
 
     /**
      * Gets headers
+     *
+     * @return array<string,string>|null
      */
-    public function getHeaders(): array|null
+    public function getHeaders()
     {
         return $this->container['headers'];
     }

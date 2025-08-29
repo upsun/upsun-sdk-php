@@ -212,8 +212,10 @@ final class SourceOperations implements ModelInterface, ArrayAccess, JsonSeriali
 
     /**
      * Gets enabled
+     *
+     * @return bool
      */
-    public function getEnabled(): bool
+    public function getEnabled()
     {
         return $this->container['enabled'];
     }

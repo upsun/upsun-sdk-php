@@ -262,8 +262,10 @@ final class ProjectInfo implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets title
+     *
+     * @return string
      */
-    public function getTitle(): string
+    public function getTitle()
     {
         return $this->container['title'];
     }
@@ -283,8 +285,10 @@ final class ProjectInfo implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets name
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -304,8 +308,10 @@ final class ProjectInfo implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets namespace
+     *
+     * @return string
      */
-    public function getNamespace(): string
+    public function getNamespace()
     {
         return $this->container['namespace'];
     }
@@ -332,8 +338,10 @@ final class ProjectInfo implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets organization
+     *
+     * @return string
      */
-    public function getOrganization(): string
+    public function getOrganization()
     {
         return $this->container['organization'];
     }
@@ -360,8 +368,10 @@ final class ProjectInfo implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets capabilities
+     *
+     * @return object
      */
-    public function getCapabilities(): object
+    public function getCapabilities()
     {
         return $this->container['capabilities'];
     }
@@ -381,8 +391,10 @@ final class ProjectInfo implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets settings
+     *
+     * @return object
      */
-    public function getSettings(): object
+    public function getSettings()
     {
         return $this->container['settings'];
     }

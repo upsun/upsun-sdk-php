@@ -216,8 +216,10 @@ final class Plan implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets name
+     *
+     * @return string|null
      */
-    public function getName(): string|null
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -237,8 +239,10 @@ final class Plan implements ModelInterface, ArrayAccess, JsonSerializable
 
     /**
      * Gets label
+     *
+     * @return string|null
      */
-    public function getLabel(): string|null
+    public function getLabel()
     {
         return $this->container['label'];
     }

@@ -342,8 +342,10 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets id
+     *
+     * @return string|null
      */
-    public function getId(): string|null
+    public function getId()
     {
         return $this->container['id'];
     }
@@ -363,8 +365,10 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets name
+     *
+     * @return string|null
      */
-    public function getName(): string|null
+    public function getName()
     {
         return $this->container['name'];
     }
@@ -384,8 +388,10 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets title
+     *
+     * @return string|null
      */
-    public function getTitle(): string|null
+    public function getTitle()
     {
         return $this->container['title'];
     }
@@ -405,8 +411,10 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets cluster
+     *
+     * @return string|null
      */
-    public function getCluster(): string|null
+    public function getCluster()
     {
         return $this->container['cluster'];
     }
@@ -426,8 +434,10 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets cluster_label
+     *
+     * @return string|null
      */
-    public function getClusterLabel(): string|null
+    public function getClusterLabel()
     {
         return $this->container['cluster_label'];
     }
@@ -447,8 +457,10 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets region
+     *
+     * @return string|null
      */
-    public function getRegion(): string|null
+    public function getRegion()
     {
         return $this->container['region'];
     }
@@ -468,8 +480,10 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets region_label
+     *
+     * @return string|null
      */
-    public function getRegionLabel(): string|null
+    public function getRegionLabel()
     {
         return $this->container['region_label'];
     }
@@ -489,8 +503,10 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets uri
+     *
+     * @return string|null
      */
-    public function getUri(): string|null
+    public function getUri()
     {
         return $this->container['uri'];
     }
@@ -510,8 +526,10 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets endpoint
+     *
+     * @return string|null
      */
-    public function getEndpoint(): string|null
+    public function getEndpoint()
     {
         return $this->container['endpoint'];
     }
@@ -531,8 +549,10 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets license_id
+     *
+     * @return int|null
      */
-    public function getLicenseId(): int|null
+    public function getLicenseId()
     {
         return $this->container['license_id'];
     }
@@ -552,8 +572,10 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets owner
+     *
+     * @return string|null
      */
-    public function getOwner(): string|null
+    public function getOwner()
     {
         return $this->container['owner'];
     }
@@ -573,8 +595,10 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets owner_info
+     *
+     * @return \Upsun\Model\OwnerInfo|null
      */
-    public function getOwnerInfo(): \Upsun\Model\OwnerInfo|null
+    public function getOwnerInfo()
     {
         return $this->container['owner_info'];
     }
@@ -594,8 +618,10 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets plan
+     *
+     * @return string|null
      */
-    public function getPlan(): string|null
+    public function getPlan()
     {
         return $this->container['plan'];
     }
@@ -615,8 +641,10 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets subscription_id
+     *
+     * @return int|null
      */
-    public function getSubscriptionId(): int|null
+    public function getSubscriptionId()
     {
         return $this->container['subscription_id'];
     }
@@ -636,8 +664,10 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets status
+     *
+     * @return string|null
      */
-    public function getStatus(): string|null
+    public function getStatus()
     {
         return $this->container['status'];
     }
@@ -657,8 +687,10 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets vendor
+     *
+     * @return string|null
      */
-    public function getVendor(): string|null
+    public function getVendor()
     {
         return $this->container['vendor'];
     }
@@ -678,8 +710,10 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets vendor_label
+     *
+     * @return string|null
      */
-    public function getVendorLabel(): string|null
+    public function getVendorLabel()
     {
         return $this->container['vendor_label'];
     }
@@ -699,8 +733,10 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets vendor_website
+     *
+     * @return string|null
      */
-    public function getVendorWebsite(): string|null
+    public function getVendorWebsite()
     {
         return $this->container['vendor_website'];
     }
@@ -720,8 +756,10 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets vendor_resources
+     *
+     * @return string|null
      */
-    public function getVendorResources(): string|null
+    public function getVendorResources()
     {
         return $this->container['vendor_resources'];
     }
@@ -741,8 +779,10 @@ final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, Jso
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime|null
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }

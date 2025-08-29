@@ -256,8 +256,10 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements ModelI
 
     /**
      * Gets commands
+     *
+     * @return \Upsun\Model\TheCommandsDefinition
      */
-    public function getCommands(): \Upsun\Model\TheCommandsDefinition
+    public function getCommands()
     {
         return $this->container['commands'];
     }
@@ -277,8 +279,10 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements ModelI
 
     /**
      * Gets timeout
+     *
+     * @return int
      */
-    public function getTimeout(): int
+    public function getTimeout()
     {
         return $this->container['timeout'];
     }
@@ -305,8 +309,10 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements ModelI
 
     /**
      * Gets role
+     *
+     * @return string
      */
-    public function getRole(): string
+    public function getRole()
     {
         return $this->container['role'];
     }

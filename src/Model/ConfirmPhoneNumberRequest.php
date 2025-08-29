@@ -212,8 +212,10 @@ final class ConfirmPhoneNumberRequest implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets code
+     *
+     * @return string
      */
-    public function getCode(): string
+    public function getCode()
     {
         return $this->container['code'];
     }

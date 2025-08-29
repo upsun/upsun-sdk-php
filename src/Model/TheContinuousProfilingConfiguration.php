@@ -212,8 +212,10 @@ final class TheContinuousProfilingConfiguration implements ModelInterface, Array
 
     /**
      * Gets supported_runtimes
+     *
+     * @return string[]
      */
-    public function getSupportedRuntimes(): array
+    public function getSupportedRuntimes()
     {
         return $this->container['supported_runtimes'];
     }

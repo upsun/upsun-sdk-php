@@ -216,8 +216,10 @@ final class OrganizationLinksCreateSubscription implements ModelInterface, Array
 
     /**
      * Gets href
+     *
+     * @return string|null
      */
-    public function getHref(): string|null
+    public function getHref()
     {
         return $this->container['href'];
     }
@@ -237,8 +239,10 @@ final class OrganizationLinksCreateSubscription implements ModelInterface, Array
 
     /**
      * Gets method
+     *
+     * @return string|null
      */
-    public function getMethod(): string|null
+    public function getMethod()
     {
         return $this->container['method'];
     }

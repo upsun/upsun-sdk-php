@@ -219,8 +219,10 @@ final class TheConfigurationOfTheRedirects1 implements ModelInterface, ArrayAcce
 
     /**
      * Gets expires
+     *
+     * @return string|null
      */
-    public function getExpires(): string|null
+    public function getExpires()
     {
         return $this->container['expires'];
     }
@@ -240,8 +242,10 @@ final class TheConfigurationOfTheRedirects1 implements ModelInterface, ArrayAcce
 
     /**
      * Gets paths
+     *
+     * @return array<string,\Upsun\Model\ThePathsToRedirectValue1>
      */
-    public function getPaths(): array
+    public function getPaths()
     {
         return $this->container['paths'];
     }

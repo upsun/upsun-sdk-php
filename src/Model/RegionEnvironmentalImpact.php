@@ -223,8 +223,10 @@ final class RegionEnvironmentalImpact implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets zone
+     *
+     * @return string|null
      */
-    public function getZone(): string|null
+    public function getZone()
     {
         return $this->container['zone'];
     }
@@ -244,8 +246,10 @@ final class RegionEnvironmentalImpact implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets carbon_intensity
+     *
+     * @return string|null
      */
-    public function getCarbonIntensity(): string|null
+    public function getCarbonIntensity()
     {
         return $this->container['carbon_intensity'];
     }
@@ -265,8 +269,10 @@ final class RegionEnvironmentalImpact implements ModelInterface, ArrayAccess, Js
 
     /**
      * Gets green
+     *
+     * @return bool|null
      */
-    public function getGreen(): bool|null
+    public function getGreen()
     {
         return $this->container['green'];
     }

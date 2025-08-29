@@ -348,8 +348,10 @@ final class SyslogIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets created_at
+     *
+     * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->container['created_at'];
     }
@@ -376,8 +378,10 @@ final class SyslogIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets updated_at
+     *
+     * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt()
     {
         return $this->container['updated_at'];
     }
@@ -404,8 +408,10 @@ final class SyslogIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets type
+     *
+     * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->container['type'];
     }
@@ -425,8 +431,10 @@ final class SyslogIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets extra
+     *
+     * @return array<string,string>
      */
-    public function getExtra(): array
+    public function getExtra()
     {
         return $this->container['extra'];
     }
@@ -446,8 +454,10 @@ final class SyslogIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets host
+     *
+     * @return string
      */
-    public function getHost(): string
+    public function getHost()
     {
         return $this->container['host'];
     }
@@ -467,8 +477,10 @@ final class SyslogIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets port
+     *
+     * @return int
      */
-    public function getPort(): int
+    public function getPort()
     {
         return $this->container['port'];
     }
@@ -488,8 +500,10 @@ final class SyslogIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets protocol
+     *
+     * @return string
      */
-    public function getProtocol(): string
+    public function getProtocol()
     {
         return $this->container['protocol'];
     }
@@ -519,8 +533,10 @@ final class SyslogIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets facility
+     *
+     * @return int
      */
-    public function getFacility(): int
+    public function getFacility()
     {
         return $this->container['facility'];
     }
@@ -540,8 +556,10 @@ final class SyslogIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets message_format
+     *
+     * @return string
      */
-    public function getMessageFormat(): string
+    public function getMessageFormat()
     {
         return $this->container['message_format'];
     }
@@ -571,8 +589,10 @@ final class SyslogIntegration implements ModelInterface, ArrayAccess, JsonSerial
 
     /**
      * Gets tls_verify
+     *
+     * @return bool
      */
-    public function getTlsVerify(): bool
+    public function getTlsVerify()
     {
         return $this->container['tls_verify'];
     }

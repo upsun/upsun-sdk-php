@@ -313,12 +313,14 @@ final class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}
 
     /**
      * Gets {{name}}
+     *
+     * @return {{{dataType}}}{{^required}}|null{{/required}}
     {{#deprecated}}
      *
      * @deprecated
     {{/deprecated}}
      */
-    public function {{getter}}(): {{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}}{{^required}}|null{{/required}}
+    public function {{getter}}()
     {
         return $this->container['{{name}}'];
     }
