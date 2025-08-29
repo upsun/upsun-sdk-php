@@ -101,6 +101,6 @@ abstract class AbstractApi
 
     public function refreshToken(): void
     {
-        $this->oauthProvider->forceRefresh();
+        $this->oauthProvider->ensureValidToken();
     }
 }

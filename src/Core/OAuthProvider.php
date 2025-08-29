@@ -75,11 +75,13 @@ class OAuthProvider
         $this->tokenExpiry = time() + ($data['expires_in'] ?? 0);
     }
 
-    private function ensureValidToken(): void
+    public function ensureValidToken(): void
     {
         $buffer = 60;
 
         if (!$this->accessToken || time() > ($this->tokenExpiry - $buffer)) {
+            var_dump('ensureValidToken token ' . $this->accessToken
+                . ' token expiry ' . time() . '>' . $this->tokenExpiry.' - '. $buffer);
             $this->exchangeCodeForToken();
         }
     }
