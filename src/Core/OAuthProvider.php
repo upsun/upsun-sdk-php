@@ -10,6 +10,8 @@ use Nyholm\Psr7\Stream;
 
 class OAuthProvider
 {
+    private int $tokenExchangeCount = 0;
+
     private ?string $typeToken = null;
     private ?string $accessToken = null;
     private ?string $refreshToken = null;
@@ -33,6 +35,8 @@ class OAuthProvider
     public function exchangeCodeForToken(): bool
     {
         try {
+            $this->tokenExchangeCount++; // incrémente à chaque appel
+
             $body = http_build_query([
                 'grant_type' => 'api_token',
                 'api_token' => $this->clientSecret,
@@ -42,12 +46,11 @@ class OAuthProvider
                 ->withHeader('Authorization', 'Basic ' . base64_encode('platform-api-user:'))
                 ->withHeader('Content-Type', 'application/x-www-form-urlencoded')
                 ->withBody(Stream::create($body));
-
-
+            
             $response = $this->httpClient->sendRequest($request);
 
             if ($response->getStatusCode() !== 200) {
-                throw new Exception('Token exchange failed with status: ' . $response->getStatusCode());
+                throw new Exception('Token exchange failed with status: ' . $response->getStatusCode() . ' nb appel=' . $this->tokenExchangeCount );
             }
 
             $data = json_decode((string)$response->getBody(), true);
@@ -67,6 +70,11 @@ class OAuthProvider
         } catch (ClientExceptionInterface $e) {
             throw new Exception('Token exchange failed: ' . $e->getMessage());
         }
+    }
+
+    public function getTokenExchangeCount(): int
+    {
+        return $this->tokenExchangeCount;
     }
 
     private function storeTokenData(array $data): void
