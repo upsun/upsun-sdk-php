@@ -10,12 +10,14 @@ use Nyholm\Psr7\Stream;
 
 class OAuthProvider
 {
+    private int $tokenExchangeCount = 0;
+
     private ?string $typeToken = null;
     private ?string $accessToken = null;
     private ?string $refreshToken = null;
     private int $tokenExpiry = 0;
     private bool $hasInitialToken = false;
-    private bool $isExchanged = false; 
+    private bool $isExchanged = false;
 
     public function __construct(
         private ClientInterface $httpClient,
@@ -33,6 +35,8 @@ class OAuthProvider
         }
 
         try {
+            $this->tokenExchangeCount++; // incrémente à chaque appel
+
             $body = http_build_query([
                 'grant_type' => 'api_token',
                 'api_token' => $this->clientSecret,
@@ -47,7 +51,11 @@ class OAuthProvider
             $response = $this->httpClient->sendRequest($request);
 
             if ($response->getStatusCode() !== 200) {
-                throw new Exception('Token exchange failed with status: ' . $response->getStatusCode());
+                throw new Exception('Token exchange failed with status: ' . $response->getStatusCode()
+                    . ' nb appel=' . $this->tokenExchangeCount
+                    . ' is Exchanged ' . $this->isExchanged
+                    . ' token refresh' . $this->refreshToken
+                    . ' token expiry' . $this->tokenExpiry);
             }
 
             $data = json_decode((string)$response->getBody(), true);
@@ -72,6 +80,7 @@ class OAuthProvider
 
     private function storeTokenData(array $data): void
     {
+        var_dump($data);
         $this->typeToken = $data['token_type'] ?? null;
         $this->accessToken = $data['access_token'] ?? null;
         $this->refreshToken = $data['refresh_token'] ?? null;
