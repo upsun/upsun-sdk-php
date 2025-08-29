@@ -16,7 +16,7 @@ use JsonSerializable;
 
 final class EnvironmentMergeInput implements JsonSerializable
 {
-    protected const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     public function __construct(
         public readonly \Upsun\Model\Resources4 $resources = null

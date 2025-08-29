@@ -16,7 +16,7 @@ use JsonSerializable;
 
 final class DataRetentionConfigurationValue implements JsonSerializable
 {
-    protected const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     public function __construct(
         public readonly int $max_backups = null,

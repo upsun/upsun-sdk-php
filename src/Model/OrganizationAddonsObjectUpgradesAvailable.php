@@ -16,7 +16,7 @@ use JsonSerializable;
 
 final class OrganizationAddonsObjectUpgradesAvailable implements JsonSerializable
 {
-    protected const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     public function __construct(
         public readonly ?array $user_management = null,

@@ -16,7 +16,7 @@ use JsonSerializable;
 
 final class ImagesValueValue implements JsonSerializable
 {
-    protected const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     public function __construct(
         public readonly bool $available = null

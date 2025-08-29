@@ -16,7 +16,7 @@ use JsonSerializable;
 
 final class VouchersLinks implements JsonSerializable
 {
-    protected const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     public function __construct(
         public readonly \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf|null $self = null

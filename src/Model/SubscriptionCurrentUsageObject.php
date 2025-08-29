@@ -16,7 +16,7 @@ use JsonSerializable;
 
 final class SubscriptionCurrentUsageObject implements JsonSerializable
 {
-    protected const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     public function __construct(
         public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $cpu_app = null,

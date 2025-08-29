@@ -16,7 +16,7 @@ use JsonSerializable;
 
 final class GetTypeAllowance200Response implements JsonSerializable
 {
-    protected const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     public function __construct(
         public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrencies|null $currencies = null

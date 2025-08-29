@@ -16,7 +16,7 @@ use JsonSerializable;
 
 final class OrganizationMFAEnforcement implements JsonSerializable
 {
-    protected const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     public function __construct(
         public readonly bool|null $enforce_mfa = null

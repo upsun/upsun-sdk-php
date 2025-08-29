@@ -16,7 +16,7 @@ use JsonSerializable;
 
 final class OrganizationAddonsObject implements JsonSerializable
 {
-    protected const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     public function __construct(
         public readonly \Upsun\Model\OrganizationAddonsObjectAvailable|null $available = null,

@@ -16,7 +16,7 @@ use JsonSerializable;
 
 final class AcceptedResponse implements JsonSerializable
 {
-    protected const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     public function __construct(
         public readonly string $status = null,

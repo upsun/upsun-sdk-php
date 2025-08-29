@@ -16,7 +16,7 @@ use JsonSerializable;
 
 final class UpstreamRouteCreateInput implements JsonSerializable
 {
-    protected const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     public function __construct(
         public readonly bool|null $primary = null,

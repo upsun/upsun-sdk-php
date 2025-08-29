@@ -16,7 +16,7 @@ use JsonSerializable;
 
 final class OrderLinks implements JsonSerializable
 {
-    protected const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     public function __construct(
         public readonly \Upsun\Model\OrderLinksInvoices|null $invoices = null

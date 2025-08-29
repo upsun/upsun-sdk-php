@@ -16,7 +16,7 @@ use JsonSerializable;
 
 final class CreateAuthorizationCredentials200Response implements JsonSerializable
 {
-    protected const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     public function __construct(
         public readonly \Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl|null $redirect_to_url = null,

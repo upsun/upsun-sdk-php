@@ -16,7 +16,7 @@ use JsonSerializable;
 
 final class ThePathsToRedirectValue implements JsonSerializable
 {
-    protected const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     public function __construct(
         public readonly bool $regexp = null,

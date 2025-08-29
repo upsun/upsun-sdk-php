@@ -16,7 +16,7 @@ use JsonSerializable;
 
 final class HttpAccessPermissions1 implements JsonSerializable
 {
-    protected const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     public function __construct(
         public readonly bool|null $is_enabled = null,

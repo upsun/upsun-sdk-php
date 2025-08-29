@@ -16,7 +16,7 @@ use JsonSerializable;
 
 final class CanCreateNewOrgSubscription200Response implements JsonSerializable
 {
-    protected const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     public function __construct(
         public readonly bool|null $can_create = null,

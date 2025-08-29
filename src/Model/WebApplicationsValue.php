@@ -16,7 +16,7 @@ use JsonSerializable;
 
 final class WebApplicationsValue implements JsonSerializable
 {
-    protected const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     public function __construct(
         public readonly \Upsun\Model\Resources $resources = null,

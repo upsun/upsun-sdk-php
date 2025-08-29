@@ -16,7 +16,7 @@ use JsonSerializable;
 
 final class OrganizationEstimationObjectUserLicensesBaseList implements JsonSerializable
 {
-    protected const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     public function __construct(
         public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser|null $admin_user = null,

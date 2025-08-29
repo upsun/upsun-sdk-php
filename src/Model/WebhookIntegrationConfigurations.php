@@ -16,7 +16,7 @@ use JsonSerializable;
 
 final class WebhookIntegrationConfigurations implements JsonSerializable
 {
-    protected const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     public function __construct(
         public readonly bool|null $enabled = null,

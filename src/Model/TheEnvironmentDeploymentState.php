@@ -16,7 +16,7 @@ use JsonSerializable;
 
 final class TheEnvironmentDeploymentState implements JsonSerializable
 {
-    protected const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     public function __construct(
         public readonly bool $last_deployment_successful = null,

@@ -16,7 +16,7 @@ use JsonSerializable;
 
 final class DefaultConfig implements JsonSerializable
 {
-    protected const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     public function __construct(
         public readonly int $manual_count = null,

@@ -16,7 +16,7 @@ use JsonSerializable;
 
 final class ProxyRoute implements JsonSerializable
 {
-    protected const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     public function __construct(
         public readonly bool $primary = null,

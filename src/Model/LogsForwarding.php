@@ -16,7 +16,7 @@ use JsonSerializable;
 
 final class LogsForwarding implements JsonSerializable
 {
-    protected const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     public function __construct(
         public readonly int $max_extra_payload_size = null

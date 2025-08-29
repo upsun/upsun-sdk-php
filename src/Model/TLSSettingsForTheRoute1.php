@@ -16,7 +16,7 @@ use JsonSerializable;
 
 final class TLSSettingsForTheRoute1 implements JsonSerializable
 {
-    protected const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     public function __construct(
         public readonly \Upsun\Model\StrictTransportSecurityOptions1|null $strict_transport_security = null,

@@ -16,7 +16,7 @@ use JsonSerializable;
 
 final class Version implements JsonSerializable
 {
-    protected const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     public function __construct(
         public readonly string $commit = null,
