@@ -762,27 +762,22 @@ final class PhoneNumberApi extends AbstractApi
         ResponseInterface $response
     ): array {
         if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
+            $result = $response->getBody(); //stream goes to serializer
         } else {
             $content = (string) $response->getBody();
-            if ($dataType !== 'string') {
-                try {
-                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $exception) {
-                    throw new ApiException(
-                        sprintf(
-                            'Error JSON decoding server response (%s)',
-                            $request->getUri()
-                        ),
-                        $request,
-                        $response
-                    );
-                }
+            
+            switch ($dataType) {
+                case 'string':
+                    $result = $content;
+                    break;
+                default:
+                    $decoded = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    $result = new $dataType(...get_object_vars($decoded));
             }
         }
 
         return [
-            ObjectSerializer::deserialize($content, $dataType, []),
+            $result,
             $response->getStatusCode(),
             $response->getHeaders()
         ];

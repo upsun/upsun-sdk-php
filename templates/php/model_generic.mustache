@@ -1,6 +1,6 @@
 final class {{classname}} implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = {{#discriminator}}'{{discriminatorName}}'{{/discriminator}}{{^discriminator}}null{{/discriminator}};
 
     public function __construct(
         {{#vars}}
