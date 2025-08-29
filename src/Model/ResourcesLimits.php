@@ -12,366 +12,49 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class ResourcesLimits implements ModelInterface, ArrayAccess, \JsonSerializable
+final class ResourcesLimits implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Resources_limits';
+    public readonly bool $container_profiles;
+    public readonly \Upsun\Model\ResourcesForProductionEnvironments $production;
+    public readonly \Upsun\Model\ResourcesForDevelopmentEnvironments $development;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'container_profiles' => 'bool',
-        'production' => '\Upsun\Model\ResourcesForProductionEnvironments',
-        'development' => '\Upsun\Model\ResourcesForDevelopmentEnvironments'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'container_profiles' => null,
-        'production' => null,
-        'development' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'container_profiles' => false,
-        'production' => false,
-        'development' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        bool $container_profiles,
+        \Upsun\Model\ResourcesForProductionEnvironments $production,
+        \Upsun\Model\ResourcesForDevelopmentEnvironments $development,
+    ) {
+        $this->container_profiles = $container_profiles;
+        $this->production = $production;
+        $this->development = $development;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getContainerProfiles(): bool
     {
-        return self::$openAPIFormats;
+        return $this->container_profiles;
+    }
+    public function getProduction(): \Upsun\Model\ResourcesForProductionEnvironments
+    {
+        return $this->production;
+    }
+    public function getDevelopment(): \Upsun\Model\ResourcesForDevelopmentEnvironments
+    {
+        return $this->development;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'container_profiles' => 'container_profiles',
-        'production' => 'production',
-        'development' => 'development'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'container_profiles' => 'setContainerProfiles',
-        'production' => 'setProduction',
-        'development' => 'setDevelopment'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'container_profiles' => 'getContainerProfiles',
-        'production' => 'getProduction',
-        'development' => 'getDevelopment'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('container_profiles', $data ?? [], null);
-        $this->setIfExists('production', $data ?? [], null);
-        $this->setIfExists('development', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        if ($this->container['container_profiles'] === null) {
-            $invalidProperties[] = "'container_profiles' can't be null";
-        }
-        if ($this->container['production'] === null) {
-            $invalidProperties[] = "'production' can't be null";
-        }
-        if ($this->container['development'] === null) {
-            $invalidProperties[] = "'development' can't be null";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets container_profiles
-     *
-     * @return bool
-     */
-    public function getContainerProfiles()
-    {
-        return $this->container['container_profiles'];
-    }
-
-    /**
-     * Sets container_profiles
-     */
-    public function setContainerProfiles($container_profiles)
-    {
-        if (is_null($container_profiles)) {
-            throw new \InvalidArgumentException('non-nullable container_profiles cannot be null');
-        }
-        $this->container['container_profiles'] = $container_profiles;
-
-        return $this;
-    }
-
-    /**
-     * Gets production
-     *
-     * @return \Upsun\Model\ResourcesForProductionEnvironments
-     */
-    public function getProduction()
-    {
-        return $this->container['production'];
-    }
-
-    /**
-     * Sets production
-     */
-    public function setProduction($production)
-    {
-        if (is_null($production)) {
-            throw new \InvalidArgumentException('non-nullable production cannot be null');
-        }
-        $this->container['production'] = $production;
-
-        return $this;
-    }
-
-    /**
-     * Gets development
-     *
-     * @return \Upsun\Model\ResourcesForDevelopmentEnvironments
-     */
-    public function getDevelopment()
-    {
-        return $this->container['development'];
-    }
-
-    /**
-     * Sets development
-     */
-    public function setDevelopment($development)
-    {
-        if (is_null($development)) {
-            throw new \InvalidArgumentException('non-nullable development cannot be null');
-        }
-        $this->container['development'] = $development;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+        return [
+            'container_profiles' => $this->container_profiles,
+            'production' => $this->production,
+            'development' => $this->development,
+        ];
     }
 
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

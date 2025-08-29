@@ -12,906 +12,177 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class Deployment implements ModelInterface, ArrayAccess, \JsonSerializable
+final class Deployment implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Deployment';
+    public readonly \DateTime $created_at;
+    public readonly \DateTime $updated_at;
+    public readonly string $fingerprint;
+    public readonly string $cluster_name;
+    public readonly \Upsun\Model\ProjectInfo $project_info;
+    public readonly \Upsun\Model\EnvironmentInfo $environment_info;
+    public readonly string $deployment_target;
+    public readonly \Upsun\Model\VPNConfiguration $vpn;
+    public readonly \Upsun\Model\HttpAccessPermissions $http_access;
+    public readonly bool $enable_smtp;
+    public readonly bool $restrict_robots;
+    public readonly \Upsun\Model\TheVariablesApplyingToThisEnvironmentInner[] $variables;
+    public readonly \Upsun\Model\AccessControlDefinitionForThisEnviromentInner[] $access;
+    public readonly \Upsun\Model\Subscription1 $subscription;
+    public readonly array<string,\Upsun\Model\ServicesValue> $services;
+    public readonly array<string,\Upsun\Model\RoutesValue> $routes;
+    public readonly array<string,\Upsun\Model\WebApplicationsValue> $webapps;
+    public readonly array<string,\Upsun\Model\WorkersValue> $workers;
+    public readonly array<string,array<string,\Upsun\Model\ContainerProfilesValueValue>> $container_profiles;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'created_at' => '\DateTime',
-        'updated_at' => '\DateTime',
-        'fingerprint' => 'string',
-        'cluster_name' => 'string',
-        'project_info' => '\Upsun\Model\ProjectInfo',
-        'environment_info' => '\Upsun\Model\EnvironmentInfo',
-        'deployment_target' => 'string',
-        'vpn' => '\Upsun\Model\VPNConfiguration',
-        'http_access' => '\Upsun\Model\HttpAccessPermissions',
-        'enable_smtp' => 'bool',
-        'restrict_robots' => 'bool',
-        'variables' => '\Upsun\Model\TheVariablesApplyingToThisEnvironmentInner[]',
-        'access' => '\Upsun\Model\AccessControlDefinitionForThisEnviromentInner[]',
-        'subscription' => '\Upsun\Model\Subscription1',
-        'services' => 'array<string,\Upsun\Model\ServicesValue>',
-        'routes' => 'array<string,\Upsun\Model\RoutesValue>',
-        'webapps' => 'array<string,\Upsun\Model\WebApplicationsValue>',
-        'workers' => 'array<string,\Upsun\Model\WorkersValue>',
-        'container_profiles' => 'array<string,array<string,\Upsun\Model\ContainerProfilesValueValue>>'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'created_at' => 'date-time',
-        'updated_at' => 'date-time',
-        'fingerprint' => null,
-        'cluster_name' => null,
-        'project_info' => null,
-        'environment_info' => null,
-        'deployment_target' => null,
-        'vpn' => null,
-        'http_access' => null,
-        'enable_smtp' => null,
-        'restrict_robots' => null,
-        'variables' => null,
-        'access' => null,
-        'subscription' => null,
-        'services' => null,
-        'routes' => null,
-        'webapps' => null,
-        'workers' => null,
-        'container_profiles' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'created_at' => true,
-        'updated_at' => true,
-        'fingerprint' => false,
-        'cluster_name' => false,
-        'project_info' => false,
-        'environment_info' => false,
-        'deployment_target' => false,
-        'vpn' => true,
-        'http_access' => false,
-        'enable_smtp' => false,
-        'restrict_robots' => false,
-        'variables' => false,
-        'access' => false,
-        'subscription' => false,
-        'services' => false,
-        'routes' => false,
-        'webapps' => false,
-        'workers' => false,
-        'container_profiles' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+        string $fingerprint = null,
+        string $cluster_name,
+        \Upsun\Model\ProjectInfo $project_info,
+        \Upsun\Model\EnvironmentInfo $environment_info,
+        string $deployment_target,
+        \Upsun\Model\VPNConfiguration $vpn,
+        \Upsun\Model\HttpAccessPermissions $http_access,
+        bool $enable_smtp,
+        bool $restrict_robots,
+        \Upsun\Model\TheVariablesApplyingToThisEnvironmentInner[] $variables,
+        \Upsun\Model\AccessControlDefinitionForThisEnviromentInner[] $access,
+        \Upsun\Model\Subscription1 $subscription,
+        array<string,\Upsun\Model\ServicesValue> $services,
+        array<string,\Upsun\Model\RoutesValue> $routes,
+        array<string,\Upsun\Model\WebApplicationsValue> $webapps,
+        array<string,\Upsun\Model\WorkersValue> $workers,
+        array<string,array<string,\Upsun\Model\ContainerProfilesValueValue>> $container_profiles,
+    ) {
+        $this->created_at = $created_at;
+        $this->updated_at = $updated_at;
+        $this->fingerprint = $fingerprint;
+        $this->cluster_name = $cluster_name;
+        $this->project_info = $project_info;
+        $this->environment_info = $environment_info;
+        $this->deployment_target = $deployment_target;
+        $this->vpn = $vpn;
+        $this->http_access = $http_access;
+        $this->enable_smtp = $enable_smtp;
+        $this->restrict_robots = $restrict_robots;
+        $this->variables = $variables;
+        $this->access = $access;
+        $this->subscription = $subscription;
+        $this->services = $services;
+        $this->routes = $routes;
+        $this->webapps = $webapps;
+        $this->workers = $workers;
+        $this->container_profiles = $container_profiles;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getCreatedAt(): \DateTime|null
     {
-        return self::$openAPIFormats;
+        return $this->created_at;
+    }
+    public function getUpdatedAt(): \DateTime|null
+    {
+        return $this->updated_at;
+    }
+    public function getFingerprint(): string|null
+    {
+        return $this->fingerprint;
+    }
+    public function getClusterName(): string
+    {
+        return $this->cluster_name;
+    }
+    public function getProjectInfo(): \Upsun\Model\ProjectInfo
+    {
+        return $this->project_info;
+    }
+    public function getEnvironmentInfo(): \Upsun\Model\EnvironmentInfo
+    {
+        return $this->environment_info;
+    }
+    public function getDeploymentTarget(): string
+    {
+        return $this->deployment_target;
+    }
+    public function getVpn(): \Upsun\Model\VPNConfiguration
+    {
+        return $this->vpn;
+    }
+    public function getHttpAccess(): \Upsun\Model\HttpAccessPermissions
+    {
+        return $this->http_access;
+    }
+    public function getEnableSmtp(): bool
+    {
+        return $this->enable_smtp;
+    }
+    public function getRestrictRobots(): bool
+    {
+        return $this->restrict_robots;
+    }
+    public function getVariables(): \Upsun\Model\TheVariablesApplyingToThisEnvironmentInner[]
+    {
+        return $this->variables;
+    }
+    public function getAccess(): \Upsun\Model\AccessControlDefinitionForThisEnviromentInner[]
+    {
+        return $this->access;
+    }
+    public function getSubscription(): \Upsun\Model\Subscription1
+    {
+        return $this->subscription;
+    }
+    public function getServices(): array<string,\Upsun\Model\ServicesValue>
+    {
+        return $this->services;
+    }
+    public function getRoutes(): array<string,\Upsun\Model\RoutesValue>
+    {
+        return $this->routes;
+    }
+    public function getWebapps(): array<string,\Upsun\Model\WebApplicationsValue>
+    {
+        return $this->webapps;
+    }
+    public function getWorkers(): array<string,\Upsun\Model\WorkersValue>
+    {
+        return $this->workers;
+    }
+    public function getContainerProfiles(): array<string,array<string,\Upsun\Model\ContainerProfilesValueValue>>
+    {
+        return $this->container_profiles;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at',
-        'fingerprint' => 'fingerprint',
-        'cluster_name' => 'cluster_name',
-        'project_info' => 'project_info',
-        'environment_info' => 'environment_info',
-        'deployment_target' => 'deployment_target',
-        'vpn' => 'vpn',
-        'http_access' => 'http_access',
-        'enable_smtp' => 'enable_smtp',
-        'restrict_robots' => 'restrict_robots',
-        'variables' => 'variables',
-        'access' => 'access',
-        'subscription' => 'subscription',
-        'services' => 'services',
-        'routes' => 'routes',
-        'webapps' => 'webapps',
-        'workers' => 'workers',
-        'container_profiles' => 'container_profiles'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'created_at' => 'setCreatedAt',
-        'updated_at' => 'setUpdatedAt',
-        'fingerprint' => 'setFingerprint',
-        'cluster_name' => 'setClusterName',
-        'project_info' => 'setProjectInfo',
-        'environment_info' => 'setEnvironmentInfo',
-        'deployment_target' => 'setDeploymentTarget',
-        'vpn' => 'setVpn',
-        'http_access' => 'setHttpAccess',
-        'enable_smtp' => 'setEnableSmtp',
-        'restrict_robots' => 'setRestrictRobots',
-        'variables' => 'setVariables',
-        'access' => 'setAccess',
-        'subscription' => 'setSubscription',
-        'services' => 'setServices',
-        'routes' => 'setRoutes',
-        'webapps' => 'setWebapps',
-        'workers' => 'setWorkers',
-        'container_profiles' => 'setContainerProfiles'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'created_at' => 'getCreatedAt',
-        'updated_at' => 'getUpdatedAt',
-        'fingerprint' => 'getFingerprint',
-        'cluster_name' => 'getClusterName',
-        'project_info' => 'getProjectInfo',
-        'environment_info' => 'getEnvironmentInfo',
-        'deployment_target' => 'getDeploymentTarget',
-        'vpn' => 'getVpn',
-        'http_access' => 'getHttpAccess',
-        'enable_smtp' => 'getEnableSmtp',
-        'restrict_robots' => 'getRestrictRobots',
-        'variables' => 'getVariables',
-        'access' => 'getAccess',
-        'subscription' => 'getSubscription',
-        'services' => 'getServices',
-        'routes' => 'getRoutes',
-        'webapps' => 'getWebapps',
-        'workers' => 'getWorkers',
-        'container_profiles' => 'getContainerProfiles'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('updated_at', $data ?? [], null);
-        $this->setIfExists('fingerprint', $data ?? [], null);
-        $this->setIfExists('cluster_name', $data ?? [], null);
-        $this->setIfExists('project_info', $data ?? [], null);
-        $this->setIfExists('environment_info', $data ?? [], null);
-        $this->setIfExists('deployment_target', $data ?? [], null);
-        $this->setIfExists('vpn', $data ?? [], null);
-        $this->setIfExists('http_access', $data ?? [], null);
-        $this->setIfExists('enable_smtp', $data ?? [], null);
-        $this->setIfExists('restrict_robots', $data ?? [], null);
-        $this->setIfExists('variables', $data ?? [], null);
-        $this->setIfExists('access', $data ?? [], null);
-        $this->setIfExists('subscription', $data ?? [], null);
-        $this->setIfExists('services', $data ?? [], null);
-        $this->setIfExists('routes', $data ?? [], null);
-        $this->setIfExists('webapps', $data ?? [], null);
-        $this->setIfExists('workers', $data ?? [], null);
-        $this->setIfExists('container_profiles', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        if ($this->container['cluster_name'] === null) {
-            $invalidProperties[] = "'cluster_name' can't be null";
-        }
-        if ($this->container['project_info'] === null) {
-            $invalidProperties[] = "'project_info' can't be null";
-        }
-        if ($this->container['environment_info'] === null) {
-            $invalidProperties[] = "'environment_info' can't be null";
-        }
-        if ($this->container['deployment_target'] === null) {
-            $invalidProperties[] = "'deployment_target' can't be null";
-        }
-        if ($this->container['vpn'] === null) {
-            $invalidProperties[] = "'vpn' can't be null";
-        }
-        if ($this->container['http_access'] === null) {
-            $invalidProperties[] = "'http_access' can't be null";
-        }
-        if ($this->container['enable_smtp'] === null) {
-            $invalidProperties[] = "'enable_smtp' can't be null";
-        }
-        if ($this->container['restrict_robots'] === null) {
-            $invalidProperties[] = "'restrict_robots' can't be null";
-        }
-        if ($this->container['variables'] === null) {
-            $invalidProperties[] = "'variables' can't be null";
-        }
-        if ($this->container['access'] === null) {
-            $invalidProperties[] = "'access' can't be null";
-        }
-        if ($this->container['subscription'] === null) {
-            $invalidProperties[] = "'subscription' can't be null";
-        }
-        if ($this->container['services'] === null) {
-            $invalidProperties[] = "'services' can't be null";
-        }
-        if ($this->container['routes'] === null) {
-            $invalidProperties[] = "'routes' can't be null";
-        }
-        if ($this->container['webapps'] === null) {
-            $invalidProperties[] = "'webapps' can't be null";
-        }
-        if ($this->container['workers'] === null) {
-            $invalidProperties[] = "'workers' can't be null";
-        }
-        if ($this->container['container_profiles'] === null) {
-            $invalidProperties[] = "'container_profiles' can't be null";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt()
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     */
-    public function setCreatedAt($created_at)
-    {
-        if (is_null($created_at)) {
-            array_push($this->openAPINullablesSetToNull, 'created_at');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('created_at', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt()
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     */
-    public function setUpdatedAt($updated_at)
-    {
-        if (is_null($updated_at)) {
-            array_push($this->openAPINullablesSetToNull, 'updated_at');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('updated_at', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets fingerprint
-     *
-     * @return string|null
-     */
-    public function getFingerprint()
-    {
-        return $this->container['fingerprint'];
-    }
-
-    /**
-     * Sets fingerprint
-     */
-    public function setFingerprint($fingerprint)
-    {
-        if (is_null($fingerprint)) {
-            throw new \InvalidArgumentException('non-nullable fingerprint cannot be null');
-        }
-        $this->container['fingerprint'] = $fingerprint;
-
-        return $this;
-    }
-
-    /**
-     * Gets cluster_name
-     *
-     * @return string
-     */
-    public function getClusterName()
-    {
-        return $this->container['cluster_name'];
-    }
-
-    /**
-     * Sets cluster_name
-     */
-    public function setClusterName($cluster_name)
-    {
-        if (is_null($cluster_name)) {
-            throw new \InvalidArgumentException('non-nullable cluster_name cannot be null');
-        }
-        $this->container['cluster_name'] = $cluster_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets project_info
-     *
-     * @return \Upsun\Model\ProjectInfo
-     */
-    public function getProjectInfo()
-    {
-        return $this->container['project_info'];
-    }
-
-    /**
-     * Sets project_info
-     */
-    public function setProjectInfo($project_info)
-    {
-        if (is_null($project_info)) {
-            throw new \InvalidArgumentException('non-nullable project_info cannot be null');
-        }
-        $this->container['project_info'] = $project_info;
-
-        return $this;
-    }
-
-    /**
-     * Gets environment_info
-     *
-     * @return \Upsun\Model\EnvironmentInfo
-     */
-    public function getEnvironmentInfo()
-    {
-        return $this->container['environment_info'];
-    }
-
-    /**
-     * Sets environment_info
-     */
-    public function setEnvironmentInfo($environment_info)
-    {
-        if (is_null($environment_info)) {
-            throw new \InvalidArgumentException('non-nullable environment_info cannot be null');
-        }
-        $this->container['environment_info'] = $environment_info;
-
-        return $this;
-    }
-
-    /**
-     * Gets deployment_target
-     *
-     * @return string
-     */
-    public function getDeploymentTarget()
-    {
-        return $this->container['deployment_target'];
-    }
-
-    /**
-     * Sets deployment_target
-     */
-    public function setDeploymentTarget($deployment_target)
-    {
-        if (is_null($deployment_target)) {
-            throw new \InvalidArgumentException('non-nullable deployment_target cannot be null');
-        }
-        $this->container['deployment_target'] = $deployment_target;
-
-        return $this;
-    }
-
-    /**
-     * Gets vpn
-     *
-     * @return \Upsun\Model\VPNConfiguration
-     */
-    public function getVpn()
-    {
-        return $this->container['vpn'];
-    }
-
-    /**
-     * Sets vpn
-     */
-    public function setVpn($vpn)
-    {
-        if (is_null($vpn)) {
-            array_push($this->openAPINullablesSetToNull, 'vpn');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('vpn', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['vpn'] = $vpn;
-
-        return $this;
-    }
-
-    /**
-     * Gets http_access
-     *
-     * @return \Upsun\Model\HttpAccessPermissions
-     */
-    public function getHttpAccess()
-    {
-        return $this->container['http_access'];
-    }
-
-    /**
-     * Sets http_access
-     */
-    public function setHttpAccess($http_access)
-    {
-        if (is_null($http_access)) {
-            throw new \InvalidArgumentException('non-nullable http_access cannot be null');
-        }
-        $this->container['http_access'] = $http_access;
-
-        return $this;
-    }
-
-    /**
-     * Gets enable_smtp
-     *
-     * @return bool
-     */
-    public function getEnableSmtp()
-    {
-        return $this->container['enable_smtp'];
-    }
-
-    /**
-     * Sets enable_smtp
-     */
-    public function setEnableSmtp($enable_smtp)
-    {
-        if (is_null($enable_smtp)) {
-            throw new \InvalidArgumentException('non-nullable enable_smtp cannot be null');
-        }
-        $this->container['enable_smtp'] = $enable_smtp;
-
-        return $this;
-    }
-
-    /**
-     * Gets restrict_robots
-     *
-     * @return bool
-     */
-    public function getRestrictRobots()
-    {
-        return $this->container['restrict_robots'];
-    }
-
-    /**
-     * Sets restrict_robots
-     */
-    public function setRestrictRobots($restrict_robots)
-    {
-        if (is_null($restrict_robots)) {
-            throw new \InvalidArgumentException('non-nullable restrict_robots cannot be null');
-        }
-        $this->container['restrict_robots'] = $restrict_robots;
-
-        return $this;
-    }
-
-    /**
-     * Gets variables
-     *
-     * @return \Upsun\Model\TheVariablesApplyingToThisEnvironmentInner[]
-     */
-    public function getVariables()
-    {
-        return $this->container['variables'];
-    }
-
-    /**
-     * Sets variables
-     */
-    public function setVariables($variables)
-    {
-        if (is_null($variables)) {
-            throw new \InvalidArgumentException('non-nullable variables cannot be null');
-        }
-        $this->container['variables'] = $variables;
-
-        return $this;
-    }
-
-    /**
-     * Gets access
-     *
-     * @return \Upsun\Model\AccessControlDefinitionForThisEnviromentInner[]
-     */
-    public function getAccess()
-    {
-        return $this->container['access'];
-    }
-
-    /**
-     * Sets access
-     */
-    public function setAccess($access)
-    {
-        if (is_null($access)) {
-            throw new \InvalidArgumentException('non-nullable access cannot be null');
-        }
-        $this->container['access'] = $access;
-
-        return $this;
-    }
-
-    /**
-     * Gets subscription
-     *
-     * @return \Upsun\Model\Subscription1
-     */
-    public function getSubscription()
-    {
-        return $this->container['subscription'];
-    }
-
-    /**
-     * Sets subscription
-     */
-    public function setSubscription($subscription)
-    {
-        if (is_null($subscription)) {
-            throw new \InvalidArgumentException('non-nullable subscription cannot be null');
-        }
-        $this->container['subscription'] = $subscription;
-
-        return $this;
-    }
-
-    /**
-     * Gets services
-     *
-     * @return array<string,\Upsun\Model\ServicesValue>
-     */
-    public function getServices()
-    {
-        return $this->container['services'];
-    }
-
-    /**
-     * Sets services
-     */
-    public function setServices($services)
-    {
-        if (is_null($services)) {
-            throw new \InvalidArgumentException('non-nullable services cannot be null');
-        }
-        $this->container['services'] = $services;
-
-        return $this;
-    }
-
-    /**
-     * Gets routes
-     *
-     * @return array<string,\Upsun\Model\RoutesValue>
-     */
-    public function getRoutes()
-    {
-        return $this->container['routes'];
-    }
-
-    /**
-     * Sets routes
-     */
-    public function setRoutes($routes)
-    {
-        if (is_null($routes)) {
-            throw new \InvalidArgumentException('non-nullable routes cannot be null');
-        }
-        $this->container['routes'] = $routes;
-
-        return $this;
-    }
-
-    /**
-     * Gets webapps
-     *
-     * @return array<string,\Upsun\Model\WebApplicationsValue>
-     */
-    public function getWebapps()
-    {
-        return $this->container['webapps'];
-    }
-
-    /**
-     * Sets webapps
-     */
-    public function setWebapps($webapps)
-    {
-        if (is_null($webapps)) {
-            throw new \InvalidArgumentException('non-nullable webapps cannot be null');
-        }
-        $this->container['webapps'] = $webapps;
-
-        return $this;
-    }
-
-    /**
-     * Gets workers
-     *
-     * @return array<string,\Upsun\Model\WorkersValue>
-     */
-    public function getWorkers()
-    {
-        return $this->container['workers'];
-    }
-
-    /**
-     * Sets workers
-     */
-    public function setWorkers($workers)
-    {
-        if (is_null($workers)) {
-            throw new \InvalidArgumentException('non-nullable workers cannot be null');
-        }
-        $this->container['workers'] = $workers;
-
-        return $this;
-    }
-
-    /**
-     * Gets container_profiles
-     *
-     * @return array<string,array<string,\Upsun\Model\ContainerProfilesValueValue>>
-     */
-    public function getContainerProfiles()
-    {
-        return $this->container['container_profiles'];
-    }
-
-    /**
-     * Sets container_profiles
-     */
-    public function setContainerProfiles($container_profiles)
-    {
-        if (is_null($container_profiles)) {
-            throw new \InvalidArgumentException('non-nullable container_profiles cannot be null');
-        }
-        $this->container['container_profiles'] = $container_profiles;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+        return [
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'fingerprint' => $this->fingerprint,
+            'cluster_name' => $this->cluster_name,
+            'project_info' => $this->project_info,
+            'environment_info' => $this->environment_info,
+            'deployment_target' => $this->deployment_target,
+            'vpn' => $this->vpn,
+            'http_access' => $this->http_access,
+            'enable_smtp' => $this->enable_smtp,
+            'restrict_robots' => $this->restrict_robots,
+            'variables' => $this->variables,
+            'access' => $this->access,
+            'subscription' => $this->subscription,
+            'services' => $this->services,
+            'routes' => $this->routes,
+            'webapps' => $this->webapps,
+            'workers' => $this->workers,
+            'container_profiles' => $this->container_profiles,
+        ];
     }
 
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

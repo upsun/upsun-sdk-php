@@ -12,327 +12,41 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class OrganizationEstimationObjectUserLicensesBaseList implements ModelInterface, ArrayAccess, \JsonSerializable
+final class OrganizationEstimationObjectUserLicensesBaseList implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'OrganizationEstimationObject_user_licenses_base_list';
+    public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser $admin_user;
+    public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser $viewer_user;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'admin_user' => '\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser',
-        'viewer_user' => '\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'admin_user' => null,
-        'viewer_user' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'admin_user' => false,
-        'viewer_user' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser $admin_user = null,
+        \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser $viewer_user = null,
+    ) {
+        $this->admin_user = $admin_user;
+        $this->viewer_user = $viewer_user;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getAdminUser(): \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser|null
     {
-        return self::$openAPIFormats;
+        return $this->admin_user;
+    }
+    public function getViewerUser(): \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser|null
+    {
+        return $this->viewer_user;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'admin_user' => 'admin_user',
-        'viewer_user' => 'viewer_user'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'admin_user' => 'setAdminUser',
-        'viewer_user' => 'setViewerUser'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'admin_user' => 'getAdminUser',
-        'viewer_user' => 'getViewerUser'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('admin_user', $data ?? [], null);
-        $this->setIfExists('viewer_user', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets admin_user
-     *
-     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser|null
-     */
-    public function getAdminUser()
-    {
-        return $this->container['admin_user'];
-    }
-
-    /**
-     * Sets admin_user
-     */
-    public function setAdminUser($admin_user)
-    {
-        if (is_null($admin_user)) {
-            throw new \InvalidArgumentException('non-nullable admin_user cannot be null');
-        }
-        $this->container['admin_user'] = $admin_user;
-
-        return $this;
-    }
-
-    /**
-     * Gets viewer_user
-     *
-     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser|null
-     */
-    public function getViewerUser()
-    {
-        return $this->container['viewer_user'];
-    }
-
-    /**
-     * Sets viewer_user
-     */
-    public function setViewerUser($viewer_user)
-    {
-        if (is_null($viewer_user)) {
-            throw new \InvalidArgumentException('non-nullable viewer_user cannot be null');
-        }
-        $this->container['viewer_user'] = $viewer_user;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+        return [
+            'admin_user' => $this->admin_user,
+            'viewer_user' => $this->viewer_user,
+        ];
     }
 
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

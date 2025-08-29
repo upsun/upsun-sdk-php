@@ -12,1025 +12,177 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
+final class Activity implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Activity';
+    public readonly \DateTime $created_at;
+    public readonly \DateTime $updated_at;
+    public readonly string $type;
+    public readonly object $parameters;
+    public readonly string $project;
+    public readonly string $integration;
+    public readonly string[] $environments;
+    public readonly string $state;
+    public readonly string $result;
+    public readonly \DateTime $started_at;
+    public readonly \DateTime $completed_at;
+    public readonly int $completion_percent;
+    public readonly \DateTime $cancelled_at;
+    public readonly array<string,float> $timings;
+    public readonly string $log;
+    public readonly object $payload;
+    public readonly string $description;
+    public readonly string $text;
+    public readonly \DateTime $expires_at;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'created_at' => '\DateTime',
-        'updated_at' => '\DateTime',
-        'type' => 'string',
-        'parameters' => 'object',
-        'project' => 'string',
-        'integration' => 'string',
-        'environments' => 'string[]',
-        'state' => 'string',
-        'result' => 'string',
-        'started_at' => '\DateTime',
-        'completed_at' => '\DateTime',
-        'completion_percent' => 'int',
-        'cancelled_at' => '\DateTime',
-        'timings' => 'array<string,float>',
-        'log' => 'string',
-        'payload' => 'object',
-        'description' => 'string',
-        'text' => 'string',
-        'expires_at' => '\DateTime'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'created_at' => 'date-time',
-        'updated_at' => 'date-time',
-        'type' => null,
-        'parameters' => null,
-        'project' => null,
-        'integration' => null,
-        'environments' => null,
-        'state' => null,
-        'result' => null,
-        'started_at' => 'date-time',
-        'completed_at' => 'date-time',
-        'completion_percent' => null,
-        'cancelled_at' => 'date-time',
-        'timings' => 'float',
-        'log' => null,
-        'payload' => null,
-        'description' => null,
-        'text' => null,
-        'expires_at' => 'date-time'
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'created_at' => true,
-        'updated_at' => true,
-        'type' => false,
-        'parameters' => false,
-        'project' => false,
-        'integration' => false,
-        'environments' => false,
-        'state' => false,
-        'result' => true,
-        'started_at' => true,
-        'completed_at' => true,
-        'completion_percent' => false,
-        'cancelled_at' => true,
-        'timings' => false,
-        'log' => false,
-        'payload' => false,
-        'description' => true,
-        'text' => true,
-        'expires_at' => true
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        \DateTime $created_at,
+        \DateTime $updated_at,
+        string $type,
+        object $parameters,
+        string $project,
+        string $integration = null,
+        string[] $environments = null,
+        string $state,
+        string $result,
+        \DateTime $started_at,
+        \DateTime $completed_at,
+        int $completion_percent,
+        \DateTime $cancelled_at,
+        array<string,float> $timings,
+        string $log,
+        object $payload,
+        string $description,
+        string $text,
+        \DateTime $expires_at,
+    ) {
+        $this->created_at = $created_at;
+        $this->updated_at = $updated_at;
+        $this->type = $type;
+        $this->parameters = $parameters;
+        $this->project = $project;
+        $this->integration = $integration;
+        $this->environments = $environments;
+        $this->state = $state;
+        $this->result = $result;
+        $this->started_at = $started_at;
+        $this->completed_at = $completed_at;
+        $this->completion_percent = $completion_percent;
+        $this->cancelled_at = $cancelled_at;
+        $this->timings = $timings;
+        $this->log = $log;
+        $this->payload = $payload;
+        $this->description = $description;
+        $this->text = $text;
+        $this->expires_at = $expires_at;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getCreatedAt(): \DateTime
     {
-        return self::$openAPIFormats;
+        return $this->created_at;
+    }
+    public function getUpdatedAt(): \DateTime
+    {
+        return $this->updated_at;
+    }
+    public function getType(): string
+    {
+        return $this->type;
+    }
+    public function getParameters(): object
+    {
+        return $this->parameters;
+    }
+    public function getProject(): string
+    {
+        return $this->project;
+    }
+    public function getIntegration(): string|null
+    {
+        return $this->integration;
+    }
+    public function getEnvironments(): string[]|null
+    {
+        return $this->environments;
+    }
+    public function getState(): string
+    {
+        return $this->state;
+    }
+    public function getResult(): string
+    {
+        return $this->result;
+    }
+    public function getStartedAt(): \DateTime
+    {
+        return $this->started_at;
+    }
+    public function getCompletedAt(): \DateTime
+    {
+        return $this->completed_at;
+    }
+    public function getCompletionPercent(): int
+    {
+        return $this->completion_percent;
+    }
+    public function getCancelledAt(): \DateTime
+    {
+        return $this->cancelled_at;
+    }
+    public function getTimings(): array<string,float>
+    {
+        return $this->timings;
+    }
+    public function getLog(): string
+    {
+        return $this->log;
+    }
+    public function getPayload(): object
+    {
+        return $this->payload;
+    }
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+    public function getText(): string
+    {
+        return $this->text;
+    }
+    public function getExpiresAt(): \DateTime
+    {
+        return $this->expires_at;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at',
-        'type' => 'type',
-        'parameters' => 'parameters',
-        'project' => 'project',
-        'integration' => 'integration',
-        'environments' => 'environments',
-        'state' => 'state',
-        'result' => 'result',
-        'started_at' => 'started_at',
-        'completed_at' => 'completed_at',
-        'completion_percent' => 'completion_percent',
-        'cancelled_at' => 'cancelled_at',
-        'timings' => 'timings',
-        'log' => 'log',
-        'payload' => 'payload',
-        'description' => 'description',
-        'text' => 'text',
-        'expires_at' => 'expires_at'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'created_at' => 'setCreatedAt',
-        'updated_at' => 'setUpdatedAt',
-        'type' => 'setType',
-        'parameters' => 'setParameters',
-        'project' => 'setProject',
-        'integration' => 'setIntegration',
-        'environments' => 'setEnvironments',
-        'state' => 'setState',
-        'result' => 'setResult',
-        'started_at' => 'setStartedAt',
-        'completed_at' => 'setCompletedAt',
-        'completion_percent' => 'setCompletionPercent',
-        'cancelled_at' => 'setCancelledAt',
-        'timings' => 'setTimings',
-        'log' => 'setLog',
-        'payload' => 'setPayload',
-        'description' => 'setDescription',
-        'text' => 'setText',
-        'expires_at' => 'setExpiresAt'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'created_at' => 'getCreatedAt',
-        'updated_at' => 'getUpdatedAt',
-        'type' => 'getType',
-        'parameters' => 'getParameters',
-        'project' => 'getProject',
-        'integration' => 'getIntegration',
-        'environments' => 'getEnvironments',
-        'state' => 'getState',
-        'result' => 'getResult',
-        'started_at' => 'getStartedAt',
-        'completed_at' => 'getCompletedAt',
-        'completion_percent' => 'getCompletionPercent',
-        'cancelled_at' => 'getCancelledAt',
-        'timings' => 'getTimings',
-        'log' => 'getLog',
-        'payload' => 'getPayload',
-        'description' => 'getDescription',
-        'text' => 'getText',
-        'expires_at' => 'getExpiresAt'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-    public const STATE_CANCELLED = 'cancelled';
-    public const STATE_COMPLETE = 'complete';
-    public const STATE_IN_PROGRESS = 'in_progress';
-    public const STATE_PENDING = 'pending';
-    public const STATE_SCHEDULED = 'scheduled';
-    public const RESULT_FAILURE = 'failure';
-    public const RESULT_SUCCESS = 'success';
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getStateAllowableValues(): array
-    {
-        return [
-            self::STATE_CANCELLED,
-            self::STATE_COMPLETE,
-            self::STATE_IN_PROGRESS,
-            self::STATE_PENDING,
-            self::STATE_SCHEDULED,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getResultAllowableValues(): array
-    {
-        return [
-            self::RESULT_FAILURE,
-            self::RESULT_SUCCESS,
-        ];
-    }
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('updated_at', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('parameters', $data ?? [], null);
-        $this->setIfExists('project', $data ?? [], null);
-        $this->setIfExists('integration', $data ?? [], null);
-        $this->setIfExists('environments', $data ?? [], null);
-        $this->setIfExists('state', $data ?? [], null);
-        $this->setIfExists('result', $data ?? [], null);
-        $this->setIfExists('started_at', $data ?? [], null);
-        $this->setIfExists('completed_at', $data ?? [], null);
-        $this->setIfExists('completion_percent', $data ?? [], null);
-        $this->setIfExists('cancelled_at', $data ?? [], null);
-        $this->setIfExists('timings', $data ?? [], null);
-        $this->setIfExists('log', $data ?? [], null);
-        $this->setIfExists('payload', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('text', $data ?? [], null);
-        $this->setIfExists('expires_at', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
-        }
-        if ($this->container['updated_at'] === null) {
-            $invalidProperties[] = "'updated_at' can't be null";
-        }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
-        if ($this->container['parameters'] === null) {
-            $invalidProperties[] = "'parameters' can't be null";
-        }
-        if ($this->container['project'] === null) {
-            $invalidProperties[] = "'project' can't be null";
-        }
-        if ($this->container['state'] === null) {
-            $invalidProperties[] = "'state' can't be null";
-        }
-        $allowedValues = $this->getStateAllowableValues();
-        if (!is_null($this->container['state']) && !in_array($this->container['state'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'state', must be one of '%s'",
-                $this->container['state'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['result'] === null) {
-            $invalidProperties[] = "'result' can't be null";
-        }
-        $allowedValues = $this->getResultAllowableValues();
-        if (!is_null($this->container['result']) && !in_array($this->container['result'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'result', must be one of '%s'",
-                $this->container['result'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['started_at'] === null) {
-            $invalidProperties[] = "'started_at' can't be null";
-        }
-        if ($this->container['completed_at'] === null) {
-            $invalidProperties[] = "'completed_at' can't be null";
-        }
-        if ($this->container['completion_percent'] === null) {
-            $invalidProperties[] = "'completion_percent' can't be null";
-        }
-        if ($this->container['cancelled_at'] === null) {
-            $invalidProperties[] = "'cancelled_at' can't be null";
-        }
-        if ($this->container['timings'] === null) {
-            $invalidProperties[] = "'timings' can't be null";
-        }
-        if ($this->container['log'] === null) {
-            $invalidProperties[] = "'log' can't be null";
-        }
-        if ($this->container['payload'] === null) {
-            $invalidProperties[] = "'payload' can't be null";
-        }
-        if ($this->container['description'] === null) {
-            $invalidProperties[] = "'description' can't be null";
-        }
-        if ($this->container['text'] === null) {
-            $invalidProperties[] = "'text' can't be null";
-        }
-        if ($this->container['expires_at'] === null) {
-            $invalidProperties[] = "'expires_at' can't be null";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     */
-    public function setCreatedAt($created_at)
-    {
-        if (is_null($created_at)) {
-            array_push($this->openAPINullablesSetToNull, 'created_at');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('created_at', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     */
-    public function setUpdatedAt($updated_at)
-    {
-        if (is_null($updated_at)) {
-            array_push($this->openAPINullablesSetToNull, 'updated_at');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('updated_at', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     */
-    public function setType($type)
-    {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets parameters
-     *
-     * @return object
-     */
-    public function getParameters()
-    {
-        return $this->container['parameters'];
-    }
-
-    /**
-     * Sets parameters
-     */
-    public function setParameters($parameters)
-    {
-        if (is_null($parameters)) {
-            throw new \InvalidArgumentException('non-nullable parameters cannot be null');
-        }
-        $this->container['parameters'] = $parameters;
-
-        return $this;
-    }
-
-    /**
-     * Gets project
-     *
-     * @return string
-     */
-    public function getProject()
-    {
-        return $this->container['project'];
-    }
-
-    /**
-     * Sets project
-     */
-    public function setProject($project)
-    {
-        if (is_null($project)) {
-            throw new \InvalidArgumentException('non-nullable project cannot be null');
-        }
-        $this->container['project'] = $project;
-
-        return $this;
-    }
-
-    /**
-     * Gets integration
-     *
-     * @return string|null
-     */
-    public function getIntegration()
-    {
-        return $this->container['integration'];
-    }
-
-    /**
-     * Sets integration
-     */
-    public function setIntegration($integration)
-    {
-        if (is_null($integration)) {
-            throw new \InvalidArgumentException('non-nullable integration cannot be null');
-        }
-        $this->container['integration'] = $integration;
-
-        return $this;
-    }
-
-    /**
-     * Gets environments
-     *
-     * @return string[]|null
-     */
-    public function getEnvironments()
-    {
-        return $this->container['environments'];
-    }
-
-    /**
-     * Sets environments
-     */
-    public function setEnvironments($environments)
-    {
-        if (is_null($environments)) {
-            throw new \InvalidArgumentException('non-nullable environments cannot be null');
-        }
-        $this->container['environments'] = $environments;
-
-        return $this;
-    }
-
-    /**
-     * Gets state
-     *
-     * @return string
-     */
-    public function getState()
-    {
-        return $this->container['state'];
-    }
-
-    /**
-     * Sets state
-     */
-    public function setState($state)
-    {
-        if (is_null($state)) {
-            throw new \InvalidArgumentException('non-nullable state cannot be null');
-        }
-        $allowedValues = $this->getStateAllowableValues();
-        if (!in_array($state, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'state', must be one of '%s'",
-                    $state,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['state'] = $state;
-
-        return $this;
-    }
-
-    /**
-     * Gets result
-     *
-     * @return string
-     */
-    public function getResult()
-    {
-        return $this->container['result'];
-    }
-
-    /**
-     * Sets result
-     */
-    public function setResult($result)
-    {
-        if (is_null($result)) {
-            array_push($this->openAPINullablesSetToNull, 'result');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('result', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $allowedValues = $this->getResultAllowableValues();
-        if (!is_null($result) && !in_array($result, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'result', must be one of '%s'",
-                    $result,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['result'] = $result;
-
-        return $this;
-    }
-
-    /**
-     * Gets started_at
-     *
-     * @return \DateTime
-     */
-    public function getStartedAt()
-    {
-        return $this->container['started_at'];
-    }
-
-    /**
-     * Sets started_at
-     */
-    public function setStartedAt($started_at)
-    {
-        if (is_null($started_at)) {
-            array_push($this->openAPINullablesSetToNull, 'started_at');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('started_at', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['started_at'] = $started_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets completed_at
-     *
-     * @return \DateTime
-     */
-    public function getCompletedAt()
-    {
-        return $this->container['completed_at'];
-    }
-
-    /**
-     * Sets completed_at
-     */
-    public function setCompletedAt($completed_at)
-    {
-        if (is_null($completed_at)) {
-            array_push($this->openAPINullablesSetToNull, 'completed_at');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('completed_at', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['completed_at'] = $completed_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets completion_percent
-     *
-     * @return int
-     */
-    public function getCompletionPercent()
-    {
-        return $this->container['completion_percent'];
-    }
-
-    /**
-     * Sets completion_percent
-     */
-    public function setCompletionPercent($completion_percent)
-    {
-        if (is_null($completion_percent)) {
-            throw new \InvalidArgumentException('non-nullable completion_percent cannot be null');
-        }
-        $this->container['completion_percent'] = $completion_percent;
-
-        return $this;
-    }
-
-    /**
-     * Gets cancelled_at
-     *
-     * @return \DateTime
-     */
-    public function getCancelledAt()
-    {
-        return $this->container['cancelled_at'];
-    }
-
-    /**
-     * Sets cancelled_at
-     */
-    public function setCancelledAt($cancelled_at)
-    {
-        if (is_null($cancelled_at)) {
-            array_push($this->openAPINullablesSetToNull, 'cancelled_at');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('cancelled_at', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['cancelled_at'] = $cancelled_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets timings
-     *
-     * @return array<string,float>
-     */
-    public function getTimings()
-    {
-        return $this->container['timings'];
-    }
-
-    /**
-     * Sets timings
-     */
-    public function setTimings($timings)
-    {
-        if (is_null($timings)) {
-            throw new \InvalidArgumentException('non-nullable timings cannot be null');
-        }
-        $this->container['timings'] = $timings;
-
-        return $this;
-    }
-
-    /**
-     * Gets log
-     *
-     * @return string
-     *
-     * @deprecated
-     */
-    public function getLog()
-    {
-        return $this->container['log'];
-    }
-
-    /**
-     * Sets log
-     *
-     * @deprecated
-     */
-    public function setLog($log)
-    {
-        if (is_null($log)) {
-            throw new \InvalidArgumentException('non-nullable log cannot be null');
-        }
-        $this->container['log'] = $log;
-
-        return $this;
-    }
-
-    /**
-     * Gets payload
-     *
-     * @return object
-     */
-    public function getPayload()
-    {
-        return $this->container['payload'];
-    }
-
-    /**
-     * Sets payload
-     */
-    public function setPayload($payload)
-    {
-        if (is_null($payload)) {
-            throw new \InvalidArgumentException('non-nullable payload cannot be null');
-        }
-        $this->container['payload'] = $payload;
-
-        return $this;
-    }
-
-    /**
-     * Gets description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Sets description
-     */
-    public function setDescription($description)
-    {
-        if (is_null($description)) {
-            array_push($this->openAPINullablesSetToNull, 'description');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('description', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Gets text
-     *
-     * @return string
-     */
-    public function getText()
-    {
-        return $this->container['text'];
-    }
-
-    /**
-     * Sets text
-     */
-    public function setText($text)
-    {
-        if (is_null($text)) {
-            array_push($this->openAPINullablesSetToNull, 'text');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('text', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['text'] = $text;
-
-        return $this;
-    }
-
-    /**
-     * Gets expires_at
-     *
-     * @return \DateTime
-     */
-    public function getExpiresAt()
-    {
-        return $this->container['expires_at'];
-    }
-
-    /**
-     * Sets expires_at
-     */
-    public function setExpiresAt($expires_at)
-    {
-        if (is_null($expires_at)) {
-            array_push($this->openAPINullablesSetToNull, 'expires_at');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expires_at', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['expires_at'] = $expires_at;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+        return [
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'type' => $this->type,
+            'parameters' => $this->parameters,
+            'project' => $this->project,
+            'integration' => $this->integration,
+            'environments' => $this->environments,
+            'state' => $this->state,
+            'result' => $this->result,
+            'started_at' => $this->started_at,
+            'completed_at' => $this->completed_at,
+            'completion_percent' => $this->completion_percent,
+            'cancelled_at' => $this->cancelled_at,
+            'timings' => $this->timings,
+            'log' => $this->log,
+            'payload' => $this->payload,
+            'description' => $this->description,
+            'text' => $this->text,
+            'expires_at' => $this->expires_at,
+        ];
     }
 
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

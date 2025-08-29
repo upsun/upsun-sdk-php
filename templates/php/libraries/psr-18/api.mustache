@@ -154,7 +154,10 @@ use function sprintf;
         {{^vendorExtensions.x-group-parameters}}{{#allParams}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},
         {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
     ){{#returnType}}: {{#returnContainer}}array{{/returnContainer}}{{^returnContainer}}{{{returnType}}}{{/returnContainer}}{{/returnType}}{{^returnType}}: void{{/returnType}} {
-        {{#returnType}}list($response) = {{/returnType}}$this->{{operationId}}WithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}});{{#returnType}}
+        {{#returnType}}list($response) = {{/returnType}}$this->{{operationId}}WithHttpInfo(
+            {{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}},
+            {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
+        );{{#returnType}}
         return $response;{{/returnType}}
     }
 
@@ -188,17 +191,18 @@ use function sprintf;
         {{^vendorExtensions.x-group-parameters}}{{#allParams}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},
         {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
     ): array {
-        $request = $this->{{operationId}}Request({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}});
+        $request = $this->{{operationId}}Request(
+            {{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}},
+            {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -331,7 +335,10 @@ use function sprintf;
         {{^vendorExtensions.x-group-parameters}}{{#allParams}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},
         {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
     ): Promise {
-        return $this->{{operationId}}AsyncWithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}})
+        return $this->{{operationId}}AsyncWithHttpInfo(
+            {{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}},
+            {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -368,7 +375,10 @@ use function sprintf;
         {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
     ): Promise {
         $returnType = '{{{returnType}}}';
-        $request = $this->{{operationId}}Request({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}});
+        $request = $this->{{operationId}}Request(
+            {{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}},
+            {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -448,37 +458,58 @@ use function sprintf;
         {{#hasValidation}}
         {{#maxLength}}
         if ({{^required}}${{paramName}} !== null && {{/required}}strlen(${{paramName}}) > {{maxLength}}) {
-            throw new \InvalidArgumentException('invalid length for "${{paramName}}" when calling {{classname}}.{{operationId}}, must be smaller than or equal to {{maxLength}}.');
+            throw new \InvalidArgumentException(
+                'invalid length for "${{paramName}}" when calling {{classname}}.{{operationId}}, 
+                must be smaller than or equal to {{maxLength}}.'
+            );
         }
         {{/maxLength}}
         {{#minLength}}
         if ({{^required}}${{paramName}} !== null && {{/required}}strlen(${{paramName}}) < {{minLength}}) {
-            throw new \InvalidArgumentException('invalid length for "${{paramName}}" when calling {{classname}}.{{operationId}}, must be bigger than or equal to {{minLength}}.');
+            throw new \InvalidArgumentException(
+                'invalid length for "${{paramName}}" when calling {{classname}}.{{operationId}}, 
+                must be bigger than or equal to {{minLength}}.'
+            );
         }
         {{/minLength}}
         {{#maximum}}
         if ({{^required}}${{paramName}} !== null && {{/required}}${{paramName}} >{{#exclusiveMaximum}}={{/exclusiveMaximum}} {{maximum}}) {
-            throw new \InvalidArgumentException('invalid value for "${{paramName}}" when calling {{classname}}.{{operationId}}, must be smaller than {{^exclusiveMaximum}}or equal to {{/exclusiveMaximum}}{{maximum}}.');
+            throw new \InvalidArgumentException(
+                'invalid value for "${{paramName}}" when calling {{classname}}.{{operationId}}, 
+                must be smaller than {{^exclusiveMaximum}}or equal to {{/exclusiveMaximum}}{{maximum}}.'
+            );
         }
         {{/maximum}}
         {{#minimum}}
         if ({{^required}}${{paramName}} !== null && {{/required}}${{paramName}} <{{#exclusiveMinimum}}={{/exclusiveMinimum}} {{minimum}}) {
-            throw new \InvalidArgumentException('invalid value for "${{paramName}}" when calling {{classname}}.{{operationId}}, must be bigger than {{^exclusiveMinimum}}or equal to {{/exclusiveMinimum}}{{minimum}}.');
+            throw new \InvalidArgumentException(
+                'invalid value for "${{paramName}}" when calling {{classname}}.{{operationId}},
+                must be bigger than {{^exclusiveMinimum}}or equal to {{/exclusiveMinimum}}{{minimum}}.'
+            );
         }
         {{/minimum}}
         {{#pattern}}
         if ({{^required}}${{paramName}} !== null && {{/required}}!preg_match("{{{pattern}}}", ${{paramName}})) {
-            throw new \InvalidArgumentException("invalid value for \"{{paramName}}\" when calling {{classname}}.{{operationId}}, must conform to the pattern {{{pattern}}}.");
+            throw new \InvalidArgumentException(
+                "invalid value for \"{{paramName}}\" when calling {{classname}}.{{operationId}},
+                must conform to the pattern {{{pattern}}}."
+            );
         }
         {{/pattern}}
         {{#maxItems}}
         if ({{^required}}${{paramName}} !== null && {{/required}}count(${{paramName}}) > {{maxItems}}) {
-            throw new \InvalidArgumentException('invalid value for "${{paramName}}" when calling {{classname}}.{{operationId}}, number of items must be less than or equal to {{maxItems}}.');
+            throw new \InvalidArgumentException(
+                'invalid value for "${{paramName}}" when calling {{classname}}.{{operationId}},
+                number of items must be less than or equal to {{maxItems}}.'
+            );
         }
         {{/maxItems}}
         {{#minItems}}
         if ({{^required}}${{paramName}} !== null && {{/required}}count(${{paramName}}) < {{minItems}}) {
-            throw new \InvalidArgumentException('invalid value for "${{paramName}}" when calling {{classname}}.{{operationId}}, number of items must be greater than or equal to {{minItems}}.');
+            throw new \InvalidArgumentException(
+                'invalid value for "${{paramName}}" when calling {{classname}}.{{operationId}},
+                number of items must be greater than or equal to {{minItems}}.'
+            );
         }
         {{/minItems}}
 
@@ -492,7 +523,7 @@ use function sprintf;
         $httpBody = null;
         $multipart = false;
 
-        {{#queryParams}}
+{{#queryParams}}
         // query params
         {{#isExplode}}
         if (${{paramName}} !== null) {
@@ -509,7 +540,7 @@ use function sprintf;
             $queryParams['{{baseName}}'] = {{#isModel}}${{paramName}}->getEq(){{/isModel}}{{^isModel}}${{paramName}}{{/isModel}};
         {{/style}}
         }
-        
+
         {{/isExplode}}
         {{^isExplode}}
         if (is_array(${{paramName}})) {
@@ -519,7 +550,7 @@ use function sprintf;
             $queryParams['{{baseName}}'] = {{#isModel}}${{paramName}}->toHeaderValue(){{/isModel}}{{^isModel}}${{paramName}}{{/isModel}};
         }
         {{/isExplode}}
-        {{/queryParams}}
+{{/queryParams}}
 
         {{#headerParams}}
         // header params
@@ -675,31 +706,22 @@ use function sprintf;
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -762,16 +784,6 @@ use function sprintf;
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }
 {{/operations}}

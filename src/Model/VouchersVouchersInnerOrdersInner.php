@@ -12,477 +12,81 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class VouchersVouchersInnerOrdersInner implements ModelInterface, ArrayAccess, \JsonSerializable
+final class VouchersVouchersInnerOrdersInner implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Vouchers_vouchers_inner_orders_inner';
+    public readonly string $order_id;
+    public readonly string $status;
+    public readonly string $billing_period_start;
+    public readonly string $billing_period_end;
+    public readonly string $order_total;
+    public readonly string $order_discount;
+    public readonly string $currency;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'order_id' => 'string',
-        'status' => 'string',
-        'billing_period_start' => 'string',
-        'billing_period_end' => 'string',
-        'order_total' => 'string',
-        'order_discount' => 'string',
-        'currency' => 'string'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'order_id' => null,
-        'status' => null,
-        'billing_period_start' => null,
-        'billing_period_end' => null,
-        'order_total' => null,
-        'order_discount' => null,
-        'currency' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'order_id' => false,
-        'status' => false,
-        'billing_period_start' => false,
-        'billing_period_end' => false,
-        'order_total' => false,
-        'order_discount' => false,
-        'currency' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        string $order_id = null,
+        string $status = null,
+        string $billing_period_start = null,
+        string $billing_period_end = null,
+        string $order_total = null,
+        string $order_discount = null,
+        string $currency = null,
+    ) {
+        $this->order_id = $order_id;
+        $this->status = $status;
+        $this->billing_period_start = $billing_period_start;
+        $this->billing_period_end = $billing_period_end;
+        $this->order_total = $order_total;
+        $this->order_discount = $order_discount;
+        $this->currency = $currency;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getOrderId(): string|null
     {
-        return self::$openAPIFormats;
+        return $this->order_id;
+    }
+    public function getStatus(): string|null
+    {
+        return $this->status;
+    }
+    public function getBillingPeriodStart(): string|null
+    {
+        return $this->billing_period_start;
+    }
+    public function getBillingPeriodEnd(): string|null
+    {
+        return $this->billing_period_end;
+    }
+    public function getOrderTotal(): string|null
+    {
+        return $this->order_total;
+    }
+    public function getOrderDiscount(): string|null
+    {
+        return $this->order_discount;
+    }
+    public function getCurrency(): string|null
+    {
+        return $this->currency;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'order_id' => 'order_id',
-        'status' => 'status',
-        'billing_period_start' => 'billing_period_start',
-        'billing_period_end' => 'billing_period_end',
-        'order_total' => 'order_total',
-        'order_discount' => 'order_discount',
-        'currency' => 'currency'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'order_id' => 'setOrderId',
-        'status' => 'setStatus',
-        'billing_period_start' => 'setBillingPeriodStart',
-        'billing_period_end' => 'setBillingPeriodEnd',
-        'order_total' => 'setOrderTotal',
-        'order_discount' => 'setOrderDiscount',
-        'currency' => 'setCurrency'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'order_id' => 'getOrderId',
-        'status' => 'getStatus',
-        'billing_period_start' => 'getBillingPeriodStart',
-        'billing_period_end' => 'getBillingPeriodEnd',
-        'order_total' => 'getOrderTotal',
-        'order_discount' => 'getOrderDiscount',
-        'currency' => 'getCurrency'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('order_id', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('billing_period_start', $data ?? [], null);
-        $this->setIfExists('billing_period_end', $data ?? [], null);
-        $this->setIfExists('order_total', $data ?? [], null);
-        $this->setIfExists('order_discount', $data ?? [], null);
-        $this->setIfExists('currency', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets order_id
-     *
-     * @return string|null
-     */
-    public function getOrderId()
-    {
-        return $this->container['order_id'];
-    }
-
-    /**
-     * Sets order_id
-     */
-    public function setOrderId($order_id)
-    {
-        if (is_null($order_id)) {
-            throw new \InvalidArgumentException('non-nullable order_id cannot be null');
-        }
-        $this->container['order_id'] = $order_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return string|null
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     */
-    public function setStatus($status)
-    {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets billing_period_start
-     *
-     * @return string|null
-     */
-    public function getBillingPeriodStart()
-    {
-        return $this->container['billing_period_start'];
-    }
-
-    /**
-     * Sets billing_period_start
-     */
-    public function setBillingPeriodStart($billing_period_start)
-    {
-        if (is_null($billing_period_start)) {
-            throw new \InvalidArgumentException('non-nullable billing_period_start cannot be null');
-        }
-        $this->container['billing_period_start'] = $billing_period_start;
-
-        return $this;
-    }
-
-    /**
-     * Gets billing_period_end
-     *
-     * @return string|null
-     */
-    public function getBillingPeriodEnd()
-    {
-        return $this->container['billing_period_end'];
-    }
-
-    /**
-     * Sets billing_period_end
-     */
-    public function setBillingPeriodEnd($billing_period_end)
-    {
-        if (is_null($billing_period_end)) {
-            throw new \InvalidArgumentException('non-nullable billing_period_end cannot be null');
-        }
-        $this->container['billing_period_end'] = $billing_period_end;
-
-        return $this;
-    }
-
-    /**
-     * Gets order_total
-     *
-     * @return string|null
-     */
-    public function getOrderTotal()
-    {
-        return $this->container['order_total'];
-    }
-
-    /**
-     * Sets order_total
-     */
-    public function setOrderTotal($order_total)
-    {
-        if (is_null($order_total)) {
-            throw new \InvalidArgumentException('non-nullable order_total cannot be null');
-        }
-        $this->container['order_total'] = $order_total;
-
-        return $this;
-    }
-
-    /**
-     * Gets order_discount
-     *
-     * @return string|null
-     */
-    public function getOrderDiscount()
-    {
-        return $this->container['order_discount'];
-    }
-
-    /**
-     * Sets order_discount
-     */
-    public function setOrderDiscount($order_discount)
-    {
-        if (is_null($order_discount)) {
-            throw new \InvalidArgumentException('non-nullable order_discount cannot be null');
-        }
-        $this->container['order_discount'] = $order_discount;
-
-        return $this;
-    }
-
-    /**
-     * Gets currency
-     *
-     * @return string|null
-     */
-    public function getCurrency()
-    {
-        return $this->container['currency'];
-    }
-
-    /**
-     * Sets currency
-     */
-    public function setCurrency($currency)
-    {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
-        }
-        $this->container['currency'] = $currency;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+        return [
+            'order_id' => $this->order_id,
+            'status' => $this->status,
+            'billing_period_start' => $this->billing_period_start,
+            'billing_period_end' => $this->billing_period_end,
+            'order_total' => $this->order_total,
+            'order_discount' => $this->order_discount,
+            'currency' => $this->currency,
+        ];
     }
 
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

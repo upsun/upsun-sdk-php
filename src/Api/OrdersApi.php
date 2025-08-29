@@ -127,7 +127,10 @@ final class OrdersApi extends AbstractApi
         string $organization_id,
         string $order_id
     ): \Upsun\Model\CreateAuthorizationCredentials200Response {
-        list($response) = $this->createAuthorizationCredentialsWithHttpInfo($organization_id, $order_id);
+        list($response) = $this->createAuthorizationCredentialsWithHttpInfo(
+            $organization_id,
+            $order_id
+        );
         return $response;
     }
 
@@ -141,17 +144,18 @@ final class OrdersApi extends AbstractApi
         string $organization_id,
         string $order_id
     ): array {
-        $request = $this->createAuthorizationCredentialsRequest($organization_id, $order_id);
+        $request = $this->createAuthorizationCredentialsRequest(
+            $organization_id,
+            $order_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -273,7 +277,10 @@ final class OrdersApi extends AbstractApi
         string $organization_id,
         string $order_id
     ): Promise {
-        return $this->createAuthorizationCredentialsAsyncWithHttpInfo($organization_id, $order_id)
+        return $this->createAuthorizationCredentialsAsyncWithHttpInfo(
+            $organization_id,
+            $order_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -291,7 +298,10 @@ final class OrdersApi extends AbstractApi
         string $order_id
     ): Promise {
         $returnType = '\Upsun\Model\CreateAuthorizationCredentials200Response';
-        $request = $this->createAuthorizationCredentialsRequest($organization_id, $order_id);
+        $request = $this->createAuthorizationCredentialsRequest(
+            $organization_id,
+            $order_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -435,7 +445,9 @@ final class OrdersApi extends AbstractApi
     public function downloadInvoice(
         string $token
     ): void {
-        $this->downloadInvoiceWithHttpInfo($token);
+        $this->downloadInvoiceWithHttpInfo(
+            $token
+        );
     }
 
     /**
@@ -447,17 +459,17 @@ final class OrdersApi extends AbstractApi
     public function downloadInvoiceWithHttpInfo(
         string $token
     ): array {
-        $request = $this->downloadInvoiceRequest($token);
+        $request = $this->downloadInvoiceRequest(
+            $token
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -501,7 +513,9 @@ final class OrdersApi extends AbstractApi
     public function downloadInvoiceAsync(
         string $token
     ): Promise {
-        return $this->downloadInvoiceAsyncWithHttpInfo($token)
+        return $this->downloadInvoiceAsyncWithHttpInfo(
+            $token
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -518,7 +532,9 @@ final class OrdersApi extends AbstractApi
         string $token
     ): Promise {
         $returnType = '';
-        $request = $this->downloadInvoiceRequest($token);
+        $request = $this->downloadInvoiceRequest(
+            $token
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -574,7 +590,7 @@ final class OrdersApi extends AbstractApi
                 $queryParams['token'] = $token;
             }
         }
-        
+
 
 
 
@@ -642,7 +658,11 @@ final class OrdersApi extends AbstractApi
         string $order_id,
         string $mode = null
     ): \Upsun\Model\Order {
-        list($response) = $this->getOrgOrderWithHttpInfo($organization_id, $order_id, $mode);
+        list($response) = $this->getOrgOrderWithHttpInfo(
+            $organization_id,
+            $order_id,
+            $mode
+        );
         return $response;
     }
 
@@ -657,17 +677,19 @@ final class OrdersApi extends AbstractApi
         string $order_id,
         string $mode = null
     ): array {
-        $request = $this->getOrgOrderRequest($organization_id, $order_id, $mode);
+        $request = $this->getOrgOrderRequest(
+            $organization_id,
+            $order_id,
+            $mode
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -776,7 +798,11 @@ final class OrdersApi extends AbstractApi
         string $order_id,
         string $mode = null
     ): Promise {
-        return $this->getOrgOrderAsyncWithHttpInfo($organization_id, $order_id, $mode)
+        return $this->getOrgOrderAsyncWithHttpInfo(
+            $organization_id,
+            $order_id,
+            $mode
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -795,7 +821,11 @@ final class OrdersApi extends AbstractApi
         string $mode = null
     ): Promise {
         $returnType = '\Upsun\Model\Order';
-        $request = $this->getOrgOrderRequest($organization_id, $order_id, $mode);
+        $request = $this->getOrgOrderRequest(
+            $organization_id,
+            $order_id,
+            $mode
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -869,7 +899,7 @@ final class OrdersApi extends AbstractApi
                 $queryParams['mode'] = $mode;
             }
         }
-        
+
 
 
         // path params
@@ -955,7 +985,13 @@ final class OrdersApi extends AbstractApi
         int $page = null,
         string $mode = null
     ): \Upsun\Model\ListOrgOrders200Response {
-        list($response) = $this->listOrgOrdersWithHttpInfo($organization_id, $filter_status, $filter_total, $page, $mode);
+        list($response) = $this->listOrgOrdersWithHttpInfo(
+            $organization_id,
+            $filter_status,
+            $filter_total,
+            $page,
+            $mode
+        );
         return $response;
     }
 
@@ -972,17 +1008,21 @@ final class OrdersApi extends AbstractApi
         int $page = null,
         string $mode = null
     ): array {
-        $request = $this->listOrgOrdersRequest($organization_id, $filter_status, $filter_total, $page, $mode);
+        $request = $this->listOrgOrdersRequest(
+            $organization_id,
+            $filter_status,
+            $filter_total,
+            $page,
+            $mode
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1093,7 +1133,13 @@ final class OrdersApi extends AbstractApi
         int $page = null,
         string $mode = null
     ): Promise {
-        return $this->listOrgOrdersAsyncWithHttpInfo($organization_id, $filter_status, $filter_total, $page, $mode)
+        return $this->listOrgOrdersAsyncWithHttpInfo(
+            $organization_id,
+            $filter_status,
+            $filter_total,
+            $page,
+            $mode
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1114,7 +1160,13 @@ final class OrdersApi extends AbstractApi
         string $mode = null
     ): Promise {
         $returnType = '\Upsun\Model\ListOrgOrders200Response';
-        $request = $this->listOrgOrdersRequest($organization_id, $filter_status, $filter_total, $page, $mode);
+        $request = $this->listOrgOrdersRequest(
+            $organization_id,
+            $filter_status,
+            $filter_total,
+            $page,
+            $mode
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1184,7 +1236,7 @@ final class OrdersApi extends AbstractApi
                 $queryParams['filter[status]'] = $filter_status;
             }
         }
-        
+
         // query params
         if ($filter_total !== null) {
             if ('form' === 'form' && is_array($filter_total)) {
@@ -1195,7 +1247,7 @@ final class OrdersApi extends AbstractApi
                 $queryParams['filter[total]'] = $filter_total;
             }
         }
-        
+
         // query params
         if ($page !== null) {
             if ('form' === 'form' && is_array($page)) {
@@ -1206,7 +1258,7 @@ final class OrdersApi extends AbstractApi
                 $queryParams['page'] = $page;
             }
         }
-        
+
         // query params
         if ($mode !== null) {
             if ('form' === 'form' && is_array($mode)) {
@@ -1217,7 +1269,7 @@ final class OrdersApi extends AbstractApi
                 $queryParams['mode'] = $mode;
             }
         }
-        
+
 
 
         // path params
@@ -1292,31 +1344,22 @@ final class OrdersApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -1379,15 +1422,5 @@ final class OrdersApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

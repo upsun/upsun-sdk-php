@@ -127,7 +127,10 @@ final class RepositoryApi extends AbstractApi
         string $project_id,
         string $repository_blob_id
     ): \Upsun\Model\Blob {
-        list($response) = $this->getProjectsGitBlobsWithHttpInfo($project_id, $repository_blob_id);
+        list($response) = $this->getProjectsGitBlobsWithHttpInfo(
+            $project_id,
+            $repository_blob_id
+        );
         return $response;
     }
 
@@ -141,17 +144,18 @@ final class RepositoryApi extends AbstractApi
         string $project_id,
         string $repository_blob_id
     ): array {
-        $request = $this->getProjectsGitBlobsRequest($project_id, $repository_blob_id);
+        $request = $this->getProjectsGitBlobsRequest(
+            $project_id,
+            $repository_blob_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -231,7 +235,10 @@ final class RepositoryApi extends AbstractApi
         string $project_id,
         string $repository_blob_id
     ): Promise {
-        return $this->getProjectsGitBlobsAsyncWithHttpInfo($project_id, $repository_blob_id)
+        return $this->getProjectsGitBlobsAsyncWithHttpInfo(
+            $project_id,
+            $repository_blob_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -249,7 +256,10 @@ final class RepositoryApi extends AbstractApi
         string $repository_blob_id
     ): Promise {
         $returnType = '\Upsun\Model\Blob';
-        $request = $this->getProjectsGitBlobsRequest($project_id, $repository_blob_id);
+        $request = $this->getProjectsGitBlobsRequest(
+            $project_id,
+            $repository_blob_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -394,7 +404,10 @@ final class RepositoryApi extends AbstractApi
         string $project_id,
         string $repository_commit_id
     ): \Upsun\Model\Commit {
-        list($response) = $this->getProjectsGitCommitsWithHttpInfo($project_id, $repository_commit_id);
+        list($response) = $this->getProjectsGitCommitsWithHttpInfo(
+            $project_id,
+            $repository_commit_id
+        );
         return $response;
     }
 
@@ -408,17 +421,18 @@ final class RepositoryApi extends AbstractApi
         string $project_id,
         string $repository_commit_id
     ): array {
-        $request = $this->getProjectsGitCommitsRequest($project_id, $repository_commit_id);
+        $request = $this->getProjectsGitCommitsRequest(
+            $project_id,
+            $repository_commit_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -498,7 +512,10 @@ final class RepositoryApi extends AbstractApi
         string $project_id,
         string $repository_commit_id
     ): Promise {
-        return $this->getProjectsGitCommitsAsyncWithHttpInfo($project_id, $repository_commit_id)
+        return $this->getProjectsGitCommitsAsyncWithHttpInfo(
+            $project_id,
+            $repository_commit_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -516,7 +533,10 @@ final class RepositoryApi extends AbstractApi
         string $repository_commit_id
     ): Promise {
         $returnType = '\Upsun\Model\Commit';
-        $request = $this->getProjectsGitCommitsRequest($project_id, $repository_commit_id);
+        $request = $this->getProjectsGitCommitsRequest(
+            $project_id,
+            $repository_commit_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -661,7 +681,10 @@ final class RepositoryApi extends AbstractApi
         string $project_id,
         string $repository_ref_id
     ): \Upsun\Model\Ref {
-        list($response) = $this->getProjectsGitRefsWithHttpInfo($project_id, $repository_ref_id);
+        list($response) = $this->getProjectsGitRefsWithHttpInfo(
+            $project_id,
+            $repository_ref_id
+        );
         return $response;
     }
 
@@ -675,17 +698,18 @@ final class RepositoryApi extends AbstractApi
         string $project_id,
         string $repository_ref_id
     ): array {
-        $request = $this->getProjectsGitRefsRequest($project_id, $repository_ref_id);
+        $request = $this->getProjectsGitRefsRequest(
+            $project_id,
+            $repository_ref_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -765,7 +789,10 @@ final class RepositoryApi extends AbstractApi
         string $project_id,
         string $repository_ref_id
     ): Promise {
-        return $this->getProjectsGitRefsAsyncWithHttpInfo($project_id, $repository_ref_id)
+        return $this->getProjectsGitRefsAsyncWithHttpInfo(
+            $project_id,
+            $repository_ref_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -783,7 +810,10 @@ final class RepositoryApi extends AbstractApi
         string $repository_ref_id
     ): Promise {
         $returnType = '\Upsun\Model\Ref';
-        $request = $this->getProjectsGitRefsRequest($project_id, $repository_ref_id);
+        $request = $this->getProjectsGitRefsRequest(
+            $project_id,
+            $repository_ref_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -928,7 +958,10 @@ final class RepositoryApi extends AbstractApi
         string $project_id,
         string $repository_tree_id
     ): \Upsun\Model\Tree {
-        list($response) = $this->getProjectsGitTreesWithHttpInfo($project_id, $repository_tree_id);
+        list($response) = $this->getProjectsGitTreesWithHttpInfo(
+            $project_id,
+            $repository_tree_id
+        );
         return $response;
     }
 
@@ -942,17 +975,18 @@ final class RepositoryApi extends AbstractApi
         string $project_id,
         string $repository_tree_id
     ): array {
-        $request = $this->getProjectsGitTreesRequest($project_id, $repository_tree_id);
+        $request = $this->getProjectsGitTreesRequest(
+            $project_id,
+            $repository_tree_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1032,7 +1066,10 @@ final class RepositoryApi extends AbstractApi
         string $project_id,
         string $repository_tree_id
     ): Promise {
-        return $this->getProjectsGitTreesAsyncWithHttpInfo($project_id, $repository_tree_id)
+        return $this->getProjectsGitTreesAsyncWithHttpInfo(
+            $project_id,
+            $repository_tree_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1050,7 +1087,10 @@ final class RepositoryApi extends AbstractApi
         string $repository_tree_id
     ): Promise {
         $returnType = '\Upsun\Model\Tree';
-        $request = $this->getProjectsGitTreesRequest($project_id, $repository_tree_id);
+        $request = $this->getProjectsGitTreesRequest(
+            $project_id,
+            $repository_tree_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1196,7 +1236,9 @@ final class RepositoryApi extends AbstractApi
     public function listProjectsGitRefs(
         string $project_id
     ): array {
-        list($response) = $this->listProjectsGitRefsWithHttpInfo($project_id);
+        list($response) = $this->listProjectsGitRefsWithHttpInfo(
+            $project_id
+        );
         return $response;
     }
 
@@ -1209,17 +1251,17 @@ final class RepositoryApi extends AbstractApi
     public function listProjectsGitRefsWithHttpInfo(
         string $project_id
     ): array {
-        $request = $this->listProjectsGitRefsRequest($project_id);
+        $request = $this->listProjectsGitRefsRequest(
+            $project_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1298,7 +1340,9 @@ final class RepositoryApi extends AbstractApi
     public function listProjectsGitRefsAsync(
         string $project_id
     ): Promise {
-        return $this->listProjectsGitRefsAsyncWithHttpInfo($project_id)
+        return $this->listProjectsGitRefsAsyncWithHttpInfo(
+            $project_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1315,7 +1359,9 @@ final class RepositoryApi extends AbstractApi
         string $project_id
     ): Promise {
         $returnType = '\Upsun\Model\Ref[]';
-        $request = $this->listProjectsGitRefsRequest($project_id);
+        $request = $this->listProjectsGitRefsRequest(
+            $project_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1445,31 +1491,22 @@ final class RepositoryApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -1532,15 +1569,5 @@ final class RepositoryApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

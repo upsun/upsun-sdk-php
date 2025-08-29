@@ -126,7 +126,9 @@ final class OrganizationsApi extends AbstractApi
     public function createOrg(
         \Upsun\Model\CreateOrgRequest $create_org_request
     ): \Upsun\Model\Organization {
-        list($response) = $this->createOrgWithHttpInfo($create_org_request);
+        list($response) = $this->createOrgWithHttpInfo(
+            $create_org_request
+        );
         return $response;
     }
 
@@ -139,17 +141,17 @@ final class OrganizationsApi extends AbstractApi
     public function createOrgWithHttpInfo(
         \Upsun\Model\CreateOrgRequest $create_org_request
     ): array {
-        $request = $this->createOrgRequest($create_org_request);
+        $request = $this->createOrgRequest(
+            $create_org_request
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -256,7 +258,9 @@ final class OrganizationsApi extends AbstractApi
     public function createOrgAsync(
         \Upsun\Model\CreateOrgRequest $create_org_request
     ): Promise {
-        return $this->createOrgAsyncWithHttpInfo($create_org_request)
+        return $this->createOrgAsyncWithHttpInfo(
+            $create_org_request
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -273,7 +277,9 @@ final class OrganizationsApi extends AbstractApi
         \Upsun\Model\CreateOrgRequest $create_org_request
     ): Promise {
         $returnType = '\Upsun\Model\Organization';
-        $request = $this->createOrgRequest($create_org_request);
+        $request = $this->createOrgRequest(
+            $create_org_request
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -400,7 +406,9 @@ final class OrganizationsApi extends AbstractApi
     public function deleteOrg(
         string $organization_id
     ): void {
-        $this->deleteOrgWithHttpInfo($organization_id);
+        $this->deleteOrgWithHttpInfo(
+            $organization_id
+        );
     }
 
     /**
@@ -412,17 +420,17 @@ final class OrganizationsApi extends AbstractApi
     public function deleteOrgWithHttpInfo(
         string $organization_id
     ): array {
-        $request = $this->deleteOrgRequest($organization_id);
+        $request = $this->deleteOrgRequest(
+            $organization_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -490,7 +498,9 @@ final class OrganizationsApi extends AbstractApi
     public function deleteOrgAsync(
         string $organization_id
     ): Promise {
-        return $this->deleteOrgAsyncWithHttpInfo($organization_id)
+        return $this->deleteOrgAsyncWithHttpInfo(
+            $organization_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -507,7 +517,9 @@ final class OrganizationsApi extends AbstractApi
         string $organization_id
     ): Promise {
         $returnType = '';
-        $request = $this->deleteOrgRequest($organization_id);
+        $request = $this->deleteOrgRequest(
+            $organization_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -626,7 +638,9 @@ final class OrganizationsApi extends AbstractApi
     public function getOrg(
         string $organization_id
     ): \Upsun\Model\Organization {
-        list($response) = $this->getOrgWithHttpInfo($organization_id);
+        list($response) = $this->getOrgWithHttpInfo(
+            $organization_id
+        );
         return $response;
     }
 
@@ -639,17 +653,17 @@ final class OrganizationsApi extends AbstractApi
     public function getOrgWithHttpInfo(
         string $organization_id
     ): array {
-        $request = $this->getOrgRequest($organization_id);
+        $request = $this->getOrgRequest(
+            $organization_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -756,7 +770,9 @@ final class OrganizationsApi extends AbstractApi
     public function getOrgAsync(
         string $organization_id
     ): Promise {
-        return $this->getOrgAsyncWithHttpInfo($organization_id)
+        return $this->getOrgAsyncWithHttpInfo(
+            $organization_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -773,7 +789,9 @@ final class OrganizationsApi extends AbstractApi
         string $organization_id
     ): Promise {
         $returnType = '\Upsun\Model\Organization';
-        $request = $this->getOrgRequest($organization_id);
+        $request = $this->getOrgRequest(
+            $organization_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -913,7 +931,20 @@ final class OrganizationsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): \Upsun\Model\ListOrgs200Response {
-        list($response) = $this->listOrgsWithHttpInfo($filter_id, $filter_owner_id, $filter_name, $filter_label, $filter_vendor, $filter_capabilities, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+        list($response) = $this->listOrgsWithHttpInfo(
+            $filter_id,
+            $filter_owner_id,
+            $filter_name,
+            $filter_label,
+            $filter_vendor,
+            $filter_capabilities,
+            $filter_status,
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
         return $response;
     }
 
@@ -937,17 +968,28 @@ final class OrganizationsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): array {
-        $request = $this->listOrgsRequest($filter_id, $filter_owner_id, $filter_name, $filter_label, $filter_vendor, $filter_capabilities, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+        $request = $this->listOrgsRequest(
+            $filter_id,
+            $filter_owner_id,
+            $filter_name,
+            $filter_label,
+            $filter_vendor,
+            $filter_capabilities,
+            $filter_status,
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1065,7 +1107,20 @@ final class OrganizationsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): Promise {
-        return $this->listOrgsAsyncWithHttpInfo($filter_id, $filter_owner_id, $filter_name, $filter_label, $filter_vendor, $filter_capabilities, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort)
+        return $this->listOrgsAsyncWithHttpInfo(
+            $filter_id,
+            $filter_owner_id,
+            $filter_name,
+            $filter_label,
+            $filter_vendor,
+            $filter_capabilities,
+            $filter_status,
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1093,7 +1148,20 @@ final class OrganizationsApi extends AbstractApi
         string $sort = null
     ): Promise {
         $returnType = '\Upsun\Model\ListOrgs200Response';
-        $request = $this->listOrgsRequest($filter_id, $filter_owner_id, $filter_name, $filter_label, $filter_vendor, $filter_capabilities, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+        $request = $this->listOrgsRequest(
+            $filter_id,
+            $filter_owner_id,
+            $filter_name,
+            $filter_label,
+            $filter_vendor,
+            $filter_capabilities,
+            $filter_status,
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1147,10 +1215,16 @@ final class OrganizationsApi extends AbstractApi
         string $sort = null
     ): RequestInterface {
         if ($page_size !== null && $page_size > 100) {
-            throw new \InvalidArgumentException('invalid value for "$page_size" when calling OrganizationsApi.listOrgs, must be smaller than or equal to 100.');
+            throw new \InvalidArgumentException(
+                'invalid value for "$page_size" when calling OrganizationsApi.listOrgs, 
+                must be smaller than or equal to 100.'
+            );
         }
         if ($page_size !== null && $page_size < 1) {
-            throw new \InvalidArgumentException('invalid value for "$page_size" when calling OrganizationsApi.listOrgs, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException(
+                'invalid value for "$page_size" when calling OrganizationsApi.listOrgs,
+                must be bigger than or equal to 1.'
+            );
         }
 
 
@@ -1171,7 +1245,7 @@ final class OrganizationsApi extends AbstractApi
                 $queryParams['filter[id]'] = $filter_id->getEq();
             }
         }
-        
+
         // query params
         if ($filter_owner_id !== null) {
             if ('form' === 'deepObject' && is_array($filter_owner_id)) {
@@ -1182,7 +1256,7 @@ final class OrganizationsApi extends AbstractApi
                 $queryParams['filter[owner_id]'] = $filter_owner_id->getEq();
             }
         }
-        
+
         // query params
         if ($filter_name !== null) {
             if ('form' === 'deepObject' && is_array($filter_name)) {
@@ -1193,7 +1267,7 @@ final class OrganizationsApi extends AbstractApi
                 $queryParams['filter[name]'] = $filter_name->getEq();
             }
         }
-        
+
         // query params
         if ($filter_label !== null) {
             if ('form' === 'deepObject' && is_array($filter_label)) {
@@ -1204,7 +1278,7 @@ final class OrganizationsApi extends AbstractApi
                 $queryParams['filter[label]'] = $filter_label->getEq();
             }
         }
-        
+
         // query params
         if ($filter_vendor !== null) {
             if ('form' === 'deepObject' && is_array($filter_vendor)) {
@@ -1215,7 +1289,7 @@ final class OrganizationsApi extends AbstractApi
                 $queryParams['filter[vendor]'] = $filter_vendor->getEq();
             }
         }
-        
+
         // query params
         if ($filter_capabilities !== null) {
             if ('form' === 'deepObject' && is_array($filter_capabilities)) {
@@ -1226,7 +1300,7 @@ final class OrganizationsApi extends AbstractApi
                 $queryParams['filter[capabilities]'] = $filter_capabilities->getEq();
             }
         }
-        
+
         // query params
         if ($filter_status !== null) {
             if ('form' === 'deepObject' && is_array($filter_status)) {
@@ -1237,7 +1311,7 @@ final class OrganizationsApi extends AbstractApi
                 $queryParams['filter[status]'] = $filter_status->getEq();
             }
         }
-        
+
         // query params
         if ($filter_updated_at !== null) {
             if ('form' === 'deepObject' && is_array($filter_updated_at)) {
@@ -1248,7 +1322,7 @@ final class OrganizationsApi extends AbstractApi
                 $queryParams['filter[updated_at]'] = $filter_updated_at->getEq();
             }
         }
-        
+
         // query params
         if ($page_size !== null) {
             if ('form' === 'form' && is_array($page_size)) {
@@ -1259,7 +1333,7 @@ final class OrganizationsApi extends AbstractApi
                 $queryParams['page[size]'] = $page_size;
             }
         }
-        
+
         // query params
         if ($page_before !== null) {
             if ('form' === 'form' && is_array($page_before)) {
@@ -1270,7 +1344,7 @@ final class OrganizationsApi extends AbstractApi
                 $queryParams['page[before]'] = $page_before;
             }
         }
-        
+
         // query params
         if ($page_after !== null) {
             if ('form' === 'form' && is_array($page_after)) {
@@ -1281,7 +1355,7 @@ final class OrganizationsApi extends AbstractApi
                 $queryParams['page[after]'] = $page_after;
             }
         }
-        
+
         // query params
         if ($sort !== null) {
             if ('form' === 'form' && is_array($sort)) {
@@ -1292,7 +1366,7 @@ final class OrganizationsApi extends AbstractApi
                 $queryParams['sort'] = $sort;
             }
         }
-        
+
 
 
 
@@ -1366,7 +1440,17 @@ final class OrganizationsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): \Upsun\Model\ListUserOrgs200Response {
-        list($response) = $this->listUserOrgsWithHttpInfo($user_id, $filter_id, $filter_vendor, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+        list($response) = $this->listUserOrgsWithHttpInfo(
+            $user_id,
+            $filter_id,
+            $filter_vendor,
+            $filter_status,
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
         return $response;
     }
 
@@ -1387,17 +1471,25 @@ final class OrganizationsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): array {
-        $request = $this->listUserOrgsRequest($user_id, $filter_id, $filter_vendor, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+        $request = $this->listUserOrgsRequest(
+            $user_id,
+            $filter_id,
+            $filter_vendor,
+            $filter_status,
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1512,7 +1604,17 @@ final class OrganizationsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): Promise {
-        return $this->listUserOrgsAsyncWithHttpInfo($user_id, $filter_id, $filter_vendor, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort)
+        return $this->listUserOrgsAsyncWithHttpInfo(
+            $user_id,
+            $filter_id,
+            $filter_vendor,
+            $filter_status,
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1537,7 +1639,17 @@ final class OrganizationsApi extends AbstractApi
         string $sort = null
     ): Promise {
         $returnType = '\Upsun\Model\ListUserOrgs200Response';
-        $request = $this->listUserOrgsRequest($user_id, $filter_id, $filter_vendor, $filter_status, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+        $request = $this->listUserOrgsRequest(
+            $user_id,
+            $filter_id,
+            $filter_vendor,
+            $filter_status,
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1594,10 +1706,16 @@ final class OrganizationsApi extends AbstractApi
             );
         }
         if ($page_size !== null && $page_size > 100) {
-            throw new \InvalidArgumentException('invalid value for "$page_size" when calling OrganizationsApi.listUserOrgs, must be smaller than or equal to 100.');
+            throw new \InvalidArgumentException(
+                'invalid value for "$page_size" when calling OrganizationsApi.listUserOrgs, 
+                must be smaller than or equal to 100.'
+            );
         }
         if ($page_size !== null && $page_size < 1) {
-            throw new \InvalidArgumentException('invalid value for "$page_size" when calling OrganizationsApi.listUserOrgs, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException(
+                'invalid value for "$page_size" when calling OrganizationsApi.listUserOrgs,
+                must be bigger than or equal to 1.'
+            );
         }
 
 
@@ -1618,7 +1736,7 @@ final class OrganizationsApi extends AbstractApi
                 $queryParams['filter[id]'] = $filter_id->getEq();
             }
         }
-        
+
         // query params
         if ($filter_vendor !== null) {
             if ('form' === 'deepObject' && is_array($filter_vendor)) {
@@ -1629,7 +1747,7 @@ final class OrganizationsApi extends AbstractApi
                 $queryParams['filter[vendor]'] = $filter_vendor->getEq();
             }
         }
-        
+
         // query params
         if ($filter_status !== null) {
             if ('form' === 'deepObject' && is_array($filter_status)) {
@@ -1640,7 +1758,7 @@ final class OrganizationsApi extends AbstractApi
                 $queryParams['filter[status]'] = $filter_status->getEq();
             }
         }
-        
+
         // query params
         if ($filter_updated_at !== null) {
             if ('form' === 'deepObject' && is_array($filter_updated_at)) {
@@ -1651,7 +1769,7 @@ final class OrganizationsApi extends AbstractApi
                 $queryParams['filter[updated_at]'] = $filter_updated_at->getEq();
             }
         }
-        
+
         // query params
         if ($page_size !== null) {
             if ('form' === 'form' && is_array($page_size)) {
@@ -1662,7 +1780,7 @@ final class OrganizationsApi extends AbstractApi
                 $queryParams['page[size]'] = $page_size;
             }
         }
-        
+
         // query params
         if ($page_before !== null) {
             if ('form' === 'form' && is_array($page_before)) {
@@ -1673,7 +1791,7 @@ final class OrganizationsApi extends AbstractApi
                 $queryParams['page[before]'] = $page_before;
             }
         }
-        
+
         // query params
         if ($page_after !== null) {
             if ('form' === 'form' && is_array($page_after)) {
@@ -1684,7 +1802,7 @@ final class OrganizationsApi extends AbstractApi
                 $queryParams['page[after]'] = $page_after;
             }
         }
-        
+
         // query params
         if ($sort !== null) {
             if ('form' === 'form' && is_array($sort)) {
@@ -1695,7 +1813,7 @@ final class OrganizationsApi extends AbstractApi
                 $queryParams['sort'] = $sort;
             }
         }
-        
+
 
 
         // path params
@@ -1770,7 +1888,10 @@ final class OrganizationsApi extends AbstractApi
         string $organization_id,
         \Upsun\Model\UpdateOrgRequest $update_org_request = null
     ): \Upsun\Model\Organization {
-        list($response) = $this->updateOrgWithHttpInfo($organization_id, $update_org_request);
+        list($response) = $this->updateOrgWithHttpInfo(
+            $organization_id,
+            $update_org_request
+        );
         return $response;
     }
 
@@ -1784,17 +1905,18 @@ final class OrganizationsApi extends AbstractApi
         string $organization_id,
         \Upsun\Model\UpdateOrgRequest $update_org_request = null
     ): array {
-        $request = $this->updateOrgRequest($organization_id, $update_org_request);
+        $request = $this->updateOrgRequest(
+            $organization_id,
+            $update_org_request
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1916,7 +2038,10 @@ final class OrganizationsApi extends AbstractApi
         string $organization_id,
         \Upsun\Model\UpdateOrgRequest $update_org_request = null
     ): Promise {
-        return $this->updateOrgAsyncWithHttpInfo($organization_id, $update_org_request)
+        return $this->updateOrgAsyncWithHttpInfo(
+            $organization_id,
+            $update_org_request
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1934,7 +2059,10 @@ final class OrganizationsApi extends AbstractApi
         \Upsun\Model\UpdateOrgRequest $update_org_request = null
     ): Promise {
         $returnType = '\Upsun\Model\Organization';
-        $request = $this->updateOrgRequest($organization_id, $update_org_request);
+        $request = $this->updateOrgRequest(
+            $organization_id,
+            $update_org_request
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -2071,31 +2199,22 @@ final class OrganizationsApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -2158,15 +2277,5 @@ final class OrganizationsApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

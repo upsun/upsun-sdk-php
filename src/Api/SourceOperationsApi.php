@@ -129,7 +129,10 @@ final class SourceOperationsApi extends AbstractApi
         string $project_id,
         string $environment_id
     ): array {
-        list($response) = $this->listProjectsEnvironmentsSourceOperationsWithHttpInfo($project_id, $environment_id);
+        list($response) = $this->listProjectsEnvironmentsSourceOperationsWithHttpInfo(
+            $project_id,
+            $environment_id
+        );
         return $response;
     }
 
@@ -143,17 +146,18 @@ final class SourceOperationsApi extends AbstractApi
         string $project_id,
         string $environment_id
     ): array {
-        $request = $this->listProjectsEnvironmentsSourceOperationsRequest($project_id, $environment_id);
+        $request = $this->listProjectsEnvironmentsSourceOperationsRequest(
+            $project_id,
+            $environment_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -233,7 +237,10 @@ final class SourceOperationsApi extends AbstractApi
         string $project_id,
         string $environment_id
     ): Promise {
-        return $this->listProjectsEnvironmentsSourceOperationsAsyncWithHttpInfo($project_id, $environment_id)
+        return $this->listProjectsEnvironmentsSourceOperationsAsyncWithHttpInfo(
+            $project_id,
+            $environment_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -251,7 +258,10 @@ final class SourceOperationsApi extends AbstractApi
         string $environment_id
     ): Promise {
         $returnType = '\Upsun\Model\EnvironmentSourceOperation[]';
-        $request = $this->listProjectsEnvironmentsSourceOperationsRequest($project_id, $environment_id);
+        $request = $this->listProjectsEnvironmentsSourceOperationsRequest(
+            $project_id,
+            $environment_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -397,7 +407,11 @@ final class SourceOperationsApi extends AbstractApi
         string $environment_id,
         \Upsun\Model\EnvironmentSourceOperationInput $environment_source_operation_input
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->runSourceOperationWithHttpInfo($project_id, $environment_id, $environment_source_operation_input);
+        list($response) = $this->runSourceOperationWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $environment_source_operation_input
+        );
         return $response;
     }
 
@@ -412,17 +426,19 @@ final class SourceOperationsApi extends AbstractApi
         string $environment_id,
         \Upsun\Model\EnvironmentSourceOperationInput $environment_source_operation_input
     ): array {
-        $request = $this->runSourceOperationRequest($project_id, $environment_id, $environment_source_operation_input);
+        $request = $this->runSourceOperationRequest(
+            $project_id,
+            $environment_id,
+            $environment_source_operation_input
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -503,7 +519,11 @@ final class SourceOperationsApi extends AbstractApi
         string $environment_id,
         \Upsun\Model\EnvironmentSourceOperationInput $environment_source_operation_input
     ): Promise {
-        return $this->runSourceOperationAsyncWithHttpInfo($project_id, $environment_id, $environment_source_operation_input)
+        return $this->runSourceOperationAsyncWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $environment_source_operation_input
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -522,7 +542,11 @@ final class SourceOperationsApi extends AbstractApi
         \Upsun\Model\EnvironmentSourceOperationInput $environment_source_operation_input
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->runSourceOperationRequest($project_id, $environment_id, $environment_source_operation_input);
+        $request = $this->runSourceOperationRequest(
+            $project_id,
+            $environment_id,
+            $environment_source_operation_input
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -680,31 +704,22 @@ final class SourceOperationsApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -767,15 +782,5 @@ final class SourceOperationsApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

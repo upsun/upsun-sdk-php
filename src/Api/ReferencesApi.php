@@ -129,7 +129,10 @@ final class ReferencesApi extends AbstractApi
         string $in,
         string $sig
     ): array {
-        list($response) = $this->listReferencedOrgsWithHttpInfo($in, $sig);
+        list($response) = $this->listReferencedOrgsWithHttpInfo(
+            $in,
+            $sig
+        );
         return $response;
     }
 
@@ -143,17 +146,18 @@ final class ReferencesApi extends AbstractApi
         string $in,
         string $sig
     ): array {
-        $request = $this->listReferencedOrgsRequest($in, $sig);
+        $request = $this->listReferencedOrgsRequest(
+            $in,
+            $sig
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -261,7 +265,10 @@ final class ReferencesApi extends AbstractApi
         string $in,
         string $sig
     ): Promise {
-        return $this->listReferencedOrgsAsyncWithHttpInfo($in, $sig)
+        return $this->listReferencedOrgsAsyncWithHttpInfo(
+            $in,
+            $sig
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -279,7 +286,10 @@ final class ReferencesApi extends AbstractApi
         string $sig
     ): Promise {
         $returnType = 'array<string,\Upsun\Model\OrganizationReference>';
-        $request = $this->listReferencedOrgsRequest($in, $sig);
+        $request = $this->listReferencedOrgsRequest(
+            $in,
+            $sig
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -352,7 +362,7 @@ final class ReferencesApi extends AbstractApi
                 $queryParams['in'] = $in;
             }
         }
-        
+
         // query params
         if ($sig !== null) {
             if ('form' === 'form' && is_array($sig)) {
@@ -363,7 +373,7 @@ final class ReferencesApi extends AbstractApi
                 $queryParams['sig'] = $sig;
             }
         }
-        
+
 
 
 
@@ -432,7 +442,10 @@ final class ReferencesApi extends AbstractApi
         string $in,
         string $sig
     ): array {
-        list($response) = $this->listReferencedProjectsWithHttpInfo($in, $sig);
+        list($response) = $this->listReferencedProjectsWithHttpInfo(
+            $in,
+            $sig
+        );
         return $response;
     }
 
@@ -446,17 +459,18 @@ final class ReferencesApi extends AbstractApi
         string $in,
         string $sig
     ): array {
-        $request = $this->listReferencedProjectsRequest($in, $sig);
+        $request = $this->listReferencedProjectsRequest(
+            $in,
+            $sig
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -578,7 +592,10 @@ final class ReferencesApi extends AbstractApi
         string $in,
         string $sig
     ): Promise {
-        return $this->listReferencedProjectsAsyncWithHttpInfo($in, $sig)
+        return $this->listReferencedProjectsAsyncWithHttpInfo(
+            $in,
+            $sig
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -596,7 +613,10 @@ final class ReferencesApi extends AbstractApi
         string $sig
     ): Promise {
         $returnType = 'array<string,\Upsun\Model\ProjectReference>';
-        $request = $this->listReferencedProjectsRequest($in, $sig);
+        $request = $this->listReferencedProjectsRequest(
+            $in,
+            $sig
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -669,7 +689,7 @@ final class ReferencesApi extends AbstractApi
                 $queryParams['in'] = $in;
             }
         }
-        
+
         // query params
         if ($sig !== null) {
             if ('form' === 'form' && is_array($sig)) {
@@ -680,7 +700,7 @@ final class ReferencesApi extends AbstractApi
                 $queryParams['sig'] = $sig;
             }
         }
-        
+
 
 
 
@@ -749,7 +769,10 @@ final class ReferencesApi extends AbstractApi
         string $in,
         string $sig
     ): array {
-        list($response) = $this->listReferencedRegionsWithHttpInfo($in, $sig);
+        list($response) = $this->listReferencedRegionsWithHttpInfo(
+            $in,
+            $sig
+        );
         return $response;
     }
 
@@ -763,17 +786,18 @@ final class ReferencesApi extends AbstractApi
         string $in,
         string $sig
     ): array {
-        $request = $this->listReferencedRegionsRequest($in, $sig);
+        $request = $this->listReferencedRegionsRequest(
+            $in,
+            $sig
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -895,7 +919,10 @@ final class ReferencesApi extends AbstractApi
         string $in,
         string $sig
     ): Promise {
-        return $this->listReferencedRegionsAsyncWithHttpInfo($in, $sig)
+        return $this->listReferencedRegionsAsyncWithHttpInfo(
+            $in,
+            $sig
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -913,7 +940,10 @@ final class ReferencesApi extends AbstractApi
         string $sig
     ): Promise {
         $returnType = 'array<string,\Upsun\Model\RegionReference>';
-        $request = $this->listReferencedRegionsRequest($in, $sig);
+        $request = $this->listReferencedRegionsRequest(
+            $in,
+            $sig
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -986,7 +1016,7 @@ final class ReferencesApi extends AbstractApi
                 $queryParams['in'] = $in;
             }
         }
-        
+
         // query params
         if ($sig !== null) {
             if ('form' === 'form' && is_array($sig)) {
@@ -997,7 +1027,7 @@ final class ReferencesApi extends AbstractApi
                 $queryParams['sig'] = $sig;
             }
         }
-        
+
 
 
 
@@ -1066,7 +1096,10 @@ final class ReferencesApi extends AbstractApi
         string $in,
         string $sig
     ): array {
-        list($response) = $this->listReferencedTeamsWithHttpInfo($in, $sig);
+        list($response) = $this->listReferencedTeamsWithHttpInfo(
+            $in,
+            $sig
+        );
         return $response;
     }
 
@@ -1080,17 +1113,18 @@ final class ReferencesApi extends AbstractApi
         string $in,
         string $sig
     ): array {
-        $request = $this->listReferencedTeamsRequest($in, $sig);
+        $request = $this->listReferencedTeamsRequest(
+            $in,
+            $sig
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1184,7 +1218,10 @@ final class ReferencesApi extends AbstractApi
         string $in,
         string $sig
     ): Promise {
-        return $this->listReferencedTeamsAsyncWithHttpInfo($in, $sig)
+        return $this->listReferencedTeamsAsyncWithHttpInfo(
+            $in,
+            $sig
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1202,7 +1239,10 @@ final class ReferencesApi extends AbstractApi
         string $sig
     ): Promise {
         $returnType = 'array<string,\Upsun\Model\TeamReference>';
-        $request = $this->listReferencedTeamsRequest($in, $sig);
+        $request = $this->listReferencedTeamsRequest(
+            $in,
+            $sig
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1275,7 +1315,7 @@ final class ReferencesApi extends AbstractApi
                 $queryParams['in'] = $in;
             }
         }
-        
+
         // query params
         if ($sig !== null) {
             if ('form' === 'form' && is_array($sig)) {
@@ -1286,7 +1326,7 @@ final class ReferencesApi extends AbstractApi
                 $queryParams['sig'] = $sig;
             }
         }
-        
+
 
 
 
@@ -1355,7 +1395,10 @@ final class ReferencesApi extends AbstractApi
         string $in,
         string $sig
     ): array {
-        list($response) = $this->listReferencedUsersWithHttpInfo($in, $sig);
+        list($response) = $this->listReferencedUsersWithHttpInfo(
+            $in,
+            $sig
+        );
         return $response;
     }
 
@@ -1369,17 +1412,18 @@ final class ReferencesApi extends AbstractApi
         string $in,
         string $sig
     ): array {
-        $request = $this->listReferencedUsersRequest($in, $sig);
+        $request = $this->listReferencedUsersRequest(
+            $in,
+            $sig
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1473,7 +1517,10 @@ final class ReferencesApi extends AbstractApi
         string $in,
         string $sig
     ): Promise {
-        return $this->listReferencedUsersAsyncWithHttpInfo($in, $sig)
+        return $this->listReferencedUsersAsyncWithHttpInfo(
+            $in,
+            $sig
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1491,7 +1538,10 @@ final class ReferencesApi extends AbstractApi
         string $sig
     ): Promise {
         $returnType = 'array<string,\Upsun\Model\UserReference>';
-        $request = $this->listReferencedUsersRequest($in, $sig);
+        $request = $this->listReferencedUsersRequest(
+            $in,
+            $sig
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1564,7 +1614,7 @@ final class ReferencesApi extends AbstractApi
                 $queryParams['in'] = $in;
             }
         }
-        
+
         // query params
         if ($sig !== null) {
             if ('form' === 'form' && is_array($sig)) {
@@ -1575,7 +1625,7 @@ final class ReferencesApi extends AbstractApi
                 $queryParams['sig'] = $sig;
             }
         }
-        
+
 
 
 
@@ -1642,31 +1692,22 @@ final class ReferencesApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -1729,15 +1770,5 @@ final class ReferencesApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

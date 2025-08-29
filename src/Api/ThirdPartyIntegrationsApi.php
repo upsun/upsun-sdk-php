@@ -127,7 +127,10 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         string $project_id,
         \Upsun\Model\IntegrationCreateInput $integration_create_input
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->createProjectsIntegrationsWithHttpInfo($project_id, $integration_create_input);
+        list($response) = $this->createProjectsIntegrationsWithHttpInfo(
+            $project_id,
+            $integration_create_input
+        );
         return $response;
     }
 
@@ -141,17 +144,18 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         string $project_id,
         \Upsun\Model\IntegrationCreateInput $integration_create_input
     ): array {
-        $request = $this->createProjectsIntegrationsRequest($project_id, $integration_create_input);
+        $request = $this->createProjectsIntegrationsRequest(
+            $project_id,
+            $integration_create_input
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -231,7 +235,10 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         string $project_id,
         \Upsun\Model\IntegrationCreateInput $integration_create_input
     ): Promise {
-        return $this->createProjectsIntegrationsAsyncWithHttpInfo($project_id, $integration_create_input)
+        return $this->createProjectsIntegrationsAsyncWithHttpInfo(
+            $project_id,
+            $integration_create_input
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -249,7 +256,10 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         \Upsun\Model\IntegrationCreateInput $integration_create_input
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->createProjectsIntegrationsRequest($project_id, $integration_create_input);
+        $request = $this->createProjectsIntegrationsRequest(
+            $project_id,
+            $integration_create_input
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -392,7 +402,10 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         string $project_id,
         string $integration_id
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->deleteProjectsIntegrationsWithHttpInfo($project_id, $integration_id);
+        list($response) = $this->deleteProjectsIntegrationsWithHttpInfo(
+            $project_id,
+            $integration_id
+        );
         return $response;
     }
 
@@ -406,17 +419,18 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         string $project_id,
         string $integration_id
     ): array {
-        $request = $this->deleteProjectsIntegrationsRequest($project_id, $integration_id);
+        $request = $this->deleteProjectsIntegrationsRequest(
+            $project_id,
+            $integration_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -496,7 +510,10 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         string $project_id,
         string $integration_id
     ): Promise {
-        return $this->deleteProjectsIntegrationsAsyncWithHttpInfo($project_id, $integration_id)
+        return $this->deleteProjectsIntegrationsAsyncWithHttpInfo(
+            $project_id,
+            $integration_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -514,7 +531,10 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         string $integration_id
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->deleteProjectsIntegrationsRequest($project_id, $integration_id);
+        $request = $this->deleteProjectsIntegrationsRequest(
+            $project_id,
+            $integration_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -659,7 +679,10 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         string $project_id,
         string $integration_id
     ): \Upsun\Model\Integration {
-        list($response) = $this->getProjectsIntegrationsWithHttpInfo($project_id, $integration_id);
+        list($response) = $this->getProjectsIntegrationsWithHttpInfo(
+            $project_id,
+            $integration_id
+        );
         return $response;
     }
 
@@ -673,17 +696,18 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         string $project_id,
         string $integration_id
     ): array {
-        $request = $this->getProjectsIntegrationsRequest($project_id, $integration_id);
+        $request = $this->getProjectsIntegrationsRequest(
+            $project_id,
+            $integration_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -763,7 +787,10 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         string $project_id,
         string $integration_id
     ): Promise {
-        return $this->getProjectsIntegrationsAsyncWithHttpInfo($project_id, $integration_id)
+        return $this->getProjectsIntegrationsAsyncWithHttpInfo(
+            $project_id,
+            $integration_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -781,7 +808,10 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         string $integration_id
     ): Promise {
         $returnType = '\Upsun\Model\Integration';
-        $request = $this->getProjectsIntegrationsRequest($project_id, $integration_id);
+        $request = $this->getProjectsIntegrationsRequest(
+            $project_id,
+            $integration_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -927,7 +957,9 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     public function listProjectsIntegrations(
         string $project_id
     ): array {
-        list($response) = $this->listProjectsIntegrationsWithHttpInfo($project_id);
+        list($response) = $this->listProjectsIntegrationsWithHttpInfo(
+            $project_id
+        );
         return $response;
     }
 
@@ -940,17 +972,17 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     public function listProjectsIntegrationsWithHttpInfo(
         string $project_id
     ): array {
-        $request = $this->listProjectsIntegrationsRequest($project_id);
+        $request = $this->listProjectsIntegrationsRequest(
+            $project_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1029,7 +1061,9 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     public function listProjectsIntegrationsAsync(
         string $project_id
     ): Promise {
-        return $this->listProjectsIntegrationsAsyncWithHttpInfo($project_id)
+        return $this->listProjectsIntegrationsAsyncWithHttpInfo(
+            $project_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1046,7 +1080,9 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         string $project_id
     ): Promise {
         $returnType = '\Upsun\Model\Integration[]';
-        $request = $this->listProjectsIntegrationsRequest($project_id);
+        $request = $this->listProjectsIntegrationsRequest(
+            $project_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1177,7 +1213,11 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         string $integration_id,
         \Upsun\Model\IntegrationPatch $integration_patch
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->updateProjectsIntegrationsWithHttpInfo($project_id, $integration_id, $integration_patch);
+        list($response) = $this->updateProjectsIntegrationsWithHttpInfo(
+            $project_id,
+            $integration_id,
+            $integration_patch
+        );
         return $response;
     }
 
@@ -1192,17 +1232,19 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         string $integration_id,
         \Upsun\Model\IntegrationPatch $integration_patch
     ): array {
-        $request = $this->updateProjectsIntegrationsRequest($project_id, $integration_id, $integration_patch);
+        $request = $this->updateProjectsIntegrationsRequest(
+            $project_id,
+            $integration_id,
+            $integration_patch
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1283,7 +1325,11 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         string $integration_id,
         \Upsun\Model\IntegrationPatch $integration_patch
     ): Promise {
-        return $this->updateProjectsIntegrationsAsyncWithHttpInfo($project_id, $integration_id, $integration_patch)
+        return $this->updateProjectsIntegrationsAsyncWithHttpInfo(
+            $project_id,
+            $integration_id,
+            $integration_patch
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1302,7 +1348,11 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         \Upsun\Model\IntegrationPatch $integration_patch
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->updateProjectsIntegrationsRequest($project_id, $integration_id, $integration_patch);
+        $request = $this->updateProjectsIntegrationsRequest(
+            $project_id,
+            $integration_id,
+            $integration_patch
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1460,31 +1510,22 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -1547,15 +1588,5 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

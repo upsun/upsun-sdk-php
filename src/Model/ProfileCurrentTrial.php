@@ -12,638 +12,113 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class ProfileCurrentTrial implements ModelInterface, ArrayAccess, \JsonSerializable
+final class ProfileCurrentTrial implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Profile_current_trial';
+    public readonly bool $active;
+    public readonly \DateTime $created;
+    public readonly string $description;
+    public readonly \DateTime $expiration;
+    public readonly \Upsun\Model\ProfileCurrentTrialCurrent $current;
+    public readonly \Upsun\Model\ProfileCurrentTrialSpend $spend;
+    public readonly \Upsun\Model\ProfileCurrentTrialSpendRemaining $spend_remaining;
+    public readonly \Upsun\Model\ProfileCurrentTrialProjects $projects;
+    public readonly string $pending_verification;
+    public readonly string $model;
+    public readonly int $days_remaining;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'active' => 'bool',
-        'created' => '\DateTime',
-        'description' => 'string',
-        'expiration' => '\DateTime',
-        'current' => '\Upsun\Model\ProfileCurrentTrialCurrent',
-        'spend' => '\Upsun\Model\ProfileCurrentTrialSpend',
-        'spend_remaining' => '\Upsun\Model\ProfileCurrentTrialSpendRemaining',
-        'projects' => '\Upsun\Model\ProfileCurrentTrialProjects',
-        'pending_verification' => 'string',
-        'model' => 'string',
-        'days_remaining' => 'int'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'active' => null,
-        'created' => 'date-time',
-        'description' => null,
-        'expiration' => 'date-time',
-        'current' => null,
-        'spend' => null,
-        'spend_remaining' => null,
-        'projects' => null,
-        'pending_verification' => null,
-        'model' => null,
-        'days_remaining' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'active' => false,
-        'created' => false,
-        'description' => false,
-        'expiration' => false,
-        'current' => false,
-        'spend' => false,
-        'spend_remaining' => false,
-        'projects' => false,
-        'pending_verification' => true,
-        'model' => false,
-        'days_remaining' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        bool $active = null,
+        \DateTime $created = null,
+        string $description = null,
+        \DateTime $expiration = null,
+        \Upsun\Model\ProfileCurrentTrialCurrent $current = null,
+        \Upsun\Model\ProfileCurrentTrialSpend $spend = null,
+        \Upsun\Model\ProfileCurrentTrialSpendRemaining $spend_remaining = null,
+        \Upsun\Model\ProfileCurrentTrialProjects $projects = null,
+        string $pending_verification = null,
+        string $model = null,
+        int $days_remaining = null,
+    ) {
+        $this->active = $active;
+        $this->created = $created;
+        $this->description = $description;
+        $this->expiration = $expiration;
+        $this->current = $current;
+        $this->spend = $spend;
+        $this->spend_remaining = $spend_remaining;
+        $this->projects = $projects;
+        $this->pending_verification = $pending_verification;
+        $this->model = $model;
+        $this->days_remaining = $days_remaining;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getActive(): bool|null
     {
-        return self::$openAPIFormats;
+        return $this->active;
+    }
+    public function getCreated(): \DateTime|null
+    {
+        return $this->created;
+    }
+    public function getDescription(): string|null
+    {
+        return $this->description;
+    }
+    public function getExpiration(): \DateTime|null
+    {
+        return $this->expiration;
+    }
+    public function getCurrent(): \Upsun\Model\ProfileCurrentTrialCurrent|null
+    {
+        return $this->current;
+    }
+    public function getSpend(): \Upsun\Model\ProfileCurrentTrialSpend|null
+    {
+        return $this->spend;
+    }
+    public function getSpendRemaining(): \Upsun\Model\ProfileCurrentTrialSpendRemaining|null
+    {
+        return $this->spend_remaining;
+    }
+    public function getProjects(): \Upsun\Model\ProfileCurrentTrialProjects|null
+    {
+        return $this->projects;
+    }
+    public function getPendingVerification(): string|null
+    {
+        return $this->pending_verification;
+    }
+    public function getModel(): string|null
+    {
+        return $this->model;
+    }
+    public function getDaysRemaining(): int|null
+    {
+        return $this->days_remaining;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'active' => 'active',
-        'created' => 'created',
-        'description' => 'description',
-        'expiration' => 'expiration',
-        'current' => 'current',
-        'spend' => 'spend',
-        'spend_remaining' => 'spend_remaining',
-        'projects' => 'projects',
-        'pending_verification' => 'pending_verification',
-        'model' => 'model',
-        'days_remaining' => 'days_remaining'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'active' => 'setActive',
-        'created' => 'setCreated',
-        'description' => 'setDescription',
-        'expiration' => 'setExpiration',
-        'current' => 'setCurrent',
-        'spend' => 'setSpend',
-        'spend_remaining' => 'setSpendRemaining',
-        'projects' => 'setProjects',
-        'pending_verification' => 'setPendingVerification',
-        'model' => 'setModel',
-        'days_remaining' => 'setDaysRemaining'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'active' => 'getActive',
-        'created' => 'getCreated',
-        'description' => 'getDescription',
-        'expiration' => 'getExpiration',
-        'current' => 'getCurrent',
-        'spend' => 'getSpend',
-        'spend_remaining' => 'getSpendRemaining',
-        'projects' => 'getProjects',
-        'pending_verification' => 'getPendingVerification',
-        'model' => 'getModel',
-        'days_remaining' => 'getDaysRemaining'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-    public const PENDING_VERIFICATION_CREDIT_CARD = 'credit-card';
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getPendingVerificationAllowableValues(): array
+    public function jsonSerialize(): mixed
     {
         return [
-            self::PENDING_VERIFICATION_CREDIT_CARD,
+            'active' => $this->active,
+            'created' => $this->created,
+            'description' => $this->description,
+            'expiration' => $this->expiration,
+            'current' => $this->current,
+            'spend' => $this->spend,
+            'spend_remaining' => $this->spend_remaining,
+            'projects' => $this->projects,
+            'pending_verification' => $this->pending_verification,
+            'model' => $this->model,
+            'days_remaining' => $this->days_remaining,
         ];
     }
 
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
+    public function __toString(): string
     {
-        $this->setIfExists('active', $data ?? [], null);
-        $this->setIfExists('created', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('expiration', $data ?? [], null);
-        $this->setIfExists('current', $data ?? [], null);
-        $this->setIfExists('spend', $data ?? [], null);
-        $this->setIfExists('spend_remaining', $data ?? [], null);
-        $this->setIfExists('projects', $data ?? [], null);
-        $this->setIfExists('pending_verification', $data ?? [], null);
-        $this->setIfExists('model', $data ?? [], null);
-        $this->setIfExists('days_remaining', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        $allowedValues = $this->getPendingVerificationAllowableValues();
-        if (!is_null($this->container['pending_verification']) && !in_array($this->container['pending_verification'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'pending_verification', must be one of '%s'",
-                $this->container['pending_verification'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets active
-     *
-     * @return bool|null
-     */
-    public function getActive()
-    {
-        return $this->container['active'];
-    }
-
-    /**
-     * Sets active
-     */
-    public function setActive($active)
-    {
-        if (is_null($active)) {
-            throw new \InvalidArgumentException('non-nullable active cannot be null');
-        }
-        $this->container['active'] = $active;
-
-        return $this;
-    }
-
-    /**
-     * Gets created
-     *
-     * @return \DateTime|null
-     */
-    public function getCreated()
-    {
-        return $this->container['created'];
-    }
-
-    /**
-     * Sets created
-     */
-    public function setCreated($created)
-    {
-        if (is_null($created)) {
-            throw new \InvalidArgumentException('non-nullable created cannot be null');
-        }
-        $this->container['created'] = $created;
-
-        return $this;
-    }
-
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription()
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Sets description
-     */
-    public function setDescription($description)
-    {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Gets expiration
-     *
-     * @return \DateTime|null
-     */
-    public function getExpiration()
-    {
-        return $this->container['expiration'];
-    }
-
-    /**
-     * Sets expiration
-     */
-    public function setExpiration($expiration)
-    {
-        if (is_null($expiration)) {
-            throw new \InvalidArgumentException('non-nullable expiration cannot be null');
-        }
-        $this->container['expiration'] = $expiration;
-
-        return $this;
-    }
-
-    /**
-     * Gets current
-     *
-     * @return \Upsun\Model\ProfileCurrentTrialCurrent|null
-     */
-    public function getCurrent()
-    {
-        return $this->container['current'];
-    }
-
-    /**
-     * Sets current
-     */
-    public function setCurrent($current)
-    {
-        if (is_null($current)) {
-            throw new \InvalidArgumentException('non-nullable current cannot be null');
-        }
-        $this->container['current'] = $current;
-
-        return $this;
-    }
-
-    /**
-     * Gets spend
-     *
-     * @return \Upsun\Model\ProfileCurrentTrialSpend|null
-     */
-    public function getSpend()
-    {
-        return $this->container['spend'];
-    }
-
-    /**
-     * Sets spend
-     */
-    public function setSpend($spend)
-    {
-        if (is_null($spend)) {
-            throw new \InvalidArgumentException('non-nullable spend cannot be null');
-        }
-        $this->container['spend'] = $spend;
-
-        return $this;
-    }
-
-    /**
-     * Gets spend_remaining
-     *
-     * @return \Upsun\Model\ProfileCurrentTrialSpendRemaining|null
-     */
-    public function getSpendRemaining()
-    {
-        return $this->container['spend_remaining'];
-    }
-
-    /**
-     * Sets spend_remaining
-     */
-    public function setSpendRemaining($spend_remaining)
-    {
-        if (is_null($spend_remaining)) {
-            throw new \InvalidArgumentException('non-nullable spend_remaining cannot be null');
-        }
-        $this->container['spend_remaining'] = $spend_remaining;
-
-        return $this;
-    }
-
-    /**
-     * Gets projects
-     *
-     * @return \Upsun\Model\ProfileCurrentTrialProjects|null
-     */
-    public function getProjects()
-    {
-        return $this->container['projects'];
-    }
-
-    /**
-     * Sets projects
-     */
-    public function setProjects($projects)
-    {
-        if (is_null($projects)) {
-            throw new \InvalidArgumentException('non-nullable projects cannot be null');
-        }
-        $this->container['projects'] = $projects;
-
-        return $this;
-    }
-
-    /**
-     * Gets pending_verification
-     *
-     * @return string|null
-     *
-     * @deprecated
-     */
-    public function getPendingVerification()
-    {
-        return $this->container['pending_verification'];
-    }
-
-    /**
-     * Sets pending_verification
-     *
-     * @deprecated
-     */
-    public function setPendingVerification($pending_verification)
-    {
-        if (is_null($pending_verification)) {
-            array_push($this->openAPINullablesSetToNull, 'pending_verification');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('pending_verification', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $allowedValues = $this->getPendingVerificationAllowableValues();
-        if (!is_null($pending_verification) && !in_array($pending_verification, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'pending_verification', must be one of '%s'",
-                    $pending_verification,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['pending_verification'] = $pending_verification;
-
-        return $this;
-    }
-
-    /**
-     * Gets model
-     *
-     * @return string|null
-     */
-    public function getModel()
-    {
-        return $this->container['model'];
-    }
-
-    /**
-     * Sets model
-     */
-    public function setModel($model)
-    {
-        if (is_null($model)) {
-            throw new \InvalidArgumentException('non-nullable model cannot be null');
-        }
-        $this->container['model'] = $model;
-
-        return $this;
-    }
-
-    /**
-     * Gets days_remaining
-     *
-     * @return int|null
-     */
-    public function getDaysRemaining()
-    {
-        return $this->container['days_remaining'];
-    }
-
-    /**
-     * Sets days_remaining
-     */
-    public function setDaysRemaining($days_remaining)
-    {
-        if (is_null($days_remaining)) {
-            throw new \InvalidArgumentException('non-nullable days_remaining cannot be null');
-        }
-        $this->container['days_remaining'] = $days_remaining;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

@@ -12,628 +12,105 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class UpstreamRoutePatch implements ModelInterface, ArrayAccess, \JsonSerializable
+final class UpstreamRoutePatch implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'UpstreamRoutePatch';
+    public readonly bool $primary;
+    public readonly string $id;
+    public readonly string $production_url;
+    public readonly array<string,string> $attributes;
+    public readonly string $type;
+    public readonly \Upsun\Model\TLSSettingsForTheRoute1 $tls;
+    public readonly \Upsun\Model\CacheConfiguration1 $cache;
+    public readonly \Upsun\Model\ServerSideIncludeConfiguration $ssi;
+    public readonly string $upstream;
+    public readonly \Upsun\Model\TheConfigurationOfTheRedirects1 $redirects;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'primary' => 'bool',
-        'id' => 'string',
-        'production_url' => 'string',
-        'attributes' => 'array<string,string>',
-        'type' => 'string',
-        'tls' => '\Upsun\Model\TLSSettingsForTheRoute1',
-        'cache' => '\Upsun\Model\CacheConfiguration1',
-        'ssi' => '\Upsun\Model\ServerSideIncludeConfiguration',
-        'upstream' => 'string',
-        'redirects' => '\Upsun\Model\TheConfigurationOfTheRedirects1'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'primary' => null,
-        'id' => null,
-        'production_url' => null,
-        'attributes' => null,
-        'type' => null,
-        'tls' => null,
-        'cache' => null,
-        'ssi' => null,
-        'upstream' => null,
-        'redirects' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'primary' => true,
-        'id' => true,
-        'production_url' => true,
-        'attributes' => false,
-        'type' => false,
-        'tls' => false,
-        'cache' => false,
-        'ssi' => false,
-        'upstream' => false,
-        'redirects' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        bool $primary = null,
+        string $id = null,
+        string $production_url = null,
+        array<string,string> $attributes = null,
+        string $type,
+        \Upsun\Model\TLSSettingsForTheRoute1 $tls = null,
+        \Upsun\Model\CacheConfiguration1 $cache = null,
+        \Upsun\Model\ServerSideIncludeConfiguration $ssi = null,
+        string $upstream,
+        \Upsun\Model\TheConfigurationOfTheRedirects1 $redirects = null,
+    ) {
+        $this->primary = $primary;
+        $this->id = $id;
+        $this->production_url = $production_url;
+        $this->attributes = $attributes;
+        $this->type = $type;
+        $this->tls = $tls;
+        $this->cache = $cache;
+        $this->ssi = $ssi;
+        $this->upstream = $upstream;
+        $this->redirects = $redirects;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getPrimary(): bool|null
     {
-        return self::$openAPIFormats;
+        return $this->primary;
+    }
+    public function getId(): string|null
+    {
+        return $this->id;
+    }
+    public function getProductionUrl(): string|null
+    {
+        return $this->production_url;
+    }
+    public function getAttributes(): array<string,string>|null
+    {
+        return $this->attributes;
+    }
+    public function getType(): string
+    {
+        return $this->type;
+    }
+    public function getTls(): \Upsun\Model\TLSSettingsForTheRoute1|null
+    {
+        return $this->tls;
+    }
+    public function getCache(): \Upsun\Model\CacheConfiguration1|null
+    {
+        return $this->cache;
+    }
+    public function getSsi(): \Upsun\Model\ServerSideIncludeConfiguration|null
+    {
+        return $this->ssi;
+    }
+    public function getUpstream(): string
+    {
+        return $this->upstream;
+    }
+    public function getRedirects(): \Upsun\Model\TheConfigurationOfTheRedirects1|null
+    {
+        return $this->redirects;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'primary' => 'primary',
-        'id' => 'id',
-        'production_url' => 'production_url',
-        'attributes' => 'attributes',
-        'type' => 'type',
-        'tls' => 'tls',
-        'cache' => 'cache',
-        'ssi' => 'ssi',
-        'upstream' => 'upstream',
-        'redirects' => 'redirects'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'primary' => 'setPrimary',
-        'id' => 'setId',
-        'production_url' => 'setProductionUrl',
-        'attributes' => 'setAttributes',
-        'type' => 'setType',
-        'tls' => 'setTls',
-        'cache' => 'setCache',
-        'ssi' => 'setSsi',
-        'upstream' => 'setUpstream',
-        'redirects' => 'setRedirects'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'primary' => 'getPrimary',
-        'id' => 'getId',
-        'production_url' => 'getProductionUrl',
-        'attributes' => 'getAttributes',
-        'type' => 'getType',
-        'tls' => 'getTls',
-        'cache' => 'getCache',
-        'ssi' => 'getSsi',
-        'upstream' => 'getUpstream',
-        'redirects' => 'getRedirects'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-    public const TYPE_PROXY = 'proxy';
-    public const TYPE_REDIRECT = 'redirect';
-    public const TYPE_UPSTREAM = 'upstream';
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getTypeAllowableValues(): array
+    public function jsonSerialize(): mixed
     {
         return [
-            self::TYPE_PROXY,
-            self::TYPE_REDIRECT,
-            self::TYPE_UPSTREAM,
+            'primary' => $this->primary,
+            'id' => $this->id,
+            'production_url' => $this->production_url,
+            'attributes' => $this->attributes,
+            'type' => $this->type,
+            'tls' => $this->tls,
+            'cache' => $this->cache,
+            'ssi' => $this->ssi,
+            'upstream' => $this->upstream,
+            'redirects' => $this->redirects,
         ];
     }
 
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
+    public function __toString(): string
     {
-        $this->setIfExists('primary', $data ?? [], null);
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('production_url', $data ?? [], null);
-        $this->setIfExists('attributes', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('tls', $data ?? [], null);
-        $this->setIfExists('cache', $data ?? [], null);
-        $this->setIfExists('ssi', $data ?? [], null);
-        $this->setIfExists('upstream', $data ?? [], null);
-        $this->setIfExists('redirects', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['upstream'] === null) {
-            $invalidProperties[] = "'upstream' can't be null";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets primary
-     *
-     * @return bool|null
-     */
-    public function getPrimary()
-    {
-        return $this->container['primary'];
-    }
-
-    /**
-     * Sets primary
-     */
-    public function setPrimary($primary)
-    {
-        if (is_null($primary)) {
-            array_push($this->openAPINullablesSetToNull, 'primary');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('primary', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['primary'] = $primary;
-
-        return $this;
-    }
-
-    /**
-     * Gets id
-     *
-     * @return string|null
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     */
-    public function setId($id)
-    {
-        if (is_null($id)) {
-            array_push($this->openAPINullablesSetToNull, 'id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('id', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets production_url
-     *
-     * @return string|null
-     */
-    public function getProductionUrl()
-    {
-        return $this->container['production_url'];
-    }
-
-    /**
-     * Sets production_url
-     */
-    public function setProductionUrl($production_url)
-    {
-        if (is_null($production_url)) {
-            array_push($this->openAPINullablesSetToNull, 'production_url');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('production_url', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['production_url'] = $production_url;
-
-        return $this;
-    }
-
-    /**
-     * Gets attributes
-     *
-     * @return array<string,string>|null
-     */
-    public function getAttributes()
-    {
-        return $this->container['attributes'];
-    }
-
-    /**
-     * Sets attributes
-     */
-    public function setAttributes($attributes)
-    {
-        if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
-        }
-        $this->container['attributes'] = $attributes;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     */
-    public function setType($type)
-    {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets tls
-     *
-     * @return \Upsun\Model\TLSSettingsForTheRoute1|null
-     */
-    public function getTls()
-    {
-        return $this->container['tls'];
-    }
-
-    /**
-     * Sets tls
-     */
-    public function setTls($tls)
-    {
-        if (is_null($tls)) {
-            throw new \InvalidArgumentException('non-nullable tls cannot be null');
-        }
-        $this->container['tls'] = $tls;
-
-        return $this;
-    }
-
-    /**
-     * Gets cache
-     *
-     * @return \Upsun\Model\CacheConfiguration1|null
-     */
-    public function getCache()
-    {
-        return $this->container['cache'];
-    }
-
-    /**
-     * Sets cache
-     */
-    public function setCache($cache)
-    {
-        if (is_null($cache)) {
-            throw new \InvalidArgumentException('non-nullable cache cannot be null');
-        }
-        $this->container['cache'] = $cache;
-
-        return $this;
-    }
-
-    /**
-     * Gets ssi
-     *
-     * @return \Upsun\Model\ServerSideIncludeConfiguration|null
-     */
-    public function getSsi()
-    {
-        return $this->container['ssi'];
-    }
-
-    /**
-     * Sets ssi
-     */
-    public function setSsi($ssi)
-    {
-        if (is_null($ssi)) {
-            throw new \InvalidArgumentException('non-nullable ssi cannot be null');
-        }
-        $this->container['ssi'] = $ssi;
-
-        return $this;
-    }
-
-    /**
-     * Gets upstream
-     *
-     * @return string
-     */
-    public function getUpstream()
-    {
-        return $this->container['upstream'];
-    }
-
-    /**
-     * Sets upstream
-     */
-    public function setUpstream($upstream)
-    {
-        if (is_null($upstream)) {
-            throw new \InvalidArgumentException('non-nullable upstream cannot be null');
-        }
-        $this->container['upstream'] = $upstream;
-
-        return $this;
-    }
-
-    /**
-     * Gets redirects
-     *
-     * @return \Upsun\Model\TheConfigurationOfTheRedirects1|null
-     */
-    public function getRedirects()
-    {
-        return $this->container['redirects'];
-    }
-
-    /**
-     * Sets redirects
-     */
-    public function setRedirects($redirects)
-    {
-        if (is_null($redirects)) {
-            throw new \InvalidArgumentException('non-nullable redirects cannot be null');
-        }
-        $this->container['redirects'] = $redirects;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

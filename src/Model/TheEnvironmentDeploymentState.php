@@ -12,373 +12,49 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class TheEnvironmentDeploymentState implements ModelInterface, ArrayAccess, \JsonSerializable
+final class TheEnvironmentDeploymentState implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'The_environment_deployment_state';
+    public readonly bool $last_deployment_successful;
+    public readonly \DateTime $last_deployment_at;
+    public readonly \Upsun\Model\TheCronsDeploymentState $crons;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'last_deployment_successful' => 'bool',
-        'last_deployment_at' => '\DateTime',
-        'crons' => '\Upsun\Model\TheCronsDeploymentState'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'last_deployment_successful' => null,
-        'last_deployment_at' => 'date-time',
-        'crons' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'last_deployment_successful' => false,
-        'last_deployment_at' => true,
-        'crons' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        bool $last_deployment_successful,
+        \DateTime $last_deployment_at,
+        \Upsun\Model\TheCronsDeploymentState $crons,
+    ) {
+        $this->last_deployment_successful = $last_deployment_successful;
+        $this->last_deployment_at = $last_deployment_at;
+        $this->crons = $crons;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getLastDeploymentSuccessful(): bool
     {
-        return self::$openAPIFormats;
+        return $this->last_deployment_successful;
+    }
+    public function getLastDeploymentAt(): \DateTime
+    {
+        return $this->last_deployment_at;
+    }
+    public function getCrons(): \Upsun\Model\TheCronsDeploymentState
+    {
+        return $this->crons;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'last_deployment_successful' => 'last_deployment_successful',
-        'last_deployment_at' => 'last_deployment_at',
-        'crons' => 'crons'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'last_deployment_successful' => 'setLastDeploymentSuccessful',
-        'last_deployment_at' => 'setLastDeploymentAt',
-        'crons' => 'setCrons'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'last_deployment_successful' => 'getLastDeploymentSuccessful',
-        'last_deployment_at' => 'getLastDeploymentAt',
-        'crons' => 'getCrons'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('last_deployment_successful', $data ?? [], null);
-        $this->setIfExists('last_deployment_at', $data ?? [], null);
-        $this->setIfExists('crons', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        if ($this->container['last_deployment_successful'] === null) {
-            $invalidProperties[] = "'last_deployment_successful' can't be null";
-        }
-        if ($this->container['last_deployment_at'] === null) {
-            $invalidProperties[] = "'last_deployment_at' can't be null";
-        }
-        if ($this->container['crons'] === null) {
-            $invalidProperties[] = "'crons' can't be null";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets last_deployment_successful
-     *
-     * @return bool
-     */
-    public function getLastDeploymentSuccessful()
-    {
-        return $this->container['last_deployment_successful'];
-    }
-
-    /**
-     * Sets last_deployment_successful
-     */
-    public function setLastDeploymentSuccessful($last_deployment_successful)
-    {
-        if (is_null($last_deployment_successful)) {
-            throw new \InvalidArgumentException('non-nullable last_deployment_successful cannot be null');
-        }
-        $this->container['last_deployment_successful'] = $last_deployment_successful;
-
-        return $this;
-    }
-
-    /**
-     * Gets last_deployment_at
-     *
-     * @return \DateTime
-     */
-    public function getLastDeploymentAt()
-    {
-        return $this->container['last_deployment_at'];
-    }
-
-    /**
-     * Sets last_deployment_at
-     */
-    public function setLastDeploymentAt($last_deployment_at)
-    {
-        if (is_null($last_deployment_at)) {
-            array_push($this->openAPINullablesSetToNull, 'last_deployment_at');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('last_deployment_at', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['last_deployment_at'] = $last_deployment_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets crons
-     *
-     * @return \Upsun\Model\TheCronsDeploymentState
-     */
-    public function getCrons()
-    {
-        return $this->container['crons'];
-    }
-
-    /**
-     * Sets crons
-     */
-    public function setCrons($crons)
-    {
-        if (is_null($crons)) {
-            throw new \InvalidArgumentException('non-nullable crons cannot be null');
-        }
-        $this->container['crons'] = $crons;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+        return [
+            'last_deployment_successful' => $this->last_deployment_successful,
+            'last_deployment_at' => $this->last_deployment_at,
+            'crons' => $this->crons,
+        ];
     }
 
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

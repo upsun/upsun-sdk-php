@@ -126,7 +126,9 @@ final class ProjectSettingsApi extends AbstractApi
     public function getProjectsSettings(
         string $project_id
     ): \Upsun\Model\ProjectSettings {
-        list($response) = $this->getProjectsSettingsWithHttpInfo($project_id);
+        list($response) = $this->getProjectsSettingsWithHttpInfo(
+            $project_id
+        );
         return $response;
     }
 
@@ -139,17 +141,17 @@ final class ProjectSettingsApi extends AbstractApi
     public function getProjectsSettingsWithHttpInfo(
         string $project_id
     ): array {
-        $request = $this->getProjectsSettingsRequest($project_id);
+        $request = $this->getProjectsSettingsRequest(
+            $project_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -228,7 +230,9 @@ final class ProjectSettingsApi extends AbstractApi
     public function getProjectsSettingsAsync(
         string $project_id
     ): Promise {
-        return $this->getProjectsSettingsAsyncWithHttpInfo($project_id)
+        return $this->getProjectsSettingsAsyncWithHttpInfo(
+            $project_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -245,7 +249,9 @@ final class ProjectSettingsApi extends AbstractApi
         string $project_id
     ): Promise {
         $returnType = '\Upsun\Model\ProjectSettings';
-        $request = $this->getProjectsSettingsRequest($project_id);
+        $request = $this->getProjectsSettingsRequest(
+            $project_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -375,7 +381,10 @@ final class ProjectSettingsApi extends AbstractApi
         string $project_id,
         \Upsun\Model\ProjectSettingsPatch $project_settings_patch
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->updateProjectsSettingsWithHttpInfo($project_id, $project_settings_patch);
+        list($response) = $this->updateProjectsSettingsWithHttpInfo(
+            $project_id,
+            $project_settings_patch
+        );
         return $response;
     }
 
@@ -389,17 +398,18 @@ final class ProjectSettingsApi extends AbstractApi
         string $project_id,
         \Upsun\Model\ProjectSettingsPatch $project_settings_patch
     ): array {
-        $request = $this->updateProjectsSettingsRequest($project_id, $project_settings_patch);
+        $request = $this->updateProjectsSettingsRequest(
+            $project_id,
+            $project_settings_patch
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -479,7 +489,10 @@ final class ProjectSettingsApi extends AbstractApi
         string $project_id,
         \Upsun\Model\ProjectSettingsPatch $project_settings_patch
     ): Promise {
-        return $this->updateProjectsSettingsAsyncWithHttpInfo($project_id, $project_settings_patch)
+        return $this->updateProjectsSettingsAsyncWithHttpInfo(
+            $project_id,
+            $project_settings_patch
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -497,7 +510,10 @@ final class ProjectSettingsApi extends AbstractApi
         \Upsun\Model\ProjectSettingsPatch $project_settings_patch
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->updateProjectsSettingsRequest($project_id, $project_settings_patch);
+        $request = $this->updateProjectsSettingsRequest(
+            $project_id,
+            $project_settings_patch
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -640,31 +656,22 @@ final class ProjectSettingsApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -727,15 +734,5 @@ final class ProjectSettingsApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

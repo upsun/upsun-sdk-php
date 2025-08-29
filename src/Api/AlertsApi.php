@@ -127,7 +127,10 @@ final class AlertsApi extends AbstractApi
         string $subscription_id,
         \Upsun\Model\CreateUsageAlertRequest $create_usage_alert_request = null
     ): \Upsun\Model\Alert {
-        list($response) = $this->createUsageAlertWithHttpInfo($subscription_id, $create_usage_alert_request);
+        list($response) = $this->createUsageAlertWithHttpInfo(
+            $subscription_id,
+            $create_usage_alert_request
+        );
         return $response;
     }
 
@@ -141,17 +144,18 @@ final class AlertsApi extends AbstractApi
         string $subscription_id,
         \Upsun\Model\CreateUsageAlertRequest $create_usage_alert_request = null
     ): array {
-        $request = $this->createUsageAlertRequest($subscription_id, $create_usage_alert_request);
+        $request = $this->createUsageAlertRequest(
+            $subscription_id,
+            $create_usage_alert_request
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -231,7 +235,10 @@ final class AlertsApi extends AbstractApi
         string $subscription_id,
         \Upsun\Model\CreateUsageAlertRequest $create_usage_alert_request = null
     ): Promise {
-        return $this->createUsageAlertAsyncWithHttpInfo($subscription_id, $create_usage_alert_request)
+        return $this->createUsageAlertAsyncWithHttpInfo(
+            $subscription_id,
+            $create_usage_alert_request
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -249,7 +256,10 @@ final class AlertsApi extends AbstractApi
         \Upsun\Model\CreateUsageAlertRequest $create_usage_alert_request = null
     ): Promise {
         $returnType = '\Upsun\Model\Alert';
-        $request = $this->createUsageAlertRequest($subscription_id, $create_usage_alert_request);
+        $request = $this->createUsageAlertRequest(
+            $subscription_id,
+            $create_usage_alert_request
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -386,7 +396,10 @@ final class AlertsApi extends AbstractApi
         string $subscription_id,
         string $usage_id
     ): void {
-        $this->deleteUsageAlertWithHttpInfo($subscription_id, $usage_id);
+        $this->deleteUsageAlertWithHttpInfo(
+            $subscription_id,
+            $usage_id
+        );
     }
 
     /**
@@ -399,17 +412,18 @@ final class AlertsApi extends AbstractApi
         string $subscription_id,
         string $usage_id
     ): array {
-        $request = $this->deleteUsageAlertRequest($subscription_id, $usage_id);
+        $request = $this->deleteUsageAlertRequest(
+            $subscription_id,
+            $usage_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -454,7 +468,10 @@ final class AlertsApi extends AbstractApi
         string $subscription_id,
         string $usage_id
     ): Promise {
-        return $this->deleteUsageAlertAsyncWithHttpInfo($subscription_id, $usage_id)
+        return $this->deleteUsageAlertAsyncWithHttpInfo(
+            $subscription_id,
+            $usage_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -472,7 +489,10 @@ final class AlertsApi extends AbstractApi
         string $usage_id
     ): Promise {
         $returnType = '';
-        $request = $this->deleteUsageAlertRequest($subscription_id, $usage_id);
+        $request = $this->deleteUsageAlertRequest(
+            $subscription_id,
+            $usage_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -606,7 +626,9 @@ final class AlertsApi extends AbstractApi
     public function getUsageAlerts(
         string $subscription_id
     ): \Upsun\Model\GetUsageAlerts200Response {
-        list($response) = $this->getUsageAlertsWithHttpInfo($subscription_id);
+        list($response) = $this->getUsageAlertsWithHttpInfo(
+            $subscription_id
+        );
         return $response;
     }
 
@@ -619,17 +641,17 @@ final class AlertsApi extends AbstractApi
     public function getUsageAlertsWithHttpInfo(
         string $subscription_id
     ): array {
-        $request = $this->getUsageAlertsRequest($subscription_id);
+        $request = $this->getUsageAlertsRequest(
+            $subscription_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -708,7 +730,9 @@ final class AlertsApi extends AbstractApi
     public function getUsageAlertsAsync(
         string $subscription_id
     ): Promise {
-        return $this->getUsageAlertsAsyncWithHttpInfo($subscription_id)
+        return $this->getUsageAlertsAsyncWithHttpInfo(
+            $subscription_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -725,7 +749,9 @@ final class AlertsApi extends AbstractApi
         string $subscription_id
     ): Promise {
         $returnType = '\Upsun\Model\GetUsageAlerts200Response';
-        $request = $this->getUsageAlertsRequest($subscription_id);
+        $request = $this->getUsageAlertsRequest(
+            $subscription_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -856,7 +882,11 @@ final class AlertsApi extends AbstractApi
         string $usage_id,
         \Upsun\Model\UpdateUsageAlertRequest $update_usage_alert_request = null
     ): \Upsun\Model\Alert {
-        list($response) = $this->updateUsageAlertWithHttpInfo($subscription_id, $usage_id, $update_usage_alert_request);
+        list($response) = $this->updateUsageAlertWithHttpInfo(
+            $subscription_id,
+            $usage_id,
+            $update_usage_alert_request
+        );
         return $response;
     }
 
@@ -871,17 +901,19 @@ final class AlertsApi extends AbstractApi
         string $usage_id,
         \Upsun\Model\UpdateUsageAlertRequest $update_usage_alert_request = null
     ): array {
-        $request = $this->updateUsageAlertRequest($subscription_id, $usage_id, $update_usage_alert_request);
+        $request = $this->updateUsageAlertRequest(
+            $subscription_id,
+            $usage_id,
+            $update_usage_alert_request
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -962,7 +994,11 @@ final class AlertsApi extends AbstractApi
         string $usage_id,
         \Upsun\Model\UpdateUsageAlertRequest $update_usage_alert_request = null
     ): Promise {
-        return $this->updateUsageAlertAsyncWithHttpInfo($subscription_id, $usage_id, $update_usage_alert_request)
+        return $this->updateUsageAlertAsyncWithHttpInfo(
+            $subscription_id,
+            $usage_id,
+            $update_usage_alert_request
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -981,7 +1017,11 @@ final class AlertsApi extends AbstractApi
         \Upsun\Model\UpdateUsageAlertRequest $update_usage_alert_request = null
     ): Promise {
         $returnType = '\Upsun\Model\Alert';
-        $request = $this->updateUsageAlertRequest($subscription_id, $usage_id, $update_usage_alert_request);
+        $request = $this->updateUsageAlertRequest(
+            $subscription_id,
+            $usage_id,
+            $update_usage_alert_request
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1133,31 +1173,22 @@ final class AlertsApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -1220,15 +1251,5 @@ final class AlertsApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

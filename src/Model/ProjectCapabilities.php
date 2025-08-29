@@ -12,615 +12,113 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class ProjectCapabilities implements ModelInterface, ArrayAccess, \JsonSerializable
+final class ProjectCapabilities implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'ProjectCapabilities';
+    public readonly \Upsun\Model\CustomDomains $custom_domains;
+    public readonly \Upsun\Model\SourceOperations $source_operations;
+    public readonly \Upsun\Model\RuntimeOperations $runtime_operations;
+    public readonly \Upsun\Model\OutboundFirewall $outbound_firewall;
+    public readonly \Upsun\Model\Metrics $metrics;
+    public readonly \Upsun\Model\LogsForwarding $logs_forwarding;
+    public readonly array<string,array<string,\Upsun\Model\ImagesValueValue>> $images;
+    public readonly int $instance_limit;
+    public readonly \Upsun\Model\BuildResources $build_resources;
+    public readonly \Upsun\Model\DataRetention $data_retention;
+    public readonly \Upsun\Model\Integrations $integrations;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'custom_domains' => '\Upsun\Model\CustomDomains',
-        'source_operations' => '\Upsun\Model\SourceOperations',
-        'runtime_operations' => '\Upsun\Model\RuntimeOperations',
-        'outbound_firewall' => '\Upsun\Model\OutboundFirewall',
-        'metrics' => '\Upsun\Model\Metrics',
-        'logs_forwarding' => '\Upsun\Model\LogsForwarding',
-        'images' => 'array<string,array<string,\Upsun\Model\ImagesValueValue>>',
-        'instance_limit' => 'int',
-        'build_resources' => '\Upsun\Model\BuildResources',
-        'data_retention' => '\Upsun\Model\DataRetention',
-        'integrations' => '\Upsun\Model\Integrations'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'custom_domains' => null,
-        'source_operations' => null,
-        'runtime_operations' => null,
-        'outbound_firewall' => null,
-        'metrics' => null,
-        'logs_forwarding' => null,
-        'images' => null,
-        'instance_limit' => null,
-        'build_resources' => null,
-        'data_retention' => null,
-        'integrations' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'custom_domains' => false,
-        'source_operations' => false,
-        'runtime_operations' => false,
-        'outbound_firewall' => false,
-        'metrics' => false,
-        'logs_forwarding' => false,
-        'images' => false,
-        'instance_limit' => false,
-        'build_resources' => false,
-        'data_retention' => false,
-        'integrations' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        \Upsun\Model\CustomDomains $custom_domains = null,
+        \Upsun\Model\SourceOperations $source_operations = null,
+        \Upsun\Model\RuntimeOperations $runtime_operations = null,
+        \Upsun\Model\OutboundFirewall $outbound_firewall = null,
+        \Upsun\Model\Metrics $metrics,
+        \Upsun\Model\LogsForwarding $logs_forwarding,
+        array<string,array<string,\Upsun\Model\ImagesValueValue>> $images,
+        int $instance_limit,
+        \Upsun\Model\BuildResources $build_resources,
+        \Upsun\Model\DataRetention $data_retention,
+        \Upsun\Model\Integrations $integrations = null,
+    ) {
+        $this->custom_domains = $custom_domains;
+        $this->source_operations = $source_operations;
+        $this->runtime_operations = $runtime_operations;
+        $this->outbound_firewall = $outbound_firewall;
+        $this->metrics = $metrics;
+        $this->logs_forwarding = $logs_forwarding;
+        $this->images = $images;
+        $this->instance_limit = $instance_limit;
+        $this->build_resources = $build_resources;
+        $this->data_retention = $data_retention;
+        $this->integrations = $integrations;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getCustomDomains(): \Upsun\Model\CustomDomains|null
     {
-        return self::$openAPIFormats;
+        return $this->custom_domains;
+    }
+    public function getSourceOperations(): \Upsun\Model\SourceOperations|null
+    {
+        return $this->source_operations;
+    }
+    public function getRuntimeOperations(): \Upsun\Model\RuntimeOperations|null
+    {
+        return $this->runtime_operations;
+    }
+    public function getOutboundFirewall(): \Upsun\Model\OutboundFirewall|null
+    {
+        return $this->outbound_firewall;
+    }
+    public function getMetrics(): \Upsun\Model\Metrics
+    {
+        return $this->metrics;
+    }
+    public function getLogsForwarding(): \Upsun\Model\LogsForwarding
+    {
+        return $this->logs_forwarding;
+    }
+    public function getImages(): array<string,array<string,\Upsun\Model\ImagesValueValue>>
+    {
+        return $this->images;
+    }
+    public function getInstanceLimit(): int
+    {
+        return $this->instance_limit;
+    }
+    public function getBuildResources(): \Upsun\Model\BuildResources
+    {
+        return $this->build_resources;
+    }
+    public function getDataRetention(): \Upsun\Model\DataRetention
+    {
+        return $this->data_retention;
+    }
+    public function getIntegrations(): \Upsun\Model\Integrations|null
+    {
+        return $this->integrations;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'custom_domains' => 'custom_domains',
-        'source_operations' => 'source_operations',
-        'runtime_operations' => 'runtime_operations',
-        'outbound_firewall' => 'outbound_firewall',
-        'metrics' => 'metrics',
-        'logs_forwarding' => 'logs_forwarding',
-        'images' => 'images',
-        'instance_limit' => 'instance_limit',
-        'build_resources' => 'build_resources',
-        'data_retention' => 'data_retention',
-        'integrations' => 'integrations'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'custom_domains' => 'setCustomDomains',
-        'source_operations' => 'setSourceOperations',
-        'runtime_operations' => 'setRuntimeOperations',
-        'outbound_firewall' => 'setOutboundFirewall',
-        'metrics' => 'setMetrics',
-        'logs_forwarding' => 'setLogsForwarding',
-        'images' => 'setImages',
-        'instance_limit' => 'setInstanceLimit',
-        'build_resources' => 'setBuildResources',
-        'data_retention' => 'setDataRetention',
-        'integrations' => 'setIntegrations'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'custom_domains' => 'getCustomDomains',
-        'source_operations' => 'getSourceOperations',
-        'runtime_operations' => 'getRuntimeOperations',
-        'outbound_firewall' => 'getOutboundFirewall',
-        'metrics' => 'getMetrics',
-        'logs_forwarding' => 'getLogsForwarding',
-        'images' => 'getImages',
-        'instance_limit' => 'getInstanceLimit',
-        'build_resources' => 'getBuildResources',
-        'data_retention' => 'getDataRetention',
-        'integrations' => 'getIntegrations'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('custom_domains', $data ?? [], null);
-        $this->setIfExists('source_operations', $data ?? [], null);
-        $this->setIfExists('runtime_operations', $data ?? [], null);
-        $this->setIfExists('outbound_firewall', $data ?? [], null);
-        $this->setIfExists('metrics', $data ?? [], null);
-        $this->setIfExists('logs_forwarding', $data ?? [], null);
-        $this->setIfExists('images', $data ?? [], null);
-        $this->setIfExists('instance_limit', $data ?? [], null);
-        $this->setIfExists('build_resources', $data ?? [], null);
-        $this->setIfExists('data_retention', $data ?? [], null);
-        $this->setIfExists('integrations', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        if ($this->container['metrics'] === null) {
-            $invalidProperties[] = "'metrics' can't be null";
-        }
-        if ($this->container['logs_forwarding'] === null) {
-            $invalidProperties[] = "'logs_forwarding' can't be null";
-        }
-        if ($this->container['images'] === null) {
-            $invalidProperties[] = "'images' can't be null";
-        }
-        if ($this->container['instance_limit'] === null) {
-            $invalidProperties[] = "'instance_limit' can't be null";
-        }
-        if ($this->container['build_resources'] === null) {
-            $invalidProperties[] = "'build_resources' can't be null";
-        }
-        if ($this->container['data_retention'] === null) {
-            $invalidProperties[] = "'data_retention' can't be null";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets custom_domains
-     *
-     * @return \Upsun\Model\CustomDomains|null
-     */
-    public function getCustomDomains()
-    {
-        return $this->container['custom_domains'];
-    }
-
-    /**
-     * Sets custom_domains
-     */
-    public function setCustomDomains($custom_domains)
-    {
-        if (is_null($custom_domains)) {
-            throw new \InvalidArgumentException('non-nullable custom_domains cannot be null');
-        }
-        $this->container['custom_domains'] = $custom_domains;
-
-        return $this;
-    }
-
-    /**
-     * Gets source_operations
-     *
-     * @return \Upsun\Model\SourceOperations|null
-     */
-    public function getSourceOperations()
-    {
-        return $this->container['source_operations'];
-    }
-
-    /**
-     * Sets source_operations
-     */
-    public function setSourceOperations($source_operations)
-    {
-        if (is_null($source_operations)) {
-            throw new \InvalidArgumentException('non-nullable source_operations cannot be null');
-        }
-        $this->container['source_operations'] = $source_operations;
-
-        return $this;
-    }
-
-    /**
-     * Gets runtime_operations
-     *
-     * @return \Upsun\Model\RuntimeOperations|null
-     */
-    public function getRuntimeOperations()
-    {
-        return $this->container['runtime_operations'];
-    }
-
-    /**
-     * Sets runtime_operations
-     */
-    public function setRuntimeOperations($runtime_operations)
-    {
-        if (is_null($runtime_operations)) {
-            throw new \InvalidArgumentException('non-nullable runtime_operations cannot be null');
-        }
-        $this->container['runtime_operations'] = $runtime_operations;
-
-        return $this;
-    }
-
-    /**
-     * Gets outbound_firewall
-     *
-     * @return \Upsun\Model\OutboundFirewall|null
-     */
-    public function getOutboundFirewall()
-    {
-        return $this->container['outbound_firewall'];
-    }
-
-    /**
-     * Sets outbound_firewall
-     */
-    public function setOutboundFirewall($outbound_firewall)
-    {
-        if (is_null($outbound_firewall)) {
-            throw new \InvalidArgumentException('non-nullable outbound_firewall cannot be null');
-        }
-        $this->container['outbound_firewall'] = $outbound_firewall;
-
-        return $this;
-    }
-
-    /**
-     * Gets metrics
-     *
-     * @return \Upsun\Model\Metrics
-     */
-    public function getMetrics()
-    {
-        return $this->container['metrics'];
-    }
-
-    /**
-     * Sets metrics
-     */
-    public function setMetrics($metrics)
-    {
-        if (is_null($metrics)) {
-            throw new \InvalidArgumentException('non-nullable metrics cannot be null');
-        }
-        $this->container['metrics'] = $metrics;
-
-        return $this;
-    }
-
-    /**
-     * Gets logs_forwarding
-     *
-     * @return \Upsun\Model\LogsForwarding
-     */
-    public function getLogsForwarding()
-    {
-        return $this->container['logs_forwarding'];
-    }
-
-    /**
-     * Sets logs_forwarding
-     */
-    public function setLogsForwarding($logs_forwarding)
-    {
-        if (is_null($logs_forwarding)) {
-            throw new \InvalidArgumentException('non-nullable logs_forwarding cannot be null');
-        }
-        $this->container['logs_forwarding'] = $logs_forwarding;
-
-        return $this;
-    }
-
-    /**
-     * Gets images
-     *
-     * @return array<string,array<string,\Upsun\Model\ImagesValueValue>>
-     */
-    public function getImages()
-    {
-        return $this->container['images'];
-    }
-
-    /**
-     * Sets images
-     */
-    public function setImages($images)
-    {
-        if (is_null($images)) {
-            throw new \InvalidArgumentException('non-nullable images cannot be null');
-        }
-        $this->container['images'] = $images;
-
-        return $this;
-    }
-
-    /**
-     * Gets instance_limit
-     *
-     * @return int
-     */
-    public function getInstanceLimit()
-    {
-        return $this->container['instance_limit'];
-    }
-
-    /**
-     * Sets instance_limit
-     */
-    public function setInstanceLimit($instance_limit)
-    {
-        if (is_null($instance_limit)) {
-            throw new \InvalidArgumentException('non-nullable instance_limit cannot be null');
-        }
-        $this->container['instance_limit'] = $instance_limit;
-
-        return $this;
-    }
-
-    /**
-     * Gets build_resources
-     *
-     * @return \Upsun\Model\BuildResources
-     */
-    public function getBuildResources()
-    {
-        return $this->container['build_resources'];
-    }
-
-    /**
-     * Sets build_resources
-     */
-    public function setBuildResources($build_resources)
-    {
-        if (is_null($build_resources)) {
-            throw new \InvalidArgumentException('non-nullable build_resources cannot be null');
-        }
-        $this->container['build_resources'] = $build_resources;
-
-        return $this;
-    }
-
-    /**
-     * Gets data_retention
-     *
-     * @return \Upsun\Model\DataRetention
-     */
-    public function getDataRetention()
-    {
-        return $this->container['data_retention'];
-    }
-
-    /**
-     * Sets data_retention
-     */
-    public function setDataRetention($data_retention)
-    {
-        if (is_null($data_retention)) {
-            throw new \InvalidArgumentException('non-nullable data_retention cannot be null');
-        }
-        $this->container['data_retention'] = $data_retention;
-
-        return $this;
-    }
-
-    /**
-     * Gets integrations
-     *
-     * @return \Upsun\Model\Integrations|null
-     */
-    public function getIntegrations()
-    {
-        return $this->container['integrations'];
-    }
-
-    /**
-     * Sets integrations
-     */
-    public function setIntegrations($integrations)
-    {
-        if (is_null($integrations)) {
-            throw new \InvalidArgumentException('non-nullable integrations cannot be null');
-        }
-        $this->container['integrations'] = $integrations;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+        return [
+            'custom_domains' => $this->custom_domains,
+            'source_operations' => $this->source_operations,
+            'runtime_operations' => $this->runtime_operations,
+            'outbound_firewall' => $this->outbound_firewall,
+            'metrics' => $this->metrics,
+            'logs_forwarding' => $this->logs_forwarding,
+            'images' => $this->images,
+            'instance_limit' => $this->instance_limit,
+            'build_resources' => $this->build_resources,
+            'data_retention' => $this->data_retention,
+            'integrations' => $this->integrations,
+        ];
     }
 
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

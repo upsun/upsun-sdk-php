@@ -12,446 +12,65 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class EnvironmentInitializeInput implements ModelInterface, ArrayAccess, \JsonSerializable
+final class EnvironmentInitializeInput implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'EnvironmentInitializeInput';
+    public readonly string $profile;
+    public readonly string $repository;
+    public readonly string $config;
+    public readonly \Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner[] $files;
+    public readonly \Upsun\Model\Resources3 $resources;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'profile' => 'string',
-        'repository' => 'string',
-        'config' => 'string',
-        'files' => '\Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner[]',
-        'resources' => '\Upsun\Model\Resources3'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'profile' => null,
-        'repository' => null,
-        'config' => null,
-        'files' => null,
-        'resources' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'profile' => false,
-        'repository' => false,
-        'config' => true,
-        'files' => false,
-        'resources' => true
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        string $profile,
+        string $repository,
+        string $config,
+        \Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner[] $files,
+        \Upsun\Model\Resources3 $resources,
+    ) {
+        $this->profile = $profile;
+        $this->repository = $repository;
+        $this->config = $config;
+        $this->files = $files;
+        $this->resources = $resources;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getProfile(): string
     {
-        return self::$openAPIFormats;
+        return $this->profile;
+    }
+    public function getRepository(): string
+    {
+        return $this->repository;
+    }
+    public function getConfig(): string
+    {
+        return $this->config;
+    }
+    public function getFiles(): \Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner[]
+    {
+        return $this->files;
+    }
+    public function getResources(): \Upsun\Model\Resources3
+    {
+        return $this->resources;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'profile' => 'profile',
-        'repository' => 'repository',
-        'config' => 'config',
-        'files' => 'files',
-        'resources' => 'resources'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'profile' => 'setProfile',
-        'repository' => 'setRepository',
-        'config' => 'setConfig',
-        'files' => 'setFiles',
-        'resources' => 'setResources'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'profile' => 'getProfile',
-        'repository' => 'getRepository',
-        'config' => 'getConfig',
-        'files' => 'getFiles',
-        'resources' => 'getResources'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('profile', $data ?? [], null);
-        $this->setIfExists('repository', $data ?? [], null);
-        $this->setIfExists('config', $data ?? [], null);
-        $this->setIfExists('files', $data ?? [], null);
-        $this->setIfExists('resources', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        if ($this->container['profile'] === null) {
-            $invalidProperties[] = "'profile' can't be null";
-        }
-        if ($this->container['repository'] === null) {
-            $invalidProperties[] = "'repository' can't be null";
-        }
-        if ($this->container['config'] === null) {
-            $invalidProperties[] = "'config' can't be null";
-        }
-        if ($this->container['files'] === null) {
-            $invalidProperties[] = "'files' can't be null";
-        }
-        if ($this->container['resources'] === null) {
-            $invalidProperties[] = "'resources' can't be null";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets profile
-     *
-     * @return string
-     */
-    public function getProfile()
-    {
-        return $this->container['profile'];
-    }
-
-    /**
-     * Sets profile
-     */
-    public function setProfile($profile)
-    {
-        if (is_null($profile)) {
-            throw new \InvalidArgumentException('non-nullable profile cannot be null');
-        }
-        $this->container['profile'] = $profile;
-
-        return $this;
-    }
-
-    /**
-     * Gets repository
-     *
-     * @return string
-     */
-    public function getRepository()
-    {
-        return $this->container['repository'];
-    }
-
-    /**
-     * Sets repository
-     */
-    public function setRepository($repository)
-    {
-        if (is_null($repository)) {
-            throw new \InvalidArgumentException('non-nullable repository cannot be null');
-        }
-        $this->container['repository'] = $repository;
-
-        return $this;
-    }
-
-    /**
-     * Gets config
-     *
-     * @return string
-     */
-    public function getConfig()
-    {
-        return $this->container['config'];
-    }
-
-    /**
-     * Sets config
-     */
-    public function setConfig($config)
-    {
-        if (is_null($config)) {
-            array_push($this->openAPINullablesSetToNull, 'config');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('config', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['config'] = $config;
-
-        return $this;
-    }
-
-    /**
-     * Gets files
-     *
-     * @return \Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner[]
-     */
-    public function getFiles()
-    {
-        return $this->container['files'];
-    }
-
-    /**
-     * Sets files
-     */
-    public function setFiles($files)
-    {
-        if (is_null($files)) {
-            throw new \InvalidArgumentException('non-nullable files cannot be null');
-        }
-        $this->container['files'] = $files;
-
-        return $this;
-    }
-
-    /**
-     * Gets resources
-     *
-     * @return \Upsun\Model\Resources3
-     */
-    public function getResources()
-    {
-        return $this->container['resources'];
-    }
-
-    /**
-     * Sets resources
-     */
-    public function setResources($resources)
-    {
-        if (is_null($resources)) {
-            array_push($this->openAPINullablesSetToNull, 'resources');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('resources', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['resources'] = $resources;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+        return [
+            'profile' => $this->profile,
+            'repository' => $this->repository,
+            'config' => $this->config,
+            'files' => $this->files,
+            'resources' => $this->resources,
+        ];
     }
 
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

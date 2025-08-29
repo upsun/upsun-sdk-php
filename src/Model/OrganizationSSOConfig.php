@@ -12,477 +12,73 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class OrganizationSSOConfig implements ModelInterface, ArrayAccess, \JsonSerializable
+final class OrganizationSSOConfig implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'OrganizationSSOConfig';
+    public readonly string $provider_type;
+    public readonly string $domain;
+    public readonly string $organization_id;
+    public readonly bool $enforced;
+    public readonly \DateTime $created_at;
+    public readonly \DateTime $updated_at;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'provider_type' => 'string',
-        'domain' => 'string',
-        'organization_id' => 'string',
-        'enforced' => 'bool',
-        'created_at' => '\DateTime',
-        'updated_at' => '\DateTime'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'provider_type' => null,
-        'domain' => null,
-        'organization_id' => null,
-        'enforced' => null,
-        'created_at' => 'date-time',
-        'updated_at' => 'date-time'
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'provider_type' => false,
-        'domain' => false,
-        'organization_id' => false,
-        'enforced' => false,
-        'created_at' => false,
-        'updated_at' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        string $provider_type = null,
+        string $domain = null,
+        string $organization_id = null,
+        bool $enforced = null,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+    ) {
+        $this->provider_type = $provider_type;
+        $this->domain = $domain;
+        $this->organization_id = $organization_id;
+        $this->enforced = $enforced;
+        $this->created_at = $created_at;
+        $this->updated_at = $updated_at;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getProviderType(): string|null
     {
-        return self::$openAPIFormats;
+        return $this->provider_type;
+    }
+    public function getDomain(): string|null
+    {
+        return $this->domain;
+    }
+    public function getOrganizationId(): string|null
+    {
+        return $this->organization_id;
+    }
+    public function getEnforced(): bool|null
+    {
+        return $this->enforced;
+    }
+    public function getCreatedAt(): \DateTime|null
+    {
+        return $this->created_at;
+    }
+    public function getUpdatedAt(): \DateTime|null
+    {
+        return $this->updated_at;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'provider_type' => 'provider_type',
-        'domain' => 'domain',
-        'organization_id' => 'organization_id',
-        'enforced' => 'enforced',
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'provider_type' => 'setProviderType',
-        'domain' => 'setDomain',
-        'organization_id' => 'setOrganizationId',
-        'enforced' => 'setEnforced',
-        'created_at' => 'setCreatedAt',
-        'updated_at' => 'setUpdatedAt'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'provider_type' => 'getProviderType',
-        'domain' => 'getDomain',
-        'organization_id' => 'getOrganizationId',
-        'enforced' => 'getEnforced',
-        'created_at' => 'getCreatedAt',
-        'updated_at' => 'getUpdatedAt'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-    public const PROVIDER_TYPE_GOOGLE = 'google';
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getProviderTypeAllowableValues(): array
+    public function jsonSerialize(): mixed
     {
         return [
-            self::PROVIDER_TYPE_GOOGLE,
+            'provider_type' => $this->provider_type,
+            'domain' => $this->domain,
+            'organization_id' => $this->organization_id,
+            'enforced' => $this->enforced,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
+    public function __toString(): string
     {
-        $this->setIfExists('provider_type', $data ?? [], null);
-        $this->setIfExists('domain', $data ?? [], null);
-        $this->setIfExists('organization_id', $data ?? [], null);
-        $this->setIfExists('enforced', $data ?? [], null);
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('updated_at', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        $allowedValues = $this->getProviderTypeAllowableValues();
-        if (!is_null($this->container['provider_type']) && !in_array($this->container['provider_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'provider_type', must be one of '%s'",
-                $this->container['provider_type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets provider_type
-     *
-     * @return string|null
-     */
-    public function getProviderType()
-    {
-        return $this->container['provider_type'];
-    }
-
-    /**
-     * Sets provider_type
-     */
-    public function setProviderType($provider_type)
-    {
-        if (is_null($provider_type)) {
-            throw new \InvalidArgumentException('non-nullable provider_type cannot be null');
-        }
-        $allowedValues = $this->getProviderTypeAllowableValues();
-        if (!in_array($provider_type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'provider_type', must be one of '%s'",
-                    $provider_type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['provider_type'] = $provider_type;
-
-        return $this;
-    }
-
-    /**
-     * Gets domain
-     *
-     * @return string|null
-     */
-    public function getDomain()
-    {
-        return $this->container['domain'];
-    }
-
-    /**
-     * Sets domain
-     */
-    public function setDomain($domain)
-    {
-        if (is_null($domain)) {
-            throw new \InvalidArgumentException('non-nullable domain cannot be null');
-        }
-        $this->container['domain'] = $domain;
-
-        return $this;
-    }
-
-    /**
-     * Gets organization_id
-     *
-     * @return string|null
-     */
-    public function getOrganizationId()
-    {
-        return $this->container['organization_id'];
-    }
-
-    /**
-     * Sets organization_id
-     */
-    public function setOrganizationId($organization_id)
-    {
-        if (is_null($organization_id)) {
-            throw new \InvalidArgumentException('non-nullable organization_id cannot be null');
-        }
-        $this->container['organization_id'] = $organization_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets enforced
-     *
-     * @return bool|null
-     */
-    public function getEnforced()
-    {
-        return $this->container['enforced'];
-    }
-
-    /**
-     * Sets enforced
-     */
-    public function setEnforced($enforced)
-    {
-        if (is_null($enforced)) {
-            throw new \InvalidArgumentException('non-nullable enforced cannot be null');
-        }
-        $this->container['enforced'] = $enforced;
-
-        return $this;
-    }
-
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt()
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     */
-    public function setCreatedAt($created_at)
-    {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
-        }
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt()
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     */
-    public function setUpdatedAt($updated_at)
-    {
-        if (is_null($updated_at)) {
-            throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
-        }
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

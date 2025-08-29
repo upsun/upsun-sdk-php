@@ -126,7 +126,9 @@ final class PlansApi extends AbstractApi
     public function listPlans(
         
     ): \Upsun\Model\ListPlans200Response {
-        list($response) = $this->listPlansWithHttpInfo();
+        list($response) = $this->listPlansWithHttpInfo(
+            
+        );
         return $response;
     }
 
@@ -139,17 +141,17 @@ final class PlansApi extends AbstractApi
     public function listPlansWithHttpInfo(
         
     ): array {
-        $request = $this->listPlansRequest();
+        $request = $this->listPlansRequest(
+            
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -228,7 +230,9 @@ final class PlansApi extends AbstractApi
     public function listPlansAsync(
         
     ): Promise {
-        return $this->listPlansAsyncWithHttpInfo()
+        return $this->listPlansAsyncWithHttpInfo(
+            
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -245,7 +249,9 @@ final class PlansApi extends AbstractApi
         
     ): Promise {
         $returnType = '\Upsun\Model\ListPlans200Response';
-        $request = $this->listPlansRequest();
+        $request = $this->listPlansRequest(
+            
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -361,31 +367,22 @@ final class PlansApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -448,15 +445,5 @@ final class PlansApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

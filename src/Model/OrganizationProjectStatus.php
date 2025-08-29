@@ -12,7 +12,7 @@
 
 namespace Upsun\Model;
 
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
 class OrganizationProjectStatus
 {

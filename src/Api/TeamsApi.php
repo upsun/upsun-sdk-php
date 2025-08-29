@@ -126,7 +126,9 @@ final class TeamsApi extends AbstractApi
     public function createTeam(
         \Upsun\Model\CreateTeamRequest $create_team_request
     ): \Upsun\Model\Team {
-        list($response) = $this->createTeamWithHttpInfo($create_team_request);
+        list($response) = $this->createTeamWithHttpInfo(
+            $create_team_request
+        );
         return $response;
     }
 
@@ -139,17 +141,17 @@ final class TeamsApi extends AbstractApi
     public function createTeamWithHttpInfo(
         \Upsun\Model\CreateTeamRequest $create_team_request
     ): array {
-        $request = $this->createTeamRequest($create_team_request);
+        $request = $this->createTeamRequest(
+            $create_team_request
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -256,7 +258,9 @@ final class TeamsApi extends AbstractApi
     public function createTeamAsync(
         \Upsun\Model\CreateTeamRequest $create_team_request
     ): Promise {
-        return $this->createTeamAsyncWithHttpInfo($create_team_request)
+        return $this->createTeamAsyncWithHttpInfo(
+            $create_team_request
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -273,7 +277,9 @@ final class TeamsApi extends AbstractApi
         \Upsun\Model\CreateTeamRequest $create_team_request
     ): Promise {
         $returnType = '\Upsun\Model\Team';
-        $request = $this->createTeamRequest($create_team_request);
+        $request = $this->createTeamRequest(
+            $create_team_request
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -401,7 +407,10 @@ final class TeamsApi extends AbstractApi
         string $team_id,
         \Upsun\Model\CreateTeamMemberRequest $create_team_member_request
     ): \Upsun\Model\TeamMember {
-        list($response) = $this->createTeamMemberWithHttpInfo($team_id, $create_team_member_request);
+        list($response) = $this->createTeamMemberWithHttpInfo(
+            $team_id,
+            $create_team_member_request
+        );
         return $response;
     }
 
@@ -415,17 +424,18 @@ final class TeamsApi extends AbstractApi
         string $team_id,
         \Upsun\Model\CreateTeamMemberRequest $create_team_member_request
     ): array {
-        $request = $this->createTeamMemberRequest($team_id, $create_team_member_request);
+        $request = $this->createTeamMemberRequest(
+            $team_id,
+            $create_team_member_request
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -547,7 +557,10 @@ final class TeamsApi extends AbstractApi
         string $team_id,
         \Upsun\Model\CreateTeamMemberRequest $create_team_member_request
     ): Promise {
-        return $this->createTeamMemberAsyncWithHttpInfo($team_id, $create_team_member_request)
+        return $this->createTeamMemberAsyncWithHttpInfo(
+            $team_id,
+            $create_team_member_request
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -565,7 +578,10 @@ final class TeamsApi extends AbstractApi
         \Upsun\Model\CreateTeamMemberRequest $create_team_member_request
     ): Promise {
         $returnType = '\Upsun\Model\TeamMember';
-        $request = $this->createTeamMemberRequest($team_id, $create_team_member_request);
+        $request = $this->createTeamMemberRequest(
+            $team_id,
+            $create_team_member_request
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -707,7 +723,9 @@ final class TeamsApi extends AbstractApi
     public function deleteTeam(
         string $team_id
     ): void {
-        $this->deleteTeamWithHttpInfo($team_id);
+        $this->deleteTeamWithHttpInfo(
+            $team_id
+        );
     }
 
     /**
@@ -719,17 +737,17 @@ final class TeamsApi extends AbstractApi
     public function deleteTeamWithHttpInfo(
         string $team_id
     ): array {
-        $request = $this->deleteTeamRequest($team_id);
+        $request = $this->deleteTeamRequest(
+            $team_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -789,7 +807,9 @@ final class TeamsApi extends AbstractApi
     public function deleteTeamAsync(
         string $team_id
     ): Promise {
-        return $this->deleteTeamAsyncWithHttpInfo($team_id)
+        return $this->deleteTeamAsyncWithHttpInfo(
+            $team_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -806,7 +826,9 @@ final class TeamsApi extends AbstractApi
         string $team_id
     ): Promise {
         $returnType = '';
-        $request = $this->deleteTeamRequest($team_id);
+        $request = $this->deleteTeamRequest(
+            $team_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -926,7 +948,10 @@ final class TeamsApi extends AbstractApi
         string $team_id,
         string $user_id
     ): void {
-        $this->deleteTeamMemberWithHttpInfo($team_id, $user_id);
+        $this->deleteTeamMemberWithHttpInfo(
+            $team_id,
+            $user_id
+        );
     }
 
     /**
@@ -939,17 +964,18 @@ final class TeamsApi extends AbstractApi
         string $team_id,
         string $user_id
     ): array {
-        $request = $this->deleteTeamMemberRequest($team_id, $user_id);
+        $request = $this->deleteTeamMemberRequest(
+            $team_id,
+            $user_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1010,7 +1036,10 @@ final class TeamsApi extends AbstractApi
         string $team_id,
         string $user_id
     ): Promise {
-        return $this->deleteTeamMemberAsyncWithHttpInfo($team_id, $user_id)
+        return $this->deleteTeamMemberAsyncWithHttpInfo(
+            $team_id,
+            $user_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1028,7 +1057,10 @@ final class TeamsApi extends AbstractApi
         string $user_id
     ): Promise {
         $returnType = '';
-        $request = $this->deleteTeamMemberRequest($team_id, $user_id);
+        $request = $this->deleteTeamMemberRequest(
+            $team_id,
+            $user_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1162,7 +1194,9 @@ final class TeamsApi extends AbstractApi
     public function getTeam(
         string $team_id
     ): \Upsun\Model\Team {
-        list($response) = $this->getTeamWithHttpInfo($team_id);
+        list($response) = $this->getTeamWithHttpInfo(
+            $team_id
+        );
         return $response;
     }
 
@@ -1175,17 +1209,17 @@ final class TeamsApi extends AbstractApi
     public function getTeamWithHttpInfo(
         string $team_id
     ): array {
-        $request = $this->getTeamRequest($team_id);
+        $request = $this->getTeamRequest(
+            $team_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1292,7 +1326,9 @@ final class TeamsApi extends AbstractApi
     public function getTeamAsync(
         string $team_id
     ): Promise {
-        return $this->getTeamAsyncWithHttpInfo($team_id)
+        return $this->getTeamAsyncWithHttpInfo(
+            $team_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1309,7 +1345,9 @@ final class TeamsApi extends AbstractApi
         string $team_id
     ): Promise {
         $returnType = '\Upsun\Model\Team';
-        $request = $this->getTeamRequest($team_id);
+        $request = $this->getTeamRequest(
+            $team_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1439,7 +1477,10 @@ final class TeamsApi extends AbstractApi
         string $team_id,
         string $user_id
     ): \Upsun\Model\TeamMember {
-        list($response) = $this->getTeamMemberWithHttpInfo($team_id, $user_id);
+        list($response) = $this->getTeamMemberWithHttpInfo(
+            $team_id,
+            $user_id
+        );
         return $response;
     }
 
@@ -1453,17 +1494,18 @@ final class TeamsApi extends AbstractApi
         string $team_id,
         string $user_id
     ): array {
-        $request = $this->getTeamMemberRequest($team_id, $user_id);
+        $request = $this->getTeamMemberRequest(
+            $team_id,
+            $user_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1571,7 +1613,10 @@ final class TeamsApi extends AbstractApi
         string $team_id,
         string $user_id
     ): Promise {
-        return $this->getTeamMemberAsyncWithHttpInfo($team_id, $user_id)
+        return $this->getTeamMemberAsyncWithHttpInfo(
+            $team_id,
+            $user_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1589,7 +1634,10 @@ final class TeamsApi extends AbstractApi
         string $user_id
     ): Promise {
         $returnType = '\Upsun\Model\TeamMember';
-        $request = $this->getTeamMemberRequest($team_id, $user_id);
+        $request = $this->getTeamMemberRequest(
+            $team_id,
+            $user_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1736,7 +1784,12 @@ final class TeamsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): \Upsun\Model\ListTeamMembers200Response {
-        list($response) = $this->listTeamMembersWithHttpInfo($team_id, $page_before, $page_after, $sort);
+        list($response) = $this->listTeamMembersWithHttpInfo(
+            $team_id,
+            $page_before,
+            $page_after,
+            $sort
+        );
         return $response;
     }
 
@@ -1752,17 +1805,20 @@ final class TeamsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): array {
-        $request = $this->listTeamMembersRequest($team_id, $page_before, $page_after, $sort);
+        $request = $this->listTeamMembersRequest(
+            $team_id,
+            $page_before,
+            $page_after,
+            $sort
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1872,7 +1928,12 @@ final class TeamsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): Promise {
-        return $this->listTeamMembersAsyncWithHttpInfo($team_id, $page_before, $page_after, $sort)
+        return $this->listTeamMembersAsyncWithHttpInfo(
+            $team_id,
+            $page_before,
+            $page_after,
+            $sort
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1892,7 +1953,12 @@ final class TeamsApi extends AbstractApi
         string $sort = null
     ): Promise {
         $returnType = '\Upsun\Model\ListTeamMembers200Response';
-        $request = $this->listTeamMembersRequest($team_id, $page_before, $page_after, $sort);
+        $request = $this->listTeamMembersRequest(
+            $team_id,
+            $page_before,
+            $page_after,
+            $sort
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1961,7 +2027,7 @@ final class TeamsApi extends AbstractApi
                 $queryParams['page[before]'] = $page_before;
             }
         }
-        
+
         // query params
         if ($page_after !== null) {
             if ('form' === 'form' && is_array($page_after)) {
@@ -1972,7 +2038,7 @@ final class TeamsApi extends AbstractApi
                 $queryParams['page[after]'] = $page_after;
             }
         }
-        
+
         // query params
         if ($sort !== null) {
             if ('form' === 'form' && is_array($sort)) {
@@ -1983,7 +2049,7 @@ final class TeamsApi extends AbstractApi
                 $queryParams['sort'] = $sort;
             }
         }
-        
+
 
 
         // path params
@@ -2063,7 +2129,15 @@ final class TeamsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): \Upsun\Model\ListTeams200Response {
-        list($response) = $this->listTeamsWithHttpInfo($filter_organization_id, $filter_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+        list($response) = $this->listTeamsWithHttpInfo(
+            $filter_organization_id,
+            $filter_id,
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
         return $response;
     }
 
@@ -2082,17 +2156,23 @@ final class TeamsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): array {
-        $request = $this->listTeamsRequest($filter_organization_id, $filter_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+        $request = $this->listTeamsRequest(
+            $filter_organization_id,
+            $filter_id,
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -2191,7 +2271,15 @@ final class TeamsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): Promise {
-        return $this->listTeamsAsyncWithHttpInfo($filter_organization_id, $filter_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort)
+        return $this->listTeamsAsyncWithHttpInfo(
+            $filter_organization_id,
+            $filter_id,
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2214,7 +2302,15 @@ final class TeamsApi extends AbstractApi
         string $sort = null
     ): Promise {
         $returnType = '\Upsun\Model\ListTeams200Response';
-        $request = $this->listTeamsRequest($filter_organization_id, $filter_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+        $request = $this->listTeamsRequest(
+            $filter_organization_id,
+            $filter_id,
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -2263,10 +2359,16 @@ final class TeamsApi extends AbstractApi
         string $sort = null
     ): RequestInterface {
         if ($page_size !== null && $page_size > 100) {
-            throw new \InvalidArgumentException('invalid value for "$page_size" when calling TeamsApi.listTeams, must be smaller than or equal to 100.');
+            throw new \InvalidArgumentException(
+                'invalid value for "$page_size" when calling TeamsApi.listTeams, 
+                must be smaller than or equal to 100.'
+            );
         }
         if ($page_size !== null && $page_size < 1) {
-            throw new \InvalidArgumentException('invalid value for "$page_size" when calling TeamsApi.listTeams, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException(
+                'invalid value for "$page_size" when calling TeamsApi.listTeams,
+                must be bigger than or equal to 1.'
+            );
         }
 
 
@@ -2287,7 +2389,7 @@ final class TeamsApi extends AbstractApi
                 $queryParams['filter[organization_id]'] = $filter_organization_id->getEq();
             }
         }
-        
+
         // query params
         if ($filter_id !== null) {
             if ('form' === 'deepObject' && is_array($filter_id)) {
@@ -2298,7 +2400,7 @@ final class TeamsApi extends AbstractApi
                 $queryParams['filter[id]'] = $filter_id->getEq();
             }
         }
-        
+
         // query params
         if ($filter_updated_at !== null) {
             if ('form' === 'deepObject' && is_array($filter_updated_at)) {
@@ -2309,7 +2411,7 @@ final class TeamsApi extends AbstractApi
                 $queryParams['filter[updated_at]'] = $filter_updated_at->getEq();
             }
         }
-        
+
         // query params
         if ($page_size !== null) {
             if ('form' === 'form' && is_array($page_size)) {
@@ -2320,7 +2422,7 @@ final class TeamsApi extends AbstractApi
                 $queryParams['page[size]'] = $page_size;
             }
         }
-        
+
         // query params
         if ($page_before !== null) {
             if ('form' === 'form' && is_array($page_before)) {
@@ -2331,7 +2433,7 @@ final class TeamsApi extends AbstractApi
                 $queryParams['page[before]'] = $page_before;
             }
         }
-        
+
         // query params
         if ($page_after !== null) {
             if ('form' === 'form' && is_array($page_after)) {
@@ -2342,7 +2444,7 @@ final class TeamsApi extends AbstractApi
                 $queryParams['page[after]'] = $page_after;
             }
         }
-        
+
         // query params
         if ($sort !== null) {
             if ('form' === 'form' && is_array($sort)) {
@@ -2353,7 +2455,7 @@ final class TeamsApi extends AbstractApi
                 $queryParams['sort'] = $sort;
             }
         }
-        
+
 
 
 
@@ -2425,7 +2527,15 @@ final class TeamsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): \Upsun\Model\ListTeams200Response {
-        list($response) = $this->listUserTeamsWithHttpInfo($user_id, $filter_organization_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+        list($response) = $this->listUserTeamsWithHttpInfo(
+            $user_id,
+            $filter_organization_id,
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
         return $response;
     }
 
@@ -2444,17 +2554,23 @@ final class TeamsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): array {
-        $request = $this->listUserTeamsRequest($user_id, $filter_organization_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+        $request = $this->listUserTeamsRequest(
+            $user_id,
+            $filter_organization_id,
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -2567,7 +2683,15 @@ final class TeamsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): Promise {
-        return $this->listUserTeamsAsyncWithHttpInfo($user_id, $filter_organization_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort)
+        return $this->listUserTeamsAsyncWithHttpInfo(
+            $user_id,
+            $filter_organization_id,
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2590,7 +2714,15 @@ final class TeamsApi extends AbstractApi
         string $sort = null
     ): Promise {
         $returnType = '\Upsun\Model\ListTeams200Response';
-        $request = $this->listUserTeamsRequest($user_id, $filter_organization_id, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+        $request = $this->listUserTeamsRequest(
+            $user_id,
+            $filter_organization_id,
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -2645,10 +2777,16 @@ final class TeamsApi extends AbstractApi
             );
         }
         if ($page_size !== null && $page_size > 100) {
-            throw new \InvalidArgumentException('invalid value for "$page_size" when calling TeamsApi.listUserTeams, must be smaller than or equal to 100.');
+            throw new \InvalidArgumentException(
+                'invalid value for "$page_size" when calling TeamsApi.listUserTeams, 
+                must be smaller than or equal to 100.'
+            );
         }
         if ($page_size !== null && $page_size < 1) {
-            throw new \InvalidArgumentException('invalid value for "$page_size" when calling TeamsApi.listUserTeams, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException(
+                'invalid value for "$page_size" when calling TeamsApi.listUserTeams,
+                must be bigger than or equal to 1.'
+            );
         }
 
 
@@ -2669,7 +2807,7 @@ final class TeamsApi extends AbstractApi
                 $queryParams['filter[organization_id]'] = $filter_organization_id->getEq();
             }
         }
-        
+
         // query params
         if ($filter_updated_at !== null) {
             if ('form' === 'deepObject' && is_array($filter_updated_at)) {
@@ -2680,7 +2818,7 @@ final class TeamsApi extends AbstractApi
                 $queryParams['filter[updated_at]'] = $filter_updated_at->getEq();
             }
         }
-        
+
         // query params
         if ($page_size !== null) {
             if ('form' === 'form' && is_array($page_size)) {
@@ -2691,7 +2829,7 @@ final class TeamsApi extends AbstractApi
                 $queryParams['page[size]'] = $page_size;
             }
         }
-        
+
         // query params
         if ($page_before !== null) {
             if ('form' === 'form' && is_array($page_before)) {
@@ -2702,7 +2840,7 @@ final class TeamsApi extends AbstractApi
                 $queryParams['page[before]'] = $page_before;
             }
         }
-        
+
         // query params
         if ($page_after !== null) {
             if ('form' === 'form' && is_array($page_after)) {
@@ -2713,7 +2851,7 @@ final class TeamsApi extends AbstractApi
                 $queryParams['page[after]'] = $page_after;
             }
         }
-        
+
         // query params
         if ($sort !== null) {
             if ('form' === 'form' && is_array($sort)) {
@@ -2724,7 +2862,7 @@ final class TeamsApi extends AbstractApi
                 $queryParams['sort'] = $sort;
             }
         }
-        
+
 
 
         // path params
@@ -2799,7 +2937,10 @@ final class TeamsApi extends AbstractApi
         string $team_id,
         \Upsun\Model\UpdateTeamRequest $update_team_request = null
     ): \Upsun\Model\Team {
-        list($response) = $this->updateTeamWithHttpInfo($team_id, $update_team_request);
+        list($response) = $this->updateTeamWithHttpInfo(
+            $team_id,
+            $update_team_request
+        );
         return $response;
     }
 
@@ -2813,17 +2954,18 @@ final class TeamsApi extends AbstractApi
         string $team_id,
         \Upsun\Model\UpdateTeamRequest $update_team_request = null
     ): array {
-        $request = $this->updateTeamRequest($team_id, $update_team_request);
+        $request = $this->updateTeamRequest(
+            $team_id,
+            $update_team_request
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -2945,7 +3087,10 @@ final class TeamsApi extends AbstractApi
         string $team_id,
         \Upsun\Model\UpdateTeamRequest $update_team_request = null
     ): Promise {
-        return $this->updateTeamAsyncWithHttpInfo($team_id, $update_team_request)
+        return $this->updateTeamAsyncWithHttpInfo(
+            $team_id,
+            $update_team_request
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2963,7 +3108,10 @@ final class TeamsApi extends AbstractApi
         \Upsun\Model\UpdateTeamRequest $update_team_request = null
     ): Promise {
         $returnType = '\Upsun\Model\Team';
-        $request = $this->updateTeamRequest($team_id, $update_team_request);
+        $request = $this->updateTeamRequest(
+            $team_id,
+            $update_team_request
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -3100,31 +3248,22 @@ final class TeamsApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -3187,15 +3326,5 @@ final class TeamsApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

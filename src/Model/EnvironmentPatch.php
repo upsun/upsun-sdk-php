@@ -12,578 +12,97 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class EnvironmentPatch implements ModelInterface, ArrayAccess, \JsonSerializable
+final class EnvironmentPatch implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'EnvironmentPatch';
+    public readonly string $name;
+    public readonly string $title;
+    public readonly array<string,string> $attributes;
+    public readonly string $type;
+    public readonly string $parent;
+    public readonly bool $clone_parent_on_create;
+    public readonly \Upsun\Model\HttpAccessPermissions1 $http_access;
+    public readonly bool $enable_smtp;
+    public readonly bool $restrict_robots;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'name' => 'string',
-        'title' => 'string',
-        'attributes' => 'array<string,string>',
-        'type' => 'string',
-        'parent' => 'string',
-        'clone_parent_on_create' => 'bool',
-        'http_access' => '\Upsun\Model\HttpAccessPermissions1',
-        'enable_smtp' => 'bool',
-        'restrict_robots' => 'bool'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'name' => null,
-        'title' => null,
-        'attributes' => null,
-        'type' => null,
-        'parent' => null,
-        'clone_parent_on_create' => null,
-        'http_access' => null,
-        'enable_smtp' => null,
-        'restrict_robots' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'name' => false,
-        'title' => false,
-        'attributes' => false,
-        'type' => false,
-        'parent' => true,
-        'clone_parent_on_create' => false,
-        'http_access' => false,
-        'enable_smtp' => false,
-        'restrict_robots' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        string $name = null,
+        string $title = null,
+        array<string,string> $attributes = null,
+        string $type = null,
+        string $parent = null,
+        bool $clone_parent_on_create = null,
+        \Upsun\Model\HttpAccessPermissions1 $http_access = null,
+        bool $enable_smtp = null,
+        bool $restrict_robots = null,
+    ) {
+        $this->name = $name;
+        $this->title = $title;
+        $this->attributes = $attributes;
+        $this->type = $type;
+        $this->parent = $parent;
+        $this->clone_parent_on_create = $clone_parent_on_create;
+        $this->http_access = $http_access;
+        $this->enable_smtp = $enable_smtp;
+        $this->restrict_robots = $restrict_robots;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getName(): string|null
     {
-        return self::$openAPIFormats;
+        return $this->name;
+    }
+    public function getTitle(): string|null
+    {
+        return $this->title;
+    }
+    public function getAttributes(): array<string,string>|null
+    {
+        return $this->attributes;
+    }
+    public function getType(): string|null
+    {
+        return $this->type;
+    }
+    public function getParent(): string|null
+    {
+        return $this->parent;
+    }
+    public function getCloneParentOnCreate(): bool|null
+    {
+        return $this->clone_parent_on_create;
+    }
+    public function getHttpAccess(): \Upsun\Model\HttpAccessPermissions1|null
+    {
+        return $this->http_access;
+    }
+    public function getEnableSmtp(): bool|null
+    {
+        return $this->enable_smtp;
+    }
+    public function getRestrictRobots(): bool|null
+    {
+        return $this->restrict_robots;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'name' => 'name',
-        'title' => 'title',
-        'attributes' => 'attributes',
-        'type' => 'type',
-        'parent' => 'parent',
-        'clone_parent_on_create' => 'clone_parent_on_create',
-        'http_access' => 'http_access',
-        'enable_smtp' => 'enable_smtp',
-        'restrict_robots' => 'restrict_robots'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'name' => 'setName',
-        'title' => 'setTitle',
-        'attributes' => 'setAttributes',
-        'type' => 'setType',
-        'parent' => 'setParent',
-        'clone_parent_on_create' => 'setCloneParentOnCreate',
-        'http_access' => 'setHttpAccess',
-        'enable_smtp' => 'setEnableSmtp',
-        'restrict_robots' => 'setRestrictRobots'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'name' => 'getName',
-        'title' => 'getTitle',
-        'attributes' => 'getAttributes',
-        'type' => 'getType',
-        'parent' => 'getParent',
-        'clone_parent_on_create' => 'getCloneParentOnCreate',
-        'http_access' => 'getHttpAccess',
-        'enable_smtp' => 'getEnableSmtp',
-        'restrict_robots' => 'getRestrictRobots'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-    public const TYPE_DEVELOPMENT = 'development';
-    public const TYPE_PRODUCTION = 'production';
-    public const TYPE_STAGING = 'staging';
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getTypeAllowableValues(): array
+    public function jsonSerialize(): mixed
     {
         return [
-            self::TYPE_DEVELOPMENT,
-            self::TYPE_PRODUCTION,
-            self::TYPE_STAGING,
+            'name' => $this->name,
+            'title' => $this->title,
+            'attributes' => $this->attributes,
+            'type' => $this->type,
+            'parent' => $this->parent,
+            'clone_parent_on_create' => $this->clone_parent_on_create,
+            'http_access' => $this->http_access,
+            'enable_smtp' => $this->enable_smtp,
+            'restrict_robots' => $this->restrict_robots,
         ];
     }
 
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
+    public function __toString(): string
     {
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('title', $data ?? [], null);
-        $this->setIfExists('attributes', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('parent', $data ?? [], null);
-        $this->setIfExists('clone_parent_on_create', $data ?? [], null);
-        $this->setIfExists('http_access', $data ?? [], null);
-        $this->setIfExists('enable_smtp', $data ?? [], null);
-        $this->setIfExists('restrict_robots', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     */
-    public function setName($name)
-    {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets title
-     *
-     * @return string|null
-     */
-    public function getTitle()
-    {
-        return $this->container['title'];
-    }
-
-    /**
-     * Sets title
-     */
-    public function setTitle($title)
-    {
-        if (is_null($title)) {
-            throw new \InvalidArgumentException('non-nullable title cannot be null');
-        }
-        $this->container['title'] = $title;
-
-        return $this;
-    }
-
-    /**
-     * Gets attributes
-     *
-     * @return array<string,string>|null
-     */
-    public function getAttributes()
-    {
-        return $this->container['attributes'];
-    }
-
-    /**
-     * Sets attributes
-     */
-    public function setAttributes($attributes)
-    {
-        if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
-        }
-        $this->container['attributes'] = $attributes;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string|null
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     */
-    public function setType($type)
-    {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets parent
-     *
-     * @return string|null
-     */
-    public function getParent()
-    {
-        return $this->container['parent'];
-    }
-
-    /**
-     * Sets parent
-     */
-    public function setParent($parent)
-    {
-        if (is_null($parent)) {
-            array_push($this->openAPINullablesSetToNull, 'parent');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('parent', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['parent'] = $parent;
-
-        return $this;
-    }
-
-    /**
-     * Gets clone_parent_on_create
-     *
-     * @return bool|null
-     */
-    public function getCloneParentOnCreate()
-    {
-        return $this->container['clone_parent_on_create'];
-    }
-
-    /**
-     * Sets clone_parent_on_create
-     */
-    public function setCloneParentOnCreate($clone_parent_on_create)
-    {
-        if (is_null($clone_parent_on_create)) {
-            throw new \InvalidArgumentException('non-nullable clone_parent_on_create cannot be null');
-        }
-        $this->container['clone_parent_on_create'] = $clone_parent_on_create;
-
-        return $this;
-    }
-
-    /**
-     * Gets http_access
-     *
-     * @return \Upsun\Model\HttpAccessPermissions1|null
-     */
-    public function getHttpAccess()
-    {
-        return $this->container['http_access'];
-    }
-
-    /**
-     * Sets http_access
-     */
-    public function setHttpAccess($http_access)
-    {
-        if (is_null($http_access)) {
-            throw new \InvalidArgumentException('non-nullable http_access cannot be null');
-        }
-        $this->container['http_access'] = $http_access;
-
-        return $this;
-    }
-
-    /**
-     * Gets enable_smtp
-     *
-     * @return bool|null
-     */
-    public function getEnableSmtp()
-    {
-        return $this->container['enable_smtp'];
-    }
-
-    /**
-     * Sets enable_smtp
-     */
-    public function setEnableSmtp($enable_smtp)
-    {
-        if (is_null($enable_smtp)) {
-            throw new \InvalidArgumentException('non-nullable enable_smtp cannot be null');
-        }
-        $this->container['enable_smtp'] = $enable_smtp;
-
-        return $this;
-    }
-
-    /**
-     * Gets restrict_robots
-     *
-     * @return bool|null
-     */
-    public function getRestrictRobots()
-    {
-        return $this->container['restrict_robots'];
-    }
-
-    /**
-     * Sets restrict_robots
-     */
-    public function setRestrictRobots($restrict_robots)
-    {
-        if (is_null($restrict_robots)) {
-            throw new \InvalidArgumentException('non-nullable restrict_robots cannot be null');
-        }
-        $this->container['restrict_robots'] = $restrict_robots;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

@@ -12,477 +12,81 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class Vouchers implements ModelInterface, ArrayAccess, \JsonSerializable
+final class Vouchers implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Vouchers';
+    public readonly string $uuid;
+    public readonly string $vouchers_total;
+    public readonly string $vouchers_applied;
+    public readonly string $vouchers_remaining_balance;
+    public readonly string $currency;
+    public readonly \Upsun\Model\VouchersVouchersInner[] $vouchers;
+    public readonly \Upsun\Model\VouchersLinks $_links;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'uuid' => 'string',
-        'vouchers_total' => 'string',
-        'vouchers_applied' => 'string',
-        'vouchers_remaining_balance' => 'string',
-        'currency' => 'string',
-        'vouchers' => '\Upsun\Model\VouchersVouchersInner[]',
-        '_links' => '\Upsun\Model\VouchersLinks'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'uuid' => 'uuid',
-        'vouchers_total' => null,
-        'vouchers_applied' => null,
-        'vouchers_remaining_balance' => null,
-        'currency' => null,
-        'vouchers' => null,
-        '_links' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'uuid' => false,
-        'vouchers_total' => false,
-        'vouchers_applied' => false,
-        'vouchers_remaining_balance' => false,
-        'currency' => false,
-        'vouchers' => false,
-        '_links' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        string $uuid = null,
+        string $vouchers_total = null,
+        string $vouchers_applied = null,
+        string $vouchers_remaining_balance = null,
+        string $currency = null,
+        \Upsun\Model\VouchersVouchersInner[] $vouchers = null,
+        \Upsun\Model\VouchersLinks $_links = null,
+    ) {
+        $this->uuid = $uuid;
+        $this->vouchers_total = $vouchers_total;
+        $this->vouchers_applied = $vouchers_applied;
+        $this->vouchers_remaining_balance = $vouchers_remaining_balance;
+        $this->currency = $currency;
+        $this->vouchers = $vouchers;
+        $this->_links = $_links;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getUuid(): string|null
     {
-        return self::$openAPIFormats;
+        return $this->uuid;
+    }
+    public function getVouchersTotal(): string|null
+    {
+        return $this->vouchers_total;
+    }
+    public function getVouchersApplied(): string|null
+    {
+        return $this->vouchers_applied;
+    }
+    public function getVouchersRemainingBalance(): string|null
+    {
+        return $this->vouchers_remaining_balance;
+    }
+    public function getCurrency(): string|null
+    {
+        return $this->currency;
+    }
+    public function getVouchers(): \Upsun\Model\VouchersVouchersInner[]|null
+    {
+        return $this->vouchers;
+    }
+    public function getLinks(): \Upsun\Model\VouchersLinks|null
+    {
+        return $this->_links;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'uuid' => 'uuid',
-        'vouchers_total' => 'vouchers_total',
-        'vouchers_applied' => 'vouchers_applied',
-        'vouchers_remaining_balance' => 'vouchers_remaining_balance',
-        'currency' => 'currency',
-        'vouchers' => 'vouchers',
-        '_links' => '_links'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'uuid' => 'setUuid',
-        'vouchers_total' => 'setVouchersTotal',
-        'vouchers_applied' => 'setVouchersApplied',
-        'vouchers_remaining_balance' => 'setVouchersRemainingBalance',
-        'currency' => 'setCurrency',
-        'vouchers' => 'setVouchers',
-        '_links' => 'setLinks'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'uuid' => 'getUuid',
-        'vouchers_total' => 'getVouchersTotal',
-        'vouchers_applied' => 'getVouchersApplied',
-        'vouchers_remaining_balance' => 'getVouchersRemainingBalance',
-        'currency' => 'getCurrency',
-        'vouchers' => 'getVouchers',
-        '_links' => 'getLinks'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('uuid', $data ?? [], null);
-        $this->setIfExists('vouchers_total', $data ?? [], null);
-        $this->setIfExists('vouchers_applied', $data ?? [], null);
-        $this->setIfExists('vouchers_remaining_balance', $data ?? [], null);
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('vouchers', $data ?? [], null);
-        $this->setIfExists('_links', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets uuid
-     *
-     * @return string|null
-     */
-    public function getUuid()
-    {
-        return $this->container['uuid'];
-    }
-
-    /**
-     * Sets uuid
-     */
-    public function setUuid($uuid)
-    {
-        if (is_null($uuid)) {
-            throw new \InvalidArgumentException('non-nullable uuid cannot be null');
-        }
-        $this->container['uuid'] = $uuid;
-
-        return $this;
-    }
-
-    /**
-     * Gets vouchers_total
-     *
-     * @return string|null
-     */
-    public function getVouchersTotal()
-    {
-        return $this->container['vouchers_total'];
-    }
-
-    /**
-     * Sets vouchers_total
-     */
-    public function setVouchersTotal($vouchers_total)
-    {
-        if (is_null($vouchers_total)) {
-            throw new \InvalidArgumentException('non-nullable vouchers_total cannot be null');
-        }
-        $this->container['vouchers_total'] = $vouchers_total;
-
-        return $this;
-    }
-
-    /**
-     * Gets vouchers_applied
-     *
-     * @return string|null
-     */
-    public function getVouchersApplied()
-    {
-        return $this->container['vouchers_applied'];
-    }
-
-    /**
-     * Sets vouchers_applied
-     */
-    public function setVouchersApplied($vouchers_applied)
-    {
-        if (is_null($vouchers_applied)) {
-            throw new \InvalidArgumentException('non-nullable vouchers_applied cannot be null');
-        }
-        $this->container['vouchers_applied'] = $vouchers_applied;
-
-        return $this;
-    }
-
-    /**
-     * Gets vouchers_remaining_balance
-     *
-     * @return string|null
-     */
-    public function getVouchersRemainingBalance()
-    {
-        return $this->container['vouchers_remaining_balance'];
-    }
-
-    /**
-     * Sets vouchers_remaining_balance
-     */
-    public function setVouchersRemainingBalance($vouchers_remaining_balance)
-    {
-        if (is_null($vouchers_remaining_balance)) {
-            throw new \InvalidArgumentException('non-nullable vouchers_remaining_balance cannot be null');
-        }
-        $this->container['vouchers_remaining_balance'] = $vouchers_remaining_balance;
-
-        return $this;
-    }
-
-    /**
-     * Gets currency
-     *
-     * @return string|null
-     */
-    public function getCurrency()
-    {
-        return $this->container['currency'];
-    }
-
-    /**
-     * Sets currency
-     */
-    public function setCurrency($currency)
-    {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
-        }
-        $this->container['currency'] = $currency;
-
-        return $this;
-    }
-
-    /**
-     * Gets vouchers
-     *
-     * @return \Upsun\Model\VouchersVouchersInner[]|null
-     */
-    public function getVouchers()
-    {
-        return $this->container['vouchers'];
-    }
-
-    /**
-     * Sets vouchers
-     */
-    public function setVouchers($vouchers)
-    {
-        if (is_null($vouchers)) {
-            throw new \InvalidArgumentException('non-nullable vouchers cannot be null');
-        }
-        $this->container['vouchers'] = $vouchers;
-
-        return $this;
-    }
-
-    /**
-     * Gets _links
-     *
-     * @return \Upsun\Model\VouchersLinks|null
-     */
-    public function getLinks()
-    {
-        return $this->container['_links'];
-    }
-
-    /**
-     * Sets _links
-     */
-    public function setLinks($_links)
-    {
-        if (is_null($_links)) {
-            throw new \InvalidArgumentException('non-nullable _links cannot be null');
-        }
-        $this->container['_links'] = $_links;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+        return [
+            'uuid' => $this->uuid,
+            'vouchers_total' => $this->vouchers_total,
+            'vouchers_applied' => $this->vouchers_applied,
+            'vouchers_remaining_balance' => $this->vouchers_remaining_balance,
+            'currency' => $this->currency,
+            'vouchers' => $this->vouchers,
+            '_links' => $this->_links,
+        ];
     }
 
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

@@ -128,7 +128,11 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $environment_id,
         \Upsun\Model\EnvironmentBackupInput $environment_backup_input
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->backupEnvironmentWithHttpInfo($project_id, $environment_id, $environment_backup_input);
+        list($response) = $this->backupEnvironmentWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $environment_backup_input
+        );
         return $response;
     }
 
@@ -143,17 +147,19 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $environment_id,
         \Upsun\Model\EnvironmentBackupInput $environment_backup_input
     ): array {
-        $request = $this->backupEnvironmentRequest($project_id, $environment_id, $environment_backup_input);
+        $request = $this->backupEnvironmentRequest(
+            $project_id,
+            $environment_id,
+            $environment_backup_input
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -234,7 +240,11 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $environment_id,
         \Upsun\Model\EnvironmentBackupInput $environment_backup_input
     ): Promise {
-        return $this->backupEnvironmentAsyncWithHttpInfo($project_id, $environment_id, $environment_backup_input)
+        return $this->backupEnvironmentAsyncWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $environment_backup_input
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -253,7 +263,11 @@ final class EnvironmentBackupsApi extends AbstractApi
         \Upsun\Model\EnvironmentBackupInput $environment_backup_input
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->backupEnvironmentRequest($project_id, $environment_id, $environment_backup_input);
+        $request = $this->backupEnvironmentRequest(
+            $project_id,
+            $environment_id,
+            $environment_backup_input
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -412,7 +426,11 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $environment_id,
         string $backup_id
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->deleteProjectsEnvironmentsBackupsWithHttpInfo($project_id, $environment_id, $backup_id);
+        list($response) = $this->deleteProjectsEnvironmentsBackupsWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $backup_id
+        );
         return $response;
     }
 
@@ -427,17 +445,19 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $environment_id,
         string $backup_id
     ): array {
-        $request = $this->deleteProjectsEnvironmentsBackupsRequest($project_id, $environment_id, $backup_id);
+        $request = $this->deleteProjectsEnvironmentsBackupsRequest(
+            $project_id,
+            $environment_id,
+            $backup_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -518,7 +538,11 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $environment_id,
         string $backup_id
     ): Promise {
-        return $this->deleteProjectsEnvironmentsBackupsAsyncWithHttpInfo($project_id, $environment_id, $backup_id)
+        return $this->deleteProjectsEnvironmentsBackupsAsyncWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $backup_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -537,7 +561,11 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $backup_id
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->deleteProjectsEnvironmentsBackupsRequest($project_id, $environment_id, $backup_id);
+        $request = $this->deleteProjectsEnvironmentsBackupsRequest(
+            $project_id,
+            $environment_id,
+            $backup_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -698,7 +726,11 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $environment_id,
         string $backup_id
     ): \Upsun\Model\Backup {
-        list($response) = $this->getProjectsEnvironmentsBackupsWithHttpInfo($project_id, $environment_id, $backup_id);
+        list($response) = $this->getProjectsEnvironmentsBackupsWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $backup_id
+        );
         return $response;
     }
 
@@ -713,17 +745,19 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $environment_id,
         string $backup_id
     ): array {
-        $request = $this->getProjectsEnvironmentsBackupsRequest($project_id, $environment_id, $backup_id);
+        $request = $this->getProjectsEnvironmentsBackupsRequest(
+            $project_id,
+            $environment_id,
+            $backup_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -804,7 +838,11 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $environment_id,
         string $backup_id
     ): Promise {
-        return $this->getProjectsEnvironmentsBackupsAsyncWithHttpInfo($project_id, $environment_id, $backup_id)
+        return $this->getProjectsEnvironmentsBackupsAsyncWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $backup_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -823,7 +861,11 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $backup_id
     ): Promise {
         $returnType = '\Upsun\Model\Backup';
-        $request = $this->getProjectsEnvironmentsBackupsRequest($project_id, $environment_id, $backup_id);
+        $request = $this->getProjectsEnvironmentsBackupsRequest(
+            $project_id,
+            $environment_id,
+            $backup_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -985,7 +1027,10 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $project_id,
         string $environment_id
     ): array {
-        list($response) = $this->listProjectsEnvironmentsBackupsWithHttpInfo($project_id, $environment_id);
+        list($response) = $this->listProjectsEnvironmentsBackupsWithHttpInfo(
+            $project_id,
+            $environment_id
+        );
         return $response;
     }
 
@@ -999,17 +1044,18 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $project_id,
         string $environment_id
     ): array {
-        $request = $this->listProjectsEnvironmentsBackupsRequest($project_id, $environment_id);
+        $request = $this->listProjectsEnvironmentsBackupsRequest(
+            $project_id,
+            $environment_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1089,7 +1135,10 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $project_id,
         string $environment_id
     ): Promise {
-        return $this->listProjectsEnvironmentsBackupsAsyncWithHttpInfo($project_id, $environment_id)
+        return $this->listProjectsEnvironmentsBackupsAsyncWithHttpInfo(
+            $project_id,
+            $environment_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1107,7 +1156,10 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $environment_id
     ): Promise {
         $returnType = '\Upsun\Model\Backup[]';
-        $request = $this->listProjectsEnvironmentsBackupsRequest($project_id, $environment_id);
+        $request = $this->listProjectsEnvironmentsBackupsRequest(
+            $project_id,
+            $environment_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1254,7 +1306,12 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $backup_id,
         \Upsun\Model\EnvironmentRestoreInput $environment_restore_input
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->restoreBackupWithHttpInfo($project_id, $environment_id, $backup_id, $environment_restore_input);
+        list($response) = $this->restoreBackupWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $backup_id,
+            $environment_restore_input
+        );
         return $response;
     }
 
@@ -1270,17 +1327,20 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $backup_id,
         \Upsun\Model\EnvironmentRestoreInput $environment_restore_input
     ): array {
-        $request = $this->restoreBackupRequest($project_id, $environment_id, $backup_id, $environment_restore_input);
+        $request = $this->restoreBackupRequest(
+            $project_id,
+            $environment_id,
+            $backup_id,
+            $environment_restore_input
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1362,7 +1422,12 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $backup_id,
         \Upsun\Model\EnvironmentRestoreInput $environment_restore_input
     ): Promise {
-        return $this->restoreBackupAsyncWithHttpInfo($project_id, $environment_id, $backup_id, $environment_restore_input)
+        return $this->restoreBackupAsyncWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $backup_id,
+            $environment_restore_input
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1382,7 +1447,12 @@ final class EnvironmentBackupsApi extends AbstractApi
         \Upsun\Model\EnvironmentRestoreInput $environment_restore_input
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->restoreBackupRequest($project_id, $environment_id, $backup_id, $environment_restore_input);
+        $request = $this->restoreBackupRequest(
+            $project_id,
+            $environment_id,
+            $backup_id,
+            $environment_restore_input
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1555,31 +1625,22 @@ final class EnvironmentBackupsApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -1642,15 +1703,5 @@ final class EnvironmentBackupsApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

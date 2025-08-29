@@ -12,477 +12,81 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class OrganizationEstimationObject implements ModelInterface, ArrayAccess, \JsonSerializable
+final class OrganizationEstimationObject implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'OrganizationEstimationObject';
+    public readonly string $total;
+    public readonly string $sub_total;
+    public readonly string $vouchers;
+    public readonly \Upsun\Model\OrganizationEstimationObjectUserLicenses $user_licenses;
+    public readonly string $user_management;
+    public readonly string $support_level;
+    public readonly \Upsun\Model\OrganizationEstimationObjectSubscriptions $subscriptions;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'total' => 'string',
-        'sub_total' => 'string',
-        'vouchers' => 'string',
-        'user_licenses' => '\Upsun\Model\OrganizationEstimationObjectUserLicenses',
-        'user_management' => 'string',
-        'support_level' => 'string',
-        'subscriptions' => '\Upsun\Model\OrganizationEstimationObjectSubscriptions'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'total' => null,
-        'sub_total' => null,
-        'vouchers' => null,
-        'user_licenses' => null,
-        'user_management' => null,
-        'support_level' => null,
-        'subscriptions' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'total' => false,
-        'sub_total' => false,
-        'vouchers' => false,
-        'user_licenses' => false,
-        'user_management' => false,
-        'support_level' => false,
-        'subscriptions' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        string $total = null,
+        string $sub_total = null,
+        string $vouchers = null,
+        \Upsun\Model\OrganizationEstimationObjectUserLicenses $user_licenses = null,
+        string $user_management = null,
+        string $support_level = null,
+        \Upsun\Model\OrganizationEstimationObjectSubscriptions $subscriptions = null,
+    ) {
+        $this->total = $total;
+        $this->sub_total = $sub_total;
+        $this->vouchers = $vouchers;
+        $this->user_licenses = $user_licenses;
+        $this->user_management = $user_management;
+        $this->support_level = $support_level;
+        $this->subscriptions = $subscriptions;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getTotal(): string|null
     {
-        return self::$openAPIFormats;
+        return $this->total;
+    }
+    public function getSubTotal(): string|null
+    {
+        return $this->sub_total;
+    }
+    public function getVouchers(): string|null
+    {
+        return $this->vouchers;
+    }
+    public function getUserLicenses(): \Upsun\Model\OrganizationEstimationObjectUserLicenses|null
+    {
+        return $this->user_licenses;
+    }
+    public function getUserManagement(): string|null
+    {
+        return $this->user_management;
+    }
+    public function getSupportLevel(): string|null
+    {
+        return $this->support_level;
+    }
+    public function getSubscriptions(): \Upsun\Model\OrganizationEstimationObjectSubscriptions|null
+    {
+        return $this->subscriptions;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'total' => 'total',
-        'sub_total' => 'sub_total',
-        'vouchers' => 'vouchers',
-        'user_licenses' => 'user_licenses',
-        'user_management' => 'user_management',
-        'support_level' => 'support_level',
-        'subscriptions' => 'subscriptions'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'total' => 'setTotal',
-        'sub_total' => 'setSubTotal',
-        'vouchers' => 'setVouchers',
-        'user_licenses' => 'setUserLicenses',
-        'user_management' => 'setUserManagement',
-        'support_level' => 'setSupportLevel',
-        'subscriptions' => 'setSubscriptions'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'total' => 'getTotal',
-        'sub_total' => 'getSubTotal',
-        'vouchers' => 'getVouchers',
-        'user_licenses' => 'getUserLicenses',
-        'user_management' => 'getUserManagement',
-        'support_level' => 'getSupportLevel',
-        'subscriptions' => 'getSubscriptions'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('total', $data ?? [], null);
-        $this->setIfExists('sub_total', $data ?? [], null);
-        $this->setIfExists('vouchers', $data ?? [], null);
-        $this->setIfExists('user_licenses', $data ?? [], null);
-        $this->setIfExists('user_management', $data ?? [], null);
-        $this->setIfExists('support_level', $data ?? [], null);
-        $this->setIfExists('subscriptions', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets total
-     *
-     * @return string|null
-     */
-    public function getTotal()
-    {
-        return $this->container['total'];
-    }
-
-    /**
-     * Sets total
-     */
-    public function setTotal($total)
-    {
-        if (is_null($total)) {
-            throw new \InvalidArgumentException('non-nullable total cannot be null');
-        }
-        $this->container['total'] = $total;
-
-        return $this;
-    }
-
-    /**
-     * Gets sub_total
-     *
-     * @return string|null
-     */
-    public function getSubTotal()
-    {
-        return $this->container['sub_total'];
-    }
-
-    /**
-     * Sets sub_total
-     */
-    public function setSubTotal($sub_total)
-    {
-        if (is_null($sub_total)) {
-            throw new \InvalidArgumentException('non-nullable sub_total cannot be null');
-        }
-        $this->container['sub_total'] = $sub_total;
-
-        return $this;
-    }
-
-    /**
-     * Gets vouchers
-     *
-     * @return string|null
-     */
-    public function getVouchers()
-    {
-        return $this->container['vouchers'];
-    }
-
-    /**
-     * Sets vouchers
-     */
-    public function setVouchers($vouchers)
-    {
-        if (is_null($vouchers)) {
-            throw new \InvalidArgumentException('non-nullable vouchers cannot be null');
-        }
-        $this->container['vouchers'] = $vouchers;
-
-        return $this;
-    }
-
-    /**
-     * Gets user_licenses
-     *
-     * @return \Upsun\Model\OrganizationEstimationObjectUserLicenses|null
-     */
-    public function getUserLicenses()
-    {
-        return $this->container['user_licenses'];
-    }
-
-    /**
-     * Sets user_licenses
-     */
-    public function setUserLicenses($user_licenses)
-    {
-        if (is_null($user_licenses)) {
-            throw new \InvalidArgumentException('non-nullable user_licenses cannot be null');
-        }
-        $this->container['user_licenses'] = $user_licenses;
-
-        return $this;
-    }
-
-    /**
-     * Gets user_management
-     *
-     * @return string|null
-     */
-    public function getUserManagement()
-    {
-        return $this->container['user_management'];
-    }
-
-    /**
-     * Sets user_management
-     */
-    public function setUserManagement($user_management)
-    {
-        if (is_null($user_management)) {
-            throw new \InvalidArgumentException('non-nullable user_management cannot be null');
-        }
-        $this->container['user_management'] = $user_management;
-
-        return $this;
-    }
-
-    /**
-     * Gets support_level
-     *
-     * @return string|null
-     */
-    public function getSupportLevel()
-    {
-        return $this->container['support_level'];
-    }
-
-    /**
-     * Sets support_level
-     */
-    public function setSupportLevel($support_level)
-    {
-        if (is_null($support_level)) {
-            throw new \InvalidArgumentException('non-nullable support_level cannot be null');
-        }
-        $this->container['support_level'] = $support_level;
-
-        return $this;
-    }
-
-    /**
-     * Gets subscriptions
-     *
-     * @return \Upsun\Model\OrganizationEstimationObjectSubscriptions|null
-     */
-    public function getSubscriptions()
-    {
-        return $this->container['subscriptions'];
-    }
-
-    /**
-     * Sets subscriptions
-     */
-    public function setSubscriptions($subscriptions)
-    {
-        if (is_null($subscriptions)) {
-            throw new \InvalidArgumentException('non-nullable subscriptions cannot be null');
-        }
-        $this->container['subscriptions'] = $subscriptions;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+        return [
+            'total' => $this->total,
+            'sub_total' => $this->sub_total,
+            'vouchers' => $this->vouchers,
+            'user_licenses' => $this->user_licenses,
+            'user_management' => $this->user_management,
+            'support_level' => $this->support_level,
+            'subscriptions' => $this->subscriptions,
+        ];
     }
 
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

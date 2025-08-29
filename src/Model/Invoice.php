@@ -12,854 +12,153 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class Invoice implements ModelInterface, ArrayAccess, \JsonSerializable
+final class Invoice implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Invoice';
+    public readonly string $id;
+    public readonly string $invoice_number;
+    public readonly string $type;
+    public readonly string $order_id;
+    public readonly string $related_invoice_id;
+    public readonly string $status;
+    public readonly string $owner;
+    public readonly \DateTime $invoice_date;
+    public readonly \DateTime $invoice_due;
+    public readonly \DateTime $created;
+    public readonly \DateTime $changed;
+    public readonly string $company;
+    public readonly float $total;
+    public readonly \Upsun\Model\Address $address;
+    public readonly string $notes;
+    public readonly \Upsun\Model\InvoicePDF $invoice_pdf;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'id' => 'string',
-        'invoice_number' => 'string',
-        'type' => 'string',
-        'order_id' => 'string',
-        'related_invoice_id' => 'string',
-        'status' => 'string',
-        'owner' => 'string',
-        'invoice_date' => '\DateTime',
-        'invoice_due' => '\DateTime',
-        'created' => '\DateTime',
-        'changed' => '\DateTime',
-        'company' => 'string',
-        'total' => 'float',
-        'address' => '\Upsun\Model\Address',
-        'notes' => 'string',
-        'invoice_pdf' => '\Upsun\Model\InvoicePDF'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'id' => null,
-        'invoice_number' => null,
-        'type' => null,
-        'order_id' => null,
-        'related_invoice_id' => null,
-        'status' => null,
-        'owner' => 'ulid',
-        'invoice_date' => 'date-time',
-        'invoice_due' => 'date-time',
-        'created' => 'date-time',
-        'changed' => 'date-time',
-        'company' => null,
-        'total' => 'double',
-        'address' => null,
-        'notes' => null,
-        'invoice_pdf' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'id' => false,
-        'invoice_number' => false,
-        'type' => false,
-        'order_id' => false,
-        'related_invoice_id' => true,
-        'status' => false,
-        'owner' => false,
-        'invoice_date' => true,
-        'invoice_due' => true,
-        'created' => true,
-        'changed' => true,
-        'company' => false,
-        'total' => false,
-        'address' => false,
-        'notes' => false,
-        'invoice_pdf' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        string $id = null,
+        string $invoice_number = null,
+        string $type = null,
+        string $order_id = null,
+        string $related_invoice_id = null,
+        string $status = null,
+        string $owner = null,
+        \DateTime $invoice_date = null,
+        \DateTime $invoice_due = null,
+        \DateTime $created = null,
+        \DateTime $changed = null,
+        string $company = null,
+        float $total = null,
+        \Upsun\Model\Address $address = null,
+        string $notes = null,
+        \Upsun\Model\InvoicePDF $invoice_pdf = null,
+    ) {
+        $this->id = $id;
+        $this->invoice_number = $invoice_number;
+        $this->type = $type;
+        $this->order_id = $order_id;
+        $this->related_invoice_id = $related_invoice_id;
+        $this->status = $status;
+        $this->owner = $owner;
+        $this->invoice_date = $invoice_date;
+        $this->invoice_due = $invoice_due;
+        $this->created = $created;
+        $this->changed = $changed;
+        $this->company = $company;
+        $this->total = $total;
+        $this->address = $address;
+        $this->notes = $notes;
+        $this->invoice_pdf = $invoice_pdf;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getId(): string|null
     {
-        return self::$openAPIFormats;
+        return $this->id;
+    }
+    public function getInvoiceNumber(): string|null
+    {
+        return $this->invoice_number;
+    }
+    public function getType(): string|null
+    {
+        return $this->type;
+    }
+    public function getOrderId(): string|null
+    {
+        return $this->order_id;
+    }
+    public function getRelatedInvoiceId(): string|null
+    {
+        return $this->related_invoice_id;
+    }
+    public function getStatus(): string|null
+    {
+        return $this->status;
+    }
+    public function getOwner(): string|null
+    {
+        return $this->owner;
+    }
+    public function getInvoiceDate(): \DateTime|null
+    {
+        return $this->invoice_date;
+    }
+    public function getInvoiceDue(): \DateTime|null
+    {
+        return $this->invoice_due;
+    }
+    public function getCreated(): \DateTime|null
+    {
+        return $this->created;
+    }
+    public function getChanged(): \DateTime|null
+    {
+        return $this->changed;
+    }
+    public function getCompany(): string|null
+    {
+        return $this->company;
+    }
+    public function getTotal(): float|null
+    {
+        return $this->total;
+    }
+    public function getAddress(): \Upsun\Model\Address|null
+    {
+        return $this->address;
+    }
+    public function getNotes(): string|null
+    {
+        return $this->notes;
+    }
+    public function getInvoicePdf(): \Upsun\Model\InvoicePDF|null
+    {
+        return $this->invoice_pdf;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'id' => 'id',
-        'invoice_number' => 'invoice_number',
-        'type' => 'type',
-        'order_id' => 'order_id',
-        'related_invoice_id' => 'related_invoice_id',
-        'status' => 'status',
-        'owner' => 'owner',
-        'invoice_date' => 'invoice_date',
-        'invoice_due' => 'invoice_due',
-        'created' => 'created',
-        'changed' => 'changed',
-        'company' => 'company',
-        'total' => 'total',
-        'address' => 'address',
-        'notes' => 'notes',
-        'invoice_pdf' => 'invoice_pdf'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'id' => 'setId',
-        'invoice_number' => 'setInvoiceNumber',
-        'type' => 'setType',
-        'order_id' => 'setOrderId',
-        'related_invoice_id' => 'setRelatedInvoiceId',
-        'status' => 'setStatus',
-        'owner' => 'setOwner',
-        'invoice_date' => 'setInvoiceDate',
-        'invoice_due' => 'setInvoiceDue',
-        'created' => 'setCreated',
-        'changed' => 'setChanged',
-        'company' => 'setCompany',
-        'total' => 'setTotal',
-        'address' => 'setAddress',
-        'notes' => 'setNotes',
-        'invoice_pdf' => 'setInvoicePdf'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'id' => 'getId',
-        'invoice_number' => 'getInvoiceNumber',
-        'type' => 'getType',
-        'order_id' => 'getOrderId',
-        'related_invoice_id' => 'getRelatedInvoiceId',
-        'status' => 'getStatus',
-        'owner' => 'getOwner',
-        'invoice_date' => 'getInvoiceDate',
-        'invoice_due' => 'getInvoiceDue',
-        'created' => 'getCreated',
-        'changed' => 'getChanged',
-        'company' => 'getCompany',
-        'total' => 'getTotal',
-        'address' => 'getAddress',
-        'notes' => 'getNotes',
-        'invoice_pdf' => 'getInvoicePdf'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-    public const TYPE_INVOICE = 'invoice';
-    public const TYPE_CREDIT_MEMO = 'credit_memo';
-    public const STATUS_PAID = 'paid';
-    public const STATUS_CHARGED_OFF = 'charged_off';
-    public const STATUS_PENDING = 'pending';
-    public const STATUS_REFUNDED = 'refunded';
-    public const STATUS_CANCELED = 'canceled';
-    public const STATUS_REFUND_PENDING = 'refund_pending';
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getTypeAllowableValues(): array
-    {
-        return [
-            self::TYPE_INVOICE,
-            self::TYPE_CREDIT_MEMO,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getStatusAllowableValues(): array
-    {
-        return [
-            self::STATUS_PAID,
-            self::STATUS_CHARGED_OFF,
-            self::STATUS_PENDING,
-            self::STATUS_REFUNDED,
-            self::STATUS_CANCELED,
-            self::STATUS_REFUND_PENDING,
-        ];
-    }
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('invoice_number', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('order_id', $data ?? [], null);
-        $this->setIfExists('related_invoice_id', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('owner', $data ?? [], null);
-        $this->setIfExists('invoice_date', $data ?? [], null);
-        $this->setIfExists('invoice_due', $data ?? [], null);
-        $this->setIfExists('created', $data ?? [], null);
-        $this->setIfExists('changed', $data ?? [], null);
-        $this->setIfExists('company', $data ?? [], null);
-        $this->setIfExists('total', $data ?? [], null);
-        $this->setIfExists('address', $data ?? [], null);
-        $this->setIfExists('notes', $data ?? [], null);
-        $this->setIfExists('invoice_pdf', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets id
-     *
-     * @return string|null
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     */
-    public function setId($id)
-    {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets invoice_number
-     *
-     * @return string|null
-     */
-    public function getInvoiceNumber()
-    {
-        return $this->container['invoice_number'];
-    }
-
-    /**
-     * Sets invoice_number
-     */
-    public function setInvoiceNumber($invoice_number)
-    {
-        if (is_null($invoice_number)) {
-            throw new \InvalidArgumentException('non-nullable invoice_number cannot be null');
-        }
-        $this->container['invoice_number'] = $invoice_number;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string|null
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     */
-    public function setType($type)
-    {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets order_id
-     *
-     * @return string|null
-     */
-    public function getOrderId()
-    {
-        return $this->container['order_id'];
-    }
-
-    /**
-     * Sets order_id
-     */
-    public function setOrderId($order_id)
-    {
-        if (is_null($order_id)) {
-            throw new \InvalidArgumentException('non-nullable order_id cannot be null');
-        }
-        $this->container['order_id'] = $order_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets related_invoice_id
-     *
-     * @return string|null
-     */
-    public function getRelatedInvoiceId()
-    {
-        return $this->container['related_invoice_id'];
-    }
-
-    /**
-     * Sets related_invoice_id
-     */
-    public function setRelatedInvoiceId($related_invoice_id)
-    {
-        if (is_null($related_invoice_id)) {
-            array_push($this->openAPINullablesSetToNull, 'related_invoice_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('related_invoice_id', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['related_invoice_id'] = $related_invoice_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return string|null
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     */
-    public function setStatus($status)
-    {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets owner
-     *
-     * @return string|null
-     */
-    public function getOwner()
-    {
-        return $this->container['owner'];
-    }
-
-    /**
-     * Sets owner
-     */
-    public function setOwner($owner)
-    {
-        if (is_null($owner)) {
-            throw new \InvalidArgumentException('non-nullable owner cannot be null');
-        }
-        $this->container['owner'] = $owner;
-
-        return $this;
-    }
-
-    /**
-     * Gets invoice_date
-     *
-     * @return \DateTime|null
-     */
-    public function getInvoiceDate()
-    {
-        return $this->container['invoice_date'];
-    }
-
-    /**
-     * Sets invoice_date
-     */
-    public function setInvoiceDate($invoice_date)
-    {
-        if (is_null($invoice_date)) {
-            array_push($this->openAPINullablesSetToNull, 'invoice_date');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('invoice_date', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['invoice_date'] = $invoice_date;
-
-        return $this;
-    }
-
-    /**
-     * Gets invoice_due
-     *
-     * @return \DateTime|null
-     */
-    public function getInvoiceDue()
-    {
-        return $this->container['invoice_due'];
-    }
-
-    /**
-     * Sets invoice_due
-     */
-    public function setInvoiceDue($invoice_due)
-    {
-        if (is_null($invoice_due)) {
-            array_push($this->openAPINullablesSetToNull, 'invoice_due');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('invoice_due', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['invoice_due'] = $invoice_due;
-
-        return $this;
-    }
-
-    /**
-     * Gets created
-     *
-     * @return \DateTime|null
-     */
-    public function getCreated()
-    {
-        return $this->container['created'];
-    }
-
-    /**
-     * Sets created
-     */
-    public function setCreated($created)
-    {
-        if (is_null($created)) {
-            array_push($this->openAPINullablesSetToNull, 'created');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('created', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['created'] = $created;
-
-        return $this;
-    }
-
-    /**
-     * Gets changed
-     *
-     * @return \DateTime|null
-     */
-    public function getChanged()
-    {
-        return $this->container['changed'];
-    }
-
-    /**
-     * Sets changed
-     */
-    public function setChanged($changed)
-    {
-        if (is_null($changed)) {
-            array_push($this->openAPINullablesSetToNull, 'changed');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('changed', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['changed'] = $changed;
-
-        return $this;
-    }
-
-    /**
-     * Gets company
-     *
-     * @return string|null
-     */
-    public function getCompany()
-    {
-        return $this->container['company'];
-    }
-
-    /**
-     * Sets company
-     */
-    public function setCompany($company)
-    {
-        if (is_null($company)) {
-            throw new \InvalidArgumentException('non-nullable company cannot be null');
-        }
-        $this->container['company'] = $company;
-
-        return $this;
-    }
-
-    /**
-     * Gets total
-     *
-     * @return float|null
-     */
-    public function getTotal()
-    {
-        return $this->container['total'];
-    }
-
-    /**
-     * Sets total
-     */
-    public function setTotal($total)
-    {
-        if (is_null($total)) {
-            throw new \InvalidArgumentException('non-nullable total cannot be null');
-        }
-        $this->container['total'] = $total;
-
-        return $this;
-    }
-
-    /**
-     * Gets address
-     *
-     * @return \Upsun\Model\Address|null
-     */
-    public function getAddress()
-    {
-        return $this->container['address'];
-    }
-
-    /**
-     * Sets address
-     */
-    public function setAddress($address)
-    {
-        if (is_null($address)) {
-            throw new \InvalidArgumentException('non-nullable address cannot be null');
-        }
-        $this->container['address'] = $address;
-
-        return $this;
-    }
-
-    /**
-     * Gets notes
-     *
-     * @return string|null
-     */
-    public function getNotes()
-    {
-        return $this->container['notes'];
-    }
-
-    /**
-     * Sets notes
-     */
-    public function setNotes($notes)
-    {
-        if (is_null($notes)) {
-            throw new \InvalidArgumentException('non-nullable notes cannot be null');
-        }
-        $this->container['notes'] = $notes;
-
-        return $this;
-    }
-
-    /**
-     * Gets invoice_pdf
-     *
-     * @return \Upsun\Model\InvoicePDF|null
-     */
-    public function getInvoicePdf()
-    {
-        return $this->container['invoice_pdf'];
-    }
-
-    /**
-     * Sets invoice_pdf
-     */
-    public function setInvoicePdf($invoice_pdf)
-    {
-        if (is_null($invoice_pdf)) {
-            throw new \InvalidArgumentException('non-nullable invoice_pdf cannot be null');
-        }
-        $this->container['invoice_pdf'] = $invoice_pdf;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+        return [
+            'id' => $this->id,
+            'invoice_number' => $this->invoice_number,
+            'type' => $this->type,
+            'order_id' => $this->order_id,
+            'related_invoice_id' => $this->related_invoice_id,
+            'status' => $this->status,
+            'owner' => $this->owner,
+            'invoice_date' => $this->invoice_date,
+            'invoice_due' => $this->invoice_due,
+            'created' => $this->created,
+            'changed' => $this->changed,
+            'company' => $this->company,
+            'total' => $this->total,
+            'address' => $this->address,
+            'notes' => $this->notes,
+            'invoice_pdf' => $this->invoice_pdf,
+        ];
     }
 
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

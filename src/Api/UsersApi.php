@@ -126,7 +126,9 @@ final class UsersApi extends AbstractApi
     public function getCurrentUser(
         
     ): \Upsun\Model\User {
-        list($response) = $this->getCurrentUserWithHttpInfo();
+        list($response) = $this->getCurrentUserWithHttpInfo(
+            
+        );
         return $response;
     }
 
@@ -139,17 +141,17 @@ final class UsersApi extends AbstractApi
     public function getCurrentUserWithHttpInfo(
         
     ): array {
-        $request = $this->getCurrentUserRequest();
+        $request = $this->getCurrentUserRequest(
+            
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -242,7 +244,9 @@ final class UsersApi extends AbstractApi
     public function getCurrentUserAsync(
         
     ): Promise {
-        return $this->getCurrentUserAsyncWithHttpInfo()
+        return $this->getCurrentUserAsyncWithHttpInfo(
+            
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -259,7 +263,9 @@ final class UsersApi extends AbstractApi
         
     ): Promise {
         $returnType = '\Upsun\Model\User';
-        $request = $this->getCurrentUserRequest();
+        $request = $this->getCurrentUserRequest(
+            
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -374,7 +380,9 @@ final class UsersApi extends AbstractApi
     public function getCurrentUserDeprecated(
         
     ): \Upsun\Model\CurrentUser {
-        list($response) = $this->getCurrentUserDeprecatedWithHttpInfo();
+        list($response) = $this->getCurrentUserDeprecatedWithHttpInfo(
+            
+        );
         return $response;
     }
 
@@ -387,17 +395,17 @@ final class UsersApi extends AbstractApi
     public function getCurrentUserDeprecatedWithHttpInfo(
         
     ): array {
-        $request = $this->getCurrentUserDeprecatedRequest();
+        $request = $this->getCurrentUserDeprecatedRequest(
+            
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -476,7 +484,9 @@ final class UsersApi extends AbstractApi
     public function getCurrentUserDeprecatedAsync(
         
     ): Promise {
-        return $this->getCurrentUserDeprecatedAsyncWithHttpInfo()
+        return $this->getCurrentUserDeprecatedAsyncWithHttpInfo(
+            
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -493,7 +503,9 @@ final class UsersApi extends AbstractApi
         
     ): Promise {
         $returnType = '\Upsun\Model\CurrentUser';
-        $request = $this->getCurrentUserDeprecatedRequest();
+        $request = $this->getCurrentUserDeprecatedRequest(
+            
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -608,7 +620,9 @@ final class UsersApi extends AbstractApi
     public function getCurrentUserVerificationStatus(
         
     ): \Upsun\Model\GetCurrentUserVerificationStatus200Response {
-        list($response) = $this->getCurrentUserVerificationStatusWithHttpInfo();
+        list($response) = $this->getCurrentUserVerificationStatusWithHttpInfo(
+            
+        );
         return $response;
     }
 
@@ -621,17 +635,17 @@ final class UsersApi extends AbstractApi
     public function getCurrentUserVerificationStatusWithHttpInfo(
         
     ): array {
-        $request = $this->getCurrentUserVerificationStatusRequest();
+        $request = $this->getCurrentUserVerificationStatusRequest(
+            
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -710,7 +724,9 @@ final class UsersApi extends AbstractApi
     public function getCurrentUserVerificationStatusAsync(
         
     ): Promise {
-        return $this->getCurrentUserVerificationStatusAsyncWithHttpInfo()
+        return $this->getCurrentUserVerificationStatusAsyncWithHttpInfo(
+            
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -727,7 +743,9 @@ final class UsersApi extends AbstractApi
         
     ): Promise {
         $returnType = '\Upsun\Model\GetCurrentUserVerificationStatus200Response';
-        $request = $this->getCurrentUserVerificationStatusRequest();
+        $request = $this->getCurrentUserVerificationStatusRequest(
+            
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -842,7 +860,9 @@ final class UsersApi extends AbstractApi
     public function getCurrentUserVerificationStatusFull(
         
     ): \Upsun\Model\GetCurrentUserVerificationStatusFull200Response {
-        list($response) = $this->getCurrentUserVerificationStatusFullWithHttpInfo();
+        list($response) = $this->getCurrentUserVerificationStatusFullWithHttpInfo(
+            
+        );
         return $response;
     }
 
@@ -855,17 +875,17 @@ final class UsersApi extends AbstractApi
     public function getCurrentUserVerificationStatusFullWithHttpInfo(
         
     ): array {
-        $request = $this->getCurrentUserVerificationStatusFullRequest();
+        $request = $this->getCurrentUserVerificationStatusFullRequest(
+            
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -944,7 +964,9 @@ final class UsersApi extends AbstractApi
     public function getCurrentUserVerificationStatusFullAsync(
         
     ): Promise {
-        return $this->getCurrentUserVerificationStatusFullAsyncWithHttpInfo()
+        return $this->getCurrentUserVerificationStatusFullAsyncWithHttpInfo(
+            
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -961,7 +983,9 @@ final class UsersApi extends AbstractApi
         
     ): Promise {
         $returnType = '\Upsun\Model\GetCurrentUserVerificationStatusFull200Response';
-        $request = $this->getCurrentUserVerificationStatusFullRequest();
+        $request = $this->getCurrentUserVerificationStatusFullRequest(
+            
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1076,7 +1100,9 @@ final class UsersApi extends AbstractApi
     public function getUser(
         string $user_id
     ): \Upsun\Model\User {
-        list($response) = $this->getUserWithHttpInfo($user_id);
+        list($response) = $this->getUserWithHttpInfo(
+            $user_id
+        );
         return $response;
     }
 
@@ -1089,17 +1115,17 @@ final class UsersApi extends AbstractApi
     public function getUserWithHttpInfo(
         string $user_id
     ): array {
-        $request = $this->getUserRequest($user_id);
+        $request = $this->getUserRequest(
+            $user_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1192,7 +1218,9 @@ final class UsersApi extends AbstractApi
     public function getUserAsync(
         string $user_id
     ): Promise {
-        return $this->getUserAsyncWithHttpInfo($user_id)
+        return $this->getUserAsyncWithHttpInfo(
+            $user_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1209,7 +1237,9 @@ final class UsersApi extends AbstractApi
         string $user_id
     ): Promise {
         $returnType = '\Upsun\Model\User';
-        $request = $this->getUserRequest($user_id);
+        $request = $this->getUserRequest(
+            $user_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1338,7 +1368,9 @@ final class UsersApi extends AbstractApi
     public function getUserByEmailAddress(
         string $email
     ): \Upsun\Model\User {
-        list($response) = $this->getUserByEmailAddressWithHttpInfo($email);
+        list($response) = $this->getUserByEmailAddressWithHttpInfo(
+            $email
+        );
         return $response;
     }
 
@@ -1351,17 +1383,17 @@ final class UsersApi extends AbstractApi
     public function getUserByEmailAddressWithHttpInfo(
         string $email
     ): array {
-        $request = $this->getUserByEmailAddressRequest($email);
+        $request = $this->getUserByEmailAddressRequest(
+            $email
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1454,7 +1486,9 @@ final class UsersApi extends AbstractApi
     public function getUserByEmailAddressAsync(
         string $email
     ): Promise {
-        return $this->getUserByEmailAddressAsyncWithHttpInfo($email)
+        return $this->getUserByEmailAddressAsyncWithHttpInfo(
+            $email
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1471,7 +1505,9 @@ final class UsersApi extends AbstractApi
         string $email
     ): Promise {
         $returnType = '\Upsun\Model\User';
-        $request = $this->getUserByEmailAddressRequest($email);
+        $request = $this->getUserByEmailAddressRequest(
+            $email
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1600,7 +1636,9 @@ final class UsersApi extends AbstractApi
     public function getUserByUsername(
         string $username
     ): \Upsun\Model\User {
-        list($response) = $this->getUserByUsernameWithHttpInfo($username);
+        list($response) = $this->getUserByUsernameWithHttpInfo(
+            $username
+        );
         return $response;
     }
 
@@ -1613,17 +1651,17 @@ final class UsersApi extends AbstractApi
     public function getUserByUsernameWithHttpInfo(
         string $username
     ): array {
-        $request = $this->getUserByUsernameRequest($username);
+        $request = $this->getUserByUsernameRequest(
+            $username
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1716,7 +1754,9 @@ final class UsersApi extends AbstractApi
     public function getUserByUsernameAsync(
         string $username
     ): Promise {
-        return $this->getUserByUsernameAsyncWithHttpInfo($username)
+        return $this->getUserByUsernameAsyncWithHttpInfo(
+            $username
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1733,7 +1773,9 @@ final class UsersApi extends AbstractApi
         string $username
     ): Promise {
         $returnType = '\Upsun\Model\User';
-        $request = $this->getUserByUsernameRequest($username);
+        $request = $this->getUserByUsernameRequest(
+            $username
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1863,7 +1905,10 @@ final class UsersApi extends AbstractApi
         string $user_id,
         \Upsun\Model\ResetEmailAddressRequest $reset_email_address_request = null
     ): void {
-        $this->resetEmailAddressWithHttpInfo($user_id, $reset_email_address_request);
+        $this->resetEmailAddressWithHttpInfo(
+            $user_id,
+            $reset_email_address_request
+        );
     }
 
     /**
@@ -1876,17 +1921,18 @@ final class UsersApi extends AbstractApi
         string $user_id,
         \Upsun\Model\ResetEmailAddressRequest $reset_email_address_request = null
     ): array {
-        $request = $this->resetEmailAddressRequest($user_id, $reset_email_address_request);
+        $request = $this->resetEmailAddressRequest(
+            $user_id,
+            $reset_email_address_request
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1955,7 +2001,10 @@ final class UsersApi extends AbstractApi
         string $user_id,
         \Upsun\Model\ResetEmailAddressRequest $reset_email_address_request = null
     ): Promise {
-        return $this->resetEmailAddressAsyncWithHttpInfo($user_id, $reset_email_address_request)
+        return $this->resetEmailAddressAsyncWithHttpInfo(
+            $user_id,
+            $reset_email_address_request
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1973,7 +2022,10 @@ final class UsersApi extends AbstractApi
         \Upsun\Model\ResetEmailAddressRequest $reset_email_address_request = null
     ): Promise {
         $returnType = '';
-        $request = $this->resetEmailAddressRequest($user_id, $reset_email_address_request);
+        $request = $this->resetEmailAddressRequest(
+            $user_id,
+            $reset_email_address_request
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -2099,7 +2151,9 @@ final class UsersApi extends AbstractApi
     public function resetPassword(
         string $user_id
     ): void {
-        $this->resetPasswordWithHttpInfo($user_id);
+        $this->resetPasswordWithHttpInfo(
+            $user_id
+        );
     }
 
     /**
@@ -2111,17 +2165,17 @@ final class UsersApi extends AbstractApi
     public function resetPasswordWithHttpInfo(
         string $user_id
     ): array {
-        $request = $this->resetPasswordRequest($user_id);
+        $request = $this->resetPasswordRequest(
+            $user_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -2173,7 +2227,9 @@ final class UsersApi extends AbstractApi
     public function resetPasswordAsync(
         string $user_id
     ): Promise {
-        return $this->resetPasswordAsyncWithHttpInfo($user_id)
+        return $this->resetPasswordAsyncWithHttpInfo(
+            $user_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2190,7 +2246,9 @@ final class UsersApi extends AbstractApi
         string $user_id
     ): Promise {
         $returnType = '';
-        $request = $this->resetPasswordRequest($user_id);
+        $request = $this->resetPasswordRequest(
+            $user_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -2310,7 +2368,10 @@ final class UsersApi extends AbstractApi
         string $user_id,
         \Upsun\Model\UpdateUserRequest $update_user_request = null
     ): \Upsun\Model\User {
-        list($response) = $this->updateUserWithHttpInfo($user_id, $update_user_request);
+        list($response) = $this->updateUserWithHttpInfo(
+            $user_id,
+            $update_user_request
+        );
         return $response;
     }
 
@@ -2324,17 +2385,18 @@ final class UsersApi extends AbstractApi
         string $user_id,
         \Upsun\Model\UpdateUserRequest $update_user_request = null
     ): array {
-        $request = $this->updateUserRequest($user_id, $update_user_request);
+        $request = $this->updateUserRequest(
+            $user_id,
+            $update_user_request
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -2442,7 +2504,10 @@ final class UsersApi extends AbstractApi
         string $user_id,
         \Upsun\Model\UpdateUserRequest $update_user_request = null
     ): Promise {
-        return $this->updateUserAsyncWithHttpInfo($user_id, $update_user_request)
+        return $this->updateUserAsyncWithHttpInfo(
+            $user_id,
+            $update_user_request
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2460,7 +2525,10 @@ final class UsersApi extends AbstractApi
         \Upsun\Model\UpdateUserRequest $update_user_request = null
     ): Promise {
         $returnType = '\Upsun\Model\User';
-        $request = $this->updateUserRequest($user_id, $update_user_request);
+        $request = $this->updateUserRequest(
+            $user_id,
+            $update_user_request
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -2597,31 +2665,22 @@ final class UsersApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -2684,15 +2743,5 @@ final class UsersApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

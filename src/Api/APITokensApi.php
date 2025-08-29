@@ -127,7 +127,10 @@ final class APITokensApi extends AbstractApi
         string $user_id,
         \Upsun\Model\CreateApiTokenRequest $create_api_token_request = null
     ): \Upsun\Model\APIToken {
-        list($response) = $this->createApiTokenWithHttpInfo($user_id, $create_api_token_request);
+        list($response) = $this->createApiTokenWithHttpInfo(
+            $user_id,
+            $create_api_token_request
+        );
         return $response;
     }
 
@@ -141,17 +144,18 @@ final class APITokensApi extends AbstractApi
         string $user_id,
         \Upsun\Model\CreateApiTokenRequest $create_api_token_request = null
     ): array {
-        $request = $this->createApiTokenRequest($user_id, $create_api_token_request);
+        $request = $this->createApiTokenRequest(
+            $user_id,
+            $create_api_token_request
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -273,7 +277,10 @@ final class APITokensApi extends AbstractApi
         string $user_id,
         \Upsun\Model\CreateApiTokenRequest $create_api_token_request = null
     ): Promise {
-        return $this->createApiTokenAsyncWithHttpInfo($user_id, $create_api_token_request)
+        return $this->createApiTokenAsyncWithHttpInfo(
+            $user_id,
+            $create_api_token_request
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -291,7 +298,10 @@ final class APITokensApi extends AbstractApi
         \Upsun\Model\CreateApiTokenRequest $create_api_token_request = null
     ): Promise {
         $returnType = '\Upsun\Model\APIToken';
-        $request = $this->createApiTokenRequest($user_id, $create_api_token_request);
+        $request = $this->createApiTokenRequest(
+            $user_id,
+            $create_api_token_request
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -428,7 +438,10 @@ final class APITokensApi extends AbstractApi
         string $user_id,
         string $token_id
     ): void {
-        $this->deleteApiTokenWithHttpInfo($user_id, $token_id);
+        $this->deleteApiTokenWithHttpInfo(
+            $user_id,
+            $token_id
+        );
     }
 
     /**
@@ -441,17 +454,18 @@ final class APITokensApi extends AbstractApi
         string $user_id,
         string $token_id
     ): array {
-        $request = $this->deleteApiTokenRequest($user_id, $token_id);
+        $request = $this->deleteApiTokenRequest(
+            $user_id,
+            $token_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -504,7 +518,10 @@ final class APITokensApi extends AbstractApi
         string $user_id,
         string $token_id
     ): Promise {
-        return $this->deleteApiTokenAsyncWithHttpInfo($user_id, $token_id)
+        return $this->deleteApiTokenAsyncWithHttpInfo(
+            $user_id,
+            $token_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -522,7 +539,10 @@ final class APITokensApi extends AbstractApi
         string $token_id
     ): Promise {
         $returnType = '';
-        $request = $this->deleteApiTokenRequest($user_id, $token_id);
+        $request = $this->deleteApiTokenRequest(
+            $user_id,
+            $token_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -657,7 +677,10 @@ final class APITokensApi extends AbstractApi
         string $user_id,
         string $token_id
     ): \Upsun\Model\APIToken {
-        list($response) = $this->getApiTokenWithHttpInfo($user_id, $token_id);
+        list($response) = $this->getApiTokenWithHttpInfo(
+            $user_id,
+            $token_id
+        );
         return $response;
     }
 
@@ -671,17 +694,18 @@ final class APITokensApi extends AbstractApi
         string $user_id,
         string $token_id
     ): array {
-        $request = $this->getApiTokenRequest($user_id, $token_id);
+        $request = $this->getApiTokenRequest(
+            $user_id,
+            $token_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -775,7 +799,10 @@ final class APITokensApi extends AbstractApi
         string $user_id,
         string $token_id
     ): Promise {
-        return $this->getApiTokenAsyncWithHttpInfo($user_id, $token_id)
+        return $this->getApiTokenAsyncWithHttpInfo(
+            $user_id,
+            $token_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -793,7 +820,10 @@ final class APITokensApi extends AbstractApi
         string $token_id
     ): Promise {
         $returnType = '\Upsun\Model\APIToken';
-        $request = $this->getApiTokenRequest($user_id, $token_id);
+        $request = $this->getApiTokenRequest(
+            $user_id,
+            $token_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -939,7 +969,9 @@ final class APITokensApi extends AbstractApi
     public function listApiTokens(
         string $user_id
     ): array {
-        list($response) = $this->listApiTokensWithHttpInfo($user_id);
+        list($response) = $this->listApiTokensWithHttpInfo(
+            $user_id
+        );
         return $response;
     }
 
@@ -952,17 +984,17 @@ final class APITokensApi extends AbstractApi
     public function listApiTokensWithHttpInfo(
         string $user_id
     ): array {
-        $request = $this->listApiTokensRequest($user_id);
+        $request = $this->listApiTokensRequest(
+            $user_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1055,7 +1087,9 @@ final class APITokensApi extends AbstractApi
     public function listApiTokensAsync(
         string $user_id
     ): Promise {
-        return $this->listApiTokensAsyncWithHttpInfo($user_id)
+        return $this->listApiTokensAsyncWithHttpInfo(
+            $user_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1072,7 +1106,9 @@ final class APITokensApi extends AbstractApi
         string $user_id
     ): Promise {
         $returnType = '\Upsun\Model\APIToken[]';
-        $request = $this->listApiTokensRequest($user_id);
+        $request = $this->listApiTokensRequest(
+            $user_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1202,31 +1238,22 @@ final class APITokensApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -1289,15 +1316,5 @@ final class APITokensApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

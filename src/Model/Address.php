@@ -12,567 +12,105 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class Address implements ModelInterface, ArrayAccess, \JsonSerializable
+final class Address implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Address';
+    public readonly string $country;
+    public readonly string $name_line;
+    public readonly string $premise;
+    public readonly string $sub_premise;
+    public readonly string $thoroughfare;
+    public readonly string $administrative_area;
+    public readonly string $sub_administrative_area;
+    public readonly string $locality;
+    public readonly string $dependent_locality;
+    public readonly string $postal_code;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'country' => 'string',
-        'name_line' => 'string',
-        'premise' => 'string',
-        'sub_premise' => 'string',
-        'thoroughfare' => 'string',
-        'administrative_area' => 'string',
-        'sub_administrative_area' => 'string',
-        'locality' => 'string',
-        'dependent_locality' => 'string',
-        'postal_code' => 'string'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'country' => 'ISO ALPHA-2',
-        'name_line' => null,
-        'premise' => null,
-        'sub_premise' => null,
-        'thoroughfare' => null,
-        'administrative_area' => 'ISO ALPHA-2',
-        'sub_administrative_area' => null,
-        'locality' => null,
-        'dependent_locality' => null,
-        'postal_code' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'country' => false,
-        'name_line' => false,
-        'premise' => false,
-        'sub_premise' => false,
-        'thoroughfare' => false,
-        'administrative_area' => false,
-        'sub_administrative_area' => false,
-        'locality' => false,
-        'dependent_locality' => false,
-        'postal_code' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        string $country = null,
+        string $name_line = null,
+        string $premise = null,
+        string $sub_premise = null,
+        string $thoroughfare = null,
+        string $administrative_area = null,
+        string $sub_administrative_area = null,
+        string $locality = null,
+        string $dependent_locality = null,
+        string $postal_code = null,
+    ) {
+        $this->country = $country;
+        $this->name_line = $name_line;
+        $this->premise = $premise;
+        $this->sub_premise = $sub_premise;
+        $this->thoroughfare = $thoroughfare;
+        $this->administrative_area = $administrative_area;
+        $this->sub_administrative_area = $sub_administrative_area;
+        $this->locality = $locality;
+        $this->dependent_locality = $dependent_locality;
+        $this->postal_code = $postal_code;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getCountry(): string|null
     {
-        return self::$openAPIFormats;
+        return $this->country;
+    }
+    public function getNameLine(): string|null
+    {
+        return $this->name_line;
+    }
+    public function getPremise(): string|null
+    {
+        return $this->premise;
+    }
+    public function getSubPremise(): string|null
+    {
+        return $this->sub_premise;
+    }
+    public function getThoroughfare(): string|null
+    {
+        return $this->thoroughfare;
+    }
+    public function getAdministrativeArea(): string|null
+    {
+        return $this->administrative_area;
+    }
+    public function getSubAdministrativeArea(): string|null
+    {
+        return $this->sub_administrative_area;
+    }
+    public function getLocality(): string|null
+    {
+        return $this->locality;
+    }
+    public function getDependentLocality(): string|null
+    {
+        return $this->dependent_locality;
+    }
+    public function getPostalCode(): string|null
+    {
+        return $this->postal_code;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'country' => 'country',
-        'name_line' => 'name_line',
-        'premise' => 'premise',
-        'sub_premise' => 'sub_premise',
-        'thoroughfare' => 'thoroughfare',
-        'administrative_area' => 'administrative_area',
-        'sub_administrative_area' => 'sub_administrative_area',
-        'locality' => 'locality',
-        'dependent_locality' => 'dependent_locality',
-        'postal_code' => 'postal_code'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'country' => 'setCountry',
-        'name_line' => 'setNameLine',
-        'premise' => 'setPremise',
-        'sub_premise' => 'setSubPremise',
-        'thoroughfare' => 'setThoroughfare',
-        'administrative_area' => 'setAdministrativeArea',
-        'sub_administrative_area' => 'setSubAdministrativeArea',
-        'locality' => 'setLocality',
-        'dependent_locality' => 'setDependentLocality',
-        'postal_code' => 'setPostalCode'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'country' => 'getCountry',
-        'name_line' => 'getNameLine',
-        'premise' => 'getPremise',
-        'sub_premise' => 'getSubPremise',
-        'thoroughfare' => 'getThoroughfare',
-        'administrative_area' => 'getAdministrativeArea',
-        'sub_administrative_area' => 'getSubAdministrativeArea',
-        'locality' => 'getLocality',
-        'dependent_locality' => 'getDependentLocality',
-        'postal_code' => 'getPostalCode'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('country', $data ?? [], null);
-        $this->setIfExists('name_line', $data ?? [], null);
-        $this->setIfExists('premise', $data ?? [], null);
-        $this->setIfExists('sub_premise', $data ?? [], null);
-        $this->setIfExists('thoroughfare', $data ?? [], null);
-        $this->setIfExists('administrative_area', $data ?? [], null);
-        $this->setIfExists('sub_administrative_area', $data ?? [], null);
-        $this->setIfExists('locality', $data ?? [], null);
-        $this->setIfExists('dependent_locality', $data ?? [], null);
-        $this->setIfExists('postal_code', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets country
-     *
-     * @return string|null
-     */
-    public function getCountry()
-    {
-        return $this->container['country'];
-    }
-
-    /**
-     * Sets country
-     */
-    public function setCountry($country)
-    {
-        if (is_null($country)) {
-            throw new \InvalidArgumentException('non-nullable country cannot be null');
-        }
-        $this->container['country'] = $country;
-
-        return $this;
-    }
-
-    /**
-     * Gets name_line
-     *
-     * @return string|null
-     */
-    public function getNameLine()
-    {
-        return $this->container['name_line'];
-    }
-
-    /**
-     * Sets name_line
-     */
-    public function setNameLine($name_line)
-    {
-        if (is_null($name_line)) {
-            throw new \InvalidArgumentException('non-nullable name_line cannot be null');
-        }
-        $this->container['name_line'] = $name_line;
-
-        return $this;
-    }
-
-    /**
-     * Gets premise
-     *
-     * @return string|null
-     */
-    public function getPremise()
-    {
-        return $this->container['premise'];
-    }
-
-    /**
-     * Sets premise
-     */
-    public function setPremise($premise)
-    {
-        if (is_null($premise)) {
-            throw new \InvalidArgumentException('non-nullable premise cannot be null');
-        }
-        $this->container['premise'] = $premise;
-
-        return $this;
-    }
-
-    /**
-     * Gets sub_premise
-     *
-     * @return string|null
-     */
-    public function getSubPremise()
-    {
-        return $this->container['sub_premise'];
-    }
-
-    /**
-     * Sets sub_premise
-     */
-    public function setSubPremise($sub_premise)
-    {
-        if (is_null($sub_premise)) {
-            throw new \InvalidArgumentException('non-nullable sub_premise cannot be null');
-        }
-        $this->container['sub_premise'] = $sub_premise;
-
-        return $this;
-    }
-
-    /**
-     * Gets thoroughfare
-     *
-     * @return string|null
-     */
-    public function getThoroughfare()
-    {
-        return $this->container['thoroughfare'];
-    }
-
-    /**
-     * Sets thoroughfare
-     */
-    public function setThoroughfare($thoroughfare)
-    {
-        if (is_null($thoroughfare)) {
-            throw new \InvalidArgumentException('non-nullable thoroughfare cannot be null');
-        }
-        $this->container['thoroughfare'] = $thoroughfare;
-
-        return $this;
-    }
-
-    /**
-     * Gets administrative_area
-     *
-     * @return string|null
-     */
-    public function getAdministrativeArea()
-    {
-        return $this->container['administrative_area'];
-    }
-
-    /**
-     * Sets administrative_area
-     */
-    public function setAdministrativeArea($administrative_area)
-    {
-        if (is_null($administrative_area)) {
-            throw new \InvalidArgumentException('non-nullable administrative_area cannot be null');
-        }
-        $this->container['administrative_area'] = $administrative_area;
-
-        return $this;
-    }
-
-    /**
-     * Gets sub_administrative_area
-     *
-     * @return string|null
-     */
-    public function getSubAdministrativeArea()
-    {
-        return $this->container['sub_administrative_area'];
-    }
-
-    /**
-     * Sets sub_administrative_area
-     */
-    public function setSubAdministrativeArea($sub_administrative_area)
-    {
-        if (is_null($sub_administrative_area)) {
-            throw new \InvalidArgumentException('non-nullable sub_administrative_area cannot be null');
-        }
-        $this->container['sub_administrative_area'] = $sub_administrative_area;
-
-        return $this;
-    }
-
-    /**
-     * Gets locality
-     *
-     * @return string|null
-     */
-    public function getLocality()
-    {
-        return $this->container['locality'];
-    }
-
-    /**
-     * Sets locality
-     */
-    public function setLocality($locality)
-    {
-        if (is_null($locality)) {
-            throw new \InvalidArgumentException('non-nullable locality cannot be null');
-        }
-        $this->container['locality'] = $locality;
-
-        return $this;
-    }
-
-    /**
-     * Gets dependent_locality
-     *
-     * @return string|null
-     */
-    public function getDependentLocality()
-    {
-        return $this->container['dependent_locality'];
-    }
-
-    /**
-     * Sets dependent_locality
-     */
-    public function setDependentLocality($dependent_locality)
-    {
-        if (is_null($dependent_locality)) {
-            throw new \InvalidArgumentException('non-nullable dependent_locality cannot be null');
-        }
-        $this->container['dependent_locality'] = $dependent_locality;
-
-        return $this;
-    }
-
-    /**
-     * Gets postal_code
-     *
-     * @return string|null
-     */
-    public function getPostalCode()
-    {
-        return $this->container['postal_code'];
-    }
-
-    /**
-     * Sets postal_code
-     */
-    public function setPostalCode($postal_code)
-    {
-        if (is_null($postal_code)) {
-            throw new \InvalidArgumentException('non-nullable postal_code cannot be null');
-        }
-        $this->container['postal_code'] = $postal_code;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+        return [
+            'country' => $this->country,
+            'name_line' => $this->name_line,
+            'premise' => $this->premise,
+            'sub_premise' => $this->sub_premise,
+            'thoroughfare' => $this->thoroughfare,
+            'administrative_area' => $this->administrative_area,
+            'sub_administrative_area' => $this->sub_administrative_area,
+            'locality' => $this->locality,
+            'dependent_locality' => $this->dependent_locality,
+            'postal_code' => $this->postal_code,
+        ];
     }
 
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

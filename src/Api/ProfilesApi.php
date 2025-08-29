@@ -126,7 +126,9 @@ final class ProfilesApi extends AbstractApi
     public function getOrgAddress(
         string $organization_id
     ): \Upsun\Model\Address {
-        list($response) = $this->getOrgAddressWithHttpInfo($organization_id);
+        list($response) = $this->getOrgAddressWithHttpInfo(
+            $organization_id
+        );
         return $response;
     }
 
@@ -139,17 +141,17 @@ final class ProfilesApi extends AbstractApi
     public function getOrgAddressWithHttpInfo(
         string $organization_id
     ): array {
-        $request = $this->getOrgAddressRequest($organization_id);
+        $request = $this->getOrgAddressRequest(
+            $organization_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -256,7 +258,9 @@ final class ProfilesApi extends AbstractApi
     public function getOrgAddressAsync(
         string $organization_id
     ): Promise {
-        return $this->getOrgAddressAsyncWithHttpInfo($organization_id)
+        return $this->getOrgAddressAsyncWithHttpInfo(
+            $organization_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -273,7 +277,9 @@ final class ProfilesApi extends AbstractApi
         string $organization_id
     ): Promise {
         $returnType = '\Upsun\Model\Address';
-        $request = $this->getOrgAddressRequest($organization_id);
+        $request = $this->getOrgAddressRequest(
+            $organization_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -402,7 +408,9 @@ final class ProfilesApi extends AbstractApi
     public function getOrgProfile(
         string $organization_id
     ): \Upsun\Model\Profile {
-        list($response) = $this->getOrgProfileWithHttpInfo($organization_id);
+        list($response) = $this->getOrgProfileWithHttpInfo(
+            $organization_id
+        );
         return $response;
     }
 
@@ -415,17 +423,17 @@ final class ProfilesApi extends AbstractApi
     public function getOrgProfileWithHttpInfo(
         string $organization_id
     ): array {
-        $request = $this->getOrgProfileRequest($organization_id);
+        $request = $this->getOrgProfileRequest(
+            $organization_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -532,7 +540,9 @@ final class ProfilesApi extends AbstractApi
     public function getOrgProfileAsync(
         string $organization_id
     ): Promise {
-        return $this->getOrgProfileAsyncWithHttpInfo($organization_id)
+        return $this->getOrgProfileAsyncWithHttpInfo(
+            $organization_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -549,7 +559,9 @@ final class ProfilesApi extends AbstractApi
         string $organization_id
     ): Promise {
         $returnType = '\Upsun\Model\Profile';
-        $request = $this->getOrgProfileRequest($organization_id);
+        $request = $this->getOrgProfileRequest(
+            $organization_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -679,7 +691,10 @@ final class ProfilesApi extends AbstractApi
         string $organization_id,
         \Upsun\Model\Address $address = null
     ): \Upsun\Model\Address {
-        list($response) = $this->updateOrgAddressWithHttpInfo($organization_id, $address);
+        list($response) = $this->updateOrgAddressWithHttpInfo(
+            $organization_id,
+            $address
+        );
         return $response;
     }
 
@@ -693,17 +708,18 @@ final class ProfilesApi extends AbstractApi
         string $organization_id,
         \Upsun\Model\Address $address = null
     ): array {
-        $request = $this->updateOrgAddressRequest($organization_id, $address);
+        $request = $this->updateOrgAddressRequest(
+            $organization_id,
+            $address
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -825,7 +841,10 @@ final class ProfilesApi extends AbstractApi
         string $organization_id,
         \Upsun\Model\Address $address = null
     ): Promise {
-        return $this->updateOrgAddressAsyncWithHttpInfo($organization_id, $address)
+        return $this->updateOrgAddressAsyncWithHttpInfo(
+            $organization_id,
+            $address
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -843,7 +862,10 @@ final class ProfilesApi extends AbstractApi
         \Upsun\Model\Address $address = null
     ): Promise {
         $returnType = '\Upsun\Model\Address';
-        $request = $this->updateOrgAddressRequest($organization_id, $address);
+        $request = $this->updateOrgAddressRequest(
+            $organization_id,
+            $address
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -980,7 +1002,10 @@ final class ProfilesApi extends AbstractApi
         string $organization_id,
         \Upsun\Model\UpdateOrgProfileRequest $update_org_profile_request = null
     ): \Upsun\Model\Profile {
-        list($response) = $this->updateOrgProfileWithHttpInfo($organization_id, $update_org_profile_request);
+        list($response) = $this->updateOrgProfileWithHttpInfo(
+            $organization_id,
+            $update_org_profile_request
+        );
         return $response;
     }
 
@@ -994,17 +1019,18 @@ final class ProfilesApi extends AbstractApi
         string $organization_id,
         \Upsun\Model\UpdateOrgProfileRequest $update_org_profile_request = null
     ): array {
-        $request = $this->updateOrgProfileRequest($organization_id, $update_org_profile_request);
+        $request = $this->updateOrgProfileRequest(
+            $organization_id,
+            $update_org_profile_request
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1126,7 +1152,10 @@ final class ProfilesApi extends AbstractApi
         string $organization_id,
         \Upsun\Model\UpdateOrgProfileRequest $update_org_profile_request = null
     ): Promise {
-        return $this->updateOrgProfileAsyncWithHttpInfo($organization_id, $update_org_profile_request)
+        return $this->updateOrgProfileAsyncWithHttpInfo(
+            $organization_id,
+            $update_org_profile_request
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1144,7 +1173,10 @@ final class ProfilesApi extends AbstractApi
         \Upsun\Model\UpdateOrgProfileRequest $update_org_profile_request = null
     ): Promise {
         $returnType = '\Upsun\Model\Profile';
-        $request = $this->updateOrgProfileRequest($organization_id, $update_org_profile_request);
+        $request = $this->updateOrgProfileRequest(
+            $organization_id,
+            $update_org_profile_request
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1281,31 +1313,22 @@ final class ProfilesApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -1368,15 +1391,5 @@ final class ProfilesApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

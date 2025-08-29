@@ -12,627 +12,121 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+final class UpdateOrgSubscriptionRequest implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'update_org_subscription_request';
+    public readonly string $project_title;
+    public readonly string $plan;
+    public readonly string $timezone;
+    public readonly int $environments;
+    public readonly int $storage;
+    public readonly string $big_dev;
+    public readonly string $big_dev_service;
+    public readonly string $backups;
+    public readonly string $observability_suite;
+    public readonly string $blackfire;
+    public readonly string $continuous_profiling;
+    public readonly string $project_support_level;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'project_title' => 'string',
-        'plan' => 'string',
-        'timezone' => 'string',
-        'environments' => 'int',
-        'storage' => 'int',
-        'big_dev' => 'string',
-        'big_dev_service' => 'string',
-        'backups' => 'string',
-        'observability_suite' => 'string',
-        'blackfire' => 'string',
-        'continuous_profiling' => 'string',
-        'project_support_level' => 'string'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'project_title' => null,
-        'plan' => null,
-        'timezone' => null,
-        'environments' => null,
-        'storage' => null,
-        'big_dev' => null,
-        'big_dev_service' => null,
-        'backups' => null,
-        'observability_suite' => null,
-        'blackfire' => null,
-        'continuous_profiling' => null,
-        'project_support_level' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'project_title' => false,
-        'plan' => false,
-        'timezone' => false,
-        'environments' => false,
-        'storage' => false,
-        'big_dev' => false,
-        'big_dev_service' => false,
-        'backups' => false,
-        'observability_suite' => false,
-        'blackfire' => false,
-        'continuous_profiling' => false,
-        'project_support_level' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        string $project_title = null,
+        string $plan = null,
+        string $timezone = null,
+        int $environments = null,
+        int $storage = null,
+        string $big_dev = null,
+        string $big_dev_service = null,
+        string $backups = null,
+        string $observability_suite = null,
+        string $blackfire = null,
+        string $continuous_profiling = null,
+        string $project_support_level = null,
+    ) {
+        $this->project_title = $project_title;
+        $this->plan = $plan;
+        $this->timezone = $timezone;
+        $this->environments = $environments;
+        $this->storage = $storage;
+        $this->big_dev = $big_dev;
+        $this->big_dev_service = $big_dev_service;
+        $this->backups = $backups;
+        $this->observability_suite = $observability_suite;
+        $this->blackfire = $blackfire;
+        $this->continuous_profiling = $continuous_profiling;
+        $this->project_support_level = $project_support_level;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getProjectTitle(): string|null
     {
-        return self::$openAPIFormats;
+        return $this->project_title;
+    }
+    public function getPlan(): string|null
+    {
+        return $this->plan;
+    }
+    public function getTimezone(): string|null
+    {
+        return $this->timezone;
+    }
+    public function getEnvironments(): int|null
+    {
+        return $this->environments;
+    }
+    public function getStorage(): int|null
+    {
+        return $this->storage;
+    }
+    public function getBigDev(): string|null
+    {
+        return $this->big_dev;
+    }
+    public function getBigDevService(): string|null
+    {
+        return $this->big_dev_service;
+    }
+    public function getBackups(): string|null
+    {
+        return $this->backups;
+    }
+    public function getObservabilitySuite(): string|null
+    {
+        return $this->observability_suite;
+    }
+    public function getBlackfire(): string|null
+    {
+        return $this->blackfire;
+    }
+    public function getContinuousProfiling(): string|null
+    {
+        return $this->continuous_profiling;
+    }
+    public function getProjectSupportLevel(): string|null
+    {
+        return $this->project_support_level;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'project_title' => 'project_title',
-        'plan' => 'plan',
-        'timezone' => 'timezone',
-        'environments' => 'environments',
-        'storage' => 'storage',
-        'big_dev' => 'big_dev',
-        'big_dev_service' => 'big_dev_service',
-        'backups' => 'backups',
-        'observability_suite' => 'observability_suite',
-        'blackfire' => 'blackfire',
-        'continuous_profiling' => 'continuous_profiling',
-        'project_support_level' => 'project_support_level'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'project_title' => 'setProjectTitle',
-        'plan' => 'setPlan',
-        'timezone' => 'setTimezone',
-        'environments' => 'setEnvironments',
-        'storage' => 'setStorage',
-        'big_dev' => 'setBigDev',
-        'big_dev_service' => 'setBigDevService',
-        'backups' => 'setBackups',
-        'observability_suite' => 'setObservabilitySuite',
-        'blackfire' => 'setBlackfire',
-        'continuous_profiling' => 'setContinuousProfiling',
-        'project_support_level' => 'setProjectSupportLevel'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'project_title' => 'getProjectTitle',
-        'plan' => 'getPlan',
-        'timezone' => 'getTimezone',
-        'environments' => 'getEnvironments',
-        'storage' => 'getStorage',
-        'big_dev' => 'getBigDev',
-        'big_dev_service' => 'getBigDevService',
-        'backups' => 'getBackups',
-        'observability_suite' => 'getObservabilitySuite',
-        'blackfire' => 'getBlackfire',
-        'continuous_profiling' => 'getContinuousProfiling',
-        'project_support_level' => 'getProjectSupportLevel'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('project_title', $data ?? [], null);
-        $this->setIfExists('plan', $data ?? [], null);
-        $this->setIfExists('timezone', $data ?? [], null);
-        $this->setIfExists('environments', $data ?? [], null);
-        $this->setIfExists('storage', $data ?? [], null);
-        $this->setIfExists('big_dev', $data ?? [], null);
-        $this->setIfExists('big_dev_service', $data ?? [], null);
-        $this->setIfExists('backups', $data ?? [], null);
-        $this->setIfExists('observability_suite', $data ?? [], null);
-        $this->setIfExists('blackfire', $data ?? [], null);
-        $this->setIfExists('continuous_profiling', $data ?? [], null);
-        $this->setIfExists('project_support_level', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets project_title
-     *
-     * @return string|null
-     */
-    public function getProjectTitle()
-    {
-        return $this->container['project_title'];
-    }
-
-    /**
-     * Sets project_title
-     */
-    public function setProjectTitle($project_title)
-    {
-        if (is_null($project_title)) {
-            throw new \InvalidArgumentException('non-nullable project_title cannot be null');
-        }
-        $this->container['project_title'] = $project_title;
-
-        return $this;
-    }
-
-    /**
-     * Gets plan
-     *
-     * @return string|null
-     */
-    public function getPlan()
-    {
-        return $this->container['plan'];
-    }
-
-    /**
-     * Sets plan
-     */
-    public function setPlan($plan)
-    {
-        if (is_null($plan)) {
-            throw new \InvalidArgumentException('non-nullable plan cannot be null');
-        }
-        $this->container['plan'] = $plan;
-
-        return $this;
-    }
-
-    /**
-     * Gets timezone
-     *
-     * @return string|null
-     */
-    public function getTimezone()
-    {
-        return $this->container['timezone'];
-    }
-
-    /**
-     * Sets timezone
-     */
-    public function setTimezone($timezone)
-    {
-        if (is_null($timezone)) {
-            throw new \InvalidArgumentException('non-nullable timezone cannot be null');
-        }
-        $this->container['timezone'] = $timezone;
-
-        return $this;
-    }
-
-    /**
-     * Gets environments
-     *
-     * @return int|null
-     */
-    public function getEnvironments()
-    {
-        return $this->container['environments'];
-    }
-
-    /**
-     * Sets environments
-     */
-    public function setEnvironments($environments)
-    {
-        if (is_null($environments)) {
-            throw new \InvalidArgumentException('non-nullable environments cannot be null');
-        }
-        $this->container['environments'] = $environments;
-
-        return $this;
-    }
-
-    /**
-     * Gets storage
-     *
-     * @return int|null
-     */
-    public function getStorage()
-    {
-        return $this->container['storage'];
-    }
-
-    /**
-     * Sets storage
-     */
-    public function setStorage($storage)
-    {
-        if (is_null($storage)) {
-            throw new \InvalidArgumentException('non-nullable storage cannot be null');
-        }
-        $this->container['storage'] = $storage;
-
-        return $this;
-    }
-
-    /**
-     * Gets big_dev
-     *
-     * @return string|null
-     */
-    public function getBigDev()
-    {
-        return $this->container['big_dev'];
-    }
-
-    /**
-     * Sets big_dev
-     */
-    public function setBigDev($big_dev)
-    {
-        if (is_null($big_dev)) {
-            throw new \InvalidArgumentException('non-nullable big_dev cannot be null');
-        }
-        $this->container['big_dev'] = $big_dev;
-
-        return $this;
-    }
-
-    /**
-     * Gets big_dev_service
-     *
-     * @return string|null
-     */
-    public function getBigDevService()
-    {
-        return $this->container['big_dev_service'];
-    }
-
-    /**
-     * Sets big_dev_service
-     */
-    public function setBigDevService($big_dev_service)
-    {
-        if (is_null($big_dev_service)) {
-            throw new \InvalidArgumentException('non-nullable big_dev_service cannot be null');
-        }
-        $this->container['big_dev_service'] = $big_dev_service;
-
-        return $this;
-    }
-
-    /**
-     * Gets backups
-     *
-     * @return string|null
-     */
-    public function getBackups()
-    {
-        return $this->container['backups'];
-    }
-
-    /**
-     * Sets backups
-     */
-    public function setBackups($backups)
-    {
-        if (is_null($backups)) {
-            throw new \InvalidArgumentException('non-nullable backups cannot be null');
-        }
-        $this->container['backups'] = $backups;
-
-        return $this;
-    }
-
-    /**
-     * Gets observability_suite
-     *
-     * @return string|null
-     */
-    public function getObservabilitySuite()
-    {
-        return $this->container['observability_suite'];
-    }
-
-    /**
-     * Sets observability_suite
-     */
-    public function setObservabilitySuite($observability_suite)
-    {
-        if (is_null($observability_suite)) {
-            throw new \InvalidArgumentException('non-nullable observability_suite cannot be null');
-        }
-        $this->container['observability_suite'] = $observability_suite;
-
-        return $this;
-    }
-
-    /**
-     * Gets blackfire
-     *
-     * @return string|null
-     */
-    public function getBlackfire()
-    {
-        return $this->container['blackfire'];
-    }
-
-    /**
-     * Sets blackfire
-     */
-    public function setBlackfire($blackfire)
-    {
-        if (is_null($blackfire)) {
-            throw new \InvalidArgumentException('non-nullable blackfire cannot be null');
-        }
-        $this->container['blackfire'] = $blackfire;
-
-        return $this;
-    }
-
-    /**
-     * Gets continuous_profiling
-     *
-     * @return string|null
-     */
-    public function getContinuousProfiling()
-    {
-        return $this->container['continuous_profiling'];
-    }
-
-    /**
-     * Sets continuous_profiling
-     */
-    public function setContinuousProfiling($continuous_profiling)
-    {
-        if (is_null($continuous_profiling)) {
-            throw new \InvalidArgumentException('non-nullable continuous_profiling cannot be null');
-        }
-        $this->container['continuous_profiling'] = $continuous_profiling;
-
-        return $this;
-    }
-
-    /**
-     * Gets project_support_level
-     *
-     * @return string|null
-     */
-    public function getProjectSupportLevel()
-    {
-        return $this->container['project_support_level'];
-    }
-
-    /**
-     * Sets project_support_level
-     */
-    public function setProjectSupportLevel($project_support_level)
-    {
-        if (is_null($project_support_level)) {
-            throw new \InvalidArgumentException('non-nullable project_support_level cannot be null');
-        }
-        $this->container['project_support_level'] = $project_support_level;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+        return [
+            'project_title' => $this->project_title,
+            'plan' => $this->plan,
+            'timezone' => $this->timezone,
+            'environments' => $this->environments,
+            'storage' => $this->storage,
+            'big_dev' => $this->big_dev,
+            'big_dev_service' => $this->big_dev_service,
+            'backups' => $this->backups,
+            'observability_suite' => $this->observability_suite,
+            'blackfire' => $this->blackfire,
+            'continuous_profiling' => $this->continuous_profiling,
+            'project_support_level' => $this->project_support_level,
+        ];
     }
 
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

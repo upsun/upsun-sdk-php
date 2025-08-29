@@ -138,7 +138,21 @@ final class DefaultApi extends AbstractApi
         string $search = null,
         int $page = null
     ): \Upsun\Model\ListTickets200Response {
-        list($response) = $this->listTicketsWithHttpInfo($filter_ticket_id, $filter_created, $filter_updated, $filter_type, $filter_priority, $filter_status, $filter_requester_id, $filter_submitter_id, $filter_assignee_id, $filter_has_incidents, $filter_due, $search, $page);
+        list($response) = $this->listTicketsWithHttpInfo(
+            $filter_ticket_id,
+            $filter_created,
+            $filter_updated,
+            $filter_type,
+            $filter_priority,
+            $filter_status,
+            $filter_requester_id,
+            $filter_submitter_id,
+            $filter_assignee_id,
+            $filter_has_incidents,
+            $filter_due,
+            $search,
+            $page
+        );
         return $response;
     }
 
@@ -163,17 +177,29 @@ final class DefaultApi extends AbstractApi
         string $search = null,
         int $page = null
     ): array {
-        $request = $this->listTicketsRequest($filter_ticket_id, $filter_created, $filter_updated, $filter_type, $filter_priority, $filter_status, $filter_requester_id, $filter_submitter_id, $filter_assignee_id, $filter_has_incidents, $filter_due, $search, $page);
+        $request = $this->listTicketsRequest(
+            $filter_ticket_id,
+            $filter_created,
+            $filter_updated,
+            $filter_type,
+            $filter_priority,
+            $filter_status,
+            $filter_requester_id,
+            $filter_submitter_id,
+            $filter_assignee_id,
+            $filter_has_incidents,
+            $filter_due,
+            $search,
+            $page
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -264,7 +290,21 @@ final class DefaultApi extends AbstractApi
         string $search = null,
         int $page = null
     ): Promise {
-        return $this->listTicketsAsyncWithHttpInfo($filter_ticket_id, $filter_created, $filter_updated, $filter_type, $filter_priority, $filter_status, $filter_requester_id, $filter_submitter_id, $filter_assignee_id, $filter_has_incidents, $filter_due, $search, $page)
+        return $this->listTicketsAsyncWithHttpInfo(
+            $filter_ticket_id,
+            $filter_created,
+            $filter_updated,
+            $filter_type,
+            $filter_priority,
+            $filter_status,
+            $filter_requester_id,
+            $filter_submitter_id,
+            $filter_assignee_id,
+            $filter_has_incidents,
+            $filter_due,
+            $search,
+            $page
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -293,7 +333,21 @@ final class DefaultApi extends AbstractApi
         int $page = null
     ): Promise {
         $returnType = '\Upsun\Model\ListTickets200Response';
-        $request = $this->listTicketsRequest($filter_ticket_id, $filter_created, $filter_updated, $filter_type, $filter_priority, $filter_status, $filter_requester_id, $filter_submitter_id, $filter_assignee_id, $filter_has_incidents, $filter_due, $search, $page);
+        $request = $this->listTicketsRequest(
+            $filter_ticket_id,
+            $filter_created,
+            $filter_updated,
+            $filter_type,
+            $filter_priority,
+            $filter_status,
+            $filter_requester_id,
+            $filter_submitter_id,
+            $filter_assignee_id,
+            $filter_has_incidents,
+            $filter_due,
+            $search,
+            $page
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -365,7 +419,7 @@ final class DefaultApi extends AbstractApi
                 $queryParams['filter[ticket_id]'] = $filter_ticket_id;
             }
         }
-        
+
         // query params
         if ($filter_created !== null) {
             if ('form' === 'form' && is_array($filter_created)) {
@@ -376,7 +430,7 @@ final class DefaultApi extends AbstractApi
                 $queryParams['filter[created]'] = $filter_created;
             }
         }
-        
+
         // query params
         if ($filter_updated !== null) {
             if ('form' === 'form' && is_array($filter_updated)) {
@@ -387,7 +441,7 @@ final class DefaultApi extends AbstractApi
                 $queryParams['filter[updated]'] = $filter_updated;
             }
         }
-        
+
         // query params
         if ($filter_type !== null) {
             if ('form' === 'form' && is_array($filter_type)) {
@@ -398,7 +452,7 @@ final class DefaultApi extends AbstractApi
                 $queryParams['filter[type]'] = $filter_type;
             }
         }
-        
+
         // query params
         if ($filter_priority !== null) {
             if ('form' === 'form' && is_array($filter_priority)) {
@@ -409,7 +463,7 @@ final class DefaultApi extends AbstractApi
                 $queryParams['filter[priority]'] = $filter_priority;
             }
         }
-        
+
         // query params
         if ($filter_status !== null) {
             if ('form' === 'form' && is_array($filter_status)) {
@@ -420,7 +474,7 @@ final class DefaultApi extends AbstractApi
                 $queryParams['filter[status]'] = $filter_status;
             }
         }
-        
+
         // query params
         if ($filter_requester_id !== null) {
             if ('form' === 'form' && is_array($filter_requester_id)) {
@@ -431,7 +485,7 @@ final class DefaultApi extends AbstractApi
                 $queryParams['filter[requester_id]'] = $filter_requester_id;
             }
         }
-        
+
         // query params
         if ($filter_submitter_id !== null) {
             if ('form' === 'form' && is_array($filter_submitter_id)) {
@@ -442,7 +496,7 @@ final class DefaultApi extends AbstractApi
                 $queryParams['filter[submitter_id]'] = $filter_submitter_id;
             }
         }
-        
+
         // query params
         if ($filter_assignee_id !== null) {
             if ('form' === 'form' && is_array($filter_assignee_id)) {
@@ -453,7 +507,7 @@ final class DefaultApi extends AbstractApi
                 $queryParams['filter[assignee_id]'] = $filter_assignee_id;
             }
         }
-        
+
         // query params
         if ($filter_has_incidents !== null) {
             if ('form' === 'form' && is_array($filter_has_incidents)) {
@@ -464,7 +518,7 @@ final class DefaultApi extends AbstractApi
                 $queryParams['filter[has_incidents]'] = $filter_has_incidents;
             }
         }
-        
+
         // query params
         if ($filter_due !== null) {
             if ('form' === 'form' && is_array($filter_due)) {
@@ -475,7 +529,7 @@ final class DefaultApi extends AbstractApi
                 $queryParams['filter[due]'] = $filter_due;
             }
         }
-        
+
         // query params
         if ($search !== null) {
             if ('form' === 'form' && is_array($search)) {
@@ -486,7 +540,7 @@ final class DefaultApi extends AbstractApi
                 $queryParams['search'] = $search;
             }
         }
-        
+
         // query params
         if ($page !== null) {
             if ('form' === 'form' && is_array($page)) {
@@ -497,7 +551,7 @@ final class DefaultApi extends AbstractApi
                 $queryParams['page'] = $page;
             }
         }
-        
+
 
 
 
@@ -564,31 +618,22 @@ final class DefaultApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -651,15 +696,5 @@ final class DefaultApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

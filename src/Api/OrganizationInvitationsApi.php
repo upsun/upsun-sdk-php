@@ -127,7 +127,10 @@ final class OrganizationInvitationsApi extends AbstractApi
         string $organization_id,
         string $invitation_id
     ): void {
-        $this->cancelOrgInviteWithHttpInfo($organization_id, $invitation_id);
+        $this->cancelOrgInviteWithHttpInfo(
+            $organization_id,
+            $invitation_id
+        );
     }
 
     /**
@@ -140,17 +143,18 @@ final class OrganizationInvitationsApi extends AbstractApi
         string $organization_id,
         string $invitation_id
     ): array {
-        $request = $this->cancelOrgInviteRequest($organization_id, $invitation_id);
+        $request = $this->cancelOrgInviteRequest(
+            $organization_id,
+            $invitation_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -203,7 +207,10 @@ final class OrganizationInvitationsApi extends AbstractApi
         string $organization_id,
         string $invitation_id
     ): Promise {
-        return $this->cancelOrgInviteAsyncWithHttpInfo($organization_id, $invitation_id)
+        return $this->cancelOrgInviteAsyncWithHttpInfo(
+            $organization_id,
+            $invitation_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -221,7 +228,10 @@ final class OrganizationInvitationsApi extends AbstractApi
         string $invitation_id
     ): Promise {
         $returnType = '';
-        $request = $this->cancelOrgInviteRequest($organization_id, $invitation_id);
+        $request = $this->cancelOrgInviteRequest(
+            $organization_id,
+            $invitation_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -356,7 +366,10 @@ final class OrganizationInvitationsApi extends AbstractApi
         string $organization_id,
         \Upsun\Model\CreateOrgInviteRequest $create_org_invite_request = null
     ): \Upsun\Model\OrganizationInvitation {
-        list($response) = $this->createOrgInviteWithHttpInfo($organization_id, $create_org_invite_request);
+        list($response) = $this->createOrgInviteWithHttpInfo(
+            $organization_id,
+            $create_org_invite_request
+        );
         return $response;
     }
 
@@ -370,17 +383,18 @@ final class OrganizationInvitationsApi extends AbstractApi
         string $organization_id,
         \Upsun\Model\CreateOrgInviteRequest $create_org_invite_request = null
     ): array {
-        $request = $this->createOrgInviteRequest($organization_id, $create_org_invite_request);
+        $request = $this->createOrgInviteRequest(
+            $organization_id,
+            $create_org_invite_request
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -502,7 +516,10 @@ final class OrganizationInvitationsApi extends AbstractApi
         string $organization_id,
         \Upsun\Model\CreateOrgInviteRequest $create_org_invite_request = null
     ): Promise {
-        return $this->createOrgInviteAsyncWithHttpInfo($organization_id, $create_org_invite_request)
+        return $this->createOrgInviteAsyncWithHttpInfo(
+            $organization_id,
+            $create_org_invite_request
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -520,7 +537,10 @@ final class OrganizationInvitationsApi extends AbstractApi
         \Upsun\Model\CreateOrgInviteRequest $create_org_invite_request = null
     ): Promise {
         $returnType = '\Upsun\Model\OrganizationInvitation';
-        $request = $this->createOrgInviteRequest($organization_id, $create_org_invite_request);
+        $request = $this->createOrgInviteRequest(
+            $organization_id,
+            $create_org_invite_request
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -663,7 +683,14 @@ final class OrganizationInvitationsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): array {
-        list($response) = $this->listOrgInvitesWithHttpInfo($organization_id, $filter_state, $page_size, $page_before, $page_after, $sort);
+        list($response) = $this->listOrgInvitesWithHttpInfo(
+            $organization_id,
+            $filter_state,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
         return $response;
     }
 
@@ -681,17 +708,22 @@ final class OrganizationInvitationsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): array {
-        $request = $this->listOrgInvitesRequest($organization_id, $filter_state, $page_size, $page_before, $page_after, $sort);
+        $request = $this->listOrgInvitesRequest(
+            $organization_id,
+            $filter_state,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -789,7 +821,14 @@ final class OrganizationInvitationsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): Promise {
-        return $this->listOrgInvitesAsyncWithHttpInfo($organization_id, $filter_state, $page_size, $page_before, $page_after, $sort)
+        return $this->listOrgInvitesAsyncWithHttpInfo(
+            $organization_id,
+            $filter_state,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -811,7 +850,14 @@ final class OrganizationInvitationsApi extends AbstractApi
         string $sort = null
     ): Promise {
         $returnType = '\Upsun\Model\OrganizationInvitation[]';
-        $request = $this->listOrgInvitesRequest($organization_id, $filter_state, $page_size, $page_before, $page_after, $sort);
+        $request = $this->listOrgInvitesRequest(
+            $organization_id,
+            $filter_state,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -865,10 +911,16 @@ final class OrganizationInvitationsApi extends AbstractApi
             );
         }
         if ($page_size !== null && $page_size > 100) {
-            throw new \InvalidArgumentException('invalid value for "$page_size" when calling OrganizationInvitationsApi.listOrgInvites, must be smaller than or equal to 100.');
+            throw new \InvalidArgumentException(
+                'invalid value for "$page_size" when calling OrganizationInvitationsApi.listOrgInvites, 
+                must be smaller than or equal to 100.'
+            );
         }
         if ($page_size !== null && $page_size < 1) {
-            throw new \InvalidArgumentException('invalid value for "$page_size" when calling OrganizationInvitationsApi.listOrgInvites, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException(
+                'invalid value for "$page_size" when calling OrganizationInvitationsApi.listOrgInvites,
+                must be bigger than or equal to 1.'
+            );
         }
 
 
@@ -889,7 +941,7 @@ final class OrganizationInvitationsApi extends AbstractApi
                 $queryParams['filter[state]'] = $filter_state->getEq();
             }
         }
-        
+
         // query params
         if ($page_size !== null) {
             if ('form' === 'form' && is_array($page_size)) {
@@ -900,7 +952,7 @@ final class OrganizationInvitationsApi extends AbstractApi
                 $queryParams['page[size]'] = $page_size;
             }
         }
-        
+
         // query params
         if ($page_before !== null) {
             if ('form' === 'form' && is_array($page_before)) {
@@ -911,7 +963,7 @@ final class OrganizationInvitationsApi extends AbstractApi
                 $queryParams['page[before]'] = $page_before;
             }
         }
-        
+
         // query params
         if ($page_after !== null) {
             if ('form' === 'form' && is_array($page_after)) {
@@ -922,7 +974,7 @@ final class OrganizationInvitationsApi extends AbstractApi
                 $queryParams['page[after]'] = $page_after;
             }
         }
-        
+
         // query params
         if ($sort !== null) {
             if ('form' === 'form' && is_array($sort)) {
@@ -933,7 +985,7 @@ final class OrganizationInvitationsApi extends AbstractApi
                 $queryParams['sort'] = $sort;
             }
         }
-        
+
 
 
         // path params
@@ -1008,31 +1060,22 @@ final class OrganizationInvitationsApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -1095,15 +1138,5 @@ final class OrganizationInvitationsApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

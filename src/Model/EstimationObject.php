@@ -12,447 +12,73 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class EstimationObject implements ModelInterface, ArrayAccess, \JsonSerializable
+final class EstimationObject implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'EstimationObject';
+    public readonly string $plan;
+    public readonly string $user_licenses;
+    public readonly string $environments;
+    public readonly string $storage;
+    public readonly string $total;
+    public readonly object $options;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'plan' => 'string',
-        'user_licenses' => 'string',
-        'environments' => 'string',
-        'storage' => 'string',
-        'total' => 'string',
-        'options' => 'object'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'plan' => null,
-        'user_licenses' => null,
-        'environments' => null,
-        'storage' => null,
-        'total' => null,
-        'options' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'plan' => false,
-        'user_licenses' => false,
-        'environments' => false,
-        'storage' => false,
-        'total' => false,
-        'options' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        string $plan = null,
+        string $user_licenses = null,
+        string $environments = null,
+        string $storage = null,
+        string $total = null,
+        object $options = null,
+    ) {
+        $this->plan = $plan;
+        $this->user_licenses = $user_licenses;
+        $this->environments = $environments;
+        $this->storage = $storage;
+        $this->total = $total;
+        $this->options = $options;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getPlan(): string|null
     {
-        return self::$openAPIFormats;
+        return $this->plan;
+    }
+    public function getUserLicenses(): string|null
+    {
+        return $this->user_licenses;
+    }
+    public function getEnvironments(): string|null
+    {
+        return $this->environments;
+    }
+    public function getStorage(): string|null
+    {
+        return $this->storage;
+    }
+    public function getTotal(): string|null
+    {
+        return $this->total;
+    }
+    public function getOptions(): object|null
+    {
+        return $this->options;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'plan' => 'plan',
-        'user_licenses' => 'user_licenses',
-        'environments' => 'environments',
-        'storage' => 'storage',
-        'total' => 'total',
-        'options' => 'options'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'plan' => 'setPlan',
-        'user_licenses' => 'setUserLicenses',
-        'environments' => 'setEnvironments',
-        'storage' => 'setStorage',
-        'total' => 'setTotal',
-        'options' => 'setOptions'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'plan' => 'getPlan',
-        'user_licenses' => 'getUserLicenses',
-        'environments' => 'getEnvironments',
-        'storage' => 'getStorage',
-        'total' => 'getTotal',
-        'options' => 'getOptions'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('plan', $data ?? [], null);
-        $this->setIfExists('user_licenses', $data ?? [], null);
-        $this->setIfExists('environments', $data ?? [], null);
-        $this->setIfExists('storage', $data ?? [], null);
-        $this->setIfExists('total', $data ?? [], null);
-        $this->setIfExists('options', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets plan
-     *
-     * @return string|null
-     */
-    public function getPlan()
-    {
-        return $this->container['plan'];
-    }
-
-    /**
-     * Sets plan
-     */
-    public function setPlan($plan)
-    {
-        if (is_null($plan)) {
-            throw new \InvalidArgumentException('non-nullable plan cannot be null');
-        }
-        $this->container['plan'] = $plan;
-
-        return $this;
-    }
-
-    /**
-     * Gets user_licenses
-     *
-     * @return string|null
-     */
-    public function getUserLicenses()
-    {
-        return $this->container['user_licenses'];
-    }
-
-    /**
-     * Sets user_licenses
-     */
-    public function setUserLicenses($user_licenses)
-    {
-        if (is_null($user_licenses)) {
-            throw new \InvalidArgumentException('non-nullable user_licenses cannot be null');
-        }
-        $this->container['user_licenses'] = $user_licenses;
-
-        return $this;
-    }
-
-    /**
-     * Gets environments
-     *
-     * @return string|null
-     */
-    public function getEnvironments()
-    {
-        return $this->container['environments'];
-    }
-
-    /**
-     * Sets environments
-     */
-    public function setEnvironments($environments)
-    {
-        if (is_null($environments)) {
-            throw new \InvalidArgumentException('non-nullable environments cannot be null');
-        }
-        $this->container['environments'] = $environments;
-
-        return $this;
-    }
-
-    /**
-     * Gets storage
-     *
-     * @return string|null
-     */
-    public function getStorage()
-    {
-        return $this->container['storage'];
-    }
-
-    /**
-     * Sets storage
-     */
-    public function setStorage($storage)
-    {
-        if (is_null($storage)) {
-            throw new \InvalidArgumentException('non-nullable storage cannot be null');
-        }
-        $this->container['storage'] = $storage;
-
-        return $this;
-    }
-
-    /**
-     * Gets total
-     *
-     * @return string|null
-     */
-    public function getTotal()
-    {
-        return $this->container['total'];
-    }
-
-    /**
-     * Sets total
-     */
-    public function setTotal($total)
-    {
-        if (is_null($total)) {
-            throw new \InvalidArgumentException('non-nullable total cannot be null');
-        }
-        $this->container['total'] = $total;
-
-        return $this;
-    }
-
-    /**
-     * Gets options
-     *
-     * @return object|null
-     */
-    public function getOptions()
-    {
-        return $this->container['options'];
-    }
-
-    /**
-     * Sets options
-     */
-    public function setOptions($options)
-    {
-        if (is_null($options)) {
-            throw new \InvalidArgumentException('non-nullable options cannot be null');
-        }
-        $this->container['options'] = $options;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+        return [
+            'plan' => $this->plan,
+            'user_licenses' => $this->user_licenses,
+            'environments' => $this->environments,
+            'storage' => $this->storage,
+            'total' => $this->total,
+            'options' => $this->options,
+        ];
     }
 
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

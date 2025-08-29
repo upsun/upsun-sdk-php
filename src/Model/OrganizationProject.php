@@ -12,691 +12,129 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class OrganizationProject implements ModelInterface, ArrayAccess, \JsonSerializable
+final class OrganizationProject implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'OrganizationProject';
+    public readonly string $id;
+    public readonly string $organization_id;
+    public readonly string $subscription_id;
+    public readonly string $region;
+    public readonly string $title;
+    public readonly \Upsun\Model\OrganizationProjectType $type;
+    public readonly \Upsun\Model\OrganizationProjectPlan $plan;
+    public readonly string $access_migration_status;
+    public readonly \Upsun\Model\OrganizationProjectStatus $status;
+    public readonly string $vendor;
+    public readonly \DateTime $created_at;
+    public readonly \DateTime $updated_at;
+    public readonly \Upsun\Model\OrganizationProjectLinks $_links;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'id' => 'string',
-        'organization_id' => 'string',
-        'subscription_id' => 'string',
-        'region' => 'string',
-        'title' => 'string',
-        'type' => '\Upsun\Model\OrganizationProjectType',
-        'plan' => '\Upsun\Model\OrganizationProjectPlan',
-        'access_migration_status' => 'string',
-        'status' => '\Upsun\Model\OrganizationProjectStatus',
-        'vendor' => 'string',
-        'created_at' => '\DateTime',
-        'updated_at' => '\DateTime',
-        '_links' => '\Upsun\Model\OrganizationProjectLinks'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'id' => null,
-        'organization_id' => 'ulid',
-        'subscription_id' => null,
-        'region' => null,
-        'title' => null,
-        'type' => null,
-        'plan' => null,
-        'access_migration_status' => null,
-        'status' => null,
-        'vendor' => null,
-        'created_at' => 'date-time',
-        'updated_at' => 'date-time',
-        '_links' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'id' => false,
-        'organization_id' => false,
-        'subscription_id' => false,
-        'region' => false,
-        'title' => false,
-        'type' => false,
-        'plan' => false,
-        'access_migration_status' => false,
-        'status' => false,
-        'vendor' => false,
-        'created_at' => false,
-        'updated_at' => false,
-        '_links' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        string $id = null,
+        string $organization_id = null,
+        string $subscription_id = null,
+        string $region = null,
+        string $title = null,
+        \Upsun\Model\OrganizationProjectType $type = null,
+        \Upsun\Model\OrganizationProjectPlan $plan = null,
+        string $access_migration_status = null,
+        \Upsun\Model\OrganizationProjectStatus $status = null,
+        string $vendor = null,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+        \Upsun\Model\OrganizationProjectLinks $_links = null,
+    ) {
+        $this->id = $id;
+        $this->organization_id = $organization_id;
+        $this->subscription_id = $subscription_id;
+        $this->region = $region;
+        $this->title = $title;
+        $this->type = $type;
+        $this->plan = $plan;
+        $this->access_migration_status = $access_migration_status;
+        $this->status = $status;
+        $this->vendor = $vendor;
+        $this->created_at = $created_at;
+        $this->updated_at = $updated_at;
+        $this->_links = $_links;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getId(): string|null
     {
-        return self::$openAPIFormats;
+        return $this->id;
+    }
+    public function getOrganizationId(): string|null
+    {
+        return $this->organization_id;
+    }
+    public function getSubscriptionId(): string|null
+    {
+        return $this->subscription_id;
+    }
+    public function getRegion(): string|null
+    {
+        return $this->region;
+    }
+    public function getTitle(): string|null
+    {
+        return $this->title;
+    }
+    public function getType(): \Upsun\Model\OrganizationProjectType|null
+    {
+        return $this->type;
+    }
+    public function getPlan(): \Upsun\Model\OrganizationProjectPlan|null
+    {
+        return $this->plan;
+    }
+    public function getAccessMigrationStatus(): string|null
+    {
+        return $this->access_migration_status;
+    }
+    public function getStatus(): \Upsun\Model\OrganizationProjectStatus|null
+    {
+        return $this->status;
+    }
+    public function getVendor(): string|null
+    {
+        return $this->vendor;
+    }
+    public function getCreatedAt(): \DateTime|null
+    {
+        return $this->created_at;
+    }
+    public function getUpdatedAt(): \DateTime|null
+    {
+        return $this->updated_at;
+    }
+    public function getLinks(): \Upsun\Model\OrganizationProjectLinks|null
+    {
+        return $this->_links;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'id' => 'id',
-        'organization_id' => 'organization_id',
-        'subscription_id' => 'subscription_id',
-        'region' => 'region',
-        'title' => 'title',
-        'type' => 'type',
-        'plan' => 'plan',
-        'access_migration_status' => 'access_migration_status',
-        'status' => 'status',
-        'vendor' => 'vendor',
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at',
-        '_links' => '_links'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'id' => 'setId',
-        'organization_id' => 'setOrganizationId',
-        'subscription_id' => 'setSubscriptionId',
-        'region' => 'setRegion',
-        'title' => 'setTitle',
-        'type' => 'setType',
-        'plan' => 'setPlan',
-        'access_migration_status' => 'setAccessMigrationStatus',
-        'status' => 'setStatus',
-        'vendor' => 'setVendor',
-        'created_at' => 'setCreatedAt',
-        'updated_at' => 'setUpdatedAt',
-        '_links' => 'setLinks'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'id' => 'getId',
-        'organization_id' => 'getOrganizationId',
-        'subscription_id' => 'getSubscriptionId',
-        'region' => 'getRegion',
-        'title' => 'getTitle',
-        'type' => 'getType',
-        'plan' => 'getPlan',
-        'access_migration_status' => 'getAccessMigrationStatus',
-        'status' => 'getStatus',
-        'vendor' => 'getVendor',
-        'created_at' => 'getCreatedAt',
-        'updated_at' => 'getUpdatedAt',
-        '_links' => 'getLinks'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-    public const ACCESS_MIGRATION_STATUS_PENDING = 'pending';
-    public const ACCESS_MIGRATION_STATUS_IN_PROGRESS = 'in_progress';
-    public const ACCESS_MIGRATION_STATUS_COMPLETED = 'completed';
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getAccessMigrationStatusAllowableValues(): array
+    public function jsonSerialize(): mixed
     {
         return [
-            self::ACCESS_MIGRATION_STATUS_PENDING,
-            self::ACCESS_MIGRATION_STATUS_IN_PROGRESS,
-            self::ACCESS_MIGRATION_STATUS_COMPLETED,
+            'id' => $this->id,
+            'organization_id' => $this->organization_id,
+            'subscription_id' => $this->subscription_id,
+            'region' => $this->region,
+            'title' => $this->title,
+            'type' => $this->type,
+            'plan' => $this->plan,
+            'access_migration_status' => $this->access_migration_status,
+            'status' => $this->status,
+            'vendor' => $this->vendor,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            '_links' => $this->_links,
         ];
     }
 
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
+    public function __toString(): string
     {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('organization_id', $data ?? [], null);
-        $this->setIfExists('subscription_id', $data ?? [], null);
-        $this->setIfExists('region', $data ?? [], null);
-        $this->setIfExists('title', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('plan', $data ?? [], null);
-        $this->setIfExists('access_migration_status', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('vendor', $data ?? [], null);
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('updated_at', $data ?? [], null);
-        $this->setIfExists('_links', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        $allowedValues = $this->getAccessMigrationStatusAllowableValues();
-        if (!is_null($this->container['access_migration_status']) && !in_array($this->container['access_migration_status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'access_migration_status', must be one of '%s'",
-                $this->container['access_migration_status'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets id
-     *
-     * @return string|null
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     */
-    public function setId($id)
-    {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets organization_id
-     *
-     * @return string|null
-     */
-    public function getOrganizationId()
-    {
-        return $this->container['organization_id'];
-    }
-
-    /**
-     * Sets organization_id
-     */
-    public function setOrganizationId($organization_id)
-    {
-        if (is_null($organization_id)) {
-            throw new \InvalidArgumentException('non-nullable organization_id cannot be null');
-        }
-        $this->container['organization_id'] = $organization_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets subscription_id
-     *
-     * @return string|null
-     */
-    public function getSubscriptionId()
-    {
-        return $this->container['subscription_id'];
-    }
-
-    /**
-     * Sets subscription_id
-     */
-    public function setSubscriptionId($subscription_id)
-    {
-        if (is_null($subscription_id)) {
-            throw new \InvalidArgumentException('non-nullable subscription_id cannot be null');
-        }
-        $this->container['subscription_id'] = $subscription_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets region
-     *
-     * @return string|null
-     */
-    public function getRegion()
-    {
-        return $this->container['region'];
-    }
-
-    /**
-     * Sets region
-     */
-    public function setRegion($region)
-    {
-        if (is_null($region)) {
-            throw new \InvalidArgumentException('non-nullable region cannot be null');
-        }
-        $this->container['region'] = $region;
-
-        return $this;
-    }
-
-    /**
-     * Gets title
-     *
-     * @return string|null
-     */
-    public function getTitle()
-    {
-        return $this->container['title'];
-    }
-
-    /**
-     * Sets title
-     */
-    public function setTitle($title)
-    {
-        if (is_null($title)) {
-            throw new \InvalidArgumentException('non-nullable title cannot be null');
-        }
-        $this->container['title'] = $title;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return \Upsun\Model\OrganizationProjectType|null
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     */
-    public function setType($type)
-    {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets plan
-     *
-     * @return \Upsun\Model\OrganizationProjectPlan|null
-     */
-    public function getPlan()
-    {
-        return $this->container['plan'];
-    }
-
-    /**
-     * Sets plan
-     */
-    public function setPlan($plan)
-    {
-        if (is_null($plan)) {
-            throw new \InvalidArgumentException('non-nullable plan cannot be null');
-        }
-        $this->container['plan'] = $plan;
-
-        return $this;
-    }
-
-    /**
-     * Gets access_migration_status
-     *
-     * @return string|null
-     */
-    public function getAccessMigrationStatus()
-    {
-        return $this->container['access_migration_status'];
-    }
-
-    /**
-     * Sets access_migration_status
-     */
-    public function setAccessMigrationStatus($access_migration_status)
-    {
-        if (is_null($access_migration_status)) {
-            throw new \InvalidArgumentException('non-nullable access_migration_status cannot be null');
-        }
-        $allowedValues = $this->getAccessMigrationStatusAllowableValues();
-        if (!in_array($access_migration_status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'access_migration_status', must be one of '%s'",
-                    $access_migration_status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['access_migration_status'] = $access_migration_status;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return \Upsun\Model\OrganizationProjectStatus|null
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     */
-    public function setStatus($status)
-    {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets vendor
-     *
-     * @return string|null
-     */
-    public function getVendor()
-    {
-        return $this->container['vendor'];
-    }
-
-    /**
-     * Sets vendor
-     */
-    public function setVendor($vendor)
-    {
-        if (is_null($vendor)) {
-            throw new \InvalidArgumentException('non-nullable vendor cannot be null');
-        }
-        $this->container['vendor'] = $vendor;
-
-        return $this;
-    }
-
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt()
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     */
-    public function setCreatedAt($created_at)
-    {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
-        }
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt()
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     */
-    public function setUpdatedAt($updated_at)
-    {
-        if (is_null($updated_at)) {
-            throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
-        }
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets _links
-     *
-     * @return \Upsun\Model\OrganizationProjectLinks|null
-     */
-    public function getLinks()
-    {
-        return $this->container['_links'];
-    }
-
-    /**
-     * Sets _links
-     */
-    public function setLinks($_links)
-    {
-        if (is_null($_links)) {
-            throw new \InvalidArgumentException('non-nullable _links cannot be null');
-        }
-        $this->container['_links'] = $_links;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

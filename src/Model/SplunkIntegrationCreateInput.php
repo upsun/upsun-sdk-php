@@ -12,489 +12,81 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class SplunkIntegrationCreateInput implements ModelInterface, ArrayAccess, \JsonSerializable
+final class SplunkIntegrationCreateInput implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'SplunkIntegrationCreateInput';
+    public readonly string $type;
+    public readonly array<string,string> $extra;
+    public readonly string $url;
+    public readonly string $index;
+    public readonly string $token;
+    public readonly string $sourcetype;
+    public readonly bool $tls_verify;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'type' => 'string',
-        'extra' => 'array<string,string>',
-        'url' => 'string',
-        'index' => 'string',
-        'token' => 'string',
-        'sourcetype' => 'string',
-        'tls_verify' => 'bool'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'type' => null,
-        'extra' => null,
-        'url' => null,
-        'index' => null,
-        'token' => null,
-        'sourcetype' => null,
-        'tls_verify' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'type' => false,
-        'extra' => false,
-        'url' => false,
-        'index' => false,
-        'token' => false,
-        'sourcetype' => false,
-        'tls_verify' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        string $type,
+        array<string,string> $extra = null,
+        string $url,
+        string $index,
+        string $token,
+        string $sourcetype = null,
+        bool $tls_verify = null,
+    ) {
+        $this->type = $type;
+        $this->extra = $extra;
+        $this->url = $url;
+        $this->index = $index;
+        $this->token = $token;
+        $this->sourcetype = $sourcetype;
+        $this->tls_verify = $tls_verify;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getType(): string
     {
-        return self::$openAPIFormats;
+        return $this->type;
+    }
+    public function getExtra(): array<string,string>|null
+    {
+        return $this->extra;
+    }
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+    public function getIndex(): string
+    {
+        return $this->index;
+    }
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+    public function getSourcetype(): string|null
+    {
+        return $this->sourcetype;
+    }
+    public function getTlsVerify(): bool|null
+    {
+        return $this->tls_verify;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'type' => 'type',
-        'extra' => 'extra',
-        'url' => 'url',
-        'index' => 'index',
-        'token' => 'token',
-        'sourcetype' => 'sourcetype',
-        'tls_verify' => 'tls_verify'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'type' => 'setType',
-        'extra' => 'setExtra',
-        'url' => 'setUrl',
-        'index' => 'setIndex',
-        'token' => 'setToken',
-        'sourcetype' => 'setSourcetype',
-        'tls_verify' => 'setTlsVerify'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'type' => 'getType',
-        'extra' => 'getExtra',
-        'url' => 'getUrl',
-        'index' => 'getIndex',
-        'token' => 'getToken',
-        'sourcetype' => 'getSourcetype',
-        'tls_verify' => 'getTlsVerify'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('extra', $data ?? [], null);
-        $this->setIfExists('url', $data ?? [], null);
-        $this->setIfExists('index', $data ?? [], null);
-        $this->setIfExists('token', $data ?? [], null);
-        $this->setIfExists('sourcetype', $data ?? [], null);
-        $this->setIfExists('tls_verify', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
-        if ($this->container['url'] === null) {
-            $invalidProperties[] = "'url' can't be null";
-        }
-        if ($this->container['index'] === null) {
-            $invalidProperties[] = "'index' can't be null";
-        }
-        if ($this->container['token'] === null) {
-            $invalidProperties[] = "'token' can't be null";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     */
-    public function setType($type)
-    {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets extra
-     *
-     * @return array<string,string>|null
-     */
-    public function getExtra()
-    {
-        return $this->container['extra'];
-    }
-
-    /**
-     * Sets extra
-     */
-    public function setExtra($extra)
-    {
-        if (is_null($extra)) {
-            throw new \InvalidArgumentException('non-nullable extra cannot be null');
-        }
-        $this->container['extra'] = $extra;
-
-        return $this;
-    }
-
-    /**
-     * Gets url
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->container['url'];
-    }
-
-    /**
-     * Sets url
-     */
-    public function setUrl($url)
-    {
-        if (is_null($url)) {
-            throw new \InvalidArgumentException('non-nullable url cannot be null');
-        }
-        $this->container['url'] = $url;
-
-        return $this;
-    }
-
-    /**
-     * Gets index
-     *
-     * @return string
-     */
-    public function getIndex()
-    {
-        return $this->container['index'];
-    }
-
-    /**
-     * Sets index
-     */
-    public function setIndex($index)
-    {
-        if (is_null($index)) {
-            throw new \InvalidArgumentException('non-nullable index cannot be null');
-        }
-        $this->container['index'] = $index;
-
-        return $this;
-    }
-
-    /**
-     * Gets token
-     *
-     * @return string
-     */
-    public function getToken()
-    {
-        return $this->container['token'];
-    }
-
-    /**
-     * Sets token
-     */
-    public function setToken($token)
-    {
-        if (is_null($token)) {
-            throw new \InvalidArgumentException('non-nullable token cannot be null');
-        }
-        $this->container['token'] = $token;
-
-        return $this;
-    }
-
-    /**
-     * Gets sourcetype
-     *
-     * @return string|null
-     */
-    public function getSourcetype()
-    {
-        return $this->container['sourcetype'];
-    }
-
-    /**
-     * Sets sourcetype
-     */
-    public function setSourcetype($sourcetype)
-    {
-        if (is_null($sourcetype)) {
-            throw new \InvalidArgumentException('non-nullable sourcetype cannot be null');
-        }
-        $this->container['sourcetype'] = $sourcetype;
-
-        return $this;
-    }
-
-    /**
-     * Gets tls_verify
-     *
-     * @return bool|null
-     */
-    public function getTlsVerify()
-    {
-        return $this->container['tls_verify'];
-    }
-
-    /**
-     * Sets tls_verify
-     */
-    public function setTlsVerify($tls_verify)
-    {
-        if (is_null($tls_verify)) {
-            throw new \InvalidArgumentException('non-nullable tls_verify cannot be null');
-        }
-        $this->container['tls_verify'] = $tls_verify;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+        return [
+            'type' => $this->type,
+            'extra' => $this->extra,
+            'url' => $this->url,
+            'index' => $this->index,
+            'token' => $this->token,
+            'sourcetype' => $this->sourcetype,
+            'tls_verify' => $this->tls_verify,
+        ];
     }
 
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

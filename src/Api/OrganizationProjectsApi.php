@@ -127,7 +127,10 @@ final class OrganizationProjectsApi extends AbstractApi
         string $organization_id,
         string $project_id
     ): \Upsun\Model\OrganizationProject {
-        list($response) = $this->getOrgProjectWithHttpInfo($organization_id, $project_id);
+        list($response) = $this->getOrgProjectWithHttpInfo(
+            $organization_id,
+            $project_id
+        );
         return $response;
     }
 
@@ -141,17 +144,18 @@ final class OrganizationProjectsApi extends AbstractApi
         string $organization_id,
         string $project_id
     ): array {
-        $request = $this->getOrgProjectRequest($organization_id, $project_id);
+        $request = $this->getOrgProjectRequest(
+            $organization_id,
+            $project_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -259,7 +263,10 @@ final class OrganizationProjectsApi extends AbstractApi
         string $organization_id,
         string $project_id
     ): Promise {
-        return $this->getOrgProjectAsyncWithHttpInfo($organization_id, $project_id)
+        return $this->getOrgProjectAsyncWithHttpInfo(
+            $organization_id,
+            $project_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -277,7 +284,10 @@ final class OrganizationProjectsApi extends AbstractApi
         string $project_id
     ): Promise {
         $returnType = '\Upsun\Model\OrganizationProject';
-        $request = $this->getOrgProjectRequest($organization_id, $project_id);
+        $request = $this->getOrgProjectRequest(
+            $organization_id,
+            $project_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -430,7 +440,18 @@ final class OrganizationProjectsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): \Upsun\Model\ListOrgProjects200Response {
-        list($response) = $this->listOrgProjectsWithHttpInfo($organization_id, $filter_id, $filter_title, $filter_status, $filter_updated_at, $filter_created_at, $page_size, $page_before, $page_after, $sort);
+        list($response) = $this->listOrgProjectsWithHttpInfo(
+            $organization_id,
+            $filter_id,
+            $filter_title,
+            $filter_status,
+            $filter_updated_at,
+            $filter_created_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
         return $response;
     }
 
@@ -452,17 +473,26 @@ final class OrganizationProjectsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): array {
-        $request = $this->listOrgProjectsRequest($organization_id, $filter_id, $filter_title, $filter_status, $filter_updated_at, $filter_created_at, $page_size, $page_before, $page_after, $sort);
+        $request = $this->listOrgProjectsRequest(
+            $organization_id,
+            $filter_id,
+            $filter_title,
+            $filter_status,
+            $filter_updated_at,
+            $filter_created_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -592,7 +622,18 @@ final class OrganizationProjectsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): Promise {
-        return $this->listOrgProjectsAsyncWithHttpInfo($organization_id, $filter_id, $filter_title, $filter_status, $filter_updated_at, $filter_created_at, $page_size, $page_before, $page_after, $sort)
+        return $this->listOrgProjectsAsyncWithHttpInfo(
+            $organization_id,
+            $filter_id,
+            $filter_title,
+            $filter_status,
+            $filter_updated_at,
+            $filter_created_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -618,7 +659,18 @@ final class OrganizationProjectsApi extends AbstractApi
         string $sort = null
     ): Promise {
         $returnType = '\Upsun\Model\ListOrgProjects200Response';
-        $request = $this->listOrgProjectsRequest($organization_id, $filter_id, $filter_title, $filter_status, $filter_updated_at, $filter_created_at, $page_size, $page_before, $page_after, $sort);
+        $request = $this->listOrgProjectsRequest(
+            $organization_id,
+            $filter_id,
+            $filter_title,
+            $filter_status,
+            $filter_updated_at,
+            $filter_created_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -676,10 +728,16 @@ final class OrganizationProjectsApi extends AbstractApi
             );
         }
         if ($page_size !== null && $page_size > 100) {
-            throw new \InvalidArgumentException('invalid value for "$page_size" when calling OrganizationProjectsApi.listOrgProjects, must be smaller than or equal to 100.');
+            throw new \InvalidArgumentException(
+                'invalid value for "$page_size" when calling OrganizationProjectsApi.listOrgProjects, 
+                must be smaller than or equal to 100.'
+            );
         }
         if ($page_size !== null && $page_size < 1) {
-            throw new \InvalidArgumentException('invalid value for "$page_size" when calling OrganizationProjectsApi.listOrgProjects, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException(
+                'invalid value for "$page_size" when calling OrganizationProjectsApi.listOrgProjects,
+                must be bigger than or equal to 1.'
+            );
         }
 
 
@@ -700,7 +758,7 @@ final class OrganizationProjectsApi extends AbstractApi
                 $queryParams['filter[id]'] = $filter_id->getEq();
             }
         }
-        
+
         // query params
         if ($filter_title !== null) {
             if ('form' === 'deepObject' && is_array($filter_title)) {
@@ -711,7 +769,7 @@ final class OrganizationProjectsApi extends AbstractApi
                 $queryParams['filter[title]'] = $filter_title->getEq();
             }
         }
-        
+
         // query params
         if ($filter_status !== null) {
             if ('form' === 'deepObject' && is_array($filter_status)) {
@@ -722,7 +780,7 @@ final class OrganizationProjectsApi extends AbstractApi
                 $queryParams['filter[status]'] = $filter_status->getEq();
             }
         }
-        
+
         // query params
         if ($filter_updated_at !== null) {
             if ('form' === 'deepObject' && is_array($filter_updated_at)) {
@@ -733,7 +791,7 @@ final class OrganizationProjectsApi extends AbstractApi
                 $queryParams['filter[updated_at]'] = $filter_updated_at->getEq();
             }
         }
-        
+
         // query params
         if ($filter_created_at !== null) {
             if ('form' === 'deepObject' && is_array($filter_created_at)) {
@@ -744,7 +802,7 @@ final class OrganizationProjectsApi extends AbstractApi
                 $queryParams['filter[created_at]'] = $filter_created_at->getEq();
             }
         }
-        
+
         // query params
         if ($page_size !== null) {
             if ('form' === 'form' && is_array($page_size)) {
@@ -755,7 +813,7 @@ final class OrganizationProjectsApi extends AbstractApi
                 $queryParams['page[size]'] = $page_size;
             }
         }
-        
+
         // query params
         if ($page_before !== null) {
             if ('form' === 'form' && is_array($page_before)) {
@@ -766,7 +824,7 @@ final class OrganizationProjectsApi extends AbstractApi
                 $queryParams['page[before]'] = $page_before;
             }
         }
-        
+
         // query params
         if ($page_after !== null) {
             if ('form' === 'form' && is_array($page_after)) {
@@ -777,7 +835,7 @@ final class OrganizationProjectsApi extends AbstractApi
                 $queryParams['page[after]'] = $page_after;
             }
         }
-        
+
         // query params
         if ($sort !== null) {
             if ('form' === 'form' && is_array($sort)) {
@@ -788,7 +846,7 @@ final class OrganizationProjectsApi extends AbstractApi
                 $queryParams['sort'] = $sort;
             }
         }
-        
+
 
 
         // path params
@@ -863,31 +921,22 @@ final class OrganizationProjectsApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -950,15 +999,5 @@ final class OrganizationProjectsApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

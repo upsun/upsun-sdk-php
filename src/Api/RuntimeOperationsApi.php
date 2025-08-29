@@ -129,7 +129,12 @@ final class RuntimeOperationsApi extends AbstractApi
         string $deployment_id,
         \Upsun\Model\EnvironmentOperationInput $environment_operation_input
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->runOperationWithHttpInfo($project_id, $environment_id, $deployment_id, $environment_operation_input);
+        list($response) = $this->runOperationWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $deployment_id,
+            $environment_operation_input
+        );
         return $response;
     }
 
@@ -145,17 +150,20 @@ final class RuntimeOperationsApi extends AbstractApi
         string $deployment_id,
         \Upsun\Model\EnvironmentOperationInput $environment_operation_input
     ): array {
-        $request = $this->runOperationRequest($project_id, $environment_id, $deployment_id, $environment_operation_input);
+        $request = $this->runOperationRequest(
+            $project_id,
+            $environment_id,
+            $deployment_id,
+            $environment_operation_input
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -237,7 +245,12 @@ final class RuntimeOperationsApi extends AbstractApi
         string $deployment_id,
         \Upsun\Model\EnvironmentOperationInput $environment_operation_input
     ): Promise {
-        return $this->runOperationAsyncWithHttpInfo($project_id, $environment_id, $deployment_id, $environment_operation_input)
+        return $this->runOperationAsyncWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $deployment_id,
+            $environment_operation_input
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -257,7 +270,12 @@ final class RuntimeOperationsApi extends AbstractApi
         \Upsun\Model\EnvironmentOperationInput $environment_operation_input
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->runOperationRequest($project_id, $environment_id, $deployment_id, $environment_operation_input);
+        $request = $this->runOperationRequest(
+            $project_id,
+            $environment_id,
+            $deployment_id,
+            $environment_operation_input
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -430,31 +448,22 @@ final class RuntimeOperationsApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -517,15 +526,5 @@ final class RuntimeOperationsApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

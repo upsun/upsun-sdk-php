@@ -126,7 +126,9 @@ final class AddOnsApi extends AbstractApi
     public function getOrgAddons(
         string $organization_id
     ): \Upsun\Model\OrganizationAddonsObject {
-        list($response) = $this->getOrgAddonsWithHttpInfo($organization_id);
+        list($response) = $this->getOrgAddonsWithHttpInfo(
+            $organization_id
+        );
         return $response;
     }
 
@@ -139,17 +141,17 @@ final class AddOnsApi extends AbstractApi
     public function getOrgAddonsWithHttpInfo(
         string $organization_id
     ): array {
-        $request = $this->getOrgAddonsRequest($organization_id);
+        $request = $this->getOrgAddonsRequest(
+            $organization_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -256,7 +258,9 @@ final class AddOnsApi extends AbstractApi
     public function getOrgAddonsAsync(
         string $organization_id
     ): Promise {
-        return $this->getOrgAddonsAsyncWithHttpInfo($organization_id)
+        return $this->getOrgAddonsAsyncWithHttpInfo(
+            $organization_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -273,7 +277,9 @@ final class AddOnsApi extends AbstractApi
         string $organization_id
     ): Promise {
         $returnType = '\Upsun\Model\OrganizationAddonsObject';
-        $request = $this->getOrgAddonsRequest($organization_id);
+        $request = $this->getOrgAddonsRequest(
+            $organization_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -403,31 +409,22 @@ final class AddOnsApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -490,15 +487,5 @@ final class AddOnsApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

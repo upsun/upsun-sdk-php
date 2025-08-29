@@ -127,7 +127,10 @@ final class OrganizationMembersApi extends AbstractApi
         string $organization_id,
         \Upsun\Model\CreateOrgMemberRequest $create_org_member_request
     ): \Upsun\Model\OrganizationMember {
-        list($response) = $this->createOrgMemberWithHttpInfo($organization_id, $create_org_member_request);
+        list($response) = $this->createOrgMemberWithHttpInfo(
+            $organization_id,
+            $create_org_member_request
+        );
         return $response;
     }
 
@@ -141,17 +144,18 @@ final class OrganizationMembersApi extends AbstractApi
         string $organization_id,
         \Upsun\Model\CreateOrgMemberRequest $create_org_member_request
     ): array {
-        $request = $this->createOrgMemberRequest($organization_id, $create_org_member_request);
+        $request = $this->createOrgMemberRequest(
+            $organization_id,
+            $create_org_member_request
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -273,7 +277,10 @@ final class OrganizationMembersApi extends AbstractApi
         string $organization_id,
         \Upsun\Model\CreateOrgMemberRequest $create_org_member_request
     ): Promise {
-        return $this->createOrgMemberAsyncWithHttpInfo($organization_id, $create_org_member_request)
+        return $this->createOrgMemberAsyncWithHttpInfo(
+            $organization_id,
+            $create_org_member_request
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -291,7 +298,10 @@ final class OrganizationMembersApi extends AbstractApi
         \Upsun\Model\CreateOrgMemberRequest $create_org_member_request
     ): Promise {
         $returnType = '\Upsun\Model\OrganizationMember';
-        $request = $this->createOrgMemberRequest($organization_id, $create_org_member_request);
+        $request = $this->createOrgMemberRequest(
+            $organization_id,
+            $create_org_member_request
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -434,7 +444,10 @@ final class OrganizationMembersApi extends AbstractApi
         string $organization_id,
         string $user_id
     ): void {
-        $this->deleteOrgMemberWithHttpInfo($organization_id, $user_id);
+        $this->deleteOrgMemberWithHttpInfo(
+            $organization_id,
+            $user_id
+        );
     }
 
     /**
@@ -447,17 +460,18 @@ final class OrganizationMembersApi extends AbstractApi
         string $organization_id,
         string $user_id
     ): array {
-        $request = $this->deleteOrgMemberRequest($organization_id, $user_id);
+        $request = $this->deleteOrgMemberRequest(
+            $organization_id,
+            $user_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -518,7 +532,10 @@ final class OrganizationMembersApi extends AbstractApi
         string $organization_id,
         string $user_id
     ): Promise {
-        return $this->deleteOrgMemberAsyncWithHttpInfo($organization_id, $user_id)
+        return $this->deleteOrgMemberAsyncWithHttpInfo(
+            $organization_id,
+            $user_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -536,7 +553,10 @@ final class OrganizationMembersApi extends AbstractApi
         string $user_id
     ): Promise {
         $returnType = '';
-        $request = $this->deleteOrgMemberRequest($organization_id, $user_id);
+        $request = $this->deleteOrgMemberRequest(
+            $organization_id,
+            $user_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -671,7 +691,10 @@ final class OrganizationMembersApi extends AbstractApi
         string $organization_id,
         string $user_id
     ): \Upsun\Model\OrganizationMember {
-        list($response) = $this->getOrgMemberWithHttpInfo($organization_id, $user_id);
+        list($response) = $this->getOrgMemberWithHttpInfo(
+            $organization_id,
+            $user_id
+        );
         return $response;
     }
 
@@ -685,17 +708,18 @@ final class OrganizationMembersApi extends AbstractApi
         string $organization_id,
         string $user_id
     ): array {
-        $request = $this->getOrgMemberRequest($organization_id, $user_id);
+        $request = $this->getOrgMemberRequest(
+            $organization_id,
+            $user_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -803,7 +827,10 @@ final class OrganizationMembersApi extends AbstractApi
         string $organization_id,
         string $user_id
     ): Promise {
-        return $this->getOrgMemberAsyncWithHttpInfo($organization_id, $user_id)
+        return $this->getOrgMemberAsyncWithHttpInfo(
+            $organization_id,
+            $user_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -821,7 +848,10 @@ final class OrganizationMembersApi extends AbstractApi
         string $user_id
     ): Promise {
         $returnType = '\Upsun\Model\OrganizationMember';
-        $request = $this->getOrgMemberRequest($organization_id, $user_id);
+        $request = $this->getOrgMemberRequest(
+            $organization_id,
+            $user_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -970,7 +1000,14 @@ final class OrganizationMembersApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): \Upsun\Model\ListOrgMembers200Response {
-        list($response) = $this->listOrgMembersWithHttpInfo($organization_id, $filter_permissions, $page_size, $page_before, $page_after, $sort);
+        list($response) = $this->listOrgMembersWithHttpInfo(
+            $organization_id,
+            $filter_permissions,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
         return $response;
     }
 
@@ -988,17 +1025,22 @@ final class OrganizationMembersApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): array {
-        $request = $this->listOrgMembersRequest($organization_id, $filter_permissions, $page_size, $page_before, $page_after, $sort);
+        $request = $this->listOrgMembersRequest(
+            $organization_id,
+            $filter_permissions,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1124,7 +1166,14 @@ final class OrganizationMembersApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): Promise {
-        return $this->listOrgMembersAsyncWithHttpInfo($organization_id, $filter_permissions, $page_size, $page_before, $page_after, $sort)
+        return $this->listOrgMembersAsyncWithHttpInfo(
+            $organization_id,
+            $filter_permissions,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1146,7 +1195,14 @@ final class OrganizationMembersApi extends AbstractApi
         string $sort = null
     ): Promise {
         $returnType = '\Upsun\Model\ListOrgMembers200Response';
-        $request = $this->listOrgMembersRequest($organization_id, $filter_permissions, $page_size, $page_before, $page_after, $sort);
+        $request = $this->listOrgMembersRequest(
+            $organization_id,
+            $filter_permissions,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1200,10 +1256,16 @@ final class OrganizationMembersApi extends AbstractApi
             );
         }
         if ($page_size !== null && $page_size > 100) {
-            throw new \InvalidArgumentException('invalid value for "$page_size" when calling OrganizationMembersApi.listOrgMembers, must be smaller than or equal to 100.');
+            throw new \InvalidArgumentException(
+                'invalid value for "$page_size" when calling OrganizationMembersApi.listOrgMembers, 
+                must be smaller than or equal to 100.'
+            );
         }
         if ($page_size !== null && $page_size < 1) {
-            throw new \InvalidArgumentException('invalid value for "$page_size" when calling OrganizationMembersApi.listOrgMembers, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException(
+                'invalid value for "$page_size" when calling OrganizationMembersApi.listOrgMembers,
+                must be bigger than or equal to 1.'
+            );
         }
 
 
@@ -1224,7 +1286,7 @@ final class OrganizationMembersApi extends AbstractApi
                 $queryParams['filter[permissions]'] = $filter_permissions->getEq();
             }
         }
-        
+
         // query params
         if ($page_size !== null) {
             if ('form' === 'form' && is_array($page_size)) {
@@ -1235,7 +1297,7 @@ final class OrganizationMembersApi extends AbstractApi
                 $queryParams['page[size]'] = $page_size;
             }
         }
-        
+
         // query params
         if ($page_before !== null) {
             if ('form' === 'form' && is_array($page_before)) {
@@ -1246,7 +1308,7 @@ final class OrganizationMembersApi extends AbstractApi
                 $queryParams['page[before]'] = $page_before;
             }
         }
-        
+
         // query params
         if ($page_after !== null) {
             if ('form' === 'form' && is_array($page_after)) {
@@ -1257,7 +1319,7 @@ final class OrganizationMembersApi extends AbstractApi
                 $queryParams['page[after]'] = $page_after;
             }
         }
-        
+
         // query params
         if ($sort !== null) {
             if ('form' === 'form' && is_array($sort)) {
@@ -1268,7 +1330,7 @@ final class OrganizationMembersApi extends AbstractApi
                 $queryParams['sort'] = $sort;
             }
         }
-        
+
 
 
         // path params
@@ -1344,7 +1406,11 @@ final class OrganizationMembersApi extends AbstractApi
         string $user_id,
         \Upsun\Model\UpdateOrgMemberRequest $update_org_member_request = null
     ): \Upsun\Model\OrganizationMember {
-        list($response) = $this->updateOrgMemberWithHttpInfo($organization_id, $user_id, $update_org_member_request);
+        list($response) = $this->updateOrgMemberWithHttpInfo(
+            $organization_id,
+            $user_id,
+            $update_org_member_request
+        );
         return $response;
     }
 
@@ -1359,17 +1425,19 @@ final class OrganizationMembersApi extends AbstractApi
         string $user_id,
         \Upsun\Model\UpdateOrgMemberRequest $update_org_member_request = null
     ): array {
-        $request = $this->updateOrgMemberRequest($organization_id, $user_id, $update_org_member_request);
+        $request = $this->updateOrgMemberRequest(
+            $organization_id,
+            $user_id,
+            $update_org_member_request
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1492,7 +1560,11 @@ final class OrganizationMembersApi extends AbstractApi
         string $user_id,
         \Upsun\Model\UpdateOrgMemberRequest $update_org_member_request = null
     ): Promise {
-        return $this->updateOrgMemberAsyncWithHttpInfo($organization_id, $user_id, $update_org_member_request)
+        return $this->updateOrgMemberAsyncWithHttpInfo(
+            $organization_id,
+            $user_id,
+            $update_org_member_request
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1511,7 +1583,11 @@ final class OrganizationMembersApi extends AbstractApi
         \Upsun\Model\UpdateOrgMemberRequest $update_org_member_request = null
     ): Promise {
         $returnType = '\Upsun\Model\OrganizationMember';
-        $request = $this->updateOrgMemberRequest($organization_id, $user_id, $update_org_member_request);
+        $request = $this->updateOrgMemberRequest(
+            $organization_id,
+            $user_id,
+            $update_org_member_request
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1663,31 +1739,22 @@ final class OrganizationMembersApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -1750,15 +1817,5 @@ final class OrganizationMembersApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

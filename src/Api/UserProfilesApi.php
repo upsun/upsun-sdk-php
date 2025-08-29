@@ -126,7 +126,9 @@ final class UserProfilesApi extends AbstractApi
     public function createProfilePicture(
         string $uuid
     ): \Upsun\Model\CreateProfilePicture200Response {
-        list($response) = $this->createProfilePictureWithHttpInfo($uuid);
+        list($response) = $this->createProfilePictureWithHttpInfo(
+            $uuid
+        );
         return $response;
     }
 
@@ -139,17 +141,17 @@ final class UserProfilesApi extends AbstractApi
     public function createProfilePictureWithHttpInfo(
         string $uuid
     ): array {
-        $request = $this->createProfilePictureRequest($uuid);
+        $request = $this->createProfilePictureRequest(
+            $uuid
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -228,7 +230,9 @@ final class UserProfilesApi extends AbstractApi
     public function createProfilePictureAsync(
         string $uuid
     ): Promise {
-        return $this->createProfilePictureAsyncWithHttpInfo($uuid)
+        return $this->createProfilePictureAsyncWithHttpInfo(
+            $uuid
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -245,7 +249,9 @@ final class UserProfilesApi extends AbstractApi
         string $uuid
     ): Promise {
         $returnType = '\Upsun\Model\CreateProfilePicture200Response';
-        $request = $this->createProfilePictureRequest($uuid);
+        $request = $this->createProfilePictureRequest(
+            $uuid
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -374,7 +380,9 @@ final class UserProfilesApi extends AbstractApi
     public function deleteProfilePicture(
         string $uuid
     ): void {
-        $this->deleteProfilePictureWithHttpInfo($uuid);
+        $this->deleteProfilePictureWithHttpInfo(
+            $uuid
+        );
     }
 
     /**
@@ -386,17 +394,17 @@ final class UserProfilesApi extends AbstractApi
     public function deleteProfilePictureWithHttpInfo(
         string $uuid
     ): array {
-        $request = $this->deleteProfilePictureRequest($uuid);
+        $request = $this->deleteProfilePictureRequest(
+            $uuid
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -440,7 +448,9 @@ final class UserProfilesApi extends AbstractApi
     public function deleteProfilePictureAsync(
         string $uuid
     ): Promise {
-        return $this->deleteProfilePictureAsyncWithHttpInfo($uuid)
+        return $this->deleteProfilePictureAsyncWithHttpInfo(
+            $uuid
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -457,7 +467,9 @@ final class UserProfilesApi extends AbstractApi
         string $uuid
     ): Promise {
         $returnType = '';
-        $request = $this->deleteProfilePictureRequest($uuid);
+        $request = $this->deleteProfilePictureRequest(
+            $uuid
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -576,7 +588,9 @@ final class UserProfilesApi extends AbstractApi
     public function getAddress(
         string $user_id
     ): \Upsun\Model\GetAddress200Response {
-        list($response) = $this->getAddressWithHttpInfo($user_id);
+        list($response) = $this->getAddressWithHttpInfo(
+            $user_id
+        );
         return $response;
     }
 
@@ -589,17 +603,17 @@ final class UserProfilesApi extends AbstractApi
     public function getAddressWithHttpInfo(
         string $user_id
     ): array {
-        $request = $this->getAddressRequest($user_id);
+        $request = $this->getAddressRequest(
+            $user_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -678,7 +692,9 @@ final class UserProfilesApi extends AbstractApi
     public function getAddressAsync(
         string $user_id
     ): Promise {
-        return $this->getAddressAsyncWithHttpInfo($user_id)
+        return $this->getAddressAsyncWithHttpInfo(
+            $user_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -695,7 +711,9 @@ final class UserProfilesApi extends AbstractApi
         string $user_id
     ): Promise {
         $returnType = '\Upsun\Model\GetAddress200Response';
-        $request = $this->getAddressRequest($user_id);
+        $request = $this->getAddressRequest(
+            $user_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -824,7 +842,9 @@ final class UserProfilesApi extends AbstractApi
     public function getProfile(
         string $user_id
     ): \Upsun\Model\Profile {
-        list($response) = $this->getProfileWithHttpInfo($user_id);
+        list($response) = $this->getProfileWithHttpInfo(
+            $user_id
+        );
         return $response;
     }
 
@@ -837,17 +857,17 @@ final class UserProfilesApi extends AbstractApi
     public function getProfileWithHttpInfo(
         string $user_id
     ): array {
-        $request = $this->getProfileRequest($user_id);
+        $request = $this->getProfileRequest(
+            $user_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -926,7 +946,9 @@ final class UserProfilesApi extends AbstractApi
     public function getProfileAsync(
         string $user_id
     ): Promise {
-        return $this->getProfileAsyncWithHttpInfo($user_id)
+        return $this->getProfileAsyncWithHttpInfo(
+            $user_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -943,7 +965,9 @@ final class UserProfilesApi extends AbstractApi
         string $user_id
     ): Promise {
         $returnType = '\Upsun\Model\Profile';
-        $request = $this->getProfileRequest($user_id);
+        $request = $this->getProfileRequest(
+            $user_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1072,7 +1096,9 @@ final class UserProfilesApi extends AbstractApi
     public function listProfiles(
         
     ): \Upsun\Model\ListProfiles200Response {
-        list($response) = $this->listProfilesWithHttpInfo();
+        list($response) = $this->listProfilesWithHttpInfo(
+            
+        );
         return $response;
     }
 
@@ -1085,17 +1111,17 @@ final class UserProfilesApi extends AbstractApi
     public function listProfilesWithHttpInfo(
         
     ): array {
-        $request = $this->listProfilesRequest();
+        $request = $this->listProfilesRequest(
+            
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1174,7 +1200,9 @@ final class UserProfilesApi extends AbstractApi
     public function listProfilesAsync(
         
     ): Promise {
-        return $this->listProfilesAsyncWithHttpInfo()
+        return $this->listProfilesAsyncWithHttpInfo(
+            
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1191,7 +1219,9 @@ final class UserProfilesApi extends AbstractApi
         
     ): Promise {
         $returnType = '\Upsun\Model\ListProfiles200Response';
-        $request = $this->listProfilesRequest();
+        $request = $this->listProfilesRequest(
+            
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1307,7 +1337,10 @@ final class UserProfilesApi extends AbstractApi
         string $user_id,
         \Upsun\Model\Address $address = null
     ): \Upsun\Model\GetAddress200Response {
-        list($response) = $this->updateAddressWithHttpInfo($user_id, $address);
+        list($response) = $this->updateAddressWithHttpInfo(
+            $user_id,
+            $address
+        );
         return $response;
     }
 
@@ -1321,17 +1354,18 @@ final class UserProfilesApi extends AbstractApi
         string $user_id,
         \Upsun\Model\Address $address = null
     ): array {
-        $request = $this->updateAddressRequest($user_id, $address);
+        $request = $this->updateAddressRequest(
+            $user_id,
+            $address
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1411,7 +1445,10 @@ final class UserProfilesApi extends AbstractApi
         string $user_id,
         \Upsun\Model\Address $address = null
     ): Promise {
-        return $this->updateAddressAsyncWithHttpInfo($user_id, $address)
+        return $this->updateAddressAsyncWithHttpInfo(
+            $user_id,
+            $address
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1429,7 +1466,10 @@ final class UserProfilesApi extends AbstractApi
         \Upsun\Model\Address $address = null
     ): Promise {
         $returnType = '\Upsun\Model\GetAddress200Response';
-        $request = $this->updateAddressRequest($user_id, $address);
+        $request = $this->updateAddressRequest(
+            $user_id,
+            $address
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1566,7 +1606,10 @@ final class UserProfilesApi extends AbstractApi
         string $user_id,
         \Upsun\Model\UpdateProfileRequest $update_profile_request = null
     ): \Upsun\Model\Profile {
-        list($response) = $this->updateProfileWithHttpInfo($user_id, $update_profile_request);
+        list($response) = $this->updateProfileWithHttpInfo(
+            $user_id,
+            $update_profile_request
+        );
         return $response;
     }
 
@@ -1580,17 +1623,18 @@ final class UserProfilesApi extends AbstractApi
         string $user_id,
         \Upsun\Model\UpdateProfileRequest $update_profile_request = null
     ): array {
-        $request = $this->updateProfileRequest($user_id, $update_profile_request);
+        $request = $this->updateProfileRequest(
+            $user_id,
+            $update_profile_request
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1670,7 +1714,10 @@ final class UserProfilesApi extends AbstractApi
         string $user_id,
         \Upsun\Model\UpdateProfileRequest $update_profile_request = null
     ): Promise {
-        return $this->updateProfileAsyncWithHttpInfo($user_id, $update_profile_request)
+        return $this->updateProfileAsyncWithHttpInfo(
+            $user_id,
+            $update_profile_request
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1688,7 +1735,10 @@ final class UserProfilesApi extends AbstractApi
         \Upsun\Model\UpdateProfileRequest $update_profile_request = null
     ): Promise {
         $returnType = '\Upsun\Model\Profile';
-        $request = $this->updateProfileRequest($user_id, $update_profile_request);
+        $request = $this->updateProfileRequest(
+            $user_id,
+            $update_profile_request
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1825,31 +1875,22 @@ final class UserProfilesApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -1912,15 +1953,5 @@ final class UserProfilesApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

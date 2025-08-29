@@ -127,7 +127,10 @@ final class CertManagementApi extends AbstractApi
         string $project_id,
         \Upsun\Model\CertificateCreateInput $certificate_create_input
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->createProjectsCertificatesWithHttpInfo($project_id, $certificate_create_input);
+        list($response) = $this->createProjectsCertificatesWithHttpInfo(
+            $project_id,
+            $certificate_create_input
+        );
         return $response;
     }
 
@@ -141,17 +144,18 @@ final class CertManagementApi extends AbstractApi
         string $project_id,
         \Upsun\Model\CertificateCreateInput $certificate_create_input
     ): array {
-        $request = $this->createProjectsCertificatesRequest($project_id, $certificate_create_input);
+        $request = $this->createProjectsCertificatesRequest(
+            $project_id,
+            $certificate_create_input
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -231,7 +235,10 @@ final class CertManagementApi extends AbstractApi
         string $project_id,
         \Upsun\Model\CertificateCreateInput $certificate_create_input
     ): Promise {
-        return $this->createProjectsCertificatesAsyncWithHttpInfo($project_id, $certificate_create_input)
+        return $this->createProjectsCertificatesAsyncWithHttpInfo(
+            $project_id,
+            $certificate_create_input
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -249,7 +256,10 @@ final class CertManagementApi extends AbstractApi
         \Upsun\Model\CertificateCreateInput $certificate_create_input
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->createProjectsCertificatesRequest($project_id, $certificate_create_input);
+        $request = $this->createProjectsCertificatesRequest(
+            $project_id,
+            $certificate_create_input
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -392,7 +402,10 @@ final class CertManagementApi extends AbstractApi
         string $project_id,
         string $certificate_id
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->deleteProjectsCertificatesWithHttpInfo($project_id, $certificate_id);
+        list($response) = $this->deleteProjectsCertificatesWithHttpInfo(
+            $project_id,
+            $certificate_id
+        );
         return $response;
     }
 
@@ -406,17 +419,18 @@ final class CertManagementApi extends AbstractApi
         string $project_id,
         string $certificate_id
     ): array {
-        $request = $this->deleteProjectsCertificatesRequest($project_id, $certificate_id);
+        $request = $this->deleteProjectsCertificatesRequest(
+            $project_id,
+            $certificate_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -496,7 +510,10 @@ final class CertManagementApi extends AbstractApi
         string $project_id,
         string $certificate_id
     ): Promise {
-        return $this->deleteProjectsCertificatesAsyncWithHttpInfo($project_id, $certificate_id)
+        return $this->deleteProjectsCertificatesAsyncWithHttpInfo(
+            $project_id,
+            $certificate_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -514,7 +531,10 @@ final class CertManagementApi extends AbstractApi
         string $certificate_id
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->deleteProjectsCertificatesRequest($project_id, $certificate_id);
+        $request = $this->deleteProjectsCertificatesRequest(
+            $project_id,
+            $certificate_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -659,7 +679,10 @@ final class CertManagementApi extends AbstractApi
         string $project_id,
         string $certificate_id
     ): \Upsun\Model\Certificate {
-        list($response) = $this->getProjectsCertificatesWithHttpInfo($project_id, $certificate_id);
+        list($response) = $this->getProjectsCertificatesWithHttpInfo(
+            $project_id,
+            $certificate_id
+        );
         return $response;
     }
 
@@ -673,17 +696,18 @@ final class CertManagementApi extends AbstractApi
         string $project_id,
         string $certificate_id
     ): array {
-        $request = $this->getProjectsCertificatesRequest($project_id, $certificate_id);
+        $request = $this->getProjectsCertificatesRequest(
+            $project_id,
+            $certificate_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -763,7 +787,10 @@ final class CertManagementApi extends AbstractApi
         string $project_id,
         string $certificate_id
     ): Promise {
-        return $this->getProjectsCertificatesAsyncWithHttpInfo($project_id, $certificate_id)
+        return $this->getProjectsCertificatesAsyncWithHttpInfo(
+            $project_id,
+            $certificate_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -781,7 +808,10 @@ final class CertManagementApi extends AbstractApi
         string $certificate_id
     ): Promise {
         $returnType = '\Upsun\Model\Certificate';
-        $request = $this->getProjectsCertificatesRequest($project_id, $certificate_id);
+        $request = $this->getProjectsCertificatesRequest(
+            $project_id,
+            $certificate_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -927,7 +957,9 @@ final class CertManagementApi extends AbstractApi
     public function listProjectsCertificates(
         string $project_id
     ): array {
-        list($response) = $this->listProjectsCertificatesWithHttpInfo($project_id);
+        list($response) = $this->listProjectsCertificatesWithHttpInfo(
+            $project_id
+        );
         return $response;
     }
 
@@ -940,17 +972,17 @@ final class CertManagementApi extends AbstractApi
     public function listProjectsCertificatesWithHttpInfo(
         string $project_id
     ): array {
-        $request = $this->listProjectsCertificatesRequest($project_id);
+        $request = $this->listProjectsCertificatesRequest(
+            $project_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1029,7 +1061,9 @@ final class CertManagementApi extends AbstractApi
     public function listProjectsCertificatesAsync(
         string $project_id
     ): Promise {
-        return $this->listProjectsCertificatesAsyncWithHttpInfo($project_id)
+        return $this->listProjectsCertificatesAsyncWithHttpInfo(
+            $project_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1046,7 +1080,9 @@ final class CertManagementApi extends AbstractApi
         string $project_id
     ): Promise {
         $returnType = '\Upsun\Model\Certificate[]';
-        $request = $this->listProjectsCertificatesRequest($project_id);
+        $request = $this->listProjectsCertificatesRequest(
+            $project_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1177,7 +1213,11 @@ final class CertManagementApi extends AbstractApi
         string $certificate_id,
         \Upsun\Model\CertificatePatch $certificate_patch
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->updateProjectsCertificatesWithHttpInfo($project_id, $certificate_id, $certificate_patch);
+        list($response) = $this->updateProjectsCertificatesWithHttpInfo(
+            $project_id,
+            $certificate_id,
+            $certificate_patch
+        );
         return $response;
     }
 
@@ -1192,17 +1232,19 @@ final class CertManagementApi extends AbstractApi
         string $certificate_id,
         \Upsun\Model\CertificatePatch $certificate_patch
     ): array {
-        $request = $this->updateProjectsCertificatesRequest($project_id, $certificate_id, $certificate_patch);
+        $request = $this->updateProjectsCertificatesRequest(
+            $project_id,
+            $certificate_id,
+            $certificate_patch
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1283,7 +1325,11 @@ final class CertManagementApi extends AbstractApi
         string $certificate_id,
         \Upsun\Model\CertificatePatch $certificate_patch
     ): Promise {
-        return $this->updateProjectsCertificatesAsyncWithHttpInfo($project_id, $certificate_id, $certificate_patch)
+        return $this->updateProjectsCertificatesAsyncWithHttpInfo(
+            $project_id,
+            $certificate_id,
+            $certificate_patch
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1302,7 +1348,11 @@ final class CertManagementApi extends AbstractApi
         \Upsun\Model\CertificatePatch $certificate_patch
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->updateProjectsCertificatesRequest($project_id, $certificate_id, $certificate_patch);
+        $request = $this->updateProjectsCertificatesRequest(
+            $project_id,
+            $certificate_id,
+            $certificate_patch
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1460,31 +1510,22 @@ final class CertManagementApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -1547,15 +1588,5 @@ final class CertManagementApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

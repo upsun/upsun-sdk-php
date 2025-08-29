@@ -127,7 +127,10 @@ final class DomainManagementApi extends AbstractApi
         string $project_id,
         \Upsun\Model\DomainCreateInput $domain_create_input
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->createProjectsDomainsWithHttpInfo($project_id, $domain_create_input);
+        list($response) = $this->createProjectsDomainsWithHttpInfo(
+            $project_id,
+            $domain_create_input
+        );
         return $response;
     }
 
@@ -141,17 +144,18 @@ final class DomainManagementApi extends AbstractApi
         string $project_id,
         \Upsun\Model\DomainCreateInput $domain_create_input
     ): array {
-        $request = $this->createProjectsDomainsRequest($project_id, $domain_create_input);
+        $request = $this->createProjectsDomainsRequest(
+            $project_id,
+            $domain_create_input
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -231,7 +235,10 @@ final class DomainManagementApi extends AbstractApi
         string $project_id,
         \Upsun\Model\DomainCreateInput $domain_create_input
     ): Promise {
-        return $this->createProjectsDomainsAsyncWithHttpInfo($project_id, $domain_create_input)
+        return $this->createProjectsDomainsAsyncWithHttpInfo(
+            $project_id,
+            $domain_create_input
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -249,7 +256,10 @@ final class DomainManagementApi extends AbstractApi
         \Upsun\Model\DomainCreateInput $domain_create_input
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->createProjectsDomainsRequest($project_id, $domain_create_input);
+        $request = $this->createProjectsDomainsRequest(
+            $project_id,
+            $domain_create_input
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -393,7 +403,11 @@ final class DomainManagementApi extends AbstractApi
         string $environment_id,
         \Upsun\Model\DomainCreateInput $domain_create_input
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->createProjectsEnvironmentsDomainsWithHttpInfo($project_id, $environment_id, $domain_create_input);
+        list($response) = $this->createProjectsEnvironmentsDomainsWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $domain_create_input
+        );
         return $response;
     }
 
@@ -408,17 +422,19 @@ final class DomainManagementApi extends AbstractApi
         string $environment_id,
         \Upsun\Model\DomainCreateInput $domain_create_input
     ): array {
-        $request = $this->createProjectsEnvironmentsDomainsRequest($project_id, $environment_id, $domain_create_input);
+        $request = $this->createProjectsEnvironmentsDomainsRequest(
+            $project_id,
+            $environment_id,
+            $domain_create_input
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -499,7 +515,11 @@ final class DomainManagementApi extends AbstractApi
         string $environment_id,
         \Upsun\Model\DomainCreateInput $domain_create_input
     ): Promise {
-        return $this->createProjectsEnvironmentsDomainsAsyncWithHttpInfo($project_id, $environment_id, $domain_create_input)
+        return $this->createProjectsEnvironmentsDomainsAsyncWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $domain_create_input
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -518,7 +538,11 @@ final class DomainManagementApi extends AbstractApi
         \Upsun\Model\DomainCreateInput $domain_create_input
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->createProjectsEnvironmentsDomainsRequest($project_id, $environment_id, $domain_create_input);
+        $request = $this->createProjectsEnvironmentsDomainsRequest(
+            $project_id,
+            $environment_id,
+            $domain_create_input
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -676,7 +700,10 @@ final class DomainManagementApi extends AbstractApi
         string $project_id,
         string $domain_id
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->deleteProjectsDomainsWithHttpInfo($project_id, $domain_id);
+        list($response) = $this->deleteProjectsDomainsWithHttpInfo(
+            $project_id,
+            $domain_id
+        );
         return $response;
     }
 
@@ -690,17 +717,18 @@ final class DomainManagementApi extends AbstractApi
         string $project_id,
         string $domain_id
     ): array {
-        $request = $this->deleteProjectsDomainsRequest($project_id, $domain_id);
+        $request = $this->deleteProjectsDomainsRequest(
+            $project_id,
+            $domain_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -780,7 +808,10 @@ final class DomainManagementApi extends AbstractApi
         string $project_id,
         string $domain_id
     ): Promise {
-        return $this->deleteProjectsDomainsAsyncWithHttpInfo($project_id, $domain_id)
+        return $this->deleteProjectsDomainsAsyncWithHttpInfo(
+            $project_id,
+            $domain_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -798,7 +829,10 @@ final class DomainManagementApi extends AbstractApi
         string $domain_id
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->deleteProjectsDomainsRequest($project_id, $domain_id);
+        $request = $this->deleteProjectsDomainsRequest(
+            $project_id,
+            $domain_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -944,7 +978,11 @@ final class DomainManagementApi extends AbstractApi
         string $environment_id,
         string $domain_id
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->deleteProjectsEnvironmentsDomainsWithHttpInfo($project_id, $environment_id, $domain_id);
+        list($response) = $this->deleteProjectsEnvironmentsDomainsWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $domain_id
+        );
         return $response;
     }
 
@@ -959,17 +997,19 @@ final class DomainManagementApi extends AbstractApi
         string $environment_id,
         string $domain_id
     ): array {
-        $request = $this->deleteProjectsEnvironmentsDomainsRequest($project_id, $environment_id, $domain_id);
+        $request = $this->deleteProjectsEnvironmentsDomainsRequest(
+            $project_id,
+            $environment_id,
+            $domain_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1050,7 +1090,11 @@ final class DomainManagementApi extends AbstractApi
         string $environment_id,
         string $domain_id
     ): Promise {
-        return $this->deleteProjectsEnvironmentsDomainsAsyncWithHttpInfo($project_id, $environment_id, $domain_id)
+        return $this->deleteProjectsEnvironmentsDomainsAsyncWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $domain_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1069,7 +1113,11 @@ final class DomainManagementApi extends AbstractApi
         string $domain_id
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->deleteProjectsEnvironmentsDomainsRequest($project_id, $environment_id, $domain_id);
+        $request = $this->deleteProjectsEnvironmentsDomainsRequest(
+            $project_id,
+            $environment_id,
+            $domain_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1229,7 +1277,10 @@ final class DomainManagementApi extends AbstractApi
         string $project_id,
         string $domain_id
     ): \Upsun\Model\Domain {
-        list($response) = $this->getProjectsDomainsWithHttpInfo($project_id, $domain_id);
+        list($response) = $this->getProjectsDomainsWithHttpInfo(
+            $project_id,
+            $domain_id
+        );
         return $response;
     }
 
@@ -1243,17 +1294,18 @@ final class DomainManagementApi extends AbstractApi
         string $project_id,
         string $domain_id
     ): array {
-        $request = $this->getProjectsDomainsRequest($project_id, $domain_id);
+        $request = $this->getProjectsDomainsRequest(
+            $project_id,
+            $domain_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1333,7 +1385,10 @@ final class DomainManagementApi extends AbstractApi
         string $project_id,
         string $domain_id
     ): Promise {
-        return $this->getProjectsDomainsAsyncWithHttpInfo($project_id, $domain_id)
+        return $this->getProjectsDomainsAsyncWithHttpInfo(
+            $project_id,
+            $domain_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1351,7 +1406,10 @@ final class DomainManagementApi extends AbstractApi
         string $domain_id
     ): Promise {
         $returnType = '\Upsun\Model\Domain';
-        $request = $this->getProjectsDomainsRequest($project_id, $domain_id);
+        $request = $this->getProjectsDomainsRequest(
+            $project_id,
+            $domain_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1497,7 +1555,11 @@ final class DomainManagementApi extends AbstractApi
         string $environment_id,
         string $domain_id
     ): \Upsun\Model\Domain {
-        list($response) = $this->getProjectsEnvironmentsDomainsWithHttpInfo($project_id, $environment_id, $domain_id);
+        list($response) = $this->getProjectsEnvironmentsDomainsWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $domain_id
+        );
         return $response;
     }
 
@@ -1512,17 +1574,19 @@ final class DomainManagementApi extends AbstractApi
         string $environment_id,
         string $domain_id
     ): array {
-        $request = $this->getProjectsEnvironmentsDomainsRequest($project_id, $environment_id, $domain_id);
+        $request = $this->getProjectsEnvironmentsDomainsRequest(
+            $project_id,
+            $environment_id,
+            $domain_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1603,7 +1667,11 @@ final class DomainManagementApi extends AbstractApi
         string $environment_id,
         string $domain_id
     ): Promise {
-        return $this->getProjectsEnvironmentsDomainsAsyncWithHttpInfo($project_id, $environment_id, $domain_id)
+        return $this->getProjectsEnvironmentsDomainsAsyncWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $domain_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1622,7 +1690,11 @@ final class DomainManagementApi extends AbstractApi
         string $domain_id
     ): Promise {
         $returnType = '\Upsun\Model\Domain';
-        $request = $this->getProjectsEnvironmentsDomainsRequest($project_id, $environment_id, $domain_id);
+        $request = $this->getProjectsEnvironmentsDomainsRequest(
+            $project_id,
+            $environment_id,
+            $domain_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1783,7 +1855,9 @@ final class DomainManagementApi extends AbstractApi
     public function listProjectsDomains(
         string $project_id
     ): array {
-        list($response) = $this->listProjectsDomainsWithHttpInfo($project_id);
+        list($response) = $this->listProjectsDomainsWithHttpInfo(
+            $project_id
+        );
         return $response;
     }
 
@@ -1796,17 +1870,17 @@ final class DomainManagementApi extends AbstractApi
     public function listProjectsDomainsWithHttpInfo(
         string $project_id
     ): array {
-        $request = $this->listProjectsDomainsRequest($project_id);
+        $request = $this->listProjectsDomainsRequest(
+            $project_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1885,7 +1959,9 @@ final class DomainManagementApi extends AbstractApi
     public function listProjectsDomainsAsync(
         string $project_id
     ): Promise {
-        return $this->listProjectsDomainsAsyncWithHttpInfo($project_id)
+        return $this->listProjectsDomainsAsyncWithHttpInfo(
+            $project_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1902,7 +1978,9 @@ final class DomainManagementApi extends AbstractApi
         string $project_id
     ): Promise {
         $returnType = '\Upsun\Model\Domain[]';
-        $request = $this->listProjectsDomainsRequest($project_id);
+        $request = $this->listProjectsDomainsRequest(
+            $project_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -2034,7 +2112,10 @@ final class DomainManagementApi extends AbstractApi
         string $project_id,
         string $environment_id
     ): array {
-        list($response) = $this->listProjectsEnvironmentsDomainsWithHttpInfo($project_id, $environment_id);
+        list($response) = $this->listProjectsEnvironmentsDomainsWithHttpInfo(
+            $project_id,
+            $environment_id
+        );
         return $response;
     }
 
@@ -2048,17 +2129,18 @@ final class DomainManagementApi extends AbstractApi
         string $project_id,
         string $environment_id
     ): array {
-        $request = $this->listProjectsEnvironmentsDomainsRequest($project_id, $environment_id);
+        $request = $this->listProjectsEnvironmentsDomainsRequest(
+            $project_id,
+            $environment_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -2138,7 +2220,10 @@ final class DomainManagementApi extends AbstractApi
         string $project_id,
         string $environment_id
     ): Promise {
-        return $this->listProjectsEnvironmentsDomainsAsyncWithHttpInfo($project_id, $environment_id)
+        return $this->listProjectsEnvironmentsDomainsAsyncWithHttpInfo(
+            $project_id,
+            $environment_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2156,7 +2241,10 @@ final class DomainManagementApi extends AbstractApi
         string $environment_id
     ): Promise {
         $returnType = '\Upsun\Model\Domain[]';
-        $request = $this->listProjectsEnvironmentsDomainsRequest($project_id, $environment_id);
+        $request = $this->listProjectsEnvironmentsDomainsRequest(
+            $project_id,
+            $environment_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -2302,7 +2390,11 @@ final class DomainManagementApi extends AbstractApi
         string $domain_id,
         \Upsun\Model\DomainPatch $domain_patch
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->updateProjectsDomainsWithHttpInfo($project_id, $domain_id, $domain_patch);
+        list($response) = $this->updateProjectsDomainsWithHttpInfo(
+            $project_id,
+            $domain_id,
+            $domain_patch
+        );
         return $response;
     }
 
@@ -2317,17 +2409,19 @@ final class DomainManagementApi extends AbstractApi
         string $domain_id,
         \Upsun\Model\DomainPatch $domain_patch
     ): array {
-        $request = $this->updateProjectsDomainsRequest($project_id, $domain_id, $domain_patch);
+        $request = $this->updateProjectsDomainsRequest(
+            $project_id,
+            $domain_id,
+            $domain_patch
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -2408,7 +2502,11 @@ final class DomainManagementApi extends AbstractApi
         string $domain_id,
         \Upsun\Model\DomainPatch $domain_patch
     ): Promise {
-        return $this->updateProjectsDomainsAsyncWithHttpInfo($project_id, $domain_id, $domain_patch)
+        return $this->updateProjectsDomainsAsyncWithHttpInfo(
+            $project_id,
+            $domain_id,
+            $domain_patch
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2427,7 +2525,11 @@ final class DomainManagementApi extends AbstractApi
         \Upsun\Model\DomainPatch $domain_patch
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->updateProjectsDomainsRequest($project_id, $domain_id, $domain_patch);
+        $request = $this->updateProjectsDomainsRequest(
+            $project_id,
+            $domain_id,
+            $domain_patch
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -2587,7 +2689,12 @@ final class DomainManagementApi extends AbstractApi
         string $domain_id,
         \Upsun\Model\DomainPatch $domain_patch
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->updateProjectsEnvironmentsDomainsWithHttpInfo($project_id, $environment_id, $domain_id, $domain_patch);
+        list($response) = $this->updateProjectsEnvironmentsDomainsWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $domain_id,
+            $domain_patch
+        );
         return $response;
     }
 
@@ -2603,17 +2710,20 @@ final class DomainManagementApi extends AbstractApi
         string $domain_id,
         \Upsun\Model\DomainPatch $domain_patch
     ): array {
-        $request = $this->updateProjectsEnvironmentsDomainsRequest($project_id, $environment_id, $domain_id, $domain_patch);
+        $request = $this->updateProjectsEnvironmentsDomainsRequest(
+            $project_id,
+            $environment_id,
+            $domain_id,
+            $domain_patch
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -2695,7 +2805,12 @@ final class DomainManagementApi extends AbstractApi
         string $domain_id,
         \Upsun\Model\DomainPatch $domain_patch
     ): Promise {
-        return $this->updateProjectsEnvironmentsDomainsAsyncWithHttpInfo($project_id, $environment_id, $domain_id, $domain_patch)
+        return $this->updateProjectsEnvironmentsDomainsAsyncWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $domain_id,
+            $domain_patch
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2715,7 +2830,12 @@ final class DomainManagementApi extends AbstractApi
         \Upsun\Model\DomainPatch $domain_patch
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->updateProjectsEnvironmentsDomainsRequest($project_id, $environment_id, $domain_id, $domain_patch);
+        $request = $this->updateProjectsEnvironmentsDomainsRequest(
+            $project_id,
+            $environment_id,
+            $domain_id,
+            $domain_patch
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -2888,31 +3008,22 @@ final class DomainManagementApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -2975,15 +3086,5 @@ final class DomainManagementApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

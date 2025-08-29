@@ -12,544 +12,97 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class PlanRecords implements ModelInterface, ArrayAccess, \JsonSerializable
+final class PlanRecords implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'PlanRecords';
+    public readonly string $id;
+    public readonly string $owner;
+    public readonly string $subscription_id;
+    public readonly string $sku;
+    public readonly string $plan;
+    public readonly string[] $options;
+    public readonly \DateTime $start;
+    public readonly \DateTime $end;
+    public readonly string $status;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'id' => 'string',
-        'owner' => 'string',
-        'subscription_id' => 'string',
-        'sku' => 'string',
-        'plan' => 'string',
-        'options' => 'string[]',
-        'start' => '\DateTime',
-        'end' => '\DateTime',
-        'status' => 'string'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'id' => null,
-        'owner' => 'uuid',
-        'subscription_id' => null,
-        'sku' => null,
-        'plan' => null,
-        'options' => null,
-        'start' => 'date-time',
-        'end' => 'date-time',
-        'status' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'id' => false,
-        'owner' => false,
-        'subscription_id' => false,
-        'sku' => false,
-        'plan' => false,
-        'options' => false,
-        'start' => false,
-        'end' => true,
-        'status' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        string $id = null,
+        string $owner = null,
+        string $subscription_id = null,
+        string $sku = null,
+        string $plan = null,
+        string[] $options = null,
+        \DateTime $start = null,
+        \DateTime $end = null,
+        string $status = null,
+    ) {
+        $this->id = $id;
+        $this->owner = $owner;
+        $this->subscription_id = $subscription_id;
+        $this->sku = $sku;
+        $this->plan = $plan;
+        $this->options = $options;
+        $this->start = $start;
+        $this->end = $end;
+        $this->status = $status;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getId(): string|null
     {
-        return self::$openAPIFormats;
+        return $this->id;
+    }
+    public function getOwner(): string|null
+    {
+        return $this->owner;
+    }
+    public function getSubscriptionId(): string|null
+    {
+        return $this->subscription_id;
+    }
+    public function getSku(): string|null
+    {
+        return $this->sku;
+    }
+    public function getPlan(): string|null
+    {
+        return $this->plan;
+    }
+    public function getOptions(): string[]|null
+    {
+        return $this->options;
+    }
+    public function getStart(): \DateTime|null
+    {
+        return $this->start;
+    }
+    public function getEnd(): \DateTime|null
+    {
+        return $this->end;
+    }
+    public function getStatus(): string|null
+    {
+        return $this->status;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'id' => 'id',
-        'owner' => 'owner',
-        'subscription_id' => 'subscription_id',
-        'sku' => 'sku',
-        'plan' => 'plan',
-        'options' => 'options',
-        'start' => 'start',
-        'end' => 'end',
-        'status' => 'status'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'id' => 'setId',
-        'owner' => 'setOwner',
-        'subscription_id' => 'setSubscriptionId',
-        'sku' => 'setSku',
-        'plan' => 'setPlan',
-        'options' => 'setOptions',
-        'start' => 'setStart',
-        'end' => 'setEnd',
-        'status' => 'setStatus'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'id' => 'getId',
-        'owner' => 'getOwner',
-        'subscription_id' => 'getSubscriptionId',
-        'sku' => 'getSku',
-        'plan' => 'getPlan',
-        'options' => 'getOptions',
-        'start' => 'getStart',
-        'end' => 'getEnd',
-        'status' => 'getStatus'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('owner', $data ?? [], null);
-        $this->setIfExists('subscription_id', $data ?? [], null);
-        $this->setIfExists('sku', $data ?? [], null);
-        $this->setIfExists('plan', $data ?? [], null);
-        $this->setIfExists('options', $data ?? [], null);
-        $this->setIfExists('start', $data ?? [], null);
-        $this->setIfExists('end', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets id
-     *
-     * @return string|null
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     */
-    public function setId($id)
-    {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets owner
-     *
-     * @return string|null
-     */
-    public function getOwner()
-    {
-        return $this->container['owner'];
-    }
-
-    /**
-     * Sets owner
-     */
-    public function setOwner($owner)
-    {
-        if (is_null($owner)) {
-            throw new \InvalidArgumentException('non-nullable owner cannot be null');
-        }
-        $this->container['owner'] = $owner;
-
-        return $this;
-    }
-
-    /**
-     * Gets subscription_id
-     *
-     * @return string|null
-     */
-    public function getSubscriptionId()
-    {
-        return $this->container['subscription_id'];
-    }
-
-    /**
-     * Sets subscription_id
-     */
-    public function setSubscriptionId($subscription_id)
-    {
-        if (is_null($subscription_id)) {
-            throw new \InvalidArgumentException('non-nullable subscription_id cannot be null');
-        }
-        $this->container['subscription_id'] = $subscription_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets sku
-     *
-     * @return string|null
-     */
-    public function getSku()
-    {
-        return $this->container['sku'];
-    }
-
-    /**
-     * Sets sku
-     */
-    public function setSku($sku)
-    {
-        if (is_null($sku)) {
-            throw new \InvalidArgumentException('non-nullable sku cannot be null');
-        }
-        $this->container['sku'] = $sku;
-
-        return $this;
-    }
-
-    /**
-     * Gets plan
-     *
-     * @return string|null
-     */
-    public function getPlan()
-    {
-        return $this->container['plan'];
-    }
-
-    /**
-     * Sets plan
-     */
-    public function setPlan($plan)
-    {
-        if (is_null($plan)) {
-            throw new \InvalidArgumentException('non-nullable plan cannot be null');
-        }
-        $this->container['plan'] = $plan;
-
-        return $this;
-    }
-
-    /**
-     * Gets options
-     *
-     * @return string[]|null
-     */
-    public function getOptions()
-    {
-        return $this->container['options'];
-    }
-
-    /**
-     * Sets options
-     */
-    public function setOptions($options)
-    {
-        if (is_null($options)) {
-            throw new \InvalidArgumentException('non-nullable options cannot be null');
-        }
-        $this->container['options'] = $options;
-
-        return $this;
-    }
-
-    /**
-     * Gets start
-     *
-     * @return \DateTime|null
-     */
-    public function getStart()
-    {
-        return $this->container['start'];
-    }
-
-    /**
-     * Sets start
-     */
-    public function setStart($start)
-    {
-        if (is_null($start)) {
-            throw new \InvalidArgumentException('non-nullable start cannot be null');
-        }
-        $this->container['start'] = $start;
-
-        return $this;
-    }
-
-    /**
-     * Gets end
-     *
-     * @return \DateTime|null
-     */
-    public function getEnd()
-    {
-        return $this->container['end'];
-    }
-
-    /**
-     * Sets end
-     */
-    public function setEnd($end)
-    {
-        if (is_null($end)) {
-            array_push($this->openAPINullablesSetToNull, 'end');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('end', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['end'] = $end;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return string|null
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     */
-    public function setStatus($status)
-    {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+        return [
+            'id' => $this->id,
+            'owner' => $this->owner,
+            'subscription_id' => $this->subscription_id,
+            'sku' => $this->sku,
+            'plan' => $this->plan,
+            'options' => $this->options,
+            'start' => $this->start,
+            'end' => $this->end,
+            'status' => $this->status,
+        ];
     }
 
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

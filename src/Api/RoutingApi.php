@@ -128,7 +128,11 @@ final class RoutingApi extends AbstractApi
         string $environment_id,
         \Upsun\Model\RouteCreateInput $route_create_input
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->createProjectsEnvironmentsRoutesWithHttpInfo($project_id, $environment_id, $route_create_input);
+        list($response) = $this->createProjectsEnvironmentsRoutesWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $route_create_input
+        );
         return $response;
     }
 
@@ -143,17 +147,19 @@ final class RoutingApi extends AbstractApi
         string $environment_id,
         \Upsun\Model\RouteCreateInput $route_create_input
     ): array {
-        $request = $this->createProjectsEnvironmentsRoutesRequest($project_id, $environment_id, $route_create_input);
+        $request = $this->createProjectsEnvironmentsRoutesRequest(
+            $project_id,
+            $environment_id,
+            $route_create_input
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -234,7 +240,11 @@ final class RoutingApi extends AbstractApi
         string $environment_id,
         \Upsun\Model\RouteCreateInput $route_create_input
     ): Promise {
-        return $this->createProjectsEnvironmentsRoutesAsyncWithHttpInfo($project_id, $environment_id, $route_create_input)
+        return $this->createProjectsEnvironmentsRoutesAsyncWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $route_create_input
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -253,7 +263,11 @@ final class RoutingApi extends AbstractApi
         \Upsun\Model\RouteCreateInput $route_create_input
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->createProjectsEnvironmentsRoutesRequest($project_id, $environment_id, $route_create_input);
+        $request = $this->createProjectsEnvironmentsRoutesRequest(
+            $project_id,
+            $environment_id,
+            $route_create_input
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -412,7 +426,11 @@ final class RoutingApi extends AbstractApi
         string $environment_id,
         string $route_id
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->deleteProjectsEnvironmentsRoutesWithHttpInfo($project_id, $environment_id, $route_id);
+        list($response) = $this->deleteProjectsEnvironmentsRoutesWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $route_id
+        );
         return $response;
     }
 
@@ -427,17 +445,19 @@ final class RoutingApi extends AbstractApi
         string $environment_id,
         string $route_id
     ): array {
-        $request = $this->deleteProjectsEnvironmentsRoutesRequest($project_id, $environment_id, $route_id);
+        $request = $this->deleteProjectsEnvironmentsRoutesRequest(
+            $project_id,
+            $environment_id,
+            $route_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -518,7 +538,11 @@ final class RoutingApi extends AbstractApi
         string $environment_id,
         string $route_id
     ): Promise {
-        return $this->deleteProjectsEnvironmentsRoutesAsyncWithHttpInfo($project_id, $environment_id, $route_id)
+        return $this->deleteProjectsEnvironmentsRoutesAsyncWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $route_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -537,7 +561,11 @@ final class RoutingApi extends AbstractApi
         string $route_id
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->deleteProjectsEnvironmentsRoutesRequest($project_id, $environment_id, $route_id);
+        $request = $this->deleteProjectsEnvironmentsRoutesRequest(
+            $project_id,
+            $environment_id,
+            $route_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -698,7 +726,11 @@ final class RoutingApi extends AbstractApi
         string $environment_id,
         string $route_id
     ): \Upsun\Model\Route {
-        list($response) = $this->getProjectsEnvironmentsRoutesWithHttpInfo($project_id, $environment_id, $route_id);
+        list($response) = $this->getProjectsEnvironmentsRoutesWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $route_id
+        );
         return $response;
     }
 
@@ -713,17 +745,19 @@ final class RoutingApi extends AbstractApi
         string $environment_id,
         string $route_id
     ): array {
-        $request = $this->getProjectsEnvironmentsRoutesRequest($project_id, $environment_id, $route_id);
+        $request = $this->getProjectsEnvironmentsRoutesRequest(
+            $project_id,
+            $environment_id,
+            $route_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -804,7 +838,11 @@ final class RoutingApi extends AbstractApi
         string $environment_id,
         string $route_id
     ): Promise {
-        return $this->getProjectsEnvironmentsRoutesAsyncWithHttpInfo($project_id, $environment_id, $route_id)
+        return $this->getProjectsEnvironmentsRoutesAsyncWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $route_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -823,7 +861,11 @@ final class RoutingApi extends AbstractApi
         string $route_id
     ): Promise {
         $returnType = '\Upsun\Model\Route';
-        $request = $this->getProjectsEnvironmentsRoutesRequest($project_id, $environment_id, $route_id);
+        $request = $this->getProjectsEnvironmentsRoutesRequest(
+            $project_id,
+            $environment_id,
+            $route_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -985,7 +1027,10 @@ final class RoutingApi extends AbstractApi
         string $project_id,
         string $environment_id
     ): array {
-        list($response) = $this->listProjectsEnvironmentsRoutesWithHttpInfo($project_id, $environment_id);
+        list($response) = $this->listProjectsEnvironmentsRoutesWithHttpInfo(
+            $project_id,
+            $environment_id
+        );
         return $response;
     }
 
@@ -999,17 +1044,18 @@ final class RoutingApi extends AbstractApi
         string $project_id,
         string $environment_id
     ): array {
-        $request = $this->listProjectsEnvironmentsRoutesRequest($project_id, $environment_id);
+        $request = $this->listProjectsEnvironmentsRoutesRequest(
+            $project_id,
+            $environment_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1089,7 +1135,10 @@ final class RoutingApi extends AbstractApi
         string $project_id,
         string $environment_id
     ): Promise {
-        return $this->listProjectsEnvironmentsRoutesAsyncWithHttpInfo($project_id, $environment_id)
+        return $this->listProjectsEnvironmentsRoutesAsyncWithHttpInfo(
+            $project_id,
+            $environment_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1107,7 +1156,10 @@ final class RoutingApi extends AbstractApi
         string $environment_id
     ): Promise {
         $returnType = '\Upsun\Model\Route[]';
-        $request = $this->listProjectsEnvironmentsRoutesRequest($project_id, $environment_id);
+        $request = $this->listProjectsEnvironmentsRoutesRequest(
+            $project_id,
+            $environment_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1254,7 +1306,12 @@ final class RoutingApi extends AbstractApi
         string $route_id,
         \Upsun\Model\RoutePatch $route_patch
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->updateProjectsEnvironmentsRoutesWithHttpInfo($project_id, $environment_id, $route_id, $route_patch);
+        list($response) = $this->updateProjectsEnvironmentsRoutesWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $route_id,
+            $route_patch
+        );
         return $response;
     }
 
@@ -1270,17 +1327,20 @@ final class RoutingApi extends AbstractApi
         string $route_id,
         \Upsun\Model\RoutePatch $route_patch
     ): array {
-        $request = $this->updateProjectsEnvironmentsRoutesRequest($project_id, $environment_id, $route_id, $route_patch);
+        $request = $this->updateProjectsEnvironmentsRoutesRequest(
+            $project_id,
+            $environment_id,
+            $route_id,
+            $route_patch
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1362,7 +1422,12 @@ final class RoutingApi extends AbstractApi
         string $route_id,
         \Upsun\Model\RoutePatch $route_patch
     ): Promise {
-        return $this->updateProjectsEnvironmentsRoutesAsyncWithHttpInfo($project_id, $environment_id, $route_id, $route_patch)
+        return $this->updateProjectsEnvironmentsRoutesAsyncWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $route_id,
+            $route_patch
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1382,7 +1447,12 @@ final class RoutingApi extends AbstractApi
         \Upsun\Model\RoutePatch $route_patch
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->updateProjectsEnvironmentsRoutesRequest($project_id, $environment_id, $route_id, $route_patch);
+        $request = $this->updateProjectsEnvironmentsRoutesRequest(
+            $project_id,
+            $environment_id,
+            $route_id,
+            $route_patch
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1555,31 +1625,22 @@ final class RoutingApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -1642,15 +1703,5 @@ final class RoutingApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

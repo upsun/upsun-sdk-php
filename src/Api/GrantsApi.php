@@ -129,7 +129,12 @@ final class GrantsApi extends AbstractApi
         \Upsun\Model\StringFilter $filter_organization_id = null,
         \Upsun\Model\StringFilter $filter_permissions = null
     ): \Upsun\Model\ListUserExtendedAccess200Response {
-        list($response) = $this->listUserExtendedAccessWithHttpInfo($user_id, $filter_resource_type, $filter_organization_id, $filter_permissions);
+        list($response) = $this->listUserExtendedAccessWithHttpInfo(
+            $user_id,
+            $filter_resource_type,
+            $filter_organization_id,
+            $filter_permissions
+        );
         return $response;
     }
 
@@ -145,17 +150,20 @@ final class GrantsApi extends AbstractApi
         \Upsun\Model\StringFilter $filter_organization_id = null,
         \Upsun\Model\StringFilter $filter_permissions = null
     ): array {
-        $request = $this->listUserExtendedAccessRequest($user_id, $filter_resource_type, $filter_organization_id, $filter_permissions);
+        $request = $this->listUserExtendedAccessRequest(
+            $user_id,
+            $filter_resource_type,
+            $filter_organization_id,
+            $filter_permissions
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -251,7 +259,12 @@ final class GrantsApi extends AbstractApi
         \Upsun\Model\StringFilter $filter_organization_id = null,
         \Upsun\Model\StringFilter $filter_permissions = null
     ): Promise {
-        return $this->listUserExtendedAccessAsyncWithHttpInfo($user_id, $filter_resource_type, $filter_organization_id, $filter_permissions)
+        return $this->listUserExtendedAccessAsyncWithHttpInfo(
+            $user_id,
+            $filter_resource_type,
+            $filter_organization_id,
+            $filter_permissions
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -271,7 +284,12 @@ final class GrantsApi extends AbstractApi
         \Upsun\Model\StringFilter $filter_permissions = null
     ): Promise {
         $returnType = '\Upsun\Model\ListUserExtendedAccess200Response';
-        $request = $this->listUserExtendedAccessRequest($user_id, $filter_resource_type, $filter_organization_id, $filter_permissions);
+        $request = $this->listUserExtendedAccessRequest(
+            $user_id,
+            $filter_resource_type,
+            $filter_organization_id,
+            $filter_permissions
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -340,7 +358,7 @@ final class GrantsApi extends AbstractApi
                 $queryParams['filter[resource_type]'] = $filter_resource_type->getEq();
             }
         }
-        
+
         // query params
         if ($filter_organization_id !== null) {
             if ('form' === 'deepObject' && is_array($filter_organization_id)) {
@@ -351,7 +369,7 @@ final class GrantsApi extends AbstractApi
                 $queryParams['filter[organization_id]'] = $filter_organization_id->getEq();
             }
         }
-        
+
         // query params
         if ($filter_permissions !== null) {
             if ('form' === 'deepObject' && is_array($filter_permissions)) {
@@ -362,7 +380,7 @@ final class GrantsApi extends AbstractApi
                 $queryParams['filter[permissions]'] = $filter_permissions->getEq();
             }
         }
-        
+
 
 
         // path params
@@ -437,31 +455,22 @@ final class GrantsApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -524,15 +533,5 @@ final class GrantsApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

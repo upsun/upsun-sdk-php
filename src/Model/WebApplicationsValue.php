@@ -12,1381 +12,265 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class WebApplicationsValue implements ModelInterface, ArrayAccess, \JsonSerializable
+final class WebApplicationsValue implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Web_applications_value';
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'resources' => '\Upsun\Model\Resources',
-        'size' => 'string',
-        'disk' => 'int',
-        'access' => 'array<string,string>',
-        'relationships' => 'array<string,\Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue>',
-        'additional_hosts' => 'array<string,string>',
-        'mounts' => 'array<string,\Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue>',
-        'timezone' => 'string',
-        'variables' => 'array<string,array<string,mixed>>',
-        'firewall' => '\Upsun\Model\Firewall',
-        'container_profile' => 'string',
-        'operations' => 'array<string,\Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue>',
-        'name' => 'string',
-        'type' => 'string',
-        'preflight' => '\Upsun\Model\ConfigurationForPreFlightChecks',
-        'tree_id' => 'string',
-        'app_dir' => 'string',
-        'endpoints' => 'object',
-        'runtime' => 'object',
-        'web' => '\Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP',
-        'hooks' => '\Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication',
-        'crons' => 'array<string,\Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue>',
-        'source' => '\Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication',
-        'build' => '\Upsun\Model\TheBuildConfigurationOfTheApplication',
-        'dependencies' => 'array<string,object>',
-        'stack' => 'object[]',
-        'is_across_submodule' => 'bool',
-        'instance_count' => 'int',
-        'config_id' => 'string',
-        'slug_id' => 'string'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'resources' => null,
-        'size' => null,
-        'disk' => null,
-        'access' => null,
-        'relationships' => null,
-        'additional_hosts' => null,
-        'mounts' => null,
-        'timezone' => null,
-        'variables' => null,
-        'firewall' => null,
-        'container_profile' => null,
-        'operations' => null,
-        'name' => null,
-        'type' => null,
-        'preflight' => null,
-        'tree_id' => null,
-        'app_dir' => null,
-        'endpoints' => null,
-        'runtime' => null,
-        'web' => null,
-        'hooks' => null,
-        'crons' => null,
-        'source' => null,
-        'build' => null,
-        'dependencies' => null,
-        'stack' => null,
-        'is_across_submodule' => null,
-        'instance_count' => null,
-        'config_id' => null,
-        'slug_id' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'resources' => true,
-        'size' => false,
-        'disk' => true,
-        'access' => false,
-        'relationships' => false,
-        'additional_hosts' => false,
-        'mounts' => false,
-        'timezone' => true,
-        'variables' => false,
-        'firewall' => true,
-        'container_profile' => true,
-        'operations' => false,
-        'name' => false,
-        'type' => false,
-        'preflight' => false,
-        'tree_id' => false,
-        'app_dir' => false,
-        'endpoints' => true,
-        'runtime' => false,
-        'web' => false,
-        'hooks' => false,
-        'crons' => false,
-        'source' => false,
-        'build' => false,
-        'dependencies' => false,
-        'stack' => true,
-        'is_across_submodule' => false,
-        'instance_count' => true,
-        'config_id' => false,
-        'slug_id' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
-    }
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
-    {
-        return self::$openAPIFormats;
-    }
-
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'resources' => 'resources',
-        'size' => 'size',
-        'disk' => 'disk',
-        'access' => 'access',
-        'relationships' => 'relationships',
-        'additional_hosts' => 'additional_hosts',
-        'mounts' => 'mounts',
-        'timezone' => 'timezone',
-        'variables' => 'variables',
-        'firewall' => 'firewall',
-        'container_profile' => 'container_profile',
-        'operations' => 'operations',
-        'name' => 'name',
-        'type' => 'type',
-        'preflight' => 'preflight',
-        'tree_id' => 'tree_id',
-        'app_dir' => 'app_dir',
-        'endpoints' => 'endpoints',
-        'runtime' => 'runtime',
-        'web' => 'web',
-        'hooks' => 'hooks',
-        'crons' => 'crons',
-        'source' => 'source',
-        'build' => 'build',
-        'dependencies' => 'dependencies',
-        'stack' => 'stack',
-        'is_across_submodule' => 'is_across_submodule',
-        'instance_count' => 'instance_count',
-        'config_id' => 'config_id',
-        'slug_id' => 'slug_id'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'resources' => 'setResources',
-        'size' => 'setSize',
-        'disk' => 'setDisk',
-        'access' => 'setAccess',
-        'relationships' => 'setRelationships',
-        'additional_hosts' => 'setAdditionalHosts',
-        'mounts' => 'setMounts',
-        'timezone' => 'setTimezone',
-        'variables' => 'setVariables',
-        'firewall' => 'setFirewall',
-        'container_profile' => 'setContainerProfile',
-        'operations' => 'setOperations',
-        'name' => 'setName',
-        'type' => 'setType',
-        'preflight' => 'setPreflight',
-        'tree_id' => 'setTreeId',
-        'app_dir' => 'setAppDir',
-        'endpoints' => 'setEndpoints',
-        'runtime' => 'setRuntime',
-        'web' => 'setWeb',
-        'hooks' => 'setHooks',
-        'crons' => 'setCrons',
-        'source' => 'setSource',
-        'build' => 'setBuild',
-        'dependencies' => 'setDependencies',
-        'stack' => 'setStack',
-        'is_across_submodule' => 'setIsAcrossSubmodule',
-        'instance_count' => 'setInstanceCount',
-        'config_id' => 'setConfigId',
-        'slug_id' => 'setSlugId'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'resources' => 'getResources',
-        'size' => 'getSize',
-        'disk' => 'getDisk',
-        'access' => 'getAccess',
-        'relationships' => 'getRelationships',
-        'additional_hosts' => 'getAdditionalHosts',
-        'mounts' => 'getMounts',
-        'timezone' => 'getTimezone',
-        'variables' => 'getVariables',
-        'firewall' => 'getFirewall',
-        'container_profile' => 'getContainerProfile',
-        'operations' => 'getOperations',
-        'name' => 'getName',
-        'type' => 'getType',
-        'preflight' => 'getPreflight',
-        'tree_id' => 'getTreeId',
-        'app_dir' => 'getAppDir',
-        'endpoints' => 'getEndpoints',
-        'runtime' => 'getRuntime',
-        'web' => 'getWeb',
-        'hooks' => 'getHooks',
-        'crons' => 'getCrons',
-        'source' => 'getSource',
-        'build' => 'getBuild',
-        'dependencies' => 'getDependencies',
-        'stack' => 'getStack',
-        'is_across_submodule' => 'getIsAcrossSubmodule',
-        'instance_count' => 'getInstanceCount',
-        'config_id' => 'getConfigId',
-        'slug_id' => 'getSlugId'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-    public const SIZE__2_XL = '2XL';
-    public const SIZE__4_XL = '4XL';
-    public const SIZE_AUTO = 'AUTO';
-    public const SIZE_L = 'L';
-    public const SIZE_M = 'M';
-    public const SIZE_S = 'S';
-    public const SIZE_XL = 'XL';
-    public const SIZE_XS = 'XS';
-    public const ACCESS_ADMIN = 'admin';
-    public const ACCESS_CONTRIBUTOR = 'contributor';
-    public const ACCESS_VIEWER = 'viewer';
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getSizeAllowableValues(): array
-    {
-        return [
-            self::SIZE__2_XL,
-            self::SIZE__4_XL,
-            self::SIZE_AUTO,
-            self::SIZE_L,
-            self::SIZE_M,
-            self::SIZE_S,
-            self::SIZE_XL,
-            self::SIZE_XS,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getAccessAllowableValues(): array
-    {
-        return [
-            self::ACCESS_ADMIN,
-            self::ACCESS_CONTRIBUTOR,
-            self::ACCESS_VIEWER,
-        ];
-    }
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('resources', $data ?? [], null);
-        $this->setIfExists('size', $data ?? [], null);
-        $this->setIfExists('disk', $data ?? [], null);
-        $this->setIfExists('access', $data ?? [], null);
-        $this->setIfExists('relationships', $data ?? [], null);
-        $this->setIfExists('additional_hosts', $data ?? [], null);
-        $this->setIfExists('mounts', $data ?? [], null);
-        $this->setIfExists('timezone', $data ?? [], null);
-        $this->setIfExists('variables', $data ?? [], null);
-        $this->setIfExists('firewall', $data ?? [], null);
-        $this->setIfExists('container_profile', $data ?? [], null);
-        $this->setIfExists('operations', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('preflight', $data ?? [], null);
-        $this->setIfExists('tree_id', $data ?? [], null);
-        $this->setIfExists('app_dir', $data ?? [], null);
-        $this->setIfExists('endpoints', $data ?? [], null);
-        $this->setIfExists('runtime', $data ?? [], null);
-        $this->setIfExists('web', $data ?? [], null);
-        $this->setIfExists('hooks', $data ?? [], null);
-        $this->setIfExists('crons', $data ?? [], null);
-        $this->setIfExists('source', $data ?? [], null);
-        $this->setIfExists('build', $data ?? [], null);
-        $this->setIfExists('dependencies', $data ?? [], null);
-        $this->setIfExists('stack', $data ?? [], null);
-        $this->setIfExists('is_across_submodule', $data ?? [], null);
-        $this->setIfExists('instance_count', $data ?? [], null);
-        $this->setIfExists('config_id', $data ?? [], null);
-        $this->setIfExists('slug_id', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        if ($this->container['resources'] === null) {
-            $invalidProperties[] = "'resources' can't be null";
-        }
-        if ($this->container['size'] === null) {
-            $invalidProperties[] = "'size' can't be null";
-        }
-        $allowedValues = $this->getSizeAllowableValues();
-        if (!is_null($this->container['size']) && !in_array($this->container['size'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'size', must be one of '%s'",
-                $this->container['size'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['disk'] === null) {
-            $invalidProperties[] = "'disk' can't be null";
-        }
-        if ($this->container['access'] === null) {
-            $invalidProperties[] = "'access' can't be null";
-        }
-        if ($this->container['relationships'] === null) {
-            $invalidProperties[] = "'relationships' can't be null";
-        }
-        if ($this->container['additional_hosts'] === null) {
-            $invalidProperties[] = "'additional_hosts' can't be null";
-        }
-        if ($this->container['mounts'] === null) {
-            $invalidProperties[] = "'mounts' can't be null";
-        }
-        if ($this->container['timezone'] === null) {
-            $invalidProperties[] = "'timezone' can't be null";
-        }
-        if ($this->container['variables'] === null) {
-            $invalidProperties[] = "'variables' can't be null";
-        }
-        if ($this->container['firewall'] === null) {
-            $invalidProperties[] = "'firewall' can't be null";
-        }
-        if ($this->container['container_profile'] === null) {
-            $invalidProperties[] = "'container_profile' can't be null";
-        }
-        if ($this->container['operations'] === null) {
-            $invalidProperties[] = "'operations' can't be null";
-        }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
-        if ($this->container['preflight'] === null) {
-            $invalidProperties[] = "'preflight' can't be null";
-        }
-        if ($this->container['tree_id'] === null) {
-            $invalidProperties[] = "'tree_id' can't be null";
-        }
-        if ($this->container['app_dir'] === null) {
-            $invalidProperties[] = "'app_dir' can't be null";
-        }
-        if ($this->container['endpoints'] === null) {
-            $invalidProperties[] = "'endpoints' can't be null";
-        }
-        if ($this->container['runtime'] === null) {
-            $invalidProperties[] = "'runtime' can't be null";
-        }
-        if ($this->container['web'] === null) {
-            $invalidProperties[] = "'web' can't be null";
-        }
-        if ($this->container['hooks'] === null) {
-            $invalidProperties[] = "'hooks' can't be null";
-        }
-        if ($this->container['crons'] === null) {
-            $invalidProperties[] = "'crons' can't be null";
-        }
-        if ($this->container['source'] === null) {
-            $invalidProperties[] = "'source' can't be null";
-        }
-        if ($this->container['build'] === null) {
-            $invalidProperties[] = "'build' can't be null";
-        }
-        if ($this->container['dependencies'] === null) {
-            $invalidProperties[] = "'dependencies' can't be null";
-        }
-        if ($this->container['stack'] === null) {
-            $invalidProperties[] = "'stack' can't be null";
-        }
-        if ($this->container['is_across_submodule'] === null) {
-            $invalidProperties[] = "'is_across_submodule' can't be null";
-        }
-        if ($this->container['instance_count'] === null) {
-            $invalidProperties[] = "'instance_count' can't be null";
-        }
-        if ($this->container['config_id'] === null) {
-            $invalidProperties[] = "'config_id' can't be null";
-        }
-        if ($this->container['slug_id'] === null) {
-            $invalidProperties[] = "'slug_id' can't be null";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets resources
-     *
-     * @return \Upsun\Model\Resources
-     */
-    public function getResources()
-    {
-        return $this->container['resources'];
-    }
-
-    /**
-     * Sets resources
-     */
-    public function setResources($resources)
-    {
-        if (is_null($resources)) {
-            array_push($this->openAPINullablesSetToNull, 'resources');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('resources', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['resources'] = $resources;
-
-        return $this;
-    }
-
-    /**
-     * Gets size
-     *
-     * @return string
-     */
-    public function getSize()
-    {
-        return $this->container['size'];
-    }
-
-    /**
-     * Sets size
-     */
-    public function setSize($size)
-    {
-        if (is_null($size)) {
-            throw new \InvalidArgumentException('non-nullable size cannot be null');
-        }
-        $allowedValues = $this->getSizeAllowableValues();
-        if (!in_array($size, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'size', must be one of '%s'",
-                    $size,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['size'] = $size;
-
-        return $this;
-    }
-
-    /**
-     * Gets disk
-     *
-     * @return int
-     */
-    public function getDisk()
-    {
-        return $this->container['disk'];
-    }
-
-    /**
-     * Sets disk
-     */
-    public function setDisk($disk)
-    {
-        if (is_null($disk)) {
-            array_push($this->openAPINullablesSetToNull, 'disk');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('disk', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['disk'] = $disk;
-
-        return $this;
-    }
-
-    /**
-     * Gets access
-     *
-     * @return array<string,string>
-     */
-    public function getAccess()
-    {
-        return $this->container['access'];
-    }
-
-    /**
-     * Sets access
-     */
-    public function setAccess($access)
-    {
-        if (is_null($access)) {
-            throw new \InvalidArgumentException('non-nullable access cannot be null');
-        }
-        $allowedValues = $this->getAccessAllowableValues();
-        if (array_diff($access, $allowedValues)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'access', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['access'] = $access;
-
-        return $this;
-    }
-
-    /**
-     * Gets relationships
-     *
-     * @return array<string,\Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue>
-     */
-    public function getRelationships()
-    {
-        return $this->container['relationships'];
-    }
-
-    /**
-     * Sets relationships
-     */
-    public function setRelationships($relationships)
-    {
-        if (is_null($relationships)) {
-            throw new \InvalidArgumentException('non-nullable relationships cannot be null');
-        }
-        $this->container['relationships'] = $relationships;
-
-        return $this;
-    }
-
-    /**
-     * Gets additional_hosts
-     *
-     * @return array<string,string>
-     */
-    public function getAdditionalHosts()
-    {
-        return $this->container['additional_hosts'];
-    }
-
-    /**
-     * Sets additional_hosts
-     */
-    public function setAdditionalHosts($additional_hosts)
-    {
-        if (is_null($additional_hosts)) {
-            throw new \InvalidArgumentException('non-nullable additional_hosts cannot be null');
-        }
-        $this->container['additional_hosts'] = $additional_hosts;
-
-        return $this;
-    }
-
-    /**
-     * Gets mounts
-     *
-     * @return array<string,\Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue>
-     */
-    public function getMounts()
-    {
-        return $this->container['mounts'];
-    }
-
-    /**
-     * Sets mounts
-     */
-    public function setMounts($mounts)
-    {
-        if (is_null($mounts)) {
-            throw new \InvalidArgumentException('non-nullable mounts cannot be null');
-        }
-        $this->container['mounts'] = $mounts;
-
-        return $this;
-    }
-
-    /**
-     * Gets timezone
-     *
-     * @return string
-     */
-    public function getTimezone()
-    {
-        return $this->container['timezone'];
-    }
-
-    /**
-     * Sets timezone
-     */
-    public function setTimezone($timezone)
-    {
-        if (is_null($timezone)) {
-            array_push($this->openAPINullablesSetToNull, 'timezone');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('timezone', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['timezone'] = $timezone;
-
-        return $this;
-    }
-
-    /**
-     * Gets variables
-     *
-     * @return array<string,array<string,mixed>>
-     */
-    public function getVariables()
-    {
-        return $this->container['variables'];
-    }
-
-    /**
-     * Sets variables
-     */
-    public function setVariables($variables)
-    {
-        if (is_null($variables)) {
-            throw new \InvalidArgumentException('non-nullable variables cannot be null');
-        }
-        $this->container['variables'] = $variables;
-
-        return $this;
-    }
-
-    /**
-     * Gets firewall
-     *
-     * @return \Upsun\Model\Firewall
-     */
-    public function getFirewall()
-    {
-        return $this->container['firewall'];
-    }
-
-    /**
-     * Sets firewall
-     */
-    public function setFirewall($firewall)
-    {
-        if (is_null($firewall)) {
-            array_push($this->openAPINullablesSetToNull, 'firewall');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('firewall', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['firewall'] = $firewall;
-
-        return $this;
-    }
-
-    /**
-     * Gets container_profile
-     *
-     * @return string
-     */
-    public function getContainerProfile()
-    {
-        return $this->container['container_profile'];
-    }
-
-    /**
-     * Sets container_profile
-     */
-    public function setContainerProfile($container_profile)
-    {
-        if (is_null($container_profile)) {
-            array_push($this->openAPINullablesSetToNull, 'container_profile');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('container_profile', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['container_profile'] = $container_profile;
-
-        return $this;
-    }
-
-    /**
-     * Gets operations
-     *
-     * @return array<string,\Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue>
-     */
-    public function getOperations()
-    {
-        return $this->container['operations'];
-    }
-
-    /**
-     * Sets operations
-     */
-    public function setOperations($operations)
-    {
-        if (is_null($operations)) {
-            throw new \InvalidArgumentException('non-nullable operations cannot be null');
-        }
-        $this->container['operations'] = $operations;
-
-        return $this;
-    }
-
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     */
-    public function setName($name)
-    {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     */
-    public function setType($type)
-    {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets preflight
-     *
-     * @return \Upsun\Model\ConfigurationForPreFlightChecks
-     */
-    public function getPreflight()
-    {
-        return $this->container['preflight'];
-    }
-
-    /**
-     * Sets preflight
-     */
-    public function setPreflight($preflight)
-    {
-        if (is_null($preflight)) {
-            throw new \InvalidArgumentException('non-nullable preflight cannot be null');
-        }
-        $this->container['preflight'] = $preflight;
-
-        return $this;
-    }
-
-    /**
-     * Gets tree_id
-     *
-     * @return string
-     */
-    public function getTreeId()
-    {
-        return $this->container['tree_id'];
-    }
-
-    /**
-     * Sets tree_id
-     */
-    public function setTreeId($tree_id)
-    {
-        if (is_null($tree_id)) {
-            throw new \InvalidArgumentException('non-nullable tree_id cannot be null');
-        }
-        $this->container['tree_id'] = $tree_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets app_dir
-     *
-     * @return string
-     */
-    public function getAppDir()
-    {
-        return $this->container['app_dir'];
-    }
-
-    /**
-     * Sets app_dir
-     */
-    public function setAppDir($app_dir)
-    {
-        if (is_null($app_dir)) {
-            throw new \InvalidArgumentException('non-nullable app_dir cannot be null');
-        }
-        $this->container['app_dir'] = $app_dir;
-
-        return $this;
+    public readonly \Upsun\Model\Resources $resources;
+    public readonly string $size;
+    public readonly int $disk;
+    public readonly array<string,string> $access;
+    public readonly array<string,\Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue> $relationships;
+    public readonly array<string,string> $additional_hosts;
+    public readonly array<string,\Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue> $mounts;
+    public readonly string $timezone;
+    public readonly array<string,array<string,mixed>> $variables;
+    public readonly \Upsun\Model\Firewall $firewall;
+    public readonly string $container_profile;
+    public readonly array<string,\Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue> $operations;
+    public readonly string $name;
+    public readonly string $type;
+    public readonly \Upsun\Model\ConfigurationForPreFlightChecks $preflight;
+    public readonly string $tree_id;
+    public readonly string $app_dir;
+    public readonly object $endpoints;
+    public readonly object $runtime;
+    public readonly \Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP $web;
+    public readonly \Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication $hooks;
+    public readonly array<string,\Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue> $crons;
+    public readonly \Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication $source;
+    public readonly \Upsun\Model\TheBuildConfigurationOfTheApplication $build;
+    public readonly array<string,object> $dependencies;
+    public readonly object[] $stack;
+    public readonly bool $is_across_submodule;
+    public readonly int $instance_count;
+    public readonly string $config_id;
+    public readonly string $slug_id;
+
+    public function __construct(
+        \Upsun\Model\Resources $resources,
+        string $size,
+        int $disk,
+        array<string,string> $access,
+        array<string,\Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue> $relationships,
+        array<string,string> $additional_hosts,
+        array<string,\Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue> $mounts,
+        string $timezone,
+        array<string,array<string,mixed>> $variables,
+        \Upsun\Model\Firewall $firewall,
+        string $container_profile,
+        array<string,\Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue> $operations,
+        string $name,
+        string $type,
+        \Upsun\Model\ConfigurationForPreFlightChecks $preflight,
+        string $tree_id,
+        string $app_dir,
+        object $endpoints,
+        object $runtime,
+        \Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP $web,
+        \Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication $hooks,
+        array<string,\Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue> $crons,
+        \Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication $source,
+        \Upsun\Model\TheBuildConfigurationOfTheApplication $build,
+        array<string,object> $dependencies,
+        object[] $stack,
+        bool $is_across_submodule,
+        int $instance_count,
+        string $config_id,
+        string $slug_id,
+    ) {
+        $this->resources = $resources;
+        $this->size = $size;
+        $this->disk = $disk;
+        $this->access = $access;
+        $this->relationships = $relationships;
+        $this->additional_hosts = $additional_hosts;
+        $this->mounts = $mounts;
+        $this->timezone = $timezone;
+        $this->variables = $variables;
+        $this->firewall = $firewall;
+        $this->container_profile = $container_profile;
+        $this->operations = $operations;
+        $this->name = $name;
+        $this->type = $type;
+        $this->preflight = $preflight;
+        $this->tree_id = $tree_id;
+        $this->app_dir = $app_dir;
+        $this->endpoints = $endpoints;
+        $this->runtime = $runtime;
+        $this->web = $web;
+        $this->hooks = $hooks;
+        $this->crons = $crons;
+        $this->source = $source;
+        $this->build = $build;
+        $this->dependencies = $dependencies;
+        $this->stack = $stack;
+        $this->is_across_submodule = $is_across_submodule;
+        $this->instance_count = $instance_count;
+        $this->config_id = $config_id;
+        $this->slug_id = $slug_id;
     }
 
-    /**
-     * Gets endpoints
-     *
-     * @return object
-     */
-    public function getEndpoints()
+    public function getResources(): \Upsun\Model\Resources
     {
-        return $this->container['endpoints'];
+        return $this->resources;
     }
-
-    /**
-     * Sets endpoints
-     */
-    public function setEndpoints($endpoints)
+    public function getSize(): string
     {
-        if (is_null($endpoints)) {
-            array_push($this->openAPINullablesSetToNull, 'endpoints');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('endpoints', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['endpoints'] = $endpoints;
-
-        return $this;
+        return $this->size;
     }
-
-    /**
-     * Gets runtime
-     *
-     * @return object
-     */
-    public function getRuntime()
+    public function getDisk(): int
     {
-        return $this->container['runtime'];
+        return $this->disk;
     }
-
-    /**
-     * Sets runtime
-     */
-    public function setRuntime($runtime)
+    public function getAccess(): array<string,string>
     {
-        if (is_null($runtime)) {
-            throw new \InvalidArgumentException('non-nullable runtime cannot be null');
-        }
-        $this->container['runtime'] = $runtime;
-
-        return $this;
+        return $this->access;
     }
-
-    /**
-     * Gets web
-     *
-     * @return \Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP
-     */
-    public function getWeb()
+    public function getRelationships(): array<string,\Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue>
     {
-        return $this->container['web'];
+        return $this->relationships;
     }
-
-    /**
-     * Sets web
-     */
-    public function setWeb($web)
+    public function getAdditionalHosts(): array<string,string>
     {
-        if (is_null($web)) {
-            throw new \InvalidArgumentException('non-nullable web cannot be null');
-        }
-        $this->container['web'] = $web;
-
-        return $this;
+        return $this->additional_hosts;
     }
-
-    /**
-     * Gets hooks
-     *
-     * @return \Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication
-     */
-    public function getHooks()
+    public function getMounts(): array<string,\Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue>
     {
-        return $this->container['hooks'];
+        return $this->mounts;
     }
-
-    /**
-     * Sets hooks
-     */
-    public function setHooks($hooks)
+    public function getTimezone(): string
     {
-        if (is_null($hooks)) {
-            throw new \InvalidArgumentException('non-nullable hooks cannot be null');
-        }
-        $this->container['hooks'] = $hooks;
-
-        return $this;
+        return $this->timezone;
     }
-
-    /**
-     * Gets crons
-     *
-     * @return array<string,\Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue>
-     */
-    public function getCrons()
+    public function getVariables(): array<string,array<string,mixed>>
     {
-        return $this->container['crons'];
+        return $this->variables;
     }
-
-    /**
-     * Sets crons
-     */
-    public function setCrons($crons)
+    public function getFirewall(): \Upsun\Model\Firewall
     {
-        if (is_null($crons)) {
-            throw new \InvalidArgumentException('non-nullable crons cannot be null');
-        }
-        $this->container['crons'] = $crons;
-
-        return $this;
+        return $this->firewall;
     }
-
-    /**
-     * Gets source
-     *
-     * @return \Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication
-     */
-    public function getSource()
+    public function getContainerProfile(): string
     {
-        return $this->container['source'];
+        return $this->container_profile;
     }
-
-    /**
-     * Sets source
-     */
-    public function setSource($source)
+    public function getOperations(): array<string,\Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue>
     {
-        if (is_null($source)) {
-            throw new \InvalidArgumentException('non-nullable source cannot be null');
-        }
-        $this->container['source'] = $source;
-
-        return $this;
+        return $this->operations;
     }
-
-    /**
-     * Gets build
-     *
-     * @return \Upsun\Model\TheBuildConfigurationOfTheApplication
-     */
-    public function getBuild()
+    public function getName(): string
     {
-        return $this->container['build'];
+        return $this->name;
     }
-
-    /**
-     * Sets build
-     */
-    public function setBuild($build)
+    public function getType(): string
     {
-        if (is_null($build)) {
-            throw new \InvalidArgumentException('non-nullable build cannot be null');
-        }
-        $this->container['build'] = $build;
-
-        return $this;
+        return $this->type;
     }
-
-    /**
-     * Gets dependencies
-     *
-     * @return array<string,object>
-     */
-    public function getDependencies()
+    public function getPreflight(): \Upsun\Model\ConfigurationForPreFlightChecks
     {
-        return $this->container['dependencies'];
+        return $this->preflight;
     }
-
-    /**
-     * Sets dependencies
-     */
-    public function setDependencies($dependencies)
+    public function getTreeId(): string
     {
-        if (is_null($dependencies)) {
-            throw new \InvalidArgumentException('non-nullable dependencies cannot be null');
-        }
-        $this->container['dependencies'] = $dependencies;
-
-        return $this;
+        return $this->tree_id;
     }
-
-    /**
-     * Gets stack
-     *
-     * @return object[]
-     */
-    public function getStack()
+    public function getAppDir(): string
     {
-        return $this->container['stack'];
+        return $this->app_dir;
     }
-
-    /**
-     * Sets stack
-     */
-    public function setStack($stack)
+    public function getEndpoints(): object
     {
-        if (is_null($stack)) {
-            array_push($this->openAPINullablesSetToNull, 'stack');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('stack', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['stack'] = $stack;
-
-        return $this;
+        return $this->endpoints;
     }
-
-    /**
-     * Gets is_across_submodule
-     *
-     * @return bool
-     */
-    public function getIsAcrossSubmodule()
+    public function getRuntime(): object
     {
-        return $this->container['is_across_submodule'];
+        return $this->runtime;
     }
-
-    /**
-     * Sets is_across_submodule
-     */
-    public function setIsAcrossSubmodule($is_across_submodule)
+    public function getWeb(): \Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP
     {
-        if (is_null($is_across_submodule)) {
-            throw new \InvalidArgumentException('non-nullable is_across_submodule cannot be null');
-        }
-        $this->container['is_across_submodule'] = $is_across_submodule;
-
-        return $this;
+        return $this->web;
     }
-
-    /**
-     * Gets instance_count
-     *
-     * @return int
-     */
-    public function getInstanceCount()
+    public function getHooks(): \Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication
     {
-        return $this->container['instance_count'];
+        return $this->hooks;
     }
-
-    /**
-     * Sets instance_count
-     */
-    public function setInstanceCount($instance_count)
+    public function getCrons(): array<string,\Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue>
     {
-        if (is_null($instance_count)) {
-            array_push($this->openAPINullablesSetToNull, 'instance_count');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('instance_count', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['instance_count'] = $instance_count;
-
-        return $this;
+        return $this->crons;
     }
-
-    /**
-     * Gets config_id
-     *
-     * @return string
-     */
-    public function getConfigId()
+    public function getSource(): \Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication
     {
-        return $this->container['config_id'];
+        return $this->source;
     }
-
-    /**
-     * Sets config_id
-     */
-    public function setConfigId($config_id)
+    public function getBuild(): \Upsun\Model\TheBuildConfigurationOfTheApplication
     {
-        if (is_null($config_id)) {
-            throw new \InvalidArgumentException('non-nullable config_id cannot be null');
-        }
-        $this->container['config_id'] = $config_id;
-
-        return $this;
+        return $this->build;
     }
-
-    /**
-     * Gets slug_id
-     *
-     * @return string
-     */
-    public function getSlugId()
+    public function getDependencies(): array<string,object>
     {
-        return $this->container['slug_id'];
+        return $this->dependencies;
     }
-
-    /**
-     * Sets slug_id
-     */
-    public function setSlugId($slug_id)
+    public function getStack(): object[]
     {
-        if (is_null($slug_id)) {
-            throw new \InvalidArgumentException('non-nullable slug_id cannot be null');
-        }
-        $this->container['slug_id'] = $slug_id;
-
-        return $this;
+        return $this->stack;
     }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
+    public function getIsAcrossSubmodule(): bool
     {
-        return isset($this->container[$offset]);
+        return $this->is_across_submodule;
     }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
+    public function getInstanceCount(): int
     {
-        return $this->container[$offset] ?? null;
+        return $this->instance_count;
     }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
+    public function getConfigId(): string
     {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
+        return $this->config_id;
     }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
+    public function getSlugId(): string
     {
-        unset($this->container[$offset]);
+        return $this->slug_id;
     }
 
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+        return [
+            'resources' => $this->resources,
+            'size' => $this->size,
+            'disk' => $this->disk,
+            'access' => $this->access,
+            'relationships' => $this->relationships,
+            'additional_hosts' => $this->additional_hosts,
+            'mounts' => $this->mounts,
+            'timezone' => $this->timezone,
+            'variables' => $this->variables,
+            'firewall' => $this->firewall,
+            'container_profile' => $this->container_profile,
+            'operations' => $this->operations,
+            'name' => $this->name,
+            'type' => $this->type,
+            'preflight' => $this->preflight,
+            'tree_id' => $this->tree_id,
+            'app_dir' => $this->app_dir,
+            'endpoints' => $this->endpoints,
+            'runtime' => $this->runtime,
+            'web' => $this->web,
+            'hooks' => $this->hooks,
+            'crons' => $this->crons,
+            'source' => $this->source,
+            'build' => $this->build,
+            'dependencies' => $this->dependencies,
+            'stack' => $this->stack,
+            'is_across_submodule' => $this->is_across_submodule,
+            'instance_count' => $this->instance_count,
+            'config_id' => $this->config_id,
+            'slug_id' => $this->slug_id,
+        ];
     }
 
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

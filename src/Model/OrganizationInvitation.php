@@ -12,608 +12,97 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class OrganizationInvitation implements ModelInterface, ArrayAccess, \JsonSerializable
+final class OrganizationInvitation implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'OrganizationInvitation';
+    public readonly string $id;
+    public readonly string $state;
+    public readonly string $organization_id;
+    public readonly string $email;
+    public readonly \Upsun\Model\OrganizationInvitationOwner $owner;
+    public readonly \DateTime $created_at;
+    public readonly \DateTime $updated_at;
+    public readonly \DateTime $finished_at;
+    public readonly string[] $permissions;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'id' => 'string',
-        'state' => 'string',
-        'organization_id' => 'string',
-        'email' => 'string',
-        'owner' => '\Upsun\Model\OrganizationInvitationOwner',
-        'created_at' => '\DateTime',
-        'updated_at' => '\DateTime',
-        'finished_at' => '\DateTime',
-        'permissions' => 'string[]'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'id' => 'uuid',
-        'state' => null,
-        'organization_id' => null,
-        'email' => 'email',
-        'owner' => null,
-        'created_at' => 'date-time',
-        'updated_at' => 'date-time',
-        'finished_at' => 'date-time',
-        'permissions' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'id' => false,
-        'state' => false,
-        'organization_id' => false,
-        'email' => false,
-        'owner' => false,
-        'created_at' => false,
-        'updated_at' => false,
-        'finished_at' => true,
-        'permissions' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        string $id = null,
+        string $state = null,
+        string $organization_id = null,
+        string $email = null,
+        \Upsun\Model\OrganizationInvitationOwner $owner = null,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+        \DateTime $finished_at = null,
+        string[] $permissions = null,
+    ) {
+        $this->id = $id;
+        $this->state = $state;
+        $this->organization_id = $organization_id;
+        $this->email = $email;
+        $this->owner = $owner;
+        $this->created_at = $created_at;
+        $this->updated_at = $updated_at;
+        $this->finished_at = $finished_at;
+        $this->permissions = $permissions;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getId(): string|null
     {
-        return self::$openAPIFormats;
+        return $this->id;
+    }
+    public function getState(): string|null
+    {
+        return $this->state;
+    }
+    public function getOrganizationId(): string|null
+    {
+        return $this->organization_id;
+    }
+    public function getEmail(): string|null
+    {
+        return $this->email;
+    }
+    public function getOwner(): \Upsun\Model\OrganizationInvitationOwner|null
+    {
+        return $this->owner;
+    }
+    public function getCreatedAt(): \DateTime|null
+    {
+        return $this->created_at;
+    }
+    public function getUpdatedAt(): \DateTime|null
+    {
+        return $this->updated_at;
+    }
+    public function getFinishedAt(): \DateTime|null
+    {
+        return $this->finished_at;
+    }
+    public function getPermissions(): string[]|null
+    {
+        return $this->permissions;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'id' => 'id',
-        'state' => 'state',
-        'organization_id' => 'organization_id',
-        'email' => 'email',
-        'owner' => 'owner',
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at',
-        'finished_at' => 'finished_at',
-        'permissions' => 'permissions'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'id' => 'setId',
-        'state' => 'setState',
-        'organization_id' => 'setOrganizationId',
-        'email' => 'setEmail',
-        'owner' => 'setOwner',
-        'created_at' => 'setCreatedAt',
-        'updated_at' => 'setUpdatedAt',
-        'finished_at' => 'setFinishedAt',
-        'permissions' => 'setPermissions'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'id' => 'getId',
-        'state' => 'getState',
-        'organization_id' => 'getOrganizationId',
-        'email' => 'getEmail',
-        'owner' => 'getOwner',
-        'created_at' => 'getCreatedAt',
-        'updated_at' => 'getUpdatedAt',
-        'finished_at' => 'getFinishedAt',
-        'permissions' => 'getPermissions'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-    public const STATE_PENDING = 'pending';
-    public const STATE_PROCESSING = 'processing';
-    public const STATE_ACCEPTED = 'accepted';
-    public const STATE_CANCELLED = 'cancelled';
-    public const STATE_ERROR = 'error';
-    public const PERMISSIONS_BILLING = 'billing';
-    public const PERMISSIONS_PLANS = 'plans';
-    public const PERMISSIONS_MEMBERS = 'members';
-    public const PERMISSIONS_PROJECT_CREATE = 'project:create';
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getStateAllowableValues(): array
-    {
-        return [
-            self::STATE_PENDING,
-            self::STATE_PROCESSING,
-            self::STATE_ACCEPTED,
-            self::STATE_CANCELLED,
-            self::STATE_ERROR,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getPermissionsAllowableValues(): array
-    {
-        return [
-            self::PERMISSIONS_BILLING,
-            self::PERMISSIONS_PLANS,
-            self::PERMISSIONS_MEMBERS,
-            self::PERMISSIONS_PROJECT_CREATE,
-        ];
-    }
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('state', $data ?? [], null);
-        $this->setIfExists('organization_id', $data ?? [], null);
-        $this->setIfExists('email', $data ?? [], null);
-        $this->setIfExists('owner', $data ?? [], null);
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('updated_at', $data ?? [], null);
-        $this->setIfExists('finished_at', $data ?? [], null);
-        $this->setIfExists('permissions', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        $allowedValues = $this->getStateAllowableValues();
-        if (!is_null($this->container['state']) && !in_array($this->container['state'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'state', must be one of '%s'",
-                $this->container['state'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets id
-     *
-     * @return string|null
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     */
-    public function setId($id)
-    {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets state
-     *
-     * @return string|null
-     */
-    public function getState()
-    {
-        return $this->container['state'];
-    }
-
-    /**
-     * Sets state
-     */
-    public function setState($state)
-    {
-        if (is_null($state)) {
-            throw new \InvalidArgumentException('non-nullable state cannot be null');
-        }
-        $allowedValues = $this->getStateAllowableValues();
-        if (!in_array($state, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'state', must be one of '%s'",
-                    $state,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['state'] = $state;
-
-        return $this;
-    }
-
-    /**
-     * Gets organization_id
-     *
-     * @return string|null
-     */
-    public function getOrganizationId()
-    {
-        return $this->container['organization_id'];
-    }
-
-    /**
-     * Sets organization_id
-     */
-    public function setOrganizationId($organization_id)
-    {
-        if (is_null($organization_id)) {
-            throw new \InvalidArgumentException('non-nullable organization_id cannot be null');
-        }
-        $this->container['organization_id'] = $organization_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets email
-     *
-     * @return string|null
-     */
-    public function getEmail()
-    {
-        return $this->container['email'];
-    }
-
-    /**
-     * Sets email
-     */
-    public function setEmail($email)
-    {
-        if (is_null($email)) {
-            throw new \InvalidArgumentException('non-nullable email cannot be null');
-        }
-        $this->container['email'] = $email;
-
-        return $this;
-    }
-
-    /**
-     * Gets owner
-     *
-     * @return \Upsun\Model\OrganizationInvitationOwner|null
-     */
-    public function getOwner()
-    {
-        return $this->container['owner'];
-    }
-
-    /**
-     * Sets owner
-     */
-    public function setOwner($owner)
-    {
-        if (is_null($owner)) {
-            throw new \InvalidArgumentException('non-nullable owner cannot be null');
-        }
-        $this->container['owner'] = $owner;
-
-        return $this;
-    }
-
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt()
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     */
-    public function setCreatedAt($created_at)
-    {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
-        }
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt()
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     */
-    public function setUpdatedAt($updated_at)
-    {
-        if (is_null($updated_at)) {
-            throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
-        }
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets finished_at
-     *
-     * @return \DateTime|null
-     */
-    public function getFinishedAt()
-    {
-        return $this->container['finished_at'];
-    }
-
-    /**
-     * Sets finished_at
-     */
-    public function setFinishedAt($finished_at)
-    {
-        if (is_null($finished_at)) {
-            array_push($this->openAPINullablesSetToNull, 'finished_at');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('finished_at', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['finished_at'] = $finished_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets permissions
-     *
-     * @return string[]|null
-     */
-    public function getPermissions()
-    {
-        return $this->container['permissions'];
-    }
-
-    /**
-     * Sets permissions
-     */
-    public function setPermissions($permissions)
-    {
-        if (is_null($permissions)) {
-            throw new \InvalidArgumentException('non-nullable permissions cannot be null');
-        }
-        $allowedValues = $this->getPermissionsAllowableValues();
-        if (array_diff($permissions, $allowedValues)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'permissions', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['permissions'] = $permissions;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+        return [
+            'id' => $this->id,
+            'state' => $this->state,
+            'organization_id' => $this->organization_id,
+            'email' => $this->email,
+            'owner' => $this->owner,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'finished_at' => $this->finished_at,
+            'permissions' => $this->permissions,
+        ];
     }
 
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

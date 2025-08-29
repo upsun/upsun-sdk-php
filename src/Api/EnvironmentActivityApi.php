@@ -128,7 +128,11 @@ final class EnvironmentActivityApi extends AbstractApi
         string $environment_id,
         string $activity_id
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->actionProjectsEnvironmentsActivitiesCancelWithHttpInfo($project_id, $environment_id, $activity_id);
+        list($response) = $this->actionProjectsEnvironmentsActivitiesCancelWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $activity_id
+        );
         return $response;
     }
 
@@ -143,17 +147,19 @@ final class EnvironmentActivityApi extends AbstractApi
         string $environment_id,
         string $activity_id
     ): array {
-        $request = $this->actionProjectsEnvironmentsActivitiesCancelRequest($project_id, $environment_id, $activity_id);
+        $request = $this->actionProjectsEnvironmentsActivitiesCancelRequest(
+            $project_id,
+            $environment_id,
+            $activity_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -234,7 +240,11 @@ final class EnvironmentActivityApi extends AbstractApi
         string $environment_id,
         string $activity_id
     ): Promise {
-        return $this->actionProjectsEnvironmentsActivitiesCancelAsyncWithHttpInfo($project_id, $environment_id, $activity_id)
+        return $this->actionProjectsEnvironmentsActivitiesCancelAsyncWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $activity_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -253,7 +263,11 @@ final class EnvironmentActivityApi extends AbstractApi
         string $activity_id
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->actionProjectsEnvironmentsActivitiesCancelRequest($project_id, $environment_id, $activity_id);
+        $request = $this->actionProjectsEnvironmentsActivitiesCancelRequest(
+            $project_id,
+            $environment_id,
+            $activity_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -414,7 +428,11 @@ final class EnvironmentActivityApi extends AbstractApi
         string $environment_id,
         string $activity_id
     ): \Upsun\Model\Activity {
-        list($response) = $this->getProjectsEnvironmentsActivitiesWithHttpInfo($project_id, $environment_id, $activity_id);
+        list($response) = $this->getProjectsEnvironmentsActivitiesWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $activity_id
+        );
         return $response;
     }
 
@@ -429,17 +447,19 @@ final class EnvironmentActivityApi extends AbstractApi
         string $environment_id,
         string $activity_id
     ): array {
-        $request = $this->getProjectsEnvironmentsActivitiesRequest($project_id, $environment_id, $activity_id);
+        $request = $this->getProjectsEnvironmentsActivitiesRequest(
+            $project_id,
+            $environment_id,
+            $activity_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -520,7 +540,11 @@ final class EnvironmentActivityApi extends AbstractApi
         string $environment_id,
         string $activity_id
     ): Promise {
-        return $this->getProjectsEnvironmentsActivitiesAsyncWithHttpInfo($project_id, $environment_id, $activity_id)
+        return $this->getProjectsEnvironmentsActivitiesAsyncWithHttpInfo(
+            $project_id,
+            $environment_id,
+            $activity_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -539,7 +563,11 @@ final class EnvironmentActivityApi extends AbstractApi
         string $activity_id
     ): Promise {
         $returnType = '\Upsun\Model\Activity';
-        $request = $this->getProjectsEnvironmentsActivitiesRequest($project_id, $environment_id, $activity_id);
+        $request = $this->getProjectsEnvironmentsActivitiesRequest(
+            $project_id,
+            $environment_id,
+            $activity_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -701,7 +729,10 @@ final class EnvironmentActivityApi extends AbstractApi
         string $project_id,
         string $environment_id
     ): array {
-        list($response) = $this->listProjectsEnvironmentsActivitiesWithHttpInfo($project_id, $environment_id);
+        list($response) = $this->listProjectsEnvironmentsActivitiesWithHttpInfo(
+            $project_id,
+            $environment_id
+        );
         return $response;
     }
 
@@ -715,17 +746,18 @@ final class EnvironmentActivityApi extends AbstractApi
         string $project_id,
         string $environment_id
     ): array {
-        $request = $this->listProjectsEnvironmentsActivitiesRequest($project_id, $environment_id);
+        $request = $this->listProjectsEnvironmentsActivitiesRequest(
+            $project_id,
+            $environment_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -805,7 +837,10 @@ final class EnvironmentActivityApi extends AbstractApi
         string $project_id,
         string $environment_id
     ): Promise {
-        return $this->listProjectsEnvironmentsActivitiesAsyncWithHttpInfo($project_id, $environment_id)
+        return $this->listProjectsEnvironmentsActivitiesAsyncWithHttpInfo(
+            $project_id,
+            $environment_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -823,7 +858,10 @@ final class EnvironmentActivityApi extends AbstractApi
         string $environment_id
     ): Promise {
         $returnType = '\Upsun\Model\Activity[]';
-        $request = $this->listProjectsEnvironmentsActivitiesRequest($project_id, $environment_id);
+        $request = $this->listProjectsEnvironmentsActivitiesRequest(
+            $project_id,
+            $environment_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -968,31 +1006,22 @@ final class EnvironmentActivityApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -1055,15 +1084,5 @@ final class EnvironmentActivityApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

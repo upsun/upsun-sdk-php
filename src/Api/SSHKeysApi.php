@@ -126,7 +126,9 @@ final class SSHKeysApi extends AbstractApi
     public function createSshKey(
         \Upsun\Model\CreateSshKeyRequest $create_ssh_key_request = null
     ): \Upsun\Model\SSHKey {
-        list($response) = $this->createSshKeyWithHttpInfo($create_ssh_key_request);
+        list($response) = $this->createSshKeyWithHttpInfo(
+            $create_ssh_key_request
+        );
         return $response;
     }
 
@@ -139,17 +141,17 @@ final class SSHKeysApi extends AbstractApi
     public function createSshKeyWithHttpInfo(
         \Upsun\Model\CreateSshKeyRequest $create_ssh_key_request = null
     ): array {
-        $request = $this->createSshKeyRequest($create_ssh_key_request);
+        $request = $this->createSshKeyRequest(
+            $create_ssh_key_request
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -228,7 +230,9 @@ final class SSHKeysApi extends AbstractApi
     public function createSshKeyAsync(
         \Upsun\Model\CreateSshKeyRequest $create_ssh_key_request = null
     ): Promise {
-        return $this->createSshKeyAsyncWithHttpInfo($create_ssh_key_request)
+        return $this->createSshKeyAsyncWithHttpInfo(
+            $create_ssh_key_request
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -245,7 +249,9 @@ final class SSHKeysApi extends AbstractApi
         \Upsun\Model\CreateSshKeyRequest $create_ssh_key_request = null
     ): Promise {
         $returnType = '\Upsun\Model\SSHKey';
-        $request = $this->createSshKeyRequest($create_ssh_key_request);
+        $request = $this->createSshKeyRequest(
+            $create_ssh_key_request
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -366,7 +372,9 @@ final class SSHKeysApi extends AbstractApi
     public function deleteSshKey(
         int $key_id
     ): void {
-        $this->deleteSshKeyWithHttpInfo($key_id);
+        $this->deleteSshKeyWithHttpInfo(
+            $key_id
+        );
     }
 
     /**
@@ -378,17 +386,17 @@ final class SSHKeysApi extends AbstractApi
     public function deleteSshKeyWithHttpInfo(
         int $key_id
     ): array {
-        $request = $this->deleteSshKeyRequest($key_id);
+        $request = $this->deleteSshKeyRequest(
+            $key_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -432,7 +440,9 @@ final class SSHKeysApi extends AbstractApi
     public function deleteSshKeyAsync(
         int $key_id
     ): Promise {
-        return $this->deleteSshKeyAsyncWithHttpInfo($key_id)
+        return $this->deleteSshKeyAsyncWithHttpInfo(
+            $key_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -449,7 +459,9 @@ final class SSHKeysApi extends AbstractApi
         int $key_id
     ): Promise {
         $returnType = '';
-        $request = $this->deleteSshKeyRequest($key_id);
+        $request = $this->deleteSshKeyRequest(
+            $key_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -568,7 +580,9 @@ final class SSHKeysApi extends AbstractApi
     public function getSshKey(
         int $key_id
     ): \Upsun\Model\SSHKey {
-        list($response) = $this->getSshKeyWithHttpInfo($key_id);
+        list($response) = $this->getSshKeyWithHttpInfo(
+            $key_id
+        );
         return $response;
     }
 
@@ -581,17 +595,17 @@ final class SSHKeysApi extends AbstractApi
     public function getSshKeyWithHttpInfo(
         int $key_id
     ): array {
-        $request = $this->getSshKeyRequest($key_id);
+        $request = $this->getSshKeyRequest(
+            $key_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -670,7 +684,9 @@ final class SSHKeysApi extends AbstractApi
     public function getSshKeyAsync(
         int $key_id
     ): Promise {
-        return $this->getSshKeyAsyncWithHttpInfo($key_id)
+        return $this->getSshKeyAsyncWithHttpInfo(
+            $key_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -687,7 +703,9 @@ final class SSHKeysApi extends AbstractApi
         int $key_id
     ): Promise {
         $returnType = '\Upsun\Model\SSHKey';
-        $request = $this->getSshKeyRequest($key_id);
+        $request = $this->getSshKeyRequest(
+            $key_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -817,31 +835,22 @@ final class SSHKeysApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -904,15 +913,5 @@ final class SSHKeysApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

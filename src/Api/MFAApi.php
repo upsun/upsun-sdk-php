@@ -127,7 +127,10 @@ final class MFAApi extends AbstractApi
         string $user_id,
         \Upsun\Model\ConfirmTotpEnrollmentRequest $confirm_totp_enrollment_request = null
     ): \Upsun\Model\ConfirmTotpEnrollment200Response {
-        list($response) = $this->confirmTotpEnrollmentWithHttpInfo($user_id, $confirm_totp_enrollment_request);
+        list($response) = $this->confirmTotpEnrollmentWithHttpInfo(
+            $user_id,
+            $confirm_totp_enrollment_request
+        );
         return $response;
     }
 
@@ -141,17 +144,18 @@ final class MFAApi extends AbstractApi
         string $user_id,
         \Upsun\Model\ConfirmTotpEnrollmentRequest $confirm_totp_enrollment_request = null
     ): array {
-        $request = $this->confirmTotpEnrollmentRequest($user_id, $confirm_totp_enrollment_request);
+        $request = $this->confirmTotpEnrollmentRequest(
+            $user_id,
+            $confirm_totp_enrollment_request
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -273,7 +277,10 @@ final class MFAApi extends AbstractApi
         string $user_id,
         \Upsun\Model\ConfirmTotpEnrollmentRequest $confirm_totp_enrollment_request = null
     ): Promise {
-        return $this->confirmTotpEnrollmentAsyncWithHttpInfo($user_id, $confirm_totp_enrollment_request)
+        return $this->confirmTotpEnrollmentAsyncWithHttpInfo(
+            $user_id,
+            $confirm_totp_enrollment_request
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -291,7 +298,10 @@ final class MFAApi extends AbstractApi
         \Upsun\Model\ConfirmTotpEnrollmentRequest $confirm_totp_enrollment_request = null
     ): Promise {
         $returnType = '\Upsun\Model\ConfirmTotpEnrollment200Response';
-        $request = $this->confirmTotpEnrollmentRequest($user_id, $confirm_totp_enrollment_request);
+        $request = $this->confirmTotpEnrollmentRequest(
+            $user_id,
+            $confirm_totp_enrollment_request
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -427,7 +437,9 @@ final class MFAApi extends AbstractApi
     public function disableOrgMfaEnforcement(
         string $organization_id
     ): void {
-        $this->disableOrgMfaEnforcementWithHttpInfo($organization_id);
+        $this->disableOrgMfaEnforcementWithHttpInfo(
+            $organization_id
+        );
     }
 
     /**
@@ -439,17 +451,17 @@ final class MFAApi extends AbstractApi
     public function disableOrgMfaEnforcementWithHttpInfo(
         string $organization_id
     ): array {
-        $request = $this->disableOrgMfaEnforcementRequest($organization_id);
+        $request = $this->disableOrgMfaEnforcementRequest(
+            $organization_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -501,7 +513,9 @@ final class MFAApi extends AbstractApi
     public function disableOrgMfaEnforcementAsync(
         string $organization_id
     ): Promise {
-        return $this->disableOrgMfaEnforcementAsyncWithHttpInfo($organization_id)
+        return $this->disableOrgMfaEnforcementAsyncWithHttpInfo(
+            $organization_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -518,7 +532,9 @@ final class MFAApi extends AbstractApi
         string $organization_id
     ): Promise {
         $returnType = '';
-        $request = $this->disableOrgMfaEnforcementRequest($organization_id);
+        $request = $this->disableOrgMfaEnforcementRequest(
+            $organization_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -637,7 +653,9 @@ final class MFAApi extends AbstractApi
     public function enableOrgMfaEnforcement(
         string $organization_id
     ): void {
-        $this->enableOrgMfaEnforcementWithHttpInfo($organization_id);
+        $this->enableOrgMfaEnforcementWithHttpInfo(
+            $organization_id
+        );
     }
 
     /**
@@ -649,17 +667,17 @@ final class MFAApi extends AbstractApi
     public function enableOrgMfaEnforcementWithHttpInfo(
         string $organization_id
     ): array {
-        $request = $this->enableOrgMfaEnforcementRequest($organization_id);
+        $request = $this->enableOrgMfaEnforcementRequest(
+            $organization_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -711,7 +729,9 @@ final class MFAApi extends AbstractApi
     public function enableOrgMfaEnforcementAsync(
         string $organization_id
     ): Promise {
-        return $this->enableOrgMfaEnforcementAsyncWithHttpInfo($organization_id)
+        return $this->enableOrgMfaEnforcementAsyncWithHttpInfo(
+            $organization_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -728,7 +748,9 @@ final class MFAApi extends AbstractApi
         string $organization_id
     ): Promise {
         $returnType = '';
-        $request = $this->enableOrgMfaEnforcementRequest($organization_id);
+        $request = $this->enableOrgMfaEnforcementRequest(
+            $organization_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -847,7 +869,9 @@ final class MFAApi extends AbstractApi
     public function getOrgMfaEnforcement(
         string $organization_id
     ): \Upsun\Model\OrganizationMFAEnforcement {
-        list($response) = $this->getOrgMfaEnforcementWithHttpInfo($organization_id);
+        list($response) = $this->getOrgMfaEnforcementWithHttpInfo(
+            $organization_id
+        );
         return $response;
     }
 
@@ -860,17 +884,17 @@ final class MFAApi extends AbstractApi
     public function getOrgMfaEnforcementWithHttpInfo(
         string $organization_id
     ): array {
-        $request = $this->getOrgMfaEnforcementRequest($organization_id);
+        $request = $this->getOrgMfaEnforcementRequest(
+            $organization_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -963,7 +987,9 @@ final class MFAApi extends AbstractApi
     public function getOrgMfaEnforcementAsync(
         string $organization_id
     ): Promise {
-        return $this->getOrgMfaEnforcementAsyncWithHttpInfo($organization_id)
+        return $this->getOrgMfaEnforcementAsyncWithHttpInfo(
+            $organization_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -980,7 +1006,9 @@ final class MFAApi extends AbstractApi
         string $organization_id
     ): Promise {
         $returnType = '\Upsun\Model\OrganizationMFAEnforcement';
-        $request = $this->getOrgMfaEnforcementRequest($organization_id);
+        $request = $this->getOrgMfaEnforcementRequest(
+            $organization_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1109,7 +1137,9 @@ final class MFAApi extends AbstractApi
     public function getTotpEnrollment(
         string $user_id
     ): \Upsun\Model\GetTotpEnrollment200Response {
-        list($response) = $this->getTotpEnrollmentWithHttpInfo($user_id);
+        list($response) = $this->getTotpEnrollmentWithHttpInfo(
+            $user_id
+        );
         return $response;
     }
 
@@ -1122,17 +1152,17 @@ final class MFAApi extends AbstractApi
     public function getTotpEnrollmentWithHttpInfo(
         string $user_id
     ): array {
-        $request = $this->getTotpEnrollmentRequest($user_id);
+        $request = $this->getTotpEnrollmentRequest(
+            $user_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1225,7 +1255,9 @@ final class MFAApi extends AbstractApi
     public function getTotpEnrollmentAsync(
         string $user_id
     ): Promise {
-        return $this->getTotpEnrollmentAsyncWithHttpInfo($user_id)
+        return $this->getTotpEnrollmentAsyncWithHttpInfo(
+            $user_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1242,7 +1274,9 @@ final class MFAApi extends AbstractApi
         string $user_id
     ): Promise {
         $returnType = '\Upsun\Model\GetTotpEnrollment200Response';
-        $request = $this->getTotpEnrollmentRequest($user_id);
+        $request = $this->getTotpEnrollmentRequest(
+            $user_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1371,7 +1405,9 @@ final class MFAApi extends AbstractApi
     public function recreateRecoveryCodes(
         string $user_id
     ): \Upsun\Model\ConfirmTotpEnrollment200Response {
-        list($response) = $this->recreateRecoveryCodesWithHttpInfo($user_id);
+        list($response) = $this->recreateRecoveryCodesWithHttpInfo(
+            $user_id
+        );
         return $response;
     }
 
@@ -1384,17 +1420,17 @@ final class MFAApi extends AbstractApi
     public function recreateRecoveryCodesWithHttpInfo(
         string $user_id
     ): array {
-        $request = $this->recreateRecoveryCodesRequest($user_id);
+        $request = $this->recreateRecoveryCodesRequest(
+            $user_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1487,7 +1523,9 @@ final class MFAApi extends AbstractApi
     public function recreateRecoveryCodesAsync(
         string $user_id
     ): Promise {
-        return $this->recreateRecoveryCodesAsyncWithHttpInfo($user_id)
+        return $this->recreateRecoveryCodesAsyncWithHttpInfo(
+            $user_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1504,7 +1542,9 @@ final class MFAApi extends AbstractApi
         string $user_id
     ): Promise {
         $returnType = '\Upsun\Model\ConfirmTotpEnrollment200Response';
-        $request = $this->recreateRecoveryCodesRequest($user_id);
+        $request = $this->recreateRecoveryCodesRequest(
+            $user_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1636,7 +1676,10 @@ final class MFAApi extends AbstractApi
         string $organization_id,
         \Upsun\Model\SendOrgMfaRemindersRequest $send_org_mfa_reminders_request = null
     ): array {
-        list($response) = $this->sendOrgMfaRemindersWithHttpInfo($organization_id, $send_org_mfa_reminders_request);
+        list($response) = $this->sendOrgMfaRemindersWithHttpInfo(
+            $organization_id,
+            $send_org_mfa_reminders_request
+        );
         return $response;
     }
 
@@ -1650,17 +1693,18 @@ final class MFAApi extends AbstractApi
         string $organization_id,
         \Upsun\Model\SendOrgMfaRemindersRequest $send_org_mfa_reminders_request = null
     ): array {
-        $request = $this->sendOrgMfaRemindersRequest($organization_id, $send_org_mfa_reminders_request);
+        $request = $this->sendOrgMfaRemindersRequest(
+            $organization_id,
+            $send_org_mfa_reminders_request
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1768,7 +1812,10 @@ final class MFAApi extends AbstractApi
         string $organization_id,
         \Upsun\Model\SendOrgMfaRemindersRequest $send_org_mfa_reminders_request = null
     ): Promise {
-        return $this->sendOrgMfaRemindersAsyncWithHttpInfo($organization_id, $send_org_mfa_reminders_request)
+        return $this->sendOrgMfaRemindersAsyncWithHttpInfo(
+            $organization_id,
+            $send_org_mfa_reminders_request
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1786,7 +1833,10 @@ final class MFAApi extends AbstractApi
         \Upsun\Model\SendOrgMfaRemindersRequest $send_org_mfa_reminders_request = null
     ): Promise {
         $returnType = 'array<string,\Upsun\Model\SendOrgMfaReminders200ResponseValue>';
-        $request = $this->sendOrgMfaRemindersRequest($organization_id, $send_org_mfa_reminders_request);
+        $request = $this->sendOrgMfaRemindersRequest(
+            $organization_id,
+            $send_org_mfa_reminders_request
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1922,7 +1972,9 @@ final class MFAApi extends AbstractApi
     public function withdrawTotpEnrollment(
         string $user_id
     ): void {
-        $this->withdrawTotpEnrollmentWithHttpInfo($user_id);
+        $this->withdrawTotpEnrollmentWithHttpInfo(
+            $user_id
+        );
     }
 
     /**
@@ -1934,17 +1986,17 @@ final class MFAApi extends AbstractApi
     public function withdrawTotpEnrollmentWithHttpInfo(
         string $user_id
     ): array {
-        $request = $this->withdrawTotpEnrollmentRequest($user_id);
+        $request = $this->withdrawTotpEnrollmentRequest(
+            $user_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1996,7 +2048,9 @@ final class MFAApi extends AbstractApi
     public function withdrawTotpEnrollmentAsync(
         string $user_id
     ): Promise {
-        return $this->withdrawTotpEnrollmentAsyncWithHttpInfo($user_id)
+        return $this->withdrawTotpEnrollmentAsyncWithHttpInfo(
+            $user_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2013,7 +2067,9 @@ final class MFAApi extends AbstractApi
         string $user_id
     ): Promise {
         $returnType = '';
-        $request = $this->withdrawTotpEnrollmentRequest($user_id);
+        $request = $this->withdrawTotpEnrollmentRequest(
+            $user_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -2133,31 +2189,22 @@ final class MFAApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -2220,15 +2267,5 @@ final class MFAApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

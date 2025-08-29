@@ -134,7 +134,17 @@ final class RecordsApi extends AbstractApi
         \DateTime $filter_ended_at = null,
         int $page = null
     ): \Upsun\Model\ListOrgPlanRecords200Response {
-        list($response) = $this->listOrgPlanRecordsWithHttpInfo($organization_id, $filter_subscription_id, $filter_plan, $filter_status, $filter_start, $filter_end, $filter_started_at, $filter_ended_at, $page);
+        list($response) = $this->listOrgPlanRecordsWithHttpInfo(
+            $organization_id,
+            $filter_subscription_id,
+            $filter_plan,
+            $filter_status,
+            $filter_start,
+            $filter_end,
+            $filter_started_at,
+            $filter_ended_at,
+            $page
+        );
         return $response;
     }
 
@@ -155,17 +165,25 @@ final class RecordsApi extends AbstractApi
         \DateTime $filter_ended_at = null,
         int $page = null
     ): array {
-        $request = $this->listOrgPlanRecordsRequest($organization_id, $filter_subscription_id, $filter_plan, $filter_status, $filter_start, $filter_end, $filter_started_at, $filter_ended_at, $page);
+        $request = $this->listOrgPlanRecordsRequest(
+            $organization_id,
+            $filter_subscription_id,
+            $filter_plan,
+            $filter_status,
+            $filter_start,
+            $filter_end,
+            $filter_started_at,
+            $filter_ended_at,
+            $page
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -280,7 +298,17 @@ final class RecordsApi extends AbstractApi
         \DateTime $filter_ended_at = null,
         int $page = null
     ): Promise {
-        return $this->listOrgPlanRecordsAsyncWithHttpInfo($organization_id, $filter_subscription_id, $filter_plan, $filter_status, $filter_start, $filter_end, $filter_started_at, $filter_ended_at, $page)
+        return $this->listOrgPlanRecordsAsyncWithHttpInfo(
+            $organization_id,
+            $filter_subscription_id,
+            $filter_plan,
+            $filter_status,
+            $filter_start,
+            $filter_end,
+            $filter_started_at,
+            $filter_ended_at,
+            $page
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -305,7 +333,17 @@ final class RecordsApi extends AbstractApi
         int $page = null
     ): Promise {
         $returnType = '\Upsun\Model\ListOrgPlanRecords200Response';
-        $request = $this->listOrgPlanRecordsRequest($organization_id, $filter_subscription_id, $filter_plan, $filter_status, $filter_start, $filter_end, $filter_started_at, $filter_ended_at, $page);
+        $request = $this->listOrgPlanRecordsRequest(
+            $organization_id,
+            $filter_subscription_id,
+            $filter_plan,
+            $filter_status,
+            $filter_start,
+            $filter_end,
+            $filter_started_at,
+            $filter_ended_at,
+            $page
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -379,7 +417,7 @@ final class RecordsApi extends AbstractApi
                 $queryParams['filter[subscription_id]'] = $filter_subscription_id;
             }
         }
-        
+
         // query params
         if ($filter_plan !== null) {
             if ('form' === 'form' && is_array($filter_plan)) {
@@ -390,7 +428,7 @@ final class RecordsApi extends AbstractApi
                 $queryParams['filter[plan]'] = $filter_plan;
             }
         }
-        
+
         // query params
         if ($filter_status !== null) {
             if ('form' === 'form' && is_array($filter_status)) {
@@ -401,7 +439,7 @@ final class RecordsApi extends AbstractApi
                 $queryParams['filter[status]'] = $filter_status;
             }
         }
-        
+
         // query params
         if ($filter_start !== null) {
             if ('form' === 'form' && is_array($filter_start)) {
@@ -412,7 +450,7 @@ final class RecordsApi extends AbstractApi
                 $queryParams['filter[start]'] = $filter_start;
             }
         }
-        
+
         // query params
         if ($filter_end !== null) {
             if ('form' === 'form' && is_array($filter_end)) {
@@ -423,7 +461,7 @@ final class RecordsApi extends AbstractApi
                 $queryParams['filter[end]'] = $filter_end;
             }
         }
-        
+
         // query params
         if ($filter_started_at !== null) {
             if ('form' === 'form' && is_array($filter_started_at)) {
@@ -434,7 +472,7 @@ final class RecordsApi extends AbstractApi
                 $queryParams['filter[started_at]'] = $filter_started_at;
             }
         }
-        
+
         // query params
         if ($filter_ended_at !== null) {
             if ('form' === 'form' && is_array($filter_ended_at)) {
@@ -445,7 +483,7 @@ final class RecordsApi extends AbstractApi
                 $queryParams['filter[ended_at]'] = $filter_ended_at;
             }
         }
-        
+
         // query params
         if ($page !== null) {
             if ('form' === 'form' && is_array($page)) {
@@ -456,7 +494,7 @@ final class RecordsApi extends AbstractApi
                 $queryParams['page'] = $page;
             }
         }
-        
+
 
 
         // path params
@@ -535,7 +573,14 @@ final class RecordsApi extends AbstractApi
         \DateTime $filter_started_at = null,
         int $page = null
     ): \Upsun\Model\ListOrgUsageRecords200Response {
-        list($response) = $this->listOrgUsageRecordsWithHttpInfo($organization_id, $filter_subscription_id, $filter_usage_group, $filter_start, $filter_started_at, $page);
+        list($response) = $this->listOrgUsageRecordsWithHttpInfo(
+            $organization_id,
+            $filter_subscription_id,
+            $filter_usage_group,
+            $filter_start,
+            $filter_started_at,
+            $page
+        );
         return $response;
     }
 
@@ -553,17 +598,22 @@ final class RecordsApi extends AbstractApi
         \DateTime $filter_started_at = null,
         int $page = null
     ): array {
-        $request = $this->listOrgUsageRecordsRequest($organization_id, $filter_subscription_id, $filter_usage_group, $filter_start, $filter_started_at, $page);
+        $request = $this->listOrgUsageRecordsRequest(
+            $organization_id,
+            $filter_subscription_id,
+            $filter_usage_group,
+            $filter_start,
+            $filter_started_at,
+            $page
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -675,7 +725,14 @@ final class RecordsApi extends AbstractApi
         \DateTime $filter_started_at = null,
         int $page = null
     ): Promise {
-        return $this->listOrgUsageRecordsAsyncWithHttpInfo($organization_id, $filter_subscription_id, $filter_usage_group, $filter_start, $filter_started_at, $page)
+        return $this->listOrgUsageRecordsAsyncWithHttpInfo(
+            $organization_id,
+            $filter_subscription_id,
+            $filter_usage_group,
+            $filter_start,
+            $filter_started_at,
+            $page
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -697,7 +754,14 @@ final class RecordsApi extends AbstractApi
         int $page = null
     ): Promise {
         $returnType = '\Upsun\Model\ListOrgUsageRecords200Response';
-        $request = $this->listOrgUsageRecordsRequest($organization_id, $filter_subscription_id, $filter_usage_group, $filter_start, $filter_started_at, $page);
+        $request = $this->listOrgUsageRecordsRequest(
+            $organization_id,
+            $filter_subscription_id,
+            $filter_usage_group,
+            $filter_start,
+            $filter_started_at,
+            $page
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -768,7 +832,7 @@ final class RecordsApi extends AbstractApi
                 $queryParams['filter[subscription_id]'] = $filter_subscription_id;
             }
         }
-        
+
         // query params
         if ($filter_usage_group !== null) {
             if ('form' === 'form' && is_array($filter_usage_group)) {
@@ -779,7 +843,7 @@ final class RecordsApi extends AbstractApi
                 $queryParams['filter[usage_group]'] = $filter_usage_group;
             }
         }
-        
+
         // query params
         if ($filter_start !== null) {
             if ('form' === 'form' && is_array($filter_start)) {
@@ -790,7 +854,7 @@ final class RecordsApi extends AbstractApi
                 $queryParams['filter[start]'] = $filter_start;
             }
         }
-        
+
         // query params
         if ($filter_started_at !== null) {
             if ('form' === 'form' && is_array($filter_started_at)) {
@@ -801,7 +865,7 @@ final class RecordsApi extends AbstractApi
                 $queryParams['filter[started_at]'] = $filter_started_at;
             }
         }
-        
+
         // query params
         if ($page !== null) {
             if ('form' === 'form' && is_array($page)) {
@@ -812,7 +876,7 @@ final class RecordsApi extends AbstractApi
                 $queryParams['page'] = $page;
             }
         }
-        
+
 
 
         // path params
@@ -887,31 +951,22 @@ final class RecordsApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -974,15 +1029,5 @@ final class RecordsApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

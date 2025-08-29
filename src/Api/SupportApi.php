@@ -126,7 +126,9 @@ final class SupportApi extends AbstractApi
     public function createTicket(
         \Upsun\Model\CreateTicketRequest $create_ticket_request = null
     ): \Upsun\Model\Ticket {
-        list($response) = $this->createTicketWithHttpInfo($create_ticket_request);
+        list($response) = $this->createTicketWithHttpInfo(
+            $create_ticket_request
+        );
         return $response;
     }
 
@@ -139,17 +141,17 @@ final class SupportApi extends AbstractApi
     public function createTicketWithHttpInfo(
         \Upsun\Model\CreateTicketRequest $create_ticket_request = null
     ): array {
-        $request = $this->createTicketRequest($create_ticket_request);
+        $request = $this->createTicketRequest(
+            $create_ticket_request
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -228,7 +230,9 @@ final class SupportApi extends AbstractApi
     public function createTicketAsync(
         \Upsun\Model\CreateTicketRequest $create_ticket_request = null
     ): Promise {
-        return $this->createTicketAsyncWithHttpInfo($create_ticket_request)
+        return $this->createTicketAsyncWithHttpInfo(
+            $create_ticket_request
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -245,7 +249,9 @@ final class SupportApi extends AbstractApi
         \Upsun\Model\CreateTicketRequest $create_ticket_request = null
     ): Promise {
         $returnType = '\Upsun\Model\Ticket';
-        $request = $this->createTicketRequest($create_ticket_request);
+        $request = $this->createTicketRequest(
+            $create_ticket_request
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -369,7 +375,10 @@ final class SupportApi extends AbstractApi
         string $subscription_id = null,
         string $organization_id = null
     ): array {
-        list($response) = $this->listTicketCategoriesWithHttpInfo($subscription_id, $organization_id);
+        list($response) = $this->listTicketCategoriesWithHttpInfo(
+            $subscription_id,
+            $organization_id
+        );
         return $response;
     }
 
@@ -383,17 +392,18 @@ final class SupportApi extends AbstractApi
         string $subscription_id = null,
         string $organization_id = null
     ): array {
-        $request = $this->listTicketCategoriesRequest($subscription_id, $organization_id);
+        $request = $this->listTicketCategoriesRequest(
+            $subscription_id,
+            $organization_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -473,7 +483,10 @@ final class SupportApi extends AbstractApi
         string $subscription_id = null,
         string $organization_id = null
     ): Promise {
-        return $this->listTicketCategoriesAsyncWithHttpInfo($subscription_id, $organization_id)
+        return $this->listTicketCategoriesAsyncWithHttpInfo(
+            $subscription_id,
+            $organization_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -491,7 +504,10 @@ final class SupportApi extends AbstractApi
         string $organization_id = null
     ): Promise {
         $returnType = '\Upsun\Model\ListTicketCategories200ResponseInner[]';
-        $request = $this->listTicketCategoriesRequest($subscription_id, $organization_id);
+        $request = $this->listTicketCategoriesRequest(
+            $subscription_id,
+            $organization_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -552,7 +568,7 @@ final class SupportApi extends AbstractApi
                 $queryParams['subscription_id'] = $subscription_id;
             }
         }
-        
+
         // query params
         if ($organization_id !== null) {
             if ('form' === 'form' && is_array($organization_id)) {
@@ -563,7 +579,7 @@ final class SupportApi extends AbstractApi
                 $queryParams['organization_id'] = $organization_id;
             }
         }
-        
+
 
 
 
@@ -632,7 +648,10 @@ final class SupportApi extends AbstractApi
         string $subscription_id = null,
         string $category = null
     ): array {
-        list($response) = $this->listTicketPrioritiesWithHttpInfo($subscription_id, $category);
+        list($response) = $this->listTicketPrioritiesWithHttpInfo(
+            $subscription_id,
+            $category
+        );
         return $response;
     }
 
@@ -646,17 +665,18 @@ final class SupportApi extends AbstractApi
         string $subscription_id = null,
         string $category = null
     ): array {
-        $request = $this->listTicketPrioritiesRequest($subscription_id, $category);
+        $request = $this->listTicketPrioritiesRequest(
+            $subscription_id,
+            $category
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -736,7 +756,10 @@ final class SupportApi extends AbstractApi
         string $subscription_id = null,
         string $category = null
     ): Promise {
-        return $this->listTicketPrioritiesAsyncWithHttpInfo($subscription_id, $category)
+        return $this->listTicketPrioritiesAsyncWithHttpInfo(
+            $subscription_id,
+            $category
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -754,7 +777,10 @@ final class SupportApi extends AbstractApi
         string $category = null
     ): Promise {
         $returnType = '\Upsun\Model\ListTicketPriorities200ResponseInner[]';
-        $request = $this->listTicketPrioritiesRequest($subscription_id, $category);
+        $request = $this->listTicketPrioritiesRequest(
+            $subscription_id,
+            $category
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -815,7 +841,7 @@ final class SupportApi extends AbstractApi
                 $queryParams['subscription_id'] = $subscription_id;
             }
         }
-        
+
         // query params
         if ($category !== null) {
             if ('form' === 'form' && is_array($category)) {
@@ -826,7 +852,7 @@ final class SupportApi extends AbstractApi
                 $queryParams['category'] = $category;
             }
         }
-        
+
 
 
 
@@ -893,7 +919,10 @@ final class SupportApi extends AbstractApi
         string $ticket_id,
         \Upsun\Model\UpdateTicketRequest $update_ticket_request = null
     ): \Upsun\Model\Ticket {
-        list($response) = $this->updateTicketWithHttpInfo($ticket_id, $update_ticket_request);
+        list($response) = $this->updateTicketWithHttpInfo(
+            $ticket_id,
+            $update_ticket_request
+        );
         return $response;
     }
 
@@ -907,17 +936,18 @@ final class SupportApi extends AbstractApi
         string $ticket_id,
         \Upsun\Model\UpdateTicketRequest $update_ticket_request = null
     ): array {
-        $request = $this->updateTicketRequest($ticket_id, $update_ticket_request);
+        $request = $this->updateTicketRequest(
+            $ticket_id,
+            $update_ticket_request
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -997,7 +1027,10 @@ final class SupportApi extends AbstractApi
         string $ticket_id,
         \Upsun\Model\UpdateTicketRequest $update_ticket_request = null
     ): Promise {
-        return $this->updateTicketAsyncWithHttpInfo($ticket_id, $update_ticket_request)
+        return $this->updateTicketAsyncWithHttpInfo(
+            $ticket_id,
+            $update_ticket_request
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1015,7 +1048,10 @@ final class SupportApi extends AbstractApi
         \Upsun\Model\UpdateTicketRequest $update_ticket_request = null
     ): Promise {
         $returnType = '\Upsun\Model\Ticket';
-        $request = $this->updateTicketRequest($ticket_id, $update_ticket_request);
+        $request = $this->updateTicketRequest(
+            $ticket_id,
+            $update_ticket_request
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1152,31 +1188,22 @@ final class SupportApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -1239,15 +1266,5 @@ final class SupportApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

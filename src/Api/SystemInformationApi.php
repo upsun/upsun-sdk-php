@@ -126,7 +126,9 @@ final class SystemInformationApi extends AbstractApi
     public function actionProjectsSystemRestart(
         string $project_id
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->actionProjectsSystemRestartWithHttpInfo($project_id);
+        list($response) = $this->actionProjectsSystemRestartWithHttpInfo(
+            $project_id
+        );
         return $response;
     }
 
@@ -139,17 +141,17 @@ final class SystemInformationApi extends AbstractApi
     public function actionProjectsSystemRestartWithHttpInfo(
         string $project_id
     ): array {
-        $request = $this->actionProjectsSystemRestartRequest($project_id);
+        $request = $this->actionProjectsSystemRestartRequest(
+            $project_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -228,7 +230,9 @@ final class SystemInformationApi extends AbstractApi
     public function actionProjectsSystemRestartAsync(
         string $project_id
     ): Promise {
-        return $this->actionProjectsSystemRestartAsyncWithHttpInfo($project_id)
+        return $this->actionProjectsSystemRestartAsyncWithHttpInfo(
+            $project_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -245,7 +249,9 @@ final class SystemInformationApi extends AbstractApi
         string $project_id
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->actionProjectsSystemRestartRequest($project_id);
+        $request = $this->actionProjectsSystemRestartRequest(
+            $project_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -374,7 +380,9 @@ final class SystemInformationApi extends AbstractApi
     public function getProjectsSystem(
         string $project_id
     ): \Upsun\Model\SystemInformation {
-        list($response) = $this->getProjectsSystemWithHttpInfo($project_id);
+        list($response) = $this->getProjectsSystemWithHttpInfo(
+            $project_id
+        );
         return $response;
     }
 
@@ -387,17 +395,17 @@ final class SystemInformationApi extends AbstractApi
     public function getProjectsSystemWithHttpInfo(
         string $project_id
     ): array {
-        $request = $this->getProjectsSystemRequest($project_id);
+        $request = $this->getProjectsSystemRequest(
+            $project_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -476,7 +484,9 @@ final class SystemInformationApi extends AbstractApi
     public function getProjectsSystemAsync(
         string $project_id
     ): Promise {
-        return $this->getProjectsSystemAsyncWithHttpInfo($project_id)
+        return $this->getProjectsSystemAsyncWithHttpInfo(
+            $project_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -493,7 +503,9 @@ final class SystemInformationApi extends AbstractApi
         string $project_id
     ): Promise {
         $returnType = '\Upsun\Model\SystemInformation';
-        $request = $this->getProjectsSystemRequest($project_id);
+        $request = $this->getProjectsSystemRequest(
+            $project_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -623,31 +635,22 @@ final class SystemInformationApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -710,15 +713,5 @@ final class SystemInformationApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

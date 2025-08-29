@@ -126,7 +126,9 @@ final class SubscriptionsApi extends AbstractApi
     public function canCreateNewOrgSubscription(
         string $organization_id
     ): \Upsun\Model\CanCreateNewOrgSubscription200Response {
-        list($response) = $this->canCreateNewOrgSubscriptionWithHttpInfo($organization_id);
+        list($response) = $this->canCreateNewOrgSubscriptionWithHttpInfo(
+            $organization_id
+        );
         return $response;
     }
 
@@ -139,17 +141,17 @@ final class SubscriptionsApi extends AbstractApi
     public function canCreateNewOrgSubscriptionWithHttpInfo(
         string $organization_id
     ): array {
-        $request = $this->canCreateNewOrgSubscriptionRequest($organization_id);
+        $request = $this->canCreateNewOrgSubscriptionRequest(
+            $organization_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -256,7 +258,9 @@ final class SubscriptionsApi extends AbstractApi
     public function canCreateNewOrgSubscriptionAsync(
         string $organization_id
     ): Promise {
-        return $this->canCreateNewOrgSubscriptionAsyncWithHttpInfo($organization_id)
+        return $this->canCreateNewOrgSubscriptionAsyncWithHttpInfo(
+            $organization_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -273,7 +277,9 @@ final class SubscriptionsApi extends AbstractApi
         string $organization_id
     ): Promise {
         $returnType = '\Upsun\Model\CanCreateNewOrgSubscription200Response';
-        $request = $this->canCreateNewOrgSubscriptionRequest($organization_id);
+        $request = $this->canCreateNewOrgSubscriptionRequest(
+            $organization_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -403,7 +409,10 @@ final class SubscriptionsApi extends AbstractApi
         string $organization_id,
         \Upsun\Model\CreateOrgSubscriptionRequest $create_org_subscription_request
     ): \Upsun\Model\Subscription {
-        list($response) = $this->createOrgSubscriptionWithHttpInfo($organization_id, $create_org_subscription_request);
+        list($response) = $this->createOrgSubscriptionWithHttpInfo(
+            $organization_id,
+            $create_org_subscription_request
+        );
         return $response;
     }
 
@@ -417,17 +426,18 @@ final class SubscriptionsApi extends AbstractApi
         string $organization_id,
         \Upsun\Model\CreateOrgSubscriptionRequest $create_org_subscription_request
     ): array {
-        $request = $this->createOrgSubscriptionRequest($organization_id, $create_org_subscription_request);
+        $request = $this->createOrgSubscriptionRequest(
+            $organization_id,
+            $create_org_subscription_request
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -549,7 +559,10 @@ final class SubscriptionsApi extends AbstractApi
         string $organization_id,
         \Upsun\Model\CreateOrgSubscriptionRequest $create_org_subscription_request
     ): Promise {
-        return $this->createOrgSubscriptionAsyncWithHttpInfo($organization_id, $create_org_subscription_request)
+        return $this->createOrgSubscriptionAsyncWithHttpInfo(
+            $organization_id,
+            $create_org_subscription_request
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -567,7 +580,10 @@ final class SubscriptionsApi extends AbstractApi
         \Upsun\Model\CreateOrgSubscriptionRequest $create_org_subscription_request
     ): Promise {
         $returnType = '\Upsun\Model\Subscription';
-        $request = $this->createOrgSubscriptionRequest($organization_id, $create_org_subscription_request);
+        $request = $this->createOrgSubscriptionRequest(
+            $organization_id,
+            $create_org_subscription_request
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -710,7 +726,10 @@ final class SubscriptionsApi extends AbstractApi
         string $organization_id,
         string $subscription_id
     ): void {
-        $this->deleteOrgSubscriptionWithHttpInfo($organization_id, $subscription_id);
+        $this->deleteOrgSubscriptionWithHttpInfo(
+            $organization_id,
+            $subscription_id
+        );
     }
 
     /**
@@ -723,17 +742,18 @@ final class SubscriptionsApi extends AbstractApi
         string $organization_id,
         string $subscription_id
     ): array {
-        $request = $this->deleteOrgSubscriptionRequest($organization_id, $subscription_id);
+        $request = $this->deleteOrgSubscriptionRequest(
+            $organization_id,
+            $subscription_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -794,7 +814,10 @@ final class SubscriptionsApi extends AbstractApi
         string $organization_id,
         string $subscription_id
     ): Promise {
-        return $this->deleteOrgSubscriptionAsyncWithHttpInfo($organization_id, $subscription_id)
+        return $this->deleteOrgSubscriptionAsyncWithHttpInfo(
+            $organization_id,
+            $subscription_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -812,7 +835,10 @@ final class SubscriptionsApi extends AbstractApi
         string $subscription_id
     ): Promise {
         $returnType = '';
-        $request = $this->deleteOrgSubscriptionRequest($organization_id, $subscription_id);
+        $request = $this->deleteOrgSubscriptionRequest(
+            $organization_id,
+            $subscription_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -951,7 +977,14 @@ final class SubscriptionsApi extends AbstractApi
         int $user_licenses,
         string $format = null
     ): \Upsun\Model\EstimationObject {
-        list($response) = $this->estimateNewOrgSubscriptionWithHttpInfo($organization_id, $plan, $environments, $storage, $user_licenses, $format);
+        list($response) = $this->estimateNewOrgSubscriptionWithHttpInfo(
+            $organization_id,
+            $plan,
+            $environments,
+            $storage,
+            $user_licenses,
+            $format
+        );
         return $response;
     }
 
@@ -969,17 +1002,22 @@ final class SubscriptionsApi extends AbstractApi
         int $user_licenses,
         string $format = null
     ): array {
-        $request = $this->estimateNewOrgSubscriptionRequest($organization_id, $plan, $environments, $storage, $user_licenses, $format);
+        $request = $this->estimateNewOrgSubscriptionRequest(
+            $organization_id,
+            $plan,
+            $environments,
+            $storage,
+            $user_licenses,
+            $format
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1091,7 +1129,14 @@ final class SubscriptionsApi extends AbstractApi
         int $user_licenses,
         string $format = null
     ): Promise {
-        return $this->estimateNewOrgSubscriptionAsyncWithHttpInfo($organization_id, $plan, $environments, $storage, $user_licenses, $format)
+        return $this->estimateNewOrgSubscriptionAsyncWithHttpInfo(
+            $organization_id,
+            $plan,
+            $environments,
+            $storage,
+            $user_licenses,
+            $format
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1113,7 +1158,14 @@ final class SubscriptionsApi extends AbstractApi
         string $format = null
     ): Promise {
         $returnType = '\Upsun\Model\EstimationObject';
-        $request = $this->estimateNewOrgSubscriptionRequest($organization_id, $plan, $environments, $storage, $user_licenses, $format);
+        $request = $this->estimateNewOrgSubscriptionRequest(
+            $organization_id,
+            $plan,
+            $environments,
+            $storage,
+            $user_licenses,
+            $format
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1208,7 +1260,7 @@ final class SubscriptionsApi extends AbstractApi
                 $queryParams['plan'] = $plan;
             }
         }
-        
+
         // query params
         if ($environments !== null) {
             if ('form' === 'form' && is_array($environments)) {
@@ -1219,7 +1271,7 @@ final class SubscriptionsApi extends AbstractApi
                 $queryParams['environments'] = $environments;
             }
         }
-        
+
         // query params
         if ($storage !== null) {
             if ('form' === 'form' && is_array($storage)) {
@@ -1230,7 +1282,7 @@ final class SubscriptionsApi extends AbstractApi
                 $queryParams['storage'] = $storage;
             }
         }
-        
+
         // query params
         if ($user_licenses !== null) {
             if ('form' === 'form' && is_array($user_licenses)) {
@@ -1241,7 +1293,7 @@ final class SubscriptionsApi extends AbstractApi
                 $queryParams['user_licenses'] = $user_licenses;
             }
         }
-        
+
         // query params
         if ($format !== null) {
             if ('form' === 'form' && is_array($format)) {
@@ -1252,7 +1304,7 @@ final class SubscriptionsApi extends AbstractApi
                 $queryParams['format'] = $format;
             }
         }
-        
+
 
 
         // path params
@@ -1332,7 +1384,15 @@ final class SubscriptionsApi extends AbstractApi
         int $user_licenses = null,
         string $format = null
     ): \Upsun\Model\EstimationObject {
-        list($response) = $this->estimateOrgSubscriptionWithHttpInfo($organization_id, $subscription_id, $plan, $environments, $storage, $user_licenses, $format);
+        list($response) = $this->estimateOrgSubscriptionWithHttpInfo(
+            $organization_id,
+            $subscription_id,
+            $plan,
+            $environments,
+            $storage,
+            $user_licenses,
+            $format
+        );
         return $response;
     }
 
@@ -1351,17 +1411,23 @@ final class SubscriptionsApi extends AbstractApi
         int $user_licenses = null,
         string $format = null
     ): array {
-        $request = $this->estimateOrgSubscriptionRequest($organization_id, $subscription_id, $plan, $environments, $storage, $user_licenses, $format);
+        $request = $this->estimateOrgSubscriptionRequest(
+            $organization_id,
+            $subscription_id,
+            $plan,
+            $environments,
+            $storage,
+            $user_licenses,
+            $format
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1460,7 +1526,15 @@ final class SubscriptionsApi extends AbstractApi
         int $user_licenses = null,
         string $format = null
     ): Promise {
-        return $this->estimateOrgSubscriptionAsyncWithHttpInfo($organization_id, $subscription_id, $plan, $environments, $storage, $user_licenses, $format)
+        return $this->estimateOrgSubscriptionAsyncWithHttpInfo(
+            $organization_id,
+            $subscription_id,
+            $plan,
+            $environments,
+            $storage,
+            $user_licenses,
+            $format
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1483,7 +1557,15 @@ final class SubscriptionsApi extends AbstractApi
         string $format = null
     ): Promise {
         $returnType = '\Upsun\Model\EstimationObject';
-        $request = $this->estimateOrgSubscriptionRequest($organization_id, $subscription_id, $plan, $environments, $storage, $user_licenses, $format);
+        $request = $this->estimateOrgSubscriptionRequest(
+            $organization_id,
+            $subscription_id,
+            $plan,
+            $environments,
+            $storage,
+            $user_licenses,
+            $format
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1567,7 +1649,7 @@ final class SubscriptionsApi extends AbstractApi
                 $queryParams['plan'] = $plan;
             }
         }
-        
+
         // query params
         if ($environments !== null) {
             if ('form' === 'form' && is_array($environments)) {
@@ -1578,7 +1660,7 @@ final class SubscriptionsApi extends AbstractApi
                 $queryParams['environments'] = $environments;
             }
         }
-        
+
         // query params
         if ($storage !== null) {
             if ('form' === 'form' && is_array($storage)) {
@@ -1589,7 +1671,7 @@ final class SubscriptionsApi extends AbstractApi
                 $queryParams['storage'] = $storage;
             }
         }
-        
+
         // query params
         if ($user_licenses !== null) {
             if ('form' === 'form' && is_array($user_licenses)) {
@@ -1600,7 +1682,7 @@ final class SubscriptionsApi extends AbstractApi
                 $queryParams['user_licenses'] = $user_licenses;
             }
         }
-        
+
         // query params
         if ($format !== null) {
             if ('form' === 'form' && is_array($format)) {
@@ -1611,7 +1693,7 @@ final class SubscriptionsApi extends AbstractApi
                 $queryParams['format'] = $format;
             }
         }
-        
+
 
 
         // path params
@@ -1694,7 +1776,10 @@ final class SubscriptionsApi extends AbstractApi
         string $organization_id,
         string $subscription_id
     ): \Upsun\Model\Subscription {
-        list($response) = $this->getOrgSubscriptionWithHttpInfo($organization_id, $subscription_id);
+        list($response) = $this->getOrgSubscriptionWithHttpInfo(
+            $organization_id,
+            $subscription_id
+        );
         return $response;
     }
 
@@ -1708,17 +1793,18 @@ final class SubscriptionsApi extends AbstractApi
         string $organization_id,
         string $subscription_id
     ): array {
-        $request = $this->getOrgSubscriptionRequest($organization_id, $subscription_id);
+        $request = $this->getOrgSubscriptionRequest(
+            $organization_id,
+            $subscription_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1826,7 +1912,10 @@ final class SubscriptionsApi extends AbstractApi
         string $organization_id,
         string $subscription_id
     ): Promise {
-        return $this->getOrgSubscriptionAsyncWithHttpInfo($organization_id, $subscription_id)
+        return $this->getOrgSubscriptionAsyncWithHttpInfo(
+            $organization_id,
+            $subscription_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1844,7 +1933,10 @@ final class SubscriptionsApi extends AbstractApi
         string $subscription_id
     ): Promise {
         $returnType = '\Upsun\Model\Subscription';
-        $request = $this->getOrgSubscriptionRequest($organization_id, $subscription_id);
+        $request = $this->getOrgSubscriptionRequest(
+            $organization_id,
+            $subscription_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1991,7 +2083,12 @@ final class SubscriptionsApi extends AbstractApi
         string $usage_groups = null,
         bool $include_not_charged = null
     ): \Upsun\Model\SubscriptionCurrentUsageObject {
-        list($response) = $this->getOrgSubscriptionCurrentUsageWithHttpInfo($organization_id, $subscription_id, $usage_groups, $include_not_charged);
+        list($response) = $this->getOrgSubscriptionCurrentUsageWithHttpInfo(
+            $organization_id,
+            $subscription_id,
+            $usage_groups,
+            $include_not_charged
+        );
         return $response;
     }
 
@@ -2007,17 +2104,20 @@ final class SubscriptionsApi extends AbstractApi
         string $usage_groups = null,
         bool $include_not_charged = null
     ): array {
-        $request = $this->getOrgSubscriptionCurrentUsageRequest($organization_id, $subscription_id, $usage_groups, $include_not_charged);
+        $request = $this->getOrgSubscriptionCurrentUsageRequest(
+            $organization_id,
+            $subscription_id,
+            $usage_groups,
+            $include_not_charged
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -2113,7 +2213,12 @@ final class SubscriptionsApi extends AbstractApi
         string $usage_groups = null,
         bool $include_not_charged = null
     ): Promise {
-        return $this->getOrgSubscriptionCurrentUsageAsyncWithHttpInfo($organization_id, $subscription_id, $usage_groups, $include_not_charged)
+        return $this->getOrgSubscriptionCurrentUsageAsyncWithHttpInfo(
+            $organization_id,
+            $subscription_id,
+            $usage_groups,
+            $include_not_charged
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2133,7 +2238,12 @@ final class SubscriptionsApi extends AbstractApi
         bool $include_not_charged = null
     ): Promise {
         $returnType = '\Upsun\Model\SubscriptionCurrentUsageObject';
-        $request = $this->getOrgSubscriptionCurrentUsageRequest($organization_id, $subscription_id, $usage_groups, $include_not_charged);
+        $request = $this->getOrgSubscriptionCurrentUsageRequest(
+            $organization_id,
+            $subscription_id,
+            $usage_groups,
+            $include_not_charged
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -2208,7 +2318,7 @@ final class SubscriptionsApi extends AbstractApi
                 $queryParams['usage_groups'] = $usage_groups;
             }
         }
-        
+
         // query params
         if ($include_not_charged !== null) {
             if ('form' === 'form' && is_array($include_not_charged)) {
@@ -2219,7 +2329,7 @@ final class SubscriptionsApi extends AbstractApi
                 $queryParams['include_not_charged'] = $include_not_charged;
             }
         }
-        
+
 
 
         // path params
@@ -2311,7 +2421,19 @@ final class SubscriptionsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): \Upsun\Model\ListOrgSubscriptions200Response {
-        list($response) = $this->listOrgSubscriptionsWithHttpInfo($organization_id, $filter_status, $filter_id, $filter_project_id, $filter_project_title, $filter_region, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+        list($response) = $this->listOrgSubscriptionsWithHttpInfo(
+            $organization_id,
+            $filter_status,
+            $filter_id,
+            $filter_project_id,
+            $filter_project_title,
+            $filter_region,
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
         return $response;
     }
 
@@ -2334,17 +2456,27 @@ final class SubscriptionsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): array {
-        $request = $this->listOrgSubscriptionsRequest($organization_id, $filter_status, $filter_id, $filter_project_id, $filter_project_title, $filter_region, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+        $request = $this->listOrgSubscriptionsRequest(
+            $organization_id,
+            $filter_status,
+            $filter_id,
+            $filter_project_id,
+            $filter_project_title,
+            $filter_region,
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -2461,7 +2593,19 @@ final class SubscriptionsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): Promise {
-        return $this->listOrgSubscriptionsAsyncWithHttpInfo($organization_id, $filter_status, $filter_id, $filter_project_id, $filter_project_title, $filter_region, $filter_updated_at, $page_size, $page_before, $page_after, $sort)
+        return $this->listOrgSubscriptionsAsyncWithHttpInfo(
+            $organization_id,
+            $filter_status,
+            $filter_id,
+            $filter_project_id,
+            $filter_project_title,
+            $filter_region,
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2488,7 +2632,19 @@ final class SubscriptionsApi extends AbstractApi
         string $sort = null
     ): Promise {
         $returnType = '\Upsun\Model\ListOrgSubscriptions200Response';
-        $request = $this->listOrgSubscriptionsRequest($organization_id, $filter_status, $filter_id, $filter_project_id, $filter_project_title, $filter_region, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+        $request = $this->listOrgSubscriptionsRequest(
+            $organization_id,
+            $filter_status,
+            $filter_id,
+            $filter_project_id,
+            $filter_project_title,
+            $filter_region,
+            $filter_updated_at,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -2547,10 +2703,16 @@ final class SubscriptionsApi extends AbstractApi
             );
         }
         if ($page_size !== null && $page_size > 100) {
-            throw new \InvalidArgumentException('invalid value for "$page_size" when calling SubscriptionsApi.listOrgSubscriptions, must be smaller than or equal to 100.');
+            throw new \InvalidArgumentException(
+                'invalid value for "$page_size" when calling SubscriptionsApi.listOrgSubscriptions, 
+                must be smaller than or equal to 100.'
+            );
         }
         if ($page_size !== null && $page_size < 1) {
-            throw new \InvalidArgumentException('invalid value for "$page_size" when calling SubscriptionsApi.listOrgSubscriptions, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException(
+                'invalid value for "$page_size" when calling SubscriptionsApi.listOrgSubscriptions,
+                must be bigger than or equal to 1.'
+            );
         }
 
 
@@ -2571,7 +2733,7 @@ final class SubscriptionsApi extends AbstractApi
                 $queryParams['filter[status]'] = $filter_status;
             }
         }
-        
+
         // query params
         if ($filter_id !== null) {
             if ('form' === 'form' && is_array($filter_id)) {
@@ -2582,7 +2744,7 @@ final class SubscriptionsApi extends AbstractApi
                 $queryParams['filter[id]'] = $filter_id;
             }
         }
-        
+
         // query params
         if ($filter_project_id !== null) {
             if ('form' === 'deepObject' && is_array($filter_project_id)) {
@@ -2593,7 +2755,7 @@ final class SubscriptionsApi extends AbstractApi
                 $queryParams['filter[project_id]'] = $filter_project_id->getEq();
             }
         }
-        
+
         // query params
         if ($filter_project_title !== null) {
             if ('form' === 'deepObject' && is_array($filter_project_title)) {
@@ -2604,7 +2766,7 @@ final class SubscriptionsApi extends AbstractApi
                 $queryParams['filter[project_title]'] = $filter_project_title->getEq();
             }
         }
-        
+
         // query params
         if ($filter_region !== null) {
             if ('form' === 'deepObject' && is_array($filter_region)) {
@@ -2615,7 +2777,7 @@ final class SubscriptionsApi extends AbstractApi
                 $queryParams['filter[region]'] = $filter_region->getEq();
             }
         }
-        
+
         // query params
         if ($filter_updated_at !== null) {
             if ('form' === 'deepObject' && is_array($filter_updated_at)) {
@@ -2626,7 +2788,7 @@ final class SubscriptionsApi extends AbstractApi
                 $queryParams['filter[updated_at]'] = $filter_updated_at->getEq();
             }
         }
-        
+
         // query params
         if ($page_size !== null) {
             if ('form' === 'form' && is_array($page_size)) {
@@ -2637,7 +2799,7 @@ final class SubscriptionsApi extends AbstractApi
                 $queryParams['page[size]'] = $page_size;
             }
         }
-        
+
         // query params
         if ($page_before !== null) {
             if ('form' === 'form' && is_array($page_before)) {
@@ -2648,7 +2810,7 @@ final class SubscriptionsApi extends AbstractApi
                 $queryParams['page[before]'] = $page_before;
             }
         }
-        
+
         // query params
         if ($page_after !== null) {
             if ('form' === 'form' && is_array($page_after)) {
@@ -2659,7 +2821,7 @@ final class SubscriptionsApi extends AbstractApi
                 $queryParams['page[after]'] = $page_after;
             }
         }
-        
+
         // query params
         if ($sort !== null) {
             if ('form' === 'form' && is_array($sort)) {
@@ -2670,7 +2832,7 @@ final class SubscriptionsApi extends AbstractApi
                 $queryParams['sort'] = $sort;
             }
         }
-        
+
 
 
         // path params
@@ -2745,7 +2907,10 @@ final class SubscriptionsApi extends AbstractApi
         string $organization_id,
         string $subscription_id
     ): \Upsun\Model\SubscriptionAddonsObject {
-        list($response) = $this->listSubscriptionAddonsWithHttpInfo($organization_id, $subscription_id);
+        list($response) = $this->listSubscriptionAddonsWithHttpInfo(
+            $organization_id,
+            $subscription_id
+        );
         return $response;
     }
 
@@ -2759,17 +2924,18 @@ final class SubscriptionsApi extends AbstractApi
         string $organization_id,
         string $subscription_id
     ): array {
-        $request = $this->listSubscriptionAddonsRequest($organization_id, $subscription_id);
+        $request = $this->listSubscriptionAddonsRequest(
+            $organization_id,
+            $subscription_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -2863,7 +3029,10 @@ final class SubscriptionsApi extends AbstractApi
         string $organization_id,
         string $subscription_id
     ): Promise {
-        return $this->listSubscriptionAddonsAsyncWithHttpInfo($organization_id, $subscription_id)
+        return $this->listSubscriptionAddonsAsyncWithHttpInfo(
+            $organization_id,
+            $subscription_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2881,7 +3050,10 @@ final class SubscriptionsApi extends AbstractApi
         string $subscription_id
     ): Promise {
         $returnType = '\Upsun\Model\SubscriptionAddonsObject';
-        $request = $this->listSubscriptionAddonsRequest($organization_id, $subscription_id);
+        $request = $this->listSubscriptionAddonsRequest(
+            $organization_id,
+            $subscription_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -3027,7 +3199,11 @@ final class SubscriptionsApi extends AbstractApi
         string $subscription_id,
         \Upsun\Model\UpdateOrgSubscriptionRequest $update_org_subscription_request = null
     ): \Upsun\Model\Subscription {
-        list($response) = $this->updateOrgSubscriptionWithHttpInfo($organization_id, $subscription_id, $update_org_subscription_request);
+        list($response) = $this->updateOrgSubscriptionWithHttpInfo(
+            $organization_id,
+            $subscription_id,
+            $update_org_subscription_request
+        );
         return $response;
     }
 
@@ -3042,17 +3218,19 @@ final class SubscriptionsApi extends AbstractApi
         string $subscription_id,
         \Upsun\Model\UpdateOrgSubscriptionRequest $update_org_subscription_request = null
     ): array {
-        $request = $this->updateOrgSubscriptionRequest($organization_id, $subscription_id, $update_org_subscription_request);
+        $request = $this->updateOrgSubscriptionRequest(
+            $organization_id,
+            $subscription_id,
+            $update_org_subscription_request
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -3175,7 +3353,11 @@ final class SubscriptionsApi extends AbstractApi
         string $subscription_id,
         \Upsun\Model\UpdateOrgSubscriptionRequest $update_org_subscription_request = null
     ): Promise {
-        return $this->updateOrgSubscriptionAsyncWithHttpInfo($organization_id, $subscription_id, $update_org_subscription_request)
+        return $this->updateOrgSubscriptionAsyncWithHttpInfo(
+            $organization_id,
+            $subscription_id,
+            $update_org_subscription_request
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3194,7 +3376,11 @@ final class SubscriptionsApi extends AbstractApi
         \Upsun\Model\UpdateOrgSubscriptionRequest $update_org_subscription_request = null
     ): Promise {
         $returnType = '\Upsun\Model\Subscription';
-        $request = $this->updateOrgSubscriptionRequest($organization_id, $subscription_id, $update_org_subscription_request);
+        $request = $this->updateOrgSubscriptionRequest(
+            $organization_id,
+            $subscription_id,
+            $update_org_subscription_request
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -3346,31 +3532,22 @@ final class SubscriptionsApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -3433,15 +3610,5 @@ final class SubscriptionsApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

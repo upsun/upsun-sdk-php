@@ -126,7 +126,9 @@ final class RegionsApi extends AbstractApi
     public function getRegion(
         string $region_id
     ): \Upsun\Model\Region {
-        list($response) = $this->getRegionWithHttpInfo($region_id);
+        list($response) = $this->getRegionWithHttpInfo(
+            $region_id
+        );
         return $response;
     }
 
@@ -139,17 +141,17 @@ final class RegionsApi extends AbstractApi
     public function getRegionWithHttpInfo(
         string $region_id
     ): array {
-        $request = $this->getRegionRequest($region_id);
+        $request = $this->getRegionRequest(
+            $region_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -256,7 +258,9 @@ final class RegionsApi extends AbstractApi
     public function getRegionAsync(
         string $region_id
     ): Promise {
-        return $this->getRegionAsyncWithHttpInfo($region_id)
+        return $this->getRegionAsyncWithHttpInfo(
+            $region_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -273,7 +277,9 @@ final class RegionsApi extends AbstractApi
         string $region_id
     ): Promise {
         $returnType = '\Upsun\Model\Region';
-        $request = $this->getRegionRequest($region_id);
+        $request = $this->getRegionRequest(
+            $region_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -408,7 +414,15 @@ final class RegionsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): \Upsun\Model\ListRegions200Response {
-        list($response) = $this->listRegionsWithHttpInfo($filter_available, $filter_private, $filter_zone, $page_size, $page_before, $page_after, $sort);
+        list($response) = $this->listRegionsWithHttpInfo(
+            $filter_available,
+            $filter_private,
+            $filter_zone,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
         return $response;
     }
 
@@ -427,17 +441,23 @@ final class RegionsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): array {
-        $request = $this->listRegionsRequest($filter_available, $filter_private, $filter_zone, $page_size, $page_before, $page_after, $sort);
+        $request = $this->listRegionsRequest(
+            $filter_available,
+            $filter_private,
+            $filter_zone,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -564,7 +584,15 @@ final class RegionsApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): Promise {
-        return $this->listRegionsAsyncWithHttpInfo($filter_available, $filter_private, $filter_zone, $page_size, $page_before, $page_after, $sort)
+        return $this->listRegionsAsyncWithHttpInfo(
+            $filter_available,
+            $filter_private,
+            $filter_zone,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -587,7 +615,15 @@ final class RegionsApi extends AbstractApi
         string $sort = null
     ): Promise {
         $returnType = '\Upsun\Model\ListRegions200Response';
-        $request = $this->listRegionsRequest($filter_available, $filter_private, $filter_zone, $page_size, $page_before, $page_after, $sort);
+        $request = $this->listRegionsRequest(
+            $filter_available,
+            $filter_private,
+            $filter_zone,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -636,10 +672,16 @@ final class RegionsApi extends AbstractApi
         string $sort = null
     ): RequestInterface {
         if ($page_size !== null && $page_size > 100) {
-            throw new \InvalidArgumentException('invalid value for "$page_size" when calling RegionsApi.listRegions, must be smaller than or equal to 100.');
+            throw new \InvalidArgumentException(
+                'invalid value for "$page_size" when calling RegionsApi.listRegions, 
+                must be smaller than or equal to 100.'
+            );
         }
         if ($page_size !== null && $page_size < 1) {
-            throw new \InvalidArgumentException('invalid value for "$page_size" when calling RegionsApi.listRegions, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException(
+                'invalid value for "$page_size" when calling RegionsApi.listRegions,
+                must be bigger than or equal to 1.'
+            );
         }
 
 
@@ -660,7 +702,7 @@ final class RegionsApi extends AbstractApi
                 $queryParams['filter[available]'] = $filter_available->getEq();
             }
         }
-        
+
         // query params
         if ($filter_private !== null) {
             if ('form' === 'deepObject' && is_array($filter_private)) {
@@ -671,7 +713,7 @@ final class RegionsApi extends AbstractApi
                 $queryParams['filter[private]'] = $filter_private->getEq();
             }
         }
-        
+
         // query params
         if ($filter_zone !== null) {
             if ('form' === 'deepObject' && is_array($filter_zone)) {
@@ -682,7 +724,7 @@ final class RegionsApi extends AbstractApi
                 $queryParams['filter[zone]'] = $filter_zone->getEq();
             }
         }
-        
+
         // query params
         if ($page_size !== null) {
             if ('form' === 'form' && is_array($page_size)) {
@@ -693,7 +735,7 @@ final class RegionsApi extends AbstractApi
                 $queryParams['page[size]'] = $page_size;
             }
         }
-        
+
         // query params
         if ($page_before !== null) {
             if ('form' === 'form' && is_array($page_before)) {
@@ -704,7 +746,7 @@ final class RegionsApi extends AbstractApi
                 $queryParams['page[before]'] = $page_before;
             }
         }
-        
+
         // query params
         if ($page_after !== null) {
             if ('form' === 'form' && is_array($page_after)) {
@@ -715,7 +757,7 @@ final class RegionsApi extends AbstractApi
                 $queryParams['page[after]'] = $page_after;
             }
         }
-        
+
         // query params
         if ($sort !== null) {
             if ('form' === 'form' && is_array($sort)) {
@@ -726,7 +768,7 @@ final class RegionsApi extends AbstractApi
                 $queryParams['sort'] = $sort;
             }
         }
-        
+
 
 
 
@@ -793,31 +835,22 @@ final class RegionsApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -880,15 +913,5 @@ final class RegionsApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

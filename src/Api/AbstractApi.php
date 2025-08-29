@@ -3,12 +3,12 @@
 namespace Upsun\Api;
 
 use Exception;
+use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Core\OAuthProvider;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Client\ClientExceptionInterface;
 
 /**
  * AbstractApi
@@ -23,15 +23,21 @@ abstract class AbstractApi
         private readonly OAuthProvider $oauthProvider,
         private readonly ClientInterface $httpClient,
         private readonly RequestFactoryInterface $requestFactory,
-        private string $baseUri
+        private readonly string $baseUri
     ) {
     }
 
+    /**
+     * @throws Exception
+     */
     protected function getAuthorizationHeader(): string
     {
         return $this->oauthProvider->getAuthorization();
     }
 
+    /**
+     * @throws Exception
+     */
     protected function createAuthenticatedRequest(
         string $method,
         string $uri,
@@ -54,51 +60,22 @@ abstract class AbstractApi
         return $request;
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     protected function sendAuthenticatedRequest(
         string $method,
         string $uri,
-        array $headers = [],
-        ?string $body = null
+        array $headers = []
     ): ResponseInterface {
         $request = $this->createAuthenticatedRequest($method, $uri, $headers);
 
-
-        try {
-            return $this->httpClient->sendRequest($request);
-        } catch (ClientExceptionInterface $e) {
-            throw $e;
-        }
+        return $this->httpClient->sendRequest($request);
     }
 
-    protected function isUnauthorizedError(ClientExceptionInterface $exception): bool
-    {
-        if (method_exists($exception, 'getResponse')) {
-            $response = $exception->getResponse();
-            return $response && $response->getStatusCode() === 401;
-        }
-        return false;
-    }
-
-    protected function forceTokenRefresh(): void
-    {
-        if (method_exists($this->oauthProvider, 'forceRefresh')) {
-            $this->oauthProvider->forceRefresh();
-        }
-    }
-
-
-    protected function decodeJsonResponse(ResponseInterface $response, bool $assoc = true): mixed
-    {
-        $content = (string) $response->getBody();
-        $data = json_decode($content, $assoc);
-
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new \InvalidArgumentException('Invalid JSON response: ' . json_last_error_msg());
-        }
-
-        return $data;
-    }
-
+    /**
+     * @throws Exception
+     */
     public function refreshToken(): void
     {
         $this->oauthProvider->ensureValidToken();

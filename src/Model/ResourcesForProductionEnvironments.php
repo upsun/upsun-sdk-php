@@ -12,420 +12,57 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class ResourcesForProductionEnvironments implements ModelInterface, ArrayAccess, \JsonSerializable
+final class ResourcesForProductionEnvironments implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Resources_for_production_environments';
+    public readonly bool $legacy_development;
+    public readonly float $max_cpu;
+    public readonly int $max_memory;
+    public readonly int $max_environments;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'legacy_development' => 'bool',
-        'max_cpu' => 'float',
-        'max_memory' => 'int',
-        'max_environments' => 'int'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'legacy_development' => null,
-        'max_cpu' => 'float',
-        'max_memory' => null,
-        'max_environments' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'legacy_development' => false,
-        'max_cpu' => true,
-        'max_memory' => true,
-        'max_environments' => true
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        bool $legacy_development,
+        float $max_cpu,
+        int $max_memory,
+        int $max_environments,
+    ) {
+        $this->legacy_development = $legacy_development;
+        $this->max_cpu = $max_cpu;
+        $this->max_memory = $max_memory;
+        $this->max_environments = $max_environments;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getLegacyDevelopment(): bool
     {
-        return self::$openAPIFormats;
+        return $this->legacy_development;
+    }
+    public function getMaxCpu(): float
+    {
+        return $this->max_cpu;
+    }
+    public function getMaxMemory(): int
+    {
+        return $this->max_memory;
+    }
+    public function getMaxEnvironments(): int
+    {
+        return $this->max_environments;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'legacy_development' => 'legacy_development',
-        'max_cpu' => 'max_cpu',
-        'max_memory' => 'max_memory',
-        'max_environments' => 'max_environments'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'legacy_development' => 'setLegacyDevelopment',
-        'max_cpu' => 'setMaxCpu',
-        'max_memory' => 'setMaxMemory',
-        'max_environments' => 'setMaxEnvironments'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'legacy_development' => 'getLegacyDevelopment',
-        'max_cpu' => 'getMaxCpu',
-        'max_memory' => 'getMaxMemory',
-        'max_environments' => 'getMaxEnvironments'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('legacy_development', $data ?? [], null);
-        $this->setIfExists('max_cpu', $data ?? [], null);
-        $this->setIfExists('max_memory', $data ?? [], null);
-        $this->setIfExists('max_environments', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        if ($this->container['legacy_development'] === null) {
-            $invalidProperties[] = "'legacy_development' can't be null";
-        }
-        if ($this->container['max_cpu'] === null) {
-            $invalidProperties[] = "'max_cpu' can't be null";
-        }
-        if ($this->container['max_memory'] === null) {
-            $invalidProperties[] = "'max_memory' can't be null";
-        }
-        if ($this->container['max_environments'] === null) {
-            $invalidProperties[] = "'max_environments' can't be null";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets legacy_development
-     *
-     * @return bool
-     */
-    public function getLegacyDevelopment()
-    {
-        return $this->container['legacy_development'];
-    }
-
-    /**
-     * Sets legacy_development
-     */
-    public function setLegacyDevelopment($legacy_development)
-    {
-        if (is_null($legacy_development)) {
-            throw new \InvalidArgumentException('non-nullable legacy_development cannot be null');
-        }
-        $this->container['legacy_development'] = $legacy_development;
-
-        return $this;
-    }
-
-    /**
-     * Gets max_cpu
-     *
-     * @return float
-     */
-    public function getMaxCpu()
-    {
-        return $this->container['max_cpu'];
-    }
-
-    /**
-     * Sets max_cpu
-     */
-    public function setMaxCpu($max_cpu)
-    {
-        if (is_null($max_cpu)) {
-            array_push($this->openAPINullablesSetToNull, 'max_cpu');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('max_cpu', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['max_cpu'] = $max_cpu;
-
-        return $this;
-    }
-
-    /**
-     * Gets max_memory
-     *
-     * @return int
-     */
-    public function getMaxMemory()
-    {
-        return $this->container['max_memory'];
-    }
-
-    /**
-     * Sets max_memory
-     */
-    public function setMaxMemory($max_memory)
-    {
-        if (is_null($max_memory)) {
-            array_push($this->openAPINullablesSetToNull, 'max_memory');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('max_memory', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['max_memory'] = $max_memory;
-
-        return $this;
-    }
-
-    /**
-     * Gets max_environments
-     *
-     * @return int
-     */
-    public function getMaxEnvironments()
-    {
-        return $this->container['max_environments'];
-    }
-
-    /**
-     * Sets max_environments
-     */
-    public function setMaxEnvironments($max_environments)
-    {
-        if (is_null($max_environments)) {
-            array_push($this->openAPINullablesSetToNull, 'max_environments');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('max_environments', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['max_environments'] = $max_environments;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+        return [
+            'legacy_development' => $this->legacy_development,
+            'max_cpu' => $this->max_cpu,
+            'max_memory' => $this->max_memory,
+            'max_environments' => $this->max_environments,
+        ];
     }
 
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

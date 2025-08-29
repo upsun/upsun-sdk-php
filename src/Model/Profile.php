@@ -12,989 +12,209 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
+final class Profile implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Profile';
+    public readonly string $id;
+    public readonly string $display_name;
+    public readonly string $email;
+    public readonly string $username;
+    public readonly string $type;
+    public readonly string $picture;
+    public readonly string $company_type;
+    public readonly string $company_name;
+    public readonly string $currency;
+    public readonly string $vat_number;
+    public readonly string $company_role;
+    public readonly string $website_url;
+    public readonly bool $new_ui;
+    public readonly string $ui_colorscheme;
+    public readonly string $default_catalog;
+    public readonly string $project_options_url;
+    public readonly bool $marketing;
+    public readonly \DateTime $created_at;
+    public readonly \DateTime $updated_at;
+    public readonly string $billing_contact;
+    public readonly string $security_contact;
+    public readonly \Upsun\Model\ProfileCurrentTrial $current_trial;
+    public readonly bool $invoiced;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'id' => 'string',
-        'display_name' => 'string',
-        'email' => 'string',
-        'username' => 'string',
-        'type' => 'string',
-        'picture' => 'string',
-        'company_type' => 'string',
-        'company_name' => 'string',
-        'currency' => 'string',
-        'vat_number' => 'string',
-        'company_role' => 'string',
-        'website_url' => 'string',
-        'new_ui' => 'bool',
-        'ui_colorscheme' => 'string',
-        'default_catalog' => 'string',
-        'project_options_url' => 'string',
-        'marketing' => 'bool',
-        'created_at' => '\DateTime',
-        'updated_at' => '\DateTime',
-        'billing_contact' => 'string',
-        'security_contact' => 'string',
-        'current_trial' => '\Upsun\Model\ProfileCurrentTrial',
-        'invoiced' => 'bool'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'id' => 'uuid',
-        'display_name' => null,
-        'email' => 'email',
-        'username' => null,
-        'type' => null,
-        'picture' => 'url',
-        'company_type' => null,
-        'company_name' => null,
-        'currency' => null,
-        'vat_number' => null,
-        'company_role' => null,
-        'website_url' => null,
-        'new_ui' => null,
-        'ui_colorscheme' => null,
-        'default_catalog' => null,
-        'project_options_url' => null,
-        'marketing' => null,
-        'created_at' => 'date-time',
-        'updated_at' => 'date-time',
-        'billing_contact' => 'email',
-        'security_contact' => 'email',
-        'current_trial' => null,
-        'invoiced' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'id' => false,
-        'display_name' => false,
-        'email' => false,
-        'username' => false,
-        'type' => false,
-        'picture' => false,
-        'company_type' => false,
-        'company_name' => false,
-        'currency' => false,
-        'vat_number' => false,
-        'company_role' => false,
-        'website_url' => false,
-        'new_ui' => false,
-        'ui_colorscheme' => false,
-        'default_catalog' => false,
-        'project_options_url' => false,
-        'marketing' => false,
-        'created_at' => false,
-        'updated_at' => false,
-        'billing_contact' => false,
-        'security_contact' => false,
-        'current_trial' => false,
-        'invoiced' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        string $id = null,
+        string $display_name = null,
+        string $email = null,
+        string $username = null,
+        string $type = null,
+        string $picture = null,
+        string $company_type = null,
+        string $company_name = null,
+        string $currency = null,
+        string $vat_number = null,
+        string $company_role = null,
+        string $website_url = null,
+        bool $new_ui = null,
+        string $ui_colorscheme = null,
+        string $default_catalog = null,
+        string $project_options_url = null,
+        bool $marketing = null,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+        string $billing_contact = null,
+        string $security_contact = null,
+        \Upsun\Model\ProfileCurrentTrial $current_trial = null,
+        bool $invoiced = null,
+    ) {
+        $this->id = $id;
+        $this->display_name = $display_name;
+        $this->email = $email;
+        $this->username = $username;
+        $this->type = $type;
+        $this->picture = $picture;
+        $this->company_type = $company_type;
+        $this->company_name = $company_name;
+        $this->currency = $currency;
+        $this->vat_number = $vat_number;
+        $this->company_role = $company_role;
+        $this->website_url = $website_url;
+        $this->new_ui = $new_ui;
+        $this->ui_colorscheme = $ui_colorscheme;
+        $this->default_catalog = $default_catalog;
+        $this->project_options_url = $project_options_url;
+        $this->marketing = $marketing;
+        $this->created_at = $created_at;
+        $this->updated_at = $updated_at;
+        $this->billing_contact = $billing_contact;
+        $this->security_contact = $security_contact;
+        $this->current_trial = $current_trial;
+        $this->invoiced = $invoiced;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getId(): string|null
     {
-        return self::$openAPIFormats;
+        return $this->id;
+    }
+    public function getDisplayName(): string|null
+    {
+        return $this->display_name;
+    }
+    public function getEmail(): string|null
+    {
+        return $this->email;
+    }
+    public function getUsername(): string|null
+    {
+        return $this->username;
+    }
+    public function getType(): string|null
+    {
+        return $this->type;
+    }
+    public function getPicture(): string|null
+    {
+        return $this->picture;
+    }
+    public function getCompanyType(): string|null
+    {
+        return $this->company_type;
+    }
+    public function getCompanyName(): string|null
+    {
+        return $this->company_name;
+    }
+    public function getCurrency(): string|null
+    {
+        return $this->currency;
+    }
+    public function getVatNumber(): string|null
+    {
+        return $this->vat_number;
+    }
+    public function getCompanyRole(): string|null
+    {
+        return $this->company_role;
+    }
+    public function getWebsiteUrl(): string|null
+    {
+        return $this->website_url;
+    }
+    public function getNewUi(): bool|null
+    {
+        return $this->new_ui;
+    }
+    public function getUiColorscheme(): string|null
+    {
+        return $this->ui_colorscheme;
+    }
+    public function getDefaultCatalog(): string|null
+    {
+        return $this->default_catalog;
+    }
+    public function getProjectOptionsUrl(): string|null
+    {
+        return $this->project_options_url;
+    }
+    public function getMarketing(): bool|null
+    {
+        return $this->marketing;
+    }
+    public function getCreatedAt(): \DateTime|null
+    {
+        return $this->created_at;
+    }
+    public function getUpdatedAt(): \DateTime|null
+    {
+        return $this->updated_at;
+    }
+    public function getBillingContact(): string|null
+    {
+        return $this->billing_contact;
+    }
+    public function getSecurityContact(): string|null
+    {
+        return $this->security_contact;
+    }
+    public function getCurrentTrial(): \Upsun\Model\ProfileCurrentTrial|null
+    {
+        return $this->current_trial;
+    }
+    public function getInvoiced(): bool|null
+    {
+        return $this->invoiced;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'id' => 'id',
-        'display_name' => 'display_name',
-        'email' => 'email',
-        'username' => 'username',
-        'type' => 'type',
-        'picture' => 'picture',
-        'company_type' => 'company_type',
-        'company_name' => 'company_name',
-        'currency' => 'currency',
-        'vat_number' => 'vat_number',
-        'company_role' => 'company_role',
-        'website_url' => 'website_url',
-        'new_ui' => 'new_ui',
-        'ui_colorscheme' => 'ui_colorscheme',
-        'default_catalog' => 'default_catalog',
-        'project_options_url' => 'project_options_url',
-        'marketing' => 'marketing',
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at',
-        'billing_contact' => 'billing_contact',
-        'security_contact' => 'security_contact',
-        'current_trial' => 'current_trial',
-        'invoiced' => 'invoiced'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'id' => 'setId',
-        'display_name' => 'setDisplayName',
-        'email' => 'setEmail',
-        'username' => 'setUsername',
-        'type' => 'setType',
-        'picture' => 'setPicture',
-        'company_type' => 'setCompanyType',
-        'company_name' => 'setCompanyName',
-        'currency' => 'setCurrency',
-        'vat_number' => 'setVatNumber',
-        'company_role' => 'setCompanyRole',
-        'website_url' => 'setWebsiteUrl',
-        'new_ui' => 'setNewUi',
-        'ui_colorscheme' => 'setUiColorscheme',
-        'default_catalog' => 'setDefaultCatalog',
-        'project_options_url' => 'setProjectOptionsUrl',
-        'marketing' => 'setMarketing',
-        'created_at' => 'setCreatedAt',
-        'updated_at' => 'setUpdatedAt',
-        'billing_contact' => 'setBillingContact',
-        'security_contact' => 'setSecurityContact',
-        'current_trial' => 'setCurrentTrial',
-        'invoiced' => 'setInvoiced'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'id' => 'getId',
-        'display_name' => 'getDisplayName',
-        'email' => 'getEmail',
-        'username' => 'getUsername',
-        'type' => 'getType',
-        'picture' => 'getPicture',
-        'company_type' => 'getCompanyType',
-        'company_name' => 'getCompanyName',
-        'currency' => 'getCurrency',
-        'vat_number' => 'getVatNumber',
-        'company_role' => 'getCompanyRole',
-        'website_url' => 'getWebsiteUrl',
-        'new_ui' => 'getNewUi',
-        'ui_colorscheme' => 'getUiColorscheme',
-        'default_catalog' => 'getDefaultCatalog',
-        'project_options_url' => 'getProjectOptionsUrl',
-        'marketing' => 'getMarketing',
-        'created_at' => 'getCreatedAt',
-        'updated_at' => 'getUpdatedAt',
-        'billing_contact' => 'getBillingContact',
-        'security_contact' => 'getSecurityContact',
-        'current_trial' => 'getCurrentTrial',
-        'invoiced' => 'getInvoiced'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-    public const TYPE_USER = 'user';
-    public const TYPE_ORGANIZATION = 'organization';
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getTypeAllowableValues(): array
+    public function jsonSerialize(): mixed
     {
         return [
-            self::TYPE_USER,
-            self::TYPE_ORGANIZATION,
+            'id' => $this->id,
+            'display_name' => $this->display_name,
+            'email' => $this->email,
+            'username' => $this->username,
+            'type' => $this->type,
+            'picture' => $this->picture,
+            'company_type' => $this->company_type,
+            'company_name' => $this->company_name,
+            'currency' => $this->currency,
+            'vat_number' => $this->vat_number,
+            'company_role' => $this->company_role,
+            'website_url' => $this->website_url,
+            'new_ui' => $this->new_ui,
+            'ui_colorscheme' => $this->ui_colorscheme,
+            'default_catalog' => $this->default_catalog,
+            'project_options_url' => $this->project_options_url,
+            'marketing' => $this->marketing,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'billing_contact' => $this->billing_contact,
+            'security_contact' => $this->security_contact,
+            'current_trial' => $this->current_trial,
+            'invoiced' => $this->invoiced,
         ];
     }
 
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
+    public function __toString(): string
     {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('display_name', $data ?? [], null);
-        $this->setIfExists('email', $data ?? [], null);
-        $this->setIfExists('username', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('picture', $data ?? [], null);
-        $this->setIfExists('company_type', $data ?? [], null);
-        $this->setIfExists('company_name', $data ?? [], null);
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('vat_number', $data ?? [], null);
-        $this->setIfExists('company_role', $data ?? [], null);
-        $this->setIfExists('website_url', $data ?? [], null);
-        $this->setIfExists('new_ui', $data ?? [], null);
-        $this->setIfExists('ui_colorscheme', $data ?? [], null);
-        $this->setIfExists('default_catalog', $data ?? [], null);
-        $this->setIfExists('project_options_url', $data ?? [], null);
-        $this->setIfExists('marketing', $data ?? [], null);
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('updated_at', $data ?? [], null);
-        $this->setIfExists('billing_contact', $data ?? [], null);
-        $this->setIfExists('security_contact', $data ?? [], null);
-        $this->setIfExists('current_trial', $data ?? [], null);
-        $this->setIfExists('invoiced', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets id
-     *
-     * @return string|null
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     */
-    public function setId($id)
-    {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets display_name
-     *
-     * @return string|null
-     */
-    public function getDisplayName()
-    {
-        return $this->container['display_name'];
-    }
-
-    /**
-     * Sets display_name
-     */
-    public function setDisplayName($display_name)
-    {
-        if (is_null($display_name)) {
-            throw new \InvalidArgumentException('non-nullable display_name cannot be null');
-        }
-        $this->container['display_name'] = $display_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets email
-     *
-     * @return string|null
-     */
-    public function getEmail()
-    {
-        return $this->container['email'];
-    }
-
-    /**
-     * Sets email
-     */
-    public function setEmail($email)
-    {
-        if (is_null($email)) {
-            throw new \InvalidArgumentException('non-nullable email cannot be null');
-        }
-        $this->container['email'] = $email;
-
-        return $this;
-    }
-
-    /**
-     * Gets username
-     *
-     * @return string|null
-     */
-    public function getUsername()
-    {
-        return $this->container['username'];
-    }
-
-    /**
-     * Sets username
-     */
-    public function setUsername($username)
-    {
-        if (is_null($username)) {
-            throw new \InvalidArgumentException('non-nullable username cannot be null');
-        }
-        $this->container['username'] = $username;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string|null
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     */
-    public function setType($type)
-    {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets picture
-     *
-     * @return string|null
-     */
-    public function getPicture()
-    {
-        return $this->container['picture'];
-    }
-
-    /**
-     * Sets picture
-     */
-    public function setPicture($picture)
-    {
-        if (is_null($picture)) {
-            throw new \InvalidArgumentException('non-nullable picture cannot be null');
-        }
-        $this->container['picture'] = $picture;
-
-        return $this;
-    }
-
-    /**
-     * Gets company_type
-     *
-     * @return string|null
-     */
-    public function getCompanyType()
-    {
-        return $this->container['company_type'];
-    }
-
-    /**
-     * Sets company_type
-     */
-    public function setCompanyType($company_type)
-    {
-        if (is_null($company_type)) {
-            throw new \InvalidArgumentException('non-nullable company_type cannot be null');
-        }
-        $this->container['company_type'] = $company_type;
-
-        return $this;
-    }
-
-    /**
-     * Gets company_name
-     *
-     * @return string|null
-     */
-    public function getCompanyName()
-    {
-        return $this->container['company_name'];
-    }
-
-    /**
-     * Sets company_name
-     */
-    public function setCompanyName($company_name)
-    {
-        if (is_null($company_name)) {
-            throw new \InvalidArgumentException('non-nullable company_name cannot be null');
-        }
-        $this->container['company_name'] = $company_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets currency
-     *
-     * @return string|null
-     */
-    public function getCurrency()
-    {
-        return $this->container['currency'];
-    }
-
-    /**
-     * Sets currency
-     */
-    public function setCurrency($currency)
-    {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
-        }
-        $this->container['currency'] = $currency;
-
-        return $this;
-    }
-
-    /**
-     * Gets vat_number
-     *
-     * @return string|null
-     */
-    public function getVatNumber()
-    {
-        return $this->container['vat_number'];
-    }
-
-    /**
-     * Sets vat_number
-     */
-    public function setVatNumber($vat_number)
-    {
-        if (is_null($vat_number)) {
-            throw new \InvalidArgumentException('non-nullable vat_number cannot be null');
-        }
-        $this->container['vat_number'] = $vat_number;
-
-        return $this;
-    }
-
-    /**
-     * Gets company_role
-     *
-     * @return string|null
-     */
-    public function getCompanyRole()
-    {
-        return $this->container['company_role'];
-    }
-
-    /**
-     * Sets company_role
-     */
-    public function setCompanyRole($company_role)
-    {
-        if (is_null($company_role)) {
-            throw new \InvalidArgumentException('non-nullable company_role cannot be null');
-        }
-        $this->container['company_role'] = $company_role;
-
-        return $this;
-    }
-
-    /**
-     * Gets website_url
-     *
-     * @return string|null
-     */
-    public function getWebsiteUrl()
-    {
-        return $this->container['website_url'];
-    }
-
-    /**
-     * Sets website_url
-     */
-    public function setWebsiteUrl($website_url)
-    {
-        if (is_null($website_url)) {
-            throw new \InvalidArgumentException('non-nullable website_url cannot be null');
-        }
-        $this->container['website_url'] = $website_url;
-
-        return $this;
-    }
-
-    /**
-     * Gets new_ui
-     *
-     * @return bool|null
-     */
-    public function getNewUi()
-    {
-        return $this->container['new_ui'];
-    }
-
-    /**
-     * Sets new_ui
-     */
-    public function setNewUi($new_ui)
-    {
-        if (is_null($new_ui)) {
-            throw new \InvalidArgumentException('non-nullable new_ui cannot be null');
-        }
-        $this->container['new_ui'] = $new_ui;
-
-        return $this;
-    }
-
-    /**
-     * Gets ui_colorscheme
-     *
-     * @return string|null
-     */
-    public function getUiColorscheme()
-    {
-        return $this->container['ui_colorscheme'];
-    }
-
-    /**
-     * Sets ui_colorscheme
-     */
-    public function setUiColorscheme($ui_colorscheme)
-    {
-        if (is_null($ui_colorscheme)) {
-            throw new \InvalidArgumentException('non-nullable ui_colorscheme cannot be null');
-        }
-        $this->container['ui_colorscheme'] = $ui_colorscheme;
-
-        return $this;
-    }
-
-    /**
-     * Gets default_catalog
-     *
-     * @return string|null
-     */
-    public function getDefaultCatalog()
-    {
-        return $this->container['default_catalog'];
-    }
-
-    /**
-     * Sets default_catalog
-     */
-    public function setDefaultCatalog($default_catalog)
-    {
-        if (is_null($default_catalog)) {
-            throw new \InvalidArgumentException('non-nullable default_catalog cannot be null');
-        }
-        $this->container['default_catalog'] = $default_catalog;
-
-        return $this;
-    }
-
-    /**
-     * Gets project_options_url
-     *
-     * @return string|null
-     */
-    public function getProjectOptionsUrl()
-    {
-        return $this->container['project_options_url'];
-    }
-
-    /**
-     * Sets project_options_url
-     */
-    public function setProjectOptionsUrl($project_options_url)
-    {
-        if (is_null($project_options_url)) {
-            throw new \InvalidArgumentException('non-nullable project_options_url cannot be null');
-        }
-        $this->container['project_options_url'] = $project_options_url;
-
-        return $this;
-    }
-
-    /**
-     * Gets marketing
-     *
-     * @return bool|null
-     */
-    public function getMarketing()
-    {
-        return $this->container['marketing'];
-    }
-
-    /**
-     * Sets marketing
-     */
-    public function setMarketing($marketing)
-    {
-        if (is_null($marketing)) {
-            throw new \InvalidArgumentException('non-nullable marketing cannot be null');
-        }
-        $this->container['marketing'] = $marketing;
-
-        return $this;
-    }
-
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt()
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     */
-    public function setCreatedAt($created_at)
-    {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
-        }
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt()
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     */
-    public function setUpdatedAt($updated_at)
-    {
-        if (is_null($updated_at)) {
-            throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
-        }
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets billing_contact
-     *
-     * @return string|null
-     */
-    public function getBillingContact()
-    {
-        return $this->container['billing_contact'];
-    }
-
-    /**
-     * Sets billing_contact
-     */
-    public function setBillingContact($billing_contact)
-    {
-        if (is_null($billing_contact)) {
-            throw new \InvalidArgumentException('non-nullable billing_contact cannot be null');
-        }
-        $this->container['billing_contact'] = $billing_contact;
-
-        return $this;
-    }
-
-    /**
-     * Gets security_contact
-     *
-     * @return string|null
-     */
-    public function getSecurityContact()
-    {
-        return $this->container['security_contact'];
-    }
-
-    /**
-     * Sets security_contact
-     */
-    public function setSecurityContact($security_contact)
-    {
-        if (is_null($security_contact)) {
-            throw new \InvalidArgumentException('non-nullable security_contact cannot be null');
-        }
-        $this->container['security_contact'] = $security_contact;
-
-        return $this;
-    }
-
-    /**
-     * Gets current_trial
-     *
-     * @return \Upsun\Model\ProfileCurrentTrial|null
-     */
-    public function getCurrentTrial()
-    {
-        return $this->container['current_trial'];
-    }
-
-    /**
-     * Sets current_trial
-     */
-    public function setCurrentTrial($current_trial)
-    {
-        if (is_null($current_trial)) {
-            throw new \InvalidArgumentException('non-nullable current_trial cannot be null');
-        }
-        $this->container['current_trial'] = $current_trial;
-
-        return $this;
-    }
-
-    /**
-     * Gets invoiced
-     *
-     * @return bool|null
-     */
-    public function getInvoiced()
-    {
-        return $this->container['invoiced'];
-    }
-
-    /**
-     * Sets invoiced
-     */
-    public function setInvoiced($invoiced)
-    {
-        if (is_null($invoiced)) {
-            throw new \InvalidArgumentException('non-nullable invoiced cannot be null');
-        }
-        $this->container['invoiced'] = $invoiced;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

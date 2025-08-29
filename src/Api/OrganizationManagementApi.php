@@ -126,7 +126,9 @@ final class OrganizationManagementApi extends AbstractApi
     public function estimateOrg(
         string $organization_id
     ): \Upsun\Model\OrganizationEstimationObject {
-        list($response) = $this->estimateOrgWithHttpInfo($organization_id);
+        list($response) = $this->estimateOrgWithHttpInfo(
+            $organization_id
+        );
         return $response;
     }
 
@@ -139,17 +141,17 @@ final class OrganizationManagementApi extends AbstractApi
     public function estimateOrgWithHttpInfo(
         string $organization_id
     ): array {
-        $request = $this->estimateOrgRequest($organization_id);
+        $request = $this->estimateOrgRequest(
+            $organization_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -256,7 +258,9 @@ final class OrganizationManagementApi extends AbstractApi
     public function estimateOrgAsync(
         string $organization_id
     ): Promise {
-        return $this->estimateOrgAsyncWithHttpInfo($organization_id)
+        return $this->estimateOrgAsyncWithHttpInfo(
+            $organization_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -273,7 +277,9 @@ final class OrganizationManagementApi extends AbstractApi
         string $organization_id
     ): Promise {
         $returnType = '\Upsun\Model\OrganizationEstimationObject';
-        $request = $this->estimateOrgRequest($organization_id);
+        $request = $this->estimateOrgRequest(
+            $organization_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -402,7 +408,9 @@ final class OrganizationManagementApi extends AbstractApi
     public function getOrgBillingAlertConfig(
         string $organization_id
     ): \Upsun\Model\OrganizationAlertConfig {
-        list($response) = $this->getOrgBillingAlertConfigWithHttpInfo($organization_id);
+        list($response) = $this->getOrgBillingAlertConfigWithHttpInfo(
+            $organization_id
+        );
         return $response;
     }
 
@@ -415,17 +423,17 @@ final class OrganizationManagementApi extends AbstractApi
     public function getOrgBillingAlertConfigWithHttpInfo(
         string $organization_id
     ): array {
-        $request = $this->getOrgBillingAlertConfigRequest($organization_id);
+        $request = $this->getOrgBillingAlertConfigRequest(
+            $organization_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -532,7 +540,9 @@ final class OrganizationManagementApi extends AbstractApi
     public function getOrgBillingAlertConfigAsync(
         string $organization_id
     ): Promise {
-        return $this->getOrgBillingAlertConfigAsyncWithHttpInfo($organization_id)
+        return $this->getOrgBillingAlertConfigAsyncWithHttpInfo(
+            $organization_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -549,7 +559,9 @@ final class OrganizationManagementApi extends AbstractApi
         string $organization_id
     ): Promise {
         $returnType = '\Upsun\Model\OrganizationAlertConfig';
-        $request = $this->getOrgBillingAlertConfigRequest($organization_id);
+        $request = $this->getOrgBillingAlertConfigRequest(
+            $organization_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -678,7 +690,9 @@ final class OrganizationManagementApi extends AbstractApi
     public function getOrgPrepaymentInfo(
         string $organization_id
     ): \Upsun\Model\GetOrgPrepaymentInfo200Response {
-        list($response) = $this->getOrgPrepaymentInfoWithHttpInfo($organization_id);
+        list($response) = $this->getOrgPrepaymentInfoWithHttpInfo(
+            $organization_id
+        );
         return $response;
     }
 
@@ -691,17 +705,17 @@ final class OrganizationManagementApi extends AbstractApi
     public function getOrgPrepaymentInfoWithHttpInfo(
         string $organization_id
     ): array {
-        $request = $this->getOrgPrepaymentInfoRequest($organization_id);
+        $request = $this->getOrgPrepaymentInfoRequest(
+            $organization_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -808,7 +822,9 @@ final class OrganizationManagementApi extends AbstractApi
     public function getOrgPrepaymentInfoAsync(
         string $organization_id
     ): Promise {
-        return $this->getOrgPrepaymentInfoAsyncWithHttpInfo($organization_id)
+        return $this->getOrgPrepaymentInfoAsyncWithHttpInfo(
+            $organization_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -825,7 +841,9 @@ final class OrganizationManagementApi extends AbstractApi
         string $organization_id
     ): Promise {
         $returnType = '\Upsun\Model\GetOrgPrepaymentInfo200Response';
-        $request = $this->getOrgPrepaymentInfoRequest($organization_id);
+        $request = $this->getOrgPrepaymentInfoRequest(
+            $organization_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -954,7 +972,9 @@ final class OrganizationManagementApi extends AbstractApi
     public function listOrgPrepaymentTransactions(
         string $organization_id
     ): \Upsun\Model\ListOrgPrepaymentTransactions200Response {
-        list($response) = $this->listOrgPrepaymentTransactionsWithHttpInfo($organization_id);
+        list($response) = $this->listOrgPrepaymentTransactionsWithHttpInfo(
+            $organization_id
+        );
         return $response;
     }
 
@@ -967,17 +987,17 @@ final class OrganizationManagementApi extends AbstractApi
     public function listOrgPrepaymentTransactionsWithHttpInfo(
         string $organization_id
     ): array {
-        $request = $this->listOrgPrepaymentTransactionsRequest($organization_id);
+        $request = $this->listOrgPrepaymentTransactionsRequest(
+            $organization_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1084,7 +1104,9 @@ final class OrganizationManagementApi extends AbstractApi
     public function listOrgPrepaymentTransactionsAsync(
         string $organization_id
     ): Promise {
-        return $this->listOrgPrepaymentTransactionsAsyncWithHttpInfo($organization_id)
+        return $this->listOrgPrepaymentTransactionsAsyncWithHttpInfo(
+            $organization_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1101,7 +1123,9 @@ final class OrganizationManagementApi extends AbstractApi
         string $organization_id
     ): Promise {
         $returnType = '\Upsun\Model\ListOrgPrepaymentTransactions200Response';
-        $request = $this->listOrgPrepaymentTransactionsRequest($organization_id);
+        $request = $this->listOrgPrepaymentTransactionsRequest(
+            $organization_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1231,7 +1255,10 @@ final class OrganizationManagementApi extends AbstractApi
         string $organization_id,
         \Upsun\Model\UpdateOrgBillingAlertConfigRequest $update_org_billing_alert_config_request = null
     ): \Upsun\Model\OrganizationAlertConfig {
-        list($response) = $this->updateOrgBillingAlertConfigWithHttpInfo($organization_id, $update_org_billing_alert_config_request);
+        list($response) = $this->updateOrgBillingAlertConfigWithHttpInfo(
+            $organization_id,
+            $update_org_billing_alert_config_request
+        );
         return $response;
     }
 
@@ -1245,17 +1272,18 @@ final class OrganizationManagementApi extends AbstractApi
         string $organization_id,
         \Upsun\Model\UpdateOrgBillingAlertConfigRequest $update_org_billing_alert_config_request = null
     ): array {
-        $request = $this->updateOrgBillingAlertConfigRequest($organization_id, $update_org_billing_alert_config_request);
+        $request = $this->updateOrgBillingAlertConfigRequest(
+            $organization_id,
+            $update_org_billing_alert_config_request
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1363,7 +1391,10 @@ final class OrganizationManagementApi extends AbstractApi
         string $organization_id,
         \Upsun\Model\UpdateOrgBillingAlertConfigRequest $update_org_billing_alert_config_request = null
     ): Promise {
-        return $this->updateOrgBillingAlertConfigAsyncWithHttpInfo($organization_id, $update_org_billing_alert_config_request)
+        return $this->updateOrgBillingAlertConfigAsyncWithHttpInfo(
+            $organization_id,
+            $update_org_billing_alert_config_request
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1381,7 +1412,10 @@ final class OrganizationManagementApi extends AbstractApi
         \Upsun\Model\UpdateOrgBillingAlertConfigRequest $update_org_billing_alert_config_request = null
     ): Promise {
         $returnType = '\Upsun\Model\OrganizationAlertConfig';
-        $request = $this->updateOrgBillingAlertConfigRequest($organization_id, $update_org_billing_alert_config_request);
+        $request = $this->updateOrgBillingAlertConfigRequest(
+            $organization_id,
+            $update_org_billing_alert_config_request
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1518,31 +1552,22 @@ final class OrganizationManagementApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -1605,15 +1630,5 @@ final class OrganizationManagementApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

@@ -12,461 +12,65 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class EnterpriseDeploymentTargetCreateInput implements ModelInterface, ArrayAccess, \JsonSerializable
+final class EnterpriseDeploymentTargetCreateInput implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'EnterpriseDeploymentTargetCreateInput';
+    public readonly string $type;
+    public readonly string $name;
+    public readonly object $site_urls;
+    public readonly string[] $ssh_hosts;
+    public readonly object $enterprise_environments_mapping;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'type' => 'string',
-        'name' => 'string',
-        'site_urls' => 'object',
-        'ssh_hosts' => 'string[]',
-        'enterprise_environments_mapping' => 'object'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'type' => null,
-        'name' => null,
-        'site_urls' => null,
-        'ssh_hosts' => null,
-        'enterprise_environments_mapping' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'type' => false,
-        'name' => false,
-        'site_urls' => false,
-        'ssh_hosts' => false,
-        'enterprise_environments_mapping' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        string $type,
+        string $name,
+        object $site_urls = null,
+        string[] $ssh_hosts = null,
+        object $enterprise_environments_mapping = null,
+    ) {
+        $this->type = $type;
+        $this->name = $name;
+        $this->site_urls = $site_urls;
+        $this->ssh_hosts = $ssh_hosts;
+        $this->enterprise_environments_mapping = $enterprise_environments_mapping;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getType(): string
     {
-        return self::$openAPIFormats;
+        return $this->type;
+    }
+    public function getName(): string
+    {
+        return $this->name;
+    }
+    public function getSiteUrls(): object|null
+    {
+        return $this->site_urls;
+    }
+    public function getSshHosts(): string[]|null
+    {
+        return $this->ssh_hosts;
+    }
+    public function getEnterpriseEnvironmentsMapping(): object|null
+    {
+        return $this->enterprise_environments_mapping;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'type' => 'type',
-        'name' => 'name',
-        'site_urls' => 'site_urls',
-        'ssh_hosts' => 'ssh_hosts',
-        'enterprise_environments_mapping' => 'enterprise_environments_mapping'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'type' => 'setType',
-        'name' => 'setName',
-        'site_urls' => 'setSiteUrls',
-        'ssh_hosts' => 'setSshHosts',
-        'enterprise_environments_mapping' => 'setEnterpriseEnvironmentsMapping'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'type' => 'getType',
-        'name' => 'getName',
-        'site_urls' => 'getSiteUrls',
-        'ssh_hosts' => 'getSshHosts',
-        'enterprise_environments_mapping' => 'getEnterpriseEnvironmentsMapping'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-    public const TYPE_DEDICATED = 'dedicated';
-    public const TYPE_ENTERPRISE = 'enterprise';
-    public const TYPE_LOCAL = 'local';
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getTypeAllowableValues(): array
+    public function jsonSerialize(): mixed
     {
         return [
-            self::TYPE_DEDICATED,
-            self::TYPE_ENTERPRISE,
-            self::TYPE_LOCAL,
+            'type' => $this->type,
+            'name' => $this->name,
+            'site_urls' => $this->site_urls,
+            'ssh_hosts' => $this->ssh_hosts,
+            'enterprise_environments_mapping' => $this->enterprise_environments_mapping,
         ];
     }
 
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
+    public function __toString(): string
     {
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('site_urls', $data ?? [], null);
-        $this->setIfExists('ssh_hosts', $data ?? [], null);
-        $this->setIfExists('enterprise_environments_mapping', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     */
-    public function setType($type)
-    {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     */
-    public function setName($name)
-    {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets site_urls
-     *
-     * @return object|null
-     */
-    public function getSiteUrls()
-    {
-        return $this->container['site_urls'];
-    }
-
-    /**
-     * Sets site_urls
-     */
-    public function setSiteUrls($site_urls)
-    {
-        if (is_null($site_urls)) {
-            throw new \InvalidArgumentException('non-nullable site_urls cannot be null');
-        }
-        $this->container['site_urls'] = $site_urls;
-
-        return $this;
-    }
-
-    /**
-     * Gets ssh_hosts
-     *
-     * @return string[]|null
-     */
-    public function getSshHosts()
-    {
-        return $this->container['ssh_hosts'];
-    }
-
-    /**
-     * Sets ssh_hosts
-     */
-    public function setSshHosts($ssh_hosts)
-    {
-        if (is_null($ssh_hosts)) {
-            throw new \InvalidArgumentException('non-nullable ssh_hosts cannot be null');
-        }
-        $this->container['ssh_hosts'] = $ssh_hosts;
-
-        return $this;
-    }
-
-    /**
-     * Gets enterprise_environments_mapping
-     *
-     * @return object|null
-     *
-     * @deprecated
-     */
-    public function getEnterpriseEnvironmentsMapping()
-    {
-        return $this->container['enterprise_environments_mapping'];
-    }
-
-    /**
-     * Sets enterprise_environments_mapping
-     *
-     * @deprecated
-     */
-    public function setEnterpriseEnvironmentsMapping($enterprise_environments_mapping)
-    {
-        if (is_null($enterprise_environments_mapping)) {
-            throw new \InvalidArgumentException('non-nullable enterprise_environments_mapping cannot be null');
-        }
-        $this->container['enterprise_environments_mapping'] = $enterprise_environments_mapping;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

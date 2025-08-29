@@ -12,469 +12,57 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
-use Upsun\ObjectSerializer;
+use JsonSerializable;
 
-final class TLSSettingsForTheRoute1 implements ModelInterface, ArrayAccess, \JsonSerializable
+final class TLSSettingsForTheRoute1 implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'TLS_settings_for_the_route__1';
+    public readonly \Upsun\Model\StrictTransportSecurityOptions1 $strict_transport_security;
+    public readonly string $min_version;
+    public readonly string $client_authentication;
+    public readonly string[] $client_certificate_authorities;
 
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'strict_transport_security' => '\Upsun\Model\StrictTransportSecurityOptions1',
-        'min_version' => 'string',
-        'client_authentication' => 'string',
-        'client_certificate_authorities' => 'string[]'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'strict_transport_security' => null,
-        'min_version' => null,
-        'client_authentication' => null,
-        'client_certificate_authorities' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'strict_transport_security' => false,
-        'min_version' => true,
-        'client_authentication' => true,
-        'client_certificate_authorities' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        \Upsun\Model\StrictTransportSecurityOptions1 $strict_transport_security = null,
+        string $min_version = null,
+        string $client_authentication = null,
+        string[] $client_certificate_authorities = null,
+    ) {
+        $this->strict_transport_security = $strict_transport_security;
+        $this->min_version = $min_version;
+        $this->client_authentication = $client_authentication;
+        $this->client_certificate_authorities = $client_certificate_authorities;
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function getStrictTransportSecurity(): \Upsun\Model\StrictTransportSecurityOptions1|null
     {
-        return self::$openAPIFormats;
+        return $this->strict_transport_security;
+    }
+    public function getMinVersion(): string|null
+    {
+        return $this->min_version;
+    }
+    public function getClientAuthentication(): string|null
+    {
+        return $this->client_authentication;
+    }
+    public function getClientCertificateAuthorities(): string[]|null
+    {
+        return $this->client_certificate_authorities;
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'strict_transport_security' => 'strict_transport_security',
-        'min_version' => 'min_version',
-        'client_authentication' => 'client_authentication',
-        'client_certificate_authorities' => 'client_certificate_authorities'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'strict_transport_security' => 'setStrictTransportSecurity',
-        'min_version' => 'setMinVersion',
-        'client_authentication' => 'setClientAuthentication',
-        'client_certificate_authorities' => 'setClientCertificateAuthorities'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'strict_transport_security' => 'getStrictTransportSecurity',
-        'min_version' => 'getMinVersion',
-        'client_authentication' => 'getClientAuthentication',
-        'client_certificate_authorities' => 'getClientCertificateAuthorities'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-    public const MIN_VERSION_TLSV1_0 = 'TLSv1.0';
-    public const MIN_VERSION_TLSV1_1 = 'TLSv1.1';
-    public const MIN_VERSION_TLSV1_2 = 'TLSv1.2';
-    public const MIN_VERSION_TLSV1_3 = 'TLSv1.3';
-    public const CLIENT_AUTHENTICATION_REQUEST = 'request';
-    public const CLIENT_AUTHENTICATION__REQUIRE = 'require';
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getMinVersionAllowableValues(): array
-    {
-        return [
-            self::MIN_VERSION_TLSV1_0,
-            self::MIN_VERSION_TLSV1_1,
-            self::MIN_VERSION_TLSV1_2,
-            self::MIN_VERSION_TLSV1_3,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getClientAuthenticationAllowableValues(): array
-    {
-        return [
-            self::CLIENT_AUTHENTICATION_REQUEST,
-            self::CLIENT_AUTHENTICATION__REQUIRE,
-        ];
-    }
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('strict_transport_security', $data ?? [], null);
-        $this->setIfExists('min_version', $data ?? [], null);
-        $this->setIfExists('client_authentication', $data ?? [], null);
-        $this->setIfExists('client_certificate_authorities', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        $allowedValues = $this->getMinVersionAllowableValues();
-        if (!is_null($this->container['min_version']) && !in_array($this->container['min_version'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'min_version', must be one of '%s'",
-                $this->container['min_version'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        $allowedValues = $this->getClientAuthenticationAllowableValues();
-        if (!is_null($this->container['client_authentication']) && !in_array($this->container['client_authentication'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'client_authentication', must be one of '%s'",
-                $this->container['client_authentication'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets strict_transport_security
-     *
-     * @return \Upsun\Model\StrictTransportSecurityOptions1|null
-     */
-    public function getStrictTransportSecurity()
-    {
-        return $this->container['strict_transport_security'];
-    }
-
-    /**
-     * Sets strict_transport_security
-     */
-    public function setStrictTransportSecurity($strict_transport_security)
-    {
-        if (is_null($strict_transport_security)) {
-            throw new \InvalidArgumentException('non-nullable strict_transport_security cannot be null');
-        }
-        $this->container['strict_transport_security'] = $strict_transport_security;
-
-        return $this;
-    }
-
-    /**
-     * Gets min_version
-     *
-     * @return string|null
-     */
-    public function getMinVersion()
-    {
-        return $this->container['min_version'];
-    }
-
-    /**
-     * Sets min_version
-     */
-    public function setMinVersion($min_version)
-    {
-        if (is_null($min_version)) {
-            array_push($this->openAPINullablesSetToNull, 'min_version');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('min_version', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $allowedValues = $this->getMinVersionAllowableValues();
-        if (!is_null($min_version) && !in_array($min_version, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'min_version', must be one of '%s'",
-                    $min_version,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['min_version'] = $min_version;
-
-        return $this;
-    }
-
-    /**
-     * Gets client_authentication
-     *
-     * @return string|null
-     */
-    public function getClientAuthentication()
-    {
-        return $this->container['client_authentication'];
-    }
-
-    /**
-     * Sets client_authentication
-     */
-    public function setClientAuthentication($client_authentication)
-    {
-        if (is_null($client_authentication)) {
-            array_push($this->openAPINullablesSetToNull, 'client_authentication');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('client_authentication', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $allowedValues = $this->getClientAuthenticationAllowableValues();
-        if (!is_null($client_authentication) && !in_array($client_authentication, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'client_authentication', must be one of '%s'",
-                    $client_authentication,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['client_authentication'] = $client_authentication;
-
-        return $this;
-    }
-
-    /**
-     * Gets client_certificate_authorities
-     *
-     * @return string[]|null
-     */
-    public function getClientCertificateAuthorities()
-    {
-        return $this->container['client_certificate_authorities'];
-    }
-
-    /**
-     * Sets client_certificate_authorities
-     */
-    public function setClientCertificateAuthorities($client_certificate_authorities)
-    {
-        if (is_null($client_certificate_authorities)) {
-            throw new \InvalidArgumentException('non-nullable client_certificate_authorities cannot be null');
-        }
-        $this->container['client_certificate_authorities'] = $client_certificate_authorities;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+        return [
+            'strict_transport_security' => $this->strict_transport_security,
+            'min_version' => $this->min_version,
+            'client_authentication' => $this->client_authentication,
+            'client_certificate_authorities' => $this->client_certificate_authorities,
+        ];
     }
 
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+

@@ -10,29 +10,28 @@ use Nyholm\Psr7\Stream;
 
 class OAuthProvider
 {
-    private int $tokenExchangeCount = 0;
-
-    private ?string $typeToken = null;
     private ?string $accessToken = null;
     private int $tokenExpiry = 0;
-    private bool $hasInitialToken = false;
 
     public function __construct(
-        private ClientInterface $httpClient,
-        private RequestFactoryInterface $requestFactory,
+        private readonly ClientInterface $httpClient,
+        private readonly RequestFactoryInterface $requestFactory,
         private readonly string $tokenEndpoint,
         private readonly string $clientId,
         private readonly string $clientSecret
-    ) {}
+    ) {
+    }
 
+    /**
+     * @throws Exception
+     */
     public function exchangeCodeForToken(): bool
     {
         try {
-            $this->tokenExchangeCount++; // incrémente à chaque appel
-
             $body = http_build_query([
                 'grant_type' => 'api_token',
                 'api_token' => $this->clientSecret,
+                'client_id' => $this->clientId,
             ]);
 
             $request = $this->requestFactory->createRequest('POST', $this->tokenEndpoint)
@@ -44,9 +43,7 @@ class OAuthProvider
             $response = $this->httpClient->sendRequest($request);
 
             if ($response->getStatusCode() !== 200) {
-                throw new Exception('Token exchange failed with status: ' . $response->getStatusCode()
-                    . ' nb appel=' . $this->tokenExchangeCount
-                    . ' token expiry' . $this->tokenExpiry);
+                throw new Exception('Token exchange failed with status: ' . $response->getStatusCode());
             }
 
             $data = json_decode((string)$response->getBody(), true);
@@ -60,7 +57,6 @@ class OAuthProvider
             }
 
             $this->storeTokenData($data);
-            $this->hasInitialToken = true;
 
             return true;
         } catch (ClientExceptionInterface $e) {
@@ -70,52 +66,28 @@ class OAuthProvider
 
     private function storeTokenData(array $data): void
     {
-        $this->typeToken = $data['token_type'] ?? null;
         $this->accessToken = $data['access_token'] ?? null;
         $this->tokenExpiry = time() + ($data['expires_in'] ?? 0);
     }
 
+    /**
+     * @throws Exception
+     */
     public function ensureValidToken(): void
     {
         $buffer = 60;
 
         if (!$this->accessToken || time() > ($this->tokenExpiry - $buffer)) {
-            var_dump('ensureValidToken token ' . $this->accessToken
-                . ' token expiry ' . time() . '>' . $this->tokenExpiry.' - '. $buffer);
             $this->exchangeCodeForToken();
         }
     }
 
+    /**
+     * @throws Exception
+     */
     public function getAuthorization(): string
     {
         $this->ensureValidToken();
         return 'Bearer ' . $this->accessToken;
-    }
-
-    public function forceRefresh(): void
-    {
-        $this->tokenExpiry = 0;
-        $this->ensureValidToken();
-    }
-
-    public function hasValidToken(): bool
-    {
-        return $this->accessToken && time() < ($this->tokenExpiry - 60);
-    }
-
-    public function getTokenInfo(): array
-    {
-        return [
-            'access_token' => $this->accessToken,
-            'expires_in' => max(0, $this->tokenExpiry - time()),
-            'token_type' => $this->typeToken,
-            'has_initial_token' => $this->hasInitialToken,
-        ];
-    }
-
-    public function debugTokenStatus(): void
-    {
-        $info = $this->getTokenInfo();
-        error_log('OAuthProvider Token Status: ' . json_encode($info));
     }
 }

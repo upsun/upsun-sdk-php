@@ -127,7 +127,10 @@ final class DeploymentTargetApi extends AbstractApi
         string $project_id,
         \Upsun\Model\DeploymentTargetCreateInput $deployment_target_create_input
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->createProjectsDeploymentsWithHttpInfo($project_id, $deployment_target_create_input);
+        list($response) = $this->createProjectsDeploymentsWithHttpInfo(
+            $project_id,
+            $deployment_target_create_input
+        );
         return $response;
     }
 
@@ -141,17 +144,18 @@ final class DeploymentTargetApi extends AbstractApi
         string $project_id,
         \Upsun\Model\DeploymentTargetCreateInput $deployment_target_create_input
     ): array {
-        $request = $this->createProjectsDeploymentsRequest($project_id, $deployment_target_create_input);
+        $request = $this->createProjectsDeploymentsRequest(
+            $project_id,
+            $deployment_target_create_input
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -231,7 +235,10 @@ final class DeploymentTargetApi extends AbstractApi
         string $project_id,
         \Upsun\Model\DeploymentTargetCreateInput $deployment_target_create_input
     ): Promise {
-        return $this->createProjectsDeploymentsAsyncWithHttpInfo($project_id, $deployment_target_create_input)
+        return $this->createProjectsDeploymentsAsyncWithHttpInfo(
+            $project_id,
+            $deployment_target_create_input
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -249,7 +256,10 @@ final class DeploymentTargetApi extends AbstractApi
         \Upsun\Model\DeploymentTargetCreateInput $deployment_target_create_input
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->createProjectsDeploymentsRequest($project_id, $deployment_target_create_input);
+        $request = $this->createProjectsDeploymentsRequest(
+            $project_id,
+            $deployment_target_create_input
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -392,7 +402,10 @@ final class DeploymentTargetApi extends AbstractApi
         string $project_id,
         string $deployment_target_configuration_id
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->deleteProjectsDeploymentsWithHttpInfo($project_id, $deployment_target_configuration_id);
+        list($response) = $this->deleteProjectsDeploymentsWithHttpInfo(
+            $project_id,
+            $deployment_target_configuration_id
+        );
         return $response;
     }
 
@@ -406,17 +419,18 @@ final class DeploymentTargetApi extends AbstractApi
         string $project_id,
         string $deployment_target_configuration_id
     ): array {
-        $request = $this->deleteProjectsDeploymentsRequest($project_id, $deployment_target_configuration_id);
+        $request = $this->deleteProjectsDeploymentsRequest(
+            $project_id,
+            $deployment_target_configuration_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -496,7 +510,10 @@ final class DeploymentTargetApi extends AbstractApi
         string $project_id,
         string $deployment_target_configuration_id
     ): Promise {
-        return $this->deleteProjectsDeploymentsAsyncWithHttpInfo($project_id, $deployment_target_configuration_id)
+        return $this->deleteProjectsDeploymentsAsyncWithHttpInfo(
+            $project_id,
+            $deployment_target_configuration_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -514,7 +531,10 @@ final class DeploymentTargetApi extends AbstractApi
         string $deployment_target_configuration_id
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->deleteProjectsDeploymentsRequest($project_id, $deployment_target_configuration_id);
+        $request = $this->deleteProjectsDeploymentsRequest(
+            $project_id,
+            $deployment_target_configuration_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -659,7 +679,10 @@ final class DeploymentTargetApi extends AbstractApi
         string $project_id,
         string $deployment_target_configuration_id
     ): \Upsun\Model\DeploymentTarget {
-        list($response) = $this->getProjectsDeploymentsWithHttpInfo($project_id, $deployment_target_configuration_id);
+        list($response) = $this->getProjectsDeploymentsWithHttpInfo(
+            $project_id,
+            $deployment_target_configuration_id
+        );
         return $response;
     }
 
@@ -673,17 +696,18 @@ final class DeploymentTargetApi extends AbstractApi
         string $project_id,
         string $deployment_target_configuration_id
     ): array {
-        $request = $this->getProjectsDeploymentsRequest($project_id, $deployment_target_configuration_id);
+        $request = $this->getProjectsDeploymentsRequest(
+            $project_id,
+            $deployment_target_configuration_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -763,7 +787,10 @@ final class DeploymentTargetApi extends AbstractApi
         string $project_id,
         string $deployment_target_configuration_id
     ): Promise {
-        return $this->getProjectsDeploymentsAsyncWithHttpInfo($project_id, $deployment_target_configuration_id)
+        return $this->getProjectsDeploymentsAsyncWithHttpInfo(
+            $project_id,
+            $deployment_target_configuration_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -781,7 +808,10 @@ final class DeploymentTargetApi extends AbstractApi
         string $deployment_target_configuration_id
     ): Promise {
         $returnType = '\Upsun\Model\DeploymentTarget';
-        $request = $this->getProjectsDeploymentsRequest($project_id, $deployment_target_configuration_id);
+        $request = $this->getProjectsDeploymentsRequest(
+            $project_id,
+            $deployment_target_configuration_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -927,7 +957,9 @@ final class DeploymentTargetApi extends AbstractApi
     public function listProjectsDeployments(
         string $project_id
     ): array {
-        list($response) = $this->listProjectsDeploymentsWithHttpInfo($project_id);
+        list($response) = $this->listProjectsDeploymentsWithHttpInfo(
+            $project_id
+        );
         return $response;
     }
 
@@ -940,17 +972,17 @@ final class DeploymentTargetApi extends AbstractApi
     public function listProjectsDeploymentsWithHttpInfo(
         string $project_id
     ): array {
-        $request = $this->listProjectsDeploymentsRequest($project_id);
+        $request = $this->listProjectsDeploymentsRequest(
+            $project_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1029,7 +1061,9 @@ final class DeploymentTargetApi extends AbstractApi
     public function listProjectsDeploymentsAsync(
         string $project_id
     ): Promise {
-        return $this->listProjectsDeploymentsAsyncWithHttpInfo($project_id)
+        return $this->listProjectsDeploymentsAsyncWithHttpInfo(
+            $project_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1046,7 +1080,9 @@ final class DeploymentTargetApi extends AbstractApi
         string $project_id
     ): Promise {
         $returnType = '\Upsun\Model\DeploymentTarget[]';
-        $request = $this->listProjectsDeploymentsRequest($project_id);
+        $request = $this->listProjectsDeploymentsRequest(
+            $project_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1177,7 +1213,11 @@ final class DeploymentTargetApi extends AbstractApi
         string $deployment_target_configuration_id,
         \Upsun\Model\DeploymentTargetPatch $deployment_target_patch
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->updateProjectsDeploymentsWithHttpInfo($project_id, $deployment_target_configuration_id, $deployment_target_patch);
+        list($response) = $this->updateProjectsDeploymentsWithHttpInfo(
+            $project_id,
+            $deployment_target_configuration_id,
+            $deployment_target_patch
+        );
         return $response;
     }
 
@@ -1192,17 +1232,19 @@ final class DeploymentTargetApi extends AbstractApi
         string $deployment_target_configuration_id,
         \Upsun\Model\DeploymentTargetPatch $deployment_target_patch
     ): array {
-        $request = $this->updateProjectsDeploymentsRequest($project_id, $deployment_target_configuration_id, $deployment_target_patch);
+        $request = $this->updateProjectsDeploymentsRequest(
+            $project_id,
+            $deployment_target_configuration_id,
+            $deployment_target_patch
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1283,7 +1325,11 @@ final class DeploymentTargetApi extends AbstractApi
         string $deployment_target_configuration_id,
         \Upsun\Model\DeploymentTargetPatch $deployment_target_patch
     ): Promise {
-        return $this->updateProjectsDeploymentsAsyncWithHttpInfo($project_id, $deployment_target_configuration_id, $deployment_target_patch)
+        return $this->updateProjectsDeploymentsAsyncWithHttpInfo(
+            $project_id,
+            $deployment_target_configuration_id,
+            $deployment_target_patch
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1302,7 +1348,11 @@ final class DeploymentTargetApi extends AbstractApi
         \Upsun\Model\DeploymentTargetPatch $deployment_target_patch
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->updateProjectsDeploymentsRequest($project_id, $deployment_target_configuration_id, $deployment_target_patch);
+        $request = $this->updateProjectsDeploymentsRequest(
+            $project_id,
+            $deployment_target_configuration_id,
+            $deployment_target_patch
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1460,31 +1510,22 @@ final class DeploymentTargetApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -1547,15 +1588,5 @@ final class DeploymentTargetApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

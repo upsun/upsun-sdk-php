@@ -127,7 +127,10 @@ final class ConnectionsApi extends AbstractApi
         string $provider,
         string $user_id
     ): void {
-        $this->deleteLoginConnectionWithHttpInfo($provider, $user_id);
+        $this->deleteLoginConnectionWithHttpInfo(
+            $provider,
+            $user_id
+        );
     }
 
     /**
@@ -140,17 +143,18 @@ final class ConnectionsApi extends AbstractApi
         string $provider,
         string $user_id
     ): array {
-        $request = $this->deleteLoginConnectionRequest($provider, $user_id);
+        $request = $this->deleteLoginConnectionRequest(
+            $provider,
+            $user_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -203,7 +207,10 @@ final class ConnectionsApi extends AbstractApi
         string $provider,
         string $user_id
     ): Promise {
-        return $this->deleteLoginConnectionAsyncWithHttpInfo($provider, $user_id)
+        return $this->deleteLoginConnectionAsyncWithHttpInfo(
+            $provider,
+            $user_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -221,7 +228,10 @@ final class ConnectionsApi extends AbstractApi
         string $user_id
     ): Promise {
         $returnType = '';
-        $request = $this->deleteLoginConnectionRequest($provider, $user_id);
+        $request = $this->deleteLoginConnectionRequest(
+            $provider,
+            $user_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -356,7 +366,10 @@ final class ConnectionsApi extends AbstractApi
         string $provider,
         string $user_id
     ): \Upsun\Model\Connection {
-        list($response) = $this->getLoginConnectionWithHttpInfo($provider, $user_id);
+        list($response) = $this->getLoginConnectionWithHttpInfo(
+            $provider,
+            $user_id
+        );
         return $response;
     }
 
@@ -370,17 +383,18 @@ final class ConnectionsApi extends AbstractApi
         string $provider,
         string $user_id
     ): array {
-        $request = $this->getLoginConnectionRequest($provider, $user_id);
+        $request = $this->getLoginConnectionRequest(
+            $provider,
+            $user_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -474,7 +488,10 @@ final class ConnectionsApi extends AbstractApi
         string $provider,
         string $user_id
     ): Promise {
-        return $this->getLoginConnectionAsyncWithHttpInfo($provider, $user_id)
+        return $this->getLoginConnectionAsyncWithHttpInfo(
+            $provider,
+            $user_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -492,7 +509,10 @@ final class ConnectionsApi extends AbstractApi
         string $user_id
     ): Promise {
         $returnType = '\Upsun\Model\Connection';
-        $request = $this->getLoginConnectionRequest($provider, $user_id);
+        $request = $this->getLoginConnectionRequest(
+            $provider,
+            $user_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -638,7 +658,9 @@ final class ConnectionsApi extends AbstractApi
     public function listLoginConnections(
         string $user_id
     ): array {
-        list($response) = $this->listLoginConnectionsWithHttpInfo($user_id);
+        list($response) = $this->listLoginConnectionsWithHttpInfo(
+            $user_id
+        );
         return $response;
     }
 
@@ -651,17 +673,17 @@ final class ConnectionsApi extends AbstractApi
     public function listLoginConnectionsWithHttpInfo(
         string $user_id
     ): array {
-        $request = $this->listLoginConnectionsRequest($user_id);
+        $request = $this->listLoginConnectionsRequest(
+            $user_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -754,7 +776,9 @@ final class ConnectionsApi extends AbstractApi
     public function listLoginConnectionsAsync(
         string $user_id
     ): Promise {
-        return $this->listLoginConnectionsAsyncWithHttpInfo($user_id)
+        return $this->listLoginConnectionsAsyncWithHttpInfo(
+            $user_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -771,7 +795,9 @@ final class ConnectionsApi extends AbstractApi
         string $user_id
     ): Promise {
         $returnType = '\Upsun\Model\Connection[]';
-        $request = $this->listLoginConnectionsRequest($user_id);
+        $request = $this->listLoginConnectionsRequest(
+            $user_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -901,31 +927,22 @@ final class ConnectionsApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -988,15 +1005,5 @@ final class ConnectionsApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }

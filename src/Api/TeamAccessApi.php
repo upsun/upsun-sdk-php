@@ -127,7 +127,10 @@ final class TeamAccessApi extends AbstractApi
         string $project_id,
         string $team_id
     ): \Upsun\Model\TeamProjectAccess {
-        list($response) = $this->getProjectTeamAccessWithHttpInfo($project_id, $team_id);
+        list($response) = $this->getProjectTeamAccessWithHttpInfo(
+            $project_id,
+            $team_id
+        );
         return $response;
     }
 
@@ -141,17 +144,18 @@ final class TeamAccessApi extends AbstractApi
         string $project_id,
         string $team_id
     ): array {
-        $request = $this->getProjectTeamAccessRequest($project_id, $team_id);
+        $request = $this->getProjectTeamAccessRequest(
+            $project_id,
+            $team_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -259,7 +263,10 @@ final class TeamAccessApi extends AbstractApi
         string $project_id,
         string $team_id
     ): Promise {
-        return $this->getProjectTeamAccessAsyncWithHttpInfo($project_id, $team_id)
+        return $this->getProjectTeamAccessAsyncWithHttpInfo(
+            $project_id,
+            $team_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -277,7 +284,10 @@ final class TeamAccessApi extends AbstractApi
         string $team_id
     ): Promise {
         $returnType = '\Upsun\Model\TeamProjectAccess';
-        $request = $this->getProjectTeamAccessRequest($project_id, $team_id);
+        $request = $this->getProjectTeamAccessRequest(
+            $project_id,
+            $team_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -422,7 +432,10 @@ final class TeamAccessApi extends AbstractApi
         string $team_id,
         string $project_id
     ): \Upsun\Model\TeamProjectAccess {
-        list($response) = $this->getTeamProjectAccessWithHttpInfo($team_id, $project_id);
+        list($response) = $this->getTeamProjectAccessWithHttpInfo(
+            $team_id,
+            $project_id
+        );
         return $response;
     }
 
@@ -436,17 +449,18 @@ final class TeamAccessApi extends AbstractApi
         string $team_id,
         string $project_id
     ): array {
-        $request = $this->getTeamProjectAccessRequest($team_id, $project_id);
+        $request = $this->getTeamProjectAccessRequest(
+            $team_id,
+            $project_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -554,7 +568,10 @@ final class TeamAccessApi extends AbstractApi
         string $team_id,
         string $project_id
     ): Promise {
-        return $this->getTeamProjectAccessAsyncWithHttpInfo($team_id, $project_id)
+        return $this->getTeamProjectAccessAsyncWithHttpInfo(
+            $team_id,
+            $project_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -572,7 +589,10 @@ final class TeamAccessApi extends AbstractApi
         string $project_id
     ): Promise {
         $returnType = '\Upsun\Model\TeamProjectAccess';
-        $request = $this->getTeamProjectAccessRequest($team_id, $project_id);
+        $request = $this->getTeamProjectAccessRequest(
+            $team_id,
+            $project_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -717,7 +737,10 @@ final class TeamAccessApi extends AbstractApi
         string $project_id,
         array $grant_project_team_access_request_inner
     ): void {
-        $this->grantProjectTeamAccessWithHttpInfo($project_id, $grant_project_team_access_request_inner);
+        $this->grantProjectTeamAccessWithHttpInfo(
+            $project_id,
+            $grant_project_team_access_request_inner
+        );
     }
 
     /**
@@ -730,17 +753,18 @@ final class TeamAccessApi extends AbstractApi
         string $project_id,
         array $grant_project_team_access_request_inner
     ): array {
-        $request = $this->grantProjectTeamAccessRequest($project_id, $grant_project_team_access_request_inner);
+        $request = $this->grantProjectTeamAccessRequest(
+            $project_id,
+            $grant_project_team_access_request_inner
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -801,7 +825,10 @@ final class TeamAccessApi extends AbstractApi
         string $project_id,
         array $grant_project_team_access_request_inner
     ): Promise {
-        return $this->grantProjectTeamAccessAsyncWithHttpInfo($project_id, $grant_project_team_access_request_inner)
+        return $this->grantProjectTeamAccessAsyncWithHttpInfo(
+            $project_id,
+            $grant_project_team_access_request_inner
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -819,7 +846,10 @@ final class TeamAccessApi extends AbstractApi
         array $grant_project_team_access_request_inner
     ): Promise {
         $returnType = '';
-        $request = $this->grantProjectTeamAccessRequest($project_id, $grant_project_team_access_request_inner);
+        $request = $this->grantProjectTeamAccessRequest(
+            $project_id,
+            $grant_project_team_access_request_inner
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -952,7 +982,10 @@ final class TeamAccessApi extends AbstractApi
         string $team_id,
         array $grant_team_project_access_request_inner
     ): void {
-        $this->grantTeamProjectAccessWithHttpInfo($team_id, $grant_team_project_access_request_inner);
+        $this->grantTeamProjectAccessWithHttpInfo(
+            $team_id,
+            $grant_team_project_access_request_inner
+        );
     }
 
     /**
@@ -965,17 +998,18 @@ final class TeamAccessApi extends AbstractApi
         string $team_id,
         array $grant_team_project_access_request_inner
     ): array {
-        $request = $this->grantTeamProjectAccessRequest($team_id, $grant_team_project_access_request_inner);
+        $request = $this->grantTeamProjectAccessRequest(
+            $team_id,
+            $grant_team_project_access_request_inner
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1036,7 +1070,10 @@ final class TeamAccessApi extends AbstractApi
         string $team_id,
         array $grant_team_project_access_request_inner
     ): Promise {
-        return $this->grantTeamProjectAccessAsyncWithHttpInfo($team_id, $grant_team_project_access_request_inner)
+        return $this->grantTeamProjectAccessAsyncWithHttpInfo(
+            $team_id,
+            $grant_team_project_access_request_inner
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1054,7 +1091,10 @@ final class TeamAccessApi extends AbstractApi
         array $grant_team_project_access_request_inner
     ): Promise {
         $returnType = '';
-        $request = $this->grantTeamProjectAccessRequest($team_id, $grant_team_project_access_request_inner);
+        $request = $this->grantTeamProjectAccessRequest(
+            $team_id,
+            $grant_team_project_access_request_inner
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1190,7 +1230,13 @@ final class TeamAccessApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): \Upsun\Model\ListTeamProjectAccess200Response {
-        list($response) = $this->listProjectTeamAccessWithHttpInfo($project_id, $page_size, $page_before, $page_after, $sort);
+        list($response) = $this->listProjectTeamAccessWithHttpInfo(
+            $project_id,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
         return $response;
     }
 
@@ -1207,17 +1253,21 @@ final class TeamAccessApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): array {
-        $request = $this->listProjectTeamAccessRequest($project_id, $page_size, $page_before, $page_after, $sort);
+        $request = $this->listProjectTeamAccessRequest(
+            $project_id,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1328,7 +1378,13 @@ final class TeamAccessApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): Promise {
-        return $this->listProjectTeamAccessAsyncWithHttpInfo($project_id, $page_size, $page_before, $page_after, $sort)
+        return $this->listProjectTeamAccessAsyncWithHttpInfo(
+            $project_id,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1349,7 +1405,13 @@ final class TeamAccessApi extends AbstractApi
         string $sort = null
     ): Promise {
         $returnType = '\Upsun\Model\ListTeamProjectAccess200Response';
-        $request = $this->listProjectTeamAccessRequest($project_id, $page_size, $page_before, $page_after, $sort);
+        $request = $this->listProjectTeamAccessRequest(
+            $project_id,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1402,10 +1464,16 @@ final class TeamAccessApi extends AbstractApi
             );
         }
         if ($page_size !== null && $page_size > 200) {
-            throw new \InvalidArgumentException('invalid value for "$page_size" when calling TeamAccessApi.listProjectTeamAccess, must be smaller than or equal to 200.');
+            throw new \InvalidArgumentException(
+                'invalid value for "$page_size" when calling TeamAccessApi.listProjectTeamAccess, 
+                must be smaller than or equal to 200.'
+            );
         }
         if ($page_size !== null && $page_size < 1) {
-            throw new \InvalidArgumentException('invalid value for "$page_size" when calling TeamAccessApi.listProjectTeamAccess, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException(
+                'invalid value for "$page_size" when calling TeamAccessApi.listProjectTeamAccess,
+                must be bigger than or equal to 1.'
+            );
         }
 
 
@@ -1426,7 +1494,7 @@ final class TeamAccessApi extends AbstractApi
                 $queryParams['page[size]'] = $page_size;
             }
         }
-        
+
         // query params
         if ($page_before !== null) {
             if ('form' === 'form' && is_array($page_before)) {
@@ -1437,7 +1505,7 @@ final class TeamAccessApi extends AbstractApi
                 $queryParams['page[before]'] = $page_before;
             }
         }
-        
+
         // query params
         if ($page_after !== null) {
             if ('form' === 'form' && is_array($page_after)) {
@@ -1448,7 +1516,7 @@ final class TeamAccessApi extends AbstractApi
                 $queryParams['page[after]'] = $page_after;
             }
         }
-        
+
         // query params
         if ($sort !== null) {
             if ('form' === 'form' && is_array($sort)) {
@@ -1459,7 +1527,7 @@ final class TeamAccessApi extends AbstractApi
                 $queryParams['sort'] = $sort;
             }
         }
-        
+
 
 
         // path params
@@ -1537,7 +1605,13 @@ final class TeamAccessApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): \Upsun\Model\ListTeamProjectAccess200Response {
-        list($response) = $this->listTeamProjectAccessWithHttpInfo($team_id, $page_size, $page_before, $page_after, $sort);
+        list($response) = $this->listTeamProjectAccessWithHttpInfo(
+            $team_id,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
         return $response;
     }
 
@@ -1554,17 +1628,21 @@ final class TeamAccessApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): array {
-        $request = $this->listTeamProjectAccessRequest($team_id, $page_size, $page_before, $page_after, $sort);
+        $request = $this->listTeamProjectAccessRequest(
+            $team_id,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1675,7 +1753,13 @@ final class TeamAccessApi extends AbstractApi
         string $page_after = null,
         string $sort = null
     ): Promise {
-        return $this->listTeamProjectAccessAsyncWithHttpInfo($team_id, $page_size, $page_before, $page_after, $sort)
+        return $this->listTeamProjectAccessAsyncWithHttpInfo(
+            $team_id,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1696,7 +1780,13 @@ final class TeamAccessApi extends AbstractApi
         string $sort = null
     ): Promise {
         $returnType = '\Upsun\Model\ListTeamProjectAccess200Response';
-        $request = $this->listTeamProjectAccessRequest($team_id, $page_size, $page_before, $page_after, $sort);
+        $request = $this->listTeamProjectAccessRequest(
+            $team_id,
+            $page_size,
+            $page_before,
+            $page_after,
+            $sort
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -1749,10 +1839,16 @@ final class TeamAccessApi extends AbstractApi
             );
         }
         if ($page_size !== null && $page_size > 200) {
-            throw new \InvalidArgumentException('invalid value for "$page_size" when calling TeamAccessApi.listTeamProjectAccess, must be smaller than or equal to 200.');
+            throw new \InvalidArgumentException(
+                'invalid value for "$page_size" when calling TeamAccessApi.listTeamProjectAccess, 
+                must be smaller than or equal to 200.'
+            );
         }
         if ($page_size !== null && $page_size < 1) {
-            throw new \InvalidArgumentException('invalid value for "$page_size" when calling TeamAccessApi.listTeamProjectAccess, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException(
+                'invalid value for "$page_size" when calling TeamAccessApi.listTeamProjectAccess,
+                must be bigger than or equal to 1.'
+            );
         }
 
 
@@ -1773,7 +1869,7 @@ final class TeamAccessApi extends AbstractApi
                 $queryParams['page[size]'] = $page_size;
             }
         }
-        
+
         // query params
         if ($page_before !== null) {
             if ('form' === 'form' && is_array($page_before)) {
@@ -1784,7 +1880,7 @@ final class TeamAccessApi extends AbstractApi
                 $queryParams['page[before]'] = $page_before;
             }
         }
-        
+
         // query params
         if ($page_after !== null) {
             if ('form' === 'form' && is_array($page_after)) {
@@ -1795,7 +1891,7 @@ final class TeamAccessApi extends AbstractApi
                 $queryParams['page[after]'] = $page_after;
             }
         }
-        
+
         // query params
         if ($sort !== null) {
             if ('form' === 'form' && is_array($sort)) {
@@ -1806,7 +1902,7 @@ final class TeamAccessApi extends AbstractApi
                 $queryParams['sort'] = $sort;
             }
         }
-        
+
 
 
         // path params
@@ -1881,7 +1977,10 @@ final class TeamAccessApi extends AbstractApi
         string $project_id,
         string $team_id
     ): void {
-        $this->removeProjectTeamAccessWithHttpInfo($project_id, $team_id);
+        $this->removeProjectTeamAccessWithHttpInfo(
+            $project_id,
+            $team_id
+        );
     }
 
     /**
@@ -1894,17 +1993,18 @@ final class TeamAccessApi extends AbstractApi
         string $project_id,
         string $team_id
     ): array {
-        $request = $this->removeProjectTeamAccessRequest($project_id, $team_id);
+        $request = $this->removeProjectTeamAccessRequest(
+            $project_id,
+            $team_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -1973,7 +2073,10 @@ final class TeamAccessApi extends AbstractApi
         string $project_id,
         string $team_id
     ): Promise {
-        return $this->removeProjectTeamAccessAsyncWithHttpInfo($project_id, $team_id)
+        return $this->removeProjectTeamAccessAsyncWithHttpInfo(
+            $project_id,
+            $team_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1991,7 +2094,10 @@ final class TeamAccessApi extends AbstractApi
         string $team_id
     ): Promise {
         $returnType = '';
-        $request = $this->removeProjectTeamAccessRequest($project_id, $team_id);
+        $request = $this->removeProjectTeamAccessRequest(
+            $project_id,
+            $team_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -2126,7 +2232,10 @@ final class TeamAccessApi extends AbstractApi
         string $team_id,
         string $project_id
     ): void {
-        $this->removeTeamProjectAccessWithHttpInfo($team_id, $project_id);
+        $this->removeTeamProjectAccessWithHttpInfo(
+            $team_id,
+            $project_id
+        );
     }
 
     /**
@@ -2139,17 +2248,18 @@ final class TeamAccessApi extends AbstractApi
         string $team_id,
         string $project_id
     ): array {
-        $request = $this->removeTeamProjectAccessRequest($team_id, $project_id);
+        $request = $this->removeTeamProjectAccessRequest(
+            $team_id,
+            $project_id
+        );
 
         try {
             try {
                 $this->refreshToken();
-                //$response = $this->httpClient->sendRequest($request);
                 $response = $this->sendAuthenticatedRequest(
                     $request->getMethod(),
                     (string) $request->getUri(),
-                    $request->getHeaders(),
-                    (string) $request->getBody()
+                    $request->getHeaders()
                 );
             } catch (HttpException $e) {
                 $response = $e->getResponse();
@@ -2218,7 +2328,10 @@ final class TeamAccessApi extends AbstractApi
         string $team_id,
         string $project_id
     ): Promise {
-        return $this->removeTeamProjectAccessAsyncWithHttpInfo($team_id, $project_id)
+        return $this->removeTeamProjectAccessAsyncWithHttpInfo(
+            $team_id,
+            $project_id
+        )
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2236,7 +2349,10 @@ final class TeamAccessApi extends AbstractApi
         string $project_id
     ): Promise {
         $returnType = '';
-        $request = $this->removeTeamProjectAccessRequest($team_id, $project_id);
+        $request = $this->removeTeamProjectAccessRequest(
+            $team_id,
+            $project_id
+        );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
             ->then(
@@ -2371,31 +2487,22 @@ final class TeamAccessApi extends AbstractApi
         array $headers = [],
         string|StreamInterface|null $body = null
     ): RequestInterface {
-        if ($this->requestFactory instanceof RequestFactory) {
-            return $this->requestFactory->createRequest(
-                $method,
-                $uri,
-                $headers,
-                $body
-            );
-        }
-
-        if (is_string($body) && '' !== $body && null === $this->streamFactory) {
-            throw new \RuntimeException(
-                'Cannot create request: A stream factory is required to create a request with a non-empty string body.'
-            );
-        }
-
         $request = $this->requestFactory->createRequest($method, $uri);
 
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
-        if (null !== $body && '' !== $body) {
-            $request = $request->withBody(
-                is_string($body) ? $this->streamFactory->createStream($body) : $body
-            );
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
         }
 
         return $request;
@@ -2458,15 +2565,5 @@ final class TeamAccessApi extends AbstractApi
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
     }
 }
