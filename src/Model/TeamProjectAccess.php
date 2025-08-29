@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TeamProjectAccess implements JsonSerializable
+final class TeamProjectAccess implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -249,10 +251,8 @@ final class TeamProjectAccess implements JsonSerializable
 
     /**
      * Gets team_id
-     *
-     * @return string|null
      */
-    public function getTeamId()
+    public function getTeamId(): string|null
     {
         return $this->container['team_id'];
     }
@@ -272,10 +272,8 @@ final class TeamProjectAccess implements JsonSerializable
 
     /**
      * Gets organization_id
-     *
-     * @return string|null
      */
-    public function getOrganizationId()
+    public function getOrganizationId(): string|null
     {
         return $this->container['organization_id'];
     }
@@ -295,10 +293,8 @@ final class TeamProjectAccess implements JsonSerializable
 
     /**
      * Gets project_id
-     *
-     * @return string|null
      */
-    public function getProjectId()
+    public function getProjectId(): string|null
     {
         return $this->container['project_id'];
     }
@@ -318,10 +314,8 @@ final class TeamProjectAccess implements JsonSerializable
 
     /**
      * Gets project_title
-     *
-     * @return string|null
      */
-    public function getProjectTitle()
+    public function getProjectTitle(): string|null
     {
         return $this->container['project_title'];
     }
@@ -341,10 +335,8 @@ final class TeamProjectAccess implements JsonSerializable
 
     /**
      * Gets granted_at
-     *
-     * @return \DateTime|null
      */
-    public function getGrantedAt()
+    public function getGrantedAt(): \DateTime|null
     {
         return $this->container['granted_at'];
     }
@@ -364,10 +356,8 @@ final class TeamProjectAccess implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime|null
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime|null
     {
         return $this->container['updated_at'];
     }
@@ -387,10 +377,8 @@ final class TeamProjectAccess implements JsonSerializable
 
     /**
      * Gets _links
-     *
-     * @return \Upsun\Model\TeamProjectAccessLinks|null
      */
-    public function getLinks()
+    public function getLinks(): \Upsun\Model\TeamProjectAccessLinks|null
     {
         return $this->container['_links'];
     }
@@ -452,7 +440,6 @@ final class TeamProjectAccess implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

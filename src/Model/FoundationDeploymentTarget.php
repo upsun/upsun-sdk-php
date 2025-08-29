@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class FoundationDeploymentTarget implements JsonSerializable
+final class FoundationDeploymentTarget implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -274,10 +276,8 @@ final class FoundationDeploymentTarget implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -307,10 +307,8 @@ final class FoundationDeploymentTarget implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->container['name'];
     }
@@ -330,10 +328,8 @@ final class FoundationDeploymentTarget implements JsonSerializable
 
     /**
      * Gets hosts
-     *
-     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]
      */
-    public function getHosts()
+    public function getHosts(): array
     {
         return $this->container['hosts'];
     }
@@ -360,10 +356,8 @@ final class FoundationDeploymentTarget implements JsonSerializable
 
     /**
      * Gets use_dedicated_grid
-     *
-     * @return bool
      */
-    public function getUseDedicatedGrid()
+    public function getUseDedicatedGrid(): bool
     {
         return $this->container['use_dedicated_grid'];
     }
@@ -383,10 +377,8 @@ final class FoundationDeploymentTarget implements JsonSerializable
 
     /**
      * Gets storage_type
-     *
-     * @return string
      */
-    public function getStorageType()
+    public function getStorageType(): string
     {
         return $this->container['storage_type'];
     }
@@ -455,7 +447,6 @@ final class FoundationDeploymentTarget implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

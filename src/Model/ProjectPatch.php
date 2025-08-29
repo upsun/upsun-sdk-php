@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ProjectPatch implements JsonSerializable
+final class ProjectPatch implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -249,10 +251,8 @@ final class ProjectPatch implements JsonSerializable
 
     /**
      * Gets attributes
-     *
-     * @return array<string,string>|null
      */
-    public function getAttributes()
+    public function getAttributes(): array|null
     {
         return $this->container['attributes'];
     }
@@ -272,10 +272,8 @@ final class ProjectPatch implements JsonSerializable
 
     /**
      * Gets title
-     *
-     * @return string|null
      */
-    public function getTitle()
+    public function getTitle(): string|null
     {
         return $this->container['title'];
     }
@@ -295,10 +293,8 @@ final class ProjectPatch implements JsonSerializable
 
     /**
      * Gets description
-     *
-     * @return string|null
      */
-    public function getDescription()
+    public function getDescription(): string|null
     {
         return $this->container['description'];
     }
@@ -318,10 +314,8 @@ final class ProjectPatch implements JsonSerializable
 
     /**
      * Gets default_branch
-     *
-     * @return string|null
      */
-    public function getDefaultBranch()
+    public function getDefaultBranch(): string|null
     {
         return $this->container['default_branch'];
     }
@@ -348,10 +342,8 @@ final class ProjectPatch implements JsonSerializable
 
     /**
      * Gets timezone
-     *
-     * @return string|null
      */
-    public function getTimezone()
+    public function getTimezone(): string|null
     {
         return $this->container['timezone'];
     }
@@ -371,10 +363,8 @@ final class ProjectPatch implements JsonSerializable
 
     /**
      * Gets region
-     *
-     * @return string|null
      */
-    public function getRegion()
+    public function getRegion(): string|null
     {
         return $this->container['region'];
     }
@@ -394,10 +384,8 @@ final class ProjectPatch implements JsonSerializable
 
     /**
      * Gets default_domain
-     *
-     * @return string|null
      */
-    public function getDefaultDomain()
+    public function getDefaultDomain(): string|null
     {
         return $this->container['default_domain'];
     }
@@ -466,7 +454,6 @@ final class ProjectPatch implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

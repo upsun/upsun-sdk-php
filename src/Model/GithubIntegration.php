@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class GithubIntegration implements JsonSerializable
+final class GithubIntegration implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -378,10 +380,8 @@ final class GithubIntegration implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->container['created_at'];
     }
@@ -408,10 +408,8 @@ final class GithubIntegration implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime
     {
         return $this->container['updated_at'];
     }
@@ -438,10 +436,8 @@ final class GithubIntegration implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -461,10 +457,8 @@ final class GithubIntegration implements JsonSerializable
 
     /**
      * Gets fetch_branches
-     *
-     * @return bool
      */
-    public function getFetchBranches()
+    public function getFetchBranches(): bool
     {
         return $this->container['fetch_branches'];
     }
@@ -484,10 +478,8 @@ final class GithubIntegration implements JsonSerializable
 
     /**
      * Gets prune_branches
-     *
-     * @return bool
      */
-    public function getPruneBranches()
+    public function getPruneBranches(): bool
     {
         return $this->container['prune_branches'];
     }
@@ -507,10 +499,8 @@ final class GithubIntegration implements JsonSerializable
 
     /**
      * Gets environment_init_resources
-     *
-     * @return string
      */
-    public function getEnvironmentInitResources()
+    public function getEnvironmentInitResources(): string
     {
         return $this->container['environment_init_resources'];
     }
@@ -540,10 +530,8 @@ final class GithubIntegration implements JsonSerializable
 
     /**
      * Gets base_url
-     *
-     * @return string
      */
-    public function getBaseUrl()
+    public function getBaseUrl(): string
     {
         return $this->container['base_url'];
     }
@@ -570,10 +558,8 @@ final class GithubIntegration implements JsonSerializable
 
     /**
      * Gets repository
-     *
-     * @return string
      */
-    public function getRepository()
+    public function getRepository(): string
     {
         return $this->container['repository'];
     }
@@ -593,10 +579,8 @@ final class GithubIntegration implements JsonSerializable
 
     /**
      * Gets build_pull_requests
-     *
-     * @return bool
      */
-    public function getBuildPullRequests()
+    public function getBuildPullRequests(): bool
     {
         return $this->container['build_pull_requests'];
     }
@@ -616,10 +600,8 @@ final class GithubIntegration implements JsonSerializable
 
     /**
      * Gets build_draft_pull_requests
-     *
-     * @return bool
      */
-    public function getBuildDraftPullRequests()
+    public function getBuildDraftPullRequests(): bool
     {
         return $this->container['build_draft_pull_requests'];
     }
@@ -639,10 +621,8 @@ final class GithubIntegration implements JsonSerializable
 
     /**
      * Gets build_pull_requests_post_merge
-     *
-     * @return bool
      */
-    public function getBuildPullRequestsPostMerge()
+    public function getBuildPullRequestsPostMerge(): bool
     {
         return $this->container['build_pull_requests_post_merge'];
     }
@@ -662,10 +642,8 @@ final class GithubIntegration implements JsonSerializable
 
     /**
      * Gets pull_requests_clone_parent_data
-     *
-     * @return bool
      */
-    public function getPullRequestsCloneParentData()
+    public function getPullRequestsCloneParentData(): bool
     {
         return $this->container['pull_requests_clone_parent_data'];
     }
@@ -685,10 +663,8 @@ final class GithubIntegration implements JsonSerializable
 
     /**
      * Gets token_type
-     *
-     * @return string
      */
-    public function getTokenType()
+    public function getTokenType(): string
     {
         return $this->container['token_type'];
     }
@@ -760,7 +736,6 @@ final class GithubIntegration implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

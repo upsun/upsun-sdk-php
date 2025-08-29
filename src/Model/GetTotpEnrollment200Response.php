@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class GetTotpEnrollment200Response implements JsonSerializable
+final class GetTotpEnrollment200Response implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -228,10 +230,8 @@ final class GetTotpEnrollment200Response implements JsonSerializable
 
     /**
      * Gets issuer
-     *
-     * @return string|null
      */
-    public function getIssuer()
+    public function getIssuer(): string|null
     {
         return $this->container['issuer'];
     }
@@ -251,10 +251,8 @@ final class GetTotpEnrollment200Response implements JsonSerializable
 
     /**
      * Gets account_name
-     *
-     * @return string|null
      */
-    public function getAccountName()
+    public function getAccountName(): string|null
     {
         return $this->container['account_name'];
     }
@@ -274,10 +272,8 @@ final class GetTotpEnrollment200Response implements JsonSerializable
 
     /**
      * Gets secret
-     *
-     * @return string|null
      */
-    public function getSecret()
+    public function getSecret(): string|null
     {
         return $this->container['secret'];
     }
@@ -297,10 +293,8 @@ final class GetTotpEnrollment200Response implements JsonSerializable
 
     /**
      * Gets qr_code
-     *
-     * @return string|null
      */
-    public function getQrCode()
+    public function getQrCode(): string|null
     {
         return $this->container['qr_code'];
     }
@@ -362,7 +356,6 @@ final class GetTotpEnrollment200Response implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

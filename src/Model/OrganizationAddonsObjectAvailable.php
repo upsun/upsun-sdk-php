@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class OrganizationAddonsObjectAvailable implements JsonSerializable
+final class OrganizationAddonsObjectAvailable implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -214,10 +216,8 @@ final class OrganizationAddonsObjectAvailable implements JsonSerializable
 
     /**
      * Gets user_management
-     *
-     * @return array<string,float>|null
      */
-    public function getUserManagement()
+    public function getUserManagement(): array|null
     {
         return $this->container['user_management'];
     }
@@ -237,10 +237,8 @@ final class OrganizationAddonsObjectAvailable implements JsonSerializable
 
     /**
      * Gets support_level
-     *
-     * @return array<string,float>|null
      */
-    public function getSupportLevel()
+    public function getSupportLevel(): array|null
     {
         return $this->container['support_level'];
     }
@@ -302,7 +300,6 @@ final class OrganizationAddonsObjectAvailable implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

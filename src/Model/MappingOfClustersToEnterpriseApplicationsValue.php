@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerializable
+final class MappingOfClustersToEnterpriseApplicationsValue implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -220,10 +222,8 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerial
 
     /**
      * Gets active_docroot
-     *
-     * @return string
      */
-    public function getActiveDocroot()
+    public function getActiveDocroot(): string
     {
         return $this->container['active_docroot'];
     }
@@ -250,10 +250,8 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerial
 
     /**
      * Gets docroot_versions
-     *
-     * @return string[]
      */
-    public function getDocrootVersions()
+    public function getDocrootVersions(): array
     {
         return $this->container['docroot_versions'];
     }
@@ -322,7 +320,6 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerial
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

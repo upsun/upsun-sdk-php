@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class OrganizationSSOConfig implements JsonSerializable
+final class OrganizationSSOConfig implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -262,10 +264,8 @@ final class OrganizationSSOConfig implements JsonSerializable
 
     /**
      * Gets provider_type
-     *
-     * @return string|null
      */
-    public function getProviderType()
+    public function getProviderType(): string|null
     {
         return $this->container['provider_type'];
     }
@@ -295,10 +295,8 @@ final class OrganizationSSOConfig implements JsonSerializable
 
     /**
      * Gets domain
-     *
-     * @return string|null
      */
-    public function getDomain()
+    public function getDomain(): string|null
     {
         return $this->container['domain'];
     }
@@ -318,10 +316,8 @@ final class OrganizationSSOConfig implements JsonSerializable
 
     /**
      * Gets organization_id
-     *
-     * @return string|null
      */
-    public function getOrganizationId()
+    public function getOrganizationId(): string|null
     {
         return $this->container['organization_id'];
     }
@@ -341,10 +337,8 @@ final class OrganizationSSOConfig implements JsonSerializable
 
     /**
      * Gets enforced
-     *
-     * @return bool|null
      */
-    public function getEnforced()
+    public function getEnforced(): bool|null
     {
         return $this->container['enforced'];
     }
@@ -364,10 +358,8 @@ final class OrganizationSSOConfig implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime|null
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime|null
     {
         return $this->container['created_at'];
     }
@@ -387,10 +379,8 @@ final class OrganizationSSOConfig implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime|null
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime|null
     {
         return $this->container['updated_at'];
     }
@@ -452,7 +442,6 @@ final class OrganizationSSOConfig implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

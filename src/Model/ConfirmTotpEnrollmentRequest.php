@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ConfirmTotpEnrollmentRequest implements JsonSerializable
+final class ConfirmTotpEnrollmentRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -220,10 +222,8 @@ final class ConfirmTotpEnrollmentRequest implements JsonSerializable
 
     /**
      * Gets secret
-     *
-     * @return string
      */
-    public function getSecret()
+    public function getSecret(): string
     {
         return $this->container['secret'];
     }
@@ -243,10 +243,8 @@ final class ConfirmTotpEnrollmentRequest implements JsonSerializable
 
     /**
      * Gets passcode
-     *
-     * @return string
      */
-    public function getPasscode()
+    public function getPasscode(): string
     {
         return $this->container['passcode'];
     }
@@ -308,7 +306,6 @@ final class ConfirmTotpEnrollmentRequest implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

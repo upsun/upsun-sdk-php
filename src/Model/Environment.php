@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Environment implements JsonSerializable
+final class Environment implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -572,10 +574,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->container['created_at'];
     }
@@ -602,10 +602,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime
     {
         return $this->container['updated_at'];
     }
@@ -632,10 +630,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->container['name'];
     }
@@ -655,10 +651,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets machine_name
-     *
-     * @return string
      */
-    public function getMachineName()
+    public function getMachineName(): string
     {
         return $this->container['machine_name'];
     }
@@ -678,10 +672,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets title
-     *
-     * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->container['title'];
     }
@@ -701,10 +693,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets attributes
-     *
-     * @return array<string,string>
      */
-    public function getAttributes()
+    public function getAttributes(): array
     {
         return $this->container['attributes'];
     }
@@ -724,10 +714,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -757,10 +745,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets parent
-     *
-     * @return string
      */
-    public function getParent()
+    public function getParent(): string
     {
         return $this->container['parent'];
     }
@@ -787,10 +773,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets default_domain
-     *
-     * @return string
      */
-    public function getDefaultDomain()
+    public function getDefaultDomain(): string
     {
         return $this->container['default_domain'];
     }
@@ -817,10 +801,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets has_domains
-     *
-     * @return bool
      */
-    public function getHasDomains()
+    public function getHasDomains(): bool
     {
         return $this->container['has_domains'];
     }
@@ -840,10 +822,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets clone_parent_on_create
-     *
-     * @return bool
      */
-    public function getCloneParentOnCreate()
+    public function getCloneParentOnCreate(): bool
     {
         return $this->container['clone_parent_on_create'];
     }
@@ -863,10 +843,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets deployment_target
-     *
-     * @return string
      */
-    public function getDeploymentTarget()
+    public function getDeploymentTarget(): string
     {
         return $this->container['deployment_target'];
     }
@@ -893,10 +871,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets is_pr
-     *
-     * @return bool
      */
-    public function getIsPr()
+    public function getIsPr(): bool
     {
         return $this->container['is_pr'];
     }
@@ -916,10 +892,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets has_remote
-     *
-     * @return bool
      */
-    public function getHasRemote()
+    public function getHasRemote(): bool
     {
         return $this->container['has_remote'];
     }
@@ -939,10 +913,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets status
-     *
-     * @return string
      */
-    public function getStatus()
+    public function getStatus(): string
     {
         return $this->container['status'];
     }
@@ -972,10 +944,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets http_access
-     *
-     * @return \Upsun\Model\HttpAccessPermissions
      */
-    public function getHttpAccess()
+    public function getHttpAccess(): \Upsun\Model\HttpAccessPermissions
     {
         return $this->container['http_access'];
     }
@@ -995,10 +965,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets enable_smtp
-     *
-     * @return bool
      */
-    public function getEnableSmtp()
+    public function getEnableSmtp(): bool
     {
         return $this->container['enable_smtp'];
     }
@@ -1018,10 +986,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets restrict_robots
-     *
-     * @return bool
      */
-    public function getRestrictRobots()
+    public function getRestrictRobots(): bool
     {
         return $this->container['restrict_robots'];
     }
@@ -1041,10 +1007,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets edge_hostname
-     *
-     * @return string
      */
-    public function getEdgeHostname()
+    public function getEdgeHostname(): string
     {
         return $this->container['edge_hostname'];
     }
@@ -1064,10 +1028,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets deployment_state
-     *
-     * @return \Upsun\Model\TheEnvironmentDeploymentState
      */
-    public function getDeploymentState()
+    public function getDeploymentState(): \Upsun\Model\TheEnvironmentDeploymentState
     {
         return $this->container['deployment_state'];
     }
@@ -1094,10 +1056,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets resources_overrides
-     *
-     * @return array<string,\Upsun\Model\ResourcesOverridesValue>
      */
-    public function getResourcesOverrides()
+    public function getResourcesOverrides(): array
     {
         return $this->container['resources_overrides'];
     }
@@ -1117,10 +1077,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets max_instance_count
-     *
-     * @return int
      */
-    public function getMaxInstanceCount()
+    public function getMaxInstanceCount(): int
     {
         return $this->container['max_instance_count'];
     }
@@ -1147,10 +1105,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets last_active_at
-     *
-     * @return \DateTime
      */
-    public function getLastActiveAt()
+    public function getLastActiveAt(): \DateTime
     {
         return $this->container['last_active_at'];
     }
@@ -1177,10 +1133,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets last_backup_at
-     *
-     * @return \DateTime
      */
-    public function getLastBackupAt()
+    public function getLastBackupAt(): \DateTime
     {
         return $this->container['last_backup_at'];
     }
@@ -1207,10 +1161,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets project
-     *
-     * @return string
      */
-    public function getProject()
+    public function getProject(): string
     {
         return $this->container['project'];
     }
@@ -1230,10 +1182,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets is_main
-     *
-     * @return bool
      */
-    public function getIsMain()
+    public function getIsMain(): bool
     {
         return $this->container['is_main'];
     }
@@ -1253,10 +1203,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets is_dirty
-     *
-     * @return bool
      */
-    public function getIsDirty()
+    public function getIsDirty(): bool
     {
         return $this->container['is_dirty'];
     }
@@ -1276,10 +1224,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets has_code
-     *
-     * @return bool
      */
-    public function getHasCode()
+    public function getHasCode(): bool
     {
         return $this->container['has_code'];
     }
@@ -1299,10 +1245,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets head_commit
-     *
-     * @return string
      */
-    public function getHeadCommit()
+    public function getHeadCommit(): string
     {
         return $this->container['head_commit'];
     }
@@ -1329,10 +1273,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets merge_info
-     *
-     * @return \Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments
      */
-    public function getMergeInfo()
+    public function getMergeInfo(): \Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments
     {
         return $this->container['merge_info'];
     }
@@ -1352,10 +1294,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets has_deployment
-     *
-     * @return bool
      */
-    public function getHasDeployment()
+    public function getHasDeployment(): bool
     {
         return $this->container['has_deployment'];
     }
@@ -1375,10 +1315,8 @@ final class Environment implements JsonSerializable
 
     /**
      * Gets supports_restrict_robots
-     *
-     * @return bool
      */
-    public function getSupportsRestrictRobots()
+    public function getSupportsRestrictRobots(): bool
     {
         return $this->container['supports_restrict_robots'];
     }
@@ -1440,7 +1378,6 @@ final class Environment implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

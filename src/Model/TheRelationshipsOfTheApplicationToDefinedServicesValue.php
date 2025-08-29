@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements JsonSerializable
+final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -220,10 +222,8 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Js
 
     /**
      * Gets service
-     *
-     * @return string
      */
-    public function getService()
+    public function getService(): string
     {
         return $this->container['service'];
     }
@@ -250,10 +250,8 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Js
 
     /**
      * Gets endpoint
-     *
-     * @return string
      */
-    public function getEndpoint()
+    public function getEndpoint(): string
     {
         return $this->container['endpoint'];
     }
@@ -322,7 +320,6 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Js
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

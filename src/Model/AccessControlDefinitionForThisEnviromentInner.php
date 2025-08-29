@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class AccessControlDefinitionForThisEnviromentInner implements JsonSerializable
+final class AccessControlDefinitionForThisEnviromentInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -244,10 +246,8 @@ final class AccessControlDefinitionForThisEnviromentInner implements JsonSeriali
 
     /**
      * Gets entity_id
-     *
-     * @return string
      */
-    public function getEntityId()
+    public function getEntityId(): string
     {
         return $this->container['entity_id'];
     }
@@ -267,10 +267,8 @@ final class AccessControlDefinitionForThisEnviromentInner implements JsonSeriali
 
     /**
      * Gets role
-     *
-     * @return string
      */
-    public function getRole()
+    public function getRole(): string
     {
         return $this->container['role'];
     }
@@ -342,7 +340,6 @@ final class AccessControlDefinitionForThisEnviromentInner implements JsonSeriali
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

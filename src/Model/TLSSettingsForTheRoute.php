@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TLSSettingsForTheRoute implements JsonSerializable
+final class TLSSettingsForTheRoute implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -288,10 +290,8 @@ final class TLSSettingsForTheRoute implements JsonSerializable
 
     /**
      * Gets strict_transport_security
-     *
-     * @return \Upsun\Model\StrictTransportSecurityOptions
      */
-    public function getStrictTransportSecurity()
+    public function getStrictTransportSecurity(): \Upsun\Model\StrictTransportSecurityOptions
     {
         return $this->container['strict_transport_security'];
     }
@@ -311,10 +311,8 @@ final class TLSSettingsForTheRoute implements JsonSerializable
 
     /**
      * Gets min_version
-     *
-     * @return string
      */
-    public function getMinVersion()
+    public function getMinVersion(): string
     {
         return $this->container['min_version'];
     }
@@ -351,10 +349,8 @@ final class TLSSettingsForTheRoute implements JsonSerializable
 
     /**
      * Gets client_authentication
-     *
-     * @return string
      */
-    public function getClientAuthentication()
+    public function getClientAuthentication(): string
     {
         return $this->container['client_authentication'];
     }
@@ -391,10 +387,8 @@ final class TLSSettingsForTheRoute implements JsonSerializable
 
     /**
      * Gets client_certificate_authorities
-     *
-     * @return string[]
      */
-    public function getClientCertificateAuthorities()
+    public function getClientCertificateAuthorities(): array
     {
         return $this->container['client_certificate_authorities'];
     }
@@ -456,7 +450,6 @@ final class TLSSettingsForTheRoute implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

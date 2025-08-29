@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSerializable
+final class OperationsThatCanBeTriggeredOnThisApplicationValue implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -254,10 +256,8 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSe
 
     /**
      * Gets commands
-     *
-     * @return \Upsun\Model\TheCommandsDefinition
      */
-    public function getCommands()
+    public function getCommands(): \Upsun\Model\TheCommandsDefinition
     {
         return $this->container['commands'];
     }
@@ -277,10 +277,8 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSe
 
     /**
      * Gets timeout
-     *
-     * @return int
      */
-    public function getTimeout()
+    public function getTimeout(): int
     {
         return $this->container['timeout'];
     }
@@ -307,10 +305,8 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSe
 
     /**
      * Gets role
-     *
-     * @return string
      */
-    public function getRole()
+    public function getRole(): string
     {
         return $this->container['role'];
     }
@@ -382,7 +378,6 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSe
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements JsonSerializable
+final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -230,10 +232,8 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
 
     /**
      * Gets build
-     *
-     * @return string
      */
-    public function getBuild()
+    public function getBuild(): string
     {
         return $this->container['build'];
     }
@@ -260,10 +260,8 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
 
     /**
      * Gets deploy
-     *
-     * @return string
      */
-    public function getDeploy()
+    public function getDeploy(): string
     {
         return $this->container['deploy'];
     }
@@ -290,10 +288,8 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
 
     /**
      * Gets post_deploy
-     *
-     * @return string
      */
-    public function getPostDeploy()
+    public function getPostDeploy(): string
     {
         return $this->container['post_deploy'];
     }
@@ -362,7 +358,6 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

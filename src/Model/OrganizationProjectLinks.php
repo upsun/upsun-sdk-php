@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class OrganizationProjectLinks implements JsonSerializable
+final class OrganizationProjectLinks implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -235,10 +237,8 @@ final class OrganizationProjectLinks implements JsonSerializable
 
     /**
      * Gets self
-     *
-     * @return \Upsun\Model\OrganizationProjectLinksSelf|null
      */
-    public function getSelf()
+    public function getSelf(): \Upsun\Model\OrganizationProjectLinksSelf|null
     {
         return $this->container['self'];
     }
@@ -258,10 +258,8 @@ final class OrganizationProjectLinks implements JsonSerializable
 
     /**
      * Gets update
-     *
-     * @return \Upsun\Model\OrganizationProjectLinksUpdate|null
      */
-    public function getUpdate()
+    public function getUpdate(): \Upsun\Model\OrganizationProjectLinksUpdate|null
     {
         return $this->container['update'];
     }
@@ -281,10 +279,8 @@ final class OrganizationProjectLinks implements JsonSerializable
 
     /**
      * Gets delete
-     *
-     * @return \Upsun\Model\OrganizationProjectLinksDelete|null
      */
-    public function getDelete()
+    public function getDelete(): \Upsun\Model\OrganizationProjectLinksDelete|null
     {
         return $this->container['delete'];
     }
@@ -304,10 +300,8 @@ final class OrganizationProjectLinks implements JsonSerializable
 
     /**
      * Gets subscription
-     *
-     * @return \Upsun\Model\OrganizationProjectLinksSubscription|null
      */
-    public function getSubscription()
+    public function getSubscription(): \Upsun\Model\OrganizationProjectLinksSubscription|null
     {
         return $this->container['subscription'];
     }
@@ -327,10 +321,8 @@ final class OrganizationProjectLinks implements JsonSerializable
 
     /**
      * Gets api
-     *
-     * @return \Upsun\Model\OrganizationProjectLinksApi|null
      */
-    public function getApi()
+    public function getApi(): \Upsun\Model\OrganizationProjectLinksApi|null
     {
         return $this->container['api'];
     }
@@ -392,7 +384,6 @@ final class OrganizationProjectLinks implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

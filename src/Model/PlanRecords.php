@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class PlanRecords implements JsonSerializable
+final class PlanRecords implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -263,10 +265,8 @@ final class PlanRecords implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string|null
      */
-    public function getId()
+    public function getId(): string|null
     {
         return $this->container['id'];
     }
@@ -286,10 +286,8 @@ final class PlanRecords implements JsonSerializable
 
     /**
      * Gets owner
-     *
-     * @return string|null
      */
-    public function getOwner()
+    public function getOwner(): string|null
     {
         return $this->container['owner'];
     }
@@ -309,10 +307,8 @@ final class PlanRecords implements JsonSerializable
 
     /**
      * Gets subscription_id
-     *
-     * @return string|null
      */
-    public function getSubscriptionId()
+    public function getSubscriptionId(): string|null
     {
         return $this->container['subscription_id'];
     }
@@ -332,10 +328,8 @@ final class PlanRecords implements JsonSerializable
 
     /**
      * Gets sku
-     *
-     * @return string|null
      */
-    public function getSku()
+    public function getSku(): string|null
     {
         return $this->container['sku'];
     }
@@ -355,10 +349,8 @@ final class PlanRecords implements JsonSerializable
 
     /**
      * Gets plan
-     *
-     * @return string|null
      */
-    public function getPlan()
+    public function getPlan(): string|null
     {
         return $this->container['plan'];
     }
@@ -378,10 +370,8 @@ final class PlanRecords implements JsonSerializable
 
     /**
      * Gets options
-     *
-     * @return string[]|null
      */
-    public function getOptions()
+    public function getOptions(): array|null
     {
         return $this->container['options'];
     }
@@ -401,10 +391,8 @@ final class PlanRecords implements JsonSerializable
 
     /**
      * Gets start
-     *
-     * @return \DateTime|null
      */
-    public function getStart()
+    public function getStart(): \DateTime|null
     {
         return $this->container['start'];
     }
@@ -424,10 +412,8 @@ final class PlanRecords implements JsonSerializable
 
     /**
      * Gets end
-     *
-     * @return \DateTime|null
      */
-    public function getEnd()
+    public function getEnd(): \DateTime|null
     {
         return $this->container['end'];
     }
@@ -454,10 +440,8 @@ final class PlanRecords implements JsonSerializable
 
     /**
      * Gets status
-     *
-     * @return string|null
      */
-    public function getStatus()
+    public function getStatus(): string|null
     {
         return $this->container['status'];
     }
@@ -519,7 +503,6 @@ final class PlanRecords implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

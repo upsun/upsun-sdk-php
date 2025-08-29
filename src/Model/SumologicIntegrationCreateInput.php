@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class SumologicIntegrationCreateInput implements JsonSerializable
+final class SumologicIntegrationCreateInput implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -241,10 +243,8 @@ final class SumologicIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -264,10 +264,8 @@ final class SumologicIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets extra
-     *
-     * @return array<string,string>|null
      */
-    public function getExtra()
+    public function getExtra(): array|null
     {
         return $this->container['extra'];
     }
@@ -287,10 +285,8 @@ final class SumologicIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets url
-     *
-     * @return string
      */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->container['url'];
     }
@@ -310,10 +306,8 @@ final class SumologicIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets category
-     *
-     * @return string|null
      */
-    public function getCategory()
+    public function getCategory(): string|null
     {
         return $this->container['category'];
     }
@@ -333,10 +327,8 @@ final class SumologicIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets tls_verify
-     *
-     * @return bool|null
      */
-    public function getTlsVerify()
+    public function getTlsVerify(): bool|null
     {
         return $this->container['tls_verify'];
     }
@@ -398,7 +390,6 @@ final class SumologicIntegrationCreateInput implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

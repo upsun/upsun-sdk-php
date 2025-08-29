@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class OrderLinks implements JsonSerializable
+final class OrderLinks implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -207,10 +209,8 @@ final class OrderLinks implements JsonSerializable
 
     /**
      * Gets invoices
-     *
-     * @return \Upsun\Model\OrderLinksInvoices|null
      */
-    public function getInvoices()
+    public function getInvoices(): \Upsun\Model\OrderLinksInvoices|null
     {
         return $this->container['invoices'];
     }
@@ -272,7 +272,6 @@ final class OrderLinks implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

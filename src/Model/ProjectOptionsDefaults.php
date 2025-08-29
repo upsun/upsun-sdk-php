@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ProjectOptionsDefaults implements JsonSerializable
+final class ProjectOptionsDefaults implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -228,10 +230,8 @@ final class ProjectOptionsDefaults implements JsonSerializable
 
     /**
      * Gets settings
-     *
-     * @return object|null
      */
-    public function getSettings()
+    public function getSettings(): object|null
     {
         return $this->container['settings'];
     }
@@ -251,10 +251,8 @@ final class ProjectOptionsDefaults implements JsonSerializable
 
     /**
      * Gets variables
-     *
-     * @return object|null
      */
-    public function getVariables()
+    public function getVariables(): object|null
     {
         return $this->container['variables'];
     }
@@ -274,10 +272,8 @@ final class ProjectOptionsDefaults implements JsonSerializable
 
     /**
      * Gets access
-     *
-     * @return object|null
      */
-    public function getAccess()
+    public function getAccess(): object|null
     {
         return $this->container['access'];
     }
@@ -297,10 +293,8 @@ final class ProjectOptionsDefaults implements JsonSerializable
 
     /**
      * Gets capabilities
-     *
-     * @return object|null
      */
-    public function getCapabilities()
+    public function getCapabilities(): object|null
     {
         return $this->container['capabilities'];
     }
@@ -362,7 +356,6 @@ final class ProjectOptionsDefaults implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

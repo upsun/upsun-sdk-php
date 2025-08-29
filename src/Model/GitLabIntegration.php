@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class GitLabIntegration implements JsonSerializable
+final class GitLabIntegration implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -336,10 +338,8 @@ final class GitLabIntegration implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->container['created_at'];
     }
@@ -366,10 +366,8 @@ final class GitLabIntegration implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime
     {
         return $this->container['updated_at'];
     }
@@ -396,10 +394,8 @@ final class GitLabIntegration implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -419,10 +415,8 @@ final class GitLabIntegration implements JsonSerializable
 
     /**
      * Gets fetch_branches
-     *
-     * @return bool
      */
-    public function getFetchBranches()
+    public function getFetchBranches(): bool
     {
         return $this->container['fetch_branches'];
     }
@@ -442,10 +436,8 @@ final class GitLabIntegration implements JsonSerializable
 
     /**
      * Gets prune_branches
-     *
-     * @return bool
      */
-    public function getPruneBranches()
+    public function getPruneBranches(): bool
     {
         return $this->container['prune_branches'];
     }
@@ -465,10 +457,8 @@ final class GitLabIntegration implements JsonSerializable
 
     /**
      * Gets environment_init_resources
-     *
-     * @return string
      */
-    public function getEnvironmentInitResources()
+    public function getEnvironmentInitResources(): string
     {
         return $this->container['environment_init_resources'];
     }
@@ -498,10 +488,8 @@ final class GitLabIntegration implements JsonSerializable
 
     /**
      * Gets base_url
-     *
-     * @return string
      */
-    public function getBaseUrl()
+    public function getBaseUrl(): string
     {
         return $this->container['base_url'];
     }
@@ -521,10 +509,8 @@ final class GitLabIntegration implements JsonSerializable
 
     /**
      * Gets project
-     *
-     * @return string
      */
-    public function getProject()
+    public function getProject(): string
     {
         return $this->container['project'];
     }
@@ -544,10 +530,8 @@ final class GitLabIntegration implements JsonSerializable
 
     /**
      * Gets build_merge_requests
-     *
-     * @return bool
      */
-    public function getBuildMergeRequests()
+    public function getBuildMergeRequests(): bool
     {
         return $this->container['build_merge_requests'];
     }
@@ -567,10 +551,8 @@ final class GitLabIntegration implements JsonSerializable
 
     /**
      * Gets build_wip_merge_requests
-     *
-     * @return bool
      */
-    public function getBuildWipMergeRequests()
+    public function getBuildWipMergeRequests(): bool
     {
         return $this->container['build_wip_merge_requests'];
     }
@@ -590,10 +572,8 @@ final class GitLabIntegration implements JsonSerializable
 
     /**
      * Gets merge_requests_clone_parent_data
-     *
-     * @return bool
      */
-    public function getMergeRequestsCloneParentData()
+    public function getMergeRequestsCloneParentData(): bool
     {
         return $this->container['merge_requests_clone_parent_data'];
     }
@@ -655,7 +635,6 @@ final class GitLabIntegration implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

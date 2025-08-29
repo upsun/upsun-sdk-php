@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class RegionReference implements JsonSerializable
+final class RegionReference implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -351,10 +353,8 @@ final class RegionReference implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string
      */
-    public function getId()
+    public function getId(): string
     {
         return $this->container['id'];
     }
@@ -374,10 +374,8 @@ final class RegionReference implements JsonSerializable
 
     /**
      * Gets label
-     *
-     * @return string
      */
-    public function getLabel()
+    public function getLabel(): string
     {
         return $this->container['label'];
     }
@@ -397,10 +395,8 @@ final class RegionReference implements JsonSerializable
 
     /**
      * Gets zone
-     *
-     * @return string
      */
-    public function getZone()
+    public function getZone(): string
     {
         return $this->container['zone'];
     }
@@ -420,10 +416,8 @@ final class RegionReference implements JsonSerializable
 
     /**
      * Gets selection_label
-     *
-     * @return string
      */
-    public function getSelectionLabel()
+    public function getSelectionLabel(): string
     {
         return $this->container['selection_label'];
     }
@@ -443,10 +437,8 @@ final class RegionReference implements JsonSerializable
 
     /**
      * Gets project_label
-     *
-     * @return string
      */
-    public function getProjectLabel()
+    public function getProjectLabel(): string
     {
         return $this->container['project_label'];
     }
@@ -466,10 +458,8 @@ final class RegionReference implements JsonSerializable
 
     /**
      * Gets timezone
-     *
-     * @return string
      */
-    public function getTimezone()
+    public function getTimezone(): string
     {
         return $this->container['timezone'];
     }
@@ -489,10 +479,8 @@ final class RegionReference implements JsonSerializable
 
     /**
      * Gets available
-     *
-     * @return bool
      */
-    public function getAvailable()
+    public function getAvailable(): bool
     {
         return $this->container['available'];
     }
@@ -512,10 +500,8 @@ final class RegionReference implements JsonSerializable
 
     /**
      * Gets private
-     *
-     * @return bool|null
      */
-    public function getPrivate()
+    public function getPrivate(): bool|null
     {
         return $this->container['private'];
     }
@@ -535,10 +521,8 @@ final class RegionReference implements JsonSerializable
 
     /**
      * Gets endpoint
-     *
-     * @return string
      */
-    public function getEndpoint()
+    public function getEndpoint(): string
     {
         return $this->container['endpoint'];
     }
@@ -558,10 +542,8 @@ final class RegionReference implements JsonSerializable
 
     /**
      * Gets code
-     *
-     * @return string|null
      */
-    public function getCode()
+    public function getCode(): string|null
     {
         return $this->container['code'];
     }
@@ -581,10 +563,8 @@ final class RegionReference implements JsonSerializable
 
     /**
      * Gets provider
-     *
-     * @return object
      */
-    public function getProvider()
+    public function getProvider(): object
     {
         return $this->container['provider'];
     }
@@ -604,10 +584,8 @@ final class RegionReference implements JsonSerializable
 
     /**
      * Gets datacenter
-     *
-     * @return object
      */
-    public function getDatacenter()
+    public function getDatacenter(): object
     {
         return $this->container['datacenter'];
     }
@@ -627,10 +605,8 @@ final class RegionReference implements JsonSerializable
 
     /**
      * Gets envimpact
-     *
-     * @return object|null
      */
-    public function getEnvimpact()
+    public function getEnvimpact(): object|null
     {
         return $this->container['envimpact'];
     }
@@ -650,10 +626,8 @@ final class RegionReference implements JsonSerializable
 
     /**
      * Gets compliance
-     *
-     * @return object
      */
-    public function getCompliance()
+    public function getCompliance(): object
     {
         return $this->container['compliance'];
     }
@@ -673,10 +647,8 @@ final class RegionReference implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->container['created_at'];
     }
@@ -696,10 +668,8 @@ final class RegionReference implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime
     {
         return $this->container['updated_at'];
     }
@@ -761,7 +731,6 @@ final class RegionReference implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

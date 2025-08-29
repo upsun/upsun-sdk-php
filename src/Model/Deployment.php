@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Deployment implements JsonSerializable
+final class Deployment implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -381,10 +383,8 @@ final class Deployment implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime|null
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime|null
     {
         return $this->container['created_at'];
     }
@@ -411,10 +411,8 @@ final class Deployment implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime|null
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime|null
     {
         return $this->container['updated_at'];
     }
@@ -441,10 +439,8 @@ final class Deployment implements JsonSerializable
 
     /**
      * Gets fingerprint
-     *
-     * @return string|null
      */
-    public function getFingerprint()
+    public function getFingerprint(): string|null
     {
         return $this->container['fingerprint'];
     }
@@ -464,10 +460,8 @@ final class Deployment implements JsonSerializable
 
     /**
      * Gets cluster_name
-     *
-     * @return string
      */
-    public function getClusterName()
+    public function getClusterName(): string
     {
         return $this->container['cluster_name'];
     }
@@ -487,10 +481,8 @@ final class Deployment implements JsonSerializable
 
     /**
      * Gets project_info
-     *
-     * @return \Upsun\Model\ProjectInfo
      */
-    public function getProjectInfo()
+    public function getProjectInfo(): \Upsun\Model\ProjectInfo
     {
         return $this->container['project_info'];
     }
@@ -510,10 +502,8 @@ final class Deployment implements JsonSerializable
 
     /**
      * Gets environment_info
-     *
-     * @return \Upsun\Model\EnvironmentInfo
      */
-    public function getEnvironmentInfo()
+    public function getEnvironmentInfo(): \Upsun\Model\EnvironmentInfo
     {
         return $this->container['environment_info'];
     }
@@ -533,10 +523,8 @@ final class Deployment implements JsonSerializable
 
     /**
      * Gets deployment_target
-     *
-     * @return string
      */
-    public function getDeploymentTarget()
+    public function getDeploymentTarget(): string
     {
         return $this->container['deployment_target'];
     }
@@ -556,10 +544,8 @@ final class Deployment implements JsonSerializable
 
     /**
      * Gets vpn
-     *
-     * @return \Upsun\Model\VPNConfiguration
      */
-    public function getVpn()
+    public function getVpn(): \Upsun\Model\VPNConfiguration
     {
         return $this->container['vpn'];
     }
@@ -586,10 +572,8 @@ final class Deployment implements JsonSerializable
 
     /**
      * Gets http_access
-     *
-     * @return \Upsun\Model\HttpAccessPermissions
      */
-    public function getHttpAccess()
+    public function getHttpAccess(): \Upsun\Model\HttpAccessPermissions
     {
         return $this->container['http_access'];
     }
@@ -609,10 +593,8 @@ final class Deployment implements JsonSerializable
 
     /**
      * Gets enable_smtp
-     *
-     * @return bool
      */
-    public function getEnableSmtp()
+    public function getEnableSmtp(): bool
     {
         return $this->container['enable_smtp'];
     }
@@ -632,10 +614,8 @@ final class Deployment implements JsonSerializable
 
     /**
      * Gets restrict_robots
-     *
-     * @return bool
      */
-    public function getRestrictRobots()
+    public function getRestrictRobots(): bool
     {
         return $this->container['restrict_robots'];
     }
@@ -655,10 +635,8 @@ final class Deployment implements JsonSerializable
 
     /**
      * Gets variables
-     *
-     * @return \Upsun\Model\TheVariablesApplyingToThisEnvironmentInner[]
      */
-    public function getVariables()
+    public function getVariables(): array
     {
         return $this->container['variables'];
     }
@@ -678,10 +656,8 @@ final class Deployment implements JsonSerializable
 
     /**
      * Gets access
-     *
-     * @return \Upsun\Model\AccessControlDefinitionForThisEnviromentInner[]
      */
-    public function getAccess()
+    public function getAccess(): array
     {
         return $this->container['access'];
     }
@@ -701,10 +677,8 @@ final class Deployment implements JsonSerializable
 
     /**
      * Gets subscription
-     *
-     * @return \Upsun\Model\Subscription1
      */
-    public function getSubscription()
+    public function getSubscription(): \Upsun\Model\Subscription1
     {
         return $this->container['subscription'];
     }
@@ -724,10 +698,8 @@ final class Deployment implements JsonSerializable
 
     /**
      * Gets services
-     *
-     * @return array<string,\Upsun\Model\ServicesValue>
      */
-    public function getServices()
+    public function getServices(): array
     {
         return $this->container['services'];
     }
@@ -747,10 +719,8 @@ final class Deployment implements JsonSerializable
 
     /**
      * Gets routes
-     *
-     * @return array<string,\Upsun\Model\RoutesValue>
      */
-    public function getRoutes()
+    public function getRoutes(): array
     {
         return $this->container['routes'];
     }
@@ -770,10 +740,8 @@ final class Deployment implements JsonSerializable
 
     /**
      * Gets webapps
-     *
-     * @return array<string,\Upsun\Model\WebApplicationsValue>
      */
-    public function getWebapps()
+    public function getWebapps(): array
     {
         return $this->container['webapps'];
     }
@@ -793,10 +761,8 @@ final class Deployment implements JsonSerializable
 
     /**
      * Gets workers
-     *
-     * @return array<string,\Upsun\Model\WorkersValue>
      */
-    public function getWorkers()
+    public function getWorkers(): array
     {
         return $this->container['workers'];
     }
@@ -816,10 +782,8 @@ final class Deployment implements JsonSerializable
 
     /**
      * Gets container_profiles
-     *
-     * @return array<string,array<string,\Upsun\Model\ContainerProfilesValueValue>>
      */
-    public function getContainerProfiles()
+    public function getContainerProfiles(): array
     {
         return $this->container['container_profiles'];
     }
@@ -881,7 +845,6 @@ final class Deployment implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

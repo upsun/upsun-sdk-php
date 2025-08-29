@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class StrictTransportSecurityOptions1 implements JsonSerializable
+final class StrictTransportSecurityOptions1 implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -221,10 +223,8 @@ final class StrictTransportSecurityOptions1 implements JsonSerializable
 
     /**
      * Gets enabled
-     *
-     * @return bool|null
      */
-    public function getEnabled()
+    public function getEnabled(): bool|null
     {
         return $this->container['enabled'];
     }
@@ -251,10 +251,8 @@ final class StrictTransportSecurityOptions1 implements JsonSerializable
 
     /**
      * Gets include_subdomains
-     *
-     * @return bool|null
      */
-    public function getIncludeSubdomains()
+    public function getIncludeSubdomains(): bool|null
     {
         return $this->container['include_subdomains'];
     }
@@ -281,10 +279,8 @@ final class StrictTransportSecurityOptions1 implements JsonSerializable
 
     /**
      * Gets preload
-     *
-     * @return bool|null
      */
-    public function getPreload()
+    public function getPreload(): bool|null
     {
         return $this->container['preload'];
     }
@@ -353,7 +349,6 @@ final class StrictTransportSecurityOptions1 implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

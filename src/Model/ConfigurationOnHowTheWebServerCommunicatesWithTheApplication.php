@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication implements JsonSerializable
+final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -264,10 +266,8 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
 
     /**
      * Gets socket_family
-     *
-     * @return string
      */
-    public function getSocketFamily()
+    public function getSocketFamily(): string
     {
         return $this->container['socket_family'];
     }
@@ -297,10 +297,8 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
 
     /**
      * Gets protocol
-     *
-     * @return string
      */
-    public function getProtocol()
+    public function getProtocol(): string
     {
         return $this->container['protocol'];
     }
@@ -379,7 +377,6 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

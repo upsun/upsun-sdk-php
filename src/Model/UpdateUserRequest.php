@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class UpdateUserRequest implements JsonSerializable
+final class UpdateUserRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -235,11 +237,13 @@ final class UpdateUserRequest implements JsonSerializable
         $invalidProperties = [];
 
         if (!is_null($this->container['country']) && (mb_strlen($this->container['country']) > 2)) {
-            $invalidProperties[] = "invalid value for 'country', the character length must be smaller than or equal to 2.";
+            $invalidProperties[] =
+                "invalid value for 'country', the character length must be smaller than or equal to 2.";
         }
 
         if (!is_null($this->container['country']) && (mb_strlen($this->container['country']) < 2)) {
-            $invalidProperties[] = "invalid value for 'country', the character length must be bigger than or equal to 2.";
+            $invalidProperties[] =
+                "invalid value for 'country', the character length must be bigger than or equal to 2.";
         }
 
         return $invalidProperties;
@@ -257,10 +261,8 @@ final class UpdateUserRequest implements JsonSerializable
 
     /**
      * Gets username
-     *
-     * @return string|null
      */
-    public function getUsername()
+    public function getUsername(): string|null
     {
         return $this->container['username'];
     }
@@ -280,10 +282,8 @@ final class UpdateUserRequest implements JsonSerializable
 
     /**
      * Gets first_name
-     *
-     * @return string|null
      */
-    public function getFirstName()
+    public function getFirstName(): string|null
     {
         return $this->container['first_name'];
     }
@@ -303,10 +303,8 @@ final class UpdateUserRequest implements JsonSerializable
 
     /**
      * Gets last_name
-     *
-     * @return string|null
      */
-    public function getLastName()
+    public function getLastName(): string|null
     {
         return $this->container['last_name'];
     }
@@ -326,10 +324,8 @@ final class UpdateUserRequest implements JsonSerializable
 
     /**
      * Gets picture
-     *
-     * @return string|null
      */
-    public function getPicture()
+    public function getPicture(): string|null
     {
         return $this->container['picture'];
     }
@@ -349,10 +345,8 @@ final class UpdateUserRequest implements JsonSerializable
 
     /**
      * Gets company
-     *
-     * @return string|null
      */
-    public function getCompany()
+    public function getCompany(): string|null
     {
         return $this->container['company'];
     }
@@ -372,10 +366,8 @@ final class UpdateUserRequest implements JsonSerializable
 
     /**
      * Gets website
-     *
-     * @return string|null
      */
-    public function getWebsite()
+    public function getWebsite(): string|null
     {
         return $this->container['website'];
     }
@@ -395,10 +387,8 @@ final class UpdateUserRequest implements JsonSerializable
 
     /**
      * Gets country
-     *
-     * @return string|null
      */
-    public function getCountry()
+    public function getCountry(): string|null
     {
         return $this->container['country'];
     }
@@ -471,7 +461,6 @@ final class UpdateUserRequest implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

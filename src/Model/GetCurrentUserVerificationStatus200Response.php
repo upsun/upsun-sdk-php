@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class GetCurrentUserVerificationStatus200Response implements JsonSerializable
+final class GetCurrentUserVerificationStatus200Response implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -207,10 +209,8 @@ final class GetCurrentUserVerificationStatus200Response implements JsonSerializa
 
     /**
      * Gets verify_phone
-     *
-     * @return bool|null
      */
-    public function getVerifyPhone()
+    public function getVerifyPhone(): bool|null
     {
         return $this->container['verify_phone'];
     }
@@ -272,7 +272,6 @@ final class GetCurrentUserVerificationStatus200Response implements JsonSerializa
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class DiscountDiscount implements JsonSerializable
+final class DiscountDiscount implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -221,10 +223,8 @@ final class DiscountDiscount implements JsonSerializable
 
     /**
      * Gets monthly
-     *
-     * @return \Upsun\Model\CurrencyAmount|null
      */
-    public function getMonthly()
+    public function getMonthly(): \Upsun\Model\CurrencyAmount|null
     {
         return $this->container['monthly'];
     }
@@ -244,10 +244,8 @@ final class DiscountDiscount implements JsonSerializable
 
     /**
      * Gets commitment_period
-     *
-     * @return \Upsun\Model\CurrencyAmountNullable|null
      */
-    public function getCommitmentPeriod()
+    public function getCommitmentPeriod(): \Upsun\Model\CurrencyAmountNullable|null
     {
         return $this->container['commitment_period'];
     }
@@ -274,10 +272,8 @@ final class DiscountDiscount implements JsonSerializable
 
     /**
      * Gets contract_total
-     *
-     * @return \Upsun\Model\CurrencyAmountNullable|null
      */
-    public function getContractTotal()
+    public function getContractTotal(): \Upsun\Model\CurrencyAmountNullable|null
     {
         return $this->container['contract_total'];
     }
@@ -346,7 +342,6 @@ final class DiscountDiscount implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Address implements JsonSerializable
+final class Address implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -270,10 +272,8 @@ final class Address implements JsonSerializable
 
     /**
      * Gets country
-     *
-     * @return string|null
      */
-    public function getCountry()
+    public function getCountry(): string|null
     {
         return $this->container['country'];
     }
@@ -293,10 +293,8 @@ final class Address implements JsonSerializable
 
     /**
      * Gets name_line
-     *
-     * @return string|null
      */
-    public function getNameLine()
+    public function getNameLine(): string|null
     {
         return $this->container['name_line'];
     }
@@ -316,10 +314,8 @@ final class Address implements JsonSerializable
 
     /**
      * Gets premise
-     *
-     * @return string|null
      */
-    public function getPremise()
+    public function getPremise(): string|null
     {
         return $this->container['premise'];
     }
@@ -339,10 +335,8 @@ final class Address implements JsonSerializable
 
     /**
      * Gets sub_premise
-     *
-     * @return string|null
      */
-    public function getSubPremise()
+    public function getSubPremise(): string|null
     {
         return $this->container['sub_premise'];
     }
@@ -362,10 +356,8 @@ final class Address implements JsonSerializable
 
     /**
      * Gets thoroughfare
-     *
-     * @return string|null
      */
-    public function getThoroughfare()
+    public function getThoroughfare(): string|null
     {
         return $this->container['thoroughfare'];
     }
@@ -385,10 +377,8 @@ final class Address implements JsonSerializable
 
     /**
      * Gets administrative_area
-     *
-     * @return string|null
      */
-    public function getAdministrativeArea()
+    public function getAdministrativeArea(): string|null
     {
         return $this->container['administrative_area'];
     }
@@ -408,10 +398,8 @@ final class Address implements JsonSerializable
 
     /**
      * Gets sub_administrative_area
-     *
-     * @return string|null
      */
-    public function getSubAdministrativeArea()
+    public function getSubAdministrativeArea(): string|null
     {
         return $this->container['sub_administrative_area'];
     }
@@ -431,10 +419,8 @@ final class Address implements JsonSerializable
 
     /**
      * Gets locality
-     *
-     * @return string|null
      */
-    public function getLocality()
+    public function getLocality(): string|null
     {
         return $this->container['locality'];
     }
@@ -454,10 +440,8 @@ final class Address implements JsonSerializable
 
     /**
      * Gets dependent_locality
-     *
-     * @return string|null
      */
-    public function getDependentLocality()
+    public function getDependentLocality(): string|null
     {
         return $this->container['dependent_locality'];
     }
@@ -477,10 +461,8 @@ final class Address implements JsonSerializable
 
     /**
      * Gets postal_code
-     *
-     * @return string|null
      */
-    public function getPostalCode()
+    public function getPostalCode(): string|null
     {
         return $this->container['postal_code'];
     }
@@ -542,7 +524,6 @@ final class Address implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

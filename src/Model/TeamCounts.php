@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TeamCounts implements JsonSerializable
+final class TeamCounts implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -214,10 +216,8 @@ final class TeamCounts implements JsonSerializable
 
     /**
      * Gets member_count
-     *
-     * @return int|null
      */
-    public function getMemberCount()
+    public function getMemberCount(): int|null
     {
         return $this->container['member_count'];
     }
@@ -237,10 +237,8 @@ final class TeamCounts implements JsonSerializable
 
     /**
      * Gets project_count
-     *
-     * @return int|null
      */
-    public function getProjectCount()
+    public function getProjectCount(): int|null
     {
         return $this->container['project_count'];
     }
@@ -302,7 +300,6 @@ final class TeamCounts implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

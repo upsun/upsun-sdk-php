@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ConfirmTotpEnrollment200Response implements JsonSerializable
+final class ConfirmTotpEnrollment200Response implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -207,10 +209,8 @@ final class ConfirmTotpEnrollment200Response implements JsonSerializable
 
     /**
      * Gets recovery_codes
-     *
-     * @return string[]|null
      */
-    public function getRecoveryCodes()
+    public function getRecoveryCodes(): array|null
     {
         return $this->container['recovery_codes'];
     }
@@ -272,7 +272,6 @@ final class ConfirmTotpEnrollment200Response implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

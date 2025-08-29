@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ProjectVariablePatch implements JsonSerializable
+final class ProjectVariablePatch implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -249,10 +251,8 @@ final class ProjectVariablePatch implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string|null
      */
-    public function getName()
+    public function getName(): string|null
     {
         return $this->container['name'];
     }
@@ -272,10 +272,8 @@ final class ProjectVariablePatch implements JsonSerializable
 
     /**
      * Gets attributes
-     *
-     * @return array<string,string>|null
      */
-    public function getAttributes()
+    public function getAttributes(): array|null
     {
         return $this->container['attributes'];
     }
@@ -295,10 +293,8 @@ final class ProjectVariablePatch implements JsonSerializable
 
     /**
      * Gets value
-     *
-     * @return string|null
      */
-    public function getValue()
+    public function getValue(): string|null
     {
         return $this->container['value'];
     }
@@ -318,10 +314,8 @@ final class ProjectVariablePatch implements JsonSerializable
 
     /**
      * Gets is_json
-     *
-     * @return bool|null
      */
-    public function getIsJson()
+    public function getIsJson(): bool|null
     {
         return $this->container['is_json'];
     }
@@ -341,10 +335,8 @@ final class ProjectVariablePatch implements JsonSerializable
 
     /**
      * Gets is_sensitive
-     *
-     * @return bool|null
      */
-    public function getIsSensitive()
+    public function getIsSensitive(): bool|null
     {
         return $this->container['is_sensitive'];
     }
@@ -364,10 +356,8 @@ final class ProjectVariablePatch implements JsonSerializable
 
     /**
      * Gets visible_build
-     *
-     * @return bool|null
      */
-    public function getVisibleBuild()
+    public function getVisibleBuild(): bool|null
     {
         return $this->container['visible_build'];
     }
@@ -387,10 +377,8 @@ final class ProjectVariablePatch implements JsonSerializable
 
     /**
      * Gets visible_runtime
-     *
-     * @return bool|null
      */
-    public function getVisibleRuntime()
+    public function getVisibleRuntime(): bool|null
     {
         return $this->container['visible_runtime'];
     }
@@ -452,7 +440,6 @@ final class ProjectVariablePatch implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

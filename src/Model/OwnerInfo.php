@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class OwnerInfo implements JsonSerializable
+final class OwnerInfo implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -221,10 +223,8 @@ final class OwnerInfo implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string|null
      */
-    public function getType()
+    public function getType(): string|null
     {
         return $this->container['type'];
     }
@@ -244,10 +244,8 @@ final class OwnerInfo implements JsonSerializable
 
     /**
      * Gets username
-     *
-     * @return string|null
      */
-    public function getUsername()
+    public function getUsername(): string|null
     {
         return $this->container['username'];
     }
@@ -267,10 +265,8 @@ final class OwnerInfo implements JsonSerializable
 
     /**
      * Gets display_name
-     *
-     * @return string|null
      */
-    public function getDisplayName()
+    public function getDisplayName(): string|null
     {
         return $this->container['display_name'];
     }
@@ -332,7 +328,6 @@ final class OwnerInfo implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

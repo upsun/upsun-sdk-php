@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class CreateOrgSubscriptionRequest implements JsonSerializable
+final class CreateOrgSubscriptionRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -252,10 +254,8 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
 
     /**
      * Gets plan
-     *
-     * @return string|null
      */
-    public function getPlan()
+    public function getPlan(): string|null
     {
         return $this->container['plan'];
     }
@@ -275,10 +275,8 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
 
     /**
      * Gets project_region
-     *
-     * @return string
      */
-    public function getProjectRegion()
+    public function getProjectRegion(): string
     {
         return $this->container['project_region'];
     }
@@ -298,10 +296,8 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
 
     /**
      * Gets project_title
-     *
-     * @return string|null
      */
-    public function getProjectTitle()
+    public function getProjectTitle(): string|null
     {
         return $this->container['project_title'];
     }
@@ -321,10 +317,8 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
 
     /**
      * Gets options_url
-     *
-     * @return string|null
      */
-    public function getOptionsUrl()
+    public function getOptionsUrl(): string|null
     {
         return $this->container['options_url'];
     }
@@ -344,10 +338,8 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
 
     /**
      * Gets default_branch
-     *
-     * @return string|null
      */
-    public function getDefaultBranch()
+    public function getDefaultBranch(): string|null
     {
         return $this->container['default_branch'];
     }
@@ -367,10 +359,8 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
 
     /**
      * Gets environments
-     *
-     * @return int|null
      */
-    public function getEnvironments()
+    public function getEnvironments(): int|null
     {
         return $this->container['environments'];
     }
@@ -390,10 +380,8 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
 
     /**
      * Gets storage
-     *
-     * @return int|null
      */
-    public function getStorage()
+    public function getStorage(): int|null
     {
         return $this->container['storage'];
     }
@@ -455,7 +443,6 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

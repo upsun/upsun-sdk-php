@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class BitbucketIntegration implements JsonSerializable
+final class BitbucketIntegration implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -340,10 +342,8 @@ final class BitbucketIntegration implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->container['created_at'];
     }
@@ -370,10 +370,8 @@ final class BitbucketIntegration implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime
     {
         return $this->container['updated_at'];
     }
@@ -400,10 +398,8 @@ final class BitbucketIntegration implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -423,10 +419,8 @@ final class BitbucketIntegration implements JsonSerializable
 
     /**
      * Gets fetch_branches
-     *
-     * @return bool
      */
-    public function getFetchBranches()
+    public function getFetchBranches(): bool
     {
         return $this->container['fetch_branches'];
     }
@@ -446,10 +440,8 @@ final class BitbucketIntegration implements JsonSerializable
 
     /**
      * Gets prune_branches
-     *
-     * @return bool
      */
-    public function getPruneBranches()
+    public function getPruneBranches(): bool
     {
         return $this->container['prune_branches'];
     }
@@ -469,10 +461,8 @@ final class BitbucketIntegration implements JsonSerializable
 
     /**
      * Gets environment_init_resources
-     *
-     * @return string
      */
-    public function getEnvironmentInitResources()
+    public function getEnvironmentInitResources(): string
     {
         return $this->container['environment_init_resources'];
     }
@@ -502,10 +492,8 @@ final class BitbucketIntegration implements JsonSerializable
 
     /**
      * Gets app_credentials
-     *
-     * @return \Upsun\Model\TheOAuth2ConsumerInformationOptional|null
      */
-    public function getAppCredentials()
+    public function getAppCredentials(): \Upsun\Model\TheOAuth2ConsumerInformationOptional|null
     {
         return $this->container['app_credentials'];
     }
@@ -532,10 +520,8 @@ final class BitbucketIntegration implements JsonSerializable
 
     /**
      * Gets addon_credentials
-     *
-     * @return \Upsun\Model\TheAddonCredentialInformationOptional|null
      */
-    public function getAddonCredentials()
+    public function getAddonCredentials(): \Upsun\Model\TheAddonCredentialInformationOptional|null
     {
         return $this->container['addon_credentials'];
     }
@@ -562,10 +548,8 @@ final class BitbucketIntegration implements JsonSerializable
 
     /**
      * Gets repository
-     *
-     * @return string
      */
-    public function getRepository()
+    public function getRepository(): string
     {
         return $this->container['repository'];
     }
@@ -585,10 +569,8 @@ final class BitbucketIntegration implements JsonSerializable
 
     /**
      * Gets build_pull_requests
-     *
-     * @return bool
      */
-    public function getBuildPullRequests()
+    public function getBuildPullRequests(): bool
     {
         return $this->container['build_pull_requests'];
     }
@@ -608,10 +590,8 @@ final class BitbucketIntegration implements JsonSerializable
 
     /**
      * Gets pull_requests_clone_parent_data
-     *
-     * @return bool
      */
-    public function getPullRequestsCloneParentData()
+    public function getPullRequestsCloneParentData(): bool
     {
         return $this->container['pull_requests_clone_parent_data'];
     }
@@ -631,10 +611,8 @@ final class BitbucketIntegration implements JsonSerializable
 
     /**
      * Gets resync_pull_requests
-     *
-     * @return bool
      */
-    public function getResyncPullRequests()
+    public function getResyncPullRequests(): bool
     {
         return $this->container['resync_pull_requests'];
     }
@@ -696,7 +674,6 @@ final class BitbucketIntegration implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Activity implements JsonSerializable
+final class Activity implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -434,10 +436,8 @@ final class Activity implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->container['created_at'];
     }
@@ -464,10 +464,8 @@ final class Activity implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime
     {
         return $this->container['updated_at'];
     }
@@ -494,10 +492,8 @@ final class Activity implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -517,10 +513,8 @@ final class Activity implements JsonSerializable
 
     /**
      * Gets parameters
-     *
-     * @return object
      */
-    public function getParameters()
+    public function getParameters(): object
     {
         return $this->container['parameters'];
     }
@@ -540,10 +534,8 @@ final class Activity implements JsonSerializable
 
     /**
      * Gets project
-     *
-     * @return string
      */
-    public function getProject()
+    public function getProject(): string
     {
         return $this->container['project'];
     }
@@ -563,10 +555,8 @@ final class Activity implements JsonSerializable
 
     /**
      * Gets integration
-     *
-     * @return string|null
      */
-    public function getIntegration()
+    public function getIntegration(): string|null
     {
         return $this->container['integration'];
     }
@@ -586,10 +576,8 @@ final class Activity implements JsonSerializable
 
     /**
      * Gets environments
-     *
-     * @return string[]|null
      */
-    public function getEnvironments()
+    public function getEnvironments(): array|null
     {
         return $this->container['environments'];
     }
@@ -609,10 +597,8 @@ final class Activity implements JsonSerializable
 
     /**
      * Gets state
-     *
-     * @return string
      */
-    public function getState()
+    public function getState(): string
     {
         return $this->container['state'];
     }
@@ -642,10 +628,8 @@ final class Activity implements JsonSerializable
 
     /**
      * Gets result
-     *
-     * @return string
      */
-    public function getResult()
+    public function getResult(): string
     {
         return $this->container['result'];
     }
@@ -682,10 +666,8 @@ final class Activity implements JsonSerializable
 
     /**
      * Gets started_at
-     *
-     * @return \DateTime
      */
-    public function getStartedAt()
+    public function getStartedAt(): \DateTime
     {
         return $this->container['started_at'];
     }
@@ -712,10 +694,8 @@ final class Activity implements JsonSerializable
 
     /**
      * Gets completed_at
-     *
-     * @return \DateTime
      */
-    public function getCompletedAt()
+    public function getCompletedAt(): \DateTime
     {
         return $this->container['completed_at'];
     }
@@ -742,10 +722,8 @@ final class Activity implements JsonSerializable
 
     /**
      * Gets completion_percent
-     *
-     * @return int
      */
-    public function getCompletionPercent()
+    public function getCompletionPercent(): int
     {
         return $this->container['completion_percent'];
     }
@@ -765,10 +743,8 @@ final class Activity implements JsonSerializable
 
     /**
      * Gets cancelled_at
-     *
-     * @return \DateTime
      */
-    public function getCancelledAt()
+    public function getCancelledAt(): \DateTime
     {
         return $this->container['cancelled_at'];
     }
@@ -795,10 +771,8 @@ final class Activity implements JsonSerializable
 
     /**
      * Gets timings
-     *
-     * @return array<string,float>
      */
-    public function getTimings()
+    public function getTimings(): array
     {
         return $this->container['timings'];
     }
@@ -819,11 +793,9 @@ final class Activity implements JsonSerializable
     /**
      * Gets log
      *
-     * @return string
-     *
      * @deprecated
      */
-    public function getLog()
+    public function getLog(): string
     {
         return $this->container['log'];
     }
@@ -845,10 +817,8 @@ final class Activity implements JsonSerializable
 
     /**
      * Gets payload
-     *
-     * @return object
      */
-    public function getPayload()
+    public function getPayload(): object
     {
         return $this->container['payload'];
     }
@@ -868,10 +838,8 @@ final class Activity implements JsonSerializable
 
     /**
      * Gets description
-     *
-     * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->container['description'];
     }
@@ -898,10 +866,8 @@ final class Activity implements JsonSerializable
 
     /**
      * Gets text
-     *
-     * @return string
      */
-    public function getText()
+    public function getText(): string
     {
         return $this->container['text'];
     }
@@ -928,10 +894,8 @@ final class Activity implements JsonSerializable
 
     /**
      * Gets expires_at
-     *
-     * @return \DateTime
      */
-    public function getExpiresAt()
+    public function getExpiresAt(): \DateTime
     {
         return $this->container['expires_at'];
     }
@@ -1000,7 +964,6 @@ final class Activity implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class OutboundFirewallRestrictionsInner implements JsonSerializable
+final class OutboundFirewallRestrictionsInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -260,10 +262,8 @@ final class OutboundFirewallRestrictionsInner implements JsonSerializable
 
     /**
      * Gets protocol
-     *
-     * @return string
      */
-    public function getProtocol()
+    public function getProtocol(): string
     {
         return $this->container['protocol'];
     }
@@ -293,10 +293,8 @@ final class OutboundFirewallRestrictionsInner implements JsonSerializable
 
     /**
      * Gets ips
-     *
-     * @return string[]
      */
-    public function getIps()
+    public function getIps(): array
     {
         return $this->container['ips'];
     }
@@ -316,10 +314,8 @@ final class OutboundFirewallRestrictionsInner implements JsonSerializable
 
     /**
      * Gets domains
-     *
-     * @return string[]
      */
-    public function getDomains()
+    public function getDomains(): array
     {
         return $this->container['domains'];
     }
@@ -339,10 +335,8 @@ final class OutboundFirewallRestrictionsInner implements JsonSerializable
 
     /**
      * Gets ports
-     *
-     * @return int[]
      */
-    public function getPorts()
+    public function getPorts(): array
     {
         return $this->container['ports'];
     }
@@ -404,7 +398,6 @@ final class OutboundFirewallRestrictionsInner implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

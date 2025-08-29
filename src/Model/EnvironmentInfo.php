@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class EnvironmentInfo implements JsonSerializable
+final class EnvironmentInfo implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -290,10 +292,8 @@ final class EnvironmentInfo implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->container['name'];
     }
@@ -313,10 +313,8 @@ final class EnvironmentInfo implements JsonSerializable
 
     /**
      * Gets status
-     *
-     * @return string
      */
-    public function getStatus()
+    public function getStatus(): string
     {
         return $this->container['status'];
     }
@@ -336,10 +334,8 @@ final class EnvironmentInfo implements JsonSerializable
 
     /**
      * Gets is_main
-     *
-     * @return bool
      */
-    public function getIsMain()
+    public function getIsMain(): bool
     {
         return $this->container['is_main'];
     }
@@ -359,10 +355,8 @@ final class EnvironmentInfo implements JsonSerializable
 
     /**
      * Gets is_production
-     *
-     * @return bool
      */
-    public function getIsProduction()
+    public function getIsProduction(): bool
     {
         return $this->container['is_production'];
     }
@@ -382,10 +376,8 @@ final class EnvironmentInfo implements JsonSerializable
 
     /**
      * Gets constraints
-     *
-     * @return object
      */
-    public function getConstraints()
+    public function getConstraints(): object
     {
         return $this->container['constraints'];
     }
@@ -405,10 +397,8 @@ final class EnvironmentInfo implements JsonSerializable
 
     /**
      * Gets reference
-     *
-     * @return string
      */
-    public function getReference()
+    public function getReference(): string
     {
         return $this->container['reference'];
     }
@@ -428,10 +418,8 @@ final class EnvironmentInfo implements JsonSerializable
 
     /**
      * Gets machine_name
-     *
-     * @return string
      */
-    public function getMachineName()
+    public function getMachineName(): string
     {
         return $this->container['machine_name'];
     }
@@ -451,10 +439,8 @@ final class EnvironmentInfo implements JsonSerializable
 
     /**
      * Gets environment_type
-     *
-     * @return string
      */
-    public function getEnvironmentType()
+    public function getEnvironmentType(): string
     {
         return $this->container['environment_type'];
     }
@@ -474,10 +460,8 @@ final class EnvironmentInfo implements JsonSerializable
 
     /**
      * Gets links
-     *
-     * @return object
      */
-    public function getLinks()
+    public function getLinks(): object
     {
         return $this->container['links'];
     }
@@ -539,7 +523,6 @@ final class EnvironmentInfo implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSerializable
+final class ListOrgPrepaymentTransactions200ResponseLinks implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -228,10 +230,8 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSeriali
 
     /**
      * Gets self
-     *
-     * @return \Upsun\Model\ListLinksSelf|null
      */
-    public function getSelf()
+    public function getSelf(): \Upsun\Model\ListLinksSelf|null
     {
         return $this->container['self'];
     }
@@ -251,10 +251,8 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSeriali
 
     /**
      * Gets previous
-     *
-     * @return \Upsun\Model\ListLinksPrevious|null
      */
-    public function getPrevious()
+    public function getPrevious(): \Upsun\Model\ListLinksPrevious|null
     {
         return $this->container['previous'];
     }
@@ -274,10 +272,8 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSeriali
 
     /**
      * Gets next
-     *
-     * @return \Upsun\Model\ListLinksNext|null
      */
-    public function getNext()
+    public function getNext(): \Upsun\Model\ListLinksNext|null
     {
         return $this->container['next'];
     }
@@ -297,10 +293,8 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSeriali
 
     /**
      * Gets prepayment
-     *
-     * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment|null
      */
-    public function getPrepayment()
+    public function getPrepayment(): \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment|null
     {
         return $this->container['prepayment'];
     }
@@ -362,7 +356,6 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSeriali
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

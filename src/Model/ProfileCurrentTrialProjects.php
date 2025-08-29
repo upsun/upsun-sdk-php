@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ProfileCurrentTrialProjects implements JsonSerializable
+final class ProfileCurrentTrialProjects implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -221,10 +223,8 @@ final class ProfileCurrentTrialProjects implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string|null
      */
-    public function getId()
+    public function getId(): string|null
     {
         return $this->container['id'];
     }
@@ -244,10 +244,8 @@ final class ProfileCurrentTrialProjects implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string|null
      */
-    public function getName()
+    public function getName(): string|null
     {
         return $this->container['name'];
     }
@@ -267,10 +265,8 @@ final class ProfileCurrentTrialProjects implements JsonSerializable
 
     /**
      * Gets total
-     *
-     * @return \Upsun\Model\ProfileCurrentTrialProjectsTotal|null
      */
-    public function getTotal()
+    public function getTotal(): \Upsun\Model\ProfileCurrentTrialProjectsTotal|null
     {
         return $this->container['total'];
     }
@@ -332,7 +328,6 @@ final class ProfileCurrentTrialProjects implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

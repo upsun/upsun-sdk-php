@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class DateTimeFilter implements JsonSerializable
+final class DateTimeFilter implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -249,10 +251,8 @@ final class DateTimeFilter implements JsonSerializable
 
     /**
      * Gets eq
-     *
-     * @return string|null
      */
-    public function getEq()
+    public function getEq(): string|null
     {
         return $this->container['eq'];
     }
@@ -272,10 +272,8 @@ final class DateTimeFilter implements JsonSerializable
 
     /**
      * Gets ne
-     *
-     * @return string|null
      */
-    public function getNe()
+    public function getNe(): string|null
     {
         return $this->container['ne'];
     }
@@ -295,10 +293,8 @@ final class DateTimeFilter implements JsonSerializable
 
     /**
      * Gets between
-     *
-     * @return string|null
      */
-    public function getBetween()
+    public function getBetween(): string|null
     {
         return $this->container['between'];
     }
@@ -318,10 +314,8 @@ final class DateTimeFilter implements JsonSerializable
 
     /**
      * Gets gt
-     *
-     * @return string|null
      */
-    public function getGt()
+    public function getGt(): string|null
     {
         return $this->container['gt'];
     }
@@ -341,10 +335,8 @@ final class DateTimeFilter implements JsonSerializable
 
     /**
      * Gets gte
-     *
-     * @return string|null
      */
-    public function getGte()
+    public function getGte(): string|null
     {
         return $this->container['gte'];
     }
@@ -364,10 +356,8 @@ final class DateTimeFilter implements JsonSerializable
 
     /**
      * Gets lt
-     *
-     * @return string|null
      */
-    public function getLt()
+    public function getLt(): string|null
     {
         return $this->container['lt'];
     }
@@ -387,10 +377,8 @@ final class DateTimeFilter implements JsonSerializable
 
     /**
      * Gets lte
-     *
-     * @return string|null
      */
-    public function getLte()
+    public function getLte(): string|null
     {
         return $this->container['lte'];
     }
@@ -452,7 +440,6 @@ final class DateTimeFilter implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

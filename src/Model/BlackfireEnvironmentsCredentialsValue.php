@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class BlackfireEnvironmentsCredentialsValue implements JsonSerializable
+final class BlackfireEnvironmentsCredentialsValue implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -220,10 +222,8 @@ final class BlackfireEnvironmentsCredentialsValue implements JsonSerializable
 
     /**
      * Gets server_uuid
-     *
-     * @return string
      */
-    public function getServerUuid()
+    public function getServerUuid(): string
     {
         return $this->container['server_uuid'];
     }
@@ -243,10 +243,8 @@ final class BlackfireEnvironmentsCredentialsValue implements JsonSerializable
 
     /**
      * Gets server_token
-     *
-     * @return string
      */
-    public function getServerToken()
+    public function getServerToken(): string
     {
         return $this->container['server_token'];
     }
@@ -308,7 +306,6 @@ final class BlackfireEnvironmentsCredentialsValue implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

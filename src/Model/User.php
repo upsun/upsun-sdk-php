@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class User implements JsonSerializable
+final class User implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -347,11 +349,13 @@ final class User implements JsonSerializable
             $invalidProperties[] = "'country' can't be null";
         }
         if ((mb_strlen($this->container['country']) > 2)) {
-            $invalidProperties[] = "invalid value for 'country', the character length must be smaller than or equal to 2.";
+            $invalidProperties[] =
+                "invalid value for 'country', the character length must be smaller than or equal to 2.";
         }
 
         if ((mb_strlen($this->container['country']) < 2)) {
-            $invalidProperties[] = "invalid value for 'country', the character length must be bigger than or equal to 2.";
+            $invalidProperties[] =
+                "invalid value for 'country', the character length must be bigger than or equal to 2.";
         }
 
         if ($this->container['created_at'] === null) {
@@ -384,10 +388,8 @@ final class User implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string
      */
-    public function getId()
+    public function getId(): string
     {
         return $this->container['id'];
     }
@@ -407,10 +409,8 @@ final class User implements JsonSerializable
 
     /**
      * Gets deactivated
-     *
-     * @return bool
      */
-    public function getDeactivated()
+    public function getDeactivated(): bool
     {
         return $this->container['deactivated'];
     }
@@ -430,10 +430,8 @@ final class User implements JsonSerializable
 
     /**
      * Gets namespace
-     *
-     * @return string
      */
-    public function getNamespace()
+    public function getNamespace(): string
     {
         return $this->container['namespace'];
     }
@@ -453,10 +451,8 @@ final class User implements JsonSerializable
 
     /**
      * Gets username
-     *
-     * @return string
      */
-    public function getUsername()
+    public function getUsername(): string
     {
         return $this->container['username'];
     }
@@ -476,10 +472,8 @@ final class User implements JsonSerializable
 
     /**
      * Gets email
-     *
-     * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->container['email'];
     }
@@ -499,10 +493,8 @@ final class User implements JsonSerializable
 
     /**
      * Gets email_verified
-     *
-     * @return bool
      */
-    public function getEmailVerified()
+    public function getEmailVerified(): bool
     {
         return $this->container['email_verified'];
     }
@@ -522,10 +514,8 @@ final class User implements JsonSerializable
 
     /**
      * Gets first_name
-     *
-     * @return string
      */
-    public function getFirstName()
+    public function getFirstName(): string
     {
         return $this->container['first_name'];
     }
@@ -545,10 +535,8 @@ final class User implements JsonSerializable
 
     /**
      * Gets last_name
-     *
-     * @return string
      */
-    public function getLastName()
+    public function getLastName(): string
     {
         return $this->container['last_name'];
     }
@@ -568,10 +556,8 @@ final class User implements JsonSerializable
 
     /**
      * Gets picture
-     *
-     * @return string
      */
-    public function getPicture()
+    public function getPicture(): string
     {
         return $this->container['picture'];
     }
@@ -591,10 +577,8 @@ final class User implements JsonSerializable
 
     /**
      * Gets company
-     *
-     * @return string
      */
-    public function getCompany()
+    public function getCompany(): string
     {
         return $this->container['company'];
     }
@@ -614,10 +598,8 @@ final class User implements JsonSerializable
 
     /**
      * Gets website
-     *
-     * @return string
      */
-    public function getWebsite()
+    public function getWebsite(): string
     {
         return $this->container['website'];
     }
@@ -637,10 +619,8 @@ final class User implements JsonSerializable
 
     /**
      * Gets country
-     *
-     * @return string
      */
-    public function getCountry()
+    public function getCountry(): string
     {
         return $this->container['country'];
     }
@@ -671,10 +651,8 @@ final class User implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->container['created_at'];
     }
@@ -694,10 +672,8 @@ final class User implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime
     {
         return $this->container['updated_at'];
     }
@@ -717,10 +693,8 @@ final class User implements JsonSerializable
 
     /**
      * Gets consented_at
-     *
-     * @return \DateTime|null
      */
-    public function getConsentedAt()
+    public function getConsentedAt(): \DateTime|null
     {
         return $this->container['consented_at'];
     }
@@ -740,10 +714,8 @@ final class User implements JsonSerializable
 
     /**
      * Gets consent_method
-     *
-     * @return string|null
      */
-    public function getConsentMethod()
+    public function getConsentMethod(): string|null
     {
         return $this->container['consent_method'];
     }
@@ -815,7 +787,6 @@ final class User implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class PrepaymentObject implements JsonSerializable
+final class PrepaymentObject implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -207,10 +209,8 @@ final class PrepaymentObject implements JsonSerializable
 
     /**
      * Gets prepayment
-     *
-     * @return \Upsun\Model\PrepaymentObjectPrepayment|null
      */
-    public function getPrepayment()
+    public function getPrepayment(): \Upsun\Model\PrepaymentObjectPrepayment|null
     {
         return $this->container['prepayment'];
     }
@@ -272,7 +272,6 @@ final class PrepaymentObject implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

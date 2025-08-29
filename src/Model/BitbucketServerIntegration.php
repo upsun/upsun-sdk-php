@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class BitbucketServerIntegration implements JsonSerializable
+final class BitbucketServerIntegration implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -346,10 +348,8 @@ final class BitbucketServerIntegration implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->container['created_at'];
     }
@@ -376,10 +376,8 @@ final class BitbucketServerIntegration implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime
     {
         return $this->container['updated_at'];
     }
@@ -406,10 +404,8 @@ final class BitbucketServerIntegration implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -429,10 +425,8 @@ final class BitbucketServerIntegration implements JsonSerializable
 
     /**
      * Gets fetch_branches
-     *
-     * @return bool
      */
-    public function getFetchBranches()
+    public function getFetchBranches(): bool
     {
         return $this->container['fetch_branches'];
     }
@@ -452,10 +446,8 @@ final class BitbucketServerIntegration implements JsonSerializable
 
     /**
      * Gets prune_branches
-     *
-     * @return bool
      */
-    public function getPruneBranches()
+    public function getPruneBranches(): bool
     {
         return $this->container['prune_branches'];
     }
@@ -475,10 +467,8 @@ final class BitbucketServerIntegration implements JsonSerializable
 
     /**
      * Gets environment_init_resources
-     *
-     * @return string
      */
-    public function getEnvironmentInitResources()
+    public function getEnvironmentInitResources(): string
     {
         return $this->container['environment_init_resources'];
     }
@@ -508,10 +498,8 @@ final class BitbucketServerIntegration implements JsonSerializable
 
     /**
      * Gets url
-     *
-     * @return string
      */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->container['url'];
     }
@@ -531,10 +519,8 @@ final class BitbucketServerIntegration implements JsonSerializable
 
     /**
      * Gets username
-     *
-     * @return string
      */
-    public function getUsername()
+    public function getUsername(): string
     {
         return $this->container['username'];
     }
@@ -554,10 +540,8 @@ final class BitbucketServerIntegration implements JsonSerializable
 
     /**
      * Gets project
-     *
-     * @return string
      */
-    public function getProject()
+    public function getProject(): string
     {
         return $this->container['project'];
     }
@@ -577,10 +561,8 @@ final class BitbucketServerIntegration implements JsonSerializable
 
     /**
      * Gets repository
-     *
-     * @return string
      */
-    public function getRepository()
+    public function getRepository(): string
     {
         return $this->container['repository'];
     }
@@ -600,10 +582,8 @@ final class BitbucketServerIntegration implements JsonSerializable
 
     /**
      * Gets build_pull_requests
-     *
-     * @return bool
      */
-    public function getBuildPullRequests()
+    public function getBuildPullRequests(): bool
     {
         return $this->container['build_pull_requests'];
     }
@@ -623,10 +603,8 @@ final class BitbucketServerIntegration implements JsonSerializable
 
     /**
      * Gets pull_requests_clone_parent_data
-     *
-     * @return bool
      */
-    public function getPullRequestsCloneParentData()
+    public function getPullRequestsCloneParentData(): bool
     {
         return $this->container['pull_requests_clone_parent_data'];
     }
@@ -688,7 +666,6 @@ final class BitbucketServerIntegration implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

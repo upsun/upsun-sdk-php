@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TheIssuerOfTheCertificateInner implements JsonSerializable
+final class TheIssuerOfTheCertificateInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -230,10 +232,8 @@ final class TheIssuerOfTheCertificateInner implements JsonSerializable
 
     /**
      * Gets oid
-     *
-     * @return string
      */
-    public function getOid()
+    public function getOid(): string
     {
         return $this->container['oid'];
     }
@@ -253,10 +253,8 @@ final class TheIssuerOfTheCertificateInner implements JsonSerializable
 
     /**
      * Gets alias
-     *
-     * @return string
      */
-    public function getAlias()
+    public function getAlias(): string
     {
         return $this->container['alias'];
     }
@@ -283,10 +281,8 @@ final class TheIssuerOfTheCertificateInner implements JsonSerializable
 
     /**
      * Gets value
-     *
-     * @return string
      */
-    public function getValue()
+    public function getValue(): string
     {
         return $this->container['value'];
     }
@@ -348,7 +344,6 @@ final class TheIssuerOfTheCertificateInner implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

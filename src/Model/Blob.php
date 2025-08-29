@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Blob implements JsonSerializable
+final class Blob implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -262,10 +264,8 @@ final class Blob implements JsonSerializable
 
     /**
      * Gets sha
-     *
-     * @return string
      */
-    public function getSha()
+    public function getSha(): string
     {
         return $this->container['sha'];
     }
@@ -285,10 +285,8 @@ final class Blob implements JsonSerializable
 
     /**
      * Gets size
-     *
-     * @return int
      */
-    public function getSize()
+    public function getSize(): int
     {
         return $this->container['size'];
     }
@@ -308,10 +306,8 @@ final class Blob implements JsonSerializable
 
     /**
      * Gets encoding
-     *
-     * @return string
      */
-    public function getEncoding()
+    public function getEncoding(): string
     {
         return $this->container['encoding'];
     }
@@ -341,10 +337,8 @@ final class Blob implements JsonSerializable
 
     /**
      * Gets content
-     *
-     * @return string
      */
-    public function getContent()
+    public function getContent(): string
     {
         return $this->container['content'];
     }
@@ -406,7 +400,6 @@ final class Blob implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSerializable
+final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -240,10 +242,8 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
 
     /**
      * Gets directory
-     *
-     * @return string
      */
-    public function getDirectory()
+    public function getDirectory(): string
     {
         return $this->container['directory'];
     }
@@ -270,10 +270,8 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
 
     /**
      * Gets watch
-     *
-     * @return string[]
      */
-    public function getWatch()
+    public function getWatch(): array
     {
         return $this->container['watch'];
     }
@@ -293,10 +291,8 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
 
     /**
      * Gets allow_stale
-     *
-     * @return bool
      */
-    public function getAllowStale()
+    public function getAllowStale(): bool
     {
         return $this->container['allow_stale'];
     }
@@ -316,10 +312,8 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
 
     /**
      * Gets share_between_apps
-     *
-     * @return bool
      */
-    public function getShareBetweenApps()
+    public function getShareBetweenApps(): bool
     {
         return $this->container['share_between_apps'];
     }
@@ -381,7 +375,6 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

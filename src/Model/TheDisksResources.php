@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TheDisksResources implements JsonSerializable
+final class TheDisksResources implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -230,10 +232,8 @@ final class TheDisksResources implements JsonSerializable
 
     /**
      * Gets temporary
-     *
-     * @return int
      */
-    public function getTemporary()
+    public function getTemporary(): int
     {
         return $this->container['temporary'];
     }
@@ -260,10 +260,8 @@ final class TheDisksResources implements JsonSerializable
 
     /**
      * Gets instance
-     *
-     * @return int
      */
-    public function getInstance()
+    public function getInstance(): int
     {
         return $this->container['instance'];
     }
@@ -290,10 +288,8 @@ final class TheDisksResources implements JsonSerializable
 
     /**
      * Gets storage
-     *
-     * @return int
      */
-    public function getStorage()
+    public function getStorage(): int
     {
         return $this->container['storage'];
     }
@@ -362,7 +358,6 @@ final class TheDisksResources implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

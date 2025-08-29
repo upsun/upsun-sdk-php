@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class RegionDatacenter implements JsonSerializable
+final class RegionDatacenter implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -221,10 +223,8 @@ final class RegionDatacenter implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string|null
      */
-    public function getName()
+    public function getName(): string|null
     {
         return $this->container['name'];
     }
@@ -244,10 +244,8 @@ final class RegionDatacenter implements JsonSerializable
 
     /**
      * Gets label
-     *
-     * @return string|null
      */
-    public function getLabel()
+    public function getLabel(): string|null
     {
         return $this->container['label'];
     }
@@ -267,10 +265,8 @@ final class RegionDatacenter implements JsonSerializable
 
     /**
      * Gets location
-     *
-     * @return string|null
      */
-    public function getLocation()
+    public function getLocation(): string|null
     {
         return $this->container['location'];
     }
@@ -332,7 +328,6 @@ final class RegionDatacenter implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

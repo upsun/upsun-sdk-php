@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class CreateTicketRequestAttachmentsInner implements JsonSerializable
+final class CreateTicketRequestAttachmentsInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -214,10 +216,8 @@ final class CreateTicketRequestAttachmentsInner implements JsonSerializable
 
     /**
      * Gets filename
-     *
-     * @return string|null
      */
-    public function getFilename()
+    public function getFilename(): string|null
     {
         return $this->container['filename'];
     }
@@ -237,10 +237,8 @@ final class CreateTicketRequestAttachmentsInner implements JsonSerializable
 
     /**
      * Gets data
-     *
-     * @return string|null
      */
-    public function getData()
+    public function getData(): string|null
     {
         return $this->container['data'];
     }
@@ -302,7 +300,6 @@ final class CreateTicketRequestAttachmentsInner implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

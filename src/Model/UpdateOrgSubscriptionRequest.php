@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class UpdateOrgSubscriptionRequest implements JsonSerializable
+final class UpdateOrgSubscriptionRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -284,10 +286,8 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
 
     /**
      * Gets project_title
-     *
-     * @return string|null
      */
-    public function getProjectTitle()
+    public function getProjectTitle(): string|null
     {
         return $this->container['project_title'];
     }
@@ -307,10 +307,8 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
 
     /**
      * Gets plan
-     *
-     * @return string|null
      */
-    public function getPlan()
+    public function getPlan(): string|null
     {
         return $this->container['plan'];
     }
@@ -330,10 +328,8 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
 
     /**
      * Gets timezone
-     *
-     * @return string|null
      */
-    public function getTimezone()
+    public function getTimezone(): string|null
     {
         return $this->container['timezone'];
     }
@@ -353,10 +349,8 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
 
     /**
      * Gets environments
-     *
-     * @return int|null
      */
-    public function getEnvironments()
+    public function getEnvironments(): int|null
     {
         return $this->container['environments'];
     }
@@ -376,10 +370,8 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
 
     /**
      * Gets storage
-     *
-     * @return int|null
      */
-    public function getStorage()
+    public function getStorage(): int|null
     {
         return $this->container['storage'];
     }
@@ -399,10 +391,8 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
 
     /**
      * Gets big_dev
-     *
-     * @return string|null
      */
-    public function getBigDev()
+    public function getBigDev(): string|null
     {
         return $this->container['big_dev'];
     }
@@ -422,10 +412,8 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
 
     /**
      * Gets big_dev_service
-     *
-     * @return string|null
      */
-    public function getBigDevService()
+    public function getBigDevService(): string|null
     {
         return $this->container['big_dev_service'];
     }
@@ -445,10 +433,8 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
 
     /**
      * Gets backups
-     *
-     * @return string|null
      */
-    public function getBackups()
+    public function getBackups(): string|null
     {
         return $this->container['backups'];
     }
@@ -468,10 +454,8 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
 
     /**
      * Gets observability_suite
-     *
-     * @return string|null
      */
-    public function getObservabilitySuite()
+    public function getObservabilitySuite(): string|null
     {
         return $this->container['observability_suite'];
     }
@@ -491,10 +475,8 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
 
     /**
      * Gets blackfire
-     *
-     * @return string|null
      */
-    public function getBlackfire()
+    public function getBlackfire(): string|null
     {
         return $this->container['blackfire'];
     }
@@ -514,10 +496,8 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
 
     /**
      * Gets continuous_profiling
-     *
-     * @return string|null
      */
-    public function getContinuousProfiling()
+    public function getContinuousProfiling(): string|null
     {
         return $this->container['continuous_profiling'];
     }
@@ -537,10 +517,8 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
 
     /**
      * Gets project_support_level
-     *
-     * @return string|null
      */
-    public function getProjectSupportLevel()
+    public function getProjectSupportLevel(): string|null
     {
         return $this->container['project_support_level'];
     }
@@ -602,7 +580,6 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

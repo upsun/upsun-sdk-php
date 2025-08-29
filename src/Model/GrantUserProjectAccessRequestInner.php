@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class GrantUserProjectAccessRequestInner implements JsonSerializable
+final class GrantUserProjectAccessRequestInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -251,10 +253,8 @@ final class GrantUserProjectAccessRequestInner implements JsonSerializable
 
     /**
      * Gets project_id
-     *
-     * @return string
      */
-    public function getProjectId()
+    public function getProjectId(): string
     {
         return $this->container['project_id'];
     }
@@ -274,10 +274,8 @@ final class GrantUserProjectAccessRequestInner implements JsonSerializable
 
     /**
      * Gets permissions
-     *
-     * @return string[]
      */
-    public function getPermissions()
+    public function getPermissions(): array
     {
         return $this->container['permissions'];
     }
@@ -348,7 +346,6 @@ final class GrantUserProjectAccessRequestInner implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

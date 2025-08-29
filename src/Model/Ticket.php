@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Ticket implements JsonSerializable
+final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -621,10 +623,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets ticket_id
-     *
-     * @return int|null
      */
-    public function getTicketId()
+    public function getTicketId(): int|null
     {
         return $this->container['ticket_id'];
     }
@@ -644,10 +644,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets created
-     *
-     * @return \DateTime|null
      */
-    public function getCreated()
+    public function getCreated(): \DateTime|null
     {
         return $this->container['created'];
     }
@@ -667,10 +665,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets updated
-     *
-     * @return \DateTime|null
      */
-    public function getUpdated()
+    public function getUpdated(): \DateTime|null
     {
         return $this->container['updated'];
     }
@@ -690,10 +686,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string|null
      */
-    public function getType()
+    public function getType(): string|null
     {
         return $this->container['type'];
     }
@@ -723,10 +717,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets subject
-     *
-     * @return string|null
      */
-    public function getSubject()
+    public function getSubject(): string|null
     {
         return $this->container['subject'];
     }
@@ -746,10 +738,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets description
-     *
-     * @return string|null
      */
-    public function getDescription()
+    public function getDescription(): string|null
     {
         return $this->container['description'];
     }
@@ -769,10 +759,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets priority
-     *
-     * @return string|null
      */
-    public function getPriority()
+    public function getPriority(): string|null
     {
         return $this->container['priority'];
     }
@@ -802,10 +790,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets followup_tid
-     *
-     * @return string|null
      */
-    public function getFollowupTid()
+    public function getFollowupTid(): string|null
     {
         return $this->container['followup_tid'];
     }
@@ -825,10 +811,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets status
-     *
-     * @return string|null
      */
-    public function getStatus()
+    public function getStatus(): string|null
     {
         return $this->container['status'];
     }
@@ -858,10 +842,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets recipient
-     *
-     * @return string|null
      */
-    public function getRecipient()
+    public function getRecipient(): string|null
     {
         return $this->container['recipient'];
     }
@@ -881,10 +863,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets requester_id
-     *
-     * @return string|null
      */
-    public function getRequesterId()
+    public function getRequesterId(): string|null
     {
         return $this->container['requester_id'];
     }
@@ -904,10 +884,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets submitter_id
-     *
-     * @return string|null
      */
-    public function getSubmitterId()
+    public function getSubmitterId(): string|null
     {
         return $this->container['submitter_id'];
     }
@@ -927,10 +905,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets assignee_id
-     *
-     * @return string|null
      */
-    public function getAssigneeId()
+    public function getAssigneeId(): string|null
     {
         return $this->container['assignee_id'];
     }
@@ -950,10 +926,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets organization_id
-     *
-     * @return string|null
      */
-    public function getOrganizationId()
+    public function getOrganizationId(): string|null
     {
         return $this->container['organization_id'];
     }
@@ -973,10 +947,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets collaborator_ids
-     *
-     * @return string[]|null
      */
-    public function getCollaboratorIds()
+    public function getCollaboratorIds(): array|null
     {
         return $this->container['collaborator_ids'];
     }
@@ -996,10 +968,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets has_incidents
-     *
-     * @return bool|null
      */
-    public function getHasIncidents()
+    public function getHasIncidents(): bool|null
     {
         return $this->container['has_incidents'];
     }
@@ -1019,10 +989,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets due
-     *
-     * @return \DateTime|null
      */
-    public function getDue()
+    public function getDue(): \DateTime|null
     {
         return $this->container['due'];
     }
@@ -1042,10 +1010,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets tags
-     *
-     * @return string[]|null
      */
-    public function getTags()
+    public function getTags(): array|null
     {
         return $this->container['tags'];
     }
@@ -1065,10 +1031,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets subscription_id
-     *
-     * @return string|null
      */
-    public function getSubscriptionId()
+    public function getSubscriptionId(): string|null
     {
         return $this->container['subscription_id'];
     }
@@ -1088,10 +1052,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets ticket_group
-     *
-     * @return string|null
      */
-    public function getTicketGroup()
+    public function getTicketGroup(): string|null
     {
         return $this->container['ticket_group'];
     }
@@ -1111,10 +1073,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets support_plan
-     *
-     * @return string|null
      */
-    public function getSupportPlan()
+    public function getSupportPlan(): string|null
     {
         return $this->container['support_plan'];
     }
@@ -1134,10 +1094,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets affected_url
-     *
-     * @return string|null
      */
-    public function getAffectedUrl()
+    public function getAffectedUrl(): string|null
     {
         return $this->container['affected_url'];
     }
@@ -1157,10 +1115,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets queue
-     *
-     * @return string|null
      */
-    public function getQueue()
+    public function getQueue(): string|null
     {
         return $this->container['queue'];
     }
@@ -1180,10 +1136,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets issue_type
-     *
-     * @return string|null
      */
-    public function getIssueType()
+    public function getIssueType(): string|null
     {
         return $this->container['issue_type'];
     }
@@ -1203,10 +1157,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets resolution_time
-     *
-     * @return \DateTime|null
      */
-    public function getResolutionTime()
+    public function getResolutionTime(): \DateTime|null
     {
         return $this->container['resolution_time'];
     }
@@ -1226,10 +1178,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets response_time
-     *
-     * @return \DateTime|null
      */
-    public function getResponseTime()
+    public function getResponseTime(): \DateTime|null
     {
         return $this->container['response_time'];
     }
@@ -1249,10 +1199,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets project_url
-     *
-     * @return string|null
      */
-    public function getProjectUrl()
+    public function getProjectUrl(): string|null
     {
         return $this->container['project_url'];
     }
@@ -1272,10 +1220,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets region
-     *
-     * @return string|null
      */
-    public function getRegion()
+    public function getRegion(): string|null
     {
         return $this->container['region'];
     }
@@ -1295,10 +1241,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets category
-     *
-     * @return string|null
      */
-    public function getCategory()
+    public function getCategory(): string|null
     {
         return $this->container['category'];
     }
@@ -1328,10 +1272,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets environment
-     *
-     * @return string|null
      */
-    public function getEnvironment()
+    public function getEnvironment(): string|null
     {
         return $this->container['environment'];
     }
@@ -1361,10 +1303,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets ticket_sharing_status
-     *
-     * @return string|null
      */
-    public function getTicketSharingStatus()
+    public function getTicketSharingStatus(): string|null
     {
         return $this->container['ticket_sharing_status'];
     }
@@ -1394,10 +1334,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets application_ticket_url
-     *
-     * @return string|null
      */
-    public function getApplicationTicketUrl()
+    public function getApplicationTicketUrl(): string|null
     {
         return $this->container['application_ticket_url'];
     }
@@ -1417,10 +1355,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets infrastructure_ticket_url
-     *
-     * @return string|null
      */
-    public function getInfrastructureTicketUrl()
+    public function getInfrastructureTicketUrl(): string|null
     {
         return $this->container['infrastructure_ticket_url'];
     }
@@ -1440,10 +1376,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets jira
-     *
-     * @return \Upsun\Model\TicketJiraInner[]|null
      */
-    public function getJira()
+    public function getJira(): array|null
     {
         return $this->container['jira'];
     }
@@ -1463,10 +1397,8 @@ final class Ticket implements JsonSerializable
 
     /**
      * Gets zd_ticket_url
-     *
-     * @return string|null
      */
-    public function getZdTicketUrl()
+    public function getZdTicketUrl(): string|null
     {
         return $this->container['zd_ticket_url'];
     }
@@ -1528,7 +1460,6 @@ final class Ticket implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

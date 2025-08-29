@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class UpdateOrgProfileRequest implements JsonSerializable
+final class UpdateOrgProfileRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -242,10 +244,8 @@ final class UpdateOrgProfileRequest implements JsonSerializable
 
     /**
      * Gets default_catalog
-     *
-     * @return string|null
      */
-    public function getDefaultCatalog()
+    public function getDefaultCatalog(): string|null
     {
         return $this->container['default_catalog'];
     }
@@ -265,10 +265,8 @@ final class UpdateOrgProfileRequest implements JsonSerializable
 
     /**
      * Gets project_options_url
-     *
-     * @return string|null
      */
-    public function getProjectOptionsUrl()
+    public function getProjectOptionsUrl(): string|null
     {
         return $this->container['project_options_url'];
     }
@@ -288,10 +286,8 @@ final class UpdateOrgProfileRequest implements JsonSerializable
 
     /**
      * Gets security_contact
-     *
-     * @return string|null
      */
-    public function getSecurityContact()
+    public function getSecurityContact(): string|null
     {
         return $this->container['security_contact'];
     }
@@ -311,10 +307,8 @@ final class UpdateOrgProfileRequest implements JsonSerializable
 
     /**
      * Gets company_name
-     *
-     * @return string|null
      */
-    public function getCompanyName()
+    public function getCompanyName(): string|null
     {
         return $this->container['company_name'];
     }
@@ -334,10 +328,8 @@ final class UpdateOrgProfileRequest implements JsonSerializable
 
     /**
      * Gets vat_number
-     *
-     * @return string|null
      */
-    public function getVatNumber()
+    public function getVatNumber(): string|null
     {
         return $this->container['vat_number'];
     }
@@ -357,10 +349,8 @@ final class UpdateOrgProfileRequest implements JsonSerializable
 
     /**
      * Gets billing_contact
-     *
-     * @return string|null
      */
-    public function getBillingContact()
+    public function getBillingContact(): string|null
     {
         return $this->container['billing_contact'];
     }
@@ -422,7 +412,6 @@ final class UpdateOrgProfileRequest implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

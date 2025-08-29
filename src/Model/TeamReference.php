@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TeamReference implements JsonSerializable
+final class TeamReference implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -280,10 +282,8 @@ final class TeamReference implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string|null
      */
-    public function getId()
+    public function getId(): string|null
     {
         return $this->container['id'];
     }
@@ -303,10 +303,8 @@ final class TeamReference implements JsonSerializable
 
     /**
      * Gets organization_id
-     *
-     * @return string|null
      */
-    public function getOrganizationId()
+    public function getOrganizationId(): string|null
     {
         return $this->container['organization_id'];
     }
@@ -326,10 +324,8 @@ final class TeamReference implements JsonSerializable
 
     /**
      * Gets label
-     *
-     * @return string|null
      */
-    public function getLabel()
+    public function getLabel(): string|null
     {
         return $this->container['label'];
     }
@@ -349,10 +345,8 @@ final class TeamReference implements JsonSerializable
 
     /**
      * Gets project_permissions
-     *
-     * @return string[]|null
      */
-    public function getProjectPermissions()
+    public function getProjectPermissions(): array|null
     {
         return $this->container['project_permissions'];
     }
@@ -381,10 +375,8 @@ final class TeamReference implements JsonSerializable
 
     /**
      * Gets counts
-     *
-     * @return \Upsun\Model\TeamCounts|null
      */
-    public function getCounts()
+    public function getCounts(): \Upsun\Model\TeamCounts|null
     {
         return $this->container['counts'];
     }
@@ -404,10 +396,8 @@ final class TeamReference implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime|null
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime|null
     {
         return $this->container['created_at'];
     }
@@ -427,10 +417,8 @@ final class TeamReference implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime|null
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime|null
     {
         return $this->container['updated_at'];
     }
@@ -492,7 +480,6 @@ final class TeamReference implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

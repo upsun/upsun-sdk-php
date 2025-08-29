@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class UpdateOrgMemberRequest implements JsonSerializable
+final class UpdateOrgMemberRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -228,10 +230,8 @@ final class UpdateOrgMemberRequest implements JsonSerializable
 
     /**
      * Gets permissions
-     *
-     * @return string[]|null
      */
-    public function getPermissions()
+    public function getPermissions(): array|null
     {
         return $this->container['permissions'];
     }
@@ -302,7 +302,6 @@ final class UpdateOrgMemberRequest implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

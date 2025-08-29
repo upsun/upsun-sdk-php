@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class CurrentUserCurrentTrialInner implements JsonSerializable
+final class CurrentUserCurrentTrialInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -228,10 +230,8 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
 
     /**
      * Gets created
-     *
-     * @return \DateTime|null
      */
-    public function getCreated()
+    public function getCreated(): \DateTime|null
     {
         return $this->container['created'];
     }
@@ -251,10 +251,8 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
 
     /**
      * Gets description
-     *
-     * @return string|null
      */
-    public function getDescription()
+    public function getDescription(): string|null
     {
         return $this->container['description'];
     }
@@ -274,10 +272,8 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
 
     /**
      * Gets spend_remaining
-     *
-     * @return string|null
      */
-    public function getSpendRemaining()
+    public function getSpendRemaining(): string|null
     {
         return $this->container['spend_remaining'];
     }
@@ -297,10 +293,8 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
 
     /**
      * Gets expiration
-     *
-     * @return \DateTime|null
      */
-    public function getExpiration()
+    public function getExpiration(): \DateTime|null
     {
         return $this->container['expiration'];
     }
@@ -362,7 +356,6 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

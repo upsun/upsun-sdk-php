@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ResourcesLimits implements JsonSerializable
+final class ResourcesLimits implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -230,10 +232,8 @@ final class ResourcesLimits implements JsonSerializable
 
     /**
      * Gets container_profiles
-     *
-     * @return bool
      */
-    public function getContainerProfiles()
+    public function getContainerProfiles(): bool
     {
         return $this->container['container_profiles'];
     }
@@ -253,10 +253,8 @@ final class ResourcesLimits implements JsonSerializable
 
     /**
      * Gets production
-     *
-     * @return \Upsun\Model\ResourcesForProductionEnvironments
      */
-    public function getProduction()
+    public function getProduction(): \Upsun\Model\ResourcesForProductionEnvironments
     {
         return $this->container['production'];
     }
@@ -276,10 +274,8 @@ final class ResourcesLimits implements JsonSerializable
 
     /**
      * Gets development
-     *
-     * @return \Upsun\Model\ResourcesForDevelopmentEnvironments
      */
-    public function getDevelopment()
+    public function getDevelopment(): \Upsun\Model\ResourcesForDevelopmentEnvironments
     {
         return $this->container['development'];
     }
@@ -341,7 +337,6 @@ final class ResourcesLimits implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

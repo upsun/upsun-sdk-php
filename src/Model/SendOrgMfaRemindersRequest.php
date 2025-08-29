@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class SendOrgMfaRemindersRequest implements JsonSerializable
+final class SendOrgMfaRemindersRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -207,10 +209,8 @@ final class SendOrgMfaRemindersRequest implements JsonSerializable
 
     /**
      * Gets user_ids
-     *
-     * @return string[]|null
      */
-    public function getUserIds()
+    public function getUserIds(): array|null
     {
         return $this->container['user_ids'];
     }
@@ -272,7 +272,6 @@ final class SendOrgMfaRemindersRequest implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

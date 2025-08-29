@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSerializable
+final class ScheduledCronTasksExecutedByThisApplicationValue implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -244,10 +246,8 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
 
     /**
      * Gets spec
-     *
-     * @return string
      */
-    public function getSpec()
+    public function getSpec(): string
     {
         return $this->container['spec'];
     }
@@ -267,10 +267,8 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
 
     /**
      * Gets commands
-     *
-     * @return \Upsun\Model\TheCommandsDefinition
      */
-    public function getCommands()
+    public function getCommands(): \Upsun\Model\TheCommandsDefinition
     {
         return $this->container['commands'];
     }
@@ -290,10 +288,8 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
 
     /**
      * Gets shutdown_timeout
-     *
-     * @return int|null
      */
-    public function getShutdownTimeout()
+    public function getShutdownTimeout(): int|null
     {
         return $this->container['shutdown_timeout'];
     }
@@ -320,10 +316,8 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
 
     /**
      * Gets timeout
-     *
-     * @return int
      */
-    public function getTimeout()
+    public function getTimeout(): int
     {
         return $this->container['timeout'];
     }
@@ -343,10 +337,8 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
 
     /**
      * Gets cmd
-     *
-     * @return string|null
      */
-    public function getCmd()
+    public function getCmd(): string|null
     {
         return $this->container['cmd'];
     }
@@ -408,7 +400,6 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

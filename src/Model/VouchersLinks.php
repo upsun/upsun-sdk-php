@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class VouchersLinks implements JsonSerializable
+final class VouchersLinks implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -207,10 +209,8 @@ final class VouchersLinks implements JsonSerializable
 
     /**
      * Gets self
-     *
-     * @return \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf|null
      */
-    public function getSelf()
+    public function getSelf(): \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf|null
     {
         return $this->container['self'];
     }
@@ -272,7 +272,6 @@ final class VouchersLinks implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

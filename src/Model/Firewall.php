@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Firewall implements JsonSerializable
+final class Firewall implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -210,10 +212,8 @@ final class Firewall implements JsonSerializable
 
     /**
      * Gets outbound
-     *
-     * @return \Upsun\Model\OutboundFirewallRestrictionsInner[]
      */
-    public function getOutbound()
+    public function getOutbound(): array
     {
         return $this->container['outbound'];
     }
@@ -275,7 +275,6 @@ final class Firewall implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

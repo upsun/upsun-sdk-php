@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class OrganizationEstimationObjectUserLicensesUserManagement implements JsonSerializable
+final class OrganizationEstimationObjectUserLicensesUserManagement implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -221,10 +223,8 @@ final class OrganizationEstimationObjectUserLicensesUserManagement implements Js
 
     /**
      * Gets count
-     *
-     * @return int|null
      */
-    public function getCount()
+    public function getCount(): int|null
     {
         return $this->container['count'];
     }
@@ -244,10 +244,8 @@ final class OrganizationEstimationObjectUserLicensesUserManagement implements Js
 
     /**
      * Gets total
-     *
-     * @return string|null
      */
-    public function getTotal()
+    public function getTotal(): string|null
     {
         return $this->container['total'];
     }
@@ -267,10 +265,8 @@ final class OrganizationEstimationObjectUserLicensesUserManagement implements Js
 
     /**
      * Gets list
-     *
-     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList|null
      */
-    public function getList()
+    public function getList(): \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList|null
     {
         return $this->container['list'];
     }
@@ -332,7 +328,6 @@ final class OrganizationEstimationObjectUserLicensesUserManagement implements Js
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class EnvironmentBranchInput implements JsonSerializable
+final class EnvironmentBranchInput implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -272,10 +274,8 @@ final class EnvironmentBranchInput implements JsonSerializable
 
     /**
      * Gets title
-     *
-     * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->container['title'];
     }
@@ -295,10 +295,8 @@ final class EnvironmentBranchInput implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->container['name'];
     }
@@ -318,10 +316,8 @@ final class EnvironmentBranchInput implements JsonSerializable
 
     /**
      * Gets clone_parent
-     *
-     * @return bool
      */
-    public function getCloneParent()
+    public function getCloneParent(): bool
     {
         return $this->container['clone_parent'];
     }
@@ -341,10 +337,8 @@ final class EnvironmentBranchInput implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -374,10 +368,8 @@ final class EnvironmentBranchInput implements JsonSerializable
 
     /**
      * Gets resources
-     *
-     * @return \Upsun\Model\Resources2
      */
-    public function getResources()
+    public function getResources(): \Upsun\Model\Resources2
     {
         return $this->container['resources'];
     }
@@ -446,7 +438,6 @@ final class EnvironmentBranchInput implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class SpecificOverridesValue implements JsonSerializable
+final class SpecificOverridesValue implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -235,10 +237,8 @@ final class SpecificOverridesValue implements JsonSerializable
 
     /**
      * Gets expires
-     *
-     * @return string|null
      */
-    public function getExpires()
+    public function getExpires(): string|null
     {
         return $this->container['expires'];
     }
@@ -265,10 +265,8 @@ final class SpecificOverridesValue implements JsonSerializable
 
     /**
      * Gets passthru
-     *
-     * @return string|null
      */
-    public function getPassthru()
+    public function getPassthru(): string|null
     {
         return $this->container['passthru'];
     }
@@ -288,10 +286,8 @@ final class SpecificOverridesValue implements JsonSerializable
 
     /**
      * Gets scripts
-     *
-     * @return bool|null
      */
-    public function getScripts()
+    public function getScripts(): bool|null
     {
         return $this->container['scripts'];
     }
@@ -311,10 +307,8 @@ final class SpecificOverridesValue implements JsonSerializable
 
     /**
      * Gets allow
-     *
-     * @return bool|null
      */
-    public function getAllow()
+    public function getAllow(): bool|null
     {
         return $this->container['allow'];
     }
@@ -334,10 +328,8 @@ final class SpecificOverridesValue implements JsonSerializable
 
     /**
      * Gets headers
-     *
-     * @return array<string,string>|null
      */
-    public function getHeaders()
+    public function getHeaders(): array|null
     {
         return $this->container['headers'];
     }
@@ -399,7 +391,6 @@ final class SpecificOverridesValue implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

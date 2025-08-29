@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ResourcesForDevelopmentEnvironments implements JsonSerializable
+final class ResourcesForDevelopmentEnvironments implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -240,10 +242,8 @@ final class ResourcesForDevelopmentEnvironments implements JsonSerializable
 
     /**
      * Gets legacy_development
-     *
-     * @return bool
      */
-    public function getLegacyDevelopment()
+    public function getLegacyDevelopment(): bool
     {
         return $this->container['legacy_development'];
     }
@@ -263,10 +263,8 @@ final class ResourcesForDevelopmentEnvironments implements JsonSerializable
 
     /**
      * Gets max_cpu
-     *
-     * @return float
      */
-    public function getMaxCpu()
+    public function getMaxCpu(): float
     {
         return $this->container['max_cpu'];
     }
@@ -293,10 +291,8 @@ final class ResourcesForDevelopmentEnvironments implements JsonSerializable
 
     /**
      * Gets max_memory
-     *
-     * @return int
      */
-    public function getMaxMemory()
+    public function getMaxMemory(): int
     {
         return $this->container['max_memory'];
     }
@@ -323,10 +319,8 @@ final class ResourcesForDevelopmentEnvironments implements JsonSerializable
 
     /**
      * Gets max_environments
-     *
-     * @return int
      */
-    public function getMaxEnvironments()
+    public function getMaxEnvironments(): int
     {
         return $this->container['max_environments'];
     }
@@ -395,7 +389,6 @@ final class ResourcesForDevelopmentEnvironments implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

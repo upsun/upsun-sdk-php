@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TheContinuousProfilingConfiguration implements JsonSerializable
+final class TheContinuousProfilingConfiguration implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -210,10 +212,8 @@ final class TheContinuousProfilingConfiguration implements JsonSerializable
 
     /**
      * Gets supported_runtimes
-     *
-     * @return string[]
      */
-    public function getSupportedRuntimes()
+    public function getSupportedRuntimes(): array
     {
         return $this->container['supported_runtimes'];
     }
@@ -275,7 +275,6 @@ final class TheContinuousProfilingConfiguration implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

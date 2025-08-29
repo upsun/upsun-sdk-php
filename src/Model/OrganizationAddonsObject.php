@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class OrganizationAddonsObject implements JsonSerializable
+final class OrganizationAddonsObject implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -221,10 +223,8 @@ final class OrganizationAddonsObject implements JsonSerializable
 
     /**
      * Gets available
-     *
-     * @return \Upsun\Model\OrganizationAddonsObjectAvailable|null
      */
-    public function getAvailable()
+    public function getAvailable(): \Upsun\Model\OrganizationAddonsObjectAvailable|null
     {
         return $this->container['available'];
     }
@@ -244,10 +244,8 @@ final class OrganizationAddonsObject implements JsonSerializable
 
     /**
      * Gets current
-     *
-     * @return \Upsun\Model\OrganizationAddonsObjectCurrent|null
      */
-    public function getCurrent()
+    public function getCurrent(): \Upsun\Model\OrganizationAddonsObjectCurrent|null
     {
         return $this->container['current'];
     }
@@ -267,10 +265,8 @@ final class OrganizationAddonsObject implements JsonSerializable
 
     /**
      * Gets upgrades_available
-     *
-     * @return \Upsun\Model\OrganizationAddonsObjectUpgradesAvailable|null
      */
-    public function getUpgradesAvailable()
+    public function getUpgradesAvailable(): \Upsun\Model\OrganizationAddonsObjectUpgradesAvailable|null
     {
         return $this->container['upgrades_available'];
     }
@@ -332,7 +328,6 @@ final class OrganizationAddonsObject implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

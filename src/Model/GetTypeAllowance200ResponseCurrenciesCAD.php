@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class GetTypeAllowance200ResponseCurrenciesCAD implements JsonSerializable
+final class GetTypeAllowance200ResponseCurrenciesCAD implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -228,10 +230,8 @@ final class GetTypeAllowance200ResponseCurrenciesCAD implements JsonSerializable
 
     /**
      * Gets formatted
-     *
-     * @return string|null
      */
-    public function getFormatted()
+    public function getFormatted(): string|null
     {
         return $this->container['formatted'];
     }
@@ -251,10 +251,8 @@ final class GetTypeAllowance200ResponseCurrenciesCAD implements JsonSerializable
 
     /**
      * Gets amount
-     *
-     * @return float|null
      */
-    public function getAmount()
+    public function getAmount(): float|null
     {
         return $this->container['amount'];
     }
@@ -274,10 +272,8 @@ final class GetTypeAllowance200ResponseCurrenciesCAD implements JsonSerializable
 
     /**
      * Gets currency
-     *
-     * @return string|null
      */
-    public function getCurrency()
+    public function getCurrency(): string|null
     {
         return $this->container['currency'];
     }
@@ -297,10 +293,8 @@ final class GetTypeAllowance200ResponseCurrenciesCAD implements JsonSerializable
 
     /**
      * Gets currency_symbol
-     *
-     * @return string|null
      */
-    public function getCurrencySymbol()
+    public function getCurrencySymbol(): string|null
     {
         return $this->container['currency_symbol'];
     }
@@ -362,7 +356,6 @@ final class GetTypeAllowance200ResponseCurrenciesCAD implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

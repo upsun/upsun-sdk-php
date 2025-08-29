@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class WorkersValue implements JsonSerializable
+final class WorkersValue implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -489,10 +491,8 @@ final class WorkersValue implements JsonSerializable
 
     /**
      * Gets resources
-     *
-     * @return \Upsun\Model\Resources
      */
-    public function getResources()
+    public function getResources(): \Upsun\Model\Resources
     {
         return $this->container['resources'];
     }
@@ -519,10 +519,8 @@ final class WorkersValue implements JsonSerializable
 
     /**
      * Gets size
-     *
-     * @return string
      */
-    public function getSize()
+    public function getSize(): string
     {
         return $this->container['size'];
     }
@@ -552,10 +550,8 @@ final class WorkersValue implements JsonSerializable
 
     /**
      * Gets disk
-     *
-     * @return int
      */
-    public function getDisk()
+    public function getDisk(): int
     {
         return $this->container['disk'];
     }
@@ -582,10 +578,8 @@ final class WorkersValue implements JsonSerializable
 
     /**
      * Gets access
-     *
-     * @return array<string,string>
      */
-    public function getAccess()
+    public function getAccess(): array
     {
         return $this->container['access'];
     }
@@ -614,10 +608,8 @@ final class WorkersValue implements JsonSerializable
 
     /**
      * Gets relationships
-     *
-     * @return array<string,\Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue>
      */
-    public function getRelationships()
+    public function getRelationships(): array
     {
         return $this->container['relationships'];
     }
@@ -637,10 +629,8 @@ final class WorkersValue implements JsonSerializable
 
     /**
      * Gets additional_hosts
-     *
-     * @return array<string,string>
      */
-    public function getAdditionalHosts()
+    public function getAdditionalHosts(): array
     {
         return $this->container['additional_hosts'];
     }
@@ -660,10 +650,8 @@ final class WorkersValue implements JsonSerializable
 
     /**
      * Gets mounts
-     *
-     * @return array<string,\Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue>
      */
-    public function getMounts()
+    public function getMounts(): array
     {
         return $this->container['mounts'];
     }
@@ -683,10 +671,8 @@ final class WorkersValue implements JsonSerializable
 
     /**
      * Gets timezone
-     *
-     * @return string
      */
-    public function getTimezone()
+    public function getTimezone(): string
     {
         return $this->container['timezone'];
     }
@@ -713,10 +699,8 @@ final class WorkersValue implements JsonSerializable
 
     /**
      * Gets variables
-     *
-     * @return array<string,array<string,mixed>>
      */
-    public function getVariables()
+    public function getVariables(): array
     {
         return $this->container['variables'];
     }
@@ -736,10 +720,8 @@ final class WorkersValue implements JsonSerializable
 
     /**
      * Gets firewall
-     *
-     * @return \Upsun\Model\Firewall
      */
-    public function getFirewall()
+    public function getFirewall(): \Upsun\Model\Firewall
     {
         return $this->container['firewall'];
     }
@@ -766,10 +748,8 @@ final class WorkersValue implements JsonSerializable
 
     /**
      * Gets container_profile
-     *
-     * @return string
      */
-    public function getContainerProfile()
+    public function getContainerProfile(): string
     {
         return $this->container['container_profile'];
     }
@@ -796,10 +776,8 @@ final class WorkersValue implements JsonSerializable
 
     /**
      * Gets operations
-     *
-     * @return array<string,\Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue>
      */
-    public function getOperations()
+    public function getOperations(): array
     {
         return $this->container['operations'];
     }
@@ -819,10 +797,8 @@ final class WorkersValue implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->container['name'];
     }
@@ -842,10 +818,8 @@ final class WorkersValue implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -865,10 +839,8 @@ final class WorkersValue implements JsonSerializable
 
     /**
      * Gets preflight
-     *
-     * @return \Upsun\Model\ConfigurationForPreFlightChecks
      */
-    public function getPreflight()
+    public function getPreflight(): \Upsun\Model\ConfigurationForPreFlightChecks
     {
         return $this->container['preflight'];
     }
@@ -888,10 +860,8 @@ final class WorkersValue implements JsonSerializable
 
     /**
      * Gets tree_id
-     *
-     * @return string
      */
-    public function getTreeId()
+    public function getTreeId(): string
     {
         return $this->container['tree_id'];
     }
@@ -911,10 +881,8 @@ final class WorkersValue implements JsonSerializable
 
     /**
      * Gets app_dir
-     *
-     * @return string
      */
-    public function getAppDir()
+    public function getAppDir(): string
     {
         return $this->container['app_dir'];
     }
@@ -934,10 +902,8 @@ final class WorkersValue implements JsonSerializable
 
     /**
      * Gets endpoints
-     *
-     * @return object
      */
-    public function getEndpoints()
+    public function getEndpoints(): object
     {
         return $this->container['endpoints'];
     }
@@ -964,10 +930,8 @@ final class WorkersValue implements JsonSerializable
 
     /**
      * Gets runtime
-     *
-     * @return object
      */
-    public function getRuntime()
+    public function getRuntime(): object
     {
         return $this->container['runtime'];
     }
@@ -987,10 +951,8 @@ final class WorkersValue implements JsonSerializable
 
     /**
      * Gets worker
-     *
-     * @return \Upsun\Model\ConfigurationOfAWorkerContainerInstance
      */
-    public function getWorker()
+    public function getWorker(): \Upsun\Model\ConfigurationOfAWorkerContainerInstance
     {
         return $this->container['worker'];
     }
@@ -1010,10 +972,8 @@ final class WorkersValue implements JsonSerializable
 
     /**
      * Gets app
-     *
-     * @return string
      */
-    public function getApp()
+    public function getApp(): string
     {
         return $this->container['app'];
     }
@@ -1033,10 +993,8 @@ final class WorkersValue implements JsonSerializable
 
     /**
      * Gets stack
-     *
-     * @return object[]
      */
-    public function getStack()
+    public function getStack(): array
     {
         return $this->container['stack'];
     }
@@ -1063,10 +1021,8 @@ final class WorkersValue implements JsonSerializable
 
     /**
      * Gets instance_count
-     *
-     * @return int
      */
-    public function getInstanceCount()
+    public function getInstanceCount(): int
     {
         return $this->container['instance_count'];
     }
@@ -1093,10 +1049,8 @@ final class WorkersValue implements JsonSerializable
 
     /**
      * Gets slug_id
-     *
-     * @return string
      */
-    public function getSlugId()
+    public function getSlugId(): string
     {
         return $this->container['slug_id'];
     }
@@ -1158,7 +1112,6 @@ final class WorkersValue implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

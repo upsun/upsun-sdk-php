@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class OrganizationEstimationObject implements JsonSerializable
+final class OrganizationEstimationObject implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -249,10 +251,8 @@ final class OrganizationEstimationObject implements JsonSerializable
 
     /**
      * Gets total
-     *
-     * @return string|null
      */
-    public function getTotal()
+    public function getTotal(): string|null
     {
         return $this->container['total'];
     }
@@ -272,10 +272,8 @@ final class OrganizationEstimationObject implements JsonSerializable
 
     /**
      * Gets sub_total
-     *
-     * @return string|null
      */
-    public function getSubTotal()
+    public function getSubTotal(): string|null
     {
         return $this->container['sub_total'];
     }
@@ -295,10 +293,8 @@ final class OrganizationEstimationObject implements JsonSerializable
 
     /**
      * Gets vouchers
-     *
-     * @return string|null
      */
-    public function getVouchers()
+    public function getVouchers(): string|null
     {
         return $this->container['vouchers'];
     }
@@ -318,10 +314,8 @@ final class OrganizationEstimationObject implements JsonSerializable
 
     /**
      * Gets user_licenses
-     *
-     * @return \Upsun\Model\OrganizationEstimationObjectUserLicenses|null
      */
-    public function getUserLicenses()
+    public function getUserLicenses(): \Upsun\Model\OrganizationEstimationObjectUserLicenses|null
     {
         return $this->container['user_licenses'];
     }
@@ -341,10 +335,8 @@ final class OrganizationEstimationObject implements JsonSerializable
 
     /**
      * Gets user_management
-     *
-     * @return string|null
      */
-    public function getUserManagement()
+    public function getUserManagement(): string|null
     {
         return $this->container['user_management'];
     }
@@ -364,10 +356,8 @@ final class OrganizationEstimationObject implements JsonSerializable
 
     /**
      * Gets support_level
-     *
-     * @return string|null
      */
-    public function getSupportLevel()
+    public function getSupportLevel(): string|null
     {
         return $this->container['support_level'];
     }
@@ -387,10 +377,8 @@ final class OrganizationEstimationObject implements JsonSerializable
 
     /**
      * Gets subscriptions
-     *
-     * @return \Upsun\Model\OrganizationEstimationObjectSubscriptions|null
      */
-    public function getSubscriptions()
+    public function getSubscriptions(): \Upsun\Model\OrganizationEstimationObjectSubscriptions|null
     {
         return $this->container['subscriptions'];
     }
@@ -452,7 +440,6 @@ final class OrganizationEstimationObject implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

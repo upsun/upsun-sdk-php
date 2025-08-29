@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class UpdateOrgRequest implements JsonSerializable
+final class UpdateOrgRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -207,7 +209,8 @@ final class UpdateOrgRequest implements JsonSerializable
         $invalidProperties = [];
 
         if (!is_null($this->container['country']) && (mb_strlen($this->container['country']) > 2)) {
-            $invalidProperties[] = "invalid value for 'country', the character length must be smaller than or equal to 2.";
+            $invalidProperties[] =
+                "invalid value for 'country', the character length must be smaller than or equal to 2.";
         }
 
         return $invalidProperties;
@@ -225,10 +228,8 @@ final class UpdateOrgRequest implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string|null
      */
-    public function getName()
+    public function getName(): string|null
     {
         return $this->container['name'];
     }
@@ -248,10 +249,8 @@ final class UpdateOrgRequest implements JsonSerializable
 
     /**
      * Gets label
-     *
-     * @return string|null
      */
-    public function getLabel()
+    public function getLabel(): string|null
     {
         return $this->container['label'];
     }
@@ -271,10 +270,8 @@ final class UpdateOrgRequest implements JsonSerializable
 
     /**
      * Gets country
-     *
-     * @return string|null
      */
-    public function getCountry()
+    public function getCountry(): string|null
     {
         return $this->container['country'];
     }
@@ -342,7 +339,6 @@ final class UpdateOrgRequest implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

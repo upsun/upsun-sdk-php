@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ServicesValue implements JsonSerializable
+final class ServicesValue implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -332,10 +334,8 @@ final class ServicesValue implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -355,10 +355,8 @@ final class ServicesValue implements JsonSerializable
 
     /**
      * Gets size
-     *
-     * @return string
      */
-    public function getSize()
+    public function getSize(): string
     {
         return $this->container['size'];
     }
@@ -388,10 +386,8 @@ final class ServicesValue implements JsonSerializable
 
     /**
      * Gets disk
-     *
-     * @return int
      */
-    public function getDisk()
+    public function getDisk(): int
     {
         return $this->container['disk'];
     }
@@ -418,10 +414,8 @@ final class ServicesValue implements JsonSerializable
 
     /**
      * Gets access
-     *
-     * @return object
      */
-    public function getAccess()
+    public function getAccess(): object
     {
         return $this->container['access'];
     }
@@ -441,10 +435,8 @@ final class ServicesValue implements JsonSerializable
 
     /**
      * Gets configuration
-     *
-     * @return object
      */
-    public function getConfiguration()
+    public function getConfiguration(): object
     {
         return $this->container['configuration'];
     }
@@ -464,10 +456,8 @@ final class ServicesValue implements JsonSerializable
 
     /**
      * Gets relationships
-     *
-     * @return array<string,string>
      */
-    public function getRelationships()
+    public function getRelationships(): array
     {
         return $this->container['relationships'];
     }
@@ -487,10 +477,8 @@ final class ServicesValue implements JsonSerializable
 
     /**
      * Gets firewall
-     *
-     * @return \Upsun\Model\Firewall
      */
-    public function getFirewall()
+    public function getFirewall(): \Upsun\Model\Firewall
     {
         return $this->container['firewall'];
     }
@@ -517,10 +505,8 @@ final class ServicesValue implements JsonSerializable
 
     /**
      * Gets resources
-     *
-     * @return \Upsun\Model\Resources
      */
-    public function getResources()
+    public function getResources(): \Upsun\Model\Resources
     {
         return $this->container['resources'];
     }
@@ -547,10 +533,8 @@ final class ServicesValue implements JsonSerializable
 
     /**
      * Gets container_profile
-     *
-     * @return string
      */
-    public function getContainerProfile()
+    public function getContainerProfile(): string
     {
         return $this->container['container_profile'];
     }
@@ -577,10 +561,8 @@ final class ServicesValue implements JsonSerializable
 
     /**
      * Gets endpoints
-     *
-     * @return object
      */
-    public function getEndpoints()
+    public function getEndpoints(): object
     {
         return $this->container['endpoints'];
     }
@@ -649,7 +631,6 @@ final class ServicesValue implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

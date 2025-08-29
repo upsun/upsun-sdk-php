@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class CertificatePatch implements JsonSerializable
+final class CertificatePatch implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -214,10 +216,8 @@ final class CertificatePatch implements JsonSerializable
 
     /**
      * Gets chain
-     *
-     * @return string[]|null
      */
-    public function getChain()
+    public function getChain(): array|null
     {
         return $this->container['chain'];
     }
@@ -237,10 +237,8 @@ final class CertificatePatch implements JsonSerializable
 
     /**
      * Gets is_invalid
-     *
-     * @return bool|null
      */
-    public function getIsInvalid()
+    public function getIsInvalid(): bool|null
     {
         return $this->container['is_invalid'];
     }
@@ -302,7 +300,6 @@ final class CertificatePatch implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

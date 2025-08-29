@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class FoundationDeploymentTargetCreateInput implements JsonSerializable
+final class FoundationDeploymentTargetCreateInput implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -258,10 +260,8 @@ final class FoundationDeploymentTargetCreateInput implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -291,10 +291,8 @@ final class FoundationDeploymentTargetCreateInput implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->container['name'];
     }
@@ -314,10 +312,8 @@ final class FoundationDeploymentTargetCreateInput implements JsonSerializable
 
     /**
      * Gets hosts
-     *
-     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]|null
      */
-    public function getHosts()
+    public function getHosts(): array|null
     {
         return $this->container['hosts'];
     }
@@ -344,10 +340,8 @@ final class FoundationDeploymentTargetCreateInput implements JsonSerializable
 
     /**
      * Gets use_dedicated_grid
-     *
-     * @return bool|null
      */
-    public function getUseDedicatedGrid()
+    public function getUseDedicatedGrid(): bool|null
     {
         return $this->container['use_dedicated_grid'];
     }
@@ -409,7 +403,6 @@ final class FoundationDeploymentTargetCreateInput implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class BlackfireIntegration implements JsonSerializable
+final class BlackfireIntegration implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -250,10 +252,8 @@ final class BlackfireIntegration implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->container['created_at'];
     }
@@ -280,10 +280,8 @@ final class BlackfireIntegration implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime
     {
         return $this->container['updated_at'];
     }
@@ -310,10 +308,8 @@ final class BlackfireIntegration implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -333,10 +329,8 @@ final class BlackfireIntegration implements JsonSerializable
 
     /**
      * Gets environments_credentials
-     *
-     * @return array<string,\Upsun\Model\BlackfireEnvironmentsCredentialsValue>
      */
-    public function getEnvironmentsCredentials()
+    public function getEnvironmentsCredentials(): array
     {
         return $this->container['environments_credentials'];
     }
@@ -356,10 +350,8 @@ final class BlackfireIntegration implements JsonSerializable
 
     /**
      * Gets continuous_profiling
-     *
-     * @return bool
      */
-    public function getContinuousProfiling()
+    public function getContinuousProfiling(): bool
     {
         return $this->container['continuous_profiling'];
     }
@@ -421,7 +413,6 @@ final class BlackfireIntegration implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

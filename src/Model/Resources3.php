@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Resources3 implements JsonSerializable
+final class Resources3 implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -232,10 +234,8 @@ final class Resources3 implements JsonSerializable
 
     /**
      * Gets init
-     *
-     * @return string
      */
-    public function getInit()
+    public function getInit(): string
     {
         return $this->container['init'];
     }
@@ -314,7 +314,6 @@ final class Resources3 implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

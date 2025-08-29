@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class GitLabIntegrationCreateInput implements JsonSerializable
+final class GitLabIntegrationCreateInput implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -305,10 +307,8 @@ final class GitLabIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -328,10 +328,8 @@ final class GitLabIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets fetch_branches
-     *
-     * @return bool|null
      */
-    public function getFetchBranches()
+    public function getFetchBranches(): bool|null
     {
         return $this->container['fetch_branches'];
     }
@@ -351,10 +349,8 @@ final class GitLabIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets prune_branches
-     *
-     * @return bool|null
      */
-    public function getPruneBranches()
+    public function getPruneBranches(): bool|null
     {
         return $this->container['prune_branches'];
     }
@@ -374,10 +370,8 @@ final class GitLabIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets environment_init_resources
-     *
-     * @return string|null
      */
-    public function getEnvironmentInitResources()
+    public function getEnvironmentInitResources(): string|null
     {
         return $this->container['environment_init_resources'];
     }
@@ -407,10 +401,8 @@ final class GitLabIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets token
-     *
-     * @return string
      */
-    public function getToken()
+    public function getToken(): string
     {
         return $this->container['token'];
     }
@@ -430,10 +422,8 @@ final class GitLabIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets base_url
-     *
-     * @return string|null
      */
-    public function getBaseUrl()
+    public function getBaseUrl(): string|null
     {
         return $this->container['base_url'];
     }
@@ -453,10 +443,8 @@ final class GitLabIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets project
-     *
-     * @return string
      */
-    public function getProject()
+    public function getProject(): string
     {
         return $this->container['project'];
     }
@@ -476,10 +464,8 @@ final class GitLabIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets build_merge_requests
-     *
-     * @return bool|null
      */
-    public function getBuildMergeRequests()
+    public function getBuildMergeRequests(): bool|null
     {
         return $this->container['build_merge_requests'];
     }
@@ -499,10 +485,8 @@ final class GitLabIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets build_wip_merge_requests
-     *
-     * @return bool|null
      */
-    public function getBuildWipMergeRequests()
+    public function getBuildWipMergeRequests(): bool|null
     {
         return $this->container['build_wip_merge_requests'];
     }
@@ -522,10 +506,8 @@ final class GitLabIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets merge_requests_clone_parent_data
-     *
-     * @return bool|null
      */
-    public function getMergeRequestsCloneParentData()
+    public function getMergeRequestsCloneParentData(): bool|null
     {
         return $this->container['merge_requests_clone_parent_data'];
     }
@@ -587,7 +569,6 @@ final class GitLabIntegrationCreateInput implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

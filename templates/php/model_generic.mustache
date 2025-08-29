@@ -1,4 +1,4 @@
-final class {{classname}} implements JsonSerializable
+final class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^parentSchema}}implements ModelInterface, ArrayAccess, JsonSerializable{{/parentSchema}}
 {
     public const DISCRIMINATOR = {{#discriminator}}'{{discriminatorName}}'{{/discriminator}}{{^discriminator}}null{{/discriminator}};
 
@@ -246,37 +246,43 @@ final class {{classname}} implements JsonSerializable
         {{#hasValidation}}
         {{#maxLength}}
         if ({{^required}}!is_null($this->container['{{name}}']) && {{/required}}(mb_strlen($this->container['{{name}}']) > {{maxLength}})) {
-            $invalidProperties[] = "invalid value for '{{name}}', the character length must be smaller than or equal to {{{maxLength}}}.";
+            $invalidProperties[] =
+                "invalid value for '{{name}}', the character length must be smaller than or equal to {{{maxLength}}}.";
         }
 
         {{/maxLength}}
         {{#minLength}}
         if ({{^required}}!is_null($this->container['{{name}}']) && {{/required}}(mb_strlen($this->container['{{name}}']) < {{minLength}})) {
-            $invalidProperties[] = "invalid value for '{{name}}', the character length must be bigger than or equal to {{{minLength}}}.";
+            $invalidProperties[] =
+                "invalid value for '{{name}}', the character length must be bigger than or equal to {{{minLength}}}.";
         }
 
         {{/minLength}}
         {{#maximum}}
         if ({{^required}}!is_null($this->container['{{name}}']) && {{/required}}($this->container['{{name}}'] >{{#exclusiveMaximum}}={{/exclusiveMaximum}} {{maximum}})) {
-            $invalidProperties[] = "invalid value for '{{name}}', must be smaller than {{^exclusiveMaximum}}or equal to {{/exclusiveMaximum}}{{maximum}}.";
+            $invalidProperties[] =
+                "invalid value for '{{name}}', must be smaller than {{^exclusiveMaximum}}or equal to {{/exclusiveMaximum}}{{maximum}}.";
         }
 
         {{/maximum}}
         {{#minimum}}
         if ({{^required}}!is_null($this->container['{{name}}']) && {{/required}}($this->container['{{name}}'] <{{#exclusiveMinimum}}={{/exclusiveMinimum}} {{minimum}})) {
-            $invalidProperties[] = "invalid value for '{{name}}', must be bigger than {{^exclusiveMinimum}}or equal to {{/exclusiveMinimum}}{{minimum}}.";
+            $invalidProperties[] =
+                "invalid value for '{{name}}', must be bigger than {{^exclusiveMinimum}}or equal to {{/exclusiveMinimum}}{{minimum}}.";
         }
 
         {{/minimum}}
         {{#pattern}}
         if ({{^required}}!is_null($this->container['{{name}}']) && {{/required}}!preg_match("{{{pattern}}}", $this->container['{{name}}'])) {
-            $invalidProperties[] = "invalid value for '{{name}}', must be conform to the pattern {{{pattern}}}.";
+            $invalidProperties[] =
+                "invalid value for '{{name}}', must be conform to the pattern {{{pattern}}}.";
         }
 
         {{/pattern}}
         {{#maxItems}}
         if ({{^required}}!is_null($this->container['{{name}}']) && {{/required}}(count($this->container['{{name}}']) > {{maxItems}})) {
-            $invalidProperties[] = "invalid value for '{{name}}', number of items must be less than or equal to {{{maxItems}}}.";
+            $invalidProperties[] =
+                "invalid value for '{{name}}', number of items must be less than or equal to {{{maxItems}}}.";
         }
 
         {{/maxItems}}
@@ -284,7 +290,8 @@ final class {{classname}} implements JsonSerializable
         if ({{^required}}!is_null($this->container['{{name}}']) 
             && {{/required}}(count($this->container['{{name}}']) < {{minItems}})
         ) {
-            $invalidProperties[] = "invalid value for '{{name}}', number of items must be greater than or equal to {{{minItems}}}.";
+            $invalidProperties[] =
+                "invalid value for '{{name}}', number of items must be greater than or equal to {{{minItems}}}.";
         }
 
         {{/minItems}}
@@ -306,14 +313,12 @@ final class {{classname}} implements JsonSerializable
 
     /**
      * Gets {{name}}
-     *
-     * @return {{{dataType}}}{{^required}}|null{{/required}}
     {{#deprecated}}
      *
      * @deprecated
     {{/deprecated}}
      */
-    public function {{getter}}()
+    public function {{getter}}(): {{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}}{{^required}}|null{{/required}}
     {
         return $this->container['{{name}}'];
     }
@@ -472,7 +477,6 @@ final class {{classname}} implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

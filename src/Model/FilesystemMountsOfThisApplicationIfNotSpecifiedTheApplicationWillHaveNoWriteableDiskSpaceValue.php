@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue implements JsonSerializable
+final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -257,10 +259,8 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
 
     /**
      * Gets source
-     *
-     * @return string
      */
-    public function getSource()
+    public function getSource(): string
     {
         return $this->container['source'];
     }
@@ -290,10 +290,8 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
 
     /**
      * Gets source_path
-     *
-     * @return string
      */
-    public function getSourcePath()
+    public function getSourcePath(): string
     {
         return $this->container['source_path'];
     }
@@ -313,10 +311,8 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
 
     /**
      * Gets service
-     *
-     * @return string|null
      */
-    public function getService()
+    public function getService(): string|null
     {
         return $this->container['service'];
     }
@@ -385,7 +381,6 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

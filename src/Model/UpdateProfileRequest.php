@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class UpdateProfileRequest implements JsonSerializable
+final class UpdateProfileRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -291,10 +293,8 @@ final class UpdateProfileRequest implements JsonSerializable
 
     /**
      * Gets display_name
-     *
-     * @return string|null
      */
-    public function getDisplayName()
+    public function getDisplayName(): string|null
     {
         return $this->container['display_name'];
     }
@@ -314,10 +314,8 @@ final class UpdateProfileRequest implements JsonSerializable
 
     /**
      * Gets username
-     *
-     * @return string|null
      */
-    public function getUsername()
+    public function getUsername(): string|null
     {
         return $this->container['username'];
     }
@@ -337,10 +335,8 @@ final class UpdateProfileRequest implements JsonSerializable
 
     /**
      * Gets current_password
-     *
-     * @return string|null
      */
-    public function getCurrentPassword()
+    public function getCurrentPassword(): string|null
     {
         return $this->container['current_password'];
     }
@@ -360,10 +356,8 @@ final class UpdateProfileRequest implements JsonSerializable
 
     /**
      * Gets password
-     *
-     * @return string|null
      */
-    public function getPassword()
+    public function getPassword(): string|null
     {
         return $this->container['password'];
     }
@@ -383,10 +377,8 @@ final class UpdateProfileRequest implements JsonSerializable
 
     /**
      * Gets company_type
-     *
-     * @return string|null
      */
-    public function getCompanyType()
+    public function getCompanyType(): string|null
     {
         return $this->container['company_type'];
     }
@@ -406,10 +398,8 @@ final class UpdateProfileRequest implements JsonSerializable
 
     /**
      * Gets company_name
-     *
-     * @return string|null
      */
-    public function getCompanyName()
+    public function getCompanyName(): string|null
     {
         return $this->container['company_name'];
     }
@@ -429,10 +419,8 @@ final class UpdateProfileRequest implements JsonSerializable
 
     /**
      * Gets vat_number
-     *
-     * @return string|null
      */
-    public function getVatNumber()
+    public function getVatNumber(): string|null
     {
         return $this->container['vat_number'];
     }
@@ -452,10 +440,8 @@ final class UpdateProfileRequest implements JsonSerializable
 
     /**
      * Gets company_role
-     *
-     * @return string|null
      */
-    public function getCompanyRole()
+    public function getCompanyRole(): string|null
     {
         return $this->container['company_role'];
     }
@@ -475,10 +461,8 @@ final class UpdateProfileRequest implements JsonSerializable
 
     /**
      * Gets marketing
-     *
-     * @return bool|null
      */
-    public function getMarketing()
+    public function getMarketing(): bool|null
     {
         return $this->container['marketing'];
     }
@@ -498,10 +482,8 @@ final class UpdateProfileRequest implements JsonSerializable
 
     /**
      * Gets ui_colorscheme
-     *
-     * @return string|null
      */
-    public function getUiColorscheme()
+    public function getUiColorscheme(): string|null
     {
         return $this->container['ui_colorscheme'];
     }
@@ -521,10 +503,8 @@ final class UpdateProfileRequest implements JsonSerializable
 
     /**
      * Gets default_catalog
-     *
-     * @return string|null
      */
-    public function getDefaultCatalog()
+    public function getDefaultCatalog(): string|null
     {
         return $this->container['default_catalog'];
     }
@@ -544,10 +524,8 @@ final class UpdateProfileRequest implements JsonSerializable
 
     /**
      * Gets project_options_url
-     *
-     * @return string|null
      */
-    public function getProjectOptionsUrl()
+    public function getProjectOptionsUrl(): string|null
     {
         return $this->container['project_options_url'];
     }
@@ -567,10 +545,8 @@ final class UpdateProfileRequest implements JsonSerializable
 
     /**
      * Gets picture
-     *
-     * @return string|null
      */
-    public function getPicture()
+    public function getPicture(): string|null
     {
         return $this->container['picture'];
     }
@@ -632,7 +608,6 @@ final class UpdateProfileRequest implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

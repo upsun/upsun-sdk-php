@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class EnvironmentPatch implements JsonSerializable
+final class EnvironmentPatch implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -287,10 +289,8 @@ final class EnvironmentPatch implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string|null
      */
-    public function getName()
+    public function getName(): string|null
     {
         return $this->container['name'];
     }
@@ -310,10 +310,8 @@ final class EnvironmentPatch implements JsonSerializable
 
     /**
      * Gets title
-     *
-     * @return string|null
      */
-    public function getTitle()
+    public function getTitle(): string|null
     {
         return $this->container['title'];
     }
@@ -333,10 +331,8 @@ final class EnvironmentPatch implements JsonSerializable
 
     /**
      * Gets attributes
-     *
-     * @return array<string,string>|null
      */
-    public function getAttributes()
+    public function getAttributes(): array|null
     {
         return $this->container['attributes'];
     }
@@ -356,10 +352,8 @@ final class EnvironmentPatch implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string|null
      */
-    public function getType()
+    public function getType(): string|null
     {
         return $this->container['type'];
     }
@@ -389,10 +383,8 @@ final class EnvironmentPatch implements JsonSerializable
 
     /**
      * Gets parent
-     *
-     * @return string|null
      */
-    public function getParent()
+    public function getParent(): string|null
     {
         return $this->container['parent'];
     }
@@ -419,10 +411,8 @@ final class EnvironmentPatch implements JsonSerializable
 
     /**
      * Gets clone_parent_on_create
-     *
-     * @return bool|null
      */
-    public function getCloneParentOnCreate()
+    public function getCloneParentOnCreate(): bool|null
     {
         return $this->container['clone_parent_on_create'];
     }
@@ -442,10 +432,8 @@ final class EnvironmentPatch implements JsonSerializable
 
     /**
      * Gets http_access
-     *
-     * @return \Upsun\Model\HttpAccessPermissions1|null
      */
-    public function getHttpAccess()
+    public function getHttpAccess(): \Upsun\Model\HttpAccessPermissions1|null
     {
         return $this->container['http_access'];
     }
@@ -465,10 +453,8 @@ final class EnvironmentPatch implements JsonSerializable
 
     /**
      * Gets enable_smtp
-     *
-     * @return bool|null
      */
-    public function getEnableSmtp()
+    public function getEnableSmtp(): bool|null
     {
         return $this->container['enable_smtp'];
     }
@@ -488,10 +474,8 @@ final class EnvironmentPatch implements JsonSerializable
 
     /**
      * Gets restrict_robots
-     *
-     * @return bool|null
      */
-    public function getRestrictRobots()
+    public function getRestrictRobots(): bool|null
     {
         return $this->container['restrict_robots'];
     }
@@ -553,7 +537,6 @@ final class EnvironmentPatch implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

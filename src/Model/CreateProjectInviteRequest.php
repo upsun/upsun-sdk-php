@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class CreateProjectInviteRequest implements JsonSerializable
+final class CreateProjectInviteRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -260,10 +262,8 @@ final class CreateProjectInviteRequest implements JsonSerializable
 
     /**
      * Gets role
-     *
-     * @return string|null
      */
-    public function getRole()
+    public function getRole(): string|null
     {
         return $this->container['role'];
     }
@@ -293,10 +293,8 @@ final class CreateProjectInviteRequest implements JsonSerializable
 
     /**
      * Gets email
-     *
-     * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->container['email'];
     }
@@ -316,10 +314,8 @@ final class CreateProjectInviteRequest implements JsonSerializable
 
     /**
      * Gets permissions
-     *
-     * @return \Upsun\Model\CreateProjectInviteRequestPermissionsInner[]|null
      */
-    public function getPermissions()
+    public function getPermissions(): array|null
     {
         return $this->container['permissions'];
     }
@@ -340,11 +336,9 @@ final class CreateProjectInviteRequest implements JsonSerializable
     /**
      * Gets environments
      *
-     * @return \Upsun\Model\CreateProjectInviteRequestEnvironmentsInner[]|null
-     *
      * @deprecated
      */
-    public function getEnvironments()
+    public function getEnvironments(): array|null
     {
         return $this->container['environments'];
     }
@@ -366,10 +360,8 @@ final class CreateProjectInviteRequest implements JsonSerializable
 
     /**
      * Gets force
-     *
-     * @return bool|null
      */
-    public function getForce()
+    public function getForce(): bool|null
     {
         return $this->container['force'];
     }
@@ -431,7 +423,6 @@ final class CreateProjectInviteRequest implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

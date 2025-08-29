@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class OrganizationReference implements JsonSerializable
+final class OrganizationReference implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -249,10 +251,8 @@ final class OrganizationReference implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string|null
      */
-    public function getId()
+    public function getId(): string|null
     {
         return $this->container['id'];
     }
@@ -272,10 +272,8 @@ final class OrganizationReference implements JsonSerializable
 
     /**
      * Gets owner_id
-     *
-     * @return string|null
      */
-    public function getOwnerId()
+    public function getOwnerId(): string|null
     {
         return $this->container['owner_id'];
     }
@@ -295,10 +293,8 @@ final class OrganizationReference implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string|null
      */
-    public function getName()
+    public function getName(): string|null
     {
         return $this->container['name'];
     }
@@ -318,10 +314,8 @@ final class OrganizationReference implements JsonSerializable
 
     /**
      * Gets label
-     *
-     * @return string|null
      */
-    public function getLabel()
+    public function getLabel(): string|null
     {
         return $this->container['label'];
     }
@@ -341,10 +335,8 @@ final class OrganizationReference implements JsonSerializable
 
     /**
      * Gets vendor
-     *
-     * @return string|null
      */
-    public function getVendor()
+    public function getVendor(): string|null
     {
         return $this->container['vendor'];
     }
@@ -364,10 +356,8 @@ final class OrganizationReference implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime|null
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime|null
     {
         return $this->container['created_at'];
     }
@@ -387,10 +377,8 @@ final class OrganizationReference implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime|null
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime|null
     {
         return $this->container['updated_at'];
     }
@@ -452,7 +440,6 @@ final class OrganizationReference implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

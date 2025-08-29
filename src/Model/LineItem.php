@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class LineItem implements JsonSerializable
+final class LineItem implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -293,10 +295,8 @@ final class LineItem implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string|null
      */
-    public function getType()
+    public function getType(): string|null
     {
         return $this->container['type'];
     }
@@ -326,10 +326,8 @@ final class LineItem implements JsonSerializable
 
     /**
      * Gets license_id
-     *
-     * @return float|null
      */
-    public function getLicenseId()
+    public function getLicenseId(): float|null
     {
         return $this->container['license_id'];
     }
@@ -356,10 +354,8 @@ final class LineItem implements JsonSerializable
 
     /**
      * Gets project_id
-     *
-     * @return string|null
      */
-    public function getProjectId()
+    public function getProjectId(): string|null
     {
         return $this->container['project_id'];
     }
@@ -386,10 +382,8 @@ final class LineItem implements JsonSerializable
 
     /**
      * Gets product
-     *
-     * @return string|null
      */
-    public function getProduct()
+    public function getProduct(): string|null
     {
         return $this->container['product'];
     }
@@ -409,10 +403,8 @@ final class LineItem implements JsonSerializable
 
     /**
      * Gets sku
-     *
-     * @return string|null
      */
-    public function getSku()
+    public function getSku(): string|null
     {
         return $this->container['sku'];
     }
@@ -432,10 +424,8 @@ final class LineItem implements JsonSerializable
 
     /**
      * Gets total
-     *
-     * @return float|null
      */
-    public function getTotal()
+    public function getTotal(): float|null
     {
         return $this->container['total'];
     }
@@ -455,10 +445,8 @@ final class LineItem implements JsonSerializable
 
     /**
      * Gets total_formatted
-     *
-     * @return string|null
      */
-    public function getTotalFormatted()
+    public function getTotalFormatted(): string|null
     {
         return $this->container['total_formatted'];
     }
@@ -478,10 +466,8 @@ final class LineItem implements JsonSerializable
 
     /**
      * Gets components
-     *
-     * @return array<string,\Upsun\Model\LineItemComponent>|null
      */
-    public function getComponents()
+    public function getComponents(): array|null
     {
         return $this->container['components'];
     }
@@ -501,10 +487,8 @@ final class LineItem implements JsonSerializable
 
     /**
      * Gets exclude_from_invoice
-     *
-     * @return bool|null
      */
-    public function getExcludeFromInvoice()
+    public function getExcludeFromInvoice(): bool|null
     {
         return $this->container['exclude_from_invoice'];
     }
@@ -566,7 +550,6 @@ final class LineItem implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class SlackIntegrationPatch implements JsonSerializable
+final class SlackIntegrationPatch implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -230,10 +232,8 @@ final class SlackIntegrationPatch implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -253,10 +253,8 @@ final class SlackIntegrationPatch implements JsonSerializable
 
     /**
      * Gets token
-     *
-     * @return string
      */
-    public function getToken()
+    public function getToken(): string
     {
         return $this->container['token'];
     }
@@ -276,10 +274,8 @@ final class SlackIntegrationPatch implements JsonSerializable
 
     /**
      * Gets channel
-     *
-     * @return string
      */
-    public function getChannel()
+    public function getChannel(): string
     {
         return $this->container['channel'];
     }
@@ -341,7 +337,6 @@ final class SlackIntegrationPatch implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

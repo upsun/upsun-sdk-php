@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class HealthWebhookNotificationIntegrationConfigurations implements JsonSerializable
+final class HealthWebhookNotificationIntegrationConfigurations implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -214,10 +216,8 @@ final class HealthWebhookNotificationIntegrationConfigurations implements JsonSe
 
     /**
      * Gets enabled
-     *
-     * @return bool|null
      */
-    public function getEnabled()
+    public function getEnabled(): bool|null
     {
         return $this->container['enabled'];
     }
@@ -237,10 +237,8 @@ final class HealthWebhookNotificationIntegrationConfigurations implements JsonSe
 
     /**
      * Gets role
-     *
-     * @return string|null
      */
-    public function getRole()
+    public function getRole(): string|null
     {
         return $this->container['role'];
     }
@@ -302,7 +300,6 @@ final class HealthWebhookNotificationIntegrationConfigurations implements JsonSe
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

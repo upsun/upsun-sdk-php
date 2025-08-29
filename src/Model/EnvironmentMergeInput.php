@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class EnvironmentMergeInput implements JsonSerializable
+final class EnvironmentMergeInput implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -210,10 +212,8 @@ final class EnvironmentMergeInput implements JsonSerializable
 
     /**
      * Gets resources
-     *
-     * @return \Upsun\Model\Resources4
      */
-    public function getResources()
+    public function getResources(): \Upsun\Model\Resources4
     {
         return $this->container['resources'];
     }
@@ -282,7 +282,6 @@ final class EnvironmentMergeInput implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

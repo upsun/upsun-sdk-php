@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class RestrictedAndDeniedImageTypes implements JsonSerializable
+final class RestrictedAndDeniedImageTypes implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -214,10 +216,8 @@ final class RestrictedAndDeniedImageTypes implements JsonSerializable
 
     /**
      * Gets only
-     *
-     * @return string[]|null
      */
-    public function getOnly()
+    public function getOnly(): array|null
     {
         return $this->container['only'];
     }
@@ -237,10 +237,8 @@ final class RestrictedAndDeniedImageTypes implements JsonSerializable
 
     /**
      * Gets exclude
-     *
-     * @return string[]|null
      */
-    public function getExclude()
+    public function getExclude(): array|null
     {
         return $this->container['exclude'];
     }
@@ -302,7 +300,6 @@ final class RestrictedAndDeniedImageTypes implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

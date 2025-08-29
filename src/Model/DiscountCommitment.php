@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class DiscountCommitment implements JsonSerializable
+final class DiscountCommitment implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -221,10 +223,8 @@ final class DiscountCommitment implements JsonSerializable
 
     /**
      * Gets months
-     *
-     * @return int|null
      */
-    public function getMonths()
+    public function getMonths(): int|null
     {
         return $this->container['months'];
     }
@@ -244,10 +244,8 @@ final class DiscountCommitment implements JsonSerializable
 
     /**
      * Gets amount
-     *
-     * @return \Upsun\Model\DiscountCommitmentAmount|null
      */
-    public function getAmount()
+    public function getAmount(): \Upsun\Model\DiscountCommitmentAmount|null
     {
         return $this->container['amount'];
     }
@@ -267,10 +265,8 @@ final class DiscountCommitment implements JsonSerializable
 
     /**
      * Gets net
-     *
-     * @return \Upsun\Model\DiscountCommitmentNet|null
      */
-    public function getNet()
+    public function getNet(): \Upsun\Model\DiscountCommitmentNet|null
     {
         return $this->container['net'];
     }
@@ -332,7 +328,6 @@ final class DiscountCommitment implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

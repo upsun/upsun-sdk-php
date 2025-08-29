@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class CreateTeamMemberRequest implements JsonSerializable
+final class CreateTeamMemberRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -210,10 +212,8 @@ final class CreateTeamMemberRequest implements JsonSerializable
 
     /**
      * Gets user_id
-     *
-     * @return string
      */
-    public function getUserId()
+    public function getUserId(): string
     {
         return $this->container['user_id'];
     }
@@ -275,7 +275,6 @@ final class CreateTeamMemberRequest implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

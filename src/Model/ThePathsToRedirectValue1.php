@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ThePathsToRedirectValue1 implements JsonSerializable
+final class ThePathsToRedirectValue1 implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -271,10 +273,8 @@ final class ThePathsToRedirectValue1 implements JsonSerializable
 
     /**
      * Gets regexp
-     *
-     * @return bool|null
      */
-    public function getRegexp()
+    public function getRegexp(): bool|null
     {
         return $this->container['regexp'];
     }
@@ -294,10 +294,8 @@ final class ThePathsToRedirectValue1 implements JsonSerializable
 
     /**
      * Gets to
-     *
-     * @return string
      */
-    public function getTo()
+    public function getTo(): string
     {
         return $this->container['to'];
     }
@@ -317,10 +315,8 @@ final class ThePathsToRedirectValue1 implements JsonSerializable
 
     /**
      * Gets prefix
-     *
-     * @return bool|null
      */
-    public function getPrefix()
+    public function getPrefix(): bool|null
     {
         return $this->container['prefix'];
     }
@@ -347,10 +343,8 @@ final class ThePathsToRedirectValue1 implements JsonSerializable
 
     /**
      * Gets append_suffix
-     *
-     * @return bool|null
      */
-    public function getAppendSuffix()
+    public function getAppendSuffix(): bool|null
     {
         return $this->container['append_suffix'];
     }
@@ -377,10 +371,8 @@ final class ThePathsToRedirectValue1 implements JsonSerializable
 
     /**
      * Gets code
-     *
-     * @return int|null
      */
-    public function getCode()
+    public function getCode(): int|null
     {
         return $this->container['code'];
     }
@@ -410,10 +402,8 @@ final class ThePathsToRedirectValue1 implements JsonSerializable
 
     /**
      * Gets expires
-     *
-     * @return string|null
      */
-    public function getExpires()
+    public function getExpires(): string|null
     {
         return $this->container['expires'];
     }
@@ -482,7 +472,6 @@ final class ThePathsToRedirectValue1 implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

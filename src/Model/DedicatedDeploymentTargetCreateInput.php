@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class DedicatedDeploymentTargetCreateInput implements JsonSerializable
+final class DedicatedDeploymentTargetCreateInput implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -251,10 +253,8 @@ final class DedicatedDeploymentTargetCreateInput implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -284,10 +284,8 @@ final class DedicatedDeploymentTargetCreateInput implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->container['name'];
     }
@@ -307,10 +305,8 @@ final class DedicatedDeploymentTargetCreateInput implements JsonSerializable
 
     /**
      * Gets enforced_mounts
-     *
-     * @return object|null
      */
-    public function getEnforcedMounts()
+    public function getEnforcedMounts(): object|null
     {
         return $this->container['enforced_mounts'];
     }
@@ -372,7 +368,6 @@ final class DedicatedDeploymentTargetCreateInput implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class SplunkIntegrationCreateInput implements JsonSerializable
+final class SplunkIntegrationCreateInput implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -261,10 +263,8 @@ final class SplunkIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -284,10 +284,8 @@ final class SplunkIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets extra
-     *
-     * @return array<string,string>|null
      */
-    public function getExtra()
+    public function getExtra(): array|null
     {
         return $this->container['extra'];
     }
@@ -307,10 +305,8 @@ final class SplunkIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets url
-     *
-     * @return string
      */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->container['url'];
     }
@@ -330,10 +326,8 @@ final class SplunkIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets index
-     *
-     * @return string
      */
-    public function getIndex()
+    public function getIndex(): string
     {
         return $this->container['index'];
     }
@@ -353,10 +347,8 @@ final class SplunkIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets token
-     *
-     * @return string
      */
-    public function getToken()
+    public function getToken(): string
     {
         return $this->container['token'];
     }
@@ -376,10 +368,8 @@ final class SplunkIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets sourcetype
-     *
-     * @return string|null
      */
-    public function getSourcetype()
+    public function getSourcetype(): string|null
     {
         return $this->container['sourcetype'];
     }
@@ -399,10 +389,8 @@ final class SplunkIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets tls_verify
-     *
-     * @return bool|null
      */
-    public function getTlsVerify()
+    public function getTlsVerify(): bool|null
     {
         return $this->container['tls_verify'];
     }
@@ -464,7 +452,6 @@ final class SplunkIntegrationCreateInput implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ConfigurationForSupportingRequestBuffering implements JsonSerializable
+final class ConfigurationForSupportingRequestBuffering implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -220,10 +222,8 @@ final class ConfigurationForSupportingRequestBuffering implements JsonSerializab
 
     /**
      * Gets enabled
-     *
-     * @return bool
      */
-    public function getEnabled()
+    public function getEnabled(): bool
     {
         return $this->container['enabled'];
     }
@@ -243,10 +243,8 @@ final class ConfigurationForSupportingRequestBuffering implements JsonSerializab
 
     /**
      * Gets max_request_size
-     *
-     * @return string
      */
-    public function getMaxRequestSize()
+    public function getMaxRequestSize(): string
     {
         return $this->container['max_request_size'];
     }
@@ -315,7 +313,6 @@ final class ConfigurationForSupportingRequestBuffering implements JsonSerializab
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Version implements JsonSerializable
+final class Version implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -230,10 +232,8 @@ final class Version implements JsonSerializable
 
     /**
      * Gets commit
-     *
-     * @return string
      */
-    public function getCommit()
+    public function getCommit(): string
     {
         return $this->container['commit'];
     }
@@ -260,10 +260,8 @@ final class Version implements JsonSerializable
 
     /**
      * Gets locked
-     *
-     * @return bool
      */
-    public function getLocked()
+    public function getLocked(): bool
     {
         return $this->container['locked'];
     }
@@ -283,10 +281,8 @@ final class Version implements JsonSerializable
 
     /**
      * Gets routing
-     *
-     * @return \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion
      */
-    public function getRouting()
+    public function getRouting(): \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion
     {
         return $this->container['routing'];
     }
@@ -348,7 +344,6 @@ final class Version implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

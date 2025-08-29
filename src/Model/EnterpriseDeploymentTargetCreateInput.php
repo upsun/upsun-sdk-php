@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class EnterpriseDeploymentTargetCreateInput implements JsonSerializable
+final class EnterpriseDeploymentTargetCreateInput implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -265,10 +267,8 @@ final class EnterpriseDeploymentTargetCreateInput implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -298,10 +298,8 @@ final class EnterpriseDeploymentTargetCreateInput implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->container['name'];
     }
@@ -321,10 +319,8 @@ final class EnterpriseDeploymentTargetCreateInput implements JsonSerializable
 
     /**
      * Gets site_urls
-     *
-     * @return object|null
      */
-    public function getSiteUrls()
+    public function getSiteUrls(): object|null
     {
         return $this->container['site_urls'];
     }
@@ -344,10 +340,8 @@ final class EnterpriseDeploymentTargetCreateInput implements JsonSerializable
 
     /**
      * Gets ssh_hosts
-     *
-     * @return string[]|null
      */
-    public function getSshHosts()
+    public function getSshHosts(): array|null
     {
         return $this->container['ssh_hosts'];
     }
@@ -368,11 +362,9 @@ final class EnterpriseDeploymentTargetCreateInput implements JsonSerializable
     /**
      * Gets enterprise_environments_mapping
      *
-     * @return object|null
-     *
      * @deprecated
      */
-    public function getEnterpriseEnvironmentsMapping()
+    public function getEnterpriseEnvironmentsMapping(): object|null
     {
         return $this->container['enterprise_environments_mapping'];
     }
@@ -436,7 +428,6 @@ final class EnterpriseDeploymentTargetCreateInput implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

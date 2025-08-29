@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ScriptIntegrationCreateInput implements JsonSerializable
+final class ScriptIntegrationCreateInput implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -279,10 +281,8 @@ final class ScriptIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -302,10 +302,8 @@ final class ScriptIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets events
-     *
-     * @return string[]|null
      */
-    public function getEvents()
+    public function getEvents(): array|null
     {
         return $this->container['events'];
     }
@@ -325,10 +323,8 @@ final class ScriptIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets environments
-     *
-     * @return string[]|null
      */
-    public function getEnvironments()
+    public function getEnvironments(): array|null
     {
         return $this->container['environments'];
     }
@@ -348,10 +344,8 @@ final class ScriptIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets excluded_environments
-     *
-     * @return string[]|null
      */
-    public function getExcludedEnvironments()
+    public function getExcludedEnvironments(): array|null
     {
         return $this->container['excluded_environments'];
     }
@@ -371,10 +365,8 @@ final class ScriptIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets states
-     *
-     * @return string[]|null
      */
-    public function getStates()
+    public function getStates(): array|null
     {
         return $this->container['states'];
     }
@@ -394,10 +386,8 @@ final class ScriptIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets result
-     *
-     * @return string|null
      */
-    public function getResult()
+    public function getResult(): string|null
     {
         return $this->container['result'];
     }
@@ -427,10 +417,8 @@ final class ScriptIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets script
-     *
-     * @return string
      */
-    public function getScript()
+    public function getScript(): string
     {
         return $this->container['script'];
     }
@@ -492,7 +480,6 @@ final class ScriptIntegrationCreateInput implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

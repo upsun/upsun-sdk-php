@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TheBuildConfigurationOfTheApplication implements JsonSerializable
+final class TheBuildConfigurationOfTheApplication implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -220,10 +222,8 @@ final class TheBuildConfigurationOfTheApplication implements JsonSerializable
 
     /**
      * Gets flavor
-     *
-     * @return string
      */
-    public function getFlavor()
+    public function getFlavor(): string
     {
         return $this->container['flavor'];
     }
@@ -250,10 +250,8 @@ final class TheBuildConfigurationOfTheApplication implements JsonSerializable
 
     /**
      * Gets caches
-     *
-     * @return array<string,\Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue>
      */
-    public function getCaches()
+    public function getCaches(): array
     {
         return $this->container['caches'];
     }
@@ -315,7 +313,6 @@ final class TheBuildConfigurationOfTheApplication implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class EmailIntegration implements JsonSerializable
+final class EmailIntegration implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -250,10 +252,8 @@ final class EmailIntegration implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->container['created_at'];
     }
@@ -280,10 +280,8 @@ final class EmailIntegration implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime
     {
         return $this->container['updated_at'];
     }
@@ -310,10 +308,8 @@ final class EmailIntegration implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -333,10 +329,8 @@ final class EmailIntegration implements JsonSerializable
 
     /**
      * Gets from_address
-     *
-     * @return string
      */
-    public function getFromAddress()
+    public function getFromAddress(): string
     {
         return $this->container['from_address'];
     }
@@ -363,10 +357,8 @@ final class EmailIntegration implements JsonSerializable
 
     /**
      * Gets recipients
-     *
-     * @return string[]
      */
-    public function getRecipients()
+    public function getRecipients(): array
     {
         return $this->container['recipients'];
     }
@@ -428,7 +420,6 @@ final class EmailIntegration implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

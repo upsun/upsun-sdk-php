@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implements JsonSerializable
+final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -284,10 +286,8 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
 
     /**
      * Gets root
-     *
-     * @return string
      */
-    public function getRoot()
+    public function getRoot(): string
     {
         return $this->container['root'];
     }
@@ -314,10 +314,8 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
 
     /**
      * Gets expires
-     *
-     * @return string
      */
-    public function getExpires()
+    public function getExpires(): string
     {
         return $this->container['expires'];
     }
@@ -337,10 +335,8 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
 
     /**
      * Gets passthru
-     *
-     * @return string
      */
-    public function getPassthru()
+    public function getPassthru(): string
     {
         return $this->container['passthru'];
     }
@@ -360,10 +356,8 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
 
     /**
      * Gets scripts
-     *
-     * @return bool
      */
-    public function getScripts()
+    public function getScripts(): bool
     {
         return $this->container['scripts'];
     }
@@ -383,10 +377,8 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
 
     /**
      * Gets index
-     *
-     * @return string[]|null
      */
-    public function getIndex()
+    public function getIndex(): array|null
     {
         return $this->container['index'];
     }
@@ -413,10 +405,8 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
 
     /**
      * Gets allow
-     *
-     * @return bool
      */
-    public function getAllow()
+    public function getAllow(): bool
     {
         return $this->container['allow'];
     }
@@ -436,10 +426,8 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
 
     /**
      * Gets headers
-     *
-     * @return array<string,string>
      */
-    public function getHeaders()
+    public function getHeaders(): array
     {
         return $this->container['headers'];
     }
@@ -459,10 +447,8 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
 
     /**
      * Gets rules
-     *
-     * @return array<string,\Upsun\Model\SpecificOverridesValue>
      */
-    public function getRules()
+    public function getRules(): array
     {
         return $this->container['rules'];
     }
@@ -482,10 +468,8 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
 
     /**
      * Gets request_buffering
-     *
-     * @return \Upsun\Model\ConfigurationForSupportingRequestBuffering|null
      */
-    public function getRequestBuffering()
+    public function getRequestBuffering(): \Upsun\Model\ConfigurationForSupportingRequestBuffering|null
     {
         return $this->container['request_buffering'];
     }
@@ -547,7 +531,6 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

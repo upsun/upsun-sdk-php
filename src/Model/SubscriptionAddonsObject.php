@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class SubscriptionAddonsObject implements JsonSerializable
+final class SubscriptionAddonsObject implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -221,10 +223,8 @@ final class SubscriptionAddonsObject implements JsonSerializable
 
     /**
      * Gets available
-     *
-     * @return \Upsun\Model\SubscriptionAddonsObjectAvailable|null
      */
-    public function getAvailable()
+    public function getAvailable(): \Upsun\Model\SubscriptionAddonsObjectAvailable|null
     {
         return $this->container['available'];
     }
@@ -244,10 +244,8 @@ final class SubscriptionAddonsObject implements JsonSerializable
 
     /**
      * Gets current
-     *
-     * @return \Upsun\Model\SubscriptionAddonsObjectCurrent|null
      */
-    public function getCurrent()
+    public function getCurrent(): \Upsun\Model\SubscriptionAddonsObjectCurrent|null
     {
         return $this->container['current'];
     }
@@ -267,10 +265,8 @@ final class SubscriptionAddonsObject implements JsonSerializable
 
     /**
      * Gets upgrades_available
-     *
-     * @return \Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable|null
      */
-    public function getUpgradesAvailable()
+    public function getUpgradesAvailable(): \Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable|null
     {
         return $this->container['upgrades_available'];
     }
@@ -332,7 +328,6 @@ final class SubscriptionAddonsObject implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Subscription1 implements JsonSerializable
+final class Subscription1 implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -339,10 +341,8 @@ final class Subscription1 implements JsonSerializable
 
     /**
      * Gets license_uri
-     *
-     * @return string
      */
-    public function getLicenseUri()
+    public function getLicenseUri(): string
     {
         return $this->container['license_uri'];
     }
@@ -362,10 +362,8 @@ final class Subscription1 implements JsonSerializable
 
     /**
      * Gets plan
-     *
-     * @return string|null
      */
-    public function getPlan()
+    public function getPlan(): string|null
     {
         return $this->container['plan'];
     }
@@ -395,10 +393,8 @@ final class Subscription1 implements JsonSerializable
 
     /**
      * Gets environments
-     *
-     * @return int|null
      */
-    public function getEnvironments()
+    public function getEnvironments(): int|null
     {
         return $this->container['environments'];
     }
@@ -418,10 +414,8 @@ final class Subscription1 implements JsonSerializable
 
     /**
      * Gets storage
-     *
-     * @return int
      */
-    public function getStorage()
+    public function getStorage(): int
     {
         return $this->container['storage'];
     }
@@ -441,10 +435,8 @@ final class Subscription1 implements JsonSerializable
 
     /**
      * Gets included_users
-     *
-     * @return int
      */
-    public function getIncludedUsers()
+    public function getIncludedUsers(): int
     {
         return $this->container['included_users'];
     }
@@ -464,10 +456,8 @@ final class Subscription1 implements JsonSerializable
 
     /**
      * Gets subscription_management_uri
-     *
-     * @return string
      */
-    public function getSubscriptionManagementUri()
+    public function getSubscriptionManagementUri(): string
     {
         return $this->container['subscription_management_uri'];
     }
@@ -487,10 +477,8 @@ final class Subscription1 implements JsonSerializable
 
     /**
      * Gets restricted
-     *
-     * @return bool
      */
-    public function getRestricted()
+    public function getRestricted(): bool
     {
         return $this->container['restricted'];
     }
@@ -510,10 +498,8 @@ final class Subscription1 implements JsonSerializable
 
     /**
      * Gets suspended
-     *
-     * @return bool
      */
-    public function getSuspended()
+    public function getSuspended(): bool
     {
         return $this->container['suspended'];
     }
@@ -533,10 +519,8 @@ final class Subscription1 implements JsonSerializable
 
     /**
      * Gets user_licenses
-     *
-     * @return int
      */
-    public function getUserLicenses()
+    public function getUserLicenses(): int
     {
         return $this->container['user_licenses'];
     }
@@ -556,10 +540,8 @@ final class Subscription1 implements JsonSerializable
 
     /**
      * Gets resources
-     *
-     * @return \Upsun\Model\ResourcesLimits|null
      */
-    public function getResources()
+    public function getResources(): \Upsun\Model\ResourcesLimits|null
     {
         return $this->container['resources'];
     }
@@ -579,10 +561,8 @@ final class Subscription1 implements JsonSerializable
 
     /**
      * Gets resource_validation_url
-     *
-     * @return string|null
      */
-    public function getResourceValidationUrl()
+    public function getResourceValidationUrl(): string|null
     {
         return $this->container['resource_validation_url'];
     }
@@ -602,10 +582,8 @@ final class Subscription1 implements JsonSerializable
 
     /**
      * Gets image_types
-     *
-     * @return \Upsun\Model\RestrictedAndDeniedImageTypes|null
      */
-    public function getImageTypes()
+    public function getImageTypes(): \Upsun\Model\RestrictedAndDeniedImageTypes|null
     {
         return $this->container['image_types'];
     }
@@ -667,7 +645,6 @@ final class Subscription1 implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

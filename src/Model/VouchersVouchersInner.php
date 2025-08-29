@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class VouchersVouchersInner implements JsonSerializable
+final class VouchersVouchersInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -228,10 +230,8 @@ final class VouchersVouchersInner implements JsonSerializable
 
     /**
      * Gets code
-     *
-     * @return string|null
      */
-    public function getCode()
+    public function getCode(): string|null
     {
         return $this->container['code'];
     }
@@ -251,10 +251,8 @@ final class VouchersVouchersInner implements JsonSerializable
 
     /**
      * Gets amount
-     *
-     * @return string|null
      */
-    public function getAmount()
+    public function getAmount(): string|null
     {
         return $this->container['amount'];
     }
@@ -274,10 +272,8 @@ final class VouchersVouchersInner implements JsonSerializable
 
     /**
      * Gets currency
-     *
-     * @return string|null
      */
-    public function getCurrency()
+    public function getCurrency(): string|null
     {
         return $this->container['currency'];
     }
@@ -297,10 +293,8 @@ final class VouchersVouchersInner implements JsonSerializable
 
     /**
      * Gets orders
-     *
-     * @return \Upsun\Model\VouchersVouchersInnerOrdersInner[]|null
      */
-    public function getOrders()
+    public function getOrders(): array|null
     {
         return $this->container['orders'];
     }
@@ -362,7 +356,6 @@ final class VouchersVouchersInner implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class InvoicePDF implements JsonSerializable
+final class InvoicePDF implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -236,10 +238,8 @@ final class InvoicePDF implements JsonSerializable
 
     /**
      * Gets url
-     *
-     * @return string|null
      */
-    public function getUrl()
+    public function getUrl(): string|null
     {
         return $this->container['url'];
     }
@@ -259,10 +259,8 @@ final class InvoicePDF implements JsonSerializable
 
     /**
      * Gets status
-     *
-     * @return string|null
      */
-    public function getStatus()
+    public function getStatus(): string|null
     {
         return $this->container['status'];
     }
@@ -334,7 +332,6 @@ final class InvoicePDF implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

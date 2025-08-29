@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class VerifyPhoneNumberRequest implements JsonSerializable
+final class VerifyPhoneNumberRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -244,10 +246,8 @@ final class VerifyPhoneNumberRequest implements JsonSerializable
 
     /**
      * Gets channel
-     *
-     * @return string
      */
-    public function getChannel()
+    public function getChannel(): string
     {
         return $this->container['channel'];
     }
@@ -277,10 +277,8 @@ final class VerifyPhoneNumberRequest implements JsonSerializable
 
     /**
      * Gets phone_number
-     *
-     * @return string
      */
-    public function getPhoneNumber()
+    public function getPhoneNumber(): string
     {
         return $this->container['phone_number'];
     }
@@ -342,7 +340,6 @@ final class VerifyPhoneNumberRequest implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

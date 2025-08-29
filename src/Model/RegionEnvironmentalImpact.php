@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class RegionEnvironmentalImpact implements JsonSerializable
+final class RegionEnvironmentalImpact implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -221,10 +223,8 @@ final class RegionEnvironmentalImpact implements JsonSerializable
 
     /**
      * Gets zone
-     *
-     * @return string|null
      */
-    public function getZone()
+    public function getZone(): string|null
     {
         return $this->container['zone'];
     }
@@ -244,10 +244,8 @@ final class RegionEnvironmentalImpact implements JsonSerializable
 
     /**
      * Gets carbon_intensity
-     *
-     * @return string|null
      */
-    public function getCarbonIntensity()
+    public function getCarbonIntensity(): string|null
     {
         return $this->container['carbon_intensity'];
     }
@@ -267,10 +265,8 @@ final class RegionEnvironmentalImpact implements JsonSerializable
 
     /**
      * Gets green
-     *
-     * @return bool|null
      */
-    public function getGreen()
+    public function getGreen(): bool|null
     {
         return $this->container['green'];
     }
@@ -332,7 +328,6 @@ final class RegionEnvironmentalImpact implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

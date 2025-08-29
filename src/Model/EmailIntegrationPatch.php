@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class EmailIntegrationPatch implements JsonSerializable
+final class EmailIntegrationPatch implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -227,10 +229,8 @@ final class EmailIntegrationPatch implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -250,10 +250,8 @@ final class EmailIntegrationPatch implements JsonSerializable
 
     /**
      * Gets from_address
-     *
-     * @return string|null
      */
-    public function getFromAddress()
+    public function getFromAddress(): string|null
     {
         return $this->container['from_address'];
     }
@@ -280,10 +278,8 @@ final class EmailIntegrationPatch implements JsonSerializable
 
     /**
      * Gets recipients
-     *
-     * @return string[]
      */
-    public function getRecipients()
+    public function getRecipients(): array
     {
         return $this->container['recipients'];
     }
@@ -345,7 +341,6 @@ final class EmailIntegrationPatch implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Profile implements JsonSerializable
+final class Profile implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -383,10 +385,8 @@ final class Profile implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string|null
      */
-    public function getId()
+    public function getId(): string|null
     {
         return $this->container['id'];
     }
@@ -406,10 +406,8 @@ final class Profile implements JsonSerializable
 
     /**
      * Gets display_name
-     *
-     * @return string|null
      */
-    public function getDisplayName()
+    public function getDisplayName(): string|null
     {
         return $this->container['display_name'];
     }
@@ -429,10 +427,8 @@ final class Profile implements JsonSerializable
 
     /**
      * Gets email
-     *
-     * @return string|null
      */
-    public function getEmail()
+    public function getEmail(): string|null
     {
         return $this->container['email'];
     }
@@ -452,10 +448,8 @@ final class Profile implements JsonSerializable
 
     /**
      * Gets username
-     *
-     * @return string|null
      */
-    public function getUsername()
+    public function getUsername(): string|null
     {
         return $this->container['username'];
     }
@@ -475,10 +469,8 @@ final class Profile implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string|null
      */
-    public function getType()
+    public function getType(): string|null
     {
         return $this->container['type'];
     }
@@ -508,10 +500,8 @@ final class Profile implements JsonSerializable
 
     /**
      * Gets picture
-     *
-     * @return string|null
      */
-    public function getPicture()
+    public function getPicture(): string|null
     {
         return $this->container['picture'];
     }
@@ -531,10 +521,8 @@ final class Profile implements JsonSerializable
 
     /**
      * Gets company_type
-     *
-     * @return string|null
      */
-    public function getCompanyType()
+    public function getCompanyType(): string|null
     {
         return $this->container['company_type'];
     }
@@ -554,10 +542,8 @@ final class Profile implements JsonSerializable
 
     /**
      * Gets company_name
-     *
-     * @return string|null
      */
-    public function getCompanyName()
+    public function getCompanyName(): string|null
     {
         return $this->container['company_name'];
     }
@@ -577,10 +563,8 @@ final class Profile implements JsonSerializable
 
     /**
      * Gets currency
-     *
-     * @return string|null
      */
-    public function getCurrency()
+    public function getCurrency(): string|null
     {
         return $this->container['currency'];
     }
@@ -600,10 +584,8 @@ final class Profile implements JsonSerializable
 
     /**
      * Gets vat_number
-     *
-     * @return string|null
      */
-    public function getVatNumber()
+    public function getVatNumber(): string|null
     {
         return $this->container['vat_number'];
     }
@@ -623,10 +605,8 @@ final class Profile implements JsonSerializable
 
     /**
      * Gets company_role
-     *
-     * @return string|null
      */
-    public function getCompanyRole()
+    public function getCompanyRole(): string|null
     {
         return $this->container['company_role'];
     }
@@ -646,10 +626,8 @@ final class Profile implements JsonSerializable
 
     /**
      * Gets website_url
-     *
-     * @return string|null
      */
-    public function getWebsiteUrl()
+    public function getWebsiteUrl(): string|null
     {
         return $this->container['website_url'];
     }
@@ -669,10 +647,8 @@ final class Profile implements JsonSerializable
 
     /**
      * Gets new_ui
-     *
-     * @return bool|null
      */
-    public function getNewUi()
+    public function getNewUi(): bool|null
     {
         return $this->container['new_ui'];
     }
@@ -692,10 +668,8 @@ final class Profile implements JsonSerializable
 
     /**
      * Gets ui_colorscheme
-     *
-     * @return string|null
      */
-    public function getUiColorscheme()
+    public function getUiColorscheme(): string|null
     {
         return $this->container['ui_colorscheme'];
     }
@@ -715,10 +689,8 @@ final class Profile implements JsonSerializable
 
     /**
      * Gets default_catalog
-     *
-     * @return string|null
      */
-    public function getDefaultCatalog()
+    public function getDefaultCatalog(): string|null
     {
         return $this->container['default_catalog'];
     }
@@ -738,10 +710,8 @@ final class Profile implements JsonSerializable
 
     /**
      * Gets project_options_url
-     *
-     * @return string|null
      */
-    public function getProjectOptionsUrl()
+    public function getProjectOptionsUrl(): string|null
     {
         return $this->container['project_options_url'];
     }
@@ -761,10 +731,8 @@ final class Profile implements JsonSerializable
 
     /**
      * Gets marketing
-     *
-     * @return bool|null
      */
-    public function getMarketing()
+    public function getMarketing(): bool|null
     {
         return $this->container['marketing'];
     }
@@ -784,10 +752,8 @@ final class Profile implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime|null
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime|null
     {
         return $this->container['created_at'];
     }
@@ -807,10 +773,8 @@ final class Profile implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime|null
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime|null
     {
         return $this->container['updated_at'];
     }
@@ -830,10 +794,8 @@ final class Profile implements JsonSerializable
 
     /**
      * Gets billing_contact
-     *
-     * @return string|null
      */
-    public function getBillingContact()
+    public function getBillingContact(): string|null
     {
         return $this->container['billing_contact'];
     }
@@ -853,10 +815,8 @@ final class Profile implements JsonSerializable
 
     /**
      * Gets security_contact
-     *
-     * @return string|null
      */
-    public function getSecurityContact()
+    public function getSecurityContact(): string|null
     {
         return $this->container['security_contact'];
     }
@@ -876,10 +836,8 @@ final class Profile implements JsonSerializable
 
     /**
      * Gets current_trial
-     *
-     * @return \Upsun\Model\ProfileCurrentTrial|null
      */
-    public function getCurrentTrial()
+    public function getCurrentTrial(): \Upsun\Model\ProfileCurrentTrial|null
     {
         return $this->container['current_trial'];
     }
@@ -899,10 +857,8 @@ final class Profile implements JsonSerializable
 
     /**
      * Gets invoiced
-     *
-     * @return bool|null
      */
-    public function getInvoiced()
+    public function getInvoiced(): bool|null
     {
         return $this->container['invoiced'];
     }
@@ -964,7 +920,6 @@ final class Profile implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

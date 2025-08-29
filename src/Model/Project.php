@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Project implements JsonSerializable
+final class Project implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -350,10 +352,8 @@ final class Project implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->container['created_at'];
     }
@@ -380,10 +380,8 @@ final class Project implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime
     {
         return $this->container['updated_at'];
     }
@@ -410,10 +408,8 @@ final class Project implements JsonSerializable
 
     /**
      * Gets attributes
-     *
-     * @return array<string,string>
      */
-    public function getAttributes()
+    public function getAttributes(): array
     {
         return $this->container['attributes'];
     }
@@ -433,10 +429,8 @@ final class Project implements JsonSerializable
 
     /**
      * Gets title
-     *
-     * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->container['title'];
     }
@@ -456,10 +450,8 @@ final class Project implements JsonSerializable
 
     /**
      * Gets description
-     *
-     * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->container['description'];
     }
@@ -480,11 +472,9 @@ final class Project implements JsonSerializable
     /**
      * Gets owner
      *
-     * @return string
-     *
      * @deprecated
      */
-    public function getOwner()
+    public function getOwner(): string
     {
         return $this->container['owner'];
     }
@@ -506,10 +496,8 @@ final class Project implements JsonSerializable
 
     /**
      * Gets namespace
-     *
-     * @return string
      */
-    public function getNamespace()
+    public function getNamespace(): string
     {
         return $this->container['namespace'];
     }
@@ -536,10 +524,8 @@ final class Project implements JsonSerializable
 
     /**
      * Gets organization
-     *
-     * @return string
      */
-    public function getOrganization()
+    public function getOrganization(): string
     {
         return $this->container['organization'];
     }
@@ -566,10 +552,8 @@ final class Project implements JsonSerializable
 
     /**
      * Gets default_branch
-     *
-     * @return string
      */
-    public function getDefaultBranch()
+    public function getDefaultBranch(): string
     {
         return $this->container['default_branch'];
     }
@@ -596,10 +580,8 @@ final class Project implements JsonSerializable
 
     /**
      * Gets status
-     *
-     * @return \Upsun\Model\Status
      */
-    public function getStatus()
+    public function getStatus(): \Upsun\Model\Status
     {
         return $this->container['status'];
     }
@@ -619,10 +601,8 @@ final class Project implements JsonSerializable
 
     /**
      * Gets timezone
-     *
-     * @return string
      */
-    public function getTimezone()
+    public function getTimezone(): string
     {
         return $this->container['timezone'];
     }
@@ -642,10 +622,8 @@ final class Project implements JsonSerializable
 
     /**
      * Gets region
-     *
-     * @return string
      */
-    public function getRegion()
+    public function getRegion(): string
     {
         return $this->container['region'];
     }
@@ -665,10 +643,8 @@ final class Project implements JsonSerializable
 
     /**
      * Gets repository
-     *
-     * @return \Upsun\Model\RepositoryInformation
      */
-    public function getRepository()
+    public function getRepository(): \Upsun\Model\RepositoryInformation
     {
         return $this->container['repository'];
     }
@@ -688,10 +664,8 @@ final class Project implements JsonSerializable
 
     /**
      * Gets default_domain
-     *
-     * @return string
      */
-    public function getDefaultDomain()
+    public function getDefaultDomain(): string
     {
         return $this->container['default_domain'];
     }
@@ -718,10 +692,8 @@ final class Project implements JsonSerializable
 
     /**
      * Gets subscription
-     *
-     * @return \Upsun\Model\SubscriptionInformation
      */
-    public function getSubscription()
+    public function getSubscription(): \Upsun\Model\SubscriptionInformation
     {
         return $this->container['subscription'];
     }
@@ -783,7 +755,6 @@ final class Project implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

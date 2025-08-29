@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TheEnvironmentDeploymentState implements JsonSerializable
+final class TheEnvironmentDeploymentState implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -230,10 +232,8 @@ final class TheEnvironmentDeploymentState implements JsonSerializable
 
     /**
      * Gets last_deployment_successful
-     *
-     * @return bool
      */
-    public function getLastDeploymentSuccessful()
+    public function getLastDeploymentSuccessful(): bool
     {
         return $this->container['last_deployment_successful'];
     }
@@ -253,10 +253,8 @@ final class TheEnvironmentDeploymentState implements JsonSerializable
 
     /**
      * Gets last_deployment_at
-     *
-     * @return \DateTime
      */
-    public function getLastDeploymentAt()
+    public function getLastDeploymentAt(): \DateTime
     {
         return $this->container['last_deployment_at'];
     }
@@ -283,10 +281,8 @@ final class TheEnvironmentDeploymentState implements JsonSerializable
 
     /**
      * Gets crons
-     *
-     * @return \Upsun\Model\TheCronsDeploymentState
      */
-    public function getCrons()
+    public function getCrons(): \Upsun\Model\TheCronsDeploymentState
     {
         return $this->container['crons'];
     }
@@ -348,7 +344,6 @@ final class TheEnvironmentDeploymentState implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

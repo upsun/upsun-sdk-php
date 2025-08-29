@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Commit implements JsonSerializable
+final class Commit implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -260,10 +262,8 @@ final class Commit implements JsonSerializable
 
     /**
      * Gets sha
-     *
-     * @return string
      */
-    public function getSha()
+    public function getSha(): string
     {
         return $this->container['sha'];
     }
@@ -283,10 +283,8 @@ final class Commit implements JsonSerializable
 
     /**
      * Gets author
-     *
-     * @return \Upsun\Model\TheInformationAboutTheAuthor
      */
-    public function getAuthor()
+    public function getAuthor(): \Upsun\Model\TheInformationAboutTheAuthor
     {
         return $this->container['author'];
     }
@@ -306,10 +304,8 @@ final class Commit implements JsonSerializable
 
     /**
      * Gets committer
-     *
-     * @return \Upsun\Model\TheInformationAboutTheCommitter
      */
-    public function getCommitter()
+    public function getCommitter(): \Upsun\Model\TheInformationAboutTheCommitter
     {
         return $this->container['committer'];
     }
@@ -329,10 +325,8 @@ final class Commit implements JsonSerializable
 
     /**
      * Gets message
-     *
-     * @return string
      */
-    public function getMessage()
+    public function getMessage(): string
     {
         return $this->container['message'];
     }
@@ -352,10 +346,8 @@ final class Commit implements JsonSerializable
 
     /**
      * Gets tree
-     *
-     * @return string
      */
-    public function getTree()
+    public function getTree(): string
     {
         return $this->container['tree'];
     }
@@ -375,10 +367,8 @@ final class Commit implements JsonSerializable
 
     /**
      * Gets parents
-     *
-     * @return string[]
      */
-    public function getParents()
+    public function getParents(): array
     {
         return $this->container['parents'];
     }
@@ -440,7 +430,6 @@ final class Commit implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

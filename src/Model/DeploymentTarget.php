@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class DeploymentTarget implements JsonSerializable
+final class DeploymentTarget implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -411,10 +413,8 @@ final class DeploymentTarget implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -444,10 +444,8 @@ final class DeploymentTarget implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->container['name'];
     }
@@ -467,10 +465,8 @@ final class DeploymentTarget implements JsonSerializable
 
     /**
      * Gets deploy_host
-     *
-     * @return string
      */
-    public function getDeployHost()
+    public function getDeployHost(): string
     {
         return $this->container['deploy_host'];
     }
@@ -497,10 +493,8 @@ final class DeploymentTarget implements JsonSerializable
 
     /**
      * Gets deploy_port
-     *
-     * @return int
      */
-    public function getDeployPort()
+    public function getDeployPort(): int
     {
         return $this->container['deploy_port'];
     }
@@ -527,10 +521,8 @@ final class DeploymentTarget implements JsonSerializable
 
     /**
      * Gets ssh_host
-     *
-     * @return string
      */
-    public function getSshHost()
+    public function getSshHost(): string
     {
         return $this->container['ssh_host'];
     }
@@ -557,10 +549,8 @@ final class DeploymentTarget implements JsonSerializable
 
     /**
      * Gets hosts
-     *
-     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]
      */
-    public function getHosts()
+    public function getHosts(): array
     {
         return $this->container['hosts'];
     }
@@ -587,10 +577,8 @@ final class DeploymentTarget implements JsonSerializable
 
     /**
      * Gets auto_mounts
-     *
-     * @return bool
      */
-    public function getAutoMounts()
+    public function getAutoMounts(): bool
     {
         return $this->container['auto_mounts'];
     }
@@ -610,10 +598,8 @@ final class DeploymentTarget implements JsonSerializable
 
     /**
      * Gets excluded_mounts
-     *
-     * @return string[]
      */
-    public function getExcludedMounts()
+    public function getExcludedMounts(): array
     {
         return $this->container['excluded_mounts'];
     }
@@ -633,10 +619,8 @@ final class DeploymentTarget implements JsonSerializable
 
     /**
      * Gets enforced_mounts
-     *
-     * @return object
      */
-    public function getEnforcedMounts()
+    public function getEnforcedMounts(): object
     {
         return $this->container['enforced_mounts'];
     }
@@ -656,10 +640,8 @@ final class DeploymentTarget implements JsonSerializable
 
     /**
      * Gets auto_crons
-     *
-     * @return bool
      */
-    public function getAutoCrons()
+    public function getAutoCrons(): bool
     {
         return $this->container['auto_crons'];
     }
@@ -679,10 +661,8 @@ final class DeploymentTarget implements JsonSerializable
 
     /**
      * Gets auto_nginx
-     *
-     * @return bool
      */
-    public function getAutoNginx()
+    public function getAutoNginx(): bool
     {
         return $this->container['auto_nginx'];
     }
@@ -702,10 +682,8 @@ final class DeploymentTarget implements JsonSerializable
 
     /**
      * Gets maintenance_mode
-     *
-     * @return bool
      */
-    public function getMaintenanceMode()
+    public function getMaintenanceMode(): bool
     {
         return $this->container['maintenance_mode'];
     }
@@ -725,10 +703,8 @@ final class DeploymentTarget implements JsonSerializable
 
     /**
      * Gets guardrails_phase
-     *
-     * @return int
      */
-    public function getGuardrailsPhase()
+    public function getGuardrailsPhase(): int
     {
         return $this->container['guardrails_phase'];
     }
@@ -748,10 +724,8 @@ final class DeploymentTarget implements JsonSerializable
 
     /**
      * Gets docroots
-     *
-     * @return array<string,\Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue>
      */
-    public function getDocroots()
+    public function getDocroots(): array
     {
         return $this->container['docroots'];
     }
@@ -771,10 +745,8 @@ final class DeploymentTarget implements JsonSerializable
 
     /**
      * Gets site_urls
-     *
-     * @return object
      */
-    public function getSiteUrls()
+    public function getSiteUrls(): object
     {
         return $this->container['site_urls'];
     }
@@ -794,10 +766,8 @@ final class DeploymentTarget implements JsonSerializable
 
     /**
      * Gets ssh_hosts
-     *
-     * @return string[]
      */
-    public function getSshHosts()
+    public function getSshHosts(): array
     {
         return $this->container['ssh_hosts'];
     }
@@ -818,11 +788,9 @@ final class DeploymentTarget implements JsonSerializable
     /**
      * Gets enterprise_environments_mapping
      *
-     * @return object|null
-     *
      * @deprecated
      */
-    public function getEnterpriseEnvironmentsMapping()
+    public function getEnterpriseEnvironmentsMapping(): object|null
     {
         return $this->container['enterprise_environments_mapping'];
     }
@@ -844,10 +812,8 @@ final class DeploymentTarget implements JsonSerializable
 
     /**
      * Gets use_dedicated_grid
-     *
-     * @return bool
      */
-    public function getUseDedicatedGrid()
+    public function getUseDedicatedGrid(): bool
     {
         return $this->container['use_dedicated_grid'];
     }
@@ -867,10 +833,8 @@ final class DeploymentTarget implements JsonSerializable
 
     /**
      * Gets storage_type
-     *
-     * @return string
      */
-    public function getStorageType()
+    public function getStorageType(): string
     {
         return $this->container['storage_type'];
     }
@@ -939,7 +903,6 @@ final class DeploymentTarget implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

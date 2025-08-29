@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class SubscriptionCurrentUsageObject implements JsonSerializable
+final class SubscriptionCurrentUsageObject implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -291,10 +293,8 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
 
     /**
      * Gets cpu_app
-     *
-     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getCpuApp()
+    public function getCpuApp(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
     {
         return $this->container['cpu_app'];
     }
@@ -314,10 +314,8 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
 
     /**
      * Gets storage_app_services
-     *
-     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getStorageAppServices()
+    public function getStorageAppServices(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
     {
         return $this->container['storage_app_services'];
     }
@@ -337,10 +335,8 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
 
     /**
      * Gets memory_app
-     *
-     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getMemoryApp()
+    public function getMemoryApp(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
     {
         return $this->container['memory_app'];
     }
@@ -360,10 +356,8 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
 
     /**
      * Gets cpu_services
-     *
-     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getCpuServices()
+    public function getCpuServices(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
     {
         return $this->container['cpu_services'];
     }
@@ -383,10 +377,8 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
 
     /**
      * Gets memory_services
-     *
-     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getMemoryServices()
+    public function getMemoryServices(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
     {
         return $this->container['memory_services'];
     }
@@ -406,10 +398,8 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
 
     /**
      * Gets backup_storage
-     *
-     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getBackupStorage()
+    public function getBackupStorage(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
     {
         return $this->container['backup_storage'];
     }
@@ -429,10 +419,8 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
 
     /**
      * Gets build_cpu
-     *
-     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getBuildCpu()
+    public function getBuildCpu(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
     {
         return $this->container['build_cpu'];
     }
@@ -452,10 +440,8 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
 
     /**
      * Gets build_memory
-     *
-     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getBuildMemory()
+    public function getBuildMemory(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
     {
         return $this->container['build_memory'];
     }
@@ -475,10 +461,8 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
 
     /**
      * Gets egress_bandwidth
-     *
-     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getEgressBandwidth()
+    public function getEgressBandwidth(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
     {
         return $this->container['egress_bandwidth'];
     }
@@ -498,10 +482,8 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
 
     /**
      * Gets ingress_requests
-     *
-     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getIngressRequests()
+    public function getIngressRequests(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
     {
         return $this->container['ingress_requests'];
     }
@@ -521,10 +503,8 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
 
     /**
      * Gets logs_fwd_content_size
-     *
-     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getLogsFwdContentSize()
+    public function getLogsFwdContentSize(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
     {
         return $this->container['logs_fwd_content_size'];
     }
@@ -544,10 +524,8 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
 
     /**
      * Gets fastly_bandwidth
-     *
-     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getFastlyBandwidth()
+    public function getFastlyBandwidth(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
     {
         return $this->container['fastly_bandwidth'];
     }
@@ -567,10 +545,8 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
 
     /**
      * Gets fastly_requests
-     *
-     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
-    public function getFastlyRequests()
+    public function getFastlyRequests(): \Upsun\Model\UsageGroupCurrentUsageProperties|null
     {
         return $this->container['fastly_requests'];
     }
@@ -632,7 +608,6 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

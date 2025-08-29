@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class StringFilter implements JsonSerializable
+final class StringFilter implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -256,10 +258,8 @@ final class StringFilter implements JsonSerializable
 
     /**
      * Gets eq
-     *
-     * @return string|null
      */
-    public function getEq()
+    public function getEq(): string|null
     {
         return $this->container['eq'];
     }
@@ -279,10 +279,8 @@ final class StringFilter implements JsonSerializable
 
     /**
      * Gets ne
-     *
-     * @return string|null
      */
-    public function getNe()
+    public function getNe(): string|null
     {
         return $this->container['ne'];
     }
@@ -302,10 +300,8 @@ final class StringFilter implements JsonSerializable
 
     /**
      * Gets in
-     *
-     * @return string|null
      */
-    public function getIn()
+    public function getIn(): string|null
     {
         return $this->container['in'];
     }
@@ -325,10 +321,8 @@ final class StringFilter implements JsonSerializable
 
     /**
      * Gets nin
-     *
-     * @return string|null
      */
-    public function getNin()
+    public function getNin(): string|null
     {
         return $this->container['nin'];
     }
@@ -348,10 +342,8 @@ final class StringFilter implements JsonSerializable
 
     /**
      * Gets between
-     *
-     * @return string|null
      */
-    public function getBetween()
+    public function getBetween(): string|null
     {
         return $this->container['between'];
     }
@@ -371,10 +363,8 @@ final class StringFilter implements JsonSerializable
 
     /**
      * Gets contains
-     *
-     * @return string|null
      */
-    public function getContains()
+    public function getContains(): string|null
     {
         return $this->container['contains'];
     }
@@ -394,10 +384,8 @@ final class StringFilter implements JsonSerializable
 
     /**
      * Gets starts
-     *
-     * @return string|null
      */
-    public function getStarts()
+    public function getStarts(): string|null
     {
         return $this->container['starts'];
     }
@@ -417,10 +405,8 @@ final class StringFilter implements JsonSerializable
 
     /**
      * Gets ends
-     *
-     * @return string|null
      */
-    public function getEnds()
+    public function getEnds(): string|null
     {
         return $this->container['ends'];
     }
@@ -482,7 +468,6 @@ final class StringFilter implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

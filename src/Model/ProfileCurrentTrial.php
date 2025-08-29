@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ProfileCurrentTrial implements JsonSerializable
+final class ProfileCurrentTrial implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -297,10 +299,8 @@ final class ProfileCurrentTrial implements JsonSerializable
 
     /**
      * Gets active
-     *
-     * @return bool|null
      */
-    public function getActive()
+    public function getActive(): bool|null
     {
         return $this->container['active'];
     }
@@ -320,10 +320,8 @@ final class ProfileCurrentTrial implements JsonSerializable
 
     /**
      * Gets created
-     *
-     * @return \DateTime|null
      */
-    public function getCreated()
+    public function getCreated(): \DateTime|null
     {
         return $this->container['created'];
     }
@@ -343,10 +341,8 @@ final class ProfileCurrentTrial implements JsonSerializable
 
     /**
      * Gets description
-     *
-     * @return string|null
      */
-    public function getDescription()
+    public function getDescription(): string|null
     {
         return $this->container['description'];
     }
@@ -366,10 +362,8 @@ final class ProfileCurrentTrial implements JsonSerializable
 
     /**
      * Gets expiration
-     *
-     * @return \DateTime|null
      */
-    public function getExpiration()
+    public function getExpiration(): \DateTime|null
     {
         return $this->container['expiration'];
     }
@@ -389,10 +383,8 @@ final class ProfileCurrentTrial implements JsonSerializable
 
     /**
      * Gets current
-     *
-     * @return \Upsun\Model\ProfileCurrentTrialCurrent|null
      */
-    public function getCurrent()
+    public function getCurrent(): \Upsun\Model\ProfileCurrentTrialCurrent|null
     {
         return $this->container['current'];
     }
@@ -412,10 +404,8 @@ final class ProfileCurrentTrial implements JsonSerializable
 
     /**
      * Gets spend
-     *
-     * @return \Upsun\Model\ProfileCurrentTrialSpend|null
      */
-    public function getSpend()
+    public function getSpend(): \Upsun\Model\ProfileCurrentTrialSpend|null
     {
         return $this->container['spend'];
     }
@@ -435,10 +425,8 @@ final class ProfileCurrentTrial implements JsonSerializable
 
     /**
      * Gets spend_remaining
-     *
-     * @return \Upsun\Model\ProfileCurrentTrialSpendRemaining|null
      */
-    public function getSpendRemaining()
+    public function getSpendRemaining(): \Upsun\Model\ProfileCurrentTrialSpendRemaining|null
     {
         return $this->container['spend_remaining'];
     }
@@ -458,10 +446,8 @@ final class ProfileCurrentTrial implements JsonSerializable
 
     /**
      * Gets projects
-     *
-     * @return \Upsun\Model\ProfileCurrentTrialProjects|null
      */
-    public function getProjects()
+    public function getProjects(): \Upsun\Model\ProfileCurrentTrialProjects|null
     {
         return $this->container['projects'];
     }
@@ -482,11 +468,9 @@ final class ProfileCurrentTrial implements JsonSerializable
     /**
      * Gets pending_verification
      *
-     * @return string|null
-     *
      * @deprecated
      */
-    public function getPendingVerification()
+    public function getPendingVerification(): string|null
     {
         return $this->container['pending_verification'];
     }
@@ -525,10 +509,8 @@ final class ProfileCurrentTrial implements JsonSerializable
 
     /**
      * Gets model
-     *
-     * @return string|null
      */
-    public function getModel()
+    public function getModel(): string|null
     {
         return $this->container['model'];
     }
@@ -548,10 +530,8 @@ final class ProfileCurrentTrial implements JsonSerializable
 
     /**
      * Gets days_remaining
-     *
-     * @return int|null
      */
-    public function getDaysRemaining()
+    public function getDaysRemaining(): int|null
     {
         return $this->container['days_remaining'];
     }
@@ -613,7 +593,6 @@ final class ProfileCurrentTrial implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

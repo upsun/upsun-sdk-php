@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class APIToken implements JsonSerializable
+final class APIToken implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -249,10 +251,8 @@ final class APIToken implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string|null
      */
-    public function getId()
+    public function getId(): string|null
     {
         return $this->container['id'];
     }
@@ -272,10 +272,8 @@ final class APIToken implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string|null
      */
-    public function getName()
+    public function getName(): string|null
     {
         return $this->container['name'];
     }
@@ -295,10 +293,8 @@ final class APIToken implements JsonSerializable
 
     /**
      * Gets mfa_on_creation
-     *
-     * @return bool|null
      */
-    public function getMfaOnCreation()
+    public function getMfaOnCreation(): bool|null
     {
         return $this->container['mfa_on_creation'];
     }
@@ -318,10 +314,8 @@ final class APIToken implements JsonSerializable
 
     /**
      * Gets token
-     *
-     * @return string|null
      */
-    public function getToken()
+    public function getToken(): string|null
     {
         return $this->container['token'];
     }
@@ -341,10 +335,8 @@ final class APIToken implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime|null
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime|null
     {
         return $this->container['created_at'];
     }
@@ -364,10 +356,8 @@ final class APIToken implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime|null
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime|null
     {
         return $this->container['updated_at'];
     }
@@ -387,10 +377,8 @@ final class APIToken implements JsonSerializable
 
     /**
      * Gets last_used_at
-     *
-     * @return \DateTime|null
      */
-    public function getLastUsedAt()
+    public function getLastUsedAt(): \DateTime|null
     {
         return $this->container['last_used_at'];
     }
@@ -459,7 +447,6 @@ final class APIToken implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

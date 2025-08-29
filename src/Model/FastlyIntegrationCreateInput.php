@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class FastlyIntegrationCreateInput implements JsonSerializable
+final class FastlyIntegrationCreateInput implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -289,10 +291,8 @@ final class FastlyIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -312,10 +312,8 @@ final class FastlyIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets events
-     *
-     * @return string[]|null
      */
-    public function getEvents()
+    public function getEvents(): array|null
     {
         return $this->container['events'];
     }
@@ -335,10 +333,8 @@ final class FastlyIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets environments
-     *
-     * @return string[]|null
      */
-    public function getEnvironments()
+    public function getEnvironments(): array|null
     {
         return $this->container['environments'];
     }
@@ -358,10 +354,8 @@ final class FastlyIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets excluded_environments
-     *
-     * @return string[]|null
      */
-    public function getExcludedEnvironments()
+    public function getExcludedEnvironments(): array|null
     {
         return $this->container['excluded_environments'];
     }
@@ -381,10 +375,8 @@ final class FastlyIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets states
-     *
-     * @return string[]|null
      */
-    public function getStates()
+    public function getStates(): array|null
     {
         return $this->container['states'];
     }
@@ -404,10 +396,8 @@ final class FastlyIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets result
-     *
-     * @return string|null
      */
-    public function getResult()
+    public function getResult(): string|null
     {
         return $this->container['result'];
     }
@@ -437,10 +427,8 @@ final class FastlyIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets token
-     *
-     * @return string
      */
-    public function getToken()
+    public function getToken(): string
     {
         return $this->container['token'];
     }
@@ -460,10 +448,8 @@ final class FastlyIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets service_id
-     *
-     * @return string
      */
-    public function getServiceId()
+    public function getServiceId(): string
     {
         return $this->container['service_id'];
     }
@@ -525,7 +511,6 @@ final class FastlyIntegrationCreateInput implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

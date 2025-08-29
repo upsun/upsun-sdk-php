@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class EnvironmentSynchronizeInput implements JsonSerializable
+final class EnvironmentSynchronizeInput implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -240,10 +242,8 @@ final class EnvironmentSynchronizeInput implements JsonSerializable
 
     /**
      * Gets synchronize_code
-     *
-     * @return bool
      */
-    public function getSynchronizeCode()
+    public function getSynchronizeCode(): bool
     {
         return $this->container['synchronize_code'];
     }
@@ -263,10 +263,8 @@ final class EnvironmentSynchronizeInput implements JsonSerializable
 
     /**
      * Gets rebase
-     *
-     * @return bool
      */
-    public function getRebase()
+    public function getRebase(): bool
     {
         return $this->container['rebase'];
     }
@@ -286,10 +284,8 @@ final class EnvironmentSynchronizeInput implements JsonSerializable
 
     /**
      * Gets synchronize_data
-     *
-     * @return bool
      */
-    public function getSynchronizeData()
+    public function getSynchronizeData(): bool
     {
         return $this->container['synchronize_data'];
     }
@@ -309,10 +305,8 @@ final class EnvironmentSynchronizeInput implements JsonSerializable
 
     /**
      * Gets synchronize_resources
-     *
-     * @return bool
      */
-    public function getSynchronizeResources()
+    public function getSynchronizeResources(): bool
     {
         return $this->container['synchronize_resources'];
     }
@@ -374,7 +368,6 @@ final class EnvironmentSynchronizeInput implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

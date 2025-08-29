@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
+final class ProfileCurrentTrialProjectsTotal implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -228,10 +230,8 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
 
     /**
      * Gets amount
-     *
-     * @return int|null
      */
-    public function getAmount()
+    public function getAmount(): int|null
     {
         return $this->container['amount'];
     }
@@ -251,10 +251,8 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
 
     /**
      * Gets currency_code
-     *
-     * @return string|null
      */
-    public function getCurrencyCode()
+    public function getCurrencyCode(): string|null
     {
         return $this->container['currency_code'];
     }
@@ -274,10 +272,8 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
 
     /**
      * Gets currency_symbol
-     *
-     * @return string|null
      */
-    public function getCurrencySymbol()
+    public function getCurrencySymbol(): string|null
     {
         return $this->container['currency_symbol'];
     }
@@ -297,10 +293,8 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
 
     /**
      * Gets formatted
-     *
-     * @return string|null
      */
-    public function getFormatted()
+    public function getFormatted(): string|null
     {
         return $this->container['formatted'];
     }
@@ -362,7 +356,6 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

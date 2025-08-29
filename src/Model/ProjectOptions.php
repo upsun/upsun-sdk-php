@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ProjectOptions implements JsonSerializable
+final class ProjectOptions implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -235,10 +237,8 @@ final class ProjectOptions implements JsonSerializable
 
     /**
      * Gets defaults
-     *
-     * @return \Upsun\Model\ProjectOptionsDefaults|null
      */
-    public function getDefaults()
+    public function getDefaults(): \Upsun\Model\ProjectOptionsDefaults|null
     {
         return $this->container['defaults'];
     }
@@ -258,10 +258,8 @@ final class ProjectOptions implements JsonSerializable
 
     /**
      * Gets enforced
-     *
-     * @return \Upsun\Model\ProjectOptionsEnforced|null
      */
-    public function getEnforced()
+    public function getEnforced(): \Upsun\Model\ProjectOptionsEnforced|null
     {
         return $this->container['enforced'];
     }
@@ -281,10 +279,8 @@ final class ProjectOptions implements JsonSerializable
 
     /**
      * Gets regions
-     *
-     * @return string[]|null
      */
-    public function getRegions()
+    public function getRegions(): array|null
     {
         return $this->container['regions'];
     }
@@ -304,10 +300,8 @@ final class ProjectOptions implements JsonSerializable
 
     /**
      * Gets plans
-     *
-     * @return string[]|null
      */
-    public function getPlans()
+    public function getPlans(): array|null
     {
         return $this->container['plans'];
     }
@@ -327,10 +321,8 @@ final class ProjectOptions implements JsonSerializable
 
     /**
      * Gets billing
-     *
-     * @return object|null
      */
-    public function getBilling()
+    public function getBilling(): object|null
     {
         return $this->container['billing'];
     }
@@ -392,7 +384,6 @@ final class ProjectOptions implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

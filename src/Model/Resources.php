@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Resources implements JsonSerializable
+final class Resources implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -260,10 +262,8 @@ final class Resources implements JsonSerializable
 
     /**
      * Gets base_memory
-     *
-     * @return int
      */
-    public function getBaseMemory()
+    public function getBaseMemory(): int
     {
         return $this->container['base_memory'];
     }
@@ -290,10 +290,8 @@ final class Resources implements JsonSerializable
 
     /**
      * Gets memory_ratio
-     *
-     * @return int
      */
-    public function getMemoryRatio()
+    public function getMemoryRatio(): int
     {
         return $this->container['memory_ratio'];
     }
@@ -320,10 +318,8 @@ final class Resources implements JsonSerializable
 
     /**
      * Gets profile_size
-     *
-     * @return string
      */
-    public function getProfileSize()
+    public function getProfileSize(): string
     {
         return $this->container['profile_size'];
     }
@@ -350,10 +346,8 @@ final class Resources implements JsonSerializable
 
     /**
      * Gets minimum
-     *
-     * @return \Upsun\Model\TheMinimumResourcesForThisService
      */
-    public function getMinimum()
+    public function getMinimum(): \Upsun\Model\TheMinimumResourcesForThisService
     {
         return $this->container['minimum'];
     }
@@ -380,10 +374,8 @@ final class Resources implements JsonSerializable
 
     /**
      * Gets default
-     *
-     * @return \Upsun\Model\TheDefaultResourcesForThisService
      */
-    public function getDefault()
+    public function getDefault(): \Upsun\Model\TheDefaultResourcesForThisService
     {
         return $this->container['default'];
     }
@@ -410,10 +402,8 @@ final class Resources implements JsonSerializable
 
     /**
      * Gets disk
-     *
-     * @return \Upsun\Model\TheDisksResources
      */
-    public function getDisk()
+    public function getDisk(): \Upsun\Model\TheDisksResources
     {
         return $this->container['disk'];
     }
@@ -482,7 +472,6 @@ final class Resources implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

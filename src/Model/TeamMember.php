@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TeamMember implements JsonSerializable
+final class TeamMember implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -228,10 +230,8 @@ final class TeamMember implements JsonSerializable
 
     /**
      * Gets team_id
-     *
-     * @return string|null
      */
-    public function getTeamId()
+    public function getTeamId(): string|null
     {
         return $this->container['team_id'];
     }
@@ -251,10 +251,8 @@ final class TeamMember implements JsonSerializable
 
     /**
      * Gets user_id
-     *
-     * @return string|null
      */
-    public function getUserId()
+    public function getUserId(): string|null
     {
         return $this->container['user_id'];
     }
@@ -274,10 +272,8 @@ final class TeamMember implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime|null
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime|null
     {
         return $this->container['created_at'];
     }
@@ -297,10 +293,8 @@ final class TeamMember implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime|null
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime|null
     {
         return $this->container['updated_at'];
     }
@@ -362,7 +356,6 @@ final class TeamMember implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

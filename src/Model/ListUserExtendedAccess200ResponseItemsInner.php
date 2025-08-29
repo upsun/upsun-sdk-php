@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializable
+final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -271,10 +273,8 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
 
     /**
      * Gets user_id
-     *
-     * @return string|null
      */
-    public function getUserId()
+    public function getUserId(): string|null
     {
         return $this->container['user_id'];
     }
@@ -294,10 +294,8 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
 
     /**
      * Gets resource_id
-     *
-     * @return string|null
      */
-    public function getResourceId()
+    public function getResourceId(): string|null
     {
         return $this->container['resource_id'];
     }
@@ -317,10 +315,8 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
 
     /**
      * Gets resource_type
-     *
-     * @return string|null
      */
-    public function getResourceType()
+    public function getResourceType(): string|null
     {
         return $this->container['resource_type'];
     }
@@ -350,10 +346,8 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
 
     /**
      * Gets organization_id
-     *
-     * @return string|null
      */
-    public function getOrganizationId()
+    public function getOrganizationId(): string|null
     {
         return $this->container['organization_id'];
     }
@@ -373,10 +367,8 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
 
     /**
      * Gets permissions
-     *
-     * @return string[]|null
      */
-    public function getPermissions()
+    public function getPermissions(): array|null
     {
         return $this->container['permissions'];
     }
@@ -396,10 +388,8 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
 
     /**
      * Gets granted_at
-     *
-     * @return \DateTime|null
      */
-    public function getGrantedAt()
+    public function getGrantedAt(): \DateTime|null
     {
         return $this->container['granted_at'];
     }
@@ -419,10 +409,8 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime|null
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime|null
     {
         return $this->container['updated_at'];
     }
@@ -484,7 +472,6 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

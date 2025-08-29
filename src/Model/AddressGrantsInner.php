@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class AddressGrantsInner implements JsonSerializable
+final class AddressGrantsInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -242,10 +244,8 @@ final class AddressGrantsInner implements JsonSerializable
 
     /**
      * Gets permission
-     *
-     * @return string
      */
-    public function getPermission()
+    public function getPermission(): string
     {
         return $this->container['permission'];
     }
@@ -275,10 +275,8 @@ final class AddressGrantsInner implements JsonSerializable
 
     /**
      * Gets address
-     *
-     * @return string
      */
-    public function getAddress()
+    public function getAddress(): string
     {
         return $this->container['address'];
     }
@@ -340,7 +338,6 @@ final class AddressGrantsInner implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class HttpLogIntegration implements JsonSerializable
+final class HttpLogIntegration implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -270,10 +272,8 @@ final class HttpLogIntegration implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->container['created_at'];
     }
@@ -300,10 +300,8 @@ final class HttpLogIntegration implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime
     {
         return $this->container['updated_at'];
     }
@@ -330,10 +328,8 @@ final class HttpLogIntegration implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -353,10 +349,8 @@ final class HttpLogIntegration implements JsonSerializable
 
     /**
      * Gets extra
-     *
-     * @return array<string,string>
      */
-    public function getExtra()
+    public function getExtra(): array
     {
         return $this->container['extra'];
     }
@@ -376,10 +370,8 @@ final class HttpLogIntegration implements JsonSerializable
 
     /**
      * Gets url
-     *
-     * @return string
      */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->container['url'];
     }
@@ -399,10 +391,8 @@ final class HttpLogIntegration implements JsonSerializable
 
     /**
      * Gets headers
-     *
-     * @return array<string,string>
      */
-    public function getHeaders()
+    public function getHeaders(): array
     {
         return $this->container['headers'];
     }
@@ -422,10 +412,8 @@ final class HttpLogIntegration implements JsonSerializable
 
     /**
      * Gets tls_verify
-     *
-     * @return bool
      */
-    public function getTlsVerify()
+    public function getTlsVerify(): bool
     {
         return $this->container['tls_verify'];
     }
@@ -487,7 +475,6 @@ final class HttpLogIntegration implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

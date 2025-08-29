@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class CreateSshKeyRequest implements JsonSerializable
+final class CreateSshKeyRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -224,10 +226,8 @@ final class CreateSshKeyRequest implements JsonSerializable
 
     /**
      * Gets value
-     *
-     * @return string
      */
-    public function getValue()
+    public function getValue(): string
     {
         return $this->container['value'];
     }
@@ -247,10 +247,8 @@ final class CreateSshKeyRequest implements JsonSerializable
 
     /**
      * Gets title
-     *
-     * @return string|null
      */
-    public function getTitle()
+    public function getTitle(): string|null
     {
         return $this->container['title'];
     }
@@ -270,10 +268,8 @@ final class CreateSshKeyRequest implements JsonSerializable
 
     /**
      * Gets uuid
-     *
-     * @return string|null
      */
-    public function getUuid()
+    public function getUuid(): string|null
     {
         return $this->container['uuid'];
     }
@@ -335,7 +331,6 @@ final class CreateSshKeyRequest implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

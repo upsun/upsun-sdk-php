@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TheDefaultResourcesForThisService implements JsonSerializable
+final class TheDefaultResourcesForThisService implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -240,10 +242,8 @@ final class TheDefaultResourcesForThisService implements JsonSerializable
 
     /**
      * Gets cpu
-     *
-     * @return float
      */
-    public function getCpu()
+    public function getCpu(): float
     {
         return $this->container['cpu'];
     }
@@ -263,10 +263,8 @@ final class TheDefaultResourcesForThisService implements JsonSerializable
 
     /**
      * Gets memory
-     *
-     * @return int
      */
-    public function getMemory()
+    public function getMemory(): int
     {
         return $this->container['memory'];
     }
@@ -286,10 +284,8 @@ final class TheDefaultResourcesForThisService implements JsonSerializable
 
     /**
      * Gets disk
-     *
-     * @return int
      */
-    public function getDisk()
+    public function getDisk(): int
     {
         return $this->container['disk'];
     }
@@ -316,10 +312,8 @@ final class TheDefaultResourcesForThisService implements JsonSerializable
 
     /**
      * Gets profile_size
-     *
-     * @return string
      */
-    public function getProfileSize()
+    public function getProfileSize(): string
     {
         return $this->container['profile_size'];
     }
@@ -388,7 +382,6 @@ final class TheDefaultResourcesForThisService implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

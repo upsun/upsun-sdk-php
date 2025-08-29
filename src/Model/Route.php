@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Route implements JsonSerializable
+final class Route implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -334,10 +336,8 @@ final class Route implements JsonSerializable
 
     /**
      * Gets primary
-     *
-     * @return bool
      */
-    public function getPrimary()
+    public function getPrimary(): bool
     {
         return $this->container['primary'];
     }
@@ -364,10 +364,8 @@ final class Route implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string
      */
-    public function getId()
+    public function getId(): string
     {
         return $this->container['id'];
     }
@@ -394,10 +392,8 @@ final class Route implements JsonSerializable
 
     /**
      * Gets production_url
-     *
-     * @return string
      */
-    public function getProductionUrl()
+    public function getProductionUrl(): string
     {
         return $this->container['production_url'];
     }
@@ -424,10 +420,8 @@ final class Route implements JsonSerializable
 
     /**
      * Gets attributes
-     *
-     * @return array<string,string>
      */
-    public function getAttributes()
+    public function getAttributes(): array
     {
         return $this->container['attributes'];
     }
@@ -447,10 +441,8 @@ final class Route implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -480,10 +472,8 @@ final class Route implements JsonSerializable
 
     /**
      * Gets tls
-     *
-     * @return \Upsun\Model\TLSSettingsForTheRoute
      */
-    public function getTls()
+    public function getTls(): \Upsun\Model\TLSSettingsForTheRoute
     {
         return $this->container['tls'];
     }
@@ -503,10 +493,8 @@ final class Route implements JsonSerializable
 
     /**
      * Gets to
-     *
-     * @return string
      */
-    public function getTo()
+    public function getTo(): string
     {
         return $this->container['to'];
     }
@@ -526,10 +514,8 @@ final class Route implements JsonSerializable
 
     /**
      * Gets redirects
-     *
-     * @return \Upsun\Model\TheConfigurationOfTheRedirects
      */
-    public function getRedirects()
+    public function getRedirects(): \Upsun\Model\TheConfigurationOfTheRedirects
     {
         return $this->container['redirects'];
     }
@@ -549,10 +535,8 @@ final class Route implements JsonSerializable
 
     /**
      * Gets cache
-     *
-     * @return \Upsun\Model\CacheConfiguration
      */
-    public function getCache()
+    public function getCache(): \Upsun\Model\CacheConfiguration
     {
         return $this->container['cache'];
     }
@@ -572,10 +556,8 @@ final class Route implements JsonSerializable
 
     /**
      * Gets ssi
-     *
-     * @return \Upsun\Model\ServerSideIncludeConfiguration
      */
-    public function getSsi()
+    public function getSsi(): \Upsun\Model\ServerSideIncludeConfiguration
     {
         return $this->container['ssi'];
     }
@@ -595,10 +577,8 @@ final class Route implements JsonSerializable
 
     /**
      * Gets upstream
-     *
-     * @return string
      */
-    public function getUpstream()
+    public function getUpstream(): string
     {
         return $this->container['upstream'];
     }
@@ -660,7 +640,6 @@ final class Route implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class CertificateCreateInput implements JsonSerializable
+final class CertificateCreateInput implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -234,10 +236,8 @@ final class CertificateCreateInput implements JsonSerializable
 
     /**
      * Gets certificate
-     *
-     * @return string
      */
-    public function getCertificate()
+    public function getCertificate(): string
     {
         return $this->container['certificate'];
     }
@@ -257,10 +257,8 @@ final class CertificateCreateInput implements JsonSerializable
 
     /**
      * Gets key
-     *
-     * @return string
      */
-    public function getKey()
+    public function getKey(): string
     {
         return $this->container['key'];
     }
@@ -280,10 +278,8 @@ final class CertificateCreateInput implements JsonSerializable
 
     /**
      * Gets chain
-     *
-     * @return string[]|null
      */
-    public function getChain()
+    public function getChain(): array|null
     {
         return $this->container['chain'];
     }
@@ -303,10 +299,8 @@ final class CertificateCreateInput implements JsonSerializable
 
     /**
      * Gets is_invalid
-     *
-     * @return bool|null
      */
-    public function getIsInvalid()
+    public function getIsInvalid(): bool|null
     {
         return $this->container['is_invalid'];
     }
@@ -368,7 +362,6 @@ final class CertificateCreateInput implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

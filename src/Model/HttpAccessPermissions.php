@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class HttpAccessPermissions implements JsonSerializable
+final class HttpAccessPermissions implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -230,10 +232,8 @@ final class HttpAccessPermissions implements JsonSerializable
 
     /**
      * Gets is_enabled
-     *
-     * @return bool
      */
-    public function getIsEnabled()
+    public function getIsEnabled(): bool
     {
         return $this->container['is_enabled'];
     }
@@ -253,10 +253,8 @@ final class HttpAccessPermissions implements JsonSerializable
 
     /**
      * Gets addresses
-     *
-     * @return \Upsun\Model\AddressGrantsInner[]
      */
-    public function getAddresses()
+    public function getAddresses(): array
     {
         return $this->container['addresses'];
     }
@@ -276,10 +274,8 @@ final class HttpAccessPermissions implements JsonSerializable
 
     /**
      * Gets basic_auth
-     *
-     * @return array<string,string>
      */
-    public function getBasicAuth()
+    public function getBasicAuth(): array
     {
         return $this->container['basic_auth'];
     }
@@ -341,7 +337,6 @@ final class HttpAccessPermissions implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Backup implements JsonSerializable
+final class Backup implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -372,10 +374,8 @@ final class Backup implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->container['created_at'];
     }
@@ -402,10 +402,8 @@ final class Backup implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime
     {
         return $this->container['updated_at'];
     }
@@ -432,10 +430,8 @@ final class Backup implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string
      */
-    public function getId()
+    public function getId(): string
     {
         return $this->container['id'];
     }
@@ -455,10 +451,8 @@ final class Backup implements JsonSerializable
 
     /**
      * Gets attributes
-     *
-     * @return array<string,string>
      */
-    public function getAttributes()
+    public function getAttributes(): array
     {
         return $this->container['attributes'];
     }
@@ -478,10 +472,8 @@ final class Backup implements JsonSerializable
 
     /**
      * Gets status
-     *
-     * @return string
      */
-    public function getStatus()
+    public function getStatus(): string
     {
         return $this->container['status'];
     }
@@ -511,10 +503,8 @@ final class Backup implements JsonSerializable
 
     /**
      * Gets expires_at
-     *
-     * @return \DateTime
      */
-    public function getExpiresAt()
+    public function getExpiresAt(): \DateTime
     {
         return $this->container['expires_at'];
     }
@@ -541,10 +531,8 @@ final class Backup implements JsonSerializable
 
     /**
      * Gets index
-     *
-     * @return int
      */
-    public function getIndex()
+    public function getIndex(): int
     {
         return $this->container['index'];
     }
@@ -571,10 +559,8 @@ final class Backup implements JsonSerializable
 
     /**
      * Gets commit_id
-     *
-     * @return string
      */
-    public function getCommitId()
+    public function getCommitId(): string
     {
         return $this->container['commit_id'];
     }
@@ -594,10 +580,8 @@ final class Backup implements JsonSerializable
 
     /**
      * Gets environment
-     *
-     * @return string
      */
-    public function getEnvironment()
+    public function getEnvironment(): string
     {
         return $this->container['environment'];
     }
@@ -617,10 +601,8 @@ final class Backup implements JsonSerializable
 
     /**
      * Gets safe
-     *
-     * @return bool
      */
-    public function getSafe()
+    public function getSafe(): bool
     {
         return $this->container['safe'];
     }
@@ -640,10 +622,8 @@ final class Backup implements JsonSerializable
 
     /**
      * Gets size_of_volumes
-     *
-     * @return int
      */
-    public function getSizeOfVolumes()
+    public function getSizeOfVolumes(): int
     {
         return $this->container['size_of_volumes'];
     }
@@ -670,10 +650,8 @@ final class Backup implements JsonSerializable
 
     /**
      * Gets size_used
-     *
-     * @return int
      */
-    public function getSizeUsed()
+    public function getSizeUsed(): int
     {
         return $this->container['size_used'];
     }
@@ -700,10 +678,8 @@ final class Backup implements JsonSerializable
 
     /**
      * Gets deployment
-     *
-     * @return string
      */
-    public function getDeployment()
+    public function getDeployment(): string
     {
         return $this->container['deployment'];
     }
@@ -730,10 +706,8 @@ final class Backup implements JsonSerializable
 
     /**
      * Gets restorable
-     *
-     * @return bool
      */
-    public function getRestorable()
+    public function getRestorable(): bool
     {
         return $this->container['restorable'];
     }
@@ -753,10 +727,8 @@ final class Backup implements JsonSerializable
 
     /**
      * Gets automated
-     *
-     * @return bool
      */
-    public function getAutomated()
+    public function getAutomated(): bool
     {
         return $this->container['automated'];
     }
@@ -818,7 +790,6 @@ final class Backup implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

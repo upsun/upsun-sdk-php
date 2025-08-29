@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class GetTypeAllowance200Response implements JsonSerializable
+final class GetTypeAllowance200Response implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -207,10 +209,8 @@ final class GetTypeAllowance200Response implements JsonSerializable
 
     /**
      * Gets currencies
-     *
-     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrencies|null
      */
-    public function getCurrencies()
+    public function getCurrencies(): \Upsun\Model\GetTypeAllowance200ResponseCurrencies|null
     {
         return $this->container['currencies'];
     }
@@ -272,7 +272,6 @@ final class GetTypeAllowance200Response implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

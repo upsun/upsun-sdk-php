@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonSerializable
+final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -220,10 +222,8 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonS
 
     /**
      * Gets root
-     *
-     * @return string
      */
-    public function getRoot()
+    public function getRoot(): string
     {
         return $this->container['root'];
     }
@@ -250,10 +250,8 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonS
 
     /**
      * Gets operations
-     *
-     * @return array<string,\Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue>
      */
-    public function getOperations()
+    public function getOperations(): array
     {
         return $this->container['operations'];
     }
@@ -315,7 +313,6 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonS
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

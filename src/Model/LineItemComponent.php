@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class LineItemComponent implements JsonSerializable
+final class LineItemComponent implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -228,10 +230,8 @@ final class LineItemComponent implements JsonSerializable
 
     /**
      * Gets amount
-     *
-     * @return float|null
      */
-    public function getAmount()
+    public function getAmount(): float|null
     {
         return $this->container['amount'];
     }
@@ -251,10 +251,8 @@ final class LineItemComponent implements JsonSerializable
 
     /**
      * Gets amount_formatted
-     *
-     * @return string|null
      */
-    public function getAmountFormatted()
+    public function getAmountFormatted(): string|null
     {
         return $this->container['amount_formatted'];
     }
@@ -274,10 +272,8 @@ final class LineItemComponent implements JsonSerializable
 
     /**
      * Gets display_title
-     *
-     * @return string|null
      */
-    public function getDisplayTitle()
+    public function getDisplayTitle(): string|null
     {
         return $this->container['display_title'];
     }
@@ -297,10 +293,8 @@ final class LineItemComponent implements JsonSerializable
 
     /**
      * Gets currency
-     *
-     * @return string|null
      */
-    public function getCurrency()
+    public function getCurrency(): string|null
     {
         return $this->container['currency'];
     }
@@ -362,7 +356,6 @@ final class LineItemComponent implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

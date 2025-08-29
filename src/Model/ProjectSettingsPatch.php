@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ProjectSettingsPatch implements JsonSerializable
+final class ProjectSettingsPatch implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -221,10 +223,8 @@ final class ProjectSettingsPatch implements JsonSerializable
 
     /**
      * Gets initialize
-     *
-     * @return object|null
      */
-    public function getInitialize()
+    public function getInitialize(): object|null
     {
         return $this->container['initialize'];
     }
@@ -244,10 +244,8 @@ final class ProjectSettingsPatch implements JsonSerializable
 
     /**
      * Gets data_retention
-     *
-     * @return array<string,\Upsun\Model\DataRetentionConfigurationValue1>|null
      */
-    public function getDataRetention()
+    public function getDataRetention(): array|null
     {
         return $this->container['data_retention'];
     }
@@ -274,10 +272,8 @@ final class ProjectSettingsPatch implements JsonSerializable
 
     /**
      * Gets build_resources
-     *
-     * @return \Upsun\Model\BuildResources2|null
      */
-    public function getBuildResources()
+    public function getBuildResources(): \Upsun\Model\BuildResources2|null
     {
         return $this->container['build_resources'];
     }
@@ -339,7 +335,6 @@ final class ProjectSettingsPatch implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

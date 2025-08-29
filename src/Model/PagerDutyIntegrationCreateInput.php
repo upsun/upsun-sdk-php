@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class PagerDutyIntegrationCreateInput implements JsonSerializable
+final class PagerDutyIntegrationCreateInput implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -220,10 +222,8 @@ final class PagerDutyIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -243,10 +243,8 @@ final class PagerDutyIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets routing_key
-     *
-     * @return string
      */
-    public function getRoutingKey()
+    public function getRoutingKey(): string
     {
         return $this->container['routing_key'];
     }
@@ -308,7 +306,6 @@ final class PagerDutyIntegrationCreateInput implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

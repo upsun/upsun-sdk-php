@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class UpdateOrgBillingAlertConfigRequest implements JsonSerializable
+final class UpdateOrgBillingAlertConfigRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -214,10 +216,8 @@ final class UpdateOrgBillingAlertConfigRequest implements JsonSerializable
 
     /**
      * Gets active
-     *
-     * @return bool|null
      */
-    public function getActive()
+    public function getActive(): bool|null
     {
         return $this->container['active'];
     }
@@ -237,10 +237,8 @@ final class UpdateOrgBillingAlertConfigRequest implements JsonSerializable
 
     /**
      * Gets config
-     *
-     * @return \Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig|null
      */
-    public function getConfig()
+    public function getConfig(): \Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig|null
     {
         return $this->container['config'];
     }
@@ -302,7 +300,6 @@ final class UpdateOrgBillingAlertConfigRequest implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

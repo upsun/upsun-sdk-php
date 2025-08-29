@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class VouchersVouchersInnerOrdersInner implements JsonSerializable
+final class VouchersVouchersInnerOrdersInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -249,10 +251,8 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
 
     /**
      * Gets order_id
-     *
-     * @return string|null
      */
-    public function getOrderId()
+    public function getOrderId(): string|null
     {
         return $this->container['order_id'];
     }
@@ -272,10 +272,8 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
 
     /**
      * Gets status
-     *
-     * @return string|null
      */
-    public function getStatus()
+    public function getStatus(): string|null
     {
         return $this->container['status'];
     }
@@ -295,10 +293,8 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
 
     /**
      * Gets billing_period_start
-     *
-     * @return string|null
      */
-    public function getBillingPeriodStart()
+    public function getBillingPeriodStart(): string|null
     {
         return $this->container['billing_period_start'];
     }
@@ -318,10 +314,8 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
 
     /**
      * Gets billing_period_end
-     *
-     * @return string|null
      */
-    public function getBillingPeriodEnd()
+    public function getBillingPeriodEnd(): string|null
     {
         return $this->container['billing_period_end'];
     }
@@ -341,10 +335,8 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
 
     /**
      * Gets order_total
-     *
-     * @return string|null
      */
-    public function getOrderTotal()
+    public function getOrderTotal(): string|null
     {
         return $this->container['order_total'];
     }
@@ -364,10 +356,8 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
 
     /**
      * Gets order_discount
-     *
-     * @return string|null
      */
-    public function getOrderDiscount()
+    public function getOrderDiscount(): string|null
     {
         return $this->container['order_discount'];
     }
@@ -387,10 +377,8 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
 
     /**
      * Gets currency
-     *
-     * @return string|null
      */
-    public function getCurrency()
+    public function getCurrency(): string|null
     {
         return $this->container['currency'];
     }
@@ -452,7 +440,6 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

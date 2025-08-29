@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ConfigurationForPreFlightChecks implements JsonSerializable
+final class ConfigurationForPreFlightChecks implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -220,10 +222,8 @@ final class ConfigurationForPreFlightChecks implements JsonSerializable
 
     /**
      * Gets enabled
-     *
-     * @return bool
      */
-    public function getEnabled()
+    public function getEnabled(): bool
     {
         return $this->container['enabled'];
     }
@@ -243,10 +243,8 @@ final class ConfigurationForPreFlightChecks implements JsonSerializable
 
     /**
      * Gets ignored_rules
-     *
-     * @return string[]
      */
-    public function getIgnoredRules()
+    public function getIgnoredRules(): array
     {
         return $this->container['ignored_rules'];
     }
@@ -308,7 +306,6 @@ final class ConfigurationForPreFlightChecks implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements JsonSerializable
+final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -230,10 +232,8 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
 
     /**
      * Gets commits_ahead
-     *
-     * @return int
      */
-    public function getCommitsAhead()
+    public function getCommitsAhead(): int
     {
         return $this->container['commits_ahead'];
     }
@@ -260,10 +260,8 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
 
     /**
      * Gets commits_behind
-     *
-     * @return int
      */
-    public function getCommitsBehind()
+    public function getCommitsBehind(): int
     {
         return $this->container['commits_behind'];
     }
@@ -290,10 +288,8 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
 
     /**
      * Gets parent_ref
-     *
-     * @return string
      */
-    public function getParentRef()
+    public function getParentRef(): string
     {
         return $this->container['parent_ref'];
     }
@@ -362,7 +358,6 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

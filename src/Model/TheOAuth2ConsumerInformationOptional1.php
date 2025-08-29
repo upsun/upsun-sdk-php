@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TheOAuth2ConsumerInformationOptional1 implements JsonSerializable
+final class TheOAuth2ConsumerInformationOptional1 implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -220,10 +222,8 @@ final class TheOAuth2ConsumerInformationOptional1 implements JsonSerializable
 
     /**
      * Gets key
-     *
-     * @return string
      */
-    public function getKey()
+    public function getKey(): string
     {
         return $this->container['key'];
     }
@@ -243,10 +243,8 @@ final class TheOAuth2ConsumerInformationOptional1 implements JsonSerializable
 
     /**
      * Gets secret
-     *
-     * @return string
      */
-    public function getSecret()
+    public function getSecret(): string
     {
         return $this->container['secret'];
     }
@@ -308,7 +306,6 @@ final class TheOAuth2ConsumerInformationOptional1 implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class WebApplicationsValue implements JsonSerializable
+final class WebApplicationsValue implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -549,10 +551,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets resources
-     *
-     * @return \Upsun\Model\Resources
      */
-    public function getResources()
+    public function getResources(): \Upsun\Model\Resources
     {
         return $this->container['resources'];
     }
@@ -579,10 +579,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets size
-     *
-     * @return string
      */
-    public function getSize()
+    public function getSize(): string
     {
         return $this->container['size'];
     }
@@ -612,10 +610,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets disk
-     *
-     * @return int
      */
-    public function getDisk()
+    public function getDisk(): int
     {
         return $this->container['disk'];
     }
@@ -642,10 +638,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets access
-     *
-     * @return array<string,string>
      */
-    public function getAccess()
+    public function getAccess(): array
     {
         return $this->container['access'];
     }
@@ -674,10 +668,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets relationships
-     *
-     * @return array<string,\Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue>
      */
-    public function getRelationships()
+    public function getRelationships(): array
     {
         return $this->container['relationships'];
     }
@@ -697,10 +689,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets additional_hosts
-     *
-     * @return array<string,string>
      */
-    public function getAdditionalHosts()
+    public function getAdditionalHosts(): array
     {
         return $this->container['additional_hosts'];
     }
@@ -720,10 +710,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets mounts
-     *
-     * @return array<string,\Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue>
      */
-    public function getMounts()
+    public function getMounts(): array
     {
         return $this->container['mounts'];
     }
@@ -743,10 +731,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets timezone
-     *
-     * @return string
      */
-    public function getTimezone()
+    public function getTimezone(): string
     {
         return $this->container['timezone'];
     }
@@ -773,10 +759,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets variables
-     *
-     * @return array<string,array<string,mixed>>
      */
-    public function getVariables()
+    public function getVariables(): array
     {
         return $this->container['variables'];
     }
@@ -796,10 +780,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets firewall
-     *
-     * @return \Upsun\Model\Firewall
      */
-    public function getFirewall()
+    public function getFirewall(): \Upsun\Model\Firewall
     {
         return $this->container['firewall'];
     }
@@ -826,10 +808,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets container_profile
-     *
-     * @return string
      */
-    public function getContainerProfile()
+    public function getContainerProfile(): string
     {
         return $this->container['container_profile'];
     }
@@ -856,10 +836,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets operations
-     *
-     * @return array<string,\Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue>
      */
-    public function getOperations()
+    public function getOperations(): array
     {
         return $this->container['operations'];
     }
@@ -879,10 +857,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->container['name'];
     }
@@ -902,10 +878,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -925,10 +899,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets preflight
-     *
-     * @return \Upsun\Model\ConfigurationForPreFlightChecks
      */
-    public function getPreflight()
+    public function getPreflight(): \Upsun\Model\ConfigurationForPreFlightChecks
     {
         return $this->container['preflight'];
     }
@@ -948,10 +920,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets tree_id
-     *
-     * @return string
      */
-    public function getTreeId()
+    public function getTreeId(): string
     {
         return $this->container['tree_id'];
     }
@@ -971,10 +941,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets app_dir
-     *
-     * @return string
      */
-    public function getAppDir()
+    public function getAppDir(): string
     {
         return $this->container['app_dir'];
     }
@@ -994,10 +962,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets endpoints
-     *
-     * @return object
      */
-    public function getEndpoints()
+    public function getEndpoints(): object
     {
         return $this->container['endpoints'];
     }
@@ -1024,10 +990,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets runtime
-     *
-     * @return object
      */
-    public function getRuntime()
+    public function getRuntime(): object
     {
         return $this->container['runtime'];
     }
@@ -1047,10 +1011,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets web
-     *
-     * @return \Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP
      */
-    public function getWeb()
+    public function getWeb(): \Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP
     {
         return $this->container['web'];
     }
@@ -1070,10 +1032,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets hooks
-     *
-     * @return \Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication
      */
-    public function getHooks()
+    public function getHooks(): \Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication
     {
         return $this->container['hooks'];
     }
@@ -1093,10 +1053,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets crons
-     *
-     * @return array<string,\Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue>
      */
-    public function getCrons()
+    public function getCrons(): array
     {
         return $this->container['crons'];
     }
@@ -1116,10 +1074,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets source
-     *
-     * @return \Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication
      */
-    public function getSource()
+    public function getSource(): \Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication
     {
         return $this->container['source'];
     }
@@ -1139,10 +1095,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets build
-     *
-     * @return \Upsun\Model\TheBuildConfigurationOfTheApplication
      */
-    public function getBuild()
+    public function getBuild(): \Upsun\Model\TheBuildConfigurationOfTheApplication
     {
         return $this->container['build'];
     }
@@ -1162,10 +1116,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets dependencies
-     *
-     * @return array<string,object>
      */
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return $this->container['dependencies'];
     }
@@ -1185,10 +1137,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets stack
-     *
-     * @return object[]
      */
-    public function getStack()
+    public function getStack(): array
     {
         return $this->container['stack'];
     }
@@ -1215,10 +1165,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets is_across_submodule
-     *
-     * @return bool
      */
-    public function getIsAcrossSubmodule()
+    public function getIsAcrossSubmodule(): bool
     {
         return $this->container['is_across_submodule'];
     }
@@ -1238,10 +1186,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets instance_count
-     *
-     * @return int
      */
-    public function getInstanceCount()
+    public function getInstanceCount(): int
     {
         return $this->container['instance_count'];
     }
@@ -1268,10 +1214,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets config_id
-     *
-     * @return string
      */
-    public function getConfigId()
+    public function getConfigId(): string
     {
         return $this->container['config_id'];
     }
@@ -1291,10 +1235,8 @@ final class WebApplicationsValue implements JsonSerializable
 
     /**
      * Gets slug_id
-     *
-     * @return string
      */
-    public function getSlugId()
+    public function getSlugId(): string
     {
         return $this->container['slug_id'];
     }
@@ -1356,7 +1298,6 @@ final class WebApplicationsValue implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

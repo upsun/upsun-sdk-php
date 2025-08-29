@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TheConfigurationOfTheRedirects1 implements JsonSerializable
+final class TheConfigurationOfTheRedirects1 implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -217,10 +219,8 @@ final class TheConfigurationOfTheRedirects1 implements JsonSerializable
 
     /**
      * Gets expires
-     *
-     * @return string|null
      */
-    public function getExpires()
+    public function getExpires(): string|null
     {
         return $this->container['expires'];
     }
@@ -240,10 +240,8 @@ final class TheConfigurationOfTheRedirects1 implements JsonSerializable
 
     /**
      * Gets paths
-     *
-     * @return array<string,\Upsun\Model\ThePathsToRedirectValue1>
      */
-    public function getPaths()
+    public function getPaths(): array
     {
         return $this->container['paths'];
     }
@@ -305,7 +303,6 @@ final class TheConfigurationOfTheRedirects1 implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

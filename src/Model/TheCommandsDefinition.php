@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TheCommandsDefinition implements JsonSerializable
+final class TheCommandsDefinition implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -217,10 +219,8 @@ final class TheCommandsDefinition implements JsonSerializable
 
     /**
      * Gets start
-     *
-     * @return string
      */
-    public function getStart()
+    public function getStart(): string
     {
         return $this->container['start'];
     }
@@ -240,10 +240,8 @@ final class TheCommandsDefinition implements JsonSerializable
 
     /**
      * Gets stop
-     *
-     * @return string|null
      */
-    public function getStop()
+    public function getStop(): string|null
     {
         return $this->container['stop'];
     }
@@ -312,7 +310,6 @@ final class TheCommandsDefinition implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

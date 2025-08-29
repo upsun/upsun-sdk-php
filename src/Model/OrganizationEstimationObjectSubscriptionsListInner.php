@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSerializable
+final class OrganizationEstimationObjectSubscriptionsListInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -228,10 +230,8 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
 
     /**
      * Gets license_id
-     *
-     * @return string|null
      */
-    public function getLicenseId()
+    public function getLicenseId(): string|null
     {
         return $this->container['license_id'];
     }
@@ -251,10 +251,8 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
 
     /**
      * Gets project_title
-     *
-     * @return string|null
      */
-    public function getProjectTitle()
+    public function getProjectTitle(): string|null
     {
         return $this->container['project_title'];
     }
@@ -274,10 +272,8 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
 
     /**
      * Gets total
-     *
-     * @return string|null
      */
-    public function getTotal()
+    public function getTotal(): string|null
     {
         return $this->container['total'];
     }
@@ -297,10 +293,8 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
 
     /**
      * Gets usage
-     *
-     * @return \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage|null
      */
-    public function getUsage()
+    public function getUsage(): \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage|null
     {
         return $this->container['usage'];
     }
@@ -362,7 +356,6 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

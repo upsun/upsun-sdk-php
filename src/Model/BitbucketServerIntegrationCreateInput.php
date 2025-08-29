@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class BitbucketServerIntegrationCreateInput implements JsonSerializable
+final class BitbucketServerIntegrationCreateInput implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -321,10 +323,8 @@ final class BitbucketServerIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -344,10 +344,8 @@ final class BitbucketServerIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets fetch_branches
-     *
-     * @return bool|null
      */
-    public function getFetchBranches()
+    public function getFetchBranches(): bool|null
     {
         return $this->container['fetch_branches'];
     }
@@ -367,10 +365,8 @@ final class BitbucketServerIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets prune_branches
-     *
-     * @return bool|null
      */
-    public function getPruneBranches()
+    public function getPruneBranches(): bool|null
     {
         return $this->container['prune_branches'];
     }
@@ -390,10 +386,8 @@ final class BitbucketServerIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets environment_init_resources
-     *
-     * @return string|null
      */
-    public function getEnvironmentInitResources()
+    public function getEnvironmentInitResources(): string|null
     {
         return $this->container['environment_init_resources'];
     }
@@ -423,10 +417,8 @@ final class BitbucketServerIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets url
-     *
-     * @return string
      */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->container['url'];
     }
@@ -446,10 +438,8 @@ final class BitbucketServerIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets username
-     *
-     * @return string
      */
-    public function getUsername()
+    public function getUsername(): string
     {
         return $this->container['username'];
     }
@@ -469,10 +459,8 @@ final class BitbucketServerIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets token
-     *
-     * @return string
      */
-    public function getToken()
+    public function getToken(): string
     {
         return $this->container['token'];
     }
@@ -492,10 +480,8 @@ final class BitbucketServerIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets project
-     *
-     * @return string
      */
-    public function getProject()
+    public function getProject(): string
     {
         return $this->container['project'];
     }
@@ -515,10 +501,8 @@ final class BitbucketServerIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets repository
-     *
-     * @return string
      */
-    public function getRepository()
+    public function getRepository(): string
     {
         return $this->container['repository'];
     }
@@ -538,10 +522,8 @@ final class BitbucketServerIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets build_pull_requests
-     *
-     * @return bool|null
      */
-    public function getBuildPullRequests()
+    public function getBuildPullRequests(): bool|null
     {
         return $this->container['build_pull_requests'];
     }
@@ -561,10 +543,8 @@ final class BitbucketServerIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets pull_requests_clone_parent_data
-     *
-     * @return bool|null
      */
-    public function getPullRequestsCloneParentData()
+    public function getPullRequestsCloneParentData(): bool|null
     {
         return $this->container['pull_requests_clone_parent_data'];
     }
@@ -626,7 +606,6 @@ final class BitbucketServerIntegrationCreateInput implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class DeploymentTargetPatch implements JsonSerializable
+final class DeploymentTargetPatch implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -286,10 +288,8 @@ final class DeploymentTargetPatch implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -319,10 +319,8 @@ final class DeploymentTargetPatch implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->container['name'];
     }
@@ -342,10 +340,8 @@ final class DeploymentTargetPatch implements JsonSerializable
 
     /**
      * Gets enforced_mounts
-     *
-     * @return object|null
      */
-    public function getEnforcedMounts()
+    public function getEnforcedMounts(): object|null
     {
         return $this->container['enforced_mounts'];
     }
@@ -365,10 +361,8 @@ final class DeploymentTargetPatch implements JsonSerializable
 
     /**
      * Gets site_urls
-     *
-     * @return object|null
      */
-    public function getSiteUrls()
+    public function getSiteUrls(): object|null
     {
         return $this->container['site_urls'];
     }
@@ -388,10 +382,8 @@ final class DeploymentTargetPatch implements JsonSerializable
 
     /**
      * Gets ssh_hosts
-     *
-     * @return string[]|null
      */
-    public function getSshHosts()
+    public function getSshHosts(): array|null
     {
         return $this->container['ssh_hosts'];
     }
@@ -412,11 +404,9 @@ final class DeploymentTargetPatch implements JsonSerializable
     /**
      * Gets enterprise_environments_mapping
      *
-     * @return object|null
-     *
      * @deprecated
      */
-    public function getEnterpriseEnvironmentsMapping()
+    public function getEnterpriseEnvironmentsMapping(): object|null
     {
         return $this->container['enterprise_environments_mapping'];
     }
@@ -438,10 +428,8 @@ final class DeploymentTargetPatch implements JsonSerializable
 
     /**
      * Gets hosts
-     *
-     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]|null
      */
-    public function getHosts()
+    public function getHosts(): array|null
     {
         return $this->container['hosts'];
     }
@@ -468,10 +456,8 @@ final class DeploymentTargetPatch implements JsonSerializable
 
     /**
      * Gets use_dedicated_grid
-     *
-     * @return bool|null
      */
-    public function getUseDedicatedGrid()
+    public function getUseDedicatedGrid(): bool|null
     {
         return $this->container['use_dedicated_grid'];
     }
@@ -533,7 +519,6 @@ final class DeploymentTargetPatch implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

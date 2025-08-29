@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TicketJiraInner implements JsonSerializable
+final class TicketJiraInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -242,10 +244,8 @@ final class TicketJiraInner implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return int|null
      */
-    public function getId()
+    public function getId(): int|null
     {
         return $this->container['id'];
     }
@@ -265,10 +265,8 @@ final class TicketJiraInner implements JsonSerializable
 
     /**
      * Gets ticket_id
-     *
-     * @return int|null
      */
-    public function getTicketId()
+    public function getTicketId(): int|null
     {
         return $this->container['ticket_id'];
     }
@@ -288,10 +286,8 @@ final class TicketJiraInner implements JsonSerializable
 
     /**
      * Gets issue_id
-     *
-     * @return int|null
      */
-    public function getIssueId()
+    public function getIssueId(): int|null
     {
         return $this->container['issue_id'];
     }
@@ -311,10 +307,8 @@ final class TicketJiraInner implements JsonSerializable
 
     /**
      * Gets issue_key
-     *
-     * @return string|null
      */
-    public function getIssueKey()
+    public function getIssueKey(): string|null
     {
         return $this->container['issue_key'];
     }
@@ -334,10 +328,8 @@ final class TicketJiraInner implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return float|null
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): float|null
     {
         return $this->container['created_at'];
     }
@@ -357,10 +349,8 @@ final class TicketJiraInner implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return float|null
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): float|null
     {
         return $this->container['updated_at'];
     }
@@ -422,7 +412,6 @@ final class TicketJiraInner implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

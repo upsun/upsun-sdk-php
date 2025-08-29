@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class GithubIntegrationCreateInput implements JsonSerializable
+final class GithubIntegrationCreateInput implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -312,10 +314,8 @@ final class GithubIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -335,10 +335,8 @@ final class GithubIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets fetch_branches
-     *
-     * @return bool|null
      */
-    public function getFetchBranches()
+    public function getFetchBranches(): bool|null
     {
         return $this->container['fetch_branches'];
     }
@@ -358,10 +356,8 @@ final class GithubIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets prune_branches
-     *
-     * @return bool|null
      */
-    public function getPruneBranches()
+    public function getPruneBranches(): bool|null
     {
         return $this->container['prune_branches'];
     }
@@ -381,10 +377,8 @@ final class GithubIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets environment_init_resources
-     *
-     * @return string|null
      */
-    public function getEnvironmentInitResources()
+    public function getEnvironmentInitResources(): string|null
     {
         return $this->container['environment_init_resources'];
     }
@@ -414,10 +408,8 @@ final class GithubIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets token
-     *
-     * @return string
      */
-    public function getToken()
+    public function getToken(): string
     {
         return $this->container['token'];
     }
@@ -437,10 +429,8 @@ final class GithubIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets base_url
-     *
-     * @return string|null
      */
-    public function getBaseUrl()
+    public function getBaseUrl(): string|null
     {
         return $this->container['base_url'];
     }
@@ -467,10 +457,8 @@ final class GithubIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets repository
-     *
-     * @return string
      */
-    public function getRepository()
+    public function getRepository(): string
     {
         return $this->container['repository'];
     }
@@ -490,10 +478,8 @@ final class GithubIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets build_pull_requests
-     *
-     * @return bool|null
      */
-    public function getBuildPullRequests()
+    public function getBuildPullRequests(): bool|null
     {
         return $this->container['build_pull_requests'];
     }
@@ -513,10 +499,8 @@ final class GithubIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets build_draft_pull_requests
-     *
-     * @return bool|null
      */
-    public function getBuildDraftPullRequests()
+    public function getBuildDraftPullRequests(): bool|null
     {
         return $this->container['build_draft_pull_requests'];
     }
@@ -536,10 +520,8 @@ final class GithubIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets build_pull_requests_post_merge
-     *
-     * @return bool|null
      */
-    public function getBuildPullRequestsPostMerge()
+    public function getBuildPullRequestsPostMerge(): bool|null
     {
         return $this->container['build_pull_requests_post_merge'];
     }
@@ -559,10 +541,8 @@ final class GithubIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets pull_requests_clone_parent_data
-     *
-     * @return bool|null
      */
-    public function getPullRequestsCloneParentData()
+    public function getPullRequestsCloneParentData(): bool|null
     {
         return $this->container['pull_requests_clone_parent_data'];
     }
@@ -624,7 +604,6 @@ final class GithubIntegrationCreateInput implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

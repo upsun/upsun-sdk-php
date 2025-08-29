@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class AcceptedResponse implements JsonSerializable
+final class AcceptedResponse implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -220,10 +222,8 @@ final class AcceptedResponse implements JsonSerializable
 
     /**
      * Gets status
-     *
-     * @return string
      */
-    public function getStatus()
+    public function getStatus(): string
     {
         return $this->container['status'];
     }
@@ -243,10 +243,8 @@ final class AcceptedResponse implements JsonSerializable
 
     /**
      * Gets code
-     *
-     * @return int
      */
-    public function getCode()
+    public function getCode(): int
     {
         return $this->container['code'];
     }
@@ -308,7 +306,6 @@ final class AcceptedResponse implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ConfigurationAboutTheTrafficRoutedToThisVersion implements JsonSerializable
+final class ConfigurationAboutTheTrafficRoutedToThisVersion implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -210,10 +212,8 @@ final class ConfigurationAboutTheTrafficRoutedToThisVersion implements JsonSeria
 
     /**
      * Gets percentage
-     *
-     * @return int
      */
-    public function getPercentage()
+    public function getPercentage(): int
     {
         return $this->container['percentage'];
     }
@@ -275,7 +275,6 @@ final class ConfigurationAboutTheTrafficRoutedToThisVersion implements JsonSeria
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

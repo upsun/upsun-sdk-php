@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TheBackupScheduleSpecificationInner implements JsonSerializable
+final class TheBackupScheduleSpecificationInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -220,10 +222,8 @@ final class TheBackupScheduleSpecificationInner implements JsonSerializable
 
     /**
      * Gets interval
-     *
-     * @return string
      */
-    public function getInterval()
+    public function getInterval(): string
     {
         return $this->container['interval'];
     }
@@ -243,10 +243,8 @@ final class TheBackupScheduleSpecificationInner implements JsonSerializable
 
     /**
      * Gets count
-     *
-     * @return int
      */
-    public function getCount()
+    public function getCount(): int
     {
         return $this->container['count'];
     }
@@ -308,7 +306,6 @@ final class TheBackupScheduleSpecificationInner implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

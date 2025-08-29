@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class CurrentUserProjectsInner implements JsonSerializable
+final class CurrentUserProjectsInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -340,10 +342,8 @@ final class CurrentUserProjectsInner implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string|null
      */
-    public function getId()
+    public function getId(): string|null
     {
         return $this->container['id'];
     }
@@ -363,10 +363,8 @@ final class CurrentUserProjectsInner implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string|null
      */
-    public function getName()
+    public function getName(): string|null
     {
         return $this->container['name'];
     }
@@ -386,10 +384,8 @@ final class CurrentUserProjectsInner implements JsonSerializable
 
     /**
      * Gets title
-     *
-     * @return string|null
      */
-    public function getTitle()
+    public function getTitle(): string|null
     {
         return $this->container['title'];
     }
@@ -409,10 +405,8 @@ final class CurrentUserProjectsInner implements JsonSerializable
 
     /**
      * Gets cluster
-     *
-     * @return string|null
      */
-    public function getCluster()
+    public function getCluster(): string|null
     {
         return $this->container['cluster'];
     }
@@ -432,10 +426,8 @@ final class CurrentUserProjectsInner implements JsonSerializable
 
     /**
      * Gets cluster_label
-     *
-     * @return string|null
      */
-    public function getClusterLabel()
+    public function getClusterLabel(): string|null
     {
         return $this->container['cluster_label'];
     }
@@ -455,10 +447,8 @@ final class CurrentUserProjectsInner implements JsonSerializable
 
     /**
      * Gets region
-     *
-     * @return string|null
      */
-    public function getRegion()
+    public function getRegion(): string|null
     {
         return $this->container['region'];
     }
@@ -478,10 +468,8 @@ final class CurrentUserProjectsInner implements JsonSerializable
 
     /**
      * Gets region_label
-     *
-     * @return string|null
      */
-    public function getRegionLabel()
+    public function getRegionLabel(): string|null
     {
         return $this->container['region_label'];
     }
@@ -501,10 +489,8 @@ final class CurrentUserProjectsInner implements JsonSerializable
 
     /**
      * Gets uri
-     *
-     * @return string|null
      */
-    public function getUri()
+    public function getUri(): string|null
     {
         return $this->container['uri'];
     }
@@ -524,10 +510,8 @@ final class CurrentUserProjectsInner implements JsonSerializable
 
     /**
      * Gets endpoint
-     *
-     * @return string|null
      */
-    public function getEndpoint()
+    public function getEndpoint(): string|null
     {
         return $this->container['endpoint'];
     }
@@ -547,10 +531,8 @@ final class CurrentUserProjectsInner implements JsonSerializable
 
     /**
      * Gets license_id
-     *
-     * @return int|null
      */
-    public function getLicenseId()
+    public function getLicenseId(): int|null
     {
         return $this->container['license_id'];
     }
@@ -570,10 +552,8 @@ final class CurrentUserProjectsInner implements JsonSerializable
 
     /**
      * Gets owner
-     *
-     * @return string|null
      */
-    public function getOwner()
+    public function getOwner(): string|null
     {
         return $this->container['owner'];
     }
@@ -593,10 +573,8 @@ final class CurrentUserProjectsInner implements JsonSerializable
 
     /**
      * Gets owner_info
-     *
-     * @return \Upsun\Model\OwnerInfo|null
      */
-    public function getOwnerInfo()
+    public function getOwnerInfo(): \Upsun\Model\OwnerInfo|null
     {
         return $this->container['owner_info'];
     }
@@ -616,10 +594,8 @@ final class CurrentUserProjectsInner implements JsonSerializable
 
     /**
      * Gets plan
-     *
-     * @return string|null
      */
-    public function getPlan()
+    public function getPlan(): string|null
     {
         return $this->container['plan'];
     }
@@ -639,10 +615,8 @@ final class CurrentUserProjectsInner implements JsonSerializable
 
     /**
      * Gets subscription_id
-     *
-     * @return int|null
      */
-    public function getSubscriptionId()
+    public function getSubscriptionId(): int|null
     {
         return $this->container['subscription_id'];
     }
@@ -662,10 +636,8 @@ final class CurrentUserProjectsInner implements JsonSerializable
 
     /**
      * Gets status
-     *
-     * @return string|null
      */
-    public function getStatus()
+    public function getStatus(): string|null
     {
         return $this->container['status'];
     }
@@ -685,10 +657,8 @@ final class CurrentUserProjectsInner implements JsonSerializable
 
     /**
      * Gets vendor
-     *
-     * @return string|null
      */
-    public function getVendor()
+    public function getVendor(): string|null
     {
         return $this->container['vendor'];
     }
@@ -708,10 +678,8 @@ final class CurrentUserProjectsInner implements JsonSerializable
 
     /**
      * Gets vendor_label
-     *
-     * @return string|null
      */
-    public function getVendorLabel()
+    public function getVendorLabel(): string|null
     {
         return $this->container['vendor_label'];
     }
@@ -731,10 +699,8 @@ final class CurrentUserProjectsInner implements JsonSerializable
 
     /**
      * Gets vendor_website
-     *
-     * @return string|null
      */
-    public function getVendorWebsite()
+    public function getVendorWebsite(): string|null
     {
         return $this->container['vendor_website'];
     }
@@ -754,10 +720,8 @@ final class CurrentUserProjectsInner implements JsonSerializable
 
     /**
      * Gets vendor_resources
-     *
-     * @return string|null
      */
-    public function getVendorResources()
+    public function getVendorResources(): string|null
     {
         return $this->container['vendor_resources'];
     }
@@ -777,10 +741,8 @@ final class CurrentUserProjectsInner implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime|null
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime|null
     {
         return $this->container['created_at'];
     }
@@ -842,7 +804,6 @@ final class CurrentUserProjectsInner implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

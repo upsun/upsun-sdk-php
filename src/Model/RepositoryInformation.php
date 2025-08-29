@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class RepositoryInformation implements JsonSerializable
+final class RepositoryInformation implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -220,10 +222,8 @@ final class RepositoryInformation implements JsonSerializable
 
     /**
      * Gets url
-     *
-     * @return string
      */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->container['url'];
     }
@@ -243,10 +243,8 @@ final class RepositoryInformation implements JsonSerializable
 
     /**
      * Gets client_ssh_key
-     *
-     * @return string
      */
-    public function getClientSshKey()
+    public function getClientSshKey(): string
     {
         return $this->container['client_ssh_key'];
     }
@@ -315,7 +313,6 @@ final class RepositoryInformation implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

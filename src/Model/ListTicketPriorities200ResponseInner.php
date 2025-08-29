@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ListTicketPriorities200ResponseInner implements JsonSerializable
+final class ListTicketPriorities200ResponseInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -228,10 +230,8 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string|null
      */
-    public function getId()
+    public function getId(): string|null
     {
         return $this->container['id'];
     }
@@ -251,10 +251,8 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
 
     /**
      * Gets label
-     *
-     * @return string|null
      */
-    public function getLabel()
+    public function getLabel(): string|null
     {
         return $this->container['label'];
     }
@@ -274,10 +272,8 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
 
     /**
      * Gets short_description
-     *
-     * @return string|null
      */
-    public function getShortDescription()
+    public function getShortDescription(): string|null
     {
         return $this->container['short_description'];
     }
@@ -297,10 +293,8 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
 
     /**
      * Gets description
-     *
-     * @return string|null
      */
-    public function getDescription()
+    public function getDescription(): string|null
     {
         return $this->container['description'];
     }
@@ -362,7 +356,6 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

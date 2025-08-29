@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class PrepaymentObjectPrepayment implements JsonSerializable
+final class PrepaymentObjectPrepayment implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -235,10 +237,8 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
 
     /**
      * Gets organization_id
-     *
-     * @return string|null
      */
-    public function getOrganizationId()
+    public function getOrganizationId(): string|null
     {
         return $this->container['organization_id'];
     }
@@ -258,10 +258,8 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
 
     /**
      * Gets balance
-     *
-     * @return \Upsun\Model\PrepaymentObjectPrepaymentBalance|null
      */
-    public function getBalance()
+    public function getBalance(): \Upsun\Model\PrepaymentObjectPrepaymentBalance|null
     {
         return $this->container['balance'];
     }
@@ -281,10 +279,8 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
 
     /**
      * Gets last_updated_at
-     *
-     * @return string|null
      */
-    public function getLastUpdatedAt()
+    public function getLastUpdatedAt(): string|null
     {
         return $this->container['last_updated_at'];
     }
@@ -311,10 +307,8 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
 
     /**
      * Gets sufficient
-     *
-     * @return bool|null
      */
-    public function getSufficient()
+    public function getSufficient(): bool|null
     {
         return $this->container['sufficient'];
     }
@@ -334,10 +328,8 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
 
     /**
      * Gets fallback
-     *
-     * @return string|null
      */
-    public function getFallback()
+    public function getFallback(): string|null
     {
         return $this->container['fallback'];
     }
@@ -406,7 +398,6 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class EnvironmentBackupInput implements JsonSerializable
+final class EnvironmentBackupInput implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -210,10 +212,8 @@ final class EnvironmentBackupInput implements JsonSerializable
 
     /**
      * Gets safe
-     *
-     * @return bool
      */
-    public function getSafe()
+    public function getSafe(): bool
     {
         return $this->container['safe'];
     }
@@ -275,7 +275,6 @@ final class EnvironmentBackupInput implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class CustomDomains implements JsonSerializable
+final class CustomDomains implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -220,10 +222,8 @@ final class CustomDomains implements JsonSerializable
 
     /**
      * Gets enabled
-     *
-     * @return bool
      */
-    public function getEnabled()
+    public function getEnabled(): bool
     {
         return $this->container['enabled'];
     }
@@ -243,10 +243,8 @@ final class CustomDomains implements JsonSerializable
 
     /**
      * Gets environments_with_domains_limit
-     *
-     * @return int
      */
-    public function getEnvironmentsWithDomainsLimit()
+    public function getEnvironmentsWithDomainsLimit(): int
     {
         return $this->container['environments_with_domains_limit'];
     }
@@ -308,7 +306,6 @@ final class CustomDomains implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class OrganizationProject implements JsonSerializable
+final class OrganizationProject implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -315,10 +317,8 @@ final class OrganizationProject implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string|null
      */
-    public function getId()
+    public function getId(): string|null
     {
         return $this->container['id'];
     }
@@ -338,10 +338,8 @@ final class OrganizationProject implements JsonSerializable
 
     /**
      * Gets organization_id
-     *
-     * @return string|null
      */
-    public function getOrganizationId()
+    public function getOrganizationId(): string|null
     {
         return $this->container['organization_id'];
     }
@@ -361,10 +359,8 @@ final class OrganizationProject implements JsonSerializable
 
     /**
      * Gets subscription_id
-     *
-     * @return string|null
      */
-    public function getSubscriptionId()
+    public function getSubscriptionId(): string|null
     {
         return $this->container['subscription_id'];
     }
@@ -384,10 +380,8 @@ final class OrganizationProject implements JsonSerializable
 
     /**
      * Gets region
-     *
-     * @return string|null
      */
-    public function getRegion()
+    public function getRegion(): string|null
     {
         return $this->container['region'];
     }
@@ -407,10 +401,8 @@ final class OrganizationProject implements JsonSerializable
 
     /**
      * Gets title
-     *
-     * @return string|null
      */
-    public function getTitle()
+    public function getTitle(): string|null
     {
         return $this->container['title'];
     }
@@ -430,10 +422,8 @@ final class OrganizationProject implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return \Upsun\Model\OrganizationProjectType|null
      */
-    public function getType()
+    public function getType(): \Upsun\Model\OrganizationProjectType|null
     {
         return $this->container['type'];
     }
@@ -453,10 +443,8 @@ final class OrganizationProject implements JsonSerializable
 
     /**
      * Gets plan
-     *
-     * @return \Upsun\Model\OrganizationProjectPlan|null
      */
-    public function getPlan()
+    public function getPlan(): \Upsun\Model\OrganizationProjectPlan|null
     {
         return $this->container['plan'];
     }
@@ -476,10 +464,8 @@ final class OrganizationProject implements JsonSerializable
 
     /**
      * Gets access_migration_status
-     *
-     * @return string|null
      */
-    public function getAccessMigrationStatus()
+    public function getAccessMigrationStatus(): string|null
     {
         return $this->container['access_migration_status'];
     }
@@ -509,10 +495,8 @@ final class OrganizationProject implements JsonSerializable
 
     /**
      * Gets status
-     *
-     * @return \Upsun\Model\OrganizationProjectStatus|null
      */
-    public function getStatus()
+    public function getStatus(): \Upsun\Model\OrganizationProjectStatus|null
     {
         return $this->container['status'];
     }
@@ -532,10 +516,8 @@ final class OrganizationProject implements JsonSerializable
 
     /**
      * Gets vendor
-     *
-     * @return string|null
      */
-    public function getVendor()
+    public function getVendor(): string|null
     {
         return $this->container['vendor'];
     }
@@ -555,10 +537,8 @@ final class OrganizationProject implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime|null
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime|null
     {
         return $this->container['created_at'];
     }
@@ -578,10 +558,8 @@ final class OrganizationProject implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime|null
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime|null
     {
         return $this->container['updated_at'];
     }
@@ -601,10 +579,8 @@ final class OrganizationProject implements JsonSerializable
 
     /**
      * Gets _links
-     *
-     * @return \Upsun\Model\OrganizationProjectLinks|null
      */
-    public function getLinks()
+    public function getLinks(): \Upsun\Model\OrganizationProjectLinks|null
     {
         return $this->container['_links'];
     }
@@ -666,7 +642,6 @@ final class OrganizationProject implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

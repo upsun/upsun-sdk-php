@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ReplacementDomainStorage implements JsonSerializable
+final class ReplacementDomainStorage implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -271,10 +273,8 @@ final class ReplacementDomainStorage implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->container['created_at'];
     }
@@ -301,10 +301,8 @@ final class ReplacementDomainStorage implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime
     {
         return $this->container['updated_at'];
     }
@@ -331,10 +329,8 @@ final class ReplacementDomainStorage implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -354,10 +350,8 @@ final class ReplacementDomainStorage implements JsonSerializable
 
     /**
      * Gets project
-     *
-     * @return string|null
      */
-    public function getProject()
+    public function getProject(): string|null
     {
         return $this->container['project'];
     }
@@ -377,10 +371,8 @@ final class ReplacementDomainStorage implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->container['name'];
     }
@@ -400,10 +392,8 @@ final class ReplacementDomainStorage implements JsonSerializable
 
     /**
      * Gets registered_name
-     *
-     * @return string|null
      */
-    public function getRegisteredName()
+    public function getRegisteredName(): string|null
     {
         return $this->container['registered_name'];
     }
@@ -423,10 +413,8 @@ final class ReplacementDomainStorage implements JsonSerializable
 
     /**
      * Gets attributes
-     *
-     * @return array<string,string>
      */
-    public function getAttributes()
+    public function getAttributes(): array
     {
         return $this->container['attributes'];
     }
@@ -446,10 +434,8 @@ final class ReplacementDomainStorage implements JsonSerializable
 
     /**
      * Gets replacement_for
-     *
-     * @return string|null
      */
-    public function getReplacementFor()
+    public function getReplacementFor(): string|null
     {
         return $this->container['replacement_for'];
     }
@@ -511,7 +497,6 @@ final class ReplacementDomainStorage implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

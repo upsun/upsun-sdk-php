@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class PrepaymentTransactionObject implements JsonSerializable
+final class PrepaymentTransactionObject implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -249,10 +251,8 @@ final class PrepaymentTransactionObject implements JsonSerializable
 
     /**
      * Gets order_id
-     *
-     * @return string|null
      */
-    public function getOrderId()
+    public function getOrderId(): string|null
     {
         return $this->container['order_id'];
     }
@@ -272,10 +272,8 @@ final class PrepaymentTransactionObject implements JsonSerializable
 
     /**
      * Gets message
-     *
-     * @return string|null
      */
-    public function getMessage()
+    public function getMessage(): string|null
     {
         return $this->container['message'];
     }
@@ -295,10 +293,8 @@ final class PrepaymentTransactionObject implements JsonSerializable
 
     /**
      * Gets status
-     *
-     * @return string|null
      */
-    public function getStatus()
+    public function getStatus(): string|null
     {
         return $this->container['status'];
     }
@@ -318,10 +314,8 @@ final class PrepaymentTransactionObject implements JsonSerializable
 
     /**
      * Gets amount
-     *
-     * @return \Upsun\Model\PrepaymentObjectPrepaymentBalance|null
      */
-    public function getAmount()
+    public function getAmount(): \Upsun\Model\PrepaymentObjectPrepaymentBalance|null
     {
         return $this->container['amount'];
     }
@@ -341,10 +335,8 @@ final class PrepaymentTransactionObject implements JsonSerializable
 
     /**
      * Gets created
-     *
-     * @return string|null
      */
-    public function getCreated()
+    public function getCreated(): string|null
     {
         return $this->container['created'];
     }
@@ -364,10 +356,8 @@ final class PrepaymentTransactionObject implements JsonSerializable
 
     /**
      * Gets updated
-     *
-     * @return string|null
      */
-    public function getUpdated()
+    public function getUpdated(): string|null
     {
         return $this->container['updated'];
     }
@@ -394,10 +384,8 @@ final class PrepaymentTransactionObject implements JsonSerializable
 
     /**
      * Gets expire_date
-     *
-     * @return string|null
      */
-    public function getExpireDate()
+    public function getExpireDate(): string|null
     {
         return $this->container['expire_date'];
     }
@@ -466,7 +454,6 @@ final class PrepaymentTransactionObject implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

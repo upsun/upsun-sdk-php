@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class BuildResources2 implements JsonSerializable
+final class BuildResources2 implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -214,10 +216,8 @@ final class BuildResources2 implements JsonSerializable
 
     /**
      * Gets cpu
-     *
-     * @return float|null
      */
-    public function getCpu()
+    public function getCpu(): float|null
     {
         return $this->container['cpu'];
     }
@@ -237,10 +237,8 @@ final class BuildResources2 implements JsonSerializable
 
     /**
      * Gets memory
-     *
-     * @return int|null
      */
-    public function getMemory()
+    public function getMemory(): int|null
     {
         return $this->container['memory'];
     }
@@ -302,7 +300,6 @@ final class BuildResources2 implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

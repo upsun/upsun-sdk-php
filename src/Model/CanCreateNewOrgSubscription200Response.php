@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class CanCreateNewOrgSubscription200Response implements JsonSerializable
+final class CanCreateNewOrgSubscription200Response implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -221,10 +223,8 @@ final class CanCreateNewOrgSubscription200Response implements JsonSerializable
 
     /**
      * Gets can_create
-     *
-     * @return bool|null
      */
-    public function getCanCreate()
+    public function getCanCreate(): bool|null
     {
         return $this->container['can_create'];
     }
@@ -244,10 +244,8 @@ final class CanCreateNewOrgSubscription200Response implements JsonSerializable
 
     /**
      * Gets message
-     *
-     * @return string|null
      */
-    public function getMessage()
+    public function getMessage(): string|null
     {
         return $this->container['message'];
     }
@@ -267,10 +265,8 @@ final class CanCreateNewOrgSubscription200Response implements JsonSerializable
 
     /**
      * Gets required_action
-     *
-     * @return \Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction|null
      */
-    public function getRequiredAction()
+    public function getRequiredAction(): \Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction|null
     {
         return $this->container['required_action'];
     }
@@ -339,7 +335,6 @@ final class CanCreateNewOrgSubscription200Response implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class OrganizationMember implements JsonSerializable
+final class OrganizationMember implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -307,11 +309,9 @@ final class OrganizationMember implements JsonSerializable
     /**
      * Gets id
      *
-     * @return string|null
-     *
      * @deprecated
      */
-    public function getId()
+    public function getId(): string|null
     {
         return $this->container['id'];
     }
@@ -333,10 +333,8 @@ final class OrganizationMember implements JsonSerializable
 
     /**
      * Gets organization_id
-     *
-     * @return string|null
      */
-    public function getOrganizationId()
+    public function getOrganizationId(): string|null
     {
         return $this->container['organization_id'];
     }
@@ -356,10 +354,8 @@ final class OrganizationMember implements JsonSerializable
 
     /**
      * Gets user_id
-     *
-     * @return string|null
      */
-    public function getUserId()
+    public function getUserId(): string|null
     {
         return $this->container['user_id'];
     }
@@ -379,10 +375,8 @@ final class OrganizationMember implements JsonSerializable
 
     /**
      * Gets permissions
-     *
-     * @return string[]|null
      */
-    public function getPermissions()
+    public function getPermissions(): array|null
     {
         return $this->container['permissions'];
     }
@@ -411,10 +405,8 @@ final class OrganizationMember implements JsonSerializable
 
     /**
      * Gets level
-     *
-     * @return string|null
      */
-    public function getLevel()
+    public function getLevel(): string|null
     {
         return $this->container['level'];
     }
@@ -444,10 +436,8 @@ final class OrganizationMember implements JsonSerializable
 
     /**
      * Gets owner
-     *
-     * @return bool|null
      */
-    public function getOwner()
+    public function getOwner(): bool|null
     {
         return $this->container['owner'];
     }
@@ -467,10 +457,8 @@ final class OrganizationMember implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime|null
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime|null
     {
         return $this->container['created_at'];
     }
@@ -490,10 +478,8 @@ final class OrganizationMember implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime|null
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime|null
     {
         return $this->container['updated_at'];
     }
@@ -513,10 +499,8 @@ final class OrganizationMember implements JsonSerializable
 
     /**
      * Gets _links
-     *
-     * @return \Upsun\Model\OrganizationMemberLinks|null
      */
-    public function getLinks()
+    public function getLinks(): \Upsun\Model\OrganizationMemberLinks|null
     {
         return $this->container['_links'];
     }
@@ -578,7 +562,6 @@ final class OrganizationMember implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

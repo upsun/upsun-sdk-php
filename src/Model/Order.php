@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Order implements JsonSerializable
+final class Order implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -370,10 +372,8 @@ final class Order implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string|null
      */
-    public function getId()
+    public function getId(): string|null
     {
         return $this->container['id'];
     }
@@ -393,10 +393,8 @@ final class Order implements JsonSerializable
 
     /**
      * Gets status
-     *
-     * @return string|null
      */
-    public function getStatus()
+    public function getStatus(): string|null
     {
         return $this->container['status'];
     }
@@ -426,10 +424,8 @@ final class Order implements JsonSerializable
 
     /**
      * Gets owner
-     *
-     * @return string|null
      */
-    public function getOwner()
+    public function getOwner(): string|null
     {
         return $this->container['owner'];
     }
@@ -449,10 +445,8 @@ final class Order implements JsonSerializable
 
     /**
      * Gets address
-     *
-     * @return \Upsun\Model\Address|null
      */
-    public function getAddress()
+    public function getAddress(): \Upsun\Model\Address|null
     {
         return $this->container['address'];
     }
@@ -472,10 +466,8 @@ final class Order implements JsonSerializable
 
     /**
      * Gets company
-     *
-     * @return string|null
      */
-    public function getCompany()
+    public function getCompany(): string|null
     {
         return $this->container['company'];
     }
@@ -495,10 +487,8 @@ final class Order implements JsonSerializable
 
     /**
      * Gets vat_number
-     *
-     * @return string|null
      */
-    public function getVatNumber()
+    public function getVatNumber(): string|null
     {
         return $this->container['vat_number'];
     }
@@ -518,10 +508,8 @@ final class Order implements JsonSerializable
 
     /**
      * Gets billing_period_start
-     *
-     * @return \DateTime|null
      */
-    public function getBillingPeriodStart()
+    public function getBillingPeriodStart(): \DateTime|null
     {
         return $this->container['billing_period_start'];
     }
@@ -541,10 +529,8 @@ final class Order implements JsonSerializable
 
     /**
      * Gets billing_period_end
-     *
-     * @return \DateTime|null
      */
-    public function getBillingPeriodEnd()
+    public function getBillingPeriodEnd(): \DateTime|null
     {
         return $this->container['billing_period_end'];
     }
@@ -564,10 +550,8 @@ final class Order implements JsonSerializable
 
     /**
      * Gets billing_period_label
-     *
-     * @return \Upsun\Model\OrderBillingPeriodLabel|null
      */
-    public function getBillingPeriodLabel()
+    public function getBillingPeriodLabel(): \Upsun\Model\OrderBillingPeriodLabel|null
     {
         return $this->container['billing_period_label'];
     }
@@ -587,10 +571,8 @@ final class Order implements JsonSerializable
 
     /**
      * Gets billing_period_duration
-     *
-     * @return int|null
      */
-    public function getBillingPeriodDuration()
+    public function getBillingPeriodDuration(): int|null
     {
         return $this->container['billing_period_duration'];
     }
@@ -610,10 +592,8 @@ final class Order implements JsonSerializable
 
     /**
      * Gets paid_on
-     *
-     * @return \DateTime|null
      */
-    public function getPaidOn()
+    public function getPaidOn(): \DateTime|null
     {
         return $this->container['paid_on'];
     }
@@ -640,10 +620,8 @@ final class Order implements JsonSerializable
 
     /**
      * Gets total
-     *
-     * @return int|null
      */
-    public function getTotal()
+    public function getTotal(): int|null
     {
         return $this->container['total'];
     }
@@ -663,10 +641,8 @@ final class Order implements JsonSerializable
 
     /**
      * Gets total_formatted
-     *
-     * @return int|null
      */
-    public function getTotalFormatted()
+    public function getTotalFormatted(): int|null
     {
         return $this->container['total_formatted'];
     }
@@ -686,10 +662,8 @@ final class Order implements JsonSerializable
 
     /**
      * Gets components
-     *
-     * @return \Upsun\Model\Components|null
      */
-    public function getComponents()
+    public function getComponents(): \Upsun\Model\Components|null
     {
         return $this->container['components'];
     }
@@ -709,10 +683,8 @@ final class Order implements JsonSerializable
 
     /**
      * Gets currency
-     *
-     * @return string|null
      */
-    public function getCurrency()
+    public function getCurrency(): string|null
     {
         return $this->container['currency'];
     }
@@ -732,10 +704,8 @@ final class Order implements JsonSerializable
 
     /**
      * Gets invoice_url
-     *
-     * @return string|null
      */
-    public function getInvoiceUrl()
+    public function getInvoiceUrl(): string|null
     {
         return $this->container['invoice_url'];
     }
@@ -755,10 +725,8 @@ final class Order implements JsonSerializable
 
     /**
      * Gets last_refreshed
-     *
-     * @return \DateTime|null
      */
-    public function getLastRefreshed()
+    public function getLastRefreshed(): \DateTime|null
     {
         return $this->container['last_refreshed'];
     }
@@ -778,10 +746,8 @@ final class Order implements JsonSerializable
 
     /**
      * Gets invoiced
-     *
-     * @return bool|null
      */
-    public function getInvoiced()
+    public function getInvoiced(): bool|null
     {
         return $this->container['invoiced'];
     }
@@ -801,10 +767,8 @@ final class Order implements JsonSerializable
 
     /**
      * Gets line_items
-     *
-     * @return \Upsun\Model\LineItem[]|null
      */
-    public function getLineItems()
+    public function getLineItems(): array|null
     {
         return $this->container['line_items'];
     }
@@ -824,10 +788,8 @@ final class Order implements JsonSerializable
 
     /**
      * Gets _links
-     *
-     * @return \Upsun\Model\OrderLinks|null
      */
-    public function getLinks()
+    public function getLinks(): \Upsun\Model\OrderLinks|null
     {
         return $this->container['_links'];
     }
@@ -889,7 +851,6 @@ final class Order implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

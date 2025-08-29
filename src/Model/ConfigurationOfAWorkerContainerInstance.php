@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ConfigurationOfAWorkerContainerInstance implements JsonSerializable
+final class ConfigurationOfAWorkerContainerInstance implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -217,10 +219,8 @@ final class ConfigurationOfAWorkerContainerInstance implements JsonSerializable
 
     /**
      * Gets commands
-     *
-     * @return \Upsun\Model\TheCommandsToManageTheWorker
      */
-    public function getCommands()
+    public function getCommands(): \Upsun\Model\TheCommandsToManageTheWorker
     {
         return $this->container['commands'];
     }
@@ -240,10 +240,8 @@ final class ConfigurationOfAWorkerContainerInstance implements JsonSerializable
 
     /**
      * Gets disk
-     *
-     * @return int|null
      */
-    public function getDisk()
+    public function getDisk(): int|null
     {
         return $this->container['disk'];
     }
@@ -312,7 +310,6 @@ final class ConfigurationOfAWorkerContainerInstance implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

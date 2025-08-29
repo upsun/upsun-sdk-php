@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TheAddonCredentialInformationOptional1 implements JsonSerializable
+final class TheAddonCredentialInformationOptional1 implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -230,10 +232,8 @@ final class TheAddonCredentialInformationOptional1 implements JsonSerializable
 
     /**
      * Gets addon_key
-     *
-     * @return string
      */
-    public function getAddonKey()
+    public function getAddonKey(): string
     {
         return $this->container['addon_key'];
     }
@@ -253,10 +253,8 @@ final class TheAddonCredentialInformationOptional1 implements JsonSerializable
 
     /**
      * Gets client_key
-     *
-     * @return string
      */
-    public function getClientKey()
+    public function getClientKey(): string
     {
         return $this->container['client_key'];
     }
@@ -276,10 +274,8 @@ final class TheAddonCredentialInformationOptional1 implements JsonSerializable
 
     /**
      * Gets shared_secret
-     *
-     * @return string
      */
-    public function getSharedSecret()
+    public function getSharedSecret(): string
     {
         return $this->container['shared_secret'];
     }
@@ -341,7 +337,6 @@ final class TheAddonCredentialInformationOptional1 implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

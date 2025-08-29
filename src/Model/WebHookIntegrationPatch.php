@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class WebHookIntegrationPatch implements JsonSerializable
+final class WebHookIntegrationPatch implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -286,10 +288,8 @@ final class WebHookIntegrationPatch implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -309,10 +309,8 @@ final class WebHookIntegrationPatch implements JsonSerializable
 
     /**
      * Gets events
-     *
-     * @return string[]|null
      */
-    public function getEvents()
+    public function getEvents(): array|null
     {
         return $this->container['events'];
     }
@@ -332,10 +330,8 @@ final class WebHookIntegrationPatch implements JsonSerializable
 
     /**
      * Gets environments
-     *
-     * @return string[]|null
      */
-    public function getEnvironments()
+    public function getEnvironments(): array|null
     {
         return $this->container['environments'];
     }
@@ -355,10 +351,8 @@ final class WebHookIntegrationPatch implements JsonSerializable
 
     /**
      * Gets excluded_environments
-     *
-     * @return string[]|null
      */
-    public function getExcludedEnvironments()
+    public function getExcludedEnvironments(): array|null
     {
         return $this->container['excluded_environments'];
     }
@@ -378,10 +372,8 @@ final class WebHookIntegrationPatch implements JsonSerializable
 
     /**
      * Gets states
-     *
-     * @return string[]|null
      */
-    public function getStates()
+    public function getStates(): array|null
     {
         return $this->container['states'];
     }
@@ -401,10 +393,8 @@ final class WebHookIntegrationPatch implements JsonSerializable
 
     /**
      * Gets result
-     *
-     * @return string|null
      */
-    public function getResult()
+    public function getResult(): string|null
     {
         return $this->container['result'];
     }
@@ -434,10 +424,8 @@ final class WebHookIntegrationPatch implements JsonSerializable
 
     /**
      * Gets shared_key
-     *
-     * @return string|null
      */
-    public function getSharedKey()
+    public function getSharedKey(): string|null
     {
         return $this->container['shared_key'];
     }
@@ -464,10 +452,8 @@ final class WebHookIntegrationPatch implements JsonSerializable
 
     /**
      * Gets url
-     *
-     * @return string
      */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->container['url'];
     }
@@ -529,7 +515,6 @@ final class WebHookIntegrationPatch implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

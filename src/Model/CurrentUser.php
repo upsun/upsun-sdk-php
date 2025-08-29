@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class CurrentUser implements JsonSerializable
+final class CurrentUser implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -305,10 +307,8 @@ final class CurrentUser implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string|null
      */
-    public function getId()
+    public function getId(): string|null
     {
         return $this->container['id'];
     }
@@ -328,10 +328,8 @@ final class CurrentUser implements JsonSerializable
 
     /**
      * Gets uuid
-     *
-     * @return string|null
      */
-    public function getUuid()
+    public function getUuid(): string|null
     {
         return $this->container['uuid'];
     }
@@ -351,10 +349,8 @@ final class CurrentUser implements JsonSerializable
 
     /**
      * Gets username
-     *
-     * @return string|null
      */
-    public function getUsername()
+    public function getUsername(): string|null
     {
         return $this->container['username'];
     }
@@ -374,10 +370,8 @@ final class CurrentUser implements JsonSerializable
 
     /**
      * Gets display_name
-     *
-     * @return string|null
      */
-    public function getDisplayName()
+    public function getDisplayName(): string|null
     {
         return $this->container['display_name'];
     }
@@ -397,10 +391,8 @@ final class CurrentUser implements JsonSerializable
 
     /**
      * Gets status
-     *
-     * @return int|null
      */
-    public function getStatus()
+    public function getStatus(): int|null
     {
         return $this->container['status'];
     }
@@ -420,10 +412,8 @@ final class CurrentUser implements JsonSerializable
 
     /**
      * Gets mail
-     *
-     * @return string|null
      */
-    public function getMail()
+    public function getMail(): string|null
     {
         return $this->container['mail'];
     }
@@ -443,10 +433,8 @@ final class CurrentUser implements JsonSerializable
 
     /**
      * Gets ssh_keys
-     *
-     * @return \Upsun\Model\SSHKey[]|null
      */
-    public function getSshKeys()
+    public function getSshKeys(): array|null
     {
         return $this->container['ssh_keys'];
     }
@@ -466,10 +454,8 @@ final class CurrentUser implements JsonSerializable
 
     /**
      * Gets has_key
-     *
-     * @return bool|null
      */
-    public function getHasKey()
+    public function getHasKey(): bool|null
     {
         return $this->container['has_key'];
     }
@@ -489,10 +475,8 @@ final class CurrentUser implements JsonSerializable
 
     /**
      * Gets projects
-     *
-     * @return \Upsun\Model\CurrentUserProjectsInner[]|null
      */
-    public function getProjects()
+    public function getProjects(): array|null
     {
         return $this->container['projects'];
     }
@@ -512,10 +496,8 @@ final class CurrentUser implements JsonSerializable
 
     /**
      * Gets sequence
-     *
-     * @return int|null
      */
-    public function getSequence()
+    public function getSequence(): int|null
     {
         return $this->container['sequence'];
     }
@@ -535,10 +517,8 @@ final class CurrentUser implements JsonSerializable
 
     /**
      * Gets roles
-     *
-     * @return string[]|null
      */
-    public function getRoles()
+    public function getRoles(): array|null
     {
         return $this->container['roles'];
     }
@@ -558,10 +538,8 @@ final class CurrentUser implements JsonSerializable
 
     /**
      * Gets picture
-     *
-     * @return string|null
      */
-    public function getPicture()
+    public function getPicture(): string|null
     {
         return $this->container['picture'];
     }
@@ -581,10 +559,8 @@ final class CurrentUser implements JsonSerializable
 
     /**
      * Gets tickets
-     *
-     * @return object|null
      */
-    public function getTickets()
+    public function getTickets(): object|null
     {
         return $this->container['tickets'];
     }
@@ -604,10 +580,8 @@ final class CurrentUser implements JsonSerializable
 
     /**
      * Gets trial
-     *
-     * @return bool|null
      */
-    public function getTrial()
+    public function getTrial(): bool|null
     {
         return $this->container['trial'];
     }
@@ -627,10 +601,8 @@ final class CurrentUser implements JsonSerializable
 
     /**
      * Gets current_trial
-     *
-     * @return \Upsun\Model\CurrentUserCurrentTrialInner[]|null
      */
-    public function getCurrentTrial()
+    public function getCurrentTrial(): array|null
     {
         return $this->container['current_trial'];
     }
@@ -692,7 +664,6 @@ final class CurrentUser implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

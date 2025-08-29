@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
+final class ProfileCurrentTrialSpendRemaining implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -235,10 +237,8 @@ final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
 
     /**
      * Gets formatted
-     *
-     * @return string|null
      */
-    public function getFormatted()
+    public function getFormatted(): string|null
     {
         return $this->container['formatted'];
     }
@@ -258,10 +258,8 @@ final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
 
     /**
      * Gets amount
-     *
-     * @return string|null
      */
-    public function getAmount()
+    public function getAmount(): string|null
     {
         return $this->container['amount'];
     }
@@ -281,10 +279,8 @@ final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
 
     /**
      * Gets currency
-     *
-     * @return string|null
      */
-    public function getCurrency()
+    public function getCurrency(): string|null
     {
         return $this->container['currency'];
     }
@@ -304,10 +300,8 @@ final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
 
     /**
      * Gets currency_symbol
-     *
-     * @return string|null
      */
-    public function getCurrencySymbol()
+    public function getCurrencySymbol(): string|null
     {
         return $this->container['currency_symbol'];
     }
@@ -327,10 +321,8 @@ final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
 
     /**
      * Gets unlimited
-     *
-     * @return bool|null
      */
-    public function getUnlimited()
+    public function getUnlimited(): bool|null
     {
         return $this->container['unlimited'];
     }
@@ -392,7 +384,6 @@ final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

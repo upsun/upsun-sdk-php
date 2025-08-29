@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Region implements JsonSerializable
+final class Region implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -284,10 +286,8 @@ final class Region implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string|null
      */
-    public function getId()
+    public function getId(): string|null
     {
         return $this->container['id'];
     }
@@ -307,10 +307,8 @@ final class Region implements JsonSerializable
 
     /**
      * Gets label
-     *
-     * @return string|null
      */
-    public function getLabel()
+    public function getLabel(): string|null
     {
         return $this->container['label'];
     }
@@ -330,10 +328,8 @@ final class Region implements JsonSerializable
 
     /**
      * Gets zone
-     *
-     * @return string|null
      */
-    public function getZone()
+    public function getZone(): string|null
     {
         return $this->container['zone'];
     }
@@ -353,10 +349,8 @@ final class Region implements JsonSerializable
 
     /**
      * Gets selection_label
-     *
-     * @return string|null
      */
-    public function getSelectionLabel()
+    public function getSelectionLabel(): string|null
     {
         return $this->container['selection_label'];
     }
@@ -376,10 +370,8 @@ final class Region implements JsonSerializable
 
     /**
      * Gets project_label
-     *
-     * @return string|null
      */
-    public function getProjectLabel()
+    public function getProjectLabel(): string|null
     {
         return $this->container['project_label'];
     }
@@ -399,10 +391,8 @@ final class Region implements JsonSerializable
 
     /**
      * Gets timezone
-     *
-     * @return string|null
      */
-    public function getTimezone()
+    public function getTimezone(): string|null
     {
         return $this->container['timezone'];
     }
@@ -422,10 +412,8 @@ final class Region implements JsonSerializable
 
     /**
      * Gets available
-     *
-     * @return bool|null
      */
-    public function getAvailable()
+    public function getAvailable(): bool|null
     {
         return $this->container['available'];
     }
@@ -445,10 +433,8 @@ final class Region implements JsonSerializable
 
     /**
      * Gets private
-     *
-     * @return bool|null
      */
-    public function getPrivate()
+    public function getPrivate(): bool|null
     {
         return $this->container['private'];
     }
@@ -468,10 +454,8 @@ final class Region implements JsonSerializable
 
     /**
      * Gets endpoint
-     *
-     * @return string|null
      */
-    public function getEndpoint()
+    public function getEndpoint(): string|null
     {
         return $this->container['endpoint'];
     }
@@ -491,10 +475,8 @@ final class Region implements JsonSerializable
 
     /**
      * Gets provider
-     *
-     * @return \Upsun\Model\RegionProvider|null
      */
-    public function getProvider()
+    public function getProvider(): \Upsun\Model\RegionProvider|null
     {
         return $this->container['provider'];
     }
@@ -514,10 +496,8 @@ final class Region implements JsonSerializable
 
     /**
      * Gets datacenter
-     *
-     * @return \Upsun\Model\RegionDatacenter|null
      */
-    public function getDatacenter()
+    public function getDatacenter(): \Upsun\Model\RegionDatacenter|null
     {
         return $this->container['datacenter'];
     }
@@ -537,10 +517,8 @@ final class Region implements JsonSerializable
 
     /**
      * Gets environmental_impact
-     *
-     * @return \Upsun\Model\RegionEnvironmentalImpact|null
      */
-    public function getEnvironmentalImpact()
+    public function getEnvironmentalImpact(): \Upsun\Model\RegionEnvironmentalImpact|null
     {
         return $this->container['environmental_impact'];
     }
@@ -602,7 +580,6 @@ final class Region implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

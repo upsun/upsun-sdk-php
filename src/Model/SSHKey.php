@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class SSHKey implements JsonSerializable
+final class SSHKey implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -242,10 +244,8 @@ final class SSHKey implements JsonSerializable
 
     /**
      * Gets key_id
-     *
-     * @return int|null
      */
-    public function getKeyId()
+    public function getKeyId(): int|null
     {
         return $this->container['key_id'];
     }
@@ -265,10 +265,8 @@ final class SSHKey implements JsonSerializable
 
     /**
      * Gets uid
-     *
-     * @return int|null
      */
-    public function getUid()
+    public function getUid(): int|null
     {
         return $this->container['uid'];
     }
@@ -288,10 +286,8 @@ final class SSHKey implements JsonSerializable
 
     /**
      * Gets fingerprint
-     *
-     * @return string|null
      */
-    public function getFingerprint()
+    public function getFingerprint(): string|null
     {
         return $this->container['fingerprint'];
     }
@@ -311,10 +307,8 @@ final class SSHKey implements JsonSerializable
 
     /**
      * Gets title
-     *
-     * @return string|null
      */
-    public function getTitle()
+    public function getTitle(): string|null
     {
         return $this->container['title'];
     }
@@ -334,10 +328,8 @@ final class SSHKey implements JsonSerializable
 
     /**
      * Gets value
-     *
-     * @return string|null
      */
-    public function getValue()
+    public function getValue(): string|null
     {
         return $this->container['value'];
     }
@@ -357,10 +349,8 @@ final class SSHKey implements JsonSerializable
 
     /**
      * Gets changed
-     *
-     * @return string|null
      */
-    public function getChanged()
+    public function getChanged(): string|null
     {
         return $this->container['changed'];
     }
@@ -422,7 +412,6 @@ final class SSHKey implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

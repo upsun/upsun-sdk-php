@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class OrganizationEstimationObjectUserLicensesUserManagementList implements JsonSerializable
+final class OrganizationEstimationObjectUserLicensesUserManagementList implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -214,10 +216,8 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
 
     /**
      * Gets standard_management_user
-     *
-     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser|null
      */
-    public function getStandardManagementUser()
+    public function getStandardManagementUser(): \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser|null
     {
         return $this->container['standard_management_user'];
     }
@@ -237,10 +237,8 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
 
     /**
      * Gets advanced_management_user
-     *
-     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser|null
      */
-    public function getAdvancedManagementUser()
+    public function getAdvancedManagementUser(): \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser|null
     {
         return $this->container['advanced_management_user'];
     }
@@ -302,7 +300,6 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

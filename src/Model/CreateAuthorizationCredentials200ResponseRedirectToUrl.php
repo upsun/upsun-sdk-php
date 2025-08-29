@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements JsonSerializable
+final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -214,10 +216,8 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Js
 
     /**
      * Gets return_url
-     *
-     * @return string|null
      */
-    public function getReturnUrl()
+    public function getReturnUrl(): string|null
     {
         return $this->container['return_url'];
     }
@@ -237,10 +237,8 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Js
 
     /**
      * Gets url
-     *
-     * @return string|null
      */
-    public function getUrl()
+    public function getUrl(): string|null
     {
         return $this->container['url'];
     }
@@ -302,7 +300,6 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Js
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

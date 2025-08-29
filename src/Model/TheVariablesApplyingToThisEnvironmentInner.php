@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializable
+final class TheVariablesApplyingToThisEnvironmentInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -257,10 +259,8 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
 
     /**
      * Gets name
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->container['name'];
     }
@@ -280,10 +280,8 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
 
     /**
      * Gets value
-     *
-     * @return string|null
      */
-    public function getValue()
+    public function getValue(): string|null
     {
         return $this->container['value'];
     }
@@ -303,10 +301,8 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
 
     /**
      * Gets is_sensitive
-     *
-     * @return bool
      */
-    public function getIsSensitive()
+    public function getIsSensitive(): bool
     {
         return $this->container['is_sensitive'];
     }
@@ -326,10 +322,8 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
 
     /**
      * Gets is_json
-     *
-     * @return bool
      */
-    public function getIsJson()
+    public function getIsJson(): bool
     {
         return $this->container['is_json'];
     }
@@ -349,10 +343,8 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
 
     /**
      * Gets visible_build
-     *
-     * @return bool
      */
-    public function getVisibleBuild()
+    public function getVisibleBuild(): bool
     {
         return $this->container['visible_build'];
     }
@@ -372,10 +364,8 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
 
     /**
      * Gets visible_runtime
-     *
-     * @return bool
      */
-    public function getVisibleRuntime()
+    public function getVisibleRuntime(): bool
     {
         return $this->container['visible_runtime'];
     }
@@ -437,7 +427,6 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

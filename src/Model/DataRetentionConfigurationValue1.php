@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class DataRetentionConfigurationValue1 implements JsonSerializable
+final class DataRetentionConfigurationValue1 implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -217,10 +219,8 @@ final class DataRetentionConfigurationValue1 implements JsonSerializable
 
     /**
      * Gets max_backups
-     *
-     * @return int|null
      */
-    public function getMaxBackups()
+    public function getMaxBackups(): int|null
     {
         return $this->container['max_backups'];
     }
@@ -240,10 +240,8 @@ final class DataRetentionConfigurationValue1 implements JsonSerializable
 
     /**
      * Gets default_config
-     *
-     * @return \Upsun\Model\DefaultConfig1
      */
-    public function getDefaultConfig()
+    public function getDefaultConfig(): \Upsun\Model\DefaultConfig1
     {
         return $this->container['default_config'];
     }
@@ -305,7 +303,6 @@ final class DataRetentionConfigurationValue1 implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

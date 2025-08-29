@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class HalLinksPrevious implements JsonSerializable
+final class HalLinksPrevious implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -214,10 +216,8 @@ final class HalLinksPrevious implements JsonSerializable
 
     /**
      * Gets title
-     *
-     * @return string|null
      */
-    public function getTitle()
+    public function getTitle(): string|null
     {
         return $this->container['title'];
     }
@@ -237,10 +237,8 @@ final class HalLinksPrevious implements JsonSerializable
 
     /**
      * Gets href
-     *
-     * @return string|null
      */
-    public function getHref()
+    public function getHref(): string|null
     {
         return $this->container['href'];
     }
@@ -302,7 +300,6 @@ final class HalLinksPrevious implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

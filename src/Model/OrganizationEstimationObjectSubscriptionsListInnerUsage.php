@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements JsonSerializable
+final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -228,10 +230,8 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
 
     /**
      * Gets cpu
-     *
-     * @return float|null
      */
-    public function getCpu()
+    public function getCpu(): float|null
     {
         return $this->container['cpu'];
     }
@@ -251,10 +251,8 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
 
     /**
      * Gets memory
-     *
-     * @return float|null
      */
-    public function getMemory()
+    public function getMemory(): float|null
     {
         return $this->container['memory'];
     }
@@ -274,10 +272,8 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
 
     /**
      * Gets storage
-     *
-     * @return float|null
      */
-    public function getStorage()
+    public function getStorage(): float|null
     {
         return $this->container['storage'];
     }
@@ -297,10 +293,8 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
 
     /**
      * Gets environments
-     *
-     * @return int|null
      */
-    public function getEnvironments()
+    public function getEnvironments(): int|null
     {
         return $this->container['environments'];
     }
@@ -362,7 +356,6 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class LogsForwarding implements JsonSerializable
+final class LogsForwarding implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -210,10 +212,8 @@ final class LogsForwarding implements JsonSerializable
 
     /**
      * Gets max_extra_payload_size
-     *
-     * @return int
      */
-    public function getMaxExtraPayloadSize()
+    public function getMaxExtraPayloadSize(): int
     {
         return $this->container['max_extra_payload_size'];
     }
@@ -275,7 +275,6 @@ final class LogsForwarding implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

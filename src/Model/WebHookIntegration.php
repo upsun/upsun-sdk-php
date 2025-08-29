@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class WebHookIntegration implements JsonSerializable
+final class WebHookIntegration implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -324,10 +326,8 @@ final class WebHookIntegration implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->container['created_at'];
     }
@@ -354,10 +354,8 @@ final class WebHookIntegration implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime
     {
         return $this->container['updated_at'];
     }
@@ -384,10 +382,8 @@ final class WebHookIntegration implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -407,10 +403,8 @@ final class WebHookIntegration implements JsonSerializable
 
     /**
      * Gets events
-     *
-     * @return string[]
      */
-    public function getEvents()
+    public function getEvents(): array
     {
         return $this->container['events'];
     }
@@ -430,10 +424,8 @@ final class WebHookIntegration implements JsonSerializable
 
     /**
      * Gets environments
-     *
-     * @return string[]
      */
-    public function getEnvironments()
+    public function getEnvironments(): array
     {
         return $this->container['environments'];
     }
@@ -453,10 +445,8 @@ final class WebHookIntegration implements JsonSerializable
 
     /**
      * Gets excluded_environments
-     *
-     * @return string[]
      */
-    public function getExcludedEnvironments()
+    public function getExcludedEnvironments(): array
     {
         return $this->container['excluded_environments'];
     }
@@ -476,10 +466,8 @@ final class WebHookIntegration implements JsonSerializable
 
     /**
      * Gets states
-     *
-     * @return string[]
      */
-    public function getStates()
+    public function getStates(): array
     {
         return $this->container['states'];
     }
@@ -499,10 +487,8 @@ final class WebHookIntegration implements JsonSerializable
 
     /**
      * Gets result
-     *
-     * @return string
      */
-    public function getResult()
+    public function getResult(): string
     {
         return $this->container['result'];
     }
@@ -532,10 +518,8 @@ final class WebHookIntegration implements JsonSerializable
 
     /**
      * Gets shared_key
-     *
-     * @return string
      */
-    public function getSharedKey()
+    public function getSharedKey(): string
     {
         return $this->container['shared_key'];
     }
@@ -562,10 +546,8 @@ final class WebHookIntegration implements JsonSerializable
 
     /**
      * Gets url
-     *
-     * @return string
      */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->container['url'];
     }
@@ -627,7 +609,6 @@ final class WebHookIntegration implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class GetAddress200Response implements JsonSerializable
+final class GetAddress200Response implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -277,10 +279,8 @@ final class GetAddress200Response implements JsonSerializable
 
     /**
      * Gets country
-     *
-     * @return string|null
      */
-    public function getCountry()
+    public function getCountry(): string|null
     {
         return $this->container['country'];
     }
@@ -300,10 +300,8 @@ final class GetAddress200Response implements JsonSerializable
 
     /**
      * Gets name_line
-     *
-     * @return string|null
      */
-    public function getNameLine()
+    public function getNameLine(): string|null
     {
         return $this->container['name_line'];
     }
@@ -323,10 +321,8 @@ final class GetAddress200Response implements JsonSerializable
 
     /**
      * Gets premise
-     *
-     * @return string|null
      */
-    public function getPremise()
+    public function getPremise(): string|null
     {
         return $this->container['premise'];
     }
@@ -346,10 +342,8 @@ final class GetAddress200Response implements JsonSerializable
 
     /**
      * Gets sub_premise
-     *
-     * @return string|null
      */
-    public function getSubPremise()
+    public function getSubPremise(): string|null
     {
         return $this->container['sub_premise'];
     }
@@ -369,10 +363,8 @@ final class GetAddress200Response implements JsonSerializable
 
     /**
      * Gets thoroughfare
-     *
-     * @return string|null
      */
-    public function getThoroughfare()
+    public function getThoroughfare(): string|null
     {
         return $this->container['thoroughfare'];
     }
@@ -392,10 +384,8 @@ final class GetAddress200Response implements JsonSerializable
 
     /**
      * Gets administrative_area
-     *
-     * @return string|null
      */
-    public function getAdministrativeArea()
+    public function getAdministrativeArea(): string|null
     {
         return $this->container['administrative_area'];
     }
@@ -415,10 +405,8 @@ final class GetAddress200Response implements JsonSerializable
 
     /**
      * Gets sub_administrative_area
-     *
-     * @return string|null
      */
-    public function getSubAdministrativeArea()
+    public function getSubAdministrativeArea(): string|null
     {
         return $this->container['sub_administrative_area'];
     }
@@ -438,10 +426,8 @@ final class GetAddress200Response implements JsonSerializable
 
     /**
      * Gets locality
-     *
-     * @return string|null
      */
-    public function getLocality()
+    public function getLocality(): string|null
     {
         return $this->container['locality'];
     }
@@ -461,10 +447,8 @@ final class GetAddress200Response implements JsonSerializable
 
     /**
      * Gets dependent_locality
-     *
-     * @return string|null
      */
-    public function getDependentLocality()
+    public function getDependentLocality(): string|null
     {
         return $this->container['dependent_locality'];
     }
@@ -484,10 +468,8 @@ final class GetAddress200Response implements JsonSerializable
 
     /**
      * Gets postal_code
-     *
-     * @return string|null
      */
-    public function getPostalCode()
+    public function getPostalCode(): string|null
     {
         return $this->container['postal_code'];
     }
@@ -507,10 +489,8 @@ final class GetAddress200Response implements JsonSerializable
 
     /**
      * Gets metadata
-     *
-     * @return \Upsun\Model\AddressMetadataMetadata|null
      */
-    public function getMetadata()
+    public function getMetadata(): \Upsun\Model\AddressMetadataMetadata|null
     {
         return $this->container['metadata'];
     }
@@ -572,7 +552,6 @@ final class GetAddress200Response implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Invoice implements JsonSerializable
+final class Invoice implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -364,10 +366,8 @@ final class Invoice implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string|null
      */
-    public function getId()
+    public function getId(): string|null
     {
         return $this->container['id'];
     }
@@ -387,10 +387,8 @@ final class Invoice implements JsonSerializable
 
     /**
      * Gets invoice_number
-     *
-     * @return string|null
      */
-    public function getInvoiceNumber()
+    public function getInvoiceNumber(): string|null
     {
         return $this->container['invoice_number'];
     }
@@ -410,10 +408,8 @@ final class Invoice implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string|null
      */
-    public function getType()
+    public function getType(): string|null
     {
         return $this->container['type'];
     }
@@ -443,10 +439,8 @@ final class Invoice implements JsonSerializable
 
     /**
      * Gets order_id
-     *
-     * @return string|null
      */
-    public function getOrderId()
+    public function getOrderId(): string|null
     {
         return $this->container['order_id'];
     }
@@ -466,10 +460,8 @@ final class Invoice implements JsonSerializable
 
     /**
      * Gets related_invoice_id
-     *
-     * @return string|null
      */
-    public function getRelatedInvoiceId()
+    public function getRelatedInvoiceId(): string|null
     {
         return $this->container['related_invoice_id'];
     }
@@ -496,10 +488,8 @@ final class Invoice implements JsonSerializable
 
     /**
      * Gets status
-     *
-     * @return string|null
      */
-    public function getStatus()
+    public function getStatus(): string|null
     {
         return $this->container['status'];
     }
@@ -529,10 +519,8 @@ final class Invoice implements JsonSerializable
 
     /**
      * Gets owner
-     *
-     * @return string|null
      */
-    public function getOwner()
+    public function getOwner(): string|null
     {
         return $this->container['owner'];
     }
@@ -552,10 +540,8 @@ final class Invoice implements JsonSerializable
 
     /**
      * Gets invoice_date
-     *
-     * @return \DateTime|null
      */
-    public function getInvoiceDate()
+    public function getInvoiceDate(): \DateTime|null
     {
         return $this->container['invoice_date'];
     }
@@ -582,10 +568,8 @@ final class Invoice implements JsonSerializable
 
     /**
      * Gets invoice_due
-     *
-     * @return \DateTime|null
      */
-    public function getInvoiceDue()
+    public function getInvoiceDue(): \DateTime|null
     {
         return $this->container['invoice_due'];
     }
@@ -612,10 +596,8 @@ final class Invoice implements JsonSerializable
 
     /**
      * Gets created
-     *
-     * @return \DateTime|null
      */
-    public function getCreated()
+    public function getCreated(): \DateTime|null
     {
         return $this->container['created'];
     }
@@ -642,10 +624,8 @@ final class Invoice implements JsonSerializable
 
     /**
      * Gets changed
-     *
-     * @return \DateTime|null
      */
-    public function getChanged()
+    public function getChanged(): \DateTime|null
     {
         return $this->container['changed'];
     }
@@ -672,10 +652,8 @@ final class Invoice implements JsonSerializable
 
     /**
      * Gets company
-     *
-     * @return string|null
      */
-    public function getCompany()
+    public function getCompany(): string|null
     {
         return $this->container['company'];
     }
@@ -695,10 +673,8 @@ final class Invoice implements JsonSerializable
 
     /**
      * Gets total
-     *
-     * @return float|null
      */
-    public function getTotal()
+    public function getTotal(): float|null
     {
         return $this->container['total'];
     }
@@ -718,10 +694,8 @@ final class Invoice implements JsonSerializable
 
     /**
      * Gets address
-     *
-     * @return \Upsun\Model\Address|null
      */
-    public function getAddress()
+    public function getAddress(): \Upsun\Model\Address|null
     {
         return $this->container['address'];
     }
@@ -741,10 +715,8 @@ final class Invoice implements JsonSerializable
 
     /**
      * Gets notes
-     *
-     * @return string|null
      */
-    public function getNotes()
+    public function getNotes(): string|null
     {
         return $this->container['notes'];
     }
@@ -764,10 +736,8 @@ final class Invoice implements JsonSerializable
 
     /**
      * Gets invoice_pdf
-     *
-     * @return \Upsun\Model\InvoicePDF|null
      */
-    public function getInvoicePdf()
+    public function getInvoicePdf(): \Upsun\Model\InvoicePDF|null
     {
         return $this->container['invoice_pdf'];
     }
@@ -829,7 +799,6 @@ final class Invoice implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

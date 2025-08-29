@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ProjectInvitationEnvironmentsInner implements JsonSerializable
+final class ProjectInvitationEnvironmentsInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -252,10 +254,8 @@ final class ProjectInvitationEnvironmentsInner implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string|null
      */
-    public function getId()
+    public function getId(): string|null
     {
         return $this->container['id'];
     }
@@ -275,10 +275,8 @@ final class ProjectInvitationEnvironmentsInner implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string|null
      */
-    public function getType()
+    public function getType(): string|null
     {
         return $this->container['type'];
     }
@@ -298,10 +296,8 @@ final class ProjectInvitationEnvironmentsInner implements JsonSerializable
 
     /**
      * Gets role
-     *
-     * @return string|null
      */
-    public function getRole()
+    public function getRole(): string|null
     {
         return $this->container['role'];
     }
@@ -331,10 +327,8 @@ final class ProjectInvitationEnvironmentsInner implements JsonSerializable
 
     /**
      * Gets title
-     *
-     * @return string|null
      */
-    public function getTitle()
+    public function getTitle(): string|null
     {
         return $this->container['title'];
     }
@@ -396,7 +390,6 @@ final class ProjectInvitationEnvironmentsInner implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

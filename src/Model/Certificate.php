@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Certificate implements JsonSerializable
+final class Certificate implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -310,10 +312,8 @@ final class Certificate implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->container['created_at'];
     }
@@ -340,10 +340,8 @@ final class Certificate implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime
     {
         return $this->container['updated_at'];
     }
@@ -370,10 +368,8 @@ final class Certificate implements JsonSerializable
 
     /**
      * Gets certificate
-     *
-     * @return string
      */
-    public function getCertificate()
+    public function getCertificate(): string
     {
         return $this->container['certificate'];
     }
@@ -393,10 +389,8 @@ final class Certificate implements JsonSerializable
 
     /**
      * Gets chain
-     *
-     * @return string[]
      */
-    public function getChain()
+    public function getChain(): array
     {
         return $this->container['chain'];
     }
@@ -416,10 +410,8 @@ final class Certificate implements JsonSerializable
 
     /**
      * Gets is_provisioned
-     *
-     * @return bool
      */
-    public function getIsProvisioned()
+    public function getIsProvisioned(): bool
     {
         return $this->container['is_provisioned'];
     }
@@ -439,10 +431,8 @@ final class Certificate implements JsonSerializable
 
     /**
      * Gets is_invalid
-     *
-     * @return bool
      */
-    public function getIsInvalid()
+    public function getIsInvalid(): bool
     {
         return $this->container['is_invalid'];
     }
@@ -462,10 +452,8 @@ final class Certificate implements JsonSerializable
 
     /**
      * Gets is_root
-     *
-     * @return bool
      */
-    public function getIsRoot()
+    public function getIsRoot(): bool
     {
         return $this->container['is_root'];
     }
@@ -485,10 +473,8 @@ final class Certificate implements JsonSerializable
 
     /**
      * Gets domains
-     *
-     * @return string[]
      */
-    public function getDomains()
+    public function getDomains(): array
     {
         return $this->container['domains'];
     }
@@ -508,10 +494,8 @@ final class Certificate implements JsonSerializable
 
     /**
      * Gets auth_type
-     *
-     * @return string[]
      */
-    public function getAuthType()
+    public function getAuthType(): array
     {
         return $this->container['auth_type'];
     }
@@ -531,10 +515,8 @@ final class Certificate implements JsonSerializable
 
     /**
      * Gets issuer
-     *
-     * @return \Upsun\Model\TheIssuerOfTheCertificateInner[]
      */
-    public function getIssuer()
+    public function getIssuer(): array
     {
         return $this->container['issuer'];
     }
@@ -554,10 +536,8 @@ final class Certificate implements JsonSerializable
 
     /**
      * Gets expires_at
-     *
-     * @return \DateTime
      */
-    public function getExpiresAt()
+    public function getExpiresAt(): \DateTime
     {
         return $this->container['expires_at'];
     }
@@ -619,7 +599,6 @@ final class Certificate implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TheObjectTheReferencePointsTo implements JsonSerializable
+final class TheObjectTheReferencePointsTo implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -220,10 +222,8 @@ final class TheObjectTheReferencePointsTo implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -243,10 +243,8 @@ final class TheObjectTheReferencePointsTo implements JsonSerializable
 
     /**
      * Gets sha
-     *
-     * @return string
      */
-    public function getSha()
+    public function getSha(): string
     {
         return $this->container['sha'];
     }
@@ -308,7 +306,6 @@ final class TheObjectTheReferencePointsTo implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

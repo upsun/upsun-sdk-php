@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ProjectInfo implements JsonSerializable
+final class ProjectInfo implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -260,10 +262,8 @@ final class ProjectInfo implements JsonSerializable
 
     /**
      * Gets title
-     *
-     * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->container['title'];
     }
@@ -283,10 +283,8 @@ final class ProjectInfo implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->container['name'];
     }
@@ -306,10 +304,8 @@ final class ProjectInfo implements JsonSerializable
 
     /**
      * Gets namespace
-     *
-     * @return string
      */
-    public function getNamespace()
+    public function getNamespace(): string
     {
         return $this->container['namespace'];
     }
@@ -336,10 +332,8 @@ final class ProjectInfo implements JsonSerializable
 
     /**
      * Gets organization
-     *
-     * @return string
      */
-    public function getOrganization()
+    public function getOrganization(): string
     {
         return $this->container['organization'];
     }
@@ -366,10 +360,8 @@ final class ProjectInfo implements JsonSerializable
 
     /**
      * Gets capabilities
-     *
-     * @return object
      */
-    public function getCapabilities()
+    public function getCapabilities(): object
     {
         return $this->container['capabilities'];
     }
@@ -389,10 +381,8 @@ final class ProjectInfo implements JsonSerializable
 
     /**
      * Gets settings
-     *
-     * @return object
      */
-    public function getSettings()
+    public function getSettings(): object
     {
         return $this->container['settings'];
     }
@@ -454,7 +444,6 @@ final class ProjectInfo implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class DefaultConfig1 implements JsonSerializable
+final class DefaultConfig1 implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -214,10 +216,8 @@ final class DefaultConfig1 implements JsonSerializable
 
     /**
      * Gets manual_count
-     *
-     * @return int|null
      */
-    public function getManualCount()
+    public function getManualCount(): int|null
     {
         return $this->container['manual_count'];
     }
@@ -237,10 +237,8 @@ final class DefaultConfig1 implements JsonSerializable
 
     /**
      * Gets schedule
-     *
-     * @return \Upsun\Model\TheBackupScheduleSpecificationInner[]|null
      */
-    public function getSchedule()
+    public function getSchedule(): array|null
     {
         return $this->container['schedule'];
     }
@@ -302,7 +300,6 @@ final class DefaultConfig1 implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

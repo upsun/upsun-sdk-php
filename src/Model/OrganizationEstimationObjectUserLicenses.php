@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class OrganizationEstimationObjectUserLicenses implements JsonSerializable
+final class OrganizationEstimationObjectUserLicenses implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -214,10 +216,8 @@ final class OrganizationEstimationObjectUserLicenses implements JsonSerializable
 
     /**
      * Gets base
-     *
-     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesBase|null
      */
-    public function getBase()
+    public function getBase(): \Upsun\Model\OrganizationEstimationObjectUserLicensesBase|null
     {
         return $this->container['base'];
     }
@@ -237,10 +237,8 @@ final class OrganizationEstimationObjectUserLicenses implements JsonSerializable
 
     /**
      * Gets user_management
-     *
-     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement|null
      */
-    public function getUserManagement()
+    public function getUserManagement(): \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement|null
     {
         return $this->container['user_management'];
     }
@@ -302,7 +300,6 @@ final class OrganizationEstimationObjectUserLicenses implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

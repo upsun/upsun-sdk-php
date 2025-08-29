@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class CreateOrgRequest implements JsonSerializable
+final class CreateOrgRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -246,7 +248,8 @@ final class CreateOrgRequest implements JsonSerializable
             $invalidProperties[] = "'label' can't be null";
         }
         if (!is_null($this->container['country']) && (mb_strlen($this->container['country']) > 2)) {
-            $invalidProperties[] = "invalid value for 'country', the character length must be smaller than or equal to 2.";
+            $invalidProperties[] =
+                "invalid value for 'country', the character length must be smaller than or equal to 2.";
         }
 
         return $invalidProperties;
@@ -264,10 +267,8 @@ final class CreateOrgRequest implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string|null
      */
-    public function getType()
+    public function getType(): string|null
     {
         return $this->container['type'];
     }
@@ -297,10 +298,8 @@ final class CreateOrgRequest implements JsonSerializable
 
     /**
      * Gets owner_id
-     *
-     * @return string|null
      */
-    public function getOwnerId()
+    public function getOwnerId(): string|null
     {
         return $this->container['owner_id'];
     }
@@ -320,10 +319,8 @@ final class CreateOrgRequest implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string|null
      */
-    public function getName()
+    public function getName(): string|null
     {
         return $this->container['name'];
     }
@@ -343,10 +340,8 @@ final class CreateOrgRequest implements JsonSerializable
 
     /**
      * Gets label
-     *
-     * @return string
      */
-    public function getLabel()
+    public function getLabel(): string
     {
         return $this->container['label'];
     }
@@ -366,10 +361,8 @@ final class CreateOrgRequest implements JsonSerializable
 
     /**
      * Gets country
-     *
-     * @return string|null
      */
-    public function getCountry()
+    public function getCountry(): string|null
     {
         return $this->container['country'];
     }
@@ -437,7 +430,6 @@ final class CreateOrgRequest implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

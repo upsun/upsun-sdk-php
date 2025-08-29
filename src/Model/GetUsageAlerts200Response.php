@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class GetUsageAlerts200Response implements JsonSerializable
+final class GetUsageAlerts200Response implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -214,10 +216,8 @@ final class GetUsageAlerts200Response implements JsonSerializable
 
     /**
      * Gets available
-     *
-     * @return \Upsun\Model\Alert[]|null
      */
-    public function getAvailable()
+    public function getAvailable(): array|null
     {
         return $this->container['available'];
     }
@@ -237,10 +237,8 @@ final class GetUsageAlerts200Response implements JsonSerializable
 
     /**
      * Gets current
-     *
-     * @return \Upsun\Model\Alert[]|null
      */
-    public function getCurrent()
+    public function getCurrent(): array|null
     {
         return $this->container['current'];
     }
@@ -302,7 +300,6 @@ final class GetUsageAlerts200Response implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

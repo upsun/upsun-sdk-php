@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class VersionPatch implements JsonSerializable
+final class VersionPatch implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -207,10 +209,8 @@ final class VersionPatch implements JsonSerializable
 
     /**
      * Gets routing
-     *
-     * @return \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1|null
      */
-    public function getRouting()
+    public function getRouting(): \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1|null
     {
         return $this->container['routing'];
     }
@@ -272,7 +272,6 @@ final class VersionPatch implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

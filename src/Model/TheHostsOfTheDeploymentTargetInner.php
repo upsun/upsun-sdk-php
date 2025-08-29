@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TheHostsOfTheDeploymentTargetInner implements JsonSerializable
+final class TheHostsOfTheDeploymentTargetInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -252,10 +254,8 @@ final class TheHostsOfTheDeploymentTargetInner implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string
      */
-    public function getId()
+    public function getId(): string
     {
         return $this->container['id'];
     }
@@ -282,10 +282,8 @@ final class TheHostsOfTheDeploymentTargetInner implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -315,10 +313,8 @@ final class TheHostsOfTheDeploymentTargetInner implements JsonSerializable
 
     /**
      * Gets services
-     *
-     * @return string[]
      */
-    public function getServices()
+    public function getServices(): array
     {
         return $this->container['services'];
     }
@@ -387,7 +383,6 @@ final class TheHostsOfTheDeploymentTargetInner implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

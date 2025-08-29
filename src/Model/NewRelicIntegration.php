@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class NewRelicIntegration implements JsonSerializable
+final class NewRelicIntegration implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -260,10 +262,8 @@ final class NewRelicIntegration implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->container['created_at'];
     }
@@ -290,10 +290,8 @@ final class NewRelicIntegration implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime
     {
         return $this->container['updated_at'];
     }
@@ -320,10 +318,8 @@ final class NewRelicIntegration implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -343,10 +339,8 @@ final class NewRelicIntegration implements JsonSerializable
 
     /**
      * Gets extra
-     *
-     * @return array<string,string>
      */
-    public function getExtra()
+    public function getExtra(): array
     {
         return $this->container['extra'];
     }
@@ -366,10 +360,8 @@ final class NewRelicIntegration implements JsonSerializable
 
     /**
      * Gets url
-     *
-     * @return string
      */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->container['url'];
     }
@@ -389,10 +381,8 @@ final class NewRelicIntegration implements JsonSerializable
 
     /**
      * Gets tls_verify
-     *
-     * @return bool
      */
-    public function getTlsVerify()
+    public function getTlsVerify(): bool
     {
         return $this->container['tls_verify'];
     }
@@ -454,7 +444,6 @@ final class NewRelicIntegration implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

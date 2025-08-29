@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class EnterpriseDeploymentTarget implements JsonSerializable
+final class EnterpriseDeploymentTarget implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -301,10 +303,8 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -334,10 +334,8 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->container['name'];
     }
@@ -357,10 +355,8 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
 
     /**
      * Gets deploy_host
-     *
-     * @return string
      */
-    public function getDeployHost()
+    public function getDeployHost(): string
     {
         return $this->container['deploy_host'];
     }
@@ -387,10 +383,8 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
 
     /**
      * Gets docroots
-     *
-     * @return array<string,\Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue>
      */
-    public function getDocroots()
+    public function getDocroots(): array
     {
         return $this->container['docroots'];
     }
@@ -410,10 +404,8 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
 
     /**
      * Gets site_urls
-     *
-     * @return object
      */
-    public function getSiteUrls()
+    public function getSiteUrls(): object
     {
         return $this->container['site_urls'];
     }
@@ -433,10 +425,8 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
 
     /**
      * Gets ssh_hosts
-     *
-     * @return string[]
      */
-    public function getSshHosts()
+    public function getSshHosts(): array
     {
         return $this->container['ssh_hosts'];
     }
@@ -456,10 +446,8 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
 
     /**
      * Gets maintenance_mode
-     *
-     * @return bool
      */
-    public function getMaintenanceMode()
+    public function getMaintenanceMode(): bool
     {
         return $this->container['maintenance_mode'];
     }
@@ -480,11 +468,9 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
     /**
      * Gets enterprise_environments_mapping
      *
-     * @return object|null
-     *
      * @deprecated
      */
-    public function getEnterpriseEnvironmentsMapping()
+    public function getEnterpriseEnvironmentsMapping(): object|null
     {
         return $this->container['enterprise_environments_mapping'];
     }
@@ -548,7 +534,6 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

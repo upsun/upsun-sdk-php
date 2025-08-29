@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
+final class GetTypeAllowance200ResponseCurrencies implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -235,10 +237,8 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
 
     /**
      * Gets eur
-     *
-     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR|null
      */
-    public function getEur()
+    public function getEur(): \Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR|null
     {
         return $this->container['eur'];
     }
@@ -258,10 +258,8 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
 
     /**
      * Gets usd
-     *
-     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD|null
      */
-    public function getUsd()
+    public function getUsd(): \Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD|null
     {
         return $this->container['usd'];
     }
@@ -281,10 +279,8 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
 
     /**
      * Gets gbp
-     *
-     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP|null
      */
-    public function getGbp()
+    public function getGbp(): \Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP|null
     {
         return $this->container['gbp'];
     }
@@ -304,10 +300,8 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
 
     /**
      * Gets aud
-     *
-     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD|null
      */
-    public function getAud()
+    public function getAud(): \Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD|null
     {
         return $this->container['aud'];
     }
@@ -327,10 +321,8 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
 
     /**
      * Gets cad
-     *
-     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD|null
      */
-    public function getCad()
+    public function getCad(): \Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD|null
     {
         return $this->container['cad'];
     }
@@ -392,7 +384,6 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

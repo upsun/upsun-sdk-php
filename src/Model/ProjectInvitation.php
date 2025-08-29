@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ProjectInvitation implements JsonSerializable
+final class ProjectInvitation implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -320,10 +322,8 @@ final class ProjectInvitation implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string|null
      */
-    public function getId()
+    public function getId(): string|null
     {
         return $this->container['id'];
     }
@@ -343,10 +343,8 @@ final class ProjectInvitation implements JsonSerializable
 
     /**
      * Gets state
-     *
-     * @return string|null
      */
-    public function getState()
+    public function getState(): string|null
     {
         return $this->container['state'];
     }
@@ -376,10 +374,8 @@ final class ProjectInvitation implements JsonSerializable
 
     /**
      * Gets project_id
-     *
-     * @return string|null
      */
-    public function getProjectId()
+    public function getProjectId(): string|null
     {
         return $this->container['project_id'];
     }
@@ -399,10 +395,8 @@ final class ProjectInvitation implements JsonSerializable
 
     /**
      * Gets role
-     *
-     * @return string|null
      */
-    public function getRole()
+    public function getRole(): string|null
     {
         return $this->container['role'];
     }
@@ -432,10 +426,8 @@ final class ProjectInvitation implements JsonSerializable
 
     /**
      * Gets email
-     *
-     * @return string|null
      */
-    public function getEmail()
+    public function getEmail(): string|null
     {
         return $this->container['email'];
     }
@@ -455,10 +447,8 @@ final class ProjectInvitation implements JsonSerializable
 
     /**
      * Gets owner
-     *
-     * @return \Upsun\Model\OrganizationInvitationOwner|null
      */
-    public function getOwner()
+    public function getOwner(): \Upsun\Model\OrganizationInvitationOwner|null
     {
         return $this->container['owner'];
     }
@@ -478,10 +468,8 @@ final class ProjectInvitation implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime|null
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime|null
     {
         return $this->container['created_at'];
     }
@@ -501,10 +489,8 @@ final class ProjectInvitation implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime|null
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime|null
     {
         return $this->container['updated_at'];
     }
@@ -524,10 +510,8 @@ final class ProjectInvitation implements JsonSerializable
 
     /**
      * Gets finished_at
-     *
-     * @return \DateTime|null
      */
-    public function getFinishedAt()
+    public function getFinishedAt(): \DateTime|null
     {
         return $this->container['finished_at'];
     }
@@ -554,10 +538,8 @@ final class ProjectInvitation implements JsonSerializable
 
     /**
      * Gets environments
-     *
-     * @return \Upsun\Model\ProjectInvitationEnvironmentsInner[]|null
      */
-    public function getEnvironments()
+    public function getEnvironments(): array|null
     {
         return $this->container['environments'];
     }
@@ -619,7 +601,6 @@ final class ProjectInvitation implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

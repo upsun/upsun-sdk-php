@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class DomainCreateInput implements JsonSerializable
+final class DomainCreateInput implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -231,10 +233,8 @@ final class DomainCreateInput implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->container['name'];
     }
@@ -254,10 +254,8 @@ final class DomainCreateInput implements JsonSerializable
 
     /**
      * Gets attributes
-     *
-     * @return array<string,string>|null
      */
-    public function getAttributes()
+    public function getAttributes(): array|null
     {
         return $this->container['attributes'];
     }
@@ -277,10 +275,8 @@ final class DomainCreateInput implements JsonSerializable
 
     /**
      * Gets is_default
-     *
-     * @return bool|null
      */
-    public function getIsDefault()
+    public function getIsDefault(): bool|null
     {
         return $this->container['is_default'];
     }
@@ -300,10 +296,8 @@ final class DomainCreateInput implements JsonSerializable
 
     /**
      * Gets replacement_for
-     *
-     * @return string|null
      */
-    public function getReplacementFor()
+    public function getReplacementFor(): string|null
     {
         return $this->container['replacement_for'];
     }
@@ -365,7 +359,6 @@ final class DomainCreateInput implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

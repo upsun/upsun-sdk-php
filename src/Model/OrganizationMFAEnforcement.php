@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class OrganizationMFAEnforcement implements JsonSerializable
+final class OrganizationMFAEnforcement implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -207,10 +209,8 @@ final class OrganizationMFAEnforcement implements JsonSerializable
 
     /**
      * Gets enforce_mfa
-     *
-     * @return bool|null
      */
-    public function getEnforceMfa()
+    public function getEnforceMfa(): bool|null
     {
         return $this->container['enforce_mfa'];
     }
@@ -272,7 +272,6 @@ final class OrganizationMFAEnforcement implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

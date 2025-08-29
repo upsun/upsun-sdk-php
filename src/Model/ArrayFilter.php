@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ArrayFilter implements JsonSerializable
+final class ArrayFilter implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -228,10 +230,8 @@ final class ArrayFilter implements JsonSerializable
 
     /**
      * Gets eq
-     *
-     * @return string|null
      */
-    public function getEq()
+    public function getEq(): string|null
     {
         return $this->container['eq'];
     }
@@ -251,10 +251,8 @@ final class ArrayFilter implements JsonSerializable
 
     /**
      * Gets ne
-     *
-     * @return string|null
      */
-    public function getNe()
+    public function getNe(): string|null
     {
         return $this->container['ne'];
     }
@@ -274,10 +272,8 @@ final class ArrayFilter implements JsonSerializable
 
     /**
      * Gets in
-     *
-     * @return string|null
      */
-    public function getIn()
+    public function getIn(): string|null
     {
         return $this->container['in'];
     }
@@ -297,10 +293,8 @@ final class ArrayFilter implements JsonSerializable
 
     /**
      * Gets nin
-     *
-     * @return string|null
      */
-    public function getNin()
+    public function getNin(): string|null
     {
         return $this->container['nin'];
     }
@@ -362,7 +356,6 @@ final class ArrayFilter implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

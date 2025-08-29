@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class SystemInformation implements JsonSerializable
+final class SystemInformation implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -230,10 +232,8 @@ final class SystemInformation implements JsonSerializable
 
     /**
      * Gets version
-     *
-     * @return string
      */
-    public function getVersion()
+    public function getVersion(): string
     {
         return $this->container['version'];
     }
@@ -253,10 +253,8 @@ final class SystemInformation implements JsonSerializable
 
     /**
      * Gets image
-     *
-     * @return string
      */
-    public function getImage()
+    public function getImage(): string
     {
         return $this->container['image'];
     }
@@ -276,10 +274,8 @@ final class SystemInformation implements JsonSerializable
 
     /**
      * Gets started_at
-     *
-     * @return \DateTime
      */
-    public function getStartedAt()
+    public function getStartedAt(): \DateTime
     {
         return $this->container['started_at'];
     }
@@ -341,7 +337,6 @@ final class SystemInformation implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

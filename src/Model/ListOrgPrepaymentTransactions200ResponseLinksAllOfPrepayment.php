@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment implements JsonSerializable
+final class ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -207,10 +209,8 @@ final class ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment impleme
 
     /**
      * Gets href
-     *
-     * @return string|null
      */
-    public function getHref()
+    public function getHref(): string|null
     {
         return $this->container['href'];
     }
@@ -272,7 +272,6 @@ final class ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment impleme
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class CreateUsageAlertRequestConfig implements JsonSerializable
+final class CreateUsageAlertRequestConfig implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -207,10 +209,8 @@ final class CreateUsageAlertRequestConfig implements JsonSerializable
 
     /**
      * Gets threshold
-     *
-     * @return int|null
      */
-    public function getThreshold()
+    public function getThreshold(): int|null
     {
         return $this->container['threshold'];
     }
@@ -272,7 +272,6 @@ final class CreateUsageAlertRequestConfig implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

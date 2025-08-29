@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ReplacementDomainStoragePatch implements JsonSerializable
+final class ReplacementDomainStoragePatch implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -207,10 +209,8 @@ final class ReplacementDomainStoragePatch implements JsonSerializable
 
     /**
      * Gets attributes
-     *
-     * @return array<string,string>|null
      */
-    public function getAttributes()
+    public function getAttributes(): array|null
     {
         return $this->container['attributes'];
     }
@@ -272,7 +272,6 @@ final class ReplacementDomainStoragePatch implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

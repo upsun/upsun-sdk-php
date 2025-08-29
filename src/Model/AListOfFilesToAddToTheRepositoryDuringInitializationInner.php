@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements JsonSerializable
+final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -230,10 +232,8 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
 
     /**
      * Gets path
-     *
-     * @return string
      */
-    public function getPath()
+    public function getPath(): string
     {
         return $this->container['path'];
     }
@@ -253,10 +253,8 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
 
     /**
      * Gets mode
-     *
-     * @return int
      */
-    public function getMode()
+    public function getMode(): int
     {
         return $this->container['mode'];
     }
@@ -276,10 +274,8 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
 
     /**
      * Gets contents
-     *
-     * @return string
      */
-    public function getContents()
+    public function getContents(): string
     {
         return $this->container['contents'];
     }
@@ -341,7 +337,6 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

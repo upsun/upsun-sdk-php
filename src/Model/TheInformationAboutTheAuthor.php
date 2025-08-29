@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TheInformationAboutTheAuthor implements JsonSerializable
+final class TheInformationAboutTheAuthor implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -230,10 +232,8 @@ final class TheInformationAboutTheAuthor implements JsonSerializable
 
     /**
      * Gets date
-     *
-     * @return \DateTime
      */
-    public function getDate()
+    public function getDate(): \DateTime
     {
         return $this->container['date'];
     }
@@ -253,10 +253,8 @@ final class TheInformationAboutTheAuthor implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->container['name'];
     }
@@ -276,10 +274,8 @@ final class TheInformationAboutTheAuthor implements JsonSerializable
 
     /**
      * Gets email
-     *
-     * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->container['email'];
     }
@@ -341,7 +337,6 @@ final class TheInformationAboutTheAuthor implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

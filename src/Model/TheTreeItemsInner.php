@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TheTreeItemsInner implements JsonSerializable
+final class TheTreeItemsInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -268,10 +270,8 @@ final class TheTreeItemsInner implements JsonSerializable
 
     /**
      * Gets path
-     *
-     * @return string
      */
-    public function getPath()
+    public function getPath(): string
     {
         return $this->container['path'];
     }
@@ -291,10 +291,8 @@ final class TheTreeItemsInner implements JsonSerializable
 
     /**
      * Gets mode
-     *
-     * @return string
      */
-    public function getMode()
+    public function getMode(): string
     {
         return $this->container['mode'];
     }
@@ -324,10 +322,8 @@ final class TheTreeItemsInner implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -347,10 +343,8 @@ final class TheTreeItemsInner implements JsonSerializable
 
     /**
      * Gets sha
-     *
-     * @return string
      */
-    public function getSha()
+    public function getSha(): string
     {
         return $this->container['sha'];
     }
@@ -419,7 +413,6 @@ final class TheTreeItemsInner implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

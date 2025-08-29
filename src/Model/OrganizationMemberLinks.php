@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class OrganizationMemberLinks implements JsonSerializable
+final class OrganizationMemberLinks implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -221,10 +223,8 @@ final class OrganizationMemberLinks implements JsonSerializable
 
     /**
      * Gets self
-     *
-     * @return \Upsun\Model\OrganizationMemberLinksSelf|null
      */
-    public function getSelf()
+    public function getSelf(): \Upsun\Model\OrganizationMemberLinksSelf|null
     {
         return $this->container['self'];
     }
@@ -244,10 +244,8 @@ final class OrganizationMemberLinks implements JsonSerializable
 
     /**
      * Gets update
-     *
-     * @return \Upsun\Model\OrganizationMemberLinksUpdate|null
      */
-    public function getUpdate()
+    public function getUpdate(): \Upsun\Model\OrganizationMemberLinksUpdate|null
     {
         return $this->container['update'];
     }
@@ -267,10 +265,8 @@ final class OrganizationMemberLinks implements JsonSerializable
 
     /**
      * Gets delete
-     *
-     * @return \Upsun\Model\OrganizationMemberLinksDelete|null
      */
-    public function getDelete()
+    public function getDelete(): \Upsun\Model\OrganizationMemberLinksDelete|null
     {
         return $this->container['delete'];
     }
@@ -332,7 +328,6 @@ final class OrganizationMemberLinks implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

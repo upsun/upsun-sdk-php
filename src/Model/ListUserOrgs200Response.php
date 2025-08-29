@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ListUserOrgs200Response implements JsonSerializable
+final class ListUserOrgs200Response implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -214,10 +216,8 @@ final class ListUserOrgs200Response implements JsonSerializable
 
     /**
      * Gets items
-     *
-     * @return \Upsun\Model\Organization[]|null
      */
-    public function getItems()
+    public function getItems(): array|null
     {
         return $this->container['items'];
     }
@@ -237,10 +237,8 @@ final class ListUserOrgs200Response implements JsonSerializable
 
     /**
      * Gets _links
-     *
-     * @return \Upsun\Model\ListLinks|null
      */
-    public function getLinks()
+    public function getLinks(): \Upsun\Model\ListLinks|null
     {
         return $this->container['_links'];
     }
@@ -302,7 +300,6 @@ final class ListUserOrgs200Response implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class OrganizationAlertConfigConfig implements JsonSerializable
+final class OrganizationAlertConfigConfig implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -214,10 +216,8 @@ final class OrganizationAlertConfigConfig implements JsonSerializable
 
     /**
      * Gets threshold
-     *
-     * @return \Upsun\Model\OrganizationAlertConfigConfigThreshold|null
      */
-    public function getThreshold()
+    public function getThreshold(): \Upsun\Model\OrganizationAlertConfigConfigThreshold|null
     {
         return $this->container['threshold'];
     }
@@ -237,10 +237,8 @@ final class OrganizationAlertConfigConfig implements JsonSerializable
 
     /**
      * Gets mode
-     *
-     * @return string|null
      */
-    public function getMode()
+    public function getMode(): string|null
     {
         return $this->container['mode'];
     }
@@ -302,7 +300,6 @@ final class OrganizationAlertConfigConfig implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

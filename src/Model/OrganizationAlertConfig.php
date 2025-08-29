@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class OrganizationAlertConfig implements JsonSerializable
+final class OrganizationAlertConfig implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -242,10 +244,8 @@ final class OrganizationAlertConfig implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string|null
      */
-    public function getId()
+    public function getId(): string|null
     {
         return $this->container['id'];
     }
@@ -265,10 +265,8 @@ final class OrganizationAlertConfig implements JsonSerializable
 
     /**
      * Gets active
-     *
-     * @return bool|null
      */
-    public function getActive()
+    public function getActive(): bool|null
     {
         return $this->container['active'];
     }
@@ -288,10 +286,8 @@ final class OrganizationAlertConfig implements JsonSerializable
 
     /**
      * Gets alerts_sent
-     *
-     * @return float|null
      */
-    public function getAlertsSent()
+    public function getAlertsSent(): float|null
     {
         return $this->container['alerts_sent'];
     }
@@ -311,10 +307,8 @@ final class OrganizationAlertConfig implements JsonSerializable
 
     /**
      * Gets last_alert_at
-     *
-     * @return string|null
      */
-    public function getLastAlertAt()
+    public function getLastAlertAt(): string|null
     {
         return $this->container['last_alert_at'];
     }
@@ -341,10 +335,8 @@ final class OrganizationAlertConfig implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return string|null
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): string|null
     {
         return $this->container['updated_at'];
     }
@@ -371,10 +363,8 @@ final class OrganizationAlertConfig implements JsonSerializable
 
     /**
      * Gets config
-     *
-     * @return \Upsun\Model\OrganizationAlertConfigConfig|null
      */
-    public function getConfig()
+    public function getConfig(): \Upsun\Model\OrganizationAlertConfigConfig|null
     {
         return $this->container['config'];
     }
@@ -443,7 +433,6 @@ final class OrganizationAlertConfig implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

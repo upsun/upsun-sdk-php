@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class CreateProfilePicture200Response implements JsonSerializable
+final class CreateProfilePicture200Response implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -207,10 +209,8 @@ final class CreateProfilePicture200Response implements JsonSerializable
 
     /**
      * Gets url
-     *
-     * @return string|null
      */
-    public function getUrl()
+    public function getUrl(): string|null
     {
         return $this->container['url'];
     }
@@ -272,7 +272,6 @@ final class CreateProfilePicture200Response implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

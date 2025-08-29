@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class OrderBillingPeriodLabel implements JsonSerializable
+final class OrderBillingPeriodLabel implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -228,10 +230,8 @@ final class OrderBillingPeriodLabel implements JsonSerializable
 
     /**
      * Gets formatted
-     *
-     * @return string|null
      */
-    public function getFormatted()
+    public function getFormatted(): string|null
     {
         return $this->container['formatted'];
     }
@@ -251,10 +251,8 @@ final class OrderBillingPeriodLabel implements JsonSerializable
 
     /**
      * Gets month
-     *
-     * @return string|null
      */
-    public function getMonth()
+    public function getMonth(): string|null
     {
         return $this->container['month'];
     }
@@ -274,10 +272,8 @@ final class OrderBillingPeriodLabel implements JsonSerializable
 
     /**
      * Gets year
-     *
-     * @return string|null
      */
-    public function getYear()
+    public function getYear(): string|null
     {
         return $this->container['year'];
     }
@@ -297,10 +293,8 @@ final class OrderBillingPeriodLabel implements JsonSerializable
 
     /**
      * Gets next_month
-     *
-     * @return string|null
      */
-    public function getNextMonth()
+    public function getNextMonth(): string|null
     {
         return $this->container['next_month'];
     }
@@ -362,7 +356,6 @@ final class OrderBillingPeriodLabel implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

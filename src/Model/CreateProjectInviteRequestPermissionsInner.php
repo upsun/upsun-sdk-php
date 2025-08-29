@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class CreateProjectInviteRequestPermissionsInner implements JsonSerializable
+final class CreateProjectInviteRequestPermissionsInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -262,10 +264,8 @@ final class CreateProjectInviteRequestPermissionsInner implements JsonSerializab
 
     /**
      * Gets type
-     *
-     * @return string|null
      */
-    public function getType()
+    public function getType(): string|null
     {
         return $this->container['type'];
     }
@@ -295,10 +295,8 @@ final class CreateProjectInviteRequestPermissionsInner implements JsonSerializab
 
     /**
      * Gets role
-     *
-     * @return string|null
      */
-    public function getRole()
+    public function getRole(): string|null
     {
         return $this->container['role'];
     }
@@ -370,7 +368,6 @@ final class CreateProjectInviteRequestPermissionsInner implements JsonSerializab
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

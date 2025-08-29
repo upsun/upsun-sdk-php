@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ProjectCapabilities implements JsonSerializable
+final class ProjectCapabilities implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -295,10 +297,8 @@ final class ProjectCapabilities implements JsonSerializable
 
     /**
      * Gets custom_domains
-     *
-     * @return \Upsun\Model\CustomDomains|null
      */
-    public function getCustomDomains()
+    public function getCustomDomains(): \Upsun\Model\CustomDomains|null
     {
         return $this->container['custom_domains'];
     }
@@ -318,10 +318,8 @@ final class ProjectCapabilities implements JsonSerializable
 
     /**
      * Gets source_operations
-     *
-     * @return \Upsun\Model\SourceOperations|null
      */
-    public function getSourceOperations()
+    public function getSourceOperations(): \Upsun\Model\SourceOperations|null
     {
         return $this->container['source_operations'];
     }
@@ -341,10 +339,8 @@ final class ProjectCapabilities implements JsonSerializable
 
     /**
      * Gets runtime_operations
-     *
-     * @return \Upsun\Model\RuntimeOperations|null
      */
-    public function getRuntimeOperations()
+    public function getRuntimeOperations(): \Upsun\Model\RuntimeOperations|null
     {
         return $this->container['runtime_operations'];
     }
@@ -364,10 +360,8 @@ final class ProjectCapabilities implements JsonSerializable
 
     /**
      * Gets outbound_firewall
-     *
-     * @return \Upsun\Model\OutboundFirewall|null
      */
-    public function getOutboundFirewall()
+    public function getOutboundFirewall(): \Upsun\Model\OutboundFirewall|null
     {
         return $this->container['outbound_firewall'];
     }
@@ -387,10 +381,8 @@ final class ProjectCapabilities implements JsonSerializable
 
     /**
      * Gets metrics
-     *
-     * @return \Upsun\Model\Metrics
      */
-    public function getMetrics()
+    public function getMetrics(): \Upsun\Model\Metrics
     {
         return $this->container['metrics'];
     }
@@ -410,10 +402,8 @@ final class ProjectCapabilities implements JsonSerializable
 
     /**
      * Gets logs_forwarding
-     *
-     * @return \Upsun\Model\LogsForwarding
      */
-    public function getLogsForwarding()
+    public function getLogsForwarding(): \Upsun\Model\LogsForwarding
     {
         return $this->container['logs_forwarding'];
     }
@@ -433,10 +423,8 @@ final class ProjectCapabilities implements JsonSerializable
 
     /**
      * Gets images
-     *
-     * @return array<string,array<string,\Upsun\Model\ImagesValueValue>>
      */
-    public function getImages()
+    public function getImages(): array
     {
         return $this->container['images'];
     }
@@ -456,10 +444,8 @@ final class ProjectCapabilities implements JsonSerializable
 
     /**
      * Gets instance_limit
-     *
-     * @return int
      */
-    public function getInstanceLimit()
+    public function getInstanceLimit(): int
     {
         return $this->container['instance_limit'];
     }
@@ -479,10 +465,8 @@ final class ProjectCapabilities implements JsonSerializable
 
     /**
      * Gets build_resources
-     *
-     * @return \Upsun\Model\BuildResources
      */
-    public function getBuildResources()
+    public function getBuildResources(): \Upsun\Model\BuildResources
     {
         return $this->container['build_resources'];
     }
@@ -502,10 +486,8 @@ final class ProjectCapabilities implements JsonSerializable
 
     /**
      * Gets data_retention
-     *
-     * @return \Upsun\Model\DataRetention
      */
-    public function getDataRetention()
+    public function getDataRetention(): \Upsun\Model\DataRetention
     {
         return $this->container['data_retention'];
     }
@@ -525,10 +507,8 @@ final class ProjectCapabilities implements JsonSerializable
 
     /**
      * Gets integrations
-     *
-     * @return \Upsun\Model\Integrations|null
      */
-    public function getIntegrations()
+    public function getIntegrations(): \Upsun\Model\Integrations|null
     {
         return $this->container['integrations'];
     }
@@ -590,7 +570,6 @@ final class ProjectCapabilities implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

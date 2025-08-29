@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class EnvironmentRestoreInput implements JsonSerializable
+final class EnvironmentRestoreInput implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -250,10 +252,8 @@ final class EnvironmentRestoreInput implements JsonSerializable
 
     /**
      * Gets environment_name
-     *
-     * @return string
      */
-    public function getEnvironmentName()
+    public function getEnvironmentName(): string
     {
         return $this->container['environment_name'];
     }
@@ -280,10 +280,8 @@ final class EnvironmentRestoreInput implements JsonSerializable
 
     /**
      * Gets branch_from
-     *
-     * @return string
      */
-    public function getBranchFrom()
+    public function getBranchFrom(): string
     {
         return $this->container['branch_from'];
     }
@@ -310,10 +308,8 @@ final class EnvironmentRestoreInput implements JsonSerializable
 
     /**
      * Gets restore_code
-     *
-     * @return bool
      */
-    public function getRestoreCode()
+    public function getRestoreCode(): bool
     {
         return $this->container['restore_code'];
     }
@@ -333,10 +329,8 @@ final class EnvironmentRestoreInput implements JsonSerializable
 
     /**
      * Gets restore_resources
-     *
-     * @return bool
      */
-    public function getRestoreResources()
+    public function getRestoreResources(): bool
     {
         return $this->container['restore_resources'];
     }
@@ -356,10 +350,8 @@ final class EnvironmentRestoreInput implements JsonSerializable
 
     /**
      * Gets resources
-     *
-     * @return \Upsun\Model\Resources5
      */
-    public function getResources()
+    public function getResources(): \Upsun\Model\Resources5
     {
         return $this->container['resources'];
     }
@@ -428,7 +420,6 @@ final class EnvironmentRestoreInput implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

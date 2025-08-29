@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ResourcesOverridesValue implements JsonSerializable
+final class ResourcesOverridesValue implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -250,10 +252,8 @@ final class ResourcesOverridesValue implements JsonSerializable
 
     /**
      * Gets services
-     *
-     * @return array<string,\Upsun\Model\PerServiceResourcesOverridesValue>
      */
-    public function getServices()
+    public function getServices(): array
     {
         return $this->container['services'];
     }
@@ -273,10 +273,8 @@ final class ResourcesOverridesValue implements JsonSerializable
 
     /**
      * Gets starts_at
-     *
-     * @return \DateTime
      */
-    public function getStartsAt()
+    public function getStartsAt(): \DateTime
     {
         return $this->container['starts_at'];
     }
@@ -303,10 +301,8 @@ final class ResourcesOverridesValue implements JsonSerializable
 
     /**
      * Gets ends_at
-     *
-     * @return \DateTime
      */
-    public function getEndsAt()
+    public function getEndsAt(): \DateTime
     {
         return $this->container['ends_at'];
     }
@@ -333,10 +329,8 @@ final class ResourcesOverridesValue implements JsonSerializable
 
     /**
      * Gets redeployed_start
-     *
-     * @return bool
      */
-    public function getRedeployedStart()
+    public function getRedeployedStart(): bool
     {
         return $this->container['redeployed_start'];
     }
@@ -356,10 +350,8 @@ final class ResourcesOverridesValue implements JsonSerializable
 
     /**
      * Gets redeployed_end
-     *
-     * @return bool
      */
-    public function getRedeployedEnd()
+    public function getRedeployedEnd(): bool
     {
         return $this->container['redeployed_end'];
     }
@@ -421,7 +413,6 @@ final class ResourcesOverridesValue implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class GetOrgPrepaymentInfo200ResponseLinks implements JsonSerializable
+final class GetOrgPrepaymentInfo200ResponseLinks implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -214,10 +216,8 @@ final class GetOrgPrepaymentInfo200ResponseLinks implements JsonSerializable
 
     /**
      * Gets self
-     *
-     * @return \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf|null
      */
-    public function getSelf()
+    public function getSelf(): \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf|null
     {
         return $this->container['self'];
     }
@@ -237,10 +237,8 @@ final class GetOrgPrepaymentInfo200ResponseLinks implements JsonSerializable
 
     /**
      * Gets transactions
-     *
-     * @return \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions|null
      */
-    public function getTransactions()
+    public function getTransactions(): \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions|null
     {
         return $this->container['transactions'];
     }
@@ -302,7 +300,6 @@ final class GetOrgPrepaymentInfo200ResponseLinks implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ListOrgInvoices200Response implements JsonSerializable
+final class ListOrgInvoices200Response implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -207,10 +209,8 @@ final class ListOrgInvoices200Response implements JsonSerializable
 
     /**
      * Gets items
-     *
-     * @return \Upsun\Model\Invoice[]|null
      */
-    public function getItems()
+    public function getItems(): array|null
     {
         return $this->container['items'];
     }
@@ -272,7 +272,6 @@ final class ListOrgInvoices200Response implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

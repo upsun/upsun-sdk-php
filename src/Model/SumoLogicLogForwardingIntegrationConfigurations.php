@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class SumoLogicLogForwardingIntegrationConfigurations implements JsonSerializable
+final class SumoLogicLogForwardingIntegrationConfigurations implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -214,10 +216,8 @@ final class SumoLogicLogForwardingIntegrationConfigurations implements JsonSeria
 
     /**
      * Gets enabled
-     *
-     * @return bool|null
      */
-    public function getEnabled()
+    public function getEnabled(): bool|null
     {
         return $this->container['enabled'];
     }
@@ -237,10 +237,8 @@ final class SumoLogicLogForwardingIntegrationConfigurations implements JsonSeria
 
     /**
      * Gets role
-     *
-     * @return string|null
      */
-    public function getRole()
+    public function getRole(): string|null
     {
         return $this->container['role'];
     }
@@ -302,7 +300,6 @@ final class SumoLogicLogForwardingIntegrationConfigurations implements JsonSeria
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

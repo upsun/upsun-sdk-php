@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class DedicatedDeploymentTarget implements JsonSerializable
+final class DedicatedDeploymentTarget implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -354,10 +356,8 @@ final class DedicatedDeploymentTarget implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -387,10 +387,8 @@ final class DedicatedDeploymentTarget implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->container['name'];
     }
@@ -410,10 +408,8 @@ final class DedicatedDeploymentTarget implements JsonSerializable
 
     /**
      * Gets deploy_host
-     *
-     * @return string
      */
-    public function getDeployHost()
+    public function getDeployHost(): string
     {
         return $this->container['deploy_host'];
     }
@@ -440,10 +436,8 @@ final class DedicatedDeploymentTarget implements JsonSerializable
 
     /**
      * Gets deploy_port
-     *
-     * @return int
      */
-    public function getDeployPort()
+    public function getDeployPort(): int
     {
         return $this->container['deploy_port'];
     }
@@ -470,10 +464,8 @@ final class DedicatedDeploymentTarget implements JsonSerializable
 
     /**
      * Gets ssh_host
-     *
-     * @return string
      */
-    public function getSshHost()
+    public function getSshHost(): string
     {
         return $this->container['ssh_host'];
     }
@@ -500,10 +492,8 @@ final class DedicatedDeploymentTarget implements JsonSerializable
 
     /**
      * Gets hosts
-     *
-     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]
      */
-    public function getHosts()
+    public function getHosts(): array
     {
         return $this->container['hosts'];
     }
@@ -530,10 +520,8 @@ final class DedicatedDeploymentTarget implements JsonSerializable
 
     /**
      * Gets auto_mounts
-     *
-     * @return bool
      */
-    public function getAutoMounts()
+    public function getAutoMounts(): bool
     {
         return $this->container['auto_mounts'];
     }
@@ -553,10 +541,8 @@ final class DedicatedDeploymentTarget implements JsonSerializable
 
     /**
      * Gets excluded_mounts
-     *
-     * @return string[]
      */
-    public function getExcludedMounts()
+    public function getExcludedMounts(): array
     {
         return $this->container['excluded_mounts'];
     }
@@ -576,10 +562,8 @@ final class DedicatedDeploymentTarget implements JsonSerializable
 
     /**
      * Gets enforced_mounts
-     *
-     * @return object
      */
-    public function getEnforcedMounts()
+    public function getEnforcedMounts(): object
     {
         return $this->container['enforced_mounts'];
     }
@@ -599,10 +583,8 @@ final class DedicatedDeploymentTarget implements JsonSerializable
 
     /**
      * Gets auto_crons
-     *
-     * @return bool
      */
-    public function getAutoCrons()
+    public function getAutoCrons(): bool
     {
         return $this->container['auto_crons'];
     }
@@ -622,10 +604,8 @@ final class DedicatedDeploymentTarget implements JsonSerializable
 
     /**
      * Gets auto_nginx
-     *
-     * @return bool
      */
-    public function getAutoNginx()
+    public function getAutoNginx(): bool
     {
         return $this->container['auto_nginx'];
     }
@@ -645,10 +625,8 @@ final class DedicatedDeploymentTarget implements JsonSerializable
 
     /**
      * Gets maintenance_mode
-     *
-     * @return bool
      */
-    public function getMaintenanceMode()
+    public function getMaintenanceMode(): bool
     {
         return $this->container['maintenance_mode'];
     }
@@ -668,10 +646,8 @@ final class DedicatedDeploymentTarget implements JsonSerializable
 
     /**
      * Gets guardrails_phase
-     *
-     * @return int
      */
-    public function getGuardrailsPhase()
+    public function getGuardrailsPhase(): int
     {
         return $this->container['guardrails_phase'];
     }
@@ -733,7 +709,6 @@ final class DedicatedDeploymentTarget implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

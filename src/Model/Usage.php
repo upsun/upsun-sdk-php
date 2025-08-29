@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Usage implements JsonSerializable
+final class Usage implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -235,10 +237,8 @@ final class Usage implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string|null
      */
-    public function getId()
+    public function getId(): string|null
     {
         return $this->container['id'];
     }
@@ -258,10 +258,8 @@ final class Usage implements JsonSerializable
 
     /**
      * Gets subscription_id
-     *
-     * @return string|null
      */
-    public function getSubscriptionId()
+    public function getSubscriptionId(): string|null
     {
         return $this->container['subscription_id'];
     }
@@ -281,10 +279,8 @@ final class Usage implements JsonSerializable
 
     /**
      * Gets usage_group
-     *
-     * @return string|null
      */
-    public function getUsageGroup()
+    public function getUsageGroup(): string|null
     {
         return $this->container['usage_group'];
     }
@@ -304,10 +300,8 @@ final class Usage implements JsonSerializable
 
     /**
      * Gets quantity
-     *
-     * @return float|null
      */
-    public function getQuantity()
+    public function getQuantity(): float|null
     {
         return $this->container['quantity'];
     }
@@ -327,10 +321,8 @@ final class Usage implements JsonSerializable
 
     /**
      * Gets start
-     *
-     * @return \DateTime|null
      */
-    public function getStart()
+    public function getStart(): \DateTime|null
     {
         return $this->container['start'];
     }
@@ -392,7 +384,6 @@ final class Usage implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

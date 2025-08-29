@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class OrganizationInvitationOwner implements JsonSerializable
+final class OrganizationInvitationOwner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -214,10 +216,8 @@ final class OrganizationInvitationOwner implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string|null
      */
-    public function getId()
+    public function getId(): string|null
     {
         return $this->container['id'];
     }
@@ -237,10 +237,8 @@ final class OrganizationInvitationOwner implements JsonSerializable
 
     /**
      * Gets display_name
-     *
-     * @return string|null
      */
-    public function getDisplayName()
+    public function getDisplayName(): string|null
     {
         return $this->container['display_name'];
     }
@@ -302,7 +300,6 @@ final class OrganizationInvitationOwner implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

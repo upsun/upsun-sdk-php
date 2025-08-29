@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class CacheConfiguration1 implements JsonSerializable
+final class CacheConfiguration1 implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -231,10 +233,8 @@ final class CacheConfiguration1 implements JsonSerializable
 
     /**
      * Gets enabled
-     *
-     * @return bool
      */
-    public function getEnabled()
+    public function getEnabled(): bool
     {
         return $this->container['enabled'];
     }
@@ -254,10 +254,8 @@ final class CacheConfiguration1 implements JsonSerializable
 
     /**
      * Gets default_ttl
-     *
-     * @return int|null
      */
-    public function getDefaultTtl()
+    public function getDefaultTtl(): int|null
     {
         return $this->container['default_ttl'];
     }
@@ -277,10 +275,8 @@ final class CacheConfiguration1 implements JsonSerializable
 
     /**
      * Gets cookies
-     *
-     * @return string[]|null
      */
-    public function getCookies()
+    public function getCookies(): array|null
     {
         return $this->container['cookies'];
     }
@@ -300,10 +296,8 @@ final class CacheConfiguration1 implements JsonSerializable
 
     /**
      * Gets headers
-     *
-     * @return string[]|null
      */
-    public function getHeaders()
+    public function getHeaders(): array|null
     {
         return $this->container['headers'];
     }
@@ -365,7 +359,6 @@ final class CacheConfiguration1 implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

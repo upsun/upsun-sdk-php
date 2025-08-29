@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class HealthWebHookIntegrationCreateInput implements JsonSerializable
+final class HealthWebHookIntegrationCreateInput implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -227,10 +229,8 @@ final class HealthWebHookIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -250,10 +250,8 @@ final class HealthWebHookIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets shared_key
-     *
-     * @return string|null
      */
-    public function getSharedKey()
+    public function getSharedKey(): string|null
     {
         return $this->container['shared_key'];
     }
@@ -280,10 +278,8 @@ final class HealthWebHookIntegrationCreateInput implements JsonSerializable
 
     /**
      * Gets url
-     *
-     * @return string
      */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->container['url'];
     }
@@ -345,7 +341,6 @@ final class HealthWebHookIntegrationCreateInput implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

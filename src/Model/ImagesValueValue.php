@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ImagesValueValue implements JsonSerializable
+final class ImagesValueValue implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -210,10 +212,8 @@ final class ImagesValueValue implements JsonSerializable
 
     /**
      * Gets available
-     *
-     * @return bool
      */
-    public function getAvailable()
+    public function getAvailable(): bool
     {
         return $this->container['available'];
     }
@@ -275,7 +275,6 @@ final class ImagesValueValue implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

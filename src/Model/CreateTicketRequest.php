@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class CreateTicketRequest implements JsonSerializable
+final class CreateTicketRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -349,10 +351,8 @@ final class CreateTicketRequest implements JsonSerializable
 
     /**
      * Gets subject
-     *
-     * @return string
      */
-    public function getSubject()
+    public function getSubject(): string
     {
         return $this->container['subject'];
     }
@@ -372,10 +372,8 @@ final class CreateTicketRequest implements JsonSerializable
 
     /**
      * Gets description
-     *
-     * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->container['description'];
     }
@@ -395,10 +393,8 @@ final class CreateTicketRequest implements JsonSerializable
 
     /**
      * Gets requester_id
-     *
-     * @return string|null
      */
-    public function getRequesterId()
+    public function getRequesterId(): string|null
     {
         return $this->container['requester_id'];
     }
@@ -418,10 +414,8 @@ final class CreateTicketRequest implements JsonSerializable
 
     /**
      * Gets priority
-     *
-     * @return string|null
      */
-    public function getPriority()
+    public function getPriority(): string|null
     {
         return $this->container['priority'];
     }
@@ -451,10 +445,8 @@ final class CreateTicketRequest implements JsonSerializable
 
     /**
      * Gets subscription_id
-     *
-     * @return string|null
      */
-    public function getSubscriptionId()
+    public function getSubscriptionId(): string|null
     {
         return $this->container['subscription_id'];
     }
@@ -474,10 +466,8 @@ final class CreateTicketRequest implements JsonSerializable
 
     /**
      * Gets organization_id
-     *
-     * @return string|null
      */
-    public function getOrganizationId()
+    public function getOrganizationId(): string|null
     {
         return $this->container['organization_id'];
     }
@@ -497,10 +487,8 @@ final class CreateTicketRequest implements JsonSerializable
 
     /**
      * Gets affected_url
-     *
-     * @return string|null
      */
-    public function getAffectedUrl()
+    public function getAffectedUrl(): string|null
     {
         return $this->container['affected_url'];
     }
@@ -520,10 +508,8 @@ final class CreateTicketRequest implements JsonSerializable
 
     /**
      * Gets followup_tid
-     *
-     * @return string|null
      */
-    public function getFollowupTid()
+    public function getFollowupTid(): string|null
     {
         return $this->container['followup_tid'];
     }
@@ -543,10 +529,8 @@ final class CreateTicketRequest implements JsonSerializable
 
     /**
      * Gets category
-     *
-     * @return string|null
      */
-    public function getCategory()
+    public function getCategory(): string|null
     {
         return $this->container['category'];
     }
@@ -576,10 +560,8 @@ final class CreateTicketRequest implements JsonSerializable
 
     /**
      * Gets attachments
-     *
-     * @return \Upsun\Model\CreateTicketRequestAttachmentsInner[]|null
      */
-    public function getAttachments()
+    public function getAttachments(): array|null
     {
         return $this->container['attachments'];
     }
@@ -599,10 +581,8 @@ final class CreateTicketRequest implements JsonSerializable
 
     /**
      * Gets collaborator_ids
-     *
-     * @return string[]|null
      */
-    public function getCollaboratorIds()
+    public function getCollaboratorIds(): array|null
     {
         return $this->container['collaborator_ids'];
     }
@@ -664,7 +644,6 @@ final class CreateTicketRequest implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

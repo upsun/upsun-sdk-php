@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class VPNConfiguration implements JsonSerializable
+final class VPNConfiguration implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -406,10 +408,8 @@ final class VPNConfiguration implements JsonSerializable
 
     /**
      * Gets version
-     *
-     * @return int
      */
-    public function getVersion()
+    public function getVersion(): int
     {
         return $this->container['version'];
     }
@@ -439,10 +439,8 @@ final class VPNConfiguration implements JsonSerializable
 
     /**
      * Gets aggressive
-     *
-     * @return string
      */
-    public function getAggressive()
+    public function getAggressive(): string
     {
         return $this->container['aggressive'];
     }
@@ -472,10 +470,8 @@ final class VPNConfiguration implements JsonSerializable
 
     /**
      * Gets modeconfig
-     *
-     * @return string
      */
-    public function getModeconfig()
+    public function getModeconfig(): string
     {
         return $this->container['modeconfig'];
     }
@@ -505,10 +501,8 @@ final class VPNConfiguration implements JsonSerializable
 
     /**
      * Gets authentication
-     *
-     * @return string
      */
-    public function getAuthentication()
+    public function getAuthentication(): string
     {
         return $this->container['authentication'];
     }
@@ -528,10 +522,8 @@ final class VPNConfiguration implements JsonSerializable
 
     /**
      * Gets gateway_ip
-     *
-     * @return string
      */
-    public function getGatewayIp()
+    public function getGatewayIp(): string
     {
         return $this->container['gateway_ip'];
     }
@@ -551,10 +543,8 @@ final class VPNConfiguration implements JsonSerializable
 
     /**
      * Gets identity
-     *
-     * @return string
      */
-    public function getIdentity()
+    public function getIdentity(): string
     {
         return $this->container['identity'];
     }
@@ -581,10 +571,8 @@ final class VPNConfiguration implements JsonSerializable
 
     /**
      * Gets second_identity
-     *
-     * @return string
      */
-    public function getSecondIdentity()
+    public function getSecondIdentity(): string
     {
         return $this->container['second_identity'];
     }
@@ -611,10 +599,8 @@ final class VPNConfiguration implements JsonSerializable
 
     /**
      * Gets remote_identity
-     *
-     * @return string
      */
-    public function getRemoteIdentity()
+    public function getRemoteIdentity(): string
     {
         return $this->container['remote_identity'];
     }
@@ -641,10 +627,8 @@ final class VPNConfiguration implements JsonSerializable
 
     /**
      * Gets remote_subnets
-     *
-     * @return string[]
      */
-    public function getRemoteSubnets()
+    public function getRemoteSubnets(): array
     {
         return $this->container['remote_subnets'];
     }
@@ -664,10 +648,8 @@ final class VPNConfiguration implements JsonSerializable
 
     /**
      * Gets ike
-     *
-     * @return string
      */
-    public function getIke()
+    public function getIke(): string
     {
         return $this->container['ike'];
     }
@@ -687,10 +669,8 @@ final class VPNConfiguration implements JsonSerializable
 
     /**
      * Gets esp
-     *
-     * @return string
      */
-    public function getEsp()
+    public function getEsp(): string
     {
         return $this->container['esp'];
     }
@@ -710,10 +690,8 @@ final class VPNConfiguration implements JsonSerializable
 
     /**
      * Gets ikelifetime
-     *
-     * @return string
      */
-    public function getIkelifetime()
+    public function getIkelifetime(): string
     {
         return $this->container['ikelifetime'];
     }
@@ -733,10 +711,8 @@ final class VPNConfiguration implements JsonSerializable
 
     /**
      * Gets lifetime
-     *
-     * @return string
      */
-    public function getLifetime()
+    public function getLifetime(): string
     {
         return $this->container['lifetime'];
     }
@@ -756,10 +732,8 @@ final class VPNConfiguration implements JsonSerializable
 
     /**
      * Gets margintime
-     *
-     * @return string
      */
-    public function getMargintime()
+    public function getMargintime(): string
     {
         return $this->container['margintime'];
     }
@@ -821,7 +795,6 @@ final class VPNConfiguration implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

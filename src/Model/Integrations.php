@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Integrations implements JsonSerializable
+final class Integrations implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -224,10 +226,8 @@ final class Integrations implements JsonSerializable
 
     /**
      * Gets enabled
-     *
-     * @return bool
      */
-    public function getEnabled()
+    public function getEnabled(): bool
     {
         return $this->container['enabled'];
     }
@@ -247,10 +247,8 @@ final class Integrations implements JsonSerializable
 
     /**
      * Gets config
-     *
-     * @return \Upsun\Model\Config|null
      */
-    public function getConfig()
+    public function getConfig(): \Upsun\Model\Config|null
     {
         return $this->container['config'];
     }
@@ -270,10 +268,8 @@ final class Integrations implements JsonSerializable
 
     /**
      * Gets allowed_integrations
-     *
-     * @return string[]|null
      */
-    public function getAllowedIntegrations()
+    public function getAllowedIntegrations(): array|null
     {
         return $this->container['allowed_integrations'];
     }
@@ -335,7 +331,6 @@ final class Integrations implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

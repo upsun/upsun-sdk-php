@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class CreateOrgInviteRequest implements JsonSerializable
+final class CreateOrgInviteRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -248,10 +250,8 @@ final class CreateOrgInviteRequest implements JsonSerializable
 
     /**
      * Gets email
-     *
-     * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->container['email'];
     }
@@ -271,10 +271,8 @@ final class CreateOrgInviteRequest implements JsonSerializable
 
     /**
      * Gets permissions
-     *
-     * @return string[]
      */
-    public function getPermissions()
+    public function getPermissions(): array
     {
         return $this->container['permissions'];
     }
@@ -303,10 +301,8 @@ final class CreateOrgInviteRequest implements JsonSerializable
 
     /**
      * Gets force
-     *
-     * @return bool|null
      */
-    public function getForce()
+    public function getForce(): bool|null
     {
         return $this->container['force'];
     }
@@ -368,7 +364,6 @@ final class CreateOrgInviteRequest implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

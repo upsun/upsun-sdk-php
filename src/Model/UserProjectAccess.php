@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class UserProjectAccess implements JsonSerializable
+final class UserProjectAccess implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -287,10 +289,8 @@ final class UserProjectAccess implements JsonSerializable
 
     /**
      * Gets user_id
-     *
-     * @return string|null
      */
-    public function getUserId()
+    public function getUserId(): string|null
     {
         return $this->container['user_id'];
     }
@@ -310,10 +310,8 @@ final class UserProjectAccess implements JsonSerializable
 
     /**
      * Gets organization_id
-     *
-     * @return string|null
      */
-    public function getOrganizationId()
+    public function getOrganizationId(): string|null
     {
         return $this->container['organization_id'];
     }
@@ -333,10 +331,8 @@ final class UserProjectAccess implements JsonSerializable
 
     /**
      * Gets project_id
-     *
-     * @return string|null
      */
-    public function getProjectId()
+    public function getProjectId(): string|null
     {
         return $this->container['project_id'];
     }
@@ -356,10 +352,8 @@ final class UserProjectAccess implements JsonSerializable
 
     /**
      * Gets project_title
-     *
-     * @return string|null
      */
-    public function getProjectTitle()
+    public function getProjectTitle(): string|null
     {
         return $this->container['project_title'];
     }
@@ -379,10 +373,8 @@ final class UserProjectAccess implements JsonSerializable
 
     /**
      * Gets permissions
-     *
-     * @return string[]|null
      */
-    public function getPermissions()
+    public function getPermissions(): array|null
     {
         return $this->container['permissions'];
     }
@@ -411,10 +403,8 @@ final class UserProjectAccess implements JsonSerializable
 
     /**
      * Gets granted_at
-     *
-     * @return \DateTime|null
      */
-    public function getGrantedAt()
+    public function getGrantedAt(): \DateTime|null
     {
         return $this->container['granted_at'];
     }
@@ -434,10 +424,8 @@ final class UserProjectAccess implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime|null
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime|null
     {
         return $this->container['updated_at'];
     }
@@ -457,10 +445,8 @@ final class UserProjectAccess implements JsonSerializable
 
     /**
      * Gets _links
-     *
-     * @return \Upsun\Model\TeamProjectAccessLinks|null
      */
-    public function getLinks()
+    public function getLinks(): \Upsun\Model\TeamProjectAccessLinks|null
     {
         return $this->container['_links'];
     }
@@ -522,7 +508,6 @@ final class UserProjectAccess implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

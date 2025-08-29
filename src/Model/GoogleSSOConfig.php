@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class GoogleSSOConfig implements JsonSerializable
+final class GoogleSSOConfig implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -234,10 +236,8 @@ final class GoogleSSOConfig implements JsonSerializable
 
     /**
      * Gets provider_type
-     *
-     * @return string|null
      */
-    public function getProviderType()
+    public function getProviderType(): string|null
     {
         return $this->container['provider_type'];
     }
@@ -267,10 +267,8 @@ final class GoogleSSOConfig implements JsonSerializable
 
     /**
      * Gets domain
-     *
-     * @return string|null
      */
-    public function getDomain()
+    public function getDomain(): string|null
     {
         return $this->container['domain'];
     }
@@ -332,7 +330,6 @@ final class GoogleSSOConfig implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

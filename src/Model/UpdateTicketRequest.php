@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class UpdateTicketRequest implements JsonSerializable
+final class UpdateTicketRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -243,10 +245,8 @@ final class UpdateTicketRequest implements JsonSerializable
 
     /**
      * Gets status
-     *
-     * @return string|null
      */
-    public function getStatus()
+    public function getStatus(): string|null
     {
         return $this->container['status'];
     }
@@ -276,10 +276,8 @@ final class UpdateTicketRequest implements JsonSerializable
 
     /**
      * Gets collaborator_ids
-     *
-     * @return string[]|null
      */
-    public function getCollaboratorIds()
+    public function getCollaboratorIds(): array|null
     {
         return $this->container['collaborator_ids'];
     }
@@ -299,10 +297,8 @@ final class UpdateTicketRequest implements JsonSerializable
 
     /**
      * Gets collaborators_replace
-     *
-     * @return bool|null
      */
-    public function getCollaboratorsReplace()
+    public function getCollaboratorsReplace(): bool|null
     {
         return $this->container['collaborators_replace'];
     }
@@ -364,7 +360,6 @@ final class UpdateTicketRequest implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Domain implements JsonSerializable
+final class Domain implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -278,10 +280,8 @@ final class Domain implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->container['created_at'];
     }
@@ -308,10 +308,8 @@ final class Domain implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime
     {
         return $this->container['updated_at'];
     }
@@ -338,10 +336,8 @@ final class Domain implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -361,10 +357,8 @@ final class Domain implements JsonSerializable
 
     /**
      * Gets project
-     *
-     * @return string|null
      */
-    public function getProject()
+    public function getProject(): string|null
     {
         return $this->container['project'];
     }
@@ -384,10 +378,8 @@ final class Domain implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->container['name'];
     }
@@ -407,10 +399,8 @@ final class Domain implements JsonSerializable
 
     /**
      * Gets registered_name
-     *
-     * @return string|null
      */
-    public function getRegisteredName()
+    public function getRegisteredName(): string|null
     {
         return $this->container['registered_name'];
     }
@@ -430,10 +420,8 @@ final class Domain implements JsonSerializable
 
     /**
      * Gets attributes
-     *
-     * @return array<string,string>
      */
-    public function getAttributes()
+    public function getAttributes(): array
     {
         return $this->container['attributes'];
     }
@@ -453,10 +441,8 @@ final class Domain implements JsonSerializable
 
     /**
      * Gets is_default
-     *
-     * @return bool|null
      */
-    public function getIsDefault()
+    public function getIsDefault(): bool|null
     {
         return $this->container['is_default'];
     }
@@ -476,10 +462,8 @@ final class Domain implements JsonSerializable
 
     /**
      * Gets replacement_for
-     *
-     * @return string|null
      */
-    public function getReplacementFor()
+    public function getReplacementFor(): string|null
     {
         return $this->container['replacement_for'];
     }
@@ -541,7 +525,6 @@ final class Domain implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

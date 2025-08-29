@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class OrganizationLinks implements JsonSerializable
+final class OrganizationLinks implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -305,10 +307,8 @@ final class OrganizationLinks implements JsonSerializable
 
     /**
      * Gets self
-     *
-     * @return \Upsun\Model\OrganizationLinksSelf|null
      */
-    public function getSelf()
+    public function getSelf(): \Upsun\Model\OrganizationLinksSelf|null
     {
         return $this->container['self'];
     }
@@ -328,10 +328,8 @@ final class OrganizationLinks implements JsonSerializable
 
     /**
      * Gets update
-     *
-     * @return \Upsun\Model\OrganizationLinksUpdate|null
      */
-    public function getUpdate()
+    public function getUpdate(): \Upsun\Model\OrganizationLinksUpdate|null
     {
         return $this->container['update'];
     }
@@ -351,10 +349,8 @@ final class OrganizationLinks implements JsonSerializable
 
     /**
      * Gets delete
-     *
-     * @return \Upsun\Model\OrganizationLinksDelete|null
      */
-    public function getDelete()
+    public function getDelete(): \Upsun\Model\OrganizationLinksDelete|null
     {
         return $this->container['delete'];
     }
@@ -374,10 +370,8 @@ final class OrganizationLinks implements JsonSerializable
 
     /**
      * Gets members
-     *
-     * @return \Upsun\Model\OrganizationLinksMembers|null
      */
-    public function getMembers()
+    public function getMembers(): \Upsun\Model\OrganizationLinksMembers|null
     {
         return $this->container['members'];
     }
@@ -397,10 +391,8 @@ final class OrganizationLinks implements JsonSerializable
 
     /**
      * Gets create_member
-     *
-     * @return \Upsun\Model\OrganizationLinksCreateMember|null
      */
-    public function getCreateMember()
+    public function getCreateMember(): \Upsun\Model\OrganizationLinksCreateMember|null
     {
         return $this->container['create_member'];
     }
@@ -420,10 +412,8 @@ final class OrganizationLinks implements JsonSerializable
 
     /**
      * Gets address
-     *
-     * @return \Upsun\Model\OrganizationLinksAddress|null
      */
-    public function getAddress()
+    public function getAddress(): \Upsun\Model\OrganizationLinksAddress|null
     {
         return $this->container['address'];
     }
@@ -443,10 +433,8 @@ final class OrganizationLinks implements JsonSerializable
 
     /**
      * Gets profile
-     *
-     * @return \Upsun\Model\OrganizationLinksProfile|null
      */
-    public function getProfile()
+    public function getProfile(): \Upsun\Model\OrganizationLinksProfile|null
     {
         return $this->container['profile'];
     }
@@ -466,10 +454,8 @@ final class OrganizationLinks implements JsonSerializable
 
     /**
      * Gets payment_source
-     *
-     * @return \Upsun\Model\OrganizationLinksPaymentSource|null
      */
-    public function getPaymentSource()
+    public function getPaymentSource(): \Upsun\Model\OrganizationLinksPaymentSource|null
     {
         return $this->container['payment_source'];
     }
@@ -489,10 +475,8 @@ final class OrganizationLinks implements JsonSerializable
 
     /**
      * Gets orders
-     *
-     * @return \Upsun\Model\OrganizationLinksOrders|null
      */
-    public function getOrders()
+    public function getOrders(): \Upsun\Model\OrganizationLinksOrders|null
     {
         return $this->container['orders'];
     }
@@ -512,10 +496,8 @@ final class OrganizationLinks implements JsonSerializable
 
     /**
      * Gets vouchers
-     *
-     * @return \Upsun\Model\OrganizationLinksVouchers|null
      */
-    public function getVouchers()
+    public function getVouchers(): \Upsun\Model\OrganizationLinksVouchers|null
     {
         return $this->container['vouchers'];
     }
@@ -535,10 +517,8 @@ final class OrganizationLinks implements JsonSerializable
 
     /**
      * Gets apply_voucher
-     *
-     * @return \Upsun\Model\OrganizationLinksApplyVoucher|null
      */
-    public function getApplyVoucher()
+    public function getApplyVoucher(): \Upsun\Model\OrganizationLinksApplyVoucher|null
     {
         return $this->container['apply_voucher'];
     }
@@ -558,10 +538,8 @@ final class OrganizationLinks implements JsonSerializable
 
     /**
      * Gets subscriptions
-     *
-     * @return \Upsun\Model\OrganizationLinksSubscriptions|null
      */
-    public function getSubscriptions()
+    public function getSubscriptions(): \Upsun\Model\OrganizationLinksSubscriptions|null
     {
         return $this->container['subscriptions'];
     }
@@ -581,10 +559,8 @@ final class OrganizationLinks implements JsonSerializable
 
     /**
      * Gets create_subscription
-     *
-     * @return \Upsun\Model\OrganizationLinksCreateSubscription|null
      */
-    public function getCreateSubscription()
+    public function getCreateSubscription(): \Upsun\Model\OrganizationLinksCreateSubscription|null
     {
         return $this->container['create_subscription'];
     }
@@ -604,10 +580,8 @@ final class OrganizationLinks implements JsonSerializable
 
     /**
      * Gets estimate_subscription
-     *
-     * @return \Upsun\Model\OrganizationLinksEstimateSubscription|null
      */
-    public function getEstimateSubscription()
+    public function getEstimateSubscription(): \Upsun\Model\OrganizationLinksEstimateSubscription|null
     {
         return $this->container['estimate_subscription'];
     }
@@ -627,10 +601,8 @@ final class OrganizationLinks implements JsonSerializable
 
     /**
      * Gets mfa_enforcement
-     *
-     * @return \Upsun\Model\OrganizationLinksMfaEnforcement|null
      */
-    public function getMfaEnforcement()
+    public function getMfaEnforcement(): \Upsun\Model\OrganizationLinksMfaEnforcement|null
     {
         return $this->container['mfa_enforcement'];
     }
@@ -692,7 +664,6 @@ final class OrganizationLinks implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

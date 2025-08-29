@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Integration implements JsonSerializable
+final class Integration implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -782,10 +784,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->container['created_at'];
     }
@@ -812,10 +812,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime
     {
         return $this->container['updated_at'];
     }
@@ -842,10 +840,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -865,10 +861,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets fetch_branches
-     *
-     * @return bool
      */
-    public function getFetchBranches()
+    public function getFetchBranches(): bool
     {
         return $this->container['fetch_branches'];
     }
@@ -888,10 +882,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets prune_branches
-     *
-     * @return bool
      */
-    public function getPruneBranches()
+    public function getPruneBranches(): bool
     {
         return $this->container['prune_branches'];
     }
@@ -911,10 +903,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets environment_init_resources
-     *
-     * @return string
      */
-    public function getEnvironmentInitResources()
+    public function getEnvironmentInitResources(): string
     {
         return $this->container['environment_init_resources'];
     }
@@ -944,10 +934,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets app_credentials
-     *
-     * @return \Upsun\Model\TheOAuth2ConsumerInformationOptional|null
      */
-    public function getAppCredentials()
+    public function getAppCredentials(): \Upsun\Model\TheOAuth2ConsumerInformationOptional|null
     {
         return $this->container['app_credentials'];
     }
@@ -974,10 +962,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets addon_credentials
-     *
-     * @return \Upsun\Model\TheAddonCredentialInformationOptional|null
      */
-    public function getAddonCredentials()
+    public function getAddonCredentials(): \Upsun\Model\TheAddonCredentialInformationOptional|null
     {
         return $this->container['addon_credentials'];
     }
@@ -1004,10 +990,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets repository
-     *
-     * @return string
      */
-    public function getRepository()
+    public function getRepository(): string
     {
         return $this->container['repository'];
     }
@@ -1027,10 +1011,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets build_pull_requests
-     *
-     * @return bool
      */
-    public function getBuildPullRequests()
+    public function getBuildPullRequests(): bool
     {
         return $this->container['build_pull_requests'];
     }
@@ -1050,10 +1032,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets pull_requests_clone_parent_data
-     *
-     * @return bool
      */
-    public function getPullRequestsCloneParentData()
+    public function getPullRequestsCloneParentData(): bool
     {
         return $this->container['pull_requests_clone_parent_data'];
     }
@@ -1073,10 +1053,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets resync_pull_requests
-     *
-     * @return bool
      */
-    public function getResyncPullRequests()
+    public function getResyncPullRequests(): bool
     {
         return $this->container['resync_pull_requests'];
     }
@@ -1096,10 +1074,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets url
-     *
-     * @return string
      */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->container['url'];
     }
@@ -1119,10 +1095,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets username
-     *
-     * @return string
      */
-    public function getUsername()
+    public function getUsername(): string
     {
         return $this->container['username'];
     }
@@ -1142,10 +1116,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets project
-     *
-     * @return string
      */
-    public function getProject()
+    public function getProject(): string
     {
         return $this->container['project'];
     }
@@ -1165,10 +1137,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets environments_credentials
-     *
-     * @return array<string,\Upsun\Model\BlackfireEnvironmentsCredentialsValue>
      */
-    public function getEnvironmentsCredentials()
+    public function getEnvironmentsCredentials(): array
     {
         return $this->container['environments_credentials'];
     }
@@ -1188,10 +1158,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets continuous_profiling
-     *
-     * @return bool
      */
-    public function getContinuousProfiling()
+    public function getContinuousProfiling(): bool
     {
         return $this->container['continuous_profiling'];
     }
@@ -1211,10 +1179,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets events
-     *
-     * @return string[]
      */
-    public function getEvents()
+    public function getEvents(): array
     {
         return $this->container['events'];
     }
@@ -1234,10 +1200,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets environments
-     *
-     * @return string[]
      */
-    public function getEnvironments()
+    public function getEnvironments(): array
     {
         return $this->container['environments'];
     }
@@ -1257,10 +1221,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets excluded_environments
-     *
-     * @return string[]
      */
-    public function getExcludedEnvironments()
+    public function getExcludedEnvironments(): array
     {
         return $this->container['excluded_environments'];
     }
@@ -1280,10 +1242,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets states
-     *
-     * @return string[]
      */
-    public function getStates()
+    public function getStates(): array
     {
         return $this->container['states'];
     }
@@ -1303,10 +1263,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets result
-     *
-     * @return string
      */
-    public function getResult()
+    public function getResult(): string
     {
         return $this->container['result'];
     }
@@ -1336,10 +1294,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets service_id
-     *
-     * @return string
      */
-    public function getServiceId()
+    public function getServiceId(): string
     {
         return $this->container['service_id'];
     }
@@ -1359,10 +1315,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets base_url
-     *
-     * @return string
      */
-    public function getBaseUrl()
+    public function getBaseUrl(): string
     {
         return $this->container['base_url'];
     }
@@ -1382,10 +1336,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets build_draft_pull_requests
-     *
-     * @return bool
      */
-    public function getBuildDraftPullRequests()
+    public function getBuildDraftPullRequests(): bool
     {
         return $this->container['build_draft_pull_requests'];
     }
@@ -1405,10 +1357,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets build_pull_requests_post_merge
-     *
-     * @return bool
      */
-    public function getBuildPullRequestsPostMerge()
+    public function getBuildPullRequestsPostMerge(): bool
     {
         return $this->container['build_pull_requests_post_merge'];
     }
@@ -1428,10 +1378,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets token_type
-     *
-     * @return string
      */
-    public function getTokenType()
+    public function getTokenType(): string
     {
         return $this->container['token_type'];
     }
@@ -1461,10 +1409,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets build_merge_requests
-     *
-     * @return bool
      */
-    public function getBuildMergeRequests()
+    public function getBuildMergeRequests(): bool
     {
         return $this->container['build_merge_requests'];
     }
@@ -1484,10 +1430,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets build_wip_merge_requests
-     *
-     * @return bool
      */
-    public function getBuildWipMergeRequests()
+    public function getBuildWipMergeRequests(): bool
     {
         return $this->container['build_wip_merge_requests'];
     }
@@ -1507,10 +1451,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets merge_requests_clone_parent_data
-     *
-     * @return bool
      */
-    public function getMergeRequestsCloneParentData()
+    public function getMergeRequestsCloneParentData(): bool
     {
         return $this->container['merge_requests_clone_parent_data'];
     }
@@ -1530,10 +1472,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets from_address
-     *
-     * @return string
      */
-    public function getFromAddress()
+    public function getFromAddress(): string
     {
         return $this->container['from_address'];
     }
@@ -1560,10 +1500,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets recipients
-     *
-     * @return string[]
      */
-    public function getRecipients()
+    public function getRecipients(): array
     {
         return $this->container['recipients'];
     }
@@ -1583,10 +1521,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets routing_key
-     *
-     * @return string
      */
-    public function getRoutingKey()
+    public function getRoutingKey(): string
     {
         return $this->container['routing_key'];
     }
@@ -1606,10 +1542,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets channel
-     *
-     * @return string
      */
-    public function getChannel()
+    public function getChannel(): string
     {
         return $this->container['channel'];
     }
@@ -1629,10 +1563,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets extra
-     *
-     * @return array<string,string>
      */
-    public function getExtra()
+    public function getExtra(): array
     {
         return $this->container['extra'];
     }
@@ -1652,10 +1584,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets headers
-     *
-     * @return array<string,string>
      */
-    public function getHeaders()
+    public function getHeaders(): array
     {
         return $this->container['headers'];
     }
@@ -1675,10 +1605,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets tls_verify
-     *
-     * @return bool
      */
-    public function getTlsVerify()
+    public function getTlsVerify(): bool
     {
         return $this->container['tls_verify'];
     }
@@ -1698,10 +1626,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets script
-     *
-     * @return string
      */
-    public function getScript()
+    public function getScript(): string
     {
         return $this->container['script'];
     }
@@ -1721,10 +1647,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets index
-     *
-     * @return string
      */
-    public function getIndex()
+    public function getIndex(): string
     {
         return $this->container['index'];
     }
@@ -1744,10 +1668,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets sourcetype
-     *
-     * @return string
      */
-    public function getSourcetype()
+    public function getSourcetype(): string
     {
         return $this->container['sourcetype'];
     }
@@ -1767,10 +1689,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets category
-     *
-     * @return string
      */
-    public function getCategory()
+    public function getCategory(): string
     {
         return $this->container['category'];
     }
@@ -1790,10 +1710,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets host
-     *
-     * @return string
      */
-    public function getHost()
+    public function getHost(): string
     {
         return $this->container['host'];
     }
@@ -1813,10 +1731,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets port
-     *
-     * @return int
      */
-    public function getPort()
+    public function getPort(): int
     {
         return $this->container['port'];
     }
@@ -1836,10 +1752,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets protocol
-     *
-     * @return string
      */
-    public function getProtocol()
+    public function getProtocol(): string
     {
         return $this->container['protocol'];
     }
@@ -1869,10 +1783,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets facility
-     *
-     * @return int
      */
-    public function getFacility()
+    public function getFacility(): int
     {
         return $this->container['facility'];
     }
@@ -1892,10 +1804,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets message_format
-     *
-     * @return string
      */
-    public function getMessageFormat()
+    public function getMessageFormat(): string
     {
         return $this->container['message_format'];
     }
@@ -1925,10 +1835,8 @@ final class Integration implements JsonSerializable
 
     /**
      * Gets shared_key
-     *
-     * @return string
      */
-    public function getSharedKey()
+    public function getSharedKey(): string
     {
         return $this->container['shared_key'];
     }
@@ -1997,7 +1905,6 @@ final class Integration implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

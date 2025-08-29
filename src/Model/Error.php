@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Error implements JsonSerializable
+final class Error implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -235,10 +237,8 @@ final class Error implements JsonSerializable
 
     /**
      * Gets status
-     *
-     * @return string|null
      */
-    public function getStatus()
+    public function getStatus(): string|null
     {
         return $this->container['status'];
     }
@@ -258,10 +258,8 @@ final class Error implements JsonSerializable
 
     /**
      * Gets message
-     *
-     * @return string|null
      */
-    public function getMessage()
+    public function getMessage(): string|null
     {
         return $this->container['message'];
     }
@@ -281,10 +279,8 @@ final class Error implements JsonSerializable
 
     /**
      * Gets code
-     *
-     * @return float|null
      */
-    public function getCode()
+    public function getCode(): float|null
     {
         return $this->container['code'];
     }
@@ -304,10 +300,8 @@ final class Error implements JsonSerializable
 
     /**
      * Gets detail
-     *
-     * @return object|null
      */
-    public function getDetail()
+    public function getDetail(): object|null
     {
         return $this->container['detail'];
     }
@@ -327,10 +321,8 @@ final class Error implements JsonSerializable
 
     /**
      * Gets title
-     *
-     * @return string|null
      */
-    public function getTitle()
+    public function getTitle(): string|null
     {
         return $this->container['title'];
     }
@@ -392,7 +384,6 @@ final class Error implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

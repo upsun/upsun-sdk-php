@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class UsageGroupCurrentUsageProperties implements JsonSerializable
+final class UsageGroupCurrentUsageProperties implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -263,10 +265,8 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
 
     /**
      * Gets title
-     *
-     * @return string|null
      */
-    public function getTitle()
+    public function getTitle(): string|null
     {
         return $this->container['title'];
     }
@@ -286,10 +286,8 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return bool|null
      */
-    public function getType()
+    public function getType(): bool|null
     {
         return $this->container['type'];
     }
@@ -309,10 +307,8 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
 
     /**
      * Gets current_usage
-     *
-     * @return float|null
      */
-    public function getCurrentUsage()
+    public function getCurrentUsage(): float|null
     {
         return $this->container['current_usage'];
     }
@@ -332,10 +328,8 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
 
     /**
      * Gets current_usage_formatted
-     *
-     * @return string|null
      */
-    public function getCurrentUsageFormatted()
+    public function getCurrentUsageFormatted(): string|null
     {
         return $this->container['current_usage_formatted'];
     }
@@ -355,10 +349,8 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
 
     /**
      * Gets not_charged
-     *
-     * @return bool|null
      */
-    public function getNotCharged()
+    public function getNotCharged(): bool|null
     {
         return $this->container['not_charged'];
     }
@@ -378,10 +370,8 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
 
     /**
      * Gets free_quantity
-     *
-     * @return float|null
      */
-    public function getFreeQuantity()
+    public function getFreeQuantity(): float|null
     {
         return $this->container['free_quantity'];
     }
@@ -401,10 +391,8 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
 
     /**
      * Gets free_quantity_formatted
-     *
-     * @return string|null
      */
-    public function getFreeQuantityFormatted()
+    public function getFreeQuantityFormatted(): string|null
     {
         return $this->container['free_quantity_formatted'];
     }
@@ -424,10 +412,8 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
 
     /**
      * Gets daily_average
-     *
-     * @return float|null
      */
-    public function getDailyAverage()
+    public function getDailyAverage(): float|null
     {
         return $this->container['daily_average'];
     }
@@ -447,10 +433,8 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
 
     /**
      * Gets daily_average_formatted
-     *
-     * @return string|null
      */
-    public function getDailyAverageFormatted()
+    public function getDailyAverageFormatted(): string|null
     {
         return $this->container['daily_average_formatted'];
     }
@@ -512,7 +496,6 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

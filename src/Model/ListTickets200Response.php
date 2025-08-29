@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ListTickets200Response implements JsonSerializable
+final class ListTickets200Response implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -221,10 +223,8 @@ final class ListTickets200Response implements JsonSerializable
 
     /**
      * Gets count
-     *
-     * @return int|null
      */
-    public function getCount()
+    public function getCount(): int|null
     {
         return $this->container['count'];
     }
@@ -244,10 +244,8 @@ final class ListTickets200Response implements JsonSerializable
 
     /**
      * Gets tickets
-     *
-     * @return \Upsun\Model\Ticket[]|null
      */
-    public function getTickets()
+    public function getTickets(): array|null
     {
         return $this->container['tickets'];
     }
@@ -267,10 +265,8 @@ final class ListTickets200Response implements JsonSerializable
 
     /**
      * Gets _links
-     *
-     * @return \Upsun\Model\HalLinks|null
      */
-    public function getLinks()
+    public function getLinks(): \Upsun\Model\HalLinks|null
     {
         return $this->container['_links'];
     }
@@ -332,7 +328,6 @@ final class ListTickets200Response implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

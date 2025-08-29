@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ScriptIntegration implements JsonSerializable
+final class ScriptIntegration implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -314,10 +316,8 @@ final class ScriptIntegration implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->container['created_at'];
     }
@@ -344,10 +344,8 @@ final class ScriptIntegration implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime
     {
         return $this->container['updated_at'];
     }
@@ -374,10 +372,8 @@ final class ScriptIntegration implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -397,10 +393,8 @@ final class ScriptIntegration implements JsonSerializable
 
     /**
      * Gets events
-     *
-     * @return string[]
      */
-    public function getEvents()
+    public function getEvents(): array
     {
         return $this->container['events'];
     }
@@ -420,10 +414,8 @@ final class ScriptIntegration implements JsonSerializable
 
     /**
      * Gets environments
-     *
-     * @return string[]
      */
-    public function getEnvironments()
+    public function getEnvironments(): array
     {
         return $this->container['environments'];
     }
@@ -443,10 +435,8 @@ final class ScriptIntegration implements JsonSerializable
 
     /**
      * Gets excluded_environments
-     *
-     * @return string[]
      */
-    public function getExcludedEnvironments()
+    public function getExcludedEnvironments(): array
     {
         return $this->container['excluded_environments'];
     }
@@ -466,10 +456,8 @@ final class ScriptIntegration implements JsonSerializable
 
     /**
      * Gets states
-     *
-     * @return string[]
      */
-    public function getStates()
+    public function getStates(): array
     {
         return $this->container['states'];
     }
@@ -489,10 +477,8 @@ final class ScriptIntegration implements JsonSerializable
 
     /**
      * Gets result
-     *
-     * @return string
      */
-    public function getResult()
+    public function getResult(): string
     {
         return $this->container['result'];
     }
@@ -522,10 +508,8 @@ final class ScriptIntegration implements JsonSerializable
 
     /**
      * Gets script
-     *
-     * @return string
      */
-    public function getScript()
+    public function getScript(): string
     {
         return $this->container['script'];
     }
@@ -587,7 +571,6 @@ final class ScriptIntegration implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

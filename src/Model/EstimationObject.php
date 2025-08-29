@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class EstimationObject implements JsonSerializable
+final class EstimationObject implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -242,10 +244,8 @@ final class EstimationObject implements JsonSerializable
 
     /**
      * Gets plan
-     *
-     * @return string|null
      */
-    public function getPlan()
+    public function getPlan(): string|null
     {
         return $this->container['plan'];
     }
@@ -265,10 +265,8 @@ final class EstimationObject implements JsonSerializable
 
     /**
      * Gets user_licenses
-     *
-     * @return string|null
      */
-    public function getUserLicenses()
+    public function getUserLicenses(): string|null
     {
         return $this->container['user_licenses'];
     }
@@ -288,10 +286,8 @@ final class EstimationObject implements JsonSerializable
 
     /**
      * Gets environments
-     *
-     * @return string|null
      */
-    public function getEnvironments()
+    public function getEnvironments(): string|null
     {
         return $this->container['environments'];
     }
@@ -311,10 +307,8 @@ final class EstimationObject implements JsonSerializable
 
     /**
      * Gets storage
-     *
-     * @return string|null
      */
-    public function getStorage()
+    public function getStorage(): string|null
     {
         return $this->container['storage'];
     }
@@ -334,10 +328,8 @@ final class EstimationObject implements JsonSerializable
 
     /**
      * Gets total
-     *
-     * @return string|null
      */
-    public function getTotal()
+    public function getTotal(): string|null
     {
         return $this->container['total'];
     }
@@ -357,10 +349,8 @@ final class EstimationObject implements JsonSerializable
 
     /**
      * Gets options
-     *
-     * @return object|null
      */
-    public function getOptions()
+    public function getOptions(): object|null
     {
         return $this->container['options'];
     }
@@ -422,7 +412,6 @@ final class EstimationObject implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

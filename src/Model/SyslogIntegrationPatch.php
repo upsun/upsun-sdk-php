@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class SyslogIntegrationPatch implements JsonSerializable
+final class SyslogIntegrationPatch implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -341,10 +343,8 @@ final class SyslogIntegrationPatch implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -364,10 +364,8 @@ final class SyslogIntegrationPatch implements JsonSerializable
 
     /**
      * Gets extra
-     *
-     * @return array<string,string>|null
      */
-    public function getExtra()
+    public function getExtra(): array|null
     {
         return $this->container['extra'];
     }
@@ -387,10 +385,8 @@ final class SyslogIntegrationPatch implements JsonSerializable
 
     /**
      * Gets host
-     *
-     * @return string|null
      */
-    public function getHost()
+    public function getHost(): string|null
     {
         return $this->container['host'];
     }
@@ -410,10 +406,8 @@ final class SyslogIntegrationPatch implements JsonSerializable
 
     /**
      * Gets port
-     *
-     * @return int|null
      */
-    public function getPort()
+    public function getPort(): int|null
     {
         return $this->container['port'];
     }
@@ -433,10 +427,8 @@ final class SyslogIntegrationPatch implements JsonSerializable
 
     /**
      * Gets protocol
-     *
-     * @return string|null
      */
-    public function getProtocol()
+    public function getProtocol(): string|null
     {
         return $this->container['protocol'];
     }
@@ -466,10 +458,8 @@ final class SyslogIntegrationPatch implements JsonSerializable
 
     /**
      * Gets facility
-     *
-     * @return int|null
      */
-    public function getFacility()
+    public function getFacility(): int|null
     {
         return $this->container['facility'];
     }
@@ -489,10 +479,8 @@ final class SyslogIntegrationPatch implements JsonSerializable
 
     /**
      * Gets message_format
-     *
-     * @return string|null
      */
-    public function getMessageFormat()
+    public function getMessageFormat(): string|null
     {
         return $this->container['message_format'];
     }
@@ -522,10 +510,8 @@ final class SyslogIntegrationPatch implements JsonSerializable
 
     /**
      * Gets auth_token
-     *
-     * @return string|null
      */
-    public function getAuthToken()
+    public function getAuthToken(): string|null
     {
         return $this->container['auth_token'];
     }
@@ -545,10 +531,8 @@ final class SyslogIntegrationPatch implements JsonSerializable
 
     /**
      * Gets auth_mode
-     *
-     * @return string|null
      */
-    public function getAuthMode()
+    public function getAuthMode(): string|null
     {
         return $this->container['auth_mode'];
     }
@@ -578,10 +562,8 @@ final class SyslogIntegrationPatch implements JsonSerializable
 
     /**
      * Gets tls_verify
-     *
-     * @return bool|null
      */
-    public function getTlsVerify()
+    public function getTlsVerify(): bool|null
     {
         return $this->container['tls_verify'];
     }
@@ -643,7 +625,6 @@ final class SyslogIntegrationPatch implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

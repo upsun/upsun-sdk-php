@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class UserReference implements JsonSerializable
+final class UserReference implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -256,10 +258,8 @@ final class UserReference implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string|null
      */
-    public function getId()
+    public function getId(): string|null
     {
         return $this->container['id'];
     }
@@ -279,10 +279,8 @@ final class UserReference implements JsonSerializable
 
     /**
      * Gets username
-     *
-     * @return string|null
      */
-    public function getUsername()
+    public function getUsername(): string|null
     {
         return $this->container['username'];
     }
@@ -302,10 +300,8 @@ final class UserReference implements JsonSerializable
 
     /**
      * Gets email
-     *
-     * @return string|null
      */
-    public function getEmail()
+    public function getEmail(): string|null
     {
         return $this->container['email'];
     }
@@ -325,10 +321,8 @@ final class UserReference implements JsonSerializable
 
     /**
      * Gets first_name
-     *
-     * @return string|null
      */
-    public function getFirstName()
+    public function getFirstName(): string|null
     {
         return $this->container['first_name'];
     }
@@ -348,10 +342,8 @@ final class UserReference implements JsonSerializable
 
     /**
      * Gets last_name
-     *
-     * @return string|null
      */
-    public function getLastName()
+    public function getLastName(): string|null
     {
         return $this->container['last_name'];
     }
@@ -371,10 +363,8 @@ final class UserReference implements JsonSerializable
 
     /**
      * Gets picture
-     *
-     * @return string|null
      */
-    public function getPicture()
+    public function getPicture(): string|null
     {
         return $this->container['picture'];
     }
@@ -394,10 +384,8 @@ final class UserReference implements JsonSerializable
 
     /**
      * Gets mfa_enabled
-     *
-     * @return bool|null
      */
-    public function getMfaEnabled()
+    public function getMfaEnabled(): bool|null
     {
         return $this->container['mfa_enabled'];
     }
@@ -417,10 +405,8 @@ final class UserReference implements JsonSerializable
 
     /**
      * Gets sso_enabled
-     *
-     * @return bool|null
      */
-    public function getSsoEnabled()
+    public function getSsoEnabled(): bool|null
     {
         return $this->container['sso_enabled'];
     }
@@ -482,7 +468,6 @@ final class UserReference implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

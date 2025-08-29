@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class SubscriptionAddonsObjectAvailable implements JsonSerializable
+final class SubscriptionAddonsObjectAvailable implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -214,10 +216,8 @@ final class SubscriptionAddonsObjectAvailable implements JsonSerializable
 
     /**
      * Gets continuous_profiling
-     *
-     * @return array<string,float>|null
      */
-    public function getContinuousProfiling()
+    public function getContinuousProfiling(): array|null
     {
         return $this->container['continuous_profiling'];
     }
@@ -237,10 +237,8 @@ final class SubscriptionAddonsObjectAvailable implements JsonSerializable
 
     /**
      * Gets project_support_level
-     *
-     * @return array<string,float>|null
      */
-    public function getProjectSupportLevel()
+    public function getProjectSupportLevel(): array|null
     {
         return $this->container['project_support_level'];
     }
@@ -302,7 +300,6 @@ final class SubscriptionAddonsObjectAvailable implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

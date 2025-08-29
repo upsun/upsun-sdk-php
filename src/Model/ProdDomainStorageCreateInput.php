@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ProdDomainStorageCreateInput implements JsonSerializable
+final class ProdDomainStorageCreateInput implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -224,10 +226,8 @@ final class ProdDomainStorageCreateInput implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->container['name'];
     }
@@ -247,10 +247,8 @@ final class ProdDomainStorageCreateInput implements JsonSerializable
 
     /**
      * Gets attributes
-     *
-     * @return array<string,string>|null
      */
-    public function getAttributes()
+    public function getAttributes(): array|null
     {
         return $this->container['attributes'];
     }
@@ -270,10 +268,8 @@ final class ProdDomainStorageCreateInput implements JsonSerializable
 
     /**
      * Gets is_default
-     *
-     * @return bool|null
      */
-    public function getIsDefault()
+    public function getIsDefault(): bool|null
     {
         return $this->container['is_default'];
     }
@@ -335,7 +331,6 @@ final class ProdDomainStorageCreateInput implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

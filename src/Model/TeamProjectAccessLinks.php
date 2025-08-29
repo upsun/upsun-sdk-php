@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class TeamProjectAccessLinks implements JsonSerializable
+final class TeamProjectAccessLinks implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -221,10 +223,8 @@ final class TeamProjectAccessLinks implements JsonSerializable
 
     /**
      * Gets self
-     *
-     * @return \Upsun\Model\TeamProjectAccessLinksSelf|null
      */
-    public function getSelf()
+    public function getSelf(): \Upsun\Model\TeamProjectAccessLinksSelf|null
     {
         return $this->container['self'];
     }
@@ -244,10 +244,8 @@ final class TeamProjectAccessLinks implements JsonSerializable
 
     /**
      * Gets update
-     *
-     * @return \Upsun\Model\TeamProjectAccessLinksUpdate|null
      */
-    public function getUpdate()
+    public function getUpdate(): \Upsun\Model\TeamProjectAccessLinksUpdate|null
     {
         return $this->container['update'];
     }
@@ -267,10 +265,8 @@ final class TeamProjectAccessLinks implements JsonSerializable
 
     /**
      * Gets delete
-     *
-     * @return \Upsun\Model\TeamProjectAccessLinksDelete|null
      */
-    public function getDelete()
+    public function getDelete(): \Upsun\Model\TeamProjectAccessLinksDelete|null
     {
         return $this->container['delete'];
     }
@@ -332,7 +328,6 @@ final class TeamProjectAccessLinks implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

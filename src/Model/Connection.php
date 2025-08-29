@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Connection implements JsonSerializable
+final class Connection implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -249,10 +251,8 @@ final class Connection implements JsonSerializable
 
     /**
      * Gets provider
-     *
-     * @return string|null
      */
-    public function getProvider()
+    public function getProvider(): string|null
     {
         return $this->container['provider'];
     }
@@ -272,10 +272,8 @@ final class Connection implements JsonSerializable
 
     /**
      * Gets provider_type
-     *
-     * @return string|null
      */
-    public function getProviderType()
+    public function getProviderType(): string|null
     {
         return $this->container['provider_type'];
     }
@@ -295,10 +293,8 @@ final class Connection implements JsonSerializable
 
     /**
      * Gets is_mandatory
-     *
-     * @return bool|null
      */
-    public function getIsMandatory()
+    public function getIsMandatory(): bool|null
     {
         return $this->container['is_mandatory'];
     }
@@ -318,10 +314,8 @@ final class Connection implements JsonSerializable
 
     /**
      * Gets subject
-     *
-     * @return string|null
      */
-    public function getSubject()
+    public function getSubject(): string|null
     {
         return $this->container['subject'];
     }
@@ -341,10 +335,8 @@ final class Connection implements JsonSerializable
 
     /**
      * Gets email_address
-     *
-     * @return string|null
      */
-    public function getEmailAddress()
+    public function getEmailAddress(): string|null
     {
         return $this->container['email_address'];
     }
@@ -364,10 +356,8 @@ final class Connection implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime|null
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime|null
     {
         return $this->container['created_at'];
     }
@@ -387,10 +377,8 @@ final class Connection implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime|null
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime|null
     {
         return $this->container['updated_at'];
     }
@@ -452,7 +440,6 @@ final class Connection implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

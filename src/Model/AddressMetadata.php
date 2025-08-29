@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class AddressMetadata implements JsonSerializable
+final class AddressMetadata implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -207,10 +209,8 @@ final class AddressMetadata implements JsonSerializable
 
     /**
      * Gets metadata
-     *
-     * @return \Upsun\Model\AddressMetadataMetadata|null
      */
-    public function getMetadata()
+    public function getMetadata(): \Upsun\Model\AddressMetadataMetadata|null
     {
         return $this->container['metadata'];
     }
@@ -272,7 +272,6 @@ final class AddressMetadata implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

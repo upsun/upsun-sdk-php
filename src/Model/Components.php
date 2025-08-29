@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Components implements JsonSerializable
+final class Components implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -207,10 +209,8 @@ final class Components implements JsonSerializable
 
     /**
      * Gets voucher_vat_baseprice
-     *
-     * @return object|null
      */
-    public function getVoucherVatBaseprice()
+    public function getVoucherVatBaseprice(): object|null
     {
         return $this->container['voucher_vat_baseprice'];
     }
@@ -272,7 +272,6 @@ final class Components implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

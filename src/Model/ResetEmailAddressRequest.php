@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ResetEmailAddressRequest implements JsonSerializable
+final class ResetEmailAddressRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -210,10 +212,8 @@ final class ResetEmailAddressRequest implements JsonSerializable
 
     /**
      * Gets email_address
-     *
-     * @return string
      */
-    public function getEmailAddress()
+    public function getEmailAddress(): string
     {
         return $this->container['email_address'];
     }
@@ -275,7 +275,6 @@ final class ResetEmailAddressRequest implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

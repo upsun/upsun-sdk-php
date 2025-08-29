@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSerializable
+final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -276,10 +278,8 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
 
     /**
      * Gets locations
-     *
-     * @return array<string,\Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue>
      */
-    public function getLocations()
+    public function getLocations(): array
     {
         return $this->container['locations'];
     }
@@ -299,10 +299,8 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
 
     /**
      * Gets commands
-     *
-     * @return \Upsun\Model\CommandsToManageTheApplicationSLifecycle|null
      */
-    public function getCommands()
+    public function getCommands(): \Upsun\Model\CommandsToManageTheApplicationSLifecycle|null
     {
         return $this->container['commands'];
     }
@@ -322,10 +320,8 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
 
     /**
      * Gets upstream
-     *
-     * @return \Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication|null
      */
-    public function getUpstream()
+    public function getUpstream(): \Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication|null
     {
         return $this->container['upstream'];
     }
@@ -345,10 +341,8 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
 
     /**
      * Gets document_root
-     *
-     * @return string|null
      */
-    public function getDocumentRoot()
+    public function getDocumentRoot(): string|null
     {
         return $this->container['document_root'];
     }
@@ -375,10 +369,8 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
 
     /**
      * Gets passthru
-     *
-     * @return string|null
      */
-    public function getPassthru()
+    public function getPassthru(): string|null
     {
         return $this->container['passthru'];
     }
@@ -405,10 +397,8 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
 
     /**
      * Gets index_files
-     *
-     * @return string[]|null
      */
-    public function getIndexFiles()
+    public function getIndexFiles(): array|null
     {
         return $this->container['index_files'];
     }
@@ -435,10 +425,8 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
 
     /**
      * Gets whitelist
-     *
-     * @return string[]|null
      */
-    public function getWhitelist()
+    public function getWhitelist(): array|null
     {
         return $this->container['whitelist'];
     }
@@ -465,10 +453,8 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
 
     /**
      * Gets blacklist
-     *
-     * @return string[]|null
      */
-    public function getBlacklist()
+    public function getBlacklist(): array|null
     {
         return $this->container['blacklist'];
     }
@@ -495,10 +481,8 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
 
     /**
      * Gets expires
-     *
-     * @return string|null
      */
-    public function getExpires()
+    public function getExpires(): string|null
     {
         return $this->container['expires'];
     }
@@ -525,10 +509,8 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
 
     /**
      * Gets move_to_root
-     *
-     * @return bool
      */
-    public function getMoveToRoot()
+    public function getMoveToRoot(): bool
     {
         return $this->container['move_to_root'];
     }
@@ -590,7 +572,6 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

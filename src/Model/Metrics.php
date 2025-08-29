@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Metrics implements JsonSerializable
+final class Metrics implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -210,10 +212,8 @@ final class Metrics implements JsonSerializable
 
     /**
      * Gets max_range
-     *
-     * @return string
      */
-    public function getMaxRange()
+    public function getMaxRange(): string
     {
         return $this->container['max_range'];
     }
@@ -275,7 +275,6 @@ final class Metrics implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

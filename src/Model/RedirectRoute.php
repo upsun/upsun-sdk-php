@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class RedirectRoute implements JsonSerializable
+final class RedirectRoute implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -304,10 +306,8 @@ final class RedirectRoute implements JsonSerializable
 
     /**
      * Gets primary
-     *
-     * @return bool
      */
-    public function getPrimary()
+    public function getPrimary(): bool
     {
         return $this->container['primary'];
     }
@@ -334,10 +334,8 @@ final class RedirectRoute implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string
      */
-    public function getId()
+    public function getId(): string
     {
         return $this->container['id'];
     }
@@ -364,10 +362,8 @@ final class RedirectRoute implements JsonSerializable
 
     /**
      * Gets production_url
-     *
-     * @return string
      */
-    public function getProductionUrl()
+    public function getProductionUrl(): string
     {
         return $this->container['production_url'];
     }
@@ -394,10 +390,8 @@ final class RedirectRoute implements JsonSerializable
 
     /**
      * Gets attributes
-     *
-     * @return array<string,string>
      */
-    public function getAttributes()
+    public function getAttributes(): array
     {
         return $this->container['attributes'];
     }
@@ -417,10 +411,8 @@ final class RedirectRoute implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -450,10 +442,8 @@ final class RedirectRoute implements JsonSerializable
 
     /**
      * Gets tls
-     *
-     * @return \Upsun\Model\TLSSettingsForTheRoute
      */
-    public function getTls()
+    public function getTls(): \Upsun\Model\TLSSettingsForTheRoute
     {
         return $this->container['tls'];
     }
@@ -473,10 +463,8 @@ final class RedirectRoute implements JsonSerializable
 
     /**
      * Gets to
-     *
-     * @return string
      */
-    public function getTo()
+    public function getTo(): string
     {
         return $this->container['to'];
     }
@@ -496,10 +484,8 @@ final class RedirectRoute implements JsonSerializable
 
     /**
      * Gets redirects
-     *
-     * @return \Upsun\Model\TheConfigurationOfTheRedirects
      */
-    public function getRedirects()
+    public function getRedirects(): \Upsun\Model\TheConfigurationOfTheRedirects
     {
         return $this->container['redirects'];
     }
@@ -561,7 +547,6 @@ final class RedirectRoute implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

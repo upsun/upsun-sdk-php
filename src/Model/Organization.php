@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Organization implements JsonSerializable
+final class Organization implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -316,7 +318,8 @@ final class Organization implements JsonSerializable
         }
 
         if (!is_null($this->container['country']) && (mb_strlen($this->container['country']) > 2)) {
-            $invalidProperties[] = "invalid value for 'country', the character length must be smaller than or equal to 2.";
+            $invalidProperties[] =
+                "invalid value for 'country', the character length must be smaller than or equal to 2.";
         }
 
         $allowedValues = $this->getStatusAllowableValues();
@@ -343,10 +346,8 @@ final class Organization implements JsonSerializable
 
     /**
      * Gets id
-     *
-     * @return string|null
      */
-    public function getId()
+    public function getId(): string|null
     {
         return $this->container['id'];
     }
@@ -366,10 +367,8 @@ final class Organization implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string|null
      */
-    public function getType()
+    public function getType(): string|null
     {
         return $this->container['type'];
     }
@@ -399,10 +398,8 @@ final class Organization implements JsonSerializable
 
     /**
      * Gets owner_id
-     *
-     * @return string|null
      */
-    public function getOwnerId()
+    public function getOwnerId(): string|null
     {
         return $this->container['owner_id'];
     }
@@ -422,10 +419,8 @@ final class Organization implements JsonSerializable
 
     /**
      * Gets namespace
-     *
-     * @return string|null
      */
-    public function getNamespace()
+    public function getNamespace(): string|null
     {
         return $this->container['namespace'];
     }
@@ -445,10 +440,8 @@ final class Organization implements JsonSerializable
 
     /**
      * Gets name
-     *
-     * @return string|null
      */
-    public function getName()
+    public function getName(): string|null
     {
         return $this->container['name'];
     }
@@ -468,10 +461,8 @@ final class Organization implements JsonSerializable
 
     /**
      * Gets label
-     *
-     * @return string|null
      */
-    public function getLabel()
+    public function getLabel(): string|null
     {
         return $this->container['label'];
     }
@@ -491,10 +482,8 @@ final class Organization implements JsonSerializable
 
     /**
      * Gets country
-     *
-     * @return string|null
      */
-    public function getCountry()
+    public function getCountry(): string|null
     {
         return $this->container['country'];
     }
@@ -520,10 +509,8 @@ final class Organization implements JsonSerializable
 
     /**
      * Gets capabilities
-     *
-     * @return string[]|null
      */
-    public function getCapabilities()
+    public function getCapabilities(): array|null
     {
         return $this->container['capabilities'];
     }
@@ -545,10 +532,8 @@ final class Organization implements JsonSerializable
 
     /**
      * Gets vendor
-     *
-     * @return string|null
      */
-    public function getVendor()
+    public function getVendor(): string|null
     {
         return $this->container['vendor'];
     }
@@ -568,10 +553,8 @@ final class Organization implements JsonSerializable
 
     /**
      * Gets status
-     *
-     * @return string|null
      */
-    public function getStatus()
+    public function getStatus(): string|null
     {
         return $this->container['status'];
     }
@@ -601,10 +584,8 @@ final class Organization implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime|null
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime|null
     {
         return $this->container['created_at'];
     }
@@ -624,10 +605,8 @@ final class Organization implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime|null
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime|null
     {
         return $this->container['updated_at'];
     }
@@ -647,10 +626,8 @@ final class Organization implements JsonSerializable
 
     /**
      * Gets _links
-     *
-     * @return \Upsun\Model\OrganizationLinks|null
      */
-    public function getLinks()
+    public function getLinks(): \Upsun\Model\OrganizationLinks|null
     {
         return $this->container['_links'];
     }
@@ -712,7 +689,6 @@ final class Organization implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**

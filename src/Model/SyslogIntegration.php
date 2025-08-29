@@ -12,9 +12,11 @@
 
 namespace Upsun\Model;
 
+use ArrayAccess;
+use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class SyslogIntegration implements JsonSerializable
+final class SyslogIntegration implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -346,10 +348,8 @@ final class SyslogIntegration implements JsonSerializable
 
     /**
      * Gets created_at
-     *
-     * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->container['created_at'];
     }
@@ -376,10 +376,8 @@ final class SyslogIntegration implements JsonSerializable
 
     /**
      * Gets updated_at
-     *
-     * @return \DateTime
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): \DateTime
     {
         return $this->container['updated_at'];
     }
@@ -406,10 +404,8 @@ final class SyslogIntegration implements JsonSerializable
 
     /**
      * Gets type
-     *
-     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->container['type'];
     }
@@ -429,10 +425,8 @@ final class SyslogIntegration implements JsonSerializable
 
     /**
      * Gets extra
-     *
-     * @return array<string,string>
      */
-    public function getExtra()
+    public function getExtra(): array
     {
         return $this->container['extra'];
     }
@@ -452,10 +446,8 @@ final class SyslogIntegration implements JsonSerializable
 
     /**
      * Gets host
-     *
-     * @return string
      */
-    public function getHost()
+    public function getHost(): string
     {
         return $this->container['host'];
     }
@@ -475,10 +467,8 @@ final class SyslogIntegration implements JsonSerializable
 
     /**
      * Gets port
-     *
-     * @return int
      */
-    public function getPort()
+    public function getPort(): int
     {
         return $this->container['port'];
     }
@@ -498,10 +488,8 @@ final class SyslogIntegration implements JsonSerializable
 
     /**
      * Gets protocol
-     *
-     * @return string
      */
-    public function getProtocol()
+    public function getProtocol(): string
     {
         return $this->container['protocol'];
     }
@@ -531,10 +519,8 @@ final class SyslogIntegration implements JsonSerializable
 
     /**
      * Gets facility
-     *
-     * @return int
      */
-    public function getFacility()
+    public function getFacility(): int
     {
         return $this->container['facility'];
     }
@@ -554,10 +540,8 @@ final class SyslogIntegration implements JsonSerializable
 
     /**
      * Gets message_format
-     *
-     * @return string
      */
-    public function getMessageFormat()
+    public function getMessageFormat(): string
     {
         return $this->container['message_format'];
     }
@@ -587,10 +571,8 @@ final class SyslogIntegration implements JsonSerializable
 
     /**
      * Gets tls_verify
-     *
-     * @return bool
      */
-    public function getTlsVerify()
+    public function getTlsVerify(): bool
     {
         return $this->container['tls_verify'];
     }
@@ -652,7 +634,6 @@ final class SyslogIntegration implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
-        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
     }
 
     /**
