@@ -66,11 +66,77 @@ final class CurrentUser implements JsonSerializable
     ];
 
     /**
+     * Array of nullable properties. Used for (de)serialization
+     */
+    private static array $openAPINullables = [
+        'id' => false,
+        'uuid' => false,
+        'username' => false,
+        'display_name' => false,
+        'status' => false,
+        'mail' => false,
+        'ssh_keys' => false,
+        'has_key' => false,
+        'projects' => false,
+        'sequence' => false,
+        'roles' => false,
+        'picture' => false,
+        'tickets' => false,
+        'trial' => false,
+        'current_trial' => false
+    ];
+
+    /**
+     * If a nullable field gets set to null, insert it here
+     */
+    private array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      */
     public static function openAPITypes(): array
     {
         return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    public static function openAPIFormats(): array
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -94,58 +160,561 @@ final class CurrentUser implements JsonSerializable
         'trial' => 'trial',
         'current_trial' => 'current_trial'
     ];
-    
-    public function __construct(
-        public readonly string|null $id = null,
-        public readonly string|null $uuid = null,
-        public readonly string|null $username = null,
-        public readonly string|null $display_name = null,
-        public readonly int|null $status = null,
-        public readonly string|null $mail = null,
-        public readonly ?array $ssh_keys = null,
-        public readonly bool|null $has_key = null,
-        public readonly ?array $projects = null,
-        public readonly int|null $sequence = null,
-        public readonly ?array $roles = null,
-        public readonly string|null $picture = null,
-        public readonly object|null $tickets = null,
-        public readonly bool|null $trial = null,
-        public readonly ?array $current_trial = null
-    ) {
-    }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'id' => $this->id,
-            'uuid' => $this->uuid,
-            'username' => $this->username,
-            'display_name' => $this->display_name,
-            'status' => $this->status,
-            'mail' => $this->mail,
-            'ssh_keys' => $this->ssh_keys,
-            'has_key' => $this->has_key,
-            'projects' => $this->projects,
-            'sequence' => $this->sequence,
-            'roles' => $this->roles,
-            'picture' => $this->picture,
-            'tickets' => $this->tickets,
-            'trial' => $this->trial,
-            'current_trial' => $this->current_trial,
-        ];
-    }
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     */
+    private static $setters = [
+        'id' => 'setId',
+        'uuid' => 'setUuid',
+        'username' => 'setUsername',
+        'display_name' => 'setDisplayName',
+        'status' => 'setStatus',
+        'mail' => 'setMail',
+        'ssh_keys' => 'setSshKeys',
+        'has_key' => 'setHasKey',
+        'projects' => 'setProjects',
+        'sequence' => 'setSequence',
+        'roles' => 'setRoles',
+        'picture' => 'setPicture',
+        'tickets' => 'setTickets',
+        'trial' => 'setTrial',
+        'current_trial' => 'setCurrentTrial'
+    ];
 
-    public function __toString(): string
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     */
+    private static $getters = [
+        'id' => 'getId',
+        'uuid' => 'getUuid',
+        'username' => 'getUsername',
+        'display_name' => 'getDisplayName',
+        'status' => 'getStatus',
+        'mail' => 'getMail',
+        'ssh_keys' => 'getSshKeys',
+        'has_key' => 'getHasKey',
+        'projects' => 'getProjects',
+        'sequence' => 'getSequence',
+        'roles' => 'getRoles',
+        'picture' => 'getPicture',
+        'tickets' => 'getTickets',
+        'trial' => 'getTrial',
+        'current_trial' => 'getCurrentTrial'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    public static function attributeMap(): array
     {
-        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+        return self::$attributeMap;
     }
 
     /**
-     * Checks if a property is nullable
+     * Array of attributes to setter functions (for deserialization of responses)
      */
-    public static function isNullable(string $property): bool
+    public static function setters(): array
     {
-        return true; // All properties in this model are nullable
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters(): array
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     */
+    public function getModelName(): string
+    {
+        return self::$openAPIModelName;
+    }
+
+
+    /**
+     * Associative array for storing property values
+     */
+    private array $container = [];
+
+    /**
+     * Constructor
+     */
+    public function __construct(?array $data = null)
+    {
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('uuid', $data ?? [], null);
+        $this->setIfExists('username', $data ?? [], null);
+        $this->setIfExists('display_name', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('mail', $data ?? [], null);
+        $this->setIfExists('ssh_keys', $data ?? [], null);
+        $this->setIfExists('has_key', $data ?? [], null);
+        $this->setIfExists('projects', $data ?? [], null);
+        $this->setIfExists('sequence', $data ?? [], null);
+        $this->setIfExists('roles', $data ?? [], null);
+        $this->setIfExists('picture', $data ?? [], null);
+        $this->setIfExists('tickets', $data ?? [], null);
+        $this->setIfExists('trial', $data ?? [], null);
+        $this->setIfExists('current_trial', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    */
+    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
+    {
+        if (
+            self::isNullable($variableName)
+            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
+        ) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+    }
+
+    /**
+     * Show all the invalid properties with reasons.
+     */
+    public function listInvalidProperties(): array
+    {
+        $invalidProperties = [];
+
+        return $invalidProperties;
+    }
+
+    /**
+     * Validate all the properties in the model
+     * return true if all passed
+     */
+    public function valid(): bool
+    {
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets id
+     *
+     * @return string|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     */
+    public function setId($id)
+    {
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets uuid
+     *
+     * @return string|null
+     */
+    public function getUuid()
+    {
+        return $this->container['uuid'];
+    }
+
+    /**
+     * Sets uuid
+     */
+    public function setUuid($uuid)
+    {
+        if (is_null($uuid)) {
+            throw new \InvalidArgumentException('non-nullable uuid cannot be null');
+        }
+        $this->container['uuid'] = $uuid;
+
+        return $this;
+    }
+
+    /**
+     * Gets username
+     *
+     * @return string|null
+     */
+    public function getUsername()
+    {
+        return $this->container['username'];
+    }
+
+    /**
+     * Sets username
+     */
+    public function setUsername($username)
+    {
+        if (is_null($username)) {
+            throw new \InvalidArgumentException('non-nullable username cannot be null');
+        }
+        $this->container['username'] = $username;
+
+        return $this;
+    }
+
+    /**
+     * Gets display_name
+     *
+     * @return string|null
+     */
+    public function getDisplayName()
+    {
+        return $this->container['display_name'];
+    }
+
+    /**
+     * Sets display_name
+     */
+    public function setDisplayName($display_name)
+    {
+        if (is_null($display_name)) {
+            throw new \InvalidArgumentException('non-nullable display_name cannot be null');
+        }
+        $this->container['display_name'] = $display_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return int|null
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     */
+    public function setStatus($status)
+    {
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        }
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets mail
+     *
+     * @return string|null
+     */
+    public function getMail()
+    {
+        return $this->container['mail'];
+    }
+
+    /**
+     * Sets mail
+     */
+    public function setMail($mail)
+    {
+        if (is_null($mail)) {
+            throw new \InvalidArgumentException('non-nullable mail cannot be null');
+        }
+        $this->container['mail'] = $mail;
+
+        return $this;
+    }
+
+    /**
+     * Gets ssh_keys
+     *
+     * @return \Upsun\Model\SSHKey[]|null
+     */
+    public function getSshKeys()
+    {
+        return $this->container['ssh_keys'];
+    }
+
+    /**
+     * Sets ssh_keys
+     */
+    public function setSshKeys($ssh_keys)
+    {
+        if (is_null($ssh_keys)) {
+            throw new \InvalidArgumentException('non-nullable ssh_keys cannot be null');
+        }
+        $this->container['ssh_keys'] = $ssh_keys;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_key
+     *
+     * @return bool|null
+     */
+    public function getHasKey()
+    {
+        return $this->container['has_key'];
+    }
+
+    /**
+     * Sets has_key
+     */
+    public function setHasKey($has_key)
+    {
+        if (is_null($has_key)) {
+            throw new \InvalidArgumentException('non-nullable has_key cannot be null');
+        }
+        $this->container['has_key'] = $has_key;
+
+        return $this;
+    }
+
+    /**
+     * Gets projects
+     *
+     * @return \Upsun\Model\CurrentUserProjectsInner[]|null
+     */
+    public function getProjects()
+    {
+        return $this->container['projects'];
+    }
+
+    /**
+     * Sets projects
+     */
+    public function setProjects($projects)
+    {
+        if (is_null($projects)) {
+            throw new \InvalidArgumentException('non-nullable projects cannot be null');
+        }
+        $this->container['projects'] = $projects;
+
+        return $this;
+    }
+
+    /**
+     * Gets sequence
+     *
+     * @return int|null
+     */
+    public function getSequence()
+    {
+        return $this->container['sequence'];
+    }
+
+    /**
+     * Sets sequence
+     */
+    public function setSequence($sequence)
+    {
+        if (is_null($sequence)) {
+            throw new \InvalidArgumentException('non-nullable sequence cannot be null');
+        }
+        $this->container['sequence'] = $sequence;
+
+        return $this;
+    }
+
+    /**
+     * Gets roles
+     *
+     * @return string[]|null
+     */
+    public function getRoles()
+    {
+        return $this->container['roles'];
+    }
+
+    /**
+     * Sets roles
+     */
+    public function setRoles($roles)
+    {
+        if (is_null($roles)) {
+            throw new \InvalidArgumentException('non-nullable roles cannot be null');
+        }
+        $this->container['roles'] = $roles;
+
+        return $this;
+    }
+
+    /**
+     * Gets picture
+     *
+     * @return string|null
+     */
+    public function getPicture()
+    {
+        return $this->container['picture'];
+    }
+
+    /**
+     * Sets picture
+     */
+    public function setPicture($picture)
+    {
+        if (is_null($picture)) {
+            throw new \InvalidArgumentException('non-nullable picture cannot be null');
+        }
+        $this->container['picture'] = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Gets tickets
+     *
+     * @return object|null
+     */
+    public function getTickets()
+    {
+        return $this->container['tickets'];
+    }
+
+    /**
+     * Sets tickets
+     */
+    public function setTickets($tickets)
+    {
+        if (is_null($tickets)) {
+            throw new \InvalidArgumentException('non-nullable tickets cannot be null');
+        }
+        $this->container['tickets'] = $tickets;
+
+        return $this;
+    }
+
+    /**
+     * Gets trial
+     *
+     * @return bool|null
+     */
+    public function getTrial()
+    {
+        return $this->container['trial'];
+    }
+
+    /**
+     * Sets trial
+     */
+    public function setTrial($trial)
+    {
+        if (is_null($trial)) {
+            throw new \InvalidArgumentException('non-nullable trial cannot be null');
+        }
+        $this->container['trial'] = $trial;
+
+        return $this;
+    }
+
+    /**
+     * Gets current_trial
+     *
+     * @return \Upsun\Model\CurrentUserCurrentTrialInner[]|null
+     */
+    public function getCurrentTrial()
+    {
+        return $this->container['current_trial'];
+    }
+
+    /**
+     * Sets current_trial
+     */
+    public function setCurrentTrial($current_trial)
+    {
+        if (is_null($current_trial)) {
+            throw new \InvalidArgumentException('non-nullable current_trial cannot be null');
+        }
+        $this->container['current_trial'] = $current_trial;
+
+        return $this;
+    }
+    /**
+     * Returns true if offset exists. False otherwise.
+     */
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->container[$offset]);
+    }
+
+    /**
+     * Gets offset.
+     */
+    #[\ReturnTypeWillChange]
+    public function offsetGet(mixed $offset)
+    {
+        return $this->container[$offset] ?? null;
+    }
+
+    /**
+     * Sets value based on offset.
+     */
+    public function offsetSet(mixed $offset = null, $value): void
+    {
+        if (is_null($offset)) {
+            $this->container[] = $value;
+        } else {
+            $this->container[$offset] = $value;
+        }
+    }
+
+    /**
+     * Unsets offset.
+     */
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->container[$offset]);
+    }
+
+    /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     */
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize(): mixed
+    {
+        return ObjectSerializer::sanitizeForSerialization($this);
+        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+    }
+
+    /**
+     * Gets the string presentation of the object
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
+
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
+        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-

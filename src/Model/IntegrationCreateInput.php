@@ -128,11 +128,108 @@ final class IntegrationCreateInput implements JsonSerializable
     ];
 
     /**
+     * Array of nullable properties. Used for (de)serialization
+     */
+    private static array $openAPINullables = [
+        'type' => false,
+        'fetch_branches' => false,
+        'prune_branches' => false,
+        'environment_init_resources' => false,
+        'app_credentials' => true,
+        'addon_credentials' => true,
+        'repository' => false,
+        'build_pull_requests' => false,
+        'pull_requests_clone_parent_data' => false,
+        'resync_pull_requests' => false,
+        'url' => false,
+        'username' => false,
+        'token' => false,
+        'project' => false,
+        'events' => false,
+        'environments' => false,
+        'excluded_environments' => false,
+        'states' => false,
+        'result' => false,
+        'service_id' => false,
+        'base_url' => false,
+        'build_draft_pull_requests' => false,
+        'build_pull_requests_post_merge' => false,
+        'build_merge_requests' => false,
+        'build_wip_merge_requests' => false,
+        'merge_requests_clone_parent_data' => false,
+        'from_address' => true,
+        'recipients' => false,
+        'routing_key' => false,
+        'channel' => false,
+        'shared_key' => true,
+        'extra' => false,
+        'headers' => false,
+        'tls_verify' => false,
+        'license_key' => false,
+        'script' => false,
+        'index' => false,
+        'sourcetype' => false,
+        'category' => false,
+        'host' => false,
+        'port' => false,
+        'protocol' => false,
+        'facility' => false,
+        'message_format' => false,
+        'auth_token' => false,
+        'auth_mode' => false
+    ];
+
+    /**
+     * If a nullable field gets set to null, insert it here
+     */
+    private array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      */
     public static function openAPITypes(): array
     {
         return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    public static function openAPIFormats(): array
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -187,120 +284,1602 @@ final class IntegrationCreateInput implements JsonSerializable
         'auth_token' => 'auth_token',
         'auth_mode' => 'auth_mode'
     ];
-    
-    public function __construct(
-        public readonly string $type = null,
-        public readonly bool|null $fetch_branches = null,
-        public readonly bool|null $prune_branches = null,
-        public readonly string|null $environment_init_resources = null,
-        public readonly \Upsun\Model\TheOAuth2ConsumerInformationOptional1|null $app_credentials = null,
-        public readonly \Upsun\Model\TheAddonCredentialInformationOptional1|null $addon_credentials = null,
-        public readonly string $repository = null,
-        public readonly bool|null $build_pull_requests = null,
-        public readonly bool|null $pull_requests_clone_parent_data = null,
-        public readonly bool|null $resync_pull_requests = null,
-        public readonly string $url = null,
-        public readonly string $username = null,
-        public readonly string $token = null,
-        public readonly string $project = null,
-        public readonly ?array $events = null,
-        public readonly ?array $environments = null,
-        public readonly ?array $excluded_environments = null,
-        public readonly ?array $states = null,
-        public readonly string|null $result = null,
-        public readonly string $service_id = null,
-        public readonly string|null $base_url = null,
-        public readonly bool|null $build_draft_pull_requests = null,
-        public readonly bool|null $build_pull_requests_post_merge = null,
-        public readonly bool|null $build_merge_requests = null,
-        public readonly bool|null $build_wip_merge_requests = null,
-        public readonly bool|null $merge_requests_clone_parent_data = null,
-        public readonly string|null $from_address = null,
-        public readonly ?array $recipients = null,
-        public readonly string $routing_key = null,
-        public readonly string $channel = null,
-        public readonly string|null $shared_key = null,
-        public readonly ?array $extra = null,
-        public readonly ?array $headers = null,
-        public readonly bool|null $tls_verify = null,
-        public readonly string $license_key = null,
-        public readonly string $script = null,
-        public readonly string $index = null,
-        public readonly string|null $sourcetype = null,
-        public readonly string|null $category = null,
-        public readonly string|null $host = null,
-        public readonly int|null $port = null,
-        public readonly string|null $protocol = null,
-        public readonly int|null $facility = null,
-        public readonly string|null $message_format = null,
-        public readonly string|null $auth_token = null,
-        public readonly string|null $auth_mode = null
-    ) {
-    }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'type' => $this->type,
-            'fetch_branches' => $this->fetch_branches,
-            'prune_branches' => $this->prune_branches,
-            'environment_init_resources' => $this->environment_init_resources,
-            'app_credentials' => $this->app_credentials,
-            'addon_credentials' => $this->addon_credentials,
-            'repository' => $this->repository,
-            'build_pull_requests' => $this->build_pull_requests,
-            'pull_requests_clone_parent_data' => $this->pull_requests_clone_parent_data,
-            'resync_pull_requests' => $this->resync_pull_requests,
-            'url' => $this->url,
-            'username' => $this->username,
-            'token' => $this->token,
-            'project' => $this->project,
-            'events' => $this->events,
-            'environments' => $this->environments,
-            'excluded_environments' => $this->excluded_environments,
-            'states' => $this->states,
-            'result' => $this->result,
-            'service_id' => $this->service_id,
-            'base_url' => $this->base_url,
-            'build_draft_pull_requests' => $this->build_draft_pull_requests,
-            'build_pull_requests_post_merge' => $this->build_pull_requests_post_merge,
-            'build_merge_requests' => $this->build_merge_requests,
-            'build_wip_merge_requests' => $this->build_wip_merge_requests,
-            'merge_requests_clone_parent_data' => $this->merge_requests_clone_parent_data,
-            'from_address' => $this->from_address,
-            'recipients' => $this->recipients,
-            'routing_key' => $this->routing_key,
-            'channel' => $this->channel,
-            'shared_key' => $this->shared_key,
-            'extra' => $this->extra,
-            'headers' => $this->headers,
-            'tls_verify' => $this->tls_verify,
-            'license_key' => $this->license_key,
-            'script' => $this->script,
-            'index' => $this->index,
-            'sourcetype' => $this->sourcetype,
-            'category' => $this->category,
-            'host' => $this->host,
-            'port' => $this->port,
-            'protocol' => $this->protocol,
-            'facility' => $this->facility,
-            'message_format' => $this->message_format,
-            'auth_token' => $this->auth_token,
-            'auth_mode' => $this->auth_mode,
-        ];
-    }
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     */
+    private static $setters = [
+        'type' => 'setType',
+        'fetch_branches' => 'setFetchBranches',
+        'prune_branches' => 'setPruneBranches',
+        'environment_init_resources' => 'setEnvironmentInitResources',
+        'app_credentials' => 'setAppCredentials',
+        'addon_credentials' => 'setAddonCredentials',
+        'repository' => 'setRepository',
+        'build_pull_requests' => 'setBuildPullRequests',
+        'pull_requests_clone_parent_data' => 'setPullRequestsCloneParentData',
+        'resync_pull_requests' => 'setResyncPullRequests',
+        'url' => 'setUrl',
+        'username' => 'setUsername',
+        'token' => 'setToken',
+        'project' => 'setProject',
+        'events' => 'setEvents',
+        'environments' => 'setEnvironments',
+        'excluded_environments' => 'setExcludedEnvironments',
+        'states' => 'setStates',
+        'result' => 'setResult',
+        'service_id' => 'setServiceId',
+        'base_url' => 'setBaseUrl',
+        'build_draft_pull_requests' => 'setBuildDraftPullRequests',
+        'build_pull_requests_post_merge' => 'setBuildPullRequestsPostMerge',
+        'build_merge_requests' => 'setBuildMergeRequests',
+        'build_wip_merge_requests' => 'setBuildWipMergeRequests',
+        'merge_requests_clone_parent_data' => 'setMergeRequestsCloneParentData',
+        'from_address' => 'setFromAddress',
+        'recipients' => 'setRecipients',
+        'routing_key' => 'setRoutingKey',
+        'channel' => 'setChannel',
+        'shared_key' => 'setSharedKey',
+        'extra' => 'setExtra',
+        'headers' => 'setHeaders',
+        'tls_verify' => 'setTlsVerify',
+        'license_key' => 'setLicenseKey',
+        'script' => 'setScript',
+        'index' => 'setIndex',
+        'sourcetype' => 'setSourcetype',
+        'category' => 'setCategory',
+        'host' => 'setHost',
+        'port' => 'setPort',
+        'protocol' => 'setProtocol',
+        'facility' => 'setFacility',
+        'message_format' => 'setMessageFormat',
+        'auth_token' => 'setAuthToken',
+        'auth_mode' => 'setAuthMode'
+    ];
 
-    public function __toString(): string
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     */
+    private static $getters = [
+        'type' => 'getType',
+        'fetch_branches' => 'getFetchBranches',
+        'prune_branches' => 'getPruneBranches',
+        'environment_init_resources' => 'getEnvironmentInitResources',
+        'app_credentials' => 'getAppCredentials',
+        'addon_credentials' => 'getAddonCredentials',
+        'repository' => 'getRepository',
+        'build_pull_requests' => 'getBuildPullRequests',
+        'pull_requests_clone_parent_data' => 'getPullRequestsCloneParentData',
+        'resync_pull_requests' => 'getResyncPullRequests',
+        'url' => 'getUrl',
+        'username' => 'getUsername',
+        'token' => 'getToken',
+        'project' => 'getProject',
+        'events' => 'getEvents',
+        'environments' => 'getEnvironments',
+        'excluded_environments' => 'getExcludedEnvironments',
+        'states' => 'getStates',
+        'result' => 'getResult',
+        'service_id' => 'getServiceId',
+        'base_url' => 'getBaseUrl',
+        'build_draft_pull_requests' => 'getBuildDraftPullRequests',
+        'build_pull_requests_post_merge' => 'getBuildPullRequestsPostMerge',
+        'build_merge_requests' => 'getBuildMergeRequests',
+        'build_wip_merge_requests' => 'getBuildWipMergeRequests',
+        'merge_requests_clone_parent_data' => 'getMergeRequestsCloneParentData',
+        'from_address' => 'getFromAddress',
+        'recipients' => 'getRecipients',
+        'routing_key' => 'getRoutingKey',
+        'channel' => 'getChannel',
+        'shared_key' => 'getSharedKey',
+        'extra' => 'getExtra',
+        'headers' => 'getHeaders',
+        'tls_verify' => 'getTlsVerify',
+        'license_key' => 'getLicenseKey',
+        'script' => 'getScript',
+        'index' => 'getIndex',
+        'sourcetype' => 'getSourcetype',
+        'category' => 'getCategory',
+        'host' => 'getHost',
+        'port' => 'getPort',
+        'protocol' => 'getProtocol',
+        'facility' => 'getFacility',
+        'message_format' => 'getMessageFormat',
+        'auth_token' => 'getAuthToken',
+        'auth_mode' => 'getAuthMode'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    public static function attributeMap(): array
     {
-        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+        return self::$attributeMap;
     }
 
     /**
-     * Checks if a property is nullable
+     * Array of attributes to setter functions (for deserialization of responses)
      */
-    public static function isNullable(string $property): bool
+    public static function setters(): array
     {
-        return true; // All properties in this model are nullable
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters(): array
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     */
+    public function getModelName(): string
+    {
+        return self::$openAPIModelName;
+    }
+
+    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
+    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
+    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
+    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
+    public const RESULT_STAR = '*';
+    public const RESULT_FAILURE = 'failure';
+    public const RESULT_SUCCESS = 'success';
+    public const PROTOCOL_TCP = 'tcp';
+    public const PROTOCOL_TLS = 'tls';
+    public const PROTOCOL_UDP = 'udp';
+    public const MESSAGE_FORMAT_RFC3164 = 'rfc3164';
+    public const MESSAGE_FORMAT_RFC5424 = 'rfc5424';
+    public const AUTH_MODE_PREFIX = 'prefix';
+    public const AUTH_MODE_STRUCTURED_DATA = 'structured_data';
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getEnvironmentInitResourcesAllowableValues(): array
+    {
+        return [
+            self::ENVIRONMENT_INIT_RESOURCES__DEFAULT,
+            self::ENVIRONMENT_INIT_RESOURCES_MANUAL,
+            self::ENVIRONMENT_INIT_RESOURCES_MINIMUM,
+            self::ENVIRONMENT_INIT_RESOURCES_PARENT,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getResultAllowableValues(): array
+    {
+        return [
+            self::RESULT_STAR,
+            self::RESULT_FAILURE,
+            self::RESULT_SUCCESS,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getProtocolAllowableValues(): array
+    {
+        return [
+            self::PROTOCOL_TCP,
+            self::PROTOCOL_TLS,
+            self::PROTOCOL_UDP,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getMessageFormatAllowableValues(): array
+    {
+        return [
+            self::MESSAGE_FORMAT_RFC3164,
+            self::MESSAGE_FORMAT_RFC5424,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getAuthModeAllowableValues(): array
+    {
+        return [
+            self::AUTH_MODE_PREFIX,
+            self::AUTH_MODE_STRUCTURED_DATA,
+        ];
+    }
+
+    /**
+     * Associative array for storing property values
+     */
+    private array $container = [];
+
+    /**
+     * Constructor
+     */
+    public function __construct(?array $data = null)
+    {
+        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('fetch_branches', $data ?? [], null);
+        $this->setIfExists('prune_branches', $data ?? [], null);
+        $this->setIfExists('environment_init_resources', $data ?? [], null);
+        $this->setIfExists('app_credentials', $data ?? [], null);
+        $this->setIfExists('addon_credentials', $data ?? [], null);
+        $this->setIfExists('repository', $data ?? [], null);
+        $this->setIfExists('build_pull_requests', $data ?? [], null);
+        $this->setIfExists('pull_requests_clone_parent_data', $data ?? [], null);
+        $this->setIfExists('resync_pull_requests', $data ?? [], null);
+        $this->setIfExists('url', $data ?? [], null);
+        $this->setIfExists('username', $data ?? [], null);
+        $this->setIfExists('token', $data ?? [], null);
+        $this->setIfExists('project', $data ?? [], null);
+        $this->setIfExists('events', $data ?? [], null);
+        $this->setIfExists('environments', $data ?? [], null);
+        $this->setIfExists('excluded_environments', $data ?? [], null);
+        $this->setIfExists('states', $data ?? [], null);
+        $this->setIfExists('result', $data ?? [], null);
+        $this->setIfExists('service_id', $data ?? [], null);
+        $this->setIfExists('base_url', $data ?? [], null);
+        $this->setIfExists('build_draft_pull_requests', $data ?? [], null);
+        $this->setIfExists('build_pull_requests_post_merge', $data ?? [], null);
+        $this->setIfExists('build_merge_requests', $data ?? [], null);
+        $this->setIfExists('build_wip_merge_requests', $data ?? [], null);
+        $this->setIfExists('merge_requests_clone_parent_data', $data ?? [], null);
+        $this->setIfExists('from_address', $data ?? [], null);
+        $this->setIfExists('recipients', $data ?? [], null);
+        $this->setIfExists('routing_key', $data ?? [], null);
+        $this->setIfExists('channel', $data ?? [], null);
+        $this->setIfExists('shared_key', $data ?? [], null);
+        $this->setIfExists('extra', $data ?? [], null);
+        $this->setIfExists('headers', $data ?? [], null);
+        $this->setIfExists('tls_verify', $data ?? [], null);
+        $this->setIfExists('license_key', $data ?? [], null);
+        $this->setIfExists('script', $data ?? [], null);
+        $this->setIfExists('index', $data ?? [], null);
+        $this->setIfExists('sourcetype', $data ?? [], null);
+        $this->setIfExists('category', $data ?? [], null);
+        $this->setIfExists('host', $data ?? [], null);
+        $this->setIfExists('port', $data ?? [], null);
+        $this->setIfExists('protocol', $data ?? [], null);
+        $this->setIfExists('facility', $data ?? [], null);
+        $this->setIfExists('message_format', $data ?? [], null);
+        $this->setIfExists('auth_token', $data ?? [], null);
+        $this->setIfExists('auth_mode', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    */
+    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
+    {
+        if (
+            self::isNullable($variableName)
+            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
+        ) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+    }
+
+    /**
+     * Show all the invalid properties with reasons.
+     */
+    public function listInvalidProperties(): array
+    {
+        $invalidProperties = [];
+
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        $allowedValues = $this->getEnvironmentInitResourcesAllowableValues();
+        if (!is_null($this->container['environment_init_resources']) && !in_array($this->container['environment_init_resources'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'environment_init_resources', must be one of '%s'",
+                $this->container['environment_init_resources'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['repository'] === null) {
+            $invalidProperties[] = "'repository' can't be null";
+        }
+        if ($this->container['url'] === null) {
+            $invalidProperties[] = "'url' can't be null";
+        }
+        if ($this->container['username'] === null) {
+            $invalidProperties[] = "'username' can't be null";
+        }
+        if ($this->container['token'] === null) {
+            $invalidProperties[] = "'token' can't be null";
+        }
+        if ($this->container['project'] === null) {
+            $invalidProperties[] = "'project' can't be null";
+        }
+        $allowedValues = $this->getResultAllowableValues();
+        if (!is_null($this->container['result']) && !in_array($this->container['result'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'result', must be one of '%s'",
+                $this->container['result'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['service_id'] === null) {
+            $invalidProperties[] = "'service_id' can't be null";
+        }
+        if ($this->container['recipients'] === null) {
+            $invalidProperties[] = "'recipients' can't be null";
+        }
+        if ($this->container['routing_key'] === null) {
+            $invalidProperties[] = "'routing_key' can't be null";
+        }
+        if ($this->container['channel'] === null) {
+            $invalidProperties[] = "'channel' can't be null";
+        }
+        if ($this->container['license_key'] === null) {
+            $invalidProperties[] = "'license_key' can't be null";
+        }
+        if ($this->container['script'] === null) {
+            $invalidProperties[] = "'script' can't be null";
+        }
+        if ($this->container['index'] === null) {
+            $invalidProperties[] = "'index' can't be null";
+        }
+        $allowedValues = $this->getProtocolAllowableValues();
+        if (!is_null($this->container['protocol']) && !in_array($this->container['protocol'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'protocol', must be one of '%s'",
+                $this->container['protocol'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getMessageFormatAllowableValues();
+        if (!is_null($this->container['message_format']) && !in_array($this->container['message_format'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'message_format', must be one of '%s'",
+                $this->container['message_format'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getAuthModeAllowableValues();
+        if (!is_null($this->container['auth_mode']) && !in_array($this->container['auth_mode'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'auth_mode', must be one of '%s'",
+                $this->container['auth_mode'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        return $invalidProperties;
+    }
+
+    /**
+     * Validate all the properties in the model
+     * return true if all passed
+     */
+    public function valid(): bool
+    {
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     */
+    public function setType($type)
+    {
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets fetch_branches
+     *
+     * @return bool|null
+     */
+    public function getFetchBranches()
+    {
+        return $this->container['fetch_branches'];
+    }
+
+    /**
+     * Sets fetch_branches
+     */
+    public function setFetchBranches($fetch_branches)
+    {
+        if (is_null($fetch_branches)) {
+            throw new \InvalidArgumentException('non-nullable fetch_branches cannot be null');
+        }
+        $this->container['fetch_branches'] = $fetch_branches;
+
+        return $this;
+    }
+
+    /**
+     * Gets prune_branches
+     *
+     * @return bool|null
+     */
+    public function getPruneBranches()
+    {
+        return $this->container['prune_branches'];
+    }
+
+    /**
+     * Sets prune_branches
+     */
+    public function setPruneBranches($prune_branches)
+    {
+        if (is_null($prune_branches)) {
+            throw new \InvalidArgumentException('non-nullable prune_branches cannot be null');
+        }
+        $this->container['prune_branches'] = $prune_branches;
+
+        return $this;
+    }
+
+    /**
+     * Gets environment_init_resources
+     *
+     * @return string|null
+     */
+    public function getEnvironmentInitResources()
+    {
+        return $this->container['environment_init_resources'];
+    }
+
+    /**
+     * Sets environment_init_resources
+     */
+    public function setEnvironmentInitResources($environment_init_resources)
+    {
+        if (is_null($environment_init_resources)) {
+            throw new \InvalidArgumentException('non-nullable environment_init_resources cannot be null');
+        }
+        $allowedValues = $this->getEnvironmentInitResourcesAllowableValues();
+        if (!in_array($environment_init_resources, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'environment_init_resources', must be one of '%s'",
+                    $environment_init_resources,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['environment_init_resources'] = $environment_init_resources;
+
+        return $this;
+    }
+
+    /**
+     * Gets app_credentials
+     *
+     * @return \Upsun\Model\TheOAuth2ConsumerInformationOptional1|null
+     */
+    public function getAppCredentials()
+    {
+        return $this->container['app_credentials'];
+    }
+
+    /**
+     * Sets app_credentials
+     */
+    public function setAppCredentials($app_credentials)
+    {
+        if (is_null($app_credentials)) {
+            array_push($this->openAPINullablesSetToNull, 'app_credentials');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('app_credentials', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['app_credentials'] = $app_credentials;
+
+        return $this;
+    }
+
+    /**
+     * Gets addon_credentials
+     *
+     * @return \Upsun\Model\TheAddonCredentialInformationOptional1|null
+     */
+    public function getAddonCredentials()
+    {
+        return $this->container['addon_credentials'];
+    }
+
+    /**
+     * Sets addon_credentials
+     */
+    public function setAddonCredentials($addon_credentials)
+    {
+        if (is_null($addon_credentials)) {
+            array_push($this->openAPINullablesSetToNull, 'addon_credentials');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('addon_credentials', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['addon_credentials'] = $addon_credentials;
+
+        return $this;
+    }
+
+    /**
+     * Gets repository
+     *
+     * @return string
+     */
+    public function getRepository()
+    {
+        return $this->container['repository'];
+    }
+
+    /**
+     * Sets repository
+     */
+    public function setRepository($repository)
+    {
+        if (is_null($repository)) {
+            throw new \InvalidArgumentException('non-nullable repository cannot be null');
+        }
+        $this->container['repository'] = $repository;
+
+        return $this;
+    }
+
+    /**
+     * Gets build_pull_requests
+     *
+     * @return bool|null
+     */
+    public function getBuildPullRequests()
+    {
+        return $this->container['build_pull_requests'];
+    }
+
+    /**
+     * Sets build_pull_requests
+     */
+    public function setBuildPullRequests($build_pull_requests)
+    {
+        if (is_null($build_pull_requests)) {
+            throw new \InvalidArgumentException('non-nullable build_pull_requests cannot be null');
+        }
+        $this->container['build_pull_requests'] = $build_pull_requests;
+
+        return $this;
+    }
+
+    /**
+     * Gets pull_requests_clone_parent_data
+     *
+     * @return bool|null
+     */
+    public function getPullRequestsCloneParentData()
+    {
+        return $this->container['pull_requests_clone_parent_data'];
+    }
+
+    /**
+     * Sets pull_requests_clone_parent_data
+     */
+    public function setPullRequestsCloneParentData($pull_requests_clone_parent_data)
+    {
+        if (is_null($pull_requests_clone_parent_data)) {
+            throw new \InvalidArgumentException('non-nullable pull_requests_clone_parent_data cannot be null');
+        }
+        $this->container['pull_requests_clone_parent_data'] = $pull_requests_clone_parent_data;
+
+        return $this;
+    }
+
+    /**
+     * Gets resync_pull_requests
+     *
+     * @return bool|null
+     */
+    public function getResyncPullRequests()
+    {
+        return $this->container['resync_pull_requests'];
+    }
+
+    /**
+     * Sets resync_pull_requests
+     */
+    public function setResyncPullRequests($resync_pull_requests)
+    {
+        if (is_null($resync_pull_requests)) {
+            throw new \InvalidArgumentException('non-nullable resync_pull_requests cannot be null');
+        }
+        $this->container['resync_pull_requests'] = $resync_pull_requests;
+
+        return $this;
+    }
+
+    /**
+     * Gets url
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->container['url'];
+    }
+
+    /**
+     * Sets url
+     */
+    public function setUrl($url)
+    {
+        if (is_null($url)) {
+            throw new \InvalidArgumentException('non-nullable url cannot be null');
+        }
+        $this->container['url'] = $url;
+
+        return $this;
+    }
+
+    /**
+     * Gets username
+     *
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->container['username'];
+    }
+
+    /**
+     * Sets username
+     */
+    public function setUsername($username)
+    {
+        if (is_null($username)) {
+            throw new \InvalidArgumentException('non-nullable username cannot be null');
+        }
+        $this->container['username'] = $username;
+
+        return $this;
+    }
+
+    /**
+     * Gets token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->container['token'];
+    }
+
+    /**
+     * Sets token
+     */
+    public function setToken($token)
+    {
+        if (is_null($token)) {
+            throw new \InvalidArgumentException('non-nullable token cannot be null');
+        }
+        $this->container['token'] = $token;
+
+        return $this;
+    }
+
+    /**
+     * Gets project
+     *
+     * @return string
+     */
+    public function getProject()
+    {
+        return $this->container['project'];
+    }
+
+    /**
+     * Sets project
+     */
+    public function setProject($project)
+    {
+        if (is_null($project)) {
+            throw new \InvalidArgumentException('non-nullable project cannot be null');
+        }
+        $this->container['project'] = $project;
+
+        return $this;
+    }
+
+    /**
+     * Gets events
+     *
+     * @return string[]|null
+     */
+    public function getEvents()
+    {
+        return $this->container['events'];
+    }
+
+    /**
+     * Sets events
+     */
+    public function setEvents($events)
+    {
+        if (is_null($events)) {
+            throw new \InvalidArgumentException('non-nullable events cannot be null');
+        }
+        $this->container['events'] = $events;
+
+        return $this;
+    }
+
+    /**
+     * Gets environments
+     *
+     * @return string[]|null
+     */
+    public function getEnvironments()
+    {
+        return $this->container['environments'];
+    }
+
+    /**
+     * Sets environments
+     */
+    public function setEnvironments($environments)
+    {
+        if (is_null($environments)) {
+            throw new \InvalidArgumentException('non-nullable environments cannot be null');
+        }
+        $this->container['environments'] = $environments;
+
+        return $this;
+    }
+
+    /**
+     * Gets excluded_environments
+     *
+     * @return string[]|null
+     */
+    public function getExcludedEnvironments()
+    {
+        return $this->container['excluded_environments'];
+    }
+
+    /**
+     * Sets excluded_environments
+     */
+    public function setExcludedEnvironments($excluded_environments)
+    {
+        if (is_null($excluded_environments)) {
+            throw new \InvalidArgumentException('non-nullable excluded_environments cannot be null');
+        }
+        $this->container['excluded_environments'] = $excluded_environments;
+
+        return $this;
+    }
+
+    /**
+     * Gets states
+     *
+     * @return string[]|null
+     */
+    public function getStates()
+    {
+        return $this->container['states'];
+    }
+
+    /**
+     * Sets states
+     */
+    public function setStates($states)
+    {
+        if (is_null($states)) {
+            throw new \InvalidArgumentException('non-nullable states cannot be null');
+        }
+        $this->container['states'] = $states;
+
+        return $this;
+    }
+
+    /**
+     * Gets result
+     *
+     * @return string|null
+     */
+    public function getResult()
+    {
+        return $this->container['result'];
+    }
+
+    /**
+     * Sets result
+     */
+    public function setResult($result)
+    {
+        if (is_null($result)) {
+            throw new \InvalidArgumentException('non-nullable result cannot be null');
+        }
+        $allowedValues = $this->getResultAllowableValues();
+        if (!in_array($result, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'result', must be one of '%s'",
+                    $result,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['result'] = $result;
+
+        return $this;
+    }
+
+    /**
+     * Gets service_id
+     *
+     * @return string
+     */
+    public function getServiceId()
+    {
+        return $this->container['service_id'];
+    }
+
+    /**
+     * Sets service_id
+     */
+    public function setServiceId($service_id)
+    {
+        if (is_null($service_id)) {
+            throw new \InvalidArgumentException('non-nullable service_id cannot be null');
+        }
+        $this->container['service_id'] = $service_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets base_url
+     *
+     * @return string|null
+     */
+    public function getBaseUrl()
+    {
+        return $this->container['base_url'];
+    }
+
+    /**
+     * Sets base_url
+     */
+    public function setBaseUrl($base_url)
+    {
+        if (is_null($base_url)) {
+            throw new \InvalidArgumentException('non-nullable base_url cannot be null');
+        }
+        $this->container['base_url'] = $base_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets build_draft_pull_requests
+     *
+     * @return bool|null
+     */
+    public function getBuildDraftPullRequests()
+    {
+        return $this->container['build_draft_pull_requests'];
+    }
+
+    /**
+     * Sets build_draft_pull_requests
+     */
+    public function setBuildDraftPullRequests($build_draft_pull_requests)
+    {
+        if (is_null($build_draft_pull_requests)) {
+            throw new \InvalidArgumentException('non-nullable build_draft_pull_requests cannot be null');
+        }
+        $this->container['build_draft_pull_requests'] = $build_draft_pull_requests;
+
+        return $this;
+    }
+
+    /**
+     * Gets build_pull_requests_post_merge
+     *
+     * @return bool|null
+     */
+    public function getBuildPullRequestsPostMerge()
+    {
+        return $this->container['build_pull_requests_post_merge'];
+    }
+
+    /**
+     * Sets build_pull_requests_post_merge
+     */
+    public function setBuildPullRequestsPostMerge($build_pull_requests_post_merge)
+    {
+        if (is_null($build_pull_requests_post_merge)) {
+            throw new \InvalidArgumentException('non-nullable build_pull_requests_post_merge cannot be null');
+        }
+        $this->container['build_pull_requests_post_merge'] = $build_pull_requests_post_merge;
+
+        return $this;
+    }
+
+    /**
+     * Gets build_merge_requests
+     *
+     * @return bool|null
+     */
+    public function getBuildMergeRequests()
+    {
+        return $this->container['build_merge_requests'];
+    }
+
+    /**
+     * Sets build_merge_requests
+     */
+    public function setBuildMergeRequests($build_merge_requests)
+    {
+        if (is_null($build_merge_requests)) {
+            throw new \InvalidArgumentException('non-nullable build_merge_requests cannot be null');
+        }
+        $this->container['build_merge_requests'] = $build_merge_requests;
+
+        return $this;
+    }
+
+    /**
+     * Gets build_wip_merge_requests
+     *
+     * @return bool|null
+     */
+    public function getBuildWipMergeRequests()
+    {
+        return $this->container['build_wip_merge_requests'];
+    }
+
+    /**
+     * Sets build_wip_merge_requests
+     */
+    public function setBuildWipMergeRequests($build_wip_merge_requests)
+    {
+        if (is_null($build_wip_merge_requests)) {
+            throw new \InvalidArgumentException('non-nullable build_wip_merge_requests cannot be null');
+        }
+        $this->container['build_wip_merge_requests'] = $build_wip_merge_requests;
+
+        return $this;
+    }
+
+    /**
+     * Gets merge_requests_clone_parent_data
+     *
+     * @return bool|null
+     */
+    public function getMergeRequestsCloneParentData()
+    {
+        return $this->container['merge_requests_clone_parent_data'];
+    }
+
+    /**
+     * Sets merge_requests_clone_parent_data
+     */
+    public function setMergeRequestsCloneParentData($merge_requests_clone_parent_data)
+    {
+        if (is_null($merge_requests_clone_parent_data)) {
+            throw new \InvalidArgumentException('non-nullable merge_requests_clone_parent_data cannot be null');
+        }
+        $this->container['merge_requests_clone_parent_data'] = $merge_requests_clone_parent_data;
+
+        return $this;
+    }
+
+    /**
+     * Gets from_address
+     *
+     * @return string|null
+     */
+    public function getFromAddress()
+    {
+        return $this->container['from_address'];
+    }
+
+    /**
+     * Sets from_address
+     */
+    public function setFromAddress($from_address)
+    {
+        if (is_null($from_address)) {
+            array_push($this->openAPINullablesSetToNull, 'from_address');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('from_address', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['from_address'] = $from_address;
+
+        return $this;
+    }
+
+    /**
+     * Gets recipients
+     *
+     * @return string[]
+     */
+    public function getRecipients()
+    {
+        return $this->container['recipients'];
+    }
+
+    /**
+     * Sets recipients
+     */
+    public function setRecipients($recipients)
+    {
+        if (is_null($recipients)) {
+            throw new \InvalidArgumentException('non-nullable recipients cannot be null');
+        }
+        $this->container['recipients'] = $recipients;
+
+        return $this;
+    }
+
+    /**
+     * Gets routing_key
+     *
+     * @return string
+     */
+    public function getRoutingKey()
+    {
+        return $this->container['routing_key'];
+    }
+
+    /**
+     * Sets routing_key
+     */
+    public function setRoutingKey($routing_key)
+    {
+        if (is_null($routing_key)) {
+            throw new \InvalidArgumentException('non-nullable routing_key cannot be null');
+        }
+        $this->container['routing_key'] = $routing_key;
+
+        return $this;
+    }
+
+    /**
+     * Gets channel
+     *
+     * @return string
+     */
+    public function getChannel()
+    {
+        return $this->container['channel'];
+    }
+
+    /**
+     * Sets channel
+     */
+    public function setChannel($channel)
+    {
+        if (is_null($channel)) {
+            throw new \InvalidArgumentException('non-nullable channel cannot be null');
+        }
+        $this->container['channel'] = $channel;
+
+        return $this;
+    }
+
+    /**
+     * Gets shared_key
+     *
+     * @return string|null
+     */
+    public function getSharedKey()
+    {
+        return $this->container['shared_key'];
+    }
+
+    /**
+     * Sets shared_key
+     */
+    public function setSharedKey($shared_key)
+    {
+        if (is_null($shared_key)) {
+            array_push($this->openAPINullablesSetToNull, 'shared_key');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('shared_key', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['shared_key'] = $shared_key;
+
+        return $this;
+    }
+
+    /**
+     * Gets extra
+     *
+     * @return array<string,string>|null
+     */
+    public function getExtra()
+    {
+        return $this->container['extra'];
+    }
+
+    /**
+     * Sets extra
+     */
+    public function setExtra($extra)
+    {
+        if (is_null($extra)) {
+            throw new \InvalidArgumentException('non-nullable extra cannot be null');
+        }
+        $this->container['extra'] = $extra;
+
+        return $this;
+    }
+
+    /**
+     * Gets headers
+     *
+     * @return array<string,string>|null
+     */
+    public function getHeaders()
+    {
+        return $this->container['headers'];
+    }
+
+    /**
+     * Sets headers
+     */
+    public function setHeaders($headers)
+    {
+        if (is_null($headers)) {
+            throw new \InvalidArgumentException('non-nullable headers cannot be null');
+        }
+        $this->container['headers'] = $headers;
+
+        return $this;
+    }
+
+    /**
+     * Gets tls_verify
+     *
+     * @return bool|null
+     */
+    public function getTlsVerify()
+    {
+        return $this->container['tls_verify'];
+    }
+
+    /**
+     * Sets tls_verify
+     */
+    public function setTlsVerify($tls_verify)
+    {
+        if (is_null($tls_verify)) {
+            throw new \InvalidArgumentException('non-nullable tls_verify cannot be null');
+        }
+        $this->container['tls_verify'] = $tls_verify;
+
+        return $this;
+    }
+
+    /**
+     * Gets license_key
+     *
+     * @return string
+     */
+    public function getLicenseKey()
+    {
+        return $this->container['license_key'];
+    }
+
+    /**
+     * Sets license_key
+     */
+    public function setLicenseKey($license_key)
+    {
+        if (is_null($license_key)) {
+            throw new \InvalidArgumentException('non-nullable license_key cannot be null');
+        }
+        $this->container['license_key'] = $license_key;
+
+        return $this;
+    }
+
+    /**
+     * Gets script
+     *
+     * @return string
+     */
+    public function getScript()
+    {
+        return $this->container['script'];
+    }
+
+    /**
+     * Sets script
+     */
+    public function setScript($script)
+    {
+        if (is_null($script)) {
+            throw new \InvalidArgumentException('non-nullable script cannot be null');
+        }
+        $this->container['script'] = $script;
+
+        return $this;
+    }
+
+    /**
+     * Gets index
+     *
+     * @return string
+     */
+    public function getIndex()
+    {
+        return $this->container['index'];
+    }
+
+    /**
+     * Sets index
+     */
+    public function setIndex($index)
+    {
+        if (is_null($index)) {
+            throw new \InvalidArgumentException('non-nullable index cannot be null');
+        }
+        $this->container['index'] = $index;
+
+        return $this;
+    }
+
+    /**
+     * Gets sourcetype
+     *
+     * @return string|null
+     */
+    public function getSourcetype()
+    {
+        return $this->container['sourcetype'];
+    }
+
+    /**
+     * Sets sourcetype
+     */
+    public function setSourcetype($sourcetype)
+    {
+        if (is_null($sourcetype)) {
+            throw new \InvalidArgumentException('non-nullable sourcetype cannot be null');
+        }
+        $this->container['sourcetype'] = $sourcetype;
+
+        return $this;
+    }
+
+    /**
+     * Gets category
+     *
+     * @return string|null
+     */
+    public function getCategory()
+    {
+        return $this->container['category'];
+    }
+
+    /**
+     * Sets category
+     */
+    public function setCategory($category)
+    {
+        if (is_null($category)) {
+            throw new \InvalidArgumentException('non-nullable category cannot be null');
+        }
+        $this->container['category'] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Gets host
+     *
+     * @return string|null
+     */
+    public function getHost()
+    {
+        return $this->container['host'];
+    }
+
+    /**
+     * Sets host
+     */
+    public function setHost($host)
+    {
+        if (is_null($host)) {
+            throw new \InvalidArgumentException('non-nullable host cannot be null');
+        }
+        $this->container['host'] = $host;
+
+        return $this;
+    }
+
+    /**
+     * Gets port
+     *
+     * @return int|null
+     */
+    public function getPort()
+    {
+        return $this->container['port'];
+    }
+
+    /**
+     * Sets port
+     */
+    public function setPort($port)
+    {
+        if (is_null($port)) {
+            throw new \InvalidArgumentException('non-nullable port cannot be null');
+        }
+        $this->container['port'] = $port;
+
+        return $this;
+    }
+
+    /**
+     * Gets protocol
+     *
+     * @return string|null
+     */
+    public function getProtocol()
+    {
+        return $this->container['protocol'];
+    }
+
+    /**
+     * Sets protocol
+     */
+    public function setProtocol($protocol)
+    {
+        if (is_null($protocol)) {
+            throw new \InvalidArgumentException('non-nullable protocol cannot be null');
+        }
+        $allowedValues = $this->getProtocolAllowableValues();
+        if (!in_array($protocol, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'protocol', must be one of '%s'",
+                    $protocol,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['protocol'] = $protocol;
+
+        return $this;
+    }
+
+    /**
+     * Gets facility
+     *
+     * @return int|null
+     */
+    public function getFacility()
+    {
+        return $this->container['facility'];
+    }
+
+    /**
+     * Sets facility
+     */
+    public function setFacility($facility)
+    {
+        if (is_null($facility)) {
+            throw new \InvalidArgumentException('non-nullable facility cannot be null');
+        }
+        $this->container['facility'] = $facility;
+
+        return $this;
+    }
+
+    /**
+     * Gets message_format
+     *
+     * @return string|null
+     */
+    public function getMessageFormat()
+    {
+        return $this->container['message_format'];
+    }
+
+    /**
+     * Sets message_format
+     */
+    public function setMessageFormat($message_format)
+    {
+        if (is_null($message_format)) {
+            throw new \InvalidArgumentException('non-nullable message_format cannot be null');
+        }
+        $allowedValues = $this->getMessageFormatAllowableValues();
+        if (!in_array($message_format, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'message_format', must be one of '%s'",
+                    $message_format,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['message_format'] = $message_format;
+
+        return $this;
+    }
+
+    /**
+     * Gets auth_token
+     *
+     * @return string|null
+     */
+    public function getAuthToken()
+    {
+        return $this->container['auth_token'];
+    }
+
+    /**
+     * Sets auth_token
+     */
+    public function setAuthToken($auth_token)
+    {
+        if (is_null($auth_token)) {
+            throw new \InvalidArgumentException('non-nullable auth_token cannot be null');
+        }
+        $this->container['auth_token'] = $auth_token;
+
+        return $this;
+    }
+
+    /**
+     * Gets auth_mode
+     *
+     * @return string|null
+     */
+    public function getAuthMode()
+    {
+        return $this->container['auth_mode'];
+    }
+
+    /**
+     * Sets auth_mode
+     */
+    public function setAuthMode($auth_mode)
+    {
+        if (is_null($auth_mode)) {
+            throw new \InvalidArgumentException('non-nullable auth_mode cannot be null');
+        }
+        $allowedValues = $this->getAuthModeAllowableValues();
+        if (!in_array($auth_mode, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'auth_mode', must be one of '%s'",
+                    $auth_mode,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['auth_mode'] = $auth_mode;
+
+        return $this;
+    }
+    /**
+     * Returns true if offset exists. False otherwise.
+     */
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->container[$offset]);
+    }
+
+    /**
+     * Gets offset.
+     */
+    #[\ReturnTypeWillChange]
+    public function offsetGet(mixed $offset)
+    {
+        return $this->container[$offset] ?? null;
+    }
+
+    /**
+     * Sets value based on offset.
+     */
+    public function offsetSet(mixed $offset = null, $value): void
+    {
+        if (is_null($offset)) {
+            $this->container[] = $value;
+        } else {
+            $this->container[$offset] = $value;
+        }
+    }
+
+    /**
+     * Unsets offset.
+     */
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->container[$offset]);
+    }
+
+    /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     */
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize(): mixed
+    {
+        return ObjectSerializer::sanitizeForSerialization($this);
+        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+    }
+
+    /**
+     * Gets the string presentation of the object
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
+
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
+        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-

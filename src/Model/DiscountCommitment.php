@@ -42,11 +42,65 @@ final class DiscountCommitment implements JsonSerializable
     ];
 
     /**
+     * Array of nullable properties. Used for (de)serialization
+     */
+    private static array $openAPINullables = [
+        'months' => false,
+        'amount' => false,
+        'net' => false
+    ];
+
+    /**
+     * If a nullable field gets set to null, insert it here
+     */
+    private array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      */
     public static function openAPITypes(): array
     {
         return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    public static function openAPIFormats(): array
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -58,34 +112,249 @@ final class DiscountCommitment implements JsonSerializable
         'amount' => 'amount',
         'net' => 'net'
     ];
-    
-    public function __construct(
-        public readonly int|null $months = null,
-        public readonly \Upsun\Model\DiscountCommitmentAmount|null $amount = null,
-        public readonly \Upsun\Model\DiscountCommitmentNet|null $net = null
-    ) {
-    }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'months' => $this->months,
-            'amount' => $this->amount,
-            'net' => $this->net,
-        ];
-    }
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     */
+    private static $setters = [
+        'months' => 'setMonths',
+        'amount' => 'setAmount',
+        'net' => 'setNet'
+    ];
 
-    public function __toString(): string
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     */
+    private static $getters = [
+        'months' => 'getMonths',
+        'amount' => 'getAmount',
+        'net' => 'getNet'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    public static function attributeMap(): array
     {
-        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+        return self::$attributeMap;
     }
 
     /**
-     * Checks if a property is nullable
+     * Array of attributes to setter functions (for deserialization of responses)
      */
-    public static function isNullable(string $property): bool
+    public static function setters(): array
     {
-        return true; // All properties in this model are nullable
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters(): array
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     */
+    public function getModelName(): string
+    {
+        return self::$openAPIModelName;
+    }
+
+
+    /**
+     * Associative array for storing property values
+     */
+    private array $container = [];
+
+    /**
+     * Constructor
+     */
+    public function __construct(?array $data = null)
+    {
+        $this->setIfExists('months', $data ?? [], null);
+        $this->setIfExists('amount', $data ?? [], null);
+        $this->setIfExists('net', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    */
+    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
+    {
+        if (
+            self::isNullable($variableName)
+            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
+        ) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+    }
+
+    /**
+     * Show all the invalid properties with reasons.
+     */
+    public function listInvalidProperties(): array
+    {
+        $invalidProperties = [];
+
+        return $invalidProperties;
+    }
+
+    /**
+     * Validate all the properties in the model
+     * return true if all passed
+     */
+    public function valid(): bool
+    {
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets months
+     *
+     * @return int|null
+     */
+    public function getMonths()
+    {
+        return $this->container['months'];
+    }
+
+    /**
+     * Sets months
+     */
+    public function setMonths($months)
+    {
+        if (is_null($months)) {
+            throw new \InvalidArgumentException('non-nullable months cannot be null');
+        }
+        $this->container['months'] = $months;
+
+        return $this;
+    }
+
+    /**
+     * Gets amount
+     *
+     * @return \Upsun\Model\DiscountCommitmentAmount|null
+     */
+    public function getAmount()
+    {
+        return $this->container['amount'];
+    }
+
+    /**
+     * Sets amount
+     */
+    public function setAmount($amount)
+    {
+        if (is_null($amount)) {
+            throw new \InvalidArgumentException('non-nullable amount cannot be null');
+        }
+        $this->container['amount'] = $amount;
+
+        return $this;
+    }
+
+    /**
+     * Gets net
+     *
+     * @return \Upsun\Model\DiscountCommitmentNet|null
+     */
+    public function getNet()
+    {
+        return $this->container['net'];
+    }
+
+    /**
+     * Sets net
+     */
+    public function setNet($net)
+    {
+        if (is_null($net)) {
+            throw new \InvalidArgumentException('non-nullable net cannot be null');
+        }
+        $this->container['net'] = $net;
+
+        return $this;
+    }
+    /**
+     * Returns true if offset exists. False otherwise.
+     */
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->container[$offset]);
+    }
+
+    /**
+     * Gets offset.
+     */
+    #[\ReturnTypeWillChange]
+    public function offsetGet(mixed $offset)
+    {
+        return $this->container[$offset] ?? null;
+    }
+
+    /**
+     * Sets value based on offset.
+     */
+    public function offsetSet(mixed $offset = null, $value): void
+    {
+        if (is_null($offset)) {
+            $this->container[] = $value;
+        } else {
+            $this->container[$offset] = $value;
+        }
+    }
+
+    /**
+     * Unsets offset.
+     */
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->container[$offset]);
+    }
+
+    /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     */
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize(): mixed
+    {
+        return ObjectSerializer::sanitizeForSerialization($this);
+        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+    }
+
+    /**
+     * Gets the string presentation of the object
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
+
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
+        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-

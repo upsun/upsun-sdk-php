@@ -62,11 +62,75 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
     ];
 
     /**
+     * Array of nullable properties. Used for (de)serialization
+     */
+    private static array $openAPINullables = [
+        'cpu_app' => false,
+        'storage_app_services' => false,
+        'memory_app' => false,
+        'cpu_services' => false,
+        'memory_services' => false,
+        'backup_storage' => false,
+        'build_cpu' => false,
+        'build_memory' => false,
+        'egress_bandwidth' => false,
+        'ingress_requests' => false,
+        'logs_fwd_content_size' => false,
+        'fastly_bandwidth' => false,
+        'fastly_requests' => false
+    ];
+
+    /**
+     * If a nullable field gets set to null, insert it here
+     */
+    private array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      */
     public static function openAPITypes(): array
     {
         return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    public static function openAPIFormats(): array
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -88,54 +152,509 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
         'fastly_bandwidth' => 'fastly_bandwidth',
         'fastly_requests' => 'fastly_requests'
     ];
-    
-    public function __construct(
-        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $cpu_app = null,
-        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $storage_app_services = null,
-        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $memory_app = null,
-        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $cpu_services = null,
-        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $memory_services = null,
-        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $backup_storage = null,
-        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $build_cpu = null,
-        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $build_memory = null,
-        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $egress_bandwidth = null,
-        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $ingress_requests = null,
-        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $logs_fwd_content_size = null,
-        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $fastly_bandwidth = null,
-        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties|null $fastly_requests = null
-    ) {
-    }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'cpu_app' => $this->cpu_app,
-            'storage_app_services' => $this->storage_app_services,
-            'memory_app' => $this->memory_app,
-            'cpu_services' => $this->cpu_services,
-            'memory_services' => $this->memory_services,
-            'backup_storage' => $this->backup_storage,
-            'build_cpu' => $this->build_cpu,
-            'build_memory' => $this->build_memory,
-            'egress_bandwidth' => $this->egress_bandwidth,
-            'ingress_requests' => $this->ingress_requests,
-            'logs_fwd_content_size' => $this->logs_fwd_content_size,
-            'fastly_bandwidth' => $this->fastly_bandwidth,
-            'fastly_requests' => $this->fastly_requests,
-        ];
-    }
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     */
+    private static $setters = [
+        'cpu_app' => 'setCpuApp',
+        'storage_app_services' => 'setStorageAppServices',
+        'memory_app' => 'setMemoryApp',
+        'cpu_services' => 'setCpuServices',
+        'memory_services' => 'setMemoryServices',
+        'backup_storage' => 'setBackupStorage',
+        'build_cpu' => 'setBuildCpu',
+        'build_memory' => 'setBuildMemory',
+        'egress_bandwidth' => 'setEgressBandwidth',
+        'ingress_requests' => 'setIngressRequests',
+        'logs_fwd_content_size' => 'setLogsFwdContentSize',
+        'fastly_bandwidth' => 'setFastlyBandwidth',
+        'fastly_requests' => 'setFastlyRequests'
+    ];
 
-    public function __toString(): string
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     */
+    private static $getters = [
+        'cpu_app' => 'getCpuApp',
+        'storage_app_services' => 'getStorageAppServices',
+        'memory_app' => 'getMemoryApp',
+        'cpu_services' => 'getCpuServices',
+        'memory_services' => 'getMemoryServices',
+        'backup_storage' => 'getBackupStorage',
+        'build_cpu' => 'getBuildCpu',
+        'build_memory' => 'getBuildMemory',
+        'egress_bandwidth' => 'getEgressBandwidth',
+        'ingress_requests' => 'getIngressRequests',
+        'logs_fwd_content_size' => 'getLogsFwdContentSize',
+        'fastly_bandwidth' => 'getFastlyBandwidth',
+        'fastly_requests' => 'getFastlyRequests'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    public static function attributeMap(): array
     {
-        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+        return self::$attributeMap;
     }
 
     /**
-     * Checks if a property is nullable
+     * Array of attributes to setter functions (for deserialization of responses)
      */
-    public static function isNullable(string $property): bool
+    public static function setters(): array
     {
-        return true; // All properties in this model are nullable
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters(): array
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     */
+    public function getModelName(): string
+    {
+        return self::$openAPIModelName;
+    }
+
+
+    /**
+     * Associative array for storing property values
+     */
+    private array $container = [];
+
+    /**
+     * Constructor
+     */
+    public function __construct(?array $data = null)
+    {
+        $this->setIfExists('cpu_app', $data ?? [], null);
+        $this->setIfExists('storage_app_services', $data ?? [], null);
+        $this->setIfExists('memory_app', $data ?? [], null);
+        $this->setIfExists('cpu_services', $data ?? [], null);
+        $this->setIfExists('memory_services', $data ?? [], null);
+        $this->setIfExists('backup_storage', $data ?? [], null);
+        $this->setIfExists('build_cpu', $data ?? [], null);
+        $this->setIfExists('build_memory', $data ?? [], null);
+        $this->setIfExists('egress_bandwidth', $data ?? [], null);
+        $this->setIfExists('ingress_requests', $data ?? [], null);
+        $this->setIfExists('logs_fwd_content_size', $data ?? [], null);
+        $this->setIfExists('fastly_bandwidth', $data ?? [], null);
+        $this->setIfExists('fastly_requests', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    */
+    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
+    {
+        if (
+            self::isNullable($variableName)
+            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
+        ) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+    }
+
+    /**
+     * Show all the invalid properties with reasons.
+     */
+    public function listInvalidProperties(): array
+    {
+        $invalidProperties = [];
+
+        return $invalidProperties;
+    }
+
+    /**
+     * Validate all the properties in the model
+     * return true if all passed
+     */
+    public function valid(): bool
+    {
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets cpu_app
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
+    public function getCpuApp()
+    {
+        return $this->container['cpu_app'];
+    }
+
+    /**
+     * Sets cpu_app
+     */
+    public function setCpuApp($cpu_app)
+    {
+        if (is_null($cpu_app)) {
+            throw new \InvalidArgumentException('non-nullable cpu_app cannot be null');
+        }
+        $this->container['cpu_app'] = $cpu_app;
+
+        return $this;
+    }
+
+    /**
+     * Gets storage_app_services
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
+    public function getStorageAppServices()
+    {
+        return $this->container['storage_app_services'];
+    }
+
+    /**
+     * Sets storage_app_services
+     */
+    public function setStorageAppServices($storage_app_services)
+    {
+        if (is_null($storage_app_services)) {
+            throw new \InvalidArgumentException('non-nullable storage_app_services cannot be null');
+        }
+        $this->container['storage_app_services'] = $storage_app_services;
+
+        return $this;
+    }
+
+    /**
+     * Gets memory_app
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
+    public function getMemoryApp()
+    {
+        return $this->container['memory_app'];
+    }
+
+    /**
+     * Sets memory_app
+     */
+    public function setMemoryApp($memory_app)
+    {
+        if (is_null($memory_app)) {
+            throw new \InvalidArgumentException('non-nullable memory_app cannot be null');
+        }
+        $this->container['memory_app'] = $memory_app;
+
+        return $this;
+    }
+
+    /**
+     * Gets cpu_services
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
+    public function getCpuServices()
+    {
+        return $this->container['cpu_services'];
+    }
+
+    /**
+     * Sets cpu_services
+     */
+    public function setCpuServices($cpu_services)
+    {
+        if (is_null($cpu_services)) {
+            throw new \InvalidArgumentException('non-nullable cpu_services cannot be null');
+        }
+        $this->container['cpu_services'] = $cpu_services;
+
+        return $this;
+    }
+
+    /**
+     * Gets memory_services
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
+    public function getMemoryServices()
+    {
+        return $this->container['memory_services'];
+    }
+
+    /**
+     * Sets memory_services
+     */
+    public function setMemoryServices($memory_services)
+    {
+        if (is_null($memory_services)) {
+            throw new \InvalidArgumentException('non-nullable memory_services cannot be null');
+        }
+        $this->container['memory_services'] = $memory_services;
+
+        return $this;
+    }
+
+    /**
+     * Gets backup_storage
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
+    public function getBackupStorage()
+    {
+        return $this->container['backup_storage'];
+    }
+
+    /**
+     * Sets backup_storage
+     */
+    public function setBackupStorage($backup_storage)
+    {
+        if (is_null($backup_storage)) {
+            throw new \InvalidArgumentException('non-nullable backup_storage cannot be null');
+        }
+        $this->container['backup_storage'] = $backup_storage;
+
+        return $this;
+    }
+
+    /**
+     * Gets build_cpu
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
+    public function getBuildCpu()
+    {
+        return $this->container['build_cpu'];
+    }
+
+    /**
+     * Sets build_cpu
+     */
+    public function setBuildCpu($build_cpu)
+    {
+        if (is_null($build_cpu)) {
+            throw new \InvalidArgumentException('non-nullable build_cpu cannot be null');
+        }
+        $this->container['build_cpu'] = $build_cpu;
+
+        return $this;
+    }
+
+    /**
+     * Gets build_memory
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
+    public function getBuildMemory()
+    {
+        return $this->container['build_memory'];
+    }
+
+    /**
+     * Sets build_memory
+     */
+    public function setBuildMemory($build_memory)
+    {
+        if (is_null($build_memory)) {
+            throw new \InvalidArgumentException('non-nullable build_memory cannot be null');
+        }
+        $this->container['build_memory'] = $build_memory;
+
+        return $this;
+    }
+
+    /**
+     * Gets egress_bandwidth
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
+    public function getEgressBandwidth()
+    {
+        return $this->container['egress_bandwidth'];
+    }
+
+    /**
+     * Sets egress_bandwidth
+     */
+    public function setEgressBandwidth($egress_bandwidth)
+    {
+        if (is_null($egress_bandwidth)) {
+            throw new \InvalidArgumentException('non-nullable egress_bandwidth cannot be null');
+        }
+        $this->container['egress_bandwidth'] = $egress_bandwidth;
+
+        return $this;
+    }
+
+    /**
+     * Gets ingress_requests
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
+    public function getIngressRequests()
+    {
+        return $this->container['ingress_requests'];
+    }
+
+    /**
+     * Sets ingress_requests
+     */
+    public function setIngressRequests($ingress_requests)
+    {
+        if (is_null($ingress_requests)) {
+            throw new \InvalidArgumentException('non-nullable ingress_requests cannot be null');
+        }
+        $this->container['ingress_requests'] = $ingress_requests;
+
+        return $this;
+    }
+
+    /**
+     * Gets logs_fwd_content_size
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
+    public function getLogsFwdContentSize()
+    {
+        return $this->container['logs_fwd_content_size'];
+    }
+
+    /**
+     * Sets logs_fwd_content_size
+     */
+    public function setLogsFwdContentSize($logs_fwd_content_size)
+    {
+        if (is_null($logs_fwd_content_size)) {
+            throw new \InvalidArgumentException('non-nullable logs_fwd_content_size cannot be null');
+        }
+        $this->container['logs_fwd_content_size'] = $logs_fwd_content_size;
+
+        return $this;
+    }
+
+    /**
+     * Gets fastly_bandwidth
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
+    public function getFastlyBandwidth()
+    {
+        return $this->container['fastly_bandwidth'];
+    }
+
+    /**
+     * Sets fastly_bandwidth
+     */
+    public function setFastlyBandwidth($fastly_bandwidth)
+    {
+        if (is_null($fastly_bandwidth)) {
+            throw new \InvalidArgumentException('non-nullable fastly_bandwidth cannot be null');
+        }
+        $this->container['fastly_bandwidth'] = $fastly_bandwidth;
+
+        return $this;
+    }
+
+    /**
+     * Gets fastly_requests
+     *
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
+    public function getFastlyRequests()
+    {
+        return $this->container['fastly_requests'];
+    }
+
+    /**
+     * Sets fastly_requests
+     */
+    public function setFastlyRequests($fastly_requests)
+    {
+        if (is_null($fastly_requests)) {
+            throw new \InvalidArgumentException('non-nullable fastly_requests cannot be null');
+        }
+        $this->container['fastly_requests'] = $fastly_requests;
+
+        return $this;
+    }
+    /**
+     * Returns true if offset exists. False otherwise.
+     */
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->container[$offset]);
+    }
+
+    /**
+     * Gets offset.
+     */
+    #[\ReturnTypeWillChange]
+    public function offsetGet(mixed $offset)
+    {
+        return $this->container[$offset] ?? null;
+    }
+
+    /**
+     * Sets value based on offset.
+     */
+    public function offsetSet(mixed $offset = null, $value): void
+    {
+        if (is_null($offset)) {
+            $this->container[] = $value;
+        } else {
+            $this->container[$offset] = $value;
+        }
+    }
+
+    /**
+     * Unsets offset.
+     */
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->container[$offset]);
+    }
+
+    /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     */
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize(): mixed
+    {
+        return ObjectSerializer::sanitizeForSerialization($this);
+        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+    }
+
+    /**
+     * Gets the string presentation of the object
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
+
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
+        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-

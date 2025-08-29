@@ -100,11 +100,94 @@ final class Environment implements JsonSerializable
     ];
 
     /**
+     * Array of nullable properties. Used for (de)serialization
+     */
+    private static array $openAPINullables = [
+        'created_at' => true,
+        'updated_at' => true,
+        'name' => false,
+        'machine_name' => false,
+        'title' => false,
+        'attributes' => false,
+        'type' => false,
+        'parent' => true,
+        'default_domain' => true,
+        'has_domains' => false,
+        'clone_parent_on_create' => false,
+        'deployment_target' => true,
+        'is_pr' => false,
+        'has_remote' => false,
+        'status' => false,
+        'http_access' => false,
+        'enable_smtp' => false,
+        'restrict_robots' => false,
+        'edge_hostname' => false,
+        'deployment_state' => true,
+        'resources_overrides' => false,
+        'max_instance_count' => true,
+        'last_active_at' => true,
+        'last_backup_at' => true,
+        'project' => false,
+        'is_main' => false,
+        'is_dirty' => false,
+        'has_code' => false,
+        'head_commit' => true,
+        'merge_info' => false,
+        'has_deployment' => false,
+        'supports_restrict_robots' => false
+    ];
+
+    /**
+     * If a nullable field gets set to null, insert it here
+     */
+    private array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      */
     public static function openAPITypes(): array
     {
         return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    public static function openAPIFormats(): array
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -145,92 +228,1241 @@ final class Environment implements JsonSerializable
         'has_deployment' => 'has_deployment',
         'supports_restrict_robots' => 'supports_restrict_robots'
     ];
-    
-    public function __construct(
-        public readonly \DateTime $created_at = null,
-        public readonly \DateTime $updated_at = null,
-        public readonly string $name = null,
-        public readonly string $machine_name = null,
-        public readonly string $title = null,
-        public readonly ?array $attributes = null,
-        public readonly string $type = null,
-        public readonly string $parent = null,
-        public readonly string $default_domain = null,
-        public readonly bool $has_domains = null,
-        public readonly bool $clone_parent_on_create = null,
-        public readonly string $deployment_target = null,
-        public readonly bool $is_pr = null,
-        public readonly bool $has_remote = null,
-        public readonly string $status = null,
-        public readonly \Upsun\Model\HttpAccessPermissions $http_access = null,
-        public readonly bool $enable_smtp = null,
-        public readonly bool $restrict_robots = null,
-        public readonly string $edge_hostname = null,
-        public readonly \Upsun\Model\TheEnvironmentDeploymentState $deployment_state = null,
-        public readonly ?array $resources_overrides = null,
-        public readonly int $max_instance_count = null,
-        public readonly \DateTime $last_active_at = null,
-        public readonly \DateTime $last_backup_at = null,
-        public readonly string $project = null,
-        public readonly bool $is_main = null,
-        public readonly bool $is_dirty = null,
-        public readonly bool $has_code = null,
-        public readonly string $head_commit = null,
-        public readonly \Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments $merge_info = null,
-        public readonly bool $has_deployment = null,
-        public readonly bool $supports_restrict_robots = null
-    ) {
-    }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'name' => $this->name,
-            'machine_name' => $this->machine_name,
-            'title' => $this->title,
-            'attributes' => $this->attributes,
-            'type' => $this->type,
-            'parent' => $this->parent,
-            'default_domain' => $this->default_domain,
-            'has_domains' => $this->has_domains,
-            'clone_parent_on_create' => $this->clone_parent_on_create,
-            'deployment_target' => $this->deployment_target,
-            'is_pr' => $this->is_pr,
-            'has_remote' => $this->has_remote,
-            'status' => $this->status,
-            'http_access' => $this->http_access,
-            'enable_smtp' => $this->enable_smtp,
-            'restrict_robots' => $this->restrict_robots,
-            'edge_hostname' => $this->edge_hostname,
-            'deployment_state' => $this->deployment_state,
-            'resources_overrides' => $this->resources_overrides,
-            'max_instance_count' => $this->max_instance_count,
-            'last_active_at' => $this->last_active_at,
-            'last_backup_at' => $this->last_backup_at,
-            'project' => $this->project,
-            'is_main' => $this->is_main,
-            'is_dirty' => $this->is_dirty,
-            'has_code' => $this->has_code,
-            'head_commit' => $this->head_commit,
-            'merge_info' => $this->merge_info,
-            'has_deployment' => $this->has_deployment,
-            'supports_restrict_robots' => $this->supports_restrict_robots,
-        ];
-    }
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     */
+    private static $setters = [
+        'created_at' => 'setCreatedAt',
+        'updated_at' => 'setUpdatedAt',
+        'name' => 'setName',
+        'machine_name' => 'setMachineName',
+        'title' => 'setTitle',
+        'attributes' => 'setAttributes',
+        'type' => 'setType',
+        'parent' => 'setParent',
+        'default_domain' => 'setDefaultDomain',
+        'has_domains' => 'setHasDomains',
+        'clone_parent_on_create' => 'setCloneParentOnCreate',
+        'deployment_target' => 'setDeploymentTarget',
+        'is_pr' => 'setIsPr',
+        'has_remote' => 'setHasRemote',
+        'status' => 'setStatus',
+        'http_access' => 'setHttpAccess',
+        'enable_smtp' => 'setEnableSmtp',
+        'restrict_robots' => 'setRestrictRobots',
+        'edge_hostname' => 'setEdgeHostname',
+        'deployment_state' => 'setDeploymentState',
+        'resources_overrides' => 'setResourcesOverrides',
+        'max_instance_count' => 'setMaxInstanceCount',
+        'last_active_at' => 'setLastActiveAt',
+        'last_backup_at' => 'setLastBackupAt',
+        'project' => 'setProject',
+        'is_main' => 'setIsMain',
+        'is_dirty' => 'setIsDirty',
+        'has_code' => 'setHasCode',
+        'head_commit' => 'setHeadCommit',
+        'merge_info' => 'setMergeInfo',
+        'has_deployment' => 'setHasDeployment',
+        'supports_restrict_robots' => 'setSupportsRestrictRobots'
+    ];
 
-    public function __toString(): string
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     */
+    private static $getters = [
+        'created_at' => 'getCreatedAt',
+        'updated_at' => 'getUpdatedAt',
+        'name' => 'getName',
+        'machine_name' => 'getMachineName',
+        'title' => 'getTitle',
+        'attributes' => 'getAttributes',
+        'type' => 'getType',
+        'parent' => 'getParent',
+        'default_domain' => 'getDefaultDomain',
+        'has_domains' => 'getHasDomains',
+        'clone_parent_on_create' => 'getCloneParentOnCreate',
+        'deployment_target' => 'getDeploymentTarget',
+        'is_pr' => 'getIsPr',
+        'has_remote' => 'getHasRemote',
+        'status' => 'getStatus',
+        'http_access' => 'getHttpAccess',
+        'enable_smtp' => 'getEnableSmtp',
+        'restrict_robots' => 'getRestrictRobots',
+        'edge_hostname' => 'getEdgeHostname',
+        'deployment_state' => 'getDeploymentState',
+        'resources_overrides' => 'getResourcesOverrides',
+        'max_instance_count' => 'getMaxInstanceCount',
+        'last_active_at' => 'getLastActiveAt',
+        'last_backup_at' => 'getLastBackupAt',
+        'project' => 'getProject',
+        'is_main' => 'getIsMain',
+        'is_dirty' => 'getIsDirty',
+        'has_code' => 'getHasCode',
+        'head_commit' => 'getHeadCommit',
+        'merge_info' => 'getMergeInfo',
+        'has_deployment' => 'getHasDeployment',
+        'supports_restrict_robots' => 'getSupportsRestrictRobots'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    public static function attributeMap(): array
     {
-        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+        return self::$attributeMap;
     }
 
     /**
-     * Checks if a property is nullable
+     * Array of attributes to setter functions (for deserialization of responses)
      */
-    public static function isNullable(string $property): bool
+    public static function setters(): array
     {
-        return true; // All properties in this model are nullable
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters(): array
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     */
+    public function getModelName(): string
+    {
+        return self::$openAPIModelName;
+    }
+
+    public const TYPE_DEVELOPMENT = 'development';
+    public const TYPE_PRODUCTION = 'production';
+    public const TYPE_STAGING = 'staging';
+    public const STATUS_ACTIVE = 'active';
+    public const STATUS_DELETING = 'deleting';
+    public const STATUS_DIRTY = 'dirty';
+    public const STATUS_INACTIVE = 'inactive';
+    public const STATUS_PAUSED = 'paused';
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getTypeAllowableValues(): array
+    {
+        return [
+            self::TYPE_DEVELOPMENT,
+            self::TYPE_PRODUCTION,
+            self::TYPE_STAGING,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getStatusAllowableValues(): array
+    {
+        return [
+            self::STATUS_ACTIVE,
+            self::STATUS_DELETING,
+            self::STATUS_DIRTY,
+            self::STATUS_INACTIVE,
+            self::STATUS_PAUSED,
+        ];
+    }
+
+    /**
+     * Associative array for storing property values
+     */
+    private array $container = [];
+
+    /**
+     * Constructor
+     */
+    public function __construct(?array $data = null)
+    {
+        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('updated_at', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('machine_name', $data ?? [], null);
+        $this->setIfExists('title', $data ?? [], null);
+        $this->setIfExists('attributes', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('parent', $data ?? [], null);
+        $this->setIfExists('default_domain', $data ?? [], null);
+        $this->setIfExists('has_domains', $data ?? [], null);
+        $this->setIfExists('clone_parent_on_create', $data ?? [], null);
+        $this->setIfExists('deployment_target', $data ?? [], null);
+        $this->setIfExists('is_pr', $data ?? [], null);
+        $this->setIfExists('has_remote', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('http_access', $data ?? [], null);
+        $this->setIfExists('enable_smtp', $data ?? [], null);
+        $this->setIfExists('restrict_robots', $data ?? [], null);
+        $this->setIfExists('edge_hostname', $data ?? [], null);
+        $this->setIfExists('deployment_state', $data ?? [], null);
+        $this->setIfExists('resources_overrides', $data ?? [], null);
+        $this->setIfExists('max_instance_count', $data ?? [], null);
+        $this->setIfExists('last_active_at', $data ?? [], null);
+        $this->setIfExists('last_backup_at', $data ?? [], null);
+        $this->setIfExists('project', $data ?? [], null);
+        $this->setIfExists('is_main', $data ?? [], null);
+        $this->setIfExists('is_dirty', $data ?? [], null);
+        $this->setIfExists('has_code', $data ?? [], null);
+        $this->setIfExists('head_commit', $data ?? [], null);
+        $this->setIfExists('merge_info', $data ?? [], null);
+        $this->setIfExists('has_deployment', $data ?? [], null);
+        $this->setIfExists('supports_restrict_robots', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    */
+    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
+    {
+        if (
+            self::isNullable($variableName)
+            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
+        ) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+    }
+
+    /**
+     * Show all the invalid properties with reasons.
+     */
+    public function listInvalidProperties(): array
+    {
+        $invalidProperties = [];
+
+        if ($this->container['created_at'] === null) {
+            $invalidProperties[] = "'created_at' can't be null";
+        }
+        if ($this->container['updated_at'] === null) {
+            $invalidProperties[] = "'updated_at' can't be null";
+        }
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+        if ($this->container['machine_name'] === null) {
+            $invalidProperties[] = "'machine_name' can't be null";
+        }
+        if ($this->container['title'] === null) {
+            $invalidProperties[] = "'title' can't be null";
+        }
+        if ($this->container['attributes'] === null) {
+            $invalidProperties[] = "'attributes' can't be null";
+        }
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['parent'] === null) {
+            $invalidProperties[] = "'parent' can't be null";
+        }
+        if ($this->container['default_domain'] === null) {
+            $invalidProperties[] = "'default_domain' can't be null";
+        }
+        if ($this->container['has_domains'] === null) {
+            $invalidProperties[] = "'has_domains' can't be null";
+        }
+        if ($this->container['clone_parent_on_create'] === null) {
+            $invalidProperties[] = "'clone_parent_on_create' can't be null";
+        }
+        if ($this->container['deployment_target'] === null) {
+            $invalidProperties[] = "'deployment_target' can't be null";
+        }
+        if ($this->container['is_pr'] === null) {
+            $invalidProperties[] = "'is_pr' can't be null";
+        }
+        if ($this->container['has_remote'] === null) {
+            $invalidProperties[] = "'has_remote' can't be null";
+        }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['http_access'] === null) {
+            $invalidProperties[] = "'http_access' can't be null";
+        }
+        if ($this->container['enable_smtp'] === null) {
+            $invalidProperties[] = "'enable_smtp' can't be null";
+        }
+        if ($this->container['restrict_robots'] === null) {
+            $invalidProperties[] = "'restrict_robots' can't be null";
+        }
+        if ($this->container['edge_hostname'] === null) {
+            $invalidProperties[] = "'edge_hostname' can't be null";
+        }
+        if ($this->container['deployment_state'] === null) {
+            $invalidProperties[] = "'deployment_state' can't be null";
+        }
+        if ($this->container['resources_overrides'] === null) {
+            $invalidProperties[] = "'resources_overrides' can't be null";
+        }
+        if ($this->container['max_instance_count'] === null) {
+            $invalidProperties[] = "'max_instance_count' can't be null";
+        }
+        if ($this->container['last_active_at'] === null) {
+            $invalidProperties[] = "'last_active_at' can't be null";
+        }
+        if ($this->container['last_backup_at'] === null) {
+            $invalidProperties[] = "'last_backup_at' can't be null";
+        }
+        if ($this->container['project'] === null) {
+            $invalidProperties[] = "'project' can't be null";
+        }
+        if ($this->container['is_main'] === null) {
+            $invalidProperties[] = "'is_main' can't be null";
+        }
+        if ($this->container['is_dirty'] === null) {
+            $invalidProperties[] = "'is_dirty' can't be null";
+        }
+        if ($this->container['has_code'] === null) {
+            $invalidProperties[] = "'has_code' can't be null";
+        }
+        if ($this->container['head_commit'] === null) {
+            $invalidProperties[] = "'head_commit' can't be null";
+        }
+        if ($this->container['merge_info'] === null) {
+            $invalidProperties[] = "'merge_info' can't be null";
+        }
+        if ($this->container['has_deployment'] === null) {
+            $invalidProperties[] = "'has_deployment' can't be null";
+        }
+        if ($this->container['supports_restrict_robots'] === null) {
+            $invalidProperties[] = "'supports_restrict_robots' can't be null";
+        }
+        return $invalidProperties;
+    }
+
+    /**
+     * Validate all the properties in the model
+     * return true if all passed
+     */
+    public function valid(): bool
+    {
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets created_at
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['created_at'];
+    }
+
+    /**
+     * Sets created_at
+     */
+    public function setCreatedAt($created_at)
+    {
+        if (is_null($created_at)) {
+            array_push($this->openAPINullablesSetToNull, 'created_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('created_at', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets updated_at
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->container['updated_at'];
+    }
+
+    /**
+     * Sets updated_at
+     */
+    public function setUpdatedAt($updated_at)
+    {
+        if (is_null($updated_at)) {
+            array_push($this->openAPINullablesSetToNull, 'updated_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('updated_at', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['updated_at'] = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     */
+    public function setName($name)
+    {
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets machine_name
+     *
+     * @return string
+     */
+    public function getMachineName()
+    {
+        return $this->container['machine_name'];
+    }
+
+    /**
+     * Sets machine_name
+     */
+    public function setMachineName($machine_name)
+    {
+        if (is_null($machine_name)) {
+            throw new \InvalidArgumentException('non-nullable machine_name cannot be null');
+        }
+        $this->container['machine_name'] = $machine_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->container['title'];
+    }
+
+    /**
+     * Sets title
+     */
+    public function setTitle($title)
+    {
+        if (is_null($title)) {
+            throw new \InvalidArgumentException('non-nullable title cannot be null');
+        }
+        $this->container['title'] = $title;
+
+        return $this;
+    }
+
+    /**
+     * Gets attributes
+     *
+     * @return array<string,string>
+     */
+    public function getAttributes()
+    {
+        return $this->container['attributes'];
+    }
+
+    /**
+     * Sets attributes
+     */
+    public function setAttributes($attributes)
+    {
+        if (is_null($attributes)) {
+            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
+        }
+        $this->container['attributes'] = $attributes;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     */
+    public function setType($type)
+    {
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets parent
+     *
+     * @return string
+     */
+    public function getParent()
+    {
+        return $this->container['parent'];
+    }
+
+    /**
+     * Sets parent
+     */
+    public function setParent($parent)
+    {
+        if (is_null($parent)) {
+            array_push($this->openAPINullablesSetToNull, 'parent');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('parent', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['parent'] = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Gets default_domain
+     *
+     * @return string
+     */
+    public function getDefaultDomain()
+    {
+        return $this->container['default_domain'];
+    }
+
+    /**
+     * Sets default_domain
+     */
+    public function setDefaultDomain($default_domain)
+    {
+        if (is_null($default_domain)) {
+            array_push($this->openAPINullablesSetToNull, 'default_domain');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('default_domain', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['default_domain'] = $default_domain;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_domains
+     *
+     * @return bool
+     */
+    public function getHasDomains()
+    {
+        return $this->container['has_domains'];
+    }
+
+    /**
+     * Sets has_domains
+     */
+    public function setHasDomains($has_domains)
+    {
+        if (is_null($has_domains)) {
+            throw new \InvalidArgumentException('non-nullable has_domains cannot be null');
+        }
+        $this->container['has_domains'] = $has_domains;
+
+        return $this;
+    }
+
+    /**
+     * Gets clone_parent_on_create
+     *
+     * @return bool
+     */
+    public function getCloneParentOnCreate()
+    {
+        return $this->container['clone_parent_on_create'];
+    }
+
+    /**
+     * Sets clone_parent_on_create
+     */
+    public function setCloneParentOnCreate($clone_parent_on_create)
+    {
+        if (is_null($clone_parent_on_create)) {
+            throw new \InvalidArgumentException('non-nullable clone_parent_on_create cannot be null');
+        }
+        $this->container['clone_parent_on_create'] = $clone_parent_on_create;
+
+        return $this;
+    }
+
+    /**
+     * Gets deployment_target
+     *
+     * @return string
+     */
+    public function getDeploymentTarget()
+    {
+        return $this->container['deployment_target'];
+    }
+
+    /**
+     * Sets deployment_target
+     */
+    public function setDeploymentTarget($deployment_target)
+    {
+        if (is_null($deployment_target)) {
+            array_push($this->openAPINullablesSetToNull, 'deployment_target');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('deployment_target', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['deployment_target'] = $deployment_target;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_pr
+     *
+     * @return bool
+     */
+    public function getIsPr()
+    {
+        return $this->container['is_pr'];
+    }
+
+    /**
+     * Sets is_pr
+     */
+    public function setIsPr($is_pr)
+    {
+        if (is_null($is_pr)) {
+            throw new \InvalidArgumentException('non-nullable is_pr cannot be null');
+        }
+        $this->container['is_pr'] = $is_pr;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_remote
+     *
+     * @return bool
+     */
+    public function getHasRemote()
+    {
+        return $this->container['has_remote'];
+    }
+
+    /**
+     * Sets has_remote
+     */
+    public function setHasRemote($has_remote)
+    {
+        if (is_null($has_remote)) {
+            throw new \InvalidArgumentException('non-nullable has_remote cannot be null');
+        }
+        $this->container['has_remote'] = $has_remote;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     */
+    public function setStatus($status)
+    {
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        }
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!in_array($status, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    $status,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets http_access
+     *
+     * @return \Upsun\Model\HttpAccessPermissions
+     */
+    public function getHttpAccess()
+    {
+        return $this->container['http_access'];
+    }
+
+    /**
+     * Sets http_access
+     */
+    public function setHttpAccess($http_access)
+    {
+        if (is_null($http_access)) {
+            throw new \InvalidArgumentException('non-nullable http_access cannot be null');
+        }
+        $this->container['http_access'] = $http_access;
+
+        return $this;
+    }
+
+    /**
+     * Gets enable_smtp
+     *
+     * @return bool
+     */
+    public function getEnableSmtp()
+    {
+        return $this->container['enable_smtp'];
+    }
+
+    /**
+     * Sets enable_smtp
+     */
+    public function setEnableSmtp($enable_smtp)
+    {
+        if (is_null($enable_smtp)) {
+            throw new \InvalidArgumentException('non-nullable enable_smtp cannot be null');
+        }
+        $this->container['enable_smtp'] = $enable_smtp;
+
+        return $this;
+    }
+
+    /**
+     * Gets restrict_robots
+     *
+     * @return bool
+     */
+    public function getRestrictRobots()
+    {
+        return $this->container['restrict_robots'];
+    }
+
+    /**
+     * Sets restrict_robots
+     */
+    public function setRestrictRobots($restrict_robots)
+    {
+        if (is_null($restrict_robots)) {
+            throw new \InvalidArgumentException('non-nullable restrict_robots cannot be null');
+        }
+        $this->container['restrict_robots'] = $restrict_robots;
+
+        return $this;
+    }
+
+    /**
+     * Gets edge_hostname
+     *
+     * @return string
+     */
+    public function getEdgeHostname()
+    {
+        return $this->container['edge_hostname'];
+    }
+
+    /**
+     * Sets edge_hostname
+     */
+    public function setEdgeHostname($edge_hostname)
+    {
+        if (is_null($edge_hostname)) {
+            throw new \InvalidArgumentException('non-nullable edge_hostname cannot be null');
+        }
+        $this->container['edge_hostname'] = $edge_hostname;
+
+        return $this;
+    }
+
+    /**
+     * Gets deployment_state
+     *
+     * @return \Upsun\Model\TheEnvironmentDeploymentState
+     */
+    public function getDeploymentState()
+    {
+        return $this->container['deployment_state'];
+    }
+
+    /**
+     * Sets deployment_state
+     */
+    public function setDeploymentState($deployment_state)
+    {
+        if (is_null($deployment_state)) {
+            array_push($this->openAPINullablesSetToNull, 'deployment_state');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('deployment_state', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['deployment_state'] = $deployment_state;
+
+        return $this;
+    }
+
+    /**
+     * Gets resources_overrides
+     *
+     * @return array<string,\Upsun\Model\ResourcesOverridesValue>
+     */
+    public function getResourcesOverrides()
+    {
+        return $this->container['resources_overrides'];
+    }
+
+    /**
+     * Sets resources_overrides
+     */
+    public function setResourcesOverrides($resources_overrides)
+    {
+        if (is_null($resources_overrides)) {
+            throw new \InvalidArgumentException('non-nullable resources_overrides cannot be null');
+        }
+        $this->container['resources_overrides'] = $resources_overrides;
+
+        return $this;
+    }
+
+    /**
+     * Gets max_instance_count
+     *
+     * @return int
+     */
+    public function getMaxInstanceCount()
+    {
+        return $this->container['max_instance_count'];
+    }
+
+    /**
+     * Sets max_instance_count
+     */
+    public function setMaxInstanceCount($max_instance_count)
+    {
+        if (is_null($max_instance_count)) {
+            array_push($this->openAPINullablesSetToNull, 'max_instance_count');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('max_instance_count', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['max_instance_count'] = $max_instance_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets last_active_at
+     *
+     * @return \DateTime
+     */
+    public function getLastActiveAt()
+    {
+        return $this->container['last_active_at'];
+    }
+
+    /**
+     * Sets last_active_at
+     */
+    public function setLastActiveAt($last_active_at)
+    {
+        if (is_null($last_active_at)) {
+            array_push($this->openAPINullablesSetToNull, 'last_active_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('last_active_at', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['last_active_at'] = $last_active_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets last_backup_at
+     *
+     * @return \DateTime
+     */
+    public function getLastBackupAt()
+    {
+        return $this->container['last_backup_at'];
+    }
+
+    /**
+     * Sets last_backup_at
+     */
+    public function setLastBackupAt($last_backup_at)
+    {
+        if (is_null($last_backup_at)) {
+            array_push($this->openAPINullablesSetToNull, 'last_backup_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('last_backup_at', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['last_backup_at'] = $last_backup_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets project
+     *
+     * @return string
+     */
+    public function getProject()
+    {
+        return $this->container['project'];
+    }
+
+    /**
+     * Sets project
+     */
+    public function setProject($project)
+    {
+        if (is_null($project)) {
+            throw new \InvalidArgumentException('non-nullable project cannot be null');
+        }
+        $this->container['project'] = $project;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_main
+     *
+     * @return bool
+     */
+    public function getIsMain()
+    {
+        return $this->container['is_main'];
+    }
+
+    /**
+     * Sets is_main
+     */
+    public function setIsMain($is_main)
+    {
+        if (is_null($is_main)) {
+            throw new \InvalidArgumentException('non-nullable is_main cannot be null');
+        }
+        $this->container['is_main'] = $is_main;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_dirty
+     *
+     * @return bool
+     */
+    public function getIsDirty()
+    {
+        return $this->container['is_dirty'];
+    }
+
+    /**
+     * Sets is_dirty
+     */
+    public function setIsDirty($is_dirty)
+    {
+        if (is_null($is_dirty)) {
+            throw new \InvalidArgumentException('non-nullable is_dirty cannot be null');
+        }
+        $this->container['is_dirty'] = $is_dirty;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_code
+     *
+     * @return bool
+     */
+    public function getHasCode()
+    {
+        return $this->container['has_code'];
+    }
+
+    /**
+     * Sets has_code
+     */
+    public function setHasCode($has_code)
+    {
+        if (is_null($has_code)) {
+            throw new \InvalidArgumentException('non-nullable has_code cannot be null');
+        }
+        $this->container['has_code'] = $has_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets head_commit
+     *
+     * @return string
+     */
+    public function getHeadCommit()
+    {
+        return $this->container['head_commit'];
+    }
+
+    /**
+     * Sets head_commit
+     */
+    public function setHeadCommit($head_commit)
+    {
+        if (is_null($head_commit)) {
+            array_push($this->openAPINullablesSetToNull, 'head_commit');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('head_commit', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['head_commit'] = $head_commit;
+
+        return $this;
+    }
+
+    /**
+     * Gets merge_info
+     *
+     * @return \Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments
+     */
+    public function getMergeInfo()
+    {
+        return $this->container['merge_info'];
+    }
+
+    /**
+     * Sets merge_info
+     */
+    public function setMergeInfo($merge_info)
+    {
+        if (is_null($merge_info)) {
+            throw new \InvalidArgumentException('non-nullable merge_info cannot be null');
+        }
+        $this->container['merge_info'] = $merge_info;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_deployment
+     *
+     * @return bool
+     */
+    public function getHasDeployment()
+    {
+        return $this->container['has_deployment'];
+    }
+
+    /**
+     * Sets has_deployment
+     */
+    public function setHasDeployment($has_deployment)
+    {
+        if (is_null($has_deployment)) {
+            throw new \InvalidArgumentException('non-nullable has_deployment cannot be null');
+        }
+        $this->container['has_deployment'] = $has_deployment;
+
+        return $this;
+    }
+
+    /**
+     * Gets supports_restrict_robots
+     *
+     * @return bool
+     */
+    public function getSupportsRestrictRobots()
+    {
+        return $this->container['supports_restrict_robots'];
+    }
+
+    /**
+     * Sets supports_restrict_robots
+     */
+    public function setSupportsRestrictRobots($supports_restrict_robots)
+    {
+        if (is_null($supports_restrict_robots)) {
+            throw new \InvalidArgumentException('non-nullable supports_restrict_robots cannot be null');
+        }
+        $this->container['supports_restrict_robots'] = $supports_restrict_robots;
+
+        return $this;
+    }
+    /**
+     * Returns true if offset exists. False otherwise.
+     */
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->container[$offset]);
+    }
+
+    /**
+     * Gets offset.
+     */
+    #[\ReturnTypeWillChange]
+    public function offsetGet(mixed $offset)
+    {
+        return $this->container[$offset] ?? null;
+    }
+
+    /**
+     * Sets value based on offset.
+     */
+    public function offsetSet(mixed $offset = null, $value): void
+    {
+        if (is_null($offset)) {
+            $this->container[] = $value;
+        } else {
+            $this->container[$offset] = $value;
+        }
+    }
+
+    /**
+     * Unsets offset.
+     */
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->container[$offset]);
+    }
+
+    /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     */
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize(): mixed
+    {
+        return ObjectSerializer::sanitizeForSerialization($this);
+        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+    }
+
+    /**
+     * Gets the string presentation of the object
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
+
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
+        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-

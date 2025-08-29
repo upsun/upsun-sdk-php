@@ -52,11 +52,70 @@ final class FastlyIntegrationCreateInput implements JsonSerializable
     ];
 
     /**
+     * Array of nullable properties. Used for (de)serialization
+     */
+    private static array $openAPINullables = [
+        'type' => false,
+        'events' => false,
+        'environments' => false,
+        'excluded_environments' => false,
+        'states' => false,
+        'result' => false,
+        'token' => false,
+        'service_id' => false
+    ];
+
+    /**
+     * If a nullable field gets set to null, insert it here
+     */
+    private array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      */
     public static function openAPITypes(): array
     {
         return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    public static function openAPIFormats(): array
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -73,44 +132,422 @@ final class FastlyIntegrationCreateInput implements JsonSerializable
         'token' => 'token',
         'service_id' => 'service_id'
     ];
-    
-    public function __construct(
-        public readonly string $type = null,
-        public readonly ?array $events = null,
-        public readonly ?array $environments = null,
-        public readonly ?array $excluded_environments = null,
-        public readonly ?array $states = null,
-        public readonly string|null $result = null,
-        public readonly string $token = null,
-        public readonly string $service_id = null
-    ) {
-    }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'type' => $this->type,
-            'events' => $this->events,
-            'environments' => $this->environments,
-            'excluded_environments' => $this->excluded_environments,
-            'states' => $this->states,
-            'result' => $this->result,
-            'token' => $this->token,
-            'service_id' => $this->service_id,
-        ];
-    }
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     */
+    private static $setters = [
+        'type' => 'setType',
+        'events' => 'setEvents',
+        'environments' => 'setEnvironments',
+        'excluded_environments' => 'setExcludedEnvironments',
+        'states' => 'setStates',
+        'result' => 'setResult',
+        'token' => 'setToken',
+        'service_id' => 'setServiceId'
+    ];
 
-    public function __toString(): string
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     */
+    private static $getters = [
+        'type' => 'getType',
+        'events' => 'getEvents',
+        'environments' => 'getEnvironments',
+        'excluded_environments' => 'getExcludedEnvironments',
+        'states' => 'getStates',
+        'result' => 'getResult',
+        'token' => 'getToken',
+        'service_id' => 'getServiceId'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    public static function attributeMap(): array
     {
-        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+        return self::$attributeMap;
     }
 
     /**
-     * Checks if a property is nullable
+     * Array of attributes to setter functions (for deserialization of responses)
      */
-    public static function isNullable(string $property): bool
+    public static function setters(): array
     {
-        return true; // All properties in this model are nullable
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters(): array
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     */
+    public function getModelName(): string
+    {
+        return self::$openAPIModelName;
+    }
+
+    public const RESULT_STAR = '*';
+    public const RESULT_FAILURE = 'failure';
+    public const RESULT_SUCCESS = 'success';
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getResultAllowableValues(): array
+    {
+        return [
+            self::RESULT_STAR,
+            self::RESULT_FAILURE,
+            self::RESULT_SUCCESS,
+        ];
+    }
+
+    /**
+     * Associative array for storing property values
+     */
+    private array $container = [];
+
+    /**
+     * Constructor
+     */
+    public function __construct(?array $data = null)
+    {
+        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('events', $data ?? [], null);
+        $this->setIfExists('environments', $data ?? [], null);
+        $this->setIfExists('excluded_environments', $data ?? [], null);
+        $this->setIfExists('states', $data ?? [], null);
+        $this->setIfExists('result', $data ?? [], null);
+        $this->setIfExists('token', $data ?? [], null);
+        $this->setIfExists('service_id', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    */
+    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
+    {
+        if (
+            self::isNullable($variableName)
+            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
+        ) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+    }
+
+    /**
+     * Show all the invalid properties with reasons.
+     */
+    public function listInvalidProperties(): array
+    {
+        $invalidProperties = [];
+
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        $allowedValues = $this->getResultAllowableValues();
+        if (!is_null($this->container['result']) && !in_array($this->container['result'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'result', must be one of '%s'",
+                $this->container['result'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['token'] === null) {
+            $invalidProperties[] = "'token' can't be null";
+        }
+        if ($this->container['service_id'] === null) {
+            $invalidProperties[] = "'service_id' can't be null";
+        }
+        return $invalidProperties;
+    }
+
+    /**
+     * Validate all the properties in the model
+     * return true if all passed
+     */
+    public function valid(): bool
+    {
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     */
+    public function setType($type)
+    {
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets events
+     *
+     * @return string[]|null
+     */
+    public function getEvents()
+    {
+        return $this->container['events'];
+    }
+
+    /**
+     * Sets events
+     */
+    public function setEvents($events)
+    {
+        if (is_null($events)) {
+            throw new \InvalidArgumentException('non-nullable events cannot be null');
+        }
+        $this->container['events'] = $events;
+
+        return $this;
+    }
+
+    /**
+     * Gets environments
+     *
+     * @return string[]|null
+     */
+    public function getEnvironments()
+    {
+        return $this->container['environments'];
+    }
+
+    /**
+     * Sets environments
+     */
+    public function setEnvironments($environments)
+    {
+        if (is_null($environments)) {
+            throw new \InvalidArgumentException('non-nullable environments cannot be null');
+        }
+        $this->container['environments'] = $environments;
+
+        return $this;
+    }
+
+    /**
+     * Gets excluded_environments
+     *
+     * @return string[]|null
+     */
+    public function getExcludedEnvironments()
+    {
+        return $this->container['excluded_environments'];
+    }
+
+    /**
+     * Sets excluded_environments
+     */
+    public function setExcludedEnvironments($excluded_environments)
+    {
+        if (is_null($excluded_environments)) {
+            throw new \InvalidArgumentException('non-nullable excluded_environments cannot be null');
+        }
+        $this->container['excluded_environments'] = $excluded_environments;
+
+        return $this;
+    }
+
+    /**
+     * Gets states
+     *
+     * @return string[]|null
+     */
+    public function getStates()
+    {
+        return $this->container['states'];
+    }
+
+    /**
+     * Sets states
+     */
+    public function setStates($states)
+    {
+        if (is_null($states)) {
+            throw new \InvalidArgumentException('non-nullable states cannot be null');
+        }
+        $this->container['states'] = $states;
+
+        return $this;
+    }
+
+    /**
+     * Gets result
+     *
+     * @return string|null
+     */
+    public function getResult()
+    {
+        return $this->container['result'];
+    }
+
+    /**
+     * Sets result
+     */
+    public function setResult($result)
+    {
+        if (is_null($result)) {
+            throw new \InvalidArgumentException('non-nullable result cannot be null');
+        }
+        $allowedValues = $this->getResultAllowableValues();
+        if (!in_array($result, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'result', must be one of '%s'",
+                    $result,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['result'] = $result;
+
+        return $this;
+    }
+
+    /**
+     * Gets token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->container['token'];
+    }
+
+    /**
+     * Sets token
+     */
+    public function setToken($token)
+    {
+        if (is_null($token)) {
+            throw new \InvalidArgumentException('non-nullable token cannot be null');
+        }
+        $this->container['token'] = $token;
+
+        return $this;
+    }
+
+    /**
+     * Gets service_id
+     *
+     * @return string
+     */
+    public function getServiceId()
+    {
+        return $this->container['service_id'];
+    }
+
+    /**
+     * Sets service_id
+     */
+    public function setServiceId($service_id)
+    {
+        if (is_null($service_id)) {
+            throw new \InvalidArgumentException('non-nullable service_id cannot be null');
+        }
+        $this->container['service_id'] = $service_id;
+
+        return $this;
+    }
+    /**
+     * Returns true if offset exists. False otherwise.
+     */
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->container[$offset]);
+    }
+
+    /**
+     * Gets offset.
+     */
+    #[\ReturnTypeWillChange]
+    public function offsetGet(mixed $offset)
+    {
+        return $this->container[$offset] ?? null;
+    }
+
+    /**
+     * Sets value based on offset.
+     */
+    public function offsetSet(mixed $offset = null, $value): void
+    {
+        if (is_null($offset)) {
+            $this->container[] = $value;
+        } else {
+            $this->container[$offset] = $value;
+        }
+    }
+
+    /**
+     * Unsets offset.
+     */
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->container[$offset]);
+    }
+
+    /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     */
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize(): mixed
+    {
+        return ObjectSerializer::sanitizeForSerialization($this);
+        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+    }
+
+    /**
+     * Gets the string presentation of the object
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
+
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
+        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-

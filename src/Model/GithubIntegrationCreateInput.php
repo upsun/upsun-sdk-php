@@ -58,11 +58,73 @@ final class GithubIntegrationCreateInput implements JsonSerializable
     ];
 
     /**
+     * Array of nullable properties. Used for (de)serialization
+     */
+    private static array $openAPINullables = [
+        'type' => false,
+        'fetch_branches' => false,
+        'prune_branches' => false,
+        'environment_init_resources' => false,
+        'token' => false,
+        'base_url' => true,
+        'repository' => false,
+        'build_pull_requests' => false,
+        'build_draft_pull_requests' => false,
+        'build_pull_requests_post_merge' => false,
+        'pull_requests_clone_parent_data' => false
+    ];
+
+    /**
+     * If a nullable field gets set to null, insert it here
+     */
+    private array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      */
     public static function openAPITypes(): array
     {
         return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    public static function openAPIFormats(): array
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -82,50 +144,509 @@ final class GithubIntegrationCreateInput implements JsonSerializable
         'build_pull_requests_post_merge' => 'build_pull_requests_post_merge',
         'pull_requests_clone_parent_data' => 'pull_requests_clone_parent_data'
     ];
-    
-    public function __construct(
-        public readonly string $type = null,
-        public readonly bool|null $fetch_branches = null,
-        public readonly bool|null $prune_branches = null,
-        public readonly string|null $environment_init_resources = null,
-        public readonly string $token = null,
-        public readonly string|null $base_url = null,
-        public readonly string $repository = null,
-        public readonly bool|null $build_pull_requests = null,
-        public readonly bool|null $build_draft_pull_requests = null,
-        public readonly bool|null $build_pull_requests_post_merge = null,
-        public readonly bool|null $pull_requests_clone_parent_data = null
-    ) {
-    }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'type' => $this->type,
-            'fetch_branches' => $this->fetch_branches,
-            'prune_branches' => $this->prune_branches,
-            'environment_init_resources' => $this->environment_init_resources,
-            'token' => $this->token,
-            'base_url' => $this->base_url,
-            'repository' => $this->repository,
-            'build_pull_requests' => $this->build_pull_requests,
-            'build_draft_pull_requests' => $this->build_draft_pull_requests,
-            'build_pull_requests_post_merge' => $this->build_pull_requests_post_merge,
-            'pull_requests_clone_parent_data' => $this->pull_requests_clone_parent_data,
-        ];
-    }
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     */
+    private static $setters = [
+        'type' => 'setType',
+        'fetch_branches' => 'setFetchBranches',
+        'prune_branches' => 'setPruneBranches',
+        'environment_init_resources' => 'setEnvironmentInitResources',
+        'token' => 'setToken',
+        'base_url' => 'setBaseUrl',
+        'repository' => 'setRepository',
+        'build_pull_requests' => 'setBuildPullRequests',
+        'build_draft_pull_requests' => 'setBuildDraftPullRequests',
+        'build_pull_requests_post_merge' => 'setBuildPullRequestsPostMerge',
+        'pull_requests_clone_parent_data' => 'setPullRequestsCloneParentData'
+    ];
 
-    public function __toString(): string
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     */
+    private static $getters = [
+        'type' => 'getType',
+        'fetch_branches' => 'getFetchBranches',
+        'prune_branches' => 'getPruneBranches',
+        'environment_init_resources' => 'getEnvironmentInitResources',
+        'token' => 'getToken',
+        'base_url' => 'getBaseUrl',
+        'repository' => 'getRepository',
+        'build_pull_requests' => 'getBuildPullRequests',
+        'build_draft_pull_requests' => 'getBuildDraftPullRequests',
+        'build_pull_requests_post_merge' => 'getBuildPullRequestsPostMerge',
+        'pull_requests_clone_parent_data' => 'getPullRequestsCloneParentData'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    public static function attributeMap(): array
     {
-        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+        return self::$attributeMap;
     }
 
     /**
-     * Checks if a property is nullable
+     * Array of attributes to setter functions (for deserialization of responses)
      */
-    public static function isNullable(string $property): bool
+    public static function setters(): array
     {
-        return true; // All properties in this model are nullable
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters(): array
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     */
+    public function getModelName(): string
+    {
+        return self::$openAPIModelName;
+    }
+
+    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
+    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
+    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
+    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getEnvironmentInitResourcesAllowableValues(): array
+    {
+        return [
+            self::ENVIRONMENT_INIT_RESOURCES__DEFAULT,
+            self::ENVIRONMENT_INIT_RESOURCES_MANUAL,
+            self::ENVIRONMENT_INIT_RESOURCES_MINIMUM,
+            self::ENVIRONMENT_INIT_RESOURCES_PARENT,
+        ];
+    }
+
+    /**
+     * Associative array for storing property values
+     */
+    private array $container = [];
+
+    /**
+     * Constructor
+     */
+    public function __construct(?array $data = null)
+    {
+        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('fetch_branches', $data ?? [], null);
+        $this->setIfExists('prune_branches', $data ?? [], null);
+        $this->setIfExists('environment_init_resources', $data ?? [], null);
+        $this->setIfExists('token', $data ?? [], null);
+        $this->setIfExists('base_url', $data ?? [], null);
+        $this->setIfExists('repository', $data ?? [], null);
+        $this->setIfExists('build_pull_requests', $data ?? [], null);
+        $this->setIfExists('build_draft_pull_requests', $data ?? [], null);
+        $this->setIfExists('build_pull_requests_post_merge', $data ?? [], null);
+        $this->setIfExists('pull_requests_clone_parent_data', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    */
+    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
+    {
+        if (
+            self::isNullable($variableName)
+            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
+        ) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+    }
+
+    /**
+     * Show all the invalid properties with reasons.
+     */
+    public function listInvalidProperties(): array
+    {
+        $invalidProperties = [];
+
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        $allowedValues = $this->getEnvironmentInitResourcesAllowableValues();
+        if (!is_null($this->container['environment_init_resources']) && !in_array($this->container['environment_init_resources'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'environment_init_resources', must be one of '%s'",
+                $this->container['environment_init_resources'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['token'] === null) {
+            $invalidProperties[] = "'token' can't be null";
+        }
+        if ($this->container['repository'] === null) {
+            $invalidProperties[] = "'repository' can't be null";
+        }
+        return $invalidProperties;
+    }
+
+    /**
+     * Validate all the properties in the model
+     * return true if all passed
+     */
+    public function valid(): bool
+    {
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     */
+    public function setType($type)
+    {
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets fetch_branches
+     *
+     * @return bool|null
+     */
+    public function getFetchBranches()
+    {
+        return $this->container['fetch_branches'];
+    }
+
+    /**
+     * Sets fetch_branches
+     */
+    public function setFetchBranches($fetch_branches)
+    {
+        if (is_null($fetch_branches)) {
+            throw new \InvalidArgumentException('non-nullable fetch_branches cannot be null');
+        }
+        $this->container['fetch_branches'] = $fetch_branches;
+
+        return $this;
+    }
+
+    /**
+     * Gets prune_branches
+     *
+     * @return bool|null
+     */
+    public function getPruneBranches()
+    {
+        return $this->container['prune_branches'];
+    }
+
+    /**
+     * Sets prune_branches
+     */
+    public function setPruneBranches($prune_branches)
+    {
+        if (is_null($prune_branches)) {
+            throw new \InvalidArgumentException('non-nullable prune_branches cannot be null');
+        }
+        $this->container['prune_branches'] = $prune_branches;
+
+        return $this;
+    }
+
+    /**
+     * Gets environment_init_resources
+     *
+     * @return string|null
+     */
+    public function getEnvironmentInitResources()
+    {
+        return $this->container['environment_init_resources'];
+    }
+
+    /**
+     * Sets environment_init_resources
+     */
+    public function setEnvironmentInitResources($environment_init_resources)
+    {
+        if (is_null($environment_init_resources)) {
+            throw new \InvalidArgumentException('non-nullable environment_init_resources cannot be null');
+        }
+        $allowedValues = $this->getEnvironmentInitResourcesAllowableValues();
+        if (!in_array($environment_init_resources, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'environment_init_resources', must be one of '%s'",
+                    $environment_init_resources,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['environment_init_resources'] = $environment_init_resources;
+
+        return $this;
+    }
+
+    /**
+     * Gets token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->container['token'];
+    }
+
+    /**
+     * Sets token
+     */
+    public function setToken($token)
+    {
+        if (is_null($token)) {
+            throw new \InvalidArgumentException('non-nullable token cannot be null');
+        }
+        $this->container['token'] = $token;
+
+        return $this;
+    }
+
+    /**
+     * Gets base_url
+     *
+     * @return string|null
+     */
+    public function getBaseUrl()
+    {
+        return $this->container['base_url'];
+    }
+
+    /**
+     * Sets base_url
+     */
+    public function setBaseUrl($base_url)
+    {
+        if (is_null($base_url)) {
+            array_push($this->openAPINullablesSetToNull, 'base_url');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('base_url', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['base_url'] = $base_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets repository
+     *
+     * @return string
+     */
+    public function getRepository()
+    {
+        return $this->container['repository'];
+    }
+
+    /**
+     * Sets repository
+     */
+    public function setRepository($repository)
+    {
+        if (is_null($repository)) {
+            throw new \InvalidArgumentException('non-nullable repository cannot be null');
+        }
+        $this->container['repository'] = $repository;
+
+        return $this;
+    }
+
+    /**
+     * Gets build_pull_requests
+     *
+     * @return bool|null
+     */
+    public function getBuildPullRequests()
+    {
+        return $this->container['build_pull_requests'];
+    }
+
+    /**
+     * Sets build_pull_requests
+     */
+    public function setBuildPullRequests($build_pull_requests)
+    {
+        if (is_null($build_pull_requests)) {
+            throw new \InvalidArgumentException('non-nullable build_pull_requests cannot be null');
+        }
+        $this->container['build_pull_requests'] = $build_pull_requests;
+
+        return $this;
+    }
+
+    /**
+     * Gets build_draft_pull_requests
+     *
+     * @return bool|null
+     */
+    public function getBuildDraftPullRequests()
+    {
+        return $this->container['build_draft_pull_requests'];
+    }
+
+    /**
+     * Sets build_draft_pull_requests
+     */
+    public function setBuildDraftPullRequests($build_draft_pull_requests)
+    {
+        if (is_null($build_draft_pull_requests)) {
+            throw new \InvalidArgumentException('non-nullable build_draft_pull_requests cannot be null');
+        }
+        $this->container['build_draft_pull_requests'] = $build_draft_pull_requests;
+
+        return $this;
+    }
+
+    /**
+     * Gets build_pull_requests_post_merge
+     *
+     * @return bool|null
+     */
+    public function getBuildPullRequestsPostMerge()
+    {
+        return $this->container['build_pull_requests_post_merge'];
+    }
+
+    /**
+     * Sets build_pull_requests_post_merge
+     */
+    public function setBuildPullRequestsPostMerge($build_pull_requests_post_merge)
+    {
+        if (is_null($build_pull_requests_post_merge)) {
+            throw new \InvalidArgumentException('non-nullable build_pull_requests_post_merge cannot be null');
+        }
+        $this->container['build_pull_requests_post_merge'] = $build_pull_requests_post_merge;
+
+        return $this;
+    }
+
+    /**
+     * Gets pull_requests_clone_parent_data
+     *
+     * @return bool|null
+     */
+    public function getPullRequestsCloneParentData()
+    {
+        return $this->container['pull_requests_clone_parent_data'];
+    }
+
+    /**
+     * Sets pull_requests_clone_parent_data
+     */
+    public function setPullRequestsCloneParentData($pull_requests_clone_parent_data)
+    {
+        if (is_null($pull_requests_clone_parent_data)) {
+            throw new \InvalidArgumentException('non-nullable pull_requests_clone_parent_data cannot be null');
+        }
+        $this->container['pull_requests_clone_parent_data'] = $pull_requests_clone_parent_data;
+
+        return $this;
+    }
+    /**
+     * Returns true if offset exists. False otherwise.
+     */
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->container[$offset]);
+    }
+
+    /**
+     * Gets offset.
+     */
+    #[\ReturnTypeWillChange]
+    public function offsetGet(mixed $offset)
+    {
+        return $this->container[$offset] ?? null;
+    }
+
+    /**
+     * Sets value based on offset.
+     */
+    public function offsetSet(mixed $offset = null, $value): void
+    {
+        if (is_null($offset)) {
+            $this->container[] = $value;
+        } else {
+            $this->container[$offset] = $value;
+        }
+    }
+
+    /**
+     * Unsets offset.
+     */
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->container[$offset]);
+    }
+
+    /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     */
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize(): mixed
+    {
+        return ObjectSerializer::sanitizeForSerialization($this);
+        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+    }
+
+    /**
+     * Gets the string presentation of the object
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
+
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
+        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-

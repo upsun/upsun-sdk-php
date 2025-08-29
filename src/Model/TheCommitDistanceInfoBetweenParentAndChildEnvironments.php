@@ -42,11 +42,65 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
     ];
 
     /**
+     * Array of nullable properties. Used for (de)serialization
+     */
+    private static array $openAPINullables = [
+        'commits_ahead' => true,
+        'commits_behind' => true,
+        'parent_ref' => true
+    ];
+
+    /**
+     * If a nullable field gets set to null, insert it here
+     */
+    private array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      */
     public static function openAPITypes(): array
     {
         return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    public static function openAPIFormats(): array
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -58,34 +112,279 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
         'commits_behind' => 'commits_behind',
         'parent_ref' => 'parent_ref'
     ];
-    
-    public function __construct(
-        public readonly int $commits_ahead = null,
-        public readonly int $commits_behind = null,
-        public readonly string $parent_ref = null
-    ) {
-    }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'commits_ahead' => $this->commits_ahead,
-            'commits_behind' => $this->commits_behind,
-            'parent_ref' => $this->parent_ref,
-        ];
-    }
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     */
+    private static $setters = [
+        'commits_ahead' => 'setCommitsAhead',
+        'commits_behind' => 'setCommitsBehind',
+        'parent_ref' => 'setParentRef'
+    ];
 
-    public function __toString(): string
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     */
+    private static $getters = [
+        'commits_ahead' => 'getCommitsAhead',
+        'commits_behind' => 'getCommitsBehind',
+        'parent_ref' => 'getParentRef'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    public static function attributeMap(): array
     {
-        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+        return self::$attributeMap;
     }
 
     /**
-     * Checks if a property is nullable
+     * Array of attributes to setter functions (for deserialization of responses)
      */
-    public static function isNullable(string $property): bool
+    public static function setters(): array
     {
-        return true; // All properties in this model are nullable
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters(): array
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     */
+    public function getModelName(): string
+    {
+        return self::$openAPIModelName;
+    }
+
+
+    /**
+     * Associative array for storing property values
+     */
+    private array $container = [];
+
+    /**
+     * Constructor
+     */
+    public function __construct(?array $data = null)
+    {
+        $this->setIfExists('commits_ahead', $data ?? [], null);
+        $this->setIfExists('commits_behind', $data ?? [], null);
+        $this->setIfExists('parent_ref', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    */
+    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
+    {
+        if (
+            self::isNullable($variableName)
+            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
+        ) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+    }
+
+    /**
+     * Show all the invalid properties with reasons.
+     */
+    public function listInvalidProperties(): array
+    {
+        $invalidProperties = [];
+
+        if ($this->container['commits_ahead'] === null) {
+            $invalidProperties[] = "'commits_ahead' can't be null";
+        }
+        if ($this->container['commits_behind'] === null) {
+            $invalidProperties[] = "'commits_behind' can't be null";
+        }
+        if ($this->container['parent_ref'] === null) {
+            $invalidProperties[] = "'parent_ref' can't be null";
+        }
+        return $invalidProperties;
+    }
+
+    /**
+     * Validate all the properties in the model
+     * return true if all passed
+     */
+    public function valid(): bool
+    {
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets commits_ahead
+     *
+     * @return int
+     */
+    public function getCommitsAhead()
+    {
+        return $this->container['commits_ahead'];
+    }
+
+    /**
+     * Sets commits_ahead
+     */
+    public function setCommitsAhead($commits_ahead)
+    {
+        if (is_null($commits_ahead)) {
+            array_push($this->openAPINullablesSetToNull, 'commits_ahead');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('commits_ahead', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['commits_ahead'] = $commits_ahead;
+
+        return $this;
+    }
+
+    /**
+     * Gets commits_behind
+     *
+     * @return int
+     */
+    public function getCommitsBehind()
+    {
+        return $this->container['commits_behind'];
+    }
+
+    /**
+     * Sets commits_behind
+     */
+    public function setCommitsBehind($commits_behind)
+    {
+        if (is_null($commits_behind)) {
+            array_push($this->openAPINullablesSetToNull, 'commits_behind');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('commits_behind', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['commits_behind'] = $commits_behind;
+
+        return $this;
+    }
+
+    /**
+     * Gets parent_ref
+     *
+     * @return string
+     */
+    public function getParentRef()
+    {
+        return $this->container['parent_ref'];
+    }
+
+    /**
+     * Sets parent_ref
+     */
+    public function setParentRef($parent_ref)
+    {
+        if (is_null($parent_ref)) {
+            array_push($this->openAPINullablesSetToNull, 'parent_ref');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('parent_ref', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['parent_ref'] = $parent_ref;
+
+        return $this;
+    }
+    /**
+     * Returns true if offset exists. False otherwise.
+     */
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->container[$offset]);
+    }
+
+    /**
+     * Gets offset.
+     */
+    #[\ReturnTypeWillChange]
+    public function offsetGet(mixed $offset)
+    {
+        return $this->container[$offset] ?? null;
+    }
+
+    /**
+     * Sets value based on offset.
+     */
+    public function offsetSet(mixed $offset = null, $value): void
+    {
+        if (is_null($offset)) {
+            $this->container[] = $value;
+        } else {
+            $this->container[$offset] = $value;
+        }
+    }
+
+    /**
+     * Unsets offset.
+     */
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->container[$offset]);
+    }
+
+    /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     */
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize(): mixed
+    {
+        return ObjectSerializer::sanitizeForSerialization($this);
+        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+    }
+
+    /**
+     * Gets the string presentation of the object
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
+
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
+        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-

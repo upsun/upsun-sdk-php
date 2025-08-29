@@ -52,11 +52,70 @@ final class UserReference implements JsonSerializable
     ];
 
     /**
+     * Array of nullable properties. Used for (de)serialization
+     */
+    private static array $openAPINullables = [
+        'id' => false,
+        'username' => false,
+        'email' => false,
+        'first_name' => false,
+        'last_name' => false,
+        'picture' => false,
+        'mfa_enabled' => false,
+        'sso_enabled' => false
+    ];
+
+    /**
+     * If a nullable field gets set to null, insert it here
+     */
+    private array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      */
     public static function openAPITypes(): array
     {
         return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    public static function openAPIFormats(): array
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -73,44 +132,379 @@ final class UserReference implements JsonSerializable
         'mfa_enabled' => 'mfa_enabled',
         'sso_enabled' => 'sso_enabled'
     ];
-    
-    public function __construct(
-        public readonly string|null $id = null,
-        public readonly string|null $username = null,
-        public readonly string|null $email = null,
-        public readonly string|null $first_name = null,
-        public readonly string|null $last_name = null,
-        public readonly string|null $picture = null,
-        public readonly bool|null $mfa_enabled = null,
-        public readonly bool|null $sso_enabled = null
-    ) {
-    }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'id' => $this->id,
-            'username' => $this->username,
-            'email' => $this->email,
-            'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
-            'picture' => $this->picture,
-            'mfa_enabled' => $this->mfa_enabled,
-            'sso_enabled' => $this->sso_enabled,
-        ];
-    }
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     */
+    private static $setters = [
+        'id' => 'setId',
+        'username' => 'setUsername',
+        'email' => 'setEmail',
+        'first_name' => 'setFirstName',
+        'last_name' => 'setLastName',
+        'picture' => 'setPicture',
+        'mfa_enabled' => 'setMfaEnabled',
+        'sso_enabled' => 'setSsoEnabled'
+    ];
 
-    public function __toString(): string
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     */
+    private static $getters = [
+        'id' => 'getId',
+        'username' => 'getUsername',
+        'email' => 'getEmail',
+        'first_name' => 'getFirstName',
+        'last_name' => 'getLastName',
+        'picture' => 'getPicture',
+        'mfa_enabled' => 'getMfaEnabled',
+        'sso_enabled' => 'getSsoEnabled'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    public static function attributeMap(): array
     {
-        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+        return self::$attributeMap;
     }
 
     /**
-     * Checks if a property is nullable
+     * Array of attributes to setter functions (for deserialization of responses)
      */
-    public static function isNullable(string $property): bool
+    public static function setters(): array
     {
-        return true; // All properties in this model are nullable
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters(): array
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     */
+    public function getModelName(): string
+    {
+        return self::$openAPIModelName;
+    }
+
+
+    /**
+     * Associative array for storing property values
+     */
+    private array $container = [];
+
+    /**
+     * Constructor
+     */
+    public function __construct(?array $data = null)
+    {
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('username', $data ?? [], null);
+        $this->setIfExists('email', $data ?? [], null);
+        $this->setIfExists('first_name', $data ?? [], null);
+        $this->setIfExists('last_name', $data ?? [], null);
+        $this->setIfExists('picture', $data ?? [], null);
+        $this->setIfExists('mfa_enabled', $data ?? [], null);
+        $this->setIfExists('sso_enabled', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    */
+    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
+    {
+        if (
+            self::isNullable($variableName)
+            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
+        ) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+    }
+
+    /**
+     * Show all the invalid properties with reasons.
+     */
+    public function listInvalidProperties(): array
+    {
+        $invalidProperties = [];
+
+        return $invalidProperties;
+    }
+
+    /**
+     * Validate all the properties in the model
+     * return true if all passed
+     */
+    public function valid(): bool
+    {
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets id
+     *
+     * @return string|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     */
+    public function setId($id)
+    {
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets username
+     *
+     * @return string|null
+     */
+    public function getUsername()
+    {
+        return $this->container['username'];
+    }
+
+    /**
+     * Sets username
+     */
+    public function setUsername($username)
+    {
+        if (is_null($username)) {
+            throw new \InvalidArgumentException('non-nullable username cannot be null');
+        }
+        $this->container['username'] = $username;
+
+        return $this;
+    }
+
+    /**
+     * Gets email
+     *
+     * @return string|null
+     */
+    public function getEmail()
+    {
+        return $this->container['email'];
+    }
+
+    /**
+     * Sets email
+     */
+    public function setEmail($email)
+    {
+        if (is_null($email)) {
+            throw new \InvalidArgumentException('non-nullable email cannot be null');
+        }
+        $this->container['email'] = $email;
+
+        return $this;
+    }
+
+    /**
+     * Gets first_name
+     *
+     * @return string|null
+     */
+    public function getFirstName()
+    {
+        return $this->container['first_name'];
+    }
+
+    /**
+     * Sets first_name
+     */
+    public function setFirstName($first_name)
+    {
+        if (is_null($first_name)) {
+            throw new \InvalidArgumentException('non-nullable first_name cannot be null');
+        }
+        $this->container['first_name'] = $first_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets last_name
+     *
+     * @return string|null
+     */
+    public function getLastName()
+    {
+        return $this->container['last_name'];
+    }
+
+    /**
+     * Sets last_name
+     */
+    public function setLastName($last_name)
+    {
+        if (is_null($last_name)) {
+            throw new \InvalidArgumentException('non-nullable last_name cannot be null');
+        }
+        $this->container['last_name'] = $last_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets picture
+     *
+     * @return string|null
+     */
+    public function getPicture()
+    {
+        return $this->container['picture'];
+    }
+
+    /**
+     * Sets picture
+     */
+    public function setPicture($picture)
+    {
+        if (is_null($picture)) {
+            throw new \InvalidArgumentException('non-nullable picture cannot be null');
+        }
+        $this->container['picture'] = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Gets mfa_enabled
+     *
+     * @return bool|null
+     */
+    public function getMfaEnabled()
+    {
+        return $this->container['mfa_enabled'];
+    }
+
+    /**
+     * Sets mfa_enabled
+     */
+    public function setMfaEnabled($mfa_enabled)
+    {
+        if (is_null($mfa_enabled)) {
+            throw new \InvalidArgumentException('non-nullable mfa_enabled cannot be null');
+        }
+        $this->container['mfa_enabled'] = $mfa_enabled;
+
+        return $this;
+    }
+
+    /**
+     * Gets sso_enabled
+     *
+     * @return bool|null
+     */
+    public function getSsoEnabled()
+    {
+        return $this->container['sso_enabled'];
+    }
+
+    /**
+     * Sets sso_enabled
+     */
+    public function setSsoEnabled($sso_enabled)
+    {
+        if (is_null($sso_enabled)) {
+            throw new \InvalidArgumentException('non-nullable sso_enabled cannot be null');
+        }
+        $this->container['sso_enabled'] = $sso_enabled;
+
+        return $this;
+    }
+    /**
+     * Returns true if offset exists. False otherwise.
+     */
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->container[$offset]);
+    }
+
+    /**
+     * Gets offset.
+     */
+    #[\ReturnTypeWillChange]
+    public function offsetGet(mixed $offset)
+    {
+        return $this->container[$offset] ?? null;
+    }
+
+    /**
+     * Sets value based on offset.
+     */
+    public function offsetSet(mixed $offset = null, $value): void
+    {
+        if (is_null($offset)) {
+            $this->container[] = $value;
+        } else {
+            $this->container[$offset] = $value;
+        }
+    }
+
+    /**
+     * Unsets offset.
+     */
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->container[$offset]);
+    }
+
+    /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     */
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize(): mixed
+    {
+        return ObjectSerializer::sanitizeForSerialization($this);
+        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+    }
+
+    /**
+     * Gets the string presentation of the object
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
+
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
+        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-

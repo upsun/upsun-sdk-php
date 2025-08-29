@@ -56,11 +56,72 @@ final class SyslogIntegrationCreateInput implements JsonSerializable
     ];
 
     /**
+     * Array of nullable properties. Used for (de)serialization
+     */
+    private static array $openAPINullables = [
+        'type' => false,
+        'extra' => false,
+        'host' => false,
+        'port' => false,
+        'protocol' => false,
+        'facility' => false,
+        'message_format' => false,
+        'auth_token' => false,
+        'auth_mode' => false,
+        'tls_verify' => false
+    ];
+
+    /**
+     * If a nullable field gets set to null, insert it here
+     */
+    private array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      */
     public static function openAPITypes(): array
     {
         return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    public static function openAPIFormats(): array
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -79,48 +140,532 @@ final class SyslogIntegrationCreateInput implements JsonSerializable
         'auth_mode' => 'auth_mode',
         'tls_verify' => 'tls_verify'
     ];
-    
-    public function __construct(
-        public readonly string $type = null,
-        public readonly ?array $extra = null,
-        public readonly string|null $host = null,
-        public readonly int|null $port = null,
-        public readonly string|null $protocol = null,
-        public readonly int|null $facility = null,
-        public readonly string|null $message_format = null,
-        public readonly string|null $auth_token = null,
-        public readonly string|null $auth_mode = null,
-        public readonly bool|null $tls_verify = null
-    ) {
-    }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'type' => $this->type,
-            'extra' => $this->extra,
-            'host' => $this->host,
-            'port' => $this->port,
-            'protocol' => $this->protocol,
-            'facility' => $this->facility,
-            'message_format' => $this->message_format,
-            'auth_token' => $this->auth_token,
-            'auth_mode' => $this->auth_mode,
-            'tls_verify' => $this->tls_verify,
-        ];
-    }
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     */
+    private static $setters = [
+        'type' => 'setType',
+        'extra' => 'setExtra',
+        'host' => 'setHost',
+        'port' => 'setPort',
+        'protocol' => 'setProtocol',
+        'facility' => 'setFacility',
+        'message_format' => 'setMessageFormat',
+        'auth_token' => 'setAuthToken',
+        'auth_mode' => 'setAuthMode',
+        'tls_verify' => 'setTlsVerify'
+    ];
 
-    public function __toString(): string
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     */
+    private static $getters = [
+        'type' => 'getType',
+        'extra' => 'getExtra',
+        'host' => 'getHost',
+        'port' => 'getPort',
+        'protocol' => 'getProtocol',
+        'facility' => 'getFacility',
+        'message_format' => 'getMessageFormat',
+        'auth_token' => 'getAuthToken',
+        'auth_mode' => 'getAuthMode',
+        'tls_verify' => 'getTlsVerify'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    public static function attributeMap(): array
     {
-        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+        return self::$attributeMap;
     }
 
     /**
-     * Checks if a property is nullable
+     * Array of attributes to setter functions (for deserialization of responses)
      */
-    public static function isNullable(string $property): bool
+    public static function setters(): array
     {
-        return true; // All properties in this model are nullable
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters(): array
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     */
+    public function getModelName(): string
+    {
+        return self::$openAPIModelName;
+    }
+
+    public const PROTOCOL_TCP = 'tcp';
+    public const PROTOCOL_TLS = 'tls';
+    public const PROTOCOL_UDP = 'udp';
+    public const MESSAGE_FORMAT_RFC3164 = 'rfc3164';
+    public const MESSAGE_FORMAT_RFC5424 = 'rfc5424';
+    public const AUTH_MODE_PREFIX = 'prefix';
+    public const AUTH_MODE_STRUCTURED_DATA = 'structured_data';
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getProtocolAllowableValues(): array
+    {
+        return [
+            self::PROTOCOL_TCP,
+            self::PROTOCOL_TLS,
+            self::PROTOCOL_UDP,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getMessageFormatAllowableValues(): array
+    {
+        return [
+            self::MESSAGE_FORMAT_RFC3164,
+            self::MESSAGE_FORMAT_RFC5424,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getAuthModeAllowableValues(): array
+    {
+        return [
+            self::AUTH_MODE_PREFIX,
+            self::AUTH_MODE_STRUCTURED_DATA,
+        ];
+    }
+
+    /**
+     * Associative array for storing property values
+     */
+    private array $container = [];
+
+    /**
+     * Constructor
+     */
+    public function __construct(?array $data = null)
+    {
+        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('extra', $data ?? [], null);
+        $this->setIfExists('host', $data ?? [], null);
+        $this->setIfExists('port', $data ?? [], null);
+        $this->setIfExists('protocol', $data ?? [], null);
+        $this->setIfExists('facility', $data ?? [], null);
+        $this->setIfExists('message_format', $data ?? [], null);
+        $this->setIfExists('auth_token', $data ?? [], null);
+        $this->setIfExists('auth_mode', $data ?? [], null);
+        $this->setIfExists('tls_verify', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    */
+    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
+    {
+        if (
+            self::isNullable($variableName)
+            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
+        ) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+    }
+
+    /**
+     * Show all the invalid properties with reasons.
+     */
+    public function listInvalidProperties(): array
+    {
+        $invalidProperties = [];
+
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        $allowedValues = $this->getProtocolAllowableValues();
+        if (!is_null($this->container['protocol']) && !in_array($this->container['protocol'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'protocol', must be one of '%s'",
+                $this->container['protocol'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getMessageFormatAllowableValues();
+        if (!is_null($this->container['message_format']) && !in_array($this->container['message_format'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'message_format', must be one of '%s'",
+                $this->container['message_format'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getAuthModeAllowableValues();
+        if (!is_null($this->container['auth_mode']) && !in_array($this->container['auth_mode'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'auth_mode', must be one of '%s'",
+                $this->container['auth_mode'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        return $invalidProperties;
+    }
+
+    /**
+     * Validate all the properties in the model
+     * return true if all passed
+     */
+    public function valid(): bool
+    {
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     */
+    public function setType($type)
+    {
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets extra
+     *
+     * @return array<string,string>|null
+     */
+    public function getExtra()
+    {
+        return $this->container['extra'];
+    }
+
+    /**
+     * Sets extra
+     */
+    public function setExtra($extra)
+    {
+        if (is_null($extra)) {
+            throw new \InvalidArgumentException('non-nullable extra cannot be null');
+        }
+        $this->container['extra'] = $extra;
+
+        return $this;
+    }
+
+    /**
+     * Gets host
+     *
+     * @return string|null
+     */
+    public function getHost()
+    {
+        return $this->container['host'];
+    }
+
+    /**
+     * Sets host
+     */
+    public function setHost($host)
+    {
+        if (is_null($host)) {
+            throw new \InvalidArgumentException('non-nullable host cannot be null');
+        }
+        $this->container['host'] = $host;
+
+        return $this;
+    }
+
+    /**
+     * Gets port
+     *
+     * @return int|null
+     */
+    public function getPort()
+    {
+        return $this->container['port'];
+    }
+
+    /**
+     * Sets port
+     */
+    public function setPort($port)
+    {
+        if (is_null($port)) {
+            throw new \InvalidArgumentException('non-nullable port cannot be null');
+        }
+        $this->container['port'] = $port;
+
+        return $this;
+    }
+
+    /**
+     * Gets protocol
+     *
+     * @return string|null
+     */
+    public function getProtocol()
+    {
+        return $this->container['protocol'];
+    }
+
+    /**
+     * Sets protocol
+     */
+    public function setProtocol($protocol)
+    {
+        if (is_null($protocol)) {
+            throw new \InvalidArgumentException('non-nullable protocol cannot be null');
+        }
+        $allowedValues = $this->getProtocolAllowableValues();
+        if (!in_array($protocol, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'protocol', must be one of '%s'",
+                    $protocol,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['protocol'] = $protocol;
+
+        return $this;
+    }
+
+    /**
+     * Gets facility
+     *
+     * @return int|null
+     */
+    public function getFacility()
+    {
+        return $this->container['facility'];
+    }
+
+    /**
+     * Sets facility
+     */
+    public function setFacility($facility)
+    {
+        if (is_null($facility)) {
+            throw new \InvalidArgumentException('non-nullable facility cannot be null');
+        }
+        $this->container['facility'] = $facility;
+
+        return $this;
+    }
+
+    /**
+     * Gets message_format
+     *
+     * @return string|null
+     */
+    public function getMessageFormat()
+    {
+        return $this->container['message_format'];
+    }
+
+    /**
+     * Sets message_format
+     */
+    public function setMessageFormat($message_format)
+    {
+        if (is_null($message_format)) {
+            throw new \InvalidArgumentException('non-nullable message_format cannot be null');
+        }
+        $allowedValues = $this->getMessageFormatAllowableValues();
+        if (!in_array($message_format, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'message_format', must be one of '%s'",
+                    $message_format,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['message_format'] = $message_format;
+
+        return $this;
+    }
+
+    /**
+     * Gets auth_token
+     *
+     * @return string|null
+     */
+    public function getAuthToken()
+    {
+        return $this->container['auth_token'];
+    }
+
+    /**
+     * Sets auth_token
+     */
+    public function setAuthToken($auth_token)
+    {
+        if (is_null($auth_token)) {
+            throw new \InvalidArgumentException('non-nullable auth_token cannot be null');
+        }
+        $this->container['auth_token'] = $auth_token;
+
+        return $this;
+    }
+
+    /**
+     * Gets auth_mode
+     *
+     * @return string|null
+     */
+    public function getAuthMode()
+    {
+        return $this->container['auth_mode'];
+    }
+
+    /**
+     * Sets auth_mode
+     */
+    public function setAuthMode($auth_mode)
+    {
+        if (is_null($auth_mode)) {
+            throw new \InvalidArgumentException('non-nullable auth_mode cannot be null');
+        }
+        $allowedValues = $this->getAuthModeAllowableValues();
+        if (!in_array($auth_mode, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'auth_mode', must be one of '%s'",
+                    $auth_mode,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['auth_mode'] = $auth_mode;
+
+        return $this;
+    }
+
+    /**
+     * Gets tls_verify
+     *
+     * @return bool|null
+     */
+    public function getTlsVerify()
+    {
+        return $this->container['tls_verify'];
+    }
+
+    /**
+     * Sets tls_verify
+     */
+    public function setTlsVerify($tls_verify)
+    {
+        if (is_null($tls_verify)) {
+            throw new \InvalidArgumentException('non-nullable tls_verify cannot be null');
+        }
+        $this->container['tls_verify'] = $tls_verify;
+
+        return $this;
+    }
+    /**
+     * Returns true if offset exists. False otherwise.
+     */
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->container[$offset]);
+    }
+
+    /**
+     * Gets offset.
+     */
+    #[\ReturnTypeWillChange]
+    public function offsetGet(mixed $offset)
+    {
+        return $this->container[$offset] ?? null;
+    }
+
+    /**
+     * Sets value based on offset.
+     */
+    public function offsetSet(mixed $offset = null, $value): void
+    {
+        if (is_null($offset)) {
+            $this->container[] = $value;
+        } else {
+            $this->container[$offset] = $value;
+        }
+    }
+
+    /**
+     * Unsets offset.
+     */
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->container[$offset]);
+    }
+
+    /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     */
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize(): mixed
+    {
+        return ObjectSerializer::sanitizeForSerialization($this);
+        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+    }
+
+    /**
+     * Gets the string presentation of the object
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
+
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
+        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-

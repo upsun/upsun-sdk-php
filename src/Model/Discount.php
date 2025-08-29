@@ -58,11 +58,73 @@ final class Discount implements JsonSerializable
     ];
 
     /**
+     * Array of nullable properties. Used for (de)serialization
+     */
+    private static array $openAPINullables = [
+        'id' => false,
+        'organization_id' => false,
+        'type' => false,
+        'type_label' => false,
+        'status' => false,
+        'commitment' => true,
+        'total_months' => true,
+        'discount' => false,
+        'config' => false,
+        'start_at' => false,
+        'end_at' => true
+    ];
+
+    /**
+     * If a nullable field gets set to null, insert it here
+     */
+    private array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      */
     public static function openAPITypes(): array
     {
         return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    public static function openAPIFormats(): array
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -82,50 +144,548 @@ final class Discount implements JsonSerializable
         'start_at' => 'start_at',
         'end_at' => 'end_at'
     ];
-    
-    public function __construct(
-        public readonly int|null $id = null,
-        public readonly string|null $organization_id = null,
-        public readonly string|null $type = null,
-        public readonly string|null $type_label = null,
-        public readonly string|null $status = null,
-        public readonly \Upsun\Model\DiscountCommitment|null $commitment = null,
-        public readonly int|null $total_months = null,
-        public readonly \Upsun\Model\DiscountDiscount|null $discount = null,
-        public readonly object|null $config = null,
-        public readonly \DateTime|null $start_at = null,
-        public readonly \DateTime|null $end_at = null
-    ) {
-    }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'id' => $this->id,
-            'organization_id' => $this->organization_id,
-            'type' => $this->type,
-            'type_label' => $this->type_label,
-            'status' => $this->status,
-            'commitment' => $this->commitment,
-            'total_months' => $this->total_months,
-            'discount' => $this->discount,
-            'config' => $this->config,
-            'start_at' => $this->start_at,
-            'end_at' => $this->end_at,
-        ];
-    }
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     */
+    private static $setters = [
+        'id' => 'setId',
+        'organization_id' => 'setOrganizationId',
+        'type' => 'setType',
+        'type_label' => 'setTypeLabel',
+        'status' => 'setStatus',
+        'commitment' => 'setCommitment',
+        'total_months' => 'setTotalMonths',
+        'discount' => 'setDiscount',
+        'config' => 'setConfig',
+        'start_at' => 'setStartAt',
+        'end_at' => 'setEndAt'
+    ];
 
-    public function __toString(): string
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     */
+    private static $getters = [
+        'id' => 'getId',
+        'organization_id' => 'getOrganizationId',
+        'type' => 'getType',
+        'type_label' => 'getTypeLabel',
+        'status' => 'getStatus',
+        'commitment' => 'getCommitment',
+        'total_months' => 'getTotalMonths',
+        'discount' => 'getDiscount',
+        'config' => 'getConfig',
+        'start_at' => 'getStartAt',
+        'end_at' => 'getEndAt'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    public static function attributeMap(): array
     {
-        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+        return self::$attributeMap;
     }
 
     /**
-     * Checks if a property is nullable
+     * Array of attributes to setter functions (for deserialization of responses)
      */
-    public static function isNullable(string $property): bool
+    public static function setters(): array
     {
-        return true; // All properties in this model are nullable
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters(): array
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     */
+    public function getModelName(): string
+    {
+        return self::$openAPIModelName;
+    }
+
+    public const TYPE_ALLOWANCE = 'allowance';
+    public const TYPE_STARTUP = 'startup';
+    public const TYPE_ENTERPRISE = 'enterprise';
+    public const STATUS_INACTIVE = 'inactive';
+    public const STATUS_ACTIVE = 'active';
+    public const STATUS_EXPIRED = 'expired';
+    public const STATUS_DEACTIVATED = 'deactivated';
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getTypeAllowableValues(): array
+    {
+        return [
+            self::TYPE_ALLOWANCE,
+            self::TYPE_STARTUP,
+            self::TYPE_ENTERPRISE,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getStatusAllowableValues(): array
+    {
+        return [
+            self::STATUS_INACTIVE,
+            self::STATUS_ACTIVE,
+            self::STATUS_EXPIRED,
+            self::STATUS_DEACTIVATED,
+        ];
+    }
+
+    /**
+     * Associative array for storing property values
+     */
+    private array $container = [];
+
+    /**
+     * Constructor
+     */
+    public function __construct(?array $data = null)
+    {
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('organization_id', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('type_label', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('commitment', $data ?? [], null);
+        $this->setIfExists('total_months', $data ?? [], null);
+        $this->setIfExists('discount', $data ?? [], null);
+        $this->setIfExists('config', $data ?? [], null);
+        $this->setIfExists('start_at', $data ?? [], null);
+        $this->setIfExists('end_at', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    */
+    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
+    {
+        if (
+            self::isNullable($variableName)
+            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
+        ) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+    }
+
+    /**
+     * Show all the invalid properties with reasons.
+     */
+    public function listInvalidProperties(): array
+    {
+        $invalidProperties = [];
+
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        return $invalidProperties;
+    }
+
+    /**
+     * Validate all the properties in the model
+     * return true if all passed
+     */
+    public function valid(): bool
+    {
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets id
+     *
+     * @return int|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     */
+    public function setId($id)
+    {
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets organization_id
+     *
+     * @return string|null
+     */
+    public function getOrganizationId()
+    {
+        return $this->container['organization_id'];
+    }
+
+    /**
+     * Sets organization_id
+     */
+    public function setOrganizationId($organization_id)
+    {
+        if (is_null($organization_id)) {
+            throw new \InvalidArgumentException('non-nullable organization_id cannot be null');
+        }
+        $this->container['organization_id'] = $organization_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     */
+    public function setType($type)
+    {
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets type_label
+     *
+     * @return string|null
+     */
+    public function getTypeLabel()
+    {
+        return $this->container['type_label'];
+    }
+
+    /**
+     * Sets type_label
+     */
+    public function setTypeLabel($type_label)
+    {
+        if (is_null($type_label)) {
+            throw new \InvalidArgumentException('non-nullable type_label cannot be null');
+        }
+        $this->container['type_label'] = $type_label;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return string|null
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     */
+    public function setStatus($status)
+    {
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        }
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!in_array($status, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    $status,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets commitment
+     *
+     * @return \Upsun\Model\DiscountCommitment|null
+     */
+    public function getCommitment()
+    {
+        return $this->container['commitment'];
+    }
+
+    /**
+     * Sets commitment
+     */
+    public function setCommitment($commitment)
+    {
+        if (is_null($commitment)) {
+            array_push($this->openAPINullablesSetToNull, 'commitment');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('commitment', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['commitment'] = $commitment;
+
+        return $this;
+    }
+
+    /**
+     * Gets total_months
+     *
+     * @return int|null
+     */
+    public function getTotalMonths()
+    {
+        return $this->container['total_months'];
+    }
+
+    /**
+     * Sets total_months
+     */
+    public function setTotalMonths($total_months)
+    {
+        if (is_null($total_months)) {
+            array_push($this->openAPINullablesSetToNull, 'total_months');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('total_months', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['total_months'] = $total_months;
+
+        return $this;
+    }
+
+    /**
+     * Gets discount
+     *
+     * @return \Upsun\Model\DiscountDiscount|null
+     */
+    public function getDiscount()
+    {
+        return $this->container['discount'];
+    }
+
+    /**
+     * Sets discount
+     */
+    public function setDiscount($discount)
+    {
+        if (is_null($discount)) {
+            throw new \InvalidArgumentException('non-nullable discount cannot be null');
+        }
+        $this->container['discount'] = $discount;
+
+        return $this;
+    }
+
+    /**
+     * Gets config
+     *
+     * @return object|null
+     */
+    public function getConfig()
+    {
+        return $this->container['config'];
+    }
+
+    /**
+     * Sets config
+     */
+    public function setConfig($config)
+    {
+        if (is_null($config)) {
+            throw new \InvalidArgumentException('non-nullable config cannot be null');
+        }
+        $this->container['config'] = $config;
+
+        return $this;
+    }
+
+    /**
+     * Gets start_at
+     *
+     * @return \DateTime|null
+     */
+    public function getStartAt()
+    {
+        return $this->container['start_at'];
+    }
+
+    /**
+     * Sets start_at
+     */
+    public function setStartAt($start_at)
+    {
+        if (is_null($start_at)) {
+            throw new \InvalidArgumentException('non-nullable start_at cannot be null');
+        }
+        $this->container['start_at'] = $start_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets end_at
+     *
+     * @return \DateTime|null
+     */
+    public function getEndAt()
+    {
+        return $this->container['end_at'];
+    }
+
+    /**
+     * Sets end_at
+     */
+    public function setEndAt($end_at)
+    {
+        if (is_null($end_at)) {
+            array_push($this->openAPINullablesSetToNull, 'end_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('end_at', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['end_at'] = $end_at;
+
+        return $this;
+    }
+    /**
+     * Returns true if offset exists. False otherwise.
+     */
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->container[$offset]);
+    }
+
+    /**
+     * Gets offset.
+     */
+    #[\ReturnTypeWillChange]
+    public function offsetGet(mixed $offset)
+    {
+        return $this->container[$offset] ?? null;
+    }
+
+    /**
+     * Sets value based on offset.
+     */
+    public function offsetSet(mixed $offset = null, $value): void
+    {
+        if (is_null($offset)) {
+            $this->container[] = $value;
+        } else {
+            $this->container[$offset] = $value;
+        }
+    }
+
+    /**
+     * Unsets offset.
+     */
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->container[$offset]);
+    }
+
+    /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     */
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize(): mixed
+    {
+        return ObjectSerializer::sanitizeForSerialization($this);
+        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+    }
+
+    /**
+     * Gets the string presentation of the object
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
+
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
+        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-

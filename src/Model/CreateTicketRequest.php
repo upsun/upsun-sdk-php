@@ -58,11 +58,73 @@ final class CreateTicketRequest implements JsonSerializable
     ];
 
     /**
+     * Array of nullable properties. Used for (de)serialization
+     */
+    private static array $openAPINullables = [
+        'subject' => false,
+        'description' => false,
+        'requester_id' => false,
+        'priority' => false,
+        'subscription_id' => false,
+        'organization_id' => false,
+        'affected_url' => false,
+        'followup_tid' => false,
+        'category' => false,
+        'attachments' => false,
+        'collaborator_ids' => false
+    ];
+
+    /**
+     * If a nullable field gets set to null, insert it here
+     */
+    private array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      */
     public static function openAPITypes(): array
     {
         return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    public static function openAPIFormats(): array
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -82,50 +144,549 @@ final class CreateTicketRequest implements JsonSerializable
         'attachments' => 'attachments',
         'collaborator_ids' => 'collaborator_ids'
     ];
-    
-    public function __construct(
-        public readonly string $subject = null,
-        public readonly string $description = null,
-        public readonly string|null $requester_id = null,
-        public readonly string|null $priority = null,
-        public readonly string|null $subscription_id = null,
-        public readonly string|null $organization_id = null,
-        public readonly string|null $affected_url = null,
-        public readonly string|null $followup_tid = null,
-        public readonly string|null $category = null,
-        public readonly ?array $attachments = null,
-        public readonly ?array $collaborator_ids = null
-    ) {
-    }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'subject' => $this->subject,
-            'description' => $this->description,
-            'requester_id' => $this->requester_id,
-            'priority' => $this->priority,
-            'subscription_id' => $this->subscription_id,
-            'organization_id' => $this->organization_id,
-            'affected_url' => $this->affected_url,
-            'followup_tid' => $this->followup_tid,
-            'category' => $this->category,
-            'attachments' => $this->attachments,
-            'collaborator_ids' => $this->collaborator_ids,
-        ];
-    }
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     */
+    private static $setters = [
+        'subject' => 'setSubject',
+        'description' => 'setDescription',
+        'requester_id' => 'setRequesterId',
+        'priority' => 'setPriority',
+        'subscription_id' => 'setSubscriptionId',
+        'organization_id' => 'setOrganizationId',
+        'affected_url' => 'setAffectedUrl',
+        'followup_tid' => 'setFollowupTid',
+        'category' => 'setCategory',
+        'attachments' => 'setAttachments',
+        'collaborator_ids' => 'setCollaboratorIds'
+    ];
 
-    public function __toString(): string
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     */
+    private static $getters = [
+        'subject' => 'getSubject',
+        'description' => 'getDescription',
+        'requester_id' => 'getRequesterId',
+        'priority' => 'getPriority',
+        'subscription_id' => 'getSubscriptionId',
+        'organization_id' => 'getOrganizationId',
+        'affected_url' => 'getAffectedUrl',
+        'followup_tid' => 'getFollowupTid',
+        'category' => 'getCategory',
+        'attachments' => 'getAttachments',
+        'collaborator_ids' => 'getCollaboratorIds'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    public static function attributeMap(): array
     {
-        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+        return self::$attributeMap;
     }
 
     /**
-     * Checks if a property is nullable
+     * Array of attributes to setter functions (for deserialization of responses)
      */
-    public static function isNullable(string $property): bool
+    public static function setters(): array
     {
-        return true; // All properties in this model are nullable
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters(): array
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     */
+    public function getModelName(): string
+    {
+        return self::$openAPIModelName;
+    }
+
+    public const PRIORITY_LOW = 'low';
+    public const PRIORITY_NORMAL = 'normal';
+    public const PRIORITY_HIGH = 'high';
+    public const PRIORITY_URGENT = 'urgent';
+    public const CATEGORY_ACCESS = 'access';
+    public const CATEGORY_BILLING_QUESTION = 'billing_question';
+    public const CATEGORY_COMPLAINT = 'complaint';
+    public const CATEGORY_COMPLIANCE_QUESTION = 'compliance_question';
+    public const CATEGORY_CONFIGURATION_CHANGE = 'configuration_change';
+    public const CATEGORY_GENERAL_QUESTION = 'general_question';
+    public const CATEGORY_INCIDENT_OUTAGE = 'incident_outage';
+    public const CATEGORY_BUG_REPORT = 'bug_report';
+    public const CATEGORY_REPORT_A_GUI_BUG = 'report_a_gui_bug';
+    public const CATEGORY_ONBOARDING = 'onboarding';
+    public const CATEGORY_CLOSE_MY_ACCOUNT = 'close_my_account';
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getPriorityAllowableValues(): array
+    {
+        return [
+            self::PRIORITY_LOW,
+            self::PRIORITY_NORMAL,
+            self::PRIORITY_HIGH,
+            self::PRIORITY_URGENT,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getCategoryAllowableValues(): array
+    {
+        return [
+            self::CATEGORY_ACCESS,
+            self::CATEGORY_BILLING_QUESTION,
+            self::CATEGORY_COMPLAINT,
+            self::CATEGORY_COMPLIANCE_QUESTION,
+            self::CATEGORY_CONFIGURATION_CHANGE,
+            self::CATEGORY_GENERAL_QUESTION,
+            self::CATEGORY_INCIDENT_OUTAGE,
+            self::CATEGORY_BUG_REPORT,
+            self::CATEGORY_REPORT_A_GUI_BUG,
+            self::CATEGORY_ONBOARDING,
+            self::CATEGORY_CLOSE_MY_ACCOUNT,
+        ];
+    }
+
+    /**
+     * Associative array for storing property values
+     */
+    private array $container = [];
+
+    /**
+     * Constructor
+     */
+    public function __construct(?array $data = null)
+    {
+        $this->setIfExists('subject', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('requester_id', $data ?? [], null);
+        $this->setIfExists('priority', $data ?? [], null);
+        $this->setIfExists('subscription_id', $data ?? [], null);
+        $this->setIfExists('organization_id', $data ?? [], null);
+        $this->setIfExists('affected_url', $data ?? [], null);
+        $this->setIfExists('followup_tid', $data ?? [], null);
+        $this->setIfExists('category', $data ?? [], null);
+        $this->setIfExists('attachments', $data ?? [], null);
+        $this->setIfExists('collaborator_ids', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    */
+    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
+    {
+        if (
+            self::isNullable($variableName)
+            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
+        ) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+    }
+
+    /**
+     * Show all the invalid properties with reasons.
+     */
+    public function listInvalidProperties(): array
+    {
+        $invalidProperties = [];
+
+        if ($this->container['subject'] === null) {
+            $invalidProperties[] = "'subject' can't be null";
+        }
+        if ($this->container['description'] === null) {
+            $invalidProperties[] = "'description' can't be null";
+        }
+        $allowedValues = $this->getPriorityAllowableValues();
+        if (!is_null($this->container['priority']) && !in_array($this->container['priority'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'priority', must be one of '%s'",
+                $this->container['priority'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getCategoryAllowableValues();
+        if (!is_null($this->container['category']) && !in_array($this->container['category'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'category', must be one of '%s'",
+                $this->container['category'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        return $invalidProperties;
+    }
+
+    /**
+     * Validate all the properties in the model
+     * return true if all passed
+     */
+    public function valid(): bool
+    {
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets subject
+     *
+     * @return string
+     */
+    public function getSubject()
+    {
+        return $this->container['subject'];
+    }
+
+    /**
+     * Sets subject
+     */
+    public function setSubject($subject)
+    {
+        if (is_null($subject)) {
+            throw new \InvalidArgumentException('non-nullable subject cannot be null');
+        }
+        $this->container['subject'] = $subject;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        }
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets requester_id
+     *
+     * @return string|null
+     */
+    public function getRequesterId()
+    {
+        return $this->container['requester_id'];
+    }
+
+    /**
+     * Sets requester_id
+     */
+    public function setRequesterId($requester_id)
+    {
+        if (is_null($requester_id)) {
+            throw new \InvalidArgumentException('non-nullable requester_id cannot be null');
+        }
+        $this->container['requester_id'] = $requester_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets priority
+     *
+     * @return string|null
+     */
+    public function getPriority()
+    {
+        return $this->container['priority'];
+    }
+
+    /**
+     * Sets priority
+     */
+    public function setPriority($priority)
+    {
+        if (is_null($priority)) {
+            throw new \InvalidArgumentException('non-nullable priority cannot be null');
+        }
+        $allowedValues = $this->getPriorityAllowableValues();
+        if (!in_array($priority, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'priority', must be one of '%s'",
+                    $priority,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['priority'] = $priority;
+
+        return $this;
+    }
+
+    /**
+     * Gets subscription_id
+     *
+     * @return string|null
+     */
+    public function getSubscriptionId()
+    {
+        return $this->container['subscription_id'];
+    }
+
+    /**
+     * Sets subscription_id
+     */
+    public function setSubscriptionId($subscription_id)
+    {
+        if (is_null($subscription_id)) {
+            throw new \InvalidArgumentException('non-nullable subscription_id cannot be null');
+        }
+        $this->container['subscription_id'] = $subscription_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets organization_id
+     *
+     * @return string|null
+     */
+    public function getOrganizationId()
+    {
+        return $this->container['organization_id'];
+    }
+
+    /**
+     * Sets organization_id
+     */
+    public function setOrganizationId($organization_id)
+    {
+        if (is_null($organization_id)) {
+            throw new \InvalidArgumentException('non-nullable organization_id cannot be null');
+        }
+        $this->container['organization_id'] = $organization_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets affected_url
+     *
+     * @return string|null
+     */
+    public function getAffectedUrl()
+    {
+        return $this->container['affected_url'];
+    }
+
+    /**
+     * Sets affected_url
+     */
+    public function setAffectedUrl($affected_url)
+    {
+        if (is_null($affected_url)) {
+            throw new \InvalidArgumentException('non-nullable affected_url cannot be null');
+        }
+        $this->container['affected_url'] = $affected_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets followup_tid
+     *
+     * @return string|null
+     */
+    public function getFollowupTid()
+    {
+        return $this->container['followup_tid'];
+    }
+
+    /**
+     * Sets followup_tid
+     */
+    public function setFollowupTid($followup_tid)
+    {
+        if (is_null($followup_tid)) {
+            throw new \InvalidArgumentException('non-nullable followup_tid cannot be null');
+        }
+        $this->container['followup_tid'] = $followup_tid;
+
+        return $this;
+    }
+
+    /**
+     * Gets category
+     *
+     * @return string|null
+     */
+    public function getCategory()
+    {
+        return $this->container['category'];
+    }
+
+    /**
+     * Sets category
+     */
+    public function setCategory($category)
+    {
+        if (is_null($category)) {
+            throw new \InvalidArgumentException('non-nullable category cannot be null');
+        }
+        $allowedValues = $this->getCategoryAllowableValues();
+        if (!in_array($category, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'category', must be one of '%s'",
+                    $category,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['category'] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Gets attachments
+     *
+     * @return \Upsun\Model\CreateTicketRequestAttachmentsInner[]|null
+     */
+    public function getAttachments()
+    {
+        return $this->container['attachments'];
+    }
+
+    /**
+     * Sets attachments
+     */
+    public function setAttachments($attachments)
+    {
+        if (is_null($attachments)) {
+            throw new \InvalidArgumentException('non-nullable attachments cannot be null');
+        }
+        $this->container['attachments'] = $attachments;
+
+        return $this;
+    }
+
+    /**
+     * Gets collaborator_ids
+     *
+     * @return string[]|null
+     */
+    public function getCollaboratorIds()
+    {
+        return $this->container['collaborator_ids'];
+    }
+
+    /**
+     * Sets collaborator_ids
+     */
+    public function setCollaboratorIds($collaborator_ids)
+    {
+        if (is_null($collaborator_ids)) {
+            throw new \InvalidArgumentException('non-nullable collaborator_ids cannot be null');
+        }
+        $this->container['collaborator_ids'] = $collaborator_ids;
+
+        return $this;
+    }
+    /**
+     * Returns true if offset exists. False otherwise.
+     */
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->container[$offset]);
+    }
+
+    /**
+     * Gets offset.
+     */
+    #[\ReturnTypeWillChange]
+    public function offsetGet(mixed $offset)
+    {
+        return $this->container[$offset] ?? null;
+    }
+
+    /**
+     * Sets value based on offset.
+     */
+    public function offsetSet(mixed $offset = null, $value): void
+    {
+        if (is_null($offset)) {
+            $this->container[] = $value;
+        } else {
+            $this->container[$offset] = $value;
+        }
+    }
+
+    /**
+     * Unsets offset.
+     */
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->container[$offset]);
+    }
+
+    /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     */
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize(): mixed
+    {
+        return ObjectSerializer::sanitizeForSerialization($this);
+        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+    }
+
+    /**
+     * Gets the string presentation of the object
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
+
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
+        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-

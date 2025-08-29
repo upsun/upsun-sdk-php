@@ -66,11 +66,77 @@ final class OrganizationLinks implements JsonSerializable
     ];
 
     /**
+     * Array of nullable properties. Used for (de)serialization
+     */
+    private static array $openAPINullables = [
+        'self' => false,
+        'update' => false,
+        'delete' => false,
+        'members' => false,
+        'create_member' => false,
+        'address' => false,
+        'profile' => false,
+        'payment_source' => false,
+        'orders' => false,
+        'vouchers' => false,
+        'apply_voucher' => false,
+        'subscriptions' => false,
+        'create_subscription' => false,
+        'estimate_subscription' => false,
+        'mfa_enforcement' => false
+    ];
+
+    /**
+     * If a nullable field gets set to null, insert it here
+     */
+    private array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      */
     public static function openAPITypes(): array
     {
         return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    public static function openAPIFormats(): array
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -94,58 +160,561 @@ final class OrganizationLinks implements JsonSerializable
         'estimate_subscription' => 'estimate-subscription',
         'mfa_enforcement' => 'mfa-enforcement'
     ];
-    
-    public function __construct(
-        public readonly \Upsun\Model\OrganizationLinksSelf|null $self = null,
-        public readonly \Upsun\Model\OrganizationLinksUpdate|null $update = null,
-        public readonly \Upsun\Model\OrganizationLinksDelete|null $delete = null,
-        public readonly \Upsun\Model\OrganizationLinksMembers|null $members = null,
-        public readonly \Upsun\Model\OrganizationLinksCreateMember|null $create_member = null,
-        public readonly \Upsun\Model\OrganizationLinksAddress|null $address = null,
-        public readonly \Upsun\Model\OrganizationLinksProfile|null $profile = null,
-        public readonly \Upsun\Model\OrganizationLinksPaymentSource|null $payment_source = null,
-        public readonly \Upsun\Model\OrganizationLinksOrders|null $orders = null,
-        public readonly \Upsun\Model\OrganizationLinksVouchers|null $vouchers = null,
-        public readonly \Upsun\Model\OrganizationLinksApplyVoucher|null $apply_voucher = null,
-        public readonly \Upsun\Model\OrganizationLinksSubscriptions|null $subscriptions = null,
-        public readonly \Upsun\Model\OrganizationLinksCreateSubscription|null $create_subscription = null,
-        public readonly \Upsun\Model\OrganizationLinksEstimateSubscription|null $estimate_subscription = null,
-        public readonly \Upsun\Model\OrganizationLinksMfaEnforcement|null $mfa_enforcement = null
-    ) {
-    }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'self' => $this->self,
-            'update' => $this->update,
-            'delete' => $this->delete,
-            'members' => $this->members,
-            'create_member' => $this->create_member,
-            'address' => $this->address,
-            'profile' => $this->profile,
-            'payment_source' => $this->payment_source,
-            'orders' => $this->orders,
-            'vouchers' => $this->vouchers,
-            'apply_voucher' => $this->apply_voucher,
-            'subscriptions' => $this->subscriptions,
-            'create_subscription' => $this->create_subscription,
-            'estimate_subscription' => $this->estimate_subscription,
-            'mfa_enforcement' => $this->mfa_enforcement,
-        ];
-    }
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     */
+    private static $setters = [
+        'self' => 'setSelf',
+        'update' => 'setUpdate',
+        'delete' => 'setDelete',
+        'members' => 'setMembers',
+        'create_member' => 'setCreateMember',
+        'address' => 'setAddress',
+        'profile' => 'setProfile',
+        'payment_source' => 'setPaymentSource',
+        'orders' => 'setOrders',
+        'vouchers' => 'setVouchers',
+        'apply_voucher' => 'setApplyVoucher',
+        'subscriptions' => 'setSubscriptions',
+        'create_subscription' => 'setCreateSubscription',
+        'estimate_subscription' => 'setEstimateSubscription',
+        'mfa_enforcement' => 'setMfaEnforcement'
+    ];
 
-    public function __toString(): string
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     */
+    private static $getters = [
+        'self' => 'getSelf',
+        'update' => 'getUpdate',
+        'delete' => 'getDelete',
+        'members' => 'getMembers',
+        'create_member' => 'getCreateMember',
+        'address' => 'getAddress',
+        'profile' => 'getProfile',
+        'payment_source' => 'getPaymentSource',
+        'orders' => 'getOrders',
+        'vouchers' => 'getVouchers',
+        'apply_voucher' => 'getApplyVoucher',
+        'subscriptions' => 'getSubscriptions',
+        'create_subscription' => 'getCreateSubscription',
+        'estimate_subscription' => 'getEstimateSubscription',
+        'mfa_enforcement' => 'getMfaEnforcement'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    public static function attributeMap(): array
     {
-        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+        return self::$attributeMap;
     }
 
     /**
-     * Checks if a property is nullable
+     * Array of attributes to setter functions (for deserialization of responses)
      */
-    public static function isNullable(string $property): bool
+    public static function setters(): array
     {
-        return true; // All properties in this model are nullable
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters(): array
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     */
+    public function getModelName(): string
+    {
+        return self::$openAPIModelName;
+    }
+
+
+    /**
+     * Associative array for storing property values
+     */
+    private array $container = [];
+
+    /**
+     * Constructor
+     */
+    public function __construct(?array $data = null)
+    {
+        $this->setIfExists('self', $data ?? [], null);
+        $this->setIfExists('update', $data ?? [], null);
+        $this->setIfExists('delete', $data ?? [], null);
+        $this->setIfExists('members', $data ?? [], null);
+        $this->setIfExists('create_member', $data ?? [], null);
+        $this->setIfExists('address', $data ?? [], null);
+        $this->setIfExists('profile', $data ?? [], null);
+        $this->setIfExists('payment_source', $data ?? [], null);
+        $this->setIfExists('orders', $data ?? [], null);
+        $this->setIfExists('vouchers', $data ?? [], null);
+        $this->setIfExists('apply_voucher', $data ?? [], null);
+        $this->setIfExists('subscriptions', $data ?? [], null);
+        $this->setIfExists('create_subscription', $data ?? [], null);
+        $this->setIfExists('estimate_subscription', $data ?? [], null);
+        $this->setIfExists('mfa_enforcement', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    */
+    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
+    {
+        if (
+            self::isNullable($variableName)
+            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
+        ) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+    }
+
+    /**
+     * Show all the invalid properties with reasons.
+     */
+    public function listInvalidProperties(): array
+    {
+        $invalidProperties = [];
+
+        return $invalidProperties;
+    }
+
+    /**
+     * Validate all the properties in the model
+     * return true if all passed
+     */
+    public function valid(): bool
+    {
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets self
+     *
+     * @return \Upsun\Model\OrganizationLinksSelf|null
+     */
+    public function getSelf()
+    {
+        return $this->container['self'];
+    }
+
+    /**
+     * Sets self
+     */
+    public function setSelf($self)
+    {
+        if (is_null($self)) {
+            throw new \InvalidArgumentException('non-nullable self cannot be null');
+        }
+        $this->container['self'] = $self;
+
+        return $this;
+    }
+
+    /**
+     * Gets update
+     *
+     * @return \Upsun\Model\OrganizationLinksUpdate|null
+     */
+    public function getUpdate()
+    {
+        return $this->container['update'];
+    }
+
+    /**
+     * Sets update
+     */
+    public function setUpdate($update)
+    {
+        if (is_null($update)) {
+            throw new \InvalidArgumentException('non-nullable update cannot be null');
+        }
+        $this->container['update'] = $update;
+
+        return $this;
+    }
+
+    /**
+     * Gets delete
+     *
+     * @return \Upsun\Model\OrganizationLinksDelete|null
+     */
+    public function getDelete()
+    {
+        return $this->container['delete'];
+    }
+
+    /**
+     * Sets delete
+     */
+    public function setDelete($delete)
+    {
+        if (is_null($delete)) {
+            throw new \InvalidArgumentException('non-nullable delete cannot be null');
+        }
+        $this->container['delete'] = $delete;
+
+        return $this;
+    }
+
+    /**
+     * Gets members
+     *
+     * @return \Upsun\Model\OrganizationLinksMembers|null
+     */
+    public function getMembers()
+    {
+        return $this->container['members'];
+    }
+
+    /**
+     * Sets members
+     */
+    public function setMembers($members)
+    {
+        if (is_null($members)) {
+            throw new \InvalidArgumentException('non-nullable members cannot be null');
+        }
+        $this->container['members'] = $members;
+
+        return $this;
+    }
+
+    /**
+     * Gets create_member
+     *
+     * @return \Upsun\Model\OrganizationLinksCreateMember|null
+     */
+    public function getCreateMember()
+    {
+        return $this->container['create_member'];
+    }
+
+    /**
+     * Sets create_member
+     */
+    public function setCreateMember($create_member)
+    {
+        if (is_null($create_member)) {
+            throw new \InvalidArgumentException('non-nullable create_member cannot be null');
+        }
+        $this->container['create_member'] = $create_member;
+
+        return $this;
+    }
+
+    /**
+     * Gets address
+     *
+     * @return \Upsun\Model\OrganizationLinksAddress|null
+     */
+    public function getAddress()
+    {
+        return $this->container['address'];
+    }
+
+    /**
+     * Sets address
+     */
+    public function setAddress($address)
+    {
+        if (is_null($address)) {
+            throw new \InvalidArgumentException('non-nullable address cannot be null');
+        }
+        $this->container['address'] = $address;
+
+        return $this;
+    }
+
+    /**
+     * Gets profile
+     *
+     * @return \Upsun\Model\OrganizationLinksProfile|null
+     */
+    public function getProfile()
+    {
+        return $this->container['profile'];
+    }
+
+    /**
+     * Sets profile
+     */
+    public function setProfile($profile)
+    {
+        if (is_null($profile)) {
+            throw new \InvalidArgumentException('non-nullable profile cannot be null');
+        }
+        $this->container['profile'] = $profile;
+
+        return $this;
+    }
+
+    /**
+     * Gets payment_source
+     *
+     * @return \Upsun\Model\OrganizationLinksPaymentSource|null
+     */
+    public function getPaymentSource()
+    {
+        return $this->container['payment_source'];
+    }
+
+    /**
+     * Sets payment_source
+     */
+    public function setPaymentSource($payment_source)
+    {
+        if (is_null($payment_source)) {
+            throw new \InvalidArgumentException('non-nullable payment_source cannot be null');
+        }
+        $this->container['payment_source'] = $payment_source;
+
+        return $this;
+    }
+
+    /**
+     * Gets orders
+     *
+     * @return \Upsun\Model\OrganizationLinksOrders|null
+     */
+    public function getOrders()
+    {
+        return $this->container['orders'];
+    }
+
+    /**
+     * Sets orders
+     */
+    public function setOrders($orders)
+    {
+        if (is_null($orders)) {
+            throw new \InvalidArgumentException('non-nullable orders cannot be null');
+        }
+        $this->container['orders'] = $orders;
+
+        return $this;
+    }
+
+    /**
+     * Gets vouchers
+     *
+     * @return \Upsun\Model\OrganizationLinksVouchers|null
+     */
+    public function getVouchers()
+    {
+        return $this->container['vouchers'];
+    }
+
+    /**
+     * Sets vouchers
+     */
+    public function setVouchers($vouchers)
+    {
+        if (is_null($vouchers)) {
+            throw new \InvalidArgumentException('non-nullable vouchers cannot be null');
+        }
+        $this->container['vouchers'] = $vouchers;
+
+        return $this;
+    }
+
+    /**
+     * Gets apply_voucher
+     *
+     * @return \Upsun\Model\OrganizationLinksApplyVoucher|null
+     */
+    public function getApplyVoucher()
+    {
+        return $this->container['apply_voucher'];
+    }
+
+    /**
+     * Sets apply_voucher
+     */
+    public function setApplyVoucher($apply_voucher)
+    {
+        if (is_null($apply_voucher)) {
+            throw new \InvalidArgumentException('non-nullable apply_voucher cannot be null');
+        }
+        $this->container['apply_voucher'] = $apply_voucher;
+
+        return $this;
+    }
+
+    /**
+     * Gets subscriptions
+     *
+     * @return \Upsun\Model\OrganizationLinksSubscriptions|null
+     */
+    public function getSubscriptions()
+    {
+        return $this->container['subscriptions'];
+    }
+
+    /**
+     * Sets subscriptions
+     */
+    public function setSubscriptions($subscriptions)
+    {
+        if (is_null($subscriptions)) {
+            throw new \InvalidArgumentException('non-nullable subscriptions cannot be null');
+        }
+        $this->container['subscriptions'] = $subscriptions;
+
+        return $this;
+    }
+
+    /**
+     * Gets create_subscription
+     *
+     * @return \Upsun\Model\OrganizationLinksCreateSubscription|null
+     */
+    public function getCreateSubscription()
+    {
+        return $this->container['create_subscription'];
+    }
+
+    /**
+     * Sets create_subscription
+     */
+    public function setCreateSubscription($create_subscription)
+    {
+        if (is_null($create_subscription)) {
+            throw new \InvalidArgumentException('non-nullable create_subscription cannot be null');
+        }
+        $this->container['create_subscription'] = $create_subscription;
+
+        return $this;
+    }
+
+    /**
+     * Gets estimate_subscription
+     *
+     * @return \Upsun\Model\OrganizationLinksEstimateSubscription|null
+     */
+    public function getEstimateSubscription()
+    {
+        return $this->container['estimate_subscription'];
+    }
+
+    /**
+     * Sets estimate_subscription
+     */
+    public function setEstimateSubscription($estimate_subscription)
+    {
+        if (is_null($estimate_subscription)) {
+            throw new \InvalidArgumentException('non-nullable estimate_subscription cannot be null');
+        }
+        $this->container['estimate_subscription'] = $estimate_subscription;
+
+        return $this;
+    }
+
+    /**
+     * Gets mfa_enforcement
+     *
+     * @return \Upsun\Model\OrganizationLinksMfaEnforcement|null
+     */
+    public function getMfaEnforcement()
+    {
+        return $this->container['mfa_enforcement'];
+    }
+
+    /**
+     * Sets mfa_enforcement
+     */
+    public function setMfaEnforcement($mfa_enforcement)
+    {
+        if (is_null($mfa_enforcement)) {
+            throw new \InvalidArgumentException('non-nullable mfa_enforcement cannot be null');
+        }
+        $this->container['mfa_enforcement'] = $mfa_enforcement;
+
+        return $this;
+    }
+    /**
+     * Returns true if offset exists. False otherwise.
+     */
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->container[$offset]);
+    }
+
+    /**
+     * Gets offset.
+     */
+    #[\ReturnTypeWillChange]
+    public function offsetGet(mixed $offset)
+    {
+        return $this->container[$offset] ?? null;
+    }
+
+    /**
+     * Sets value based on offset.
+     */
+    public function offsetSet(mixed $offset = null, $value): void
+    {
+        if (is_null($offset)) {
+            $this->container[] = $value;
+        } else {
+            $this->container[$offset] = $value;
+        }
+    }
+
+    /**
+     * Unsets offset.
+     */
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->container[$offset]);
+    }
+
+    /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     */
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize(): mixed
+    {
+        return ObjectSerializer::sanitizeForSerialization($this);
+        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+    }
+
+    /**
+     * Gets the string presentation of the object
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
+
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
+        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-

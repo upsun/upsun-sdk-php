@@ -156,11 +156,122 @@ final class ProjectSettings implements JsonSerializable
     ];
 
     /**
+     * Array of nullable properties. Used for (de)serialization
+     */
+    private static array $openAPINullables = [
+        'initialize' => false,
+        'product_name' => false,
+        'product_code' => false,
+        'ui_uri_template' => false,
+        'variables_prefix' => false,
+        'bot_email' => false,
+        'application_config_file' => false,
+        'project_config_dir' => false,
+        'use_drupal_defaults' => false,
+        'use_legacy_subdomains' => false,
+        'development_service_size' => false,
+        'development_application_size' => false,
+        'enable_certificate_provisioning' => false,
+        'certificate_style' => false,
+        'certificate_renewal_activity' => false,
+        'development_domain_template' => true,
+        'enable_state_api_deployments' => false,
+        'temporary_disk_size' => true,
+        'local_disk_size' => true,
+        'cron_minimum_interval' => false,
+        'cron_maximum_jitter' => false,
+        'concurrency_limits' => false,
+        'flexible_build_cache' => false,
+        'strict_configuration' => false,
+        'has_sleepy_crons' => false,
+        'crons_in_git' => false,
+        'custom_error_template' => true,
+        'app_error_page_template' => true,
+        'environment_name_strategy' => false,
+        'data_retention' => true,
+        'enable_codesource_integration_push' => false,
+        'enforce_mfa' => false,
+        'systemd' => false,
+        'router_gen2' => false,
+        'build_resources' => false,
+        'outbound_restrictions_default_policy' => false,
+        'self_upgrade' => false,
+        'additional_hosts' => false,
+        'max_allowed_routes' => false,
+        'max_allowed_redirects_paths' => false,
+        'enable_incremental_backups' => false,
+        'sizing_api_enabled' => false,
+        'enable_cache_grace_period' => false,
+        'enable_zero_downtime_deployments' => false,
+        'enable_admin_agent' => false,
+        'certifier_url' => false,
+        'centralized_permissions' => false,
+        'glue_server_max_request_size' => false,
+        'persistent_endpoints_ssh' => false,
+        'persistent_endpoints_ssl_certificates' => false,
+        'enable_disk_health_monitoring' => false,
+        'enable_paused_environments' => false,
+        'enable_unified_configuration' => false,
+        'enable_routes_tracing' => false,
+        'image_deployment_validation' => false,
+        'support_generic_images' => false,
+        'enable_github_app_token_exchange' => false,
+        'continuous_profiling' => false,
+        'disable_agent_error_reporter' => false,
+        'requires_domain_ownership' => false
+    ];
+
+    /**
+     * If a nullable field gets set to null, insert it here
+     */
+    private array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      */
     public static function openAPITypes(): array
     {
         return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    public static function openAPIFormats(): array
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -229,148 +340,2129 @@ final class ProjectSettings implements JsonSerializable
         'disable_agent_error_reporter' => 'disable_agent_error_reporter',
         'requires_domain_ownership' => 'requires_domain_ownership'
     ];
-    
-    public function __construct(
-        public readonly object $initialize = null,
-        public readonly string $product_name = null,
-        public readonly string $product_code = null,
-        public readonly string $ui_uri_template = null,
-        public readonly string $variables_prefix = null,
-        public readonly string $bot_email = null,
-        public readonly string $application_config_file = null,
-        public readonly string $project_config_dir = null,
-        public readonly bool $use_drupal_defaults = null,
-        public readonly bool $use_legacy_subdomains = null,
-        public readonly string $development_service_size = null,
-        public readonly string $development_application_size = null,
-        public readonly bool $enable_certificate_provisioning = null,
-        public readonly string $certificate_style = null,
-        public readonly bool $certificate_renewal_activity = null,
-        public readonly string $development_domain_template = null,
-        public readonly bool $enable_state_api_deployments = null,
-        public readonly int $temporary_disk_size = null,
-        public readonly int $local_disk_size = null,
-        public readonly int $cron_minimum_interval = null,
-        public readonly int $cron_maximum_jitter = null,
-        public readonly ?array $concurrency_limits = null,
-        public readonly bool $flexible_build_cache = null,
-        public readonly bool $strict_configuration = null,
-        public readonly bool $has_sleepy_crons = null,
-        public readonly bool $crons_in_git = null,
-        public readonly string $custom_error_template = null,
-        public readonly string $app_error_page_template = null,
-        public readonly string $environment_name_strategy = null,
-        public readonly ?array $data_retention = null,
-        public readonly bool $enable_codesource_integration_push = null,
-        public readonly bool $enforce_mfa = null,
-        public readonly bool $systemd = null,
-        public readonly bool $router_gen2 = null,
-        public readonly \Upsun\Model\BuildResources1 $build_resources = null,
-        public readonly string $outbound_restrictions_default_policy = null,
-        public readonly bool $self_upgrade = null,
-        public readonly ?array $additional_hosts = null,
-        public readonly int $max_allowed_routes = null,
-        public readonly int $max_allowed_redirects_paths = null,
-        public readonly bool $enable_incremental_backups = null,
-        public readonly bool $sizing_api_enabled = null,
-        public readonly bool $enable_cache_grace_period = null,
-        public readonly bool $enable_zero_downtime_deployments = null,
-        public readonly bool $enable_admin_agent = null,
-        public readonly string $certifier_url = null,
-        public readonly bool $centralized_permissions = null,
-        public readonly int $glue_server_max_request_size = null,
-        public readonly bool $persistent_endpoints_ssh = null,
-        public readonly bool $persistent_endpoints_ssl_certificates = null,
-        public readonly bool $enable_disk_health_monitoring = null,
-        public readonly bool $enable_paused_environments = null,
-        public readonly bool $enable_unified_configuration = null,
-        public readonly bool $enable_routes_tracing = null,
-        public readonly bool $image_deployment_validation = null,
-        public readonly bool $support_generic_images = null,
-        public readonly bool $enable_github_app_token_exchange = null,
-        public readonly \Upsun\Model\TheContinuousProfilingConfiguration $continuous_profiling = null,
-        public readonly bool $disable_agent_error_reporter = null,
-        public readonly bool $requires_domain_ownership = null
-    ) {
-    }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'initialize' => $this->initialize,
-            'product_name' => $this->product_name,
-            'product_code' => $this->product_code,
-            'ui_uri_template' => $this->ui_uri_template,
-            'variables_prefix' => $this->variables_prefix,
-            'bot_email' => $this->bot_email,
-            'application_config_file' => $this->application_config_file,
-            'project_config_dir' => $this->project_config_dir,
-            'use_drupal_defaults' => $this->use_drupal_defaults,
-            'use_legacy_subdomains' => $this->use_legacy_subdomains,
-            'development_service_size' => $this->development_service_size,
-            'development_application_size' => $this->development_application_size,
-            'enable_certificate_provisioning' => $this->enable_certificate_provisioning,
-            'certificate_style' => $this->certificate_style,
-            'certificate_renewal_activity' => $this->certificate_renewal_activity,
-            'development_domain_template' => $this->development_domain_template,
-            'enable_state_api_deployments' => $this->enable_state_api_deployments,
-            'temporary_disk_size' => $this->temporary_disk_size,
-            'local_disk_size' => $this->local_disk_size,
-            'cron_minimum_interval' => $this->cron_minimum_interval,
-            'cron_maximum_jitter' => $this->cron_maximum_jitter,
-            'concurrency_limits' => $this->concurrency_limits,
-            'flexible_build_cache' => $this->flexible_build_cache,
-            'strict_configuration' => $this->strict_configuration,
-            'has_sleepy_crons' => $this->has_sleepy_crons,
-            'crons_in_git' => $this->crons_in_git,
-            'custom_error_template' => $this->custom_error_template,
-            'app_error_page_template' => $this->app_error_page_template,
-            'environment_name_strategy' => $this->environment_name_strategy,
-            'data_retention' => $this->data_retention,
-            'enable_codesource_integration_push' => $this->enable_codesource_integration_push,
-            'enforce_mfa' => $this->enforce_mfa,
-            'systemd' => $this->systemd,
-            'router_gen2' => $this->router_gen2,
-            'build_resources' => $this->build_resources,
-            'outbound_restrictions_default_policy' => $this->outbound_restrictions_default_policy,
-            'self_upgrade' => $this->self_upgrade,
-            'additional_hosts' => $this->additional_hosts,
-            'max_allowed_routes' => $this->max_allowed_routes,
-            'max_allowed_redirects_paths' => $this->max_allowed_redirects_paths,
-            'enable_incremental_backups' => $this->enable_incremental_backups,
-            'sizing_api_enabled' => $this->sizing_api_enabled,
-            'enable_cache_grace_period' => $this->enable_cache_grace_period,
-            'enable_zero_downtime_deployments' => $this->enable_zero_downtime_deployments,
-            'enable_admin_agent' => $this->enable_admin_agent,
-            'certifier_url' => $this->certifier_url,
-            'centralized_permissions' => $this->centralized_permissions,
-            'glue_server_max_request_size' => $this->glue_server_max_request_size,
-            'persistent_endpoints_ssh' => $this->persistent_endpoints_ssh,
-            'persistent_endpoints_ssl_certificates' => $this->persistent_endpoints_ssl_certificates,
-            'enable_disk_health_monitoring' => $this->enable_disk_health_monitoring,
-            'enable_paused_environments' => $this->enable_paused_environments,
-            'enable_unified_configuration' => $this->enable_unified_configuration,
-            'enable_routes_tracing' => $this->enable_routes_tracing,
-            'image_deployment_validation' => $this->image_deployment_validation,
-            'support_generic_images' => $this->support_generic_images,
-            'enable_github_app_token_exchange' => $this->enable_github_app_token_exchange,
-            'continuous_profiling' => $this->continuous_profiling,
-            'disable_agent_error_reporter' => $this->disable_agent_error_reporter,
-            'requires_domain_ownership' => $this->requires_domain_ownership,
-        ];
-    }
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     */
+    private static $setters = [
+        'initialize' => 'setInitialize',
+        'product_name' => 'setProductName',
+        'product_code' => 'setProductCode',
+        'ui_uri_template' => 'setUiUriTemplate',
+        'variables_prefix' => 'setVariablesPrefix',
+        'bot_email' => 'setBotEmail',
+        'application_config_file' => 'setApplicationConfigFile',
+        'project_config_dir' => 'setProjectConfigDir',
+        'use_drupal_defaults' => 'setUseDrupalDefaults',
+        'use_legacy_subdomains' => 'setUseLegacySubdomains',
+        'development_service_size' => 'setDevelopmentServiceSize',
+        'development_application_size' => 'setDevelopmentApplicationSize',
+        'enable_certificate_provisioning' => 'setEnableCertificateProvisioning',
+        'certificate_style' => 'setCertificateStyle',
+        'certificate_renewal_activity' => 'setCertificateRenewalActivity',
+        'development_domain_template' => 'setDevelopmentDomainTemplate',
+        'enable_state_api_deployments' => 'setEnableStateApiDeployments',
+        'temporary_disk_size' => 'setTemporaryDiskSize',
+        'local_disk_size' => 'setLocalDiskSize',
+        'cron_minimum_interval' => 'setCronMinimumInterval',
+        'cron_maximum_jitter' => 'setCronMaximumJitter',
+        'concurrency_limits' => 'setConcurrencyLimits',
+        'flexible_build_cache' => 'setFlexibleBuildCache',
+        'strict_configuration' => 'setStrictConfiguration',
+        'has_sleepy_crons' => 'setHasSleepyCrons',
+        'crons_in_git' => 'setCronsInGit',
+        'custom_error_template' => 'setCustomErrorTemplate',
+        'app_error_page_template' => 'setAppErrorPageTemplate',
+        'environment_name_strategy' => 'setEnvironmentNameStrategy',
+        'data_retention' => 'setDataRetention',
+        'enable_codesource_integration_push' => 'setEnableCodesourceIntegrationPush',
+        'enforce_mfa' => 'setEnforceMfa',
+        'systemd' => 'setSystemd',
+        'router_gen2' => 'setRouterGen2',
+        'build_resources' => 'setBuildResources',
+        'outbound_restrictions_default_policy' => 'setOutboundRestrictionsDefaultPolicy',
+        'self_upgrade' => 'setSelfUpgrade',
+        'additional_hosts' => 'setAdditionalHosts',
+        'max_allowed_routes' => 'setMaxAllowedRoutes',
+        'max_allowed_redirects_paths' => 'setMaxAllowedRedirectsPaths',
+        'enable_incremental_backups' => 'setEnableIncrementalBackups',
+        'sizing_api_enabled' => 'setSizingApiEnabled',
+        'enable_cache_grace_period' => 'setEnableCacheGracePeriod',
+        'enable_zero_downtime_deployments' => 'setEnableZeroDowntimeDeployments',
+        'enable_admin_agent' => 'setEnableAdminAgent',
+        'certifier_url' => 'setCertifierUrl',
+        'centralized_permissions' => 'setCentralizedPermissions',
+        'glue_server_max_request_size' => 'setGlueServerMaxRequestSize',
+        'persistent_endpoints_ssh' => 'setPersistentEndpointsSsh',
+        'persistent_endpoints_ssl_certificates' => 'setPersistentEndpointsSslCertificates',
+        'enable_disk_health_monitoring' => 'setEnableDiskHealthMonitoring',
+        'enable_paused_environments' => 'setEnablePausedEnvironments',
+        'enable_unified_configuration' => 'setEnableUnifiedConfiguration',
+        'enable_routes_tracing' => 'setEnableRoutesTracing',
+        'image_deployment_validation' => 'setImageDeploymentValidation',
+        'support_generic_images' => 'setSupportGenericImages',
+        'enable_github_app_token_exchange' => 'setEnableGithubAppTokenExchange',
+        'continuous_profiling' => 'setContinuousProfiling',
+        'disable_agent_error_reporter' => 'setDisableAgentErrorReporter',
+        'requires_domain_ownership' => 'setRequiresDomainOwnership'
+    ];
 
-    public function __toString(): string
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     */
+    private static $getters = [
+        'initialize' => 'getInitialize',
+        'product_name' => 'getProductName',
+        'product_code' => 'getProductCode',
+        'ui_uri_template' => 'getUiUriTemplate',
+        'variables_prefix' => 'getVariablesPrefix',
+        'bot_email' => 'getBotEmail',
+        'application_config_file' => 'getApplicationConfigFile',
+        'project_config_dir' => 'getProjectConfigDir',
+        'use_drupal_defaults' => 'getUseDrupalDefaults',
+        'use_legacy_subdomains' => 'getUseLegacySubdomains',
+        'development_service_size' => 'getDevelopmentServiceSize',
+        'development_application_size' => 'getDevelopmentApplicationSize',
+        'enable_certificate_provisioning' => 'getEnableCertificateProvisioning',
+        'certificate_style' => 'getCertificateStyle',
+        'certificate_renewal_activity' => 'getCertificateRenewalActivity',
+        'development_domain_template' => 'getDevelopmentDomainTemplate',
+        'enable_state_api_deployments' => 'getEnableStateApiDeployments',
+        'temporary_disk_size' => 'getTemporaryDiskSize',
+        'local_disk_size' => 'getLocalDiskSize',
+        'cron_minimum_interval' => 'getCronMinimumInterval',
+        'cron_maximum_jitter' => 'getCronMaximumJitter',
+        'concurrency_limits' => 'getConcurrencyLimits',
+        'flexible_build_cache' => 'getFlexibleBuildCache',
+        'strict_configuration' => 'getStrictConfiguration',
+        'has_sleepy_crons' => 'getHasSleepyCrons',
+        'crons_in_git' => 'getCronsInGit',
+        'custom_error_template' => 'getCustomErrorTemplate',
+        'app_error_page_template' => 'getAppErrorPageTemplate',
+        'environment_name_strategy' => 'getEnvironmentNameStrategy',
+        'data_retention' => 'getDataRetention',
+        'enable_codesource_integration_push' => 'getEnableCodesourceIntegrationPush',
+        'enforce_mfa' => 'getEnforceMfa',
+        'systemd' => 'getSystemd',
+        'router_gen2' => 'getRouterGen2',
+        'build_resources' => 'getBuildResources',
+        'outbound_restrictions_default_policy' => 'getOutboundRestrictionsDefaultPolicy',
+        'self_upgrade' => 'getSelfUpgrade',
+        'additional_hosts' => 'getAdditionalHosts',
+        'max_allowed_routes' => 'getMaxAllowedRoutes',
+        'max_allowed_redirects_paths' => 'getMaxAllowedRedirectsPaths',
+        'enable_incremental_backups' => 'getEnableIncrementalBackups',
+        'sizing_api_enabled' => 'getSizingApiEnabled',
+        'enable_cache_grace_period' => 'getEnableCacheGracePeriod',
+        'enable_zero_downtime_deployments' => 'getEnableZeroDowntimeDeployments',
+        'enable_admin_agent' => 'getEnableAdminAgent',
+        'certifier_url' => 'getCertifierUrl',
+        'centralized_permissions' => 'getCentralizedPermissions',
+        'glue_server_max_request_size' => 'getGlueServerMaxRequestSize',
+        'persistent_endpoints_ssh' => 'getPersistentEndpointsSsh',
+        'persistent_endpoints_ssl_certificates' => 'getPersistentEndpointsSslCertificates',
+        'enable_disk_health_monitoring' => 'getEnableDiskHealthMonitoring',
+        'enable_paused_environments' => 'getEnablePausedEnvironments',
+        'enable_unified_configuration' => 'getEnableUnifiedConfiguration',
+        'enable_routes_tracing' => 'getEnableRoutesTracing',
+        'image_deployment_validation' => 'getImageDeploymentValidation',
+        'support_generic_images' => 'getSupportGenericImages',
+        'enable_github_app_token_exchange' => 'getEnableGithubAppTokenExchange',
+        'continuous_profiling' => 'getContinuousProfiling',
+        'disable_agent_error_reporter' => 'getDisableAgentErrorReporter',
+        'requires_domain_ownership' => 'getRequiresDomainOwnership'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    public static function attributeMap(): array
     {
-        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+        return self::$attributeMap;
     }
 
     /**
-     * Checks if a property is nullable
+     * Array of attributes to setter functions (for deserialization of responses)
      */
-    public static function isNullable(string $property): bool
+    public static function setters(): array
     {
-        return true; // All properties in this model are nullable
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters(): array
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     */
+    public function getModelName(): string
+    {
+        return self::$openAPIModelName;
+    }
+
+    public const DEVELOPMENT_SERVICE_SIZE__2_XL = '2XL';
+    public const DEVELOPMENT_SERVICE_SIZE__4_XL = '4XL';
+    public const DEVELOPMENT_SERVICE_SIZE_L = 'L';
+    public const DEVELOPMENT_SERVICE_SIZE_M = 'M';
+    public const DEVELOPMENT_SERVICE_SIZE_S = 'S';
+    public const DEVELOPMENT_SERVICE_SIZE_XL = 'XL';
+    public const DEVELOPMENT_APPLICATION_SIZE__2_XL = '2XL';
+    public const DEVELOPMENT_APPLICATION_SIZE__4_XL = '4XL';
+    public const DEVELOPMENT_APPLICATION_SIZE_L = 'L';
+    public const DEVELOPMENT_APPLICATION_SIZE_M = 'M';
+    public const DEVELOPMENT_APPLICATION_SIZE_S = 'S';
+    public const DEVELOPMENT_APPLICATION_SIZE_XL = 'XL';
+    public const CERTIFICATE_STYLE_ECDSA = 'ecdsa';
+    public const CERTIFICATE_STYLE_RSA = 'rsa';
+    public const ENVIRONMENT_NAME_STRATEGY_HASH = 'hash';
+    public const ENVIRONMENT_NAME_STRATEGY_NAME_AND_HASH = 'name-and-hash';
+    public const OUTBOUND_RESTRICTIONS_DEFAULT_POLICY_ALLOW = 'allow';
+    public const OUTBOUND_RESTRICTIONS_DEFAULT_POLICY_DENY = 'deny';
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getDevelopmentServiceSizeAllowableValues(): array
+    {
+        return [
+            self::DEVELOPMENT_SERVICE_SIZE__2_XL,
+            self::DEVELOPMENT_SERVICE_SIZE__4_XL,
+            self::DEVELOPMENT_SERVICE_SIZE_L,
+            self::DEVELOPMENT_SERVICE_SIZE_M,
+            self::DEVELOPMENT_SERVICE_SIZE_S,
+            self::DEVELOPMENT_SERVICE_SIZE_XL,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getDevelopmentApplicationSizeAllowableValues(): array
+    {
+        return [
+            self::DEVELOPMENT_APPLICATION_SIZE__2_XL,
+            self::DEVELOPMENT_APPLICATION_SIZE__4_XL,
+            self::DEVELOPMENT_APPLICATION_SIZE_L,
+            self::DEVELOPMENT_APPLICATION_SIZE_M,
+            self::DEVELOPMENT_APPLICATION_SIZE_S,
+            self::DEVELOPMENT_APPLICATION_SIZE_XL,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getCertificateStyleAllowableValues(): array
+    {
+        return [
+            self::CERTIFICATE_STYLE_ECDSA,
+            self::CERTIFICATE_STYLE_RSA,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getEnvironmentNameStrategyAllowableValues(): array
+    {
+        return [
+            self::ENVIRONMENT_NAME_STRATEGY_HASH,
+            self::ENVIRONMENT_NAME_STRATEGY_NAME_AND_HASH,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getOutboundRestrictionsDefaultPolicyAllowableValues(): array
+    {
+        return [
+            self::OUTBOUND_RESTRICTIONS_DEFAULT_POLICY_ALLOW,
+            self::OUTBOUND_RESTRICTIONS_DEFAULT_POLICY_DENY,
+        ];
+    }
+
+    /**
+     * Associative array for storing property values
+     */
+    private array $container = [];
+
+    /**
+     * Constructor
+     */
+    public function __construct(?array $data = null)
+    {
+        $this->setIfExists('initialize', $data ?? [], null);
+        $this->setIfExists('product_name', $data ?? [], null);
+        $this->setIfExists('product_code', $data ?? [], null);
+        $this->setIfExists('ui_uri_template', $data ?? [], null);
+        $this->setIfExists('variables_prefix', $data ?? [], null);
+        $this->setIfExists('bot_email', $data ?? [], null);
+        $this->setIfExists('application_config_file', $data ?? [], null);
+        $this->setIfExists('project_config_dir', $data ?? [], null);
+        $this->setIfExists('use_drupal_defaults', $data ?? [], null);
+        $this->setIfExists('use_legacy_subdomains', $data ?? [], null);
+        $this->setIfExists('development_service_size', $data ?? [], null);
+        $this->setIfExists('development_application_size', $data ?? [], null);
+        $this->setIfExists('enable_certificate_provisioning', $data ?? [], null);
+        $this->setIfExists('certificate_style', $data ?? [], null);
+        $this->setIfExists('certificate_renewal_activity', $data ?? [], null);
+        $this->setIfExists('development_domain_template', $data ?? [], null);
+        $this->setIfExists('enable_state_api_deployments', $data ?? [], null);
+        $this->setIfExists('temporary_disk_size', $data ?? [], null);
+        $this->setIfExists('local_disk_size', $data ?? [], null);
+        $this->setIfExists('cron_minimum_interval', $data ?? [], null);
+        $this->setIfExists('cron_maximum_jitter', $data ?? [], null);
+        $this->setIfExists('concurrency_limits', $data ?? [], null);
+        $this->setIfExists('flexible_build_cache', $data ?? [], null);
+        $this->setIfExists('strict_configuration', $data ?? [], null);
+        $this->setIfExists('has_sleepy_crons', $data ?? [], null);
+        $this->setIfExists('crons_in_git', $data ?? [], null);
+        $this->setIfExists('custom_error_template', $data ?? [], null);
+        $this->setIfExists('app_error_page_template', $data ?? [], null);
+        $this->setIfExists('environment_name_strategy', $data ?? [], null);
+        $this->setIfExists('data_retention', $data ?? [], null);
+        $this->setIfExists('enable_codesource_integration_push', $data ?? [], null);
+        $this->setIfExists('enforce_mfa', $data ?? [], null);
+        $this->setIfExists('systemd', $data ?? [], null);
+        $this->setIfExists('router_gen2', $data ?? [], null);
+        $this->setIfExists('build_resources', $data ?? [], null);
+        $this->setIfExists('outbound_restrictions_default_policy', $data ?? [], null);
+        $this->setIfExists('self_upgrade', $data ?? [], null);
+        $this->setIfExists('additional_hosts', $data ?? [], null);
+        $this->setIfExists('max_allowed_routes', $data ?? [], null);
+        $this->setIfExists('max_allowed_redirects_paths', $data ?? [], null);
+        $this->setIfExists('enable_incremental_backups', $data ?? [], null);
+        $this->setIfExists('sizing_api_enabled', $data ?? [], null);
+        $this->setIfExists('enable_cache_grace_period', $data ?? [], null);
+        $this->setIfExists('enable_zero_downtime_deployments', $data ?? [], null);
+        $this->setIfExists('enable_admin_agent', $data ?? [], null);
+        $this->setIfExists('certifier_url', $data ?? [], null);
+        $this->setIfExists('centralized_permissions', $data ?? [], null);
+        $this->setIfExists('glue_server_max_request_size', $data ?? [], null);
+        $this->setIfExists('persistent_endpoints_ssh', $data ?? [], null);
+        $this->setIfExists('persistent_endpoints_ssl_certificates', $data ?? [], null);
+        $this->setIfExists('enable_disk_health_monitoring', $data ?? [], null);
+        $this->setIfExists('enable_paused_environments', $data ?? [], null);
+        $this->setIfExists('enable_unified_configuration', $data ?? [], null);
+        $this->setIfExists('enable_routes_tracing', $data ?? [], null);
+        $this->setIfExists('image_deployment_validation', $data ?? [], null);
+        $this->setIfExists('support_generic_images', $data ?? [], null);
+        $this->setIfExists('enable_github_app_token_exchange', $data ?? [], null);
+        $this->setIfExists('continuous_profiling', $data ?? [], null);
+        $this->setIfExists('disable_agent_error_reporter', $data ?? [], null);
+        $this->setIfExists('requires_domain_ownership', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    */
+    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
+    {
+        if (
+            self::isNullable($variableName)
+            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
+        ) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+    }
+
+    /**
+     * Show all the invalid properties with reasons.
+     */
+    public function listInvalidProperties(): array
+    {
+        $invalidProperties = [];
+
+        if ($this->container['initialize'] === null) {
+            $invalidProperties[] = "'initialize' can't be null";
+        }
+        if ($this->container['product_name'] === null) {
+            $invalidProperties[] = "'product_name' can't be null";
+        }
+        if ($this->container['product_code'] === null) {
+            $invalidProperties[] = "'product_code' can't be null";
+        }
+        if ($this->container['ui_uri_template'] === null) {
+            $invalidProperties[] = "'ui_uri_template' can't be null";
+        }
+        if ($this->container['variables_prefix'] === null) {
+            $invalidProperties[] = "'variables_prefix' can't be null";
+        }
+        if ($this->container['bot_email'] === null) {
+            $invalidProperties[] = "'bot_email' can't be null";
+        }
+        if ($this->container['application_config_file'] === null) {
+            $invalidProperties[] = "'application_config_file' can't be null";
+        }
+        if ($this->container['project_config_dir'] === null) {
+            $invalidProperties[] = "'project_config_dir' can't be null";
+        }
+        if ($this->container['use_drupal_defaults'] === null) {
+            $invalidProperties[] = "'use_drupal_defaults' can't be null";
+        }
+        if ($this->container['use_legacy_subdomains'] === null) {
+            $invalidProperties[] = "'use_legacy_subdomains' can't be null";
+        }
+        if ($this->container['development_service_size'] === null) {
+            $invalidProperties[] = "'development_service_size' can't be null";
+        }
+        $allowedValues = $this->getDevelopmentServiceSizeAllowableValues();
+        if (!is_null($this->container['development_service_size']) && !in_array($this->container['development_service_size'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'development_service_size', must be one of '%s'",
+                $this->container['development_service_size'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['development_application_size'] === null) {
+            $invalidProperties[] = "'development_application_size' can't be null";
+        }
+        $allowedValues = $this->getDevelopmentApplicationSizeAllowableValues();
+        if (!is_null($this->container['development_application_size']) && !in_array($this->container['development_application_size'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'development_application_size', must be one of '%s'",
+                $this->container['development_application_size'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['enable_certificate_provisioning'] === null) {
+            $invalidProperties[] = "'enable_certificate_provisioning' can't be null";
+        }
+        if ($this->container['certificate_style'] === null) {
+            $invalidProperties[] = "'certificate_style' can't be null";
+        }
+        $allowedValues = $this->getCertificateStyleAllowableValues();
+        if (!is_null($this->container['certificate_style']) && !in_array($this->container['certificate_style'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'certificate_style', must be one of '%s'",
+                $this->container['certificate_style'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['certificate_renewal_activity'] === null) {
+            $invalidProperties[] = "'certificate_renewal_activity' can't be null";
+        }
+        if ($this->container['development_domain_template'] === null) {
+            $invalidProperties[] = "'development_domain_template' can't be null";
+        }
+        if ($this->container['enable_state_api_deployments'] === null) {
+            $invalidProperties[] = "'enable_state_api_deployments' can't be null";
+        }
+        if ($this->container['temporary_disk_size'] === null) {
+            $invalidProperties[] = "'temporary_disk_size' can't be null";
+        }
+        if ($this->container['local_disk_size'] === null) {
+            $invalidProperties[] = "'local_disk_size' can't be null";
+        }
+        if ($this->container['cron_minimum_interval'] === null) {
+            $invalidProperties[] = "'cron_minimum_interval' can't be null";
+        }
+        if ($this->container['cron_maximum_jitter'] === null) {
+            $invalidProperties[] = "'cron_maximum_jitter' can't be null";
+        }
+        if ($this->container['concurrency_limits'] === null) {
+            $invalidProperties[] = "'concurrency_limits' can't be null";
+        }
+        if ($this->container['flexible_build_cache'] === null) {
+            $invalidProperties[] = "'flexible_build_cache' can't be null";
+        }
+        if ($this->container['strict_configuration'] === null) {
+            $invalidProperties[] = "'strict_configuration' can't be null";
+        }
+        if ($this->container['has_sleepy_crons'] === null) {
+            $invalidProperties[] = "'has_sleepy_crons' can't be null";
+        }
+        if ($this->container['crons_in_git'] === null) {
+            $invalidProperties[] = "'crons_in_git' can't be null";
+        }
+        if ($this->container['custom_error_template'] === null) {
+            $invalidProperties[] = "'custom_error_template' can't be null";
+        }
+        if ($this->container['app_error_page_template'] === null) {
+            $invalidProperties[] = "'app_error_page_template' can't be null";
+        }
+        if ($this->container['environment_name_strategy'] === null) {
+            $invalidProperties[] = "'environment_name_strategy' can't be null";
+        }
+        $allowedValues = $this->getEnvironmentNameStrategyAllowableValues();
+        if (!is_null($this->container['environment_name_strategy']) && !in_array($this->container['environment_name_strategy'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'environment_name_strategy', must be one of '%s'",
+                $this->container['environment_name_strategy'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['data_retention'] === null) {
+            $invalidProperties[] = "'data_retention' can't be null";
+        }
+        if ($this->container['enable_codesource_integration_push'] === null) {
+            $invalidProperties[] = "'enable_codesource_integration_push' can't be null";
+        }
+        if ($this->container['enforce_mfa'] === null) {
+            $invalidProperties[] = "'enforce_mfa' can't be null";
+        }
+        if ($this->container['systemd'] === null) {
+            $invalidProperties[] = "'systemd' can't be null";
+        }
+        if ($this->container['router_gen2'] === null) {
+            $invalidProperties[] = "'router_gen2' can't be null";
+        }
+        if ($this->container['build_resources'] === null) {
+            $invalidProperties[] = "'build_resources' can't be null";
+        }
+        if ($this->container['outbound_restrictions_default_policy'] === null) {
+            $invalidProperties[] = "'outbound_restrictions_default_policy' can't be null";
+        }
+        $allowedValues = $this->getOutboundRestrictionsDefaultPolicyAllowableValues();
+        if (!is_null($this->container['outbound_restrictions_default_policy']) && !in_array($this->container['outbound_restrictions_default_policy'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'outbound_restrictions_default_policy', must be one of '%s'",
+                $this->container['outbound_restrictions_default_policy'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['self_upgrade'] === null) {
+            $invalidProperties[] = "'self_upgrade' can't be null";
+        }
+        if ($this->container['additional_hosts'] === null) {
+            $invalidProperties[] = "'additional_hosts' can't be null";
+        }
+        if ($this->container['max_allowed_routes'] === null) {
+            $invalidProperties[] = "'max_allowed_routes' can't be null";
+        }
+        if ($this->container['max_allowed_redirects_paths'] === null) {
+            $invalidProperties[] = "'max_allowed_redirects_paths' can't be null";
+        }
+        if ($this->container['enable_incremental_backups'] === null) {
+            $invalidProperties[] = "'enable_incremental_backups' can't be null";
+        }
+        if ($this->container['sizing_api_enabled'] === null) {
+            $invalidProperties[] = "'sizing_api_enabled' can't be null";
+        }
+        if ($this->container['enable_cache_grace_period'] === null) {
+            $invalidProperties[] = "'enable_cache_grace_period' can't be null";
+        }
+        if ($this->container['enable_zero_downtime_deployments'] === null) {
+            $invalidProperties[] = "'enable_zero_downtime_deployments' can't be null";
+        }
+        if ($this->container['enable_admin_agent'] === null) {
+            $invalidProperties[] = "'enable_admin_agent' can't be null";
+        }
+        if ($this->container['certifier_url'] === null) {
+            $invalidProperties[] = "'certifier_url' can't be null";
+        }
+        if ($this->container['centralized_permissions'] === null) {
+            $invalidProperties[] = "'centralized_permissions' can't be null";
+        }
+        if ($this->container['glue_server_max_request_size'] === null) {
+            $invalidProperties[] = "'glue_server_max_request_size' can't be null";
+        }
+        if ($this->container['persistent_endpoints_ssh'] === null) {
+            $invalidProperties[] = "'persistent_endpoints_ssh' can't be null";
+        }
+        if ($this->container['persistent_endpoints_ssl_certificates'] === null) {
+            $invalidProperties[] = "'persistent_endpoints_ssl_certificates' can't be null";
+        }
+        if ($this->container['enable_disk_health_monitoring'] === null) {
+            $invalidProperties[] = "'enable_disk_health_monitoring' can't be null";
+        }
+        if ($this->container['enable_paused_environments'] === null) {
+            $invalidProperties[] = "'enable_paused_environments' can't be null";
+        }
+        if ($this->container['enable_unified_configuration'] === null) {
+            $invalidProperties[] = "'enable_unified_configuration' can't be null";
+        }
+        if ($this->container['enable_routes_tracing'] === null) {
+            $invalidProperties[] = "'enable_routes_tracing' can't be null";
+        }
+        if ($this->container['image_deployment_validation'] === null) {
+            $invalidProperties[] = "'image_deployment_validation' can't be null";
+        }
+        if ($this->container['support_generic_images'] === null) {
+            $invalidProperties[] = "'support_generic_images' can't be null";
+        }
+        if ($this->container['enable_github_app_token_exchange'] === null) {
+            $invalidProperties[] = "'enable_github_app_token_exchange' can't be null";
+        }
+        if ($this->container['continuous_profiling'] === null) {
+            $invalidProperties[] = "'continuous_profiling' can't be null";
+        }
+        if ($this->container['disable_agent_error_reporter'] === null) {
+            $invalidProperties[] = "'disable_agent_error_reporter' can't be null";
+        }
+        if ($this->container['requires_domain_ownership'] === null) {
+            $invalidProperties[] = "'requires_domain_ownership' can't be null";
+        }
+        return $invalidProperties;
+    }
+
+    /**
+     * Validate all the properties in the model
+     * return true if all passed
+     */
+    public function valid(): bool
+    {
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets initialize
+     *
+     * @return object
+     */
+    public function getInitialize()
+    {
+        return $this->container['initialize'];
+    }
+
+    /**
+     * Sets initialize
+     */
+    public function setInitialize($initialize)
+    {
+        if (is_null($initialize)) {
+            throw new \InvalidArgumentException('non-nullable initialize cannot be null');
+        }
+        $this->container['initialize'] = $initialize;
+
+        return $this;
+    }
+
+    /**
+     * Gets product_name
+     *
+     * @return string
+     */
+    public function getProductName()
+    {
+        return $this->container['product_name'];
+    }
+
+    /**
+     * Sets product_name
+     */
+    public function setProductName($product_name)
+    {
+        if (is_null($product_name)) {
+            throw new \InvalidArgumentException('non-nullable product_name cannot be null');
+        }
+        $this->container['product_name'] = $product_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets product_code
+     *
+     * @return string
+     */
+    public function getProductCode()
+    {
+        return $this->container['product_code'];
+    }
+
+    /**
+     * Sets product_code
+     */
+    public function setProductCode($product_code)
+    {
+        if (is_null($product_code)) {
+            throw new \InvalidArgumentException('non-nullable product_code cannot be null');
+        }
+        $this->container['product_code'] = $product_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets ui_uri_template
+     *
+     * @return string
+     */
+    public function getUiUriTemplate()
+    {
+        return $this->container['ui_uri_template'];
+    }
+
+    /**
+     * Sets ui_uri_template
+     */
+    public function setUiUriTemplate($ui_uri_template)
+    {
+        if (is_null($ui_uri_template)) {
+            throw new \InvalidArgumentException('non-nullable ui_uri_template cannot be null');
+        }
+        $this->container['ui_uri_template'] = $ui_uri_template;
+
+        return $this;
+    }
+
+    /**
+     * Gets variables_prefix
+     *
+     * @return string
+     */
+    public function getVariablesPrefix()
+    {
+        return $this->container['variables_prefix'];
+    }
+
+    /**
+     * Sets variables_prefix
+     */
+    public function setVariablesPrefix($variables_prefix)
+    {
+        if (is_null($variables_prefix)) {
+            throw new \InvalidArgumentException('non-nullable variables_prefix cannot be null');
+        }
+        $this->container['variables_prefix'] = $variables_prefix;
+
+        return $this;
+    }
+
+    /**
+     * Gets bot_email
+     *
+     * @return string
+     */
+    public function getBotEmail()
+    {
+        return $this->container['bot_email'];
+    }
+
+    /**
+     * Sets bot_email
+     */
+    public function setBotEmail($bot_email)
+    {
+        if (is_null($bot_email)) {
+            throw new \InvalidArgumentException('non-nullable bot_email cannot be null');
+        }
+        $this->container['bot_email'] = $bot_email;
+
+        return $this;
+    }
+
+    /**
+     * Gets application_config_file
+     *
+     * @return string
+     */
+    public function getApplicationConfigFile()
+    {
+        return $this->container['application_config_file'];
+    }
+
+    /**
+     * Sets application_config_file
+     */
+    public function setApplicationConfigFile($application_config_file)
+    {
+        if (is_null($application_config_file)) {
+            throw new \InvalidArgumentException('non-nullable application_config_file cannot be null');
+        }
+        $this->container['application_config_file'] = $application_config_file;
+
+        return $this;
+    }
+
+    /**
+     * Gets project_config_dir
+     *
+     * @return string
+     */
+    public function getProjectConfigDir()
+    {
+        return $this->container['project_config_dir'];
+    }
+
+    /**
+     * Sets project_config_dir
+     */
+    public function setProjectConfigDir($project_config_dir)
+    {
+        if (is_null($project_config_dir)) {
+            throw new \InvalidArgumentException('non-nullable project_config_dir cannot be null');
+        }
+        $this->container['project_config_dir'] = $project_config_dir;
+
+        return $this;
+    }
+
+    /**
+     * Gets use_drupal_defaults
+     *
+     * @return bool
+     */
+    public function getUseDrupalDefaults()
+    {
+        return $this->container['use_drupal_defaults'];
+    }
+
+    /**
+     * Sets use_drupal_defaults
+     */
+    public function setUseDrupalDefaults($use_drupal_defaults)
+    {
+        if (is_null($use_drupal_defaults)) {
+            throw new \InvalidArgumentException('non-nullable use_drupal_defaults cannot be null');
+        }
+        $this->container['use_drupal_defaults'] = $use_drupal_defaults;
+
+        return $this;
+    }
+
+    /**
+     * Gets use_legacy_subdomains
+     *
+     * @return bool
+     */
+    public function getUseLegacySubdomains()
+    {
+        return $this->container['use_legacy_subdomains'];
+    }
+
+    /**
+     * Sets use_legacy_subdomains
+     */
+    public function setUseLegacySubdomains($use_legacy_subdomains)
+    {
+        if (is_null($use_legacy_subdomains)) {
+            throw new \InvalidArgumentException('non-nullable use_legacy_subdomains cannot be null');
+        }
+        $this->container['use_legacy_subdomains'] = $use_legacy_subdomains;
+
+        return $this;
+    }
+
+    /**
+     * Gets development_service_size
+     *
+     * @return string
+     */
+    public function getDevelopmentServiceSize()
+    {
+        return $this->container['development_service_size'];
+    }
+
+    /**
+     * Sets development_service_size
+     */
+    public function setDevelopmentServiceSize($development_service_size)
+    {
+        if (is_null($development_service_size)) {
+            throw new \InvalidArgumentException('non-nullable development_service_size cannot be null');
+        }
+        $allowedValues = $this->getDevelopmentServiceSizeAllowableValues();
+        if (!in_array($development_service_size, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'development_service_size', must be one of '%s'",
+                    $development_service_size,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['development_service_size'] = $development_service_size;
+
+        return $this;
+    }
+
+    /**
+     * Gets development_application_size
+     *
+     * @return string
+     */
+    public function getDevelopmentApplicationSize()
+    {
+        return $this->container['development_application_size'];
+    }
+
+    /**
+     * Sets development_application_size
+     */
+    public function setDevelopmentApplicationSize($development_application_size)
+    {
+        if (is_null($development_application_size)) {
+            throw new \InvalidArgumentException('non-nullable development_application_size cannot be null');
+        }
+        $allowedValues = $this->getDevelopmentApplicationSizeAllowableValues();
+        if (!in_array($development_application_size, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'development_application_size', must be one of '%s'",
+                    $development_application_size,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['development_application_size'] = $development_application_size;
+
+        return $this;
+    }
+
+    /**
+     * Gets enable_certificate_provisioning
+     *
+     * @return bool
+     */
+    public function getEnableCertificateProvisioning()
+    {
+        return $this->container['enable_certificate_provisioning'];
+    }
+
+    /**
+     * Sets enable_certificate_provisioning
+     */
+    public function setEnableCertificateProvisioning($enable_certificate_provisioning)
+    {
+        if (is_null($enable_certificate_provisioning)) {
+            throw new \InvalidArgumentException('non-nullable enable_certificate_provisioning cannot be null');
+        }
+        $this->container['enable_certificate_provisioning'] = $enable_certificate_provisioning;
+
+        return $this;
+    }
+
+    /**
+     * Gets certificate_style
+     *
+     * @return string
+     */
+    public function getCertificateStyle()
+    {
+        return $this->container['certificate_style'];
+    }
+
+    /**
+     * Sets certificate_style
+     */
+    public function setCertificateStyle($certificate_style)
+    {
+        if (is_null($certificate_style)) {
+            throw new \InvalidArgumentException('non-nullable certificate_style cannot be null');
+        }
+        $allowedValues = $this->getCertificateStyleAllowableValues();
+        if (!in_array($certificate_style, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'certificate_style', must be one of '%s'",
+                    $certificate_style,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['certificate_style'] = $certificate_style;
+
+        return $this;
+    }
+
+    /**
+     * Gets certificate_renewal_activity
+     *
+     * @return bool
+     */
+    public function getCertificateRenewalActivity()
+    {
+        return $this->container['certificate_renewal_activity'];
+    }
+
+    /**
+     * Sets certificate_renewal_activity
+     */
+    public function setCertificateRenewalActivity($certificate_renewal_activity)
+    {
+        if (is_null($certificate_renewal_activity)) {
+            throw new \InvalidArgumentException('non-nullable certificate_renewal_activity cannot be null');
+        }
+        $this->container['certificate_renewal_activity'] = $certificate_renewal_activity;
+
+        return $this;
+    }
+
+    /**
+     * Gets development_domain_template
+     *
+     * @return string
+     */
+    public function getDevelopmentDomainTemplate()
+    {
+        return $this->container['development_domain_template'];
+    }
+
+    /**
+     * Sets development_domain_template
+     */
+    public function setDevelopmentDomainTemplate($development_domain_template)
+    {
+        if (is_null($development_domain_template)) {
+            array_push($this->openAPINullablesSetToNull, 'development_domain_template');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('development_domain_template', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['development_domain_template'] = $development_domain_template;
+
+        return $this;
+    }
+
+    /**
+     * Gets enable_state_api_deployments
+     *
+     * @return bool
+     */
+    public function getEnableStateApiDeployments()
+    {
+        return $this->container['enable_state_api_deployments'];
+    }
+
+    /**
+     * Sets enable_state_api_deployments
+     */
+    public function setEnableStateApiDeployments($enable_state_api_deployments)
+    {
+        if (is_null($enable_state_api_deployments)) {
+            throw new \InvalidArgumentException('non-nullable enable_state_api_deployments cannot be null');
+        }
+        $this->container['enable_state_api_deployments'] = $enable_state_api_deployments;
+
+        return $this;
+    }
+
+    /**
+     * Gets temporary_disk_size
+     *
+     * @return int
+     */
+    public function getTemporaryDiskSize()
+    {
+        return $this->container['temporary_disk_size'];
+    }
+
+    /**
+     * Sets temporary_disk_size
+     */
+    public function setTemporaryDiskSize($temporary_disk_size)
+    {
+        if (is_null($temporary_disk_size)) {
+            array_push($this->openAPINullablesSetToNull, 'temporary_disk_size');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('temporary_disk_size', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['temporary_disk_size'] = $temporary_disk_size;
+
+        return $this;
+    }
+
+    /**
+     * Gets local_disk_size
+     *
+     * @return int
+     */
+    public function getLocalDiskSize()
+    {
+        return $this->container['local_disk_size'];
+    }
+
+    /**
+     * Sets local_disk_size
+     */
+    public function setLocalDiskSize($local_disk_size)
+    {
+        if (is_null($local_disk_size)) {
+            array_push($this->openAPINullablesSetToNull, 'local_disk_size');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('local_disk_size', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['local_disk_size'] = $local_disk_size;
+
+        return $this;
+    }
+
+    /**
+     * Gets cron_minimum_interval
+     *
+     * @return int
+     */
+    public function getCronMinimumInterval()
+    {
+        return $this->container['cron_minimum_interval'];
+    }
+
+    /**
+     * Sets cron_minimum_interval
+     */
+    public function setCronMinimumInterval($cron_minimum_interval)
+    {
+        if (is_null($cron_minimum_interval)) {
+            throw new \InvalidArgumentException('non-nullable cron_minimum_interval cannot be null');
+        }
+        $this->container['cron_minimum_interval'] = $cron_minimum_interval;
+
+        return $this;
+    }
+
+    /**
+     * Gets cron_maximum_jitter
+     *
+     * @return int
+     */
+    public function getCronMaximumJitter()
+    {
+        return $this->container['cron_maximum_jitter'];
+    }
+
+    /**
+     * Sets cron_maximum_jitter
+     */
+    public function setCronMaximumJitter($cron_maximum_jitter)
+    {
+        if (is_null($cron_maximum_jitter)) {
+            throw new \InvalidArgumentException('non-nullable cron_maximum_jitter cannot be null');
+        }
+        $this->container['cron_maximum_jitter'] = $cron_maximum_jitter;
+
+        return $this;
+    }
+
+    /**
+     * Gets concurrency_limits
+     *
+     * @return array<string,int>
+     */
+    public function getConcurrencyLimits()
+    {
+        return $this->container['concurrency_limits'];
+    }
+
+    /**
+     * Sets concurrency_limits
+     */
+    public function setConcurrencyLimits($concurrency_limits)
+    {
+        if (is_null($concurrency_limits)) {
+            throw new \InvalidArgumentException('non-nullable concurrency_limits cannot be null');
+        }
+        $this->container['concurrency_limits'] = $concurrency_limits;
+
+        return $this;
+    }
+
+    /**
+     * Gets flexible_build_cache
+     *
+     * @return bool
+     */
+    public function getFlexibleBuildCache()
+    {
+        return $this->container['flexible_build_cache'];
+    }
+
+    /**
+     * Sets flexible_build_cache
+     */
+    public function setFlexibleBuildCache($flexible_build_cache)
+    {
+        if (is_null($flexible_build_cache)) {
+            throw new \InvalidArgumentException('non-nullable flexible_build_cache cannot be null');
+        }
+        $this->container['flexible_build_cache'] = $flexible_build_cache;
+
+        return $this;
+    }
+
+    /**
+     * Gets strict_configuration
+     *
+     * @return bool
+     */
+    public function getStrictConfiguration()
+    {
+        return $this->container['strict_configuration'];
+    }
+
+    /**
+     * Sets strict_configuration
+     */
+    public function setStrictConfiguration($strict_configuration)
+    {
+        if (is_null($strict_configuration)) {
+            throw new \InvalidArgumentException('non-nullable strict_configuration cannot be null');
+        }
+        $this->container['strict_configuration'] = $strict_configuration;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_sleepy_crons
+     *
+     * @return bool
+     */
+    public function getHasSleepyCrons()
+    {
+        return $this->container['has_sleepy_crons'];
+    }
+
+    /**
+     * Sets has_sleepy_crons
+     */
+    public function setHasSleepyCrons($has_sleepy_crons)
+    {
+        if (is_null($has_sleepy_crons)) {
+            throw new \InvalidArgumentException('non-nullable has_sleepy_crons cannot be null');
+        }
+        $this->container['has_sleepy_crons'] = $has_sleepy_crons;
+
+        return $this;
+    }
+
+    /**
+     * Gets crons_in_git
+     *
+     * @return bool
+     */
+    public function getCronsInGit()
+    {
+        return $this->container['crons_in_git'];
+    }
+
+    /**
+     * Sets crons_in_git
+     */
+    public function setCronsInGit($crons_in_git)
+    {
+        if (is_null($crons_in_git)) {
+            throw new \InvalidArgumentException('non-nullable crons_in_git cannot be null');
+        }
+        $this->container['crons_in_git'] = $crons_in_git;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_error_template
+     *
+     * @return string
+     */
+    public function getCustomErrorTemplate()
+    {
+        return $this->container['custom_error_template'];
+    }
+
+    /**
+     * Sets custom_error_template
+     */
+    public function setCustomErrorTemplate($custom_error_template)
+    {
+        if (is_null($custom_error_template)) {
+            array_push($this->openAPINullablesSetToNull, 'custom_error_template');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('custom_error_template', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['custom_error_template'] = $custom_error_template;
+
+        return $this;
+    }
+
+    /**
+     * Gets app_error_page_template
+     *
+     * @return string
+     */
+    public function getAppErrorPageTemplate()
+    {
+        return $this->container['app_error_page_template'];
+    }
+
+    /**
+     * Sets app_error_page_template
+     */
+    public function setAppErrorPageTemplate($app_error_page_template)
+    {
+        if (is_null($app_error_page_template)) {
+            array_push($this->openAPINullablesSetToNull, 'app_error_page_template');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('app_error_page_template', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['app_error_page_template'] = $app_error_page_template;
+
+        return $this;
+    }
+
+    /**
+     * Gets environment_name_strategy
+     *
+     * @return string
+     */
+    public function getEnvironmentNameStrategy()
+    {
+        return $this->container['environment_name_strategy'];
+    }
+
+    /**
+     * Sets environment_name_strategy
+     */
+    public function setEnvironmentNameStrategy($environment_name_strategy)
+    {
+        if (is_null($environment_name_strategy)) {
+            throw new \InvalidArgumentException('non-nullable environment_name_strategy cannot be null');
+        }
+        $allowedValues = $this->getEnvironmentNameStrategyAllowableValues();
+        if (!in_array($environment_name_strategy, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'environment_name_strategy', must be one of '%s'",
+                    $environment_name_strategy,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['environment_name_strategy'] = $environment_name_strategy;
+
+        return $this;
+    }
+
+    /**
+     * Gets data_retention
+     *
+     * @return array<string,\Upsun\Model\DataRetentionConfigurationValue>
+     */
+    public function getDataRetention()
+    {
+        return $this->container['data_retention'];
+    }
+
+    /**
+     * Sets data_retention
+     */
+    public function setDataRetention($data_retention)
+    {
+        if (is_null($data_retention)) {
+            array_push($this->openAPINullablesSetToNull, 'data_retention');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('data_retention', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['data_retention'] = $data_retention;
+
+        return $this;
+    }
+
+    /**
+     * Gets enable_codesource_integration_push
+     *
+     * @return bool
+     */
+    public function getEnableCodesourceIntegrationPush()
+    {
+        return $this->container['enable_codesource_integration_push'];
+    }
+
+    /**
+     * Sets enable_codesource_integration_push
+     */
+    public function setEnableCodesourceIntegrationPush($enable_codesource_integration_push)
+    {
+        if (is_null($enable_codesource_integration_push)) {
+            throw new \InvalidArgumentException('non-nullable enable_codesource_integration_push cannot be null');
+        }
+        $this->container['enable_codesource_integration_push'] = $enable_codesource_integration_push;
+
+        return $this;
+    }
+
+    /**
+     * Gets enforce_mfa
+     *
+     * @return bool
+     */
+    public function getEnforceMfa()
+    {
+        return $this->container['enforce_mfa'];
+    }
+
+    /**
+     * Sets enforce_mfa
+     */
+    public function setEnforceMfa($enforce_mfa)
+    {
+        if (is_null($enforce_mfa)) {
+            throw new \InvalidArgumentException('non-nullable enforce_mfa cannot be null');
+        }
+        $this->container['enforce_mfa'] = $enforce_mfa;
+
+        return $this;
+    }
+
+    /**
+     * Gets systemd
+     *
+     * @return bool
+     */
+    public function getSystemd()
+    {
+        return $this->container['systemd'];
+    }
+
+    /**
+     * Sets systemd
+     */
+    public function setSystemd($systemd)
+    {
+        if (is_null($systemd)) {
+            throw new \InvalidArgumentException('non-nullable systemd cannot be null');
+        }
+        $this->container['systemd'] = $systemd;
+
+        return $this;
+    }
+
+    /**
+     * Gets router_gen2
+     *
+     * @return bool
+     */
+    public function getRouterGen2()
+    {
+        return $this->container['router_gen2'];
+    }
+
+    /**
+     * Sets router_gen2
+     */
+    public function setRouterGen2($router_gen2)
+    {
+        if (is_null($router_gen2)) {
+            throw new \InvalidArgumentException('non-nullable router_gen2 cannot be null');
+        }
+        $this->container['router_gen2'] = $router_gen2;
+
+        return $this;
+    }
+
+    /**
+     * Gets build_resources
+     *
+     * @return \Upsun\Model\BuildResources1
+     */
+    public function getBuildResources()
+    {
+        return $this->container['build_resources'];
+    }
+
+    /**
+     * Sets build_resources
+     */
+    public function setBuildResources($build_resources)
+    {
+        if (is_null($build_resources)) {
+            throw new \InvalidArgumentException('non-nullable build_resources cannot be null');
+        }
+        $this->container['build_resources'] = $build_resources;
+
+        return $this;
+    }
+
+    /**
+     * Gets outbound_restrictions_default_policy
+     *
+     * @return string
+     */
+    public function getOutboundRestrictionsDefaultPolicy()
+    {
+        return $this->container['outbound_restrictions_default_policy'];
+    }
+
+    /**
+     * Sets outbound_restrictions_default_policy
+     */
+    public function setOutboundRestrictionsDefaultPolicy($outbound_restrictions_default_policy)
+    {
+        if (is_null($outbound_restrictions_default_policy)) {
+            throw new \InvalidArgumentException('non-nullable outbound_restrictions_default_policy cannot be null');
+        }
+        $allowedValues = $this->getOutboundRestrictionsDefaultPolicyAllowableValues();
+        if (!in_array($outbound_restrictions_default_policy, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'outbound_restrictions_default_policy', must be one of '%s'",
+                    $outbound_restrictions_default_policy,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['outbound_restrictions_default_policy'] = $outbound_restrictions_default_policy;
+
+        return $this;
+    }
+
+    /**
+     * Gets self_upgrade
+     *
+     * @return bool
+     */
+    public function getSelfUpgrade()
+    {
+        return $this->container['self_upgrade'];
+    }
+
+    /**
+     * Sets self_upgrade
+     */
+    public function setSelfUpgrade($self_upgrade)
+    {
+        if (is_null($self_upgrade)) {
+            throw new \InvalidArgumentException('non-nullable self_upgrade cannot be null');
+        }
+        $this->container['self_upgrade'] = $self_upgrade;
+
+        return $this;
+    }
+
+    /**
+     * Gets additional_hosts
+     *
+     * @return array<string,string>
+     */
+    public function getAdditionalHosts()
+    {
+        return $this->container['additional_hosts'];
+    }
+
+    /**
+     * Sets additional_hosts
+     */
+    public function setAdditionalHosts($additional_hosts)
+    {
+        if (is_null($additional_hosts)) {
+            throw new \InvalidArgumentException('non-nullable additional_hosts cannot be null');
+        }
+        $this->container['additional_hosts'] = $additional_hosts;
+
+        return $this;
+    }
+
+    /**
+     * Gets max_allowed_routes
+     *
+     * @return int
+     */
+    public function getMaxAllowedRoutes()
+    {
+        return $this->container['max_allowed_routes'];
+    }
+
+    /**
+     * Sets max_allowed_routes
+     */
+    public function setMaxAllowedRoutes($max_allowed_routes)
+    {
+        if (is_null($max_allowed_routes)) {
+            throw new \InvalidArgumentException('non-nullable max_allowed_routes cannot be null');
+        }
+        $this->container['max_allowed_routes'] = $max_allowed_routes;
+
+        return $this;
+    }
+
+    /**
+     * Gets max_allowed_redirects_paths
+     *
+     * @return int
+     */
+    public function getMaxAllowedRedirectsPaths()
+    {
+        return $this->container['max_allowed_redirects_paths'];
+    }
+
+    /**
+     * Sets max_allowed_redirects_paths
+     */
+    public function setMaxAllowedRedirectsPaths($max_allowed_redirects_paths)
+    {
+        if (is_null($max_allowed_redirects_paths)) {
+            throw new \InvalidArgumentException('non-nullable max_allowed_redirects_paths cannot be null');
+        }
+        $this->container['max_allowed_redirects_paths'] = $max_allowed_redirects_paths;
+
+        return $this;
+    }
+
+    /**
+     * Gets enable_incremental_backups
+     *
+     * @return bool
+     */
+    public function getEnableIncrementalBackups()
+    {
+        return $this->container['enable_incremental_backups'];
+    }
+
+    /**
+     * Sets enable_incremental_backups
+     */
+    public function setEnableIncrementalBackups($enable_incremental_backups)
+    {
+        if (is_null($enable_incremental_backups)) {
+            throw new \InvalidArgumentException('non-nullable enable_incremental_backups cannot be null');
+        }
+        $this->container['enable_incremental_backups'] = $enable_incremental_backups;
+
+        return $this;
+    }
+
+    /**
+     * Gets sizing_api_enabled
+     *
+     * @return bool
+     */
+    public function getSizingApiEnabled()
+    {
+        return $this->container['sizing_api_enabled'];
+    }
+
+    /**
+     * Sets sizing_api_enabled
+     */
+    public function setSizingApiEnabled($sizing_api_enabled)
+    {
+        if (is_null($sizing_api_enabled)) {
+            throw new \InvalidArgumentException('non-nullable sizing_api_enabled cannot be null');
+        }
+        $this->container['sizing_api_enabled'] = $sizing_api_enabled;
+
+        return $this;
+    }
+
+    /**
+     * Gets enable_cache_grace_period
+     *
+     * @return bool
+     */
+    public function getEnableCacheGracePeriod()
+    {
+        return $this->container['enable_cache_grace_period'];
+    }
+
+    /**
+     * Sets enable_cache_grace_period
+     */
+    public function setEnableCacheGracePeriod($enable_cache_grace_period)
+    {
+        if (is_null($enable_cache_grace_period)) {
+            throw new \InvalidArgumentException('non-nullable enable_cache_grace_period cannot be null');
+        }
+        $this->container['enable_cache_grace_period'] = $enable_cache_grace_period;
+
+        return $this;
+    }
+
+    /**
+     * Gets enable_zero_downtime_deployments
+     *
+     * @return bool
+     */
+    public function getEnableZeroDowntimeDeployments()
+    {
+        return $this->container['enable_zero_downtime_deployments'];
+    }
+
+    /**
+     * Sets enable_zero_downtime_deployments
+     */
+    public function setEnableZeroDowntimeDeployments($enable_zero_downtime_deployments)
+    {
+        if (is_null($enable_zero_downtime_deployments)) {
+            throw new \InvalidArgumentException('non-nullable enable_zero_downtime_deployments cannot be null');
+        }
+        $this->container['enable_zero_downtime_deployments'] = $enable_zero_downtime_deployments;
+
+        return $this;
+    }
+
+    /**
+     * Gets enable_admin_agent
+     *
+     * @return bool
+     */
+    public function getEnableAdminAgent()
+    {
+        return $this->container['enable_admin_agent'];
+    }
+
+    /**
+     * Sets enable_admin_agent
+     */
+    public function setEnableAdminAgent($enable_admin_agent)
+    {
+        if (is_null($enable_admin_agent)) {
+            throw new \InvalidArgumentException('non-nullable enable_admin_agent cannot be null');
+        }
+        $this->container['enable_admin_agent'] = $enable_admin_agent;
+
+        return $this;
+    }
+
+    /**
+     * Gets certifier_url
+     *
+     * @return string
+     */
+    public function getCertifierUrl()
+    {
+        return $this->container['certifier_url'];
+    }
+
+    /**
+     * Sets certifier_url
+     */
+    public function setCertifierUrl($certifier_url)
+    {
+        if (is_null($certifier_url)) {
+            throw new \InvalidArgumentException('non-nullable certifier_url cannot be null');
+        }
+        $this->container['certifier_url'] = $certifier_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets centralized_permissions
+     *
+     * @return bool
+     */
+    public function getCentralizedPermissions()
+    {
+        return $this->container['centralized_permissions'];
+    }
+
+    /**
+     * Sets centralized_permissions
+     */
+    public function setCentralizedPermissions($centralized_permissions)
+    {
+        if (is_null($centralized_permissions)) {
+            throw new \InvalidArgumentException('non-nullable centralized_permissions cannot be null');
+        }
+        $this->container['centralized_permissions'] = $centralized_permissions;
+
+        return $this;
+    }
+
+    /**
+     * Gets glue_server_max_request_size
+     *
+     * @return int
+     */
+    public function getGlueServerMaxRequestSize()
+    {
+        return $this->container['glue_server_max_request_size'];
+    }
+
+    /**
+     * Sets glue_server_max_request_size
+     */
+    public function setGlueServerMaxRequestSize($glue_server_max_request_size)
+    {
+        if (is_null($glue_server_max_request_size)) {
+            throw new \InvalidArgumentException('non-nullable glue_server_max_request_size cannot be null');
+        }
+        $this->container['glue_server_max_request_size'] = $glue_server_max_request_size;
+
+        return $this;
+    }
+
+    /**
+     * Gets persistent_endpoints_ssh
+     *
+     * @return bool
+     */
+    public function getPersistentEndpointsSsh()
+    {
+        return $this->container['persistent_endpoints_ssh'];
+    }
+
+    /**
+     * Sets persistent_endpoints_ssh
+     */
+    public function setPersistentEndpointsSsh($persistent_endpoints_ssh)
+    {
+        if (is_null($persistent_endpoints_ssh)) {
+            throw new \InvalidArgumentException('non-nullable persistent_endpoints_ssh cannot be null');
+        }
+        $this->container['persistent_endpoints_ssh'] = $persistent_endpoints_ssh;
+
+        return $this;
+    }
+
+    /**
+     * Gets persistent_endpoints_ssl_certificates
+     *
+     * @return bool
+     */
+    public function getPersistentEndpointsSslCertificates()
+    {
+        return $this->container['persistent_endpoints_ssl_certificates'];
+    }
+
+    /**
+     * Sets persistent_endpoints_ssl_certificates
+     */
+    public function setPersistentEndpointsSslCertificates($persistent_endpoints_ssl_certificates)
+    {
+        if (is_null($persistent_endpoints_ssl_certificates)) {
+            throw new \InvalidArgumentException('non-nullable persistent_endpoints_ssl_certificates cannot be null');
+        }
+        $this->container['persistent_endpoints_ssl_certificates'] = $persistent_endpoints_ssl_certificates;
+
+        return $this;
+    }
+
+    /**
+     * Gets enable_disk_health_monitoring
+     *
+     * @return bool
+     */
+    public function getEnableDiskHealthMonitoring()
+    {
+        return $this->container['enable_disk_health_monitoring'];
+    }
+
+    /**
+     * Sets enable_disk_health_monitoring
+     */
+    public function setEnableDiskHealthMonitoring($enable_disk_health_monitoring)
+    {
+        if (is_null($enable_disk_health_monitoring)) {
+            throw new \InvalidArgumentException('non-nullable enable_disk_health_monitoring cannot be null');
+        }
+        $this->container['enable_disk_health_monitoring'] = $enable_disk_health_monitoring;
+
+        return $this;
+    }
+
+    /**
+     * Gets enable_paused_environments
+     *
+     * @return bool
+     */
+    public function getEnablePausedEnvironments()
+    {
+        return $this->container['enable_paused_environments'];
+    }
+
+    /**
+     * Sets enable_paused_environments
+     */
+    public function setEnablePausedEnvironments($enable_paused_environments)
+    {
+        if (is_null($enable_paused_environments)) {
+            throw new \InvalidArgumentException('non-nullable enable_paused_environments cannot be null');
+        }
+        $this->container['enable_paused_environments'] = $enable_paused_environments;
+
+        return $this;
+    }
+
+    /**
+     * Gets enable_unified_configuration
+     *
+     * @return bool
+     */
+    public function getEnableUnifiedConfiguration()
+    {
+        return $this->container['enable_unified_configuration'];
+    }
+
+    /**
+     * Sets enable_unified_configuration
+     */
+    public function setEnableUnifiedConfiguration($enable_unified_configuration)
+    {
+        if (is_null($enable_unified_configuration)) {
+            throw new \InvalidArgumentException('non-nullable enable_unified_configuration cannot be null');
+        }
+        $this->container['enable_unified_configuration'] = $enable_unified_configuration;
+
+        return $this;
+    }
+
+    /**
+     * Gets enable_routes_tracing
+     *
+     * @return bool
+     */
+    public function getEnableRoutesTracing()
+    {
+        return $this->container['enable_routes_tracing'];
+    }
+
+    /**
+     * Sets enable_routes_tracing
+     */
+    public function setEnableRoutesTracing($enable_routes_tracing)
+    {
+        if (is_null($enable_routes_tracing)) {
+            throw new \InvalidArgumentException('non-nullable enable_routes_tracing cannot be null');
+        }
+        $this->container['enable_routes_tracing'] = $enable_routes_tracing;
+
+        return $this;
+    }
+
+    /**
+     * Gets image_deployment_validation
+     *
+     * @return bool
+     */
+    public function getImageDeploymentValidation()
+    {
+        return $this->container['image_deployment_validation'];
+    }
+
+    /**
+     * Sets image_deployment_validation
+     */
+    public function setImageDeploymentValidation($image_deployment_validation)
+    {
+        if (is_null($image_deployment_validation)) {
+            throw new \InvalidArgumentException('non-nullable image_deployment_validation cannot be null');
+        }
+        $this->container['image_deployment_validation'] = $image_deployment_validation;
+
+        return $this;
+    }
+
+    /**
+     * Gets support_generic_images
+     *
+     * @return bool
+     */
+    public function getSupportGenericImages()
+    {
+        return $this->container['support_generic_images'];
+    }
+
+    /**
+     * Sets support_generic_images
+     */
+    public function setSupportGenericImages($support_generic_images)
+    {
+        if (is_null($support_generic_images)) {
+            throw new \InvalidArgumentException('non-nullable support_generic_images cannot be null');
+        }
+        $this->container['support_generic_images'] = $support_generic_images;
+
+        return $this;
+    }
+
+    /**
+     * Gets enable_github_app_token_exchange
+     *
+     * @return bool
+     */
+    public function getEnableGithubAppTokenExchange()
+    {
+        return $this->container['enable_github_app_token_exchange'];
+    }
+
+    /**
+     * Sets enable_github_app_token_exchange
+     */
+    public function setEnableGithubAppTokenExchange($enable_github_app_token_exchange)
+    {
+        if (is_null($enable_github_app_token_exchange)) {
+            throw new \InvalidArgumentException('non-nullable enable_github_app_token_exchange cannot be null');
+        }
+        $this->container['enable_github_app_token_exchange'] = $enable_github_app_token_exchange;
+
+        return $this;
+    }
+
+    /**
+     * Gets continuous_profiling
+     *
+     * @return \Upsun\Model\TheContinuousProfilingConfiguration
+     */
+    public function getContinuousProfiling()
+    {
+        return $this->container['continuous_profiling'];
+    }
+
+    /**
+     * Sets continuous_profiling
+     */
+    public function setContinuousProfiling($continuous_profiling)
+    {
+        if (is_null($continuous_profiling)) {
+            throw new \InvalidArgumentException('non-nullable continuous_profiling cannot be null');
+        }
+        $this->container['continuous_profiling'] = $continuous_profiling;
+
+        return $this;
+    }
+
+    /**
+     * Gets disable_agent_error_reporter
+     *
+     * @return bool
+     */
+    public function getDisableAgentErrorReporter()
+    {
+        return $this->container['disable_agent_error_reporter'];
+    }
+
+    /**
+     * Sets disable_agent_error_reporter
+     */
+    public function setDisableAgentErrorReporter($disable_agent_error_reporter)
+    {
+        if (is_null($disable_agent_error_reporter)) {
+            throw new \InvalidArgumentException('non-nullable disable_agent_error_reporter cannot be null');
+        }
+        $this->container['disable_agent_error_reporter'] = $disable_agent_error_reporter;
+
+        return $this;
+    }
+
+    /**
+     * Gets requires_domain_ownership
+     *
+     * @return bool
+     */
+    public function getRequiresDomainOwnership()
+    {
+        return $this->container['requires_domain_ownership'];
+    }
+
+    /**
+     * Sets requires_domain_ownership
+     */
+    public function setRequiresDomainOwnership($requires_domain_ownership)
+    {
+        if (is_null($requires_domain_ownership)) {
+            throw new \InvalidArgumentException('non-nullable requires_domain_ownership cannot be null');
+        }
+        $this->container['requires_domain_ownership'] = $requires_domain_ownership;
+
+        return $this;
+    }
+    /**
+     * Returns true if offset exists. False otherwise.
+     */
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->container[$offset]);
+    }
+
+    /**
+     * Gets offset.
+     */
+    #[\ReturnTypeWillChange]
+    public function offsetGet(mixed $offset)
+    {
+        return $this->container[$offset] ?? null;
+    }
+
+    /**
+     * Sets value based on offset.
+     */
+    public function offsetSet(mixed $offset = null, $value): void
+    {
+        if (is_null($offset)) {
+            $this->container[] = $value;
+        } else {
+            $this->container[$offset] = $value;
+        }
+    }
+
+    /**
+     * Unsets offset.
+     */
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->container[$offset]);
+    }
+
+    /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     */
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize(): mixed
+    {
+        return ObjectSerializer::sanitizeForSerialization($this);
+        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+    }
+
+    /**
+     * Gets the string presentation of the object
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
+
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
+        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-

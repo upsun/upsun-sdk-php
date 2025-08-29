@@ -46,11 +46,67 @@ final class CreateProjectInviteRequest implements JsonSerializable
     ];
 
     /**
+     * Array of nullable properties. Used for (de)serialization
+     */
+    private static array $openAPINullables = [
+        'role' => false,
+        'email' => false,
+        'permissions' => false,
+        'environments' => false,
+        'force' => false
+    ];
+
+    /**
+     * If a nullable field gets set to null, insert it here
+     */
+    private array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      */
     public static function openAPITypes(): array
     {
         return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    public static function openAPIFormats(): array
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -64,38 +120,340 @@ final class CreateProjectInviteRequest implements JsonSerializable
         'environments' => 'environments',
         'force' => 'force'
     ];
-    
-    public function __construct(
-        public readonly string|null $role = null,
-        public readonly string $email = null,
-        public readonly ?array $permissions = null,
-        public readonly ?array $environments = null,
-        public readonly bool|null $force = null
-    ) {
-    }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'role' => $this->role,
-            'email' => $this->email,
-            'permissions' => $this->permissions,
-            'environments' => $this->environments,
-            'force' => $this->force,
-        ];
-    }
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     */
+    private static $setters = [
+        'role' => 'setRole',
+        'email' => 'setEmail',
+        'permissions' => 'setPermissions',
+        'environments' => 'setEnvironments',
+        'force' => 'setForce'
+    ];
 
-    public function __toString(): string
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     */
+    private static $getters = [
+        'role' => 'getRole',
+        'email' => 'getEmail',
+        'permissions' => 'getPermissions',
+        'environments' => 'getEnvironments',
+        'force' => 'getForce'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    public static function attributeMap(): array
     {
-        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+        return self::$attributeMap;
     }
 
     /**
-     * Checks if a property is nullable
+     * Array of attributes to setter functions (for deserialization of responses)
      */
-    public static function isNullable(string $property): bool
+    public static function setters(): array
     {
-        return true; // All properties in this model are nullable
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters(): array
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     */
+    public function getModelName(): string
+    {
+        return self::$openAPIModelName;
+    }
+
+    public const ROLE_ADMIN = 'admin';
+    public const ROLE_VIEWER = 'viewer';
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getRoleAllowableValues(): array
+    {
+        return [
+            self::ROLE_ADMIN,
+            self::ROLE_VIEWER,
+        ];
+    }
+
+    /**
+     * Associative array for storing property values
+     */
+    private array $container = [];
+
+    /**
+     * Constructor
+     */
+    public function __construct(?array $data = null)
+    {
+        $this->setIfExists('role', $data ?? [], null);
+        $this->setIfExists('email', $data ?? [], null);
+        $this->setIfExists('permissions', $data ?? [], null);
+        $this->setIfExists('environments', $data ?? [], null);
+        $this->setIfExists('force', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    */
+    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
+    {
+        if (
+            self::isNullable($variableName)
+            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
+        ) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+    }
+
+    /**
+     * Show all the invalid properties with reasons.
+     */
+    public function listInvalidProperties(): array
+    {
+        $invalidProperties = [];
+
+        $allowedValues = $this->getRoleAllowableValues();
+        if (!is_null($this->container['role']) && !in_array($this->container['role'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'role', must be one of '%s'",
+                $this->container['role'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['email'] === null) {
+            $invalidProperties[] = "'email' can't be null";
+        }
+        return $invalidProperties;
+    }
+
+    /**
+     * Validate all the properties in the model
+     * return true if all passed
+     */
+    public function valid(): bool
+    {
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets role
+     *
+     * @return string|null
+     */
+    public function getRole()
+    {
+        return $this->container['role'];
+    }
+
+    /**
+     * Sets role
+     */
+    public function setRole($role)
+    {
+        if (is_null($role)) {
+            throw new \InvalidArgumentException('non-nullable role cannot be null');
+        }
+        $allowedValues = $this->getRoleAllowableValues();
+        if (!in_array($role, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'role', must be one of '%s'",
+                    $role,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['role'] = $role;
+
+        return $this;
+    }
+
+    /**
+     * Gets email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->container['email'];
+    }
+
+    /**
+     * Sets email
+     */
+    public function setEmail($email)
+    {
+        if (is_null($email)) {
+            throw new \InvalidArgumentException('non-nullable email cannot be null');
+        }
+        $this->container['email'] = $email;
+
+        return $this;
+    }
+
+    /**
+     * Gets permissions
+     *
+     * @return \Upsun\Model\CreateProjectInviteRequestPermissionsInner[]|null
+     */
+    public function getPermissions()
+    {
+        return $this->container['permissions'];
+    }
+
+    /**
+     * Sets permissions
+     */
+    public function setPermissions($permissions)
+    {
+        if (is_null($permissions)) {
+            throw new \InvalidArgumentException('non-nullable permissions cannot be null');
+        }
+        $this->container['permissions'] = $permissions;
+
+        return $this;
+    }
+
+    /**
+     * Gets environments
+     *
+     * @return \Upsun\Model\CreateProjectInviteRequestEnvironmentsInner[]|null
+     *
+     * @deprecated
+     */
+    public function getEnvironments()
+    {
+        return $this->container['environments'];
+    }
+
+    /**
+     * Sets environments
+     *
+     * @deprecated
+     */
+    public function setEnvironments($environments)
+    {
+        if (is_null($environments)) {
+            throw new \InvalidArgumentException('non-nullable environments cannot be null');
+        }
+        $this->container['environments'] = $environments;
+
+        return $this;
+    }
+
+    /**
+     * Gets force
+     *
+     * @return bool|null
+     */
+    public function getForce()
+    {
+        return $this->container['force'];
+    }
+
+    /**
+     * Sets force
+     */
+    public function setForce($force)
+    {
+        if (is_null($force)) {
+            throw new \InvalidArgumentException('non-nullable force cannot be null');
+        }
+        $this->container['force'] = $force;
+
+        return $this;
+    }
+    /**
+     * Returns true if offset exists. False otherwise.
+     */
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->container[$offset]);
+    }
+
+    /**
+     * Gets offset.
+     */
+    #[\ReturnTypeWillChange]
+    public function offsetGet(mixed $offset)
+    {
+        return $this->container[$offset] ?? null;
+    }
+
+    /**
+     * Sets value based on offset.
+     */
+    public function offsetSet(mixed $offset = null, $value): void
+    {
+        if (is_null($offset)) {
+            $this->container[] = $value;
+        } else {
+            $this->container[$offset] = $value;
+        }
+    }
+
+    /**
+     * Unsets offset.
+     */
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->container[$offset]);
+    }
+
+    /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     */
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize(): mixed
+    {
+        return ObjectSerializer::sanitizeForSerialization($this);
+        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+    }
+
+    /**
+     * Gets the string presentation of the object
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
+
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
+        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-

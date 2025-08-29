@@ -48,11 +48,68 @@ final class TicketJiraInner implements JsonSerializable
     ];
 
     /**
+     * Array of nullable properties. Used for (de)serialization
+     */
+    private static array $openAPINullables = [
+        'id' => false,
+        'ticket_id' => false,
+        'issue_id' => false,
+        'issue_key' => false,
+        'created_at' => false,
+        'updated_at' => false
+    ];
+
+    /**
+     * If a nullable field gets set to null, insert it here
+     */
+    private array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      */
     public static function openAPITypes(): array
     {
         return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    public static function openAPIFormats(): array
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -67,40 +124,327 @@ final class TicketJiraInner implements JsonSerializable
         'created_at' => 'created_at',
         'updated_at' => 'updated_at'
     ];
-    
-    public function __construct(
-        public readonly int|null $id = null,
-        public readonly int|null $ticket_id = null,
-        public readonly int|null $issue_id = null,
-        public readonly string|null $issue_key = null,
-        public readonly float|null $created_at = null,
-        public readonly float|null $updated_at = null
-    ) {
-    }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'id' => $this->id,
-            'ticket_id' => $this->ticket_id,
-            'issue_id' => $this->issue_id,
-            'issue_key' => $this->issue_key,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-        ];
-    }
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     */
+    private static $setters = [
+        'id' => 'setId',
+        'ticket_id' => 'setTicketId',
+        'issue_id' => 'setIssueId',
+        'issue_key' => 'setIssueKey',
+        'created_at' => 'setCreatedAt',
+        'updated_at' => 'setUpdatedAt'
+    ];
 
-    public function __toString(): string
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     */
+    private static $getters = [
+        'id' => 'getId',
+        'ticket_id' => 'getTicketId',
+        'issue_id' => 'getIssueId',
+        'issue_key' => 'getIssueKey',
+        'created_at' => 'getCreatedAt',
+        'updated_at' => 'getUpdatedAt'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    public static function attributeMap(): array
     {
-        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+        return self::$attributeMap;
     }
 
     /**
-     * Checks if a property is nullable
+     * Array of attributes to setter functions (for deserialization of responses)
      */
-    public static function isNullable(string $property): bool
+    public static function setters(): array
     {
-        return true; // All properties in this model are nullable
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters(): array
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     */
+    public function getModelName(): string
+    {
+        return self::$openAPIModelName;
+    }
+
+
+    /**
+     * Associative array for storing property values
+     */
+    private array $container = [];
+
+    /**
+     * Constructor
+     */
+    public function __construct(?array $data = null)
+    {
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('ticket_id', $data ?? [], null);
+        $this->setIfExists('issue_id', $data ?? [], null);
+        $this->setIfExists('issue_key', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('updated_at', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    */
+    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
+    {
+        if (
+            self::isNullable($variableName)
+            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
+        ) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+    }
+
+    /**
+     * Show all the invalid properties with reasons.
+     */
+    public function listInvalidProperties(): array
+    {
+        $invalidProperties = [];
+
+        return $invalidProperties;
+    }
+
+    /**
+     * Validate all the properties in the model
+     * return true if all passed
+     */
+    public function valid(): bool
+    {
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets id
+     *
+     * @return int|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     */
+    public function setId($id)
+    {
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets ticket_id
+     *
+     * @return int|null
+     */
+    public function getTicketId()
+    {
+        return $this->container['ticket_id'];
+    }
+
+    /**
+     * Sets ticket_id
+     */
+    public function setTicketId($ticket_id)
+    {
+        if (is_null($ticket_id)) {
+            throw new \InvalidArgumentException('non-nullable ticket_id cannot be null');
+        }
+        $this->container['ticket_id'] = $ticket_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets issue_id
+     *
+     * @return int|null
+     */
+    public function getIssueId()
+    {
+        return $this->container['issue_id'];
+    }
+
+    /**
+     * Sets issue_id
+     */
+    public function setIssueId($issue_id)
+    {
+        if (is_null($issue_id)) {
+            throw new \InvalidArgumentException('non-nullable issue_id cannot be null');
+        }
+        $this->container['issue_id'] = $issue_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets issue_key
+     *
+     * @return string|null
+     */
+    public function getIssueKey()
+    {
+        return $this->container['issue_key'];
+    }
+
+    /**
+     * Sets issue_key
+     */
+    public function setIssueKey($issue_key)
+    {
+        if (is_null($issue_key)) {
+            throw new \InvalidArgumentException('non-nullable issue_key cannot be null');
+        }
+        $this->container['issue_key'] = $issue_key;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_at
+     *
+     * @return float|null
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['created_at'];
+    }
+
+    /**
+     * Sets created_at
+     */
+    public function setCreatedAt($created_at)
+    {
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        }
+        $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets updated_at
+     *
+     * @return float|null
+     */
+    public function getUpdatedAt()
+    {
+        return $this->container['updated_at'];
+    }
+
+    /**
+     * Sets updated_at
+     */
+    public function setUpdatedAt($updated_at)
+    {
+        if (is_null($updated_at)) {
+            throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
+        }
+        $this->container['updated_at'] = $updated_at;
+
+        return $this;
+    }
+    /**
+     * Returns true if offset exists. False otherwise.
+     */
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->container[$offset]);
+    }
+
+    /**
+     * Gets offset.
+     */
+    #[\ReturnTypeWillChange]
+    public function offsetGet(mixed $offset)
+    {
+        return $this->container[$offset] ?? null;
+    }
+
+    /**
+     * Sets value based on offset.
+     */
+    public function offsetSet(mixed $offset = null, $value): void
+    {
+        if (is_null($offset)) {
+            $this->container[] = $value;
+        } else {
+            $this->container[$offset] = $value;
+        }
+    }
+
+    /**
+     * Unsets offset.
+     */
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->container[$offset]);
+    }
+
+    /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     */
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize(): mixed
+    {
+        return ObjectSerializer::sanitizeForSerialization($this);
+        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+    }
+
+    /**
+     * Gets the string presentation of the object
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
+
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
+        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-

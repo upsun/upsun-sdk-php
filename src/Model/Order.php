@@ -76,11 +76,82 @@ final class Order implements JsonSerializable
     ];
 
     /**
+     * Array of nullable properties. Used for (de)serialization
+     */
+    private static array $openAPINullables = [
+        'id' => false,
+        'status' => false,
+        'owner' => false,
+        'address' => false,
+        'company' => false,
+        'vat_number' => false,
+        'billing_period_start' => false,
+        'billing_period_end' => false,
+        'billing_period_label' => false,
+        'billing_period_duration' => false,
+        'paid_on' => true,
+        'total' => false,
+        'total_formatted' => false,
+        'components' => false,
+        'currency' => false,
+        'invoice_url' => false,
+        'last_refreshed' => false,
+        'invoiced' => false,
+        'line_items' => false,
+        '_links' => false
+    ];
+
+    /**
+     * If a nullable field gets set to null, insert it here
+     */
+    private array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      */
     public static function openAPITypes(): array
     {
         return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    public static function openAPIFormats(): array
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -109,68 +180,738 @@ final class Order implements JsonSerializable
         'line_items' => 'line_items',
         '_links' => '_links'
     ];
-    
-    public function __construct(
-        public readonly string|null $id = null,
-        public readonly string|null $status = null,
-        public readonly string|null $owner = null,
-        public readonly \Upsun\Model\Address|null $address = null,
-        public readonly string|null $company = null,
-        public readonly string|null $vat_number = null,
-        public readonly \DateTime|null $billing_period_start = null,
-        public readonly \DateTime|null $billing_period_end = null,
-        public readonly \Upsun\Model\OrderBillingPeriodLabel|null $billing_period_label = null,
-        public readonly int|null $billing_period_duration = null,
-        public readonly \DateTime|null $paid_on = null,
-        public readonly int|null $total = null,
-        public readonly int|null $total_formatted = null,
-        public readonly \Upsun\Model\Components|null $components = null,
-        public readonly string|null $currency = null,
-        public readonly string|null $invoice_url = null,
-        public readonly \DateTime|null $last_refreshed = null,
-        public readonly bool|null $invoiced = null,
-        public readonly ?array $line_items = null,
-        public readonly \Upsun\Model\OrderLinks|null $_links = null
-    ) {
-    }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'id' => $this->id,
-            'status' => $this->status,
-            'owner' => $this->owner,
-            'address' => $this->address,
-            'company' => $this->company,
-            'vat_number' => $this->vat_number,
-            'billing_period_start' => $this->billing_period_start,
-            'billing_period_end' => $this->billing_period_end,
-            'billing_period_label' => $this->billing_period_label,
-            'billing_period_duration' => $this->billing_period_duration,
-            'paid_on' => $this->paid_on,
-            'total' => $this->total,
-            'total_formatted' => $this->total_formatted,
-            'components' => $this->components,
-            'currency' => $this->currency,
-            'invoice_url' => $this->invoice_url,
-            'last_refreshed' => $this->last_refreshed,
-            'invoiced' => $this->invoiced,
-            'line_items' => $this->line_items,
-            '_links' => $this->_links,
-        ];
-    }
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     */
+    private static $setters = [
+        'id' => 'setId',
+        'status' => 'setStatus',
+        'owner' => 'setOwner',
+        'address' => 'setAddress',
+        'company' => 'setCompany',
+        'vat_number' => 'setVatNumber',
+        'billing_period_start' => 'setBillingPeriodStart',
+        'billing_period_end' => 'setBillingPeriodEnd',
+        'billing_period_label' => 'setBillingPeriodLabel',
+        'billing_period_duration' => 'setBillingPeriodDuration',
+        'paid_on' => 'setPaidOn',
+        'total' => 'setTotal',
+        'total_formatted' => 'setTotalFormatted',
+        'components' => 'setComponents',
+        'currency' => 'setCurrency',
+        'invoice_url' => 'setInvoiceUrl',
+        'last_refreshed' => 'setLastRefreshed',
+        'invoiced' => 'setInvoiced',
+        'line_items' => 'setLineItems',
+        '_links' => 'setLinks'
+    ];
 
-    public function __toString(): string
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     */
+    private static $getters = [
+        'id' => 'getId',
+        'status' => 'getStatus',
+        'owner' => 'getOwner',
+        'address' => 'getAddress',
+        'company' => 'getCompany',
+        'vat_number' => 'getVatNumber',
+        'billing_period_start' => 'getBillingPeriodStart',
+        'billing_period_end' => 'getBillingPeriodEnd',
+        'billing_period_label' => 'getBillingPeriodLabel',
+        'billing_period_duration' => 'getBillingPeriodDuration',
+        'paid_on' => 'getPaidOn',
+        'total' => 'getTotal',
+        'total_formatted' => 'getTotalFormatted',
+        'components' => 'getComponents',
+        'currency' => 'getCurrency',
+        'invoice_url' => 'getInvoiceUrl',
+        'last_refreshed' => 'getLastRefreshed',
+        'invoiced' => 'getInvoiced',
+        'line_items' => 'getLineItems',
+        '_links' => 'getLinks'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    public static function attributeMap(): array
     {
-        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+        return self::$attributeMap;
     }
 
     /**
-     * Checks if a property is nullable
+     * Array of attributes to setter functions (for deserialization of responses)
      */
-    public static function isNullable(string $property): bool
+    public static function setters(): array
     {
-        return true; // All properties in this model are nullable
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters(): array
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     */
+    public function getModelName(): string
+    {
+        return self::$openAPIModelName;
+    }
+
+    public const STATUS_COMPLETED = 'completed';
+    public const STATUS_PAST_DUE = 'past_due';
+    public const STATUS_PENDING = 'pending';
+    public const STATUS_CANCELED = 'canceled';
+    public const STATUS_PAYMENT_FAILED_SOFT_DECLINE = 'payment_failed_soft_decline';
+    public const STATUS_PAYMENT_FAILED_HARD_DECLINE = 'payment_failed_hard_decline';
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getStatusAllowableValues(): array
+    {
+        return [
+            self::STATUS_COMPLETED,
+            self::STATUS_PAST_DUE,
+            self::STATUS_PENDING,
+            self::STATUS_CANCELED,
+            self::STATUS_PAYMENT_FAILED_SOFT_DECLINE,
+            self::STATUS_PAYMENT_FAILED_HARD_DECLINE,
+        ];
+    }
+
+    /**
+     * Associative array for storing property values
+     */
+    private array $container = [];
+
+    /**
+     * Constructor
+     */
+    public function __construct(?array $data = null)
+    {
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('owner', $data ?? [], null);
+        $this->setIfExists('address', $data ?? [], null);
+        $this->setIfExists('company', $data ?? [], null);
+        $this->setIfExists('vat_number', $data ?? [], null);
+        $this->setIfExists('billing_period_start', $data ?? [], null);
+        $this->setIfExists('billing_period_end', $data ?? [], null);
+        $this->setIfExists('billing_period_label', $data ?? [], null);
+        $this->setIfExists('billing_period_duration', $data ?? [], null);
+        $this->setIfExists('paid_on', $data ?? [], null);
+        $this->setIfExists('total', $data ?? [], null);
+        $this->setIfExists('total_formatted', $data ?? [], null);
+        $this->setIfExists('components', $data ?? [], null);
+        $this->setIfExists('currency', $data ?? [], null);
+        $this->setIfExists('invoice_url', $data ?? [], null);
+        $this->setIfExists('last_refreshed', $data ?? [], null);
+        $this->setIfExists('invoiced', $data ?? [], null);
+        $this->setIfExists('line_items', $data ?? [], null);
+        $this->setIfExists('_links', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    */
+    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
+    {
+        if (
+            self::isNullable($variableName)
+            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
+        ) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+    }
+
+    /**
+     * Show all the invalid properties with reasons.
+     */
+    public function listInvalidProperties(): array
+    {
+        $invalidProperties = [];
+
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        return $invalidProperties;
+    }
+
+    /**
+     * Validate all the properties in the model
+     * return true if all passed
+     */
+    public function valid(): bool
+    {
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets id
+     *
+     * @return string|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     */
+    public function setId($id)
+    {
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return string|null
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     */
+    public function setStatus($status)
+    {
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        }
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!in_array($status, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    $status,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets owner
+     *
+     * @return string|null
+     */
+    public function getOwner()
+    {
+        return $this->container['owner'];
+    }
+
+    /**
+     * Sets owner
+     */
+    public function setOwner($owner)
+    {
+        if (is_null($owner)) {
+            throw new \InvalidArgumentException('non-nullable owner cannot be null');
+        }
+        $this->container['owner'] = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Gets address
+     *
+     * @return \Upsun\Model\Address|null
+     */
+    public function getAddress()
+    {
+        return $this->container['address'];
+    }
+
+    /**
+     * Sets address
+     */
+    public function setAddress($address)
+    {
+        if (is_null($address)) {
+            throw new \InvalidArgumentException('non-nullable address cannot be null');
+        }
+        $this->container['address'] = $address;
+
+        return $this;
+    }
+
+    /**
+     * Gets company
+     *
+     * @return string|null
+     */
+    public function getCompany()
+    {
+        return $this->container['company'];
+    }
+
+    /**
+     * Sets company
+     */
+    public function setCompany($company)
+    {
+        if (is_null($company)) {
+            throw new \InvalidArgumentException('non-nullable company cannot be null');
+        }
+        $this->container['company'] = $company;
+
+        return $this;
+    }
+
+    /**
+     * Gets vat_number
+     *
+     * @return string|null
+     */
+    public function getVatNumber()
+    {
+        return $this->container['vat_number'];
+    }
+
+    /**
+     * Sets vat_number
+     */
+    public function setVatNumber($vat_number)
+    {
+        if (is_null($vat_number)) {
+            throw new \InvalidArgumentException('non-nullable vat_number cannot be null');
+        }
+        $this->container['vat_number'] = $vat_number;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_period_start
+     *
+     * @return \DateTime|null
+     */
+    public function getBillingPeriodStart()
+    {
+        return $this->container['billing_period_start'];
+    }
+
+    /**
+     * Sets billing_period_start
+     */
+    public function setBillingPeriodStart($billing_period_start)
+    {
+        if (is_null($billing_period_start)) {
+            throw new \InvalidArgumentException('non-nullable billing_period_start cannot be null');
+        }
+        $this->container['billing_period_start'] = $billing_period_start;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_period_end
+     *
+     * @return \DateTime|null
+     */
+    public function getBillingPeriodEnd()
+    {
+        return $this->container['billing_period_end'];
+    }
+
+    /**
+     * Sets billing_period_end
+     */
+    public function setBillingPeriodEnd($billing_period_end)
+    {
+        if (is_null($billing_period_end)) {
+            throw new \InvalidArgumentException('non-nullable billing_period_end cannot be null');
+        }
+        $this->container['billing_period_end'] = $billing_period_end;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_period_label
+     *
+     * @return \Upsun\Model\OrderBillingPeriodLabel|null
+     */
+    public function getBillingPeriodLabel()
+    {
+        return $this->container['billing_period_label'];
+    }
+
+    /**
+     * Sets billing_period_label
+     */
+    public function setBillingPeriodLabel($billing_period_label)
+    {
+        if (is_null($billing_period_label)) {
+            throw new \InvalidArgumentException('non-nullable billing_period_label cannot be null');
+        }
+        $this->container['billing_period_label'] = $billing_period_label;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_period_duration
+     *
+     * @return int|null
+     */
+    public function getBillingPeriodDuration()
+    {
+        return $this->container['billing_period_duration'];
+    }
+
+    /**
+     * Sets billing_period_duration
+     */
+    public function setBillingPeriodDuration($billing_period_duration)
+    {
+        if (is_null($billing_period_duration)) {
+            throw new \InvalidArgumentException('non-nullable billing_period_duration cannot be null');
+        }
+        $this->container['billing_period_duration'] = $billing_period_duration;
+
+        return $this;
+    }
+
+    /**
+     * Gets paid_on
+     *
+     * @return \DateTime|null
+     */
+    public function getPaidOn()
+    {
+        return $this->container['paid_on'];
+    }
+
+    /**
+     * Sets paid_on
+     */
+    public function setPaidOn($paid_on)
+    {
+        if (is_null($paid_on)) {
+            array_push($this->openAPINullablesSetToNull, 'paid_on');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('paid_on', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['paid_on'] = $paid_on;
+
+        return $this;
+    }
+
+    /**
+     * Gets total
+     *
+     * @return int|null
+     */
+    public function getTotal()
+    {
+        return $this->container['total'];
+    }
+
+    /**
+     * Sets total
+     */
+    public function setTotal($total)
+    {
+        if (is_null($total)) {
+            throw new \InvalidArgumentException('non-nullable total cannot be null');
+        }
+        $this->container['total'] = $total;
+
+        return $this;
+    }
+
+    /**
+     * Gets total_formatted
+     *
+     * @return int|null
+     */
+    public function getTotalFormatted()
+    {
+        return $this->container['total_formatted'];
+    }
+
+    /**
+     * Sets total_formatted
+     */
+    public function setTotalFormatted($total_formatted)
+    {
+        if (is_null($total_formatted)) {
+            throw new \InvalidArgumentException('non-nullable total_formatted cannot be null');
+        }
+        $this->container['total_formatted'] = $total_formatted;
+
+        return $this;
+    }
+
+    /**
+     * Gets components
+     *
+     * @return \Upsun\Model\Components|null
+     */
+    public function getComponents()
+    {
+        return $this->container['components'];
+    }
+
+    /**
+     * Sets components
+     */
+    public function setComponents($components)
+    {
+        if (is_null($components)) {
+            throw new \InvalidArgumentException('non-nullable components cannot be null');
+        }
+        $this->container['components'] = $components;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency
+     *
+     * @return string|null
+     */
+    public function getCurrency()
+    {
+        return $this->container['currency'];
+    }
+
+    /**
+     * Sets currency
+     */
+    public function setCurrency($currency)
+    {
+        if (is_null($currency)) {
+            throw new \InvalidArgumentException('non-nullable currency cannot be null');
+        }
+        $this->container['currency'] = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Gets invoice_url
+     *
+     * @return string|null
+     */
+    public function getInvoiceUrl()
+    {
+        return $this->container['invoice_url'];
+    }
+
+    /**
+     * Sets invoice_url
+     */
+    public function setInvoiceUrl($invoice_url)
+    {
+        if (is_null($invoice_url)) {
+            throw new \InvalidArgumentException('non-nullable invoice_url cannot be null');
+        }
+        $this->container['invoice_url'] = $invoice_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets last_refreshed
+     *
+     * @return \DateTime|null
+     */
+    public function getLastRefreshed()
+    {
+        return $this->container['last_refreshed'];
+    }
+
+    /**
+     * Sets last_refreshed
+     */
+    public function setLastRefreshed($last_refreshed)
+    {
+        if (is_null($last_refreshed)) {
+            throw new \InvalidArgumentException('non-nullable last_refreshed cannot be null');
+        }
+        $this->container['last_refreshed'] = $last_refreshed;
+
+        return $this;
+    }
+
+    /**
+     * Gets invoiced
+     *
+     * @return bool|null
+     */
+    public function getInvoiced()
+    {
+        return $this->container['invoiced'];
+    }
+
+    /**
+     * Sets invoiced
+     */
+    public function setInvoiced($invoiced)
+    {
+        if (is_null($invoiced)) {
+            throw new \InvalidArgumentException('non-nullable invoiced cannot be null');
+        }
+        $this->container['invoiced'] = $invoiced;
+
+        return $this;
+    }
+
+    /**
+     * Gets line_items
+     *
+     * @return \Upsun\Model\LineItem[]|null
+     */
+    public function getLineItems()
+    {
+        return $this->container['line_items'];
+    }
+
+    /**
+     * Sets line_items
+     */
+    public function setLineItems($line_items)
+    {
+        if (is_null($line_items)) {
+            throw new \InvalidArgumentException('non-nullable line_items cannot be null');
+        }
+        $this->container['line_items'] = $line_items;
+
+        return $this;
+    }
+
+    /**
+     * Gets _links
+     *
+     * @return \Upsun\Model\OrderLinks|null
+     */
+    public function getLinks()
+    {
+        return $this->container['_links'];
+    }
+
+    /**
+     * Sets _links
+     */
+    public function setLinks($_links)
+    {
+        if (is_null($_links)) {
+            throw new \InvalidArgumentException('non-nullable _links cannot be null');
+        }
+        $this->container['_links'] = $_links;
+
+        return $this;
+    }
+    /**
+     * Returns true if offset exists. False otherwise.
+     */
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->container[$offset]);
+    }
+
+    /**
+     * Gets offset.
+     */
+    #[\ReturnTypeWillChange]
+    public function offsetGet(mixed $offset)
+    {
+        return $this->container[$offset] ?? null;
+    }
+
+    /**
+     * Sets value based on offset.
+     */
+    public function offsetSet(mixed $offset = null, $value): void
+    {
+        if (is_null($offset)) {
+            $this->container[] = $value;
+        } else {
+            $this->container[$offset] = $value;
+        }
+    }
+
+    /**
+     * Unsets offset.
+     */
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->container[$offset]);
+    }
+
+    /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     */
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize(): mixed
+    {
+        return ObjectSerializer::sanitizeForSerialization($this);
+        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+    }
+
+    /**
+     * Gets the string presentation of the object
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
+
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
+        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-

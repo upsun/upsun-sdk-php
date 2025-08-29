@@ -70,11 +70,79 @@ final class Config implements JsonSerializable
     ];
 
     /**
+     * Array of nullable properties. Used for (de)serialization
+     */
+    private static array $openAPINullables = [
+        'newrelic' => false,
+        'sumologic' => false,
+        'splunk' => false,
+        'httplog' => false,
+        'syslog' => false,
+        'webhook' => false,
+        'script' => false,
+        'github' => false,
+        'gitlab' => false,
+        'bitbucket' => false,
+        'bitbucket_server' => false,
+        'health_email' => false,
+        'health_webhook' => false,
+        'health_pagerduty' => false,
+        'health_slack' => false,
+        'cdn_fastly' => false,
+        'blackfire' => false
+    ];
+
+    /**
+     * If a nullable field gets set to null, insert it here
+     */
+    private array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      */
     public static function openAPITypes(): array
     {
         return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    public static function openAPIFormats(): array
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -100,62 +168,613 @@ final class Config implements JsonSerializable
         'cdn_fastly' => 'cdn.fastly',
         'blackfire' => 'blackfire'
     ];
-    
-    public function __construct(
-        public readonly \Upsun\Model\NewRelicLogForwardingIntegrationConfigurations|null $newrelic = null,
-        public readonly \Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations|null $sumologic = null,
-        public readonly \Upsun\Model\SplunkLogForwardingIntegrationConfigurations|null $splunk = null,
-        public readonly \Upsun\Model\HTTPLogForwardingIntegrationConfigurations|null $httplog = null,
-        public readonly \Upsun\Model\SyslogLogForwardingIntegrationConfigurations|null $syslog = null,
-        public readonly \Upsun\Model\WebhookIntegrationConfigurations|null $webhook = null,
-        public readonly \Upsun\Model\ScriptIntegrationConfigurations|null $script = null,
-        public readonly \Upsun\Model\GitHubIntegrationConfigurations|null $github = null,
-        public readonly \Upsun\Model\GitLabIntegrationConfigurations|null $gitlab = null,
-        public readonly \Upsun\Model\BitbucketIntegrationConfigurations|null $bitbucket = null,
-        public readonly \Upsun\Model\BitbucketServerIntegrationConfigurations|null $bitbucket_server = null,
-        public readonly \Upsun\Model\HealthEmailNotificationIntegrationConfigurations|null $health_email = null,
-        public readonly \Upsun\Model\HealthWebhookNotificationIntegrationConfigurations|null $health_webhook = null,
-        public readonly \Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations|null $health_pagerduty = null,
-        public readonly \Upsun\Model\HealthSlackNotificationIntegrationConfigurations|null $health_slack = null,
-        public readonly \Upsun\Model\FastlyCDNIntegrationConfigurations|null $cdn_fastly = null,
-        public readonly \Upsun\Model\BlackfireIntegrationConfigurations|null $blackfire = null
-    ) {
-    }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'newrelic' => $this->newrelic,
-            'sumologic' => $this->sumologic,
-            'splunk' => $this->splunk,
-            'httplog' => $this->httplog,
-            'syslog' => $this->syslog,
-            'webhook' => $this->webhook,
-            'script' => $this->script,
-            'github' => $this->github,
-            'gitlab' => $this->gitlab,
-            'bitbucket' => $this->bitbucket,
-            'bitbucket_server' => $this->bitbucket_server,
-            'health_email' => $this->health_email,
-            'health_webhook' => $this->health_webhook,
-            'health_pagerduty' => $this->health_pagerduty,
-            'health_slack' => $this->health_slack,
-            'cdn_fastly' => $this->cdn_fastly,
-            'blackfire' => $this->blackfire,
-        ];
-    }
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     */
+    private static $setters = [
+        'newrelic' => 'setNewrelic',
+        'sumologic' => 'setSumologic',
+        'splunk' => 'setSplunk',
+        'httplog' => 'setHttplog',
+        'syslog' => 'setSyslog',
+        'webhook' => 'setWebhook',
+        'script' => 'setScript',
+        'github' => 'setGithub',
+        'gitlab' => 'setGitlab',
+        'bitbucket' => 'setBitbucket',
+        'bitbucket_server' => 'setBitbucketServer',
+        'health_email' => 'setHealthEmail',
+        'health_webhook' => 'setHealthWebhook',
+        'health_pagerduty' => 'setHealthPagerduty',
+        'health_slack' => 'setHealthSlack',
+        'cdn_fastly' => 'setCdnFastly',
+        'blackfire' => 'setBlackfire'
+    ];
 
-    public function __toString(): string
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     */
+    private static $getters = [
+        'newrelic' => 'getNewrelic',
+        'sumologic' => 'getSumologic',
+        'splunk' => 'getSplunk',
+        'httplog' => 'getHttplog',
+        'syslog' => 'getSyslog',
+        'webhook' => 'getWebhook',
+        'script' => 'getScript',
+        'github' => 'getGithub',
+        'gitlab' => 'getGitlab',
+        'bitbucket' => 'getBitbucket',
+        'bitbucket_server' => 'getBitbucketServer',
+        'health_email' => 'getHealthEmail',
+        'health_webhook' => 'getHealthWebhook',
+        'health_pagerduty' => 'getHealthPagerduty',
+        'health_slack' => 'getHealthSlack',
+        'cdn_fastly' => 'getCdnFastly',
+        'blackfire' => 'getBlackfire'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    public static function attributeMap(): array
     {
-        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+        return self::$attributeMap;
     }
 
     /**
-     * Checks if a property is nullable
+     * Array of attributes to setter functions (for deserialization of responses)
      */
-    public static function isNullable(string $property): bool
+    public static function setters(): array
     {
-        return true; // All properties in this model are nullable
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters(): array
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     */
+    public function getModelName(): string
+    {
+        return self::$openAPIModelName;
+    }
+
+
+    /**
+     * Associative array for storing property values
+     */
+    private array $container = [];
+
+    /**
+     * Constructor
+     */
+    public function __construct(?array $data = null)
+    {
+        $this->setIfExists('newrelic', $data ?? [], null);
+        $this->setIfExists('sumologic', $data ?? [], null);
+        $this->setIfExists('splunk', $data ?? [], null);
+        $this->setIfExists('httplog', $data ?? [], null);
+        $this->setIfExists('syslog', $data ?? [], null);
+        $this->setIfExists('webhook', $data ?? [], null);
+        $this->setIfExists('script', $data ?? [], null);
+        $this->setIfExists('github', $data ?? [], null);
+        $this->setIfExists('gitlab', $data ?? [], null);
+        $this->setIfExists('bitbucket', $data ?? [], null);
+        $this->setIfExists('bitbucket_server', $data ?? [], null);
+        $this->setIfExists('health_email', $data ?? [], null);
+        $this->setIfExists('health_webhook', $data ?? [], null);
+        $this->setIfExists('health_pagerduty', $data ?? [], null);
+        $this->setIfExists('health_slack', $data ?? [], null);
+        $this->setIfExists('cdn_fastly', $data ?? [], null);
+        $this->setIfExists('blackfire', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    */
+    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
+    {
+        if (
+            self::isNullable($variableName)
+            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
+        ) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+    }
+
+    /**
+     * Show all the invalid properties with reasons.
+     */
+    public function listInvalidProperties(): array
+    {
+        $invalidProperties = [];
+
+        return $invalidProperties;
+    }
+
+    /**
+     * Validate all the properties in the model
+     * return true if all passed
+     */
+    public function valid(): bool
+    {
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets newrelic
+     *
+     * @return \Upsun\Model\NewRelicLogForwardingIntegrationConfigurations|null
+     */
+    public function getNewrelic()
+    {
+        return $this->container['newrelic'];
+    }
+
+    /**
+     * Sets newrelic
+     */
+    public function setNewrelic($newrelic)
+    {
+        if (is_null($newrelic)) {
+            throw new \InvalidArgumentException('non-nullable newrelic cannot be null');
+        }
+        $this->container['newrelic'] = $newrelic;
+
+        return $this;
+    }
+
+    /**
+     * Gets sumologic
+     *
+     * @return \Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations|null
+     */
+    public function getSumologic()
+    {
+        return $this->container['sumologic'];
+    }
+
+    /**
+     * Sets sumologic
+     */
+    public function setSumologic($sumologic)
+    {
+        if (is_null($sumologic)) {
+            throw new \InvalidArgumentException('non-nullable sumologic cannot be null');
+        }
+        $this->container['sumologic'] = $sumologic;
+
+        return $this;
+    }
+
+    /**
+     * Gets splunk
+     *
+     * @return \Upsun\Model\SplunkLogForwardingIntegrationConfigurations|null
+     */
+    public function getSplunk()
+    {
+        return $this->container['splunk'];
+    }
+
+    /**
+     * Sets splunk
+     */
+    public function setSplunk($splunk)
+    {
+        if (is_null($splunk)) {
+            throw new \InvalidArgumentException('non-nullable splunk cannot be null');
+        }
+        $this->container['splunk'] = $splunk;
+
+        return $this;
+    }
+
+    /**
+     * Gets httplog
+     *
+     * @return \Upsun\Model\HTTPLogForwardingIntegrationConfigurations|null
+     */
+    public function getHttplog()
+    {
+        return $this->container['httplog'];
+    }
+
+    /**
+     * Sets httplog
+     */
+    public function setHttplog($httplog)
+    {
+        if (is_null($httplog)) {
+            throw new \InvalidArgumentException('non-nullable httplog cannot be null');
+        }
+        $this->container['httplog'] = $httplog;
+
+        return $this;
+    }
+
+    /**
+     * Gets syslog
+     *
+     * @return \Upsun\Model\SyslogLogForwardingIntegrationConfigurations|null
+     */
+    public function getSyslog()
+    {
+        return $this->container['syslog'];
+    }
+
+    /**
+     * Sets syslog
+     */
+    public function setSyslog($syslog)
+    {
+        if (is_null($syslog)) {
+            throw new \InvalidArgumentException('non-nullable syslog cannot be null');
+        }
+        $this->container['syslog'] = $syslog;
+
+        return $this;
+    }
+
+    /**
+     * Gets webhook
+     *
+     * @return \Upsun\Model\WebhookIntegrationConfigurations|null
+     */
+    public function getWebhook()
+    {
+        return $this->container['webhook'];
+    }
+
+    /**
+     * Sets webhook
+     */
+    public function setWebhook($webhook)
+    {
+        if (is_null($webhook)) {
+            throw new \InvalidArgumentException('non-nullable webhook cannot be null');
+        }
+        $this->container['webhook'] = $webhook;
+
+        return $this;
+    }
+
+    /**
+     * Gets script
+     *
+     * @return \Upsun\Model\ScriptIntegrationConfigurations|null
+     */
+    public function getScript()
+    {
+        return $this->container['script'];
+    }
+
+    /**
+     * Sets script
+     */
+    public function setScript($script)
+    {
+        if (is_null($script)) {
+            throw new \InvalidArgumentException('non-nullable script cannot be null');
+        }
+        $this->container['script'] = $script;
+
+        return $this;
+    }
+
+    /**
+     * Gets github
+     *
+     * @return \Upsun\Model\GitHubIntegrationConfigurations|null
+     */
+    public function getGithub()
+    {
+        return $this->container['github'];
+    }
+
+    /**
+     * Sets github
+     */
+    public function setGithub($github)
+    {
+        if (is_null($github)) {
+            throw new \InvalidArgumentException('non-nullable github cannot be null');
+        }
+        $this->container['github'] = $github;
+
+        return $this;
+    }
+
+    /**
+     * Gets gitlab
+     *
+     * @return \Upsun\Model\GitLabIntegrationConfigurations|null
+     */
+    public function getGitlab()
+    {
+        return $this->container['gitlab'];
+    }
+
+    /**
+     * Sets gitlab
+     */
+    public function setGitlab($gitlab)
+    {
+        if (is_null($gitlab)) {
+            throw new \InvalidArgumentException('non-nullable gitlab cannot be null');
+        }
+        $this->container['gitlab'] = $gitlab;
+
+        return $this;
+    }
+
+    /**
+     * Gets bitbucket
+     *
+     * @return \Upsun\Model\BitbucketIntegrationConfigurations|null
+     */
+    public function getBitbucket()
+    {
+        return $this->container['bitbucket'];
+    }
+
+    /**
+     * Sets bitbucket
+     */
+    public function setBitbucket($bitbucket)
+    {
+        if (is_null($bitbucket)) {
+            throw new \InvalidArgumentException('non-nullable bitbucket cannot be null');
+        }
+        $this->container['bitbucket'] = $bitbucket;
+
+        return $this;
+    }
+
+    /**
+     * Gets bitbucket_server
+     *
+     * @return \Upsun\Model\BitbucketServerIntegrationConfigurations|null
+     */
+    public function getBitbucketServer()
+    {
+        return $this->container['bitbucket_server'];
+    }
+
+    /**
+     * Sets bitbucket_server
+     */
+    public function setBitbucketServer($bitbucket_server)
+    {
+        if (is_null($bitbucket_server)) {
+            throw new \InvalidArgumentException('non-nullable bitbucket_server cannot be null');
+        }
+        $this->container['bitbucket_server'] = $bitbucket_server;
+
+        return $this;
+    }
+
+    /**
+     * Gets health_email
+     *
+     * @return \Upsun\Model\HealthEmailNotificationIntegrationConfigurations|null
+     */
+    public function getHealthEmail()
+    {
+        return $this->container['health_email'];
+    }
+
+    /**
+     * Sets health_email
+     */
+    public function setHealthEmail($health_email)
+    {
+        if (is_null($health_email)) {
+            throw new \InvalidArgumentException('non-nullable health_email cannot be null');
+        }
+        $this->container['health_email'] = $health_email;
+
+        return $this;
+    }
+
+    /**
+     * Gets health_webhook
+     *
+     * @return \Upsun\Model\HealthWebhookNotificationIntegrationConfigurations|null
+     */
+    public function getHealthWebhook()
+    {
+        return $this->container['health_webhook'];
+    }
+
+    /**
+     * Sets health_webhook
+     */
+    public function setHealthWebhook($health_webhook)
+    {
+        if (is_null($health_webhook)) {
+            throw new \InvalidArgumentException('non-nullable health_webhook cannot be null');
+        }
+        $this->container['health_webhook'] = $health_webhook;
+
+        return $this;
+    }
+
+    /**
+     * Gets health_pagerduty
+     *
+     * @return \Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations|null
+     */
+    public function getHealthPagerduty()
+    {
+        return $this->container['health_pagerduty'];
+    }
+
+    /**
+     * Sets health_pagerduty
+     */
+    public function setHealthPagerduty($health_pagerduty)
+    {
+        if (is_null($health_pagerduty)) {
+            throw new \InvalidArgumentException('non-nullable health_pagerduty cannot be null');
+        }
+        $this->container['health_pagerduty'] = $health_pagerduty;
+
+        return $this;
+    }
+
+    /**
+     * Gets health_slack
+     *
+     * @return \Upsun\Model\HealthSlackNotificationIntegrationConfigurations|null
+     */
+    public function getHealthSlack()
+    {
+        return $this->container['health_slack'];
+    }
+
+    /**
+     * Sets health_slack
+     */
+    public function setHealthSlack($health_slack)
+    {
+        if (is_null($health_slack)) {
+            throw new \InvalidArgumentException('non-nullable health_slack cannot be null');
+        }
+        $this->container['health_slack'] = $health_slack;
+
+        return $this;
+    }
+
+    /**
+     * Gets cdn_fastly
+     *
+     * @return \Upsun\Model\FastlyCDNIntegrationConfigurations|null
+     */
+    public function getCdnFastly()
+    {
+        return $this->container['cdn_fastly'];
+    }
+
+    /**
+     * Sets cdn_fastly
+     */
+    public function setCdnFastly($cdn_fastly)
+    {
+        if (is_null($cdn_fastly)) {
+            throw new \InvalidArgumentException('non-nullable cdn_fastly cannot be null');
+        }
+        $this->container['cdn_fastly'] = $cdn_fastly;
+
+        return $this;
+    }
+
+    /**
+     * Gets blackfire
+     *
+     * @return \Upsun\Model\BlackfireIntegrationConfigurations|null
+     */
+    public function getBlackfire()
+    {
+        return $this->container['blackfire'];
+    }
+
+    /**
+     * Sets blackfire
+     */
+    public function setBlackfire($blackfire)
+    {
+        if (is_null($blackfire)) {
+            throw new \InvalidArgumentException('non-nullable blackfire cannot be null');
+        }
+        $this->container['blackfire'] = $blackfire;
+
+        return $this;
+    }
+    /**
+     * Returns true if offset exists. False otherwise.
+     */
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->container[$offset]);
+    }
+
+    /**
+     * Gets offset.
+     */
+    #[\ReturnTypeWillChange]
+    public function offsetGet(mixed $offset)
+    {
+        return $this->container[$offset] ?? null;
+    }
+
+    /**
+     * Sets value based on offset.
+     */
+    public function offsetSet(mixed $offset = null, $value): void
+    {
+        if (is_null($offset)) {
+            $this->container[] = $value;
+        } else {
+            $this->container[$offset] = $value;
+        }
+    }
+
+    /**
+     * Unsets offset.
+     */
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->container[$offset]);
+    }
+
+    /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     */
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize(): mixed
+    {
+        return ObjectSerializer::sanitizeForSerialization($this);
+        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+    }
+
+    /**
+     * Gets the string presentation of the object
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
+
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
+        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-

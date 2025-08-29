@@ -54,11 +54,71 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     ];
 
     /**
+     * Array of nullable properties. Used for (de)serialization
+     */
+    private static array $openAPINullables = [
+        'root' => true,
+        'expires' => false,
+        'passthru' => false,
+        'scripts' => false,
+        'index' => true,
+        'allow' => false,
+        'headers' => false,
+        'rules' => false,
+        'request_buffering' => false
+    ];
+
+    /**
+     * If a nullable field gets set to null, insert it here
+     */
+    private array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      */
     public static function openAPITypes(): array
     {
         return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    public static function openAPIFormats(): array
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -76,46 +136,440 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
         'rules' => 'rules',
         'request_buffering' => 'request_buffering'
     ];
-    
-    public function __construct(
-        public readonly string $root = null,
-        public readonly string $expires = null,
-        public readonly string $passthru = null,
-        public readonly bool $scripts = null,
-        public readonly ?array $index = null,
-        public readonly bool $allow = null,
-        public readonly ?array $headers = null,
-        public readonly ?array $rules = null,
-        public readonly \Upsun\Model\ConfigurationForSupportingRequestBuffering|null $request_buffering = null
-    ) {
-    }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'root' => $this->root,
-            'expires' => $this->expires,
-            'passthru' => $this->passthru,
-            'scripts' => $this->scripts,
-            'index' => $this->index,
-            'allow' => $this->allow,
-            'headers' => $this->headers,
-            'rules' => $this->rules,
-            'request_buffering' => $this->request_buffering,
-        ];
-    }
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     */
+    private static $setters = [
+        'root' => 'setRoot',
+        'expires' => 'setExpires',
+        'passthru' => 'setPassthru',
+        'scripts' => 'setScripts',
+        'index' => 'setIndex',
+        'allow' => 'setAllow',
+        'headers' => 'setHeaders',
+        'rules' => 'setRules',
+        'request_buffering' => 'setRequestBuffering'
+    ];
 
-    public function __toString(): string
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     */
+    private static $getters = [
+        'root' => 'getRoot',
+        'expires' => 'getExpires',
+        'passthru' => 'getPassthru',
+        'scripts' => 'getScripts',
+        'index' => 'getIndex',
+        'allow' => 'getAllow',
+        'headers' => 'getHeaders',
+        'rules' => 'getRules',
+        'request_buffering' => 'getRequestBuffering'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    public static function attributeMap(): array
     {
-        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+        return self::$attributeMap;
     }
 
     /**
-     * Checks if a property is nullable
+     * Array of attributes to setter functions (for deserialization of responses)
      */
-    public static function isNullable(string $property): bool
+    public static function setters(): array
     {
-        return true; // All properties in this model are nullable
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters(): array
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     */
+    public function getModelName(): string
+    {
+        return self::$openAPIModelName;
+    }
+
+
+    /**
+     * Associative array for storing property values
+     */
+    private array $container = [];
+
+    /**
+     * Constructor
+     */
+    public function __construct(?array $data = null)
+    {
+        $this->setIfExists('root', $data ?? [], null);
+        $this->setIfExists('expires', $data ?? [], null);
+        $this->setIfExists('passthru', $data ?? [], null);
+        $this->setIfExists('scripts', $data ?? [], null);
+        $this->setIfExists('index', $data ?? [], null);
+        $this->setIfExists('allow', $data ?? [], null);
+        $this->setIfExists('headers', $data ?? [], null);
+        $this->setIfExists('rules', $data ?? [], null);
+        $this->setIfExists('request_buffering', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    */
+    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
+    {
+        if (
+            self::isNullable($variableName)
+            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
+        ) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+    }
+
+    /**
+     * Show all the invalid properties with reasons.
+     */
+    public function listInvalidProperties(): array
+    {
+        $invalidProperties = [];
+
+        if ($this->container['root'] === null) {
+            $invalidProperties[] = "'root' can't be null";
+        }
+        if ($this->container['expires'] === null) {
+            $invalidProperties[] = "'expires' can't be null";
+        }
+        if ($this->container['passthru'] === null) {
+            $invalidProperties[] = "'passthru' can't be null";
+        }
+        if ($this->container['scripts'] === null) {
+            $invalidProperties[] = "'scripts' can't be null";
+        }
+        if ($this->container['allow'] === null) {
+            $invalidProperties[] = "'allow' can't be null";
+        }
+        if ($this->container['headers'] === null) {
+            $invalidProperties[] = "'headers' can't be null";
+        }
+        if ($this->container['rules'] === null) {
+            $invalidProperties[] = "'rules' can't be null";
+        }
+        return $invalidProperties;
+    }
+
+    /**
+     * Validate all the properties in the model
+     * return true if all passed
+     */
+    public function valid(): bool
+    {
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets root
+     *
+     * @return string
+     */
+    public function getRoot()
+    {
+        return $this->container['root'];
+    }
+
+    /**
+     * Sets root
+     */
+    public function setRoot($root)
+    {
+        if (is_null($root)) {
+            array_push($this->openAPINullablesSetToNull, 'root');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('root', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['root'] = $root;
+
+        return $this;
+    }
+
+    /**
+     * Gets expires
+     *
+     * @return string
+     */
+    public function getExpires()
+    {
+        return $this->container['expires'];
+    }
+
+    /**
+     * Sets expires
+     */
+    public function setExpires($expires)
+    {
+        if (is_null($expires)) {
+            throw new \InvalidArgumentException('non-nullable expires cannot be null');
+        }
+        $this->container['expires'] = $expires;
+
+        return $this;
+    }
+
+    /**
+     * Gets passthru
+     *
+     * @return string
+     */
+    public function getPassthru()
+    {
+        return $this->container['passthru'];
+    }
+
+    /**
+     * Sets passthru
+     */
+    public function setPassthru($passthru)
+    {
+        if (is_null($passthru)) {
+            throw new \InvalidArgumentException('non-nullable passthru cannot be null');
+        }
+        $this->container['passthru'] = $passthru;
+
+        return $this;
+    }
+
+    /**
+     * Gets scripts
+     *
+     * @return bool
+     */
+    public function getScripts()
+    {
+        return $this->container['scripts'];
+    }
+
+    /**
+     * Sets scripts
+     */
+    public function setScripts($scripts)
+    {
+        if (is_null($scripts)) {
+            throw new \InvalidArgumentException('non-nullable scripts cannot be null');
+        }
+        $this->container['scripts'] = $scripts;
+
+        return $this;
+    }
+
+    /**
+     * Gets index
+     *
+     * @return string[]|null
+     */
+    public function getIndex()
+    {
+        return $this->container['index'];
+    }
+
+    /**
+     * Sets index
+     */
+    public function setIndex($index)
+    {
+        if (is_null($index)) {
+            array_push($this->openAPINullablesSetToNull, 'index');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('index', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['index'] = $index;
+
+        return $this;
+    }
+
+    /**
+     * Gets allow
+     *
+     * @return bool
+     */
+    public function getAllow()
+    {
+        return $this->container['allow'];
+    }
+
+    /**
+     * Sets allow
+     */
+    public function setAllow($allow)
+    {
+        if (is_null($allow)) {
+            throw new \InvalidArgumentException('non-nullable allow cannot be null');
+        }
+        $this->container['allow'] = $allow;
+
+        return $this;
+    }
+
+    /**
+     * Gets headers
+     *
+     * @return array<string,string>
+     */
+    public function getHeaders()
+    {
+        return $this->container['headers'];
+    }
+
+    /**
+     * Sets headers
+     */
+    public function setHeaders($headers)
+    {
+        if (is_null($headers)) {
+            throw new \InvalidArgumentException('non-nullable headers cannot be null');
+        }
+        $this->container['headers'] = $headers;
+
+        return $this;
+    }
+
+    /**
+     * Gets rules
+     *
+     * @return array<string,\Upsun\Model\SpecificOverridesValue>
+     */
+    public function getRules()
+    {
+        return $this->container['rules'];
+    }
+
+    /**
+     * Sets rules
+     */
+    public function setRules($rules)
+    {
+        if (is_null($rules)) {
+            throw new \InvalidArgumentException('non-nullable rules cannot be null');
+        }
+        $this->container['rules'] = $rules;
+
+        return $this;
+    }
+
+    /**
+     * Gets request_buffering
+     *
+     * @return \Upsun\Model\ConfigurationForSupportingRequestBuffering|null
+     */
+    public function getRequestBuffering()
+    {
+        return $this->container['request_buffering'];
+    }
+
+    /**
+     * Sets request_buffering
+     */
+    public function setRequestBuffering($request_buffering)
+    {
+        if (is_null($request_buffering)) {
+            throw new \InvalidArgumentException('non-nullable request_buffering cannot be null');
+        }
+        $this->container['request_buffering'] = $request_buffering;
+
+        return $this;
+    }
+    /**
+     * Returns true if offset exists. False otherwise.
+     */
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->container[$offset]);
+    }
+
+    /**
+     * Gets offset.
+     */
+    #[\ReturnTypeWillChange]
+    public function offsetGet(mixed $offset)
+    {
+        return $this->container[$offset] ?? null;
+    }
+
+    /**
+     * Sets value based on offset.
+     */
+    public function offsetSet(mixed $offset = null, $value): void
+    {
+        if (is_null($offset)) {
+            $this->container[] = $value;
+        } else {
+            $this->container[$offset] = $value;
+        }
+    }
+
+    /**
+     * Unsets offset.
+     */
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->container[$offset]);
+    }
+
+    /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     */
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize(): mixed
+    {
+        return ObjectSerializer::sanitizeForSerialization($this);
+        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+    }
+
+    /**
+     * Gets the string presentation of the object
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
+
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
+        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-

@@ -54,11 +54,71 @@ final class OrganizationMember implements JsonSerializable
     ];
 
     /**
+     * Array of nullable properties. Used for (de)serialization
+     */
+    private static array $openAPINullables = [
+        'id' => false,
+        'organization_id' => false,
+        'user_id' => false,
+        'permissions' => false,
+        'level' => false,
+        'owner' => false,
+        'created_at' => false,
+        'updated_at' => false,
+        '_links' => false
+    ];
+
+    /**
+     * If a nullable field gets set to null, insert it here
+     */
+    private array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      */
     public static function openAPITypes(): array
     {
         return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    public static function openAPIFormats(): array
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -76,46 +136,471 @@ final class OrganizationMember implements JsonSerializable
         'updated_at' => 'updated_at',
         '_links' => '_links'
     ];
-    
-    public function __construct(
-        public readonly string|null $id = null,
-        public readonly string|null $organization_id = null,
-        public readonly string|null $user_id = null,
-        public readonly ?array $permissions = null,
-        public readonly string|null $level = null,
-        public readonly bool|null $owner = null,
-        public readonly \DateTime|null $created_at = null,
-        public readonly \DateTime|null $updated_at = null,
-        public readonly \Upsun\Model\OrganizationMemberLinks|null $_links = null
-    ) {
-    }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'id' => $this->id,
-            'organization_id' => $this->organization_id,
-            'user_id' => $this->user_id,
-            'permissions' => $this->permissions,
-            'level' => $this->level,
-            'owner' => $this->owner,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            '_links' => $this->_links,
-        ];
-    }
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     */
+    private static $setters = [
+        'id' => 'setId',
+        'organization_id' => 'setOrganizationId',
+        'user_id' => 'setUserId',
+        'permissions' => 'setPermissions',
+        'level' => 'setLevel',
+        'owner' => 'setOwner',
+        'created_at' => 'setCreatedAt',
+        'updated_at' => 'setUpdatedAt',
+        '_links' => 'setLinks'
+    ];
 
-    public function __toString(): string
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     */
+    private static $getters = [
+        'id' => 'getId',
+        'organization_id' => 'getOrganizationId',
+        'user_id' => 'getUserId',
+        'permissions' => 'getPermissions',
+        'level' => 'getLevel',
+        'owner' => 'getOwner',
+        'created_at' => 'getCreatedAt',
+        'updated_at' => 'getUpdatedAt',
+        '_links' => 'getLinks'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    public static function attributeMap(): array
     {
-        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+        return self::$attributeMap;
     }
 
     /**
-     * Checks if a property is nullable
+     * Array of attributes to setter functions (for deserialization of responses)
      */
-    public static function isNullable(string $property): bool
+    public static function setters(): array
     {
-        return true; // All properties in this model are nullable
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters(): array
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     */
+    public function getModelName(): string
+    {
+        return self::$openAPIModelName;
+    }
+
+    public const PERMISSIONS_ADMIN = 'admin';
+    public const PERMISSIONS_BILLING = 'billing';
+    public const PERMISSIONS_MEMBERS = 'members';
+    public const PERMISSIONS_PLANS = 'plans';
+    public const PERMISSIONS_PROJECTS_CREATE = 'projects:create';
+    public const PERMISSIONS_PROJECTS_LIST = 'projects:list';
+    public const LEVEL_ADMIN = 'admin';
+    public const LEVEL_VIEWER = 'viewer';
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getPermissionsAllowableValues(): array
+    {
+        return [
+            self::PERMISSIONS_ADMIN,
+            self::PERMISSIONS_BILLING,
+            self::PERMISSIONS_MEMBERS,
+            self::PERMISSIONS_PLANS,
+            self::PERMISSIONS_PROJECTS_CREATE,
+            self::PERMISSIONS_PROJECTS_LIST,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getLevelAllowableValues(): array
+    {
+        return [
+            self::LEVEL_ADMIN,
+            self::LEVEL_VIEWER,
+        ];
+    }
+
+    /**
+     * Associative array for storing property values
+     */
+    private array $container = [];
+
+    /**
+     * Constructor
+     */
+    public function __construct(?array $data = null)
+    {
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('organization_id', $data ?? [], null);
+        $this->setIfExists('user_id', $data ?? [], null);
+        $this->setIfExists('permissions', $data ?? [], null);
+        $this->setIfExists('level', $data ?? [], null);
+        $this->setIfExists('owner', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('updated_at', $data ?? [], null);
+        $this->setIfExists('_links', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    */
+    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
+    {
+        if (
+            self::isNullable($variableName)
+            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
+        ) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+    }
+
+    /**
+     * Show all the invalid properties with reasons.
+     */
+    public function listInvalidProperties(): array
+    {
+        $invalidProperties = [];
+
+        $allowedValues = $this->getLevelAllowableValues();
+        if (!is_null($this->container['level']) && !in_array($this->container['level'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'level', must be one of '%s'",
+                $this->container['level'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        return $invalidProperties;
+    }
+
+    /**
+     * Validate all the properties in the model
+     * return true if all passed
+     */
+    public function valid(): bool
+    {
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets id
+     *
+     * @return string|null
+     *
+     * @deprecated
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @deprecated
+     */
+    public function setId($id)
+    {
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets organization_id
+     *
+     * @return string|null
+     */
+    public function getOrganizationId()
+    {
+        return $this->container['organization_id'];
+    }
+
+    /**
+     * Sets organization_id
+     */
+    public function setOrganizationId($organization_id)
+    {
+        if (is_null($organization_id)) {
+            throw new \InvalidArgumentException('non-nullable organization_id cannot be null');
+        }
+        $this->container['organization_id'] = $organization_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets user_id
+     *
+     * @return string|null
+     */
+    public function getUserId()
+    {
+        return $this->container['user_id'];
+    }
+
+    /**
+     * Sets user_id
+     */
+    public function setUserId($user_id)
+    {
+        if (is_null($user_id)) {
+            throw new \InvalidArgumentException('non-nullable user_id cannot be null');
+        }
+        $this->container['user_id'] = $user_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets permissions
+     *
+     * @return string[]|null
+     */
+    public function getPermissions()
+    {
+        return $this->container['permissions'];
+    }
+
+    /**
+     * Sets permissions
+     */
+    public function setPermissions($permissions)
+    {
+        if (is_null($permissions)) {
+            throw new \InvalidArgumentException('non-nullable permissions cannot be null');
+        }
+        $allowedValues = $this->getPermissionsAllowableValues();
+        if (array_diff($permissions, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'permissions', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['permissions'] = $permissions;
+
+        return $this;
+    }
+
+    /**
+     * Gets level
+     *
+     * @return string|null
+     */
+    public function getLevel()
+    {
+        return $this->container['level'];
+    }
+
+    /**
+     * Sets level
+     */
+    public function setLevel($level)
+    {
+        if (is_null($level)) {
+            throw new \InvalidArgumentException('non-nullable level cannot be null');
+        }
+        $allowedValues = $this->getLevelAllowableValues();
+        if (!in_array($level, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'level', must be one of '%s'",
+                    $level,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['level'] = $level;
+
+        return $this;
+    }
+
+    /**
+     * Gets owner
+     *
+     * @return bool|null
+     */
+    public function getOwner()
+    {
+        return $this->container['owner'];
+    }
+
+    /**
+     * Sets owner
+     */
+    public function setOwner($owner)
+    {
+        if (is_null($owner)) {
+            throw new \InvalidArgumentException('non-nullable owner cannot be null');
+        }
+        $this->container['owner'] = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_at
+     *
+     * @return \DateTime|null
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['created_at'];
+    }
+
+    /**
+     * Sets created_at
+     */
+    public function setCreatedAt($created_at)
+    {
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        }
+        $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets updated_at
+     *
+     * @return \DateTime|null
+     */
+    public function getUpdatedAt()
+    {
+        return $this->container['updated_at'];
+    }
+
+    /**
+     * Sets updated_at
+     */
+    public function setUpdatedAt($updated_at)
+    {
+        if (is_null($updated_at)) {
+            throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
+        }
+        $this->container['updated_at'] = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets _links
+     *
+     * @return \Upsun\Model\OrganizationMemberLinks|null
+     */
+    public function getLinks()
+    {
+        return $this->container['_links'];
+    }
+
+    /**
+     * Sets _links
+     */
+    public function setLinks($_links)
+    {
+        if (is_null($_links)) {
+            throw new \InvalidArgumentException('non-nullable _links cannot be null');
+        }
+        $this->container['_links'] = $_links;
+
+        return $this;
+    }
+    /**
+     * Returns true if offset exists. False otherwise.
+     */
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->container[$offset]);
+    }
+
+    /**
+     * Gets offset.
+     */
+    #[\ReturnTypeWillChange]
+    public function offsetGet(mixed $offset)
+    {
+        return $this->container[$offset] ?? null;
+    }
+
+    /**
+     * Sets value based on offset.
+     */
+    public function offsetSet(mixed $offset = null, $value): void
+    {
+        if (is_null($offset)) {
+            $this->container[] = $value;
+        } else {
+            $this->container[$offset] = $value;
+        }
+    }
+
+    /**
+     * Unsets offset.
+     */
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->container[$offset]);
+    }
+
+    /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     */
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize(): mixed
+    {
+        return ObjectSerializer::sanitizeForSerialization($this);
+        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+    }
+
+    /**
+     * Gets the string presentation of the object
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
+
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
+        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-

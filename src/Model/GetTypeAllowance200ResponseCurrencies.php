@@ -46,11 +46,67 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
     ];
 
     /**
+     * Array of nullable properties. Used for (de)serialization
+     */
+    private static array $openAPINullables = [
+        'eur' => false,
+        'usd' => false,
+        'gbp' => false,
+        'aud' => false,
+        'cad' => false
+    ];
+
+    /**
+     * If a nullable field gets set to null, insert it here
+     */
+    private array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      */
     public static function openAPITypes(): array
     {
         return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    public static function openAPIFormats(): array
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -64,38 +120,301 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
         'aud' => 'AUD',
         'cad' => 'CAD'
     ];
-    
-    public function __construct(
-        public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR|null $eur = null,
-        public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD|null $usd = null,
-        public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP|null $gbp = null,
-        public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD|null $aud = null,
-        public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD|null $cad = null
-    ) {
-    }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'eur' => $this->eur,
-            'usd' => $this->usd,
-            'gbp' => $this->gbp,
-            'aud' => $this->aud,
-            'cad' => $this->cad,
-        ];
-    }
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     */
+    private static $setters = [
+        'eur' => 'setEur',
+        'usd' => 'setUsd',
+        'gbp' => 'setGbp',
+        'aud' => 'setAud',
+        'cad' => 'setCad'
+    ];
 
-    public function __toString(): string
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     */
+    private static $getters = [
+        'eur' => 'getEur',
+        'usd' => 'getUsd',
+        'gbp' => 'getGbp',
+        'aud' => 'getAud',
+        'cad' => 'getCad'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    public static function attributeMap(): array
     {
-        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+        return self::$attributeMap;
     }
 
     /**
-     * Checks if a property is nullable
+     * Array of attributes to setter functions (for deserialization of responses)
      */
-    public static function isNullable(string $property): bool
+    public static function setters(): array
     {
-        return true; // All properties in this model are nullable
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters(): array
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     */
+    public function getModelName(): string
+    {
+        return self::$openAPIModelName;
+    }
+
+
+    /**
+     * Associative array for storing property values
+     */
+    private array $container = [];
+
+    /**
+     * Constructor
+     */
+    public function __construct(?array $data = null)
+    {
+        $this->setIfExists('eur', $data ?? [], null);
+        $this->setIfExists('usd', $data ?? [], null);
+        $this->setIfExists('gbp', $data ?? [], null);
+        $this->setIfExists('aud', $data ?? [], null);
+        $this->setIfExists('cad', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    */
+    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
+    {
+        if (
+            self::isNullable($variableName)
+            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
+        ) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+    }
+
+    /**
+     * Show all the invalid properties with reasons.
+     */
+    public function listInvalidProperties(): array
+    {
+        $invalidProperties = [];
+
+        return $invalidProperties;
+    }
+
+    /**
+     * Validate all the properties in the model
+     * return true if all passed
+     */
+    public function valid(): bool
+    {
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets eur
+     *
+     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR|null
+     */
+    public function getEur()
+    {
+        return $this->container['eur'];
+    }
+
+    /**
+     * Sets eur
+     */
+    public function setEur($eur)
+    {
+        if (is_null($eur)) {
+            throw new \InvalidArgumentException('non-nullable eur cannot be null');
+        }
+        $this->container['eur'] = $eur;
+
+        return $this;
+    }
+
+    /**
+     * Gets usd
+     *
+     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD|null
+     */
+    public function getUsd()
+    {
+        return $this->container['usd'];
+    }
+
+    /**
+     * Sets usd
+     */
+    public function setUsd($usd)
+    {
+        if (is_null($usd)) {
+            throw new \InvalidArgumentException('non-nullable usd cannot be null');
+        }
+        $this->container['usd'] = $usd;
+
+        return $this;
+    }
+
+    /**
+     * Gets gbp
+     *
+     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP|null
+     */
+    public function getGbp()
+    {
+        return $this->container['gbp'];
+    }
+
+    /**
+     * Sets gbp
+     */
+    public function setGbp($gbp)
+    {
+        if (is_null($gbp)) {
+            throw new \InvalidArgumentException('non-nullable gbp cannot be null');
+        }
+        $this->container['gbp'] = $gbp;
+
+        return $this;
+    }
+
+    /**
+     * Gets aud
+     *
+     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD|null
+     */
+    public function getAud()
+    {
+        return $this->container['aud'];
+    }
+
+    /**
+     * Sets aud
+     */
+    public function setAud($aud)
+    {
+        if (is_null($aud)) {
+            throw new \InvalidArgumentException('non-nullable aud cannot be null');
+        }
+        $this->container['aud'] = $aud;
+
+        return $this;
+    }
+
+    /**
+     * Gets cad
+     *
+     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD|null
+     */
+    public function getCad()
+    {
+        return $this->container['cad'];
+    }
+
+    /**
+     * Sets cad
+     */
+    public function setCad($cad)
+    {
+        if (is_null($cad)) {
+            throw new \InvalidArgumentException('non-nullable cad cannot be null');
+        }
+        $this->container['cad'] = $cad;
+
+        return $this;
+    }
+    /**
+     * Returns true if offset exists. False otherwise.
+     */
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->container[$offset]);
+    }
+
+    /**
+     * Gets offset.
+     */
+    #[\ReturnTypeWillChange]
+    public function offsetGet(mixed $offset)
+    {
+        return $this->container[$offset] ?? null;
+    }
+
+    /**
+     * Sets value based on offset.
+     */
+    public function offsetSet(mixed $offset = null, $value): void
+    {
+        if (is_null($offset)) {
+            $this->container[] = $value;
+        } else {
+            $this->container[$offset] = $value;
+        }
+    }
+
+    /**
+     * Unsets offset.
+     */
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->container[$offset]);
+    }
+
+    /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     */
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize(): mixed
+    {
+        return ObjectSerializer::sanitizeForSerialization($this);
+        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+    }
+
+    /**
+     * Gets the string presentation of the object
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
+
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
+        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-

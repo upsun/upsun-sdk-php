@@ -58,11 +58,73 @@ final class Certificate implements JsonSerializable
     ];
 
     /**
+     * Array of nullable properties. Used for (de)serialization
+     */
+    private static array $openAPINullables = [
+        'created_at' => true,
+        'updated_at' => true,
+        'certificate' => false,
+        'chain' => false,
+        'is_provisioned' => false,
+        'is_invalid' => false,
+        'is_root' => false,
+        'domains' => false,
+        'auth_type' => false,
+        'issuer' => false,
+        'expires_at' => false
+    ];
+
+    /**
+     * If a nullable field gets set to null, insert it here
+     */
+    private array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      */
     public static function openAPITypes(): array
     {
         return self::$openAPITypes;
+    }
+
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     */
+    public static function openAPIFormats(): array
+    {
+        return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -82,50 +144,504 @@ final class Certificate implements JsonSerializable
         'issuer' => 'issuer',
         'expires_at' => 'expires_at'
     ];
-    
-    public function __construct(
-        public readonly \DateTime $created_at = null,
-        public readonly \DateTime $updated_at = null,
-        public readonly string $certificate = null,
-        public readonly ?array $chain = null,
-        public readonly bool $is_provisioned = null,
-        public readonly bool $is_invalid = null,
-        public readonly bool $is_root = null,
-        public readonly ?array $domains = null,
-        public readonly ?array $auth_type = null,
-        public readonly ?array $issuer = null,
-        public readonly \DateTime $expires_at = null
-    ) {
-    }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'certificate' => $this->certificate,
-            'chain' => $this->chain,
-            'is_provisioned' => $this->is_provisioned,
-            'is_invalid' => $this->is_invalid,
-            'is_root' => $this->is_root,
-            'domains' => $this->domains,
-            'auth_type' => $this->auth_type,
-            'issuer' => $this->issuer,
-            'expires_at' => $this->expires_at,
-        ];
-    }
+    /**
+     * Array of attributes to setter functions (for deserialization of responses)
+     */
+    private static $setters = [
+        'created_at' => 'setCreatedAt',
+        'updated_at' => 'setUpdatedAt',
+        'certificate' => 'setCertificate',
+        'chain' => 'setChain',
+        'is_provisioned' => 'setIsProvisioned',
+        'is_invalid' => 'setIsInvalid',
+        'is_root' => 'setIsRoot',
+        'domains' => 'setDomains',
+        'auth_type' => 'setAuthType',
+        'issuer' => 'setIssuer',
+        'expires_at' => 'setExpiresAt'
+    ];
 
-    public function __toString(): string
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     */
+    private static $getters = [
+        'created_at' => 'getCreatedAt',
+        'updated_at' => 'getUpdatedAt',
+        'certificate' => 'getCertificate',
+        'chain' => 'getChain',
+        'is_provisioned' => 'getIsProvisioned',
+        'is_invalid' => 'getIsInvalid',
+        'is_root' => 'getIsRoot',
+        'domains' => 'getDomains',
+        'auth_type' => 'getAuthType',
+        'issuer' => 'getIssuer',
+        'expires_at' => 'getExpiresAt'
+    ];
+
+    /**
+     * Array of attributes where the key is the local name,
+     * and the value is the original name
+     */
+    public static function attributeMap(): array
     {
-        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+        return self::$attributeMap;
     }
 
     /**
-     * Checks if a property is nullable
+     * Array of attributes to setter functions (for deserialization of responses)
      */
-    public static function isNullable(string $property): bool
+    public static function setters(): array
     {
-        return true; // All properties in this model are nullable
+        return self::$setters;
+    }
+
+    /**
+     * Array of attributes to getter functions (for serialization of requests)
+     *
+     * @return array
+     */
+    public static function getters(): array
+    {
+        return self::$getters;
+    }
+
+    /**
+     * The original name of the model.
+     */
+    public function getModelName(): string
+    {
+        return self::$openAPIModelName;
+    }
+
+
+    /**
+     * Associative array for storing property values
+     */
+    private array $container = [];
+
+    /**
+     * Constructor
+     */
+    public function __construct(?array $data = null)
+    {
+        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('updated_at', $data ?? [], null);
+        $this->setIfExists('certificate', $data ?? [], null);
+        $this->setIfExists('chain', $data ?? [], null);
+        $this->setIfExists('is_provisioned', $data ?? [], null);
+        $this->setIfExists('is_invalid', $data ?? [], null);
+        $this->setIfExists('is_root', $data ?? [], null);
+        $this->setIfExists('domains', $data ?? [], null);
+        $this->setIfExists('auth_type', $data ?? [], null);
+        $this->setIfExists('issuer', $data ?? [], null);
+        $this->setIfExists('expires_at', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    */
+    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
+    {
+        if (
+            self::isNullable($variableName)
+            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
+        ) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+    }
+
+    /**
+     * Show all the invalid properties with reasons.
+     */
+    public function listInvalidProperties(): array
+    {
+        $invalidProperties = [];
+
+        if ($this->container['created_at'] === null) {
+            $invalidProperties[] = "'created_at' can't be null";
+        }
+        if ($this->container['updated_at'] === null) {
+            $invalidProperties[] = "'updated_at' can't be null";
+        }
+        if ($this->container['certificate'] === null) {
+            $invalidProperties[] = "'certificate' can't be null";
+        }
+        if ($this->container['chain'] === null) {
+            $invalidProperties[] = "'chain' can't be null";
+        }
+        if ($this->container['is_provisioned'] === null) {
+            $invalidProperties[] = "'is_provisioned' can't be null";
+        }
+        if ($this->container['is_invalid'] === null) {
+            $invalidProperties[] = "'is_invalid' can't be null";
+        }
+        if ($this->container['is_root'] === null) {
+            $invalidProperties[] = "'is_root' can't be null";
+        }
+        if ($this->container['domains'] === null) {
+            $invalidProperties[] = "'domains' can't be null";
+        }
+        if ($this->container['auth_type'] === null) {
+            $invalidProperties[] = "'auth_type' can't be null";
+        }
+        if ($this->container['issuer'] === null) {
+            $invalidProperties[] = "'issuer' can't be null";
+        }
+        if ($this->container['expires_at'] === null) {
+            $invalidProperties[] = "'expires_at' can't be null";
+        }
+        return $invalidProperties;
+    }
+
+    /**
+     * Validate all the properties in the model
+     * return true if all passed
+     */
+    public function valid(): bool
+    {
+        return count($this->listInvalidProperties()) === 0;
+    }
+
+
+    /**
+     * Gets created_at
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['created_at'];
+    }
+
+    /**
+     * Sets created_at
+     */
+    public function setCreatedAt($created_at)
+    {
+        if (is_null($created_at)) {
+            array_push($this->openAPINullablesSetToNull, 'created_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('created_at', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets updated_at
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->container['updated_at'];
+    }
+
+    /**
+     * Sets updated_at
+     */
+    public function setUpdatedAt($updated_at)
+    {
+        if (is_null($updated_at)) {
+            array_push($this->openAPINullablesSetToNull, 'updated_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('updated_at', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['updated_at'] = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets certificate
+     *
+     * @return string
+     */
+    public function getCertificate()
+    {
+        return $this->container['certificate'];
+    }
+
+    /**
+     * Sets certificate
+     */
+    public function setCertificate($certificate)
+    {
+        if (is_null($certificate)) {
+            throw new \InvalidArgumentException('non-nullable certificate cannot be null');
+        }
+        $this->container['certificate'] = $certificate;
+
+        return $this;
+    }
+
+    /**
+     * Gets chain
+     *
+     * @return string[]
+     */
+    public function getChain()
+    {
+        return $this->container['chain'];
+    }
+
+    /**
+     * Sets chain
+     */
+    public function setChain($chain)
+    {
+        if (is_null($chain)) {
+            throw new \InvalidArgumentException('non-nullable chain cannot be null');
+        }
+        $this->container['chain'] = $chain;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_provisioned
+     *
+     * @return bool
+     */
+    public function getIsProvisioned()
+    {
+        return $this->container['is_provisioned'];
+    }
+
+    /**
+     * Sets is_provisioned
+     */
+    public function setIsProvisioned($is_provisioned)
+    {
+        if (is_null($is_provisioned)) {
+            throw new \InvalidArgumentException('non-nullable is_provisioned cannot be null');
+        }
+        $this->container['is_provisioned'] = $is_provisioned;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_invalid
+     *
+     * @return bool
+     */
+    public function getIsInvalid()
+    {
+        return $this->container['is_invalid'];
+    }
+
+    /**
+     * Sets is_invalid
+     */
+    public function setIsInvalid($is_invalid)
+    {
+        if (is_null($is_invalid)) {
+            throw new \InvalidArgumentException('non-nullable is_invalid cannot be null');
+        }
+        $this->container['is_invalid'] = $is_invalid;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_root
+     *
+     * @return bool
+     */
+    public function getIsRoot()
+    {
+        return $this->container['is_root'];
+    }
+
+    /**
+     * Sets is_root
+     */
+    public function setIsRoot($is_root)
+    {
+        if (is_null($is_root)) {
+            throw new \InvalidArgumentException('non-nullable is_root cannot be null');
+        }
+        $this->container['is_root'] = $is_root;
+
+        return $this;
+    }
+
+    /**
+     * Gets domains
+     *
+     * @return string[]
+     */
+    public function getDomains()
+    {
+        return $this->container['domains'];
+    }
+
+    /**
+     * Sets domains
+     */
+    public function setDomains($domains)
+    {
+        if (is_null($domains)) {
+            throw new \InvalidArgumentException('non-nullable domains cannot be null');
+        }
+        $this->container['domains'] = $domains;
+
+        return $this;
+    }
+
+    /**
+     * Gets auth_type
+     *
+     * @return string[]
+     */
+    public function getAuthType()
+    {
+        return $this->container['auth_type'];
+    }
+
+    /**
+     * Sets auth_type
+     */
+    public function setAuthType($auth_type)
+    {
+        if (is_null($auth_type)) {
+            throw new \InvalidArgumentException('non-nullable auth_type cannot be null');
+        }
+        $this->container['auth_type'] = $auth_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets issuer
+     *
+     * @return \Upsun\Model\TheIssuerOfTheCertificateInner[]
+     */
+    public function getIssuer()
+    {
+        return $this->container['issuer'];
+    }
+
+    /**
+     * Sets issuer
+     */
+    public function setIssuer($issuer)
+    {
+        if (is_null($issuer)) {
+            throw new \InvalidArgumentException('non-nullable issuer cannot be null');
+        }
+        $this->container['issuer'] = $issuer;
+
+        return $this;
+    }
+
+    /**
+     * Gets expires_at
+     *
+     * @return \DateTime
+     */
+    public function getExpiresAt()
+    {
+        return $this->container['expires_at'];
+    }
+
+    /**
+     * Sets expires_at
+     */
+    public function setExpiresAt($expires_at)
+    {
+        if (is_null($expires_at)) {
+            throw new \InvalidArgumentException('non-nullable expires_at cannot be null');
+        }
+        $this->container['expires_at'] = $expires_at;
+
+        return $this;
+    }
+    /**
+     * Returns true if offset exists. False otherwise.
+     */
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->container[$offset]);
+    }
+
+    /**
+     * Gets offset.
+     */
+    #[\ReturnTypeWillChange]
+    public function offsetGet(mixed $offset)
+    {
+        return $this->container[$offset] ?? null;
+    }
+
+    /**
+     * Sets value based on offset.
+     */
+    public function offsetSet(mixed $offset = null, $value): void
+    {
+        if (is_null($offset)) {
+            $this->container[] = $value;
+        } else {
+            $this->container[$offset] = $value;
+        }
+    }
+
+    /**
+     * Unsets offset.
+     */
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->container[$offset]);
+    }
+
+    /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     */
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize(): mixed
+    {
+        return ObjectSerializer::sanitizeForSerialization($this);
+        //return json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_UNESCAPED_SLASHES);
+    }
+
+    /**
+     * Gets the string presentation of the object
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
+
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
+        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
