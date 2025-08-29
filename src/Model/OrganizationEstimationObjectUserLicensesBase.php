@@ -42,6 +42,14 @@ final class OrganizationEstimationObjectUserLicensesBase implements JsonSerializ
     ];
 
     /**
+     * Array of property to type mappings. Used for (de)serialization
+     */
+    public static function openAPITypes(): array
+    {
+        return self::$openAPITypes;
+    }
+
+    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      */
