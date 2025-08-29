@@ -52,7 +52,7 @@ class OAuthProvider
             $response = $this->httpClient->sendRequest($request);
 
             if ($response->getStatusCode() !== 200) {
-                throw new Exception('Token exchange failed with status: ' . $response->getStatusCode() . );
+                throw new Exception('Token exchange failed with status: ' . $response->getStatusCode());
             }
 
             $data = json_decode((string)$response->getBody(), true);
