@@ -19,7 +19,7 @@ final class CreateApiTokenRequest implements JsonSerializable
     public readonly string $name;
 
     public function __construct(
-        string $name,
+        string $name = null
     ) {
         $this->name = $name;
     }

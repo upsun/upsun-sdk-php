@@ -19,19 +19,22 @@ final class SumologicIntegration implements JsonSerializable
     public readonly \DateTime $created_at;
     public readonly \DateTime $updated_at;
     public readonly string $type;
-    public readonly array<string,string> $extra;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $extra;
     public readonly string $url;
     public readonly string $category;
     public readonly bool $tls_verify;
 
     public function __construct(
-        \DateTime $created_at,
-        \DateTime $updated_at,
-        string $type,
-        array<string,string> $extra,
-        string $url,
-        string $category,
-        bool $tls_verify,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+        string $type = null,
+        ?array $extra = null,
+        string $url = null,
+        string $category = null,
+        bool $tls_verify = null
     ) {
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;
@@ -54,7 +57,10 @@ final class SumologicIntegration implements JsonSerializable
     {
         return $this->type;
     }
-    public function getExtra(): array<string,string>
+    /**
+     * @return string[]|null
+     */
+    public function getExtra(): ?array
     {
         return $this->extra;
     }

@@ -16,21 +16,27 @@ use JsonSerializable;
 
 final class AddressMetadataMetadata implements JsonSerializable
 {
-    public readonly string[] $required_fields;
-    public readonly object $field_labels;
-    public readonly bool $show_vat;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $required_fields;
+    public readonly object|null $field_labels;
+    public readonly bool|null $show_vat;
 
     public function __construct(
-        string[] $required_fields = null,
-        object $field_labels = null,
-        bool $show_vat = null,
+        ?array $required_fields = null,
+        object|null $field_labels = null,
+        bool|null $show_vat = null
     ) {
         $this->required_fields = $required_fields;
         $this->field_labels = $field_labels;
         $this->show_vat = $show_vat;
     }
 
-    public function getRequiredFields(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getRequiredFields(): ?array
     {
         return $this->required_fields;
     }

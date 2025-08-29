@@ -16,14 +16,14 @@ use JsonSerializable;
 
 final class OrganizationMemberLinks implements JsonSerializable
 {
-    public readonly \Upsun\Model\OrganizationMemberLinksSelf $self;
-    public readonly \Upsun\Model\OrganizationMemberLinksUpdate $update;
-    public readonly \Upsun\Model\OrganizationMemberLinksDelete $delete;
+    public readonly \Upsun\Model\OrganizationMemberLinksSelf|null $self;
+    public readonly \Upsun\Model\OrganizationMemberLinksUpdate|null $update;
+    public readonly \Upsun\Model\OrganizationMemberLinksDelete|null $delete;
 
     public function __construct(
-        \Upsun\Model\OrganizationMemberLinksSelf $self = null,
-        \Upsun\Model\OrganizationMemberLinksUpdate $update = null,
-        \Upsun\Model\OrganizationMemberLinksDelete $delete = null,
+        \Upsun\Model\OrganizationMemberLinksSelf|null $self = null,
+        \Upsun\Model\OrganizationMemberLinksUpdate|null $update = null,
+        \Upsun\Model\OrganizationMemberLinksDelete|null $delete = null
     ) {
         $this->self = $self;
         $this->update = $update;

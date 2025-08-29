@@ -20,8 +20,8 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Js
     public readonly string $endpoint;
 
     public function __construct(
-        string $service,
-        string $endpoint,
+        string $service = null,
+        string $endpoint = null
     ) {
         $this->service = $service;
         $this->endpoint = $endpoint;

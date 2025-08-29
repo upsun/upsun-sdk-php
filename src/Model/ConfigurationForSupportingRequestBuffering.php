@@ -20,8 +20,8 @@ final class ConfigurationForSupportingRequestBuffering implements JsonSerializab
     public readonly string $max_request_size;
 
     public function __construct(
-        bool $enabled,
-        string $max_request_size,
+        bool $enabled = null,
+        string $max_request_size = null
     ) {
         $this->enabled = $enabled;
         $this->max_request_size = $max_request_size;

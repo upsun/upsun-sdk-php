@@ -17,27 +17,30 @@ use JsonSerializable;
 final class SyslogIntegrationPatch implements JsonSerializable
 {
     public readonly string $type;
-    public readonly array<string,string> $extra;
-    public readonly string $host;
-    public readonly int $port;
-    public readonly string $protocol;
-    public readonly int $facility;
-    public readonly string $message_format;
-    public readonly string $auth_token;
-    public readonly string $auth_mode;
-    public readonly bool $tls_verify;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $extra;
+    public readonly string|null $host;
+    public readonly int|null $port;
+    public readonly string|null $protocol;
+    public readonly int|null $facility;
+    public readonly string|null $message_format;
+    public readonly string|null $auth_token;
+    public readonly string|null $auth_mode;
+    public readonly bool|null $tls_verify;
 
     public function __construct(
-        string $type,
-        array<string,string> $extra = null,
-        string $host = null,
-        int $port = null,
-        string $protocol = null,
-        int $facility = null,
-        string $message_format = null,
-        string $auth_token = null,
-        string $auth_mode = null,
-        bool $tls_verify = null,
+        string $type = null,
+        ?array $extra = null,
+        string|null $host = null,
+        int|null $port = null,
+        string|null $protocol = null,
+        int|null $facility = null,
+        string|null $message_format = null,
+        string|null $auth_token = null,
+        string|null $auth_mode = null,
+        bool|null $tls_verify = null
     ) {
         $this->type = $type;
         $this->extra = $extra;
@@ -55,7 +58,10 @@ final class SyslogIntegrationPatch implements JsonSerializable
     {
         return $this->type;
     }
-    public function getExtra(): array<string,string>|null
+    /**
+     * @return string[]|null
+     */
+    public function getExtra(): ?array
     {
         return $this->extra;
     }

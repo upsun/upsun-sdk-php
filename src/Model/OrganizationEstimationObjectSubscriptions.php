@@ -16,12 +16,15 @@ use JsonSerializable;
 
 final class OrganizationEstimationObjectSubscriptions implements JsonSerializable
 {
-    public readonly string $total;
-    public readonly \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner[] $list;
+    public readonly string|null $total;
+    /**
+     * @var \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner[]|null
+     */
+    public readonly ?array $list;
 
     public function __construct(
-        string $total = null,
-        \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner[] $list = null,
+        string|null $total = null,
+        ?array $list = null
     ) {
         $this->total = $total;
         $this->list = $list;
@@ -31,7 +34,10 @@ final class OrganizationEstimationObjectSubscriptions implements JsonSerializabl
     {
         return $this->total;
     }
-    public function getList(): \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner[]|null
+    /**
+     * @return \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner[]|null
+     */
+    public function getList(): ?array
     {
         return $this->list;
     }

@@ -17,13 +17,16 @@ use JsonSerializable;
 final class GrantProjectUserAccessRequestInner implements JsonSerializable
 {
     public readonly string $user_id;
-    public readonly string[] $permissions;
-    public readonly bool $auto_add_member;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $permissions;
+    public readonly bool|null $auto_add_member;
 
     public function __construct(
-        string $user_id,
-        string[] $permissions,
-        bool $auto_add_member = null,
+        string $user_id = null,
+        ?array $permissions = null,
+        bool|null $auto_add_member = null
     ) {
         $this->user_id = $user_id;
         $this->permissions = $permissions;
@@ -34,7 +37,10 @@ final class GrantProjectUserAccessRequestInner implements JsonSerializable
     {
         return $this->user_id;
     }
-    public function getPermissions(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getPermissions(): ?array
     {
         return $this->permissions;
     }

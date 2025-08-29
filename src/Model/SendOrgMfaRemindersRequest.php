@@ -16,15 +16,21 @@ use JsonSerializable;
 
 final class SendOrgMfaRemindersRequest implements JsonSerializable
 {
-    public readonly string[] $user_ids;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $user_ids;
 
     public function __construct(
-        string[] $user_ids = null,
+        ?array $user_ids = null
     ) {
         $this->user_ids = $user_ids;
     }
 
-    public function getUserIds(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getUserIds(): ?array
     {
         return $this->user_ids;
     }

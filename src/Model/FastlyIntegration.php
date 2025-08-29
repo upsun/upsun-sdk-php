@@ -19,23 +19,35 @@ final class FastlyIntegration implements JsonSerializable
     public readonly \DateTime $created_at;
     public readonly \DateTime $updated_at;
     public readonly string $type;
-    public readonly string[] $events;
-    public readonly string[] $environments;
-    public readonly string[] $excluded_environments;
-    public readonly string[] $states;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $events;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $environments;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $excluded_environments;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $states;
     public readonly string $result;
     public readonly string $service_id;
 
     public function __construct(
-        \DateTime $created_at,
-        \DateTime $updated_at,
-        string $type,
-        string[] $events,
-        string[] $environments,
-        string[] $excluded_environments,
-        string[] $states,
-        string $result,
-        string $service_id,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+        string $type = null,
+        ?array $events = null,
+        ?array $environments = null,
+        ?array $excluded_environments = null,
+        ?array $states = null,
+        string $result = null,
+        string $service_id = null
     ) {
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;
@@ -60,19 +72,31 @@ final class FastlyIntegration implements JsonSerializable
     {
         return $this->type;
     }
-    public function getEvents(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getEvents(): ?array
     {
         return $this->events;
     }
-    public function getEnvironments(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getEnvironments(): ?array
     {
         return $this->environments;
     }
-    public function getExcludedEnvironments(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getExcludedEnvironments(): ?array
     {
         return $this->excluded_environments;
     }
-    public function getStates(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getStates(): ?array
     {
         return $this->states;
     }

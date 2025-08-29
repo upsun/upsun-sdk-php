@@ -16,16 +16,16 @@ use JsonSerializable;
 
 final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSerializable
 {
-    public readonly \Upsun\Model\ListLinksSelf $self;
-    public readonly \Upsun\Model\ListLinksPrevious $previous;
-    public readonly \Upsun\Model\ListLinksNext $next;
-    public readonly \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment $prepayment;
+    public readonly \Upsun\Model\ListLinksSelf|null $self;
+    public readonly \Upsun\Model\ListLinksPrevious|null $previous;
+    public readonly \Upsun\Model\ListLinksNext|null $next;
+    public readonly \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment|null $prepayment;
 
     public function __construct(
-        \Upsun\Model\ListLinksSelf $self = null,
-        \Upsun\Model\ListLinksPrevious $previous = null,
-        \Upsun\Model\ListLinksNext $next = null,
-        \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment $prepayment = null,
+        \Upsun\Model\ListLinksSelf|null $self = null,
+        \Upsun\Model\ListLinksPrevious|null $previous = null,
+        \Upsun\Model\ListLinksNext|null $next = null,
+        \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment|null $prepayment = null
     ) {
         $this->self = $self;
         $this->previous = $previous;

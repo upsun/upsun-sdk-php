@@ -19,7 +19,7 @@ final class ConfigurationAboutTheTrafficRoutedToThisVersion implements JsonSeria
     public readonly int $percentage;
 
     public function __construct(
-        int $percentage,
+        int $percentage = null
     ) {
         $this->percentage = $percentage;
     }

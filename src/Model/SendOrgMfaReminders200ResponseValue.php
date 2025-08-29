@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class SendOrgMfaReminders200ResponseValue implements JsonSerializable
 {
-    public readonly int $code;
-    public readonly string $message;
+    public readonly int|null $code;
+    public readonly string|null $message;
 
     public function __construct(
-        int $code = null,
-        string $message = null,
+        int|null $code = null,
+        string|null $message = null
     ) {
         $this->code = $code;
         $this->message = $message;

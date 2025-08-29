@@ -20,14 +20,17 @@ final class EmailIntegration implements JsonSerializable
     public readonly \DateTime $updated_at;
     public readonly string $type;
     public readonly string $from_address;
-    public readonly string[] $recipients;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $recipients;
 
     public function __construct(
-        \DateTime $created_at,
-        \DateTime $updated_at,
-        string $type,
-        string $from_address,
-        string[] $recipients,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+        string $type = null,
+        string $from_address = null,
+        ?array $recipients = null
     ) {
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;
@@ -52,7 +55,10 @@ final class EmailIntegration implements JsonSerializable
     {
         return $this->from_address;
     }
-    public function getRecipients(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getRecipients(): ?array
     {
         return $this->recipients;
     }

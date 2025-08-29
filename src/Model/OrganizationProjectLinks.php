@@ -16,18 +16,18 @@ use JsonSerializable;
 
 final class OrganizationProjectLinks implements JsonSerializable
 {
-    public readonly \Upsun\Model\OrganizationProjectLinksSelf $self;
-    public readonly \Upsun\Model\OrganizationProjectLinksUpdate $update;
-    public readonly \Upsun\Model\OrganizationProjectLinksDelete $delete;
-    public readonly \Upsun\Model\OrganizationProjectLinksSubscription $subscription;
-    public readonly \Upsun\Model\OrganizationProjectLinksApi $api;
+    public readonly \Upsun\Model\OrganizationProjectLinksSelf|null $self;
+    public readonly \Upsun\Model\OrganizationProjectLinksUpdate|null $update;
+    public readonly \Upsun\Model\OrganizationProjectLinksDelete|null $delete;
+    public readonly \Upsun\Model\OrganizationProjectLinksSubscription|null $subscription;
+    public readonly \Upsun\Model\OrganizationProjectLinksApi|null $api;
 
     public function __construct(
-        \Upsun\Model\OrganizationProjectLinksSelf $self = null,
-        \Upsun\Model\OrganizationProjectLinksUpdate $update = null,
-        \Upsun\Model\OrganizationProjectLinksDelete $delete = null,
-        \Upsun\Model\OrganizationProjectLinksSubscription $subscription = null,
-        \Upsun\Model\OrganizationProjectLinksApi $api = null,
+        \Upsun\Model\OrganizationProjectLinksSelf|null $self = null,
+        \Upsun\Model\OrganizationProjectLinksUpdate|null $update = null,
+        \Upsun\Model\OrganizationProjectLinksDelete|null $delete = null,
+        \Upsun\Model\OrganizationProjectLinksSubscription|null $subscription = null,
+        \Upsun\Model\OrganizationProjectLinksApi|null $api = null
     ) {
         $this->self = $self;
         $this->update = $update;

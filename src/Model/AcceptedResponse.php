@@ -20,8 +20,8 @@ final class AcceptedResponse implements JsonSerializable
     public readonly int $code;
 
     public function __construct(
-        string $status,
-        int $code,
+        string $status = null,
+        int $code = null
     ) {
         $this->status = $status;
         $this->code = $code;

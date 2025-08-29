@@ -21,9 +21,9 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
     public readonly string $parent_ref;
 
     public function __construct(
-        int $commits_ahead,
-        int $commits_behind,
-        string $parent_ref,
+        int $commits_ahead = null,
+        int $commits_behind = null,
+        string $parent_ref = null
     ) {
         $this->commits_ahead = $commits_ahead;
         $this->commits_behind = $commits_behind;

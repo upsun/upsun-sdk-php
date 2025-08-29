@@ -19,21 +19,24 @@ final class ProdDomainStorage implements JsonSerializable
     public readonly \DateTime $created_at;
     public readonly \DateTime $updated_at;
     public readonly string $type;
-    public readonly string $project;
+    public readonly string|null $project;
     public readonly string $name;
-    public readonly string $registered_name;
-    public readonly array<string,string> $attributes;
-    public readonly bool $is_default;
+    public readonly string|null $registered_name;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $attributes;
+    public readonly bool|null $is_default;
 
     public function __construct(
-        \DateTime $created_at,
-        \DateTime $updated_at,
-        string $type,
-        string $project = null,
-        string $name,
-        string $registered_name = null,
-        array<string,string> $attributes,
-        bool $is_default = null,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+        string $type = null,
+        string|null $project = null,
+        string $name = null,
+        string|null $registered_name = null,
+        ?array $attributes = null,
+        bool|null $is_default = null
     ) {
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;
@@ -69,7 +72,10 @@ final class ProdDomainStorage implements JsonSerializable
     {
         return $this->registered_name;
     }
-    public function getAttributes(): array<string,string>
+    /**
+     * @return string[]|null
+     */
+    public function getAttributes(): ?array
     {
         return $this->attributes;
     }

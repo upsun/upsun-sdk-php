@@ -16,26 +16,29 @@ use JsonSerializable;
 
 final class LineItem implements JsonSerializable
 {
-    public readonly string $type;
-    public readonly float $license_id;
-    public readonly string $project_id;
-    public readonly string $product;
-    public readonly string $sku;
-    public readonly float $total;
-    public readonly string $total_formatted;
-    public readonly array<string,\Upsun\Model\LineItemComponent> $components;
-    public readonly bool $exclude_from_invoice;
+    public readonly string|null $type;
+    public readonly float|null $license_id;
+    public readonly string|null $project_id;
+    public readonly string|null $product;
+    public readonly string|null $sku;
+    public readonly float|null $total;
+    public readonly string|null $total_formatted;
+    /**
+     * @var \Upsun\Model\LineItemComponent[]|null
+     */
+    public readonly ?array $components;
+    public readonly bool|null $exclude_from_invoice;
 
     public function __construct(
-        string $type = null,
-        float $license_id = null,
-        string $project_id = null,
-        string $product = null,
-        string $sku = null,
-        float $total = null,
-        string $total_formatted = null,
-        array<string,\Upsun\Model\LineItemComponent> $components = null,
-        bool $exclude_from_invoice = null,
+        string|null $type = null,
+        float|null $license_id = null,
+        string|null $project_id = null,
+        string|null $product = null,
+        string|null $sku = null,
+        float|null $total = null,
+        string|null $total_formatted = null,
+        ?array $components = null,
+        bool|null $exclude_from_invoice = null
     ) {
         $this->type = $type;
         $this->license_id = $license_id;
@@ -76,7 +79,10 @@ final class LineItem implements JsonSerializable
     {
         return $this->total_formatted;
     }
-    public function getComponents(): array<string,\Upsun\Model\LineItemComponent>|null
+    /**
+     * @return \Upsun\Model\LineItemComponent[]|null
+     */
+    public function getComponents(): ?array
     {
         return $this->components;
     }

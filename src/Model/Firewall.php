@@ -16,15 +16,21 @@ use JsonSerializable;
 
 final class Firewall implements JsonSerializable
 {
-    public readonly \Upsun\Model\OutboundFirewallRestrictionsInner[] $outbound;
+    /**
+     * @var \Upsun\Model\OutboundFirewallRestrictionsInner[]|null
+     */
+    public readonly ?array $outbound;
 
     public function __construct(
-        \Upsun\Model\OutboundFirewallRestrictionsInner[] $outbound,
+        ?array $outbound = null
     ) {
         $this->outbound = $outbound;
     }
 
-    public function getOutbound(): \Upsun\Model\OutboundFirewallRestrictionsInner[]
+    /**
+     * @return \Upsun\Model\OutboundFirewallRestrictionsInner[]|null
+     */
+    public function getOutbound(): ?array
     {
         return $this->outbound;
     }

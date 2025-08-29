@@ -16,26 +16,29 @@ use JsonSerializable;
 
 final class EnvironmentPatch implements JsonSerializable
 {
-    public readonly string $name;
-    public readonly string $title;
-    public readonly array<string,string> $attributes;
-    public readonly string $type;
-    public readonly string $parent;
-    public readonly bool $clone_parent_on_create;
-    public readonly \Upsun\Model\HttpAccessPermissions1 $http_access;
-    public readonly bool $enable_smtp;
-    public readonly bool $restrict_robots;
+    public readonly string|null $name;
+    public readonly string|null $title;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $attributes;
+    public readonly string|null $type;
+    public readonly string|null $parent;
+    public readonly bool|null $clone_parent_on_create;
+    public readonly \Upsun\Model\HttpAccessPermissions1|null $http_access;
+    public readonly bool|null $enable_smtp;
+    public readonly bool|null $restrict_robots;
 
     public function __construct(
-        string $name = null,
-        string $title = null,
-        array<string,string> $attributes = null,
-        string $type = null,
-        string $parent = null,
-        bool $clone_parent_on_create = null,
-        \Upsun\Model\HttpAccessPermissions1 $http_access = null,
-        bool $enable_smtp = null,
-        bool $restrict_robots = null,
+        string|null $name = null,
+        string|null $title = null,
+        ?array $attributes = null,
+        string|null $type = null,
+        string|null $parent = null,
+        bool|null $clone_parent_on_create = null,
+        \Upsun\Model\HttpAccessPermissions1|null $http_access = null,
+        bool|null $enable_smtp = null,
+        bool|null $restrict_robots = null
     ) {
         $this->name = $name;
         $this->title = $title;
@@ -56,7 +59,10 @@ final class EnvironmentPatch implements JsonSerializable
     {
         return $this->title;
     }
-    public function getAttributes(): array<string,string>|null
+    /**
+     * @return string[]|null
+     */
+    public function getAttributes(): ?array
     {
         return $this->attributes;
     }

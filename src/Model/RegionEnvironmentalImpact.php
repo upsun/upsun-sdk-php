@@ -16,14 +16,14 @@ use JsonSerializable;
 
 final class RegionEnvironmentalImpact implements JsonSerializable
 {
-    public readonly string $zone;
-    public readonly string $carbon_intensity;
-    public readonly bool $green;
+    public readonly string|null $zone;
+    public readonly string|null $carbon_intensity;
+    public readonly bool|null $green;
 
     public function __construct(
-        string $zone = null,
-        string $carbon_intensity = null,
-        bool $green = null,
+        string|null $zone = null,
+        string|null $carbon_intensity = null,
+        bool|null $green = null
     ) {
         $this->zone = $zone;
         $this->carbon_intensity = $carbon_intensity;

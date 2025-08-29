@@ -16,10 +16,10 @@ use JsonSerializable;
 
 final class AddressMetadata implements JsonSerializable
 {
-    public readonly \Upsun\Model\AddressMetadataMetadata $metadata;
+    public readonly \Upsun\Model\AddressMetadataMetadata|null $metadata;
 
     public function __construct(
-        \Upsun\Model\AddressMetadataMetadata $metadata = null,
+        \Upsun\Model\AddressMetadataMetadata|null $metadata = null
     ) {
         $this->metadata = $metadata;
     }

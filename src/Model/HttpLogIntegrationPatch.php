@@ -17,17 +17,23 @@ use JsonSerializable;
 final class HttpLogIntegrationPatch implements JsonSerializable
 {
     public readonly string $type;
-    public readonly array<string,string> $extra;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $extra;
     public readonly string $url;
-    public readonly array<string,string> $headers;
-    public readonly bool $tls_verify;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $headers;
+    public readonly bool|null $tls_verify;
 
     public function __construct(
-        string $type,
-        array<string,string> $extra = null,
-        string $url,
-        array<string,string> $headers = null,
-        bool $tls_verify = null,
+        string $type = null,
+        ?array $extra = null,
+        string $url = null,
+        ?array $headers = null,
+        bool|null $tls_verify = null
     ) {
         $this->type = $type;
         $this->extra = $extra;
@@ -40,7 +46,10 @@ final class HttpLogIntegrationPatch implements JsonSerializable
     {
         return $this->type;
     }
-    public function getExtra(): array<string,string>|null
+    /**
+     * @return string[]|null
+     */
+    public function getExtra(): ?array
     {
         return $this->extra;
     }
@@ -48,7 +57,10 @@ final class HttpLogIntegrationPatch implements JsonSerializable
     {
         return $this->url;
     }
-    public function getHeaders(): array<string,string>|null
+    /**
+     * @return string[]|null
+     */
+    public function getHeaders(): ?array
     {
         return $this->headers;
     }

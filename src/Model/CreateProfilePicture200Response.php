@@ -16,10 +16,10 @@ use JsonSerializable;
 
 final class CreateProfilePicture200Response implements JsonSerializable
 {
-    public readonly string $url;
+    public readonly string|null $url;
 
     public function __construct(
-        string $url = null,
+        string|null $url = null
     ) {
         $this->url = $url;
     }

@@ -19,7 +19,7 @@ final class OperationsThatCanBeAppliedToTheSourceCodeValue implements JsonSerial
     public readonly string $command;
 
     public function __construct(
-        string $command,
+        string $command = null
     ) {
         $this->command = $command;
     }

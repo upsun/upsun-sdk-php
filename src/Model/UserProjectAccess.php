@@ -16,24 +16,27 @@ use JsonSerializable;
 
 final class UserProjectAccess implements JsonSerializable
 {
-    public readonly string $user_id;
-    public readonly string $organization_id;
-    public readonly string $project_id;
-    public readonly string $project_title;
-    public readonly string[] $permissions;
-    public readonly \DateTime $granted_at;
-    public readonly \DateTime $updated_at;
-    public readonly \Upsun\Model\TeamProjectAccessLinks $_links;
+    public readonly string|null $user_id;
+    public readonly string|null $organization_id;
+    public readonly string|null $project_id;
+    public readonly string|null $project_title;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $permissions;
+    public readonly \DateTime|null $granted_at;
+    public readonly \DateTime|null $updated_at;
+    public readonly \Upsun\Model\TeamProjectAccessLinks|null $_links;
 
     public function __construct(
-        string $user_id = null,
-        string $organization_id = null,
-        string $project_id = null,
-        string $project_title = null,
-        string[] $permissions = null,
-        \DateTime $granted_at = null,
-        \DateTime $updated_at = null,
-        \Upsun\Model\TeamProjectAccessLinks $_links = null,
+        string|null $user_id = null,
+        string|null $organization_id = null,
+        string|null $project_id = null,
+        string|null $project_title = null,
+        ?array $permissions = null,
+        \DateTime|null $granted_at = null,
+        \DateTime|null $updated_at = null,
+        \Upsun\Model\TeamProjectAccessLinks|null $_links = null
     ) {
         $this->user_id = $user_id;
         $this->organization_id = $organization_id;
@@ -61,7 +64,10 @@ final class UserProjectAccess implements JsonSerializable
     {
         return $this->project_title;
     }
-    public function getPermissions(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getPermissions(): ?array
     {
         return $this->permissions;
     }

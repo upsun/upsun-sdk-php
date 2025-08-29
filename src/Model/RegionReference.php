@@ -23,33 +23,33 @@ final class RegionReference implements JsonSerializable
     public readonly string $project_label;
     public readonly string $timezone;
     public readonly bool $available;
-    public readonly bool $private;
+    public readonly bool|null $private;
     public readonly string $endpoint;
-    public readonly string $code;
+    public readonly string|null $code;
     public readonly object $provider;
     public readonly object $datacenter;
-    public readonly object $envimpact;
+    public readonly object|null $envimpact;
     public readonly object $compliance;
     public readonly \DateTime $created_at;
     public readonly \DateTime $updated_at;
 
     public function __construct(
-        string $id,
-        string $label,
-        string $zone,
-        string $selection_label,
-        string $project_label,
-        string $timezone,
-        bool $available,
-        bool $private = null,
-        string $endpoint,
-        string $code = null,
-        object $provider,
-        object $datacenter,
-        object $envimpact = null,
-        object $compliance,
-        \DateTime $created_at,
-        \DateTime $updated_at,
+        string $id = null,
+        string $label = null,
+        string $zone = null,
+        string $selection_label = null,
+        string $project_label = null,
+        string $timezone = null,
+        bool $available = null,
+        bool|null $private = null,
+        string $endpoint = null,
+        string|null $code = null,
+        object $provider = null,
+        object $datacenter = null,
+        object|null $envimpact = null,
+        object $compliance = null,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null
     ) {
         $this->id = $id;
         $this->label = $label;

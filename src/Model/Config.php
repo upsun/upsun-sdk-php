@@ -16,42 +16,42 @@ use JsonSerializable;
 
 final class Config implements JsonSerializable
 {
-    public readonly \Upsun\Model\NewRelicLogForwardingIntegrationConfigurations $newrelic;
-    public readonly \Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations $sumologic;
-    public readonly \Upsun\Model\SplunkLogForwardingIntegrationConfigurations $splunk;
-    public readonly \Upsun\Model\HTTPLogForwardingIntegrationConfigurations $httplog;
-    public readonly \Upsun\Model\SyslogLogForwardingIntegrationConfigurations $syslog;
-    public readonly \Upsun\Model\WebhookIntegrationConfigurations $webhook;
-    public readonly \Upsun\Model\ScriptIntegrationConfigurations $script;
-    public readonly \Upsun\Model\GitHubIntegrationConfigurations $github;
-    public readonly \Upsun\Model\GitLabIntegrationConfigurations $gitlab;
-    public readonly \Upsun\Model\BitbucketIntegrationConfigurations $bitbucket;
-    public readonly \Upsun\Model\BitbucketServerIntegrationConfigurations $bitbucket_server;
-    public readonly \Upsun\Model\HealthEmailNotificationIntegrationConfigurations $health_email;
-    public readonly \Upsun\Model\HealthWebhookNotificationIntegrationConfigurations $health_webhook;
-    public readonly \Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations $health_pagerduty;
-    public readonly \Upsun\Model\HealthSlackNotificationIntegrationConfigurations $health_slack;
-    public readonly \Upsun\Model\FastlyCDNIntegrationConfigurations $cdn_fastly;
-    public readonly \Upsun\Model\BlackfireIntegrationConfigurations $blackfire;
+    public readonly \Upsun\Model\NewRelicLogForwardingIntegrationConfigurations|null $newrelic;
+    public readonly \Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations|null $sumologic;
+    public readonly \Upsun\Model\SplunkLogForwardingIntegrationConfigurations|null $splunk;
+    public readonly \Upsun\Model\HTTPLogForwardingIntegrationConfigurations|null $httplog;
+    public readonly \Upsun\Model\SyslogLogForwardingIntegrationConfigurations|null $syslog;
+    public readonly \Upsun\Model\WebhookIntegrationConfigurations|null $webhook;
+    public readonly \Upsun\Model\ScriptIntegrationConfigurations|null $script;
+    public readonly \Upsun\Model\GitHubIntegrationConfigurations|null $github;
+    public readonly \Upsun\Model\GitLabIntegrationConfigurations|null $gitlab;
+    public readonly \Upsun\Model\BitbucketIntegrationConfigurations|null $bitbucket;
+    public readonly \Upsun\Model\BitbucketServerIntegrationConfigurations|null $bitbucket_server;
+    public readonly \Upsun\Model\HealthEmailNotificationIntegrationConfigurations|null $health_email;
+    public readonly \Upsun\Model\HealthWebhookNotificationIntegrationConfigurations|null $health_webhook;
+    public readonly \Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations|null $health_pagerduty;
+    public readonly \Upsun\Model\HealthSlackNotificationIntegrationConfigurations|null $health_slack;
+    public readonly \Upsun\Model\FastlyCDNIntegrationConfigurations|null $cdn_fastly;
+    public readonly \Upsun\Model\BlackfireIntegrationConfigurations|null $blackfire;
 
     public function __construct(
-        \Upsun\Model\NewRelicLogForwardingIntegrationConfigurations $newrelic = null,
-        \Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations $sumologic = null,
-        \Upsun\Model\SplunkLogForwardingIntegrationConfigurations $splunk = null,
-        \Upsun\Model\HTTPLogForwardingIntegrationConfigurations $httplog = null,
-        \Upsun\Model\SyslogLogForwardingIntegrationConfigurations $syslog = null,
-        \Upsun\Model\WebhookIntegrationConfigurations $webhook = null,
-        \Upsun\Model\ScriptIntegrationConfigurations $script = null,
-        \Upsun\Model\GitHubIntegrationConfigurations $github = null,
-        \Upsun\Model\GitLabIntegrationConfigurations $gitlab = null,
-        \Upsun\Model\BitbucketIntegrationConfigurations $bitbucket = null,
-        \Upsun\Model\BitbucketServerIntegrationConfigurations $bitbucket_server = null,
-        \Upsun\Model\HealthEmailNotificationIntegrationConfigurations $health_email = null,
-        \Upsun\Model\HealthWebhookNotificationIntegrationConfigurations $health_webhook = null,
-        \Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations $health_pagerduty = null,
-        \Upsun\Model\HealthSlackNotificationIntegrationConfigurations $health_slack = null,
-        \Upsun\Model\FastlyCDNIntegrationConfigurations $cdn_fastly = null,
-        \Upsun\Model\BlackfireIntegrationConfigurations $blackfire = null,
+        \Upsun\Model\NewRelicLogForwardingIntegrationConfigurations|null $newrelic = null,
+        \Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations|null $sumologic = null,
+        \Upsun\Model\SplunkLogForwardingIntegrationConfigurations|null $splunk = null,
+        \Upsun\Model\HTTPLogForwardingIntegrationConfigurations|null $httplog = null,
+        \Upsun\Model\SyslogLogForwardingIntegrationConfigurations|null $syslog = null,
+        \Upsun\Model\WebhookIntegrationConfigurations|null $webhook = null,
+        \Upsun\Model\ScriptIntegrationConfigurations|null $script = null,
+        \Upsun\Model\GitHubIntegrationConfigurations|null $github = null,
+        \Upsun\Model\GitLabIntegrationConfigurations|null $gitlab = null,
+        \Upsun\Model\BitbucketIntegrationConfigurations|null $bitbucket = null,
+        \Upsun\Model\BitbucketServerIntegrationConfigurations|null $bitbucket_server = null,
+        \Upsun\Model\HealthEmailNotificationIntegrationConfigurations|null $health_email = null,
+        \Upsun\Model\HealthWebhookNotificationIntegrationConfigurations|null $health_webhook = null,
+        \Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations|null $health_pagerduty = null,
+        \Upsun\Model\HealthSlackNotificationIntegrationConfigurations|null $health_slack = null,
+        \Upsun\Model\FastlyCDNIntegrationConfigurations|null $cdn_fastly = null,
+        \Upsun\Model\BlackfireIntegrationConfigurations|null $blackfire = null
     ) {
         $this->newrelic = $newrelic;
         $this->sumologic = $sumologic;

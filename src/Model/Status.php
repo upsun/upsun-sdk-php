@@ -20,8 +20,8 @@ final class Status implements JsonSerializable
     public readonly string $message;
 
     public function __construct(
-        string $code,
-        string $message,
+        string $code = null,
+        string $message = null
     ) {
         $this->code = $code;
         $this->message = $message;

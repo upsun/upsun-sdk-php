@@ -16,16 +16,16 @@ use JsonSerializable;
 
 final class LineItemComponent implements JsonSerializable
 {
-    public readonly float $amount;
-    public readonly string $amount_formatted;
-    public readonly string $display_title;
-    public readonly string $currency;
+    public readonly float|null $amount;
+    public readonly string|null $amount_formatted;
+    public readonly string|null $display_title;
+    public readonly string|null $currency;
 
     public function __construct(
-        float $amount = null,
-        string $amount_formatted = null,
-        string $display_title = null,
-        string $currency = null,
+        float|null $amount = null,
+        string|null $amount_formatted = null,
+        string|null $display_title = null,
+        string|null $currency = null
     ) {
         $this->amount = $amount;
         $this->amount_formatted = $amount_formatted;

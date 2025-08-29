@@ -19,7 +19,10 @@ final class Route implements JsonSerializable
     public readonly bool $primary;
     public readonly string $id;
     public readonly string $production_url;
-    public readonly array<string,string> $attributes;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $attributes;
     public readonly string $type;
     public readonly \Upsun\Model\TLSSettingsForTheRoute $tls;
     public readonly string $to;
@@ -29,17 +32,17 @@ final class Route implements JsonSerializable
     public readonly string $upstream;
 
     public function __construct(
-        bool $primary,
-        string $id,
-        string $production_url,
-        array<string,string> $attributes,
-        string $type,
-        \Upsun\Model\TLSSettingsForTheRoute $tls,
-        string $to,
-        \Upsun\Model\TheConfigurationOfTheRedirects $redirects,
-        \Upsun\Model\CacheConfiguration $cache,
-        \Upsun\Model\ServerSideIncludeConfiguration $ssi,
-        string $upstream,
+        bool $primary = null,
+        string $id = null,
+        string $production_url = null,
+        ?array $attributes = null,
+        string $type = null,
+        \Upsun\Model\TLSSettingsForTheRoute $tls = null,
+        string $to = null,
+        \Upsun\Model\TheConfigurationOfTheRedirects $redirects = null,
+        \Upsun\Model\CacheConfiguration $cache = null,
+        \Upsun\Model\ServerSideIncludeConfiguration $ssi = null,
+        string $upstream = null
     ) {
         $this->primary = $primary;
         $this->id = $id;
@@ -66,7 +69,10 @@ final class Route implements JsonSerializable
     {
         return $this->production_url;
     }
-    public function getAttributes(): array<string,string>
+    /**
+     * @return string[]|null
+     */
+    public function getAttributes(): ?array
     {
         return $this->attributes;
     }

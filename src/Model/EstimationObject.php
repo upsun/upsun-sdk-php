@@ -16,20 +16,20 @@ use JsonSerializable;
 
 final class EstimationObject implements JsonSerializable
 {
-    public readonly string $plan;
-    public readonly string $user_licenses;
-    public readonly string $environments;
-    public readonly string $storage;
-    public readonly string $total;
-    public readonly object $options;
+    public readonly string|null $plan;
+    public readonly string|null $user_licenses;
+    public readonly string|null $environments;
+    public readonly string|null $storage;
+    public readonly string|null $total;
+    public readonly object|null $options;
 
     public function __construct(
-        string $plan = null,
-        string $user_licenses = null,
-        string $environments = null,
-        string $storage = null,
-        string $total = null,
-        object $options = null,
+        string|null $plan = null,
+        string|null $user_licenses = null,
+        string|null $environments = null,
+        string|null $storage = null,
+        string|null $total = null,
+        object|null $options = null
     ) {
         $this->plan = $plan;
         $this->user_licenses = $user_licenses;

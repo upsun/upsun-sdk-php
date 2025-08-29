@@ -17,15 +17,24 @@ use JsonSerializable;
 final class OutboundFirewallRestrictionsInner implements JsonSerializable
 {
     public readonly string $protocol;
-    public readonly string[] $ips;
-    public readonly string[] $domains;
-    public readonly int[] $ports;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $ips;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $domains;
+    /**
+     * @var int[]|null
+     */
+    public readonly ?array $ports;
 
     public function __construct(
-        string $protocol,
-        string[] $ips,
-        string[] $domains,
-        int[] $ports,
+        string $protocol = null,
+        ?array $ips = null,
+        ?array $domains = null,
+        ?array $ports = null
     ) {
         $this->protocol = $protocol;
         $this->ips = $ips;
@@ -37,15 +46,24 @@ final class OutboundFirewallRestrictionsInner implements JsonSerializable
     {
         return $this->protocol;
     }
-    public function getIps(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getIps(): ?array
     {
         return $this->ips;
     }
-    public function getDomains(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getDomains(): ?array
     {
         return $this->domains;
     }
-    public function getPorts(): int[]
+    /**
+     * @return int[]|null
+     */
+    public function getPorts(): ?array
     {
         return $this->ports;
     }

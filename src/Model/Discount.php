@@ -16,30 +16,30 @@ use JsonSerializable;
 
 final class Discount implements JsonSerializable
 {
-    public readonly int $id;
-    public readonly string $organization_id;
-    public readonly string $type;
-    public readonly string $type_label;
-    public readonly string $status;
-    public readonly \Upsun\Model\DiscountCommitment $commitment;
-    public readonly int $total_months;
-    public readonly \Upsun\Model\DiscountDiscount $discount;
-    public readonly object $config;
-    public readonly \DateTime $start_at;
-    public readonly \DateTime $end_at;
+    public readonly int|null $id;
+    public readonly string|null $organization_id;
+    public readonly string|null $type;
+    public readonly string|null $type_label;
+    public readonly string|null $status;
+    public readonly \Upsun\Model\DiscountCommitment|null $commitment;
+    public readonly int|null $total_months;
+    public readonly \Upsun\Model\DiscountDiscount|null $discount;
+    public readonly object|null $config;
+    public readonly \DateTime|null $start_at;
+    public readonly \DateTime|null $end_at;
 
     public function __construct(
-        int $id = null,
-        string $organization_id = null,
-        string $type = null,
-        string $type_label = null,
-        string $status = null,
-        \Upsun\Model\DiscountCommitment $commitment = null,
-        int $total_months = null,
-        \Upsun\Model\DiscountDiscount $discount = null,
-        object $config = null,
-        \DateTime $start_at = null,
-        \DateTime $end_at = null,
+        int|null $id = null,
+        string|null $organization_id = null,
+        string|null $type = null,
+        string|null $type_label = null,
+        string|null $status = null,
+        \Upsun\Model\DiscountCommitment|null $commitment = null,
+        int|null $total_months = null,
+        \Upsun\Model\DiscountDiscount|null $discount = null,
+        object|null $config = null,
+        \DateTime|null $start_at = null,
+        \DateTime|null $end_at = null
     ) {
         $this->id = $id;
         $this->organization_id = $organization_id;

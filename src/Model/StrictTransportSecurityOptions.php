@@ -21,9 +21,9 @@ final class StrictTransportSecurityOptions implements JsonSerializable
     public readonly bool $preload;
 
     public function __construct(
-        bool $enabled,
-        bool $include_subdomains,
-        bool $preload,
+        bool $enabled = null,
+        bool $include_subdomains = null,
+        bool $preload = null
     ) {
         $this->enabled = $enabled;
         $this->include_subdomains = $include_subdomains;

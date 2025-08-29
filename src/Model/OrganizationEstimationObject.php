@@ -16,22 +16,22 @@ use JsonSerializable;
 
 final class OrganizationEstimationObject implements JsonSerializable
 {
-    public readonly string $total;
-    public readonly string $sub_total;
-    public readonly string $vouchers;
-    public readonly \Upsun\Model\OrganizationEstimationObjectUserLicenses $user_licenses;
-    public readonly string $user_management;
-    public readonly string $support_level;
-    public readonly \Upsun\Model\OrganizationEstimationObjectSubscriptions $subscriptions;
+    public readonly string|null $total;
+    public readonly string|null $sub_total;
+    public readonly string|null $vouchers;
+    public readonly \Upsun\Model\OrganizationEstimationObjectUserLicenses|null $user_licenses;
+    public readonly string|null $user_management;
+    public readonly string|null $support_level;
+    public readonly \Upsun\Model\OrganizationEstimationObjectSubscriptions|null $subscriptions;
 
     public function __construct(
-        string $total = null,
-        string $sub_total = null,
-        string $vouchers = null,
-        \Upsun\Model\OrganizationEstimationObjectUserLicenses $user_licenses = null,
-        string $user_management = null,
-        string $support_level = null,
-        \Upsun\Model\OrganizationEstimationObjectSubscriptions $subscriptions = null,
+        string|null $total = null,
+        string|null $sub_total = null,
+        string|null $vouchers = null,
+        \Upsun\Model\OrganizationEstimationObjectUserLicenses|null $user_licenses = null,
+        string|null $user_management = null,
+        string|null $support_level = null,
+        \Upsun\Model\OrganizationEstimationObjectSubscriptions|null $subscriptions = null
     ) {
         $this->total = $total;
         $this->sub_total = $sub_total;

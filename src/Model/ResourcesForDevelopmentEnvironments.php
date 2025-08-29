@@ -22,10 +22,10 @@ final class ResourcesForDevelopmentEnvironments implements JsonSerializable
     public readonly int $max_environments;
 
     public function __construct(
-        bool $legacy_development,
-        float $max_cpu,
-        int $max_memory,
-        int $max_environments,
+        bool $legacy_development = null,
+        float $max_cpu = null,
+        int $max_memory = null,
+        int $max_environments = null
     ) {
         $this->legacy_development = $legacy_development;
         $this->max_cpu = $max_cpu;

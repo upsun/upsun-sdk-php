@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class UpdateOrgBillingAlertConfigRequestConfig implements JsonSerializable
 {
-    public readonly int $threshold;
-    public readonly string $mode;
+    public readonly int|null $threshold;
+    public readonly string|null $mode;
 
     public function __construct(
-        int $threshold = null,
-        string $mode = null,
+        int|null $threshold = null,
+        string|null $mode = null
     ) {
         $this->threshold = $threshold;
         $this->mode = $mode;

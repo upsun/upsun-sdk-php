@@ -18,12 +18,12 @@ final class DedicatedDeploymentTargetPatch implements JsonSerializable
 {
     public readonly string $type;
     public readonly string $name;
-    public readonly object $enforced_mounts;
+    public readonly object|null $enforced_mounts;
 
     public function __construct(
-        string $type,
-        string $name,
-        object $enforced_mounts = null,
+        string $type = null,
+        string $name = null,
+        object|null $enforced_mounts = null
     ) {
         $this->type = $type;
         $this->name = $name;

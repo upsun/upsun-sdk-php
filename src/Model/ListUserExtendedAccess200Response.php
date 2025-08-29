@@ -16,18 +16,24 @@ use JsonSerializable;
 
 final class ListUserExtendedAccess200Response implements JsonSerializable
 {
-    public readonly \Upsun\Model\ListUserExtendedAccess200ResponseItemsInner[] $items;
-    public readonly \Upsun\Model\ListLinks $_links;
+    /**
+     * @var \Upsun\Model\ListUserExtendedAccess200ResponseItemsInner[]|null
+     */
+    public readonly ?array $items;
+    public readonly \Upsun\Model\ListLinks|null $_links;
 
     public function __construct(
-        \Upsun\Model\ListUserExtendedAccess200ResponseItemsInner[] $items = null,
-        \Upsun\Model\ListLinks $_links = null,
+        ?array $items = null,
+        \Upsun\Model\ListLinks|null $_links = null
     ) {
         $this->items = $items;
         $this->_links = $_links;
     }
 
-    public function getItems(): \Upsun\Model\ListUserExtendedAccess200ResponseItemsInner[]|null
+    /**
+     * @return \Upsun\Model\ListUserExtendedAccess200ResponseItemsInner[]|null
+     */
+    public function getItems(): ?array
     {
         return $this->items;
     }

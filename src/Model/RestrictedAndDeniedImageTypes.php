@@ -16,22 +16,34 @@ use JsonSerializable;
 
 final class RestrictedAndDeniedImageTypes implements JsonSerializable
 {
-    public readonly string[] $only;
-    public readonly string[] $exclude;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $only;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $exclude;
 
     public function __construct(
-        string[] $only = null,
-        string[] $exclude = null,
+        ?array $only = null,
+        ?array $exclude = null
     ) {
         $this->only = $only;
         $this->exclude = $exclude;
     }
 
-    public function getOnly(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getOnly(): ?array
     {
         return $this->only;
     }
-    public function getExclude(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getExclude(): ?array
     {
         return $this->exclude;
     }

@@ -16,10 +16,10 @@ use JsonSerializable;
 
 final class PrepaymentObject implements JsonSerializable
 {
-    public readonly \Upsun\Model\PrepaymentObjectPrepayment $prepayment;
+    public readonly \Upsun\Model\PrepaymentObjectPrepayment|null $prepayment;
 
     public function __construct(
-        \Upsun\Model\PrepaymentObjectPrepayment $prepayment = null,
+        \Upsun\Model\PrepaymentObjectPrepayment|null $prepayment = null
     ) {
         $this->prepayment = $prepayment;
     }

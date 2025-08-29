@@ -19,7 +19,7 @@ final class BlackfireIntegrationPatch implements JsonSerializable
     public readonly string $type;
 
     public function __construct(
-        string $type,
+        string $type = null
     ) {
         $this->type = $type;
     }

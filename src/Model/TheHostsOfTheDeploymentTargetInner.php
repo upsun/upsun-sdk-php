@@ -18,12 +18,15 @@ final class TheHostsOfTheDeploymentTargetInner implements JsonSerializable
 {
     public readonly string $id;
     public readonly string $type;
-    public readonly string[] $services;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $services;
 
     public function __construct(
-        string $id,
-        string $type,
-        string[] $services,
+        string $id = null,
+        string $type = null,
+        ?array $services = null
     ) {
         $this->id = $id;
         $this->type = $type;
@@ -38,7 +41,10 @@ final class TheHostsOfTheDeploymentTargetInner implements JsonSerializable
     {
         return $this->type;
     }
-    public function getServices(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getServices(): ?array
     {
         return $this->services;
     }

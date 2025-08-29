@@ -16,20 +16,20 @@ use JsonSerializable;
 
 final class SSHKey implements JsonSerializable
 {
-    public readonly int $key_id;
-    public readonly int $uid;
-    public readonly string $fingerprint;
-    public readonly string $title;
-    public readonly string $value;
-    public readonly string $changed;
+    public readonly int|null $key_id;
+    public readonly int|null $uid;
+    public readonly string|null $fingerprint;
+    public readonly string|null $title;
+    public readonly string|null $value;
+    public readonly string|null $changed;
 
     public function __construct(
-        int $key_id = null,
-        int $uid = null,
-        string $fingerprint = null,
-        string $title = null,
-        string $value = null,
-        string $changed = null,
+        int|null $key_id = null,
+        int|null $uid = null,
+        string|null $fingerprint = null,
+        string|null $title = null,
+        string|null $value = null,
+        string|null $changed = null
     ) {
         $this->key_id = $key_id;
         $this->uid = $uid;

@@ -24,12 +24,12 @@ final class Resources implements JsonSerializable
     public readonly \Upsun\Model\TheDisksResources $disk;
 
     public function __construct(
-        int $base_memory,
-        int $memory_ratio,
-        string $profile_size,
-        \Upsun\Model\TheMinimumResourcesForThisService $minimum,
-        \Upsun\Model\TheDefaultResourcesForThisService $default,
-        \Upsun\Model\TheDisksResources $disk,
+        int $base_memory = null,
+        int $memory_ratio = null,
+        string $profile_size = null,
+        \Upsun\Model\TheMinimumResourcesForThisService $minimum = null,
+        \Upsun\Model\TheDefaultResourcesForThisService $default = null,
+        \Upsun\Model\TheDisksResources $disk = null
     ) {
         $this->base_memory = $base_memory;
         $this->memory_ratio = $memory_ratio;

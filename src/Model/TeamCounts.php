@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class TeamCounts implements JsonSerializable
 {
-    public readonly int $member_count;
-    public readonly int $project_count;
+    public readonly int|null $member_count;
+    public readonly int|null $project_count;
 
     public function __construct(
-        int $member_count = null,
-        int $project_count = null,
+        int|null $member_count = null,
+        int|null $project_count = null
     ) {
         $this->member_count = $member_count;
         $this->project_count = $project_count;

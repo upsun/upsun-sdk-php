@@ -16,16 +16,16 @@ use JsonSerializable;
 
 final class ListTicketPriorities200ResponseInner implements JsonSerializable
 {
-    public readonly string $id;
-    public readonly string $label;
-    public readonly string $short_description;
-    public readonly string $description;
+    public readonly string|null $id;
+    public readonly string|null $label;
+    public readonly string|null $short_description;
+    public readonly string|null $description;
 
     public function __construct(
-        string $id = null,
-        string $label = null,
-        string $short_description = null,
-        string $description = null,
+        string|null $id = null,
+        string|null $label = null,
+        string|null $short_description = null,
+        string|null $description = null
     ) {
         $this->id = $id;
         $this->label = $label;

@@ -16,16 +16,16 @@ use JsonSerializable;
 
 final class CurrentUserCurrentTrialInner implements JsonSerializable
 {
-    public readonly \DateTime $created;
-    public readonly string $description;
-    public readonly string $spend_remaining;
-    public readonly \DateTime $expiration;
+    public readonly \DateTime|null $created;
+    public readonly string|null $description;
+    public readonly string|null $spend_remaining;
+    public readonly \DateTime|null $expiration;
 
     public function __construct(
-        \DateTime $created = null,
-        string $description = null,
-        string $spend_remaining = null,
-        \DateTime $expiration = null,
+        \DateTime|null $created = null,
+        string|null $description = null,
+        string|null $spend_remaining = null,
+        \DateTime|null $expiration = null
     ) {
         $this->created = $created;
         $this->description = $description;

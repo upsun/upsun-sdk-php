@@ -19,7 +19,7 @@ final class ImagesValueValue implements JsonSerializable
     public readonly bool $available;
 
     public function __construct(
-        bool $available,
+        bool $available = null
     ) {
         $this->available = $available;
     }

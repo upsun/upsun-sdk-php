@@ -16,28 +16,31 @@ use JsonSerializable;
 
 final class ProjectInvitation implements JsonSerializable
 {
-    public readonly string $id;
-    public readonly string $state;
-    public readonly string $project_id;
-    public readonly string $role;
-    public readonly string $email;
-    public readonly \Upsun\Model\OrganizationInvitationOwner $owner;
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
-    public readonly \DateTime $finished_at;
-    public readonly \Upsun\Model\ProjectInvitationEnvironmentsInner[] $environments;
+    public readonly string|null $id;
+    public readonly string|null $state;
+    public readonly string|null $project_id;
+    public readonly string|null $role;
+    public readonly string|null $email;
+    public readonly \Upsun\Model\OrganizationInvitationOwner|null $owner;
+    public readonly \DateTime|null $created_at;
+    public readonly \DateTime|null $updated_at;
+    public readonly \DateTime|null $finished_at;
+    /**
+     * @var \Upsun\Model\ProjectInvitationEnvironmentsInner[]|null
+     */
+    public readonly ?array $environments;
 
     public function __construct(
-        string $id = null,
-        string $state = null,
-        string $project_id = null,
-        string $role = null,
-        string $email = null,
-        \Upsun\Model\OrganizationInvitationOwner $owner = null,
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
-        \DateTime $finished_at = null,
-        \Upsun\Model\ProjectInvitationEnvironmentsInner[] $environments = null,
+        string|null $id = null,
+        string|null $state = null,
+        string|null $project_id = null,
+        string|null $role = null,
+        string|null $email = null,
+        \Upsun\Model\OrganizationInvitationOwner|null $owner = null,
+        \DateTime|null $created_at = null,
+        \DateTime|null $updated_at = null,
+        \DateTime|null $finished_at = null,
+        ?array $environments = null
     ) {
         $this->id = $id;
         $this->state = $state;
@@ -87,7 +90,10 @@ final class ProjectInvitation implements JsonSerializable
     {
         return $this->finished_at;
     }
-    public function getEnvironments(): \Upsun\Model\ProjectInvitationEnvironmentsInner[]|null
+    /**
+     * @return \Upsun\Model\ProjectInvitationEnvironmentsInner[]|null
+     */
+    public function getEnvironments(): ?array
     {
         return $this->environments;
     }

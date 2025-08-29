@@ -19,7 +19,7 @@ final class ApplyOrgVoucherRequest implements JsonSerializable
     public readonly string $code;
 
     public function __construct(
-        string $code,
+        string $code = null
     ) {
         $this->code = $code;
     }

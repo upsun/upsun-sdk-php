@@ -16,18 +16,18 @@ use JsonSerializable;
 
 final class Error implements JsonSerializable
 {
-    public readonly string $status;
-    public readonly string $message;
-    public readonly float $code;
-    public readonly object $detail;
-    public readonly string $title;
+    public readonly string|null $status;
+    public readonly string|null $message;
+    public readonly float|null $code;
+    public readonly object|null $detail;
+    public readonly string|null $title;
 
     public function __construct(
-        string $status = null,
-        string $message = null,
-        float $code = null,
-        object $detail = null,
-        string $title = null,
+        string|null $status = null,
+        string|null $message = null,
+        float|null $code = null,
+        object|null $detail = null,
+        string|null $title = null
     ) {
         $this->status = $status;
         $this->message = $message;

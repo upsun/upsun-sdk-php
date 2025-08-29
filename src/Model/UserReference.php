@@ -16,24 +16,24 @@ use JsonSerializable;
 
 final class UserReference implements JsonSerializable
 {
-    public readonly string $id;
-    public readonly string $username;
-    public readonly string $email;
-    public readonly string $first_name;
-    public readonly string $last_name;
-    public readonly string $picture;
-    public readonly bool $mfa_enabled;
-    public readonly bool $sso_enabled;
+    public readonly string|null $id;
+    public readonly string|null $username;
+    public readonly string|null $email;
+    public readonly string|null $first_name;
+    public readonly string|null $last_name;
+    public readonly string|null $picture;
+    public readonly bool|null $mfa_enabled;
+    public readonly bool|null $sso_enabled;
 
     public function __construct(
-        string $id = null,
-        string $username = null,
-        string $email = null,
-        string $first_name = null,
-        string $last_name = null,
-        string $picture = null,
-        bool $mfa_enabled = null,
-        bool $sso_enabled = null,
+        string|null $id = null,
+        string|null $username = null,
+        string|null $email = null,
+        string|null $first_name = null,
+        string|null $last_name = null,
+        string|null $picture = null,
+        bool|null $mfa_enabled = null,
+        bool|null $sso_enabled = null
     ) {
         $this->id = $id;
         $this->username = $username;

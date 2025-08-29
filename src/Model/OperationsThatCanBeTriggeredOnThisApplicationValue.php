@@ -21,9 +21,9 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSe
     public readonly string $role;
 
     public function __construct(
-        \Upsun\Model\TheCommandsDefinition $commands,
-        int $timeout,
-        string $role,
+        \Upsun\Model\TheCommandsDefinition $commands = null,
+        int $timeout = null,
+        string $role = null
     ) {
         $this->commands = $commands;
         $this->timeout = $timeout;

@@ -17,13 +17,19 @@ use JsonSerializable;
 final class HttpAccessPermissions implements JsonSerializable
 {
     public readonly bool $is_enabled;
-    public readonly \Upsun\Model\AddressGrantsInner[] $addresses;
-    public readonly array<string,string> $basic_auth;
+    /**
+     * @var \Upsun\Model\AddressGrantsInner[]|null
+     */
+    public readonly ?array $addresses;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $basic_auth;
 
     public function __construct(
-        bool $is_enabled,
-        \Upsun\Model\AddressGrantsInner[] $addresses,
-        array<string,string> $basic_auth,
+        bool $is_enabled = null,
+        ?array $addresses = null,
+        ?array $basic_auth = null
     ) {
         $this->is_enabled = $is_enabled;
         $this->addresses = $addresses;
@@ -34,11 +40,17 @@ final class HttpAccessPermissions implements JsonSerializable
     {
         return $this->is_enabled;
     }
-    public function getAddresses(): \Upsun\Model\AddressGrantsInner[]
+    /**
+     * @return \Upsun\Model\AddressGrantsInner[]|null
+     */
+    public function getAddresses(): ?array
     {
         return $this->addresses;
     }
-    public function getBasicAuth(): array<string,string>
+    /**
+     * @return string[]|null
+     */
+    public function getBasicAuth(): ?array
     {
         return $this->basic_auth;
     }

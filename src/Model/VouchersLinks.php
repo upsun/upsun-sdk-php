@@ -16,10 +16,10 @@ use JsonSerializable;
 
 final class VouchersLinks implements JsonSerializable
 {
-    public readonly \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf $self;
+    public readonly \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf|null $self;
 
     public function __construct(
-        \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf $self = null,
+        \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf|null $self = null
     ) {
         $this->self = $self;
     }

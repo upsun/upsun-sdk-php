@@ -16,18 +16,24 @@ use JsonSerializable;
 
 final class ListOrgPlanRecords200Response implements JsonSerializable
 {
-    public readonly \Upsun\Model\PlanRecords[] $items;
-    public readonly \Upsun\Model\ListLinks $_links;
+    /**
+     * @var \Upsun\Model\PlanRecords[]|null
+     */
+    public readonly ?array $items;
+    public readonly \Upsun\Model\ListLinks|null $_links;
 
     public function __construct(
-        \Upsun\Model\PlanRecords[] $items = null,
-        \Upsun\Model\ListLinks $_links = null,
+        ?array $items = null,
+        \Upsun\Model\ListLinks|null $_links = null
     ) {
         $this->items = $items;
         $this->_links = $_links;
     }
 
-    public function getItems(): \Upsun\Model\PlanRecords[]|null
+    /**
+     * @return \Upsun\Model\PlanRecords[]|null
+     */
+    public function getItems(): ?array
     {
         return $this->items;
     }

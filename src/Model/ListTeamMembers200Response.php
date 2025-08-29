@@ -16,18 +16,24 @@ use JsonSerializable;
 
 final class ListTeamMembers200Response implements JsonSerializable
 {
-    public readonly \Upsun\Model\TeamMember[] $items;
-    public readonly \Upsun\Model\ListLinks $_links;
+    /**
+     * @var \Upsun\Model\TeamMember[]|null
+     */
+    public readonly ?array $items;
+    public readonly \Upsun\Model\ListLinks|null $_links;
 
     public function __construct(
-        \Upsun\Model\TeamMember[] $items = null,
-        \Upsun\Model\ListLinks $_links = null,
+        ?array $items = null,
+        \Upsun\Model\ListLinks|null $_links = null
     ) {
         $this->items = $items;
         $this->_links = $_links;
     }
 
-    public function getItems(): \Upsun\Model\TeamMember[]|null
+    /**
+     * @return \Upsun\Model\TeamMember[]|null
+     */
+    public function getItems(): ?array
     {
         return $this->items;
     }

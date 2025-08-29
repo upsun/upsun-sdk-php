@@ -16,16 +16,19 @@ use JsonSerializable;
 
 final class TLSSettingsForTheRoute1 implements JsonSerializable
 {
-    public readonly \Upsun\Model\StrictTransportSecurityOptions1 $strict_transport_security;
-    public readonly string $min_version;
-    public readonly string $client_authentication;
-    public readonly string[] $client_certificate_authorities;
+    public readonly \Upsun\Model\StrictTransportSecurityOptions1|null $strict_transport_security;
+    public readonly string|null $min_version;
+    public readonly string|null $client_authentication;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $client_certificate_authorities;
 
     public function __construct(
-        \Upsun\Model\StrictTransportSecurityOptions1 $strict_transport_security = null,
-        string $min_version = null,
-        string $client_authentication = null,
-        string[] $client_certificate_authorities = null,
+        \Upsun\Model\StrictTransportSecurityOptions1|null $strict_transport_security = null,
+        string|null $min_version = null,
+        string|null $client_authentication = null,
+        ?array $client_certificate_authorities = null
     ) {
         $this->strict_transport_security = $strict_transport_security;
         $this->min_version = $min_version;
@@ -45,7 +48,10 @@ final class TLSSettingsForTheRoute1 implements JsonSerializable
     {
         return $this->client_authentication;
     }
-    public function getClientCertificateAuthorities(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getClientCertificateAuthorities(): ?array
     {
         return $this->client_certificate_authorities;
     }

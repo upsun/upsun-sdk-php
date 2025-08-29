@@ -16,20 +16,20 @@ use JsonSerializable;
 
 final class OrganizationAlertConfig implements JsonSerializable
 {
-    public readonly string $id;
-    public readonly bool $active;
-    public readonly float $alerts_sent;
-    public readonly string $last_alert_at;
-    public readonly string $updated_at;
-    public readonly \Upsun\Model\OrganizationAlertConfigConfig $config;
+    public readonly string|null $id;
+    public readonly bool|null $active;
+    public readonly float|null $alerts_sent;
+    public readonly string|null $last_alert_at;
+    public readonly string|null $updated_at;
+    public readonly \Upsun\Model\OrganizationAlertConfigConfig|null $config;
 
     public function __construct(
-        string $id = null,
-        bool $active = null,
-        float $alerts_sent = null,
-        string $last_alert_at = null,
-        string $updated_at = null,
-        \Upsun\Model\OrganizationAlertConfigConfig $config = null,
+        string|null $id = null,
+        bool|null $active = null,
+        float|null $alerts_sent = null,
+        string|null $last_alert_at = null,
+        string|null $updated_at = null,
+        \Upsun\Model\OrganizationAlertConfigConfig|null $config = null
     ) {
         $this->id = $id;
         $this->active = $active;

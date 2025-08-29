@@ -23,11 +23,11 @@ final class EnvironmentRestoreInput implements JsonSerializable
     public readonly \Upsun\Model\Resources5 $resources;
 
     public function __construct(
-        string $environment_name,
-        string $branch_from,
-        bool $restore_code,
-        bool $restore_resources,
-        \Upsun\Model\Resources5 $resources,
+        string $environment_name = null,
+        string $branch_from = null,
+        bool $restore_code = null,
+        bool $restore_resources = null,
+        \Upsun\Model\Resources5 $resources = null
     ) {
         $this->environment_name = $environment_name;
         $this->branch_from = $branch_from;

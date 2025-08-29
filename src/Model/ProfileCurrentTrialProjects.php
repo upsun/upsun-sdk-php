@@ -16,14 +16,14 @@ use JsonSerializable;
 
 final class ProfileCurrentTrialProjects implements JsonSerializable
 {
-    public readonly string $id;
-    public readonly string $name;
-    public readonly \Upsun\Model\ProfileCurrentTrialProjectsTotal $total;
+    public readonly string|null $id;
+    public readonly string|null $name;
+    public readonly \Upsun\Model\ProfileCurrentTrialProjectsTotal|null $total;
 
     public function __construct(
-        string $id = null,
-        string $name = null,
-        \Upsun\Model\ProfileCurrentTrialProjectsTotal $total = null,
+        string|null $id = null,
+        string|null $name = null,
+        \Upsun\Model\ProfileCurrentTrialProjectsTotal|null $total = null
     ) {
         $this->id = $id;
         $this->name = $name;

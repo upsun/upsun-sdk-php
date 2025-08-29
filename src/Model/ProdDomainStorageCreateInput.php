@@ -17,13 +17,16 @@ use JsonSerializable;
 final class ProdDomainStorageCreateInput implements JsonSerializable
 {
     public readonly string $name;
-    public readonly array<string,string> $attributes;
-    public readonly bool $is_default;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $attributes;
+    public readonly bool|null $is_default;
 
     public function __construct(
-        string $name,
-        array<string,string> $attributes = null,
-        bool $is_default = null,
+        string $name = null,
+        ?array $attributes = null,
+        bool|null $is_default = null
     ) {
         $this->name = $name;
         $this->attributes = $attributes;
@@ -34,7 +37,10 @@ final class ProdDomainStorageCreateInput implements JsonSerializable
     {
         return $this->name;
     }
-    public function getAttributes(): array<string,string>|null
+    /**
+     * @return string[]|null
+     */
+    public function getAttributes(): ?array
     {
         return $this->attributes;
     }

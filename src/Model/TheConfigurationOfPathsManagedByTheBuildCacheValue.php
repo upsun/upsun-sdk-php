@@ -17,15 +17,18 @@ use JsonSerializable;
 final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSerializable
 {
     public readonly string $directory;
-    public readonly string[] $watch;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $watch;
     public readonly bool $allow_stale;
     public readonly bool $share_between_apps;
 
     public function __construct(
-        string $directory,
-        string[] $watch,
-        bool $allow_stale,
-        bool $share_between_apps,
+        string $directory = null,
+        ?array $watch = null,
+        bool $allow_stale = null,
+        bool $share_between_apps = null
     ) {
         $this->directory = $directory;
         $this->watch = $watch;
@@ -37,7 +40,10 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
     {
         return $this->directory;
     }
-    public function getWatch(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getWatch(): ?array
     {
         return $this->watch;
     }

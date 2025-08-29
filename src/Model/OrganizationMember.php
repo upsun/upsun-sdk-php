@@ -16,26 +16,29 @@ use JsonSerializable;
 
 final class OrganizationMember implements JsonSerializable
 {
-    public readonly string $id;
-    public readonly string $organization_id;
-    public readonly string $user_id;
-    public readonly string[] $permissions;
-    public readonly string $level;
-    public readonly bool $owner;
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
-    public readonly \Upsun\Model\OrganizationMemberLinks $_links;
+    public readonly string|null $id;
+    public readonly string|null $organization_id;
+    public readonly string|null $user_id;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $permissions;
+    public readonly string|null $level;
+    public readonly bool|null $owner;
+    public readonly \DateTime|null $created_at;
+    public readonly \DateTime|null $updated_at;
+    public readonly \Upsun\Model\OrganizationMemberLinks|null $_links;
 
     public function __construct(
-        string $id = null,
-        string $organization_id = null,
-        string $user_id = null,
-        string[] $permissions = null,
-        string $level = null,
-        bool $owner = null,
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
-        \Upsun\Model\OrganizationMemberLinks $_links = null,
+        string|null $id = null,
+        string|null $organization_id = null,
+        string|null $user_id = null,
+        ?array $permissions = null,
+        string|null $level = null,
+        bool|null $owner = null,
+        \DateTime|null $created_at = null,
+        \DateTime|null $updated_at = null,
+        \Upsun\Model\OrganizationMemberLinks|null $_links = null
     ) {
         $this->id = $id;
         $this->organization_id = $organization_id;
@@ -60,7 +63,10 @@ final class OrganizationMember implements JsonSerializable
     {
         return $this->user_id;
     }
-    public function getPermissions(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getPermissions(): ?array
     {
         return $this->permissions;
     }

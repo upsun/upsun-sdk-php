@@ -16,32 +16,32 @@ use JsonSerializable;
 
 final class UpdateOrgSubscriptionRequest implements JsonSerializable
 {
-    public readonly string $project_title;
-    public readonly string $plan;
-    public readonly string $timezone;
-    public readonly int $environments;
-    public readonly int $storage;
-    public readonly string $big_dev;
-    public readonly string $big_dev_service;
-    public readonly string $backups;
-    public readonly string $observability_suite;
-    public readonly string $blackfire;
-    public readonly string $continuous_profiling;
-    public readonly string $project_support_level;
+    public readonly string|null $project_title;
+    public readonly string|null $plan;
+    public readonly string|null $timezone;
+    public readonly int|null $environments;
+    public readonly int|null $storage;
+    public readonly string|null $big_dev;
+    public readonly string|null $big_dev_service;
+    public readonly string|null $backups;
+    public readonly string|null $observability_suite;
+    public readonly string|null $blackfire;
+    public readonly string|null $continuous_profiling;
+    public readonly string|null $project_support_level;
 
     public function __construct(
-        string $project_title = null,
-        string $plan = null,
-        string $timezone = null,
-        int $environments = null,
-        int $storage = null,
-        string $big_dev = null,
-        string $big_dev_service = null,
-        string $backups = null,
-        string $observability_suite = null,
-        string $blackfire = null,
-        string $continuous_profiling = null,
-        string $project_support_level = null,
+        string|null $project_title = null,
+        string|null $plan = null,
+        string|null $timezone = null,
+        int|null $environments = null,
+        int|null $storage = null,
+        string|null $big_dev = null,
+        string|null $big_dev_service = null,
+        string|null $backups = null,
+        string|null $observability_suite = null,
+        string|null $blackfire = null,
+        string|null $continuous_profiling = null,
+        string|null $project_support_level = null
     ) {
         $this->project_title = $project_title;
         $this->plan = $plan;

@@ -21,9 +21,15 @@ final class DedicatedDeploymentTarget implements JsonSerializable
     public readonly string $deploy_host;
     public readonly int $deploy_port;
     public readonly string $ssh_host;
-    public readonly \Upsun\Model\TheHostsOfTheDeploymentTargetInner[] $hosts;
+    /**
+     * @var \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]|null
+     */
+    public readonly ?array $hosts;
     public readonly bool $auto_mounts;
-    public readonly string[] $excluded_mounts;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $excluded_mounts;
     public readonly object $enforced_mounts;
     public readonly bool $auto_crons;
     public readonly bool $auto_nginx;
@@ -31,19 +37,19 @@ final class DedicatedDeploymentTarget implements JsonSerializable
     public readonly int $guardrails_phase;
 
     public function __construct(
-        string $type,
-        string $name,
-        string $deploy_host,
-        int $deploy_port,
-        string $ssh_host,
-        \Upsun\Model\TheHostsOfTheDeploymentTargetInner[] $hosts,
-        bool $auto_mounts,
-        string[] $excluded_mounts,
-        object $enforced_mounts,
-        bool $auto_crons,
-        bool $auto_nginx,
-        bool $maintenance_mode,
-        int $guardrails_phase,
+        string $type = null,
+        string $name = null,
+        string $deploy_host = null,
+        int $deploy_port = null,
+        string $ssh_host = null,
+        ?array $hosts = null,
+        bool $auto_mounts = null,
+        ?array $excluded_mounts = null,
+        object $enforced_mounts = null,
+        bool $auto_crons = null,
+        bool $auto_nginx = null,
+        bool $maintenance_mode = null,
+        int $guardrails_phase = null
     ) {
         $this->type = $type;
         $this->name = $name;
@@ -80,7 +86,10 @@ final class DedicatedDeploymentTarget implements JsonSerializable
     {
         return $this->ssh_host;
     }
-    public function getHosts(): \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]
+    /**
+     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]|null
+     */
+    public function getHosts(): ?array
     {
         return $this->hosts;
     }
@@ -88,7 +97,10 @@ final class DedicatedDeploymentTarget implements JsonSerializable
     {
         return $this->auto_mounts;
     }
-    public function getExcludedMounts(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getExcludedMounts(): ?array
     {
         return $this->excluded_mounts;
     }

@@ -22,10 +22,10 @@ final class TheTreeItemsInner implements JsonSerializable
     public readonly string $sha;
 
     public function __construct(
-        string $path,
-        string $mode,
-        string $type,
-        string $sha,
+        string $path = null,
+        string $mode = null,
+        string $type = null,
+        string $sha = null
     ) {
         $this->path = $path;
         $this->mode = $mode;

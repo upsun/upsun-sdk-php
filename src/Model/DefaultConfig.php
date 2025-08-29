@@ -17,11 +17,14 @@ use JsonSerializable;
 final class DefaultConfig implements JsonSerializable
 {
     public readonly int $manual_count;
-    public readonly \Upsun\Model\TheBackupScheduleSpecificationInner[] $schedule;
+    /**
+     * @var \Upsun\Model\TheBackupScheduleSpecificationInner[]|null
+     */
+    public readonly ?array $schedule;
 
     public function __construct(
-        int $manual_count,
-        \Upsun\Model\TheBackupScheduleSpecificationInner[] $schedule,
+        int $manual_count = null,
+        ?array $schedule = null
     ) {
         $this->manual_count = $manual_count;
         $this->schedule = $schedule;
@@ -31,7 +34,10 @@ final class DefaultConfig implements JsonSerializable
     {
         return $this->manual_count;
     }
-    public function getSchedule(): \Upsun\Model\TheBackupScheduleSpecificationInner[]
+    /**
+     * @return \Upsun\Model\TheBackupScheduleSpecificationInner[]|null
+     */
+    public function getSchedule(): ?array
     {
         return $this->schedule;
     }

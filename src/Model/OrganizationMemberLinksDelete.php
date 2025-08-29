@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class OrganizationMemberLinksDelete implements JsonSerializable
 {
-    public readonly string $href;
-    public readonly string $method;
+    public readonly string|null $href;
+    public readonly string|null $method;
 
     public function __construct(
-        string $href = null,
-        string $method = null,
+        string|null $href = null,
+        string|null $method = null
     ) {
         $this->href = $href;
         $this->method = $method;

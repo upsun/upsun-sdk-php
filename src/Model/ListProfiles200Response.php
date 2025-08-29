@@ -16,14 +16,17 @@ use JsonSerializable;
 
 final class ListProfiles200Response implements JsonSerializable
 {
-    public readonly int $count;
-    public readonly \Upsun\Model\Profile[] $profiles;
-    public readonly \Upsun\Model\HalLinks $_links;
+    public readonly int|null $count;
+    /**
+     * @var \Upsun\Model\Profile[]|null
+     */
+    public readonly ?array $profiles;
+    public readonly \Upsun\Model\HalLinks|null $_links;
 
     public function __construct(
-        int $count = null,
-        \Upsun\Model\Profile[] $profiles = null,
-        \Upsun\Model\HalLinks $_links = null,
+        int|null $count = null,
+        ?array $profiles = null,
+        \Upsun\Model\HalLinks|null $_links = null
     ) {
         $this->count = $count;
         $this->profiles = $profiles;
@@ -34,7 +37,10 @@ final class ListProfiles200Response implements JsonSerializable
     {
         return $this->count;
     }
-    public function getProfiles(): \Upsun\Model\Profile[]|null
+    /**
+     * @return \Upsun\Model\Profile[]|null
+     */
+    public function getProfiles(): ?array
     {
         return $this->profiles;
     }

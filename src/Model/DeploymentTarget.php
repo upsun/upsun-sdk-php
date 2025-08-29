@@ -21,41 +21,53 @@ final class DeploymentTarget implements JsonSerializable
     public readonly string $deploy_host;
     public readonly int $deploy_port;
     public readonly string $ssh_host;
-    public readonly \Upsun\Model\TheHostsOfTheDeploymentTargetInner[] $hosts;
+    /**
+     * @var \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]|null
+     */
+    public readonly ?array $hosts;
     public readonly bool $auto_mounts;
-    public readonly string[] $excluded_mounts;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $excluded_mounts;
     public readonly object $enforced_mounts;
     public readonly bool $auto_crons;
     public readonly bool $auto_nginx;
     public readonly bool $maintenance_mode;
     public readonly int $guardrails_phase;
-    public readonly array<string,\Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue> $docroots;
+    /**
+     * @var \Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue[]|null
+     */
+    public readonly ?array $docroots;
     public readonly object $site_urls;
-    public readonly string[] $ssh_hosts;
-    public readonly object $enterprise_environments_mapping;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $ssh_hosts;
+    public readonly object|null $enterprise_environments_mapping;
     public readonly bool $use_dedicated_grid;
     public readonly string $storage_type;
 
     public function __construct(
-        string $type,
-        string $name,
-        string $deploy_host,
-        int $deploy_port,
-        string $ssh_host,
-        \Upsun\Model\TheHostsOfTheDeploymentTargetInner[] $hosts,
-        bool $auto_mounts,
-        string[] $excluded_mounts,
-        object $enforced_mounts,
-        bool $auto_crons,
-        bool $auto_nginx,
-        bool $maintenance_mode,
-        int $guardrails_phase,
-        array<string,\Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue> $docroots,
-        object $site_urls,
-        string[] $ssh_hosts,
-        object $enterprise_environments_mapping = null,
-        bool $use_dedicated_grid,
-        string $storage_type,
+        string $type = null,
+        string $name = null,
+        string $deploy_host = null,
+        int $deploy_port = null,
+        string $ssh_host = null,
+        ?array $hosts = null,
+        bool $auto_mounts = null,
+        ?array $excluded_mounts = null,
+        object $enforced_mounts = null,
+        bool $auto_crons = null,
+        bool $auto_nginx = null,
+        bool $maintenance_mode = null,
+        int $guardrails_phase = null,
+        ?array $docroots = null,
+        object $site_urls = null,
+        ?array $ssh_hosts = null,
+        object|null $enterprise_environments_mapping = null,
+        bool $use_dedicated_grid = null,
+        string $storage_type = null
     ) {
         $this->type = $type;
         $this->name = $name;
@@ -98,7 +110,10 @@ final class DeploymentTarget implements JsonSerializable
     {
         return $this->ssh_host;
     }
-    public function getHosts(): \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]
+    /**
+     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]|null
+     */
+    public function getHosts(): ?array
     {
         return $this->hosts;
     }
@@ -106,7 +121,10 @@ final class DeploymentTarget implements JsonSerializable
     {
         return $this->auto_mounts;
     }
-    public function getExcludedMounts(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getExcludedMounts(): ?array
     {
         return $this->excluded_mounts;
     }
@@ -130,7 +148,10 @@ final class DeploymentTarget implements JsonSerializable
     {
         return $this->guardrails_phase;
     }
-    public function getDocroots(): array<string,\Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue>
+    /**
+     * @return \Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue[]|null
+     */
+    public function getDocroots(): ?array
     {
         return $this->docroots;
     }
@@ -138,7 +159,10 @@ final class DeploymentTarget implements JsonSerializable
     {
         return $this->site_urls;
     }
-    public function getSshHosts(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getSshHosts(): ?array
     {
         return $this->ssh_hosts;
     }

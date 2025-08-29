@@ -16,10 +16,10 @@ use JsonSerializable;
 
 final class Components implements JsonSerializable
 {
-    public readonly object $voucher_vat_baseprice;
+    public readonly object|null $voucher_vat_baseprice;
 
     public function __construct(
-        object $voucher_vat_baseprice = null,
+        object|null $voucher_vat_baseprice = null
     ) {
         $this->voucher_vat_baseprice = $voucher_vat_baseprice;
     }

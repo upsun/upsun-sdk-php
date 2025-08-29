@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class InvoicePDF implements JsonSerializable
 {
-    public readonly string $url;
-    public readonly string $status;
+    public readonly string|null $url;
+    public readonly string|null $status;
 
     public function __construct(
-        string $url = null,
-        string $status = null,
+        string|null $url = null,
+        string|null $status = null
     ) {
         $this->url = $url;
         $this->status = $status;

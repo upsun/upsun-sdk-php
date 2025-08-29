@@ -20,8 +20,8 @@ final class ContainerProfilesValueValue implements JsonSerializable
     public readonly int $memory;
 
     public function __construct(
-        float $cpu,
-        int $memory,
+        float $cpu = null,
+        int $memory = null
     ) {
         $this->cpu = $cpu;
         $this->memory = $memory;

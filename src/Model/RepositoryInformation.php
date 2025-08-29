@@ -20,8 +20,8 @@ final class RepositoryInformation implements JsonSerializable
     public readonly string $client_ssh_key;
 
     public function __construct(
-        string $url,
-        string $client_ssh_key,
+        string $url = null,
+        string $client_ssh_key = null
     ) {
         $this->url = $url;
         $this->client_ssh_key = $client_ssh_key;

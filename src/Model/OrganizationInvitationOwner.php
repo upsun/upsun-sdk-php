@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class OrganizationInvitationOwner implements JsonSerializable
 {
-    public readonly string $id;
-    public readonly string $display_name;
+    public readonly string|null $id;
+    public readonly string|null $display_name;
 
     public function __construct(
-        string $id = null,
-        string $display_name = null,
+        string|null $id = null,
+        string|null $display_name = null
     ) {
         $this->id = $id;
         $this->display_name = $display_name;

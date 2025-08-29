@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class BuildResources2 implements JsonSerializable
 {
-    public readonly float $cpu;
-    public readonly int $memory;
+    public readonly float|null $cpu;
+    public readonly int|null $memory;
 
     public function __construct(
-        float $cpu = null,
-        int $memory = null,
+        float|null $cpu = null,
+        int|null $memory = null
     ) {
         $this->cpu = $cpu;
         $this->memory = $memory;

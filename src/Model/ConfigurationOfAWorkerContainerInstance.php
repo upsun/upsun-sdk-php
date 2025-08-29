@@ -17,11 +17,11 @@ use JsonSerializable;
 final class ConfigurationOfAWorkerContainerInstance implements JsonSerializable
 {
     public readonly \Upsun\Model\TheCommandsToManageTheWorker $commands;
-    public readonly int $disk;
+    public readonly int|null $disk;
 
     public function __construct(
-        \Upsun\Model\TheCommandsToManageTheWorker $commands,
-        int $disk = null,
+        \Upsun\Model\TheCommandsToManageTheWorker $commands = null,
+        int|null $disk = null
     ) {
         $this->commands = $commands;
         $this->disk = $disk;

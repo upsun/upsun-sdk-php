@@ -16,16 +16,16 @@ use JsonSerializable;
 
 final class ProjectOptionsDefaults implements JsonSerializable
 {
-    public readonly object $settings;
-    public readonly object $variables;
-    public readonly object $access;
-    public readonly object $capabilities;
+    public readonly object|null $settings;
+    public readonly object|null $variables;
+    public readonly object|null $access;
+    public readonly object|null $capabilities;
 
     public function __construct(
-        object $settings = null,
-        object $variables = null,
-        object $access = null,
-        object $capabilities = null,
+        object|null $settings = null,
+        object|null $variables = null,
+        object|null $access = null,
+        object|null $capabilities = null
     ) {
         $this->settings = $settings;
         $this->variables = $variables;

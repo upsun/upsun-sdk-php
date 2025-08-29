@@ -17,99 +17,120 @@ use JsonSerializable;
 final class IntegrationPatch implements JsonSerializable
 {
     public readonly string $type;
-    public readonly bool $fetch_branches;
-    public readonly bool $prune_branches;
-    public readonly string $environment_init_resources;
-    public readonly \Upsun\Model\TheOAuth2ConsumerInformationOptional1 $app_credentials;
-    public readonly \Upsun\Model\TheAddonCredentialInformationOptional1 $addon_credentials;
+    public readonly bool|null $fetch_branches;
+    public readonly bool|null $prune_branches;
+    public readonly string|null $environment_init_resources;
+    public readonly \Upsun\Model\TheOAuth2ConsumerInformationOptional1|null $app_credentials;
+    public readonly \Upsun\Model\TheAddonCredentialInformationOptional1|null $addon_credentials;
     public readonly string $repository;
-    public readonly bool $build_pull_requests;
-    public readonly bool $pull_requests_clone_parent_data;
-    public readonly bool $resync_pull_requests;
+    public readonly bool|null $build_pull_requests;
+    public readonly bool|null $pull_requests_clone_parent_data;
+    public readonly bool|null $resync_pull_requests;
     public readonly string $url;
     public readonly string $username;
     public readonly string $token;
     public readonly string $project;
-    public readonly string[] $events;
-    public readonly string[] $environments;
-    public readonly string[] $excluded_environments;
-    public readonly string[] $states;
-    public readonly string $result;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $events;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $environments;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $excluded_environments;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $states;
+    public readonly string|null $result;
     public readonly string $service_id;
-    public readonly string $base_url;
-    public readonly bool $build_draft_pull_requests;
-    public readonly bool $build_pull_requests_post_merge;
-    public readonly bool $build_merge_requests;
-    public readonly bool $build_wip_merge_requests;
-    public readonly bool $merge_requests_clone_parent_data;
-    public readonly string $from_address;
-    public readonly string[] $recipients;
+    public readonly string|null $base_url;
+    public readonly bool|null $build_draft_pull_requests;
+    public readonly bool|null $build_pull_requests_post_merge;
+    public readonly bool|null $build_merge_requests;
+    public readonly bool|null $build_wip_merge_requests;
+    public readonly bool|null $merge_requests_clone_parent_data;
+    public readonly string|null $from_address;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $recipients;
     public readonly string $routing_key;
     public readonly string $channel;
-    public readonly string $shared_key;
-    public readonly array<string,string> $extra;
-    public readonly array<string,string> $headers;
-    public readonly bool $tls_verify;
+    public readonly string|null $shared_key;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $extra;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $headers;
+    public readonly bool|null $tls_verify;
     public readonly string $license_key;
     public readonly string $script;
     public readonly string $index;
-    public readonly string $sourcetype;
-    public readonly string $category;
-    public readonly string $host;
-    public readonly int $port;
-    public readonly string $protocol;
-    public readonly int $facility;
-    public readonly string $message_format;
-    public readonly string $auth_token;
-    public readonly string $auth_mode;
+    public readonly string|null $sourcetype;
+    public readonly string|null $category;
+    public readonly string|null $host;
+    public readonly int|null $port;
+    public readonly string|null $protocol;
+    public readonly int|null $facility;
+    public readonly string|null $message_format;
+    public readonly string|null $auth_token;
+    public readonly string|null $auth_mode;
 
     public function __construct(
-        string $type,
-        bool $fetch_branches = null,
-        bool $prune_branches = null,
-        string $environment_init_resources = null,
-        \Upsun\Model\TheOAuth2ConsumerInformationOptional1 $app_credentials = null,
-        \Upsun\Model\TheAddonCredentialInformationOptional1 $addon_credentials = null,
-        string $repository,
-        bool $build_pull_requests = null,
-        bool $pull_requests_clone_parent_data = null,
-        bool $resync_pull_requests = null,
-        string $url,
-        string $username,
-        string $token,
-        string $project,
-        string[] $events = null,
-        string[] $environments = null,
-        string[] $excluded_environments = null,
-        string[] $states = null,
-        string $result = null,
-        string $service_id,
-        string $base_url = null,
-        bool $build_draft_pull_requests = null,
-        bool $build_pull_requests_post_merge = null,
-        bool $build_merge_requests = null,
-        bool $build_wip_merge_requests = null,
-        bool $merge_requests_clone_parent_data = null,
-        string $from_address = null,
-        string[] $recipients,
-        string $routing_key,
-        string $channel,
-        string $shared_key = null,
-        array<string,string> $extra = null,
-        array<string,string> $headers = null,
-        bool $tls_verify = null,
-        string $license_key,
-        string $script,
-        string $index,
-        string $sourcetype = null,
-        string $category = null,
-        string $host = null,
-        int $port = null,
-        string $protocol = null,
-        int $facility = null,
-        string $message_format = null,
-        string $auth_token = null,
-        string $auth_mode = null,
+        string $type = null,
+        bool|null $fetch_branches = null,
+        bool|null $prune_branches = null,
+        string|null $environment_init_resources = null,
+        \Upsun\Model\TheOAuth2ConsumerInformationOptional1|null $app_credentials = null,
+        \Upsun\Model\TheAddonCredentialInformationOptional1|null $addon_credentials = null,
+        string $repository = null,
+        bool|null $build_pull_requests = null,
+        bool|null $pull_requests_clone_parent_data = null,
+        bool|null $resync_pull_requests = null,
+        string $url = null,
+        string $username = null,
+        string $token = null,
+        string $project = null,
+        ?array $events = null,
+        ?array $environments = null,
+        ?array $excluded_environments = null,
+        ?array $states = null,
+        string|null $result = null,
+        string $service_id = null,
+        string|null $base_url = null,
+        bool|null $build_draft_pull_requests = null,
+        bool|null $build_pull_requests_post_merge = null,
+        bool|null $build_merge_requests = null,
+        bool|null $build_wip_merge_requests = null,
+        bool|null $merge_requests_clone_parent_data = null,
+        string|null $from_address = null,
+        ?array $recipients = null,
+        string $routing_key = null,
+        string $channel = null,
+        string|null $shared_key = null,
+        ?array $extra = null,
+        ?array $headers = null,
+        bool|null $tls_verify = null,
+        string $license_key = null,
+        string $script = null,
+        string $index = null,
+        string|null $sourcetype = null,
+        string|null $category = null,
+        string|null $host = null,
+        int|null $port = null,
+        string|null $protocol = null,
+        int|null $facility = null,
+        string|null $message_format = null,
+        string|null $auth_token = null,
+        string|null $auth_mode = null
     ) {
         $this->type = $type;
         $this->fetch_branches = $fetch_branches;
@@ -215,19 +236,31 @@ final class IntegrationPatch implements JsonSerializable
     {
         return $this->project;
     }
-    public function getEvents(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getEvents(): ?array
     {
         return $this->events;
     }
-    public function getEnvironments(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getEnvironments(): ?array
     {
         return $this->environments;
     }
-    public function getExcludedEnvironments(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getExcludedEnvironments(): ?array
     {
         return $this->excluded_environments;
     }
-    public function getStates(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getStates(): ?array
     {
         return $this->states;
     }
@@ -267,7 +300,10 @@ final class IntegrationPatch implements JsonSerializable
     {
         return $this->from_address;
     }
-    public function getRecipients(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getRecipients(): ?array
     {
         return $this->recipients;
     }
@@ -283,11 +319,17 @@ final class IntegrationPatch implements JsonSerializable
     {
         return $this->shared_key;
     }
-    public function getExtra(): array<string,string>|null
+    /**
+     * @return string[]|null
+     */
+    public function getExtra(): ?array
     {
         return $this->extra;
     }
-    public function getHeaders(): array<string,string>|null
+    /**
+     * @return string[]|null
+     */
+    public function getHeaders(): ?array
     {
         return $this->headers;
     }

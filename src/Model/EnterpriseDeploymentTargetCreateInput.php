@@ -18,16 +18,19 @@ final class EnterpriseDeploymentTargetCreateInput implements JsonSerializable
 {
     public readonly string $type;
     public readonly string $name;
-    public readonly object $site_urls;
-    public readonly string[] $ssh_hosts;
-    public readonly object $enterprise_environments_mapping;
+    public readonly object|null $site_urls;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $ssh_hosts;
+    public readonly object|null $enterprise_environments_mapping;
 
     public function __construct(
-        string $type,
-        string $name,
-        object $site_urls = null,
-        string[] $ssh_hosts = null,
-        object $enterprise_environments_mapping = null,
+        string $type = null,
+        string $name = null,
+        object|null $site_urls = null,
+        ?array $ssh_hosts = null,
+        object|null $enterprise_environments_mapping = null
     ) {
         $this->type = $type;
         $this->name = $name;
@@ -48,7 +51,10 @@ final class EnterpriseDeploymentTargetCreateInput implements JsonSerializable
     {
         return $this->site_urls;
     }
-    public function getSshHosts(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getSshHosts(): ?array
     {
         return $this->ssh_hosts;
     }

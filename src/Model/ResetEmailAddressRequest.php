@@ -19,7 +19,7 @@ final class ResetEmailAddressRequest implements JsonSerializable
     public readonly string $email_address;
 
     public function __construct(
-        string $email_address,
+        string $email_address = null
     ) {
         $this->email_address = $email_address;
     }

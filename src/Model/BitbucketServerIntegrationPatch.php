@@ -17,29 +17,29 @@ use JsonSerializable;
 final class BitbucketServerIntegrationPatch implements JsonSerializable
 {
     public readonly string $type;
-    public readonly bool $fetch_branches;
-    public readonly bool $prune_branches;
-    public readonly string $environment_init_resources;
+    public readonly bool|null $fetch_branches;
+    public readonly bool|null $prune_branches;
+    public readonly string|null $environment_init_resources;
     public readonly string $url;
     public readonly string $username;
     public readonly string $token;
     public readonly string $project;
     public readonly string $repository;
-    public readonly bool $build_pull_requests;
-    public readonly bool $pull_requests_clone_parent_data;
+    public readonly bool|null $build_pull_requests;
+    public readonly bool|null $pull_requests_clone_parent_data;
 
     public function __construct(
-        string $type,
-        bool $fetch_branches = null,
-        bool $prune_branches = null,
-        string $environment_init_resources = null,
-        string $url,
-        string $username,
-        string $token,
-        string $project,
-        string $repository,
-        bool $build_pull_requests = null,
-        bool $pull_requests_clone_parent_data = null,
+        string $type = null,
+        bool|null $fetch_branches = null,
+        bool|null $prune_branches = null,
+        string|null $environment_init_resources = null,
+        string $url = null,
+        string $username = null,
+        string $token = null,
+        string $project = null,
+        string $repository = null,
+        bool|null $build_pull_requests = null,
+        bool|null $pull_requests_clone_parent_data = null
     ) {
         $this->type = $type;
         $this->fetch_branches = $fetch_branches;

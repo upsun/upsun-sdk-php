@@ -16,16 +16,16 @@ use JsonSerializable;
 
 final class ArrayFilter implements JsonSerializable
 {
-    public readonly string $eq;
-    public readonly string $ne;
-    public readonly string $in;
-    public readonly string $nin;
+    public readonly string|null $eq;
+    public readonly string|null $ne;
+    public readonly string|null $in;
+    public readonly string|null $nin;
 
     public function __construct(
-        string $eq = null,
-        string $ne = null,
-        string $in = null,
-        string $nin = null,
+        string|null $eq = null,
+        string|null $ne = null,
+        string|null $in = null,
+        string|null $nin = null
     ) {
         $this->eq = $eq;
         $this->ne = $ne;

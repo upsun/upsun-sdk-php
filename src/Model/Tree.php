@@ -17,11 +17,14 @@ use JsonSerializable;
 final class Tree implements JsonSerializable
 {
     public readonly string $sha;
-    public readonly \Upsun\Model\TheTreeItemsInner[] $tree;
+    /**
+     * @var \Upsun\Model\TheTreeItemsInner[]|null
+     */
+    public readonly ?array $tree;
 
     public function __construct(
-        string $sha,
-        \Upsun\Model\TheTreeItemsInner[] $tree,
+        string $sha = null,
+        ?array $tree = null
     ) {
         $this->sha = $sha;
         $this->tree = $tree;
@@ -31,7 +34,10 @@ final class Tree implements JsonSerializable
     {
         return $this->sha;
     }
-    public function getTree(): \Upsun\Model\TheTreeItemsInner[]
+    /**
+     * @return \Upsun\Model\TheTreeItemsInner[]|null
+     */
+    public function getTree(): ?array
     {
         return $this->tree;
     }

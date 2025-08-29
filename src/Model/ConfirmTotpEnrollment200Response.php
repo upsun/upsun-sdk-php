@@ -16,15 +16,21 @@ use JsonSerializable;
 
 final class ConfirmTotpEnrollment200Response implements JsonSerializable
 {
-    public readonly string[] $recovery_codes;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $recovery_codes;
 
     public function __construct(
-        string[] $recovery_codes = null,
+        ?array $recovery_codes = null
     ) {
         $this->recovery_codes = $recovery_codes;
     }
 
-    public function getRecoveryCodes(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getRecoveryCodes(): ?array
     {
         return $this->recovery_codes;
     }

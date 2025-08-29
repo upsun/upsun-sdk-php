@@ -19,7 +19,7 @@ final class GrantTeamProjectAccessRequestInner implements JsonSerializable
     public readonly string $project_id;
 
     public function __construct(
-        string $project_id,
+        string $project_id = null
     ) {
         $this->project_id = $project_id;
     }

@@ -16,10 +16,10 @@ use JsonSerializable;
 
 final class OrderLinks implements JsonSerializable
 {
-    public readonly \Upsun\Model\OrderLinksInvoices $invoices;
+    public readonly \Upsun\Model\OrderLinksInvoices|null $invoices;
 
     public function __construct(
-        \Upsun\Model\OrderLinksInvoices $invoices = null,
+        \Upsun\Model\OrderLinksInvoices|null $invoices = null
     ) {
         $this->invoices = $invoices;
     }

@@ -18,7 +18,10 @@ final class Project implements JsonSerializable
 {
     public readonly \DateTime $created_at;
     public readonly \DateTime $updated_at;
-    public readonly array<string,string> $attributes;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $attributes;
     public readonly string $title;
     public readonly string $description;
     public readonly string $owner;
@@ -33,21 +36,21 @@ final class Project implements JsonSerializable
     public readonly \Upsun\Model\SubscriptionInformation $subscription;
 
     public function __construct(
-        \DateTime $created_at,
-        \DateTime $updated_at,
-        array<string,string> $attributes,
-        string $title,
-        string $description,
-        string $owner,
-        string $namespace,
-        string $organization,
-        string $default_branch,
-        \Upsun\Model\Status $status,
-        string $timezone,
-        string $region,
-        \Upsun\Model\RepositoryInformation $repository,
-        string $default_domain,
-        \Upsun\Model\SubscriptionInformation $subscription,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+        ?array $attributes = null,
+        string $title = null,
+        string $description = null,
+        string $owner = null,
+        string $namespace = null,
+        string $organization = null,
+        string $default_branch = null,
+        \Upsun\Model\Status $status = null,
+        string $timezone = null,
+        string $region = null,
+        \Upsun\Model\RepositoryInformation $repository = null,
+        string $default_domain = null,
+        \Upsun\Model\SubscriptionInformation $subscription = null
     ) {
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;
@@ -74,7 +77,10 @@ final class Project implements JsonSerializable
     {
         return $this->updated_at;
     }
-    public function getAttributes(): array<string,string>
+    /**
+     * @return string[]|null
+     */
+    public function getAttributes(): ?array
     {
         return $this->attributes;
     }

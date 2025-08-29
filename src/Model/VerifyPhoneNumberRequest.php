@@ -20,8 +20,8 @@ final class VerifyPhoneNumberRequest implements JsonSerializable
     public readonly string $phone_number;
 
     public function __construct(
-        string $channel,
-        string $phone_number,
+        string $channel = null,
+        string $phone_number = null
     ) {
         $this->channel = $channel;
         $this->phone_number = $phone_number;

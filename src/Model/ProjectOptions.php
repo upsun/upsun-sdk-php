@@ -16,18 +16,24 @@ use JsonSerializable;
 
 final class ProjectOptions implements JsonSerializable
 {
-    public readonly \Upsun\Model\ProjectOptionsDefaults $defaults;
-    public readonly \Upsun\Model\ProjectOptionsEnforced $enforced;
-    public readonly string[] $regions;
-    public readonly string[] $plans;
-    public readonly object $billing;
+    public readonly \Upsun\Model\ProjectOptionsDefaults|null $defaults;
+    public readonly \Upsun\Model\ProjectOptionsEnforced|null $enforced;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $regions;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $plans;
+    public readonly object|null $billing;
 
     public function __construct(
-        \Upsun\Model\ProjectOptionsDefaults $defaults = null,
-        \Upsun\Model\ProjectOptionsEnforced $enforced = null,
-        string[] $regions = null,
-        string[] $plans = null,
-        object $billing = null,
+        \Upsun\Model\ProjectOptionsDefaults|null $defaults = null,
+        \Upsun\Model\ProjectOptionsEnforced|null $enforced = null,
+        ?array $regions = null,
+        ?array $plans = null,
+        object|null $billing = null
     ) {
         $this->defaults = $defaults;
         $this->enforced = $enforced;
@@ -44,11 +50,17 @@ final class ProjectOptions implements JsonSerializable
     {
         return $this->enforced;
     }
-    public function getRegions(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getRegions(): ?array
     {
         return $this->regions;
     }
-    public function getPlans(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getPlans(): ?array
     {
         return $this->plans;
     }

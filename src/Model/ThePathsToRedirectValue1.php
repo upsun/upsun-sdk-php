@@ -16,20 +16,20 @@ use JsonSerializable;
 
 final class ThePathsToRedirectValue1 implements JsonSerializable
 {
-    public readonly bool $regexp;
+    public readonly bool|null $regexp;
     public readonly string $to;
-    public readonly bool $prefix;
-    public readonly bool $append_suffix;
-    public readonly int $code;
-    public readonly string $expires;
+    public readonly bool|null $prefix;
+    public readonly bool|null $append_suffix;
+    public readonly int|null $code;
+    public readonly string|null $expires;
 
     public function __construct(
-        bool $regexp = null,
-        string $to,
-        bool $prefix = null,
-        bool $append_suffix = null,
-        int $code = null,
-        string $expires = null,
+        bool|null $regexp = null,
+        string $to = null,
+        bool|null $prefix = null,
+        bool|null $append_suffix = null,
+        int|null $code = null,
+        string|null $expires = null
     ) {
         $this->regexp = $regexp;
         $this->to = $to;

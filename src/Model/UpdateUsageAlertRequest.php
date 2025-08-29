@@ -16,10 +16,10 @@ use JsonSerializable;
 
 final class UpdateUsageAlertRequest implements JsonSerializable
 {
-    public readonly \Upsun\Model\CreateUsageAlertRequestConfig $config;
+    public readonly \Upsun\Model\CreateUsageAlertRequestConfig|null $config;
 
     public function __construct(
-        \Upsun\Model\CreateUsageAlertRequestConfig $config = null,
+        \Upsun\Model\CreateUsageAlertRequestConfig|null $config = null
     ) {
         $this->config = $config;
     }

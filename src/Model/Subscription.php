@@ -16,56 +16,59 @@ use JsonSerializable;
 
 final class Subscription implements JsonSerializable
 {
-    public readonly string $id;
-    public readonly string $status;
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
-    public readonly string $owner;
-    public readonly \Upsun\Model\OwnerInfo $owner_info;
-    public readonly string $vendor;
-    public readonly string $plan;
-    public readonly int $environments;
-    public readonly int $storage;
-    public readonly int $user_licenses;
-    public readonly string $project_id;
-    public readonly string $project_endpoint;
-    public readonly string $project_title;
-    public readonly string $project_region;
-    public readonly string $project_region_label;
-    public readonly string $project_ui;
-    public readonly \Upsun\Model\ProjectOptions $project_options;
-    public readonly bool $agency_site;
-    public readonly bool $invoiced;
-    public readonly bool $hipaa;
-    public readonly bool $is_trial_plan;
-    public readonly object[] $services;
-    public readonly bool $green;
+    public readonly string|null $id;
+    public readonly string|null $status;
+    public readonly \DateTime|null $created_at;
+    public readonly \DateTime|null $updated_at;
+    public readonly string|null $owner;
+    public readonly \Upsun\Model\OwnerInfo|null $owner_info;
+    public readonly string|null $vendor;
+    public readonly string|null $plan;
+    public readonly int|null $environments;
+    public readonly int|null $storage;
+    public readonly int|null $user_licenses;
+    public readonly string|null $project_id;
+    public readonly string|null $project_endpoint;
+    public readonly string|null $project_title;
+    public readonly string|null $project_region;
+    public readonly string|null $project_region_label;
+    public readonly string|null $project_ui;
+    public readonly \Upsun\Model\ProjectOptions|null $project_options;
+    public readonly bool|null $agency_site;
+    public readonly bool|null $invoiced;
+    public readonly bool|null $hipaa;
+    public readonly bool|null $is_trial_plan;
+    /**
+     * @var object[]|null
+     */
+    public readonly ?array $services;
+    public readonly bool|null $green;
 
     public function __construct(
-        string $id = null,
-        string $status = null,
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
-        string $owner = null,
-        \Upsun\Model\OwnerInfo $owner_info = null,
-        string $vendor = null,
-        string $plan = null,
-        int $environments = null,
-        int $storage = null,
-        int $user_licenses = null,
-        string $project_id = null,
-        string $project_endpoint = null,
-        string $project_title = null,
-        string $project_region = null,
-        string $project_region_label = null,
-        string $project_ui = null,
-        \Upsun\Model\ProjectOptions $project_options = null,
-        bool $agency_site = null,
-        bool $invoiced = null,
-        bool $hipaa = null,
-        bool $is_trial_plan = null,
-        object[] $services = null,
-        bool $green = null,
+        string|null $id = null,
+        string|null $status = null,
+        \DateTime|null $created_at = null,
+        \DateTime|null $updated_at = null,
+        string|null $owner = null,
+        \Upsun\Model\OwnerInfo|null $owner_info = null,
+        string|null $vendor = null,
+        string|null $plan = null,
+        int|null $environments = null,
+        int|null $storage = null,
+        int|null $user_licenses = null,
+        string|null $project_id = null,
+        string|null $project_endpoint = null,
+        string|null $project_title = null,
+        string|null $project_region = null,
+        string|null $project_region_label = null,
+        string|null $project_ui = null,
+        \Upsun\Model\ProjectOptions|null $project_options = null,
+        bool|null $agency_site = null,
+        bool|null $invoiced = null,
+        bool|null $hipaa = null,
+        bool|null $is_trial_plan = null,
+        ?array $services = null,
+        bool|null $green = null
     ) {
         $this->id = $id;
         $this->status = $status;
@@ -181,7 +184,10 @@ final class Subscription implements JsonSerializable
     {
         return $this->is_trial_plan;
     }
-    public function getServices(): object[]|null
+    /**
+     * @return object[]|null
+     */
+    public function getServices(): ?array
     {
         return $this->services;
     }

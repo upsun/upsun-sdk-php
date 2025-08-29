@@ -16,22 +16,25 @@ use JsonSerializable;
 
 final class Team implements JsonSerializable
 {
-    public readonly string $id;
-    public readonly string $organization_id;
-    public readonly string $label;
-    public readonly string[] $project_permissions;
-    public readonly \Upsun\Model\TeamCounts $counts;
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
+    public readonly string|null $id;
+    public readonly string|null $organization_id;
+    public readonly string|null $label;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $project_permissions;
+    public readonly \Upsun\Model\TeamCounts|null $counts;
+    public readonly \DateTime|null $created_at;
+    public readonly \DateTime|null $updated_at;
 
     public function __construct(
-        string $id = null,
-        string $organization_id = null,
-        string $label = null,
-        string[] $project_permissions = null,
-        \Upsun\Model\TeamCounts $counts = null,
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
+        string|null $id = null,
+        string|null $organization_id = null,
+        string|null $label = null,
+        ?array $project_permissions = null,
+        \Upsun\Model\TeamCounts|null $counts = null,
+        \DateTime|null $created_at = null,
+        \DateTime|null $updated_at = null
     ) {
         $this->id = $id;
         $this->organization_id = $organization_id;
@@ -54,7 +57,10 @@ final class Team implements JsonSerializable
     {
         return $this->label;
     }
-    public function getProjectPermissions(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getProjectPermissions(): ?array
     {
         return $this->project_permissions;
     }

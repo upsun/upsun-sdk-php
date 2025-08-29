@@ -22,10 +22,10 @@ final class HealthWebHookIntegration implements JsonSerializable
     public readonly string $url;
 
     public function __construct(
-        \DateTime $created_at,
-        \DateTime $updated_at,
-        string $type,
-        string $url,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+        string $type = null,
+        string $url = null
     ) {
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;

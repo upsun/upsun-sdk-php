@@ -17,19 +17,19 @@ use JsonSerializable;
 final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializable
 {
     public readonly string $name;
-    public readonly string $value;
+    public readonly string|null $value;
     public readonly bool $is_sensitive;
     public readonly bool $is_json;
     public readonly bool $visible_build;
     public readonly bool $visible_runtime;
 
     public function __construct(
-        string $name,
-        string $value = null,
-        bool $is_sensitive,
-        bool $is_json,
-        bool $visible_build,
-        bool $visible_runtime,
+        string $name = null,
+        string|null $value = null,
+        bool $is_sensitive = null,
+        bool $is_json = null,
+        bool $visible_build = null,
+        bool $visible_runtime = null
     ) {
         $this->name = $name;
         $this->value = $value;

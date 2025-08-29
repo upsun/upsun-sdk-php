@@ -19,7 +19,7 @@ final class Resources2 implements JsonSerializable
     public readonly string $init;
 
     public function __construct(
-        string $init,
+        string $init = null
     ) {
         $this->init = $init;
     }

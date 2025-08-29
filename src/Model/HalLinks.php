@@ -16,14 +16,14 @@ use JsonSerializable;
 
 final class HalLinks implements JsonSerializable
 {
-    public readonly \Upsun\Model\HalLinksSelf $self;
-    public readonly \Upsun\Model\HalLinksPrevious $previous;
-    public readonly \Upsun\Model\HalLinksNext $next;
+    public readonly \Upsun\Model\HalLinksSelf|null $self;
+    public readonly \Upsun\Model\HalLinksPrevious|null $previous;
+    public readonly \Upsun\Model\HalLinksNext|null $next;
 
     public function __construct(
-        \Upsun\Model\HalLinksSelf $self = null,
-        \Upsun\Model\HalLinksPrevious $previous = null,
-        \Upsun\Model\HalLinksNext $next = null,
+        \Upsun\Model\HalLinksSelf|null $self = null,
+        \Upsun\Model\HalLinksPrevious|null $previous = null,
+        \Upsun\Model\HalLinksNext|null $next = null
     ) {
         $this->self = $self;
         $this->previous = $previous;

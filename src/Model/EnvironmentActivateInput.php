@@ -19,7 +19,7 @@ final class EnvironmentActivateInput implements JsonSerializable
     public readonly \Upsun\Model\Resources1 $resources;
 
     public function __construct(
-        \Upsun\Model\Resources1 $resources,
+        \Upsun\Model\Resources1 $resources = null
     ) {
         $this->resources = $resources;
     }

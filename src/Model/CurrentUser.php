@@ -16,38 +16,50 @@ use JsonSerializable;
 
 final class CurrentUser implements JsonSerializable
 {
-    public readonly string $id;
-    public readonly string $uuid;
-    public readonly string $username;
-    public readonly string $display_name;
-    public readonly int $status;
-    public readonly string $mail;
-    public readonly \Upsun\Model\SSHKey[] $ssh_keys;
-    public readonly bool $has_key;
-    public readonly \Upsun\Model\CurrentUserProjectsInner[] $projects;
-    public readonly int $sequence;
-    public readonly string[] $roles;
-    public readonly string $picture;
-    public readonly object $tickets;
-    public readonly bool $trial;
-    public readonly \Upsun\Model\CurrentUserCurrentTrialInner[] $current_trial;
+    public readonly string|null $id;
+    public readonly string|null $uuid;
+    public readonly string|null $username;
+    public readonly string|null $display_name;
+    public readonly int|null $status;
+    public readonly string|null $mail;
+    /**
+     * @var \Upsun\Model\SSHKey[]|null
+     */
+    public readonly ?array $ssh_keys;
+    public readonly bool|null $has_key;
+    /**
+     * @var \Upsun\Model\CurrentUserProjectsInner[]|null
+     */
+    public readonly ?array $projects;
+    public readonly int|null $sequence;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $roles;
+    public readonly string|null $picture;
+    public readonly object|null $tickets;
+    public readonly bool|null $trial;
+    /**
+     * @var \Upsun\Model\CurrentUserCurrentTrialInner[]|null
+     */
+    public readonly ?array $current_trial;
 
     public function __construct(
-        string $id = null,
-        string $uuid = null,
-        string $username = null,
-        string $display_name = null,
-        int $status = null,
-        string $mail = null,
-        \Upsun\Model\SSHKey[] $ssh_keys = null,
-        bool $has_key = null,
-        \Upsun\Model\CurrentUserProjectsInner[] $projects = null,
-        int $sequence = null,
-        string[] $roles = null,
-        string $picture = null,
-        object $tickets = null,
-        bool $trial = null,
-        \Upsun\Model\CurrentUserCurrentTrialInner[] $current_trial = null,
+        string|null $id = null,
+        string|null $uuid = null,
+        string|null $username = null,
+        string|null $display_name = null,
+        int|null $status = null,
+        string|null $mail = null,
+        ?array $ssh_keys = null,
+        bool|null $has_key = null,
+        ?array $projects = null,
+        int|null $sequence = null,
+        ?array $roles = null,
+        string|null $picture = null,
+        object|null $tickets = null,
+        bool|null $trial = null,
+        ?array $current_trial = null
     ) {
         $this->id = $id;
         $this->uuid = $uuid;
@@ -90,7 +102,10 @@ final class CurrentUser implements JsonSerializable
     {
         return $this->mail;
     }
-    public function getSshKeys(): \Upsun\Model\SSHKey[]|null
+    /**
+     * @return \Upsun\Model\SSHKey[]|null
+     */
+    public function getSshKeys(): ?array
     {
         return $this->ssh_keys;
     }
@@ -98,7 +113,10 @@ final class CurrentUser implements JsonSerializable
     {
         return $this->has_key;
     }
-    public function getProjects(): \Upsun\Model\CurrentUserProjectsInner[]|null
+    /**
+     * @return \Upsun\Model\CurrentUserProjectsInner[]|null
+     */
+    public function getProjects(): ?array
     {
         return $this->projects;
     }
@@ -106,7 +124,10 @@ final class CurrentUser implements JsonSerializable
     {
         return $this->sequence;
     }
-    public function getRoles(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getRoles(): ?array
     {
         return $this->roles;
     }
@@ -122,7 +143,10 @@ final class CurrentUser implements JsonSerializable
     {
         return $this->trial;
     }
-    public function getCurrentTrial(): \Upsun\Model\CurrentUserCurrentTrialInner[]|null
+    /**
+     * @return \Upsun\Model\CurrentUserCurrentTrialInner[]|null
+     */
+    public function getCurrentTrial(): ?array
     {
         return $this->current_trial;
     }

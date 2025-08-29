@@ -16,21 +16,27 @@ use JsonSerializable;
 
 final class ListTeams200Response implements JsonSerializable
 {
-    public readonly \Upsun\Model\Team[] $items;
-    public readonly int $count;
-    public readonly \Upsun\Model\ListLinks $_links;
+    /**
+     * @var \Upsun\Model\Team[]|null
+     */
+    public readonly ?array $items;
+    public readonly int|null $count;
+    public readonly \Upsun\Model\ListLinks|null $_links;
 
     public function __construct(
-        \Upsun\Model\Team[] $items = null,
-        int $count = null,
-        \Upsun\Model\ListLinks $_links = null,
+        ?array $items = null,
+        int|null $count = null,
+        \Upsun\Model\ListLinks|null $_links = null
     ) {
         $this->items = $items;
         $this->count = $count;
         $this->_links = $_links;
     }
 
-    public function getItems(): \Upsun\Model\Team[]|null
+    /**
+     * @return \Upsun\Model\Team[]|null
+     */
+    public function getItems(): ?array
     {
         return $this->items;
     }

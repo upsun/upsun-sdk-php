@@ -16,10 +16,10 @@ use JsonSerializable;
 
 final class ListLinksSelf implements JsonSerializable
 {
-    public readonly string $href;
+    public readonly string|null $href;
 
     public function __construct(
-        string $href = null,
+        string|null $href = null
     ) {
         $this->href = $href;
     }

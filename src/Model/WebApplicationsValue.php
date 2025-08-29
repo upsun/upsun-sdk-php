@@ -19,15 +19,33 @@ final class WebApplicationsValue implements JsonSerializable
     public readonly \Upsun\Model\Resources $resources;
     public readonly string $size;
     public readonly int $disk;
-    public readonly array<string,string> $access;
-    public readonly array<string,\Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue> $relationships;
-    public readonly array<string,string> $additional_hosts;
-    public readonly array<string,\Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue> $mounts;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $access;
+    /**
+     * @var \Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue[]|null
+     */
+    public readonly ?array $relationships;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $additional_hosts;
+    /**
+     * @var \Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue[]|null
+     */
+    public readonly ?array $mounts;
     public readonly string $timezone;
-    public readonly array<string,array<string,mixed>> $variables;
+    /**
+     * @var array<string,mixed>[]|null
+     */
+    public readonly ?array $variables;
     public readonly \Upsun\Model\Firewall $firewall;
     public readonly string $container_profile;
-    public readonly array<string,\Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue> $operations;
+    /**
+     * @var \Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue[]|null
+     */
+    public readonly ?array $operations;
     public readonly string $name;
     public readonly string $type;
     public readonly \Upsun\Model\ConfigurationForPreFlightChecks $preflight;
@@ -37,47 +55,56 @@ final class WebApplicationsValue implements JsonSerializable
     public readonly object $runtime;
     public readonly \Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP $web;
     public readonly \Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication $hooks;
-    public readonly array<string,\Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue> $crons;
+    /**
+     * @var \Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue[]|null
+     */
+    public readonly ?array $crons;
     public readonly \Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication $source;
     public readonly \Upsun\Model\TheBuildConfigurationOfTheApplication $build;
-    public readonly array<string,object> $dependencies;
-    public readonly object[] $stack;
+    /**
+     * @var object[]|null
+     */
+    public readonly ?array $dependencies;
+    /**
+     * @var object[]|null
+     */
+    public readonly ?array $stack;
     public readonly bool $is_across_submodule;
     public readonly int $instance_count;
     public readonly string $config_id;
     public readonly string $slug_id;
 
     public function __construct(
-        \Upsun\Model\Resources $resources,
-        string $size,
-        int $disk,
-        array<string,string> $access,
-        array<string,\Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue> $relationships,
-        array<string,string> $additional_hosts,
-        array<string,\Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue> $mounts,
-        string $timezone,
-        array<string,array<string,mixed>> $variables,
-        \Upsun\Model\Firewall $firewall,
-        string $container_profile,
-        array<string,\Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue> $operations,
-        string $name,
-        string $type,
-        \Upsun\Model\ConfigurationForPreFlightChecks $preflight,
-        string $tree_id,
-        string $app_dir,
-        object $endpoints,
-        object $runtime,
-        \Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP $web,
-        \Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication $hooks,
-        array<string,\Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue> $crons,
-        \Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication $source,
-        \Upsun\Model\TheBuildConfigurationOfTheApplication $build,
-        array<string,object> $dependencies,
-        object[] $stack,
-        bool $is_across_submodule,
-        int $instance_count,
-        string $config_id,
-        string $slug_id,
+        \Upsun\Model\Resources $resources = null,
+        string $size = null,
+        int $disk = null,
+        ?array $access = null,
+        ?array $relationships = null,
+        ?array $additional_hosts = null,
+        ?array $mounts = null,
+        string $timezone = null,
+        ?array $variables = null,
+        \Upsun\Model\Firewall $firewall = null,
+        string $container_profile = null,
+        ?array $operations = null,
+        string $name = null,
+        string $type = null,
+        \Upsun\Model\ConfigurationForPreFlightChecks $preflight = null,
+        string $tree_id = null,
+        string $app_dir = null,
+        object $endpoints = null,
+        object $runtime = null,
+        \Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP $web = null,
+        \Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication $hooks = null,
+        ?array $crons = null,
+        \Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication $source = null,
+        \Upsun\Model\TheBuildConfigurationOfTheApplication $build = null,
+        ?array $dependencies = null,
+        ?array $stack = null,
+        bool $is_across_submodule = null,
+        int $instance_count = null,
+        string $config_id = null,
+        string $slug_id = null
     ) {
         $this->resources = $resources;
         $this->size = $size;
@@ -123,19 +150,31 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->disk;
     }
-    public function getAccess(): array<string,string>
+    /**
+     * @return string[]|null
+     */
+    public function getAccess(): ?array
     {
         return $this->access;
     }
-    public function getRelationships(): array<string,\Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue>
+    /**
+     * @return \Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue[]|null
+     */
+    public function getRelationships(): ?array
     {
         return $this->relationships;
     }
-    public function getAdditionalHosts(): array<string,string>
+    /**
+     * @return string[]|null
+     */
+    public function getAdditionalHosts(): ?array
     {
         return $this->additional_hosts;
     }
-    public function getMounts(): array<string,\Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue>
+    /**
+     * @return \Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue[]|null
+     */
+    public function getMounts(): ?array
     {
         return $this->mounts;
     }
@@ -143,7 +182,10 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->timezone;
     }
-    public function getVariables(): array<string,array<string,mixed>>
+    /**
+     * @return array<string,mixed>[]|null
+     */
+    public function getVariables(): ?array
     {
         return $this->variables;
     }
@@ -155,7 +197,10 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->container_profile;
     }
-    public function getOperations(): array<string,\Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue>
+    /**
+     * @return \Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue[]|null
+     */
+    public function getOperations(): ?array
     {
         return $this->operations;
     }
@@ -195,7 +240,10 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->hooks;
     }
-    public function getCrons(): array<string,\Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue>
+    /**
+     * @return \Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue[]|null
+     */
+    public function getCrons(): ?array
     {
         return $this->crons;
     }
@@ -207,11 +255,17 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->build;
     }
-    public function getDependencies(): array<string,object>
+    /**
+     * @return object[]|null
+     */
+    public function getDependencies(): ?array
     {
         return $this->dependencies;
     }
-    public function getStack(): object[]
+    /**
+     * @return object[]|null
+     */
+    public function getStack(): ?array
     {
         return $this->stack;
     }

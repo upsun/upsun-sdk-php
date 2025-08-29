@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class OrganizationAlertConfigConfig implements JsonSerializable
 {
-    public readonly \Upsun\Model\OrganizationAlertConfigConfigThreshold $threshold;
-    public readonly string $mode;
+    public readonly \Upsun\Model\OrganizationAlertConfigConfigThreshold|null $threshold;
+    public readonly string|null $mode;
 
     public function __construct(
-        \Upsun\Model\OrganizationAlertConfigConfigThreshold $threshold = null,
-        string $mode = null,
+        \Upsun\Model\OrganizationAlertConfigConfigThreshold|null $threshold = null,
+        string|null $mode = null
     ) {
         $this->threshold = $threshold;
         $this->mode = $mode;

@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class GetOrgPrepaymentInfo200Response implements JsonSerializable
 {
-    public readonly \Upsun\Model\PrepaymentObject $prepayment;
-    public readonly \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks $_links;
+    public readonly \Upsun\Model\PrepaymentObject|null $prepayment;
+    public readonly \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks|null $_links;
 
     public function __construct(
-        \Upsun\Model\PrepaymentObject $prepayment = null,
-        \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks $_links = null,
+        \Upsun\Model\PrepaymentObject|null $prepayment = null,
+        \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks|null $_links = null
     ) {
         $this->prepayment = $prepayment;
         $this->_links = $_links;

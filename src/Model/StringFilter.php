@@ -16,24 +16,24 @@ use JsonSerializable;
 
 final class StringFilter implements JsonSerializable
 {
-    public readonly string $eq;
-    public readonly string $ne;
-    public readonly string $in;
-    public readonly string $nin;
-    public readonly string $between;
-    public readonly string $contains;
-    public readonly string $starts;
-    public readonly string $ends;
+    public readonly string|null $eq;
+    public readonly string|null $ne;
+    public readonly string|null $in;
+    public readonly string|null $nin;
+    public readonly string|null $between;
+    public readonly string|null $contains;
+    public readonly string|null $starts;
+    public readonly string|null $ends;
 
     public function __construct(
-        string $eq = null,
-        string $ne = null,
-        string $in = null,
-        string $nin = null,
-        string $between = null,
-        string $contains = null,
-        string $starts = null,
-        string $ends = null,
+        string|null $eq = null,
+        string|null $ne = null,
+        string|null $in = null,
+        string|null $nin = null,
+        string|null $between = null,
+        string|null $contains = null,
+        string|null $starts = null,
+        string|null $ends = null
     ) {
         $this->eq = $eq;
         $this->ne = $ne;

@@ -24,7 +24,10 @@ final class VPNConfiguration implements JsonSerializable
     public readonly string $identity;
     public readonly string $second_identity;
     public readonly string $remote_identity;
-    public readonly string[] $remote_subnets;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $remote_subnets;
     public readonly string $ike;
     public readonly string $esp;
     public readonly string $ikelifetime;
@@ -32,20 +35,20 @@ final class VPNConfiguration implements JsonSerializable
     public readonly string $margintime;
 
     public function __construct(
-        int $version,
-        string $aggressive,
-        string $modeconfig,
-        string $authentication,
-        string $gateway_ip,
-        string $identity,
-        string $second_identity,
-        string $remote_identity,
-        string[] $remote_subnets,
-        string $ike,
-        string $esp,
-        string $ikelifetime,
-        string $lifetime,
-        string $margintime,
+        int $version = null,
+        string $aggressive = null,
+        string $modeconfig = null,
+        string $authentication = null,
+        string $gateway_ip = null,
+        string $identity = null,
+        string $second_identity = null,
+        string $remote_identity = null,
+        ?array $remote_subnets = null,
+        string $ike = null,
+        string $esp = null,
+        string $ikelifetime = null,
+        string $lifetime = null,
+        string $margintime = null
     ) {
         $this->version = $version;
         $this->aggressive = $aggressive;
@@ -95,7 +98,10 @@ final class VPNConfiguration implements JsonSerializable
     {
         return $this->remote_identity;
     }
-    public function getRemoteSubnets(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getRemoteSubnets(): ?array
     {
         return $this->remote_subnets;
     }

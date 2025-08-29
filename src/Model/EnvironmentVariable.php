@@ -19,8 +19,11 @@ final class EnvironmentVariable implements JsonSerializable
     public readonly \DateTime $created_at;
     public readonly \DateTime $updated_at;
     public readonly string $name;
-    public readonly array<string,string> $attributes;
-    public readonly string $value;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $attributes;
+    public readonly string|null $value;
     public readonly bool $is_json;
     public readonly bool $is_sensitive;
     public readonly bool $visible_build;
@@ -32,20 +35,20 @@ final class EnvironmentVariable implements JsonSerializable
     public readonly bool $is_inheritable;
 
     public function __construct(
-        \DateTime $created_at,
-        \DateTime $updated_at,
-        string $name,
-        array<string,string> $attributes,
-        string $value = null,
-        bool $is_json,
-        bool $is_sensitive,
-        bool $visible_build,
-        bool $visible_runtime,
-        string $project,
-        string $environment,
-        bool $inherited,
-        bool $is_enabled,
-        bool $is_inheritable,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+        string $name = null,
+        ?array $attributes = null,
+        string|null $value = null,
+        bool $is_json = null,
+        bool $is_sensitive = null,
+        bool $visible_build = null,
+        bool $visible_runtime = null,
+        string $project = null,
+        string $environment = null,
+        bool $inherited = null,
+        bool $is_enabled = null,
+        bool $is_inheritable = null
     ) {
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;
@@ -75,7 +78,10 @@ final class EnvironmentVariable implements JsonSerializable
     {
         return $this->name;
     }
-    public function getAttributes(): array<string,string>
+    /**
+     * @return string[]|null
+     */
+    public function getAttributes(): ?array
     {
         return $this->attributes;
     }

@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class CreateUsageAlertRequest implements JsonSerializable
 {
-    public readonly string $id;
-    public readonly \Upsun\Model\CreateUsageAlertRequestConfig $config;
+    public readonly string|null $id;
+    public readonly \Upsun\Model\CreateUsageAlertRequestConfig|null $config;
 
     public function __construct(
-        string $id = null,
-        \Upsun\Model\CreateUsageAlertRequestConfig $config = null,
+        string|null $id = null,
+        \Upsun\Model\CreateUsageAlertRequestConfig|null $config = null
     ) {
         $this->id = $id;
         $this->config = $config;

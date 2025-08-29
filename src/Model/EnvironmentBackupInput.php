@@ -19,7 +19,7 @@ final class EnvironmentBackupInput implements JsonSerializable
     public readonly bool $safe;
 
     public function __construct(
-        bool $safe,
+        bool $safe = null
     ) {
         $this->safe = $safe;
     }

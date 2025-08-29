@@ -16,18 +16,18 @@ use JsonSerializable;
 
 final class CreateOrgRequest implements JsonSerializable
 {
-    public readonly string $type;
-    public readonly string $owner_id;
-    public readonly string $name;
+    public readonly string|null $type;
+    public readonly string|null $owner_id;
+    public readonly string|null $name;
     public readonly string $label;
-    public readonly string $country;
+    public readonly string|null $country;
 
     public function __construct(
-        string $type = null,
-        string $owner_id = null,
-        string $name = null,
-        string $label,
-        string $country = null,
+        string|null $type = null,
+        string|null $owner_id = null,
+        string|null $name = null,
+        string $label = null,
+        string|null $country = null
     ) {
         $this->type = $type;
         $this->owner_id = $owner_id;

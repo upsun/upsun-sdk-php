@@ -16,22 +16,34 @@ use JsonSerializable;
 
 final class SubscriptionAddonsObjectUpgradesAvailable implements JsonSerializable
 {
-    public readonly string[] $continuous_profiling;
-    public readonly string[] $project_support_level;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $continuous_profiling;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $project_support_level;
 
     public function __construct(
-        string[] $continuous_profiling = null,
-        string[] $project_support_level = null,
+        ?array $continuous_profiling = null,
+        ?array $project_support_level = null
     ) {
         $this->continuous_profiling = $continuous_profiling;
         $this->project_support_level = $project_support_level;
     }
 
-    public function getContinuousProfiling(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getContinuousProfiling(): ?array
     {
         return $this->continuous_profiling;
     }
-    public function getProjectSupportLevel(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getProjectSupportLevel(): ?array
     {
         return $this->project_support_level;
     }

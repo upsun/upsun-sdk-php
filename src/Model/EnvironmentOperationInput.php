@@ -20,8 +20,8 @@ final class EnvironmentOperationInput implements JsonSerializable
     public readonly string $operation;
 
     public function __construct(
-        string $service,
-        string $operation,
+        string $service = null,
+        string $operation = null
     ) {
         $this->service = $service;
         $this->operation = $operation;

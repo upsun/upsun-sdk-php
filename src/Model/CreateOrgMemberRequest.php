@@ -17,11 +17,14 @@ use JsonSerializable;
 final class CreateOrgMemberRequest implements JsonSerializable
 {
     public readonly string $user_id;
-    public readonly string[] $permissions;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $permissions;
 
     public function __construct(
-        string $user_id,
-        string[] $permissions = null,
+        string $user_id = null,
+        ?array $permissions = null
     ) {
         $this->user_id = $user_id;
         $this->permissions = $permissions;
@@ -31,7 +34,10 @@ final class CreateOrgMemberRequest implements JsonSerializable
     {
         return $this->user_id;
     }
-    public function getPermissions(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getPermissions(): ?array
     {
         return $this->permissions;
     }

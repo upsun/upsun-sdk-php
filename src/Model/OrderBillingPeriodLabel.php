@@ -16,16 +16,16 @@ use JsonSerializable;
 
 final class OrderBillingPeriodLabel implements JsonSerializable
 {
-    public readonly string $formatted;
-    public readonly string $month;
-    public readonly string $year;
-    public readonly string $next_month;
+    public readonly string|null $formatted;
+    public readonly string|null $month;
+    public readonly string|null $year;
+    public readonly string|null $next_month;
 
     public function __construct(
-        string $formatted = null,
-        string $month = null,
-        string $year = null,
-        string $next_month = null,
+        string|null $formatted = null,
+        string|null $month = null,
+        string|null $year = null,
+        string|null $next_month = null
     ) {
         $this->formatted = $formatted;
         $this->month = $month;

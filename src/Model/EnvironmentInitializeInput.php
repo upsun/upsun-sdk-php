@@ -19,15 +19,18 @@ final class EnvironmentInitializeInput implements JsonSerializable
     public readonly string $profile;
     public readonly string $repository;
     public readonly string $config;
-    public readonly \Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner[] $files;
+    /**
+     * @var \Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner[]|null
+     */
+    public readonly ?array $files;
     public readonly \Upsun\Model\Resources3 $resources;
 
     public function __construct(
-        string $profile,
-        string $repository,
-        string $config,
-        \Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner[] $files,
-        \Upsun\Model\Resources3 $resources,
+        string $profile = null,
+        string $repository = null,
+        string $config = null,
+        ?array $files = null,
+        \Upsun\Model\Resources3 $resources = null
     ) {
         $this->profile = $profile;
         $this->repository = $repository;
@@ -48,7 +51,10 @@ final class EnvironmentInitializeInput implements JsonSerializable
     {
         return $this->config;
     }
-    public function getFiles(): \Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner[]
+    /**
+     * @return \Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner[]|null
+     */
+    public function getFiles(): ?array
     {
         return $this->files;
     }

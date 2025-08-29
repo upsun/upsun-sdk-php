@@ -28,16 +28,16 @@ final class ProjectReference implements JsonSerializable
     public readonly \DateTime $updated_at;
 
     public function __construct(
-        string $id,
-        string $organization_id,
-        string $subscription_id,
-        string $region,
-        string $title,
-        \Upsun\Model\OrganizationProjectType $type,
-        \Upsun\Model\OrganizationProjectPlan $plan,
-        \Upsun\Model\OrganizationProjectStatus $status,
-        \DateTime $created_at,
-        \DateTime $updated_at,
+        string $id = null,
+        string $organization_id = null,
+        string $subscription_id = null,
+        string $region = null,
+        string $title = null,
+        \Upsun\Model\OrganizationProjectType $type = null,
+        \Upsun\Model\OrganizationProjectPlan $plan = null,
+        \Upsun\Model\OrganizationProjectStatus $status = null,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null
     ) {
         $this->id = $id;
         $this->organization_id = $organization_id;

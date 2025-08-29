@@ -16,16 +16,19 @@ use JsonSerializable;
 
 final class VouchersVouchersInner implements JsonSerializable
 {
-    public readonly string $code;
-    public readonly string $amount;
-    public readonly string $currency;
-    public readonly \Upsun\Model\VouchersVouchersInnerOrdersInner[] $orders;
+    public readonly string|null $code;
+    public readonly string|null $amount;
+    public readonly string|null $currency;
+    /**
+     * @var \Upsun\Model\VouchersVouchersInnerOrdersInner[]|null
+     */
+    public readonly ?array $orders;
 
     public function __construct(
-        string $code = null,
-        string $amount = null,
-        string $currency = null,
-        \Upsun\Model\VouchersVouchersInnerOrdersInner[] $orders = null,
+        string|null $code = null,
+        string|null $amount = null,
+        string|null $currency = null,
+        ?array $orders = null
     ) {
         $this->code = $code;
         $this->amount = $amount;
@@ -45,7 +48,10 @@ final class VouchersVouchersInner implements JsonSerializable
     {
         return $this->currency;
     }
-    public function getOrders(): \Upsun\Model\VouchersVouchersInnerOrdersInner[]|null
+    /**
+     * @return \Upsun\Model\VouchersVouchersInnerOrdersInner[]|null
+     */
+    public function getOrders(): ?array
     {
         return $this->orders;
     }

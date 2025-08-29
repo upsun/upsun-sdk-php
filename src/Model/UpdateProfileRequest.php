@@ -16,34 +16,34 @@ use JsonSerializable;
 
 final class UpdateProfileRequest implements JsonSerializable
 {
-    public readonly string $display_name;
-    public readonly string $username;
-    public readonly string $current_password;
-    public readonly string $password;
-    public readonly string $company_type;
-    public readonly string $company_name;
-    public readonly string $vat_number;
-    public readonly string $company_role;
-    public readonly bool $marketing;
-    public readonly string $ui_colorscheme;
-    public readonly string $default_catalog;
-    public readonly string $project_options_url;
-    public readonly string $picture;
+    public readonly string|null $display_name;
+    public readonly string|null $username;
+    public readonly string|null $current_password;
+    public readonly string|null $password;
+    public readonly string|null $company_type;
+    public readonly string|null $company_name;
+    public readonly string|null $vat_number;
+    public readonly string|null $company_role;
+    public readonly bool|null $marketing;
+    public readonly string|null $ui_colorscheme;
+    public readonly string|null $default_catalog;
+    public readonly string|null $project_options_url;
+    public readonly string|null $picture;
 
     public function __construct(
-        string $display_name = null,
-        string $username = null,
-        string $current_password = null,
-        string $password = null,
-        string $company_type = null,
-        string $company_name = null,
-        string $vat_number = null,
-        string $company_role = null,
-        bool $marketing = null,
-        string $ui_colorscheme = null,
-        string $default_catalog = null,
-        string $project_options_url = null,
-        string $picture = null,
+        string|null $display_name = null,
+        string|null $username = null,
+        string|null $current_password = null,
+        string|null $password = null,
+        string|null $company_type = null,
+        string|null $company_name = null,
+        string|null $vat_number = null,
+        string|null $company_role = null,
+        bool|null $marketing = null,
+        string|null $ui_colorscheme = null,
+        string|null $default_catalog = null,
+        string|null $project_options_url = null,
+        string|null $picture = null
     ) {
         $this->display_name = $display_name;
         $this->username = $username;

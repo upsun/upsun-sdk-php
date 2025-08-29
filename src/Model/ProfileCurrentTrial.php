@@ -16,30 +16,30 @@ use JsonSerializable;
 
 final class ProfileCurrentTrial implements JsonSerializable
 {
-    public readonly bool $active;
-    public readonly \DateTime $created;
-    public readonly string $description;
-    public readonly \DateTime $expiration;
-    public readonly \Upsun\Model\ProfileCurrentTrialCurrent $current;
-    public readonly \Upsun\Model\ProfileCurrentTrialSpend $spend;
-    public readonly \Upsun\Model\ProfileCurrentTrialSpendRemaining $spend_remaining;
-    public readonly \Upsun\Model\ProfileCurrentTrialProjects $projects;
-    public readonly string $pending_verification;
-    public readonly string $model;
-    public readonly int $days_remaining;
+    public readonly bool|null $active;
+    public readonly \DateTime|null $created;
+    public readonly string|null $description;
+    public readonly \DateTime|null $expiration;
+    public readonly \Upsun\Model\ProfileCurrentTrialCurrent|null $current;
+    public readonly \Upsun\Model\ProfileCurrentTrialSpend|null $spend;
+    public readonly \Upsun\Model\ProfileCurrentTrialSpendRemaining|null $spend_remaining;
+    public readonly \Upsun\Model\ProfileCurrentTrialProjects|null $projects;
+    public readonly string|null $pending_verification;
+    public readonly string|null $model;
+    public readonly int|null $days_remaining;
 
     public function __construct(
-        bool $active = null,
-        \DateTime $created = null,
-        string $description = null,
-        \DateTime $expiration = null,
-        \Upsun\Model\ProfileCurrentTrialCurrent $current = null,
-        \Upsun\Model\ProfileCurrentTrialSpend $spend = null,
-        \Upsun\Model\ProfileCurrentTrialSpendRemaining $spend_remaining = null,
-        \Upsun\Model\ProfileCurrentTrialProjects $projects = null,
-        string $pending_verification = null,
-        string $model = null,
-        int $days_remaining = null,
+        bool|null $active = null,
+        \DateTime|null $created = null,
+        string|null $description = null,
+        \DateTime|null $expiration = null,
+        \Upsun\Model\ProfileCurrentTrialCurrent|null $current = null,
+        \Upsun\Model\ProfileCurrentTrialSpend|null $spend = null,
+        \Upsun\Model\ProfileCurrentTrialSpendRemaining|null $spend_remaining = null,
+        \Upsun\Model\ProfileCurrentTrialProjects|null $projects = null,
+        string|null $pending_verification = null,
+        string|null $model = null,
+        int|null $days_remaining = null
     ) {
         $this->active = $active;
         $this->created = $created;

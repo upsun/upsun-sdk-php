@@ -16,22 +16,22 @@ use JsonSerializable;
 
 final class Connection implements JsonSerializable
 {
-    public readonly string $provider;
-    public readonly string $provider_type;
-    public readonly bool $is_mandatory;
-    public readonly string $subject;
-    public readonly string $email_address;
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
+    public readonly string|null $provider;
+    public readonly string|null $provider_type;
+    public readonly bool|null $is_mandatory;
+    public readonly string|null $subject;
+    public readonly string|null $email_address;
+    public readonly \DateTime|null $created_at;
+    public readonly \DateTime|null $updated_at;
 
     public function __construct(
-        string $provider = null,
-        string $provider_type = null,
-        bool $is_mandatory = null,
-        string $subject = null,
-        string $email_address = null,
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
+        string|null $provider = null,
+        string|null $provider_type = null,
+        bool|null $is_mandatory = null,
+        string|null $subject = null,
+        string|null $email_address = null,
+        \DateTime|null $created_at = null,
+        \DateTime|null $updated_at = null
     ) {
         $this->provider = $provider;
         $this->provider_type = $provider_type;

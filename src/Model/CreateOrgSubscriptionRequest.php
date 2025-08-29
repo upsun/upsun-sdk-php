@@ -16,22 +16,22 @@ use JsonSerializable;
 
 final class CreateOrgSubscriptionRequest implements JsonSerializable
 {
-    public readonly string $plan;
+    public readonly string|null $plan;
     public readonly string $project_region;
-    public readonly string $project_title;
-    public readonly string $options_url;
-    public readonly string $default_branch;
-    public readonly int $environments;
-    public readonly int $storage;
+    public readonly string|null $project_title;
+    public readonly string|null $options_url;
+    public readonly string|null $default_branch;
+    public readonly int|null $environments;
+    public readonly int|null $storage;
 
     public function __construct(
-        string $plan = null,
-        string $project_region,
-        string $project_title = null,
-        string $options_url = null,
-        string $default_branch = null,
-        int $environments = null,
-        int $storage = null,
+        string|null $plan = null,
+        string $project_region = null,
+        string|null $project_title = null,
+        string|null $options_url = null,
+        string|null $default_branch = null,
+        int|null $environments = null,
+        int|null $storage = null
     ) {
         $this->plan = $plan;
         $this->project_region = $project_region;

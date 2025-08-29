@@ -18,12 +18,12 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
 {
     public readonly string $source;
     public readonly string $source_path;
-    public readonly string $service;
+    public readonly string|null $service;
 
     public function __construct(
-        string $source,
-        string $source_path,
-        string $service = null,
+        string $source = null,
+        string $source_path = null,
+        string|null $service = null
     ) {
         $this->source = $source;
         $this->source_path = $source_path;

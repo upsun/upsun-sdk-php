@@ -16,34 +16,34 @@ use JsonSerializable;
 
 final class OrganizationProject implements JsonSerializable
 {
-    public readonly string $id;
-    public readonly string $organization_id;
-    public readonly string $subscription_id;
-    public readonly string $region;
-    public readonly string $title;
-    public readonly \Upsun\Model\OrganizationProjectType $type;
-    public readonly \Upsun\Model\OrganizationProjectPlan $plan;
-    public readonly string $access_migration_status;
-    public readonly \Upsun\Model\OrganizationProjectStatus $status;
-    public readonly string $vendor;
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
-    public readonly \Upsun\Model\OrganizationProjectLinks $_links;
+    public readonly string|null $id;
+    public readonly string|null $organization_id;
+    public readonly string|null $subscription_id;
+    public readonly string|null $region;
+    public readonly string|null $title;
+    public readonly \Upsun\Model\OrganizationProjectType|null $type;
+    public readonly \Upsun\Model\OrganizationProjectPlan|null $plan;
+    public readonly string|null $access_migration_status;
+    public readonly \Upsun\Model\OrganizationProjectStatus|null $status;
+    public readonly string|null $vendor;
+    public readonly \DateTime|null $created_at;
+    public readonly \DateTime|null $updated_at;
+    public readonly \Upsun\Model\OrganizationProjectLinks|null $_links;
 
     public function __construct(
-        string $id = null,
-        string $organization_id = null,
-        string $subscription_id = null,
-        string $region = null,
-        string $title = null,
-        \Upsun\Model\OrganizationProjectType $type = null,
-        \Upsun\Model\OrganizationProjectPlan $plan = null,
-        string $access_migration_status = null,
-        \Upsun\Model\OrganizationProjectStatus $status = null,
-        string $vendor = null,
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
-        \Upsun\Model\OrganizationProjectLinks $_links = null,
+        string|null $id = null,
+        string|null $organization_id = null,
+        string|null $subscription_id = null,
+        string|null $region = null,
+        string|null $title = null,
+        \Upsun\Model\OrganizationProjectType|null $type = null,
+        \Upsun\Model\OrganizationProjectPlan|null $plan = null,
+        string|null $access_migration_status = null,
+        \Upsun\Model\OrganizationProjectStatus|null $status = null,
+        string|null $vendor = null,
+        \DateTime|null $created_at = null,
+        \DateTime|null $updated_at = null,
+        \Upsun\Model\OrganizationProjectLinks|null $_links = null
     ) {
         $this->id = $id;
         $this->organization_id = $organization_id;

@@ -19,21 +19,27 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
     public readonly string $type;
     public readonly string $name;
     public readonly string $deploy_host;
-    public readonly array<string,\Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue> $docroots;
+    /**
+     * @var \Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue[]|null
+     */
+    public readonly ?array $docroots;
     public readonly object $site_urls;
-    public readonly string[] $ssh_hosts;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $ssh_hosts;
     public readonly bool $maintenance_mode;
-    public readonly object $enterprise_environments_mapping;
+    public readonly object|null $enterprise_environments_mapping;
 
     public function __construct(
-        string $type,
-        string $name,
-        string $deploy_host,
-        array<string,\Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue> $docroots,
-        object $site_urls,
-        string[] $ssh_hosts,
-        bool $maintenance_mode,
-        object $enterprise_environments_mapping = null,
+        string $type = null,
+        string $name = null,
+        string $deploy_host = null,
+        ?array $docroots = null,
+        object $site_urls = null,
+        ?array $ssh_hosts = null,
+        bool $maintenance_mode = null,
+        object|null $enterprise_environments_mapping = null
     ) {
         $this->type = $type;
         $this->name = $name;
@@ -57,7 +63,10 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
     {
         return $this->deploy_host;
     }
-    public function getDocroots(): array<string,\Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue>
+    /**
+     * @return \Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue[]|null
+     */
+    public function getDocroots(): ?array
     {
         return $this->docroots;
     }
@@ -65,7 +74,10 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
     {
         return $this->site_urls;
     }
-    public function getSshHosts(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getSshHosts(): ?array
     {
         return $this->ssh_hosts;
     }

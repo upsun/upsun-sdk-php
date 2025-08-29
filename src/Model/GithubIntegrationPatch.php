@@ -17,29 +17,29 @@ use JsonSerializable;
 final class GithubIntegrationPatch implements JsonSerializable
 {
     public readonly string $type;
-    public readonly bool $fetch_branches;
-    public readonly bool $prune_branches;
-    public readonly string $environment_init_resources;
+    public readonly bool|null $fetch_branches;
+    public readonly bool|null $prune_branches;
+    public readonly string|null $environment_init_resources;
     public readonly string $token;
-    public readonly string $base_url;
+    public readonly string|null $base_url;
     public readonly string $repository;
-    public readonly bool $build_pull_requests;
-    public readonly bool $build_draft_pull_requests;
-    public readonly bool $build_pull_requests_post_merge;
-    public readonly bool $pull_requests_clone_parent_data;
+    public readonly bool|null $build_pull_requests;
+    public readonly bool|null $build_draft_pull_requests;
+    public readonly bool|null $build_pull_requests_post_merge;
+    public readonly bool|null $pull_requests_clone_parent_data;
 
     public function __construct(
-        string $type,
-        bool $fetch_branches = null,
-        bool $prune_branches = null,
-        string $environment_init_resources = null,
-        string $token,
-        string $base_url = null,
-        string $repository,
-        bool $build_pull_requests = null,
-        bool $build_draft_pull_requests = null,
-        bool $build_pull_requests_post_merge = null,
-        bool $pull_requests_clone_parent_data = null,
+        string $type = null,
+        bool|null $fetch_branches = null,
+        bool|null $prune_branches = null,
+        string|null $environment_init_resources = null,
+        string $token = null,
+        string|null $base_url = null,
+        string $repository = null,
+        bool|null $build_pull_requests = null,
+        bool|null $build_draft_pull_requests = null,
+        bool|null $build_pull_requests_post_merge = null,
+        bool|null $pull_requests_clone_parent_data = null
     ) {
         $this->type = $type;
         $this->fetch_branches = $fetch_branches;

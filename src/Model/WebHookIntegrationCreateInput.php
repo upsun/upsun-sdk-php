@@ -17,23 +17,35 @@ use JsonSerializable;
 final class WebHookIntegrationCreateInput implements JsonSerializable
 {
     public readonly string $type;
-    public readonly string[] $events;
-    public readonly string[] $environments;
-    public readonly string[] $excluded_environments;
-    public readonly string[] $states;
-    public readonly string $result;
-    public readonly string $shared_key;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $events;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $environments;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $excluded_environments;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $states;
+    public readonly string|null $result;
+    public readonly string|null $shared_key;
     public readonly string $url;
 
     public function __construct(
-        string $type,
-        string[] $events = null,
-        string[] $environments = null,
-        string[] $excluded_environments = null,
-        string[] $states = null,
-        string $result = null,
-        string $shared_key = null,
-        string $url,
+        string $type = null,
+        ?array $events = null,
+        ?array $environments = null,
+        ?array $excluded_environments = null,
+        ?array $states = null,
+        string|null $result = null,
+        string|null $shared_key = null,
+        string $url = null
     ) {
         $this->type = $type;
         $this->events = $events;
@@ -49,19 +61,31 @@ final class WebHookIntegrationCreateInput implements JsonSerializable
     {
         return $this->type;
     }
-    public function getEvents(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getEvents(): ?array
     {
         return $this->events;
     }
-    public function getEnvironments(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getEnvironments(): ?array
     {
         return $this->environments;
     }
-    public function getExcludedEnvironments(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getExcludedEnvironments(): ?array
     {
         return $this->excluded_environments;
     }
-    public function getStates(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getStates(): ?array
     {
         return $this->states;
     }

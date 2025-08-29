@@ -16,22 +16,25 @@ use JsonSerializable;
 
 final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializable
 {
-    public readonly string $user_id;
-    public readonly string $resource_id;
-    public readonly string $resource_type;
-    public readonly string $organization_id;
-    public readonly string[] $permissions;
-    public readonly \DateTime $granted_at;
-    public readonly \DateTime $updated_at;
+    public readonly string|null $user_id;
+    public readonly string|null $resource_id;
+    public readonly string|null $resource_type;
+    public readonly string|null $organization_id;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $permissions;
+    public readonly \DateTime|null $granted_at;
+    public readonly \DateTime|null $updated_at;
 
     public function __construct(
-        string $user_id = null,
-        string $resource_id = null,
-        string $resource_type = null,
-        string $organization_id = null,
-        string[] $permissions = null,
-        \DateTime $granted_at = null,
-        \DateTime $updated_at = null,
+        string|null $user_id = null,
+        string|null $resource_id = null,
+        string|null $resource_type = null,
+        string|null $organization_id = null,
+        ?array $permissions = null,
+        \DateTime|null $granted_at = null,
+        \DateTime|null $updated_at = null
     ) {
         $this->user_id = $user_id;
         $this->resource_id = $resource_id;
@@ -58,7 +61,10 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
     {
         return $this->organization_id;
     }
-    public function getPermissions(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getPermissions(): ?array
     {
         return $this->permissions;
     }

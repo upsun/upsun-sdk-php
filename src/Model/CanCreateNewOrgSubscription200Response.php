@@ -16,14 +16,14 @@ use JsonSerializable;
 
 final class CanCreateNewOrgSubscription200Response implements JsonSerializable
 {
-    public readonly bool $can_create;
-    public readonly string $message;
-    public readonly \Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction $required_action;
+    public readonly bool|null $can_create;
+    public readonly string|null $message;
+    public readonly \Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction|null $required_action;
 
     public function __construct(
-        bool $can_create = null,
-        string $message = null,
-        \Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction $required_action = null,
+        bool|null $can_create = null,
+        string|null $message = null,
+        \Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction|null $required_action = null
     ) {
         $this->can_create = $can_create;
         $this->message = $message;

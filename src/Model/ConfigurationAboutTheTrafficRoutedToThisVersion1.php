@@ -16,10 +16,10 @@ use JsonSerializable;
 
 final class ConfigurationAboutTheTrafficRoutedToThisVersion1 implements JsonSerializable
 {
-    public readonly int $percentage;
+    public readonly int|null $percentage;
 
     public function __construct(
-        int $percentage = null,
+        int|null $percentage = null
     ) {
         $this->percentage = $percentage;
     }

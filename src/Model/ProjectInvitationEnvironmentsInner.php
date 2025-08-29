@@ -16,16 +16,16 @@ use JsonSerializable;
 
 final class ProjectInvitationEnvironmentsInner implements JsonSerializable
 {
-    public readonly string $id;
-    public readonly string $type;
-    public readonly string $role;
-    public readonly string $title;
+    public readonly string|null $id;
+    public readonly string|null $type;
+    public readonly string|null $role;
+    public readonly string|null $title;
 
     public function __construct(
-        string $id = null,
-        string $type = null,
-        string $role = null,
-        string $title = null,
+        string|null $id = null,
+        string|null $type = null,
+        string|null $role = null,
+        string|null $title = null
     ) {
         $this->id = $id;
         $this->type = $type;

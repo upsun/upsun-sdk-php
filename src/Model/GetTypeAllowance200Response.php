@@ -16,10 +16,10 @@ use JsonSerializable;
 
 final class GetTypeAllowance200Response implements JsonSerializable
 {
-    public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrencies $currencies;
+    public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrencies|null $currencies;
 
     public function __construct(
-        \Upsun\Model\GetTypeAllowance200ResponseCurrencies $currencies = null,
+        \Upsun\Model\GetTypeAllowance200ResponseCurrencies|null $currencies = null
     ) {
         $this->currencies = $currencies;
     }

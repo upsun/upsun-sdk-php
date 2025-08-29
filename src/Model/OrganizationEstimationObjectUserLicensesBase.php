@@ -16,14 +16,14 @@ use JsonSerializable;
 
 final class OrganizationEstimationObjectUserLicensesBase implements JsonSerializable
 {
-    public readonly int $count;
-    public readonly string $total;
-    public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList $list;
+    public readonly int|null $count;
+    public readonly string|null $total;
+    public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList|null $list;
 
     public function __construct(
-        int $count = null,
-        string $total = null,
-        \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList $list = null,
+        int|null $count = null,
+        string|null $total = null,
+        \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList|null $list = null
     ) {
         $this->count = $count;
         $this->total = $total;

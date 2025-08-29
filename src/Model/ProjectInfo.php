@@ -24,12 +24,12 @@ final class ProjectInfo implements JsonSerializable
     public readonly object $settings;
 
     public function __construct(
-        string $title,
-        string $name,
-        string $namespace,
-        string $organization,
-        object $capabilities,
-        object $settings,
+        string $title = null,
+        string $name = null,
+        string $namespace = null,
+        string $organization = null,
+        object $capabilities = null,
+        object $settings = null
     ) {
         $this->title = $title;
         $this->name = $name;

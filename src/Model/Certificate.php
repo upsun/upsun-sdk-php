@@ -19,27 +19,39 @@ final class Certificate implements JsonSerializable
     public readonly \DateTime $created_at;
     public readonly \DateTime $updated_at;
     public readonly string $certificate;
-    public readonly string[] $chain;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $chain;
     public readonly bool $is_provisioned;
     public readonly bool $is_invalid;
     public readonly bool $is_root;
-    public readonly string[] $domains;
-    public readonly string[] $auth_type;
-    public readonly \Upsun\Model\TheIssuerOfTheCertificateInner[] $issuer;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $domains;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $auth_type;
+    /**
+     * @var \Upsun\Model\TheIssuerOfTheCertificateInner[]|null
+     */
+    public readonly ?array $issuer;
     public readonly \DateTime $expires_at;
 
     public function __construct(
-        \DateTime $created_at,
-        \DateTime $updated_at,
-        string $certificate,
-        string[] $chain,
-        bool $is_provisioned,
-        bool $is_invalid,
-        bool $is_root,
-        string[] $domains,
-        string[] $auth_type,
-        \Upsun\Model\TheIssuerOfTheCertificateInner[] $issuer,
-        \DateTime $expires_at,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+        string $certificate = null,
+        ?array $chain = null,
+        bool $is_provisioned = null,
+        bool $is_invalid = null,
+        bool $is_root = null,
+        ?array $domains = null,
+        ?array $auth_type = null,
+        ?array $issuer = null,
+        \DateTime $expires_at = null
     ) {
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;
@@ -66,7 +78,10 @@ final class Certificate implements JsonSerializable
     {
         return $this->certificate;
     }
-    public function getChain(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getChain(): ?array
     {
         return $this->chain;
     }
@@ -82,15 +97,24 @@ final class Certificate implements JsonSerializable
     {
         return $this->is_root;
     }
-    public function getDomains(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getDomains(): ?array
     {
         return $this->domains;
     }
-    public function getAuthType(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getAuthType(): ?array
     {
         return $this->auth_type;
     }
-    public function getIssuer(): \Upsun\Model\TheIssuerOfTheCertificateInner[]
+    /**
+     * @return \Upsun\Model\TheIssuerOfTheCertificateInner[]|null
+     */
+    public function getIssuer(): ?array
     {
         return $this->issuer;
     }

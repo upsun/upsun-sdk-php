@@ -23,11 +23,11 @@ final class EnvironmentBranchInput implements JsonSerializable
     public readonly \Upsun\Model\Resources2 $resources;
 
     public function __construct(
-        string $title,
-        string $name,
-        bool $clone_parent,
-        string $type,
-        \Upsun\Model\Resources2 $resources,
+        string $title = null,
+        string $name = null,
+        bool $clone_parent = null,
+        string $type = null,
+        \Upsun\Model\Resources2 $resources = null
     ) {
         $this->title = $title;
         $this->name = $name;

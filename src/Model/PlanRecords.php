@@ -16,26 +16,29 @@ use JsonSerializable;
 
 final class PlanRecords implements JsonSerializable
 {
-    public readonly string $id;
-    public readonly string $owner;
-    public readonly string $subscription_id;
-    public readonly string $sku;
-    public readonly string $plan;
-    public readonly string[] $options;
-    public readonly \DateTime $start;
-    public readonly \DateTime $end;
-    public readonly string $status;
+    public readonly string|null $id;
+    public readonly string|null $owner;
+    public readonly string|null $subscription_id;
+    public readonly string|null $sku;
+    public readonly string|null $plan;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $options;
+    public readonly \DateTime|null $start;
+    public readonly \DateTime|null $end;
+    public readonly string|null $status;
 
     public function __construct(
-        string $id = null,
-        string $owner = null,
-        string $subscription_id = null,
-        string $sku = null,
-        string $plan = null,
-        string[] $options = null,
-        \DateTime $start = null,
-        \DateTime $end = null,
-        string $status = null,
+        string|null $id = null,
+        string|null $owner = null,
+        string|null $subscription_id = null,
+        string|null $sku = null,
+        string|null $plan = null,
+        ?array $options = null,
+        \DateTime|null $start = null,
+        \DateTime|null $end = null,
+        string|null $status = null
     ) {
         $this->id = $id;
         $this->owner = $owner;
@@ -68,7 +71,10 @@ final class PlanRecords implements JsonSerializable
     {
         return $this->plan;
     }
-    public function getOptions(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getOptions(): ?array
     {
         return $this->options;
     }

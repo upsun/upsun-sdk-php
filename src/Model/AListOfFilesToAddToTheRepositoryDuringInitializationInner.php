@@ -21,9 +21,9 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
     public readonly string $contents;
 
     public function __construct(
-        string $path,
-        int $mode,
-        string $contents,
+        string $path = null,
+        int $mode = null,
+        string $contents = null
     ) {
         $this->path = $path;
         $this->mode = $mode;

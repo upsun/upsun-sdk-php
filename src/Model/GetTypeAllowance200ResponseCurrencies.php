@@ -16,18 +16,18 @@ use JsonSerializable;
 
 final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
 {
-    public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR $eur;
-    public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD $usd;
-    public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP $gbp;
-    public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD $aud;
-    public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD $cad;
+    public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR|null $eur;
+    public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD|null $usd;
+    public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP|null $gbp;
+    public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD|null $aud;
+    public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD|null $cad;
 
     public function __construct(
-        \Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR $eur = null,
-        \Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD $usd = null,
-        \Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP $gbp = null,
-        \Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD $aud = null,
-        \Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD $cad = null,
+        \Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR|null $eur = null,
+        \Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD|null $usd = null,
+        \Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP|null $gbp = null,
+        \Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD|null $aud = null,
+        \Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD|null $cad = null
     ) {
         $this->eur = $eur;
         $this->usd = $usd;

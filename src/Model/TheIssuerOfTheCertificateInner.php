@@ -21,9 +21,9 @@ final class TheIssuerOfTheCertificateInner implements JsonSerializable
     public readonly string $value;
 
     public function __construct(
-        string $oid,
-        string $alias,
-        string $value,
+        string $oid = null,
+        string $alias = null,
+        string $value = null
     ) {
         $this->oid = $oid;
         $this->alias = $alias;

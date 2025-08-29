@@ -16,18 +16,24 @@ use JsonSerializable;
 
 final class ListRegions200Response implements JsonSerializable
 {
-    public readonly \Upsun\Model\Region[] $regions;
-    public readonly \Upsun\Model\ListLinks $_links;
+    /**
+     * @var \Upsun\Model\Region[]|null
+     */
+    public readonly ?array $regions;
+    public readonly \Upsun\Model\ListLinks|null $_links;
 
     public function __construct(
-        \Upsun\Model\Region[] $regions = null,
-        \Upsun\Model\ListLinks $_links = null,
+        ?array $regions = null,
+        \Upsun\Model\ListLinks|null $_links = null
     ) {
         $this->regions = $regions;
         $this->_links = $_links;
     }
 
-    public function getRegions(): \Upsun\Model\Region[]|null
+    /**
+     * @return \Upsun\Model\Region[]|null
+     */
+    public function getRegions(): ?array
     {
         return $this->regions;
     }

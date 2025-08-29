@@ -18,22 +18,28 @@ final class DeploymentTargetCreateInput implements JsonSerializable
 {
     public readonly string $type;
     public readonly string $name;
-    public readonly object $enforced_mounts;
-    public readonly object $site_urls;
-    public readonly string[] $ssh_hosts;
-    public readonly object $enterprise_environments_mapping;
-    public readonly \Upsun\Model\TheHostsOfTheDeploymentTargetInner1[] $hosts;
-    public readonly bool $use_dedicated_grid;
+    public readonly object|null $enforced_mounts;
+    public readonly object|null $site_urls;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $ssh_hosts;
+    public readonly object|null $enterprise_environments_mapping;
+    /**
+     * @var \Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]|null
+     */
+    public readonly ?array $hosts;
+    public readonly bool|null $use_dedicated_grid;
 
     public function __construct(
-        string $type,
-        string $name,
-        object $enforced_mounts = null,
-        object $site_urls = null,
-        string[] $ssh_hosts = null,
-        object $enterprise_environments_mapping = null,
-        \Upsun\Model\TheHostsOfTheDeploymentTargetInner1[] $hosts = null,
-        bool $use_dedicated_grid = null,
+        string $type = null,
+        string $name = null,
+        object|null $enforced_mounts = null,
+        object|null $site_urls = null,
+        ?array $ssh_hosts = null,
+        object|null $enterprise_environments_mapping = null,
+        ?array $hosts = null,
+        bool|null $use_dedicated_grid = null
     ) {
         $this->type = $type;
         $this->name = $name;
@@ -61,7 +67,10 @@ final class DeploymentTargetCreateInput implements JsonSerializable
     {
         return $this->site_urls;
     }
-    public function getSshHosts(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getSshHosts(): ?array
     {
         return $this->ssh_hosts;
     }
@@ -69,7 +78,10 @@ final class DeploymentTargetCreateInput implements JsonSerializable
     {
         return $this->enterprise_environments_mapping;
     }
-    public function getHosts(): \Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]|null
+    /**
+     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]|null
+     */
+    public function getHosts(): ?array
     {
         return $this->hosts;
     }

@@ -16,26 +16,26 @@ use JsonSerializable;
 
 final class UsageGroupCurrentUsageProperties implements JsonSerializable
 {
-    public readonly string $title;
-    public readonly bool $type;
-    public readonly float $current_usage;
-    public readonly string $current_usage_formatted;
-    public readonly bool $not_charged;
-    public readonly float $free_quantity;
-    public readonly string $free_quantity_formatted;
-    public readonly float $daily_average;
-    public readonly string $daily_average_formatted;
+    public readonly string|null $title;
+    public readonly bool|null $type;
+    public readonly float|null $current_usage;
+    public readonly string|null $current_usage_formatted;
+    public readonly bool|null $not_charged;
+    public readonly float|null $free_quantity;
+    public readonly string|null $free_quantity_formatted;
+    public readonly float|null $daily_average;
+    public readonly string|null $daily_average_formatted;
 
     public function __construct(
-        string $title = null,
-        bool $type = null,
-        float $current_usage = null,
-        string $current_usage_formatted = null,
-        bool $not_charged = null,
-        float $free_quantity = null,
-        string $free_quantity_formatted = null,
-        float $daily_average = null,
-        string $daily_average_formatted = null,
+        string|null $title = null,
+        bool|null $type = null,
+        float|null $current_usage = null,
+        string|null $current_usage_formatted = null,
+        bool|null $not_charged = null,
+        float|null $free_quantity = null,
+        string|null $free_quantity_formatted = null,
+        float|null $daily_average = null,
+        string|null $daily_average_formatted = null
     ) {
         $this->title = $title;
         $this->type = $type;

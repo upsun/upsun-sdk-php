@@ -16,18 +16,18 @@ use JsonSerializable;
 
 final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
 {
-    public readonly string $formatted;
-    public readonly string $amount;
-    public readonly string $currency;
-    public readonly string $currency_symbol;
-    public readonly bool $unlimited;
+    public readonly string|null $formatted;
+    public readonly string|null $amount;
+    public readonly string|null $currency;
+    public readonly string|null $currency_symbol;
+    public readonly bool|null $unlimited;
 
     public function __construct(
-        string $formatted = null,
-        string $amount = null,
-        string $currency = null,
-        string $currency_symbol = null,
-        bool $unlimited = null,
+        string|null $formatted = null,
+        string|null $amount = null,
+        string|null $currency = null,
+        string|null $currency_symbol = null,
+        bool|null $unlimited = null
     ) {
         $this->formatted = $formatted;
         $this->amount = $amount;

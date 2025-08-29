@@ -16,15 +16,21 @@ use JsonSerializable;
 
 final class TheContinuousProfilingConfiguration implements JsonSerializable
 {
-    public readonly string[] $supported_runtimes;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $supported_runtimes;
 
     public function __construct(
-        string[] $supported_runtimes,
+        ?array $supported_runtimes = null
     ) {
         $this->supported_runtimes = $supported_runtimes;
     }
 
-    public function getSupportedRuntimes(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getSupportedRuntimes(): ?array
     {
         return $this->supported_runtimes;
     }

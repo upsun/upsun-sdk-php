@@ -22,26 +22,26 @@ final class BitbucketIntegration implements JsonSerializable
     public readonly bool $fetch_branches;
     public readonly bool $prune_branches;
     public readonly string $environment_init_resources;
-    public readonly \Upsun\Model\TheOAuth2ConsumerInformationOptional $app_credentials;
-    public readonly \Upsun\Model\TheAddonCredentialInformationOptional $addon_credentials;
+    public readonly \Upsun\Model\TheOAuth2ConsumerInformationOptional|null $app_credentials;
+    public readonly \Upsun\Model\TheAddonCredentialInformationOptional|null $addon_credentials;
     public readonly string $repository;
     public readonly bool $build_pull_requests;
     public readonly bool $pull_requests_clone_parent_data;
     public readonly bool $resync_pull_requests;
 
     public function __construct(
-        \DateTime $created_at,
-        \DateTime $updated_at,
-        string $type,
-        bool $fetch_branches,
-        bool $prune_branches,
-        string $environment_init_resources,
-        \Upsun\Model\TheOAuth2ConsumerInformationOptional $app_credentials = null,
-        \Upsun\Model\TheAddonCredentialInformationOptional $addon_credentials = null,
-        string $repository,
-        bool $build_pull_requests,
-        bool $pull_requests_clone_parent_data,
-        bool $resync_pull_requests,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+        string $type = null,
+        bool $fetch_branches = null,
+        bool $prune_branches = null,
+        string $environment_init_resources = null,
+        \Upsun\Model\TheOAuth2ConsumerInformationOptional|null $app_credentials = null,
+        \Upsun\Model\TheAddonCredentialInformationOptional|null $addon_credentials = null,
+        string $repository = null,
+        bool $build_pull_requests = null,
+        bool $pull_requests_clone_parent_data = null,
+        bool $resync_pull_requests = null
     ) {
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;

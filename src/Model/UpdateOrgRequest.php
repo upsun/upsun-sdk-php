@@ -16,14 +16,14 @@ use JsonSerializable;
 
 final class UpdateOrgRequest implements JsonSerializable
 {
-    public readonly string $name;
-    public readonly string $label;
-    public readonly string $country;
+    public readonly string|null $name;
+    public readonly string|null $label;
+    public readonly string|null $country;
 
     public function __construct(
-        string $name = null,
-        string $label = null,
-        string $country = null,
+        string|null $name = null,
+        string|null $label = null,
+        string|null $country = null
     ) {
         $this->name = $name;
         $this->label = $label;

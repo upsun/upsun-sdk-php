@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class HalLinksPrevious implements JsonSerializable
 {
-    public readonly string $title;
-    public readonly string $href;
+    public readonly string|null $title;
+    public readonly string|null $href;
 
     public function __construct(
-        string $title = null,
-        string $href = null,
+        string|null $title = null,
+        string|null $href = null
     ) {
         $this->title = $title;
         $this->href = $href;

@@ -29,17 +29,17 @@ final class GitLabIntegration implements JsonSerializable
     public readonly bool $merge_requests_clone_parent_data;
 
     public function __construct(
-        \DateTime $created_at,
-        \DateTime $updated_at,
-        string $type,
-        bool $fetch_branches,
-        bool $prune_branches,
-        string $environment_init_resources,
-        string $base_url,
-        string $project,
-        bool $build_merge_requests,
-        bool $build_wip_merge_requests,
-        bool $merge_requests_clone_parent_data,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+        string $type = null,
+        bool $fetch_branches = null,
+        bool $prune_branches = null,
+        string $environment_init_resources = null,
+        string $base_url = null,
+        string $project = null,
+        bool $build_merge_requests = null,
+        bool $build_wip_merge_requests = null,
+        bool $merge_requests_clone_parent_data = null
     ) {
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;

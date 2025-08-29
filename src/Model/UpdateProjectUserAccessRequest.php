@@ -16,15 +16,21 @@ use JsonSerializable;
 
 final class UpdateProjectUserAccessRequest implements JsonSerializable
 {
-    public readonly string[] $permissions;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $permissions;
 
     public function __construct(
-        string[] $permissions,
+        ?array $permissions = null
     ) {
         $this->permissions = $permissions;
     }
 
-    public function getPermissions(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getPermissions(): ?array
     {
         return $this->permissions;
     }

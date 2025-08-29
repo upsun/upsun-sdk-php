@@ -16,22 +16,22 @@ use JsonSerializable;
 
 final class DateTimeFilter implements JsonSerializable
 {
-    public readonly string $eq;
-    public readonly string $ne;
-    public readonly string $between;
-    public readonly string $gt;
-    public readonly string $gte;
-    public readonly string $lt;
-    public readonly string $lte;
+    public readonly string|null $eq;
+    public readonly string|null $ne;
+    public readonly string|null $between;
+    public readonly string|null $gt;
+    public readonly string|null $gte;
+    public readonly string|null $lt;
+    public readonly string|null $lte;
 
     public function __construct(
-        string $eq = null,
-        string $ne = null,
-        string $between = null,
-        string $gt = null,
-        string $gte = null,
-        string $lt = null,
-        string $lte = null,
+        string|null $eq = null,
+        string|null $ne = null,
+        string|null $between = null,
+        string|null $gt = null,
+        string|null $gte = null,
+        string|null $lt = null,
+        string|null $lte = null
     ) {
         $this->eq = $eq;
         $this->ne = $ne;

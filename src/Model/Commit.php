@@ -21,15 +21,18 @@ final class Commit implements JsonSerializable
     public readonly \Upsun\Model\TheInformationAboutTheCommitter $committer;
     public readonly string $message;
     public readonly string $tree;
-    public readonly string[] $parents;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $parents;
 
     public function __construct(
-        string $sha,
-        \Upsun\Model\TheInformationAboutTheAuthor $author,
-        \Upsun\Model\TheInformationAboutTheCommitter $committer,
-        string $message,
-        string $tree,
-        string[] $parents,
+        string $sha = null,
+        \Upsun\Model\TheInformationAboutTheAuthor $author = null,
+        \Upsun\Model\TheInformationAboutTheCommitter $committer = null,
+        string $message = null,
+        string $tree = null,
+        ?array $parents = null
     ) {
         $this->sha = $sha;
         $this->author = $author;
@@ -59,7 +62,10 @@ final class Commit implements JsonSerializable
     {
         return $this->tree;
     }
-    public function getParents(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getParents(): ?array
     {
         return $this->parents;
     }

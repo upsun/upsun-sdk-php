@@ -17,31 +17,31 @@ use JsonSerializable;
 final class SubscriptionInformation implements JsonSerializable
 {
     public readonly string $license_uri;
-    public readonly string $plan;
-    public readonly int $environments;
+    public readonly string|null $plan;
+    public readonly int|null $environments;
     public readonly int $storage;
     public readonly int $included_users;
     public readonly string $subscription_management_uri;
     public readonly bool $restricted;
     public readonly bool $suspended;
     public readonly int $user_licenses;
-    public readonly \Upsun\Model\ResourcesLimits $resources;
-    public readonly string $resource_validation_url;
-    public readonly \Upsun\Model\RestrictedAndDeniedImageTypes $image_types;
+    public readonly \Upsun\Model\ResourcesLimits|null $resources;
+    public readonly string|null $resource_validation_url;
+    public readonly \Upsun\Model\RestrictedAndDeniedImageTypes|null $image_types;
 
     public function __construct(
-        string $license_uri,
-        string $plan = null,
-        int $environments = null,
-        int $storage,
-        int $included_users,
-        string $subscription_management_uri,
-        bool $restricted,
-        bool $suspended,
-        int $user_licenses,
-        \Upsun\Model\ResourcesLimits $resources = null,
-        string $resource_validation_url = null,
-        \Upsun\Model\RestrictedAndDeniedImageTypes $image_types = null,
+        string $license_uri = null,
+        string|null $plan = null,
+        int|null $environments = null,
+        int $storage = null,
+        int $included_users = null,
+        string $subscription_management_uri = null,
+        bool $restricted = null,
+        bool $suspended = null,
+        int $user_licenses = null,
+        \Upsun\Model\ResourcesLimits|null $resources = null,
+        string|null $resource_validation_url = null,
+        \Upsun\Model\RestrictedAndDeniedImageTypes|null $image_types = null
     ) {
         $this->license_uri = $license_uri;
         $this->plan = $plan;

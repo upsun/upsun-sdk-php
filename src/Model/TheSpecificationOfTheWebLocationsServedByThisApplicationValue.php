@@ -20,22 +20,31 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     public readonly string $expires;
     public readonly string $passthru;
     public readonly bool $scripts;
-    public readonly string[] $index;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $index;
     public readonly bool $allow;
-    public readonly array<string,string> $headers;
-    public readonly array<string,\Upsun\Model\SpecificOverridesValue> $rules;
-    public readonly \Upsun\Model\ConfigurationForSupportingRequestBuffering $request_buffering;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $headers;
+    /**
+     * @var \Upsun\Model\SpecificOverridesValue[]|null
+     */
+    public readonly ?array $rules;
+    public readonly \Upsun\Model\ConfigurationForSupportingRequestBuffering|null $request_buffering;
 
     public function __construct(
-        string $root,
-        string $expires,
-        string $passthru,
-        bool $scripts,
-        string[] $index = null,
-        bool $allow,
-        array<string,string> $headers,
-        array<string,\Upsun\Model\SpecificOverridesValue> $rules,
-        \Upsun\Model\ConfigurationForSupportingRequestBuffering $request_buffering = null,
+        string $root = null,
+        string $expires = null,
+        string $passthru = null,
+        bool $scripts = null,
+        ?array $index = null,
+        bool $allow = null,
+        ?array $headers = null,
+        ?array $rules = null,
+        \Upsun\Model\ConfigurationForSupportingRequestBuffering|null $request_buffering = null
     ) {
         $this->root = $root;
         $this->expires = $expires;
@@ -64,7 +73,10 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     {
         return $this->scripts;
     }
-    public function getIndex(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getIndex(): ?array
     {
         return $this->index;
     }
@@ -72,11 +84,17 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     {
         return $this->allow;
     }
-    public function getHeaders(): array<string,string>
+    /**
+     * @return string[]|null
+     */
+    public function getHeaders(): ?array
     {
         return $this->headers;
     }
-    public function getRules(): array<string,\Upsun\Model\SpecificOverridesValue>
+    /**
+     * @return \Upsun\Model\SpecificOverridesValue[]|null
+     */
+    public function getRules(): ?array
     {
         return $this->rules;
     }

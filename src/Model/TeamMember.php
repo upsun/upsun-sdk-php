@@ -16,16 +16,16 @@ use JsonSerializable;
 
 final class TeamMember implements JsonSerializable
 {
-    public readonly string $team_id;
-    public readonly string $user_id;
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
+    public readonly string|null $team_id;
+    public readonly string|null $user_id;
+    public readonly \DateTime|null $created_at;
+    public readonly \DateTime|null $updated_at;
 
     public function __construct(
-        string $team_id = null,
-        string $user_id = null,
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
+        string|null $team_id = null,
+        string|null $user_id = null,
+        \DateTime|null $created_at = null,
+        \DateTime|null $updated_at = null
     ) {
         $this->team_id = $team_id;
         $this->user_id = $user_id;

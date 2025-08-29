@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class ProjectOptionsEnforced implements JsonSerializable
 {
-    public readonly object $settings;
-    public readonly object $capabilities;
+    public readonly object|null $settings;
+    public readonly object|null $capabilities;
 
     public function __construct(
-        object $settings = null,
-        object $capabilities = null,
+        object|null $settings = null,
+        object|null $capabilities = null
     ) {
         $this->settings = $settings;
         $this->capabilities = $capabilities;

@@ -31,19 +31,19 @@ final class GithubIntegration implements JsonSerializable
     public readonly string $token_type;
 
     public function __construct(
-        \DateTime $created_at,
-        \DateTime $updated_at,
-        string $type,
-        bool $fetch_branches,
-        bool $prune_branches,
-        string $environment_init_resources,
-        string $base_url,
-        string $repository,
-        bool $build_pull_requests,
-        bool $build_draft_pull_requests,
-        bool $build_pull_requests_post_merge,
-        bool $pull_requests_clone_parent_data,
-        string $token_type,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+        string $type = null,
+        bool $fetch_branches = null,
+        bool $prune_branches = null,
+        string $environment_init_resources = null,
+        string $base_url = null,
+        string $repository = null,
+        bool $build_pull_requests = null,
+        bool $build_draft_pull_requests = null,
+        bool $build_pull_requests_post_merge = null,
+        bool $pull_requests_clone_parent_data = null,
+        string $token_type = null
     ) {
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;

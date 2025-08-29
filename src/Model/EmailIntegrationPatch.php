@@ -17,13 +17,16 @@ use JsonSerializable;
 final class EmailIntegrationPatch implements JsonSerializable
 {
     public readonly string $type;
-    public readonly string $from_address;
-    public readonly string[] $recipients;
+    public readonly string|null $from_address;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $recipients;
 
     public function __construct(
-        string $type,
-        string $from_address = null,
-        string[] $recipients,
+        string $type = null,
+        string|null $from_address = null,
+        ?array $recipients = null
     ) {
         $this->type = $type;
         $this->from_address = $from_address;
@@ -38,7 +41,10 @@ final class EmailIntegrationPatch implements JsonSerializable
     {
         return $this->from_address;
     }
-    public function getRecipients(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getRecipients(): ?array
     {
         return $this->recipients;
     }

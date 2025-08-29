@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class UpdateOrgBillingAlertConfigRequest implements JsonSerializable
 {
-    public readonly bool $active;
-    public readonly \Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig $config;
+    public readonly bool|null $active;
+    public readonly \Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig|null $config;
 
     public function __construct(
-        bool $active = null,
-        \Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig $config = null,
+        bool|null $active = null,
+        \Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig|null $config = null
     ) {
         $this->active = $active;
         $this->config = $config;

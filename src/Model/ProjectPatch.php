@@ -16,22 +16,25 @@ use JsonSerializable;
 
 final class ProjectPatch implements JsonSerializable
 {
-    public readonly array<string,string> $attributes;
-    public readonly string $title;
-    public readonly string $description;
-    public readonly string $default_branch;
-    public readonly string $timezone;
-    public readonly string $region;
-    public readonly string $default_domain;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $attributes;
+    public readonly string|null $title;
+    public readonly string|null $description;
+    public readonly string|null $default_branch;
+    public readonly string|null $timezone;
+    public readonly string|null $region;
+    public readonly string|null $default_domain;
 
     public function __construct(
-        array<string,string> $attributes = null,
-        string $title = null,
-        string $description = null,
-        string $default_branch = null,
-        string $timezone = null,
-        string $region = null,
-        string $default_domain = null,
+        ?array $attributes = null,
+        string|null $title = null,
+        string|null $description = null,
+        string|null $default_branch = null,
+        string|null $timezone = null,
+        string|null $region = null,
+        string|null $default_domain = null
     ) {
         $this->attributes = $attributes;
         $this->title = $title;
@@ -42,7 +45,10 @@ final class ProjectPatch implements JsonSerializable
         $this->default_domain = $default_domain;
     }
 
-    public function getAttributes(): array<string,string>|null
+    /**
+     * @return string[]|null
+     */
+    public function getAttributes(): ?array
     {
         return $this->attributes;
     }

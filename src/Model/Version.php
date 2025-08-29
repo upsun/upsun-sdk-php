@@ -21,9 +21,9 @@ final class Version implements JsonSerializable
     public readonly \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion $routing;
 
     public function __construct(
-        string $commit,
-        bool $locked,
-        \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion $routing,
+        string $commit = null,
+        bool $locked = null,
+        \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion $routing = null
     ) {
         $this->commit = $commit;
         $this->locked = $locked;

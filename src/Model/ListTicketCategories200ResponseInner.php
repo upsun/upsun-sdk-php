@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class ListTicketCategories200ResponseInner implements JsonSerializable
 {
-    public readonly string $id;
-    public readonly string $label;
+    public readonly string|null $id;
+    public readonly string|null $label;
 
     public function __construct(
-        string $id = null,
-        string $label = null,
+        string|null $id = null,
+        string|null $label = null
     ) {
         $this->id = $id;
         $this->label = $label;

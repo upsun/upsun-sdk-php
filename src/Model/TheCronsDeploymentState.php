@@ -20,8 +20,8 @@ final class TheCronsDeploymentState implements JsonSerializable
     public readonly string $status;
 
     public function __construct(
-        bool $enabled,
-        string $status,
+        bool $enabled = null,
+        string $status = null
     ) {
         $this->enabled = $enabled;
         $this->status = $status;

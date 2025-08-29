@@ -20,8 +20,8 @@ final class AccessControlDefinitionForThisEnviromentInner implements JsonSeriali
     public readonly string $role;
 
     public function __construct(
-        string $entity_id,
-        string $role,
+        string $entity_id = null,
+        string $role = null
     ) {
         $this->entity_id = $entity_id;
         $this->role = $role;

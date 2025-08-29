@@ -21,9 +21,9 @@ final class Ref implements JsonSerializable
     public readonly string $sha;
 
     public function __construct(
-        string $ref,
-        \Upsun\Model\TheObjectTheReferencePointsTo $object,
-        string $sha,
+        string $ref = null,
+        \Upsun\Model\TheObjectTheReferencePointsTo $object = null,
+        string $sha = null
     ) {
         $this->ref = $ref;
         $this->object = $object;

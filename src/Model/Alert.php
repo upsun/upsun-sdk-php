@@ -16,20 +16,20 @@ use JsonSerializable;
 
 final class Alert implements JsonSerializable
 {
-    public readonly string $id;
-    public readonly bool $active;
-    public readonly int $alerts_sent;
-    public readonly \DateTime $last_alert_at;
-    public readonly \DateTime $updated_at;
-    public readonly object $config;
+    public readonly string|null $id;
+    public readonly bool|null $active;
+    public readonly int|null $alerts_sent;
+    public readonly \DateTime|null $last_alert_at;
+    public readonly \DateTime|null $updated_at;
+    public readonly object|null $config;
 
     public function __construct(
-        string $id = null,
-        bool $active = null,
-        int $alerts_sent = null,
-        \DateTime $last_alert_at = null,
-        \DateTime $updated_at = null,
-        object $config = null,
+        string|null $id = null,
+        bool|null $active = null,
+        int|null $alerts_sent = null,
+        \DateTime|null $last_alert_at = null,
+        \DateTime|null $updated_at = null,
+        object|null $config = null
     ) {
         $this->id = $id;
         $this->active = $active;

@@ -19,7 +19,7 @@ final class EnvironmentMergeInput implements JsonSerializable
     public readonly \Upsun\Model\Resources4 $resources;
 
     public function __construct(
-        \Upsun\Model\Resources4 $resources,
+        \Upsun\Model\Resources4 $resources = null
     ) {
         $this->resources = $resources;
     }

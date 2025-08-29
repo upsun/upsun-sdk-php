@@ -30,18 +30,18 @@ final class BitbucketServerIntegration implements JsonSerializable
     public readonly bool $pull_requests_clone_parent_data;
 
     public function __construct(
-        \DateTime $created_at,
-        \DateTime $updated_at,
-        string $type,
-        bool $fetch_branches,
-        bool $prune_branches,
-        string $environment_init_resources,
-        string $url,
-        string $username,
-        string $project,
-        string $repository,
-        bool $build_pull_requests,
-        bool $pull_requests_clone_parent_data,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+        string $type = null,
+        bool $fetch_branches = null,
+        bool $prune_branches = null,
+        string $environment_init_resources = null,
+        string $url = null,
+        string $username = null,
+        string $project = null,
+        string $repository = null,
+        bool $build_pull_requests = null,
+        bool $pull_requests_clone_parent_data = null
     ) {
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;

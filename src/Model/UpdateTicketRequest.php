@@ -16,14 +16,17 @@ use JsonSerializable;
 
 final class UpdateTicketRequest implements JsonSerializable
 {
-    public readonly string $status;
-    public readonly string[] $collaborator_ids;
-    public readonly bool $collaborators_replace;
+    public readonly string|null $status;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $collaborator_ids;
+    public readonly bool|null $collaborators_replace;
 
     public function __construct(
-        string $status = null,
-        string[] $collaborator_ids = null,
-        bool $collaborators_replace = null,
+        string|null $status = null,
+        ?array $collaborator_ids = null,
+        bool|null $collaborators_replace = null
     ) {
         $this->status = $status;
         $this->collaborator_ids = $collaborator_ids;
@@ -34,7 +37,10 @@ final class UpdateTicketRequest implements JsonSerializable
     {
         return $this->status;
     }
-    public function getCollaboratorIds(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getCollaboratorIds(): ?array
     {
         return $this->collaborator_ids;
     }

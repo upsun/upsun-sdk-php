@@ -17,11 +17,14 @@ use JsonSerializable;
 final class TheConfigurationOfTheRedirects implements JsonSerializable
 {
     public readonly string $expires;
-    public readonly array<string,\Upsun\Model\ThePathsToRedirectValue> $paths;
+    /**
+     * @var \Upsun\Model\ThePathsToRedirectValue[]|null
+     */
+    public readonly ?array $paths;
 
     public function __construct(
-        string $expires,
-        array<string,\Upsun\Model\ThePathsToRedirectValue> $paths,
+        string $expires = null,
+        ?array $paths = null
     ) {
         $this->expires = $expires;
         $this->paths = $paths;
@@ -31,7 +34,10 @@ final class TheConfigurationOfTheRedirects implements JsonSerializable
     {
         return $this->expires;
     }
-    public function getPaths(): array<string,\Upsun\Model\ThePathsToRedirectValue>
+    /**
+     * @return \Upsun\Model\ThePathsToRedirectValue[]|null
+     */
+    public function getPaths(): ?array
     {
         return $this->paths;
     }

@@ -20,8 +20,8 @@ final class AddressGrantsInner implements JsonSerializable
     public readonly string $address;
 
     public function __construct(
-        string $permission,
-        string $address,
+        string $permission = null,
+        string $address = null
     ) {
         $this->permission = $permission;
         $this->address = $address;

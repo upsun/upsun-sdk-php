@@ -17,21 +17,24 @@ use JsonSerializable;
 final class SplunkIntegrationCreateInput implements JsonSerializable
 {
     public readonly string $type;
-    public readonly array<string,string> $extra;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $extra;
     public readonly string $url;
     public readonly string $index;
     public readonly string $token;
-    public readonly string $sourcetype;
-    public readonly bool $tls_verify;
+    public readonly string|null $sourcetype;
+    public readonly bool|null $tls_verify;
 
     public function __construct(
-        string $type,
-        array<string,string> $extra = null,
-        string $url,
-        string $index,
-        string $token,
-        string $sourcetype = null,
-        bool $tls_verify = null,
+        string $type = null,
+        ?array $extra = null,
+        string $url = null,
+        string $index = null,
+        string $token = null,
+        string|null $sourcetype = null,
+        bool|null $tls_verify = null
     ) {
         $this->type = $type;
         $this->extra = $extra;
@@ -46,7 +49,10 @@ final class SplunkIntegrationCreateInput implements JsonSerializable
     {
         return $this->type;
     }
-    public function getExtra(): array<string,string>|null
+    /**
+     * @return string[]|null
+     */
+    public function getExtra(): ?array
     {
         return $this->extra;
     }

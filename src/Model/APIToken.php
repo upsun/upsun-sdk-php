@@ -16,22 +16,22 @@ use JsonSerializable;
 
 final class APIToken implements JsonSerializable
 {
-    public readonly string $id;
-    public readonly string $name;
-    public readonly bool $mfa_on_creation;
-    public readonly string $token;
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
-    public readonly \DateTime $last_used_at;
+    public readonly string|null $id;
+    public readonly string|null $name;
+    public readonly bool|null $mfa_on_creation;
+    public readonly string|null $token;
+    public readonly \DateTime|null $created_at;
+    public readonly \DateTime|null $updated_at;
+    public readonly \DateTime|null $last_used_at;
 
     public function __construct(
-        string $id = null,
-        string $name = null,
-        bool $mfa_on_creation = null,
-        string $token = null,
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
-        \DateTime $last_used_at = null,
+        string|null $id = null,
+        string|null $name = null,
+        bool|null $mfa_on_creation = null,
+        string|null $token = null,
+        \DateTime|null $created_at = null,
+        \DateTime|null $updated_at = null,
+        \DateTime|null $last_used_at = null
     ) {
         $this->id = $id;
         $this->name = $name;

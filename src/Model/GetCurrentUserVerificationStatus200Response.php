@@ -16,10 +16,10 @@ use JsonSerializable;
 
 final class GetCurrentUserVerificationStatus200Response implements JsonSerializable
 {
-    public readonly bool $verify_phone;
+    public readonly bool|null $verify_phone;
 
     public function __construct(
-        bool $verify_phone = null,
+        bool|null $verify_phone = null
     ) {
         $this->verify_phone = $verify_phone;
     }

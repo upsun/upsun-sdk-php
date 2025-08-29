@@ -18,16 +18,16 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
 {
     public readonly string $spec;
     public readonly \Upsun\Model\TheCommandsDefinition $commands;
-    public readonly int $shutdown_timeout;
+    public readonly int|null $shutdown_timeout;
     public readonly int $timeout;
-    public readonly string $cmd;
+    public readonly string|null $cmd;
 
     public function __construct(
-        string $spec,
-        \Upsun\Model\TheCommandsDefinition $commands,
-        int $shutdown_timeout = null,
-        int $timeout,
-        string $cmd = null,
+        string $spec = null,
+        \Upsun\Model\TheCommandsDefinition $commands = null,
+        int|null $shutdown_timeout = null,
+        int $timeout = null,
+        string|null $cmd = null
     ) {
         $this->spec = $spec;
         $this->commands = $commands;

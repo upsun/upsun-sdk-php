@@ -16,28 +16,40 @@ use JsonSerializable;
 
 final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSerializable
 {
-    public readonly array<string,\Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue> $locations;
-    public readonly \Upsun\Model\CommandsToManageTheApplicationSLifecycle $commands;
-    public readonly \Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication $upstream;
-    public readonly string $document_root;
-    public readonly string $passthru;
-    public readonly string[] $index_files;
-    public readonly string[] $whitelist;
-    public readonly string[] $blacklist;
-    public readonly string $expires;
+    /**
+     * @var \Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue[]|null
+     */
+    public readonly ?array $locations;
+    public readonly \Upsun\Model\CommandsToManageTheApplicationSLifecycle|null $commands;
+    public readonly \Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication|null $upstream;
+    public readonly string|null $document_root;
+    public readonly string|null $passthru;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $index_files;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $whitelist;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $blacklist;
+    public readonly string|null $expires;
     public readonly bool $move_to_root;
 
     public function __construct(
-        array<string,\Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue> $locations,
-        \Upsun\Model\CommandsToManageTheApplicationSLifecycle $commands = null,
-        \Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication $upstream = null,
-        string $document_root = null,
-        string $passthru = null,
-        string[] $index_files = null,
-        string[] $whitelist = null,
-        string[] $blacklist = null,
-        string $expires = null,
-        bool $move_to_root,
+        ?array $locations = null,
+        \Upsun\Model\CommandsToManageTheApplicationSLifecycle|null $commands = null,
+        \Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication|null $upstream = null,
+        string|null $document_root = null,
+        string|null $passthru = null,
+        ?array $index_files = null,
+        ?array $whitelist = null,
+        ?array $blacklist = null,
+        string|null $expires = null,
+        bool $move_to_root = null
     ) {
         $this->locations = $locations;
         $this->commands = $commands;
@@ -51,7 +63,10 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
         $this->move_to_root = $move_to_root;
     }
 
-    public function getLocations(): array<string,\Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue>
+    /**
+     * @return \Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue[]|null
+     */
+    public function getLocations(): ?array
     {
         return $this->locations;
     }
@@ -71,15 +86,24 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
     {
         return $this->passthru;
     }
-    public function getIndexFiles(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getIndexFiles(): ?array
     {
         return $this->index_files;
     }
-    public function getWhitelist(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getWhitelist(): ?array
     {
         return $this->whitelist;
     }
-    public function getBlacklist(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getBlacklist(): ?array
     {
         return $this->blacklist;
     }

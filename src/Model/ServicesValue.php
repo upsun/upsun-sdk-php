@@ -21,23 +21,26 @@ final class ServicesValue implements JsonSerializable
     public readonly int $disk;
     public readonly object $access;
     public readonly object $configuration;
-    public readonly array<string,string> $relationships;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $relationships;
     public readonly \Upsun\Model\Firewall $firewall;
     public readonly \Upsun\Model\Resources $resources;
     public readonly string $container_profile;
     public readonly object $endpoints;
 
     public function __construct(
-        string $type,
-        string $size,
-        int $disk,
-        object $access,
-        object $configuration,
-        array<string,string> $relationships,
-        \Upsun\Model\Firewall $firewall,
-        \Upsun\Model\Resources $resources,
-        string $container_profile,
-        object $endpoints,
+        string $type = null,
+        string $size = null,
+        int $disk = null,
+        object $access = null,
+        object $configuration = null,
+        ?array $relationships = null,
+        \Upsun\Model\Firewall $firewall = null,
+        \Upsun\Model\Resources $resources = null,
+        string $container_profile = null,
+        object $endpoints = null
     ) {
         $this->type = $type;
         $this->size = $size;
@@ -71,7 +74,10 @@ final class ServicesValue implements JsonSerializable
     {
         return $this->configuration;
     }
-    public function getRelationships(): array<string,string>
+    /**
+     * @return string[]|null
+     */
+    public function getRelationships(): ?array
     {
         return $this->relationships;
     }

@@ -16,18 +16,24 @@ use JsonSerializable;
 
 final class CertificatePatch implements JsonSerializable
 {
-    public readonly string[] $chain;
-    public readonly bool $is_invalid;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $chain;
+    public readonly bool|null $is_invalid;
 
     public function __construct(
-        string[] $chain = null,
-        bool $is_invalid = null,
+        ?array $chain = null,
+        bool|null $is_invalid = null
     ) {
         $this->chain = $chain;
         $this->is_invalid = $is_invalid;
     }
 
-    public function getChain(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getChain(): ?array
     {
         return $this->chain;
     }

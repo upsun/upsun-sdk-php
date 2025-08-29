@@ -17,13 +17,16 @@ use JsonSerializable;
 final class ReplacementDomainStorageCreateInput implements JsonSerializable
 {
     public readonly string $name;
-    public readonly array<string,string> $attributes;
-    public readonly string $replacement_for;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $attributes;
+    public readonly string|null $replacement_for;
 
     public function __construct(
-        string $name,
-        array<string,string> $attributes = null,
-        string $replacement_for = null,
+        string $name = null,
+        ?array $attributes = null,
+        string|null $replacement_for = null
     ) {
         $this->name = $name;
         $this->attributes = $attributes;
@@ -34,7 +37,10 @@ final class ReplacementDomainStorageCreateInput implements JsonSerializable
     {
         return $this->name;
     }
-    public function getAttributes(): array<string,string>|null
+    /**
+     * @return string[]|null
+     */
+    public function getAttributes(): ?array
     {
         return $this->attributes;
     }

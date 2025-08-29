@@ -16,14 +16,14 @@ use JsonSerializable;
 
 final class SubscriptionAddonsObject implements JsonSerializable
 {
-    public readonly \Upsun\Model\SubscriptionAddonsObjectAvailable $available;
-    public readonly \Upsun\Model\SubscriptionAddonsObjectCurrent $current;
-    public readonly \Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable $upgrades_available;
+    public readonly \Upsun\Model\SubscriptionAddonsObjectAvailable|null $available;
+    public readonly \Upsun\Model\SubscriptionAddonsObjectCurrent|null $current;
+    public readonly \Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable|null $upgrades_available;
 
     public function __construct(
-        \Upsun\Model\SubscriptionAddonsObjectAvailable $available = null,
-        \Upsun\Model\SubscriptionAddonsObjectCurrent $current = null,
-        \Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable $upgrades_available = null,
+        \Upsun\Model\SubscriptionAddonsObjectAvailable|null $available = null,
+        \Upsun\Model\SubscriptionAddonsObjectCurrent|null $current = null,
+        \Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable|null $upgrades_available = null
     ) {
         $this->available = $available;
         $this->current = $current;

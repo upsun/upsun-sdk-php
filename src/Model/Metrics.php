@@ -19,7 +19,7 @@ final class Metrics implements JsonSerializable
     public readonly string $max_range;
 
     public function __construct(
-        string $max_range,
+        string $max_range = null
     ) {
         $this->max_range = $max_range;
     }

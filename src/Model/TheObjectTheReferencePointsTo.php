@@ -20,8 +20,8 @@ final class TheObjectTheReferencePointsTo implements JsonSerializable
     public readonly string $sha;
 
     public function __construct(
-        string $type,
-        string $sha,
+        string $type = null,
+        string $sha = null
     ) {
         $this->type = $type;
         $this->sha = $sha;

@@ -18,14 +18,17 @@ final class FoundationDeploymentTargetCreateInput implements JsonSerializable
 {
     public readonly string $type;
     public readonly string $name;
-    public readonly \Upsun\Model\TheHostsOfTheDeploymentTargetInner1[] $hosts;
-    public readonly bool $use_dedicated_grid;
+    /**
+     * @var \Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]|null
+     */
+    public readonly ?array $hosts;
+    public readonly bool|null $use_dedicated_grid;
 
     public function __construct(
-        string $type,
-        string $name,
-        \Upsun\Model\TheHostsOfTheDeploymentTargetInner1[] $hosts = null,
-        bool $use_dedicated_grid = null,
+        string $type = null,
+        string $name = null,
+        ?array $hosts = null,
+        bool|null $use_dedicated_grid = null
     ) {
         $this->type = $type;
         $this->name = $name;
@@ -41,7 +44,10 @@ final class FoundationDeploymentTargetCreateInput implements JsonSerializable
     {
         return $this->name;
     }
-    public function getHosts(): \Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]|null
+    /**
+     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]|null
+     */
+    public function getHosts(): ?array
     {
         return $this->hosts;
     }

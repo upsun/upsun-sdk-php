@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser implements JsonSerializable
 {
-    public readonly int $count;
-    public readonly string $total;
+    public readonly int|null $count;
+    public readonly string|null $total;
 
     public function __construct(
-        int $count = null,
-        string $total = null,
+        int|null $count = null,
+        string|null $total = null
     ) {
         $this->count = $count;
         $this->total = $total;

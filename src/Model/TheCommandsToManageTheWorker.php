@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class TheCommandsToManageTheWorker implements JsonSerializable
 {
-    public readonly string $pre_start;
+    public readonly string|null $pre_start;
     public readonly string $start;
 
     public function __construct(
-        string $pre_start = null,
-        string $start,
+        string|null $pre_start = null,
+        string $start = null
     ) {
         $this->pre_start = $pre_start;
         $this->start = $start;

@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class CanCreateNewOrgSubscription200ResponseRequiredAction implements JsonSerializable
 {
-    public readonly string $action;
-    public readonly string $type;
+    public readonly string|null $action;
+    public readonly string|null $type;
 
     public function __construct(
-        string $action = null,
-        string $type = null,
+        string|null $action = null,
+        string|null $type = null
     ) {
         $this->action = $action;
         $this->type = $type;

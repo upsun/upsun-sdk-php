@@ -16,14 +16,14 @@ use JsonSerializable;
 
 final class DiscountCommitmentNet implements JsonSerializable
 {
-    public readonly \Upsun\Model\CurrencyAmount $monthly;
-    public readonly \Upsun\Model\CurrencyAmount $commitment_period;
-    public readonly \Upsun\Model\CurrencyAmount $contract_total;
+    public readonly \Upsun\Model\CurrencyAmount|null $monthly;
+    public readonly \Upsun\Model\CurrencyAmount|null $commitment_period;
+    public readonly \Upsun\Model\CurrencyAmount|null $contract_total;
 
     public function __construct(
-        \Upsun\Model\CurrencyAmount $monthly = null,
-        \Upsun\Model\CurrencyAmount $commitment_period = null,
-        \Upsun\Model\CurrencyAmount $contract_total = null,
+        \Upsun\Model\CurrencyAmount|null $monthly = null,
+        \Upsun\Model\CurrencyAmount|null $commitment_period = null,
+        \Upsun\Model\CurrencyAmount|null $contract_total = null
     ) {
         $this->monthly = $monthly;
         $this->commitment_period = $commitment_period;

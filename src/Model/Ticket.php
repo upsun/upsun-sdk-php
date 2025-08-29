@@ -16,78 +16,87 @@ use JsonSerializable;
 
 final class Ticket implements JsonSerializable
 {
-    public readonly int $ticket_id;
-    public readonly \DateTime $created;
-    public readonly \DateTime $updated;
-    public readonly string $type;
-    public readonly string $subject;
-    public readonly string $description;
-    public readonly string $priority;
-    public readonly string $followup_tid;
-    public readonly string $status;
-    public readonly string $recipient;
-    public readonly string $requester_id;
-    public readonly string $submitter_id;
-    public readonly string $assignee_id;
-    public readonly string $organization_id;
-    public readonly string[] $collaborator_ids;
-    public readonly bool $has_incidents;
-    public readonly \DateTime $due;
-    public readonly string[] $tags;
-    public readonly string $subscription_id;
-    public readonly string $ticket_group;
-    public readonly string $support_plan;
-    public readonly string $affected_url;
-    public readonly string $queue;
-    public readonly string $issue_type;
-    public readonly \DateTime $resolution_time;
-    public readonly \DateTime $response_time;
-    public readonly string $project_url;
-    public readonly string $region;
-    public readonly string $category;
-    public readonly string $environment;
-    public readonly string $ticket_sharing_status;
-    public readonly string $application_ticket_url;
-    public readonly string $infrastructure_ticket_url;
-    public readonly \Upsun\Model\TicketJiraInner[] $jira;
-    public readonly string $zd_ticket_url;
+    public readonly int|null $ticket_id;
+    public readonly \DateTime|null $created;
+    public readonly \DateTime|null $updated;
+    public readonly string|null $type;
+    public readonly string|null $subject;
+    public readonly string|null $description;
+    public readonly string|null $priority;
+    public readonly string|null $followup_tid;
+    public readonly string|null $status;
+    public readonly string|null $recipient;
+    public readonly string|null $requester_id;
+    public readonly string|null $submitter_id;
+    public readonly string|null $assignee_id;
+    public readonly string|null $organization_id;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $collaborator_ids;
+    public readonly bool|null $has_incidents;
+    public readonly \DateTime|null $due;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $tags;
+    public readonly string|null $subscription_id;
+    public readonly string|null $ticket_group;
+    public readonly string|null $support_plan;
+    public readonly string|null $affected_url;
+    public readonly string|null $queue;
+    public readonly string|null $issue_type;
+    public readonly \DateTime|null $resolution_time;
+    public readonly \DateTime|null $response_time;
+    public readonly string|null $project_url;
+    public readonly string|null $region;
+    public readonly string|null $category;
+    public readonly string|null $environment;
+    public readonly string|null $ticket_sharing_status;
+    public readonly string|null $application_ticket_url;
+    public readonly string|null $infrastructure_ticket_url;
+    /**
+     * @var \Upsun\Model\TicketJiraInner[]|null
+     */
+    public readonly ?array $jira;
+    public readonly string|null $zd_ticket_url;
 
     public function __construct(
-        int $ticket_id = null,
-        \DateTime $created = null,
-        \DateTime $updated = null,
-        string $type = null,
-        string $subject = null,
-        string $description = null,
-        string $priority = null,
-        string $followup_tid = null,
-        string $status = null,
-        string $recipient = null,
-        string $requester_id = null,
-        string $submitter_id = null,
-        string $assignee_id = null,
-        string $organization_id = null,
-        string[] $collaborator_ids = null,
-        bool $has_incidents = null,
-        \DateTime $due = null,
-        string[] $tags = null,
-        string $subscription_id = null,
-        string $ticket_group = null,
-        string $support_plan = null,
-        string $affected_url = null,
-        string $queue = null,
-        string $issue_type = null,
-        \DateTime $resolution_time = null,
-        \DateTime $response_time = null,
-        string $project_url = null,
-        string $region = null,
-        string $category = null,
-        string $environment = null,
-        string $ticket_sharing_status = null,
-        string $application_ticket_url = null,
-        string $infrastructure_ticket_url = null,
-        \Upsun\Model\TicketJiraInner[] $jira = null,
-        string $zd_ticket_url = null,
+        int|null $ticket_id = null,
+        \DateTime|null $created = null,
+        \DateTime|null $updated = null,
+        string|null $type = null,
+        string|null $subject = null,
+        string|null $description = null,
+        string|null $priority = null,
+        string|null $followup_tid = null,
+        string|null $status = null,
+        string|null $recipient = null,
+        string|null $requester_id = null,
+        string|null $submitter_id = null,
+        string|null $assignee_id = null,
+        string|null $organization_id = null,
+        ?array $collaborator_ids = null,
+        bool|null $has_incidents = null,
+        \DateTime|null $due = null,
+        ?array $tags = null,
+        string|null $subscription_id = null,
+        string|null $ticket_group = null,
+        string|null $support_plan = null,
+        string|null $affected_url = null,
+        string|null $queue = null,
+        string|null $issue_type = null,
+        \DateTime|null $resolution_time = null,
+        \DateTime|null $response_time = null,
+        string|null $project_url = null,
+        string|null $region = null,
+        string|null $category = null,
+        string|null $environment = null,
+        string|null $ticket_sharing_status = null,
+        string|null $application_ticket_url = null,
+        string|null $infrastructure_ticket_url = null,
+        ?array $jira = null,
+        string|null $zd_ticket_url = null
     ) {
         $this->ticket_id = $ticket_id;
         $this->created = $created;
@@ -182,7 +191,10 @@ final class Ticket implements JsonSerializable
     {
         return $this->organization_id;
     }
-    public function getCollaboratorIds(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getCollaboratorIds(): ?array
     {
         return $this->collaborator_ids;
     }
@@ -194,7 +206,10 @@ final class Ticket implements JsonSerializable
     {
         return $this->due;
     }
-    public function getTags(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getTags(): ?array
     {
         return $this->tags;
     }
@@ -258,7 +273,10 @@ final class Ticket implements JsonSerializable
     {
         return $this->infrastructure_ticket_url;
     }
-    public function getJira(): \Upsun\Model\TicketJiraInner[]|null
+    /**
+     * @return \Upsun\Model\TicketJiraInner[]|null
+     */
+    public function getJira(): ?array
     {
         return $this->jira;
     }

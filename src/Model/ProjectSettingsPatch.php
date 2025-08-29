@@ -16,14 +16,17 @@ use JsonSerializable;
 
 final class ProjectSettingsPatch implements JsonSerializable
 {
-    public readonly object $initialize;
-    public readonly array<string,\Upsun\Model\DataRetentionConfigurationValue1> $data_retention;
-    public readonly \Upsun\Model\BuildResources2 $build_resources;
+    public readonly object|null $initialize;
+    /**
+     * @var \Upsun\Model\DataRetentionConfigurationValue1[]|null
+     */
+    public readonly ?array $data_retention;
+    public readonly \Upsun\Model\BuildResources2|null $build_resources;
 
     public function __construct(
-        object $initialize = null,
-        array<string,\Upsun\Model\DataRetentionConfigurationValue1> $data_retention = null,
-        \Upsun\Model\BuildResources2 $build_resources = null,
+        object|null $initialize = null,
+        ?array $data_retention = null,
+        \Upsun\Model\BuildResources2|null $build_resources = null
     ) {
         $this->initialize = $initialize;
         $this->data_retention = $data_retention;
@@ -34,7 +37,10 @@ final class ProjectSettingsPatch implements JsonSerializable
     {
         return $this->initialize;
     }
-    public function getDataRetention(): array<string,\Upsun\Model\DataRetentionConfigurationValue1>|null
+    /**
+     * @return \Upsun\Model\DataRetentionConfigurationValue1[]|null
+     */
+    public function getDataRetention(): ?array
     {
         return $this->data_retention;
     }

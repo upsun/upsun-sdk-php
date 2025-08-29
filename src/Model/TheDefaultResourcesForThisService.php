@@ -22,10 +22,10 @@ final class TheDefaultResourcesForThisService implements JsonSerializable
     public readonly string $profile_size;
 
     public function __construct(
-        float $cpu,
-        int $memory,
-        int $disk,
-        string $profile_size,
+        float $cpu = null,
+        int $memory = null,
+        int $disk = null,
+        string $profile_size = null
     ) {
         $this->cpu = $cpu;
         $this->memory = $memory;

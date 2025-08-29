@@ -21,15 +21,21 @@ final class Activity implements JsonSerializable
     public readonly string $type;
     public readonly object $parameters;
     public readonly string $project;
-    public readonly string $integration;
-    public readonly string[] $environments;
+    public readonly string|null $integration;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $environments;
     public readonly string $state;
     public readonly string $result;
     public readonly \DateTime $started_at;
     public readonly \DateTime $completed_at;
     public readonly int $completion_percent;
     public readonly \DateTime $cancelled_at;
-    public readonly array<string,float> $timings;
+    /**
+     * @var float[]|null
+     */
+    public readonly ?array $timings;
     public readonly string $log;
     public readonly object $payload;
     public readonly string $description;
@@ -37,25 +43,25 @@ final class Activity implements JsonSerializable
     public readonly \DateTime $expires_at;
 
     public function __construct(
-        \DateTime $created_at,
-        \DateTime $updated_at,
-        string $type,
-        object $parameters,
-        string $project,
-        string $integration = null,
-        string[] $environments = null,
-        string $state,
-        string $result,
-        \DateTime $started_at,
-        \DateTime $completed_at,
-        int $completion_percent,
-        \DateTime $cancelled_at,
-        array<string,float> $timings,
-        string $log,
-        object $payload,
-        string $description,
-        string $text,
-        \DateTime $expires_at,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+        string $type = null,
+        object $parameters = null,
+        string $project = null,
+        string|null $integration = null,
+        ?array $environments = null,
+        string $state = null,
+        string $result = null,
+        \DateTime $started_at = null,
+        \DateTime $completed_at = null,
+        int $completion_percent = null,
+        \DateTime $cancelled_at = null,
+        ?array $timings = null,
+        string $log = null,
+        object $payload = null,
+        string $description = null,
+        string $text = null,
+        \DateTime $expires_at = null
     ) {
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;
@@ -102,7 +108,10 @@ final class Activity implements JsonSerializable
     {
         return $this->integration;
     }
-    public function getEnvironments(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getEnvironments(): ?array
     {
         return $this->environments;
     }
@@ -130,7 +139,10 @@ final class Activity implements JsonSerializable
     {
         return $this->cancelled_at;
     }
-    public function getTimings(): array<string,float>
+    /**
+     * @return float[]|null
+     */
+    public function getTimings(): ?array
     {
         return $this->timings;
     }

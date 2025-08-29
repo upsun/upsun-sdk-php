@@ -22,10 +22,10 @@ final class PagerDutyIntegration implements JsonSerializable
     public readonly string $routing_key;
 
     public function __construct(
-        \DateTime $created_at,
-        \DateTime $updated_at,
-        string $type,
-        string $routing_key,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+        string $type = null,
+        string $routing_key = null
     ) {
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;

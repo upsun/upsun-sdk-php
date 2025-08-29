@@ -16,14 +16,14 @@ use JsonSerializable;
 
 final class RegionDatacenter implements JsonSerializable
 {
-    public readonly string $name;
-    public readonly string $label;
-    public readonly string $location;
+    public readonly string|null $name;
+    public readonly string|null $label;
+    public readonly string|null $location;
 
     public function __construct(
-        string $name = null,
-        string $label = null,
-        string $location = null,
+        string|null $name = null,
+        string|null $label = null,
+        string|null $location = null
     ) {
         $this->name = $name;
         $this->label = $label;

@@ -16,34 +16,37 @@ use JsonSerializable;
 
 final class Organization implements JsonSerializable
 {
-    public readonly string $id;
-    public readonly string $type;
-    public readonly string $owner_id;
-    public readonly string $namespace;
-    public readonly string $name;
-    public readonly string $label;
-    public readonly string $country;
-    public readonly string[] $capabilities;
-    public readonly string $vendor;
-    public readonly string $status;
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
-    public readonly \Upsun\Model\OrganizationLinks $_links;
+    public readonly string|null $id;
+    public readonly string|null $type;
+    public readonly string|null $owner_id;
+    public readonly string|null $namespace;
+    public readonly string|null $name;
+    public readonly string|null $label;
+    public readonly string|null $country;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $capabilities;
+    public readonly string|null $vendor;
+    public readonly string|null $status;
+    public readonly \DateTime|null $created_at;
+    public readonly \DateTime|null $updated_at;
+    public readonly \Upsun\Model\OrganizationLinks|null $_links;
 
     public function __construct(
-        string $id = null,
-        string $type = null,
-        string $owner_id = null,
-        string $namespace = null,
-        string $name = null,
-        string $label = null,
-        string $country = null,
-        string[] $capabilities = null,
-        string $vendor = null,
-        string $status = null,
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
-        \Upsun\Model\OrganizationLinks $_links = null,
+        string|null $id = null,
+        string|null $type = null,
+        string|null $owner_id = null,
+        string|null $namespace = null,
+        string|null $name = null,
+        string|null $label = null,
+        string|null $country = null,
+        ?array $capabilities = null,
+        string|null $vendor = null,
+        string|null $status = null,
+        \DateTime|null $created_at = null,
+        \DateTime|null $updated_at = null,
+        \Upsun\Model\OrganizationLinks|null $_links = null
     ) {
         $this->id = $id;
         $this->type = $type;
@@ -88,7 +91,10 @@ final class Organization implements JsonSerializable
     {
         return $this->country;
     }
-    public function getCapabilities(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getCapabilities(): ?array
     {
         return $this->capabilities;
     }

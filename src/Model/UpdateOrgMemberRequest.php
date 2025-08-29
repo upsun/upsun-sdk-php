@@ -16,15 +16,21 @@ use JsonSerializable;
 
 final class UpdateOrgMemberRequest implements JsonSerializable
 {
-    public readonly string[] $permissions;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $permissions;
 
     public function __construct(
-        string[] $permissions = null,
+        ?array $permissions = null
     ) {
         $this->permissions = $permissions;
     }
 
-    public function getPermissions(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getPermissions(): ?array
     {
         return $this->permissions;
     }

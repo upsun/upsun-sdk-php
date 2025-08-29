@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class RegionProvider implements JsonSerializable
 {
-    public readonly string $name;
-    public readonly string $logo;
+    public readonly string|null $name;
+    public readonly string|null $logo;
 
     public function __construct(
-        string $name = null,
-        string $logo = null,
+        string|null $name = null,
+        string|null $logo = null
     ) {
         $this->name = $name;
         $this->logo = $logo;

@@ -17,13 +17,16 @@ use JsonSerializable;
 final class Integrations implements JsonSerializable
 {
     public readonly bool $enabled;
-    public readonly \Upsun\Model\Config $config;
-    public readonly string[] $allowed_integrations;
+    public readonly \Upsun\Model\Config|null $config;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $allowed_integrations;
 
     public function __construct(
-        bool $enabled,
-        \Upsun\Model\Config $config = null,
-        string[] $allowed_integrations = null,
+        bool $enabled = null,
+        \Upsun\Model\Config|null $config = null,
+        ?array $allowed_integrations = null
     ) {
         $this->enabled = $enabled;
         $this->config = $config;
@@ -38,7 +41,10 @@ final class Integrations implements JsonSerializable
     {
         return $this->config;
     }
-    public function getAllowedIntegrations(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getAllowedIntegrations(): ?array
     {
         return $this->allowed_integrations;
     }

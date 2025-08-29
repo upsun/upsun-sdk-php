@@ -18,16 +18,19 @@ final class FoundationDeploymentTarget implements JsonSerializable
 {
     public readonly string $type;
     public readonly string $name;
-    public readonly \Upsun\Model\TheHostsOfTheDeploymentTargetInner[] $hosts;
+    /**
+     * @var \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]|null
+     */
+    public readonly ?array $hosts;
     public readonly bool $use_dedicated_grid;
     public readonly string $storage_type;
 
     public function __construct(
-        string $type,
-        string $name,
-        \Upsun\Model\TheHostsOfTheDeploymentTargetInner[] $hosts,
-        bool $use_dedicated_grid,
-        string $storage_type,
+        string $type = null,
+        string $name = null,
+        ?array $hosts = null,
+        bool $use_dedicated_grid = null,
+        string $storage_type = null
     ) {
         $this->type = $type;
         $this->name = $name;
@@ -44,7 +47,10 @@ final class FoundationDeploymentTarget implements JsonSerializable
     {
         return $this->name;
     }
-    public function getHosts(): \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]
+    /**
+     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]|null
+     */
+    public function getHosts(): ?array
     {
         return $this->hosts;
     }

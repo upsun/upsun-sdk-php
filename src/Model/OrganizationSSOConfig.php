@@ -16,20 +16,20 @@ use JsonSerializable;
 
 final class OrganizationSSOConfig implements JsonSerializable
 {
-    public readonly string $provider_type;
-    public readonly string $domain;
-    public readonly string $organization_id;
-    public readonly bool $enforced;
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
+    public readonly string|null $provider_type;
+    public readonly string|null $domain;
+    public readonly string|null $organization_id;
+    public readonly bool|null $enforced;
+    public readonly \DateTime|null $created_at;
+    public readonly \DateTime|null $updated_at;
 
     public function __construct(
-        string $provider_type = null,
-        string $domain = null,
-        string $organization_id = null,
-        bool $enforced = null,
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
+        string|null $provider_type = null,
+        string|null $domain = null,
+        string|null $organization_id = null,
+        bool|null $enforced = null,
+        \DateTime|null $created_at = null,
+        \DateTime|null $updated_at = null
     ) {
         $this->provider_type = $provider_type;
         $this->domain = $domain;

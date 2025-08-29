@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class CreateAuthorizationCredentials200Response implements JsonSerializable
 {
-    public readonly \Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl $redirect_to_url;
-    public readonly string $type;
+    public readonly \Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl|null $redirect_to_url;
+    public readonly string|null $type;
 
     public function __construct(
-        \Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl $redirect_to_url = null,
-        string $type = null,
+        \Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl|null $redirect_to_url = null,
+        string|null $type = null
     ) {
         $this->redirect_to_url = $redirect_to_url;
         $this->type = $type;

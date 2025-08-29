@@ -16,16 +16,16 @@ use JsonSerializable;
 
 final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements JsonSerializable
 {
-    public readonly float $cpu;
-    public readonly float $memory;
-    public readonly float $storage;
-    public readonly int $environments;
+    public readonly float|null $cpu;
+    public readonly float|null $memory;
+    public readonly float|null $storage;
+    public readonly int|null $environments;
 
     public function __construct(
-        float $cpu = null,
-        float $memory = null,
-        float $storage = null,
-        int $environments = null,
+        float|null $cpu = null,
+        float|null $memory = null,
+        float|null $storage = null,
+        int|null $environments = null
     ) {
         $this->cpu = $cpu;
         $this->memory = $memory;

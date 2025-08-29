@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class DataRetentionConfigurationValue1 implements JsonSerializable
 {
-    public readonly int $max_backups;
+    public readonly int|null $max_backups;
     public readonly \Upsun\Model\DefaultConfig1 $default_config;
 
     public function __construct(
-        int $max_backups = null,
-        \Upsun\Model\DefaultConfig1 $default_config,
+        int|null $max_backups = null,
+        \Upsun\Model\DefaultConfig1 $default_config = null
     ) {
         $this->max_backups = $max_backups;
         $this->default_config = $default_config;

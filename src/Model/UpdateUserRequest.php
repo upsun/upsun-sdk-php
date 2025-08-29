@@ -16,22 +16,22 @@ use JsonSerializable;
 
 final class UpdateUserRequest implements JsonSerializable
 {
-    public readonly string $username;
-    public readonly string $first_name;
-    public readonly string $last_name;
-    public readonly string $picture;
-    public readonly string $company;
-    public readonly string $website;
-    public readonly string $country;
+    public readonly string|null $username;
+    public readonly string|null $first_name;
+    public readonly string|null $last_name;
+    public readonly string|null $picture;
+    public readonly string|null $company;
+    public readonly string|null $website;
+    public readonly string|null $country;
 
     public function __construct(
-        string $username = null,
-        string $first_name = null,
-        string $last_name = null,
-        string $picture = null,
-        string $company = null,
-        string $website = null,
-        string $country = null,
+        string|null $username = null,
+        string|null $first_name = null,
+        string|null $last_name = null,
+        string|null $picture = null,
+        string|null $company = null,
+        string|null $website = null,
+        string|null $country = null
     ) {
         $this->username = $username;
         $this->first_name = $first_name;

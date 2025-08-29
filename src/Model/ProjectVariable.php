@@ -19,23 +19,26 @@ final class ProjectVariable implements JsonSerializable
     public readonly \DateTime $created_at;
     public readonly \DateTime $updated_at;
     public readonly string $name;
-    public readonly array<string,string> $attributes;
-    public readonly string $value;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $attributes;
+    public readonly string|null $value;
     public readonly bool $is_json;
     public readonly bool $is_sensitive;
     public readonly bool $visible_build;
     public readonly bool $visible_runtime;
 
     public function __construct(
-        \DateTime $created_at,
-        \DateTime $updated_at,
-        string $name,
-        array<string,string> $attributes,
-        string $value = null,
-        bool $is_json,
-        bool $is_sensitive,
-        bool $visible_build,
-        bool $visible_runtime,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+        string $name = null,
+        ?array $attributes = null,
+        string|null $value = null,
+        bool $is_json = null,
+        bool $is_sensitive = null,
+        bool $visible_build = null,
+        bool $visible_runtime = null
     ) {
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;
@@ -60,7 +63,10 @@ final class ProjectVariable implements JsonSerializable
     {
         return $this->name;
     }
-    public function getAttributes(): array<string,string>
+    /**
+     * @return string[]|null
+     */
+    public function getAttributes(): ?array
     {
         return $this->attributes;
     }

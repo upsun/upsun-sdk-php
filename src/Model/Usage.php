@@ -16,18 +16,18 @@ use JsonSerializable;
 
 final class Usage implements JsonSerializable
 {
-    public readonly string $id;
-    public readonly string $subscription_id;
-    public readonly string $usage_group;
-    public readonly float $quantity;
-    public readonly \DateTime $start;
+    public readonly string|null $id;
+    public readonly string|null $subscription_id;
+    public readonly string|null $usage_group;
+    public readonly float|null $quantity;
+    public readonly \DateTime|null $start;
 
     public function __construct(
-        string $id = null,
-        string $subscription_id = null,
-        string $usage_group = null,
-        float $quantity = null,
-        \DateTime $start = null,
+        string|null $id = null,
+        string|null $subscription_id = null,
+        string|null $usage_group = null,
+        float|null $quantity = null,
+        \DateTime|null $start = null
     ) {
         $this->id = $id;
         $this->subscription_id = $subscription_id;

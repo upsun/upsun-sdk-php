@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class ScriptIntegrationConfigurations implements JsonSerializable
 {
-    public readonly bool $enabled;
-    public readonly string $role;
+    public readonly bool|null $enabled;
+    public readonly string|null $role;
 
     public function __construct(
-        bool $enabled = null,
-        string $role = null,
+        bool|null $enabled = null,
+        string|null $role = null
     ) {
         $this->enabled = $enabled;
         $this->role = $role;

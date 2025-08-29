@@ -16,48 +16,51 @@ use JsonSerializable;
 
 final class Order implements JsonSerializable
 {
-    public readonly string $id;
-    public readonly string $status;
-    public readonly string $owner;
-    public readonly \Upsun\Model\Address $address;
-    public readonly string $company;
-    public readonly string $vat_number;
-    public readonly \DateTime $billing_period_start;
-    public readonly \DateTime $billing_period_end;
-    public readonly \Upsun\Model\OrderBillingPeriodLabel $billing_period_label;
-    public readonly int $billing_period_duration;
-    public readonly \DateTime $paid_on;
-    public readonly int $total;
-    public readonly int $total_formatted;
-    public readonly \Upsun\Model\Components $components;
-    public readonly string $currency;
-    public readonly string $invoice_url;
-    public readonly \DateTime $last_refreshed;
-    public readonly bool $invoiced;
-    public readonly \Upsun\Model\LineItem[] $line_items;
-    public readonly \Upsun\Model\OrderLinks $_links;
+    public readonly string|null $id;
+    public readonly string|null $status;
+    public readonly string|null $owner;
+    public readonly \Upsun\Model\Address|null $address;
+    public readonly string|null $company;
+    public readonly string|null $vat_number;
+    public readonly \DateTime|null $billing_period_start;
+    public readonly \DateTime|null $billing_period_end;
+    public readonly \Upsun\Model\OrderBillingPeriodLabel|null $billing_period_label;
+    public readonly int|null $billing_period_duration;
+    public readonly \DateTime|null $paid_on;
+    public readonly int|null $total;
+    public readonly int|null $total_formatted;
+    public readonly \Upsun\Model\Components|null $components;
+    public readonly string|null $currency;
+    public readonly string|null $invoice_url;
+    public readonly \DateTime|null $last_refreshed;
+    public readonly bool|null $invoiced;
+    /**
+     * @var \Upsun\Model\LineItem[]|null
+     */
+    public readonly ?array $line_items;
+    public readonly \Upsun\Model\OrderLinks|null $_links;
 
     public function __construct(
-        string $id = null,
-        string $status = null,
-        string $owner = null,
-        \Upsun\Model\Address $address = null,
-        string $company = null,
-        string $vat_number = null,
-        \DateTime $billing_period_start = null,
-        \DateTime $billing_period_end = null,
-        \Upsun\Model\OrderBillingPeriodLabel $billing_period_label = null,
-        int $billing_period_duration = null,
-        \DateTime $paid_on = null,
-        int $total = null,
-        int $total_formatted = null,
-        \Upsun\Model\Components $components = null,
-        string $currency = null,
-        string $invoice_url = null,
-        \DateTime $last_refreshed = null,
-        bool $invoiced = null,
-        \Upsun\Model\LineItem[] $line_items = null,
-        \Upsun\Model\OrderLinks $_links = null,
+        string|null $id = null,
+        string|null $status = null,
+        string|null $owner = null,
+        \Upsun\Model\Address|null $address = null,
+        string|null $company = null,
+        string|null $vat_number = null,
+        \DateTime|null $billing_period_start = null,
+        \DateTime|null $billing_period_end = null,
+        \Upsun\Model\OrderBillingPeriodLabel|null $billing_period_label = null,
+        int|null $billing_period_duration = null,
+        \DateTime|null $paid_on = null,
+        int|null $total = null,
+        int|null $total_formatted = null,
+        \Upsun\Model\Components|null $components = null,
+        string|null $currency = null,
+        string|null $invoice_url = null,
+        \DateTime|null $last_refreshed = null,
+        bool|null $invoiced = null,
+        ?array $line_items = null,
+        \Upsun\Model\OrderLinks|null $_links = null
     ) {
         $this->id = $id;
         $this->status = $status;
@@ -153,7 +156,10 @@ final class Order implements JsonSerializable
     {
         return $this->invoiced;
     }
-    public function getLineItems(): \Upsun\Model\LineItem[]|null
+    /**
+     * @return \Upsun\Model\LineItem[]|null
+     */
+    public function getLineItems(): ?array
     {
         return $this->line_items;
     }

@@ -21,9 +21,9 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
     public readonly string $post_deploy;
 
     public function __construct(
-        string $build,
-        string $deploy,
-        string $post_deploy,
+        string $build = null,
+        string $deploy = null,
+        string $post_deploy = null
     ) {
         $this->build = $build;
         $this->deploy = $deploy;

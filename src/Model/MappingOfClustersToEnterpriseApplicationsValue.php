@@ -17,11 +17,14 @@ use JsonSerializable;
 final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerializable
 {
     public readonly string $active_docroot;
-    public readonly string[] $docroot_versions;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $docroot_versions;
 
     public function __construct(
-        string $active_docroot,
-        string[] $docroot_versions,
+        string $active_docroot = null,
+        ?array $docroot_versions = null
     ) {
         $this->active_docroot = $active_docroot;
         $this->docroot_versions = $docroot_versions;
@@ -31,7 +34,10 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerial
     {
         return $this->active_docroot;
     }
-    public function getDocrootVersions(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getDocrootVersions(): ?array
     {
         return $this->docroot_versions;
     }

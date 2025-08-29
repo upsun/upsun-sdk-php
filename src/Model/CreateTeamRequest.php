@@ -18,12 +18,15 @@ final class CreateTeamRequest implements JsonSerializable
 {
     public readonly string $organization_id;
     public readonly string $label;
-    public readonly string[] $project_permissions;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $project_permissions;
 
     public function __construct(
-        string $organization_id,
-        string $label,
-        string[] $project_permissions = null,
+        string $organization_id = null,
+        string $label = null,
+        ?array $project_permissions = null
     ) {
         $this->organization_id = $organization_id;
         $this->label = $label;
@@ -38,7 +41,10 @@ final class CreateTeamRequest implements JsonSerializable
     {
         return $this->label;
     }
-    public function getProjectPermissions(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getProjectPermissions(): ?array
     {
         return $this->project_permissions;
     }

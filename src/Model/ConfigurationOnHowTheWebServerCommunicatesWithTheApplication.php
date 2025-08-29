@@ -20,8 +20,8 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
     public readonly string $protocol;
 
     public function __construct(
-        string $socket_family,
-        string $protocol,
+        string $socket_family = null,
+        string $protocol = null
     ) {
         $this->socket_family = $socket_family;
         $this->protocol = $protocol;

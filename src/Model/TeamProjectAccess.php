@@ -16,22 +16,22 @@ use JsonSerializable;
 
 final class TeamProjectAccess implements JsonSerializable
 {
-    public readonly string $team_id;
-    public readonly string $organization_id;
-    public readonly string $project_id;
-    public readonly string $project_title;
-    public readonly \DateTime $granted_at;
-    public readonly \DateTime $updated_at;
-    public readonly \Upsun\Model\TeamProjectAccessLinks $_links;
+    public readonly string|null $team_id;
+    public readonly string|null $organization_id;
+    public readonly string|null $project_id;
+    public readonly string|null $project_title;
+    public readonly \DateTime|null $granted_at;
+    public readonly \DateTime|null $updated_at;
+    public readonly \Upsun\Model\TeamProjectAccessLinks|null $_links;
 
     public function __construct(
-        string $team_id = null,
-        string $organization_id = null,
-        string $project_id = null,
-        string $project_title = null,
-        \DateTime $granted_at = null,
-        \DateTime $updated_at = null,
-        \Upsun\Model\TeamProjectAccessLinks $_links = null,
+        string|null $team_id = null,
+        string|null $organization_id = null,
+        string|null $project_id = null,
+        string|null $project_title = null,
+        \DateTime|null $granted_at = null,
+        \DateTime|null $updated_at = null,
+        \Upsun\Model\TeamProjectAccessLinks|null $_links = null
     ) {
         $this->team_id = $team_id;
         $this->organization_id = $organization_id;

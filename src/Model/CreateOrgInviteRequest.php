@@ -17,13 +17,16 @@ use JsonSerializable;
 final class CreateOrgInviteRequest implements JsonSerializable
 {
     public readonly string $email;
-    public readonly string[] $permissions;
-    public readonly bool $force;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $permissions;
+    public readonly bool|null $force;
 
     public function __construct(
-        string $email,
-        string[] $permissions,
-        bool $force = null,
+        string $email = null,
+        ?array $permissions = null,
+        bool|null $force = null
     ) {
         $this->email = $email;
         $this->permissions = $permissions;
@@ -34,7 +37,10 @@ final class CreateOrgInviteRequest implements JsonSerializable
     {
         return $this->email;
     }
-    public function getPermissions(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getPermissions(): ?array
     {
         return $this->permissions;
     }

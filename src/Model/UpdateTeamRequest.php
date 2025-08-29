@@ -16,12 +16,15 @@ use JsonSerializable;
 
 final class UpdateTeamRequest implements JsonSerializable
 {
-    public readonly string $label;
-    public readonly string[] $project_permissions;
+    public readonly string|null $label;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $project_permissions;
 
     public function __construct(
-        string $label = null,
-        string[] $project_permissions = null,
+        string|null $label = null,
+        ?array $project_permissions = null
     ) {
         $this->label = $label;
         $this->project_permissions = $project_permissions;
@@ -31,7 +34,10 @@ final class UpdateTeamRequest implements JsonSerializable
     {
         return $this->label;
     }
-    public function getProjectPermissions(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getProjectPermissions(): ?array
     {
         return $this->project_permissions;
     }

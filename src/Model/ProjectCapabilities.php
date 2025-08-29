@@ -16,30 +16,33 @@ use JsonSerializable;
 
 final class ProjectCapabilities implements JsonSerializable
 {
-    public readonly \Upsun\Model\CustomDomains $custom_domains;
-    public readonly \Upsun\Model\SourceOperations $source_operations;
-    public readonly \Upsun\Model\RuntimeOperations $runtime_operations;
-    public readonly \Upsun\Model\OutboundFirewall $outbound_firewall;
+    public readonly \Upsun\Model\CustomDomains|null $custom_domains;
+    public readonly \Upsun\Model\SourceOperations|null $source_operations;
+    public readonly \Upsun\Model\RuntimeOperations|null $runtime_operations;
+    public readonly \Upsun\Model\OutboundFirewall|null $outbound_firewall;
     public readonly \Upsun\Model\Metrics $metrics;
     public readonly \Upsun\Model\LogsForwarding $logs_forwarding;
-    public readonly array<string,array<string,\Upsun\Model\ImagesValueValue>> $images;
+    /**
+     * @var array<string,\Upsun\Model\ImagesValueValue>[]|null
+     */
+    public readonly ?array $images;
     public readonly int $instance_limit;
     public readonly \Upsun\Model\BuildResources $build_resources;
     public readonly \Upsun\Model\DataRetention $data_retention;
-    public readonly \Upsun\Model\Integrations $integrations;
+    public readonly \Upsun\Model\Integrations|null $integrations;
 
     public function __construct(
-        \Upsun\Model\CustomDomains $custom_domains = null,
-        \Upsun\Model\SourceOperations $source_operations = null,
-        \Upsun\Model\RuntimeOperations $runtime_operations = null,
-        \Upsun\Model\OutboundFirewall $outbound_firewall = null,
-        \Upsun\Model\Metrics $metrics,
-        \Upsun\Model\LogsForwarding $logs_forwarding,
-        array<string,array<string,\Upsun\Model\ImagesValueValue>> $images,
-        int $instance_limit,
-        \Upsun\Model\BuildResources $build_resources,
-        \Upsun\Model\DataRetention $data_retention,
-        \Upsun\Model\Integrations $integrations = null,
+        \Upsun\Model\CustomDomains|null $custom_domains = null,
+        \Upsun\Model\SourceOperations|null $source_operations = null,
+        \Upsun\Model\RuntimeOperations|null $runtime_operations = null,
+        \Upsun\Model\OutboundFirewall|null $outbound_firewall = null,
+        \Upsun\Model\Metrics $metrics = null,
+        \Upsun\Model\LogsForwarding $logs_forwarding = null,
+        ?array $images = null,
+        int $instance_limit = null,
+        \Upsun\Model\BuildResources $build_resources = null,
+        \Upsun\Model\DataRetention $data_retention = null,
+        \Upsun\Model\Integrations|null $integrations = null
     ) {
         $this->custom_domains = $custom_domains;
         $this->source_operations = $source_operations;
@@ -78,7 +81,10 @@ final class ProjectCapabilities implements JsonSerializable
     {
         return $this->logs_forwarding;
     }
-    public function getImages(): array<string,array<string,\Upsun\Model\ImagesValueValue>>
+    /**
+     * @return array<string,\Upsun\Model\ImagesValueValue>[]|null
+     */
+    public function getImages(): ?array
     {
         return $this->images;
     }

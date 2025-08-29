@@ -16,15 +16,21 @@ use JsonSerializable;
 
 final class EnvironmentType implements JsonSerializable
 {
-    public readonly array<string,string> $attributes;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $attributes;
 
     public function __construct(
-        array<string,string> $attributes,
+        ?array $attributes = null
     ) {
         $this->attributes = $attributes;
     }
 
-    public function getAttributes(): array<string,string>
+    /**
+     * @return string[]|null
+     */
+    public function getAttributes(): ?array
     {
         return $this->attributes;
     }

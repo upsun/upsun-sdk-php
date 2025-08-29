@@ -19,7 +19,10 @@ final class Backup implements JsonSerializable
     public readonly \DateTime $created_at;
     public readonly \DateTime $updated_at;
     public readonly string $id;
-    public readonly array<string,string> $attributes;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $attributes;
     public readonly string $status;
     public readonly \DateTime $expires_at;
     public readonly int $index;
@@ -33,21 +36,21 @@ final class Backup implements JsonSerializable
     public readonly bool $automated;
 
     public function __construct(
-        \DateTime $created_at,
-        \DateTime $updated_at,
-        string $id,
-        array<string,string> $attributes,
-        string $status,
-        \DateTime $expires_at,
-        int $index,
-        string $commit_id,
-        string $environment,
-        bool $safe,
-        int $size_of_volumes,
-        int $size_used,
-        string $deployment,
-        bool $restorable,
-        bool $automated,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+        string $id = null,
+        ?array $attributes = null,
+        string $status = null,
+        \DateTime $expires_at = null,
+        int $index = null,
+        string $commit_id = null,
+        string $environment = null,
+        bool $safe = null,
+        int $size_of_volumes = null,
+        int $size_used = null,
+        string $deployment = null,
+        bool $restorable = null,
+        bool $automated = null
     ) {
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;
@@ -78,7 +81,10 @@ final class Backup implements JsonSerializable
     {
         return $this->id;
     }
-    public function getAttributes(): array<string,string>
+    /**
+     * @return string[]|null
+     */
+    public function getAttributes(): ?array
     {
         return $this->attributes;
     }

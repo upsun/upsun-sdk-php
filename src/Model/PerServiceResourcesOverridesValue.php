@@ -21,9 +21,9 @@ final class PerServiceResourcesOverridesValue implements JsonSerializable
     public readonly int $disk;
 
     public function __construct(
-        float $cpu,
-        int $memory,
-        int $disk,
+        float $cpu = null,
+        int $memory = null,
+        int $disk = null
     ) {
         $this->cpu = $cpu;
         $this->memory = $memory;

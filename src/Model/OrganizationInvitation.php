@@ -16,26 +16,29 @@ use JsonSerializable;
 
 final class OrganizationInvitation implements JsonSerializable
 {
-    public readonly string $id;
-    public readonly string $state;
-    public readonly string $organization_id;
-    public readonly string $email;
-    public readonly \Upsun\Model\OrganizationInvitationOwner $owner;
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
-    public readonly \DateTime $finished_at;
-    public readonly string[] $permissions;
+    public readonly string|null $id;
+    public readonly string|null $state;
+    public readonly string|null $organization_id;
+    public readonly string|null $email;
+    public readonly \Upsun\Model\OrganizationInvitationOwner|null $owner;
+    public readonly \DateTime|null $created_at;
+    public readonly \DateTime|null $updated_at;
+    public readonly \DateTime|null $finished_at;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $permissions;
 
     public function __construct(
-        string $id = null,
-        string $state = null,
-        string $organization_id = null,
-        string $email = null,
-        \Upsun\Model\OrganizationInvitationOwner $owner = null,
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
-        \DateTime $finished_at = null,
-        string[] $permissions = null,
+        string|null $id = null,
+        string|null $state = null,
+        string|null $organization_id = null,
+        string|null $email = null,
+        \Upsun\Model\OrganizationInvitationOwner|null $owner = null,
+        \DateTime|null $created_at = null,
+        \DateTime|null $updated_at = null,
+        \DateTime|null $finished_at = null,
+        ?array $permissions = null
     ) {
         $this->id = $id;
         $this->state = $state;
@@ -80,7 +83,10 @@ final class OrganizationInvitation implements JsonSerializable
     {
         return $this->finished_at;
     }
-    public function getPermissions(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getPermissions(): ?array
     {
         return $this->permissions;
     }

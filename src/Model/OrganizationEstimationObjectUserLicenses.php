@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class OrganizationEstimationObjectUserLicenses implements JsonSerializable
 {
-    public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBase $base;
-    public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement $user_management;
+    public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBase|null $base;
+    public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement|null $user_management;
 
     public function __construct(
-        \Upsun\Model\OrganizationEstimationObjectUserLicensesBase $base = null,
-        \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement $user_management = null,
+        \Upsun\Model\OrganizationEstimationObjectUserLicensesBase|null $base = null,
+        \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement|null $user_management = null
     ) {
         $this->base = $base;
         $this->user_management = $user_management;

@@ -16,18 +16,21 @@ use JsonSerializable;
 
 final class ResourcesOverridesValue implements JsonSerializable
 {
-    public readonly array<string,\Upsun\Model\PerServiceResourcesOverridesValue> $services;
+    /**
+     * @var \Upsun\Model\PerServiceResourcesOverridesValue[]|null
+     */
+    public readonly ?array $services;
     public readonly \DateTime $starts_at;
     public readonly \DateTime $ends_at;
     public readonly bool $redeployed_start;
     public readonly bool $redeployed_end;
 
     public function __construct(
-        array<string,\Upsun\Model\PerServiceResourcesOverridesValue> $services,
-        \DateTime $starts_at,
-        \DateTime $ends_at,
-        bool $redeployed_start,
-        bool $redeployed_end,
+        ?array $services = null,
+        \DateTime $starts_at = null,
+        \DateTime $ends_at = null,
+        bool $redeployed_start = null,
+        bool $redeployed_end = null
     ) {
         $this->services = $services;
         $this->starts_at = $starts_at;
@@ -36,7 +39,10 @@ final class ResourcesOverridesValue implements JsonSerializable
         $this->redeployed_end = $redeployed_end;
     }
 
-    public function getServices(): array<string,\Upsun\Model\PerServiceResourcesOverridesValue>
+    /**
+     * @return \Upsun\Model\PerServiceResourcesOverridesValue[]|null
+     */
+    public function getServices(): ?array
     {
         return $this->services;
     }

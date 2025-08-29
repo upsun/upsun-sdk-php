@@ -16,14 +16,17 @@ use JsonSerializable;
 
 final class ListTickets200Response implements JsonSerializable
 {
-    public readonly int $count;
-    public readonly \Upsun\Model\Ticket[] $tickets;
-    public readonly \Upsun\Model\HalLinks $_links;
+    public readonly int|null $count;
+    /**
+     * @var \Upsun\Model\Ticket[]|null
+     */
+    public readonly ?array $tickets;
+    public readonly \Upsun\Model\HalLinks|null $_links;
 
     public function __construct(
-        int $count = null,
-        \Upsun\Model\Ticket[] $tickets = null,
-        \Upsun\Model\HalLinks $_links = null,
+        int|null $count = null,
+        ?array $tickets = null,
+        \Upsun\Model\HalLinks|null $_links = null
     ) {
         $this->count = $count;
         $this->tickets = $tickets;
@@ -34,7 +37,10 @@ final class ListTickets200Response implements JsonSerializable
     {
         return $this->count;
     }
-    public function getTickets(): \Upsun\Model\Ticket[]|null
+    /**
+     * @return \Upsun\Model\Ticket[]|null
+     */
+    public function getTickets(): ?array
     {
         return $this->tickets;
     }

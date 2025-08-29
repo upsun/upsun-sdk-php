@@ -16,10 +16,10 @@ use JsonSerializable;
 
 final class VerifyPhoneNumber200Response implements JsonSerializable
 {
-    public readonly string $sid;
+    public readonly string|null $sid;
 
     public function __construct(
-        string $sid = null,
+        string|null $sid = null
     ) {
         $this->sid = $sid;
     }

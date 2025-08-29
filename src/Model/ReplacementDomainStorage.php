@@ -19,21 +19,24 @@ final class ReplacementDomainStorage implements JsonSerializable
     public readonly \DateTime $created_at;
     public readonly \DateTime $updated_at;
     public readonly string $type;
-    public readonly string $project;
+    public readonly string|null $project;
     public readonly string $name;
-    public readonly string $registered_name;
-    public readonly array<string,string> $attributes;
-    public readonly string $replacement_for;
+    public readonly string|null $registered_name;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $attributes;
+    public readonly string|null $replacement_for;
 
     public function __construct(
-        \DateTime $created_at,
-        \DateTime $updated_at,
-        string $type,
-        string $project = null,
-        string $name,
-        string $registered_name = null,
-        array<string,string> $attributes,
-        string $replacement_for = null,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+        string $type = null,
+        string|null $project = null,
+        string $name = null,
+        string|null $registered_name = null,
+        ?array $attributes = null,
+        string|null $replacement_for = null
     ) {
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;
@@ -69,7 +72,10 @@ final class ReplacementDomainStorage implements JsonSerializable
     {
         return $this->registered_name;
     }
-    public function getAttributes(): array<string,string>
+    /**
+     * @return string[]|null
+     */
+    public function getAttributes(): ?array
     {
         return $this->attributes;
     }

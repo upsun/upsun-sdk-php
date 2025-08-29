@@ -16,20 +16,20 @@ use JsonSerializable;
 
 final class TicketJiraInner implements JsonSerializable
 {
-    public readonly int $id;
-    public readonly int $ticket_id;
-    public readonly int $issue_id;
-    public readonly string $issue_key;
-    public readonly float $created_at;
-    public readonly float $updated_at;
+    public readonly int|null $id;
+    public readonly int|null $ticket_id;
+    public readonly int|null $issue_id;
+    public readonly string|null $issue_key;
+    public readonly float|null $created_at;
+    public readonly float|null $updated_at;
 
     public function __construct(
-        int $id = null,
-        int $ticket_id = null,
-        int $issue_id = null,
-        string $issue_key = null,
-        float $created_at = null,
-        float $updated_at = null,
+        int|null $id = null,
+        int|null $ticket_id = null,
+        int|null $issue_id = null,
+        string|null $issue_key = null,
+        float|null $created_at = null,
+        float|null $updated_at = null
     ) {
         $this->id = $id;
         $this->ticket_id = $ticket_id;

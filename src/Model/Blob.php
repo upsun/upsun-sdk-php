@@ -22,10 +22,10 @@ final class Blob implements JsonSerializable
     public readonly string $content;
 
     public function __construct(
-        string $sha,
-        int $size,
-        string $encoding,
-        string $content,
+        string $sha = null,
+        int $size = null,
+        string $encoding = null,
+        string $content = null
     ) {
         $this->sha = $sha;
         $this->size = $size;

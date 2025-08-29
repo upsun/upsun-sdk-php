@@ -17,17 +17,20 @@ use JsonSerializable;
 final class NewRelicIntegrationPatch implements JsonSerializable
 {
     public readonly string $type;
-    public readonly array<string,string> $extra;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $extra;
     public readonly string $url;
     public readonly string $license_key;
-    public readonly bool $tls_verify;
+    public readonly bool|null $tls_verify;
 
     public function __construct(
-        string $type,
-        array<string,string> $extra = null,
-        string $url,
-        string $license_key,
-        bool $tls_verify = null,
+        string $type = null,
+        ?array $extra = null,
+        string $url = null,
+        string $license_key = null,
+        bool|null $tls_verify = null
     ) {
         $this->type = $type;
         $this->extra = $extra;
@@ -40,7 +43,10 @@ final class NewRelicIntegrationPatch implements JsonSerializable
     {
         return $this->type;
     }
-    public function getExtra(): array<string,string>|null
+    /**
+     * @return string[]|null
+     */
+    public function getExtra(): ?array
     {
         return $this->extra;
     }

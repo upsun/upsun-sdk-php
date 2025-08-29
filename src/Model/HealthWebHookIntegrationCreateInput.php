@@ -17,13 +17,13 @@ use JsonSerializable;
 final class HealthWebHookIntegrationCreateInput implements JsonSerializable
 {
     public readonly string $type;
-    public readonly string $shared_key;
+    public readonly string|null $shared_key;
     public readonly string $url;
 
     public function __construct(
-        string $type,
-        string $shared_key = null,
-        string $url,
+        string $type = null,
+        string|null $shared_key = null,
+        string $url = null
     ) {
         $this->type = $type;
         $this->shared_key = $shared_key;

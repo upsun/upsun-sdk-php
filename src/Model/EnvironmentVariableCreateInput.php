@@ -17,25 +17,28 @@ use JsonSerializable;
 final class EnvironmentVariableCreateInput implements JsonSerializable
 {
     public readonly string $name;
-    public readonly array<string,string> $attributes;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $attributes;
     public readonly string $value;
-    public readonly bool $is_json;
-    public readonly bool $is_sensitive;
-    public readonly bool $visible_build;
-    public readonly bool $visible_runtime;
-    public readonly bool $is_enabled;
-    public readonly bool $is_inheritable;
+    public readonly bool|null $is_json;
+    public readonly bool|null $is_sensitive;
+    public readonly bool|null $visible_build;
+    public readonly bool|null $visible_runtime;
+    public readonly bool|null $is_enabled;
+    public readonly bool|null $is_inheritable;
 
     public function __construct(
-        string $name,
-        array<string,string> $attributes = null,
-        string $value,
-        bool $is_json = null,
-        bool $is_sensitive = null,
-        bool $visible_build = null,
-        bool $visible_runtime = null,
-        bool $is_enabled = null,
-        bool $is_inheritable = null,
+        string $name = null,
+        ?array $attributes = null,
+        string $value = null,
+        bool|null $is_json = null,
+        bool|null $is_sensitive = null,
+        bool|null $visible_build = null,
+        bool|null $visible_runtime = null,
+        bool|null $is_enabled = null,
+        bool|null $is_inheritable = null
     ) {
         $this->name = $name;
         $this->attributes = $attributes;
@@ -52,7 +55,10 @@ final class EnvironmentVariableCreateInput implements JsonSerializable
     {
         return $this->name;
     }
-    public function getAttributes(): array<string,string>|null
+    /**
+     * @return string[]|null
+     */
+    public function getAttributes(): ?array
     {
         return $this->attributes;
     }

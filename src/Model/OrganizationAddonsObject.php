@@ -16,14 +16,14 @@ use JsonSerializable;
 
 final class OrganizationAddonsObject implements JsonSerializable
 {
-    public readonly \Upsun\Model\OrganizationAddonsObjectAvailable $available;
-    public readonly \Upsun\Model\OrganizationAddonsObjectCurrent $current;
-    public readonly \Upsun\Model\OrganizationAddonsObjectUpgradesAvailable $upgrades_available;
+    public readonly \Upsun\Model\OrganizationAddonsObjectAvailable|null $available;
+    public readonly \Upsun\Model\OrganizationAddonsObjectCurrent|null $current;
+    public readonly \Upsun\Model\OrganizationAddonsObjectUpgradesAvailable|null $upgrades_available;
 
     public function __construct(
-        \Upsun\Model\OrganizationAddonsObjectAvailable $available = null,
-        \Upsun\Model\OrganizationAddonsObjectCurrent $current = null,
-        \Upsun\Model\OrganizationAddonsObjectUpgradesAvailable $upgrades_available = null,
+        \Upsun\Model\OrganizationAddonsObjectAvailable|null $available = null,
+        \Upsun\Model\OrganizationAddonsObjectCurrent|null $current = null,
+        \Upsun\Model\OrganizationAddonsObjectUpgradesAvailable|null $upgrades_available = null
     ) {
         $this->available = $available;
         $this->current = $current;

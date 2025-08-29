@@ -19,7 +19,7 @@ final class DataRetention implements JsonSerializable
     public readonly bool $enabled;
 
     public function __construct(
-        bool $enabled,
+        bool $enabled = null
     ) {
         $this->enabled = $enabled;
     }

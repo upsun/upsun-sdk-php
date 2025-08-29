@@ -18,28 +18,34 @@ final class CreateTicketRequest implements JsonSerializable
 {
     public readonly string $subject;
     public readonly string $description;
-    public readonly string $requester_id;
-    public readonly string $priority;
-    public readonly string $subscription_id;
-    public readonly string $organization_id;
-    public readonly string $affected_url;
-    public readonly string $followup_tid;
-    public readonly string $category;
-    public readonly \Upsun\Model\CreateTicketRequestAttachmentsInner[] $attachments;
-    public readonly string[] $collaborator_ids;
+    public readonly string|null $requester_id;
+    public readonly string|null $priority;
+    public readonly string|null $subscription_id;
+    public readonly string|null $organization_id;
+    public readonly string|null $affected_url;
+    public readonly string|null $followup_tid;
+    public readonly string|null $category;
+    /**
+     * @var \Upsun\Model\CreateTicketRequestAttachmentsInner[]|null
+     */
+    public readonly ?array $attachments;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $collaborator_ids;
 
     public function __construct(
-        string $subject,
-        string $description,
-        string $requester_id = null,
-        string $priority = null,
-        string $subscription_id = null,
-        string $organization_id = null,
-        string $affected_url = null,
-        string $followup_tid = null,
-        string $category = null,
-        \Upsun\Model\CreateTicketRequestAttachmentsInner[] $attachments = null,
-        string[] $collaborator_ids = null,
+        string $subject = null,
+        string $description = null,
+        string|null $requester_id = null,
+        string|null $priority = null,
+        string|null $subscription_id = null,
+        string|null $organization_id = null,
+        string|null $affected_url = null,
+        string|null $followup_tid = null,
+        string|null $category = null,
+        ?array $attachments = null,
+        ?array $collaborator_ids = null
     ) {
         $this->subject = $subject;
         $this->description = $description;
@@ -90,11 +96,17 @@ final class CreateTicketRequest implements JsonSerializable
     {
         return $this->category;
     }
-    public function getAttachments(): \Upsun\Model\CreateTicketRequestAttachmentsInner[]|null
+    /**
+     * @return \Upsun\Model\CreateTicketRequestAttachmentsInner[]|null
+     */
+    public function getAttachments(): ?array
     {
         return $this->attachments;
     }
-    public function getCollaboratorIds(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getCollaboratorIds(): ?array
     {
         return $this->collaborator_ids;
     }

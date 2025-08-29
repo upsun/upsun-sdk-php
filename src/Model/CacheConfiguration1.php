@@ -17,15 +17,21 @@ use JsonSerializable;
 final class CacheConfiguration1 implements JsonSerializable
 {
     public readonly bool $enabled;
-    public readonly int $default_ttl;
-    public readonly string[] $cookies;
-    public readonly string[] $headers;
+    public readonly int|null $default_ttl;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $cookies;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $headers;
 
     public function __construct(
-        bool $enabled,
-        int $default_ttl = null,
-        string[] $cookies = null,
-        string[] $headers = null,
+        bool $enabled = null,
+        int|null $default_ttl = null,
+        ?array $cookies = null,
+        ?array $headers = null
     ) {
         $this->enabled = $enabled;
         $this->default_ttl = $default_ttl;
@@ -41,11 +47,17 @@ final class CacheConfiguration1 implements JsonSerializable
     {
         return $this->default_ttl;
     }
-    public function getCookies(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getCookies(): ?array
     {
         return $this->cookies;
     }
-    public function getHeaders(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getHeaders(): ?array
     {
         return $this->headers;
     }

@@ -24,12 +24,12 @@ final class ThePathsToRedirectValue implements JsonSerializable
     public readonly string $expires;
 
     public function __construct(
-        bool $regexp,
-        string $to,
-        bool $prefix,
-        bool $append_suffix,
-        int $code,
-        string $expires,
+        bool $regexp = null,
+        string $to = null,
+        bool $prefix = null,
+        bool $append_suffix = null,
+        int $code = null,
+        string $expires = null
     ) {
         $this->regexp = $regexp;
         $this->to = $to;

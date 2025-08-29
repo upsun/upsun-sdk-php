@@ -17,11 +17,14 @@ use JsonSerializable;
 final class GrantUserProjectAccessRequestInner implements JsonSerializable
 {
     public readonly string $project_id;
-    public readonly string[] $permissions;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $permissions;
 
     public function __construct(
-        string $project_id,
-        string[] $permissions,
+        string $project_id = null,
+        ?array $permissions = null
     ) {
         $this->project_id = $project_id;
         $this->permissions = $permissions;
@@ -31,7 +34,10 @@ final class GrantUserProjectAccessRequestInner implements JsonSerializable
     {
         return $this->project_id;
     }
-    public function getPermissions(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getPermissions(): ?array
     {
         return $this->permissions;
     }

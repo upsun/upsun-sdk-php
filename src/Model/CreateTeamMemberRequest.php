@@ -19,7 +19,7 @@ final class CreateTeamMemberRequest implements JsonSerializable
     public readonly string $user_id;
 
     public function __construct(
-        string $user_id,
+        string $user_id = null
     ) {
         $this->user_id = $user_id;
     }

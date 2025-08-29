@@ -17,11 +17,14 @@ use JsonSerializable;
 final class ConfigurationForPreFlightChecks implements JsonSerializable
 {
     public readonly bool $enabled;
-    public readonly string[] $ignored_rules;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $ignored_rules;
 
     public function __construct(
-        bool $enabled,
-        string[] $ignored_rules,
+        bool $enabled = null,
+        ?array $ignored_rules = null
     ) {
         $this->enabled = $enabled;
         $this->ignored_rules = $ignored_rules;
@@ -31,7 +34,10 @@ final class ConfigurationForPreFlightChecks implements JsonSerializable
     {
         return $this->enabled;
     }
-    public function getIgnoredRules(): string[]
+    /**
+     * @return string[]|null
+     */
+    public function getIgnoredRules(): ?array
     {
         return $this->ignored_rules;
     }

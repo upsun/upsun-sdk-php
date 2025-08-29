@@ -16,15 +16,21 @@ use JsonSerializable;
 
 final class ListOrgInvoices200Response implements JsonSerializable
 {
-    public readonly \Upsun\Model\Invoice[] $items;
+    /**
+     * @var \Upsun\Model\Invoice[]|null
+     */
+    public readonly ?array $items;
 
     public function __construct(
-        \Upsun\Model\Invoice[] $items = null,
+        ?array $items = null
     ) {
         $this->items = $items;
     }
 
-    public function getItems(): \Upsun\Model\Invoice[]|null
+    /**
+     * @return \Upsun\Model\Invoice[]|null
+     */
+    public function getItems(): ?array
     {
         return $this->items;
     }

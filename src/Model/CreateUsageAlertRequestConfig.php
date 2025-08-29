@@ -16,10 +16,10 @@ use JsonSerializable;
 
 final class CreateUsageAlertRequestConfig implements JsonSerializable
 {
-    public readonly int $threshold;
+    public readonly int|null $threshold;
 
     public function __construct(
-        int $threshold = null,
+        int|null $threshold = null
     ) {
         $this->threshold = $threshold;
     }

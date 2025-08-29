@@ -21,9 +21,9 @@ final class SlackIntegrationCreateInput implements JsonSerializable
     public readonly string $channel;
 
     public function __construct(
-        string $type,
-        string $token,
-        string $channel,
+        string $type = null,
+        string $token = null,
+        string $channel = null
     ) {
         $this->type = $type;
         $this->token = $token;

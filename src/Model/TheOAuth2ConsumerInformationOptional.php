@@ -19,7 +19,7 @@ final class TheOAuth2ConsumerInformationOptional implements JsonSerializable
     public readonly string $key;
 
     public function __construct(
-        string $key,
+        string $key = null
     ) {
         $this->key = $key;
     }

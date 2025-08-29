@@ -16,10 +16,10 @@ use JsonSerializable;
 
 final class OrganizationMFAEnforcement implements JsonSerializable
 {
-    public readonly bool $enforce_mfa;
+    public readonly bool|null $enforce_mfa;
 
     public function __construct(
-        bool $enforce_mfa = null,
+        bool|null $enforce_mfa = null
     ) {
         $this->enforce_mfa = $enforce_mfa;
     }

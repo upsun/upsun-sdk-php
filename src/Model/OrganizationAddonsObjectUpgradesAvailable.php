@@ -16,22 +16,34 @@ use JsonSerializable;
 
 final class OrganizationAddonsObjectUpgradesAvailable implements JsonSerializable
 {
-    public readonly string[] $user_management;
-    public readonly string[] $support_level;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $user_management;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $support_level;
 
     public function __construct(
-        string[] $user_management = null,
-        string[] $support_level = null,
+        ?array $user_management = null,
+        ?array $support_level = null
     ) {
         $this->user_management = $user_management;
         $this->support_level = $support_level;
     }
 
-    public function getUserManagement(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getUserManagement(): ?array
     {
         return $this->user_management;
     }
-    public function getSupportLevel(): string[]|null
+    /**
+     * @return string[]|null
+     */
+    public function getSupportLevel(): ?array
     {
         return $this->support_level;
     }

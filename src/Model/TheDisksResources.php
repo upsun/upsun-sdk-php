@@ -21,9 +21,9 @@ final class TheDisksResources implements JsonSerializable
     public readonly int $storage;
 
     public function __construct(
-        int $temporary,
-        int $instance,
-        int $storage,
+        int $temporary = null,
+        int $instance = null,
+        int $storage = null
     ) {
         $this->temporary = $temporary;
         $this->instance = $instance;

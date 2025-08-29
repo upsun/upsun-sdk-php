@@ -22,10 +22,10 @@ final class SlackIntegration implements JsonSerializable
     public readonly string $channel;
 
     public function __construct(
-        \DateTime $created_at,
-        \DateTime $updated_at,
-        string $type,
-        string $channel,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+        string $type = null,
+        string $channel = null
     ) {
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;

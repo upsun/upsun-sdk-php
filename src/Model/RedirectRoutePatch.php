@@ -16,24 +16,27 @@ use JsonSerializable;
 
 final class RedirectRoutePatch implements JsonSerializable
 {
-    public readonly bool $primary;
-    public readonly string $id;
-    public readonly string $production_url;
-    public readonly array<string,string> $attributes;
+    public readonly bool|null $primary;
+    public readonly string|null $id;
+    public readonly string|null $production_url;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $attributes;
     public readonly string $type;
-    public readonly \Upsun\Model\TLSSettingsForTheRoute1 $tls;
+    public readonly \Upsun\Model\TLSSettingsForTheRoute1|null $tls;
     public readonly string $to;
-    public readonly \Upsun\Model\TheConfigurationOfTheRedirects1 $redirects;
+    public readonly \Upsun\Model\TheConfigurationOfTheRedirects1|null $redirects;
 
     public function __construct(
-        bool $primary = null,
-        string $id = null,
-        string $production_url = null,
-        array<string,string> $attributes = null,
-        string $type,
-        \Upsun\Model\TLSSettingsForTheRoute1 $tls = null,
-        string $to,
-        \Upsun\Model\TheConfigurationOfTheRedirects1 $redirects = null,
+        bool|null $primary = null,
+        string|null $id = null,
+        string|null $production_url = null,
+        ?array $attributes = null,
+        string $type = null,
+        \Upsun\Model\TLSSettingsForTheRoute1|null $tls = null,
+        string $to = null,
+        \Upsun\Model\TheConfigurationOfTheRedirects1|null $redirects = null
     ) {
         $this->primary = $primary;
         $this->id = $id;
@@ -57,7 +60,10 @@ final class RedirectRoutePatch implements JsonSerializable
     {
         return $this->production_url;
     }
-    public function getAttributes(): array<string,string>|null
+    /**
+     * @return string[]|null
+     */
+    public function getAttributes(): ?array
     {
         return $this->attributes;
     }

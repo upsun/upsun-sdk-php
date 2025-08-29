@@ -20,8 +20,8 @@ final class ConfirmTotpEnrollmentRequest implements JsonSerializable
     public readonly string $passcode;
 
     public function __construct(
-        string $secret,
-        string $passcode,
+        string $secret = null,
+        string $passcode = null
     ) {
         $this->secret = $secret;
         $this->passcode = $passcode;

@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements JsonSerializable
 {
-    public readonly string $return_url;
-    public readonly string $url;
+    public readonly string|null $return_url;
+    public readonly string|null $url;
 
     public function __construct(
-        string $return_url = null,
-        string $url = null,
+        string|null $return_url = null,
+        string|null $url = null
     ) {
         $this->return_url = $return_url;
         $this->url = $url;

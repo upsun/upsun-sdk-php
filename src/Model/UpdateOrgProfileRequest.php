@@ -16,20 +16,20 @@ use JsonSerializable;
 
 final class UpdateOrgProfileRequest implements JsonSerializable
 {
-    public readonly string $default_catalog;
-    public readonly string $project_options_url;
-    public readonly string $security_contact;
-    public readonly string $company_name;
-    public readonly string $vat_number;
-    public readonly string $billing_contact;
+    public readonly string|null $default_catalog;
+    public readonly string|null $project_options_url;
+    public readonly string|null $security_contact;
+    public readonly string|null $company_name;
+    public readonly string|null $vat_number;
+    public readonly string|null $billing_contact;
 
     public function __construct(
-        string $default_catalog = null,
-        string $project_options_url = null,
-        string $security_contact = null,
-        string $company_name = null,
-        string $vat_number = null,
-        string $billing_contact = null,
+        string|null $default_catalog = null,
+        string|null $project_options_url = null,
+        string|null $security_contact = null,
+        string|null $company_name = null,
+        string|null $vat_number = null,
+        string|null $billing_contact = null
     ) {
         $this->default_catalog = $default_catalog;
         $this->project_options_url = $project_options_url;

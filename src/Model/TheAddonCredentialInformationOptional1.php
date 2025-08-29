@@ -21,9 +21,9 @@ final class TheAddonCredentialInformationOptional1 implements JsonSerializable
     public readonly string $shared_secret;
 
     public function __construct(
-        string $addon_key,
-        string $client_key,
-        string $shared_secret,
+        string $addon_key = null,
+        string $client_key = null,
+        string $shared_secret = null
     ) {
         $this->addon_key = $addon_key;
         $this->client_key = $client_key;

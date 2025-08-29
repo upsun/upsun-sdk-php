@@ -16,14 +16,17 @@ use JsonSerializable;
 
 final class ListOrgMembers200Response implements JsonSerializable
 {
-    public readonly int $count;
-    public readonly \Upsun\Model\OrganizationMember[] $items;
-    public readonly \Upsun\Model\ListLinks $_links;
+    public readonly int|null $count;
+    /**
+     * @var \Upsun\Model\OrganizationMember[]|null
+     */
+    public readonly ?array $items;
+    public readonly \Upsun\Model\ListLinks|null $_links;
 
     public function __construct(
-        int $count = null,
-        \Upsun\Model\OrganizationMember[] $items = null,
-        \Upsun\Model\ListLinks $_links = null,
+        int|null $count = null,
+        ?array $items = null,
+        \Upsun\Model\ListLinks|null $_links = null
     ) {
         $this->count = $count;
         $this->items = $items;
@@ -34,7 +37,10 @@ final class ListOrgMembers200Response implements JsonSerializable
     {
         return $this->count;
     }
-    public function getItems(): \Upsun\Model\OrganizationMember[]|null
+    /**
+     * @return \Upsun\Model\OrganizationMember[]|null
+     */
+    public function getItems(): ?array
     {
         return $this->items;
     }

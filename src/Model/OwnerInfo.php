@@ -16,14 +16,14 @@ use JsonSerializable;
 
 final class OwnerInfo implements JsonSerializable
 {
-    public readonly string $type;
-    public readonly string $username;
-    public readonly string $display_name;
+    public readonly string|null $type;
+    public readonly string|null $username;
+    public readonly string|null $display_name;
 
     public function __construct(
-        string $type = null,
-        string $username = null,
-        string $display_name = null,
+        string|null $type = null,
+        string|null $username = null,
+        string|null $display_name = null
     ) {
         $this->type = $type;
         $this->username = $username;

@@ -16,30 +16,30 @@ use JsonSerializable;
 
 final class GetAddress200Response implements JsonSerializable
 {
-    public readonly string $country;
-    public readonly string $name_line;
-    public readonly string $premise;
-    public readonly string $sub_premise;
-    public readonly string $thoroughfare;
-    public readonly string $administrative_area;
-    public readonly string $sub_administrative_area;
-    public readonly string $locality;
-    public readonly string $dependent_locality;
-    public readonly string $postal_code;
-    public readonly \Upsun\Model\AddressMetadataMetadata $metadata;
+    public readonly string|null $country;
+    public readonly string|null $name_line;
+    public readonly string|null $premise;
+    public readonly string|null $sub_premise;
+    public readonly string|null $thoroughfare;
+    public readonly string|null $administrative_area;
+    public readonly string|null $sub_administrative_area;
+    public readonly string|null $locality;
+    public readonly string|null $dependent_locality;
+    public readonly string|null $postal_code;
+    public readonly \Upsun\Model\AddressMetadataMetadata|null $metadata;
 
     public function __construct(
-        string $country = null,
-        string $name_line = null,
-        string $premise = null,
-        string $sub_premise = null,
-        string $thoroughfare = null,
-        string $administrative_area = null,
-        string $sub_administrative_area = null,
-        string $locality = null,
-        string $dependent_locality = null,
-        string $postal_code = null,
-        \Upsun\Model\AddressMetadataMetadata $metadata = null,
+        string|null $country = null,
+        string|null $name_line = null,
+        string|null $premise = null,
+        string|null $sub_premise = null,
+        string|null $thoroughfare = null,
+        string|null $administrative_area = null,
+        string|null $sub_administrative_area = null,
+        string|null $locality = null,
+        string|null $dependent_locality = null,
+        string|null $postal_code = null,
+        \Upsun\Model\AddressMetadataMetadata|null $metadata = null
     ) {
         $this->country = $country;
         $this->name_line = $name_line;

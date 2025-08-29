@@ -16,18 +16,21 @@ use JsonSerializable;
 
 final class SpecificOverridesValue implements JsonSerializable
 {
-    public readonly string $expires;
-    public readonly string $passthru;
-    public readonly bool $scripts;
-    public readonly bool $allow;
-    public readonly array<string,string> $headers;
+    public readonly string|null $expires;
+    public readonly string|null $passthru;
+    public readonly bool|null $scripts;
+    public readonly bool|null $allow;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $headers;
 
     public function __construct(
-        string $expires = null,
-        string $passthru = null,
-        bool $scripts = null,
-        bool $allow = null,
-        array<string,string> $headers = null,
+        string|null $expires = null,
+        string|null $passthru = null,
+        bool|null $scripts = null,
+        bool|null $allow = null,
+        ?array $headers = null
     ) {
         $this->expires = $expires;
         $this->passthru = $passthru;
@@ -52,7 +55,10 @@ final class SpecificOverridesValue implements JsonSerializable
     {
         return $this->allow;
     }
-    public function getHeaders(): array<string,string>|null
+    /**
+     * @return string[]|null
+     */
+    public function getHeaders(): ?array
     {
         return $this->headers;
     }

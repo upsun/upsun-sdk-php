@@ -16,14 +16,14 @@ use JsonSerializable;
 
 final class StrictTransportSecurityOptions1 implements JsonSerializable
 {
-    public readonly bool $enabled;
-    public readonly bool $include_subdomains;
-    public readonly bool $preload;
+    public readonly bool|null $enabled;
+    public readonly bool|null $include_subdomains;
+    public readonly bool|null $preload;
 
     public function __construct(
-        bool $enabled = null,
-        bool $include_subdomains = null,
-        bool $preload = null,
+        bool|null $enabled = null,
+        bool|null $include_subdomains = null,
+        bool|null $preload = null
     ) {
         $this->enabled = $enabled;
         $this->include_subdomains = $include_subdomains;

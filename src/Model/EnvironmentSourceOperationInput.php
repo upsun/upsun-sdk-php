@@ -17,11 +17,14 @@ use JsonSerializable;
 final class EnvironmentSourceOperationInput implements JsonSerializable
 {
     public readonly string $operation;
-    public readonly array<string,array<string,mixed>> $variables;
+    /**
+     * @var array<string,mixed>[]|null
+     */
+    public readonly ?array $variables;
 
     public function __construct(
-        string $operation,
-        array<string,array<string,mixed>> $variables,
+        string $operation = null,
+        ?array $variables = null
     ) {
         $this->operation = $operation;
         $this->variables = $variables;
@@ -31,7 +34,10 @@ final class EnvironmentSourceOperationInput implements JsonSerializable
     {
         return $this->operation;
     }
-    public function getVariables(): array<string,array<string,mixed>>
+    /**
+     * @return array<string,mixed>[]|null
+     */
+    public function getVariables(): ?array
     {
         return $this->variables;
     }

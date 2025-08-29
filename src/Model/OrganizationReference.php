@@ -16,22 +16,22 @@ use JsonSerializable;
 
 final class OrganizationReference implements JsonSerializable
 {
-    public readonly string $id;
-    public readonly string $owner_id;
-    public readonly string $name;
-    public readonly string $label;
-    public readonly string $vendor;
-    public readonly \DateTime $created_at;
-    public readonly \DateTime $updated_at;
+    public readonly string|null $id;
+    public readonly string|null $owner_id;
+    public readonly string|null $name;
+    public readonly string|null $label;
+    public readonly string|null $vendor;
+    public readonly \DateTime|null $created_at;
+    public readonly \DateTime|null $updated_at;
 
     public function __construct(
-        string $id = null,
-        string $owner_id = null,
-        string $name = null,
-        string $label = null,
-        string $vendor = null,
-        \DateTime $created_at = null,
-        \DateTime $updated_at = null,
+        string|null $id = null,
+        string|null $owner_id = null,
+        string|null $name = null,
+        string|null $label = null,
+        string|null $vendor = null,
+        \DateTime|null $created_at = null,
+        \DateTime|null $updated_at = null
     ) {
         $this->id = $id;
         $this->owner_id = $owner_id;

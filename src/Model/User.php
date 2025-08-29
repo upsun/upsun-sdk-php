@@ -30,26 +30,26 @@ final class User implements JsonSerializable
     public readonly string $country;
     public readonly \DateTime $created_at;
     public readonly \DateTime $updated_at;
-    public readonly \DateTime $consented_at;
-    public readonly string $consent_method;
+    public readonly \DateTime|null $consented_at;
+    public readonly string|null $consent_method;
 
     public function __construct(
-        string $id,
-        bool $deactivated,
-        string $namespace,
-        string $username,
-        string $email,
-        bool $email_verified,
-        string $first_name,
-        string $last_name,
-        string $picture,
-        string $company,
-        string $website,
-        string $country,
-        \DateTime $created_at,
-        \DateTime $updated_at,
-        \DateTime $consented_at = null,
-        string $consent_method = null,
+        string $id = null,
+        bool $deactivated = null,
+        string $namespace = null,
+        string $username = null,
+        string $email = null,
+        bool $email_verified = null,
+        string $first_name = null,
+        string $last_name = null,
+        string $picture = null,
+        string $company = null,
+        string $website = null,
+        string $country = null,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+        \DateTime|null $consented_at = null,
+        string|null $consent_method = null
     ) {
         $this->id = $id;
         $this->deactivated = $deactivated;

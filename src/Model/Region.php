@@ -16,32 +16,32 @@ use JsonSerializable;
 
 final class Region implements JsonSerializable
 {
-    public readonly string $id;
-    public readonly string $label;
-    public readonly string $zone;
-    public readonly string $selection_label;
-    public readonly string $project_label;
-    public readonly string $timezone;
-    public readonly bool $available;
-    public readonly bool $private;
-    public readonly string $endpoint;
-    public readonly \Upsun\Model\RegionProvider $provider;
-    public readonly \Upsun\Model\RegionDatacenter $datacenter;
-    public readonly \Upsun\Model\RegionEnvironmentalImpact $environmental_impact;
+    public readonly string|null $id;
+    public readonly string|null $label;
+    public readonly string|null $zone;
+    public readonly string|null $selection_label;
+    public readonly string|null $project_label;
+    public readonly string|null $timezone;
+    public readonly bool|null $available;
+    public readonly bool|null $private;
+    public readonly string|null $endpoint;
+    public readonly \Upsun\Model\RegionProvider|null $provider;
+    public readonly \Upsun\Model\RegionDatacenter|null $datacenter;
+    public readonly \Upsun\Model\RegionEnvironmentalImpact|null $environmental_impact;
 
     public function __construct(
-        string $id = null,
-        string $label = null,
-        string $zone = null,
-        string $selection_label = null,
-        string $project_label = null,
-        string $timezone = null,
-        bool $available = null,
-        bool $private = null,
-        string $endpoint = null,
-        \Upsun\Model\RegionProvider $provider = null,
-        \Upsun\Model\RegionDatacenter $datacenter = null,
-        \Upsun\Model\RegionEnvironmentalImpact $environmental_impact = null,
+        string|null $id = null,
+        string|null $label = null,
+        string|null $zone = null,
+        string|null $selection_label = null,
+        string|null $project_label = null,
+        string|null $timezone = null,
+        bool|null $available = null,
+        bool|null $private = null,
+        string|null $endpoint = null,
+        \Upsun\Model\RegionProvider|null $provider = null,
+        \Upsun\Model\RegionDatacenter|null $datacenter = null,
+        \Upsun\Model\RegionEnvironmentalImpact|null $environmental_impact = null
     ) {
         $this->id = $id;
         $this->label = $label;

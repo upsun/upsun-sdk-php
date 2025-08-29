@@ -20,8 +20,8 @@ final class CustomDomains implements JsonSerializable
     public readonly int $environments_with_domains_limit;
 
     public function __construct(
-        bool $enabled,
-        int $environments_with_domains_limit,
+        bool $enabled = null,
+        int $environments_with_domains_limit = null
     ) {
         $this->enabled = $enabled;
         $this->environments_with_domains_limit = $environments_with_domains_limit;

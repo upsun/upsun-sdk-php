@@ -16,18 +16,18 @@ use JsonSerializable;
 
 final class PrepaymentObjectPrepayment implements JsonSerializable
 {
-    public readonly string $organization_id;
-    public readonly \Upsun\Model\PrepaymentObjectPrepaymentBalance $balance;
-    public readonly string $last_updated_at;
-    public readonly bool $sufficient;
-    public readonly string $fallback;
+    public readonly string|null $organization_id;
+    public readonly \Upsun\Model\PrepaymentObjectPrepaymentBalance|null $balance;
+    public readonly string|null $last_updated_at;
+    public readonly bool|null $sufficient;
+    public readonly string|null $fallback;
 
     public function __construct(
-        string $organization_id = null,
-        \Upsun\Model\PrepaymentObjectPrepaymentBalance $balance = null,
-        string $last_updated_at = null,
-        bool $sufficient = null,
-        string $fallback = null,
+        string|null $organization_id = null,
+        \Upsun\Model\PrepaymentObjectPrepaymentBalance|null $balance = null,
+        string|null $last_updated_at = null,
+        bool|null $sufficient = null,
+        string|null $fallback = null
     ) {
         $this->organization_id = $organization_id;
         $this->balance = $balance;

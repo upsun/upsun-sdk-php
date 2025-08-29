@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class GetCurrentUserVerificationStatusFull200Response implements JsonSerializable
 {
-    public readonly bool $state;
-    public readonly string $type;
+    public readonly bool|null $state;
+    public readonly string|null $type;
 
     public function __construct(
-        bool $state = null,
-        string $type = null,
+        bool|null $state = null,
+        string|null $type = null
     ) {
         $this->state = $state;
         $this->type = $type;

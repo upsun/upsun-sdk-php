@@ -16,22 +16,22 @@ use JsonSerializable;
 
 final class PrepaymentTransactionObject implements JsonSerializable
 {
-    public readonly string $order_id;
-    public readonly string $message;
-    public readonly string $status;
-    public readonly \Upsun\Model\PrepaymentObjectPrepaymentBalance $amount;
-    public readonly string $created;
-    public readonly string $updated;
-    public readonly string $expire_date;
+    public readonly string|null $order_id;
+    public readonly string|null $message;
+    public readonly string|null $status;
+    public readonly \Upsun\Model\PrepaymentObjectPrepaymentBalance|null $amount;
+    public readonly string|null $created;
+    public readonly string|null $updated;
+    public readonly string|null $expire_date;
 
     public function __construct(
-        string $order_id = null,
-        string $message = null,
-        string $status = null,
-        \Upsun\Model\PrepaymentObjectPrepaymentBalance $amount = null,
-        string $created = null,
-        string $updated = null,
-        string $expire_date = null,
+        string|null $order_id = null,
+        string|null $message = null,
+        string|null $status = null,
+        \Upsun\Model\PrepaymentObjectPrepaymentBalance|null $amount = null,
+        string|null $created = null,
+        string|null $updated = null,
+        string|null $expire_date = null
     ) {
         $this->order_id = $order_id;
         $this->message = $message;

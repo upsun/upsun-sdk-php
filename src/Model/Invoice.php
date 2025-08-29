@@ -16,40 +16,40 @@ use JsonSerializable;
 
 final class Invoice implements JsonSerializable
 {
-    public readonly string $id;
-    public readonly string $invoice_number;
-    public readonly string $type;
-    public readonly string $order_id;
-    public readonly string $related_invoice_id;
-    public readonly string $status;
-    public readonly string $owner;
-    public readonly \DateTime $invoice_date;
-    public readonly \DateTime $invoice_due;
-    public readonly \DateTime $created;
-    public readonly \DateTime $changed;
-    public readonly string $company;
-    public readonly float $total;
-    public readonly \Upsun\Model\Address $address;
-    public readonly string $notes;
-    public readonly \Upsun\Model\InvoicePDF $invoice_pdf;
+    public readonly string|null $id;
+    public readonly string|null $invoice_number;
+    public readonly string|null $type;
+    public readonly string|null $order_id;
+    public readonly string|null $related_invoice_id;
+    public readonly string|null $status;
+    public readonly string|null $owner;
+    public readonly \DateTime|null $invoice_date;
+    public readonly \DateTime|null $invoice_due;
+    public readonly \DateTime|null $created;
+    public readonly \DateTime|null $changed;
+    public readonly string|null $company;
+    public readonly float|null $total;
+    public readonly \Upsun\Model\Address|null $address;
+    public readonly string|null $notes;
+    public readonly \Upsun\Model\InvoicePDF|null $invoice_pdf;
 
     public function __construct(
-        string $id = null,
-        string $invoice_number = null,
-        string $type = null,
-        string $order_id = null,
-        string $related_invoice_id = null,
-        string $status = null,
-        string $owner = null,
-        \DateTime $invoice_date = null,
-        \DateTime $invoice_due = null,
-        \DateTime $created = null,
-        \DateTime $changed = null,
-        string $company = null,
-        float $total = null,
-        \Upsun\Model\Address $address = null,
-        string $notes = null,
-        \Upsun\Model\InvoicePDF $invoice_pdf = null,
+        string|null $id = null,
+        string|null $invoice_number = null,
+        string|null $type = null,
+        string|null $order_id = null,
+        string|null $related_invoice_id = null,
+        string|null $status = null,
+        string|null $owner = null,
+        \DateTime|null $invoice_date = null,
+        \DateTime|null $invoice_due = null,
+        \DateTime|null $created = null,
+        \DateTime|null $changed = null,
+        string|null $company = null,
+        float|null $total = null,
+        \Upsun\Model\Address|null $address = null,
+        string|null $notes = null,
+        \Upsun\Model\InvoicePDF|null $invoice_pdf = null
     ) {
         $this->id = $id;
         $this->invoice_number = $invoice_number;

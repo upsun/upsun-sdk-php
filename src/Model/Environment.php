@@ -21,7 +21,10 @@ final class Environment implements JsonSerializable
     public readonly string $name;
     public readonly string $machine_name;
     public readonly string $title;
-    public readonly array<string,string> $attributes;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $attributes;
     public readonly string $type;
     public readonly string $parent;
     public readonly string $default_domain;
@@ -36,7 +39,10 @@ final class Environment implements JsonSerializable
     public readonly bool $restrict_robots;
     public readonly string $edge_hostname;
     public readonly \Upsun\Model\TheEnvironmentDeploymentState $deployment_state;
-    public readonly array<string,\Upsun\Model\ResourcesOverridesValue> $resources_overrides;
+    /**
+     * @var \Upsun\Model\ResourcesOverridesValue[]|null
+     */
+    public readonly ?array $resources_overrides;
     public readonly int $max_instance_count;
     public readonly \DateTime $last_active_at;
     public readonly \DateTime $last_backup_at;
@@ -50,38 +56,38 @@ final class Environment implements JsonSerializable
     public readonly bool $supports_restrict_robots;
 
     public function __construct(
-        \DateTime $created_at,
-        \DateTime $updated_at,
-        string $name,
-        string $machine_name,
-        string $title,
-        array<string,string> $attributes,
-        string $type,
-        string $parent,
-        string $default_domain,
-        bool $has_domains,
-        bool $clone_parent_on_create,
-        string $deployment_target,
-        bool $is_pr,
-        bool $has_remote,
-        string $status,
-        \Upsun\Model\HttpAccessPermissions $http_access,
-        bool $enable_smtp,
-        bool $restrict_robots,
-        string $edge_hostname,
-        \Upsun\Model\TheEnvironmentDeploymentState $deployment_state,
-        array<string,\Upsun\Model\ResourcesOverridesValue> $resources_overrides,
-        int $max_instance_count,
-        \DateTime $last_active_at,
-        \DateTime $last_backup_at,
-        string $project,
-        bool $is_main,
-        bool $is_dirty,
-        bool $has_code,
-        string $head_commit,
-        \Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments $merge_info,
-        bool $has_deployment,
-        bool $supports_restrict_robots,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+        string $name = null,
+        string $machine_name = null,
+        string $title = null,
+        ?array $attributes = null,
+        string $type = null,
+        string $parent = null,
+        string $default_domain = null,
+        bool $has_domains = null,
+        bool $clone_parent_on_create = null,
+        string $deployment_target = null,
+        bool $is_pr = null,
+        bool $has_remote = null,
+        string $status = null,
+        \Upsun\Model\HttpAccessPermissions $http_access = null,
+        bool $enable_smtp = null,
+        bool $restrict_robots = null,
+        string $edge_hostname = null,
+        \Upsun\Model\TheEnvironmentDeploymentState $deployment_state = null,
+        ?array $resources_overrides = null,
+        int $max_instance_count = null,
+        \DateTime $last_active_at = null,
+        \DateTime $last_backup_at = null,
+        string $project = null,
+        bool $is_main = null,
+        bool $is_dirty = null,
+        bool $has_code = null,
+        string $head_commit = null,
+        \Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments $merge_info = null,
+        bool $has_deployment = null,
+        bool $supports_restrict_robots = null
     ) {
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;
@@ -137,7 +143,10 @@ final class Environment implements JsonSerializable
     {
         return $this->title;
     }
-    public function getAttributes(): array<string,string>
+    /**
+     * @return string[]|null
+     */
+    public function getAttributes(): ?array
     {
         return $this->attributes;
     }
@@ -197,7 +206,10 @@ final class Environment implements JsonSerializable
     {
         return $this->deployment_state;
     }
-    public function getResourcesOverrides(): array<string,\Upsun\Model\ResourcesOverridesValue>
+    /**
+     * @return \Upsun\Model\ResourcesOverridesValue[]|null
+     */
+    public function getResourcesOverrides(): ?array
     {
         return $this->resources_overrides;
     }

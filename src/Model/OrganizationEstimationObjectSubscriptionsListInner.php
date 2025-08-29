@@ -16,16 +16,16 @@ use JsonSerializable;
 
 final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSerializable
 {
-    public readonly string $license_id;
-    public readonly string $project_title;
-    public readonly string $total;
-    public readonly \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage $usage;
+    public readonly string|null $license_id;
+    public readonly string|null $project_title;
+    public readonly string|null $total;
+    public readonly \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage|null $usage;
 
     public function __construct(
-        string $license_id = null,
-        string $project_title = null,
-        string $total = null,
-        \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage $usage = null,
+        string|null $license_id = null,
+        string|null $project_title = null,
+        string|null $total = null,
+        \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage|null $usage = null
     ) {
         $this->license_id = $license_id;
         $this->project_title = $project_title;

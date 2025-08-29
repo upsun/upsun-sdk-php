@@ -37,7 +37,10 @@ final class ProjectSettings implements JsonSerializable
     public readonly int $local_disk_size;
     public readonly int $cron_minimum_interval;
     public readonly int $cron_maximum_jitter;
-    public readonly array<string,int> $concurrency_limits;
+    /**
+     * @var int[]|null
+     */
+    public readonly ?array $concurrency_limits;
     public readonly bool $flexible_build_cache;
     public readonly bool $strict_configuration;
     public readonly bool $has_sleepy_crons;
@@ -45,7 +48,10 @@ final class ProjectSettings implements JsonSerializable
     public readonly string $custom_error_template;
     public readonly string $app_error_page_template;
     public readonly string $environment_name_strategy;
-    public readonly array<string,\Upsun\Model\DataRetentionConfigurationValue> $data_retention;
+    /**
+     * @var \Upsun\Model\DataRetentionConfigurationValue[]|null
+     */
+    public readonly ?array $data_retention;
     public readonly bool $enable_codesource_integration_push;
     public readonly bool $enforce_mfa;
     public readonly bool $systemd;
@@ -53,7 +59,10 @@ final class ProjectSettings implements JsonSerializable
     public readonly \Upsun\Model\BuildResources1 $build_resources;
     public readonly string $outbound_restrictions_default_policy;
     public readonly bool $self_upgrade;
-    public readonly array<string,string> $additional_hosts;
+    /**
+     * @var string[]|null
+     */
+    public readonly ?array $additional_hosts;
     public readonly int $max_allowed_routes;
     public readonly int $max_allowed_redirects_paths;
     public readonly bool $enable_incremental_backups;
@@ -78,66 +87,66 @@ final class ProjectSettings implements JsonSerializable
     public readonly bool $requires_domain_ownership;
 
     public function __construct(
-        object $initialize,
-        string $product_name,
-        string $product_code,
-        string $ui_uri_template,
-        string $variables_prefix,
-        string $bot_email,
-        string $application_config_file,
-        string $project_config_dir,
-        bool $use_drupal_defaults,
-        bool $use_legacy_subdomains,
-        string $development_service_size,
-        string $development_application_size,
-        bool $enable_certificate_provisioning,
-        string $certificate_style,
-        bool $certificate_renewal_activity,
-        string $development_domain_template,
-        bool $enable_state_api_deployments,
-        int $temporary_disk_size,
-        int $local_disk_size,
-        int $cron_minimum_interval,
-        int $cron_maximum_jitter,
-        array<string,int> $concurrency_limits,
-        bool $flexible_build_cache,
-        bool $strict_configuration,
-        bool $has_sleepy_crons,
-        bool $crons_in_git,
-        string $custom_error_template,
-        string $app_error_page_template,
-        string $environment_name_strategy,
-        array<string,\Upsun\Model\DataRetentionConfigurationValue> $data_retention,
-        bool $enable_codesource_integration_push,
-        bool $enforce_mfa,
-        bool $systemd,
-        bool $router_gen2,
-        \Upsun\Model\BuildResources1 $build_resources,
-        string $outbound_restrictions_default_policy,
-        bool $self_upgrade,
-        array<string,string> $additional_hosts,
-        int $max_allowed_routes,
-        int $max_allowed_redirects_paths,
-        bool $enable_incremental_backups,
-        bool $sizing_api_enabled,
-        bool $enable_cache_grace_period,
-        bool $enable_zero_downtime_deployments,
-        bool $enable_admin_agent,
-        string $certifier_url,
-        bool $centralized_permissions,
-        int $glue_server_max_request_size,
-        bool $persistent_endpoints_ssh,
-        bool $persistent_endpoints_ssl_certificates,
-        bool $enable_disk_health_monitoring,
-        bool $enable_paused_environments,
-        bool $enable_unified_configuration,
-        bool $enable_routes_tracing,
-        bool $image_deployment_validation,
-        bool $support_generic_images,
-        bool $enable_github_app_token_exchange,
-        \Upsun\Model\TheContinuousProfilingConfiguration $continuous_profiling,
-        bool $disable_agent_error_reporter,
-        bool $requires_domain_ownership,
+        object $initialize = null,
+        string $product_name = null,
+        string $product_code = null,
+        string $ui_uri_template = null,
+        string $variables_prefix = null,
+        string $bot_email = null,
+        string $application_config_file = null,
+        string $project_config_dir = null,
+        bool $use_drupal_defaults = null,
+        bool $use_legacy_subdomains = null,
+        string $development_service_size = null,
+        string $development_application_size = null,
+        bool $enable_certificate_provisioning = null,
+        string $certificate_style = null,
+        bool $certificate_renewal_activity = null,
+        string $development_domain_template = null,
+        bool $enable_state_api_deployments = null,
+        int $temporary_disk_size = null,
+        int $local_disk_size = null,
+        int $cron_minimum_interval = null,
+        int $cron_maximum_jitter = null,
+        ?array $concurrency_limits = null,
+        bool $flexible_build_cache = null,
+        bool $strict_configuration = null,
+        bool $has_sleepy_crons = null,
+        bool $crons_in_git = null,
+        string $custom_error_template = null,
+        string $app_error_page_template = null,
+        string $environment_name_strategy = null,
+        ?array $data_retention = null,
+        bool $enable_codesource_integration_push = null,
+        bool $enforce_mfa = null,
+        bool $systemd = null,
+        bool $router_gen2 = null,
+        \Upsun\Model\BuildResources1 $build_resources = null,
+        string $outbound_restrictions_default_policy = null,
+        bool $self_upgrade = null,
+        ?array $additional_hosts = null,
+        int $max_allowed_routes = null,
+        int $max_allowed_redirects_paths = null,
+        bool $enable_incremental_backups = null,
+        bool $sizing_api_enabled = null,
+        bool $enable_cache_grace_period = null,
+        bool $enable_zero_downtime_deployments = null,
+        bool $enable_admin_agent = null,
+        string $certifier_url = null,
+        bool $centralized_permissions = null,
+        int $glue_server_max_request_size = null,
+        bool $persistent_endpoints_ssh = null,
+        bool $persistent_endpoints_ssl_certificates = null,
+        bool $enable_disk_health_monitoring = null,
+        bool $enable_paused_environments = null,
+        bool $enable_unified_configuration = null,
+        bool $enable_routes_tracing = null,
+        bool $image_deployment_validation = null,
+        bool $support_generic_images = null,
+        bool $enable_github_app_token_exchange = null,
+        \Upsun\Model\TheContinuousProfilingConfiguration $continuous_profiling = null,
+        bool $disable_agent_error_reporter = null,
+        bool $requires_domain_ownership = null
     ) {
         $this->initialize = $initialize;
         $this->product_name = $product_name;
@@ -285,7 +294,10 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->cron_maximum_jitter;
     }
-    public function getConcurrencyLimits(): array<string,int>
+    /**
+     * @return int[]|null
+     */
+    public function getConcurrencyLimits(): ?array
     {
         return $this->concurrency_limits;
     }
@@ -317,7 +329,10 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->environment_name_strategy;
     }
-    public function getDataRetention(): array<string,\Upsun\Model\DataRetentionConfigurationValue>
+    /**
+     * @return \Upsun\Model\DataRetentionConfigurationValue[]|null
+     */
+    public function getDataRetention(): ?array
     {
         return $this->data_retention;
     }
@@ -349,7 +364,10 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->self_upgrade;
     }
-    public function getAdditionalHosts(): array<string,string>
+    /**
+     * @return string[]|null
+     */
+    public function getAdditionalHosts(): ?array
     {
         return $this->additional_hosts;
     }

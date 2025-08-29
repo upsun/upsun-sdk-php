@@ -16,22 +16,34 @@ use JsonSerializable;
 
 final class GetUsageAlerts200Response implements JsonSerializable
 {
-    public readonly \Upsun\Model\Alert[] $available;
-    public readonly \Upsun\Model\Alert[] $current;
+    /**
+     * @var \Upsun\Model\Alert[]|null
+     */
+    public readonly ?array $available;
+    /**
+     * @var \Upsun\Model\Alert[]|null
+     */
+    public readonly ?array $current;
 
     public function __construct(
-        \Upsun\Model\Alert[] $available = null,
-        \Upsun\Model\Alert[] $current = null,
+        ?array $available = null,
+        ?array $current = null
     ) {
         $this->available = $available;
         $this->current = $current;
     }
 
-    public function getAvailable(): \Upsun\Model\Alert[]|null
+    /**
+     * @return \Upsun\Model\Alert[]|null
+     */
+    public function getAvailable(): ?array
     {
         return $this->available;
     }
-    public function getCurrent(): \Upsun\Model\Alert[]|null
+    /**
+     * @return \Upsun\Model\Alert[]|null
+     */
+    public function getCurrent(): ?array
     {
         return $this->current;
     }

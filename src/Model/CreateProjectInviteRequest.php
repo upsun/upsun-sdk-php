@@ -16,18 +16,24 @@ use JsonSerializable;
 
 final class CreateProjectInviteRequest implements JsonSerializable
 {
-    public readonly string $role;
+    public readonly string|null $role;
     public readonly string $email;
-    public readonly \Upsun\Model\CreateProjectInviteRequestPermissionsInner[] $permissions;
-    public readonly \Upsun\Model\CreateProjectInviteRequestEnvironmentsInner[] $environments;
-    public readonly bool $force;
+    /**
+     * @var \Upsun\Model\CreateProjectInviteRequestPermissionsInner[]|null
+     */
+    public readonly ?array $permissions;
+    /**
+     * @var \Upsun\Model\CreateProjectInviteRequestEnvironmentsInner[]|null
+     */
+    public readonly ?array $environments;
+    public readonly bool|null $force;
 
     public function __construct(
-        string $role = null,
-        string $email,
-        \Upsun\Model\CreateProjectInviteRequestPermissionsInner[] $permissions = null,
-        \Upsun\Model\CreateProjectInviteRequestEnvironmentsInner[] $environments = null,
-        bool $force = null,
+        string|null $role = null,
+        string $email = null,
+        ?array $permissions = null,
+        ?array $environments = null,
+        bool|null $force = null
     ) {
         $this->role = $role;
         $this->email = $email;
@@ -44,11 +50,17 @@ final class CreateProjectInviteRequest implements JsonSerializable
     {
         return $this->email;
     }
-    public function getPermissions(): \Upsun\Model\CreateProjectInviteRequestPermissionsInner[]|null
+    /**
+     * @return \Upsun\Model\CreateProjectInviteRequestPermissionsInner[]|null
+     */
+    public function getPermissions(): ?array
     {
         return $this->permissions;
     }
-    public function getEnvironments(): \Upsun\Model\CreateProjectInviteRequestEnvironmentsInner[]|null
+    /**
+     * @return \Upsun\Model\CreateProjectInviteRequestEnvironmentsInner[]|null
+     */
+    public function getEnvironments(): ?array
     {
         return $this->environments;
     }

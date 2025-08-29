@@ -19,15 +19,18 @@ final class BlackfireIntegration implements JsonSerializable
     public readonly \DateTime $created_at;
     public readonly \DateTime $updated_at;
     public readonly string $type;
-    public readonly array<string,\Upsun\Model\BlackfireEnvironmentsCredentialsValue> $environments_credentials;
+    /**
+     * @var \Upsun\Model\BlackfireEnvironmentsCredentialsValue[]|null
+     */
+    public readonly ?array $environments_credentials;
     public readonly bool $continuous_profiling;
 
     public function __construct(
-        \DateTime $created_at,
-        \DateTime $updated_at,
-        string $type,
-        array<string,\Upsun\Model\BlackfireEnvironmentsCredentialsValue> $environments_credentials,
-        bool $continuous_profiling,
+        \DateTime $created_at = null,
+        \DateTime $updated_at = null,
+        string $type = null,
+        ?array $environments_credentials = null,
+        bool $continuous_profiling = null
     ) {
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;
@@ -48,7 +51,10 @@ final class BlackfireIntegration implements JsonSerializable
     {
         return $this->type;
     }
-    public function getEnvironmentsCredentials(): array<string,\Upsun\Model\BlackfireEnvironmentsCredentialsValue>
+    /**
+     * @return \Upsun\Model\BlackfireEnvironmentsCredentialsValue[]|null
+     */
+    public function getEnvironmentsCredentials(): ?array
     {
         return $this->environments_credentials;
     }

@@ -16,16 +16,16 @@ use JsonSerializable;
 
 final class GetTotpEnrollment200Response implements JsonSerializable
 {
-    public readonly string $issuer;
-    public readonly string $account_name;
-    public readonly string $secret;
-    public readonly string $qr_code;
+    public readonly string|null $issuer;
+    public readonly string|null $account_name;
+    public readonly string|null $secret;
+    public readonly string|null $qr_code;
 
     public function __construct(
-        string $issuer = null,
-        string $account_name = null,
-        string $secret = null,
-        string $qr_code = null,
+        string|null $issuer = null,
+        string|null $account_name = null,
+        string|null $secret = null,
+        string|null $qr_code = null
     ) {
         $this->issuer = $issuer;
         $this->account_name = $account_name;

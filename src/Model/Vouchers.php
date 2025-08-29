@@ -16,22 +16,25 @@ use JsonSerializable;
 
 final class Vouchers implements JsonSerializable
 {
-    public readonly string $uuid;
-    public readonly string $vouchers_total;
-    public readonly string $vouchers_applied;
-    public readonly string $vouchers_remaining_balance;
-    public readonly string $currency;
-    public readonly \Upsun\Model\VouchersVouchersInner[] $vouchers;
-    public readonly \Upsun\Model\VouchersLinks $_links;
+    public readonly string|null $uuid;
+    public readonly string|null $vouchers_total;
+    public readonly string|null $vouchers_applied;
+    public readonly string|null $vouchers_remaining_balance;
+    public readonly string|null $currency;
+    /**
+     * @var \Upsun\Model\VouchersVouchersInner[]|null
+     */
+    public readonly ?array $vouchers;
+    public readonly \Upsun\Model\VouchersLinks|null $_links;
 
     public function __construct(
-        string $uuid = null,
-        string $vouchers_total = null,
-        string $vouchers_applied = null,
-        string $vouchers_remaining_balance = null,
-        string $currency = null,
-        \Upsun\Model\VouchersVouchersInner[] $vouchers = null,
-        \Upsun\Model\VouchersLinks $_links = null,
+        string|null $uuid = null,
+        string|null $vouchers_total = null,
+        string|null $vouchers_applied = null,
+        string|null $vouchers_remaining_balance = null,
+        string|null $currency = null,
+        ?array $vouchers = null,
+        \Upsun\Model\VouchersLinks|null $_links = null
     ) {
         $this->uuid = $uuid;
         $this->vouchers_total = $vouchers_total;
@@ -62,7 +65,10 @@ final class Vouchers implements JsonSerializable
     {
         return $this->currency;
     }
-    public function getVouchers(): \Upsun\Model\VouchersVouchersInner[]|null
+    /**
+     * @return \Upsun\Model\VouchersVouchersInner[]|null
+     */
+    public function getVouchers(): ?array
     {
         return $this->vouchers;
     }

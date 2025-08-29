@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class GoogleSSOConfig implements JsonSerializable
 {
-    public readonly string $provider_type;
-    public readonly string $domain;
+    public readonly string|null $provider_type;
+    public readonly string|null $domain;
 
     public function __construct(
-        string $provider_type = null,
-        string $domain = null,
+        string|null $provider_type = null,
+        string|null $domain = null
     ) {
         $this->provider_type = $provider_type;
         $this->domain = $domain;

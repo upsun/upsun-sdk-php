@@ -17,11 +17,14 @@ use JsonSerializable;
 final class TheBuildConfigurationOfTheApplication implements JsonSerializable
 {
     public readonly string $flavor;
-    public readonly array<string,\Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue> $caches;
+    /**
+     * @var \Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue[]|null
+     */
+    public readonly ?array $caches;
 
     public function __construct(
-        string $flavor,
-        array<string,\Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue> $caches,
+        string $flavor = null,
+        ?array $caches = null
     ) {
         $this->flavor = $flavor;
         $this->caches = $caches;
@@ -31,7 +34,10 @@ final class TheBuildConfigurationOfTheApplication implements JsonSerializable
     {
         return $this->flavor;
     }
-    public function getCaches(): array<string,\Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue>
+    /**
+     * @return \Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue[]|null
+     */
+    public function getCaches(): ?array
     {
         return $this->caches;
     }

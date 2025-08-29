@@ -17,27 +17,27 @@ use JsonSerializable;
 final class GitLabIntegrationCreateInput implements JsonSerializable
 {
     public readonly string $type;
-    public readonly bool $fetch_branches;
-    public readonly bool $prune_branches;
-    public readonly string $environment_init_resources;
+    public readonly bool|null $fetch_branches;
+    public readonly bool|null $prune_branches;
+    public readonly string|null $environment_init_resources;
     public readonly string $token;
-    public readonly string $base_url;
+    public readonly string|null $base_url;
     public readonly string $project;
-    public readonly bool $build_merge_requests;
-    public readonly bool $build_wip_merge_requests;
-    public readonly bool $merge_requests_clone_parent_data;
+    public readonly bool|null $build_merge_requests;
+    public readonly bool|null $build_wip_merge_requests;
+    public readonly bool|null $merge_requests_clone_parent_data;
 
     public function __construct(
-        string $type,
-        bool $fetch_branches = null,
-        bool $prune_branches = null,
-        string $environment_init_resources = null,
-        string $token,
-        string $base_url = null,
-        string $project,
-        bool $build_merge_requests = null,
-        bool $build_wip_merge_requests = null,
-        bool $merge_requests_clone_parent_data = null,
+        string $type = null,
+        bool|null $fetch_branches = null,
+        bool|null $prune_branches = null,
+        string|null $environment_init_resources = null,
+        string $token = null,
+        string|null $base_url = null,
+        string $project = null,
+        bool|null $build_merge_requests = null,
+        bool|null $build_wip_merge_requests = null,
+        bool|null $merge_requests_clone_parent_data = null
     ) {
         $this->type = $type;
         $this->fetch_branches = $fetch_branches;

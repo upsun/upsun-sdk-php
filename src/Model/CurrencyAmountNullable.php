@@ -16,16 +16,16 @@ use JsonSerializable;
 
 final class CurrencyAmountNullable implements JsonSerializable
 {
-    public readonly string $formatted;
-    public readonly float $amount;
-    public readonly string $currency_code;
-    public readonly string $currency_symbol;
+    public readonly string|null $formatted;
+    public readonly float|null $amount;
+    public readonly string|null $currency_code;
+    public readonly string|null $currency_symbol;
 
     public function __construct(
-        string $formatted = null,
-        float $amount = null,
-        string $currency_code = null,
-        string $currency_symbol = null,
+        string|null $formatted = null,
+        float|null $amount = null,
+        string|null $currency_code = null,
+        string|null $currency_symbol = null
     ) {
         $this->formatted = $formatted;
         $this->amount = $amount;

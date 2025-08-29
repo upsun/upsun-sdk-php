@@ -16,10 +16,10 @@ use JsonSerializable;
 
 final class VersionCreateInput implements JsonSerializable
 {
-    public readonly \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1 $routing;
+    public readonly \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1|null $routing;
 
     public function __construct(
-        \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1 $routing = null,
+        \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1|null $routing = null
     ) {
         $this->routing = $routing;
     }

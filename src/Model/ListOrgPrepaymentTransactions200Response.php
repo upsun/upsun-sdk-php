@@ -16,14 +16,17 @@ use JsonSerializable;
 
 final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
 {
-    public readonly int $count;
-    public readonly \Upsun\Model\PrepaymentTransactionObject[] $transactions;
-    public readonly \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks $_links;
+    public readonly int|null $count;
+    /**
+     * @var \Upsun\Model\PrepaymentTransactionObject[]|null
+     */
+    public readonly ?array $transactions;
+    public readonly \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks|null $_links;
 
     public function __construct(
-        int $count = null,
-        \Upsun\Model\PrepaymentTransactionObject[] $transactions = null,
-        \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks $_links = null,
+        int|null $count = null,
+        ?array $transactions = null,
+        \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks|null $_links = null
     ) {
         $this->count = $count;
         $this->transactions = $transactions;
@@ -34,7 +37,10 @@ final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
     {
         return $this->count;
     }
-    public function getTransactions(): \Upsun\Model\PrepaymentTransactionObject[]|null
+    /**
+     * @return \Upsun\Model\PrepaymentTransactionObject[]|null
+     */
+    public function getTransactions(): ?array
     {
         return $this->transactions;
     }

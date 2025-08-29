@@ -16,12 +16,12 @@ use JsonSerializable;
 
 final class CreateTicketRequestAttachmentsInner implements JsonSerializable
 {
-    public readonly string $filename;
-    public readonly string $data;
+    public readonly string|null $filename;
+    public readonly string|null $data;
 
     public function __construct(
-        string $filename = null,
-        string $data = null,
+        string|null $filename = null,
+        string|null $data = null
     ) {
         $this->filename = $filename;
         $this->data = $data;

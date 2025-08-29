@@ -17,13 +17,13 @@ use JsonSerializable;
 final class CreateSshKeyRequest implements JsonSerializable
 {
     public readonly string $value;
-    public readonly string $title;
-    public readonly string $uuid;
+    public readonly string|null $title;
+    public readonly string|null $uuid;
 
     public function __construct(
-        string $value,
-        string $title = null,
-        string $uuid = null,
+        string $value = null,
+        string|null $title = null,
+        string|null $uuid = null
     ) {
         $this->value = $value;
         $this->title = $title;

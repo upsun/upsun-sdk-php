@@ -16,22 +16,22 @@ use JsonSerializable;
 
 final class VouchersVouchersInnerOrdersInner implements JsonSerializable
 {
-    public readonly string $order_id;
-    public readonly string $status;
-    public readonly string $billing_period_start;
-    public readonly string $billing_period_end;
-    public readonly string $order_total;
-    public readonly string $order_discount;
-    public readonly string $currency;
+    public readonly string|null $order_id;
+    public readonly string|null $status;
+    public readonly string|null $billing_period_start;
+    public readonly string|null $billing_period_end;
+    public readonly string|null $order_total;
+    public readonly string|null $order_discount;
+    public readonly string|null $currency;
 
     public function __construct(
-        string $order_id = null,
-        string $status = null,
-        string $billing_period_start = null,
-        string $billing_period_end = null,
-        string $order_total = null,
-        string $order_discount = null,
-        string $currency = null,
+        string|null $order_id = null,
+        string|null $status = null,
+        string|null $billing_period_start = null,
+        string|null $billing_period_end = null,
+        string|null $order_total = null,
+        string|null $order_discount = null,
+        string|null $currency = null
     ) {
         $this->order_id = $order_id;
         $this->status = $status;

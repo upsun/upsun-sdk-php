@@ -17,11 +17,14 @@ use JsonSerializable;
 final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonSerializable
 {
     public readonly string $root;
-    public readonly array<string,\Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue> $operations;
+    /**
+     * @var \Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue[]|null
+     */
+    public readonly ?array $operations;
 
     public function __construct(
-        string $root,
-        array<string,\Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue> $operations,
+        string $root = null,
+        ?array $operations = null
     ) {
         $this->root = $root;
         $this->operations = $operations;
@@ -31,7 +34,10 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonS
     {
         return $this->root;
     }
-    public function getOperations(): array<string,\Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue>
+    /**
+     * @return \Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue[]|null
+     */
+    public function getOperations(): ?array
     {
         return $this->operations;
     }

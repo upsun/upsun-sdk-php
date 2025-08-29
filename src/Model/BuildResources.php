@@ -21,9 +21,9 @@ final class BuildResources implements JsonSerializable
     public readonly int $max_memory;
 
     public function __construct(
-        bool $enabled,
-        float $max_cpu,
-        int $max_memory,
+        bool $enabled = null,
+        float $max_cpu = null,
+        int $max_memory = null
     ) {
         $this->enabled = $enabled;
         $this->max_cpu = $max_cpu;

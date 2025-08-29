@@ -17,11 +17,11 @@ use JsonSerializable;
 final class TheCommandsDefinition implements JsonSerializable
 {
     public readonly string $start;
-    public readonly string $stop;
+    public readonly string|null $stop;
 
     public function __construct(
-        string $start,
-        string $stop = null,
+        string $start = null,
+        string|null $stop = null
     ) {
         $this->start = $start;
         $this->stop = $stop;
