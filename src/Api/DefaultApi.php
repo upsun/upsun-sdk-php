@@ -137,7 +137,7 @@ final class DefaultApi extends AbstractApi
         \DateTime $filter_due = null,
         string $search = null,
         int $page = null
-    ): \Upsun\Model\ListTickets200Response {
+    ): array {
         list($response) = $this->listTicketsWithHttpInfo(
             $filter_ticket_id,
             $filter_created,

@@ -125,7 +125,7 @@ final class UserProfilesApi extends AbstractApi
      */
     public function createProfilePicture(
         string $uuid
-    ): \Upsun\Model\CreateProfilePicture200Response {
+    ): array {
         list($response) = $this->createProfilePictureWithHttpInfo(
             $uuid
         );
@@ -379,7 +379,7 @@ final class UserProfilesApi extends AbstractApi
      */
     public function deleteProfilePicture(
         string $uuid
-    ): void {
+    ): array {
         $this->deleteProfilePictureWithHttpInfo(
             $uuid
         );
@@ -587,7 +587,7 @@ final class UserProfilesApi extends AbstractApi
      */
     public function getAddress(
         string $user_id
-    ): \Upsun\Model\GetAddress200Response {
+    ): array {
         list($response) = $this->getAddressWithHttpInfo(
             $user_id
         );
@@ -841,7 +841,7 @@ final class UserProfilesApi extends AbstractApi
      */
     public function getProfile(
         string $user_id
-    ): \Upsun\Model\Profile {
+    ): array {
         list($response) = $this->getProfileWithHttpInfo(
             $user_id
         );
@@ -1095,7 +1095,7 @@ final class UserProfilesApi extends AbstractApi
      */
     public function listProfiles(
         
-    ): \Upsun\Model\ListProfiles200Response {
+    ): array {
         list($response) = $this->listProfilesWithHttpInfo(
             
         );
@@ -1336,7 +1336,7 @@ final class UserProfilesApi extends AbstractApi
     public function updateAddress(
         string $user_id,
         \Upsun\Model\Address $address = null
-    ): \Upsun\Model\GetAddress200Response {
+    ): array {
         list($response) = $this->updateAddressWithHttpInfo(
             $user_id,
             $address
@@ -1605,7 +1605,7 @@ final class UserProfilesApi extends AbstractApi
     public function updateProfile(
         string $user_id,
         \Upsun\Model\UpdateProfileRequest $update_profile_request = null
-    ): \Upsun\Model\Profile {
+    ): array {
         list($response) = $this->updateProfileWithHttpInfo(
             $user_id,
             $update_profile_request

@@ -126,7 +126,7 @@ final class CertManagementApi extends AbstractApi
     public function createProjectsCertificates(
         string $project_id,
         \Upsun\Model\CertificateCreateInput $certificate_create_input
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->createProjectsCertificatesWithHttpInfo(
             $project_id,
             $certificate_create_input
@@ -401,7 +401,7 @@ final class CertManagementApi extends AbstractApi
     public function deleteProjectsCertificates(
         string $project_id,
         string $certificate_id
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->deleteProjectsCertificatesWithHttpInfo(
             $project_id,
             $certificate_id
@@ -678,7 +678,7 @@ final class CertManagementApi extends AbstractApi
     public function getProjectsCertificates(
         string $project_id,
         string $certificate_id
-    ): \Upsun\Model\Certificate {
+    ): array {
         list($response) = $this->getProjectsCertificatesWithHttpInfo(
             $project_id,
             $certificate_id
@@ -1212,7 +1212,7 @@ final class CertManagementApi extends AbstractApi
         string $project_id,
         string $certificate_id,
         \Upsun\Model\CertificatePatch $certificate_patch
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->updateProjectsCertificatesWithHttpInfo(
             $project_id,
             $certificate_id,

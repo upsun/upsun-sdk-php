@@ -126,7 +126,7 @@ final class ConnectionsApi extends AbstractApi
     public function deleteLoginConnection(
         string $provider,
         string $user_id
-    ): void {
+    ): array {
         $this->deleteLoginConnectionWithHttpInfo(
             $provider,
             $user_id
@@ -365,7 +365,7 @@ final class ConnectionsApi extends AbstractApi
     public function getLoginConnection(
         string $provider,
         string $user_id
-    ): \Upsun\Model\Connection {
+    ): array {
         list($response) = $this->getLoginConnectionWithHttpInfo(
             $provider,
             $user_id

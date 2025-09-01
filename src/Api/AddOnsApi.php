@@ -125,7 +125,7 @@ final class AddOnsApi extends AbstractApi
      */
     public function getOrgAddons(
         string $organization_id
-    ): \Upsun\Model\OrganizationAddonsObject {
+    ): array {
         list($response) = $this->getOrgAddonsWithHttpInfo(
             $organization_id
         );

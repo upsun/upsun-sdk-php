@@ -127,7 +127,7 @@ final class PhoneNumberApi extends AbstractApi
         string $sid,
         string $user_id,
         \Upsun\Model\ConfirmPhoneNumberRequest $confirm_phone_number_request = null
-    ): void {
+    ): array {
         $this->confirmPhoneNumberWithHttpInfo(
             $sid,
             $user_id,
@@ -396,7 +396,7 @@ final class PhoneNumberApi extends AbstractApi
     public function verifyPhoneNumber(
         string $user_id,
         \Upsun\Model\VerifyPhoneNumberRequest $verify_phone_number_request = null
-    ): \Upsun\Model\VerifyPhoneNumber200Response {
+    ): array {
         list($response) = $this->verifyPhoneNumberWithHttpInfo(
             $user_id,
             $verify_phone_number_request

@@ -127,7 +127,7 @@ final class DeploymentApi extends AbstractApi
         string $project_id,
         string $environment_id,
         string $deployment_id
-    ): \Upsun\Model\Deployment {
+    ): array {
         list($response) = $this->getProjectsEnvironmentsDeploymentsWithHttpInfo(
             $project_id,
             $environment_id,

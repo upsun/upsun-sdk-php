@@ -126,7 +126,7 @@ final class MFAApi extends AbstractApi
     public function confirmTotpEnrollment(
         string $user_id,
         \Upsun\Model\ConfirmTotpEnrollmentRequest $confirm_totp_enrollment_request = null
-    ): \Upsun\Model\ConfirmTotpEnrollment200Response {
+    ): array {
         list($response) = $this->confirmTotpEnrollmentWithHttpInfo(
             $user_id,
             $confirm_totp_enrollment_request
@@ -436,7 +436,7 @@ final class MFAApi extends AbstractApi
      */
     public function disableOrgMfaEnforcement(
         string $organization_id
-    ): void {
+    ): array {
         $this->disableOrgMfaEnforcementWithHttpInfo(
             $organization_id
         );
@@ -652,7 +652,7 @@ final class MFAApi extends AbstractApi
      */
     public function enableOrgMfaEnforcement(
         string $organization_id
-    ): void {
+    ): array {
         $this->enableOrgMfaEnforcementWithHttpInfo(
             $organization_id
         );
@@ -868,7 +868,7 @@ final class MFAApi extends AbstractApi
      */
     public function getOrgMfaEnforcement(
         string $organization_id
-    ): \Upsun\Model\OrganizationMFAEnforcement {
+    ): array {
         list($response) = $this->getOrgMfaEnforcementWithHttpInfo(
             $organization_id
         );
@@ -1136,7 +1136,7 @@ final class MFAApi extends AbstractApi
      */
     public function getTotpEnrollment(
         string $user_id
-    ): \Upsun\Model\GetTotpEnrollment200Response {
+    ): array {
         list($response) = $this->getTotpEnrollmentWithHttpInfo(
             $user_id
         );
@@ -1404,7 +1404,7 @@ final class MFAApi extends AbstractApi
      */
     public function recreateRecoveryCodes(
         string $user_id
-    ): \Upsun\Model\ConfirmTotpEnrollment200Response {
+    ): array {
         list($response) = $this->recreateRecoveryCodesWithHttpInfo(
             $user_id
         );
@@ -1971,7 +1971,7 @@ final class MFAApi extends AbstractApi
      */
     public function withdrawTotpEnrollment(
         string $user_id
-    ): void {
+    ): array {
         $this->withdrawTotpEnrollmentWithHttpInfo(
             $user_id
         );

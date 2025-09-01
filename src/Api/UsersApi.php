@@ -125,7 +125,7 @@ final class UsersApi extends AbstractApi
      */
     public function getCurrentUser(
         
-    ): \Upsun\Model\User {
+    ): array {
         list($response) = $this->getCurrentUserWithHttpInfo(
             
         );
@@ -379,7 +379,7 @@ final class UsersApi extends AbstractApi
      */
     public function getCurrentUserDeprecated(
         
-    ): \Upsun\Model\CurrentUser {
+    ): array {
         list($response) = $this->getCurrentUserDeprecatedWithHttpInfo(
             
         );
@@ -619,7 +619,7 @@ final class UsersApi extends AbstractApi
      */
     public function getCurrentUserVerificationStatus(
         
-    ): \Upsun\Model\GetCurrentUserVerificationStatus200Response {
+    ): array {
         list($response) = $this->getCurrentUserVerificationStatusWithHttpInfo(
             
         );
@@ -859,7 +859,7 @@ final class UsersApi extends AbstractApi
      */
     public function getCurrentUserVerificationStatusFull(
         
-    ): \Upsun\Model\GetCurrentUserVerificationStatusFull200Response {
+    ): array {
         list($response) = $this->getCurrentUserVerificationStatusFullWithHttpInfo(
             
         );
@@ -1099,7 +1099,7 @@ final class UsersApi extends AbstractApi
      */
     public function getUser(
         string $user_id
-    ): \Upsun\Model\User {
+    ): array {
         list($response) = $this->getUserWithHttpInfo(
             $user_id
         );
@@ -1367,7 +1367,7 @@ final class UsersApi extends AbstractApi
      */
     public function getUserByEmailAddress(
         string $email
-    ): \Upsun\Model\User {
+    ): array {
         list($response) = $this->getUserByEmailAddressWithHttpInfo(
             $email
         );
@@ -1635,7 +1635,7 @@ final class UsersApi extends AbstractApi
      */
     public function getUserByUsername(
         string $username
-    ): \Upsun\Model\User {
+    ): array {
         list($response) = $this->getUserByUsernameWithHttpInfo(
             $username
         );
@@ -1904,7 +1904,7 @@ final class UsersApi extends AbstractApi
     public function resetEmailAddress(
         string $user_id,
         \Upsun\Model\ResetEmailAddressRequest $reset_email_address_request = null
-    ): void {
+    ): array {
         $this->resetEmailAddressWithHttpInfo(
             $user_id,
             $reset_email_address_request
@@ -2150,7 +2150,7 @@ final class UsersApi extends AbstractApi
      */
     public function resetPassword(
         string $user_id
-    ): void {
+    ): array {
         $this->resetPasswordWithHttpInfo(
             $user_id
         );
@@ -2367,7 +2367,7 @@ final class UsersApi extends AbstractApi
     public function updateUser(
         string $user_id,
         \Upsun\Model\UpdateUserRequest $update_user_request = null
-    ): \Upsun\Model\User {
+    ): array {
         list($response) = $this->updateUserWithHttpInfo(
             $user_id,
             $update_user_request

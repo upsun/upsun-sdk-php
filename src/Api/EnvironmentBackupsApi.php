@@ -127,7 +127,7 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $project_id,
         string $environment_id,
         \Upsun\Model\EnvironmentBackupInput $environment_backup_input
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->backupEnvironmentWithHttpInfo(
             $project_id,
             $environment_id,
@@ -425,7 +425,7 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $project_id,
         string $environment_id,
         string $backup_id
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->deleteProjectsEnvironmentsBackupsWithHttpInfo(
             $project_id,
             $environment_id,
@@ -725,7 +725,7 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $project_id,
         string $environment_id,
         string $backup_id
-    ): \Upsun\Model\Backup {
+    ): array {
         list($response) = $this->getProjectsEnvironmentsBackupsWithHttpInfo(
             $project_id,
             $environment_id,
@@ -1305,7 +1305,7 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $environment_id,
         string $backup_id,
         \Upsun\Model\EnvironmentRestoreInput $environment_restore_input
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->restoreBackupWithHttpInfo(
             $project_id,
             $environment_id,

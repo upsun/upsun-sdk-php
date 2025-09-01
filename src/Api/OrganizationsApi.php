@@ -125,7 +125,7 @@ final class OrganizationsApi extends AbstractApi
      */
     public function createOrg(
         \Upsun\Model\CreateOrgRequest $create_org_request
-    ): \Upsun\Model\Organization {
+    ): array {
         list($response) = $this->createOrgWithHttpInfo(
             $create_org_request
         );
@@ -405,7 +405,7 @@ final class OrganizationsApi extends AbstractApi
      */
     public function deleteOrg(
         string $organization_id
-    ): void {
+    ): array {
         $this->deleteOrgWithHttpInfo(
             $organization_id
         );
@@ -637,7 +637,7 @@ final class OrganizationsApi extends AbstractApi
      */
     public function getOrg(
         string $organization_id
-    ): \Upsun\Model\Organization {
+    ): array {
         list($response) = $this->getOrgWithHttpInfo(
             $organization_id
         );
@@ -930,7 +930,7 @@ final class OrganizationsApi extends AbstractApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ): \Upsun\Model\ListOrgs200Response {
+    ): array {
         list($response) = $this->listOrgsWithHttpInfo(
             $filter_id,
             $filter_owner_id,
@@ -1439,7 +1439,7 @@ final class OrganizationsApi extends AbstractApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ): \Upsun\Model\ListUserOrgs200Response {
+    ): array {
         list($response) = $this->listUserOrgsWithHttpInfo(
             $user_id,
             $filter_id,
@@ -1887,7 +1887,7 @@ final class OrganizationsApi extends AbstractApi
     public function updateOrg(
         string $organization_id,
         \Upsun\Model\UpdateOrgRequest $update_org_request = null
-    ): \Upsun\Model\Organization {
+    ): array {
         list($response) = $this->updateOrgWithHttpInfo(
             $organization_id,
             $update_org_request

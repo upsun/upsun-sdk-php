@@ -125,7 +125,7 @@ final class SystemInformationApi extends AbstractApi
      */
     public function actionProjectsSystemRestart(
         string $project_id
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->actionProjectsSystemRestartWithHttpInfo(
             $project_id
         );
@@ -379,7 +379,7 @@ final class SystemInformationApi extends AbstractApi
      */
     public function getProjectsSystem(
         string $project_id
-    ): \Upsun\Model\SystemInformation {
+    ): array {
         list($response) = $this->getProjectsSystemWithHttpInfo(
             $project_id
         );

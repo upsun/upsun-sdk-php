@@ -125,7 +125,7 @@ final class ProjectApi extends AbstractApi
      */
     public function actionProjectsClearBuildCache(
         string $project_id
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->actionProjectsClearBuildCacheWithHttpInfo(
             $project_id
         );
@@ -379,7 +379,7 @@ final class ProjectApi extends AbstractApi
      */
     public function deleteProjects(
         string $project_id
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->deleteProjectsWithHttpInfo(
             $project_id
         );
@@ -633,7 +633,7 @@ final class ProjectApi extends AbstractApi
      */
     public function getProjects(
         string $project_id
-    ): \Upsun\Model\Project {
+    ): array {
         list($response) = $this->getProjectsWithHttpInfo(
             $project_id
         );
@@ -887,7 +887,7 @@ final class ProjectApi extends AbstractApi
      */
     public function getProjectsCapabilities(
         string $project_id
-    ): \Upsun\Model\ProjectCapabilities {
+    ): array {
         list($response) = $this->getProjectsCapabilitiesWithHttpInfo(
             $project_id
         );
@@ -1142,7 +1142,7 @@ final class ProjectApi extends AbstractApi
     public function updateProjects(
         string $project_id,
         \Upsun\Model\ProjectPatch $project_patch
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->updateProjectsWithHttpInfo(
             $project_id,
             $project_patch

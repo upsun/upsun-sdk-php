@@ -126,7 +126,7 @@ final class DomainManagementApi extends AbstractApi
     public function createProjectsDomains(
         string $project_id,
         \Upsun\Model\DomainCreateInput $domain_create_input
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->createProjectsDomainsWithHttpInfo(
             $project_id,
             $domain_create_input
@@ -402,7 +402,7 @@ final class DomainManagementApi extends AbstractApi
         string $project_id,
         string $environment_id,
         \Upsun\Model\DomainCreateInput $domain_create_input
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->createProjectsEnvironmentsDomainsWithHttpInfo(
             $project_id,
             $environment_id,
@@ -699,7 +699,7 @@ final class DomainManagementApi extends AbstractApi
     public function deleteProjectsDomains(
         string $project_id,
         string $domain_id
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->deleteProjectsDomainsWithHttpInfo(
             $project_id,
             $domain_id
@@ -977,7 +977,7 @@ final class DomainManagementApi extends AbstractApi
         string $project_id,
         string $environment_id,
         string $domain_id
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->deleteProjectsEnvironmentsDomainsWithHttpInfo(
             $project_id,
             $environment_id,
@@ -1276,7 +1276,7 @@ final class DomainManagementApi extends AbstractApi
     public function getProjectsDomains(
         string $project_id,
         string $domain_id
-    ): \Upsun\Model\Domain {
+    ): array {
         list($response) = $this->getProjectsDomainsWithHttpInfo(
             $project_id,
             $domain_id
@@ -1554,7 +1554,7 @@ final class DomainManagementApi extends AbstractApi
         string $project_id,
         string $environment_id,
         string $domain_id
-    ): \Upsun\Model\Domain {
+    ): array {
         list($response) = $this->getProjectsEnvironmentsDomainsWithHttpInfo(
             $project_id,
             $environment_id,
@@ -2389,7 +2389,7 @@ final class DomainManagementApi extends AbstractApi
         string $project_id,
         string $domain_id,
         \Upsun\Model\DomainPatch $domain_patch
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->updateProjectsDomainsWithHttpInfo(
             $project_id,
             $domain_id,
@@ -2688,7 +2688,7 @@ final class DomainManagementApi extends AbstractApi
         string $environment_id,
         string $domain_id,
         \Upsun\Model\DomainPatch $domain_patch
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->updateProjectsEnvironmentsDomainsWithHttpInfo(
             $project_id,
             $environment_id,

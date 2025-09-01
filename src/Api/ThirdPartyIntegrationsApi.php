@@ -126,7 +126,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     public function createProjectsIntegrations(
         string $project_id,
         \Upsun\Model\IntegrationCreateInput $integration_create_input
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->createProjectsIntegrationsWithHttpInfo(
             $project_id,
             $integration_create_input
@@ -401,7 +401,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     public function deleteProjectsIntegrations(
         string $project_id,
         string $integration_id
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->deleteProjectsIntegrationsWithHttpInfo(
             $project_id,
             $integration_id
@@ -678,7 +678,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     public function getProjectsIntegrations(
         string $project_id,
         string $integration_id
-    ): \Upsun\Model\Integration {
+    ): array {
         list($response) = $this->getProjectsIntegrationsWithHttpInfo(
             $project_id,
             $integration_id
@@ -1212,7 +1212,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         string $project_id,
         string $integration_id,
         \Upsun\Model\IntegrationPatch $integration_patch
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->updateProjectsIntegrationsWithHttpInfo(
             $project_id,
             $integration_id,

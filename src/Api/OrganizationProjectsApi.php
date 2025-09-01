@@ -126,7 +126,7 @@ final class OrganizationProjectsApi extends AbstractApi
     public function getOrgProject(
         string $organization_id,
         string $project_id
-    ): \Upsun\Model\OrganizationProject {
+    ): array {
         list($response) = $this->getOrgProjectWithHttpInfo(
             $organization_id,
             $project_id
@@ -439,7 +439,7 @@ final class OrganizationProjectsApi extends AbstractApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ): \Upsun\Model\ListOrgProjects200Response {
+    ): array {
         list($response) = $this->listOrgProjectsWithHttpInfo(
             $organization_id,
             $filter_id,

@@ -126,7 +126,7 @@ final class VouchersApi extends AbstractApi
     public function applyOrgVoucher(
         string $organization_id,
         \Upsun\Model\ApplyOrgVoucherRequest $apply_org_voucher_request
-    ): void {
+    ): array {
         $this->applyOrgVoucherWithHttpInfo(
             $organization_id,
             $apply_org_voucher_request
@@ -370,7 +370,7 @@ final class VouchersApi extends AbstractApi
      */
     public function listOrgVouchers(
         string $organization_id
-    ): \Upsun\Model\Vouchers {
+    ): array {
         list($response) = $this->listOrgVouchersWithHttpInfo(
             $organization_id
         );

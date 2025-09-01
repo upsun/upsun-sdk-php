@@ -125,7 +125,7 @@ final class PlansApi extends AbstractApi
      */
     public function listPlans(
         
-    ): \Upsun\Model\ListPlans200Response {
+    ): array {
         list($response) = $this->listPlansWithHttpInfo(
             
         );

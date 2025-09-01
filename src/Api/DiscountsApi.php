@@ -125,7 +125,7 @@ final class DiscountsApi extends AbstractApi
      */
     public function getDiscount(
         string $id
-    ): \Upsun\Model\Discount {
+    ): array {
         list($response) = $this->getDiscountWithHttpInfo(
             $id
         );
@@ -379,7 +379,7 @@ final class DiscountsApi extends AbstractApi
      */
     public function getTypeAllowance(
         
-    ): \Upsun\Model\GetTypeAllowance200Response {
+    ): array {
         list($response) = $this->getTypeAllowanceWithHttpInfo(
             
         );
@@ -619,7 +619,7 @@ final class DiscountsApi extends AbstractApi
      */
     public function listOrgDiscounts(
         string $organization_id
-    ): \Upsun\Model\ListOrgDiscounts200Response {
+    ): array {
         list($response) = $this->listOrgDiscountsWithHttpInfo(
             $organization_id
         );

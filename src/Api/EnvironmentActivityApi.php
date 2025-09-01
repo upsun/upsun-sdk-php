@@ -127,7 +127,7 @@ final class EnvironmentActivityApi extends AbstractApi
         string $project_id,
         string $environment_id,
         string $activity_id
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->actionProjectsEnvironmentsActivitiesCancelWithHttpInfo(
             $project_id,
             $environment_id,
@@ -427,7 +427,7 @@ final class EnvironmentActivityApi extends AbstractApi
         string $project_id,
         string $environment_id,
         string $activity_id
-    ): \Upsun\Model\Activity {
+    ): array {
         list($response) = $this->getProjectsEnvironmentsActivitiesWithHttpInfo(
             $project_id,
             $environment_id,

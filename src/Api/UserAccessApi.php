@@ -126,7 +126,7 @@ final class UserAccessApi extends AbstractApi
     public function getProjectUserAccess(
         string $project_id,
         string $user_id
-    ): \Upsun\Model\UserProjectAccess {
+    ): array {
         list($response) = $this->getProjectUserAccessWithHttpInfo(
             $project_id,
             $user_id
@@ -431,7 +431,7 @@ final class UserAccessApi extends AbstractApi
     public function getUserProjectAccess(
         string $user_id,
         string $project_id
-    ): \Upsun\Model\UserProjectAccess {
+    ): array {
         list($response) = $this->getUserProjectAccessWithHttpInfo(
             $user_id,
             $project_id
@@ -736,7 +736,7 @@ final class UserAccessApi extends AbstractApi
     public function grantProjectUserAccess(
         string $project_id,
         array $grant_project_user_access_request_inner
-    ): void {
+    ): array {
         $this->grantProjectUserAccessWithHttpInfo(
             $project_id,
             $grant_project_user_access_request_inner
@@ -981,7 +981,7 @@ final class UserAccessApi extends AbstractApi
     public function grantUserProjectAccess(
         string $user_id,
         array $grant_user_project_access_request_inner
-    ): void {
+    ): array {
         $this->grantUserProjectAccessWithHttpInfo(
             $user_id,
             $grant_user_project_access_request_inner
@@ -1229,7 +1229,7 @@ final class UserAccessApi extends AbstractApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ): \Upsun\Model\ListProjectUserAccess200Response {
+    ): array {
         list($response) = $this->listProjectUserAccessWithHttpInfo(
             $project_id,
             $page_size,
@@ -1605,7 +1605,7 @@ final class UserAccessApi extends AbstractApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ): \Upsun\Model\ListProjectUserAccess200Response {
+    ): array {
         list($response) = $this->listUserProjectAccessWithHttpInfo(
             $user_id,
             $filter_organization_id,
@@ -1996,7 +1996,7 @@ final class UserAccessApi extends AbstractApi
     public function removeProjectUserAccess(
         string $project_id,
         string $user_id
-    ): void {
+    ): array {
         $this->removeProjectUserAccessWithHttpInfo(
             $project_id,
             $user_id
@@ -2251,7 +2251,7 @@ final class UserAccessApi extends AbstractApi
     public function removeUserProjectAccess(
         string $user_id,
         string $project_id
-    ): void {
+    ): array {
         $this->removeUserProjectAccessWithHttpInfo(
             $user_id,
             $project_id
@@ -2507,7 +2507,7 @@ final class UserAccessApi extends AbstractApi
         string $project_id,
         string $user_id,
         \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null
-    ): void {
+    ): array {
         $this->updateProjectUserAccessWithHttpInfo(
             $project_id,
             $user_id,
@@ -2777,7 +2777,7 @@ final class UserAccessApi extends AbstractApi
         string $user_id,
         string $project_id,
         \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null
-    ): void {
+    ): array {
         $this->updateUserProjectAccessWithHttpInfo(
             $user_id,
             $project_id,

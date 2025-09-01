@@ -126,7 +126,7 @@ final class RepositoryApi extends AbstractApi
     public function getProjectsGitBlobs(
         string $project_id,
         string $repository_blob_id
-    ): \Upsun\Model\Blob {
+    ): array {
         list($response) = $this->getProjectsGitBlobsWithHttpInfo(
             $project_id,
             $repository_blob_id
@@ -403,7 +403,7 @@ final class RepositoryApi extends AbstractApi
     public function getProjectsGitCommits(
         string $project_id,
         string $repository_commit_id
-    ): \Upsun\Model\Commit {
+    ): array {
         list($response) = $this->getProjectsGitCommitsWithHttpInfo(
             $project_id,
             $repository_commit_id
@@ -680,7 +680,7 @@ final class RepositoryApi extends AbstractApi
     public function getProjectsGitRefs(
         string $project_id,
         string $repository_ref_id
-    ): \Upsun\Model\Ref {
+    ): array {
         list($response) = $this->getProjectsGitRefsWithHttpInfo(
             $project_id,
             $repository_ref_id
@@ -957,7 +957,7 @@ final class RepositoryApi extends AbstractApi
     public function getProjectsGitTrees(
         string $project_id,
         string $repository_tree_id
-    ): \Upsun\Model\Tree {
+    ): array {
         list($response) = $this->getProjectsGitTreesWithHttpInfo(
             $project_id,
             $repository_tree_id

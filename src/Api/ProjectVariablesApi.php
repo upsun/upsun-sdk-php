@@ -126,7 +126,7 @@ final class ProjectVariablesApi extends AbstractApi
     public function createProjectsVariables(
         string $project_id,
         \Upsun\Model\ProjectVariableCreateInput $project_variable_create_input
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->createProjectsVariablesWithHttpInfo(
             $project_id,
             $project_variable_create_input
@@ -401,7 +401,7 @@ final class ProjectVariablesApi extends AbstractApi
     public function deleteProjectsVariables(
         string $project_id,
         string $project_variable_id
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->deleteProjectsVariablesWithHttpInfo(
             $project_id,
             $project_variable_id
@@ -678,7 +678,7 @@ final class ProjectVariablesApi extends AbstractApi
     public function getProjectsVariables(
         string $project_id,
         string $project_variable_id
-    ): \Upsun\Model\ProjectVariable {
+    ): array {
         list($response) = $this->getProjectsVariablesWithHttpInfo(
             $project_id,
             $project_variable_id
@@ -1212,7 +1212,7 @@ final class ProjectVariablesApi extends AbstractApi
         string $project_id,
         string $project_variable_id,
         \Upsun\Model\ProjectVariablePatch $project_variable_patch
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->updateProjectsVariablesWithHttpInfo(
             $project_id,
             $project_variable_id,

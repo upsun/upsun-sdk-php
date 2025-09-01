@@ -128,7 +128,7 @@ final class GrantsApi extends AbstractApi
         \Upsun\Model\StringFilter $filter_resource_type = null,
         \Upsun\Model\StringFilter $filter_organization_id = null,
         \Upsun\Model\StringFilter $filter_permissions = null
-    ): \Upsun\Model\ListUserExtendedAccess200Response {
+    ): array {
         list($response) = $this->listUserExtendedAccessWithHttpInfo(
             $user_id,
             $filter_resource_type,

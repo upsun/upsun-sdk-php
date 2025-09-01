@@ -125,7 +125,7 @@ final class ProjectSettingsApi extends AbstractApi
      */
     public function getProjectsSettings(
         string $project_id
-    ): \Upsun\Model\ProjectSettings {
+    ): array {
         list($response) = $this->getProjectsSettingsWithHttpInfo(
             $project_id
         );
@@ -380,7 +380,7 @@ final class ProjectSettingsApi extends AbstractApi
     public function updateProjectsSettings(
         string $project_id,
         \Upsun\Model\ProjectSettingsPatch $project_settings_patch
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->updateProjectsSettingsWithHttpInfo(
             $project_id,
             $project_settings_patch

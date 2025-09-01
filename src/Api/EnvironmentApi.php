@@ -127,7 +127,7 @@ final class EnvironmentApi extends AbstractApi
         string $project_id,
         string $environment_id,
         \Upsun\Model\EnvironmentActivateInput $environment_activate_input
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->activateEnvironmentWithHttpInfo(
             $project_id,
             $environment_id,
@@ -425,7 +425,7 @@ final class EnvironmentApi extends AbstractApi
         string $project_id,
         string $environment_id,
         \Upsun\Model\EnvironmentBranchInput $environment_branch_input
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->branchEnvironmentWithHttpInfo(
             $project_id,
             $environment_id,
@@ -723,7 +723,7 @@ final class EnvironmentApi extends AbstractApi
         string $project_id,
         string $environment_id,
         \Upsun\Model\VersionCreateInput $version_create_input
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->createProjectsEnvironmentsVersionsWithHttpInfo(
             $project_id,
             $environment_id,
@@ -1020,7 +1020,7 @@ final class EnvironmentApi extends AbstractApi
     public function deactivateEnvironment(
         string $project_id,
         string $environment_id
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->deactivateEnvironmentWithHttpInfo(
             $project_id,
             $environment_id
@@ -1297,7 +1297,7 @@ final class EnvironmentApi extends AbstractApi
     public function deleteEnvironment(
         string $project_id,
         string $environment_id
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->deleteEnvironmentWithHttpInfo(
             $project_id,
             $environment_id
@@ -1575,7 +1575,7 @@ final class EnvironmentApi extends AbstractApi
         string $project_id,
         string $environment_id,
         string $version_id
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->deleteProjectsEnvironmentsVersionsWithHttpInfo(
             $project_id,
             $environment_id,
@@ -1874,7 +1874,7 @@ final class EnvironmentApi extends AbstractApi
     public function getEnvironment(
         string $project_id,
         string $environment_id
-    ): \Upsun\Model\Environment {
+    ): array {
         list($response) = $this->getEnvironmentWithHttpInfo(
             $project_id,
             $environment_id
@@ -2152,7 +2152,7 @@ final class EnvironmentApi extends AbstractApi
         string $project_id,
         string $environment_id,
         string $version_id
-    ): \Upsun\Model\Version {
+    ): array {
         list($response) = $this->getProjectsEnvironmentsVersionsWithHttpInfo(
             $project_id,
             $environment_id,
@@ -2452,7 +2452,7 @@ final class EnvironmentApi extends AbstractApi
         string $project_id,
         string $environment_id,
         \Upsun\Model\EnvironmentInitializeInput $environment_initialize_input
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->initializeEnvironmentWithHttpInfo(
             $project_id,
             $environment_id,
@@ -3285,7 +3285,7 @@ final class EnvironmentApi extends AbstractApi
         string $project_id,
         string $environment_id,
         \Upsun\Model\EnvironmentMergeInput $environment_merge_input
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->mergeEnvironmentWithHttpInfo(
             $project_id,
             $environment_id,
@@ -3582,7 +3582,7 @@ final class EnvironmentApi extends AbstractApi
     public function pauseEnvironment(
         string $project_id,
         string $environment_id
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->pauseEnvironmentWithHttpInfo(
             $project_id,
             $environment_id
@@ -3859,7 +3859,7 @@ final class EnvironmentApi extends AbstractApi
     public function redeployEnvironment(
         string $project_id,
         string $environment_id
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->redeployEnvironmentWithHttpInfo(
             $project_id,
             $environment_id
@@ -4136,7 +4136,7 @@ final class EnvironmentApi extends AbstractApi
     public function resumeEnvironment(
         string $project_id,
         string $environment_id
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->resumeEnvironmentWithHttpInfo(
             $project_id,
             $environment_id
@@ -4414,7 +4414,7 @@ final class EnvironmentApi extends AbstractApi
         string $project_id,
         string $environment_id,
         \Upsun\Model\EnvironmentSynchronizeInput $environment_synchronize_input
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->synchronizeEnvironmentWithHttpInfo(
             $project_id,
             $environment_id,
@@ -4712,7 +4712,7 @@ final class EnvironmentApi extends AbstractApi
         string $project_id,
         string $environment_id,
         \Upsun\Model\EnvironmentPatch $environment_patch
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->updateEnvironmentWithHttpInfo(
             $project_id,
             $environment_id,
@@ -5011,7 +5011,7 @@ final class EnvironmentApi extends AbstractApi
         string $environment_id,
         string $version_id,
         \Upsun\Model\VersionPatch $version_patch
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->updateProjectsEnvironmentsVersionsWithHttpInfo(
             $project_id,
             $environment_id,

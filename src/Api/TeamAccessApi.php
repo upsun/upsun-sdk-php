@@ -126,7 +126,7 @@ final class TeamAccessApi extends AbstractApi
     public function getProjectTeamAccess(
         string $project_id,
         string $team_id
-    ): \Upsun\Model\TeamProjectAccess {
+    ): array {
         list($response) = $this->getProjectTeamAccessWithHttpInfo(
             $project_id,
             $team_id
@@ -431,7 +431,7 @@ final class TeamAccessApi extends AbstractApi
     public function getTeamProjectAccess(
         string $team_id,
         string $project_id
-    ): \Upsun\Model\TeamProjectAccess {
+    ): array {
         list($response) = $this->getTeamProjectAccessWithHttpInfo(
             $team_id,
             $project_id
@@ -736,7 +736,7 @@ final class TeamAccessApi extends AbstractApi
     public function grantProjectTeamAccess(
         string $project_id,
         array $grant_project_team_access_request_inner
-    ): void {
+    ): array {
         $this->grantProjectTeamAccessWithHttpInfo(
             $project_id,
             $grant_project_team_access_request_inner
@@ -981,7 +981,7 @@ final class TeamAccessApi extends AbstractApi
     public function grantTeamProjectAccess(
         string $team_id,
         array $grant_team_project_access_request_inner
-    ): void {
+    ): array {
         $this->grantTeamProjectAccessWithHttpInfo(
             $team_id,
             $grant_team_project_access_request_inner
@@ -1229,7 +1229,7 @@ final class TeamAccessApi extends AbstractApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ): \Upsun\Model\ListTeamProjectAccess200Response {
+    ): array {
         list($response) = $this->listProjectTeamAccessWithHttpInfo(
             $project_id,
             $page_size,
@@ -1604,7 +1604,7 @@ final class TeamAccessApi extends AbstractApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ): \Upsun\Model\ListTeamProjectAccess200Response {
+    ): array {
         list($response) = $this->listTeamProjectAccessWithHttpInfo(
             $team_id,
             $page_size,
@@ -1976,7 +1976,7 @@ final class TeamAccessApi extends AbstractApi
     public function removeProjectTeamAccess(
         string $project_id,
         string $team_id
-    ): void {
+    ): array {
         $this->removeProjectTeamAccessWithHttpInfo(
             $project_id,
             $team_id
@@ -2231,7 +2231,7 @@ final class TeamAccessApi extends AbstractApi
     public function removeTeamProjectAccess(
         string $team_id,
         string $project_id
-    ): void {
+    ): array {
         $this->removeTeamProjectAccessWithHttpInfo(
             $team_id,
             $project_id

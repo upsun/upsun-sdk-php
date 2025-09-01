@@ -126,7 +126,7 @@ final class OrganizationInvitationsApi extends AbstractApi
     public function cancelOrgInvite(
         string $organization_id,
         string $invitation_id
-    ): void {
+    ): array {
         $this->cancelOrgInviteWithHttpInfo(
             $organization_id,
             $invitation_id
@@ -365,7 +365,7 @@ final class OrganizationInvitationsApi extends AbstractApi
     public function createOrgInvite(
         string $organization_id,
         \Upsun\Model\CreateOrgInviteRequest $create_org_invite_request = null
-    ): \Upsun\Model\OrganizationInvitation {
+    ): array {
         list($response) = $this->createOrgInviteWithHttpInfo(
             $organization_id,
             $create_org_invite_request

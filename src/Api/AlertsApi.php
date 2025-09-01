@@ -126,7 +126,7 @@ final class AlertsApi extends AbstractApi
     public function createUsageAlert(
         string $subscription_id,
         \Upsun\Model\CreateUsageAlertRequest $create_usage_alert_request = null
-    ): \Upsun\Model\Alert {
+    ): array {
         list($response) = $this->createUsageAlertWithHttpInfo(
             $subscription_id,
             $create_usage_alert_request
@@ -395,7 +395,7 @@ final class AlertsApi extends AbstractApi
     public function deleteUsageAlert(
         string $subscription_id,
         string $usage_id
-    ): void {
+    ): array {
         $this->deleteUsageAlertWithHttpInfo(
             $subscription_id,
             $usage_id
@@ -625,7 +625,7 @@ final class AlertsApi extends AbstractApi
      */
     public function getUsageAlerts(
         string $subscription_id
-    ): \Upsun\Model\GetUsageAlerts200Response {
+    ): array {
         list($response) = $this->getUsageAlertsWithHttpInfo(
             $subscription_id
         );
@@ -881,7 +881,7 @@ final class AlertsApi extends AbstractApi
         string $subscription_id,
         string $usage_id,
         \Upsun\Model\UpdateUsageAlertRequest $update_usage_alert_request = null
-    ): \Upsun\Model\Alert {
+    ): array {
         list($response) = $this->updateUsageAlertWithHttpInfo(
             $subscription_id,
             $usage_id,

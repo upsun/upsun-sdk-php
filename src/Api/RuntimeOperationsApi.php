@@ -128,7 +128,7 @@ final class RuntimeOperationsApi extends AbstractApi
         string $environment_id,
         string $deployment_id,
         \Upsun\Model\EnvironmentOperationInput $environment_operation_input
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->runOperationWithHttpInfo(
             $project_id,
             $environment_id,

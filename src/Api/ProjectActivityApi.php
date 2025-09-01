@@ -126,7 +126,7 @@ final class ProjectActivityApi extends AbstractApi
     public function actionProjectsActivitiesCancel(
         string $project_id,
         string $activity_id
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->actionProjectsActivitiesCancelWithHttpInfo(
             $project_id,
             $activity_id
@@ -403,7 +403,7 @@ final class ProjectActivityApi extends AbstractApi
     public function getProjectsActivities(
         string $project_id,
         string $activity_id
-    ): \Upsun\Model\Activity {
+    ): array {
         list($response) = $this->getProjectsActivitiesWithHttpInfo(
             $project_id,
             $activity_id

@@ -127,7 +127,7 @@ final class RoutingApi extends AbstractApi
         string $project_id,
         string $environment_id,
         \Upsun\Model\RouteCreateInput $route_create_input
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->createProjectsEnvironmentsRoutesWithHttpInfo(
             $project_id,
             $environment_id,
@@ -425,7 +425,7 @@ final class RoutingApi extends AbstractApi
         string $project_id,
         string $environment_id,
         string $route_id
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->deleteProjectsEnvironmentsRoutesWithHttpInfo(
             $project_id,
             $environment_id,
@@ -725,7 +725,7 @@ final class RoutingApi extends AbstractApi
         string $project_id,
         string $environment_id,
         string $route_id
-    ): \Upsun\Model\Route {
+    ): array {
         list($response) = $this->getProjectsEnvironmentsRoutesWithHttpInfo(
             $project_id,
             $environment_id,
@@ -1305,7 +1305,7 @@ final class RoutingApi extends AbstractApi
         string $environment_id,
         string $route_id,
         \Upsun\Model\RoutePatch $route_patch
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->updateProjectsEnvironmentsRoutesWithHttpInfo(
             $project_id,
             $environment_id,

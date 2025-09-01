@@ -406,7 +406,7 @@ final class SourceOperationsApi extends AbstractApi
         string $project_id,
         string $environment_id,
         \Upsun\Model\EnvironmentSourceOperationInput $environment_source_operation_input
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->runSourceOperationWithHttpInfo(
             $project_id,
             $environment_id,

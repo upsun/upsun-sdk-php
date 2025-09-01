@@ -126,7 +126,7 @@ final class DeploymentTargetApi extends AbstractApi
     public function createProjectsDeployments(
         string $project_id,
         \Upsun\Model\DeploymentTargetCreateInput $deployment_target_create_input
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->createProjectsDeploymentsWithHttpInfo(
             $project_id,
             $deployment_target_create_input
@@ -401,7 +401,7 @@ final class DeploymentTargetApi extends AbstractApi
     public function deleteProjectsDeployments(
         string $project_id,
         string $deployment_target_configuration_id
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->deleteProjectsDeploymentsWithHttpInfo(
             $project_id,
             $deployment_target_configuration_id
@@ -678,7 +678,7 @@ final class DeploymentTargetApi extends AbstractApi
     public function getProjectsDeployments(
         string $project_id,
         string $deployment_target_configuration_id
-    ): \Upsun\Model\DeploymentTarget {
+    ): array {
         list($response) = $this->getProjectsDeploymentsWithHttpInfo(
             $project_id,
             $deployment_target_configuration_id
@@ -1212,7 +1212,7 @@ final class DeploymentTargetApi extends AbstractApi
         string $project_id,
         string $deployment_target_configuration_id,
         \Upsun\Model\DeploymentTargetPatch $deployment_target_patch
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->updateProjectsDeploymentsWithHttpInfo(
             $project_id,
             $deployment_target_configuration_id,

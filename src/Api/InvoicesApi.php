@@ -126,7 +126,7 @@ final class InvoicesApi extends AbstractApi
     public function getOrgInvoice(
         string $invoice_id,
         string $organization_id
-    ): \Upsun\Model\Invoice {
+    ): array {
         list($response) = $this->getOrgInvoiceWithHttpInfo(
             $invoice_id,
             $organization_id
@@ -434,7 +434,7 @@ final class InvoicesApi extends AbstractApi
         string $filter_type = null,
         string $filter_order_id = null,
         int $page = null
-    ): \Upsun\Model\ListOrgInvoices200Response {
+    ): array {
         list($response) = $this->listOrgInvoicesWithHttpInfo(
             $organization_id,
             $filter_status,

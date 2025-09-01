@@ -127,7 +127,7 @@ final class EnvironmentVariablesApi extends AbstractApi
         string $project_id,
         string $environment_id,
         \Upsun\Model\EnvironmentVariableCreateInput $environment_variable_create_input
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->createProjectsEnvironmentsVariablesWithHttpInfo(
             $project_id,
             $environment_id,
@@ -425,7 +425,7 @@ final class EnvironmentVariablesApi extends AbstractApi
         string $project_id,
         string $environment_id,
         string $variable_id
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->deleteProjectsEnvironmentsVariablesWithHttpInfo(
             $project_id,
             $environment_id,
@@ -725,7 +725,7 @@ final class EnvironmentVariablesApi extends AbstractApi
         string $project_id,
         string $environment_id,
         string $variable_id
-    ): \Upsun\Model\EnvironmentVariable {
+    ): array {
         list($response) = $this->getProjectsEnvironmentsVariablesWithHttpInfo(
             $project_id,
             $environment_id,
@@ -1305,7 +1305,7 @@ final class EnvironmentVariablesApi extends AbstractApi
         string $environment_id,
         string $variable_id,
         \Upsun\Model\EnvironmentVariablePatch $environment_variable_patch
-    ): \Upsun\Model\AcceptedResponse {
+    ): array {
         list($response) = $this->updateProjectsEnvironmentsVariablesWithHttpInfo(
             $project_id,
             $environment_id,

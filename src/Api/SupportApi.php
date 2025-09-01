@@ -125,7 +125,7 @@ final class SupportApi extends AbstractApi
      */
     public function createTicket(
         \Upsun\Model\CreateTicketRequest $create_ticket_request = null
-    ): \Upsun\Model\Ticket {
+    ): array {
         list($response) = $this->createTicketWithHttpInfo(
             $create_ticket_request
         );
@@ -918,7 +918,7 @@ final class SupportApi extends AbstractApi
     public function updateTicket(
         string $ticket_id,
         \Upsun\Model\UpdateTicketRequest $update_ticket_request = null
-    ): \Upsun\Model\Ticket {
+    ): array {
         list($response) = $this->updateTicketWithHttpInfo(
             $ticket_id,
             $update_ticket_request

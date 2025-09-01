@@ -126,7 +126,7 @@ final class EnvironmentTypeApi extends AbstractApi
     public function getEnvironmentType(
         string $project_id,
         string $environment_type_id
-    ): \Upsun\Model\EnvironmentType {
+    ): array {
         list($response) = $this->getEnvironmentTypeWithHttpInfo(
             $project_id,
             $environment_type_id

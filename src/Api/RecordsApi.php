@@ -133,7 +133,7 @@ final class RecordsApi extends AbstractApi
         \DateTime $filter_started_at = null,
         \DateTime $filter_ended_at = null,
         int $page = null
-    ): \Upsun\Model\ListOrgPlanRecords200Response {
+    ): array {
         list($response) = $this->listOrgPlanRecordsWithHttpInfo(
             $organization_id,
             $filter_subscription_id,
@@ -572,7 +572,7 @@ final class RecordsApi extends AbstractApi
         \DateTime $filter_start = null,
         \DateTime $filter_started_at = null,
         int $page = null
-    ): \Upsun\Model\ListOrgUsageRecords200Response {
+    ): array {
         list($response) = $this->listOrgUsageRecordsWithHttpInfo(
             $organization_id,
             $filter_subscription_id,

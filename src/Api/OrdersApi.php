@@ -126,7 +126,7 @@ final class OrdersApi extends AbstractApi
     public function createAuthorizationCredentials(
         string $organization_id,
         string $order_id
-    ): \Upsun\Model\CreateAuthorizationCredentials200Response {
+    ): array {
         list($response) = $this->createAuthorizationCredentialsWithHttpInfo(
             $organization_id,
             $order_id
@@ -444,7 +444,7 @@ final class OrdersApi extends AbstractApi
      */
     public function downloadInvoice(
         string $token
-    ): void {
+    ): array {
         $this->downloadInvoiceWithHttpInfo(
             $token
         );
@@ -657,7 +657,7 @@ final class OrdersApi extends AbstractApi
         string $organization_id,
         string $order_id,
         string $mode = null
-    ): \Upsun\Model\Order {
+    ): array {
         list($response) = $this->getOrgOrderWithHttpInfo(
             $organization_id,
             $order_id,
@@ -984,7 +984,7 @@ final class OrdersApi extends AbstractApi
         int $filter_total = null,
         int $page = null,
         string $mode = null
-    ): \Upsun\Model\ListOrgOrders200Response {
+    ): array {
         list($response) = $this->listOrgOrdersWithHttpInfo(
             $organization_id,
             $filter_status,

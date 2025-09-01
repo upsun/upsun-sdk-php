@@ -125,7 +125,7 @@ final class TeamsApi extends AbstractApi
      */
     public function createTeam(
         \Upsun\Model\CreateTeamRequest $create_team_request
-    ): \Upsun\Model\Team {
+    ): array {
         list($response) = $this->createTeamWithHttpInfo(
             $create_team_request
         );
@@ -406,7 +406,7 @@ final class TeamsApi extends AbstractApi
     public function createTeamMember(
         string $team_id,
         \Upsun\Model\CreateTeamMemberRequest $create_team_member_request
-    ): \Upsun\Model\TeamMember {
+    ): array {
         list($response) = $this->createTeamMemberWithHttpInfo(
             $team_id,
             $create_team_member_request
@@ -722,7 +722,7 @@ final class TeamsApi extends AbstractApi
      */
     public function deleteTeam(
         string $team_id
-    ): void {
+    ): array {
         $this->deleteTeamWithHttpInfo(
             $team_id
         );
@@ -947,7 +947,7 @@ final class TeamsApi extends AbstractApi
     public function deleteTeamMember(
         string $team_id,
         string $user_id
-    ): void {
+    ): array {
         $this->deleteTeamMemberWithHttpInfo(
             $team_id,
             $user_id
@@ -1193,7 +1193,7 @@ final class TeamsApi extends AbstractApi
      */
     public function getTeam(
         string $team_id
-    ): \Upsun\Model\Team {
+    ): array {
         list($response) = $this->getTeamWithHttpInfo(
             $team_id
         );
@@ -1476,7 +1476,7 @@ final class TeamsApi extends AbstractApi
     public function getTeamMember(
         string $team_id,
         string $user_id
-    ): \Upsun\Model\TeamMember {
+    ): array {
         list($response) = $this->getTeamMemberWithHttpInfo(
             $team_id,
             $user_id
@@ -1783,7 +1783,7 @@ final class TeamsApi extends AbstractApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ): \Upsun\Model\ListTeamMembers200Response {
+    ): array {
         list($response) = $this->listTeamMembersWithHttpInfo(
             $team_id,
             $page_before,
@@ -2128,7 +2128,7 @@ final class TeamsApi extends AbstractApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ): \Upsun\Model\ListTeams200Response {
+    ): array {
         list($response) = $this->listTeamsWithHttpInfo(
             $filter_organization_id,
             $filter_id,
@@ -2526,7 +2526,7 @@ final class TeamsApi extends AbstractApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ): \Upsun\Model\ListTeams200Response {
+    ): array {
         list($response) = $this->listUserTeamsWithHttpInfo(
             $user_id,
             $filter_organization_id,
@@ -2936,7 +2936,7 @@ final class TeamsApi extends AbstractApi
     public function updateTeam(
         string $team_id,
         \Upsun\Model\UpdateTeamRequest $update_team_request = null
-    ): \Upsun\Model\Team {
+    ): array {
         list($response) = $this->updateTeamWithHttpInfo(
             $team_id,
             $update_team_request

@@ -125,7 +125,7 @@ final class SubscriptionsApi extends AbstractApi
      */
     public function canCreateNewOrgSubscription(
         string $organization_id
-    ): \Upsun\Model\CanCreateNewOrgSubscription200Response {
+    ): array {
         list($response) = $this->canCreateNewOrgSubscriptionWithHttpInfo(
             $organization_id
         );
@@ -408,7 +408,7 @@ final class SubscriptionsApi extends AbstractApi
     public function createOrgSubscription(
         string $organization_id,
         \Upsun\Model\CreateOrgSubscriptionRequest $create_org_subscription_request
-    ): \Upsun\Model\Subscription {
+    ): array {
         list($response) = $this->createOrgSubscriptionWithHttpInfo(
             $organization_id,
             $create_org_subscription_request
@@ -725,7 +725,7 @@ final class SubscriptionsApi extends AbstractApi
     public function deleteOrgSubscription(
         string $organization_id,
         string $subscription_id
-    ): void {
+    ): array {
         $this->deleteOrgSubscriptionWithHttpInfo(
             $organization_id,
             $subscription_id
@@ -976,7 +976,7 @@ final class SubscriptionsApi extends AbstractApi
         int $storage,
         int $user_licenses,
         string $format = null
-    ): \Upsun\Model\EstimationObject {
+    ): array {
         list($response) = $this->estimateNewOrgSubscriptionWithHttpInfo(
             $organization_id,
             $plan,
@@ -1383,7 +1383,7 @@ final class SubscriptionsApi extends AbstractApi
         int $storage = null,
         int $user_licenses = null,
         string $format = null
-    ): \Upsun\Model\EstimationObject {
+    ): array {
         list($response) = $this->estimateOrgSubscriptionWithHttpInfo(
             $organization_id,
             $subscription_id,
@@ -1775,7 +1775,7 @@ final class SubscriptionsApi extends AbstractApi
     public function getOrgSubscription(
         string $organization_id,
         string $subscription_id
-    ): \Upsun\Model\Subscription {
+    ): array {
         list($response) = $this->getOrgSubscriptionWithHttpInfo(
             $organization_id,
             $subscription_id
@@ -2082,7 +2082,7 @@ final class SubscriptionsApi extends AbstractApi
         string $subscription_id,
         string $usage_groups = null,
         bool $include_not_charged = null
-    ): \Upsun\Model\SubscriptionCurrentUsageObject {
+    ): array {
         list($response) = $this->getOrgSubscriptionCurrentUsageWithHttpInfo(
             $organization_id,
             $subscription_id,
@@ -2420,7 +2420,7 @@ final class SubscriptionsApi extends AbstractApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ): \Upsun\Model\ListOrgSubscriptions200Response {
+    ): array {
         list($response) = $this->listOrgSubscriptionsWithHttpInfo(
             $organization_id,
             $filter_status,
@@ -2906,7 +2906,7 @@ final class SubscriptionsApi extends AbstractApi
     public function listSubscriptionAddons(
         string $organization_id,
         string $subscription_id
-    ): \Upsun\Model\SubscriptionAddonsObject {
+    ): array {
         list($response) = $this->listSubscriptionAddonsWithHttpInfo(
             $organization_id,
             $subscription_id
@@ -3198,7 +3198,7 @@ final class SubscriptionsApi extends AbstractApi
         string $organization_id,
         string $subscription_id,
         \Upsun\Model\UpdateOrgSubscriptionRequest $update_org_subscription_request = null
-    ): \Upsun\Model\Subscription {
+    ): array {
         list($response) = $this->updateOrgSubscriptionWithHttpInfo(
             $organization_id,
             $subscription_id,

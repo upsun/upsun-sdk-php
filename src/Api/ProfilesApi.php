@@ -125,7 +125,7 @@ final class ProfilesApi extends AbstractApi
      */
     public function getOrgAddress(
         string $organization_id
-    ): \Upsun\Model\Address {
+    ): array {
         list($response) = $this->getOrgAddressWithHttpInfo(
             $organization_id
         );
@@ -407,7 +407,7 @@ final class ProfilesApi extends AbstractApi
      */
     public function getOrgProfile(
         string $organization_id
-    ): \Upsun\Model\Profile {
+    ): array {
         list($response) = $this->getOrgProfileWithHttpInfo(
             $organization_id
         );
@@ -690,7 +690,7 @@ final class ProfilesApi extends AbstractApi
     public function updateOrgAddress(
         string $organization_id,
         \Upsun\Model\Address $address = null
-    ): \Upsun\Model\Address {
+    ): array {
         list($response) = $this->updateOrgAddressWithHttpInfo(
             $organization_id,
             $address
@@ -1001,7 +1001,7 @@ final class ProfilesApi extends AbstractApi
     public function updateOrgProfile(
         string $organization_id,
         \Upsun\Model\UpdateOrgProfileRequest $update_org_profile_request = null
-    ): \Upsun\Model\Profile {
+    ): array {
         list($response) = $this->updateOrgProfileWithHttpInfo(
             $organization_id,
             $update_org_profile_request

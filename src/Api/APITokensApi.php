@@ -126,7 +126,7 @@ final class APITokensApi extends AbstractApi
     public function createApiToken(
         string $user_id,
         \Upsun\Model\CreateApiTokenRequest $create_api_token_request = null
-    ): \Upsun\Model\APIToken {
+    ): array {
         list($response) = $this->createApiTokenWithHttpInfo(
             $user_id,
             $create_api_token_request
@@ -437,7 +437,7 @@ final class APITokensApi extends AbstractApi
     public function deleteApiToken(
         string $user_id,
         string $token_id
-    ): void {
+    ): array {
         $this->deleteApiTokenWithHttpInfo(
             $user_id,
             $token_id
@@ -676,7 +676,7 @@ final class APITokensApi extends AbstractApi
     public function getApiToken(
         string $user_id,
         string $token_id
-    ): \Upsun\Model\APIToken {
+    ): array {
         list($response) = $this->getApiTokenWithHttpInfo(
             $user_id,
             $token_id

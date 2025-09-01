@@ -126,7 +126,7 @@ final class ProjectInvitationsApi extends AbstractApi
     public function cancelProjectInvite(
         string $project_id,
         string $invitation_id
-    ): void {
+    ): array {
         $this->cancelProjectInviteWithHttpInfo(
             $project_id,
             $invitation_id
@@ -365,7 +365,7 @@ final class ProjectInvitationsApi extends AbstractApi
     public function createProjectInvite(
         string $project_id,
         \Upsun\Model\CreateProjectInviteRequest $create_project_invite_request = null
-    ): \Upsun\Model\ProjectInvitation {
+    ): array {
         list($response) = $this->createProjectInviteWithHttpInfo(
             $project_id,
             $create_project_invite_request

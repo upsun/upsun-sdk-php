@@ -125,7 +125,7 @@ final class SSHKeysApi extends AbstractApi
      */
     public function createSshKey(
         \Upsun\Model\CreateSshKeyRequest $create_ssh_key_request = null
-    ): \Upsun\Model\SSHKey {
+    ): array {
         list($response) = $this->createSshKeyWithHttpInfo(
             $create_ssh_key_request
         );
@@ -371,7 +371,7 @@ final class SSHKeysApi extends AbstractApi
      */
     public function deleteSshKey(
         int $key_id
-    ): void {
+    ): array {
         $this->deleteSshKeyWithHttpInfo(
             $key_id
         );
@@ -579,7 +579,7 @@ final class SSHKeysApi extends AbstractApi
      */
     public function getSshKey(
         int $key_id
-    ): \Upsun\Model\SSHKey {
+    ): array {
         list($response) = $this->getSshKeyWithHttpInfo(
             $key_id
         );

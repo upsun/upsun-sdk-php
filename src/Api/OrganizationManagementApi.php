@@ -125,7 +125,7 @@ final class OrganizationManagementApi extends AbstractApi
      */
     public function estimateOrg(
         string $organization_id
-    ): \Upsun\Model\OrganizationEstimationObject {
+    ): array {
         list($response) = $this->estimateOrgWithHttpInfo(
             $organization_id
         );
@@ -407,7 +407,7 @@ final class OrganizationManagementApi extends AbstractApi
      */
     public function getOrgBillingAlertConfig(
         string $organization_id
-    ): \Upsun\Model\OrganizationAlertConfig {
+    ): array {
         list($response) = $this->getOrgBillingAlertConfigWithHttpInfo(
             $organization_id
         );
@@ -689,7 +689,7 @@ final class OrganizationManagementApi extends AbstractApi
      */
     public function getOrgPrepaymentInfo(
         string $organization_id
-    ): \Upsun\Model\GetOrgPrepaymentInfo200Response {
+    ): array {
         list($response) = $this->getOrgPrepaymentInfoWithHttpInfo(
             $organization_id
         );
@@ -971,7 +971,7 @@ final class OrganizationManagementApi extends AbstractApi
      */
     public function listOrgPrepaymentTransactions(
         string $organization_id
-    ): \Upsun\Model\ListOrgPrepaymentTransactions200Response {
+    ): array {
         list($response) = $this->listOrgPrepaymentTransactionsWithHttpInfo(
             $organization_id
         );
@@ -1254,7 +1254,7 @@ final class OrganizationManagementApi extends AbstractApi
     public function updateOrgBillingAlertConfig(
         string $organization_id,
         \Upsun\Model\UpdateOrgBillingAlertConfigRequest $update_org_billing_alert_config_request = null
-    ): \Upsun\Model\OrganizationAlertConfig {
+    ): array {
         list($response) = $this->updateOrgBillingAlertConfigWithHttpInfo(
             $organization_id,
             $update_org_billing_alert_config_request

@@ -125,7 +125,7 @@ final class RegionsApi extends AbstractApi
      */
     public function getRegion(
         string $region_id
-    ): \Upsun\Model\Region {
+    ): array {
         list($response) = $this->getRegionWithHttpInfo(
             $region_id
         );
@@ -413,7 +413,7 @@ final class RegionsApi extends AbstractApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ): \Upsun\Model\ListRegions200Response {
+    ): array {
         list($response) = $this->listRegionsWithHttpInfo(
             $filter_available,
             $filter_private,
