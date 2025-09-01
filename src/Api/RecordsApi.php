@@ -133,7 +133,7 @@ final class RecordsApi extends AbstractApi
         \DateTime $filter_started_at = null,
         \DateTime $filter_ended_at = null,
         int $page = null
-    ): array {
+    ): array|\Upsun\Model\Error {
         list($response) = $this->listOrgPlanRecordsWithHttpInfo(
             $organization_id,
             $filter_subscription_id,
@@ -232,23 +232,6 @@ final class RecordsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\ListOrgPlanRecords200Response',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -277,8 +260,6 @@ final class RecordsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -536,10 +517,6 @@ final class RecordsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -572,7 +549,7 @@ final class RecordsApi extends AbstractApi
         \DateTime $filter_start = null,
         \DateTime $filter_started_at = null,
         int $page = null
-    ): array {
+    ): array|\Upsun\Model\Error {
         list($response) = $this->listOrgUsageRecordsWithHttpInfo(
             $organization_id,
             $filter_subscription_id,
@@ -662,23 +639,6 @@ final class RecordsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\ListOrgUsageRecords200Response',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -707,8 +667,6 @@ final class RecordsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -918,10 +876,6 @@ final class RecordsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

@@ -127,7 +127,7 @@ final class RoutingApi extends AbstractApi
         string $project_id,
         string $environment_id,
         \Upsun\Model\RouteCreateInput $route_create_input
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->createProjectsEnvironmentsRoutesWithHttpInfo(
             $project_id,
             $environment_id,
@@ -196,23 +196,6 @@ final class RoutingApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -225,8 +208,6 @@ final class RoutingApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -392,10 +373,6 @@ final class RoutingApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -425,7 +402,7 @@ final class RoutingApi extends AbstractApi
         string $project_id,
         string $environment_id,
         string $route_id
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsEnvironmentsRoutesWithHttpInfo(
             $project_id,
             $environment_id,
@@ -494,23 +471,6 @@ final class RoutingApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -523,8 +483,6 @@ final class RoutingApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -692,10 +650,6 @@ final class RoutingApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -725,7 +679,7 @@ final class RoutingApi extends AbstractApi
         string $project_id,
         string $environment_id,
         string $route_id
-    ): array {
+    ): \Upsun\Model\Route {
         list($response) = $this->getProjectsEnvironmentsRoutesWithHttpInfo(
             $project_id,
             $environment_id,
@@ -794,23 +748,6 @@ final class RoutingApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Route',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -823,8 +760,6 @@ final class RoutingApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -992,10 +927,6 @@ final class RoutingApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1020,8 +951,6 @@ final class RoutingApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     *
-     * @return \Upsun\Model\Route[]
      */
     public function listProjectsEnvironmentsRoutes(
         string $project_id,
@@ -1092,23 +1021,6 @@ final class RoutingApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Route[]',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -1121,8 +1033,6 @@ final class RoutingApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -1271,10 +1181,6 @@ final class RoutingApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1305,7 +1211,7 @@ final class RoutingApi extends AbstractApi
         string $environment_id,
         string $route_id,
         \Upsun\Model\RoutePatch $route_patch
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsEnvironmentsRoutesWithHttpInfo(
             $project_id,
             $environment_id,
@@ -1377,23 +1283,6 @@ final class RoutingApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -1406,8 +1295,6 @@ final class RoutingApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -1592,10 +1479,6 @@ final class RoutingApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

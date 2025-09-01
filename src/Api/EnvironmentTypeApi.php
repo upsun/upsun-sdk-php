@@ -126,7 +126,7 @@ final class EnvironmentTypeApi extends AbstractApi
     public function getEnvironmentType(
         string $project_id,
         string $environment_type_id
-    ): array {
+    ): \Upsun\Model\EnvironmentType {
         list($response) = $this->getEnvironmentTypeWithHttpInfo(
             $project_id,
             $environment_type_id
@@ -192,23 +192,6 @@ final class EnvironmentTypeApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\EnvironmentType',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -221,8 +204,6 @@ final class EnvironmentTypeApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -371,10 +352,6 @@ final class EnvironmentTypeApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -399,8 +376,6 @@ final class EnvironmentTypeApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     *
-     * @return \Upsun\Model\EnvironmentType[]
      */
     public function listProjectsEnvironmentTypes(
         string $project_id
@@ -467,23 +442,6 @@ final class EnvironmentTypeApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\EnvironmentType[]',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -496,8 +454,6 @@ final class EnvironmentTypeApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -627,10 +583,6 @@ final class EnvironmentTypeApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

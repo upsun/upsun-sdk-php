@@ -126,11 +126,12 @@ final class OrganizationInvitationsApi extends AbstractApi
     public function cancelOrgInvite(
         string $organization_id,
         string $invitation_id
-    ): array {
-        $this->cancelOrgInviteWithHttpInfo(
+    ): null|\Upsun\Model\Error {
+        list($response) = $this->cancelOrgInviteWithHttpInfo(
             $organization_id,
             $invitation_id
         );
+        return $response;
     }
 
     /**
@@ -193,8 +194,6 @@ final class OrganizationInvitationsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -333,10 +332,6 @@ final class OrganizationInvitationsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -365,7 +360,7 @@ final class OrganizationInvitationsApi extends AbstractApi
     public function createOrgInvite(
         string $organization_id,
         \Upsun\Model\CreateOrgInviteRequest $create_org_invite_request = null
-    ): array {
+    ): \Upsun\Model\OrganizationInvitation|\Upsun\Model\Error {
         list($response) = $this->createOrgInviteWithHttpInfo(
             $organization_id,
             $create_org_invite_request
@@ -449,23 +444,6 @@ final class OrganizationInvitationsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\OrganizationInvitation',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 201:
@@ -502,8 +480,6 @@ final class OrganizationInvitationsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -644,10 +620,6 @@ final class OrganizationInvitationsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -673,7 +645,7 @@ final class OrganizationInvitationsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\OrganizationInvitation[]
+     * @return array|\Upsun\Model\Error
      */
     public function listOrgInvites(
         string $organization_id,
@@ -766,23 +738,6 @@ final class OrganizationInvitationsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\OrganizationInvitation[]',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -803,8 +758,6 @@ final class OrganizationInvitationsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -1027,10 +980,6 @@ final class OrganizationInvitationsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

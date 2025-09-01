@@ -125,7 +125,7 @@ final class SSHKeysApi extends AbstractApi
      */
     public function createSshKey(
         \Upsun\Model\CreateSshKeyRequest $create_ssh_key_request = null
-    ): array {
+    ): \Upsun\Model\SSHKey {
         list($response) = $this->createSshKeyWithHttpInfo(
             $create_ssh_key_request
         );
@@ -188,23 +188,6 @@ final class SSHKeysApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\SSHKey',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 201:
@@ -217,8 +200,6 @@ final class SSHKeysApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -340,10 +321,6 @@ final class SSHKeysApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -371,10 +348,11 @@ final class SSHKeysApi extends AbstractApi
      */
     public function deleteSshKey(
         int $key_id
-    ): array {
-        $this->deleteSshKeyWithHttpInfo(
+    ): void {
+        list($response) = $this->deleteSshKeyWithHttpInfo(
             $key_id
         );
+        return $response;
     }
 
     /**
@@ -427,8 +405,6 @@ final class SSHKeysApi extends AbstractApi
             switch ($e->getCode()) {
             }
 
-
-            throw $e;
         }
     }
 
@@ -548,10 +524,6 @@ final class SSHKeysApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -579,7 +551,7 @@ final class SSHKeysApi extends AbstractApi
      */
     public function getSshKey(
         int $key_id
-    ): array {
+    ): \Upsun\Model\SSHKey {
         list($response) = $this->getSshKeyWithHttpInfo(
             $key_id
         );
@@ -642,23 +614,6 @@ final class SSHKeysApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\SSHKey',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -671,8 +626,6 @@ final class SSHKeysApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -802,10 +755,6 @@ final class SSHKeysApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

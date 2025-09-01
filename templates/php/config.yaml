@@ -1,5 +1,5 @@
 generatorName: php
-inputSpec: ./schema/openapispec-platformsh.json
+inputSpec: ./schema/openapispec-platformsh-xreturn.json
 outputDir: .
 packageName: upsun-client
 templateDir: ./templates/php

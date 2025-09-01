@@ -126,7 +126,7 @@ final class TeamAccessApi extends AbstractApi
     public function getProjectTeamAccess(
         string $project_id,
         string $team_id
-    ): array {
+    ): \Upsun\Model\TeamProjectAccess|\Upsun\Model\Error {
         list($response) = $this->getProjectTeamAccessWithHttpInfo(
             $project_id,
             $team_id
@@ -204,23 +204,6 @@ final class TeamAccessApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\TeamProjectAccess',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -249,8 +232,6 @@ final class TeamAccessApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -399,10 +380,6 @@ final class TeamAccessApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -431,7 +408,7 @@ final class TeamAccessApi extends AbstractApi
     public function getTeamProjectAccess(
         string $team_id,
         string $project_id
-    ): array {
+    ): \Upsun\Model\TeamProjectAccess|\Upsun\Model\Error {
         list($response) = $this->getTeamProjectAccessWithHttpInfo(
             $team_id,
             $project_id
@@ -509,23 +486,6 @@ final class TeamAccessApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\TeamProjectAccess',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -554,8 +514,6 @@ final class TeamAccessApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -704,10 +662,6 @@ final class TeamAccessApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -736,11 +690,12 @@ final class TeamAccessApi extends AbstractApi
     public function grantProjectTeamAccess(
         string $project_id,
         array $grant_project_team_access_request_inner
-    ): array {
-        $this->grantProjectTeamAccessWithHttpInfo(
+    ): null|\Upsun\Model\Error {
+        list($response) = $this->grantProjectTeamAccessWithHttpInfo(
             $project_id,
             $grant_project_team_access_request_inner
         );
+        return $response;
     }
 
     /**
@@ -811,8 +766,6 @@ final class TeamAccessApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -949,10 +902,6 @@ final class TeamAccessApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -981,11 +930,12 @@ final class TeamAccessApi extends AbstractApi
     public function grantTeamProjectAccess(
         string $team_id,
         array $grant_team_project_access_request_inner
-    ): array {
-        $this->grantTeamProjectAccessWithHttpInfo(
+    ): null|\Upsun\Model\Error {
+        list($response) = $this->grantTeamProjectAccessWithHttpInfo(
             $team_id,
             $grant_team_project_access_request_inner
         );
+        return $response;
     }
 
     /**
@@ -1056,8 +1006,6 @@ final class TeamAccessApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -1194,10 +1142,6 @@ final class TeamAccessApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1229,7 +1173,7 @@ final class TeamAccessApi extends AbstractApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ): array {
+    ): array|\Upsun\Model\Error {
         list($response) = $this->listProjectTeamAccessWithHttpInfo(
             $project_id,
             $page_size,
@@ -1316,23 +1260,6 @@ final class TeamAccessApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\ListTeamProjectAccess200Response',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -1361,8 +1288,6 @@ final class TeamAccessApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -1569,10 +1494,6 @@ final class TeamAccessApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1604,7 +1525,7 @@ final class TeamAccessApi extends AbstractApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ): array {
+    ): array|\Upsun\Model\Error {
         list($response) = $this->listTeamProjectAccessWithHttpInfo(
             $team_id,
             $page_size,
@@ -1691,23 +1612,6 @@ final class TeamAccessApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\ListTeamProjectAccess200Response',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -1736,8 +1640,6 @@ final class TeamAccessApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -1944,10 +1846,6 @@ final class TeamAccessApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1976,11 +1874,12 @@ final class TeamAccessApi extends AbstractApi
     public function removeProjectTeamAccess(
         string $project_id,
         string $team_id
-    ): array {
-        $this->removeProjectTeamAccessWithHttpInfo(
+    ): null|\Upsun\Model\Error {
+        list($response) = $this->removeProjectTeamAccessWithHttpInfo(
             $project_id,
             $team_id
         );
+        return $response;
     }
 
     /**
@@ -2059,8 +1958,6 @@ final class TeamAccessApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -2199,10 +2096,6 @@ final class TeamAccessApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -2231,11 +2124,12 @@ final class TeamAccessApi extends AbstractApi
     public function removeTeamProjectAccess(
         string $team_id,
         string $project_id
-    ): array {
-        $this->removeTeamProjectAccessWithHttpInfo(
+    ): null|\Upsun\Model\Error {
+        list($response) = $this->removeTeamProjectAccessWithHttpInfo(
             $team_id,
             $project_id
         );
+        return $response;
     }
 
     /**
@@ -2314,8 +2208,6 @@ final class TeamAccessApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -2454,10 +2346,6 @@ final class TeamAccessApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

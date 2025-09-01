@@ -126,7 +126,7 @@ final class RepositoryApi extends AbstractApi
     public function getProjectsGitBlobs(
         string $project_id,
         string $repository_blob_id
-    ): array {
+    ): \Upsun\Model\Blob {
         list($response) = $this->getProjectsGitBlobsWithHttpInfo(
             $project_id,
             $repository_blob_id
@@ -192,23 +192,6 @@ final class RepositoryApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Blob',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -221,8 +204,6 @@ final class RepositoryApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -371,10 +352,6 @@ final class RepositoryApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -403,7 +380,7 @@ final class RepositoryApi extends AbstractApi
     public function getProjectsGitCommits(
         string $project_id,
         string $repository_commit_id
-    ): array {
+    ): \Upsun\Model\Commit {
         list($response) = $this->getProjectsGitCommitsWithHttpInfo(
             $project_id,
             $repository_commit_id
@@ -469,23 +446,6 @@ final class RepositoryApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Commit',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -498,8 +458,6 @@ final class RepositoryApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -648,10 +606,6 @@ final class RepositoryApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -680,7 +634,7 @@ final class RepositoryApi extends AbstractApi
     public function getProjectsGitRefs(
         string $project_id,
         string $repository_ref_id
-    ): array {
+    ): \Upsun\Model\Ref {
         list($response) = $this->getProjectsGitRefsWithHttpInfo(
             $project_id,
             $repository_ref_id
@@ -746,23 +700,6 @@ final class RepositoryApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Ref',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -775,8 +712,6 @@ final class RepositoryApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -925,10 +860,6 @@ final class RepositoryApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -957,7 +888,7 @@ final class RepositoryApi extends AbstractApi
     public function getProjectsGitTrees(
         string $project_id,
         string $repository_tree_id
-    ): array {
+    ): \Upsun\Model\Tree {
         list($response) = $this->getProjectsGitTreesWithHttpInfo(
             $project_id,
             $repository_tree_id
@@ -1023,23 +954,6 @@ final class RepositoryApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Tree',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -1052,8 +966,6 @@ final class RepositoryApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -1202,10 +1114,6 @@ final class RepositoryApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1230,8 +1138,6 @@ final class RepositoryApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     *
-     * @return \Upsun\Model\Ref[]
      */
     public function listProjectsGitRefs(
         string $project_id
@@ -1298,23 +1204,6 @@ final class RepositoryApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Ref[]',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -1327,8 +1216,6 @@ final class RepositoryApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -1458,10 +1345,6 @@ final class RepositoryApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

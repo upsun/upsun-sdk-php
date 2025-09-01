@@ -125,7 +125,7 @@ final class SubscriptionsApi extends AbstractApi
      */
     public function canCreateNewOrgSubscription(
         string $organization_id
-    ): array {
+    ): array|\Upsun\Model\Error {
         list($response) = $this->canCreateNewOrgSubscriptionWithHttpInfo(
             $organization_id
         );
@@ -200,23 +200,6 @@ final class SubscriptionsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\CanCreateNewOrgSubscription200Response',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -245,8 +228,6 @@ final class SubscriptionsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -376,10 +357,6 @@ final class SubscriptionsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -408,7 +385,7 @@ final class SubscriptionsApi extends AbstractApi
     public function createOrgSubscription(
         string $organization_id,
         \Upsun\Model\CreateOrgSubscriptionRequest $create_org_subscription_request
-    ): array {
+    ): \Upsun\Model\Subscription|\Upsun\Model\Error {
         list($response) = $this->createOrgSubscriptionWithHttpInfo(
             $organization_id,
             $create_org_subscription_request
@@ -492,23 +469,6 @@ final class SubscriptionsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Subscription',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 201:
@@ -545,8 +505,6 @@ final class SubscriptionsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -693,10 +651,6 @@ final class SubscriptionsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -725,11 +679,12 @@ final class SubscriptionsApi extends AbstractApi
     public function deleteOrgSubscription(
         string $organization_id,
         string $subscription_id
-    ): array {
-        $this->deleteOrgSubscriptionWithHttpInfo(
+    ): null|\Upsun\Model\Error {
+        list($response) = $this->deleteOrgSubscriptionWithHttpInfo(
             $organization_id,
             $subscription_id
         );
+        return $response;
     }
 
     /**
@@ -800,8 +755,6 @@ final class SubscriptionsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -940,10 +893,6 @@ final class SubscriptionsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -976,7 +925,7 @@ final class SubscriptionsApi extends AbstractApi
         int $storage,
         int $user_licenses,
         string $format = null
-    ): array {
+    ): \Upsun\Model\EstimationObject|\Upsun\Model\Error {
         list($response) = $this->estimateNewOrgSubscriptionWithHttpInfo(
             $organization_id,
             $plan,
@@ -1066,23 +1015,6 @@ final class SubscriptionsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\EstimationObject',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -1111,8 +1043,6 @@ final class SubscriptionsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -1346,10 +1276,6 @@ final class SubscriptionsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1383,7 +1309,7 @@ final class SubscriptionsApi extends AbstractApi
         int $storage = null,
         int $user_licenses = null,
         string $format = null
-    ): array {
+    ): \Upsun\Model\EstimationObject|\Upsun\Model\Error {
         list($response) = $this->estimateOrgSubscriptionWithHttpInfo(
             $organization_id,
             $subscription_id,
@@ -1470,23 +1396,6 @@ final class SubscriptionsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\EstimationObject',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -1507,8 +1416,6 @@ final class SubscriptionsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -1743,10 +1650,6 @@ final class SubscriptionsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1775,7 +1678,7 @@ final class SubscriptionsApi extends AbstractApi
     public function getOrgSubscription(
         string $organization_id,
         string $subscription_id
-    ): array {
+    ): \Upsun\Model\Subscription|\Upsun\Model\Error {
         list($response) = $this->getOrgSubscriptionWithHttpInfo(
             $organization_id,
             $subscription_id
@@ -1853,23 +1756,6 @@ final class SubscriptionsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Subscription',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -1898,8 +1784,6 @@ final class SubscriptionsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -2048,10 +1932,6 @@ final class SubscriptionsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -2082,7 +1962,7 @@ final class SubscriptionsApi extends AbstractApi
         string $subscription_id,
         string $usage_groups = null,
         bool $include_not_charged = null
-    ): array {
+    ): \Upsun\Model\SubscriptionCurrentUsageObject|\Upsun\Model\Error {
         list($response) = $this->getOrgSubscriptionCurrentUsageWithHttpInfo(
             $organization_id,
             $subscription_id,
@@ -2160,23 +2040,6 @@ final class SubscriptionsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\SubscriptionCurrentUsageObject',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -2197,8 +2060,6 @@ final class SubscriptionsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -2379,10 +2240,6 @@ final class SubscriptionsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -2420,7 +2277,7 @@ final class SubscriptionsApi extends AbstractApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ): array {
+    ): array|\Upsun\Model\Error {
         list($response) = $this->listOrgSubscriptionsWithHttpInfo(
             $organization_id,
             $filter_status,
@@ -2525,23 +2382,6 @@ final class SubscriptionsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\ListOrgSubscriptions200Response',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -2570,8 +2410,6 @@ final class SubscriptionsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -2874,10 +2712,6 @@ final class SubscriptionsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -2906,7 +2740,7 @@ final class SubscriptionsApi extends AbstractApi
     public function listSubscriptionAddons(
         string $organization_id,
         string $subscription_id
-    ): array {
+    ): \Upsun\Model\SubscriptionAddonsObject|\Upsun\Model\Error {
         list($response) = $this->listSubscriptionAddonsWithHttpInfo(
             $organization_id,
             $subscription_id
@@ -2978,23 +2812,6 @@ final class SubscriptionsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\SubscriptionAddonsObject',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -3015,8 +2832,6 @@ final class SubscriptionsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -3165,10 +2980,6 @@ final class SubscriptionsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -3198,7 +3009,7 @@ final class SubscriptionsApi extends AbstractApi
         string $organization_id,
         string $subscription_id,
         \Upsun\Model\UpdateOrgSubscriptionRequest $update_org_subscription_request = null
-    ): array {
+    ): \Upsun\Model\Subscription|\Upsun\Model\Error {
         list($response) = $this->updateOrgSubscriptionWithHttpInfo(
             $organization_id,
             $subscription_id,
@@ -3285,23 +3096,6 @@ final class SubscriptionsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Subscription',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -3338,8 +3132,6 @@ final class SubscriptionsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -3499,10 +3291,6 @@ final class SubscriptionsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

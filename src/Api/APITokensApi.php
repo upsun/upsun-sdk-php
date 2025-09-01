@@ -126,7 +126,7 @@ final class APITokensApi extends AbstractApi
     public function createApiToken(
         string $user_id,
         \Upsun\Model\CreateApiTokenRequest $create_api_token_request = null
-    ): array {
+    ): \Upsun\Model\APIToken|\Upsun\Model\Error {
         list($response) = $this->createApiTokenWithHttpInfo(
             $user_id,
             $create_api_token_request
@@ -210,23 +210,6 @@ final class APITokensApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\APIToken',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 201:
@@ -263,8 +246,6 @@ final class APITokensApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -405,10 +386,6 @@ final class APITokensApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -437,11 +414,12 @@ final class APITokensApi extends AbstractApi
     public function deleteApiToken(
         string $user_id,
         string $token_id
-    ): array {
-        $this->deleteApiTokenWithHttpInfo(
+    ): null|\Upsun\Model\Error {
+        list($response) = $this->deleteApiTokenWithHttpInfo(
             $user_id,
             $token_id
         );
+        return $response;
     }
 
     /**
@@ -504,8 +482,6 @@ final class APITokensApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -644,10 +620,6 @@ final class APITokensApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -676,7 +648,7 @@ final class APITokensApi extends AbstractApi
     public function getApiToken(
         string $user_id,
         string $token_id
-    ): array {
+    ): \Upsun\Model\APIToken|\Upsun\Model\Error|null {
         list($response) = $this->getApiTokenWithHttpInfo(
             $user_id,
             $token_id
@@ -748,23 +720,6 @@ final class APITokensApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\APIToken',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -785,8 +740,6 @@ final class APITokensApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -935,10 +888,6 @@ final class APITokensApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -964,7 +913,7 @@ final class APITokensApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\APIToken[]
+     * @return array|\Upsun\Model\Error
      */
     public function listApiTokens(
         string $user_id
@@ -1037,23 +986,6 @@ final class APITokensApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\APIToken[]',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -1074,8 +1006,6 @@ final class APITokensApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -1205,10 +1135,6 @@ final class APITokensApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

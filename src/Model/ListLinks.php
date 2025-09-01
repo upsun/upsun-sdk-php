@@ -29,9 +29,9 @@ final class ListLinks implements ModelInterface, ArrayAccess, JsonSerializable
      * Array of property to type mappings. Used for (de)serialization
      */
     private static array $openAPITypes = [
-        'self' => '\Upsun\Model\ListLinksSelf',
-        'previous' => '\Upsun\Model\ListLinksPrevious',
-        'next' => '\Upsun\Model\ListLinksNext'
+        'self' => '\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf',
+        'previous' => '\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious',
+        'next' => '\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext'
     ];
 
     /**
@@ -224,7 +224,7 @@ final class ListLinks implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets self
      *
-     * @return \Upsun\Model\ListLinksSelf|null
+     * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf|null
      */
     public function getSelf()
     {
@@ -247,7 +247,7 @@ final class ListLinks implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets previous
      *
-     * @return \Upsun\Model\ListLinksPrevious|null
+     * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious|null
      */
     public function getPrevious()
     {
@@ -270,7 +270,7 @@ final class ListLinks implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets next
      *
-     * @return \Upsun\Model\ListLinksNext|null
+     * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext|null
      */
     public function getNext()
     {

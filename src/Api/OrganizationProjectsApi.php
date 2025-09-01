@@ -126,7 +126,7 @@ final class OrganizationProjectsApi extends AbstractApi
     public function getOrgProject(
         string $organization_id,
         string $project_id
-    ): array {
+    ): \Upsun\Model\OrganizationProject|\Upsun\Model\Error {
         list($response) = $this->getOrgProjectWithHttpInfo(
             $organization_id,
             $project_id
@@ -204,23 +204,6 @@ final class OrganizationProjectsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\OrganizationProject',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -249,8 +232,6 @@ final class OrganizationProjectsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -399,10 +380,6 @@ final class OrganizationProjectsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -439,7 +416,7 @@ final class OrganizationProjectsApi extends AbstractApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ): array {
+    ): array|\Upsun\Model\Error {
         list($response) = $this->listOrgProjectsWithHttpInfo(
             $organization_id,
             $filter_id,
@@ -547,23 +524,6 @@ final class OrganizationProjectsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\ListOrgProjects200Response',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -600,8 +560,6 @@ final class OrganizationProjectsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -888,10 +846,6 @@ final class OrganizationProjectsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

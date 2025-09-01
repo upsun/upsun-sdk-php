@@ -125,7 +125,7 @@ final class ProfilesApi extends AbstractApi
      */
     public function getOrgAddress(
         string $organization_id
-    ): array {
+    ): \Upsun\Model\Address|\Upsun\Model\Error {
         list($response) = $this->getOrgAddressWithHttpInfo(
             $organization_id
         );
@@ -200,23 +200,6 @@ final class ProfilesApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Address',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -245,8 +228,6 @@ final class ProfilesApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -376,10 +357,6 @@ final class ProfilesApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -407,7 +384,7 @@ final class ProfilesApi extends AbstractApi
      */
     public function getOrgProfile(
         string $organization_id
-    ): array {
+    ): \Upsun\Model\Profile|\Upsun\Model\Error {
         list($response) = $this->getOrgProfileWithHttpInfo(
             $organization_id
         );
@@ -482,23 +459,6 @@ final class ProfilesApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Profile',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -527,8 +487,6 @@ final class ProfilesApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -658,10 +616,6 @@ final class ProfilesApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -690,7 +644,7 @@ final class ProfilesApi extends AbstractApi
     public function updateOrgAddress(
         string $organization_id,
         \Upsun\Model\Address $address = null
-    ): array {
+    ): \Upsun\Model\Address|\Upsun\Model\Error {
         list($response) = $this->updateOrgAddressWithHttpInfo(
             $organization_id,
             $address
@@ -774,23 +728,6 @@ final class ProfilesApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Address',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -827,8 +764,6 @@ final class ProfilesApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -969,10 +904,6 @@ final class ProfilesApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1001,7 +932,7 @@ final class ProfilesApi extends AbstractApi
     public function updateOrgProfile(
         string $organization_id,
         \Upsun\Model\UpdateOrgProfileRequest $update_org_profile_request = null
-    ): array {
+    ): \Upsun\Model\Profile|\Upsun\Model\Error {
         list($response) = $this->updateOrgProfileWithHttpInfo(
             $organization_id,
             $update_org_profile_request
@@ -1085,23 +1016,6 @@ final class ProfilesApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Profile',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -1138,8 +1052,6 @@ final class ProfilesApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -1280,10 +1192,6 @@ final class ProfilesApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

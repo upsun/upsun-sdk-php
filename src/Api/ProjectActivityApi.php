@@ -126,7 +126,7 @@ final class ProjectActivityApi extends AbstractApi
     public function actionProjectsActivitiesCancel(
         string $project_id,
         string $activity_id
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->actionProjectsActivitiesCancelWithHttpInfo(
             $project_id,
             $activity_id
@@ -192,23 +192,6 @@ final class ProjectActivityApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -221,8 +204,6 @@ final class ProjectActivityApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -371,10 +352,6 @@ final class ProjectActivityApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -403,7 +380,7 @@ final class ProjectActivityApi extends AbstractApi
     public function getProjectsActivities(
         string $project_id,
         string $activity_id
-    ): array {
+    ): \Upsun\Model\Activity {
         list($response) = $this->getProjectsActivitiesWithHttpInfo(
             $project_id,
             $activity_id
@@ -469,23 +446,6 @@ final class ProjectActivityApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Activity',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -498,8 +458,6 @@ final class ProjectActivityApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -648,10 +606,6 @@ final class ProjectActivityApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -676,8 +630,6 @@ final class ProjectActivityApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     *
-     * @return \Upsun\Model\Activity[]
      */
     public function listProjectsActivities(
         string $project_id
@@ -744,23 +696,6 @@ final class ProjectActivityApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Activity[]',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -773,8 +708,6 @@ final class ProjectActivityApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -904,10 +837,6 @@ final class ProjectActivityApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

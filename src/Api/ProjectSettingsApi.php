@@ -125,7 +125,7 @@ final class ProjectSettingsApi extends AbstractApi
      */
     public function getProjectsSettings(
         string $project_id
-    ): array {
+    ): \Upsun\Model\ProjectSettings {
         list($response) = $this->getProjectsSettingsWithHttpInfo(
             $project_id
         );
@@ -188,23 +188,6 @@ final class ProjectSettingsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\ProjectSettings',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -217,8 +200,6 @@ final class ProjectSettingsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -348,10 +329,6 @@ final class ProjectSettingsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -380,7 +357,7 @@ final class ProjectSettingsApi extends AbstractApi
     public function updateProjectsSettings(
         string $project_id,
         \Upsun\Model\ProjectSettingsPatch $project_settings_patch
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsSettingsWithHttpInfo(
             $project_id,
             $project_settings_patch
@@ -446,23 +423,6 @@ final class ProjectSettingsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -475,8 +435,6 @@ final class ProjectSettingsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -623,10 +581,6 @@ final class ProjectSettingsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

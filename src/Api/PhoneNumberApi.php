@@ -127,12 +127,13 @@ final class PhoneNumberApi extends AbstractApi
         string $sid,
         string $user_id,
         \Upsun\Model\ConfirmPhoneNumberRequest $confirm_phone_number_request = null
-    ): array {
-        $this->confirmPhoneNumberWithHttpInfo(
+    ): null|\Upsun\Model\Error {
+        list($response) = $this->confirmPhoneNumberWithHttpInfo(
             $sid,
             $user_id,
             $confirm_phone_number_request
         );
+        return $response;
     }
 
     /**
@@ -213,8 +214,6 @@ final class PhoneNumberApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -364,10 +363,6 @@ final class PhoneNumberApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -396,7 +391,7 @@ final class PhoneNumberApi extends AbstractApi
     public function verifyPhoneNumber(
         string $user_id,
         \Upsun\Model\VerifyPhoneNumberRequest $verify_phone_number_request = null
-    ): array {
+    ): array|\Upsun\Model\Error {
         list($response) = $this->verifyPhoneNumberWithHttpInfo(
             $user_id,
             $verify_phone_number_request
@@ -480,23 +475,6 @@ final class PhoneNumberApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\VerifyPhoneNumber200Response',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -533,8 +511,6 @@ final class PhoneNumberApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -675,10 +651,6 @@ final class PhoneNumberApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

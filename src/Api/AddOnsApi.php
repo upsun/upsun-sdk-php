@@ -125,7 +125,7 @@ final class AddOnsApi extends AbstractApi
      */
     public function getOrgAddons(
         string $organization_id
-    ): array {
+    ): \Upsun\Model\OrganizationAddonsObject|\Upsun\Model\Error {
         list($response) = $this->getOrgAddonsWithHttpInfo(
             $organization_id
         );
@@ -200,23 +200,6 @@ final class AddOnsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\OrganizationAddonsObject',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -245,8 +228,6 @@ final class AddOnsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -376,10 +357,6 @@ final class AddOnsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

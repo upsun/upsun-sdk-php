@@ -746,7 +746,7 @@ class ProjectTask extends TaskBase
     /**
      * Lists environments of a project
      *
-     * @throws ApiException
+     * @throws ApiException|Exception
      */
     public function listEnvironments(string $projectId): array
     {

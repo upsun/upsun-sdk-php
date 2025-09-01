@@ -126,7 +126,7 @@ final class OrganizationMembersApi extends AbstractApi
     public function createOrgMember(
         string $organization_id,
         \Upsun\Model\CreateOrgMemberRequest $create_org_member_request
-    ): array {
+    ): \Upsun\Model\OrganizationMember|\Upsun\Model\Error {
         list($response) = $this->createOrgMemberWithHttpInfo(
             $organization_id,
             $create_org_member_request
@@ -210,23 +210,6 @@ final class OrganizationMembersApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\OrganizationMember',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 201:
@@ -263,8 +246,6 @@ final class OrganizationMembersApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -411,10 +392,6 @@ final class OrganizationMembersApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -443,11 +420,12 @@ final class OrganizationMembersApi extends AbstractApi
     public function deleteOrgMember(
         string $organization_id,
         string $user_id
-    ): array {
-        $this->deleteOrgMemberWithHttpInfo(
+    ): null|\Upsun\Model\Error {
+        list($response) = $this->deleteOrgMemberWithHttpInfo(
             $organization_id,
             $user_id
         );
+        return $response;
     }
 
     /**
@@ -518,8 +496,6 @@ final class OrganizationMembersApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -658,10 +634,6 @@ final class OrganizationMembersApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -690,7 +662,7 @@ final class OrganizationMembersApi extends AbstractApi
     public function getOrgMember(
         string $organization_id,
         string $user_id
-    ): array {
+    ): \Upsun\Model\OrganizationMember|\Upsun\Model\Error {
         list($response) = $this->getOrgMemberWithHttpInfo(
             $organization_id,
             $user_id
@@ -768,23 +740,6 @@ final class OrganizationMembersApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\OrganizationMember',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -813,8 +768,6 @@ final class OrganizationMembersApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -963,10 +916,6 @@ final class OrganizationMembersApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -999,7 +948,7 @@ final class OrganizationMembersApi extends AbstractApi
         string $page_before = null,
         string $page_after = null,
         string $sort = null
-    ): array {
+    ): array|\Upsun\Model\Error {
         list($response) = $this->listOrgMembersWithHttpInfo(
             $organization_id,
             $filter_permissions,
@@ -1095,23 +1044,6 @@ final class OrganizationMembersApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\ListOrgMembers200Response',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -1148,8 +1080,6 @@ final class OrganizationMembersApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -1372,10 +1302,6 @@ final class OrganizationMembersApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1405,7 +1331,7 @@ final class OrganizationMembersApi extends AbstractApi
         string $organization_id,
         string $user_id,
         \Upsun\Model\UpdateOrgMemberRequest $update_org_member_request = null
-    ): array {
+    ): \Upsun\Model\OrganizationMember|\Upsun\Model\Error {
         list($response) = $this->updateOrgMemberWithHttpInfo(
             $organization_id,
             $user_id,
@@ -1492,23 +1418,6 @@ final class OrganizationMembersApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\OrganizationMember',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -1545,8 +1454,6 @@ final class OrganizationMembersApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -1706,10 +1613,6 @@ final class OrganizationMembersApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

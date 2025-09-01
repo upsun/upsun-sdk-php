@@ -126,7 +126,7 @@ final class OrdersApi extends AbstractApi
     public function createAuthorizationCredentials(
         string $organization_id,
         string $order_id
-    ): array {
+    ): array|\Upsun\Model\Error {
         list($response) = $this->createAuthorizationCredentialsWithHttpInfo(
             $organization_id,
             $order_id
@@ -210,23 +210,6 @@ final class OrdersApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\CreateAuthorizationCredentials200Response',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -263,8 +246,6 @@ final class OrdersApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -413,10 +394,6 @@ final class OrdersApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -444,10 +421,11 @@ final class OrdersApi extends AbstractApi
      */
     public function downloadInvoice(
         string $token
-    ): array {
-        $this->downloadInvoiceWithHttpInfo(
+    ): void {
+        list($response) = $this->downloadInvoiceWithHttpInfo(
             $token
         );
+        return $response;
     }
 
     /**
@@ -500,8 +478,6 @@ final class OrdersApi extends AbstractApi
             switch ($e->getCode()) {
             }
 
-
-            throw $e;
         }
     }
 
@@ -624,10 +600,6 @@ final class OrdersApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -657,7 +629,7 @@ final class OrdersApi extends AbstractApi
         string $organization_id,
         string $order_id,
         string $mode = null
-    ): array {
+    ): \Upsun\Model\Order|\Upsun\Model\Error {
         list($response) = $this->getOrgOrderWithHttpInfo(
             $organization_id,
             $order_id,
@@ -738,23 +710,6 @@ final class OrdersApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Order',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -783,8 +738,6 @@ final class OrdersApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -949,10 +902,6 @@ final class OrdersApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -984,7 +933,7 @@ final class OrdersApi extends AbstractApi
         int $filter_total = null,
         int $page = null,
         string $mode = null
-    ): array {
+    ): array|\Upsun\Model\Error {
         list($response) = $this->listOrgOrdersWithHttpInfo(
             $organization_id,
             $filter_status,
@@ -1071,23 +1020,6 @@ final class OrdersApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\ListOrgOrders200Response',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -1116,8 +1048,6 @@ final class OrdersApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -1311,10 +1241,6 @@ final class OrdersApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

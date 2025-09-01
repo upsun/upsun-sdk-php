@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**self** | [**\Upsun\Model\ListLinksSelf**](ListLinksSelf.md) |  | [optional]
-**previous** | [**\Upsun\Model\ListLinksPrevious**](ListLinksPrevious.md) |  | [optional]
-**next** | [**\Upsun\Model\ListLinksNext**](ListLinksNext.md) |  | [optional]
+**self** | [**\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf**](ListOrgPrepaymentTransactions200ResponseLinksSelf.md) |  | [optional]
+**previous** | [**\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious**](ListOrgPrepaymentTransactions200ResponseLinksPrevious.md) |  | [optional]
+**next** | [**\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext**](ListOrgPrepaymentTransactions200ResponseLinksNext.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

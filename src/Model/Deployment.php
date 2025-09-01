@@ -37,7 +37,7 @@ final class Deployment implements ModelInterface, ArrayAccess, JsonSerializable
         'environment_info' => '\Upsun\Model\EnvironmentInfo',
         'deployment_target' => 'string',
         'vpn' => '\Upsun\Model\VPNConfiguration',
-        'http_access' => '\Upsun\Model\HttpAccessPermissions',
+        'http_access' => '\Upsun\Model\HTTPAccessPermissions',
         'enable_smtp' => 'bool',
         'restrict_robots' => 'bool',
         'variables' => '\Upsun\Model\TheVariablesApplyingToThisEnvironmentInner[]',
@@ -589,7 +589,7 @@ final class Deployment implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets http_access
      *
-     * @return \Upsun\Model\HttpAccessPermissions
+     * @return \Upsun\Model\HTTPAccessPermissions
      */
     public function getHttpAccess()
     {

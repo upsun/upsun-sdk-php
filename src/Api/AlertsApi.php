@@ -126,7 +126,7 @@ final class AlertsApi extends AbstractApi
     public function createUsageAlert(
         string $subscription_id,
         \Upsun\Model\CreateUsageAlertRequest $create_usage_alert_request = null
-    ): array {
+    ): \Upsun\Model\Alert {
         list($response) = $this->createUsageAlertWithHttpInfo(
             $subscription_id,
             $create_usage_alert_request
@@ -192,23 +192,6 @@ final class AlertsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Alert',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 201:
@@ -221,8 +204,6 @@ final class AlertsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -363,10 +344,6 @@ final class AlertsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -395,11 +372,12 @@ final class AlertsApi extends AbstractApi
     public function deleteUsageAlert(
         string $subscription_id,
         string $usage_id
-    ): array {
-        $this->deleteUsageAlertWithHttpInfo(
+    ): void {
+        list($response) = $this->deleteUsageAlertWithHttpInfo(
             $subscription_id,
             $usage_id
         );
+        return $response;
     }
 
     /**
@@ -454,8 +432,6 @@ final class AlertsApi extends AbstractApi
             switch ($e->getCode()) {
             }
 
-
-            throw $e;
         }
     }
 
@@ -594,10 +570,6 @@ final class AlertsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -688,23 +660,6 @@ final class AlertsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\GetUsageAlerts200Response',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -717,8 +672,6 @@ final class AlertsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -848,10 +801,6 @@ final class AlertsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -881,7 +830,7 @@ final class AlertsApi extends AbstractApi
         string $subscription_id,
         string $usage_id,
         \Upsun\Model\UpdateUsageAlertRequest $update_usage_alert_request = null
-    ): array {
+    ): \Upsun\Model\Alert {
         list($response) = $this->updateUsageAlertWithHttpInfo(
             $subscription_id,
             $usage_id,
@@ -950,23 +899,6 @@ final class AlertsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Alert',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -979,8 +911,6 @@ final class AlertsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -1140,10 +1070,6 @@ final class AlertsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

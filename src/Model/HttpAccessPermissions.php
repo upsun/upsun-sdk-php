@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Low level HttpAccessPermissions (auto-generated)
+ * Low level HTTPAccessPermissions (auto-generated)
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -16,14 +16,14 @@ use ArrayAccess;
 use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class HttpAccessPermissions implements ModelInterface, ArrayAccess, JsonSerializable
+final class HTTPAccessPermissions implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
     /**
      * The original name of the model.
      */
-    private static string $openAPIModelName = 'Http_access_permissions';
+    private static string $openAPIModelName = 'HTTP_access_permissions';
 
     /**
      * Array of property to type mappings. Used for (de)serialization

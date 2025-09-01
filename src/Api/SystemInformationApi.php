@@ -125,7 +125,7 @@ final class SystemInformationApi extends AbstractApi
      */
     public function actionProjectsSystemRestart(
         string $project_id
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->actionProjectsSystemRestartWithHttpInfo(
             $project_id
         );
@@ -188,23 +188,6 @@ final class SystemInformationApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -217,8 +200,6 @@ final class SystemInformationApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -348,10 +329,6 @@ final class SystemInformationApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -379,7 +356,7 @@ final class SystemInformationApi extends AbstractApi
      */
     public function getProjectsSystem(
         string $project_id
-    ): array {
+    ): \Upsun\Model\SystemInformation {
         list($response) = $this->getProjectsSystemWithHttpInfo(
             $project_id
         );
@@ -442,23 +419,6 @@ final class SystemInformationApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\SystemInformation',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -471,8 +431,6 @@ final class SystemInformationApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -602,10 +560,6 @@ final class SystemInformationApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

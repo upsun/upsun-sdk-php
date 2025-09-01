@@ -126,7 +126,7 @@ final class DeploymentTargetApi extends AbstractApi
     public function createProjectsDeployments(
         string $project_id,
         \Upsun\Model\DeploymentTargetCreateInput $deployment_target_create_input
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->createProjectsDeploymentsWithHttpInfo(
             $project_id,
             $deployment_target_create_input
@@ -192,23 +192,6 @@ final class DeploymentTargetApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -221,8 +204,6 @@ final class DeploymentTargetApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -369,10 +350,6 @@ final class DeploymentTargetApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -401,7 +378,7 @@ final class DeploymentTargetApi extends AbstractApi
     public function deleteProjectsDeployments(
         string $project_id,
         string $deployment_target_configuration_id
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsDeploymentsWithHttpInfo(
             $project_id,
             $deployment_target_configuration_id
@@ -467,23 +444,6 @@ final class DeploymentTargetApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -496,8 +456,6 @@ final class DeploymentTargetApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -646,10 +604,6 @@ final class DeploymentTargetApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -678,7 +632,7 @@ final class DeploymentTargetApi extends AbstractApi
     public function getProjectsDeployments(
         string $project_id,
         string $deployment_target_configuration_id
-    ): array {
+    ): \Upsun\Model\DeploymentTarget {
         list($response) = $this->getProjectsDeploymentsWithHttpInfo(
             $project_id,
             $deployment_target_configuration_id
@@ -744,23 +698,6 @@ final class DeploymentTargetApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\DeploymentTarget',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -773,8 +710,6 @@ final class DeploymentTargetApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -923,10 +858,6 @@ final class DeploymentTargetApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -951,8 +882,6 @@ final class DeploymentTargetApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     *
-     * @return \Upsun\Model\DeploymentTarget[]
      */
     public function listProjectsDeployments(
         string $project_id
@@ -1019,23 +948,6 @@ final class DeploymentTargetApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\DeploymentTarget[]',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -1048,8 +960,6 @@ final class DeploymentTargetApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -1179,10 +1089,6 @@ final class DeploymentTargetApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1212,7 +1118,7 @@ final class DeploymentTargetApi extends AbstractApi
         string $project_id,
         string $deployment_target_configuration_id,
         \Upsun\Model\DeploymentTargetPatch $deployment_target_patch
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsDeploymentsWithHttpInfo(
             $project_id,
             $deployment_target_configuration_id,
@@ -1281,23 +1187,6 @@ final class DeploymentTargetApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -1310,8 +1199,6 @@ final class DeploymentTargetApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -1477,10 +1364,6 @@ final class DeploymentTargetApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

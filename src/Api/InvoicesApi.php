@@ -126,7 +126,7 @@ final class InvoicesApi extends AbstractApi
     public function getOrgInvoice(
         string $invoice_id,
         string $organization_id
-    ): array {
+    ): \Upsun\Model\Invoice|\Upsun\Model\Error {
         list($response) = $this->getOrgInvoiceWithHttpInfo(
             $invoice_id,
             $organization_id
@@ -204,23 +204,6 @@ final class InvoicesApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Invoice',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -249,8 +232,6 @@ final class InvoicesApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -399,10 +380,6 @@ final class InvoicesApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -434,7 +411,7 @@ final class InvoicesApi extends AbstractApi
         string $filter_type = null,
         string $filter_order_id = null,
         int $page = null
-    ): array {
+    ): array|\Upsun\Model\Error {
         list($response) = $this->listOrgInvoicesWithHttpInfo(
             $organization_id,
             $filter_status,
@@ -521,23 +498,6 @@ final class InvoicesApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\ListOrgInvoices200Response',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -566,8 +526,6 @@ final class InvoicesApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -761,10 +719,6 @@ final class InvoicesApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

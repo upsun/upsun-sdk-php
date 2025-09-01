@@ -11604,26 +11604,49 @@
                       }
                     },
                     "_links": {
-                      "allOf": [
-                        {
-                          "$ref": "#/components/schemas/ListLinks"
-                        },
-                        {
+                      "type": "object",
+                      "properties": {
+                        "self": {
                           "type": "object",
+                          "description": "Link to the current set of items.",
                           "properties": {
-                            "prepayment": {
-                              "type": "object",
-                              "description": "Link to the prepayment resource.",
-                              "properties": {
-                                "href": {
-                                  "type": "string",
-                                  "description": "URL of the link."
-                                }
-                              }
+                            "href": {
+                              "type": "string",
+                              "description": "URL of the link."
+                            }
+                          }
+                        },
+                        "previous": {
+                          "type": "object",
+                          "description": "Link to the previous set of items.",
+                          "properties": {
+                            "href": {
+                              "type": "string",
+                              "description": "URL of the link."
+                            }
+                          }
+                        },
+                        "next": {
+                          "type": "object",
+                          "description": "Link to the next set of items.",
+                          "properties": {
+                            "href": {
+                              "type": "string",
+                              "description": "URL of the link"
+                            }
+                          }
+                        },
+                        "prepayment": {
+                          "type": "object",
+                          "description": "Link to the prepayment resource.",
+                          "properties": {
+                            "href": {
+                              "type": "string",
+                              "description": "URL of the link."
                             }
                           }
                         }
-                      ]
+                      }
                     }
                   }
                 }
@@ -11968,8 +11991,7 @@
                 ],
                 "properties": {
                   "plan": {
-                    "$ref": "#/components/schemas/ProjectPlan",
-                    "default": null
+                    "$ref": "#/components/schemas/ProjectPlan"
                   },
                   "project_region": {
                     "type": "string",
@@ -16497,7 +16519,7 @@
               "basic_auth"
             ],
             "additionalProperties": false,
-            "title": "Http access permissions"
+            "title": "HTTP access permissions"
           },
           "enable_smtp": {
             "type": "boolean",

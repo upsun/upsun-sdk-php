@@ -128,7 +128,7 @@ final class RuntimeOperationsApi extends AbstractApi
         string $environment_id,
         string $deployment_id,
         \Upsun\Model\EnvironmentOperationInput $environment_operation_input
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->runOperationWithHttpInfo(
             $project_id,
             $environment_id,
@@ -200,23 +200,6 @@ final class RuntimeOperationsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -229,8 +212,6 @@ final class RuntimeOperationsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -415,10 +396,6 @@ final class RuntimeOperationsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

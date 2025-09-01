@@ -126,11 +126,12 @@ final class ProjectInvitationsApi extends AbstractApi
     public function cancelProjectInvite(
         string $project_id,
         string $invitation_id
-    ): array {
-        $this->cancelProjectInviteWithHttpInfo(
+    ): null|\Upsun\Model\Error {
+        list($response) = $this->cancelProjectInviteWithHttpInfo(
             $project_id,
             $invitation_id
         );
+        return $response;
     }
 
     /**
@@ -193,8 +194,6 @@ final class ProjectInvitationsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -333,10 +332,6 @@ final class ProjectInvitationsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -365,7 +360,7 @@ final class ProjectInvitationsApi extends AbstractApi
     public function createProjectInvite(
         string $project_id,
         \Upsun\Model\CreateProjectInviteRequest $create_project_invite_request = null
-    ): array {
+    ): \Upsun\Model\ProjectInvitation|\Upsun\Model\Error {
         list($response) = $this->createProjectInviteWithHttpInfo(
             $project_id,
             $create_project_invite_request
@@ -461,23 +456,6 @@ final class ProjectInvitationsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\ProjectInvitation',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 201:
@@ -530,8 +508,6 @@ final class ProjectInvitationsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -672,10 +648,6 @@ final class ProjectInvitationsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -701,7 +673,7 @@ final class ProjectInvitationsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\ProjectInvitation[]
+     * @return array|\Upsun\Model\Error
      */
     public function listProjectInvites(
         string $project_id,
@@ -800,23 +772,6 @@ final class ProjectInvitationsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\ProjectInvitation[]',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -845,8 +800,6 @@ final class ProjectInvitationsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -1069,10 +1022,6 @@ final class ProjectInvitationsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

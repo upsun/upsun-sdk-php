@@ -128,7 +128,7 @@ final class GrantsApi extends AbstractApi
         \Upsun\Model\StringFilter $filter_resource_type = null,
         \Upsun\Model\StringFilter $filter_organization_id = null,
         \Upsun\Model\StringFilter $filter_permissions = null
-    ): array {
+    ): array|\Upsun\Model\Error {
         list($response) = $this->listUserExtendedAccessWithHttpInfo(
             $user_id,
             $filter_resource_type,
@@ -206,23 +206,6 @@ final class GrantsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\ListUserExtendedAccess200Response',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -243,8 +226,6 @@ final class GrantsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -422,10 +403,6 @@ final class GrantsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

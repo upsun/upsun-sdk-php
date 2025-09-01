@@ -127,7 +127,7 @@ final class EnvironmentActivityApi extends AbstractApi
         string $project_id,
         string $environment_id,
         string $activity_id
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->actionProjectsEnvironmentsActivitiesCancelWithHttpInfo(
             $project_id,
             $environment_id,
@@ -196,23 +196,6 @@ final class EnvironmentActivityApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -225,8 +208,6 @@ final class EnvironmentActivityApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -394,10 +375,6 @@ final class EnvironmentActivityApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -427,7 +404,7 @@ final class EnvironmentActivityApi extends AbstractApi
         string $project_id,
         string $environment_id,
         string $activity_id
-    ): array {
+    ): \Upsun\Model\Activity {
         list($response) = $this->getProjectsEnvironmentsActivitiesWithHttpInfo(
             $project_id,
             $environment_id,
@@ -496,23 +473,6 @@ final class EnvironmentActivityApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Activity',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -525,8 +485,6 @@ final class EnvironmentActivityApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -694,10 +652,6 @@ final class EnvironmentActivityApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -722,8 +676,6 @@ final class EnvironmentActivityApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     *
-     * @return \Upsun\Model\Activity[]
      */
     public function listProjectsEnvironmentsActivities(
         string $project_id,
@@ -794,23 +746,6 @@ final class EnvironmentActivityApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Activity[]',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 default:
@@ -823,8 +758,6 @@ final class EnvironmentActivityApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -973,10 +906,6 @@ final class EnvironmentActivityApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

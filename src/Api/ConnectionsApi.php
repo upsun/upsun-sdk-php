@@ -126,11 +126,12 @@ final class ConnectionsApi extends AbstractApi
     public function deleteLoginConnection(
         string $provider,
         string $user_id
-    ): array {
-        $this->deleteLoginConnectionWithHttpInfo(
+    ): null|\Upsun\Model\Error {
+        list($response) = $this->deleteLoginConnectionWithHttpInfo(
             $provider,
             $user_id
         );
+        return $response;
     }
 
     /**
@@ -193,8 +194,6 @@ final class ConnectionsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -333,10 +332,6 @@ final class ConnectionsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -365,7 +360,7 @@ final class ConnectionsApi extends AbstractApi
     public function getLoginConnection(
         string $provider,
         string $user_id
-    ): array {
+    ): \Upsun\Model\Connection|\Upsun\Model\Error|null {
         list($response) = $this->getLoginConnectionWithHttpInfo(
             $provider,
             $user_id
@@ -437,23 +432,6 @@ final class ConnectionsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Connection',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -474,8 +452,6 @@ final class ConnectionsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -624,10 +600,6 @@ final class ConnectionsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -653,7 +625,7 @@ final class ConnectionsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Connection[]
+     * @return array|\Upsun\Model\Error
      */
     public function listLoginConnections(
         string $user_id
@@ -726,23 +698,6 @@ final class ConnectionsApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Connection[]',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -763,8 +718,6 @@ final class ConnectionsApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -894,10 +847,6 @@ final class ConnectionsApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

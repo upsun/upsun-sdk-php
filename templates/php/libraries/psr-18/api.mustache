@@ -143,22 +143,20 @@ use function sprintf;
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-{{#returnType}}
-{{#returnContainer}}
+{{#vendorExtensions.x-return-types-displayReturn}}
      *
-     * @return {{{returnType}}}
-{{/returnContainer}}
-{{/returnType}}     
+     * @return {{{vendorExtensions.x-return-types-union}}}
+{{/vendorExtensions.x-return-types-displayReturn}}
      */
     public function {{operationId}}(
         {{^vendorExtensions.x-group-parameters}}{{#allParams}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},
         {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
-    ){{#returnType}}: {{#returnContainer}}array{{/returnContainer}}{{^returnContainer}}{{{returnType}}}{{/returnContainer}}{{/returnType}}{{^returnType}}: void{{/returnType}} {
-        {{#returnType}}list($response) = {{/returnType}}$this->{{operationId}}WithHttpInfo(
+    ){{#returnContainer}}: array{{/returnContainer}}{{^returnContainer}}{{#vendorExtensions.x-return-types-union}}: {{{.}}}{{/vendorExtensions.x-return-types-union}}{{/returnContainer}} {
+        {{#vendorExtensions.x-returnable}}list($response) = {{/vendorExtensions.x-returnable}}$this->{{operationId}}WithHttpInfo(
             {{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}},
             {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
-        );{{#returnType}}
-        return $response;{{/returnType}}
+        );{{#vendorExtensions.x-returnable}}
+        return $response;{{/vendorExtensions.x-returnable}}
     }
 
     /**
@@ -255,6 +253,7 @@ use function sprintf;
                 );
             }{{/isWildcard}}{{/isRange}}{{/dataType}}{{/responses}}
 
+{{#hasMultipleResponses}}
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
@@ -272,6 +271,7 @@ use function sprintf;
                 $request,
                 $response,
             );
+{{/hasMultipleResponses}}
             {{/returnType}}
             {{^returnType}}
 
@@ -302,8 +302,11 @@ use function sprintf;
                 $e->setResponseObject($data);
                 throw $e;
             }{{/isWildcard}}{{/isRange}}{{/dataType}}{{/responses}}
-
-            throw $e;
+{{#hasMultipleResponses}}
+            if ($this->responseWithinRangeCode('400-499', $e->getCode())) {
+                throw $e;
+            }
+{{/hasMultipleResponses}}
         }
     }
 

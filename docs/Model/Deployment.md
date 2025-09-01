@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **environment_info** | [**\Upsun\Model\EnvironmentInfo**](EnvironmentInfo.md) |  |
 **deployment_target** | **string** |  |
 **vpn** | [**\Upsun\Model\VPNConfiguration**](VPNConfiguration.md) |  |
-**http_access** | [**\Upsun\Model\HttpAccessPermissions**](HttpAccessPermissions.md) |  |
+**http_access** | [**\Upsun\Model\HTTPAccessPermissions**](HTTPAccessPermissions.md) |  |
 **enable_smtp** | **bool** |  |
 **restrict_robots** | **bool** |  |
 **variables** | [**\Upsun\Model\TheVariablesApplyingToThisEnvironmentInner[]**](TheVariablesApplyingToThisEnvironmentInner.md) |  |

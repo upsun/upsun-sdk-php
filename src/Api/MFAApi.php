@@ -126,7 +126,7 @@ final class MFAApi extends AbstractApi
     public function confirmTotpEnrollment(
         string $user_id,
         \Upsun\Model\ConfirmTotpEnrollmentRequest $confirm_totp_enrollment_request = null
-    ): array {
+    ): array|\Upsun\Model\Error {
         list($response) = $this->confirmTotpEnrollmentWithHttpInfo(
             $user_id,
             $confirm_totp_enrollment_request
@@ -210,23 +210,6 @@ final class MFAApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\ConfirmTotpEnrollment200Response',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -263,8 +246,6 @@ final class MFAApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -405,10 +386,6 @@ final class MFAApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -436,10 +413,11 @@ final class MFAApi extends AbstractApi
      */
     public function disableOrgMfaEnforcement(
         string $organization_id
-    ): array {
-        $this->disableOrgMfaEnforcementWithHttpInfo(
+    ): null|\Upsun\Model\Error {
+        list($response) = $this->disableOrgMfaEnforcementWithHttpInfo(
             $organization_id
         );
+        return $response;
     }
 
     /**
@@ -500,8 +478,6 @@ final class MFAApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -621,10 +597,6 @@ final class MFAApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -652,10 +624,11 @@ final class MFAApi extends AbstractApi
      */
     public function enableOrgMfaEnforcement(
         string $organization_id
-    ): array {
-        $this->enableOrgMfaEnforcementWithHttpInfo(
+    ): null|\Upsun\Model\Error {
+        list($response) = $this->enableOrgMfaEnforcementWithHttpInfo(
             $organization_id
         );
+        return $response;
     }
 
     /**
@@ -716,8 +689,6 @@ final class MFAApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -837,10 +808,6 @@ final class MFAApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -868,7 +835,7 @@ final class MFAApi extends AbstractApi
      */
     public function getOrgMfaEnforcement(
         string $organization_id
-    ): array {
+    ): \Upsun\Model\OrganizationMFAEnforcement|\Upsun\Model\Error {
         list($response) = $this->getOrgMfaEnforcementWithHttpInfo(
             $organization_id
         );
@@ -937,23 +904,6 @@ final class MFAApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\OrganizationMFAEnforcement',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -974,8 +924,6 @@ final class MFAApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -1105,10 +1053,6 @@ final class MFAApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1136,7 +1080,7 @@ final class MFAApi extends AbstractApi
      */
     public function getTotpEnrollment(
         string $user_id
-    ): array {
+    ): array|\Upsun\Model\Error|null {
         list($response) = $this->getTotpEnrollmentWithHttpInfo(
             $user_id
         );
@@ -1205,23 +1149,6 @@ final class MFAApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\GetTotpEnrollment200Response',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -1242,8 +1169,6 @@ final class MFAApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -1373,10 +1298,6 @@ final class MFAApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1404,7 +1325,7 @@ final class MFAApi extends AbstractApi
      */
     public function recreateRecoveryCodes(
         string $user_id
-    ): array {
+    ): array|\Upsun\Model\Error|null {
         list($response) = $this->recreateRecoveryCodesWithHttpInfo(
             $user_id
         );
@@ -1473,23 +1394,6 @@ final class MFAApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\ConfirmTotpEnrollment200Response',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 201:
@@ -1510,8 +1414,6 @@ final class MFAApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -1641,10 +1543,6 @@ final class MFAApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1669,8 +1567,6 @@ final class MFAApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     *
-     * @return array<string,\Upsun\Model\SendOrgMfaReminders200ResponseValue>
      */
     public function sendOrgMfaReminders(
         string $organization_id,
@@ -1753,23 +1649,6 @@ final class MFAApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                'array<string,\Upsun\Model\SendOrgMfaReminders200ResponseValue>',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -1798,8 +1677,6 @@ final class MFAApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -1940,10 +1817,6 @@ final class MFAApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1971,10 +1844,11 @@ final class MFAApi extends AbstractApi
      */
     public function withdrawTotpEnrollment(
         string $user_id
-    ): array {
-        $this->withdrawTotpEnrollmentWithHttpInfo(
+    ): null|\Upsun\Model\Error {
+        list($response) = $this->withdrawTotpEnrollmentWithHttpInfo(
             $user_id
         );
+        return $response;
     }
 
     /**
@@ -2035,8 +1909,6 @@ final class MFAApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -2156,10 +2028,6 @@ final class MFAApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {

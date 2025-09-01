@@ -29,10 +29,10 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements ModelInterf
      * Array of property to type mappings. Used for (de)serialization
      */
     private static array $openAPITypes = [
-        'self' => '\Upsun\Model\ListLinksSelf',
-        'previous' => '\Upsun\Model\ListLinksPrevious',
-        'next' => '\Upsun\Model\ListLinksNext',
-        'prepayment' => '\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment'
+        'self' => '\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf',
+        'previous' => '\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious',
+        'next' => '\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext',
+        'prepayment' => '\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrepayment'
     ];
 
     /**
@@ -231,7 +231,7 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements ModelInterf
     /**
      * Gets self
      *
-     * @return \Upsun\Model\ListLinksSelf|null
+     * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf|null
      */
     public function getSelf()
     {
@@ -254,7 +254,7 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements ModelInterf
     /**
      * Gets previous
      *
-     * @return \Upsun\Model\ListLinksPrevious|null
+     * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious|null
      */
     public function getPrevious()
     {
@@ -277,7 +277,7 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements ModelInterf
     /**
      * Gets next
      *
-     * @return \Upsun\Model\ListLinksNext|null
+     * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext|null
      */
     public function getNext()
     {
@@ -300,7 +300,7 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements ModelInterf
     /**
      * Gets prepayment
      *
-     * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment|null
+     * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrepayment|null
      */
     public function getPrepayment()
     {

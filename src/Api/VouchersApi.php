@@ -126,11 +126,12 @@ final class VouchersApi extends AbstractApi
     public function applyOrgVoucher(
         string $organization_id,
         \Upsun\Model\ApplyOrgVoucherRequest $apply_org_voucher_request
-    ): array {
-        $this->applyOrgVoucherWithHttpInfo(
+    ): null|\Upsun\Model\Error {
+        list($response) = $this->applyOrgVoucherWithHttpInfo(
             $organization_id,
             $apply_org_voucher_request
         );
+        return $response;
     }
 
     /**
@@ -201,8 +202,6 @@ final class VouchersApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -339,10 +338,6 @@ final class VouchersApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -370,7 +365,7 @@ final class VouchersApi extends AbstractApi
      */
     public function listOrgVouchers(
         string $organization_id
-    ): array {
+    ): \Upsun\Model\Vouchers|\Upsun\Model\Error {
         list($response) = $this->listOrgVouchersWithHttpInfo(
             $organization_id
         );
@@ -445,23 +440,6 @@ final class VouchersApi extends AbstractApi
 
 
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Vouchers',
-                $request,
-                $response,
-            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -490,8 +468,6 @@ final class VouchersApi extends AbstractApi
                     throw $e;
             }
 
-
-            throw $e;
         }
     }
 
@@ -621,10 +597,6 @@ final class VouchersApi extends AbstractApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
