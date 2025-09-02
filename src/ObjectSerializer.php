@@ -360,43 +360,40 @@ class ObjectSerializer
     }
 
     /**
-     * Désérialiseur simplifié pour les nouveaux modèles avec constructeurs paramétrés
+     * Simple deserializer for new models with parameterized constructors
      */
     private static function deserializeSimplifiedModel($data, $class)
     {
         if (!class_exists($class)) {
             throw new \InvalidArgumentException("Class {$class} does not exist");
         }
-    
+
         $reflectionClass = new ReflectionClass($class);
         $constructor = $reflectionClass->getConstructor();
-    
+
         if (!$constructor) {
             throw new \InvalidArgumentException("Class {$class} requires a constructor");
         }
-    
+
         $constructorParams = $constructor->getParameters();
         $args = [];
-    
+
         foreach ($constructorParams as $param) {
             $paramName = $param->getName();
             $paramType = $param->getType();
-            
-            // Convertir snake_case vers kebab-case pour les clés JSON
+
             $jsonKey = str_replace('_', '-', $paramName);
-            
-            // Récupérer la valeur depuis les données
+
             $value = null;
             if (is_object($data)) {
                 $value = $data->{$jsonKey} ?? $data->{$paramName} ?? null;
             } elseif (is_array($data)) {
                 $value = $data[$jsonKey] ?? $data[$paramName] ?? null;
             }
-    
-            // Traitement selon le type
+
             if ($paramType) {
                 $typeName = $paramType->getName();
-                
+
                 // Types primitifs
                 if ($paramType->isBuiltin()) {
                     switch ($typeName) {
@@ -422,32 +419,33 @@ class ObjectSerializer
                             $args[] = $value;
                     }
                 } else {
-                    // Types d'objets
+                    // Type Object
                     if ($typeName === 'DateTime') {
                         $args[] = $value ? new DateTime($value) : null;
+                    } elseif (in_array(strtolower($typeName), ['array', 'string', 'int', 'float', 'bool', 'object'], true)) {
+                        $args[] = $value;
                     } elseif (class_exists($typeName)) {
-                        // Modèle Upsun imbriqué - récursion
                         $args[] = $value ? self::deserializeSimplifiedModel($value, $typeName) : null;
                     } else {
                         $args[] = $value;
                     }
                 }
             } else {
-                // Pas de type hint
                 $args[] = $value;
             }
         }
-    
+
         try {
             return new $class(...$args);
-        } catch (TypeError $e) {
+        } catch (\TypeError $e) {
             throw new \InvalidArgumentException(
                 "Failed to instantiate {$class}: " . $e->getMessage() . 
-                ". Available data keys: " . implode(', ', is_object($data) ? array_keys(get_object_vars($data)) : array_keys($data))
+                ". Available data keys: " . implode(', ', is_object($data) 
+                    ? array_keys(get_object_vars($data)) : array_keys($data))
             );
         }
     }
-    
+
     // Usage dans votre ObjectSerializer::deserialize principal
     public static function deserialize($data, $class, $httpHeaders = null, $discriminator = null)
     {
