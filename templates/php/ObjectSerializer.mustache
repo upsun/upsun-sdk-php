@@ -240,4 +240,61 @@ class ObjectSerializer
             return (string) $value;
         }
     }
+    
+    /**
+        * Build a query string from an array of key value pairs.
+        *
+        * This function can use the return value of `parse()` to build a query
+        * string. This function does not modify the provided keys when an array is
+        * encountered (like `http_build_query()` would).
+        *
+        * The function is copied from https://github.com/guzzle/psr7/blob/a243f80a1ca7fe8ceed4deee17f12c1930efe662/src/Query.php#L59-L112
+        * with a modification which is described in https://github.com/guzzle/psr7/pull/603
+        */
+        public static function buildQuery(array $params, int|false $encoding = PHP_QUERY_RFC3986): string
+        {
+            if (!$params) {
+                return '';
+            }
+    
+            if ($encoding === false) {
+                $encoder = function (string $str): string {
+                    return $str;
+                };
+            } elseif ($encoding === PHP_QUERY_RFC3986) {
+                $encoder = 'rawurlencode';
+            } elseif ($encoding === PHP_QUERY_RFC1738) {
+                $encoder = 'urlencode';
+            } else {
+                throw new \InvalidArgumentException('Invalid type');
+            }
+    
+            $castBool = Configuration::BOOLEAN_FORMAT_INT == Configuration::getDefaultConfiguration()->getBooleanFormatForQueryString()
+                ? function ($v) { return (int) $v; }
+                : function ($v) { return $v ? 'true' : 'false'; };
+    
+            $qs = '';
+            foreach ($params as $k => $v) {
+                $k = $encoder((string) $k);
+                if (!is_array($v)) {
+                    $qs .= $k;
+                    $v = is_bool($v) ? $castBool($v) : $v;
+                    if ($v !== null) {
+                        $qs .= '='.$encoder((string) $v);
+                    }
+                    $qs .= '&';
+                } else {
+                    foreach ($v as $vv) {
+                        $qs .= $k;
+                        $vv = is_bool($vv) ? $castBool($vv) : $vv;
+                        if ($vv !== null) {
+                            $qs .= '='.$encoder((string) $vv);
+                        }
+                        $qs .= '&';
+                    }
+                }
+            }
+    
+            return $qs ? (string) substr($qs, 0, -1) : '';
+        }
 }
