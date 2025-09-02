@@ -113,7 +113,11 @@ class ObjectSerializer
 
             // Map parameter name to JSON property name
             $jsonKey = self::getJsonPropertyName($paramName, $class);
-            $value = $data[$jsonKey] ?? null;
+            if (is_object($data)) {
+                $value = property_exists($data, $jsonKey) ? $data->$jsonKey : null;
+            } else {
+                $value = $data[$jsonKey] ?? null;
+            }
 
             // Handle parameter type
             if ($paramType) {
