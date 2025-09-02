@@ -19,7 +19,87 @@ use JsonSerializable;
 final class UpstreamRoute implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'UpstreamRoute';
 
+    private static array $attributeMap = [
+        'primary' => 'primary',
+        'id' => 'id',
+        'production_url' => 'production_url',
+        'attributes' => 'attributes',
+        'type' => 'type',
+        'tls' => 'tls',
+        'cache' => 'cache',
+        'ssi' => 'ssi',
+        'upstream' => 'upstream',
+        'redirects' => 'redirects'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'primary' => 'setPrimary',
+            'id' => 'setId',
+            'production_url' => 'setProductionUrl',
+            'attributes' => 'setAttributes',
+            'type' => 'setType',
+            'tls' => 'setTls',
+            'cache' => 'setCache',
+            'ssi' => 'setSsi',
+            'upstream' => 'setUpstream',
+            'redirects' => 'setRedirects'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'primary' => 'getPrimary',
+            'id' => 'getId',
+            'production_url' => 'getProductionUrl',
+            'attributes' => 'getAttributes',
+            'type' => 'getType',
+            'tls' => 'getTls',
+            'cache' => 'getCache',
+            'ssi' => 'getSsi',
+            'upstream' => 'getUpstream',
+            'redirects' => 'getRedirects'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'primary' => 'setPrimary',
+            'id' => 'setId',
+            'production_url' => 'setProductionUrl',
+            'attributes' => 'setAttributes',
+            'type' => 'setType',
+            'tls' => 'setTls',
+            'cache' => 'setCache',
+            'ssi' => 'setSsi',
+            'upstream' => 'setUpstream',
+            'redirects' => 'setRedirects'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'primary' => 'getPrimary',
+            'id' => 'getId',
+            'production_url' => 'getProductionUrl',
+            'attributes' => 'getAttributes',
+            'type' => 'getType',
+            'tls' => 'getTls',
+            'cache' => 'getCache',
+            'ssi' => 'getSsi',
+            'upstream' => 'getUpstream',
+            'redirects' => 'getRedirects'
+        ];
+    
     public function __construct(
         public readonly ?bool $primary,
         public readonly ?string $id,

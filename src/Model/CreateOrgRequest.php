@@ -19,7 +19,62 @@ use JsonSerializable;
 final class CreateOrgRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'create_org_request';
 
+    private static array $attributeMap = [
+        'type' => 'type',
+        'owner_id' => 'owner_id',
+        'name' => 'name',
+        'label' => 'label',
+        'country' => 'country'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'owner_id' => 'setOwnerId',
+            'name' => 'setName',
+            'label' => 'setLabel',
+            'country' => 'setCountry'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'owner_id' => 'getOwnerId',
+            'name' => 'getName',
+            'label' => 'getLabel',
+            'country' => 'getCountry'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'owner_id' => 'setOwnerId',
+            'name' => 'setName',
+            'label' => 'setLabel',
+            'country' => 'setCountry'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'owner_id' => 'getOwnerId',
+            'name' => 'getName',
+            'label' => 'getLabel',
+            'country' => 'getCountry'
+        ];
+    
     public function __construct(
         public readonly string $type,
         public readonly string $owner_id,

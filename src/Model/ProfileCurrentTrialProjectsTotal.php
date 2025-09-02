@@ -19,7 +19,57 @@ use JsonSerializable;
 final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Profile_current_trial_projects_total';
 
+    private static array $attributeMap = [
+        'amount' => 'amount',
+        'currency_code' => 'currency_code',
+        'currency_symbol' => 'currency_symbol',
+        'formatted' => 'formatted'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'amount' => 'setAmount',
+            'currency_code' => 'setCurrencyCode',
+            'currency_symbol' => 'setCurrencySymbol',
+            'formatted' => 'setFormatted'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'amount' => 'getAmount',
+            'currency_code' => 'getCurrencyCode',
+            'currency_symbol' => 'getCurrencySymbol',
+            'formatted' => 'getFormatted'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'amount' => 'setAmount',
+            'currency_code' => 'setCurrencyCode',
+            'currency_symbol' => 'setCurrencySymbol',
+            'formatted' => 'setFormatted'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'amount' => 'getAmount',
+            'currency_code' => 'getCurrencyCode',
+            'currency_symbol' => 'getCurrencySymbol',
+            'formatted' => 'getFormatted'
+        ];
+    
     public function __construct(
         public readonly int $amount,
         public readonly string $currency_code,

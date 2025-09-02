@@ -19,7 +19,52 @@ use JsonSerializable;
 final class TheHostsOfTheDeploymentTargetInner1 implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_hosts_of_the_deployment_target__inner_1';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'type' => 'type',
+        'services' => 'services'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'type' => 'setType',
+            'services' => 'setServices'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'type' => 'getType',
+            'services' => 'getServices'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'type' => 'setType',
+            'services' => 'setServices'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'type' => 'getType',
+            'services' => 'getServices'
+        ];
+    
     public function __construct(
         public readonly ?string $id,
         public readonly string $type,

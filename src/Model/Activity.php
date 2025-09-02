@@ -19,7 +19,132 @@ use JsonSerializable;
 final class Activity implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Activity';
 
+    private static array $attributeMap = [
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'type' => 'type',
+        'parameters' => 'parameters',
+        'project' => 'project',
+        'integration' => 'integration',
+        'environments' => 'environments',
+        'state' => 'state',
+        'result' => 'result',
+        'started_at' => 'started_at',
+        'completed_at' => 'completed_at',
+        'completion_percent' => 'completion_percent',
+        'cancelled_at' => 'cancelled_at',
+        'timings' => 'timings',
+        'log' => 'log',
+        'payload' => 'payload',
+        'description' => 'description',
+        'text' => 'text',
+        'expires_at' => 'expires_at'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'type' => 'setType',
+            'parameters' => 'setParameters',
+            'project' => 'setProject',
+            'integration' => 'setIntegration',
+            'environments' => 'setEnvironments',
+            'state' => 'setState',
+            'result' => 'setResult',
+            'started_at' => 'setStartedAt',
+            'completed_at' => 'setCompletedAt',
+            'completion_percent' => 'setCompletionPercent',
+            'cancelled_at' => 'setCancelledAt',
+            'timings' => 'setTimings',
+            'log' => 'setLog',
+            'payload' => 'setPayload',
+            'description' => 'setDescription',
+            'text' => 'setText',
+            'expires_at' => 'setExpiresAt'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'type' => 'getType',
+            'parameters' => 'getParameters',
+            'project' => 'getProject',
+            'integration' => 'getIntegration',
+            'environments' => 'getEnvironments',
+            'state' => 'getState',
+            'result' => 'getResult',
+            'started_at' => 'getStartedAt',
+            'completed_at' => 'getCompletedAt',
+            'completion_percent' => 'getCompletionPercent',
+            'cancelled_at' => 'getCancelledAt',
+            'timings' => 'getTimings',
+            'log' => 'getLog',
+            'payload' => 'getPayload',
+            'description' => 'getDescription',
+            'text' => 'getText',
+            'expires_at' => 'getExpiresAt'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'type' => 'setType',
+            'parameters' => 'setParameters',
+            'project' => 'setProject',
+            'integration' => 'setIntegration',
+            'environments' => 'setEnvironments',
+            'state' => 'setState',
+            'result' => 'setResult',
+            'started_at' => 'setStartedAt',
+            'completed_at' => 'setCompletedAt',
+            'completion_percent' => 'setCompletionPercent',
+            'cancelled_at' => 'setCancelledAt',
+            'timings' => 'setTimings',
+            'log' => 'setLog',
+            'payload' => 'setPayload',
+            'description' => 'setDescription',
+            'text' => 'setText',
+            'expires_at' => 'setExpiresAt'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'type' => 'getType',
+            'parameters' => 'getParameters',
+            'project' => 'getProject',
+            'integration' => 'getIntegration',
+            'environments' => 'getEnvironments',
+            'state' => 'getState',
+            'result' => 'getResult',
+            'started_at' => 'getStartedAt',
+            'completed_at' => 'getCompletedAt',
+            'completion_percent' => 'getCompletionPercent',
+            'cancelled_at' => 'getCancelledAt',
+            'timings' => 'getTimings',
+            'log' => 'getLog',
+            'payload' => 'getPayload',
+            'description' => 'getDescription',
+            'text' => 'getText',
+            'expires_at' => 'getExpiresAt'
+        ];
+    
     public function __construct(
         public readonly ?\DateTime $created_at,
         public readonly ?\DateTime $updated_at,

@@ -19,7 +19,87 @@ use JsonSerializable;
 final class ServicesValue implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Services_value';
 
+    private static array $attributeMap = [
+        'type' => 'type',
+        'size' => 'size',
+        'disk' => 'disk',
+        'access' => 'access',
+        'configuration' => 'configuration',
+        'relationships' => 'relationships',
+        'firewall' => 'firewall',
+        'resources' => 'resources',
+        'container_profile' => 'container_profile',
+        'endpoints' => 'endpoints'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'size' => 'setSize',
+            'disk' => 'setDisk',
+            'access' => 'setAccess',
+            'configuration' => 'setConfiguration',
+            'relationships' => 'setRelationships',
+            'firewall' => 'setFirewall',
+            'resources' => 'setResources',
+            'container_profile' => 'setContainerProfile',
+            'endpoints' => 'setEndpoints'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'size' => 'getSize',
+            'disk' => 'getDisk',
+            'access' => 'getAccess',
+            'configuration' => 'getConfiguration',
+            'relationships' => 'getRelationships',
+            'firewall' => 'getFirewall',
+            'resources' => 'getResources',
+            'container_profile' => 'getContainerProfile',
+            'endpoints' => 'getEndpoints'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'size' => 'setSize',
+            'disk' => 'setDisk',
+            'access' => 'setAccess',
+            'configuration' => 'setConfiguration',
+            'relationships' => 'setRelationships',
+            'firewall' => 'setFirewall',
+            'resources' => 'setResources',
+            'container_profile' => 'setContainerProfile',
+            'endpoints' => 'setEndpoints'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'size' => 'getSize',
+            'disk' => 'getDisk',
+            'access' => 'getAccess',
+            'configuration' => 'getConfiguration',
+            'relationships' => 'getRelationships',
+            'firewall' => 'getFirewall',
+            'resources' => 'getResources',
+            'container_profile' => 'getContainerProfile',
+            'endpoints' => 'getEndpoints'
+        ];
+    
     public function __construct(
         public readonly string $type,
         public readonly string $size,

@@ -19,7 +19,47 @@ use JsonSerializable;
 final class TheOAuth2ConsumerInformationOptional1 implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_OAuth2_consumer_information__optional___1';
 
+    private static array $attributeMap = [
+        'key' => 'key',
+        'secret' => 'secret'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'key' => 'setKey',
+            'secret' => 'setSecret'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'key' => 'getKey',
+            'secret' => 'getSecret'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'key' => 'setKey',
+            'secret' => 'setSecret'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'key' => 'getKey',
+            'secret' => 'getSecret'
+        ];
+    
     public function __construct(
         public readonly string $key,
         public readonly string $secret

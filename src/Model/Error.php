@@ -19,7 +19,62 @@ use JsonSerializable;
 final class Error implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Error';
 
+    private static array $attributeMap = [
+        'status' => 'status',
+        'message' => 'message',
+        'code' => 'code',
+        'detail' => 'detail',
+        'title' => 'title'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'status' => 'setStatus',
+            'message' => 'setMessage',
+            'code' => 'setCode',
+            'detail' => 'setDetail',
+            'title' => 'setTitle'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'status' => 'getStatus',
+            'message' => 'getMessage',
+            'code' => 'getCode',
+            'detail' => 'getDetail',
+            'title' => 'getTitle'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'status' => 'setStatus',
+            'message' => 'setMessage',
+            'code' => 'setCode',
+            'detail' => 'setDetail',
+            'title' => 'setTitle'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'status' => 'getStatus',
+            'message' => 'getMessage',
+            'code' => 'getCode',
+            'detail' => 'getDetail',
+            'title' => 'getTitle'
+        ];
+    
     public function __construct(
         public readonly string $status,
         public readonly string $message,

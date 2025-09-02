@@ -19,7 +19,67 @@ use JsonSerializable;
 final class ProjectInfo implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Project_Info';
 
+    private static array $attributeMap = [
+        'title' => 'title',
+        'name' => 'name',
+        'namespace' => 'namespace',
+        'organization' => 'organization',
+        'capabilities' => 'capabilities',
+        'settings' => 'settings'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'title' => 'setTitle',
+            'name' => 'setName',
+            'namespace' => 'setNamespace',
+            'organization' => 'setOrganization',
+            'capabilities' => 'setCapabilities',
+            'settings' => 'setSettings'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'title' => 'getTitle',
+            'name' => 'getName',
+            'namespace' => 'getNamespace',
+            'organization' => 'getOrganization',
+            'capabilities' => 'getCapabilities',
+            'settings' => 'getSettings'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'title' => 'setTitle',
+            'name' => 'setName',
+            'namespace' => 'setNamespace',
+            'organization' => 'setOrganization',
+            'capabilities' => 'setCapabilities',
+            'settings' => 'setSettings'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'title' => 'getTitle',
+            'name' => 'getName',
+            'namespace' => 'getNamespace',
+            'organization' => 'getOrganization',
+            'capabilities' => 'getCapabilities',
+            'settings' => 'getSettings'
+        ];
+    
     public function __construct(
         public readonly string $title,
         public readonly string $name,

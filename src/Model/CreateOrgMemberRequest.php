@@ -19,7 +19,47 @@ use JsonSerializable;
 final class CreateOrgMemberRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'create_org_member_request';
 
+    private static array $attributeMap = [
+        'user_id' => 'user_id',
+        'permissions' => 'permissions'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'user_id' => 'setUserId',
+            'permissions' => 'setPermissions'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'user_id' => 'getUserId',
+            'permissions' => 'getPermissions'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'user_id' => 'setUserId',
+            'permissions' => 'setPermissions'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'user_id' => 'getUserId',
+            'permissions' => 'getPermissions'
+        ];
+    
     public function __construct(
         public readonly string $user_id,
         /**

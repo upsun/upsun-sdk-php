@@ -19,7 +19,57 @@ use JsonSerializable;
 final class VouchersVouchersInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Vouchers_vouchers_inner';
 
+    private static array $attributeMap = [
+        'code' => 'code',
+        'amount' => 'amount',
+        'currency' => 'currency',
+        'orders' => 'orders'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'code' => 'setCode',
+            'amount' => 'setAmount',
+            'currency' => 'setCurrency',
+            'orders' => 'setOrders'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'code' => 'getCode',
+            'amount' => 'getAmount',
+            'currency' => 'getCurrency',
+            'orders' => 'getOrders'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'code' => 'setCode',
+            'amount' => 'setAmount',
+            'currency' => 'setCurrency',
+            'orders' => 'setOrders'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'code' => 'getCode',
+            'amount' => 'getAmount',
+            'currency' => 'getCurrency',
+            'orders' => 'getOrders'
+        ];
+    
     public function __construct(
         public readonly string $code,
         public readonly string $amount,

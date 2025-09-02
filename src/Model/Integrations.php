@@ -19,7 +19,52 @@ use JsonSerializable;
 final class Integrations implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Integrations';
 
+    private static array $attributeMap = [
+        'enabled' => 'enabled',
+        'config' => 'config',
+        'allowed_integrations' => 'allowed_integrations'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'enabled' => 'setEnabled',
+            'config' => 'setConfig',
+            'allowed_integrations' => 'setAllowedIntegrations'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'enabled' => 'getEnabled',
+            'config' => 'getConfig',
+            'allowed_integrations' => 'getAllowedIntegrations'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'enabled' => 'setEnabled',
+            'config' => 'setConfig',
+            'allowed_integrations' => 'setAllowedIntegrations'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'enabled' => 'getEnabled',
+            'config' => 'getConfig',
+            'allowed_integrations' => 'getAllowedIntegrations'
+        ];
+    
     public function __construct(
         public readonly bool $enabled,
         public readonly \Upsun\Model\Config $config,

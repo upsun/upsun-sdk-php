@@ -19,7 +19,47 @@ use JsonSerializable;
 final class RepositoryInformation implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Repository_information';
 
+    private static array $attributeMap = [
+        'url' => 'url',
+        'client_ssh_key' => 'client_ssh_key'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'url' => 'setUrl',
+            'client_ssh_key' => 'setClientSshKey'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'url' => 'getUrl',
+            'client_ssh_key' => 'getClientSshKey'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'url' => 'setUrl',
+            'client_ssh_key' => 'setClientSshKey'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'url' => 'getUrl',
+            'client_ssh_key' => 'getClientSshKey'
+        ];
+    
     public function __construct(
         public readonly string $url,
         public readonly ?string $client_ssh_key

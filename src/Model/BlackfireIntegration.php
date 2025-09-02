@@ -19,7 +19,62 @@ use JsonSerializable;
 final class BlackfireIntegration implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'BlackfireIntegration';
 
+    private static array $attributeMap = [
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'type' => 'type',
+        'environments_credentials' => 'environments_credentials',
+        'continuous_profiling' => 'continuous_profiling'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'type' => 'setType',
+            'environments_credentials' => 'setEnvironmentsCredentials',
+            'continuous_profiling' => 'setContinuousProfiling'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'type' => 'getType',
+            'environments_credentials' => 'getEnvironmentsCredentials',
+            'continuous_profiling' => 'getContinuousProfiling'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'type' => 'setType',
+            'environments_credentials' => 'setEnvironmentsCredentials',
+            'continuous_profiling' => 'setContinuousProfiling'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'type' => 'getType',
+            'environments_credentials' => 'getEnvironmentsCredentials',
+            'continuous_profiling' => 'getContinuousProfiling'
+        ];
+    
     public function __construct(
         public readonly ?\DateTime $created_at,
         public readonly ?\DateTime $updated_at,

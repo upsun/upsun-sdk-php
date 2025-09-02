@@ -19,7 +19,52 @@ use JsonSerializable;
 final class ProjectSettingsPatch implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'ProjectSettingsPatch';
 
+    private static array $attributeMap = [
+        'initialize' => 'initialize',
+        'data_retention' => 'data_retention',
+        'build_resources' => 'build_resources'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'initialize' => 'setInitialize',
+            'data_retention' => 'setDataRetention',
+            'build_resources' => 'setBuildResources'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'initialize' => 'getInitialize',
+            'data_retention' => 'getDataRetention',
+            'build_resources' => 'getBuildResources'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'initialize' => 'setInitialize',
+            'data_retention' => 'setDataRetention',
+            'build_resources' => 'setBuildResources'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'initialize' => 'getInitialize',
+            'data_retention' => 'getDataRetention',
+            'build_resources' => 'getBuildResources'
+        ];
+    
     public function __construct(
         public readonly object $initialize,
         /**

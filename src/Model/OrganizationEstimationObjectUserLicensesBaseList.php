@@ -19,7 +19,47 @@ use JsonSerializable;
 final class OrganizationEstimationObjectUserLicensesBaseList implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationEstimationObject_user_licenses_base_list';
 
+    private static array $attributeMap = [
+        'admin_user' => 'admin_user',
+        'viewer_user' => 'viewer_user'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'admin_user' => 'setAdminUser',
+            'viewer_user' => 'setViewerUser'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'admin_user' => 'getAdminUser',
+            'viewer_user' => 'getViewerUser'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'admin_user' => 'setAdminUser',
+            'viewer_user' => 'setViewerUser'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'admin_user' => 'getAdminUser',
+            'viewer_user' => 'getViewerUser'
+        ];
+    
     public function __construct(
         public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser $admin_user,
         public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser $viewer_user

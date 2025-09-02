@@ -19,7 +19,47 @@ use JsonSerializable;
 final class DomainPatch implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'DomainPatch';
 
+    private static array $attributeMap = [
+        'attributes' => 'attributes',
+        'is_default' => 'is_default'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'attributes' => 'setAttributes',
+            'is_default' => 'setIsDefault'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'attributes' => 'getAttributes',
+            'is_default' => 'getIsDefault'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'attributes' => 'setAttributes',
+            'is_default' => 'setIsDefault'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'attributes' => 'getAttributes',
+            'is_default' => 'getIsDefault'
+        ];
+    
     public function __construct(
         /**
          * @var string[]

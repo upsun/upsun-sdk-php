@@ -19,7 +19,62 @@ use JsonSerializable;
 final class CreateProjectInviteRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'create_project_invite_request';
 
+    private static array $attributeMap = [
+        'role' => 'role',
+        'email' => 'email',
+        'permissions' => 'permissions',
+        'environments' => 'environments',
+        'force' => 'force'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'role' => 'setRole',
+            'email' => 'setEmail',
+            'permissions' => 'setPermissions',
+            'environments' => 'setEnvironments',
+            'force' => 'setForce'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'role' => 'getRole',
+            'email' => 'getEmail',
+            'permissions' => 'getPermissions',
+            'environments' => 'getEnvironments',
+            'force' => 'getForce'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'role' => 'setRole',
+            'email' => 'setEmail',
+            'permissions' => 'setPermissions',
+            'environments' => 'setEnvironments',
+            'force' => 'setForce'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'role' => 'getRole',
+            'email' => 'getEmail',
+            'permissions' => 'getPermissions',
+            'environments' => 'getEnvironments',
+            'force' => 'getForce'
+        ];
+    
     public function __construct(
         public readonly string $role,
         public readonly string $email,

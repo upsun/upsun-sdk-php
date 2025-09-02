@@ -19,7 +19,57 @@ use JsonSerializable;
 final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_configuration_of_paths_managed_by_the_build_cache__value';
 
+    private static array $attributeMap = [
+        'directory' => 'directory',
+        'watch' => 'watch',
+        'allow_stale' => 'allow_stale',
+        'share_between_apps' => 'share_between_apps'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'directory' => 'setDirectory',
+            'watch' => 'setWatch',
+            'allow_stale' => 'setAllowStale',
+            'share_between_apps' => 'setShareBetweenApps'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'directory' => 'getDirectory',
+            'watch' => 'getWatch',
+            'allow_stale' => 'getAllowStale',
+            'share_between_apps' => 'getShareBetweenApps'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'directory' => 'setDirectory',
+            'watch' => 'setWatch',
+            'allow_stale' => 'setAllowStale',
+            'share_between_apps' => 'setShareBetweenApps'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'directory' => 'getDirectory',
+            'watch' => 'getWatch',
+            'allow_stale' => 'getAllowStale',
+            'share_between_apps' => 'getShareBetweenApps'
+        ];
+    
     public function __construct(
         public readonly ?string $directory,
         /**

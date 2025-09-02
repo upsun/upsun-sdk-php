@@ -19,7 +19,52 @@ use JsonSerializable;
 final class ResourcesLimits implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Resources_limits';
 
+    private static array $attributeMap = [
+        'container_profiles' => 'container_profiles',
+        'production' => 'production',
+        'development' => 'development'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'container_profiles' => 'setContainerProfiles',
+            'production' => 'setProduction',
+            'development' => 'setDevelopment'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'container_profiles' => 'getContainerProfiles',
+            'production' => 'getProduction',
+            'development' => 'getDevelopment'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'container_profiles' => 'setContainerProfiles',
+            'production' => 'setProduction',
+            'development' => 'setDevelopment'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'container_profiles' => 'getContainerProfiles',
+            'production' => 'getProduction',
+            'development' => 'getDevelopment'
+        ];
+    
     public function __construct(
         public readonly bool $container_profiles,
         public readonly \Upsun\Model\ResourcesForProductionEnvironments $production,

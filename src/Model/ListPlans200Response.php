@@ -19,7 +19,52 @@ use JsonSerializable;
 final class ListPlans200Response implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'list_plans_200_response';
 
+    private static array $attributeMap = [
+        'count' => 'count',
+        'plans' => 'plans',
+        '_links' => '_links'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'count' => 'setCount',
+            'plans' => 'setPlans',
+            '_links' => 'setLinks'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'count' => 'getCount',
+            'plans' => 'getPlans',
+            '_links' => 'getLinks'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'count' => 'setCount',
+            'plans' => 'setPlans',
+            '_links' => 'setLinks'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'count' => 'getCount',
+            'plans' => 'getPlans',
+            '_links' => 'getLinks'
+        ];
+    
     public function __construct(
         public readonly int $count,
         /**

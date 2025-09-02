@@ -19,7 +19,57 @@ use JsonSerializable;
 final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationEstimationObject_subscriptions_list_inner_usage';
 
+    private static array $attributeMap = [
+        'cpu' => 'cpu',
+        'memory' => 'memory',
+        'storage' => 'storage',
+        'environments' => 'environments'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'cpu' => 'setCpu',
+            'memory' => 'setMemory',
+            'storage' => 'setStorage',
+            'environments' => 'setEnvironments'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'cpu' => 'getCpu',
+            'memory' => 'getMemory',
+            'storage' => 'getStorage',
+            'environments' => 'getEnvironments'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'cpu' => 'setCpu',
+            'memory' => 'setMemory',
+            'storage' => 'setStorage',
+            'environments' => 'setEnvironments'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'cpu' => 'getCpu',
+            'memory' => 'getMemory',
+            'storage' => 'getStorage',
+            'environments' => 'getEnvironments'
+        ];
+    
     public function __construct(
         public readonly float $cpu,
         public readonly float $memory,

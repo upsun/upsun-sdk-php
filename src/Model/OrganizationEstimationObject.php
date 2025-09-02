@@ -19,7 +19,72 @@ use JsonSerializable;
 final class OrganizationEstimationObject implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationEstimationObject';
 
+    private static array $attributeMap = [
+        'total' => 'total',
+        'sub_total' => 'sub_total',
+        'vouchers' => 'vouchers',
+        'user_licenses' => 'user_licenses',
+        'user_management' => 'user_management',
+        'support_level' => 'support_level',
+        'subscriptions' => 'subscriptions'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'total' => 'setTotal',
+            'sub_total' => 'setSubTotal',
+            'vouchers' => 'setVouchers',
+            'user_licenses' => 'setUserLicenses',
+            'user_management' => 'setUserManagement',
+            'support_level' => 'setSupportLevel',
+            'subscriptions' => 'setSubscriptions'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'total' => 'getTotal',
+            'sub_total' => 'getSubTotal',
+            'vouchers' => 'getVouchers',
+            'user_licenses' => 'getUserLicenses',
+            'user_management' => 'getUserManagement',
+            'support_level' => 'getSupportLevel',
+            'subscriptions' => 'getSubscriptions'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'total' => 'setTotal',
+            'sub_total' => 'setSubTotal',
+            'vouchers' => 'setVouchers',
+            'user_licenses' => 'setUserLicenses',
+            'user_management' => 'setUserManagement',
+            'support_level' => 'setSupportLevel',
+            'subscriptions' => 'setSubscriptions'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'total' => 'getTotal',
+            'sub_total' => 'getSubTotal',
+            'vouchers' => 'getVouchers',
+            'user_licenses' => 'getUserLicenses',
+            'user_management' => 'getUserManagement',
+            'support_level' => 'getSupportLevel',
+            'subscriptions' => 'getSubscriptions'
+        ];
+    
     public function __construct(
         public readonly string $total,
         public readonly string $sub_total,

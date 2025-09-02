@@ -19,7 +19,57 @@ use JsonSerializable;
 final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'list_org_prepayment_transactions_200_response__links';
 
+    private static array $attributeMap = [
+        'self' => 'self',
+        'previous' => 'previous',
+        'next' => 'next',
+        'prepayment' => 'prepayment'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'self' => 'setSelf',
+            'previous' => 'setPrevious',
+            'next' => 'setNext',
+            'prepayment' => 'setPrepayment'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'self' => 'getSelf',
+            'previous' => 'getPrevious',
+            'next' => 'getNext',
+            'prepayment' => 'getPrepayment'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'self' => 'setSelf',
+            'previous' => 'setPrevious',
+            'next' => 'setNext',
+            'prepayment' => 'setPrepayment'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'self' => 'getSelf',
+            'previous' => 'getPrevious',
+            'next' => 'getNext',
+            'prepayment' => 'getPrepayment'
+        ];
+    
     public function __construct(
         public readonly \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf $self,
         public readonly \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious $previous,

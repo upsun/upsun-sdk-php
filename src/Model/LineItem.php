@@ -19,7 +19,82 @@ use JsonSerializable;
 final class LineItem implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'LineItem';
 
+    private static array $attributeMap = [
+        'type' => 'type',
+        'license_id' => 'license_id',
+        'project_id' => 'project_id',
+        'product' => 'product',
+        'sku' => 'sku',
+        'total' => 'total',
+        'total_formatted' => 'total_formatted',
+        'components' => 'components',
+        'exclude_from_invoice' => 'exclude_from_invoice'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'license_id' => 'setLicenseId',
+            'project_id' => 'setProjectId',
+            'product' => 'setProduct',
+            'sku' => 'setSku',
+            'total' => 'setTotal',
+            'total_formatted' => 'setTotalFormatted',
+            'components' => 'setComponents',
+            'exclude_from_invoice' => 'setExcludeFromInvoice'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'license_id' => 'getLicenseId',
+            'project_id' => 'getProjectId',
+            'product' => 'getProduct',
+            'sku' => 'getSku',
+            'total' => 'getTotal',
+            'total_formatted' => 'getTotalFormatted',
+            'components' => 'getComponents',
+            'exclude_from_invoice' => 'getExcludeFromInvoice'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'license_id' => 'setLicenseId',
+            'project_id' => 'setProjectId',
+            'product' => 'setProduct',
+            'sku' => 'setSku',
+            'total' => 'setTotal',
+            'total_formatted' => 'setTotalFormatted',
+            'components' => 'setComponents',
+            'exclude_from_invoice' => 'setExcludeFromInvoice'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'license_id' => 'getLicenseId',
+            'project_id' => 'getProjectId',
+            'product' => 'getProduct',
+            'sku' => 'getSku',
+            'total' => 'getTotal',
+            'total_formatted' => 'getTotalFormatted',
+            'components' => 'getComponents',
+            'exclude_from_invoice' => 'getExcludeFromInvoice'
+        ];
+    
     public function __construct(
         public readonly string $type,
         public readonly ?float $license_id,

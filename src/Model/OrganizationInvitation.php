@@ -19,7 +19,82 @@ use JsonSerializable;
 final class OrganizationInvitation implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationInvitation';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'state' => 'state',
+        'organization_id' => 'organization_id',
+        'email' => 'email',
+        'owner' => 'owner',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'finished_at' => 'finished_at',
+        'permissions' => 'permissions'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'state' => 'setState',
+            'organization_id' => 'setOrganizationId',
+            'email' => 'setEmail',
+            'owner' => 'setOwner',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'finished_at' => 'setFinishedAt',
+            'permissions' => 'setPermissions'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'state' => 'getState',
+            'organization_id' => 'getOrganizationId',
+            'email' => 'getEmail',
+            'owner' => 'getOwner',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'finished_at' => 'getFinishedAt',
+            'permissions' => 'getPermissions'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'state' => 'setState',
+            'organization_id' => 'setOrganizationId',
+            'email' => 'setEmail',
+            'owner' => 'setOwner',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'finished_at' => 'setFinishedAt',
+            'permissions' => 'setPermissions'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'state' => 'getState',
+            'organization_id' => 'getOrganizationId',
+            'email' => 'getEmail',
+            'owner' => 'getOwner',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'finished_at' => 'getFinishedAt',
+            'permissions' => 'getPermissions'
+        ];
+    
     public function __construct(
         public readonly string $id,
         public readonly string $state,

@@ -19,7 +19,52 @@ use JsonSerializable;
 final class CreateOrgInviteRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'create_org_invite_request';
 
+    private static array $attributeMap = [
+        'email' => 'email',
+        'permissions' => 'permissions',
+        'force' => 'force'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'email' => 'setEmail',
+            'permissions' => 'setPermissions',
+            'force' => 'setForce'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'email' => 'getEmail',
+            'permissions' => 'getPermissions',
+            'force' => 'getForce'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'email' => 'setEmail',
+            'permissions' => 'setPermissions',
+            'force' => 'setForce'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'email' => 'getEmail',
+            'permissions' => 'getPermissions',
+            'force' => 'getForce'
+        ];
+    
     public function __construct(
         public readonly string $email,
         /**

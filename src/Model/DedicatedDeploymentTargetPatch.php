@@ -19,7 +19,52 @@ use JsonSerializable;
 final class DedicatedDeploymentTargetPatch implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'DedicatedDeploymentTargetPatch';
 
+    private static array $attributeMap = [
+        'type' => 'type',
+        'name' => 'name',
+        'enforced_mounts' => 'enforced_mounts'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'name' => 'setName',
+            'enforced_mounts' => 'setEnforcedMounts'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'name' => 'getName',
+            'enforced_mounts' => 'getEnforcedMounts'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'name' => 'setName',
+            'enforced_mounts' => 'setEnforcedMounts'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'name' => 'getName',
+            'enforced_mounts' => 'getEnforcedMounts'
+        ];
+    
     public function __construct(
         public readonly string $type,
         public readonly string $name,

@@ -19,7 +19,52 @@ use JsonSerializable;
 final class HealthWebHookIntegrationCreateInput implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'HealthWebHookIntegrationCreateInput';
 
+    private static array $attributeMap = [
+        'type' => 'type',
+        'shared_key' => 'shared_key',
+        'url' => 'url'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'shared_key' => 'setSharedKey',
+            'url' => 'setUrl'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'shared_key' => 'getSharedKey',
+            'url' => 'getUrl'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'shared_key' => 'setSharedKey',
+            'url' => 'setUrl'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'shared_key' => 'getSharedKey',
+            'url' => 'getUrl'
+        ];
+    
     public function __construct(
         public readonly string $type,
         public readonly ?string $shared_key,

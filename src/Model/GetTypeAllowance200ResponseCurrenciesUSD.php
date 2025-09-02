@@ -19,7 +19,57 @@ use JsonSerializable;
 final class GetTypeAllowance200ResponseCurrenciesUSD implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'get_type_allowance_200_response_currencies_USD';
 
+    private static array $attributeMap = [
+        'formatted' => 'formatted',
+        'amount' => 'amount',
+        'currency' => 'currency',
+        'currency_symbol' => 'currency_symbol'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'formatted' => 'setFormatted',
+            'amount' => 'setAmount',
+            'currency' => 'setCurrency',
+            'currency_symbol' => 'setCurrencySymbol'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'formatted' => 'getFormatted',
+            'amount' => 'getAmount',
+            'currency' => 'getCurrency',
+            'currency_symbol' => 'getCurrencySymbol'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'formatted' => 'setFormatted',
+            'amount' => 'setAmount',
+            'currency' => 'setCurrency',
+            'currency_symbol' => 'setCurrencySymbol'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'formatted' => 'getFormatted',
+            'amount' => 'getAmount',
+            'currency' => 'getCurrency',
+            'currency_symbol' => 'getCurrencySymbol'
+        ];
+    
     public function __construct(
         public readonly string $formatted,
         public readonly float $amount,

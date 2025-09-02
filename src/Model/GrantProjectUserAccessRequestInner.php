@@ -19,7 +19,52 @@ use JsonSerializable;
 final class GrantProjectUserAccessRequestInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'grant_project_user_access_request_inner';
 
+    private static array $attributeMap = [
+        'user_id' => 'user_id',
+        'permissions' => 'permissions',
+        'auto_add_member' => 'auto_add_member'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'user_id' => 'setUserId',
+            'permissions' => 'setPermissions',
+            'auto_add_member' => 'setAutoAddMember'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'user_id' => 'getUserId',
+            'permissions' => 'getPermissions',
+            'auto_add_member' => 'getAutoAddMember'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'user_id' => 'setUserId',
+            'permissions' => 'setPermissions',
+            'auto_add_member' => 'setAutoAddMember'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'user_id' => 'getUserId',
+            'permissions' => 'getPermissions',
+            'auto_add_member' => 'getAutoAddMember'
+        ];
+    
     public function __construct(
         public readonly string $user_id,
         /**

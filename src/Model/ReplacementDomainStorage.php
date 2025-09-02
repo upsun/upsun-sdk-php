@@ -19,7 +19,77 @@ use JsonSerializable;
 final class ReplacementDomainStorage implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'ReplacementDomainStorage';
 
+    private static array $attributeMap = [
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'type' => 'type',
+        'project' => 'project',
+        'name' => 'name',
+        'registered_name' => 'registered_name',
+        'attributes' => 'attributes',
+        'replacement_for' => 'replacement_for'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'type' => 'setType',
+            'project' => 'setProject',
+            'name' => 'setName',
+            'registered_name' => 'setRegisteredName',
+            'attributes' => 'setAttributes',
+            'replacement_for' => 'setReplacementFor'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'type' => 'getType',
+            'project' => 'getProject',
+            'name' => 'getName',
+            'registered_name' => 'getRegisteredName',
+            'attributes' => 'getAttributes',
+            'replacement_for' => 'getReplacementFor'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'type' => 'setType',
+            'project' => 'setProject',
+            'name' => 'setName',
+            'registered_name' => 'setRegisteredName',
+            'attributes' => 'setAttributes',
+            'replacement_for' => 'setReplacementFor'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'type' => 'getType',
+            'project' => 'getProject',
+            'name' => 'getName',
+            'registered_name' => 'getRegisteredName',
+            'attributes' => 'getAttributes',
+            'replacement_for' => 'getReplacementFor'
+        ];
+    
     public function __construct(
         public readonly ?\DateTime $created_at,
         public readonly ?\DateTime $updated_at,

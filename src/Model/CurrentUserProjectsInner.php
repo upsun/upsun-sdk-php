@@ -19,7 +19,137 @@ use JsonSerializable;
 final class CurrentUserProjectsInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'CurrentUser_projects_inner';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'name' => 'name',
+        'title' => 'title',
+        'cluster' => 'cluster',
+        'cluster_label' => 'cluster_label',
+        'region' => 'region',
+        'region_label' => 'region_label',
+        'uri' => 'uri',
+        'endpoint' => 'endpoint',
+        'license_id' => 'license_id',
+        'owner' => 'owner',
+        'owner_info' => 'owner_info',
+        'plan' => 'plan',
+        'subscription_id' => 'subscription_id',
+        'status' => 'status',
+        'vendor' => 'vendor',
+        'vendor_label' => 'vendor_label',
+        'vendor_website' => 'vendor_website',
+        'vendor_resources' => 'vendor_resources',
+        'created_at' => 'created_at'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'name' => 'setName',
+            'title' => 'setTitle',
+            'cluster' => 'setCluster',
+            'cluster_label' => 'setClusterLabel',
+            'region' => 'setRegion',
+            'region_label' => 'setRegionLabel',
+            'uri' => 'setUri',
+            'endpoint' => 'setEndpoint',
+            'license_id' => 'setLicenseId',
+            'owner' => 'setOwner',
+            'owner_info' => 'setOwnerInfo',
+            'plan' => 'setPlan',
+            'subscription_id' => 'setSubscriptionId',
+            'status' => 'setStatus',
+            'vendor' => 'setVendor',
+            'vendor_label' => 'setVendorLabel',
+            'vendor_website' => 'setVendorWebsite',
+            'vendor_resources' => 'setVendorResources',
+            'created_at' => 'setCreatedAt'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'name' => 'getName',
+            'title' => 'getTitle',
+            'cluster' => 'getCluster',
+            'cluster_label' => 'getClusterLabel',
+            'region' => 'getRegion',
+            'region_label' => 'getRegionLabel',
+            'uri' => 'getUri',
+            'endpoint' => 'getEndpoint',
+            'license_id' => 'getLicenseId',
+            'owner' => 'getOwner',
+            'owner_info' => 'getOwnerInfo',
+            'plan' => 'getPlan',
+            'subscription_id' => 'getSubscriptionId',
+            'status' => 'getStatus',
+            'vendor' => 'getVendor',
+            'vendor_label' => 'getVendorLabel',
+            'vendor_website' => 'getVendorWebsite',
+            'vendor_resources' => 'getVendorResources',
+            'created_at' => 'getCreatedAt'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'name' => 'setName',
+            'title' => 'setTitle',
+            'cluster' => 'setCluster',
+            'cluster_label' => 'setClusterLabel',
+            'region' => 'setRegion',
+            'region_label' => 'setRegionLabel',
+            'uri' => 'setUri',
+            'endpoint' => 'setEndpoint',
+            'license_id' => 'setLicenseId',
+            'owner' => 'setOwner',
+            'owner_info' => 'setOwnerInfo',
+            'plan' => 'setPlan',
+            'subscription_id' => 'setSubscriptionId',
+            'status' => 'setStatus',
+            'vendor' => 'setVendor',
+            'vendor_label' => 'setVendorLabel',
+            'vendor_website' => 'setVendorWebsite',
+            'vendor_resources' => 'setVendorResources',
+            'created_at' => 'setCreatedAt'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'name' => 'getName',
+            'title' => 'getTitle',
+            'cluster' => 'getCluster',
+            'cluster_label' => 'getClusterLabel',
+            'region' => 'getRegion',
+            'region_label' => 'getRegionLabel',
+            'uri' => 'getUri',
+            'endpoint' => 'getEndpoint',
+            'license_id' => 'getLicenseId',
+            'owner' => 'getOwner',
+            'owner_info' => 'getOwnerInfo',
+            'plan' => 'getPlan',
+            'subscription_id' => 'getSubscriptionId',
+            'status' => 'getStatus',
+            'vendor' => 'getVendor',
+            'vendor_label' => 'getVendorLabel',
+            'vendor_website' => 'getVendorWebsite',
+            'vendor_resources' => 'getVendorResources',
+            'created_at' => 'getCreatedAt'
+        ];
+    
     public function __construct(
         public readonly string $id,
         public readonly string $name,

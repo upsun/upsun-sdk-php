@@ -19,7 +19,57 @@ use JsonSerializable;
 final class TeamMember implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'TeamMember';
 
+    private static array $attributeMap = [
+        'team_id' => 'team_id',
+        'user_id' => 'user_id',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'team_id' => 'setTeamId',
+            'user_id' => 'setUserId',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'team_id' => 'getTeamId',
+            'user_id' => 'getUserId',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'team_id' => 'setTeamId',
+            'user_id' => 'setUserId',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'team_id' => 'getTeamId',
+            'user_id' => 'getUserId',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt'
+        ];
+    
     public function __construct(
         public readonly string $team_id,
         public readonly string $user_id,

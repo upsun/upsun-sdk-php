@@ -19,7 +19,42 @@ use JsonSerializable;
 final class ApplyOrgVoucherRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'apply_org_voucher_request';
 
+    private static array $attributeMap = [
+        'code' => 'code'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'code' => 'setCode'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'code' => 'getCode'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'code' => 'setCode'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'code' => 'getCode'
+        ];
+    
     public function __construct(
         public readonly string $code
     ) {

@@ -19,7 +19,72 @@ use JsonSerializable;
 final class UpdateUserRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'update_user_request';
 
+    private static array $attributeMap = [
+        'username' => 'username',
+        'first_name' => 'first_name',
+        'last_name' => 'last_name',
+        'picture' => 'picture',
+        'company' => 'company',
+        'website' => 'website',
+        'country' => 'country'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'username' => 'setUsername',
+            'first_name' => 'setFirstName',
+            'last_name' => 'setLastName',
+            'picture' => 'setPicture',
+            'company' => 'setCompany',
+            'website' => 'setWebsite',
+            'country' => 'setCountry'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'username' => 'getUsername',
+            'first_name' => 'getFirstName',
+            'last_name' => 'getLastName',
+            'picture' => 'getPicture',
+            'company' => 'getCompany',
+            'website' => 'getWebsite',
+            'country' => 'getCountry'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'username' => 'setUsername',
+            'first_name' => 'setFirstName',
+            'last_name' => 'setLastName',
+            'picture' => 'setPicture',
+            'company' => 'setCompany',
+            'website' => 'setWebsite',
+            'country' => 'setCountry'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'username' => 'getUsername',
+            'first_name' => 'getFirstName',
+            'last_name' => 'getLastName',
+            'picture' => 'getPicture',
+            'company' => 'getCompany',
+            'website' => 'getWebsite',
+            'country' => 'getCountry'
+        ];
+    
     public function __construct(
         public readonly string $username,
         public readonly string $first_name,

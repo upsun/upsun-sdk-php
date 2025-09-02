@@ -19,7 +19,117 @@ use JsonSerializable;
 final class User implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'User';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'deactivated' => 'deactivated',
+        'namespace' => 'namespace',
+        'username' => 'username',
+        'email' => 'email',
+        'email_verified' => 'email_verified',
+        'first_name' => 'first_name',
+        'last_name' => 'last_name',
+        'picture' => 'picture',
+        'company' => 'company',
+        'website' => 'website',
+        'country' => 'country',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'consented_at' => 'consented_at',
+        'consent_method' => 'consent_method'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'deactivated' => 'setDeactivated',
+            'namespace' => 'setNamespace',
+            'username' => 'setUsername',
+            'email' => 'setEmail',
+            'email_verified' => 'setEmailVerified',
+            'first_name' => 'setFirstName',
+            'last_name' => 'setLastName',
+            'picture' => 'setPicture',
+            'company' => 'setCompany',
+            'website' => 'setWebsite',
+            'country' => 'setCountry',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'consented_at' => 'setConsentedAt',
+            'consent_method' => 'setConsentMethod'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'deactivated' => 'getDeactivated',
+            'namespace' => 'getNamespace',
+            'username' => 'getUsername',
+            'email' => 'getEmail',
+            'email_verified' => 'getEmailVerified',
+            'first_name' => 'getFirstName',
+            'last_name' => 'getLastName',
+            'picture' => 'getPicture',
+            'company' => 'getCompany',
+            'website' => 'getWebsite',
+            'country' => 'getCountry',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'consented_at' => 'getConsentedAt',
+            'consent_method' => 'getConsentMethod'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'deactivated' => 'setDeactivated',
+            'namespace' => 'setNamespace',
+            'username' => 'setUsername',
+            'email' => 'setEmail',
+            'email_verified' => 'setEmailVerified',
+            'first_name' => 'setFirstName',
+            'last_name' => 'setLastName',
+            'picture' => 'setPicture',
+            'company' => 'setCompany',
+            'website' => 'setWebsite',
+            'country' => 'setCountry',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'consented_at' => 'setConsentedAt',
+            'consent_method' => 'setConsentMethod'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'deactivated' => 'getDeactivated',
+            'namespace' => 'getNamespace',
+            'username' => 'getUsername',
+            'email' => 'getEmail',
+            'email_verified' => 'getEmailVerified',
+            'first_name' => 'getFirstName',
+            'last_name' => 'getLastName',
+            'picture' => 'getPicture',
+            'company' => 'getCompany',
+            'website' => 'getWebsite',
+            'country' => 'getCountry',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'consented_at' => 'getConsentedAt',
+            'consent_method' => 'getConsentMethod'
+        ];
+    
     public function __construct(
         public readonly string $id,
         public readonly bool $deactivated,

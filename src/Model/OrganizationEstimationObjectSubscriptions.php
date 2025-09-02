@@ -19,7 +19,47 @@ use JsonSerializable;
 final class OrganizationEstimationObjectSubscriptions implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationEstimationObject_subscriptions';
 
+    private static array $attributeMap = [
+        'total' => 'total',
+        'list' => 'list'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'total' => 'setTotal',
+            'list' => 'setList'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'total' => 'getTotal',
+            'list' => 'getList'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'total' => 'setTotal',
+            'list' => 'setList'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'total' => 'getTotal',
+            'list' => 'getList'
+        ];
+    
     public function __construct(
         public readonly string $total,
         /**

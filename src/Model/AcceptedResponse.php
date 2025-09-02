@@ -19,7 +19,47 @@ use JsonSerializable;
 final class AcceptedResponse implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'AcceptedResponse';
 
+    private static array $attributeMap = [
+        'status' => 'status',
+        'code' => 'code'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'status' => 'setStatus',
+            'code' => 'setCode'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'status' => 'getStatus',
+            'code' => 'getCode'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'status' => 'setStatus',
+            'code' => 'setCode'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'status' => 'getStatus',
+            'code' => 'getCode'
+        ];
+    
     public function __construct(
         public readonly string $status,
         public readonly int $code

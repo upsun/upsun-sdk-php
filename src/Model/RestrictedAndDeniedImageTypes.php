@@ -19,7 +19,47 @@ use JsonSerializable;
 final class RestrictedAndDeniedImageTypes implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Restricted_and_denied_image_types';
 
+    private static array $attributeMap = [
+        'only' => 'only',
+        'exclude' => 'exclude'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'only' => 'setOnly',
+            'exclude' => 'setExclude'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'only' => 'getOnly',
+            'exclude' => 'getExclude'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'only' => 'setOnly',
+            'exclude' => 'setExclude'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'only' => 'getOnly',
+            'exclude' => 'getExclude'
+        ];
+    
     public function __construct(
         /**
          * @var array

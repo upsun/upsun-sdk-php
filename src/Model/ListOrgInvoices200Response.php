@@ -19,7 +19,42 @@ use JsonSerializable;
 final class ListOrgInvoices200Response implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'list_org_invoices_200_response';
 
+    private static array $attributeMap = [
+        'items' => 'items'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'items' => 'setItems'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'items' => 'getItems'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'items' => 'setItems'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'items' => 'getItems'
+        ];
+    
     public function __construct(
         /**
          * @var array

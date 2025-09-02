@@ -19,7 +19,92 @@ use JsonSerializable;
 final class ProjectCapabilities implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'ProjectCapabilities';
 
+    private static array $attributeMap = [
+        'custom_domains' => 'custom_domains',
+        'source_operations' => 'source_operations',
+        'runtime_operations' => 'runtime_operations',
+        'outbound_firewall' => 'outbound_firewall',
+        'metrics' => 'metrics',
+        'logs_forwarding' => 'logs_forwarding',
+        'images' => 'images',
+        'instance_limit' => 'instance_limit',
+        'build_resources' => 'build_resources',
+        'data_retention' => 'data_retention',
+        'integrations' => 'integrations'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'custom_domains' => 'setCustomDomains',
+            'source_operations' => 'setSourceOperations',
+            'runtime_operations' => 'setRuntimeOperations',
+            'outbound_firewall' => 'setOutboundFirewall',
+            'metrics' => 'setMetrics',
+            'logs_forwarding' => 'setLogsForwarding',
+            'images' => 'setImages',
+            'instance_limit' => 'setInstanceLimit',
+            'build_resources' => 'setBuildResources',
+            'data_retention' => 'setDataRetention',
+            'integrations' => 'setIntegrations'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'custom_domains' => 'getCustomDomains',
+            'source_operations' => 'getSourceOperations',
+            'runtime_operations' => 'getRuntimeOperations',
+            'outbound_firewall' => 'getOutboundFirewall',
+            'metrics' => 'getMetrics',
+            'logs_forwarding' => 'getLogsForwarding',
+            'images' => 'getImages',
+            'instance_limit' => 'getInstanceLimit',
+            'build_resources' => 'getBuildResources',
+            'data_retention' => 'getDataRetention',
+            'integrations' => 'getIntegrations'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'custom_domains' => 'setCustomDomains',
+            'source_operations' => 'setSourceOperations',
+            'runtime_operations' => 'setRuntimeOperations',
+            'outbound_firewall' => 'setOutboundFirewall',
+            'metrics' => 'setMetrics',
+            'logs_forwarding' => 'setLogsForwarding',
+            'images' => 'setImages',
+            'instance_limit' => 'setInstanceLimit',
+            'build_resources' => 'setBuildResources',
+            'data_retention' => 'setDataRetention',
+            'integrations' => 'setIntegrations'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'custom_domains' => 'getCustomDomains',
+            'source_operations' => 'getSourceOperations',
+            'runtime_operations' => 'getRuntimeOperations',
+            'outbound_firewall' => 'getOutboundFirewall',
+            'metrics' => 'getMetrics',
+            'logs_forwarding' => 'getLogsForwarding',
+            'images' => 'getImages',
+            'instance_limit' => 'getInstanceLimit',
+            'build_resources' => 'getBuildResources',
+            'data_retention' => 'getDataRetention',
+            'integrations' => 'getIntegrations'
+        ];
+    
     public function __construct(
         public readonly \Upsun\Model\CustomDomains $custom_domains,
         public readonly \Upsun\Model\SourceOperations $source_operations,

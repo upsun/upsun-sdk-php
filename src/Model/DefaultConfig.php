@@ -19,7 +19,47 @@ use JsonSerializable;
 final class DefaultConfig implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Default_Config';
 
+    private static array $attributeMap = [
+        'manual_count' => 'manual_count',
+        'schedule' => 'schedule'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'manual_count' => 'setManualCount',
+            'schedule' => 'setSchedule'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'manual_count' => 'getManualCount',
+            'schedule' => 'getSchedule'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'manual_count' => 'setManualCount',
+            'schedule' => 'setSchedule'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'manual_count' => 'getManualCount',
+            'schedule' => 'getSchedule'
+        ];
+    
     public function __construct(
         public readonly int $manual_count,
         /**

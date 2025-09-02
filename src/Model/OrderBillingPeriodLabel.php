@@ -19,7 +19,57 @@ use JsonSerializable;
 final class OrderBillingPeriodLabel implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Order_billing_period_label';
 
+    private static array $attributeMap = [
+        'formatted' => 'formatted',
+        'month' => 'month',
+        'year' => 'year',
+        'next_month' => 'next_month'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'formatted' => 'setFormatted',
+            'month' => 'setMonth',
+            'year' => 'setYear',
+            'next_month' => 'setNextMonth'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'formatted' => 'getFormatted',
+            'month' => 'getMonth',
+            'year' => 'getYear',
+            'next_month' => 'getNextMonth'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'formatted' => 'setFormatted',
+            'month' => 'setMonth',
+            'year' => 'setYear',
+            'next_month' => 'setNextMonth'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'formatted' => 'getFormatted',
+            'month' => 'getMonth',
+            'year' => 'getYear',
+            'next_month' => 'getNextMonth'
+        ];
+    
     public function __construct(
         public readonly string $formatted,
         public readonly string $month,

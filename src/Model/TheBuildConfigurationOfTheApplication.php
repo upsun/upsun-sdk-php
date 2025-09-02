@@ -19,7 +19,47 @@ use JsonSerializable;
 final class TheBuildConfigurationOfTheApplication implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_build_configuration_of_the_application_';
 
+    private static array $attributeMap = [
+        'flavor' => 'flavor',
+        'caches' => 'caches'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'flavor' => 'setFlavor',
+            'caches' => 'setCaches'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'flavor' => 'getFlavor',
+            'caches' => 'getCaches'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'flavor' => 'setFlavor',
+            'caches' => 'setCaches'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'flavor' => 'getFlavor',
+            'caches' => 'getCaches'
+        ];
+    
     public function __construct(
         public readonly ?string $flavor,
         /**

@@ -19,7 +19,52 @@ use JsonSerializable;
 final class Ref implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Ref';
 
+    private static array $attributeMap = [
+        'ref' => 'ref',
+        'object' => 'object',
+        'sha' => 'sha'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'ref' => 'setRef',
+            'object' => 'setObject',
+            'sha' => 'setSha'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'ref' => 'getRef',
+            'object' => 'getObject',
+            'sha' => 'getSha'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'ref' => 'setRef',
+            'object' => 'setObject',
+            'sha' => 'setSha'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'ref' => 'getRef',
+            'object' => 'getObject',
+            'sha' => 'getSha'
+        ];
+    
     public function __construct(
         public readonly string $ref,
         public readonly \Upsun\Model\TheObjectTheReferencePointsTo $object,

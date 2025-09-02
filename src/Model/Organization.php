@@ -19,7 +19,102 @@ use JsonSerializable;
 final class Organization implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Organization';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'type' => 'type',
+        'owner_id' => 'owner_id',
+        'namespace' => 'namespace',
+        'name' => 'name',
+        'label' => 'label',
+        'country' => 'country',
+        'capabilities' => 'capabilities',
+        'vendor' => 'vendor',
+        'status' => 'status',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        '_links' => '_links'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'type' => 'setType',
+            'owner_id' => 'setOwnerId',
+            'namespace' => 'setNamespace',
+            'name' => 'setName',
+            'label' => 'setLabel',
+            'country' => 'setCountry',
+            'capabilities' => 'setCapabilities',
+            'vendor' => 'setVendor',
+            'status' => 'setStatus',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            '_links' => 'setLinks'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'type' => 'getType',
+            'owner_id' => 'getOwnerId',
+            'namespace' => 'getNamespace',
+            'name' => 'getName',
+            'label' => 'getLabel',
+            'country' => 'getCountry',
+            'capabilities' => 'getCapabilities',
+            'vendor' => 'getVendor',
+            'status' => 'getStatus',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            '_links' => 'getLinks'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'type' => 'setType',
+            'owner_id' => 'setOwnerId',
+            'namespace' => 'setNamespace',
+            'name' => 'setName',
+            'label' => 'setLabel',
+            'country' => 'setCountry',
+            'capabilities' => 'setCapabilities',
+            'vendor' => 'setVendor',
+            'status' => 'setStatus',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            '_links' => 'setLinks'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'type' => 'getType',
+            'owner_id' => 'getOwnerId',
+            'namespace' => 'getNamespace',
+            'name' => 'getName',
+            'label' => 'getLabel',
+            'country' => 'getCountry',
+            'capabilities' => 'getCapabilities',
+            'vendor' => 'getVendor',
+            'status' => 'getStatus',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            '_links' => 'getLinks'
+        ];
+    
     public function __construct(
         public readonly string $id,
         public readonly string $type,

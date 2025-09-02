@@ -19,7 +19,62 @@ use JsonSerializable;
 final class EnvironmentBranchInput implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'EnvironmentBranchInput';
 
+    private static array $attributeMap = [
+        'title' => 'title',
+        'name' => 'name',
+        'clone_parent' => 'clone_parent',
+        'type' => 'type',
+        'resources' => 'resources'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'title' => 'setTitle',
+            'name' => 'setName',
+            'clone_parent' => 'setCloneParent',
+            'type' => 'setType',
+            'resources' => 'setResources'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'title' => 'getTitle',
+            'name' => 'getName',
+            'clone_parent' => 'getCloneParent',
+            'type' => 'getType',
+            'resources' => 'getResources'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'title' => 'setTitle',
+            'name' => 'setName',
+            'clone_parent' => 'setCloneParent',
+            'type' => 'setType',
+            'resources' => 'setResources'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'title' => 'getTitle',
+            'name' => 'getName',
+            'clone_parent' => 'getCloneParent',
+            'type' => 'getType',
+            'resources' => 'getResources'
+        ];
+    
     public function __construct(
         public readonly string $title,
         public readonly string $name,

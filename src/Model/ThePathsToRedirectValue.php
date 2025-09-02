@@ -19,7 +19,67 @@ use JsonSerializable;
 final class ThePathsToRedirectValue implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_paths_to_redirect_value';
 
+    private static array $attributeMap = [
+        'regexp' => 'regexp',
+        'to' => 'to',
+        'prefix' => 'prefix',
+        'append_suffix' => 'append_suffix',
+        'code' => 'code',
+        'expires' => 'expires'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'regexp' => 'setRegexp',
+            'to' => 'setTo',
+            'prefix' => 'setPrefix',
+            'append_suffix' => 'setAppendSuffix',
+            'code' => 'setCode',
+            'expires' => 'setExpires'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'regexp' => 'getRegexp',
+            'to' => 'getTo',
+            'prefix' => 'getPrefix',
+            'append_suffix' => 'getAppendSuffix',
+            'code' => 'getCode',
+            'expires' => 'getExpires'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'regexp' => 'setRegexp',
+            'to' => 'setTo',
+            'prefix' => 'setPrefix',
+            'append_suffix' => 'setAppendSuffix',
+            'code' => 'setCode',
+            'expires' => 'setExpires'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'regexp' => 'getRegexp',
+            'to' => 'getTo',
+            'prefix' => 'getPrefix',
+            'append_suffix' => 'getAppendSuffix',
+            'code' => 'getCode',
+            'expires' => 'getExpires'
+        ];
+    
     public function __construct(
         public readonly bool $regexp,
         public readonly string $to,

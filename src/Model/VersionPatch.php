@@ -19,7 +19,42 @@ use JsonSerializable;
 final class VersionPatch implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'VersionPatch';
 
+    private static array $attributeMap = [
+        'routing' => 'routing'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'routing' => 'setRouting'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'routing' => 'getRouting'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'routing' => 'setRouting'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'routing' => 'getRouting'
+        ];
+    
     public function __construct(
         public readonly \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1 $routing
     ) {

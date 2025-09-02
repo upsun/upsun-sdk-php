@@ -19,7 +19,52 @@ use JsonSerializable;
 final class OwnerInfo implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OwnerInfo';
 
+    private static array $attributeMap = [
+        'type' => 'type',
+        'username' => 'username',
+        'display_name' => 'display_name'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'username' => 'setUsername',
+            'display_name' => 'setDisplayName'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'username' => 'getUsername',
+            'display_name' => 'getDisplayName'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'username' => 'setUsername',
+            'display_name' => 'setDisplayName'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'username' => 'getUsername',
+            'display_name' => 'getDisplayName'
+        ];
+    
     public function __construct(
         public readonly string $type,
         public readonly string $username,

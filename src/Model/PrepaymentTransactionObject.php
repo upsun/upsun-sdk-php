@@ -19,7 +19,72 @@ use JsonSerializable;
 final class PrepaymentTransactionObject implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'PrepaymentTransactionObject';
 
+    private static array $attributeMap = [
+        'order_id' => 'order_id',
+        'message' => 'message',
+        'status' => 'status',
+        'amount' => 'amount',
+        'created' => 'created',
+        'updated' => 'updated',
+        'expire_date' => 'expire_date'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'order_id' => 'setOrderId',
+            'message' => 'setMessage',
+            'status' => 'setStatus',
+            'amount' => 'setAmount',
+            'created' => 'setCreated',
+            'updated' => 'setUpdated',
+            'expire_date' => 'setExpireDate'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'order_id' => 'getOrderId',
+            'message' => 'getMessage',
+            'status' => 'getStatus',
+            'amount' => 'getAmount',
+            'created' => 'getCreated',
+            'updated' => 'getUpdated',
+            'expire_date' => 'getExpireDate'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'order_id' => 'setOrderId',
+            'message' => 'setMessage',
+            'status' => 'setStatus',
+            'amount' => 'setAmount',
+            'created' => 'setCreated',
+            'updated' => 'setUpdated',
+            'expire_date' => 'setExpireDate'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'order_id' => 'getOrderId',
+            'message' => 'getMessage',
+            'status' => 'getStatus',
+            'amount' => 'getAmount',
+            'created' => 'getCreated',
+            'updated' => 'getUpdated',
+            'expire_date' => 'getExpireDate'
+        ];
+    
     public function __construct(
         public readonly string $order_id,
         public readonly string $message,

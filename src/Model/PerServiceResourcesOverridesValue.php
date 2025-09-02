@@ -19,7 +19,52 @@ use JsonSerializable;
 final class PerServiceResourcesOverridesValue implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Per_service_resources_overrides__value';
 
+    private static array $attributeMap = [
+        'cpu' => 'cpu',
+        'memory' => 'memory',
+        'disk' => 'disk'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'cpu' => 'setCpu',
+            'memory' => 'setMemory',
+            'disk' => 'setDisk'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'cpu' => 'getCpu',
+            'memory' => 'getMemory',
+            'disk' => 'getDisk'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'cpu' => 'setCpu',
+            'memory' => 'setMemory',
+            'disk' => 'setDisk'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'cpu' => 'getCpu',
+            'memory' => 'getMemory',
+            'disk' => 'getDisk'
+        ];
+    
     public function __construct(
         public readonly ?float $cpu,
         public readonly ?int $memory,

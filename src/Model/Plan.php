@@ -19,7 +19,47 @@ use JsonSerializable;
 final class Plan implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Plan';
 
+    private static array $attributeMap = [
+        'name' => 'name',
+        'label' => 'label'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'name' => 'setName',
+            'label' => 'setLabel'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'name' => 'getName',
+            'label' => 'getLabel'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'name' => 'setName',
+            'label' => 'setLabel'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'name' => 'getName',
+            'label' => 'getLabel'
+        ];
+    
     public function __construct(
         public readonly string $name,
         public readonly string $label

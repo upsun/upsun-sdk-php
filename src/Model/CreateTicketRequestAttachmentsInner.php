@@ -19,7 +19,47 @@ use JsonSerializable;
 final class CreateTicketRequestAttachmentsInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'create_ticket_request_attachments_inner';
 
+    private static array $attributeMap = [
+        'filename' => 'filename',
+        'data' => 'data'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'filename' => 'setFilename',
+            'data' => 'setData'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'filename' => 'getFilename',
+            'data' => 'getData'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'filename' => 'setFilename',
+            'data' => 'setData'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'filename' => 'getFilename',
+            'data' => 'getData'
+        ];
+    
     public function __construct(
         public readonly string $filename,
         public readonly string $data

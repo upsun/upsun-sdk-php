@@ -19,7 +19,52 @@ use JsonSerializable;
 final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Operations_that_can_be_triggered_on_this_application_value';
 
+    private static array $attributeMap = [
+        'commands' => 'commands',
+        'timeout' => 'timeout',
+        'role' => 'role'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'commands' => 'setCommands',
+            'timeout' => 'setTimeout',
+            'role' => 'setRole'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'commands' => 'getCommands',
+            'timeout' => 'getTimeout',
+            'role' => 'getRole'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'commands' => 'setCommands',
+            'timeout' => 'setTimeout',
+            'role' => 'setRole'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'commands' => 'getCommands',
+            'timeout' => 'getTimeout',
+            'role' => 'getRole'
+        ];
+    
     public function __construct(
         public readonly \Upsun\Model\TheCommandsDefinition $commands,
         public readonly ?int $timeout,

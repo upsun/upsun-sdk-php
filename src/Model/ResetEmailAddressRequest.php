@@ -19,7 +19,42 @@ use JsonSerializable;
 final class ResetEmailAddressRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'reset_email_address_request';
 
+    private static array $attributeMap = [
+        'email_address' => 'email_address'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'email_address' => 'setEmailAddress'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'email_address' => 'getEmailAddress'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'email_address' => 'setEmailAddress'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'email_address' => 'getEmailAddress'
+        ];
+    
     public function __construct(
         public readonly string $email_address
     ) {

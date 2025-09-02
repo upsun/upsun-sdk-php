@@ -19,7 +19,67 @@ use JsonSerializable;
 final class Alert implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Alert';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'active' => 'active',
+        'alerts_sent' => 'alerts_sent',
+        'last_alert_at' => 'last_alert_at',
+        'updated_at' => 'updated_at',
+        'config' => 'config'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'active' => 'setActive',
+            'alerts_sent' => 'setAlertsSent',
+            'last_alert_at' => 'setLastAlertAt',
+            'updated_at' => 'setUpdatedAt',
+            'config' => 'setConfig'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'active' => 'getActive',
+            'alerts_sent' => 'getAlertsSent',
+            'last_alert_at' => 'getLastAlertAt',
+            'updated_at' => 'getUpdatedAt',
+            'config' => 'getConfig'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'active' => 'setActive',
+            'alerts_sent' => 'setAlertsSent',
+            'last_alert_at' => 'setLastAlertAt',
+            'updated_at' => 'setUpdatedAt',
+            'config' => 'setConfig'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'active' => 'getActive',
+            'alerts_sent' => 'getAlertsSent',
+            'last_alert_at' => 'getLastAlertAt',
+            'updated_at' => 'getUpdatedAt',
+            'config' => 'getConfig'
+        ];
+    
     public function __construct(
         public readonly string $id,
         public readonly bool $active,

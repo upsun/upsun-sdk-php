@@ -19,7 +19,47 @@ use JsonSerializable;
 final class CommandsToManageTheApplicationSLifecycle implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Commands_to_manage_the_application_s_lifecycle_';
 
+    private static array $attributeMap = [
+        'pre_start' => 'pre_start',
+        'start' => 'start'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'pre_start' => 'setPreStart',
+            'start' => 'setStart'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'pre_start' => 'getPreStart',
+            'start' => 'getStart'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'pre_start' => 'setPreStart',
+            'start' => 'setStart'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'pre_start' => 'getPreStart',
+            'start' => 'getStart'
+        ];
+    
     public function __construct(
         public readonly ?string $pre_start,
         public readonly ?string $start

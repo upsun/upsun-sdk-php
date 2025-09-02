@@ -19,7 +19,52 @@ use JsonSerializable;
 final class CreateSshKeyRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'create_ssh_key_request';
 
+    private static array $attributeMap = [
+        'value' => 'value',
+        'title' => 'title',
+        'uuid' => 'uuid'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'value' => 'setValue',
+            'title' => 'setTitle',
+            'uuid' => 'setUuid'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'value' => 'getValue',
+            'title' => 'getTitle',
+            'uuid' => 'getUuid'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'value' => 'setValue',
+            'title' => 'setTitle',
+            'uuid' => 'setUuid'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'value' => 'getValue',
+            'title' => 'getTitle',
+            'uuid' => 'getUuid'
+        ];
+    
     public function __construct(
         public readonly string $value,
         public readonly string $title,

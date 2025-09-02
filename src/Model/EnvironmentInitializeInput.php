@@ -19,7 +19,62 @@ use JsonSerializable;
 final class EnvironmentInitializeInput implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'EnvironmentInitializeInput';
 
+    private static array $attributeMap = [
+        'profile' => 'profile',
+        'repository' => 'repository',
+        'config' => 'config',
+        'files' => 'files',
+        'resources' => 'resources'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'profile' => 'setProfile',
+            'repository' => 'setRepository',
+            'config' => 'setConfig',
+            'files' => 'setFiles',
+            'resources' => 'setResources'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'profile' => 'getProfile',
+            'repository' => 'getRepository',
+            'config' => 'getConfig',
+            'files' => 'getFiles',
+            'resources' => 'getResources'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'profile' => 'setProfile',
+            'repository' => 'setRepository',
+            'config' => 'setConfig',
+            'files' => 'setFiles',
+            'resources' => 'setResources'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'profile' => 'getProfile',
+            'repository' => 'getRepository',
+            'config' => 'getConfig',
+            'files' => 'getFiles',
+            'resources' => 'getResources'
+        ];
+    
     public function __construct(
         public readonly string $profile,
         public readonly string $repository,

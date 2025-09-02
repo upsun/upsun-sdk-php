@@ -19,7 +19,42 @@ use JsonSerializable;
 final class Firewall implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Firewall';
 
+    private static array $attributeMap = [
+        'outbound' => 'outbound'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'outbound' => 'setOutbound'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'outbound' => 'getOutbound'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'outbound' => 'setOutbound'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'outbound' => 'getOutbound'
+        ];
+    
     public function __construct(
         /**
          * @var array

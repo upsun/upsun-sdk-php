@@ -19,7 +19,107 @@ use JsonSerializable;
 final class VPNConfiguration implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'VPN_configuration';
 
+    private static array $attributeMap = [
+        'version' => 'version',
+        'aggressive' => 'aggressive',
+        'modeconfig' => 'modeconfig',
+        'authentication' => 'authentication',
+        'gateway_ip' => 'gateway_ip',
+        'identity' => 'identity',
+        'second_identity' => 'second_identity',
+        'remote_identity' => 'remote_identity',
+        'remote_subnets' => 'remote_subnets',
+        'ike' => 'ike',
+        'esp' => 'esp',
+        'ikelifetime' => 'ikelifetime',
+        'lifetime' => 'lifetime',
+        'margintime' => 'margintime'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'version' => 'setVersion',
+            'aggressive' => 'setAggressive',
+            'modeconfig' => 'setModeconfig',
+            'authentication' => 'setAuthentication',
+            'gateway_ip' => 'setGatewayIp',
+            'identity' => 'setIdentity',
+            'second_identity' => 'setSecondIdentity',
+            'remote_identity' => 'setRemoteIdentity',
+            'remote_subnets' => 'setRemoteSubnets',
+            'ike' => 'setIke',
+            'esp' => 'setEsp',
+            'ikelifetime' => 'setIkelifetime',
+            'lifetime' => 'setLifetime',
+            'margintime' => 'setMargintime'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'version' => 'getVersion',
+            'aggressive' => 'getAggressive',
+            'modeconfig' => 'getModeconfig',
+            'authentication' => 'getAuthentication',
+            'gateway_ip' => 'getGatewayIp',
+            'identity' => 'getIdentity',
+            'second_identity' => 'getSecondIdentity',
+            'remote_identity' => 'getRemoteIdentity',
+            'remote_subnets' => 'getRemoteSubnets',
+            'ike' => 'getIke',
+            'esp' => 'getEsp',
+            'ikelifetime' => 'getIkelifetime',
+            'lifetime' => 'getLifetime',
+            'margintime' => 'getMargintime'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'version' => 'setVersion',
+            'aggressive' => 'setAggressive',
+            'modeconfig' => 'setModeconfig',
+            'authentication' => 'setAuthentication',
+            'gateway_ip' => 'setGatewayIp',
+            'identity' => 'setIdentity',
+            'second_identity' => 'setSecondIdentity',
+            'remote_identity' => 'setRemoteIdentity',
+            'remote_subnets' => 'setRemoteSubnets',
+            'ike' => 'setIke',
+            'esp' => 'setEsp',
+            'ikelifetime' => 'setIkelifetime',
+            'lifetime' => 'setLifetime',
+            'margintime' => 'setMargintime'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'version' => 'getVersion',
+            'aggressive' => 'getAggressive',
+            'modeconfig' => 'getModeconfig',
+            'authentication' => 'getAuthentication',
+            'gateway_ip' => 'getGatewayIp',
+            'identity' => 'getIdentity',
+            'second_identity' => 'getSecondIdentity',
+            'remote_identity' => 'getRemoteIdentity',
+            'remote_subnets' => 'getRemoteSubnets',
+            'ike' => 'getIke',
+            'esp' => 'getEsp',
+            'ikelifetime' => 'getIkelifetime',
+            'lifetime' => 'getLifetime',
+            'margintime' => 'getMargintime'
+        ];
+    
     public function __construct(
         public readonly int $version,
         public readonly string $aggressive,

@@ -19,7 +19,87 @@ use JsonSerializable;
 final class SyslogIntegrationCreateInput implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'SyslogIntegrationCreateInput';
 
+    private static array $attributeMap = [
+        'type' => 'type',
+        'extra' => 'extra',
+        'host' => 'host',
+        'port' => 'port',
+        'protocol' => 'protocol',
+        'facility' => 'facility',
+        'message_format' => 'message_format',
+        'auth_token' => 'auth_token',
+        'auth_mode' => 'auth_mode',
+        'tls_verify' => 'tls_verify'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'extra' => 'setExtra',
+            'host' => 'setHost',
+            'port' => 'setPort',
+            'protocol' => 'setProtocol',
+            'facility' => 'setFacility',
+            'message_format' => 'setMessageFormat',
+            'auth_token' => 'setAuthToken',
+            'auth_mode' => 'setAuthMode',
+            'tls_verify' => 'setTlsVerify'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'extra' => 'getExtra',
+            'host' => 'getHost',
+            'port' => 'getPort',
+            'protocol' => 'getProtocol',
+            'facility' => 'getFacility',
+            'message_format' => 'getMessageFormat',
+            'auth_token' => 'getAuthToken',
+            'auth_mode' => 'getAuthMode',
+            'tls_verify' => 'getTlsVerify'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'extra' => 'setExtra',
+            'host' => 'setHost',
+            'port' => 'setPort',
+            'protocol' => 'setProtocol',
+            'facility' => 'setFacility',
+            'message_format' => 'setMessageFormat',
+            'auth_token' => 'setAuthToken',
+            'auth_mode' => 'setAuthMode',
+            'tls_verify' => 'setTlsVerify'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'extra' => 'getExtra',
+            'host' => 'getHost',
+            'port' => 'getPort',
+            'protocol' => 'getProtocol',
+            'facility' => 'getFacility',
+            'message_format' => 'getMessageFormat',
+            'auth_token' => 'getAuthToken',
+            'auth_mode' => 'getAuthMode',
+            'tls_verify' => 'getTlsVerify'
+        ];
+    
     public function __construct(
         public readonly string $type,
         /**

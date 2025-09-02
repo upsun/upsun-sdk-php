@@ -19,7 +19,57 @@ use JsonSerializable;
 final class TheTreeItemsInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_tree_items_inner';
 
+    private static array $attributeMap = [
+        'path' => 'path',
+        'mode' => 'mode',
+        'type' => 'type',
+        'sha' => 'sha'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'path' => 'setPath',
+            'mode' => 'setMode',
+            'type' => 'setType',
+            'sha' => 'setSha'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'path' => 'getPath',
+            'mode' => 'getMode',
+            'type' => 'getType',
+            'sha' => 'getSha'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'path' => 'setPath',
+            'mode' => 'setMode',
+            'type' => 'setType',
+            'sha' => 'setSha'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'path' => 'getPath',
+            'mode' => 'getMode',
+            'type' => 'getType',
+            'sha' => 'getSha'
+        ];
+    
     public function __construct(
         public readonly string $path,
         public readonly string $mode,

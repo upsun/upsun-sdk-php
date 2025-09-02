@@ -19,7 +19,42 @@ use JsonSerializable;
 final class SendOrgMfaRemindersRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'send_org_mfa_reminders_request';
 
+    private static array $attributeMap = [
+        'user_ids' => 'user_ids'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'user_ids' => 'setUserIds'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'user_ids' => 'getUserIds'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'user_ids' => 'setUserIds'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'user_ids' => 'getUserIds'
+        ];
+    
     public function __construct(
         /**
          * @var array

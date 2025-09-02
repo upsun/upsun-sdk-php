@@ -19,7 +19,72 @@ use JsonSerializable;
 final class Vouchers implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Vouchers';
 
+    private static array $attributeMap = [
+        'uuid' => 'uuid',
+        'vouchers_total' => 'vouchers_total',
+        'vouchers_applied' => 'vouchers_applied',
+        'vouchers_remaining_balance' => 'vouchers_remaining_balance',
+        'currency' => 'currency',
+        'vouchers' => 'vouchers',
+        '_links' => '_links'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'uuid' => 'setUuid',
+            'vouchers_total' => 'setVouchersTotal',
+            'vouchers_applied' => 'setVouchersApplied',
+            'vouchers_remaining_balance' => 'setVouchersRemainingBalance',
+            'currency' => 'setCurrency',
+            'vouchers' => 'setVouchers',
+            '_links' => 'setLinks'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'uuid' => 'getUuid',
+            'vouchers_total' => 'getVouchersTotal',
+            'vouchers_applied' => 'getVouchersApplied',
+            'vouchers_remaining_balance' => 'getVouchersRemainingBalance',
+            'currency' => 'getCurrency',
+            'vouchers' => 'getVouchers',
+            '_links' => 'getLinks'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'uuid' => 'setUuid',
+            'vouchers_total' => 'setVouchersTotal',
+            'vouchers_applied' => 'setVouchersApplied',
+            'vouchers_remaining_balance' => 'setVouchersRemainingBalance',
+            'currency' => 'setCurrency',
+            'vouchers' => 'setVouchers',
+            '_links' => 'setLinks'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'uuid' => 'getUuid',
+            'vouchers_total' => 'getVouchersTotal',
+            'vouchers_applied' => 'getVouchersApplied',
+            'vouchers_remaining_balance' => 'getVouchersRemainingBalance',
+            'currency' => 'getCurrency',
+            'vouchers' => 'getVouchers',
+            '_links' => 'getLinks'
+        ];
+    
     public function __construct(
         public readonly string $uuid,
         public readonly string $vouchers_total,

@@ -19,7 +19,42 @@ use JsonSerializable;
 final class VouchersLinks implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Vouchers__links';
 
+    private static array $attributeMap = [
+        'self' => 'self'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'self' => 'setSelf'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'self' => 'getSelf'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'self' => 'setSelf'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'self' => 'getSelf'
+        ];
+    
     public function __construct(
         public readonly \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf $self
     ) {

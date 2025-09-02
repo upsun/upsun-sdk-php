@@ -19,7 +19,72 @@ use JsonSerializable;
 final class ProjectVariableCreateInput implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'ProjectVariableCreateInput';
 
+    private static array $attributeMap = [
+        'name' => 'name',
+        'attributes' => 'attributes',
+        'value' => 'value',
+        'is_json' => 'is_json',
+        'is_sensitive' => 'is_sensitive',
+        'visible_build' => 'visible_build',
+        'visible_runtime' => 'visible_runtime'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'name' => 'setName',
+            'attributes' => 'setAttributes',
+            'value' => 'setValue',
+            'is_json' => 'setIsJson',
+            'is_sensitive' => 'setIsSensitive',
+            'visible_build' => 'setVisibleBuild',
+            'visible_runtime' => 'setVisibleRuntime'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'name' => 'getName',
+            'attributes' => 'getAttributes',
+            'value' => 'getValue',
+            'is_json' => 'getIsJson',
+            'is_sensitive' => 'getIsSensitive',
+            'visible_build' => 'getVisibleBuild',
+            'visible_runtime' => 'getVisibleRuntime'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'name' => 'setName',
+            'attributes' => 'setAttributes',
+            'value' => 'setValue',
+            'is_json' => 'setIsJson',
+            'is_sensitive' => 'setIsSensitive',
+            'visible_build' => 'setVisibleBuild',
+            'visible_runtime' => 'setVisibleRuntime'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'name' => 'getName',
+            'attributes' => 'getAttributes',
+            'value' => 'getValue',
+            'is_json' => 'getIsJson',
+            'is_sensitive' => 'getIsSensitive',
+            'visible_build' => 'getVisibleBuild',
+            'visible_runtime' => 'getVisibleRuntime'
+        ];
+    
     public function __construct(
         public readonly string $name,
         /**

@@ -19,7 +19,52 @@ use JsonSerializable;
 final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Filesystem_mounts_of_this_application___If_not_specified_the_application_will_have_no_writeable_disk_space__value';
 
+    private static array $attributeMap = [
+        'source' => 'source',
+        'source_path' => 'source_path',
+        'service' => 'service'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'source' => 'setSource',
+            'source_path' => 'setSourcePath',
+            'service' => 'setService'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'source' => 'getSource',
+            'source_path' => 'getSourcePath',
+            'service' => 'getService'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'source' => 'setSource',
+            'source_path' => 'setSourcePath',
+            'service' => 'setService'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'source' => 'getSource',
+            'source_path' => 'getSourcePath',
+            'service' => 'getService'
+        ];
+    
     public function __construct(
         public readonly string $source,
         public readonly string $source_path,

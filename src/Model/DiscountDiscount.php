@@ -19,7 +19,52 @@ use JsonSerializable;
 final class DiscountDiscount implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Discount_discount';
 
+    private static array $attributeMap = [
+        'monthly' => 'monthly',
+        'commitment_period' => 'commitment_period',
+        'contract_total' => 'contract_total'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'monthly' => 'setMonthly',
+            'commitment_period' => 'setCommitmentPeriod',
+            'contract_total' => 'setContractTotal'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'monthly' => 'getMonthly',
+            'commitment_period' => 'getCommitmentPeriod',
+            'contract_total' => 'getContractTotal'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'monthly' => 'setMonthly',
+            'commitment_period' => 'setCommitmentPeriod',
+            'contract_total' => 'setContractTotal'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'monthly' => 'getMonthly',
+            'commitment_period' => 'getCommitmentPeriod',
+            'contract_total' => 'getContractTotal'
+        ];
+    
     public function __construct(
         public readonly \Upsun\Model\CurrencyAmount $monthly,
         public readonly ?\Upsun\Model\CurrencyAmountNullable $commitment_period,

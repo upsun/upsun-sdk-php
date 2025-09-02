@@ -19,7 +19,42 @@ use JsonSerializable;
 final class ConfigurationAboutTheTrafficRoutedToThisVersion1 implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Configuration_about_the_traffic_routed_to_this_version_1';
 
+    private static array $attributeMap = [
+        'percentage' => 'percentage'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'percentage' => 'setPercentage'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'percentage' => 'getPercentage'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'percentage' => 'setPercentage'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'percentage' => 'getPercentage'
+        ];
+    
     public function __construct(
         public readonly int $percentage
     ) {

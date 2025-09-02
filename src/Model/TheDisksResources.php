@@ -19,7 +19,52 @@ use JsonSerializable;
 final class TheDisksResources implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_disks_resources';
 
+    private static array $attributeMap = [
+        'temporary' => 'temporary',
+        'instance' => 'instance',
+        'storage' => 'storage'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'temporary' => 'setTemporary',
+            'instance' => 'setInstance',
+            'storage' => 'setStorage'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'temporary' => 'getTemporary',
+            'instance' => 'getInstance',
+            'storage' => 'getStorage'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'temporary' => 'setTemporary',
+            'instance' => 'setInstance',
+            'storage' => 'setStorage'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'temporary' => 'getTemporary',
+            'instance' => 'getInstance',
+            'storage' => 'getStorage'
+        ];
+    
     public function __construct(
         public readonly ?int $temporary,
         public readonly ?int $instance,

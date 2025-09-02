@@ -19,7 +19,132 @@ use JsonSerializable;
 final class DeploymentTarget implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'DeploymentTarget';
 
+    private static array $attributeMap = [
+        'type' => 'type',
+        'name' => 'name',
+        'deploy_host' => 'deploy_host',
+        'deploy_port' => 'deploy_port',
+        'ssh_host' => 'ssh_host',
+        'hosts' => 'hosts',
+        'auto_mounts' => 'auto_mounts',
+        'excluded_mounts' => 'excluded_mounts',
+        'enforced_mounts' => 'enforced_mounts',
+        'auto_crons' => 'auto_crons',
+        'auto_nginx' => 'auto_nginx',
+        'maintenance_mode' => 'maintenance_mode',
+        'guardrails_phase' => 'guardrails_phase',
+        'docroots' => 'docroots',
+        'site_urls' => 'site_urls',
+        'ssh_hosts' => 'ssh_hosts',
+        'enterprise_environments_mapping' => 'enterprise_environments_mapping',
+        'use_dedicated_grid' => 'use_dedicated_grid',
+        'storage_type' => 'storage_type'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'name' => 'setName',
+            'deploy_host' => 'setDeployHost',
+            'deploy_port' => 'setDeployPort',
+            'ssh_host' => 'setSshHost',
+            'hosts' => 'setHosts',
+            'auto_mounts' => 'setAutoMounts',
+            'excluded_mounts' => 'setExcludedMounts',
+            'enforced_mounts' => 'setEnforcedMounts',
+            'auto_crons' => 'setAutoCrons',
+            'auto_nginx' => 'setAutoNginx',
+            'maintenance_mode' => 'setMaintenanceMode',
+            'guardrails_phase' => 'setGuardrailsPhase',
+            'docroots' => 'setDocroots',
+            'site_urls' => 'setSiteUrls',
+            'ssh_hosts' => 'setSshHosts',
+            'enterprise_environments_mapping' => 'setEnterpriseEnvironmentsMapping',
+            'use_dedicated_grid' => 'setUseDedicatedGrid',
+            'storage_type' => 'setStorageType'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'name' => 'getName',
+            'deploy_host' => 'getDeployHost',
+            'deploy_port' => 'getDeployPort',
+            'ssh_host' => 'getSshHost',
+            'hosts' => 'getHosts',
+            'auto_mounts' => 'getAutoMounts',
+            'excluded_mounts' => 'getExcludedMounts',
+            'enforced_mounts' => 'getEnforcedMounts',
+            'auto_crons' => 'getAutoCrons',
+            'auto_nginx' => 'getAutoNginx',
+            'maintenance_mode' => 'getMaintenanceMode',
+            'guardrails_phase' => 'getGuardrailsPhase',
+            'docroots' => 'getDocroots',
+            'site_urls' => 'getSiteUrls',
+            'ssh_hosts' => 'getSshHosts',
+            'enterprise_environments_mapping' => 'getEnterpriseEnvironmentsMapping',
+            'use_dedicated_grid' => 'getUseDedicatedGrid',
+            'storage_type' => 'getStorageType'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'name' => 'setName',
+            'deploy_host' => 'setDeployHost',
+            'deploy_port' => 'setDeployPort',
+            'ssh_host' => 'setSshHost',
+            'hosts' => 'setHosts',
+            'auto_mounts' => 'setAutoMounts',
+            'excluded_mounts' => 'setExcludedMounts',
+            'enforced_mounts' => 'setEnforcedMounts',
+            'auto_crons' => 'setAutoCrons',
+            'auto_nginx' => 'setAutoNginx',
+            'maintenance_mode' => 'setMaintenanceMode',
+            'guardrails_phase' => 'setGuardrailsPhase',
+            'docroots' => 'setDocroots',
+            'site_urls' => 'setSiteUrls',
+            'ssh_hosts' => 'setSshHosts',
+            'enterprise_environments_mapping' => 'setEnterpriseEnvironmentsMapping',
+            'use_dedicated_grid' => 'setUseDedicatedGrid',
+            'storage_type' => 'setStorageType'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'name' => 'getName',
+            'deploy_host' => 'getDeployHost',
+            'deploy_port' => 'getDeployPort',
+            'ssh_host' => 'getSshHost',
+            'hosts' => 'getHosts',
+            'auto_mounts' => 'getAutoMounts',
+            'excluded_mounts' => 'getExcludedMounts',
+            'enforced_mounts' => 'getEnforcedMounts',
+            'auto_crons' => 'getAutoCrons',
+            'auto_nginx' => 'getAutoNginx',
+            'maintenance_mode' => 'getMaintenanceMode',
+            'guardrails_phase' => 'getGuardrailsPhase',
+            'docroots' => 'getDocroots',
+            'site_urls' => 'getSiteUrls',
+            'ssh_hosts' => 'getSshHosts',
+            'enterprise_environments_mapping' => 'getEnterpriseEnvironmentsMapping',
+            'use_dedicated_grid' => 'getUseDedicatedGrid',
+            'storage_type' => 'getStorageType'
+        ];
+    
     public function __construct(
         public readonly string $type,
         public readonly string $name,

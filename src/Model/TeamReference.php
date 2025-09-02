@@ -19,7 +19,72 @@ use JsonSerializable;
 final class TeamReference implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'TeamReference';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'organization_id' => 'organization_id',
+        'label' => 'label',
+        'project_permissions' => 'project_permissions',
+        'counts' => 'counts',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'organization_id' => 'setOrganizationId',
+            'label' => 'setLabel',
+            'project_permissions' => 'setProjectPermissions',
+            'counts' => 'setCounts',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'organization_id' => 'getOrganizationId',
+            'label' => 'getLabel',
+            'project_permissions' => 'getProjectPermissions',
+            'counts' => 'getCounts',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'organization_id' => 'setOrganizationId',
+            'label' => 'setLabel',
+            'project_permissions' => 'setProjectPermissions',
+            'counts' => 'setCounts',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'organization_id' => 'getOrganizationId',
+            'label' => 'getLabel',
+            'project_permissions' => 'getProjectPermissions',
+            'counts' => 'getCounts',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt'
+        ];
+    
     public function __construct(
         public readonly string $id,
         public readonly string $organization_id,

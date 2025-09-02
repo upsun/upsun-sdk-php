@@ -19,7 +19,107 @@ use JsonSerializable;
 final class EnvironmentVariable implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'EnvironmentVariable';
 
+    private static array $attributeMap = [
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'name' => 'name',
+        'attributes' => 'attributes',
+        'value' => 'value',
+        'is_json' => 'is_json',
+        'is_sensitive' => 'is_sensitive',
+        'visible_build' => 'visible_build',
+        'visible_runtime' => 'visible_runtime',
+        'project' => 'project',
+        'environment' => 'environment',
+        'inherited' => 'inherited',
+        'is_enabled' => 'is_enabled',
+        'is_inheritable' => 'is_inheritable'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'name' => 'setName',
+            'attributes' => 'setAttributes',
+            'value' => 'setValue',
+            'is_json' => 'setIsJson',
+            'is_sensitive' => 'setIsSensitive',
+            'visible_build' => 'setVisibleBuild',
+            'visible_runtime' => 'setVisibleRuntime',
+            'project' => 'setProject',
+            'environment' => 'setEnvironment',
+            'inherited' => 'setInherited',
+            'is_enabled' => 'setIsEnabled',
+            'is_inheritable' => 'setIsInheritable'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'name' => 'getName',
+            'attributes' => 'getAttributes',
+            'value' => 'getValue',
+            'is_json' => 'getIsJson',
+            'is_sensitive' => 'getIsSensitive',
+            'visible_build' => 'getVisibleBuild',
+            'visible_runtime' => 'getVisibleRuntime',
+            'project' => 'getProject',
+            'environment' => 'getEnvironment',
+            'inherited' => 'getInherited',
+            'is_enabled' => 'getIsEnabled',
+            'is_inheritable' => 'getIsInheritable'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'name' => 'setName',
+            'attributes' => 'setAttributes',
+            'value' => 'setValue',
+            'is_json' => 'setIsJson',
+            'is_sensitive' => 'setIsSensitive',
+            'visible_build' => 'setVisibleBuild',
+            'visible_runtime' => 'setVisibleRuntime',
+            'project' => 'setProject',
+            'environment' => 'setEnvironment',
+            'inherited' => 'setInherited',
+            'is_enabled' => 'setIsEnabled',
+            'is_inheritable' => 'setIsInheritable'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'name' => 'getName',
+            'attributes' => 'getAttributes',
+            'value' => 'getValue',
+            'is_json' => 'getIsJson',
+            'is_sensitive' => 'getIsSensitive',
+            'visible_build' => 'getVisibleBuild',
+            'visible_runtime' => 'getVisibleRuntime',
+            'project' => 'getProject',
+            'environment' => 'getEnvironment',
+            'inherited' => 'getInherited',
+            'is_enabled' => 'getIsEnabled',
+            'is_inheritable' => 'getIsInheritable'
+        ];
+    
     public function __construct(
         public readonly ?\DateTime $created_at,
         public readonly ?\DateTime $updated_at,

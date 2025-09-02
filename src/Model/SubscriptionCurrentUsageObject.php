@@ -19,7 +19,102 @@ use JsonSerializable;
 final class SubscriptionCurrentUsageObject implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'SubscriptionCurrentUsageObject';
 
+    private static array $attributeMap = [
+        'cpu_app' => 'cpu_app',
+        'storage_app_services' => 'storage_app_services',
+        'memory_app' => 'memory_app',
+        'cpu_services' => 'cpu_services',
+        'memory_services' => 'memory_services',
+        'backup_storage' => 'backup_storage',
+        'build_cpu' => 'build_cpu',
+        'build_memory' => 'build_memory',
+        'egress_bandwidth' => 'egress_bandwidth',
+        'ingress_requests' => 'ingress_requests',
+        'logs_fwd_content_size' => 'logs_fwd_content_size',
+        'fastly_bandwidth' => 'fastly_bandwidth',
+        'fastly_requests' => 'fastly_requests'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'cpu_app' => 'setCpuApp',
+            'storage_app_services' => 'setStorageAppServices',
+            'memory_app' => 'setMemoryApp',
+            'cpu_services' => 'setCpuServices',
+            'memory_services' => 'setMemoryServices',
+            'backup_storage' => 'setBackupStorage',
+            'build_cpu' => 'setBuildCpu',
+            'build_memory' => 'setBuildMemory',
+            'egress_bandwidth' => 'setEgressBandwidth',
+            'ingress_requests' => 'setIngressRequests',
+            'logs_fwd_content_size' => 'setLogsFwdContentSize',
+            'fastly_bandwidth' => 'setFastlyBandwidth',
+            'fastly_requests' => 'setFastlyRequests'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'cpu_app' => 'getCpuApp',
+            'storage_app_services' => 'getStorageAppServices',
+            'memory_app' => 'getMemoryApp',
+            'cpu_services' => 'getCpuServices',
+            'memory_services' => 'getMemoryServices',
+            'backup_storage' => 'getBackupStorage',
+            'build_cpu' => 'getBuildCpu',
+            'build_memory' => 'getBuildMemory',
+            'egress_bandwidth' => 'getEgressBandwidth',
+            'ingress_requests' => 'getIngressRequests',
+            'logs_fwd_content_size' => 'getLogsFwdContentSize',
+            'fastly_bandwidth' => 'getFastlyBandwidth',
+            'fastly_requests' => 'getFastlyRequests'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'cpu_app' => 'setCpuApp',
+            'storage_app_services' => 'setStorageAppServices',
+            'memory_app' => 'setMemoryApp',
+            'cpu_services' => 'setCpuServices',
+            'memory_services' => 'setMemoryServices',
+            'backup_storage' => 'setBackupStorage',
+            'build_cpu' => 'setBuildCpu',
+            'build_memory' => 'setBuildMemory',
+            'egress_bandwidth' => 'setEgressBandwidth',
+            'ingress_requests' => 'setIngressRequests',
+            'logs_fwd_content_size' => 'setLogsFwdContentSize',
+            'fastly_bandwidth' => 'setFastlyBandwidth',
+            'fastly_requests' => 'setFastlyRequests'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'cpu_app' => 'getCpuApp',
+            'storage_app_services' => 'getStorageAppServices',
+            'memory_app' => 'getMemoryApp',
+            'cpu_services' => 'getCpuServices',
+            'memory_services' => 'getMemoryServices',
+            'backup_storage' => 'getBackupStorage',
+            'build_cpu' => 'getBuildCpu',
+            'build_memory' => 'getBuildMemory',
+            'egress_bandwidth' => 'getEgressBandwidth',
+            'ingress_requests' => 'getIngressRequests',
+            'logs_fwd_content_size' => 'getLogsFwdContentSize',
+            'fastly_bandwidth' => 'getFastlyBandwidth',
+            'fastly_requests' => 'getFastlyRequests'
+        ];
+    
     public function __construct(
         public readonly \Upsun\Model\UsageGroupCurrentUsageProperties $cpu_app,
         public readonly \Upsun\Model\UsageGroupCurrentUsageProperties $storage_app_services,

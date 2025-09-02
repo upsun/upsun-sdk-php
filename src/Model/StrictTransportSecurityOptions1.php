@@ -19,7 +19,52 @@ use JsonSerializable;
 final class StrictTransportSecurityOptions1 implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Strict_Transport_Security_options__1';
 
+    private static array $attributeMap = [
+        'enabled' => 'enabled',
+        'include_subdomains' => 'include_subdomains',
+        'preload' => 'preload'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'enabled' => 'setEnabled',
+            'include_subdomains' => 'setIncludeSubdomains',
+            'preload' => 'setPreload'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'enabled' => 'getEnabled',
+            'include_subdomains' => 'getIncludeSubdomains',
+            'preload' => 'getPreload'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'enabled' => 'setEnabled',
+            'include_subdomains' => 'setIncludeSubdomains',
+            'preload' => 'setPreload'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'enabled' => 'getEnabled',
+            'include_subdomains' => 'getIncludeSubdomains',
+            'preload' => 'getPreload'
+        ];
+    
     public function __construct(
         public readonly ?bool $enabled,
         public readonly ?bool $include_subdomains,

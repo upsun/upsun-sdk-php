@@ -19,7 +19,57 @@ use JsonSerializable;
 final class TLSSettingsForTheRoute implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'TLS_settings_for_the_route_';
 
+    private static array $attributeMap = [
+        'strict_transport_security' => 'strict_transport_security',
+        'min_version' => 'min_version',
+        'client_authentication' => 'client_authentication',
+        'client_certificate_authorities' => 'client_certificate_authorities'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'strict_transport_security' => 'setStrictTransportSecurity',
+            'min_version' => 'setMinVersion',
+            'client_authentication' => 'setClientAuthentication',
+            'client_certificate_authorities' => 'setClientCertificateAuthorities'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'strict_transport_security' => 'getStrictTransportSecurity',
+            'min_version' => 'getMinVersion',
+            'client_authentication' => 'getClientAuthentication',
+            'client_certificate_authorities' => 'getClientCertificateAuthorities'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'strict_transport_security' => 'setStrictTransportSecurity',
+            'min_version' => 'setMinVersion',
+            'client_authentication' => 'setClientAuthentication',
+            'client_certificate_authorities' => 'setClientCertificateAuthorities'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'strict_transport_security' => 'getStrictTransportSecurity',
+            'min_version' => 'getMinVersion',
+            'client_authentication' => 'getClientAuthentication',
+            'client_certificate_authorities' => 'getClientCertificateAuthorities'
+        ];
+    
     public function __construct(
         public readonly \Upsun\Model\StrictTransportSecurityOptions $strict_transport_security,
         public readonly ?string $min_version,

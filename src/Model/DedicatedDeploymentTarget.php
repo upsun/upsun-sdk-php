@@ -19,7 +19,102 @@ use JsonSerializable;
 final class DedicatedDeploymentTarget implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'DedicatedDeploymentTarget';
 
+    private static array $attributeMap = [
+        'type' => 'type',
+        'name' => 'name',
+        'deploy_host' => 'deploy_host',
+        'deploy_port' => 'deploy_port',
+        'ssh_host' => 'ssh_host',
+        'hosts' => 'hosts',
+        'auto_mounts' => 'auto_mounts',
+        'excluded_mounts' => 'excluded_mounts',
+        'enforced_mounts' => 'enforced_mounts',
+        'auto_crons' => 'auto_crons',
+        'auto_nginx' => 'auto_nginx',
+        'maintenance_mode' => 'maintenance_mode',
+        'guardrails_phase' => 'guardrails_phase'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'name' => 'setName',
+            'deploy_host' => 'setDeployHost',
+            'deploy_port' => 'setDeployPort',
+            'ssh_host' => 'setSshHost',
+            'hosts' => 'setHosts',
+            'auto_mounts' => 'setAutoMounts',
+            'excluded_mounts' => 'setExcludedMounts',
+            'enforced_mounts' => 'setEnforcedMounts',
+            'auto_crons' => 'setAutoCrons',
+            'auto_nginx' => 'setAutoNginx',
+            'maintenance_mode' => 'setMaintenanceMode',
+            'guardrails_phase' => 'setGuardrailsPhase'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'name' => 'getName',
+            'deploy_host' => 'getDeployHost',
+            'deploy_port' => 'getDeployPort',
+            'ssh_host' => 'getSshHost',
+            'hosts' => 'getHosts',
+            'auto_mounts' => 'getAutoMounts',
+            'excluded_mounts' => 'getExcludedMounts',
+            'enforced_mounts' => 'getEnforcedMounts',
+            'auto_crons' => 'getAutoCrons',
+            'auto_nginx' => 'getAutoNginx',
+            'maintenance_mode' => 'getMaintenanceMode',
+            'guardrails_phase' => 'getGuardrailsPhase'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'name' => 'setName',
+            'deploy_host' => 'setDeployHost',
+            'deploy_port' => 'setDeployPort',
+            'ssh_host' => 'setSshHost',
+            'hosts' => 'setHosts',
+            'auto_mounts' => 'setAutoMounts',
+            'excluded_mounts' => 'setExcludedMounts',
+            'enforced_mounts' => 'setEnforcedMounts',
+            'auto_crons' => 'setAutoCrons',
+            'auto_nginx' => 'setAutoNginx',
+            'maintenance_mode' => 'setMaintenanceMode',
+            'guardrails_phase' => 'setGuardrailsPhase'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'name' => 'getName',
+            'deploy_host' => 'getDeployHost',
+            'deploy_port' => 'getDeployPort',
+            'ssh_host' => 'getSshHost',
+            'hosts' => 'getHosts',
+            'auto_mounts' => 'getAutoMounts',
+            'excluded_mounts' => 'getExcludedMounts',
+            'enforced_mounts' => 'getEnforcedMounts',
+            'auto_crons' => 'getAutoCrons',
+            'auto_nginx' => 'getAutoNginx',
+            'maintenance_mode' => 'getMaintenanceMode',
+            'guardrails_phase' => 'getGuardrailsPhase'
+        ];
+    
     public function __construct(
         public readonly string $type,
         public readonly string $name,

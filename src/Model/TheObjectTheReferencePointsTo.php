@@ -19,7 +19,47 @@ use JsonSerializable;
 final class TheObjectTheReferencePointsTo implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_object_the_reference_points_to';
 
+    private static array $attributeMap = [
+        'type' => 'type',
+        'sha' => 'sha'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'sha' => 'setSha'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'sha' => 'getSha'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'sha' => 'setSha'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'sha' => 'getSha'
+        ];
+    
     public function __construct(
         public readonly string $type,
         public readonly string $sha

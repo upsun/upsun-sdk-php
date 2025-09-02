@@ -19,7 +19,52 @@ use JsonSerializable;
 final class RegionEnvironmentalImpact implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Region_environmental_impact';
 
+    private static array $attributeMap = [
+        'zone' => 'zone',
+        'carbon_intensity' => 'carbon_intensity',
+        'green' => 'green'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'zone' => 'setZone',
+            'carbon_intensity' => 'setCarbonIntensity',
+            'green' => 'setGreen'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'zone' => 'getZone',
+            'carbon_intensity' => 'getCarbonIntensity',
+            'green' => 'getGreen'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'zone' => 'setZone',
+            'carbon_intensity' => 'setCarbonIntensity',
+            'green' => 'setGreen'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'zone' => 'getZone',
+            'carbon_intensity' => 'getCarbonIntensity',
+            'green' => 'getGreen'
+        ];
+    
     public function __construct(
         public readonly string $zone,
         public readonly string $carbon_intensity,

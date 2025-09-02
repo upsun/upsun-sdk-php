@@ -19,7 +19,92 @@ use JsonSerializable;
 final class GithubIntegrationPatch implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'GithubIntegrationPatch';
 
+    private static array $attributeMap = [
+        'type' => 'type',
+        'fetch_branches' => 'fetch_branches',
+        'prune_branches' => 'prune_branches',
+        'environment_init_resources' => 'environment_init_resources',
+        'token' => 'token',
+        'base_url' => 'base_url',
+        'repository' => 'repository',
+        'build_pull_requests' => 'build_pull_requests',
+        'build_draft_pull_requests' => 'build_draft_pull_requests',
+        'build_pull_requests_post_merge' => 'build_pull_requests_post_merge',
+        'pull_requests_clone_parent_data' => 'pull_requests_clone_parent_data'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'fetch_branches' => 'setFetchBranches',
+            'prune_branches' => 'setPruneBranches',
+            'environment_init_resources' => 'setEnvironmentInitResources',
+            'token' => 'setToken',
+            'base_url' => 'setBaseUrl',
+            'repository' => 'setRepository',
+            'build_pull_requests' => 'setBuildPullRequests',
+            'build_draft_pull_requests' => 'setBuildDraftPullRequests',
+            'build_pull_requests_post_merge' => 'setBuildPullRequestsPostMerge',
+            'pull_requests_clone_parent_data' => 'setPullRequestsCloneParentData'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'fetch_branches' => 'getFetchBranches',
+            'prune_branches' => 'getPruneBranches',
+            'environment_init_resources' => 'getEnvironmentInitResources',
+            'token' => 'getToken',
+            'base_url' => 'getBaseUrl',
+            'repository' => 'getRepository',
+            'build_pull_requests' => 'getBuildPullRequests',
+            'build_draft_pull_requests' => 'getBuildDraftPullRequests',
+            'build_pull_requests_post_merge' => 'getBuildPullRequestsPostMerge',
+            'pull_requests_clone_parent_data' => 'getPullRequestsCloneParentData'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'fetch_branches' => 'setFetchBranches',
+            'prune_branches' => 'setPruneBranches',
+            'environment_init_resources' => 'setEnvironmentInitResources',
+            'token' => 'setToken',
+            'base_url' => 'setBaseUrl',
+            'repository' => 'setRepository',
+            'build_pull_requests' => 'setBuildPullRequests',
+            'build_draft_pull_requests' => 'setBuildDraftPullRequests',
+            'build_pull_requests_post_merge' => 'setBuildPullRequestsPostMerge',
+            'pull_requests_clone_parent_data' => 'setPullRequestsCloneParentData'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'fetch_branches' => 'getFetchBranches',
+            'prune_branches' => 'getPruneBranches',
+            'environment_init_resources' => 'getEnvironmentInitResources',
+            'token' => 'getToken',
+            'base_url' => 'getBaseUrl',
+            'repository' => 'getRepository',
+            'build_pull_requests' => 'getBuildPullRequests',
+            'build_draft_pull_requests' => 'getBuildDraftPullRequests',
+            'build_pull_requests_post_merge' => 'getBuildPullRequestsPostMerge',
+            'pull_requests_clone_parent_data' => 'getPullRequestsCloneParentData'
+        ];
+    
     public function __construct(
         public readonly string $type,
         public readonly bool $fetch_branches,

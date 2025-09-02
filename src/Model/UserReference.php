@@ -19,7 +19,77 @@ use JsonSerializable;
 final class UserReference implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'UserReference';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'username' => 'username',
+        'email' => 'email',
+        'first_name' => 'first_name',
+        'last_name' => 'last_name',
+        'picture' => 'picture',
+        'mfa_enabled' => 'mfa_enabled',
+        'sso_enabled' => 'sso_enabled'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'username' => 'setUsername',
+            'email' => 'setEmail',
+            'first_name' => 'setFirstName',
+            'last_name' => 'setLastName',
+            'picture' => 'setPicture',
+            'mfa_enabled' => 'setMfaEnabled',
+            'sso_enabled' => 'setSsoEnabled'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'username' => 'getUsername',
+            'email' => 'getEmail',
+            'first_name' => 'getFirstName',
+            'last_name' => 'getLastName',
+            'picture' => 'getPicture',
+            'mfa_enabled' => 'getMfaEnabled',
+            'sso_enabled' => 'getSsoEnabled'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'username' => 'setUsername',
+            'email' => 'setEmail',
+            'first_name' => 'setFirstName',
+            'last_name' => 'setLastName',
+            'picture' => 'setPicture',
+            'mfa_enabled' => 'setMfaEnabled',
+            'sso_enabled' => 'setSsoEnabled'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'username' => 'getUsername',
+            'email' => 'getEmail',
+            'first_name' => 'getFirstName',
+            'last_name' => 'getLastName',
+            'picture' => 'getPicture',
+            'mfa_enabled' => 'getMfaEnabled',
+            'sso_enabled' => 'getSsoEnabled'
+        ];
+    
     public function __construct(
         public readonly string $id,
         public readonly string $username,

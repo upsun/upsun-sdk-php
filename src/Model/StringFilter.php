@@ -19,7 +19,77 @@ use JsonSerializable;
 final class StringFilter implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'StringFilter';
 
+    private static array $attributeMap = [
+        'eq' => 'eq',
+        'ne' => 'ne',
+        'in' => 'in',
+        'nin' => 'nin',
+        'between' => 'between',
+        'contains' => 'contains',
+        'starts' => 'starts',
+        'ends' => 'ends'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'eq' => 'setEq',
+            'ne' => 'setNe',
+            'in' => 'setIn',
+            'nin' => 'setNin',
+            'between' => 'setBetween',
+            'contains' => 'setContains',
+            'starts' => 'setStarts',
+            'ends' => 'setEnds'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'eq' => 'getEq',
+            'ne' => 'getNe',
+            'in' => 'getIn',
+            'nin' => 'getNin',
+            'between' => 'getBetween',
+            'contains' => 'getContains',
+            'starts' => 'getStarts',
+            'ends' => 'getEnds'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'eq' => 'setEq',
+            'ne' => 'setNe',
+            'in' => 'setIn',
+            'nin' => 'setNin',
+            'between' => 'setBetween',
+            'contains' => 'setContains',
+            'starts' => 'setStarts',
+            'ends' => 'setEnds'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'eq' => 'getEq',
+            'ne' => 'getNe',
+            'in' => 'getIn',
+            'nin' => 'getNin',
+            'between' => 'getBetween',
+            'contains' => 'getContains',
+            'starts' => 'getStarts',
+            'ends' => 'getEnds'
+        ];
+    
     public function __construct(
         public readonly string $eq,
         public readonly string $ne,

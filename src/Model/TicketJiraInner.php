@@ -19,7 +19,67 @@ use JsonSerializable;
 final class TicketJiraInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Ticket_jira_inner';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'ticket_id' => 'ticket_id',
+        'issue_id' => 'issue_id',
+        'issue_key' => 'issue_key',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'ticket_id' => 'setTicketId',
+            'issue_id' => 'setIssueId',
+            'issue_key' => 'setIssueKey',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'ticket_id' => 'getTicketId',
+            'issue_id' => 'getIssueId',
+            'issue_key' => 'getIssueKey',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'ticket_id' => 'setTicketId',
+            'issue_id' => 'setIssueId',
+            'issue_key' => 'setIssueKey',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'ticket_id' => 'getTicketId',
+            'issue_id' => 'getIssueId',
+            'issue_key' => 'getIssueKey',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt'
+        ];
+    
     public function __construct(
         public readonly int $id,
         public readonly int $ticket_id,

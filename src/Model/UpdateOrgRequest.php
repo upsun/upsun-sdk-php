@@ -19,7 +19,52 @@ use JsonSerializable;
 final class UpdateOrgRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'update_org_request';
 
+    private static array $attributeMap = [
+        'name' => 'name',
+        'label' => 'label',
+        'country' => 'country'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'name' => 'setName',
+            'label' => 'setLabel',
+            'country' => 'setCountry'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'name' => 'getName',
+            'label' => 'getLabel',
+            'country' => 'getCountry'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'name' => 'setName',
+            'label' => 'setLabel',
+            'country' => 'setCountry'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'name' => 'getName',
+            'label' => 'getLabel',
+            'country' => 'getCountry'
+        ];
+    
     public function __construct(
         public readonly string $name,
         public readonly string $label,

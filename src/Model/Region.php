@@ -19,7 +19,97 @@ use JsonSerializable;
 final class Region implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Region';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'label' => 'label',
+        'zone' => 'zone',
+        'selection_label' => 'selection_label',
+        'project_label' => 'project_label',
+        'timezone' => 'timezone',
+        'available' => 'available',
+        'private' => 'private',
+        'endpoint' => 'endpoint',
+        'provider' => 'provider',
+        'datacenter' => 'datacenter',
+        'environmental_impact' => 'environmental_impact'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'label' => 'setLabel',
+            'zone' => 'setZone',
+            'selection_label' => 'setSelectionLabel',
+            'project_label' => 'setProjectLabel',
+            'timezone' => 'setTimezone',
+            'available' => 'setAvailable',
+            'private' => 'setPrivate',
+            'endpoint' => 'setEndpoint',
+            'provider' => 'setProvider',
+            'datacenter' => 'setDatacenter',
+            'environmental_impact' => 'setEnvironmentalImpact'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'label' => 'getLabel',
+            'zone' => 'getZone',
+            'selection_label' => 'getSelectionLabel',
+            'project_label' => 'getProjectLabel',
+            'timezone' => 'getTimezone',
+            'available' => 'getAvailable',
+            'private' => 'getPrivate',
+            'endpoint' => 'getEndpoint',
+            'provider' => 'getProvider',
+            'datacenter' => 'getDatacenter',
+            'environmental_impact' => 'getEnvironmentalImpact'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'label' => 'setLabel',
+            'zone' => 'setZone',
+            'selection_label' => 'setSelectionLabel',
+            'project_label' => 'setProjectLabel',
+            'timezone' => 'setTimezone',
+            'available' => 'setAvailable',
+            'private' => 'setPrivate',
+            'endpoint' => 'setEndpoint',
+            'provider' => 'setProvider',
+            'datacenter' => 'setDatacenter',
+            'environmental_impact' => 'setEnvironmentalImpact'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'label' => 'getLabel',
+            'zone' => 'getZone',
+            'selection_label' => 'getSelectionLabel',
+            'project_label' => 'getProjectLabel',
+            'timezone' => 'getTimezone',
+            'available' => 'getAvailable',
+            'private' => 'getPrivate',
+            'endpoint' => 'getEndpoint',
+            'provider' => 'getProvider',
+            'datacenter' => 'getDatacenter',
+            'environmental_impact' => 'getEnvironmentalImpact'
+        ];
+    
     public function __construct(
         public readonly string $id,
         public readonly string $label,

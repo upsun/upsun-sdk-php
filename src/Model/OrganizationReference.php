@@ -19,7 +19,72 @@ use JsonSerializable;
 final class OrganizationReference implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationReference';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'owner_id' => 'owner_id',
+        'name' => 'name',
+        'label' => 'label',
+        'vendor' => 'vendor',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'owner_id' => 'setOwnerId',
+            'name' => 'setName',
+            'label' => 'setLabel',
+            'vendor' => 'setVendor',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'owner_id' => 'getOwnerId',
+            'name' => 'getName',
+            'label' => 'getLabel',
+            'vendor' => 'getVendor',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'owner_id' => 'setOwnerId',
+            'name' => 'setName',
+            'label' => 'setLabel',
+            'vendor' => 'setVendor',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'owner_id' => 'getOwnerId',
+            'name' => 'getName',
+            'label' => 'getLabel',
+            'vendor' => 'getVendor',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt'
+        ];
+    
     public function __construct(
         public readonly string $id,
         public readonly string $owner_id,

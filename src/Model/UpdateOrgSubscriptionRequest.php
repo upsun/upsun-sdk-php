@@ -19,7 +19,97 @@ use JsonSerializable;
 final class UpdateOrgSubscriptionRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'update_org_subscription_request';
 
+    private static array $attributeMap = [
+        'project_title' => 'project_title',
+        'plan' => 'plan',
+        'timezone' => 'timezone',
+        'environments' => 'environments',
+        'storage' => 'storage',
+        'big_dev' => 'big_dev',
+        'big_dev_service' => 'big_dev_service',
+        'backups' => 'backups',
+        'observability_suite' => 'observability_suite',
+        'blackfire' => 'blackfire',
+        'continuous_profiling' => 'continuous_profiling',
+        'project_support_level' => 'project_support_level'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'project_title' => 'setProjectTitle',
+            'plan' => 'setPlan',
+            'timezone' => 'setTimezone',
+            'environments' => 'setEnvironments',
+            'storage' => 'setStorage',
+            'big_dev' => 'setBigDev',
+            'big_dev_service' => 'setBigDevService',
+            'backups' => 'setBackups',
+            'observability_suite' => 'setObservabilitySuite',
+            'blackfire' => 'setBlackfire',
+            'continuous_profiling' => 'setContinuousProfiling',
+            'project_support_level' => 'setProjectSupportLevel'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'project_title' => 'getProjectTitle',
+            'plan' => 'getPlan',
+            'timezone' => 'getTimezone',
+            'environments' => 'getEnvironments',
+            'storage' => 'getStorage',
+            'big_dev' => 'getBigDev',
+            'big_dev_service' => 'getBigDevService',
+            'backups' => 'getBackups',
+            'observability_suite' => 'getObservabilitySuite',
+            'blackfire' => 'getBlackfire',
+            'continuous_profiling' => 'getContinuousProfiling',
+            'project_support_level' => 'getProjectSupportLevel'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'project_title' => 'setProjectTitle',
+            'plan' => 'setPlan',
+            'timezone' => 'setTimezone',
+            'environments' => 'setEnvironments',
+            'storage' => 'setStorage',
+            'big_dev' => 'setBigDev',
+            'big_dev_service' => 'setBigDevService',
+            'backups' => 'setBackups',
+            'observability_suite' => 'setObservabilitySuite',
+            'blackfire' => 'setBlackfire',
+            'continuous_profiling' => 'setContinuousProfiling',
+            'project_support_level' => 'setProjectSupportLevel'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'project_title' => 'getProjectTitle',
+            'plan' => 'getPlan',
+            'timezone' => 'getTimezone',
+            'environments' => 'getEnvironments',
+            'storage' => 'getStorage',
+            'big_dev' => 'getBigDev',
+            'big_dev_service' => 'getBigDevService',
+            'backups' => 'getBackups',
+            'observability_suite' => 'getObservabilitySuite',
+            'blackfire' => 'getBlackfire',
+            'continuous_profiling' => 'getContinuousProfiling',
+            'project_support_level' => 'getProjectSupportLevel'
+        ];
+    
     public function __construct(
         public readonly string $project_title,
         public readonly string $plan,

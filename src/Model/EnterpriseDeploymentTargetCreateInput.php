@@ -19,7 +19,62 @@ use JsonSerializable;
 final class EnterpriseDeploymentTargetCreateInput implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'EnterpriseDeploymentTargetCreateInput';
 
+    private static array $attributeMap = [
+        'type' => 'type',
+        'name' => 'name',
+        'site_urls' => 'site_urls',
+        'ssh_hosts' => 'ssh_hosts',
+        'enterprise_environments_mapping' => 'enterprise_environments_mapping'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'name' => 'setName',
+            'site_urls' => 'setSiteUrls',
+            'ssh_hosts' => 'setSshHosts',
+            'enterprise_environments_mapping' => 'setEnterpriseEnvironmentsMapping'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'name' => 'getName',
+            'site_urls' => 'getSiteUrls',
+            'ssh_hosts' => 'getSshHosts',
+            'enterprise_environments_mapping' => 'getEnterpriseEnvironmentsMapping'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'name' => 'setName',
+            'site_urls' => 'setSiteUrls',
+            'ssh_hosts' => 'setSshHosts',
+            'enterprise_environments_mapping' => 'setEnterpriseEnvironmentsMapping'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'name' => 'getName',
+            'site_urls' => 'getSiteUrls',
+            'ssh_hosts' => 'getSshHosts',
+            'enterprise_environments_mapping' => 'getEnterpriseEnvironmentsMapping'
+        ];
+    
     public function __construct(
         public readonly string $type,
         public readonly string $name,

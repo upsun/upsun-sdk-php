@@ -19,7 +19,52 @@ use JsonSerializable;
 final class TheIssuerOfTheCertificateInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_issuer_of_the_certificate_inner';
 
+    private static array $attributeMap = [
+        'oid' => 'oid',
+        'alias' => 'alias',
+        'value' => 'value'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'oid' => 'setOid',
+            'alias' => 'setAlias',
+            'value' => 'setValue'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'oid' => 'getOid',
+            'alias' => 'getAlias',
+            'value' => 'getValue'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'oid' => 'setOid',
+            'alias' => 'setAlias',
+            'value' => 'setValue'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'oid' => 'getOid',
+            'alias' => 'getAlias',
+            'value' => 'getValue'
+        ];
+    
     public function __construct(
         public readonly string $oid,
         public readonly ?string $alias,

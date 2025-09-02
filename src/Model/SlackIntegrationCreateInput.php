@@ -19,7 +19,52 @@ use JsonSerializable;
 final class SlackIntegrationCreateInput implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'SlackIntegrationCreateInput';
 
+    private static array $attributeMap = [
+        'type' => 'type',
+        'token' => 'token',
+        'channel' => 'channel'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'token' => 'setToken',
+            'channel' => 'setChannel'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'token' => 'getToken',
+            'channel' => 'getChannel'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'token' => 'setToken',
+            'channel' => 'setChannel'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'token' => 'getToken',
+            'channel' => 'getChannel'
+        ];
+    
     public function __construct(
         public readonly string $type,
         public readonly string $token,

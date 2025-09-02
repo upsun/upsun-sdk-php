@@ -19,7 +19,47 @@ use JsonSerializable;
 final class CreateProjectInviteRequestPermissionsInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'create_project_invite_request_permissions_inner';
 
+    private static array $attributeMap = [
+        'type' => 'type',
+        'role' => 'role'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'role' => 'setRole'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'role' => 'getRole'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'role' => 'setRole'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'role' => 'getRole'
+        ];
+    
     public function __construct(
         public readonly string $type,
         public readonly string $role

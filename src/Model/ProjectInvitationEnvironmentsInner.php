@@ -19,7 +19,57 @@ use JsonSerializable;
 final class ProjectInvitationEnvironmentsInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'ProjectInvitation_environments_inner';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'type' => 'type',
+        'role' => 'role',
+        'title' => 'title'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'type' => 'setType',
+            'role' => 'setRole',
+            'title' => 'setTitle'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'type' => 'getType',
+            'role' => 'getRole',
+            'title' => 'getTitle'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'type' => 'setType',
+            'role' => 'setRole',
+            'title' => 'setTitle'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'type' => 'getType',
+            'role' => 'getRole',
+            'title' => 'getTitle'
+        ];
+    
     public function __construct(
         public readonly string $id,
         public readonly string $type,

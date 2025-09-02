@@ -19,7 +19,72 @@ use JsonSerializable;
 final class VouchersVouchersInnerOrdersInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Vouchers_vouchers_inner_orders_inner';
 
+    private static array $attributeMap = [
+        'order_id' => 'order_id',
+        'status' => 'status',
+        'billing_period_start' => 'billing_period_start',
+        'billing_period_end' => 'billing_period_end',
+        'order_total' => 'order_total',
+        'order_discount' => 'order_discount',
+        'currency' => 'currency'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'order_id' => 'setOrderId',
+            'status' => 'setStatus',
+            'billing_period_start' => 'setBillingPeriodStart',
+            'billing_period_end' => 'setBillingPeriodEnd',
+            'order_total' => 'setOrderTotal',
+            'order_discount' => 'setOrderDiscount',
+            'currency' => 'setCurrency'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'order_id' => 'getOrderId',
+            'status' => 'getStatus',
+            'billing_period_start' => 'getBillingPeriodStart',
+            'billing_period_end' => 'getBillingPeriodEnd',
+            'order_total' => 'getOrderTotal',
+            'order_discount' => 'getOrderDiscount',
+            'currency' => 'getCurrency'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'order_id' => 'setOrderId',
+            'status' => 'setStatus',
+            'billing_period_start' => 'setBillingPeriodStart',
+            'billing_period_end' => 'setBillingPeriodEnd',
+            'order_total' => 'setOrderTotal',
+            'order_discount' => 'setOrderDiscount',
+            'currency' => 'setCurrency'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'order_id' => 'getOrderId',
+            'status' => 'getStatus',
+            'billing_period_start' => 'getBillingPeriodStart',
+            'billing_period_end' => 'getBillingPeriodEnd',
+            'order_total' => 'getOrderTotal',
+            'order_discount' => 'getOrderDiscount',
+            'currency' => 'getCurrency'
+        ];
+    
     public function __construct(
         public readonly string $order_id,
         public readonly string $status,

@@ -19,7 +19,47 @@ use JsonSerializable;
 final class OrganizationInvitationOwner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationInvitation_owner';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'display_name' => 'display_name'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'display_name' => 'setDisplayName'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'display_name' => 'getDisplayName'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'display_name' => 'setDisplayName'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'display_name' => 'getDisplayName'
+        ];
+    
     public function __construct(
         public readonly string $id,
         public readonly string $display_name

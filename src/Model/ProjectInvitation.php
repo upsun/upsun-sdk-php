@@ -19,7 +19,87 @@ use JsonSerializable;
 final class ProjectInvitation implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'ProjectInvitation';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'state' => 'state',
+        'project_id' => 'project_id',
+        'role' => 'role',
+        'email' => 'email',
+        'owner' => 'owner',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'finished_at' => 'finished_at',
+        'environments' => 'environments'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'state' => 'setState',
+            'project_id' => 'setProjectId',
+            'role' => 'setRole',
+            'email' => 'setEmail',
+            'owner' => 'setOwner',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'finished_at' => 'setFinishedAt',
+            'environments' => 'setEnvironments'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'state' => 'getState',
+            'project_id' => 'getProjectId',
+            'role' => 'getRole',
+            'email' => 'getEmail',
+            'owner' => 'getOwner',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'finished_at' => 'getFinishedAt',
+            'environments' => 'getEnvironments'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'state' => 'setState',
+            'project_id' => 'setProjectId',
+            'role' => 'setRole',
+            'email' => 'setEmail',
+            'owner' => 'setOwner',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'finished_at' => 'setFinishedAt',
+            'environments' => 'setEnvironments'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'state' => 'getState',
+            'project_id' => 'getProjectId',
+            'role' => 'getRole',
+            'email' => 'getEmail',
+            'owner' => 'getOwner',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'finished_at' => 'getFinishedAt',
+            'environments' => 'getEnvironments'
+        ];
+    
     public function __construct(
         public readonly string $id,
         public readonly string $state,

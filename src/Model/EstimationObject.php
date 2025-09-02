@@ -19,7 +19,67 @@ use JsonSerializable;
 final class EstimationObject implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'EstimationObject';
 
+    private static array $attributeMap = [
+        'plan' => 'plan',
+        'user_licenses' => 'user_licenses',
+        'environments' => 'environments',
+        'storage' => 'storage',
+        'total' => 'total',
+        'options' => 'options'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'plan' => 'setPlan',
+            'user_licenses' => 'setUserLicenses',
+            'environments' => 'setEnvironments',
+            'storage' => 'setStorage',
+            'total' => 'setTotal',
+            'options' => 'setOptions'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'plan' => 'getPlan',
+            'user_licenses' => 'getUserLicenses',
+            'environments' => 'getEnvironments',
+            'storage' => 'getStorage',
+            'total' => 'getTotal',
+            'options' => 'getOptions'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'plan' => 'setPlan',
+            'user_licenses' => 'setUserLicenses',
+            'environments' => 'setEnvironments',
+            'storage' => 'setStorage',
+            'total' => 'setTotal',
+            'options' => 'setOptions'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'plan' => 'getPlan',
+            'user_licenses' => 'getUserLicenses',
+            'environments' => 'getEnvironments',
+            'storage' => 'getStorage',
+            'total' => 'getTotal',
+            'options' => 'getOptions'
+        ];
+    
     public function __construct(
         public readonly string $plan,
         public readonly string $user_licenses,

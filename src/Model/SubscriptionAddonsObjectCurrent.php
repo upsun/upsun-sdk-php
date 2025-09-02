@@ -19,7 +19,47 @@ use JsonSerializable;
 final class SubscriptionAddonsObjectCurrent implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'SubscriptionAddonsObject_current';
 
+    private static array $attributeMap = [
+        'continuous_profiling' => 'continuous_profiling',
+        'project_support_level' => 'project_support_level'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'continuous_profiling' => 'setContinuousProfiling',
+            'project_support_level' => 'setProjectSupportLevel'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'continuous_profiling' => 'getContinuousProfiling',
+            'project_support_level' => 'getProjectSupportLevel'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'continuous_profiling' => 'setContinuousProfiling',
+            'project_support_level' => 'setProjectSupportLevel'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'continuous_profiling' => 'getContinuousProfiling',
+            'project_support_level' => 'getProjectSupportLevel'
+        ];
+    
     public function __construct(
         /**
          * @var string[]

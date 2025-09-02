@@ -19,7 +19,47 @@ use JsonSerializable;
 final class PagerDutyIntegrationCreateInput implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'PagerDutyIntegrationCreateInput';
 
+    private static array $attributeMap = [
+        'type' => 'type',
+        'routing_key' => 'routing_key'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'routing_key' => 'setRoutingKey'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'routing_key' => 'getRoutingKey'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'routing_key' => 'setRoutingKey'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'routing_key' => 'getRoutingKey'
+        ];
+    
     public function __construct(
         public readonly string $type,
         public readonly string $routing_key

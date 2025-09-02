@@ -19,7 +19,52 @@ use JsonSerializable;
 final class AddressMetadataMetadata implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'AddressMetadata_metadata';
 
+    private static array $attributeMap = [
+        'required_fields' => 'required_fields',
+        'field_labels' => 'field_labels',
+        'show_vat' => 'show_vat'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'required_fields' => 'setRequiredFields',
+            'field_labels' => 'setFieldLabels',
+            'show_vat' => 'setShowVat'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'required_fields' => 'getRequiredFields',
+            'field_labels' => 'getFieldLabels',
+            'show_vat' => 'getShowVat'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'required_fields' => 'setRequiredFields',
+            'field_labels' => 'setFieldLabels',
+            'show_vat' => 'setShowVat'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'required_fields' => 'getRequiredFields',
+            'field_labels' => 'getFieldLabels',
+            'show_vat' => 'getShowVat'
+        ];
+    
     public function __construct(
         /**
          * @var array

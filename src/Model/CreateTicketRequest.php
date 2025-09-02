@@ -19,7 +19,92 @@ use JsonSerializable;
 final class CreateTicketRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'create_ticket_request';
 
+    private static array $attributeMap = [
+        'subject' => 'subject',
+        'description' => 'description',
+        'requester_id' => 'requester_id',
+        'priority' => 'priority',
+        'subscription_id' => 'subscription_id',
+        'organization_id' => 'organization_id',
+        'affected_url' => 'affected_url',
+        'followup_tid' => 'followup_tid',
+        'category' => 'category',
+        'attachments' => 'attachments',
+        'collaborator_ids' => 'collaborator_ids'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'subject' => 'setSubject',
+            'description' => 'setDescription',
+            'requester_id' => 'setRequesterId',
+            'priority' => 'setPriority',
+            'subscription_id' => 'setSubscriptionId',
+            'organization_id' => 'setOrganizationId',
+            'affected_url' => 'setAffectedUrl',
+            'followup_tid' => 'setFollowupTid',
+            'category' => 'setCategory',
+            'attachments' => 'setAttachments',
+            'collaborator_ids' => 'setCollaboratorIds'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'subject' => 'getSubject',
+            'description' => 'getDescription',
+            'requester_id' => 'getRequesterId',
+            'priority' => 'getPriority',
+            'subscription_id' => 'getSubscriptionId',
+            'organization_id' => 'getOrganizationId',
+            'affected_url' => 'getAffectedUrl',
+            'followup_tid' => 'getFollowupTid',
+            'category' => 'getCategory',
+            'attachments' => 'getAttachments',
+            'collaborator_ids' => 'getCollaboratorIds'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'subject' => 'setSubject',
+            'description' => 'setDescription',
+            'requester_id' => 'setRequesterId',
+            'priority' => 'setPriority',
+            'subscription_id' => 'setSubscriptionId',
+            'organization_id' => 'setOrganizationId',
+            'affected_url' => 'setAffectedUrl',
+            'followup_tid' => 'setFollowupTid',
+            'category' => 'setCategory',
+            'attachments' => 'setAttachments',
+            'collaborator_ids' => 'setCollaboratorIds'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'subject' => 'getSubject',
+            'description' => 'getDescription',
+            'requester_id' => 'getRequesterId',
+            'priority' => 'getPriority',
+            'subscription_id' => 'getSubscriptionId',
+            'organization_id' => 'getOrganizationId',
+            'affected_url' => 'getAffectedUrl',
+            'followup_tid' => 'getFollowupTid',
+            'category' => 'getCategory',
+            'attachments' => 'getAttachments',
+            'collaborator_ids' => 'getCollaboratorIds'
+        ];
+    
     public function __construct(
         public readonly string $subject,
         public readonly string $description,

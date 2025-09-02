@@ -19,7 +19,67 @@ use JsonSerializable;
 final class UpdateOrgProfileRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'update_org_profile_request';
 
+    private static array $attributeMap = [
+        'default_catalog' => 'default_catalog',
+        'project_options_url' => 'project_options_url',
+        'security_contact' => 'security_contact',
+        'company_name' => 'company_name',
+        'vat_number' => 'vat_number',
+        'billing_contact' => 'billing_contact'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'default_catalog' => 'setDefaultCatalog',
+            'project_options_url' => 'setProjectOptionsUrl',
+            'security_contact' => 'setSecurityContact',
+            'company_name' => 'setCompanyName',
+            'vat_number' => 'setVatNumber',
+            'billing_contact' => 'setBillingContact'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'default_catalog' => 'getDefaultCatalog',
+            'project_options_url' => 'getProjectOptionsUrl',
+            'security_contact' => 'getSecurityContact',
+            'company_name' => 'getCompanyName',
+            'vat_number' => 'getVatNumber',
+            'billing_contact' => 'getBillingContact'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'default_catalog' => 'setDefaultCatalog',
+            'project_options_url' => 'setProjectOptionsUrl',
+            'security_contact' => 'setSecurityContact',
+            'company_name' => 'setCompanyName',
+            'vat_number' => 'setVatNumber',
+            'billing_contact' => 'setBillingContact'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'default_catalog' => 'getDefaultCatalog',
+            'project_options_url' => 'getProjectOptionsUrl',
+            'security_contact' => 'getSecurityContact',
+            'company_name' => 'getCompanyName',
+            'vat_number' => 'getVatNumber',
+            'billing_contact' => 'getBillingContact'
+        ];
+    
     public function __construct(
         public readonly string $default_catalog,
         public readonly string $project_options_url,

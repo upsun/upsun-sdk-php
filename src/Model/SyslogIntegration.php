@@ -19,7 +19,87 @@ use JsonSerializable;
 final class SyslogIntegration implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'SyslogIntegration';
 
+    private static array $attributeMap = [
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'type' => 'type',
+        'extra' => 'extra',
+        'host' => 'host',
+        'port' => 'port',
+        'protocol' => 'protocol',
+        'facility' => 'facility',
+        'message_format' => 'message_format',
+        'tls_verify' => 'tls_verify'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'type' => 'setType',
+            'extra' => 'setExtra',
+            'host' => 'setHost',
+            'port' => 'setPort',
+            'protocol' => 'setProtocol',
+            'facility' => 'setFacility',
+            'message_format' => 'setMessageFormat',
+            'tls_verify' => 'setTlsVerify'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'type' => 'getType',
+            'extra' => 'getExtra',
+            'host' => 'getHost',
+            'port' => 'getPort',
+            'protocol' => 'getProtocol',
+            'facility' => 'getFacility',
+            'message_format' => 'getMessageFormat',
+            'tls_verify' => 'getTlsVerify'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'type' => 'setType',
+            'extra' => 'setExtra',
+            'host' => 'setHost',
+            'port' => 'setPort',
+            'protocol' => 'setProtocol',
+            'facility' => 'setFacility',
+            'message_format' => 'setMessageFormat',
+            'tls_verify' => 'setTlsVerify'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'type' => 'getType',
+            'extra' => 'getExtra',
+            'host' => 'getHost',
+            'port' => 'getPort',
+            'protocol' => 'getProtocol',
+            'facility' => 'getFacility',
+            'message_format' => 'getMessageFormat',
+            'tls_verify' => 'getTlsVerify'
+        ];
+    
     public function __construct(
         public readonly ?\DateTime $created_at,
         public readonly ?\DateTime $updated_at,

@@ -19,7 +19,47 @@ use JsonSerializable;
 final class UpdateTeamRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'update_team_request';
 
+    private static array $attributeMap = [
+        'label' => 'label',
+        'project_permissions' => 'project_permissions'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'label' => 'setLabel',
+            'project_permissions' => 'setProjectPermissions'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'label' => 'getLabel',
+            'project_permissions' => 'getProjectPermissions'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'label' => 'setLabel',
+            'project_permissions' => 'setProjectPermissions'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'label' => 'getLabel',
+            'project_permissions' => 'getProjectPermissions'
+        ];
+    
     public function __construct(
         public readonly string $label,
         /**

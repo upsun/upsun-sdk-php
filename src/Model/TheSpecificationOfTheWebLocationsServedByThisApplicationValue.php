@@ -19,7 +19,82 @@ use JsonSerializable;
 final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_specification_of_the_web_locations_served_by_this_application__value';
 
+    private static array $attributeMap = [
+        'root' => 'root',
+        'expires' => 'expires',
+        'passthru' => 'passthru',
+        'scripts' => 'scripts',
+        'index' => 'index',
+        'allow' => 'allow',
+        'headers' => 'headers',
+        'rules' => 'rules',
+        'request_buffering' => 'request_buffering'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'root' => 'setRoot',
+            'expires' => 'setExpires',
+            'passthru' => 'setPassthru',
+            'scripts' => 'setScripts',
+            'index' => 'setIndex',
+            'allow' => 'setAllow',
+            'headers' => 'setHeaders',
+            'rules' => 'setRules',
+            'request_buffering' => 'setRequestBuffering'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'root' => 'getRoot',
+            'expires' => 'getExpires',
+            'passthru' => 'getPassthru',
+            'scripts' => 'getScripts',
+            'index' => 'getIndex',
+            'allow' => 'getAllow',
+            'headers' => 'getHeaders',
+            'rules' => 'getRules',
+            'request_buffering' => 'getRequestBuffering'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'root' => 'setRoot',
+            'expires' => 'setExpires',
+            'passthru' => 'setPassthru',
+            'scripts' => 'setScripts',
+            'index' => 'setIndex',
+            'allow' => 'setAllow',
+            'headers' => 'setHeaders',
+            'rules' => 'setRules',
+            'request_buffering' => 'setRequestBuffering'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'root' => 'getRoot',
+            'expires' => 'getExpires',
+            'passthru' => 'getPassthru',
+            'scripts' => 'getScripts',
+            'index' => 'getIndex',
+            'allow' => 'getAllow',
+            'headers' => 'getHeaders',
+            'rules' => 'getRules',
+            'request_buffering' => 'getRequestBuffering'
+        ];
+    
     public function __construct(
         public readonly ?string $root,
         public readonly string $expires,

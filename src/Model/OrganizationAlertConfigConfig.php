@@ -19,7 +19,47 @@ use JsonSerializable;
 final class OrganizationAlertConfigConfig implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationAlertConfig_config';
 
+    private static array $attributeMap = [
+        'threshold' => 'threshold',
+        'mode' => 'mode'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'threshold' => 'setThreshold',
+            'mode' => 'setMode'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'threshold' => 'getThreshold',
+            'mode' => 'getMode'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'threshold' => 'setThreshold',
+            'mode' => 'setMode'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'threshold' => 'getThreshold',
+            'mode' => 'getMode'
+        ];
+    
     public function __construct(
         public readonly \Upsun\Model\OrganizationAlertConfigConfigThreshold $threshold,
         public readonly string $mode

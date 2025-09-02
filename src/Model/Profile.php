@@ -19,7 +19,152 @@ use JsonSerializable;
 final class Profile implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Profile';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'display_name' => 'display_name',
+        'email' => 'email',
+        'username' => 'username',
+        'type' => 'type',
+        'picture' => 'picture',
+        'company_type' => 'company_type',
+        'company_name' => 'company_name',
+        'currency' => 'currency',
+        'vat_number' => 'vat_number',
+        'company_role' => 'company_role',
+        'website_url' => 'website_url',
+        'new_ui' => 'new_ui',
+        'ui_colorscheme' => 'ui_colorscheme',
+        'default_catalog' => 'default_catalog',
+        'project_options_url' => 'project_options_url',
+        'marketing' => 'marketing',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'billing_contact' => 'billing_contact',
+        'security_contact' => 'security_contact',
+        'current_trial' => 'current_trial',
+        'invoiced' => 'invoiced'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'display_name' => 'setDisplayName',
+            'email' => 'setEmail',
+            'username' => 'setUsername',
+            'type' => 'setType',
+            'picture' => 'setPicture',
+            'company_type' => 'setCompanyType',
+            'company_name' => 'setCompanyName',
+            'currency' => 'setCurrency',
+            'vat_number' => 'setVatNumber',
+            'company_role' => 'setCompanyRole',
+            'website_url' => 'setWebsiteUrl',
+            'new_ui' => 'setNewUi',
+            'ui_colorscheme' => 'setUiColorscheme',
+            'default_catalog' => 'setDefaultCatalog',
+            'project_options_url' => 'setProjectOptionsUrl',
+            'marketing' => 'setMarketing',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'billing_contact' => 'setBillingContact',
+            'security_contact' => 'setSecurityContact',
+            'current_trial' => 'setCurrentTrial',
+            'invoiced' => 'setInvoiced'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'display_name' => 'getDisplayName',
+            'email' => 'getEmail',
+            'username' => 'getUsername',
+            'type' => 'getType',
+            'picture' => 'getPicture',
+            'company_type' => 'getCompanyType',
+            'company_name' => 'getCompanyName',
+            'currency' => 'getCurrency',
+            'vat_number' => 'getVatNumber',
+            'company_role' => 'getCompanyRole',
+            'website_url' => 'getWebsiteUrl',
+            'new_ui' => 'getNewUi',
+            'ui_colorscheme' => 'getUiColorscheme',
+            'default_catalog' => 'getDefaultCatalog',
+            'project_options_url' => 'getProjectOptionsUrl',
+            'marketing' => 'getMarketing',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'billing_contact' => 'getBillingContact',
+            'security_contact' => 'getSecurityContact',
+            'current_trial' => 'getCurrentTrial',
+            'invoiced' => 'getInvoiced'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'display_name' => 'setDisplayName',
+            'email' => 'setEmail',
+            'username' => 'setUsername',
+            'type' => 'setType',
+            'picture' => 'setPicture',
+            'company_type' => 'setCompanyType',
+            'company_name' => 'setCompanyName',
+            'currency' => 'setCurrency',
+            'vat_number' => 'setVatNumber',
+            'company_role' => 'setCompanyRole',
+            'website_url' => 'setWebsiteUrl',
+            'new_ui' => 'setNewUi',
+            'ui_colorscheme' => 'setUiColorscheme',
+            'default_catalog' => 'setDefaultCatalog',
+            'project_options_url' => 'setProjectOptionsUrl',
+            'marketing' => 'setMarketing',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'billing_contact' => 'setBillingContact',
+            'security_contact' => 'setSecurityContact',
+            'current_trial' => 'setCurrentTrial',
+            'invoiced' => 'setInvoiced'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'display_name' => 'getDisplayName',
+            'email' => 'getEmail',
+            'username' => 'getUsername',
+            'type' => 'getType',
+            'picture' => 'getPicture',
+            'company_type' => 'getCompanyType',
+            'company_name' => 'getCompanyName',
+            'currency' => 'getCurrency',
+            'vat_number' => 'getVatNumber',
+            'company_role' => 'getCompanyRole',
+            'website_url' => 'getWebsiteUrl',
+            'new_ui' => 'getNewUi',
+            'ui_colorscheme' => 'getUiColorscheme',
+            'default_catalog' => 'getDefaultCatalog',
+            'project_options_url' => 'getProjectOptionsUrl',
+            'marketing' => 'getMarketing',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'billing_contact' => 'getBillingContact',
+            'security_contact' => 'getSecurityContact',
+            'current_trial' => 'getCurrentTrial',
+            'invoiced' => 'getInvoiced'
+        ];
+    
     public function __construct(
         public readonly string $id,
         public readonly string $display_name,

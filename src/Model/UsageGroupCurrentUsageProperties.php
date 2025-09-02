@@ -19,7 +19,82 @@ use JsonSerializable;
 final class UsageGroupCurrentUsageProperties implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'UsageGroupCurrentUsageProperties';
 
+    private static array $attributeMap = [
+        'title' => 'title',
+        'type' => 'type',
+        'current_usage' => 'current_usage',
+        'current_usage_formatted' => 'current_usage_formatted',
+        'not_charged' => 'not_charged',
+        'free_quantity' => 'free_quantity',
+        'free_quantity_formatted' => 'free_quantity_formatted',
+        'daily_average' => 'daily_average',
+        'daily_average_formatted' => 'daily_average_formatted'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'title' => 'setTitle',
+            'type' => 'setType',
+            'current_usage' => 'setCurrentUsage',
+            'current_usage_formatted' => 'setCurrentUsageFormatted',
+            'not_charged' => 'setNotCharged',
+            'free_quantity' => 'setFreeQuantity',
+            'free_quantity_formatted' => 'setFreeQuantityFormatted',
+            'daily_average' => 'setDailyAverage',
+            'daily_average_formatted' => 'setDailyAverageFormatted'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'title' => 'getTitle',
+            'type' => 'getType',
+            'current_usage' => 'getCurrentUsage',
+            'current_usage_formatted' => 'getCurrentUsageFormatted',
+            'not_charged' => 'getNotCharged',
+            'free_quantity' => 'getFreeQuantity',
+            'free_quantity_formatted' => 'getFreeQuantityFormatted',
+            'daily_average' => 'getDailyAverage',
+            'daily_average_formatted' => 'getDailyAverageFormatted'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'title' => 'setTitle',
+            'type' => 'setType',
+            'current_usage' => 'setCurrentUsage',
+            'current_usage_formatted' => 'setCurrentUsageFormatted',
+            'not_charged' => 'setNotCharged',
+            'free_quantity' => 'setFreeQuantity',
+            'free_quantity_formatted' => 'setFreeQuantityFormatted',
+            'daily_average' => 'setDailyAverage',
+            'daily_average_formatted' => 'setDailyAverageFormatted'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'title' => 'getTitle',
+            'type' => 'getType',
+            'current_usage' => 'getCurrentUsage',
+            'current_usage_formatted' => 'getCurrentUsageFormatted',
+            'not_charged' => 'getNotCharged',
+            'free_quantity' => 'getFreeQuantity',
+            'free_quantity_formatted' => 'getFreeQuantityFormatted',
+            'daily_average' => 'getDailyAverage',
+            'daily_average_formatted' => 'getDailyAverageFormatted'
+        ];
+    
     public function __construct(
         public readonly string $title,
         public readonly bool $type,

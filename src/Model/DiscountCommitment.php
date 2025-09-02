@@ -19,7 +19,52 @@ use JsonSerializable;
 final class DiscountCommitment implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Discount_commitment';
 
+    private static array $attributeMap = [
+        'months' => 'months',
+        'amount' => 'amount',
+        'net' => 'net'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'months' => 'setMonths',
+            'amount' => 'setAmount',
+            'net' => 'setNet'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'months' => 'getMonths',
+            'amount' => 'getAmount',
+            'net' => 'getNet'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'months' => 'setMonths',
+            'amount' => 'setAmount',
+            'net' => 'setNet'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'months' => 'getMonths',
+            'amount' => 'getAmount',
+            'net' => 'getNet'
+        ];
+    
     public function __construct(
         public readonly int $months,
         public readonly \Upsun\Model\DiscountCommitmentAmount $amount,

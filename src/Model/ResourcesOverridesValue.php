@@ -19,7 +19,62 @@ use JsonSerializable;
 final class ResourcesOverridesValue implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Resources_overrides_value';
 
+    private static array $attributeMap = [
+        'services' => 'services',
+        'starts_at' => 'starts_at',
+        'ends_at' => 'ends_at',
+        'redeployed_start' => 'redeployed_start',
+        'redeployed_end' => 'redeployed_end'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'services' => 'setServices',
+            'starts_at' => 'setStartsAt',
+            'ends_at' => 'setEndsAt',
+            'redeployed_start' => 'setRedeployedStart',
+            'redeployed_end' => 'setRedeployedEnd'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'services' => 'getServices',
+            'starts_at' => 'getStartsAt',
+            'ends_at' => 'getEndsAt',
+            'redeployed_start' => 'getRedeployedStart',
+            'redeployed_end' => 'getRedeployedEnd'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'services' => 'setServices',
+            'starts_at' => 'setStartsAt',
+            'ends_at' => 'setEndsAt',
+            'redeployed_start' => 'setRedeployedStart',
+            'redeployed_end' => 'setRedeployedEnd'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'services' => 'getServices',
+            'starts_at' => 'getStartsAt',
+            'ends_at' => 'getEndsAt',
+            'redeployed_start' => 'getRedeployedStart',
+            'redeployed_end' => 'getRedeployedEnd'
+        ];
+    
     public function __construct(
         /**
          * @var string[]

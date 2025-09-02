@@ -19,7 +19,52 @@ use JsonSerializable;
 final class Version implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Version';
 
+    private static array $attributeMap = [
+        'commit' => 'commit',
+        'locked' => 'locked',
+        'routing' => 'routing'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'commit' => 'setCommit',
+            'locked' => 'setLocked',
+            'routing' => 'setRouting'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'commit' => 'getCommit',
+            'locked' => 'getLocked',
+            'routing' => 'getRouting'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'commit' => 'setCommit',
+            'locked' => 'setLocked',
+            'routing' => 'setRouting'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'commit' => 'getCommit',
+            'locked' => 'getLocked',
+            'routing' => 'getRouting'
+        ];
+    
     public function __construct(
         public readonly ?string $commit,
         public readonly bool $locked,

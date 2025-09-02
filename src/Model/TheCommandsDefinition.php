@@ -19,7 +19,47 @@ use JsonSerializable;
 final class TheCommandsDefinition implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_commands_definition_';
 
+    private static array $attributeMap = [
+        'start' => 'start',
+        'stop' => 'stop'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'start' => 'setStart',
+            'stop' => 'setStop'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'start' => 'getStart',
+            'stop' => 'getStop'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'start' => 'setStart',
+            'stop' => 'setStop'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'start' => 'getStart',
+            'stop' => 'getStop'
+        ];
+    
     public function __construct(
         public readonly string $start,
         public readonly ?string $stop

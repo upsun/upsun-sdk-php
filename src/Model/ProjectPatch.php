@@ -19,7 +19,72 @@ use JsonSerializable;
 final class ProjectPatch implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'ProjectPatch';
 
+    private static array $attributeMap = [
+        'attributes' => 'attributes',
+        'title' => 'title',
+        'description' => 'description',
+        'default_branch' => 'default_branch',
+        'timezone' => 'timezone',
+        'region' => 'region',
+        'default_domain' => 'default_domain'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'attributes' => 'setAttributes',
+            'title' => 'setTitle',
+            'description' => 'setDescription',
+            'default_branch' => 'setDefaultBranch',
+            'timezone' => 'setTimezone',
+            'region' => 'setRegion',
+            'default_domain' => 'setDefaultDomain'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'attributes' => 'getAttributes',
+            'title' => 'getTitle',
+            'description' => 'getDescription',
+            'default_branch' => 'getDefaultBranch',
+            'timezone' => 'getTimezone',
+            'region' => 'getRegion',
+            'default_domain' => 'getDefaultDomain'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'attributes' => 'setAttributes',
+            'title' => 'setTitle',
+            'description' => 'setDescription',
+            'default_branch' => 'setDefaultBranch',
+            'timezone' => 'setTimezone',
+            'region' => 'setRegion',
+            'default_domain' => 'setDefaultDomain'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'attributes' => 'getAttributes',
+            'title' => 'getTitle',
+            'description' => 'getDescription',
+            'default_branch' => 'getDefaultBranch',
+            'timezone' => 'getTimezone',
+            'region' => 'getRegion',
+            'default_domain' => 'getDefaultDomain'
+        ];
+    
     public function __construct(
         /**
          * @var string[]

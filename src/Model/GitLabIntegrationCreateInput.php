@@ -19,7 +19,87 @@ use JsonSerializable;
 final class GitLabIntegrationCreateInput implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'GitLabIntegrationCreateInput';
 
+    private static array $attributeMap = [
+        'type' => 'type',
+        'fetch_branches' => 'fetch_branches',
+        'prune_branches' => 'prune_branches',
+        'environment_init_resources' => 'environment_init_resources',
+        'token' => 'token',
+        'base_url' => 'base_url',
+        'project' => 'project',
+        'build_merge_requests' => 'build_merge_requests',
+        'build_wip_merge_requests' => 'build_wip_merge_requests',
+        'merge_requests_clone_parent_data' => 'merge_requests_clone_parent_data'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'fetch_branches' => 'setFetchBranches',
+            'prune_branches' => 'setPruneBranches',
+            'environment_init_resources' => 'setEnvironmentInitResources',
+            'token' => 'setToken',
+            'base_url' => 'setBaseUrl',
+            'project' => 'setProject',
+            'build_merge_requests' => 'setBuildMergeRequests',
+            'build_wip_merge_requests' => 'setBuildWipMergeRequests',
+            'merge_requests_clone_parent_data' => 'setMergeRequestsCloneParentData'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'fetch_branches' => 'getFetchBranches',
+            'prune_branches' => 'getPruneBranches',
+            'environment_init_resources' => 'getEnvironmentInitResources',
+            'token' => 'getToken',
+            'base_url' => 'getBaseUrl',
+            'project' => 'getProject',
+            'build_merge_requests' => 'getBuildMergeRequests',
+            'build_wip_merge_requests' => 'getBuildWipMergeRequests',
+            'merge_requests_clone_parent_data' => 'getMergeRequestsCloneParentData'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'fetch_branches' => 'setFetchBranches',
+            'prune_branches' => 'setPruneBranches',
+            'environment_init_resources' => 'setEnvironmentInitResources',
+            'token' => 'setToken',
+            'base_url' => 'setBaseUrl',
+            'project' => 'setProject',
+            'build_merge_requests' => 'setBuildMergeRequests',
+            'build_wip_merge_requests' => 'setBuildWipMergeRequests',
+            'merge_requests_clone_parent_data' => 'setMergeRequestsCloneParentData'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'fetch_branches' => 'getFetchBranches',
+            'prune_branches' => 'getPruneBranches',
+            'environment_init_resources' => 'getEnvironmentInitResources',
+            'token' => 'getToken',
+            'base_url' => 'getBaseUrl',
+            'project' => 'getProject',
+            'build_merge_requests' => 'getBuildMergeRequests',
+            'build_wip_merge_requests' => 'getBuildWipMergeRequests',
+            'merge_requests_clone_parent_data' => 'getMergeRequestsCloneParentData'
+        ];
+    
     public function __construct(
         public readonly string $type,
         public readonly bool $fetch_branches,

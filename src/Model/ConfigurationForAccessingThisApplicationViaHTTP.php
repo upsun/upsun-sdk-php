@@ -19,7 +19,87 @@ use JsonSerializable;
 final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Configuration_for_accessing_this_application_via_HTTP_';
 
+    private static array $attributeMap = [
+        'locations' => 'locations',
+        'commands' => 'commands',
+        'upstream' => 'upstream',
+        'document_root' => 'document_root',
+        'passthru' => 'passthru',
+        'index_files' => 'index_files',
+        'whitelist' => 'whitelist',
+        'blacklist' => 'blacklist',
+        'expires' => 'expires',
+        'move_to_root' => 'move_to_root'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'locations' => 'setLocations',
+            'commands' => 'setCommands',
+            'upstream' => 'setUpstream',
+            'document_root' => 'setDocumentRoot',
+            'passthru' => 'setPassthru',
+            'index_files' => 'setIndexFiles',
+            'whitelist' => 'setWhitelist',
+            'blacklist' => 'setBlacklist',
+            'expires' => 'setExpires',
+            'move_to_root' => 'setMoveToRoot'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'locations' => 'getLocations',
+            'commands' => 'getCommands',
+            'upstream' => 'getUpstream',
+            'document_root' => 'getDocumentRoot',
+            'passthru' => 'getPassthru',
+            'index_files' => 'getIndexFiles',
+            'whitelist' => 'getWhitelist',
+            'blacklist' => 'getBlacklist',
+            'expires' => 'getExpires',
+            'move_to_root' => 'getMoveToRoot'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'locations' => 'setLocations',
+            'commands' => 'setCommands',
+            'upstream' => 'setUpstream',
+            'document_root' => 'setDocumentRoot',
+            'passthru' => 'setPassthru',
+            'index_files' => 'setIndexFiles',
+            'whitelist' => 'setWhitelist',
+            'blacklist' => 'setBlacklist',
+            'expires' => 'setExpires',
+            'move_to_root' => 'setMoveToRoot'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'locations' => 'getLocations',
+            'commands' => 'getCommands',
+            'upstream' => 'getUpstream',
+            'document_root' => 'getDocumentRoot',
+            'passthru' => 'getPassthru',
+            'index_files' => 'getIndexFiles',
+            'whitelist' => 'getWhitelist',
+            'blacklist' => 'getBlacklist',
+            'expires' => 'getExpires',
+            'move_to_root' => 'getMoveToRoot'
+        ];
+    
     public function __construct(
         /**
          * @var string[]

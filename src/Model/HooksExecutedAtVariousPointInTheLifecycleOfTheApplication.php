@@ -19,7 +19,52 @@ use JsonSerializable;
 final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Hooks_executed_at_various_point_in_the_lifecycle_of_the_application_';
 
+    private static array $attributeMap = [
+        'build' => 'build',
+        'deploy' => 'deploy',
+        'post_deploy' => 'post_deploy'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'build' => 'setBuild',
+            'deploy' => 'setDeploy',
+            'post_deploy' => 'setPostDeploy'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'build' => 'getBuild',
+            'deploy' => 'getDeploy',
+            'post_deploy' => 'getPostDeploy'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'build' => 'setBuild',
+            'deploy' => 'setDeploy',
+            'post_deploy' => 'setPostDeploy'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'build' => 'getBuild',
+            'deploy' => 'getDeploy',
+            'post_deploy' => 'getPostDeploy'
+        ];
+    
     public function __construct(
         public readonly ?string $build,
         public readonly ?string $deploy,

@@ -19,7 +19,92 @@ use JsonSerializable;
 final class ProfileCurrentTrial implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Profile_current_trial';
 
+    private static array $attributeMap = [
+        'active' => 'active',
+        'created' => 'created',
+        'description' => 'description',
+        'expiration' => 'expiration',
+        'current' => 'current',
+        'spend' => 'spend',
+        'spend_remaining' => 'spend_remaining',
+        'projects' => 'projects',
+        'pending_verification' => 'pending_verification',
+        'model' => 'model',
+        'days_remaining' => 'days_remaining'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'active' => 'setActive',
+            'created' => 'setCreated',
+            'description' => 'setDescription',
+            'expiration' => 'setExpiration',
+            'current' => 'setCurrent',
+            'spend' => 'setSpend',
+            'spend_remaining' => 'setSpendRemaining',
+            'projects' => 'setProjects',
+            'pending_verification' => 'setPendingVerification',
+            'model' => 'setModel',
+            'days_remaining' => 'setDaysRemaining'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'active' => 'getActive',
+            'created' => 'getCreated',
+            'description' => 'getDescription',
+            'expiration' => 'getExpiration',
+            'current' => 'getCurrent',
+            'spend' => 'getSpend',
+            'spend_remaining' => 'getSpendRemaining',
+            'projects' => 'getProjects',
+            'pending_verification' => 'getPendingVerification',
+            'model' => 'getModel',
+            'days_remaining' => 'getDaysRemaining'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'active' => 'setActive',
+            'created' => 'setCreated',
+            'description' => 'setDescription',
+            'expiration' => 'setExpiration',
+            'current' => 'setCurrent',
+            'spend' => 'setSpend',
+            'spend_remaining' => 'setSpendRemaining',
+            'projects' => 'setProjects',
+            'pending_verification' => 'setPendingVerification',
+            'model' => 'setModel',
+            'days_remaining' => 'setDaysRemaining'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'active' => 'getActive',
+            'created' => 'getCreated',
+            'description' => 'getDescription',
+            'expiration' => 'getExpiration',
+            'current' => 'getCurrent',
+            'spend' => 'getSpend',
+            'spend_remaining' => 'getSpendRemaining',
+            'projects' => 'getProjects',
+            'pending_verification' => 'getPendingVerification',
+            'model' => 'getModel',
+            'days_remaining' => 'getDaysRemaining'
+        ];
+    
     public function __construct(
         public readonly bool $active,
         public readonly \DateTime $created,

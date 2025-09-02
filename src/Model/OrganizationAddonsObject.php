@@ -19,7 +19,52 @@ use JsonSerializable;
 final class OrganizationAddonsObject implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationAddonsObject';
 
+    private static array $attributeMap = [
+        'available' => 'available',
+        'current' => 'current',
+        'upgrades_available' => 'upgrades_available'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'available' => 'setAvailable',
+            'current' => 'setCurrent',
+            'upgrades_available' => 'setUpgradesAvailable'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'available' => 'getAvailable',
+            'current' => 'getCurrent',
+            'upgrades_available' => 'getUpgradesAvailable'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'available' => 'setAvailable',
+            'current' => 'setCurrent',
+            'upgrades_available' => 'setUpgradesAvailable'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'available' => 'getAvailable',
+            'current' => 'getCurrent',
+            'upgrades_available' => 'getUpgradesAvailable'
+        ];
+    
     public function __construct(
         public readonly \Upsun\Model\OrganizationAddonsObjectAvailable $available,
         public readonly \Upsun\Model\OrganizationAddonsObjectCurrent $current,

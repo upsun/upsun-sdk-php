@@ -19,7 +19,47 @@ use JsonSerializable;
 final class BlackfireEnvironmentsCredentialsValue implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Blackfire_environments_credentials_value';
 
+    private static array $attributeMap = [
+        'server_uuid' => 'server_uuid',
+        'server_token' => 'server_token'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'server_uuid' => 'setServerUuid',
+            'server_token' => 'setServerToken'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'server_uuid' => 'getServerUuid',
+            'server_token' => 'getServerToken'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'server_uuid' => 'setServerUuid',
+            'server_token' => 'setServerToken'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'server_uuid' => 'getServerUuid',
+            'server_token' => 'getServerToken'
+        ];
+    
     public function __construct(
         public readonly string $server_uuid,
         public readonly string $server_token

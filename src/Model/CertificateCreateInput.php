@@ -19,7 +19,57 @@ use JsonSerializable;
 final class CertificateCreateInput implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'CertificateCreateInput';
 
+    private static array $attributeMap = [
+        'certificate' => 'certificate',
+        'key' => 'key',
+        'chain' => 'chain',
+        'is_invalid' => 'is_invalid'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'certificate' => 'setCertificate',
+            'key' => 'setKey',
+            'chain' => 'setChain',
+            'is_invalid' => 'setIsInvalid'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'certificate' => 'getCertificate',
+            'key' => 'getKey',
+            'chain' => 'getChain',
+            'is_invalid' => 'getIsInvalid'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'certificate' => 'setCertificate',
+            'key' => 'setKey',
+            'chain' => 'setChain',
+            'is_invalid' => 'setIsInvalid'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'certificate' => 'getCertificate',
+            'key' => 'getKey',
+            'chain' => 'getChain',
+            'is_invalid' => 'getIsInvalid'
+        ];
+    
     public function __construct(
         public readonly string $certificate,
         public readonly string $key,

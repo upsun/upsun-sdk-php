@@ -19,7 +19,52 @@ use JsonSerializable;
 final class BuildResources implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Build_Resources';
 
+    private static array $attributeMap = [
+        'enabled' => 'enabled',
+        'max_cpu' => 'max_cpu',
+        'max_memory' => 'max_memory'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'enabled' => 'setEnabled',
+            'max_cpu' => 'setMaxCpu',
+            'max_memory' => 'setMaxMemory'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'enabled' => 'getEnabled',
+            'max_cpu' => 'getMaxCpu',
+            'max_memory' => 'getMaxMemory'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'enabled' => 'setEnabled',
+            'max_cpu' => 'setMaxCpu',
+            'max_memory' => 'setMaxMemory'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'enabled' => 'getEnabled',
+            'max_cpu' => 'getMaxCpu',
+            'max_memory' => 'getMaxMemory'
+        ];
+    
     public function __construct(
         public readonly bool $enabled,
         public readonly float $max_cpu,

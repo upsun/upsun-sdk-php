@@ -19,7 +19,47 @@ use JsonSerializable;
 final class ConfigurationForSupportingRequestBuffering implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Configuration_for_supporting_request_buffering_';
 
+    private static array $attributeMap = [
+        'enabled' => 'enabled',
+        'max_request_size' => 'max_request_size'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'enabled' => 'setEnabled',
+            'max_request_size' => 'setMaxRequestSize'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'enabled' => 'getEnabled',
+            'max_request_size' => 'getMaxRequestSize'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'enabled' => 'setEnabled',
+            'max_request_size' => 'setMaxRequestSize'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'enabled' => 'getEnabled',
+            'max_request_size' => 'getMaxRequestSize'
+        ];
+    
     public function __construct(
         public readonly bool $enabled,
         public readonly ?string $max_request_size

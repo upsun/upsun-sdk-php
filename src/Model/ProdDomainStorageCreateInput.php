@@ -19,7 +19,52 @@ use JsonSerializable;
 final class ProdDomainStorageCreateInput implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'ProdDomainStorageCreateInput';
 
+    private static array $attributeMap = [
+        'name' => 'name',
+        'attributes' => 'attributes',
+        'is_default' => 'is_default'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'name' => 'setName',
+            'attributes' => 'setAttributes',
+            'is_default' => 'setIsDefault'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'name' => 'getName',
+            'attributes' => 'getAttributes',
+            'is_default' => 'getIsDefault'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'name' => 'setName',
+            'attributes' => 'setAttributes',
+            'is_default' => 'setIsDefault'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'name' => 'getName',
+            'attributes' => 'getAttributes',
+            'is_default' => 'getIsDefault'
+        ];
+    
     public function __construct(
         public readonly string $name,
         /**

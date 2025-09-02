@@ -19,7 +19,52 @@ use JsonSerializable;
 final class ListTickets200Response implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'list_tickets_200_response';
 
+    private static array $attributeMap = [
+        'count' => 'count',
+        'tickets' => 'tickets',
+        '_links' => '_links'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'count' => 'setCount',
+            'tickets' => 'setTickets',
+            '_links' => 'setLinks'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'count' => 'getCount',
+            'tickets' => 'getTickets',
+            '_links' => 'getLinks'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'count' => 'setCount',
+            'tickets' => 'setTickets',
+            '_links' => 'setLinks'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'count' => 'getCount',
+            'tickets' => 'getTickets',
+            '_links' => 'getLinks'
+        ];
+    
     public function __construct(
         public readonly int $count,
         /**

@@ -19,7 +19,57 @@ use JsonSerializable;
 final class ListTicketPriorities200ResponseInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'list_ticket_priorities_200_response_inner';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'label' => 'label',
+        'short_description' => 'short_description',
+        'description' => 'description'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'label' => 'setLabel',
+            'short_description' => 'setShortDescription',
+            'description' => 'setDescription'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'label' => 'getLabel',
+            'short_description' => 'getShortDescription',
+            'description' => 'getDescription'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'label' => 'setLabel',
+            'short_description' => 'setShortDescription',
+            'description' => 'setDescription'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'label' => 'getLabel',
+            'short_description' => 'getShortDescription',
+            'description' => 'getDescription'
+        ];
+    
     public function __construct(
         public readonly string $id,
         public readonly string $label,

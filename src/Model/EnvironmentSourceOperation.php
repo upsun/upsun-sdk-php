@@ -19,7 +19,52 @@ use JsonSerializable;
 final class EnvironmentSourceOperation implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'EnvironmentSourceOperation';
 
+    private static array $attributeMap = [
+        'app' => 'app',
+        'operation' => 'operation',
+        'command' => 'command'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'app' => 'setApp',
+            'operation' => 'setOperation',
+            'command' => 'setCommand'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'app' => 'getApp',
+            'operation' => 'getOperation',
+            'command' => 'getCommand'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'app' => 'setApp',
+            'operation' => 'setOperation',
+            'command' => 'setCommand'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'app' => 'getApp',
+            'operation' => 'getOperation',
+            'command' => 'getCommand'
+        ];
+    
     public function __construct(
         public readonly string $app,
         public readonly string $operation,

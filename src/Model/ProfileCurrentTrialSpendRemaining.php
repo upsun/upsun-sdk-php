@@ -19,7 +19,62 @@ use JsonSerializable;
 final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Profile_current_trial_spend_remaining';
 
+    private static array $attributeMap = [
+        'formatted' => 'formatted',
+        'amount' => 'amount',
+        'currency' => 'currency',
+        'currency_symbol' => 'currency_symbol',
+        'unlimited' => 'unlimited'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'formatted' => 'setFormatted',
+            'amount' => 'setAmount',
+            'currency' => 'setCurrency',
+            'currency_symbol' => 'setCurrencySymbol',
+            'unlimited' => 'setUnlimited'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'formatted' => 'getFormatted',
+            'amount' => 'getAmount',
+            'currency' => 'getCurrency',
+            'currency_symbol' => 'getCurrencySymbol',
+            'unlimited' => 'getUnlimited'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'formatted' => 'setFormatted',
+            'amount' => 'setAmount',
+            'currency' => 'setCurrency',
+            'currency_symbol' => 'setCurrencySymbol',
+            'unlimited' => 'setUnlimited'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'formatted' => 'getFormatted',
+            'amount' => 'getAmount',
+            'currency' => 'getCurrency',
+            'currency_symbol' => 'getCurrencySymbol',
+            'unlimited' => 'getUnlimited'
+        ];
+    
     public function __construct(
         public readonly string $formatted,
         public readonly string $amount,

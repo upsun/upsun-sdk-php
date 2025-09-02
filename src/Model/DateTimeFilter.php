@@ -19,7 +19,72 @@ use JsonSerializable;
 final class DateTimeFilter implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'DateTimeFilter';
 
+    private static array $attributeMap = [
+        'eq' => 'eq',
+        'ne' => 'ne',
+        'between' => 'between',
+        'gt' => 'gt',
+        'gte' => 'gte',
+        'lt' => 'lt',
+        'lte' => 'lte'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'eq' => 'setEq',
+            'ne' => 'setNe',
+            'between' => 'setBetween',
+            'gt' => 'setGt',
+            'gte' => 'setGte',
+            'lt' => 'setLt',
+            'lte' => 'setLte'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'eq' => 'getEq',
+            'ne' => 'getNe',
+            'between' => 'getBetween',
+            'gt' => 'getGt',
+            'gte' => 'getGte',
+            'lt' => 'getLt',
+            'lte' => 'getLte'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'eq' => 'setEq',
+            'ne' => 'setNe',
+            'between' => 'setBetween',
+            'gt' => 'setGt',
+            'gte' => 'setGte',
+            'lt' => 'setLt',
+            'lte' => 'setLte'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'eq' => 'getEq',
+            'ne' => 'getNe',
+            'between' => 'getBetween',
+            'gt' => 'getGt',
+            'gte' => 'getGte',
+            'lt' => 'getLt',
+            'lte' => 'getLte'
+        ];
+    
     public function __construct(
         public readonly string $eq,
         public readonly string $ne,

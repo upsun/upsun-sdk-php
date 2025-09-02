@@ -19,7 +19,67 @@ use JsonSerializable;
 final class Commit implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Commit';
 
+    private static array $attributeMap = [
+        'sha' => 'sha',
+        'author' => 'author',
+        'committer' => 'committer',
+        'message' => 'message',
+        'tree' => 'tree',
+        'parents' => 'parents'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'sha' => 'setSha',
+            'author' => 'setAuthor',
+            'committer' => 'setCommitter',
+            'message' => 'setMessage',
+            'tree' => 'setTree',
+            'parents' => 'setParents'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'sha' => 'getSha',
+            'author' => 'getAuthor',
+            'committer' => 'getCommitter',
+            'message' => 'getMessage',
+            'tree' => 'getTree',
+            'parents' => 'getParents'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'sha' => 'setSha',
+            'author' => 'setAuthor',
+            'committer' => 'setCommitter',
+            'message' => 'setMessage',
+            'tree' => 'setTree',
+            'parents' => 'setParents'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'sha' => 'getSha',
+            'author' => 'getAuthor',
+            'committer' => 'getCommitter',
+            'message' => 'getMessage',
+            'tree' => 'getTree',
+            'parents' => 'getParents'
+        ];
+    
     public function __construct(
         public readonly string $sha,
         public readonly \Upsun\Model\TheInformationAboutTheAuthor $author,

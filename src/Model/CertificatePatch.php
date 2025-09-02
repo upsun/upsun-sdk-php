@@ -19,7 +19,47 @@ use JsonSerializable;
 final class CertificatePatch implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'CertificatePatch';
 
+    private static array $attributeMap = [
+        'chain' => 'chain',
+        'is_invalid' => 'is_invalid'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'chain' => 'setChain',
+            'is_invalid' => 'setIsInvalid'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'chain' => 'getChain',
+            'is_invalid' => 'getIsInvalid'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'chain' => 'setChain',
+            'is_invalid' => 'setIsInvalid'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'chain' => 'getChain',
+            'is_invalid' => 'getIsInvalid'
+        ];
+    
     public function __construct(
         /**
          * @var array

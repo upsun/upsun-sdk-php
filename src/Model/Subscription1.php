@@ -19,7 +19,97 @@ use JsonSerializable;
 final class Subscription1 implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Subscription_1';
 
+    private static array $attributeMap = [
+        'license_uri' => 'license_uri',
+        'plan' => 'plan',
+        'environments' => 'environments',
+        'storage' => 'storage',
+        'included_users' => 'included_users',
+        'subscription_management_uri' => 'subscription_management_uri',
+        'restricted' => 'restricted',
+        'suspended' => 'suspended',
+        'user_licenses' => 'user_licenses',
+        'resources' => 'resources',
+        'resource_validation_url' => 'resource_validation_url',
+        'image_types' => 'image_types'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'license_uri' => 'setLicenseUri',
+            'plan' => 'setPlan',
+            'environments' => 'setEnvironments',
+            'storage' => 'setStorage',
+            'included_users' => 'setIncludedUsers',
+            'subscription_management_uri' => 'setSubscriptionManagementUri',
+            'restricted' => 'setRestricted',
+            'suspended' => 'setSuspended',
+            'user_licenses' => 'setUserLicenses',
+            'resources' => 'setResources',
+            'resource_validation_url' => 'setResourceValidationUrl',
+            'image_types' => 'setImageTypes'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'license_uri' => 'getLicenseUri',
+            'plan' => 'getPlan',
+            'environments' => 'getEnvironments',
+            'storage' => 'getStorage',
+            'included_users' => 'getIncludedUsers',
+            'subscription_management_uri' => 'getSubscriptionManagementUri',
+            'restricted' => 'getRestricted',
+            'suspended' => 'getSuspended',
+            'user_licenses' => 'getUserLicenses',
+            'resources' => 'getResources',
+            'resource_validation_url' => 'getResourceValidationUrl',
+            'image_types' => 'getImageTypes'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'license_uri' => 'setLicenseUri',
+            'plan' => 'setPlan',
+            'environments' => 'setEnvironments',
+            'storage' => 'setStorage',
+            'included_users' => 'setIncludedUsers',
+            'subscription_management_uri' => 'setSubscriptionManagementUri',
+            'restricted' => 'setRestricted',
+            'suspended' => 'setSuspended',
+            'user_licenses' => 'setUserLicenses',
+            'resources' => 'setResources',
+            'resource_validation_url' => 'setResourceValidationUrl',
+            'image_types' => 'setImageTypes'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'license_uri' => 'getLicenseUri',
+            'plan' => 'getPlan',
+            'environments' => 'getEnvironments',
+            'storage' => 'getStorage',
+            'included_users' => 'getIncludedUsers',
+            'subscription_management_uri' => 'getSubscriptionManagementUri',
+            'restricted' => 'getRestricted',
+            'suspended' => 'getSuspended',
+            'user_licenses' => 'getUserLicenses',
+            'resources' => 'getResources',
+            'resource_validation_url' => 'getResourceValidationUrl',
+            'image_types' => 'getImageTypes'
+        ];
+    
     public function __construct(
         public readonly string $license_uri,
         public readonly string $plan,

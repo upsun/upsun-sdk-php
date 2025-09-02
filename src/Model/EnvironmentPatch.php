@@ -19,7 +19,82 @@ use JsonSerializable;
 final class EnvironmentPatch implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'EnvironmentPatch';
 
+    private static array $attributeMap = [
+        'name' => 'name',
+        'title' => 'title',
+        'attributes' => 'attributes',
+        'type' => 'type',
+        'parent' => 'parent',
+        'clone_parent_on_create' => 'clone_parent_on_create',
+        'http_access' => 'http_access',
+        'enable_smtp' => 'enable_smtp',
+        'restrict_robots' => 'restrict_robots'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'name' => 'setName',
+            'title' => 'setTitle',
+            'attributes' => 'setAttributes',
+            'type' => 'setType',
+            'parent' => 'setParent',
+            'clone_parent_on_create' => 'setCloneParentOnCreate',
+            'http_access' => 'setHttpAccess',
+            'enable_smtp' => 'setEnableSmtp',
+            'restrict_robots' => 'setRestrictRobots'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'name' => 'getName',
+            'title' => 'getTitle',
+            'attributes' => 'getAttributes',
+            'type' => 'getType',
+            'parent' => 'getParent',
+            'clone_parent_on_create' => 'getCloneParentOnCreate',
+            'http_access' => 'getHttpAccess',
+            'enable_smtp' => 'getEnableSmtp',
+            'restrict_robots' => 'getRestrictRobots'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'name' => 'setName',
+            'title' => 'setTitle',
+            'attributes' => 'setAttributes',
+            'type' => 'setType',
+            'parent' => 'setParent',
+            'clone_parent_on_create' => 'setCloneParentOnCreate',
+            'http_access' => 'setHttpAccess',
+            'enable_smtp' => 'setEnableSmtp',
+            'restrict_robots' => 'setRestrictRobots'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'name' => 'getName',
+            'title' => 'getTitle',
+            'attributes' => 'getAttributes',
+            'type' => 'getType',
+            'parent' => 'getParent',
+            'clone_parent_on_create' => 'getCloneParentOnCreate',
+            'http_access' => 'getHttpAccess',
+            'enable_smtp' => 'getEnableSmtp',
+            'restrict_robots' => 'getRestrictRobots'
+        ];
+    
     public function __construct(
         public readonly string $name,
         public readonly string $title,

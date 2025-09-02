@@ -19,7 +19,62 @@ use JsonSerializable;
 final class EnvironmentRestoreInput implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'EnvironmentRestoreInput';
 
+    private static array $attributeMap = [
+        'environment_name' => 'environment_name',
+        'branch_from' => 'branch_from',
+        'restore_code' => 'restore_code',
+        'restore_resources' => 'restore_resources',
+        'resources' => 'resources'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'environment_name' => 'setEnvironmentName',
+            'branch_from' => 'setBranchFrom',
+            'restore_code' => 'setRestoreCode',
+            'restore_resources' => 'setRestoreResources',
+            'resources' => 'setResources'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'environment_name' => 'getEnvironmentName',
+            'branch_from' => 'getBranchFrom',
+            'restore_code' => 'getRestoreCode',
+            'restore_resources' => 'getRestoreResources',
+            'resources' => 'getResources'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'environment_name' => 'setEnvironmentName',
+            'branch_from' => 'setBranchFrom',
+            'restore_code' => 'setRestoreCode',
+            'restore_resources' => 'setRestoreResources',
+            'resources' => 'setResources'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'environment_name' => 'getEnvironmentName',
+            'branch_from' => 'getBranchFrom',
+            'restore_code' => 'getRestoreCode',
+            'restore_resources' => 'getRestoreResources',
+            'resources' => 'getResources'
+        ];
+    
     public function __construct(
         public readonly ?string $environment_name,
         public readonly ?string $branch_from,

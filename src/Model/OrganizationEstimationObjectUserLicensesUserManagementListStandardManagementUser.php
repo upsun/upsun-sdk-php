@@ -19,7 +19,47 @@ use JsonSerializable;
 final class OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationEstimationObject_user_licenses_user_management_list_standard_management_user';
 
+    private static array $attributeMap = [
+        'count' => 'count',
+        'total' => 'total'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'count' => 'setCount',
+            'total' => 'setTotal'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'count' => 'getCount',
+            'total' => 'getTotal'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'count' => 'setCount',
+            'total' => 'setTotal'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'count' => 'getCount',
+            'total' => 'getTotal'
+        ];
+    
     public function __construct(
         public readonly int $count,
         public readonly string $total

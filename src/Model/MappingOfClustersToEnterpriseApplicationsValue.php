@@ -19,7 +19,47 @@ use JsonSerializable;
 final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Mapping_of_clusters_to_Enterprise_applications_value';
 
+    private static array $attributeMap = [
+        'active_docroot' => 'active_docroot',
+        'docroot_versions' => 'docroot_versions'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'active_docroot' => 'setActiveDocroot',
+            'docroot_versions' => 'setDocrootVersions'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'active_docroot' => 'getActiveDocroot',
+            'docroot_versions' => 'getDocrootVersions'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'active_docroot' => 'setActiveDocroot',
+            'docroot_versions' => 'setDocrootVersions'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'active_docroot' => 'getActiveDocroot',
+            'docroot_versions' => 'getDocrootVersions'
+        ];
+    
     public function __construct(
         public readonly ?string $active_docroot,
         /**

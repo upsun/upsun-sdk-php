@@ -19,7 +19,62 @@ use JsonSerializable;
 final class PrepaymentObjectPrepayment implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'PrepaymentObject_prepayment';
 
+    private static array $attributeMap = [
+        'organization_id' => 'organization_id',
+        'balance' => 'balance',
+        'last_updated_at' => 'last_updated_at',
+        'sufficient' => 'sufficient',
+        'fallback' => 'fallback'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'organization_id' => 'setOrganizationId',
+            'balance' => 'setBalance',
+            'last_updated_at' => 'setLastUpdatedAt',
+            'sufficient' => 'setSufficient',
+            'fallback' => 'setFallback'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'organization_id' => 'getOrganizationId',
+            'balance' => 'getBalance',
+            'last_updated_at' => 'getLastUpdatedAt',
+            'sufficient' => 'getSufficient',
+            'fallback' => 'getFallback'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'organization_id' => 'setOrganizationId',
+            'balance' => 'setBalance',
+            'last_updated_at' => 'setLastUpdatedAt',
+            'sufficient' => 'setSufficient',
+            'fallback' => 'setFallback'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'organization_id' => 'getOrganizationId',
+            'balance' => 'getBalance',
+            'last_updated_at' => 'getLastUpdatedAt',
+            'sufficient' => 'getSufficient',
+            'fallback' => 'getFallback'
+        ];
+    
     public function __construct(
         public readonly string $organization_id,
         public readonly \Upsun\Model\PrepaymentObjectPrepaymentBalance $balance,

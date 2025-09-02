@@ -19,7 +19,62 @@ use JsonSerializable;
 final class Usage implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Usage';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'subscription_id' => 'subscription_id',
+        'usage_group' => 'usage_group',
+        'quantity' => 'quantity',
+        'start' => 'start'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'subscription_id' => 'setSubscriptionId',
+            'usage_group' => 'setUsageGroup',
+            'quantity' => 'setQuantity',
+            'start' => 'setStart'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'subscription_id' => 'getSubscriptionId',
+            'usage_group' => 'getUsageGroup',
+            'quantity' => 'getQuantity',
+            'start' => 'getStart'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'subscription_id' => 'setSubscriptionId',
+            'usage_group' => 'setUsageGroup',
+            'quantity' => 'setQuantity',
+            'start' => 'setStart'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'subscription_id' => 'getSubscriptionId',
+            'usage_group' => 'getUsageGroup',
+            'quantity' => 'getQuantity',
+            'start' => 'getStart'
+        ];
+    
     public function __construct(
         public readonly string $id,
         public readonly string $subscription_id,

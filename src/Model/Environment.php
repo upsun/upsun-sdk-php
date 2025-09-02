@@ -19,7 +19,197 @@ use JsonSerializable;
 final class Environment implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Environment';
 
+    private static array $attributeMap = [
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'name' => 'name',
+        'machine_name' => 'machine_name',
+        'title' => 'title',
+        'attributes' => 'attributes',
+        'type' => 'type',
+        'parent' => 'parent',
+        'default_domain' => 'default_domain',
+        'has_domains' => 'has_domains',
+        'clone_parent_on_create' => 'clone_parent_on_create',
+        'deployment_target' => 'deployment_target',
+        'is_pr' => 'is_pr',
+        'has_remote' => 'has_remote',
+        'status' => 'status',
+        'http_access' => 'http_access',
+        'enable_smtp' => 'enable_smtp',
+        'restrict_robots' => 'restrict_robots',
+        'edge_hostname' => 'edge_hostname',
+        'deployment_state' => 'deployment_state',
+        'resources_overrides' => 'resources_overrides',
+        'max_instance_count' => 'max_instance_count',
+        'last_active_at' => 'last_active_at',
+        'last_backup_at' => 'last_backup_at',
+        'project' => 'project',
+        'is_main' => 'is_main',
+        'is_dirty' => 'is_dirty',
+        'has_code' => 'has_code',
+        'head_commit' => 'head_commit',
+        'merge_info' => 'merge_info',
+        'has_deployment' => 'has_deployment',
+        'supports_restrict_robots' => 'supports_restrict_robots'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'name' => 'setName',
+            'machine_name' => 'setMachineName',
+            'title' => 'setTitle',
+            'attributes' => 'setAttributes',
+            'type' => 'setType',
+            'parent' => 'setParent',
+            'default_domain' => 'setDefaultDomain',
+            'has_domains' => 'setHasDomains',
+            'clone_parent_on_create' => 'setCloneParentOnCreate',
+            'deployment_target' => 'setDeploymentTarget',
+            'is_pr' => 'setIsPr',
+            'has_remote' => 'setHasRemote',
+            'status' => 'setStatus',
+            'http_access' => 'setHttpAccess',
+            'enable_smtp' => 'setEnableSmtp',
+            'restrict_robots' => 'setRestrictRobots',
+            'edge_hostname' => 'setEdgeHostname',
+            'deployment_state' => 'setDeploymentState',
+            'resources_overrides' => 'setResourcesOverrides',
+            'max_instance_count' => 'setMaxInstanceCount',
+            'last_active_at' => 'setLastActiveAt',
+            'last_backup_at' => 'setLastBackupAt',
+            'project' => 'setProject',
+            'is_main' => 'setIsMain',
+            'is_dirty' => 'setIsDirty',
+            'has_code' => 'setHasCode',
+            'head_commit' => 'setHeadCommit',
+            'merge_info' => 'setMergeInfo',
+            'has_deployment' => 'setHasDeployment',
+            'supports_restrict_robots' => 'setSupportsRestrictRobots'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'name' => 'getName',
+            'machine_name' => 'getMachineName',
+            'title' => 'getTitle',
+            'attributes' => 'getAttributes',
+            'type' => 'getType',
+            'parent' => 'getParent',
+            'default_domain' => 'getDefaultDomain',
+            'has_domains' => 'getHasDomains',
+            'clone_parent_on_create' => 'getCloneParentOnCreate',
+            'deployment_target' => 'getDeploymentTarget',
+            'is_pr' => 'getIsPr',
+            'has_remote' => 'getHasRemote',
+            'status' => 'getStatus',
+            'http_access' => 'getHttpAccess',
+            'enable_smtp' => 'getEnableSmtp',
+            'restrict_robots' => 'getRestrictRobots',
+            'edge_hostname' => 'getEdgeHostname',
+            'deployment_state' => 'getDeploymentState',
+            'resources_overrides' => 'getResourcesOverrides',
+            'max_instance_count' => 'getMaxInstanceCount',
+            'last_active_at' => 'getLastActiveAt',
+            'last_backup_at' => 'getLastBackupAt',
+            'project' => 'getProject',
+            'is_main' => 'getIsMain',
+            'is_dirty' => 'getIsDirty',
+            'has_code' => 'getHasCode',
+            'head_commit' => 'getHeadCommit',
+            'merge_info' => 'getMergeInfo',
+            'has_deployment' => 'getHasDeployment',
+            'supports_restrict_robots' => 'getSupportsRestrictRobots'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'name' => 'setName',
+            'machine_name' => 'setMachineName',
+            'title' => 'setTitle',
+            'attributes' => 'setAttributes',
+            'type' => 'setType',
+            'parent' => 'setParent',
+            'default_domain' => 'setDefaultDomain',
+            'has_domains' => 'setHasDomains',
+            'clone_parent_on_create' => 'setCloneParentOnCreate',
+            'deployment_target' => 'setDeploymentTarget',
+            'is_pr' => 'setIsPr',
+            'has_remote' => 'setHasRemote',
+            'status' => 'setStatus',
+            'http_access' => 'setHttpAccess',
+            'enable_smtp' => 'setEnableSmtp',
+            'restrict_robots' => 'setRestrictRobots',
+            'edge_hostname' => 'setEdgeHostname',
+            'deployment_state' => 'setDeploymentState',
+            'resources_overrides' => 'setResourcesOverrides',
+            'max_instance_count' => 'setMaxInstanceCount',
+            'last_active_at' => 'setLastActiveAt',
+            'last_backup_at' => 'setLastBackupAt',
+            'project' => 'setProject',
+            'is_main' => 'setIsMain',
+            'is_dirty' => 'setIsDirty',
+            'has_code' => 'setHasCode',
+            'head_commit' => 'setHeadCommit',
+            'merge_info' => 'setMergeInfo',
+            'has_deployment' => 'setHasDeployment',
+            'supports_restrict_robots' => 'setSupportsRestrictRobots'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'name' => 'getName',
+            'machine_name' => 'getMachineName',
+            'title' => 'getTitle',
+            'attributes' => 'getAttributes',
+            'type' => 'getType',
+            'parent' => 'getParent',
+            'default_domain' => 'getDefaultDomain',
+            'has_domains' => 'getHasDomains',
+            'clone_parent_on_create' => 'getCloneParentOnCreate',
+            'deployment_target' => 'getDeploymentTarget',
+            'is_pr' => 'getIsPr',
+            'has_remote' => 'getHasRemote',
+            'status' => 'getStatus',
+            'http_access' => 'getHttpAccess',
+            'enable_smtp' => 'getEnableSmtp',
+            'restrict_robots' => 'getRestrictRobots',
+            'edge_hostname' => 'getEdgeHostname',
+            'deployment_state' => 'getDeploymentState',
+            'resources_overrides' => 'getResourcesOverrides',
+            'max_instance_count' => 'getMaxInstanceCount',
+            'last_active_at' => 'getLastActiveAt',
+            'last_backup_at' => 'getLastBackupAt',
+            'project' => 'getProject',
+            'is_main' => 'getIsMain',
+            'is_dirty' => 'getIsDirty',
+            'has_code' => 'getHasCode',
+            'head_commit' => 'getHeadCommit',
+            'merge_info' => 'getMergeInfo',
+            'has_deployment' => 'getHasDeployment',
+            'supports_restrict_robots' => 'getSupportsRestrictRobots'
+        ];
+    
     public function __construct(
         public readonly ?\DateTime $created_at,
         public readonly ?\DateTime $updated_at,

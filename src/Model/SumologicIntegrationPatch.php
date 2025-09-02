@@ -19,7 +19,62 @@ use JsonSerializable;
 final class SumologicIntegrationPatch implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'SumologicIntegrationPatch';
 
+    private static array $attributeMap = [
+        'type' => 'type',
+        'extra' => 'extra',
+        'url' => 'url',
+        'category' => 'category',
+        'tls_verify' => 'tls_verify'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'extra' => 'setExtra',
+            'url' => 'setUrl',
+            'category' => 'setCategory',
+            'tls_verify' => 'setTlsVerify'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'extra' => 'getExtra',
+            'url' => 'getUrl',
+            'category' => 'getCategory',
+            'tls_verify' => 'getTlsVerify'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'extra' => 'setExtra',
+            'url' => 'setUrl',
+            'category' => 'setCategory',
+            'tls_verify' => 'setTlsVerify'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'extra' => 'getExtra',
+            'url' => 'getUrl',
+            'category' => 'getCategory',
+            'tls_verify' => 'getTlsVerify'
+        ];
+    
     public function __construct(
         public readonly string $type,
         /**

@@ -19,7 +19,72 @@ use JsonSerializable;
 final class CreateOrgSubscriptionRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'create_org_subscription_request';
 
+    private static array $attributeMap = [
+        'plan' => 'plan',
+        'project_region' => 'project_region',
+        'project_title' => 'project_title',
+        'options_url' => 'options_url',
+        'default_branch' => 'default_branch',
+        'environments' => 'environments',
+        'storage' => 'storage'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'plan' => 'setPlan',
+            'project_region' => 'setProjectRegion',
+            'project_title' => 'setProjectTitle',
+            'options_url' => 'setOptionsUrl',
+            'default_branch' => 'setDefaultBranch',
+            'environments' => 'setEnvironments',
+            'storage' => 'setStorage'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'plan' => 'getPlan',
+            'project_region' => 'getProjectRegion',
+            'project_title' => 'getProjectTitle',
+            'options_url' => 'getOptionsUrl',
+            'default_branch' => 'getDefaultBranch',
+            'environments' => 'getEnvironments',
+            'storage' => 'getStorage'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'plan' => 'setPlan',
+            'project_region' => 'setProjectRegion',
+            'project_title' => 'setProjectTitle',
+            'options_url' => 'setOptionsUrl',
+            'default_branch' => 'setDefaultBranch',
+            'environments' => 'setEnvironments',
+            'storage' => 'setStorage'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'plan' => 'getPlan',
+            'project_region' => 'getProjectRegion',
+            'project_title' => 'getProjectTitle',
+            'options_url' => 'getOptionsUrl',
+            'default_branch' => 'getDefaultBranch',
+            'environments' => 'getEnvironments',
+            'storage' => 'getStorage'
+        ];
+    
     public function __construct(
         public readonly string $plan,
         public readonly string $project_region,

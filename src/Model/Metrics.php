@@ -19,7 +19,42 @@ use JsonSerializable;
 final class Metrics implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Metrics';
 
+    private static array $attributeMap = [
+        'max_range' => 'max_range'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'max_range' => 'setMaxRange'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'max_range' => 'getMaxRange'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'max_range' => 'setMaxRange'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'max_range' => 'getMaxRange'
+        ];
+    
     public function __construct(
         public readonly string $max_range
     ) {

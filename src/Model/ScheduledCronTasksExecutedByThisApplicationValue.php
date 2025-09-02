@@ -19,7 +19,62 @@ use JsonSerializable;
 final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Scheduled_cron_tasks_executed_by_this_application__value';
 
+    private static array $attributeMap = [
+        'spec' => 'spec',
+        'commands' => 'commands',
+        'shutdown_timeout' => 'shutdown_timeout',
+        'timeout' => 'timeout',
+        'cmd' => 'cmd'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'spec' => 'setSpec',
+            'commands' => 'setCommands',
+            'shutdown_timeout' => 'setShutdownTimeout',
+            'timeout' => 'setTimeout',
+            'cmd' => 'setCmd'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'spec' => 'getSpec',
+            'commands' => 'getCommands',
+            'shutdown_timeout' => 'getShutdownTimeout',
+            'timeout' => 'getTimeout',
+            'cmd' => 'getCmd'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'spec' => 'setSpec',
+            'commands' => 'setCommands',
+            'shutdown_timeout' => 'setShutdownTimeout',
+            'timeout' => 'setTimeout',
+            'cmd' => 'setCmd'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'spec' => 'getSpec',
+            'commands' => 'getCommands',
+            'shutdown_timeout' => 'getShutdownTimeout',
+            'timeout' => 'getTimeout',
+            'cmd' => 'getCmd'
+        ];
+    
     public function __construct(
         public readonly string $spec,
         public readonly \Upsun\Model\TheCommandsDefinition $commands,

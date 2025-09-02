@@ -19,7 +19,67 @@ use JsonSerializable;
 final class SSHKey implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'SSHKey';
 
+    private static array $attributeMap = [
+        'key_id' => 'key_id',
+        'uid' => 'uid',
+        'fingerprint' => 'fingerprint',
+        'title' => 'title',
+        'value' => 'value',
+        'changed' => 'changed'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'key_id' => 'setKeyId',
+            'uid' => 'setUid',
+            'fingerprint' => 'setFingerprint',
+            'title' => 'setTitle',
+            'value' => 'setValue',
+            'changed' => 'setChanged'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'key_id' => 'getKeyId',
+            'uid' => 'getUid',
+            'fingerprint' => 'getFingerprint',
+            'title' => 'getTitle',
+            'value' => 'getValue',
+            'changed' => 'getChanged'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'key_id' => 'setKeyId',
+            'uid' => 'setUid',
+            'fingerprint' => 'setFingerprint',
+            'title' => 'setTitle',
+            'value' => 'setValue',
+            'changed' => 'setChanged'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'key_id' => 'getKeyId',
+            'uid' => 'getUid',
+            'fingerprint' => 'getFingerprint',
+            'title' => 'getTitle',
+            'value' => 'getValue',
+            'changed' => 'getChanged'
+        ];
+    
     public function __construct(
         public readonly int $key_id,
         public readonly int $uid,

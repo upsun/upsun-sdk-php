@@ -19,7 +19,47 @@ use JsonSerializable;
 final class TheCronsDeploymentState implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_crons_deployment_state';
 
+    private static array $attributeMap = [
+        'enabled' => 'enabled',
+        'status' => 'status'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'enabled' => 'setEnabled',
+            'status' => 'setStatus'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'enabled' => 'getEnabled',
+            'status' => 'getStatus'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'enabled' => 'setEnabled',
+            'status' => 'setStatus'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'enabled' => 'getEnabled',
+            'status' => 'getStatus'
+        ];
+    
     public function __construct(
         public readonly bool $enabled,
         public readonly string $status

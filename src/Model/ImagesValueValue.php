@@ -19,7 +19,42 @@ use JsonSerializable;
 final class ImagesValueValue implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Images_value_value';
 
+    private static array $attributeMap = [
+        'available' => 'available'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'available' => 'setAvailable'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'available' => 'getAvailable'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'available' => 'setAvailable'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'available' => 'getAvailable'
+        ];
+    
     public function __construct(
         public readonly bool $available
     ) {

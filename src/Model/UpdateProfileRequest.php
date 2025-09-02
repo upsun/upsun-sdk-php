@@ -19,7 +19,102 @@ use JsonSerializable;
 final class UpdateProfileRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'update_profile_request';
 
+    private static array $attributeMap = [
+        'display_name' => 'display_name',
+        'username' => 'username',
+        'current_password' => 'current_password',
+        'password' => 'password',
+        'company_type' => 'company_type',
+        'company_name' => 'company_name',
+        'vat_number' => 'vat_number',
+        'company_role' => 'company_role',
+        'marketing' => 'marketing',
+        'ui_colorscheme' => 'ui_colorscheme',
+        'default_catalog' => 'default_catalog',
+        'project_options_url' => 'project_options_url',
+        'picture' => 'picture'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'display_name' => 'setDisplayName',
+            'username' => 'setUsername',
+            'current_password' => 'setCurrentPassword',
+            'password' => 'setPassword',
+            'company_type' => 'setCompanyType',
+            'company_name' => 'setCompanyName',
+            'vat_number' => 'setVatNumber',
+            'company_role' => 'setCompanyRole',
+            'marketing' => 'setMarketing',
+            'ui_colorscheme' => 'setUiColorscheme',
+            'default_catalog' => 'setDefaultCatalog',
+            'project_options_url' => 'setProjectOptionsUrl',
+            'picture' => 'setPicture'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'display_name' => 'getDisplayName',
+            'username' => 'getUsername',
+            'current_password' => 'getCurrentPassword',
+            'password' => 'getPassword',
+            'company_type' => 'getCompanyType',
+            'company_name' => 'getCompanyName',
+            'vat_number' => 'getVatNumber',
+            'company_role' => 'getCompanyRole',
+            'marketing' => 'getMarketing',
+            'ui_colorscheme' => 'getUiColorscheme',
+            'default_catalog' => 'getDefaultCatalog',
+            'project_options_url' => 'getProjectOptionsUrl',
+            'picture' => 'getPicture'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'display_name' => 'setDisplayName',
+            'username' => 'setUsername',
+            'current_password' => 'setCurrentPassword',
+            'password' => 'setPassword',
+            'company_type' => 'setCompanyType',
+            'company_name' => 'setCompanyName',
+            'vat_number' => 'setVatNumber',
+            'company_role' => 'setCompanyRole',
+            'marketing' => 'setMarketing',
+            'ui_colorscheme' => 'setUiColorscheme',
+            'default_catalog' => 'setDefaultCatalog',
+            'project_options_url' => 'setProjectOptionsUrl',
+            'picture' => 'setPicture'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'display_name' => 'getDisplayName',
+            'username' => 'getUsername',
+            'current_password' => 'getCurrentPassword',
+            'password' => 'getPassword',
+            'company_type' => 'getCompanyType',
+            'company_name' => 'getCompanyName',
+            'vat_number' => 'getVatNumber',
+            'company_role' => 'getCompanyRole',
+            'marketing' => 'getMarketing',
+            'ui_colorscheme' => 'getUiColorscheme',
+            'default_catalog' => 'getDefaultCatalog',
+            'project_options_url' => 'getProjectOptionsUrl',
+            'picture' => 'getPicture'
+        ];
+    
     public function __construct(
         public readonly string $display_name,
         public readonly string $username,

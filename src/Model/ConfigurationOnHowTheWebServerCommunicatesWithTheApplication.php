@@ -19,7 +19,47 @@ use JsonSerializable;
 final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Configuration_on_how_the_web_server_communicates_with_the_application_';
 
+    private static array $attributeMap = [
+        'socket_family' => 'socket_family',
+        'protocol' => 'protocol'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'socket_family' => 'setSocketFamily',
+            'protocol' => 'setProtocol'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'socket_family' => 'getSocketFamily',
+            'protocol' => 'getProtocol'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'socket_family' => 'setSocketFamily',
+            'protocol' => 'setProtocol'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'socket_family' => 'getSocketFamily',
+            'protocol' => 'getProtocol'
+        ];
+    
     public function __construct(
         public readonly string $socket_family,
         public readonly ?string $protocol

@@ -19,7 +19,47 @@ use JsonSerializable;
 final class TheBackupScheduleSpecificationInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_backup_schedule_specification__inner';
 
+    private static array $attributeMap = [
+        'interval' => 'interval',
+        'count' => 'count'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'interval' => 'setInterval',
+            'count' => 'setCount'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'interval' => 'getInterval',
+            'count' => 'getCount'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'interval' => 'setInterval',
+            'count' => 'setCount'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'interval' => 'getInterval',
+            'count' => 'getCount'
+        ];
+    
     public function __construct(
         public readonly string $interval,
         public readonly int $count

@@ -19,7 +19,47 @@ use JsonSerializable;
 final class ConfirmTotpEnrollmentRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'confirm_totp_enrollment_request';
 
+    private static array $attributeMap = [
+        'secret' => 'secret',
+        'passcode' => 'passcode'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'secret' => 'setSecret',
+            'passcode' => 'setPasscode'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'secret' => 'getSecret',
+            'passcode' => 'getPasscode'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'secret' => 'setSecret',
+            'passcode' => 'setPasscode'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'secret' => 'getSecret',
+            'passcode' => 'getPasscode'
+        ];
+    
     public function __construct(
         public readonly string $secret,
         public readonly string $passcode

@@ -19,7 +19,187 @@ use JsonSerializable;
 final class WebApplicationsValue implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Web_applications_value';
 
+    private static array $attributeMap = [
+        'resources' => 'resources',
+        'size' => 'size',
+        'disk' => 'disk',
+        'access' => 'access',
+        'relationships' => 'relationships',
+        'additional_hosts' => 'additional_hosts',
+        'mounts' => 'mounts',
+        'timezone' => 'timezone',
+        'variables' => 'variables',
+        'firewall' => 'firewall',
+        'container_profile' => 'container_profile',
+        'operations' => 'operations',
+        'name' => 'name',
+        'type' => 'type',
+        'preflight' => 'preflight',
+        'tree_id' => 'tree_id',
+        'app_dir' => 'app_dir',
+        'endpoints' => 'endpoints',
+        'runtime' => 'runtime',
+        'web' => 'web',
+        'hooks' => 'hooks',
+        'crons' => 'crons',
+        'source' => 'source',
+        'build' => 'build',
+        'dependencies' => 'dependencies',
+        'stack' => 'stack',
+        'is_across_submodule' => 'is_across_submodule',
+        'instance_count' => 'instance_count',
+        'config_id' => 'config_id',
+        'slug_id' => 'slug_id'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'resources' => 'setResources',
+            'size' => 'setSize',
+            'disk' => 'setDisk',
+            'access' => 'setAccess',
+            'relationships' => 'setRelationships',
+            'additional_hosts' => 'setAdditionalHosts',
+            'mounts' => 'setMounts',
+            'timezone' => 'setTimezone',
+            'variables' => 'setVariables',
+            'firewall' => 'setFirewall',
+            'container_profile' => 'setContainerProfile',
+            'operations' => 'setOperations',
+            'name' => 'setName',
+            'type' => 'setType',
+            'preflight' => 'setPreflight',
+            'tree_id' => 'setTreeId',
+            'app_dir' => 'setAppDir',
+            'endpoints' => 'setEndpoints',
+            'runtime' => 'setRuntime',
+            'web' => 'setWeb',
+            'hooks' => 'setHooks',
+            'crons' => 'setCrons',
+            'source' => 'setSource',
+            'build' => 'setBuild',
+            'dependencies' => 'setDependencies',
+            'stack' => 'setStack',
+            'is_across_submodule' => 'setIsAcrossSubmodule',
+            'instance_count' => 'setInstanceCount',
+            'config_id' => 'setConfigId',
+            'slug_id' => 'setSlugId'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'resources' => 'getResources',
+            'size' => 'getSize',
+            'disk' => 'getDisk',
+            'access' => 'getAccess',
+            'relationships' => 'getRelationships',
+            'additional_hosts' => 'getAdditionalHosts',
+            'mounts' => 'getMounts',
+            'timezone' => 'getTimezone',
+            'variables' => 'getVariables',
+            'firewall' => 'getFirewall',
+            'container_profile' => 'getContainerProfile',
+            'operations' => 'getOperations',
+            'name' => 'getName',
+            'type' => 'getType',
+            'preflight' => 'getPreflight',
+            'tree_id' => 'getTreeId',
+            'app_dir' => 'getAppDir',
+            'endpoints' => 'getEndpoints',
+            'runtime' => 'getRuntime',
+            'web' => 'getWeb',
+            'hooks' => 'getHooks',
+            'crons' => 'getCrons',
+            'source' => 'getSource',
+            'build' => 'getBuild',
+            'dependencies' => 'getDependencies',
+            'stack' => 'getStack',
+            'is_across_submodule' => 'getIsAcrossSubmodule',
+            'instance_count' => 'getInstanceCount',
+            'config_id' => 'getConfigId',
+            'slug_id' => 'getSlugId'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'resources' => 'setResources',
+            'size' => 'setSize',
+            'disk' => 'setDisk',
+            'access' => 'setAccess',
+            'relationships' => 'setRelationships',
+            'additional_hosts' => 'setAdditionalHosts',
+            'mounts' => 'setMounts',
+            'timezone' => 'setTimezone',
+            'variables' => 'setVariables',
+            'firewall' => 'setFirewall',
+            'container_profile' => 'setContainerProfile',
+            'operations' => 'setOperations',
+            'name' => 'setName',
+            'type' => 'setType',
+            'preflight' => 'setPreflight',
+            'tree_id' => 'setTreeId',
+            'app_dir' => 'setAppDir',
+            'endpoints' => 'setEndpoints',
+            'runtime' => 'setRuntime',
+            'web' => 'setWeb',
+            'hooks' => 'setHooks',
+            'crons' => 'setCrons',
+            'source' => 'setSource',
+            'build' => 'setBuild',
+            'dependencies' => 'setDependencies',
+            'stack' => 'setStack',
+            'is_across_submodule' => 'setIsAcrossSubmodule',
+            'instance_count' => 'setInstanceCount',
+            'config_id' => 'setConfigId',
+            'slug_id' => 'setSlugId'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'resources' => 'getResources',
+            'size' => 'getSize',
+            'disk' => 'getDisk',
+            'access' => 'getAccess',
+            'relationships' => 'getRelationships',
+            'additional_hosts' => 'getAdditionalHosts',
+            'mounts' => 'getMounts',
+            'timezone' => 'getTimezone',
+            'variables' => 'getVariables',
+            'firewall' => 'getFirewall',
+            'container_profile' => 'getContainerProfile',
+            'operations' => 'getOperations',
+            'name' => 'getName',
+            'type' => 'getType',
+            'preflight' => 'getPreflight',
+            'tree_id' => 'getTreeId',
+            'app_dir' => 'getAppDir',
+            'endpoints' => 'getEndpoints',
+            'runtime' => 'getRuntime',
+            'web' => 'getWeb',
+            'hooks' => 'getHooks',
+            'crons' => 'getCrons',
+            'source' => 'getSource',
+            'build' => 'getBuild',
+            'dependencies' => 'getDependencies',
+            'stack' => 'getStack',
+            'is_across_submodule' => 'getIsAcrossSubmodule',
+            'instance_count' => 'getInstanceCount',
+            'config_id' => 'getConfigId',
+            'slug_id' => 'getSlugId'
+        ];
+    
     public function __construct(
         public readonly ?\Upsun\Model\Resources $resources,
         public readonly string $size,

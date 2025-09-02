@@ -19,7 +19,112 @@ use JsonSerializable;
 final class Backup implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Backup';
 
+    private static array $attributeMap = [
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'id' => 'id',
+        'attributes' => 'attributes',
+        'status' => 'status',
+        'expires_at' => 'expires_at',
+        'index' => 'index',
+        'commit_id' => 'commit_id',
+        'environment' => 'environment',
+        'safe' => 'safe',
+        'size_of_volumes' => 'size_of_volumes',
+        'size_used' => 'size_used',
+        'deployment' => 'deployment',
+        'restorable' => 'restorable',
+        'automated' => 'automated'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'id' => 'setId',
+            'attributes' => 'setAttributes',
+            'status' => 'setStatus',
+            'expires_at' => 'setExpiresAt',
+            'index' => 'setIndex',
+            'commit_id' => 'setCommitId',
+            'environment' => 'setEnvironment',
+            'safe' => 'setSafe',
+            'size_of_volumes' => 'setSizeOfVolumes',
+            'size_used' => 'setSizeUsed',
+            'deployment' => 'setDeployment',
+            'restorable' => 'setRestorable',
+            'automated' => 'setAutomated'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'id' => 'getId',
+            'attributes' => 'getAttributes',
+            'status' => 'getStatus',
+            'expires_at' => 'getExpiresAt',
+            'index' => 'getIndex',
+            'commit_id' => 'getCommitId',
+            'environment' => 'getEnvironment',
+            'safe' => 'getSafe',
+            'size_of_volumes' => 'getSizeOfVolumes',
+            'size_used' => 'getSizeUsed',
+            'deployment' => 'getDeployment',
+            'restorable' => 'getRestorable',
+            'automated' => 'getAutomated'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'id' => 'setId',
+            'attributes' => 'setAttributes',
+            'status' => 'setStatus',
+            'expires_at' => 'setExpiresAt',
+            'index' => 'setIndex',
+            'commit_id' => 'setCommitId',
+            'environment' => 'setEnvironment',
+            'safe' => 'setSafe',
+            'size_of_volumes' => 'setSizeOfVolumes',
+            'size_used' => 'setSizeUsed',
+            'deployment' => 'setDeployment',
+            'restorable' => 'setRestorable',
+            'automated' => 'setAutomated'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'id' => 'getId',
+            'attributes' => 'getAttributes',
+            'status' => 'getStatus',
+            'expires_at' => 'getExpiresAt',
+            'index' => 'getIndex',
+            'commit_id' => 'getCommitId',
+            'environment' => 'getEnvironment',
+            'safe' => 'getSafe',
+            'size_of_volumes' => 'getSizeOfVolumes',
+            'size_used' => 'getSizeUsed',
+            'deployment' => 'getDeployment',
+            'restorable' => 'getRestorable',
+            'automated' => 'getAutomated'
+        ];
+    
     public function __construct(
         public readonly ?\DateTime $created_at,
         public readonly ?\DateTime $updated_at,

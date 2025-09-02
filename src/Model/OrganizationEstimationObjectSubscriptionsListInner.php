@@ -19,7 +19,57 @@ use JsonSerializable;
 final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationEstimationObject_subscriptions_list_inner';
 
+    private static array $attributeMap = [
+        'license_id' => 'license_id',
+        'project_title' => 'project_title',
+        'total' => 'total',
+        'usage' => 'usage'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'license_id' => 'setLicenseId',
+            'project_title' => 'setProjectTitle',
+            'total' => 'setTotal',
+            'usage' => 'setUsage'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'license_id' => 'getLicenseId',
+            'project_title' => 'getProjectTitle',
+            'total' => 'getTotal',
+            'usage' => 'getUsage'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'license_id' => 'setLicenseId',
+            'project_title' => 'setProjectTitle',
+            'total' => 'setTotal',
+            'usage' => 'setUsage'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'license_id' => 'getLicenseId',
+            'project_title' => 'getProjectTitle',
+            'total' => 'getTotal',
+            'usage' => 'getUsage'
+        ];
+    
     public function __construct(
         public readonly string $license_id,
         public readonly string $project_title,

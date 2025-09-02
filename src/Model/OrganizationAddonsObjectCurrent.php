@@ -19,7 +19,47 @@ use JsonSerializable;
 final class OrganizationAddonsObjectCurrent implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationAddonsObject_current';
 
+    private static array $attributeMap = [
+        'user_management' => 'user_management',
+        'support_level' => 'support_level'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'user_management' => 'setUserManagement',
+            'support_level' => 'setSupportLevel'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'user_management' => 'getUserManagement',
+            'support_level' => 'getSupportLevel'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'user_management' => 'setUserManagement',
+            'support_level' => 'setSupportLevel'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'user_management' => 'getUserManagement',
+            'support_level' => 'getSupportLevel'
+        ];
+    
     public function __construct(
         /**
          * @var string[]

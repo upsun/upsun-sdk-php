@@ -19,7 +19,42 @@ use JsonSerializable;
 final class ReplacementDomainStoragePatch implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'ReplacementDomainStoragePatch';
 
+    private static array $attributeMap = [
+        'attributes' => 'attributes'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'attributes' => 'setAttributes'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'attributes' => 'getAttributes'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'attributes' => 'setAttributes'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'attributes' => 'getAttributes'
+        ];
+    
     public function __construct(
         /**
          * @var string[]

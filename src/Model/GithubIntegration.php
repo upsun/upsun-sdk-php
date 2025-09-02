@@ -19,7 +19,102 @@ use JsonSerializable;
 final class GithubIntegration implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'GithubIntegration';
 
+    private static array $attributeMap = [
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'type' => 'type',
+        'fetch_branches' => 'fetch_branches',
+        'prune_branches' => 'prune_branches',
+        'environment_init_resources' => 'environment_init_resources',
+        'base_url' => 'base_url',
+        'repository' => 'repository',
+        'build_pull_requests' => 'build_pull_requests',
+        'build_draft_pull_requests' => 'build_draft_pull_requests',
+        'build_pull_requests_post_merge' => 'build_pull_requests_post_merge',
+        'pull_requests_clone_parent_data' => 'pull_requests_clone_parent_data',
+        'token_type' => 'token_type'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'type' => 'setType',
+            'fetch_branches' => 'setFetchBranches',
+            'prune_branches' => 'setPruneBranches',
+            'environment_init_resources' => 'setEnvironmentInitResources',
+            'base_url' => 'setBaseUrl',
+            'repository' => 'setRepository',
+            'build_pull_requests' => 'setBuildPullRequests',
+            'build_draft_pull_requests' => 'setBuildDraftPullRequests',
+            'build_pull_requests_post_merge' => 'setBuildPullRequestsPostMerge',
+            'pull_requests_clone_parent_data' => 'setPullRequestsCloneParentData',
+            'token_type' => 'setTokenType'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'type' => 'getType',
+            'fetch_branches' => 'getFetchBranches',
+            'prune_branches' => 'getPruneBranches',
+            'environment_init_resources' => 'getEnvironmentInitResources',
+            'base_url' => 'getBaseUrl',
+            'repository' => 'getRepository',
+            'build_pull_requests' => 'getBuildPullRequests',
+            'build_draft_pull_requests' => 'getBuildDraftPullRequests',
+            'build_pull_requests_post_merge' => 'getBuildPullRequestsPostMerge',
+            'pull_requests_clone_parent_data' => 'getPullRequestsCloneParentData',
+            'token_type' => 'getTokenType'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'type' => 'setType',
+            'fetch_branches' => 'setFetchBranches',
+            'prune_branches' => 'setPruneBranches',
+            'environment_init_resources' => 'setEnvironmentInitResources',
+            'base_url' => 'setBaseUrl',
+            'repository' => 'setRepository',
+            'build_pull_requests' => 'setBuildPullRequests',
+            'build_draft_pull_requests' => 'setBuildDraftPullRequests',
+            'build_pull_requests_post_merge' => 'setBuildPullRequestsPostMerge',
+            'pull_requests_clone_parent_data' => 'setPullRequestsCloneParentData',
+            'token_type' => 'setTokenType'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'type' => 'getType',
+            'fetch_branches' => 'getFetchBranches',
+            'prune_branches' => 'getPruneBranches',
+            'environment_init_resources' => 'getEnvironmentInitResources',
+            'base_url' => 'getBaseUrl',
+            'repository' => 'getRepository',
+            'build_pull_requests' => 'getBuildPullRequests',
+            'build_draft_pull_requests' => 'getBuildDraftPullRequests',
+            'build_pull_requests_post_merge' => 'getBuildPullRequestsPostMerge',
+            'pull_requests_clone_parent_data' => 'getPullRequestsCloneParentData',
+            'token_type' => 'getTokenType'
+        ];
+    
     public function __construct(
         public readonly ?\DateTime $created_at,
         public readonly ?\DateTime $updated_at,

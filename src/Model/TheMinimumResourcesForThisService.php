@@ -19,7 +19,57 @@ use JsonSerializable;
 final class TheMinimumResourcesForThisService implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_minimum_resources_for_this_service';
 
+    private static array $attributeMap = [
+        'cpu' => 'cpu',
+        'memory' => 'memory',
+        'disk' => 'disk',
+        'profile_size' => 'profile_size'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'cpu' => 'setCpu',
+            'memory' => 'setMemory',
+            'disk' => 'setDisk',
+            'profile_size' => 'setProfileSize'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'cpu' => 'getCpu',
+            'memory' => 'getMemory',
+            'disk' => 'getDisk',
+            'profile_size' => 'getProfileSize'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'cpu' => 'setCpu',
+            'memory' => 'setMemory',
+            'disk' => 'setDisk',
+            'profile_size' => 'setProfileSize'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'cpu' => 'getCpu',
+            'memory' => 'getMemory',
+            'disk' => 'getDisk',
+            'profile_size' => 'getProfileSize'
+        ];
+    
     public function __construct(
         public readonly float $cpu,
         public readonly int $memory,

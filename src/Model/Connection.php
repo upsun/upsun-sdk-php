@@ -19,7 +19,72 @@ use JsonSerializable;
 final class Connection implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Connection';
 
+    private static array $attributeMap = [
+        'provider' => 'provider',
+        'provider_type' => 'provider_type',
+        'is_mandatory' => 'is_mandatory',
+        'subject' => 'subject',
+        'email_address' => 'email_address',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'provider' => 'setProvider',
+            'provider_type' => 'setProviderType',
+            'is_mandatory' => 'setIsMandatory',
+            'subject' => 'setSubject',
+            'email_address' => 'setEmailAddress',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'provider' => 'getProvider',
+            'provider_type' => 'getProviderType',
+            'is_mandatory' => 'getIsMandatory',
+            'subject' => 'getSubject',
+            'email_address' => 'getEmailAddress',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'provider' => 'setProvider',
+            'provider_type' => 'setProviderType',
+            'is_mandatory' => 'setIsMandatory',
+            'subject' => 'setSubject',
+            'email_address' => 'setEmailAddress',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'provider' => 'getProvider',
+            'provider_type' => 'getProviderType',
+            'is_mandatory' => 'getIsMandatory',
+            'subject' => 'getSubject',
+            'email_address' => 'getEmailAddress',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt'
+        ];
+    
     public function __construct(
         public readonly string $provider,
         public readonly string $provider_type,

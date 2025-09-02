@@ -19,7 +19,112 @@ use JsonSerializable;
 final class CurrentUser implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'CurrentUser';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'uuid' => 'uuid',
+        'username' => 'username',
+        'display_name' => 'display_name',
+        'status' => 'status',
+        'mail' => 'mail',
+        'ssh_keys' => 'ssh_keys',
+        'has_key' => 'has_key',
+        'projects' => 'projects',
+        'sequence' => 'sequence',
+        'roles' => 'roles',
+        'picture' => 'picture',
+        'tickets' => 'tickets',
+        'trial' => 'trial',
+        'current_trial' => 'current_trial'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'uuid' => 'setUuid',
+            'username' => 'setUsername',
+            'display_name' => 'setDisplayName',
+            'status' => 'setStatus',
+            'mail' => 'setMail',
+            'ssh_keys' => 'setSshKeys',
+            'has_key' => 'setHasKey',
+            'projects' => 'setProjects',
+            'sequence' => 'setSequence',
+            'roles' => 'setRoles',
+            'picture' => 'setPicture',
+            'tickets' => 'setTickets',
+            'trial' => 'setTrial',
+            'current_trial' => 'setCurrentTrial'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'uuid' => 'getUuid',
+            'username' => 'getUsername',
+            'display_name' => 'getDisplayName',
+            'status' => 'getStatus',
+            'mail' => 'getMail',
+            'ssh_keys' => 'getSshKeys',
+            'has_key' => 'getHasKey',
+            'projects' => 'getProjects',
+            'sequence' => 'getSequence',
+            'roles' => 'getRoles',
+            'picture' => 'getPicture',
+            'tickets' => 'getTickets',
+            'trial' => 'getTrial',
+            'current_trial' => 'getCurrentTrial'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'uuid' => 'setUuid',
+            'username' => 'setUsername',
+            'display_name' => 'setDisplayName',
+            'status' => 'setStatus',
+            'mail' => 'setMail',
+            'ssh_keys' => 'setSshKeys',
+            'has_key' => 'setHasKey',
+            'projects' => 'setProjects',
+            'sequence' => 'setSequence',
+            'roles' => 'setRoles',
+            'picture' => 'setPicture',
+            'tickets' => 'setTickets',
+            'trial' => 'setTrial',
+            'current_trial' => 'setCurrentTrial'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'uuid' => 'getUuid',
+            'username' => 'getUsername',
+            'display_name' => 'getDisplayName',
+            'status' => 'getStatus',
+            'mail' => 'getMail',
+            'ssh_keys' => 'getSshKeys',
+            'has_key' => 'getHasKey',
+            'projects' => 'getProjects',
+            'sequence' => 'getSequence',
+            'roles' => 'getRoles',
+            'picture' => 'getPicture',
+            'tickets' => 'getTickets',
+            'trial' => 'getTrial',
+            'current_trial' => 'getCurrentTrial'
+        ];
+    
     public function __construct(
         public readonly string $id,
         public readonly string $uuid,

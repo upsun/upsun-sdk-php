@@ -19,7 +19,67 @@ use JsonSerializable;
 final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_variables_applying_to_this_environment_inner';
 
+    private static array $attributeMap = [
+        'name' => 'name',
+        'value' => 'value',
+        'is_sensitive' => 'is_sensitive',
+        'is_json' => 'is_json',
+        'visible_build' => 'visible_build',
+        'visible_runtime' => 'visible_runtime'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'name' => 'setName',
+            'value' => 'setValue',
+            'is_sensitive' => 'setIsSensitive',
+            'is_json' => 'setIsJson',
+            'visible_build' => 'setVisibleBuild',
+            'visible_runtime' => 'setVisibleRuntime'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'name' => 'getName',
+            'value' => 'getValue',
+            'is_sensitive' => 'getIsSensitive',
+            'is_json' => 'getIsJson',
+            'visible_build' => 'getVisibleBuild',
+            'visible_runtime' => 'getVisibleRuntime'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'name' => 'setName',
+            'value' => 'setValue',
+            'is_sensitive' => 'setIsSensitive',
+            'is_json' => 'setIsJson',
+            'visible_build' => 'setVisibleBuild',
+            'visible_runtime' => 'setVisibleRuntime'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'name' => 'getName',
+            'value' => 'getValue',
+            'is_sensitive' => 'getIsSensitive',
+            'is_json' => 'getIsJson',
+            'visible_build' => 'getVisibleBuild',
+            'visible_runtime' => 'getVisibleRuntime'
+        ];
+    
     public function __construct(
         public readonly string $name,
         public readonly string $value,

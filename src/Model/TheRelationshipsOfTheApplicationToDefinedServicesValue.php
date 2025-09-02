@@ -19,7 +19,47 @@ use JsonSerializable;
 final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_relationships_of_the_application_to_defined_services__value';
 
+    private static array $attributeMap = [
+        'service' => 'service',
+        'endpoint' => 'endpoint'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'service' => 'setService',
+            'endpoint' => 'setEndpoint'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'service' => 'getService',
+            'endpoint' => 'getEndpoint'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'service' => 'setService',
+            'endpoint' => 'setEndpoint'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'service' => 'getService',
+            'endpoint' => 'getEndpoint'
+        ];
+    
     public function __construct(
         public readonly ?string $service,
         public readonly ?string $endpoint

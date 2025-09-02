@@ -19,7 +19,47 @@ use JsonSerializable;
 final class AccessControlDefinitionForThisEnviromentInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Access_control_definition_for_this_enviroment_inner';
 
+    private static array $attributeMap = [
+        'entity_id' => 'entity_id',
+        'role' => 'role'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'entity_id' => 'setEntityId',
+            'role' => 'setRole'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'entity_id' => 'getEntityId',
+            'role' => 'getRole'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'entity_id' => 'setEntityId',
+            'role' => 'setRole'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'entity_id' => 'getEntityId',
+            'role' => 'getRole'
+        ];
+    
     public function __construct(
         public readonly string $entity_id,
         public readonly string $role

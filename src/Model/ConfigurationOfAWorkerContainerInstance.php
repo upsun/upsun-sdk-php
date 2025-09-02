@@ -19,7 +19,47 @@ use JsonSerializable;
 final class ConfigurationOfAWorkerContainerInstance implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Configuration_of_a_worker_container_instance_';
 
+    private static array $attributeMap = [
+        'commands' => 'commands',
+        'disk' => 'disk'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'commands' => 'setCommands',
+            'disk' => 'setDisk'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'commands' => 'getCommands',
+            'disk' => 'getDisk'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'commands' => 'setCommands',
+            'disk' => 'setDisk'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'commands' => 'getCommands',
+            'disk' => 'getDisk'
+        ];
+    
     public function __construct(
         public readonly \Upsun\Model\TheCommandsToManageTheWorker $commands,
         public readonly ?int $disk

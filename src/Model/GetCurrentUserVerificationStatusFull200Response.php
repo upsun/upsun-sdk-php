@@ -19,7 +19,47 @@ use JsonSerializable;
 final class GetCurrentUserVerificationStatusFull200Response implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'get_current_user_verification_status_full_200_response';
 
+    private static array $attributeMap = [
+        'state' => 'state',
+        'type' => 'type'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'state' => 'setState',
+            'type' => 'setType'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'state' => 'getState',
+            'type' => 'getType'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'state' => 'setState',
+            'type' => 'setType'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'state' => 'getState',
+            'type' => 'getType'
+        ];
+    
     public function __construct(
         public readonly bool $state,
         public readonly string $type

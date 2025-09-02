@@ -19,7 +19,42 @@ use JsonSerializable;
 final class ListOrgPrepaymentTransactions200ResponseLinksSelf implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'list_org_prepayment_transactions_200_response__links_self';
 
+    private static array $attributeMap = [
+        'href' => 'href'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'href' => 'setHref'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'href' => 'getHref'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'href' => 'setHref'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'href' => 'getHref'
+        ];
+    
     public function __construct(
         public readonly string $href
     ) {

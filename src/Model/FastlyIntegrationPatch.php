@@ -19,7 +19,77 @@ use JsonSerializable;
 final class FastlyIntegrationPatch implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'FastlyIntegrationPatch';
 
+    private static array $attributeMap = [
+        'type' => 'type',
+        'events' => 'events',
+        'environments' => 'environments',
+        'excluded_environments' => 'excluded_environments',
+        'states' => 'states',
+        'result' => 'result',
+        'token' => 'token',
+        'service_id' => 'service_id'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'events' => 'setEvents',
+            'environments' => 'setEnvironments',
+            'excluded_environments' => 'setExcludedEnvironments',
+            'states' => 'setStates',
+            'result' => 'setResult',
+            'token' => 'setToken',
+            'service_id' => 'setServiceId'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'events' => 'getEvents',
+            'environments' => 'getEnvironments',
+            'excluded_environments' => 'getExcludedEnvironments',
+            'states' => 'getStates',
+            'result' => 'getResult',
+            'token' => 'getToken',
+            'service_id' => 'getServiceId'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'events' => 'setEvents',
+            'environments' => 'setEnvironments',
+            'excluded_environments' => 'setExcludedEnvironments',
+            'states' => 'setStates',
+            'result' => 'setResult',
+            'token' => 'setToken',
+            'service_id' => 'setServiceId'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'events' => 'getEvents',
+            'environments' => 'getEnvironments',
+            'excluded_environments' => 'getExcludedEnvironments',
+            'states' => 'getStates',
+            'result' => 'getResult',
+            'token' => 'getToken',
+            'service_id' => 'getServiceId'
+        ];
+    
     public function __construct(
         public readonly string $type,
         /**

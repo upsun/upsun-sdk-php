@@ -19,7 +19,122 @@ use JsonSerializable;
 final class Config implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Config';
 
+    private static array $attributeMap = [
+        'newrelic' => 'newrelic',
+        'sumologic' => 'sumologic',
+        'splunk' => 'splunk',
+        'httplog' => 'httplog',
+        'syslog' => 'syslog',
+        'webhook' => 'webhook',
+        'script' => 'script',
+        'github' => 'github',
+        'gitlab' => 'gitlab',
+        'bitbucket' => 'bitbucket',
+        'bitbucket_server' => 'bitbucket_server',
+        'health_email' => 'health.email',
+        'health_webhook' => 'health.webhook',
+        'health_pagerduty' => 'health.pagerduty',
+        'health_slack' => 'health.slack',
+        'cdn_fastly' => 'cdn.fastly',
+        'blackfire' => 'blackfire'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'newrelic' => 'setNewrelic',
+            'sumologic' => 'setSumologic',
+            'splunk' => 'setSplunk',
+            'httplog' => 'setHttplog',
+            'syslog' => 'setSyslog',
+            'webhook' => 'setWebhook',
+            'script' => 'setScript',
+            'github' => 'setGithub',
+            'gitlab' => 'setGitlab',
+            'bitbucket' => 'setBitbucket',
+            'bitbucket_server' => 'setBitbucketServer',
+            'health_email' => 'setHealthEmail',
+            'health_webhook' => 'setHealthWebhook',
+            'health_pagerduty' => 'setHealthPagerduty',
+            'health_slack' => 'setHealthSlack',
+            'cdn_fastly' => 'setCdnFastly',
+            'blackfire' => 'setBlackfire'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'newrelic' => 'getNewrelic',
+            'sumologic' => 'getSumologic',
+            'splunk' => 'getSplunk',
+            'httplog' => 'getHttplog',
+            'syslog' => 'getSyslog',
+            'webhook' => 'getWebhook',
+            'script' => 'getScript',
+            'github' => 'getGithub',
+            'gitlab' => 'getGitlab',
+            'bitbucket' => 'getBitbucket',
+            'bitbucket_server' => 'getBitbucketServer',
+            'health_email' => 'getHealthEmail',
+            'health_webhook' => 'getHealthWebhook',
+            'health_pagerduty' => 'getHealthPagerduty',
+            'health_slack' => 'getHealthSlack',
+            'cdn_fastly' => 'getCdnFastly',
+            'blackfire' => 'getBlackfire'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'newrelic' => 'setNewrelic',
+            'sumologic' => 'setSumologic',
+            'splunk' => 'setSplunk',
+            'httplog' => 'setHttplog',
+            'syslog' => 'setSyslog',
+            'webhook' => 'setWebhook',
+            'script' => 'setScript',
+            'github' => 'setGithub',
+            'gitlab' => 'setGitlab',
+            'bitbucket' => 'setBitbucket',
+            'bitbucket_server' => 'setBitbucketServer',
+            'health_email' => 'setHealthEmail',
+            'health_webhook' => 'setHealthWebhook',
+            'health_pagerduty' => 'setHealthPagerduty',
+            'health_slack' => 'setHealthSlack',
+            'cdn_fastly' => 'setCdnFastly',
+            'blackfire' => 'setBlackfire'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'newrelic' => 'getNewrelic',
+            'sumologic' => 'getSumologic',
+            'splunk' => 'getSplunk',
+            'httplog' => 'getHttplog',
+            'syslog' => 'getSyslog',
+            'webhook' => 'getWebhook',
+            'script' => 'getScript',
+            'github' => 'getGithub',
+            'gitlab' => 'getGitlab',
+            'bitbucket' => 'getBitbucket',
+            'bitbucket_server' => 'getBitbucketServer',
+            'health_email' => 'getHealthEmail',
+            'health_webhook' => 'getHealthWebhook',
+            'health_pagerduty' => 'getHealthPagerduty',
+            'health_slack' => 'getHealthSlack',
+            'cdn_fastly' => 'getCdnFastly',
+            'blackfire' => 'getBlackfire'
+        ];
+    
     public function __construct(
         public readonly \Upsun\Model\NewRelicLogForwardingIntegrationConfigurations $newrelic,
         public readonly \Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations $sumologic,

@@ -19,7 +19,47 @@ use JsonSerializable;
 final class OrganizationLinksApplyVoucher implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Organization__links_apply_voucher';
 
+    private static array $attributeMap = [
+        'href' => 'href',
+        'method' => 'method'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'href' => 'setHref',
+            'method' => 'setMethod'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'href' => 'getHref',
+            'method' => 'getMethod'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'href' => 'setHref',
+            'method' => 'setMethod'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'href' => 'getHref',
+            'method' => 'getMethod'
+        ];
+    
     public function __construct(
         public readonly string $href,
         public readonly string $method

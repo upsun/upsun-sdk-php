@@ -19,7 +19,47 @@ use JsonSerializable;
 final class BuildResources2 implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Build_Resources_2';
 
+    private static array $attributeMap = [
+        'cpu' => 'cpu',
+        'memory' => 'memory'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'cpu' => 'setCpu',
+            'memory' => 'setMemory'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'cpu' => 'getCpu',
+            'memory' => 'getMemory'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'cpu' => 'setCpu',
+            'memory' => 'setMemory'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'cpu' => 'getCpu',
+            'memory' => 'getMemory'
+        ];
+    
     public function __construct(
         public readonly float $cpu,
         public readonly int $memory

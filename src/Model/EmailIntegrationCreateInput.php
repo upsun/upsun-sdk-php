@@ -19,7 +19,52 @@ use JsonSerializable;
 final class EmailIntegrationCreateInput implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'EmailIntegrationCreateInput';
 
+    private static array $attributeMap = [
+        'type' => 'type',
+        'from_address' => 'from_address',
+        'recipients' => 'recipients'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'from_address' => 'setFromAddress',
+            'recipients' => 'setRecipients'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'from_address' => 'getFromAddress',
+            'recipients' => 'getRecipients'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'from_address' => 'setFromAddress',
+            'recipients' => 'setRecipients'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'from_address' => 'getFromAddress',
+            'recipients' => 'getRecipients'
+        ];
+    
     public function __construct(
         public readonly string $type,
         public readonly ?string $from_address,

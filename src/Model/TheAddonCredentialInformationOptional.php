@@ -19,7 +19,47 @@ use JsonSerializable;
 final class TheAddonCredentialInformationOptional implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_addon_credential_information__optional__';
 
+    private static array $attributeMap = [
+        'addon_key' => 'addon_key',
+        'client_key' => 'client_key'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'addon_key' => 'setAddonKey',
+            'client_key' => 'setClientKey'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'addon_key' => 'getAddonKey',
+            'client_key' => 'getClientKey'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'addon_key' => 'setAddonKey',
+            'client_key' => 'setClientKey'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'addon_key' => 'getAddonKey',
+            'client_key' => 'getClientKey'
+        ];
+    
     public function __construct(
         public readonly string $addon_key,
         public readonly string $client_key

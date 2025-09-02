@@ -19,7 +19,47 @@ use JsonSerializable;
 final class CanCreateNewOrgSubscription200ResponseRequiredAction implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'can_create_new_org_subscription_200_response_required_action';
 
+    private static array $attributeMap = [
+        'action' => 'action',
+        'type' => 'type'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'action' => 'setAction',
+            'type' => 'setType'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'action' => 'getAction',
+            'type' => 'getType'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'action' => 'setAction',
+            'type' => 'setType'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'action' => 'getAction',
+            'type' => 'getType'
+        ];
+    
     public function __construct(
         public readonly string $action,
         public readonly string $type

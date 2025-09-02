@@ -19,7 +19,47 @@ use JsonSerializable;
 final class GetOrgPrepaymentInfo200ResponseLinks implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'get_org_prepayment_info_200_response__links';
 
+    private static array $attributeMap = [
+        'self' => 'self',
+        'transactions' => 'transactions'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'self' => 'setSelf',
+            'transactions' => 'setTransactions'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'self' => 'getSelf',
+            'transactions' => 'getTransactions'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'self' => 'setSelf',
+            'transactions' => 'setTransactions'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'self' => 'getSelf',
+            'transactions' => 'getTransactions'
+        ];
+    
     public function __construct(
         public readonly \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf $self,
         public readonly \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions $transactions

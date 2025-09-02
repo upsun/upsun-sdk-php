@@ -19,7 +19,57 @@ use JsonSerializable;
 final class DomainCreateInput implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'DomainCreateInput';
 
+    private static array $attributeMap = [
+        'name' => 'name',
+        'attributes' => 'attributes',
+        'is_default' => 'is_default',
+        'replacement_for' => 'replacement_for'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'name' => 'setName',
+            'attributes' => 'setAttributes',
+            'is_default' => 'setIsDefault',
+            'replacement_for' => 'setReplacementFor'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'name' => 'getName',
+            'attributes' => 'getAttributes',
+            'is_default' => 'getIsDefault',
+            'replacement_for' => 'getReplacementFor'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'name' => 'setName',
+            'attributes' => 'setAttributes',
+            'is_default' => 'setIsDefault',
+            'replacement_for' => 'setReplacementFor'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'name' => 'getName',
+            'attributes' => 'getAttributes',
+            'is_default' => 'getIsDefault',
+            'replacement_for' => 'getReplacementFor'
+        ];
+    
     public function __construct(
         public readonly string $name,
         /**

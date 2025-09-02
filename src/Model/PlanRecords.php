@@ -19,7 +19,82 @@ use JsonSerializable;
 final class PlanRecords implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'PlanRecords';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'owner' => 'owner',
+        'subscription_id' => 'subscription_id',
+        'sku' => 'sku',
+        'plan' => 'plan',
+        'options' => 'options',
+        'start' => 'start',
+        'end' => 'end',
+        'status' => 'status'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'owner' => 'setOwner',
+            'subscription_id' => 'setSubscriptionId',
+            'sku' => 'setSku',
+            'plan' => 'setPlan',
+            'options' => 'setOptions',
+            'start' => 'setStart',
+            'end' => 'setEnd',
+            'status' => 'setStatus'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'owner' => 'getOwner',
+            'subscription_id' => 'getSubscriptionId',
+            'sku' => 'getSku',
+            'plan' => 'getPlan',
+            'options' => 'getOptions',
+            'start' => 'getStart',
+            'end' => 'getEnd',
+            'status' => 'getStatus'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'owner' => 'setOwner',
+            'subscription_id' => 'setSubscriptionId',
+            'sku' => 'setSku',
+            'plan' => 'setPlan',
+            'options' => 'setOptions',
+            'start' => 'setStart',
+            'end' => 'setEnd',
+            'status' => 'setStatus'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'owner' => 'getOwner',
+            'subscription_id' => 'getSubscriptionId',
+            'sku' => 'getSku',
+            'plan' => 'getPlan',
+            'options' => 'getOptions',
+            'start' => 'getStart',
+            'end' => 'getEnd',
+            'status' => 'getStatus'
+        ];
+    
     public function __construct(
         public readonly string $id,
         public readonly string $owner,

@@ -19,7 +19,57 @@ use JsonSerializable;
 final class Blob implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Blob';
 
+    private static array $attributeMap = [
+        'sha' => 'sha',
+        'size' => 'size',
+        'encoding' => 'encoding',
+        'content' => 'content'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'sha' => 'setSha',
+            'size' => 'setSize',
+            'encoding' => 'setEncoding',
+            'content' => 'setContent'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'sha' => 'getSha',
+            'size' => 'getSize',
+            'encoding' => 'getEncoding',
+            'content' => 'getContent'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'sha' => 'setSha',
+            'size' => 'setSize',
+            'encoding' => 'setEncoding',
+            'content' => 'setContent'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'sha' => 'getSha',
+            'size' => 'getSize',
+            'encoding' => 'getEncoding',
+            'content' => 'getContent'
+        ];
+    
     public function __construct(
         public readonly string $sha,
         public readonly int $size,

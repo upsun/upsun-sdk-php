@@ -19,7 +19,47 @@ use JsonSerializable;
 final class GoogleSSOConfig implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'GoogleSSOConfig';
 
+    private static array $attributeMap = [
+        'provider_type' => 'provider_type',
+        'domain' => 'domain'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'provider_type' => 'setProviderType',
+            'domain' => 'setDomain'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'provider_type' => 'getProviderType',
+            'domain' => 'getDomain'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'provider_type' => 'setProviderType',
+            'domain' => 'setDomain'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'provider_type' => 'getProviderType',
+            'domain' => 'getDomain'
+        ];
+    
     public function __construct(
         public readonly string $provider_type,
         public readonly string $domain

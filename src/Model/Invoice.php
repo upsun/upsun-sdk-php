@@ -19,7 +19,117 @@ use JsonSerializable;
 final class Invoice implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Invoice';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'invoice_number' => 'invoice_number',
+        'type' => 'type',
+        'order_id' => 'order_id',
+        'related_invoice_id' => 'related_invoice_id',
+        'status' => 'status',
+        'owner' => 'owner',
+        'invoice_date' => 'invoice_date',
+        'invoice_due' => 'invoice_due',
+        'created' => 'created',
+        'changed' => 'changed',
+        'company' => 'company',
+        'total' => 'total',
+        'address' => 'address',
+        'notes' => 'notes',
+        'invoice_pdf' => 'invoice_pdf'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'invoice_number' => 'setInvoiceNumber',
+            'type' => 'setType',
+            'order_id' => 'setOrderId',
+            'related_invoice_id' => 'setRelatedInvoiceId',
+            'status' => 'setStatus',
+            'owner' => 'setOwner',
+            'invoice_date' => 'setInvoiceDate',
+            'invoice_due' => 'setInvoiceDue',
+            'created' => 'setCreated',
+            'changed' => 'setChanged',
+            'company' => 'setCompany',
+            'total' => 'setTotal',
+            'address' => 'setAddress',
+            'notes' => 'setNotes',
+            'invoice_pdf' => 'setInvoicePdf'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'invoice_number' => 'getInvoiceNumber',
+            'type' => 'getType',
+            'order_id' => 'getOrderId',
+            'related_invoice_id' => 'getRelatedInvoiceId',
+            'status' => 'getStatus',
+            'owner' => 'getOwner',
+            'invoice_date' => 'getInvoiceDate',
+            'invoice_due' => 'getInvoiceDue',
+            'created' => 'getCreated',
+            'changed' => 'getChanged',
+            'company' => 'getCompany',
+            'total' => 'getTotal',
+            'address' => 'getAddress',
+            'notes' => 'getNotes',
+            'invoice_pdf' => 'getInvoicePdf'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'invoice_number' => 'setInvoiceNumber',
+            'type' => 'setType',
+            'order_id' => 'setOrderId',
+            'related_invoice_id' => 'setRelatedInvoiceId',
+            'status' => 'setStatus',
+            'owner' => 'setOwner',
+            'invoice_date' => 'setInvoiceDate',
+            'invoice_due' => 'setInvoiceDue',
+            'created' => 'setCreated',
+            'changed' => 'setChanged',
+            'company' => 'setCompany',
+            'total' => 'setTotal',
+            'address' => 'setAddress',
+            'notes' => 'setNotes',
+            'invoice_pdf' => 'setInvoicePdf'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'invoice_number' => 'getInvoiceNumber',
+            'type' => 'getType',
+            'order_id' => 'getOrderId',
+            'related_invoice_id' => 'getRelatedInvoiceId',
+            'status' => 'getStatus',
+            'owner' => 'getOwner',
+            'invoice_date' => 'getInvoiceDate',
+            'invoice_due' => 'getInvoiceDue',
+            'created' => 'getCreated',
+            'changed' => 'getChanged',
+            'company' => 'getCompany',
+            'total' => 'getTotal',
+            'address' => 'getAddress',
+            'notes' => 'getNotes',
+            'invoice_pdf' => 'getInvoicePdf'
+        ];
+    
     public function __construct(
         public readonly string $id,
         public readonly string $invoice_number,

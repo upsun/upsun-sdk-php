@@ -19,7 +19,52 @@ use JsonSerializable;
 final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_commit_distance_info_between_parent_and_child_environments';
 
+    private static array $attributeMap = [
+        'commits_ahead' => 'commits_ahead',
+        'commits_behind' => 'commits_behind',
+        'parent_ref' => 'parent_ref'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'commits_ahead' => 'setCommitsAhead',
+            'commits_behind' => 'setCommitsBehind',
+            'parent_ref' => 'setParentRef'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'commits_ahead' => 'getCommitsAhead',
+            'commits_behind' => 'getCommitsBehind',
+            'parent_ref' => 'getParentRef'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'commits_ahead' => 'setCommitsAhead',
+            'commits_behind' => 'setCommitsBehind',
+            'parent_ref' => 'setParentRef'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'commits_ahead' => 'getCommitsAhead',
+            'commits_behind' => 'getCommitsBehind',
+            'parent_ref' => 'getParentRef'
+        ];
+    
     public function __construct(
         public readonly ?int $commits_ahead,
         public readonly ?int $commits_behind,

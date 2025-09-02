@@ -19,7 +19,67 @@ use JsonSerializable;
 final class OrganizationSSOConfig implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationSSOConfig';
 
+    private static array $attributeMap = [
+        'provider_type' => 'provider_type',
+        'domain' => 'domain',
+        'organization_id' => 'organization_id',
+        'enforced' => 'enforced',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'provider_type' => 'setProviderType',
+            'domain' => 'setDomain',
+            'organization_id' => 'setOrganizationId',
+            'enforced' => 'setEnforced',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'provider_type' => 'getProviderType',
+            'domain' => 'getDomain',
+            'organization_id' => 'getOrganizationId',
+            'enforced' => 'getEnforced',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'provider_type' => 'setProviderType',
+            'domain' => 'setDomain',
+            'organization_id' => 'setOrganizationId',
+            'enforced' => 'setEnforced',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'provider_type' => 'getProviderType',
+            'domain' => 'getDomain',
+            'organization_id' => 'getOrganizationId',
+            'enforced' => 'getEnforced',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt'
+        ];
+    
     public function __construct(
         public readonly string $provider_type,
         public readonly string $domain,

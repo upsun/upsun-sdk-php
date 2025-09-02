@@ -19,7 +19,57 @@ use JsonSerializable;
 final class LineItemComponent implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'LineItemComponent';
 
+    private static array $attributeMap = [
+        'amount' => 'amount',
+        'amount_formatted' => 'amount_formatted',
+        'display_title' => 'display_title',
+        'currency' => 'currency'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'amount' => 'setAmount',
+            'amount_formatted' => 'setAmountFormatted',
+            'display_title' => 'setDisplayTitle',
+            'currency' => 'setCurrency'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'amount' => 'getAmount',
+            'amount_formatted' => 'getAmountFormatted',
+            'display_title' => 'getDisplayTitle',
+            'currency' => 'getCurrency'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'amount' => 'setAmount',
+            'amount_formatted' => 'setAmountFormatted',
+            'display_title' => 'setDisplayTitle',
+            'currency' => 'setCurrency'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'amount' => 'getAmount',
+            'amount_formatted' => 'getAmountFormatted',
+            'display_title' => 'getDisplayTitle',
+            'currency' => 'getCurrency'
+        ];
+    
     public function __construct(
         public readonly float $amount,
         public readonly string $amount_formatted,

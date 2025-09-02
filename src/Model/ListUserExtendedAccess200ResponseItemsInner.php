@@ -19,7 +19,72 @@ use JsonSerializable;
 final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'list_user_extended_access_200_response_items_inner';
 
+    private static array $attributeMap = [
+        'user_id' => 'user_id',
+        'resource_id' => 'resource_id',
+        'resource_type' => 'resource_type',
+        'organization_id' => 'organization_id',
+        'permissions' => 'permissions',
+        'granted_at' => 'granted_at',
+        'updated_at' => 'updated_at'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'user_id' => 'setUserId',
+            'resource_id' => 'setResourceId',
+            'resource_type' => 'setResourceType',
+            'organization_id' => 'setOrganizationId',
+            'permissions' => 'setPermissions',
+            'granted_at' => 'setGrantedAt',
+            'updated_at' => 'setUpdatedAt'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'user_id' => 'getUserId',
+            'resource_id' => 'getResourceId',
+            'resource_type' => 'getResourceType',
+            'organization_id' => 'getOrganizationId',
+            'permissions' => 'getPermissions',
+            'granted_at' => 'getGrantedAt',
+            'updated_at' => 'getUpdatedAt'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'user_id' => 'setUserId',
+            'resource_id' => 'setResourceId',
+            'resource_type' => 'setResourceType',
+            'organization_id' => 'setOrganizationId',
+            'permissions' => 'setPermissions',
+            'granted_at' => 'setGrantedAt',
+            'updated_at' => 'setUpdatedAt'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'user_id' => 'getUserId',
+            'resource_id' => 'getResourceId',
+            'resource_type' => 'getResourceType',
+            'organization_id' => 'getOrganizationId',
+            'permissions' => 'getPermissions',
+            'granted_at' => 'getGrantedAt',
+            'updated_at' => 'getUpdatedAt'
+        ];
+    
     public function __construct(
         public readonly string $user_id,
         public readonly string $resource_id,

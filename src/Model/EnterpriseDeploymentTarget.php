@@ -19,7 +19,77 @@ use JsonSerializable;
 final class EnterpriseDeploymentTarget implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'EnterpriseDeploymentTarget';
 
+    private static array $attributeMap = [
+        'type' => 'type',
+        'name' => 'name',
+        'deploy_host' => 'deploy_host',
+        'docroots' => 'docroots',
+        'site_urls' => 'site_urls',
+        'ssh_hosts' => 'ssh_hosts',
+        'maintenance_mode' => 'maintenance_mode',
+        'enterprise_environments_mapping' => 'enterprise_environments_mapping'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'name' => 'setName',
+            'deploy_host' => 'setDeployHost',
+            'docroots' => 'setDocroots',
+            'site_urls' => 'setSiteUrls',
+            'ssh_hosts' => 'setSshHosts',
+            'maintenance_mode' => 'setMaintenanceMode',
+            'enterprise_environments_mapping' => 'setEnterpriseEnvironmentsMapping'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'name' => 'getName',
+            'deploy_host' => 'getDeployHost',
+            'docroots' => 'getDocroots',
+            'site_urls' => 'getSiteUrls',
+            'ssh_hosts' => 'getSshHosts',
+            'maintenance_mode' => 'getMaintenanceMode',
+            'enterprise_environments_mapping' => 'getEnterpriseEnvironmentsMapping'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'name' => 'setName',
+            'deploy_host' => 'setDeployHost',
+            'docroots' => 'setDocroots',
+            'site_urls' => 'setSiteUrls',
+            'ssh_hosts' => 'setSshHosts',
+            'maintenance_mode' => 'setMaintenanceMode',
+            'enterprise_environments_mapping' => 'setEnterpriseEnvironmentsMapping'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'name' => 'getName',
+            'deploy_host' => 'getDeployHost',
+            'docroots' => 'getDocroots',
+            'site_urls' => 'getSiteUrls',
+            'ssh_hosts' => 'getSshHosts',
+            'maintenance_mode' => 'getMaintenanceMode',
+            'enterprise_environments_mapping' => 'getEnterpriseEnvironmentsMapping'
+        ];
+    
     public function __construct(
         public readonly string $type,
         public readonly string $name,

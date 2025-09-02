@@ -19,7 +19,47 @@ use JsonSerializable;
 final class ProjectOptionsEnforced implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'ProjectOptions_enforced';
 
+    private static array $attributeMap = [
+        'settings' => 'settings',
+        'capabilities' => 'capabilities'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'settings' => 'setSettings',
+            'capabilities' => 'setCapabilities'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'settings' => 'getSettings',
+            'capabilities' => 'getCapabilities'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'settings' => 'setSettings',
+            'capabilities' => 'setCapabilities'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'settings' => 'getSettings',
+            'capabilities' => 'getCapabilities'
+        ];
+    
     public function __construct(
         public readonly object $settings,
         public readonly object $capabilities

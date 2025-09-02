@@ -19,7 +19,72 @@ use JsonSerializable;
 final class APIToken implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'APIToken';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'name' => 'name',
+        'mfa_on_creation' => 'mfa_on_creation',
+        'token' => 'token',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'last_used_at' => 'last_used_at'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'name' => 'setName',
+            'mfa_on_creation' => 'setMfaOnCreation',
+            'token' => 'setToken',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'last_used_at' => 'setLastUsedAt'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'name' => 'getName',
+            'mfa_on_creation' => 'getMfaOnCreation',
+            'token' => 'getToken',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'last_used_at' => 'getLastUsedAt'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'name' => 'setName',
+            'mfa_on_creation' => 'setMfaOnCreation',
+            'token' => 'setToken',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'last_used_at' => 'setLastUsedAt'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'name' => 'getName',
+            'mfa_on_creation' => 'getMfaOnCreation',
+            'token' => 'getToken',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'last_used_at' => 'getLastUsedAt'
+        ];
+    
     public function __construct(
         public readonly string $id,
         public readonly string $name,

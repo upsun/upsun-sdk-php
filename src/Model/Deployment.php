@@ -19,7 +19,132 @@ use JsonSerializable;
 final class Deployment implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Deployment';
 
+    private static array $attributeMap = [
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'fingerprint' => 'fingerprint',
+        'cluster_name' => 'cluster_name',
+        'project_info' => 'project_info',
+        'environment_info' => 'environment_info',
+        'deployment_target' => 'deployment_target',
+        'vpn' => 'vpn',
+        'http_access' => 'http_access',
+        'enable_smtp' => 'enable_smtp',
+        'restrict_robots' => 'restrict_robots',
+        'variables' => 'variables',
+        'access' => 'access',
+        'subscription' => 'subscription',
+        'services' => 'services',
+        'routes' => 'routes',
+        'webapps' => 'webapps',
+        'workers' => 'workers',
+        'container_profiles' => 'container_profiles'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'fingerprint' => 'setFingerprint',
+            'cluster_name' => 'setClusterName',
+            'project_info' => 'setProjectInfo',
+            'environment_info' => 'setEnvironmentInfo',
+            'deployment_target' => 'setDeploymentTarget',
+            'vpn' => 'setVpn',
+            'http_access' => 'setHttpAccess',
+            'enable_smtp' => 'setEnableSmtp',
+            'restrict_robots' => 'setRestrictRobots',
+            'variables' => 'setVariables',
+            'access' => 'setAccess',
+            'subscription' => 'setSubscription',
+            'services' => 'setServices',
+            'routes' => 'setRoutes',
+            'webapps' => 'setWebapps',
+            'workers' => 'setWorkers',
+            'container_profiles' => 'setContainerProfiles'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'fingerprint' => 'getFingerprint',
+            'cluster_name' => 'getClusterName',
+            'project_info' => 'getProjectInfo',
+            'environment_info' => 'getEnvironmentInfo',
+            'deployment_target' => 'getDeploymentTarget',
+            'vpn' => 'getVpn',
+            'http_access' => 'getHttpAccess',
+            'enable_smtp' => 'getEnableSmtp',
+            'restrict_robots' => 'getRestrictRobots',
+            'variables' => 'getVariables',
+            'access' => 'getAccess',
+            'subscription' => 'getSubscription',
+            'services' => 'getServices',
+            'routes' => 'getRoutes',
+            'webapps' => 'getWebapps',
+            'workers' => 'getWorkers',
+            'container_profiles' => 'getContainerProfiles'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'fingerprint' => 'setFingerprint',
+            'cluster_name' => 'setClusterName',
+            'project_info' => 'setProjectInfo',
+            'environment_info' => 'setEnvironmentInfo',
+            'deployment_target' => 'setDeploymentTarget',
+            'vpn' => 'setVpn',
+            'http_access' => 'setHttpAccess',
+            'enable_smtp' => 'setEnableSmtp',
+            'restrict_robots' => 'setRestrictRobots',
+            'variables' => 'setVariables',
+            'access' => 'setAccess',
+            'subscription' => 'setSubscription',
+            'services' => 'setServices',
+            'routes' => 'setRoutes',
+            'webapps' => 'setWebapps',
+            'workers' => 'setWorkers',
+            'container_profiles' => 'setContainerProfiles'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'fingerprint' => 'getFingerprint',
+            'cluster_name' => 'getClusterName',
+            'project_info' => 'getProjectInfo',
+            'environment_info' => 'getEnvironmentInfo',
+            'deployment_target' => 'getDeploymentTarget',
+            'vpn' => 'getVpn',
+            'http_access' => 'getHttpAccess',
+            'enable_smtp' => 'getEnableSmtp',
+            'restrict_robots' => 'getRestrictRobots',
+            'variables' => 'getVariables',
+            'access' => 'getAccess',
+            'subscription' => 'getSubscription',
+            'services' => 'getServices',
+            'routes' => 'getRoutes',
+            'webapps' => 'getWebapps',
+            'workers' => 'getWorkers',
+            'container_profiles' => 'getContainerProfiles'
+        ];
+    
     public function __construct(
         public readonly ?\DateTime $created_at,
         public readonly ?\DateTime $updated_at,

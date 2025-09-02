@@ -19,7 +19,137 @@ use JsonSerializable;
 final class Order implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Order';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'status' => 'status',
+        'owner' => 'owner',
+        'address' => 'address',
+        'company' => 'company',
+        'vat_number' => 'vat_number',
+        'billing_period_start' => 'billing_period_start',
+        'billing_period_end' => 'billing_period_end',
+        'billing_period_label' => 'billing_period_label',
+        'billing_period_duration' => 'billing_period_duration',
+        'paid_on' => 'paid_on',
+        'total' => 'total',
+        'total_formatted' => 'total_formatted',
+        'components' => 'components',
+        'currency' => 'currency',
+        'invoice_url' => 'invoice_url',
+        'last_refreshed' => 'last_refreshed',
+        'invoiced' => 'invoiced',
+        'line_items' => 'line_items',
+        '_links' => '_links'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'status' => 'setStatus',
+            'owner' => 'setOwner',
+            'address' => 'setAddress',
+            'company' => 'setCompany',
+            'vat_number' => 'setVatNumber',
+            'billing_period_start' => 'setBillingPeriodStart',
+            'billing_period_end' => 'setBillingPeriodEnd',
+            'billing_period_label' => 'setBillingPeriodLabel',
+            'billing_period_duration' => 'setBillingPeriodDuration',
+            'paid_on' => 'setPaidOn',
+            'total' => 'setTotal',
+            'total_formatted' => 'setTotalFormatted',
+            'components' => 'setComponents',
+            'currency' => 'setCurrency',
+            'invoice_url' => 'setInvoiceUrl',
+            'last_refreshed' => 'setLastRefreshed',
+            'invoiced' => 'setInvoiced',
+            'line_items' => 'setLineItems',
+            '_links' => 'setLinks'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'status' => 'getStatus',
+            'owner' => 'getOwner',
+            'address' => 'getAddress',
+            'company' => 'getCompany',
+            'vat_number' => 'getVatNumber',
+            'billing_period_start' => 'getBillingPeriodStart',
+            'billing_period_end' => 'getBillingPeriodEnd',
+            'billing_period_label' => 'getBillingPeriodLabel',
+            'billing_period_duration' => 'getBillingPeriodDuration',
+            'paid_on' => 'getPaidOn',
+            'total' => 'getTotal',
+            'total_formatted' => 'getTotalFormatted',
+            'components' => 'getComponents',
+            'currency' => 'getCurrency',
+            'invoice_url' => 'getInvoiceUrl',
+            'last_refreshed' => 'getLastRefreshed',
+            'invoiced' => 'getInvoiced',
+            'line_items' => 'getLineItems',
+            '_links' => 'getLinks'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'status' => 'setStatus',
+            'owner' => 'setOwner',
+            'address' => 'setAddress',
+            'company' => 'setCompany',
+            'vat_number' => 'setVatNumber',
+            'billing_period_start' => 'setBillingPeriodStart',
+            'billing_period_end' => 'setBillingPeriodEnd',
+            'billing_period_label' => 'setBillingPeriodLabel',
+            'billing_period_duration' => 'setBillingPeriodDuration',
+            'paid_on' => 'setPaidOn',
+            'total' => 'setTotal',
+            'total_formatted' => 'setTotalFormatted',
+            'components' => 'setComponents',
+            'currency' => 'setCurrency',
+            'invoice_url' => 'setInvoiceUrl',
+            'last_refreshed' => 'setLastRefreshed',
+            'invoiced' => 'setInvoiced',
+            'line_items' => 'setLineItems',
+            '_links' => 'setLinks'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'status' => 'getStatus',
+            'owner' => 'getOwner',
+            'address' => 'getAddress',
+            'company' => 'getCompany',
+            'vat_number' => 'getVatNumber',
+            'billing_period_start' => 'getBillingPeriodStart',
+            'billing_period_end' => 'getBillingPeriodEnd',
+            'billing_period_label' => 'getBillingPeriodLabel',
+            'billing_period_duration' => 'getBillingPeriodDuration',
+            'paid_on' => 'getPaidOn',
+            'total' => 'getTotal',
+            'total_formatted' => 'getTotalFormatted',
+            'components' => 'getComponents',
+            'currency' => 'getCurrency',
+            'invoice_url' => 'getInvoiceUrl',
+            'last_refreshed' => 'getLastRefreshed',
+            'invoiced' => 'getInvoiced',
+            'line_items' => 'getLineItems',
+            '_links' => 'getLinks'
+        ];
+    
     public function __construct(
         public readonly string $id,
         public readonly string $status,

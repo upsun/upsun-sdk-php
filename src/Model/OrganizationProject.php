@@ -19,7 +19,102 @@ use JsonSerializable;
 final class OrganizationProject implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'OrganizationProject';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'organization_id' => 'organization_id',
+        'subscription_id' => 'subscription_id',
+        'region' => 'region',
+        'title' => 'title',
+        'type' => 'type',
+        'plan' => 'plan',
+        'access_migration_status' => 'access_migration_status',
+        'status' => 'status',
+        'vendor' => 'vendor',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        '_links' => '_links'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'organization_id' => 'setOrganizationId',
+            'subscription_id' => 'setSubscriptionId',
+            'region' => 'setRegion',
+            'title' => 'setTitle',
+            'type' => 'setType',
+            'plan' => 'setPlan',
+            'access_migration_status' => 'setAccessMigrationStatus',
+            'status' => 'setStatus',
+            'vendor' => 'setVendor',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            '_links' => 'setLinks'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'organization_id' => 'getOrganizationId',
+            'subscription_id' => 'getSubscriptionId',
+            'region' => 'getRegion',
+            'title' => 'getTitle',
+            'type' => 'getType',
+            'plan' => 'getPlan',
+            'access_migration_status' => 'getAccessMigrationStatus',
+            'status' => 'getStatus',
+            'vendor' => 'getVendor',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            '_links' => 'getLinks'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'organization_id' => 'setOrganizationId',
+            'subscription_id' => 'setSubscriptionId',
+            'region' => 'setRegion',
+            'title' => 'setTitle',
+            'type' => 'setType',
+            'plan' => 'setPlan',
+            'access_migration_status' => 'setAccessMigrationStatus',
+            'status' => 'setStatus',
+            'vendor' => 'setVendor',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            '_links' => 'setLinks'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'organization_id' => 'getOrganizationId',
+            'subscription_id' => 'getSubscriptionId',
+            'region' => 'getRegion',
+            'title' => 'getTitle',
+            'type' => 'getType',
+            'plan' => 'getPlan',
+            'access_migration_status' => 'getAccessMigrationStatus',
+            'status' => 'getStatus',
+            'vendor' => 'getVendor',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            '_links' => 'getLinks'
+        ];
+    
     public function __construct(
         public readonly string $id,
         public readonly string $organization_id,

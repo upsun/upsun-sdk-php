@@ -19,7 +19,62 @@ use JsonSerializable;
 final class FoundationDeploymentTarget implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'FoundationDeploymentTarget';
 
+    private static array $attributeMap = [
+        'type' => 'type',
+        'name' => 'name',
+        'hosts' => 'hosts',
+        'use_dedicated_grid' => 'use_dedicated_grid',
+        'storage_type' => 'storage_type'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'name' => 'setName',
+            'hosts' => 'setHosts',
+            'use_dedicated_grid' => 'setUseDedicatedGrid',
+            'storage_type' => 'setStorageType'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'name' => 'getName',
+            'hosts' => 'getHosts',
+            'use_dedicated_grid' => 'getUseDedicatedGrid',
+            'storage_type' => 'getStorageType'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'name' => 'setName',
+            'hosts' => 'setHosts',
+            'use_dedicated_grid' => 'setUseDedicatedGrid',
+            'storage_type' => 'setStorageType'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'name' => 'getName',
+            'hosts' => 'getHosts',
+            'use_dedicated_grid' => 'getUseDedicatedGrid',
+            'storage_type' => 'getStorageType'
+        ];
+    
     public function __construct(
         public readonly string $type,
         public readonly string $name,

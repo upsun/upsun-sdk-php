@@ -19,7 +19,47 @@ use JsonSerializable;
 final class ConfigurationForPreFlightChecks implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Configuration_for_pre_flight_checks_';
 
+    private static array $attributeMap = [
+        'enabled' => 'enabled',
+        'ignored_rules' => 'ignored_rules'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'enabled' => 'setEnabled',
+            'ignored_rules' => 'setIgnoredRules'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'enabled' => 'getEnabled',
+            'ignored_rules' => 'getIgnoredRules'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'enabled' => 'setEnabled',
+            'ignored_rules' => 'setIgnoredRules'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'enabled' => 'getEnabled',
+            'ignored_rules' => 'getIgnoredRules'
+        ];
+    
     public function __construct(
         public readonly bool $enabled,
         /**

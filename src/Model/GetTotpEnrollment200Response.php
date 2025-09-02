@@ -19,7 +19,57 @@ use JsonSerializable;
 final class GetTotpEnrollment200Response implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'get_totp_enrollment_200_response';
 
+    private static array $attributeMap = [
+        'issuer' => 'issuer',
+        'account_name' => 'account_name',
+        'secret' => 'secret',
+        'qr_code' => 'qr_code'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'issuer' => 'setIssuer',
+            'account_name' => 'setAccountName',
+            'secret' => 'setSecret',
+            'qr_code' => 'setQrCode'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'issuer' => 'getIssuer',
+            'account_name' => 'getAccountName',
+            'secret' => 'getSecret',
+            'qr_code' => 'getQrCode'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'issuer' => 'setIssuer',
+            'account_name' => 'setAccountName',
+            'secret' => 'setSecret',
+            'qr_code' => 'setQrCode'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'issuer' => 'getIssuer',
+            'account_name' => 'getAccountName',
+            'secret' => 'getSecret',
+            'qr_code' => 'getQrCode'
+        ];
+    
     public function __construct(
         public readonly string $issuer,
         public readonly string $account_name,

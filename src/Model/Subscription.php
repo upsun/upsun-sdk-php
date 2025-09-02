@@ -19,7 +19,157 @@ use JsonSerializable;
 final class Subscription implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Subscription';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'status' => 'status',
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'owner' => 'owner',
+        'owner_info' => 'owner_info',
+        'vendor' => 'vendor',
+        'plan' => 'plan',
+        'environments' => 'environments',
+        'storage' => 'storage',
+        'user_licenses' => 'user_licenses',
+        'project_id' => 'project_id',
+        'project_endpoint' => 'project_endpoint',
+        'project_title' => 'project_title',
+        'project_region' => 'project_region',
+        'project_region_label' => 'project_region_label',
+        'project_ui' => 'project_ui',
+        'project_options' => 'project_options',
+        'agency_site' => 'agency_site',
+        'invoiced' => 'invoiced',
+        'hipaa' => 'hipaa',
+        'is_trial_plan' => 'is_trial_plan',
+        'services' => 'services',
+        'green' => 'green'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'status' => 'setStatus',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'owner' => 'setOwner',
+            'owner_info' => 'setOwnerInfo',
+            'vendor' => 'setVendor',
+            'plan' => 'setPlan',
+            'environments' => 'setEnvironments',
+            'storage' => 'setStorage',
+            'user_licenses' => 'setUserLicenses',
+            'project_id' => 'setProjectId',
+            'project_endpoint' => 'setProjectEndpoint',
+            'project_title' => 'setProjectTitle',
+            'project_region' => 'setProjectRegion',
+            'project_region_label' => 'setProjectRegionLabel',
+            'project_ui' => 'setProjectUi',
+            'project_options' => 'setProjectOptions',
+            'agency_site' => 'setAgencySite',
+            'invoiced' => 'setInvoiced',
+            'hipaa' => 'setHipaa',
+            'is_trial_plan' => 'setIsTrialPlan',
+            'services' => 'setServices',
+            'green' => 'setGreen'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'status' => 'getStatus',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'owner' => 'getOwner',
+            'owner_info' => 'getOwnerInfo',
+            'vendor' => 'getVendor',
+            'plan' => 'getPlan',
+            'environments' => 'getEnvironments',
+            'storage' => 'getStorage',
+            'user_licenses' => 'getUserLicenses',
+            'project_id' => 'getProjectId',
+            'project_endpoint' => 'getProjectEndpoint',
+            'project_title' => 'getProjectTitle',
+            'project_region' => 'getProjectRegion',
+            'project_region_label' => 'getProjectRegionLabel',
+            'project_ui' => 'getProjectUi',
+            'project_options' => 'getProjectOptions',
+            'agency_site' => 'getAgencySite',
+            'invoiced' => 'getInvoiced',
+            'hipaa' => 'getHipaa',
+            'is_trial_plan' => 'getIsTrialPlan',
+            'services' => 'getServices',
+            'green' => 'getGreen'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'status' => 'setStatus',
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'owner' => 'setOwner',
+            'owner_info' => 'setOwnerInfo',
+            'vendor' => 'setVendor',
+            'plan' => 'setPlan',
+            'environments' => 'setEnvironments',
+            'storage' => 'setStorage',
+            'user_licenses' => 'setUserLicenses',
+            'project_id' => 'setProjectId',
+            'project_endpoint' => 'setProjectEndpoint',
+            'project_title' => 'setProjectTitle',
+            'project_region' => 'setProjectRegion',
+            'project_region_label' => 'setProjectRegionLabel',
+            'project_ui' => 'setProjectUi',
+            'project_options' => 'setProjectOptions',
+            'agency_site' => 'setAgencySite',
+            'invoiced' => 'setInvoiced',
+            'hipaa' => 'setHipaa',
+            'is_trial_plan' => 'setIsTrialPlan',
+            'services' => 'setServices',
+            'green' => 'setGreen'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'status' => 'getStatus',
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'owner' => 'getOwner',
+            'owner_info' => 'getOwnerInfo',
+            'vendor' => 'getVendor',
+            'plan' => 'getPlan',
+            'environments' => 'getEnvironments',
+            'storage' => 'getStorage',
+            'user_licenses' => 'getUserLicenses',
+            'project_id' => 'getProjectId',
+            'project_endpoint' => 'getProjectEndpoint',
+            'project_title' => 'getProjectTitle',
+            'project_region' => 'getProjectRegion',
+            'project_region_label' => 'getProjectRegionLabel',
+            'project_ui' => 'getProjectUi',
+            'project_options' => 'getProjectOptions',
+            'agency_site' => 'getAgencySite',
+            'invoiced' => 'getInvoiced',
+            'hipaa' => 'getHipaa',
+            'is_trial_plan' => 'getIsTrialPlan',
+            'services' => 'getServices',
+            'green' => 'getGreen'
+        ];
+    
     public function __construct(
         public readonly string $id,
         public readonly string $status,

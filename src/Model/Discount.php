@@ -19,7 +19,92 @@ use JsonSerializable;
 final class Discount implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Discount';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'organization_id' => 'organization_id',
+        'type' => 'type',
+        'type_label' => 'type_label',
+        'status' => 'status',
+        'commitment' => 'commitment',
+        'total_months' => 'total_months',
+        'discount' => 'discount',
+        'config' => 'config',
+        'start_at' => 'start_at',
+        'end_at' => 'end_at'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'organization_id' => 'setOrganizationId',
+            'type' => 'setType',
+            'type_label' => 'setTypeLabel',
+            'status' => 'setStatus',
+            'commitment' => 'setCommitment',
+            'total_months' => 'setTotalMonths',
+            'discount' => 'setDiscount',
+            'config' => 'setConfig',
+            'start_at' => 'setStartAt',
+            'end_at' => 'setEndAt'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'organization_id' => 'getOrganizationId',
+            'type' => 'getType',
+            'type_label' => 'getTypeLabel',
+            'status' => 'getStatus',
+            'commitment' => 'getCommitment',
+            'total_months' => 'getTotalMonths',
+            'discount' => 'getDiscount',
+            'config' => 'getConfig',
+            'start_at' => 'getStartAt',
+            'end_at' => 'getEndAt'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'organization_id' => 'setOrganizationId',
+            'type' => 'setType',
+            'type_label' => 'setTypeLabel',
+            'status' => 'setStatus',
+            'commitment' => 'setCommitment',
+            'total_months' => 'setTotalMonths',
+            'discount' => 'setDiscount',
+            'config' => 'setConfig',
+            'start_at' => 'setStartAt',
+            'end_at' => 'setEndAt'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'organization_id' => 'getOrganizationId',
+            'type' => 'getType',
+            'type_label' => 'getTypeLabel',
+            'status' => 'getStatus',
+            'commitment' => 'getCommitment',
+            'total_months' => 'getTotalMonths',
+            'discount' => 'getDiscount',
+            'config' => 'getConfig',
+            'start_at' => 'getStartAt',
+            'end_at' => 'getEndAt'
+        ];
+    
     public function __construct(
         public readonly int $id,
         public readonly string $organization_id,

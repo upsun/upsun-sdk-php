@@ -19,7 +19,42 @@ use JsonSerializable;
 final class AddressMetadata implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'AddressMetadata';
 
+    private static array $attributeMap = [
+        'metadata' => 'metadata'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'metadata' => 'setMetadata'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'metadata' => 'getMetadata'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'metadata' => 'setMetadata'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'metadata' => 'getMetadata'
+        ];
+    
     public function __construct(
         public readonly \Upsun\Model\AddressMetadataMetadata $metadata
     ) {

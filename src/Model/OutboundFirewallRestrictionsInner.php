@@ -19,7 +19,57 @@ use JsonSerializable;
 final class OutboundFirewallRestrictionsInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Outbound_firewall_restrictions_inner';
 
+    private static array $attributeMap = [
+        'protocol' => 'protocol',
+        'ips' => 'ips',
+        'domains' => 'domains',
+        'ports' => 'ports'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'protocol' => 'setProtocol',
+            'ips' => 'setIps',
+            'domains' => 'setDomains',
+            'ports' => 'setPorts'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'protocol' => 'getProtocol',
+            'ips' => 'getIps',
+            'domains' => 'getDomains',
+            'ports' => 'getPorts'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'protocol' => 'setProtocol',
+            'ips' => 'setIps',
+            'domains' => 'setDomains',
+            'ports' => 'setPorts'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'protocol' => 'getProtocol',
+            'ips' => 'getIps',
+            'domains' => 'getDomains',
+            'ports' => 'getPorts'
+        ];
+    
     public function __construct(
         public readonly string $protocol,
         /**

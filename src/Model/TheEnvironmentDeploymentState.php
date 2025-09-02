@@ -19,7 +19,52 @@ use JsonSerializable;
 final class TheEnvironmentDeploymentState implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_environment_deployment_state';
 
+    private static array $attributeMap = [
+        'last_deployment_successful' => 'last_deployment_successful',
+        'last_deployment_at' => 'last_deployment_at',
+        'crons' => 'crons'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'last_deployment_successful' => 'setLastDeploymentSuccessful',
+            'last_deployment_at' => 'setLastDeploymentAt',
+            'crons' => 'setCrons'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'last_deployment_successful' => 'getLastDeploymentSuccessful',
+            'last_deployment_at' => 'getLastDeploymentAt',
+            'crons' => 'getCrons'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'last_deployment_successful' => 'setLastDeploymentSuccessful',
+            'last_deployment_at' => 'setLastDeploymentAt',
+            'crons' => 'setCrons'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'last_deployment_successful' => 'getLastDeploymentSuccessful',
+            'last_deployment_at' => 'getLastDeploymentAt',
+            'crons' => 'getCrons'
+        ];
+    
     public function __construct(
         public readonly bool $last_deployment_successful,
         public readonly ?\DateTime $last_deployment_at,

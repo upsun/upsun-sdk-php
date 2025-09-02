@@ -19,7 +19,47 @@ use JsonSerializable;
 final class CreateUsageAlertRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'create_usage_alert_request';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'config' => 'config'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'config' => 'setConfig'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'config' => 'getConfig'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'config' => 'setConfig'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'config' => 'getConfig'
+        ];
+    
     public function __construct(
         public readonly string $id,
         public readonly \Upsun\Model\CreateUsageAlertRequestConfig $config

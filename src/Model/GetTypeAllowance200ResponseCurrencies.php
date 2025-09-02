@@ -19,7 +19,62 @@ use JsonSerializable;
 final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'get_type_allowance_200_response_currencies';
 
+    private static array $attributeMap = [
+        'eur' => 'EUR',
+        'usd' => 'USD',
+        'gbp' => 'GBP',
+        'aud' => 'AUD',
+        'cad' => 'CAD'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'eur' => 'setEur',
+            'usd' => 'setUsd',
+            'gbp' => 'setGbp',
+            'aud' => 'setAud',
+            'cad' => 'setCad'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'eur' => 'getEur',
+            'usd' => 'getUsd',
+            'gbp' => 'getGbp',
+            'aud' => 'getAud',
+            'cad' => 'getCad'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'eur' => 'setEur',
+            'usd' => 'setUsd',
+            'gbp' => 'setGbp',
+            'aud' => 'setAud',
+            'cad' => 'setCad'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'eur' => 'getEur',
+            'usd' => 'getUsd',
+            'gbp' => 'getGbp',
+            'aud' => 'getAud',
+            'cad' => 'getCad'
+        ];
+    
     public function __construct(
         public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR $eur,
         public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD $usd,

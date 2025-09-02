@@ -19,7 +19,42 @@ use JsonSerializable;
 final class OperationsThatCanBeAppliedToTheSourceCodeValue implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Operations_that_can_be_applied_to_the_source_code__value';
 
+    private static array $attributeMap = [
+        'command' => 'command'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'command' => 'setCommand'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'command' => 'getCommand'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'command' => 'setCommand'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'command' => 'getCommand'
+        ];
+    
     public function __construct(
         public readonly ?string $command
     ) {

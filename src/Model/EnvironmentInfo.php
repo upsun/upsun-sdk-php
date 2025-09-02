@@ -19,7 +19,82 @@ use JsonSerializable;
 final class EnvironmentInfo implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Environment_Info';
 
+    private static array $attributeMap = [
+        'name' => 'name',
+        'status' => 'status',
+        'is_main' => 'is_main',
+        'is_production' => 'is_production',
+        'constraints' => 'constraints',
+        'reference' => 'reference',
+        'machine_name' => 'machine_name',
+        'environment_type' => 'environment_type',
+        'links' => 'links'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'name' => 'setName',
+            'status' => 'setStatus',
+            'is_main' => 'setIsMain',
+            'is_production' => 'setIsProduction',
+            'constraints' => 'setConstraints',
+            'reference' => 'setReference',
+            'machine_name' => 'setMachineName',
+            'environment_type' => 'setEnvironmentType',
+            'links' => 'setLinks'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'name' => 'getName',
+            'status' => 'getStatus',
+            'is_main' => 'getIsMain',
+            'is_production' => 'getIsProduction',
+            'constraints' => 'getConstraints',
+            'reference' => 'getReference',
+            'machine_name' => 'getMachineName',
+            'environment_type' => 'getEnvironmentType',
+            'links' => 'getLinks'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'name' => 'setName',
+            'status' => 'setStatus',
+            'is_main' => 'setIsMain',
+            'is_production' => 'setIsProduction',
+            'constraints' => 'setConstraints',
+            'reference' => 'setReference',
+            'machine_name' => 'setMachineName',
+            'environment_type' => 'setEnvironmentType',
+            'links' => 'setLinks'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'name' => 'getName',
+            'status' => 'getStatus',
+            'is_main' => 'getIsMain',
+            'is_production' => 'getIsProduction',
+            'constraints' => 'getConstraints',
+            'reference' => 'getReference',
+            'machine_name' => 'getMachineName',
+            'environment_type' => 'getEnvironmentType',
+            'links' => 'getLinks'
+        ];
+    
     public function __construct(
         public readonly string $name,
         public readonly string $status,

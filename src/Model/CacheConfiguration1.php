@@ -19,7 +19,57 @@ use JsonSerializable;
 final class CacheConfiguration1 implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Cache_configuration__1';
 
+    private static array $attributeMap = [
+        'enabled' => 'enabled',
+        'default_ttl' => 'default_ttl',
+        'cookies' => 'cookies',
+        'headers' => 'headers'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'enabled' => 'setEnabled',
+            'default_ttl' => 'setDefaultTtl',
+            'cookies' => 'setCookies',
+            'headers' => 'setHeaders'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'enabled' => 'getEnabled',
+            'default_ttl' => 'getDefaultTtl',
+            'cookies' => 'getCookies',
+            'headers' => 'getHeaders'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'enabled' => 'setEnabled',
+            'default_ttl' => 'setDefaultTtl',
+            'cookies' => 'setCookies',
+            'headers' => 'setHeaders'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'enabled' => 'getEnabled',
+            'default_ttl' => 'getDefaultTtl',
+            'cookies' => 'getCookies',
+            'headers' => 'getHeaders'
+        ];
+    
     public function __construct(
         public readonly bool $enabled,
         public readonly int $default_ttl,

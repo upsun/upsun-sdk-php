@@ -19,7 +19,52 @@ use JsonSerializable;
 final class SystemInformation implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'SystemInformation';
 
+    private static array $attributeMap = [
+        'version' => 'version',
+        'image' => 'image',
+        'started_at' => 'started_at'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'version' => 'setVersion',
+            'image' => 'setImage',
+            'started_at' => 'setStartedAt'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'version' => 'getVersion',
+            'image' => 'getImage',
+            'started_at' => 'getStartedAt'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'version' => 'setVersion',
+            'image' => 'setImage',
+            'started_at' => 'setStartedAt'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'version' => 'getVersion',
+            'image' => 'getImage',
+            'started_at' => 'getStartedAt'
+        ];
+    
     public function __construct(
         public readonly string $version,
         public readonly string $image,

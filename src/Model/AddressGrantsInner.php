@@ -19,7 +19,47 @@ use JsonSerializable;
 final class AddressGrantsInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Address_grants_inner';
 
+    private static array $attributeMap = [
+        'permission' => 'permission',
+        'address' => 'address'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'permission' => 'setPermission',
+            'address' => 'setAddress'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'permission' => 'getPermission',
+            'address' => 'getAddress'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'permission' => 'setPermission',
+            'address' => 'setAddress'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'permission' => 'getPermission',
+            'address' => 'getAddress'
+        ];
+    
     public function __construct(
         public readonly string $permission,
         public readonly string $address

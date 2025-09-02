@@ -19,7 +19,97 @@ use JsonSerializable;
 final class BitbucketServerIntegration implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'BitbucketServerIntegration';
 
+    private static array $attributeMap = [
+        'created_at' => 'created_at',
+        'updated_at' => 'updated_at',
+        'type' => 'type',
+        'fetch_branches' => 'fetch_branches',
+        'prune_branches' => 'prune_branches',
+        'environment_init_resources' => 'environment_init_resources',
+        'url' => 'url',
+        'username' => 'username',
+        'project' => 'project',
+        'repository' => 'repository',
+        'build_pull_requests' => 'build_pull_requests',
+        'pull_requests_clone_parent_data' => 'pull_requests_clone_parent_data'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'type' => 'setType',
+            'fetch_branches' => 'setFetchBranches',
+            'prune_branches' => 'setPruneBranches',
+            'environment_init_resources' => 'setEnvironmentInitResources',
+            'url' => 'setUrl',
+            'username' => 'setUsername',
+            'project' => 'setProject',
+            'repository' => 'setRepository',
+            'build_pull_requests' => 'setBuildPullRequests',
+            'pull_requests_clone_parent_data' => 'setPullRequestsCloneParentData'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'type' => 'getType',
+            'fetch_branches' => 'getFetchBranches',
+            'prune_branches' => 'getPruneBranches',
+            'environment_init_resources' => 'getEnvironmentInitResources',
+            'url' => 'getUrl',
+            'username' => 'getUsername',
+            'project' => 'getProject',
+            'repository' => 'getRepository',
+            'build_pull_requests' => 'getBuildPullRequests',
+            'pull_requests_clone_parent_data' => 'getPullRequestsCloneParentData'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'created_at' => 'setCreatedAt',
+            'updated_at' => 'setUpdatedAt',
+            'type' => 'setType',
+            'fetch_branches' => 'setFetchBranches',
+            'prune_branches' => 'setPruneBranches',
+            'environment_init_resources' => 'setEnvironmentInitResources',
+            'url' => 'setUrl',
+            'username' => 'setUsername',
+            'project' => 'setProject',
+            'repository' => 'setRepository',
+            'build_pull_requests' => 'setBuildPullRequests',
+            'pull_requests_clone_parent_data' => 'setPullRequestsCloneParentData'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'created_at' => 'getCreatedAt',
+            'updated_at' => 'getUpdatedAt',
+            'type' => 'getType',
+            'fetch_branches' => 'getFetchBranches',
+            'prune_branches' => 'getPruneBranches',
+            'environment_init_resources' => 'getEnvironmentInitResources',
+            'url' => 'getUrl',
+            'username' => 'getUsername',
+            'project' => 'getProject',
+            'repository' => 'getRepository',
+            'build_pull_requests' => 'getBuildPullRequests',
+            'pull_requests_clone_parent_data' => 'getPullRequestsCloneParentData'
+        ];
+    
     public function __construct(
         public readonly ?\DateTime $created_at,
         public readonly ?\DateTime $updated_at,

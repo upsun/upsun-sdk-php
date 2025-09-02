@@ -19,7 +19,52 @@ use JsonSerializable;
 final class ProfileCurrentTrialProjects implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Profile_current_trial_projects';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'name' => 'name',
+        'total' => 'total'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'name' => 'setName',
+            'total' => 'setTotal'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'name' => 'getName',
+            'total' => 'getTotal'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'id' => 'setId',
+            'name' => 'setName',
+            'total' => 'setTotal'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'id' => 'getId',
+            'name' => 'getName',
+            'total' => 'getTotal'
+        ];
+    
     public function __construct(
         public readonly string $id,
         public readonly string $name,

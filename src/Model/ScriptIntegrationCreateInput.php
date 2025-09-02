@@ -19,7 +19,72 @@ use JsonSerializable;
 final class ScriptIntegrationCreateInput implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'ScriptIntegrationCreateInput';
 
+    private static array $attributeMap = [
+        'type' => 'type',
+        'events' => 'events',
+        'environments' => 'environments',
+        'excluded_environments' => 'excluded_environments',
+        'states' => 'states',
+        'result' => 'result',
+        'script' => 'script'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'events' => 'setEvents',
+            'environments' => 'setEnvironments',
+            'excluded_environments' => 'setExcludedEnvironments',
+            'states' => 'setStates',
+            'result' => 'setResult',
+            'script' => 'setScript'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'events' => 'getEvents',
+            'environments' => 'getEnvironments',
+            'excluded_environments' => 'getExcludedEnvironments',
+            'states' => 'getStates',
+            'result' => 'getResult',
+            'script' => 'getScript'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'events' => 'setEvents',
+            'environments' => 'setEnvironments',
+            'excluded_environments' => 'setExcludedEnvironments',
+            'states' => 'setStates',
+            'result' => 'setResult',
+            'script' => 'setScript'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'events' => 'getEvents',
+            'environments' => 'getEnvironments',
+            'excluded_environments' => 'getExcludedEnvironments',
+            'states' => 'getStates',
+            'result' => 'getResult',
+            'script' => 'getScript'
+        ];
+    
     public function __construct(
         public readonly string $type,
         /**

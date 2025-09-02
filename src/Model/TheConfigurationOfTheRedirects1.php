@@ -19,7 +19,47 @@ use JsonSerializable;
 final class TheConfigurationOfTheRedirects1 implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_configuration_of_the_redirects__1';
 
+    private static array $attributeMap = [
+        'expires' => 'expires',
+        'paths' => 'paths'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'expires' => 'setExpires',
+            'paths' => 'setPaths'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'expires' => 'getExpires',
+            'paths' => 'getPaths'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'expires' => 'setExpires',
+            'paths' => 'setPaths'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'expires' => 'getExpires',
+            'paths' => 'getPaths'
+        ];
+    
     public function __construct(
         public readonly string $expires,
         /**

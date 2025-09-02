@@ -19,7 +19,47 @@ use JsonSerializable;
 final class VerifyPhoneNumberRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'verify_phone_number_request';
 
+    private static array $attributeMap = [
+        'channel' => 'channel',
+        'phone_number' => 'phone_number'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'channel' => 'setChannel',
+            'phone_number' => 'setPhoneNumber'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'channel' => 'getChannel',
+            'phone_number' => 'getPhoneNumber'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'channel' => 'setChannel',
+            'phone_number' => 'setPhoneNumber'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'channel' => 'getChannel',
+            'phone_number' => 'getPhoneNumber'
+        ];
+    
     public function __construct(
         public readonly string $channel,
         public readonly string $phone_number

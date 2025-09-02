@@ -19,7 +19,47 @@ use JsonSerializable;
 final class UpdateOrgBillingAlertConfigRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'update_org_billing_alert_config_request';
 
+    private static array $attributeMap = [
+        'active' => 'active',
+        'config' => 'config'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'active' => 'setActive',
+            'config' => 'setConfig'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'active' => 'getActive',
+            'config' => 'getConfig'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'active' => 'setActive',
+            'config' => 'setConfig'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'active' => 'getActive',
+            'config' => 'getConfig'
+        ];
+    
     public function __construct(
         public readonly bool $active,
         public readonly \Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig $config

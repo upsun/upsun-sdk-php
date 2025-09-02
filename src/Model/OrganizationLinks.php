@@ -19,7 +19,112 @@ use JsonSerializable;
 final class OrganizationLinks implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Organization__links';
 
+    private static array $attributeMap = [
+        'self' => 'self',
+        'update' => 'update',
+        'delete' => 'delete',
+        'members' => 'members',
+        'create_member' => 'create-member',
+        'address' => 'address',
+        'profile' => 'profile',
+        'payment_source' => 'payment-source',
+        'orders' => 'orders',
+        'vouchers' => 'vouchers',
+        'apply_voucher' => 'apply-voucher',
+        'subscriptions' => 'subscriptions',
+        'create_subscription' => 'create-subscription',
+        'estimate_subscription' => 'estimate-subscription',
+        'mfa_enforcement' => 'mfa-enforcement'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'self' => 'setSelf',
+            'update' => 'setUpdate',
+            'delete' => 'setDelete',
+            'members' => 'setMembers',
+            'create_member' => 'setCreateMember',
+            'address' => 'setAddress',
+            'profile' => 'setProfile',
+            'payment_source' => 'setPaymentSource',
+            'orders' => 'setOrders',
+            'vouchers' => 'setVouchers',
+            'apply_voucher' => 'setApplyVoucher',
+            'subscriptions' => 'setSubscriptions',
+            'create_subscription' => 'setCreateSubscription',
+            'estimate_subscription' => 'setEstimateSubscription',
+            'mfa_enforcement' => 'setMfaEnforcement'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'self' => 'getSelf',
+            'update' => 'getUpdate',
+            'delete' => 'getDelete',
+            'members' => 'getMembers',
+            'create_member' => 'getCreateMember',
+            'address' => 'getAddress',
+            'profile' => 'getProfile',
+            'payment_source' => 'getPaymentSource',
+            'orders' => 'getOrders',
+            'vouchers' => 'getVouchers',
+            'apply_voucher' => 'getApplyVoucher',
+            'subscriptions' => 'getSubscriptions',
+            'create_subscription' => 'getCreateSubscription',
+            'estimate_subscription' => 'getEstimateSubscription',
+            'mfa_enforcement' => 'getMfaEnforcement'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'self' => 'setSelf',
+            'update' => 'setUpdate',
+            'delete' => 'setDelete',
+            'members' => 'setMembers',
+            'create_member' => 'setCreateMember',
+            'address' => 'setAddress',
+            'profile' => 'setProfile',
+            'payment_source' => 'setPaymentSource',
+            'orders' => 'setOrders',
+            'vouchers' => 'setVouchers',
+            'apply_voucher' => 'setApplyVoucher',
+            'subscriptions' => 'setSubscriptions',
+            'create_subscription' => 'setCreateSubscription',
+            'estimate_subscription' => 'setEstimateSubscription',
+            'mfa_enforcement' => 'setMfaEnforcement'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'self' => 'getSelf',
+            'update' => 'getUpdate',
+            'delete' => 'getDelete',
+            'members' => 'getMembers',
+            'create_member' => 'getCreateMember',
+            'address' => 'getAddress',
+            'profile' => 'getProfile',
+            'payment_source' => 'getPaymentSource',
+            'orders' => 'getOrders',
+            'vouchers' => 'getVouchers',
+            'apply_voucher' => 'getApplyVoucher',
+            'subscriptions' => 'getSubscriptions',
+            'create_subscription' => 'getCreateSubscription',
+            'estimate_subscription' => 'getEstimateSubscription',
+            'mfa_enforcement' => 'getMfaEnforcement'
+        ];
+    
     public function __construct(
         public readonly \Upsun\Model\OrganizationLinksSelf $self,
         public readonly \Upsun\Model\OrganizationLinksUpdate $update,

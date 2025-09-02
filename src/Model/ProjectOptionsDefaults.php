@@ -19,7 +19,57 @@ use JsonSerializable;
 final class ProjectOptionsDefaults implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'ProjectOptions_defaults';
 
+    private static array $attributeMap = [
+        'settings' => 'settings',
+        'variables' => 'variables',
+        'access' => 'access',
+        'capabilities' => 'capabilities'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'settings' => 'setSettings',
+            'variables' => 'setVariables',
+            'access' => 'setAccess',
+            'capabilities' => 'setCapabilities'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'settings' => 'getSettings',
+            'variables' => 'getVariables',
+            'access' => 'getAccess',
+            'capabilities' => 'getCapabilities'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'settings' => 'setSettings',
+            'variables' => 'setVariables',
+            'access' => 'setAccess',
+            'capabilities' => 'setCapabilities'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'settings' => 'getSettings',
+            'variables' => 'getVariables',
+            'access' => 'getAccess',
+            'capabilities' => 'getCapabilities'
+        ];
+    
     public function __construct(
         public readonly object $settings,
         public readonly object $variables,

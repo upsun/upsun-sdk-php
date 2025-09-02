@@ -19,7 +19,92 @@ use JsonSerializable;
 final class GetAddress200Response implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'get_address_200_response';
 
+    private static array $attributeMap = [
+        'country' => 'country',
+        'name_line' => 'name_line',
+        'premise' => 'premise',
+        'sub_premise' => 'sub_premise',
+        'thoroughfare' => 'thoroughfare',
+        'administrative_area' => 'administrative_area',
+        'sub_administrative_area' => 'sub_administrative_area',
+        'locality' => 'locality',
+        'dependent_locality' => 'dependent_locality',
+        'postal_code' => 'postal_code',
+        'metadata' => 'metadata'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'country' => 'setCountry',
+            'name_line' => 'setNameLine',
+            'premise' => 'setPremise',
+            'sub_premise' => 'setSubPremise',
+            'thoroughfare' => 'setThoroughfare',
+            'administrative_area' => 'setAdministrativeArea',
+            'sub_administrative_area' => 'setSubAdministrativeArea',
+            'locality' => 'setLocality',
+            'dependent_locality' => 'setDependentLocality',
+            'postal_code' => 'setPostalCode',
+            'metadata' => 'setMetadata'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'country' => 'getCountry',
+            'name_line' => 'getNameLine',
+            'premise' => 'getPremise',
+            'sub_premise' => 'getSubPremise',
+            'thoroughfare' => 'getThoroughfare',
+            'administrative_area' => 'getAdministrativeArea',
+            'sub_administrative_area' => 'getSubAdministrativeArea',
+            'locality' => 'getLocality',
+            'dependent_locality' => 'getDependentLocality',
+            'postal_code' => 'getPostalCode',
+            'metadata' => 'getMetadata'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'country' => 'setCountry',
+            'name_line' => 'setNameLine',
+            'premise' => 'setPremise',
+            'sub_premise' => 'setSubPremise',
+            'thoroughfare' => 'setThoroughfare',
+            'administrative_area' => 'setAdministrativeArea',
+            'sub_administrative_area' => 'setSubAdministrativeArea',
+            'locality' => 'setLocality',
+            'dependent_locality' => 'setDependentLocality',
+            'postal_code' => 'setPostalCode',
+            'metadata' => 'setMetadata'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'country' => 'getCountry',
+            'name_line' => 'getNameLine',
+            'premise' => 'getPremise',
+            'sub_premise' => 'getSubPremise',
+            'thoroughfare' => 'getThoroughfare',
+            'administrative_area' => 'getAdministrativeArea',
+            'sub_administrative_area' => 'getSubAdministrativeArea',
+            'locality' => 'getLocality',
+            'dependent_locality' => 'getDependentLocality',
+            'postal_code' => 'getPostalCode',
+            'metadata' => 'getMetadata'
+        ];
+    
     public function __construct(
         public readonly string $country,
         public readonly string $name_line,

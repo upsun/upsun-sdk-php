@@ -19,7 +19,52 @@ use JsonSerializable;
 final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'list_org_prepayment_transactions_200_response';
 
+    private static array $attributeMap = [
+        'count' => 'count',
+        'transactions' => 'transactions',
+        '_links' => '_links'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'count' => 'setCount',
+            'transactions' => 'setTransactions',
+            '_links' => 'setLinks'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'count' => 'getCount',
+            'transactions' => 'getTransactions',
+            '_links' => 'getLinks'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'count' => 'setCount',
+            'transactions' => 'setTransactions',
+            '_links' => 'setLinks'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'count' => 'getCount',
+            'transactions' => 'getTransactions',
+            '_links' => 'getLinks'
+        ];
+    
     public function __construct(
         public readonly int $count,
         /**

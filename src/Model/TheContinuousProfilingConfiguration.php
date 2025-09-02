@@ -19,7 +19,42 @@ use JsonSerializable;
 final class TheContinuousProfilingConfiguration implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'The_continuous_profiling_configuration';
 
+    private static array $attributeMap = [
+        'supported_runtimes' => 'supported_runtimes'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'supported_runtimes' => 'setSupportedRuntimes'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'supported_runtimes' => 'getSupportedRuntimes'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'supported_runtimes' => 'setSupportedRuntimes'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'supported_runtimes' => 'getSupportedRuntimes'
+        ];
+    
     public function __construct(
         /**
          * @var array

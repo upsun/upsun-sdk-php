@@ -19,7 +19,92 @@ use JsonSerializable;
 final class BitbucketServerIntegrationPatch implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'BitbucketServerIntegrationPatch';
 
+    private static array $attributeMap = [
+        'type' => 'type',
+        'fetch_branches' => 'fetch_branches',
+        'prune_branches' => 'prune_branches',
+        'environment_init_resources' => 'environment_init_resources',
+        'url' => 'url',
+        'username' => 'username',
+        'token' => 'token',
+        'project' => 'project',
+        'repository' => 'repository',
+        'build_pull_requests' => 'build_pull_requests',
+        'pull_requests_clone_parent_data' => 'pull_requests_clone_parent_data'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'fetch_branches' => 'setFetchBranches',
+            'prune_branches' => 'setPruneBranches',
+            'environment_init_resources' => 'setEnvironmentInitResources',
+            'url' => 'setUrl',
+            'username' => 'setUsername',
+            'token' => 'setToken',
+            'project' => 'setProject',
+            'repository' => 'setRepository',
+            'build_pull_requests' => 'setBuildPullRequests',
+            'pull_requests_clone_parent_data' => 'setPullRequestsCloneParentData'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'fetch_branches' => 'getFetchBranches',
+            'prune_branches' => 'getPruneBranches',
+            'environment_init_resources' => 'getEnvironmentInitResources',
+            'url' => 'getUrl',
+            'username' => 'getUsername',
+            'token' => 'getToken',
+            'project' => 'getProject',
+            'repository' => 'getRepository',
+            'build_pull_requests' => 'getBuildPullRequests',
+            'pull_requests_clone_parent_data' => 'getPullRequestsCloneParentData'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'fetch_branches' => 'setFetchBranches',
+            'prune_branches' => 'setPruneBranches',
+            'environment_init_resources' => 'setEnvironmentInitResources',
+            'url' => 'setUrl',
+            'username' => 'setUsername',
+            'token' => 'setToken',
+            'project' => 'setProject',
+            'repository' => 'setRepository',
+            'build_pull_requests' => 'setBuildPullRequests',
+            'pull_requests_clone_parent_data' => 'setPullRequestsCloneParentData'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'fetch_branches' => 'getFetchBranches',
+            'prune_branches' => 'getPruneBranches',
+            'environment_init_resources' => 'getEnvironmentInitResources',
+            'url' => 'getUrl',
+            'username' => 'getUsername',
+            'token' => 'getToken',
+            'project' => 'getProject',
+            'repository' => 'getRepository',
+            'build_pull_requests' => 'getBuildPullRequests',
+            'pull_requests_clone_parent_data' => 'getPullRequestsCloneParentData'
+        ];
+    
     public function __construct(
         public readonly string $type,
         public readonly bool $fetch_branches,

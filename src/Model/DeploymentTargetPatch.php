@@ -19,7 +19,77 @@ use JsonSerializable;
 final class DeploymentTargetPatch implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'DeploymentTargetPatch';
 
+    private static array $attributeMap = [
+        'type' => 'type',
+        'name' => 'name',
+        'enforced_mounts' => 'enforced_mounts',
+        'site_urls' => 'site_urls',
+        'ssh_hosts' => 'ssh_hosts',
+        'enterprise_environments_mapping' => 'enterprise_environments_mapping',
+        'hosts' => 'hosts',
+        'use_dedicated_grid' => 'use_dedicated_grid'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'name' => 'setName',
+            'enforced_mounts' => 'setEnforcedMounts',
+            'site_urls' => 'setSiteUrls',
+            'ssh_hosts' => 'setSshHosts',
+            'enterprise_environments_mapping' => 'setEnterpriseEnvironmentsMapping',
+            'hosts' => 'setHosts',
+            'use_dedicated_grid' => 'setUseDedicatedGrid'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'name' => 'getName',
+            'enforced_mounts' => 'getEnforcedMounts',
+            'site_urls' => 'getSiteUrls',
+            'ssh_hosts' => 'getSshHosts',
+            'enterprise_environments_mapping' => 'getEnterpriseEnvironmentsMapping',
+            'hosts' => 'getHosts',
+            'use_dedicated_grid' => 'getUseDedicatedGrid'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'type' => 'setType',
+            'name' => 'setName',
+            'enforced_mounts' => 'setEnforcedMounts',
+            'site_urls' => 'setSiteUrls',
+            'ssh_hosts' => 'setSshHosts',
+            'enterprise_environments_mapping' => 'setEnterpriseEnvironmentsMapping',
+            'hosts' => 'setHosts',
+            'use_dedicated_grid' => 'setUseDedicatedGrid'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'type' => 'getType',
+            'name' => 'getName',
+            'enforced_mounts' => 'getEnforcedMounts',
+            'site_urls' => 'getSiteUrls',
+            'ssh_hosts' => 'getSshHosts',
+            'enterprise_environments_mapping' => 'getEnterpriseEnvironmentsMapping',
+            'hosts' => 'getHosts',
+            'use_dedicated_grid' => 'getUseDedicatedGrid'
+        ];
+    
     public function __construct(
         public readonly string $type,
         public readonly string $name,

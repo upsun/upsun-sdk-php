@@ -19,7 +19,62 @@ use JsonSerializable;
 final class ProjectOptions implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'ProjectOptions';
 
+    private static array $attributeMap = [
+        'defaults' => 'defaults',
+        'enforced' => 'enforced',
+        'regions' => 'regions',
+        'plans' => 'plans',
+        'billing' => 'billing'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'defaults' => 'setDefaults',
+            'enforced' => 'setEnforced',
+            'regions' => 'setRegions',
+            'plans' => 'setPlans',
+            'billing' => 'setBilling'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'defaults' => 'getDefaults',
+            'enforced' => 'getEnforced',
+            'regions' => 'getRegions',
+            'plans' => 'getPlans',
+            'billing' => 'getBilling'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'defaults' => 'setDefaults',
+            'enforced' => 'setEnforced',
+            'regions' => 'setRegions',
+            'plans' => 'setPlans',
+            'billing' => 'setBilling'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'defaults' => 'getDefaults',
+            'enforced' => 'getEnforced',
+            'regions' => 'getRegions',
+            'plans' => 'getPlans',
+            'billing' => 'getBilling'
+        ];
+    
     public function __construct(
         public readonly \Upsun\Model\ProjectOptionsDefaults $defaults,
         public readonly \Upsun\Model\ProjectOptionsEnforced $enforced,

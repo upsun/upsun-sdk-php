@@ -19,7 +19,47 @@ use JsonSerializable;
 final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    /**
+     * The original name of the model.
+     */
+    private static string $openAPIModelName = 'Configuration_related_to_the_source_code_of_the_application_';
 
+    private static array $attributeMap = [
+        'root' => 'root',
+        'operations' => 'operations'
+    ];
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'root' => 'setRoot',
+            'operations' => 'setOperations'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'root' => 'getRoot',
+            'operations' => 'getOperations'
+        ];
+    
+        /**
+         * Array of attributes to setter functions (for deserialization of responses)
+         */
+        private static $setters = [
+            'root' => 'setRoot',
+            'operations' => 'setOperations'
+        ];
+    
+        /**
+         * Array of attributes to getter functions (for serialization of requests)
+         */
+        private static $getters = [
+            'root' => 'getRoot',
+            'operations' => 'getOperations'
+        ];
+    
     public function __construct(
         public readonly ?string $root,
         /**
