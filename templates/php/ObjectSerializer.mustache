@@ -131,7 +131,13 @@ class ObjectSerializer
                     $args[] = $value ? new DateTime($value) : null;
                 } elseif (class_exists($typeName)) {
                     // Nested model
-                    $args[] = $value ? self::deserializeModel($value, $typeName) : null;
+                    if ($value !== null) {
+                        $args[] = self::deserializeModel($value, $typeName);
+                    } elseif ((new ReflectionClass($typeName))->getConstructor()) {
+                        $args[] = new $typeName(...[]); // créer un objet vide si le constructeur existe
+                    } else {
+                        $args[] = null;
+                    }
                 } else {
                     // Primitive type
                     $args[] = $value;
