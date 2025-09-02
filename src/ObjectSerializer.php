@@ -362,89 +362,93 @@ class ObjectSerializer
     /**
      * Simple deserializer for new models with parameterized constructors
      */
-    private static function deserializeSimplifiedModel($data, $class)
+    private static function deserializeSimplifiedModel($data, string $class)
     {
+        if (null === $data) {
+            return null;
+        }
+    
         if (!class_exists($class)) {
             throw new \InvalidArgumentException("Class {$class} does not exist");
         }
-
-        $reflectionClass = new ReflectionClass($class);
+    
+        $reflectionClass = new \ReflectionClass($class);
         $constructor = $reflectionClass->getConstructor();
-
+    
         if (!$constructor) {
-            throw new \InvalidArgumentException("Class {$class} requires a constructor");
+            return new $class(); // no-arg constructor
         }
-
-        $constructorParams = $constructor->getParameters();
+    
         $args = [];
-
-        foreach ($constructorParams as $param) {
+        foreach ($constructor->getParameters() as $param) {
             $paramName = $param->getName();
             $paramType = $param->getType();
-
+            $allowsNull = $paramType?->allowsNull() ?? true;
+    
+            // Convert snake_case to JSON keys
             $jsonKey = str_replace('_', '-', $paramName);
-
+    
             $value = null;
             if (is_object($data)) {
                 $value = $data->{$jsonKey} ?? $data->{$paramName} ?? null;
             } elseif (is_array($data)) {
                 $value = $data[$jsonKey] ?? $data[$paramName] ?? null;
             }
-
+    
             if ($paramType) {
                 $typeName = $paramType->getName();
-
-                // Types primitifs
+    
+                // Handle built-in types
                 if ($paramType->isBuiltin()) {
                     switch ($typeName) {
-                        case 'array':
-                            $args[] = (array) ($value ?? []);
-                            break;
-                        case 'bool':
-                            $args[] = (bool) $value;
+                        case 'string':
+                            $args[] = $value !== null ? (string)$value : null;
                             break;
                         case 'int':
-                            $args[] = $value !== null ? (int) $value : null;
+                            $args[] = $value !== null ? (int)$value : null;
                             break;
                         case 'float':
-                            $args[] = $value !== null ? (float) $value : null;
+                            $args[] = $value !== null ? (float)$value : null;
                             break;
-                        case 'string':
-                            $args[] = $value !== null ? (string) $value : null;
+                        case 'bool':
+                            $args[] = $value !== null ? (bool)$value : null;
+                            break;
+                        case 'array':
+                            $args[] = $value !== null ? (array)$value : [];
                             break;
                         case 'object':
-                            $args[] = is_array($value) ? (object) $value : $value;
+                            $args[] = $value !== null ? (object)$value : null;
                             break;
                         default:
                             $args[] = $value;
+                            break;
                     }
-                } else {
-                    // Type Object
-                    if ($typeName === 'DateTime') {
-                        $args[] = $value ? new DateTime($value) : null;
-                    } elseif (in_array(strtolower($typeName), ['array', 'string', 'int', 'float', 'bool', 'object'], true)) {
-                        $args[] = $value;
-                    } elseif (class_exists($typeName)) {
-                        $args[] = $value ? self::deserializeSimplifiedModel($value, $typeName) : null;
-                    } else {
-                        $args[] = $value;
-                    }
+                }
+                // Handle special classes
+                elseif ($typeName === 'DateTime') {
+                    $args[] = $value !== null ? new \DateTime($value) : null;
+                }
+                // Handle nested models
+                elseif (class_exists($typeName)) {
+                    $args[] = $value !== null ? self::deserializeSimplifiedModel($value, $typeName) : null;
+                }
+                // Unknown type, fallback
+                else {
+                    $args[] = $value;
                 }
             } else {
                 $args[] = $value;
             }
+    
+            // If value is null but constructor requires non-null, throw
+            if ($args[count($args)-1] === null && !$allowsNull) {
+                throw new \InvalidArgumentException("Required value '{$paramName}' missing for class {$class}");
+            }
         }
-
-        try {
-            return new $class(...$args);
-        } catch (\TypeError $e) {
-            throw new \InvalidArgumentException(
-                "Failed to instantiate {$class}: " . $e->getMessage() . 
-                ". Available data keys: " . implode(', ', is_object($data) 
-                    ? array_keys(get_object_vars($data)) : array_keys($data))
-            );
-        }
+    
+        return new $class(...$args);
     }
+
 
     // Usage dans votre ObjectSerializer::deserialize principal
     public static function deserialize($data, $class, $httpHeaders = null, $discriminator = null)
