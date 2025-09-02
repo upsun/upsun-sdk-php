@@ -2082,7 +2082,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[project_id]'] = $filter_project_id->getEq();
+                $queryParams['filter[project_id]'] = $filter_project_id->eq;
             }
         }
 
@@ -2093,7 +2093,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[project_title]'] = $filter_project_title->getEq();
+                $queryParams['filter[project_title]'] = $filter_project_title->eq;
             }
         }
 
@@ -2104,7 +2104,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[region]'] = $filter_region->getEq();
+                $queryParams['filter[region]'] = $filter_region->eq;
             }
         }
 
@@ -2115,7 +2115,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[updated_at]'] = $filter_updated_at->getEq();
+                $queryParams['filter[updated_at]'] = $filter_updated_at->eq;
             }
         }
 

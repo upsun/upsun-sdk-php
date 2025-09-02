@@ -1750,7 +1750,7 @@ final class TeamsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[organization_id]'] = $filter_organization_id->getEq();
+                $queryParams['filter[organization_id]'] = $filter_organization_id->eq;
             }
         }
 
@@ -1761,7 +1761,7 @@ final class TeamsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[id]'] = $filter_id->getEq();
+                $queryParams['filter[id]'] = $filter_id->eq;
             }
         }
 
@@ -1772,7 +1772,7 @@ final class TeamsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[updated_at]'] = $filter_updated_at->getEq();
+                $queryParams['filter[updated_at]'] = $filter_updated_at->eq;
             }
         }
 
@@ -2076,7 +2076,7 @@ final class TeamsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[organization_id]'] = $filter_organization_id->getEq();
+                $queryParams['filter[organization_id]'] = $filter_organization_id->eq;
             }
         }
 
@@ -2087,7 +2087,7 @@ final class TeamsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[updated_at]'] = $filter_updated_at->getEq();
+                $queryParams['filter[updated_at]'] = $filter_updated_at->eq;
             }
         }
 

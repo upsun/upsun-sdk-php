@@ -561,7 +561,7 @@ final class OrganizationProjectsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[id]'] = $filter_id->getEq();
+                $queryParams['filter[id]'] = $filter_id->eq;
             }
         }
 
@@ -572,7 +572,7 @@ final class OrganizationProjectsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[title]'] = $filter_title->getEq();
+                $queryParams['filter[title]'] = $filter_title->eq;
             }
         }
 
@@ -583,7 +583,7 @@ final class OrganizationProjectsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[status]'] = $filter_status->getEq();
+                $queryParams['filter[status]'] = $filter_status->eq;
             }
         }
 
@@ -594,7 +594,7 @@ final class OrganizationProjectsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[updated_at]'] = $filter_updated_at->getEq();
+                $queryParams['filter[updated_at]'] = $filter_updated_at->eq;
             }
         }
 
@@ -605,7 +605,7 @@ final class OrganizationProjectsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[created_at]'] = $filter_created_at->getEq();
+                $queryParams['filter[created_at]'] = $filter_created_at->eq;
             }
         }
 

@@ -505,7 +505,7 @@ final class RegionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[available]'] = $filter_available->getEq();
+                $queryParams['filter[available]'] = $filter_available->eq;
             }
         }
 
@@ -516,7 +516,7 @@ final class RegionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[private]'] = $filter_private->getEq();
+                $queryParams['filter[private]'] = $filter_private->eq;
             }
         }
 
@@ -527,7 +527,7 @@ final class RegionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[zone]'] = $filter_zone->getEq();
+                $queryParams['filter[zone]'] = $filter_zone->eq;
             }
         }
 

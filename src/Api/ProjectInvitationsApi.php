@@ -724,7 +724,7 @@ final class ProjectInvitationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[state]'] = $filter_state->getEq();
+                $queryParams['filter[state]'] = $filter_state->eq;
             }
         }
 

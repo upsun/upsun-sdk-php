@@ -939,7 +939,7 @@ final class OrganizationMembersApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[permissions]'] = $filter_permissions->getEq();
+                $queryParams['filter[permissions]'] = $filter_permissions->eq;
             }
         }
 

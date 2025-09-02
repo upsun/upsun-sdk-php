@@ -443,11 +443,11 @@ use function sprintf;
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['{{baseName}}'] = {{#isModel}}${{paramName}}->getEq(){{/isModel}}{{^isModel}}${{paramName}}{{/isModel}};
+                $queryParams['{{baseName}}'] = {{#isModel}}${{paramName}}->eq{{/isModel}}{{^isModel}}${{paramName}}{{/isModel}};
             }
         {{/style}}
         {{^style}}
-            $queryParams['{{baseName}}'] = {{#isModel}}${{paramName}}->getEq(){{/isModel}}{{^isModel}}${{paramName}}{{/isModel}};
+            $queryParams['{{baseName}}'] = {{#isModel}}${{paramName}}->eq{{/isModel}}{{^isModel}}${{paramName}}{{/isModel}};
         {{/style}}
         }
 

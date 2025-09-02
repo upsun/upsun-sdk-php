@@ -281,7 +281,7 @@ final class GrantsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[resource_type]'] = $filter_resource_type->getEq();
+                $queryParams['filter[resource_type]'] = $filter_resource_type->eq;
             }
         }
 
@@ -292,7 +292,7 @@ final class GrantsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[organization_id]'] = $filter_organization_id->getEq();
+                $queryParams['filter[organization_id]'] = $filter_organization_id->eq;
             }
         }
 
@@ -303,7 +303,7 @@ final class GrantsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[permissions]'] = $filter_permissions->getEq();
+                $queryParams['filter[permissions]'] = $filter_permissions->eq;
             }
         }
 
